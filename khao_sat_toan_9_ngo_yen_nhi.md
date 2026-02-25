@@ -26,14 +26,18 @@
 
 ### Số học
 
-- [ ] Tập hợp, ký hiệu, so sánh & sắp xếp — Ghi chú:
-- [ ] Số tự nhiên: 4 phép tính, tính chất, thứ tự thực hiện phép tính — Ghi chú:
-- [ ] Ước – bội; số nguyên tố; hợp số; phân tích ra thừa số nguyên tố — Ghi chú:
-- [ ] ƯCLN – BCNN; bài toán chia hết cơ bản — Ghi chú:
-- [ ] Số nguyên: so sánh, 4 phép tính, giá trị tuyệt đối — Ghi chú:
-- [ ] Phân số: khái niệm, rút gọn, quy đồng, so sánh, 4 phép tính — Ghi chú:
-- [ ] Số thập phân; làm tròn; 4 phép tính; đổi qua lại phân số ↔ thập phân — Ghi chú:
-- [ ] Tỉ số – tỉ số phần trăm; bài toán phần trăm cơ bản — Ghi chú:
+- [ ] Tập hợp, ký hiệu, so sánh & sắp xếp — Ghi chú: 0%
+- [ ] Số tự nhiên, 4 phép tính, tính chất, thứ tự thực hiện phép tính — Ghi chú: 50% - chưa nắm 3 tính chất
+- [ ] Ước – bội; số nguyên tố; hợp số; phân tích ra thừa số nguyên tố — Ghi chú: 0%
+- [ ] ƯCLN – BCNN; bài toán chia hết cơ bản — Ghi chú: 0%
+- [✅] Số nguyên: so sánh, 4 phép tính, giá trị tuyệt đối — Ghi chú: 100%
+- [ ] Phân số: khái niệm, rút gọn, quy đồng mẫu, so sánh, 4 phép tính — Ghi chú: 60% - chưa nắm kỹ, nhưng có nền tảng, biết quy đồng mẫu là lợi thế 
+- [ ] Số thập phân; làm tròn; 4 phép tính; đổi qua lại phân số ↔ thập phân — Ghi chú: 50% - chưa nắm kỹ
+- [ ] Tỉ số – tỉ số phần trăm; bài toán phần trăm cơ bản — Ghi chú: 60% - chỉ nắm được kiến thức cơ bản
+
+### Thống kê cơ bản
+
+- [ ] Thu thập dữ liệu; bảng số liệu; biểu đồ đơn giản; số trung bình cộng — Ghi chú:
 
 ### Hình học & đo lường
 
@@ -43,10 +47,6 @@
 - [ ] Tam giác: yếu tố cơ bản; phân loại; chu vi — Ghi chú:
 - [ ] Chu vi – diện tích các hình phẳng cơ bản (vuông, chữ nhật, tam giác, …) — Ghi chú:
 - [ ] Đơn vị đo: độ dài, diện tích, thể tích; đổi đơn vị — Ghi chú:
-
-### Thống kê cơ bản
-
-- [ ] Thu thập dữ liệu; bảng số liệu; biểu đồ đơn giản; số trung bình cộng — Ghi chú:
 
 ---
 

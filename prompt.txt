@@ -1,0 +1,37 @@
+Bạn là giáo viên dạy thêm Toán lớp 9 nhiều kinh nghiệm.
+
+Hãy thiết kế giáo án buổi 1 cho học sinh:
+- Học lực: Trung bình – Khá
+- Mục tiêu: Ôn tập căn bậc hai và rút gọn biểu thức
+- Thời lượng: 90 phút
+- Bao gồm:
+  1. Mục tiêu cụ thể
+  2. Kiến thức trọng tâm
+  3. Ví dụ minh họa từ dễ → khó
+  4. Bài tập luyện tập có đáp án
+  5. Bài tập nâng cao phân loại học sinh
+  6. Lỗi sai thường gặp
+  7. Bài tập về nhà
+
+Thiết kế theo định hướng phát triển năng lực.
+Thêm phần kiểm tra 10 phút đầu giờ.
+
+/toan-9-gia-su
+    /giao-an
+        buoi-01-can-bac-hai.md
+        buoi-02-ham-so.md
+    /ke-hoach
+        lo-trinh-3-thang.md
+    /bao-cao
+        mau-bao-cao-phu-huynh.md
+
+# Giáo án buổi {{number}}
+
+## 1. Mục tiêu
+## 2. Kiến thức trọng tâm
+## 3. Ví dụ minh họa
+## 4. Bài tập luyện tập
+## 5. Bài tập nâng cao
+## 6. Lỗi sai thường gặp
+## 7. Bài tập về nhà
+Dựa trên template này, tạo giáo án buổi 5 – Hệ thức lượng trong tam giác vuông.
