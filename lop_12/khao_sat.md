@@ -159,6 +159,13 @@
 
 ---
 
+## Xác xuất có điều kiện
+
+- Xác xuất toàn phần
+- Công thức Bayes
+
+---
+
 ## Hình học
 
 ### Vectơ trong không gian – Phương trình mặt phẳng, đường thẳng
@@ -188,19 +195,29 @@
 - Phương trình tổng quát: Ax + By + Cz + D = 0
 - Viết phương trình mặt phẳng khi biết:
 + 1 điểm + vectơ pháp tuyến
-+ 3 điểm không thẳng hàng
+  + Trong không gian Oxyz, nếu mặt phẳng (α) đi qua điểm M0(x0; y0; z0) và có vectơ pháp tuyến n = (A; B; C) thì có phương trình là: A(x – x0) + B(y – y0) + C(z – z0) = 0 ⇔ Ax + By + Cz + D = 0, với D = −(Ax0 + By0 + Cz0).
 + 1 điểm + 2 vectơ chỉ phương
-- Khoảng cách từ điểm M(x0; y0; z0) đến mặt phẳng:
-+ d = |A.x0 + B.y0 + C.z0 + D| / sqrt(A^2 + B^2 + C^2)
+  + Tìm vectơ pháp tuyến, quay về dạng 1 
++ 3 điểm không thẳng hàng
+  + Tìm 2 vector chỉ phương từ 3 điểm, quay về dạng 2
+- 2 mặt phẳng vuông góc nếu 2 vector pháp tuyến vuông góc hay u . v = 0 => A.A' + B.B' + C.C' = 0
+- 2 mặt phẳng song song nếu 2 vector pháp tuyến song song hoặc trùng nhau hay u = kv => A = kA', B = kB', C = kC'
+- Khoảng cách từ điểm M(x0; y0; z0) đến mặt phẳng: d = |A.x0 + B.y0 + C.z0 + D| / sqrt(A^2 + B^2 + C^2)
 - Góc giữa 2 mặt phẳng: cos(alpha) = |n1 . n2| / (|n1| x |n2|)
 - Ví dụ: Viết phương trình mặt phẳng qua A(1; 0; 2) có vectơ pháp tuyến n = (2; -1; 3).
 
 #### Phương trình đường thẳng trong không gian
 
-- Vectơ chỉ phương u = (a; b; c)
-- Phương trình tham số: { x = x0 + at; y = y0 + bt; z = z0 + ct }
-- Phương trình chính tắc: (x - x0)/a = (y - y0)/b = (z - z0)/c
+- Vectơ chỉ phương u = (a; b; c), đi qua điểm A(x0; y0, z0)
+- Phương trình đường phẳng (tham số): { x = x0 + at; y = y0 + bt; z = z0 + ct }
+- Phương trình đường phẳng (chính tắc): (x - x0)/a = (y - y0)/b = (z - z0)/c
+- Phương trình đường thẳng đi qua hai điểm
++ Tìm vector chỉ phương từ 2 điểm, rồi tìm ptđt (x - x1)/(x2 - x1) = (y - y1)/(y2 - y1) = (z - z1)/(z2 - z1)
 - Vị trí tương đối giữa 2 đường thẳng: cắt, song song, chéo, trùng
++ Song song nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 không nằm trên đt 2
++ Trùng nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 nằm trên đt 2
++ Cắt nhau nếu tích có hướng 2 vector chỉ phương khác 0 và vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích = 0)
++ Chéo nhau nếu tích có hướng 2 vector chỉ phương không vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích khác 0)
 - Vị trí tương đối giữa đường thẳng và mặt phẳng: cắt (1 điểm), song song, nằm trong mặt phẳng
 - Giao điểm đường thẳng và mặt phẳng: thế tham số vào PT mặt phẳng
 - Ví dụ: Tìm giao điểm đường thẳng { x = 1 + t; y = 2 - t; z = 3 + 2t } với mặt phẳng x + y + z - 6 = 0.
