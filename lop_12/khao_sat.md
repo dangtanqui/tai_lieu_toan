@@ -1,0 +1,245 @@
+# Khảo sát Toán 12
+
+---
+
+## Đại số & Giải tích
+
+### Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số
+
+#### Tính đơn điệu của hàm số
+
+- Hàm số y = f(x) gọi là đồng biến trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) < f(x2).
+- Hàm số y = f(x) gọi là nghịch biến trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) > f(x2).
+- f'(x) > 0 trên khoảng (a; b) → f(x) đồng biến trên (a; b)
+- f'(x) < 0 trên khoảng (a; b) → f(x) nghịch biến trên (a; b)
+- Cách xét: tìm f'(x), giải f'(x) = 0, lập bảng xét dấu f'(x)
+- Ví dụ: Xét sự đồng biến, nghịch biến của y = x^3 - 3x + 2.
+
+#### Cực trị của hàm số
+
+- Điểm cực đại: f'(x) đổi dấu từ + sang - khi x qua x0 → x0 là cực đại
+- Điểm cực tiểu: f'(x) đổi dấu từ - sang + khi x qua x0 → x0 là cực tiểu
+- Quy tắc 2 (dùng đạo hàm cấp hai): vì f'' thể hiện độ cong (f'' > 0 lỗi, f'' < 0 lõm)
+- f'(x0) = 0 và f''(x0) < 0 → cực đại; f''(x0) > 0 → cực tiểu
+
+#### Giá trị lớn nhất, nhỏ nhất
+
+- Trên đoạn [a; b]: so sánh f(a), f(b) và các giá trị f(x) tại điểm cực trị bên trong
+- GTLN = max; GTNN = min trong các giá trị đó
+- Ví dụ: Tìm GTLN, GTNN của y = x^3 - 3x trên [-2; 2].
+- Lập bảng biến thiên
+- Hoặc tính f' = 0 tìm x0 trên đoạn, tính f(x0), f(a), f(b) và tìm max, min
+
+#### Đường tiệm cận
+
+- Tiệm cận ngang: y = L nếu lim f(x) = L khi x tiến đến +vô cực hoặc -vô cực
+- Tiệm cận đứng: x = a nếu lim f(x) = vô cực khi x tiến đến a
+- Tiệm cận xiên: y = ax + b nếu lim [f(x) - (ax  + b)] = 0 khi x tiến đến +vô cực hoặc -vô cực
+- Hỏi: Hàm y = (2x + 1) / (x - 1) có tiệm cận ngang và tiệm cận đứng nào?
+
+#### Khảo sát sự biến thiên và vẽ đồ thị hàm số
+
+- Sơ đồ khảo sát hàm số:
+1. Tìm tập xác định
+2. Tính đạo hàm, giải f'(x) = 0 hoặc tìm những điểm đạo hàm không tồn tại
+3. Lập bảng biến thiên (xét dấu f', chiều biến thiên, cực trị, giới hạn vô cực, tiệm cận)
+4. Vẽ đồ thị
+- Các dạng hàm số thường khảo sát:
++ Hàm bậc ba: y = ax^3 + bx^2 + cx + d
++ Hàm trùng phương: y = ax^4 + bx^2 + c
++ Hàm phân thức bậc nhất: y = (ax + b) / (cx + d)
+- Ví dụ: Khảo sát và vẽ đồ thị hàm số y = x^3 - 3x^2 + 2.
+
+#### Ứng dụng đồ thị
+
+- Dùng đồ thị biện luận số nghiệm phương trình f(x) = m
+- Tìm m để phương trình có 1 nghiệm, 2 nghiệm, 3 nghiệm
+- Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
+
+### Hàm số mũ và hàm số logarit
+
+#### Lũy thừa (mở rộng)
+
+- Lũy thừa với số mũ nguyên âm: a^(-n) = 1 / a^n (a ≠ 0)
+- Lũy thừa với số mũ hữu tỉ: a^(m/n) = căn bậc n của a^m (a > 0)
+- Tính chất lũy thừa (mở rộng cho số mũ thực):
++ a^x x a^y = a^(x+y)
++ a^x / a^y = a^(x-y)
++ (a^x)^y = a^(xy)
++ (a x b)^x = a^x x b^x
+
+#### Hàm số mũ
+
+- y = a^x (a > 0, a ≠ 1)
+- a > 1: hàm đồng biến; 0 < a < 1: hàm nghịch biến
+- Đồ thị luôn qua điểm (0; 1)
+- TXĐ: R; tập giá trị: (0; +vô cực)
+
+#### Logarit
+
+- log_a(b) = c nghĩa là a^c = b (a > 0, a ≠ 1, b > 0)
+- Logarit tự nhiên: ln(x) = log_e(x) (e ≈ 2,718)
+- Logarit thập phân: lg(x) = log_10(x)
+- Tính chất:
++ log_a(1) = 0; log_a(a) = 1
++ log_a(xy) = log_a(x) + log_a(y)
++ log_a(x/y) = log_a(x) - log_a(y)
++ log_a(x^n) = n x log_a(x)
++ Đổi cơ số: log_a(b) = log_c(b) / log_c(a)
+- Ví dụ: log_2(8) = ?, log_3(1/9) = ?, lg(1000) = ?
+
+#### Hàm số logarit
+
+- y = log_a(x) (a > 0, a ≠ 1)
+- TXĐ: (0; +vô cực); tập giá trị: R
+- a > 1: đồng biến; 0 < a < 1: nghịch biến
+- Đồ thị luôn qua điểm (1; 0)
+- y = log_a(x) là hàm ngược của y = a^x
+
+#### Phương trình, bất phương trình mũ và logarit
+
+- Phương trình mũ cơ bản: a^x = b → x = log_a(b)
+- Phương trình logarit cơ bản: log_a(x) = b → x = a^b
+- Điều kiện: biểu thức trong logarit phải > 0
+- Bất phương trình: chú ý chiều bất đẳng thức phụ thuộc cơ số a > 1 hay 0 < a < 1
+- Ví dụ: Giải 2^x = 16. Giải log_2(x - 1) = 3.
+- Ví dụ: Giải 3^(2x-1) > 27.
+
+### Nguyên hàm – Tích phân
+
+#### Nguyên hàm
+
+- F(x) là nguyên hàm của f(x) nếu F'(x) = f(x)
+- Nguyên hàm tổng quát: F(x) + C (C là hằng số)
+- Bảng nguyên hàm cơ bản:
++ Nguyên hàm của x^n = x^(n+1) / (n+1) + C (n ≠ -1)
++ Nguyên hàm của 1/x = ln|x| + C
++ Nguyên hàm của e^x = e^x + C
++ Nguyên hàm của a^x = a^x / ln(a) + C
++ Nguyên hàm của sin(x) = -cos(x) + C
++ Nguyên hàm của cos(x) = sin(x) + C
++ Nguyên hàm của 1/cos^2(x) = tan(x) + C
++ Nguyên hàm của 1/sin^2(x) = -cot(x) + C
+- Tính chất: nguyên hàm (k.f) = k x nguyên hàm (f); nguyên hàm (f + g) = nguyên hàm (f) + nguyên hàm (g)
+- Ví dụ: Tìm nguyên hàm của f(x) = 3x^2 - 2x + 1.
+
+#### Tích phân
+
+- Tích phân từ a đến b của f(x)dx = F(b) - F(a) (F là nguyên hàm của f)
+- Tính chất:
++ Tích phân từ a đến a = 0
++ Tích phân từ a đến b = - tích phân từ b đến a
++ Tích phân từ a đến b = tích phân từ a đến c + tích phân từ c đến b
+- Phương pháp tính:
++ Phương pháp đổi biến: đặt u = g(x)
++ Phương pháp tích phân từng phần: tích phân (u.dv) = u.v - tích phân (v.du)
+- Ví dụ: Tính tích phân từ 0 đến 2 của (x^2 + 1)dx.
+
+#### Ứng dụng tích phân
+
+- Diện tích hình phẳng:
++ Giới hạn bởi đồ thị y = f(x), trục Ox và x = a, x = b: S = tích phân từ a đến b của |f(x)|dx
++ Giới hạn bởi 2 đồ thị y = f(x) và y = g(x): S = tích phân từ a đến b của |f(x) - g(x)|dx
+- Thể tích vật thể tròn xoay: V = pi x tích phân từ a đến b của f(x)^2 dx
+- Ví dụ: Tính diện tích hình phẳng giới hạn bởi y = x^2 và y = x.
+
+### Thống kê
+
+- Các phương pháp thu thập, phân loại và biểu diễn dữ liệu
+- Phân tích hồi quy tuyến tính đơn: tìm đường thẳng y = ax + b phù hợp nhất với bộ dữ liệu
+- Hệ số tương quan: đánh giá mức độ tương quan tuyến tính
+- Ví dụ: Cho bảng dữ liệu chiều cao - cân nặng, tìm phương trình hồi quy.
+
+### Xác suất trong thực tiễn
+
+- Ôn lại quy tắc cộng, nhân, xác suất có điều kiện
+- Phân phối nhị thức: P(X = k) = C(n, k) x p^k x (1-p)^(n-k)
+- Ước lượng và khoảng tin cậy
+- Ví dụ: Tung đồng xu 5 lần. Tính xác suất được đúng 3 lần ngửa.
+
+---
+
+## Hình học
+
+### Vectơ trong không gian – Phương trình mặt phẳng, đường thẳng
+
+#### Tọa độ trong không gian Oxyz
+
+- Hệ tọa độ không gian Oxyz: 3 trục Ox, Oy, Oz vuông góc nhau
+- Tọa độ điểm M(x; y; z); tọa độ vectơ a = (a1; a2; a3)
+- vector AB = (xB - xA; yB - yA; zB - zA)
+- Khoảng cách: |AB| = sqrt((xB - xA)^2 + (yB - yA)^2 + (zB - zA)^2)
+- Trung điểm đoạn thẳng: M = ((xA + xB)/2; (yA + yB)/2; (zA + zB)/2)
+- Trọng tâm tam giác: G = ((xA + xB + xC)/3; (yA + yB + yC)/3; (zA + zB + zC)/3)
+
+#### Tích có hướng (tích vectơ)
+
+- Tích vô hướng: a . b = a1.b1 + a2.b2 + a3.b3 = |a|.|b|.cos 0
++ Ứng dụng tính góc của 2 vector, kiểm tra sự vuông góc
+- Hai vectơ vuông góc: a . b = 0
+- Tích có hướng a x b = (a2.b3 - a3.b2; a3.b1 - a1.b3; a1.b2 - a2.b1)
++ Ứng dụng tìm 1 vector vuông góc với 2 vector đã cho, tính diện tích hình bình hành, hình tam giác, tìm vectơ pháp tuyến mặt phẳng để viết phương trình mặt phẳng
+- Độ lớn tích có hướng |a x b| = diện tích hình bình hành tạo bởi a và b
+- Độ lớn tích có hướng |a x b| / 2 = diện tích hình tam giác tạo bởi a và b
+
+#### Phương trình mặt phẳng
+
+- Vectơ pháp tuyến n = (A; B; C): vuông góc với mặt phẳng
+- Phương trình tổng quát: Ax + By + Cz + D = 0
+- Viết phương trình mặt phẳng khi biết:
++ 1 điểm + vectơ pháp tuyến
++ 3 điểm không thẳng hàng
++ 1 điểm + 2 vectơ chỉ phương
+- Khoảng cách từ điểm M(x0; y0; z0) đến mặt phẳng:
++ d = |A.x0 + B.y0 + C.z0 + D| / sqrt(A^2 + B^2 + C^2)
+- Góc giữa 2 mặt phẳng: cos(alpha) = |n1 . n2| / (|n1| x |n2|)
+- Ví dụ: Viết phương trình mặt phẳng qua A(1; 0; 2) có vectơ pháp tuyến n = (2; -1; 3).
+
+#### Phương trình đường thẳng trong không gian
+
+- Vectơ chỉ phương u = (a; b; c)
+- Phương trình tham số: { x = x0 + at; y = y0 + bt; z = z0 + ct }
+- Phương trình chính tắc: (x - x0)/a = (y - y0)/b = (z - z0)/c
+- Vị trí tương đối giữa 2 đường thẳng: cắt, song song, chéo, trùng
+- Vị trí tương đối giữa đường thẳng và mặt phẳng: cắt (1 điểm), song song, nằm trong mặt phẳng
+- Giao điểm đường thẳng và mặt phẳng: thế tham số vào PT mặt phẳng
+- Ví dụ: Tìm giao điểm đường thẳng { x = 1 + t; y = 2 - t; z = 3 + 2t } với mặt phẳng x + y + z - 6 = 0.
+
+#### Khoảng cách trong không gian (tọa độ)
+
+- Khoảng cách từ điểm đến đường thẳng: dùng tích có hướng
+- Khoảng cách giữa 2 đường thẳng chéo nhau: dùng tích hỗn tạp
+- Khoảng cách từ điểm đến mặt phẳng: dùng công thức
+- Ví dụ: Tính khoảng cách từ A(1; 2; 3) đến mặt phẳng 2x - y + 2z - 6 = 0.
+
+### Mặt nón, mặt trụ, mặt cầu
+
+#### Mặt nón tròn xoay
+
+- Hình nón tròn xoay: quay tam giác vuông quanh 1 cạnh góc vuông
+- Đường sinh l: l^2 = r^2 + h^2
+- Diện tích xung quanh: Sxq = pi x r x l
+- Diện tích toàn phần: Stp = pi x r x (r + l)
+- Thể tích: V = pi x r^2 x h / 3
+- Thiết diện qua trục: tam giác cân
+- Hỏi: Khi cắt hình nón bằng mặt phẳng song song đáy thì thiết diện là gì? (đường tròn)
+
+#### Mặt trụ tròn xoay
+
+- Hình trụ tròn xoay: quay hình chữ nhật quanh 1 cạnh
+- Diện tích xung quanh: Sxq = 2 x pi x r x h (= 2 x pi x r x l vì l = h)
+- Diện tích toàn phần: Stp = 2 x pi x r x (r + h)
+- Thể tích: V = pi x r^2 x h
+- Thiết diện qua trục: hình chữ nhật
+- Ví dụ: Hình trụ r = 5, h = 10. Tính V, Sxq, Stp.
+
+#### Mặt cầu
+
+- Phương trình mặt cầu: (x - a)^2 + (y - b)^2 + (z - c)^2 = R^2 (tâm I(a; b; c), bán kính R)
+- Diện tích mặt cầu: S = 4 x pi x R^2
+- Thể tích hình cầu: V = (4/3) x pi x R^3
+- Vị trí tương đối giữa mặt phẳng và mặt cầu (d là khoảng cách từ tâm đến mặt phẳng):
++ d > R: không giao nhau
++ d = R: tiếp xúc (1 điểm)
++ d < R: cắt nhau (đường tròn giao tuyến có bán kính r = sqrt(R^2 - d^2))
+- Ví dụ: Cho mặt cầu tâm I(1; 2; 3), R = 5. Viết phương trình mặt cầu. Tìm giao với mp x = 1.
