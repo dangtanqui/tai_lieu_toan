@@ -1,6 +1,4 @@
-# Gợi ý Toán Lớp 11 (Kết nối tri thức)
-
-> Tổng hợp kiến thức trọng tâm – chia Đại số & Giải tích / Hình học – dùng để ôn tập và rà soát lỗ hổng.
+# Khảo sát Toán 11
 
 ---
 
@@ -13,61 +11,86 @@
 - Góc lượng giác: góc có hướng quay (dương: ngược chiều kim đồng hồ; âm: cùng chiều)
 - Đơn vị radian: 1 rad = góc ở tâm chắn cung có độ dài bằng bán kính
 - Đổi đơn vị: 180° = pi rad
-+ Từ độ sang radian: alpha(rad) = alpha(°) x pi / 180
-+ Từ radian sang độ: alpha(°) = alpha(rad) x 180 / pi
+  - Từ độ sang radian: alpha(rad) = alpha(°) x pi / 180
+  - Từ radian sang độ: alpha(°) = alpha(rad) x 180 / pi
 - Ví dụ: 60° = pi/3 rad; 90° = pi/2 rad; 45° = pi/4 rad.
 - Hỏi: 1 rad bằng khoảng bao nhiêu độ? (≈ 57,3°)
+- Độ dài cung tròn: l = r.alpha, với alpha là radian
 
 #### Giá trị lượng giác (mở rộng)
 
-- Đường tròn lượng giác: điểm M(cos(alpha); sin(alpha)) trên đường tròn đơn vị
+- Đường tròn lượng giác: điểm M(cos(alpha); sin(alpha)) trên đường tròn đơn vị, bán kính bằng 1
 - Dấu của sin, cos, tan, cot theo từng góc phần tư:
-+ Góc phần tư I: sin > 0, cos > 0
-+ Góc phần tư II: sin > 0, cos < 0
-+ Góc phần tư III: sin < 0, cos < 0
-+ Góc phần tư IV: sin < 0, cos > 0
+  - Góc phần tư I: sin > 0, cos > 0
+  - Góc phần tư II: sin > 0, cos < 0
+  - Góc phần tư III: sin < 0, cos < 0
+  - Góc phần tư IV: sin < 0, cos > 0
 - Công thức lượng giác cơ bản:
-+ sin^2(a) + cos^2(a) = 1
-+ tan(a) = sin(a) / cos(a); cot(a) = cos(a) / sin(a)
-+ 1 + tan^2(a) = 1 / cos^2(a); 1 + cot^2(a) = 1 / sin^2(a)
+  - sin^2(a) + cos^2(a) = 1
+  - tan(a) = sin(a) / cos(a); cot(a) = cos(a) / sin(a) = 1 / tan(a); tan(a).cot(a) = 1
+  - 1 + tan^2(a) = 1 / cos^2(a); 1 + cot^2(a) = 1 / sin^2(a)
+- Các góc liên quan đặc biệt
+  - Đối nhau: cos(-a) = cos(a), sin(-a) = -sin(a), tan(-a) = -tan(a), cot(-a) = -cot(a)
+  - Bù nhau: sin(pi - a) = sin(a), cos(pi - a) = -cos(a), tan(pi - a) = -tan(a), cot(pi - a) = -cot(a)
+  - Phụ nhau: sin(pi/2 - a) = cos(a), cos(pi/2 - a) = sin(a), tan(pi/2 - a) = cot(a), cot(pi/2 - a) = tan(a)
+  - Hơn kém pi: sin(pi + a) = -sin(a), cos(pi + a) = -cos(a), tan(pi + a) = tan(a), cot(pi + a) = cot(a)
 - Công thức cộng:
-+ sin(a + b) = sin(a).cos(b) + cos(a).sin(b)
-+ sin(a - b) = sin(a).cos(b) - cos(a).sin(b)
-+ cos(a + b) = cos(a).cos(b) - sin(a).sin(b)
-+ cos(a - b) = cos(a).cos(b) + sin(a).sin(b)
+  - sin(a + b) = sin(a).cos(b) + cos(a).sin(b)
+  - sin(a - b) = sin(a).cos(b) - cos(a).sin(b)
+  - cos(a + b) = cos(a).cos(b) - sin(a).sin(b)
+  - cos(a - b) = cos(a).cos(b) + sin(a).sin(b)
+  - tan(a + b) = (tan(a) + tan(b))/(1 - tan(a).tan(b))
+  - tan(a - b) = (tan(a) - tan(b))/(1 + tan(a).tan(b))
 - Công thức nhân đôi:
-+ sin(2a) = 2.sin(a).cos(a)
-+ cos(2a) = cos^2(a) - sin^2(a) = 2cos^2(a) - 1 = 1 - 2sin^2(a)
+  - sin(2a) = 2.sin(a).cos(a)
+  - cos(2a) = cos^2(a) - sin^2(a) = 2cos^2(a) - 1 = 1 - 2sin^2(a)
+  - tan(2a) = 2.tan(a)/(1 - tan^2(a))
 - Công thức hạ bậc:
-+ sin^2(a) = (1 - cos(2a)) / 2
-+ cos^2(a) = (1 + cos(2a)) / 2
-- Công thức biến đổi tổng thành tích, tích thành tổng (tra bảng khi cần)
+  - sin^2(a) = (1 - cos(2a)) / 2
+  - cos^2(a) = (1 + cos(2a)) / 2
+- Công thức biến đổi tích thành tổng 
+  - cos(a).cos(b) = 1/2.[cos(a - b) + cos(a + b)]
+  - sin(a).sin(b) = 1/2.[cos(a - b) - cos(a + b)]
+  - sin(a).cos(b) = 1/2.[sin(a - b) + sin(a + b)]
+- Công thức biến đổi tổng thành tích
+  - cos(a) + cos(b) = 2.cos((a + b)/2).cos((a - b)/2)
+  - cos(a) - cos(b) = -2.sin((a + b)/2).sin((a - b)/2)
+  - sin(a) + sin(b) = 2.sin((a + b)/2).cos((a - b)/2)
+  - sin(a) - sin(b) = 2.cos((a + b)/2).sin((a - b)/2)
 
 #### Hàm số lượng giác
 
-- y = sin(x): chu kỳ 2pi, TXĐ = R, giá trị thuộc [-1; 1], hàm lẻ
-- y = cos(x): chu kỳ 2pi, TXĐ = R, giá trị thuộc [-1; 1], hàm chẵn
-- y = tan(x): chu kỳ pi, TXĐ: x ≠ pi/2 + k.pi, hàm lẻ
-- y = cot(x): chu kỳ pi, TXĐ: x ≠ k.pi, hàm lẻ
+- Hàm số sin: y = sin(x): TXĐ = R, giá trị thuộc [-1; 1], hàm lẻ và tuần hoàn với chu kỳ 2pi
+- Hàm số côsin: y = cos(x): TXĐ = R, giá trị thuộc [-1; 1], hàm chẵn và tuần hoàn với chu kỳ 2pi
+- Hàm số tang: y = tan(x): TXĐ: x ≠ pi/2 + k.pi, hàm lẻ và tuần hoàn với chu kỳ pi
+- Hàm số côtang:y = cot(x): TXĐ: x ≠ k.pi, hàm lẻ với chu kỳ pi
 - Hỏi: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
+- Hàm chẳn: f(-x) = f(x)
+- Hàm lẻ: f(-x) = -f(x)
+- Hàm số tuần hoàn: f(x + T) = f(x), T gọi là chu kỳ
 
 #### Phương trình lượng giác cơ bản
 
-- sin(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = pi - alpha + k.2pi (với sin(alpha) = m)
-- cos(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = -alpha + k.2pi (với cos(alpha) = m)
-- tan(x) = m: x = alpha + k.pi (với tan(alpha) = m)
-- cot(x) = m: x = alpha + k.pi (với cot(alpha) = m)
+- sin(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = pi - alpha + k.2pi (với sin(alpha) = m, alpha thuộc [-pi/2; pi/2])
+- cos(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = -alpha + k.2pi (với cos(alpha) = m, alpha thuộc [0; pi])
+- tan(x) = m: x = alpha + k.pi (với tan(alpha) = m, alpha thuộc [-pi/2; pi/2])
+- cot(x) = m: x = alpha + k.pi (với cot(alpha) = m, alpha thuộc [0; pi])
 - Trong đó k là số nguyên (k thuộc Z).
 - Ví dụ: Giải sin(x) = 1/2. Giải cos(2x) = 0.
-- Phương trình dạng a.sin(x) + b.cos(x) = c: đưa về dạng cơ bản bằng phương pháp phụ.
+- Phương trình dạng a.sin(x) + b.cos(x) = c:
+  - Có nghiệm khi a^2 + b^2 >= c^2
+  - Chia 2 vế cho sqrt(a^2 + b^2)
+  - Đặt cos(alpha) = a/sqrt(a^2 + b^2), sin(alpha) = b/sqrt(a^2 + b^2)
+  - Phương trình trở thành: sin(x).cos(alpha) + cos(x).sin(alpha) = c/sqrt(a^2 + b^2) = sin(x + alpha)
+  - Đưa con số c/sqrt(a^2 + b^2) sang sin(beta) => x + alpha = beta + k.2pi hoặc x + alpha = pi - beta + k.2pi
 
 ### Dãy số
 
 #### Dãy số, dãy số bị chặn, dãy đơn điệu
 
-- Dãy số: hàm số u(n) với n là số tự nhiên, ký hiệu (un)
+- Dãy số: hàm số u(n) với n là số tự nhiên
 - Dãy tăng: u(n+1) > u(n), mọi n; dãy giảm: u(n+1) < u(n), mọi n
-- Dãy bị chặn trên/dưới
+- Dãy bị chặn trên: tồn lại M, u(n) <= M, mọi n; Dãy bị chặn dưới: tồn tại m, u(n) >= m, mọi n; Dãy bị chặn nếu bị chặn trên và dưới
 - Ví dụ: Dãy un = 2n + 1 tăng hay giảm?
 
 #### Cấp số cộng
@@ -85,7 +108,7 @@
 - Tổng n số hạng đầu: Sn = u1 x (1 - q^n) / (1 - q) (khi q ≠ 1)
 - Tính chất: u(k)^2 = u(k-1) x u(k+1)
 - Ví dụ: CSN có u1 = 2, q = 3. Tìm u5 và S5.
-- Hỏi: Lãi suất kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
+- Hỏi: Lãi suất đơn/kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
 
 ### Giới hạn
 

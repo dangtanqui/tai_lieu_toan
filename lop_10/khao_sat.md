@@ -15,10 +15,10 @@
 - Mệnh đề kéo theo: "Nếu P thì Q" (P => Q).
 - Mệnh đề đảo: Mệnh đề P => Q là mệnh đề đảo của Q => P
 - Điều kiện cần, điều kiện đủ:
-+ P => Q: P là điều kiện đủ để Q; Q là điều kiện cần để P.
+  - P => Q: P là điều kiện đủ để Q; Q là điều kiện cần để P.
 - Mệnh đề tương đương: P <=> Q nghĩa là P => Q và Q => P đều đúng.
 - Điều kiện cần và đủ, khi và chỉ khi
-+ P => Q: P là điều kiện cần và đủ để Q; Q khi và chỉ khi P
+  - P => Q: P là điều kiện cần và đủ để Q; Q khi và chỉ khi P
 - Hỏi: "Tam giác đều => tam giác cân" đúng không? Điều ngược lại thì sao?
 - Mệnh đề chứa ký hiệu "với mọi", "tồn tại"
 - Ví dụ: với mọi x, x^2 >= 0; tồn tại x, x^=4
@@ -26,9 +26,9 @@
 #### Tập hợp và các phép toán
 
 - Nhắc lại tập hợp (lớp 6)
-+ Liêt kê
-+ Chỉ ra tính chất đặc trưng
-+ Tập rỗng
+  - Liêt kê
+  - Chỉ ra tính chất đặc trưng
+  - Tập rỗng
 - Tập con: A là tập con của B nếu mọi phần tử của A đều thuộc B.
 - Hai tập hợp bằng nhau: Mỗi phần tử thuộc A cũng thuộc B và ngược lại (tức A con B và B con A => A = B).
 - Phép hợp: A hợp B = tập gồm các phần tử thuộc A hoặc thuộc B (hoặc cả hai).
@@ -39,9 +39,9 @@
 - Công thức: A hợp B = A + B - A giao B
 - Các tập số: N, Z, Q, R và mối quan hệ bao hàm.
 - Khoảng, đoạn, nửa khoảng trên trục số:
-+ (a; b) là khoảng (không chứa 2 đầu mút)
-+ [a; b] là đoạn (chứa cả 2 đầu mút)
-+ [a; b) hoặc (a; b] là nửa khoảng
+  - (a; b) là khoảng (không chứa 2 đầu mút)
+  - [a; b] là đoạn (chứa cả 2 đầu mút)
+  - [a; b) hoặc (a; b] là nửa khoảng
 
 ### Bất phương trình và hệ bất phương trình bậc nhất hai ẩn
 
@@ -83,9 +83,9 @@
 
 - ôn lại lớp 9 phương trình bật 2
 - Dấu của tam thức bậc hai: f(x) = ax^2 + bx + c
-+ Delta < 0: f(x) cùng dấu với a, mọi x
-+ Delta = 0: f(x) cùng dấu với a, mọi x ≠ -b/(2a)
-+ Delta > 0: f(x) trái dấu với a khi x nằm giữa hai nghiệm; cùng dấu với a khi x nằm ngoài hai nghiệm
+  - Delta < 0: f(x) cùng dấu với a, mọi x
+  - Delta = 0: f(x) cùng dấu với a, mọi x ≠ -b/(2a)
+  - Delta > 0: f(x) trái dấu với a khi x nằm giữa hai nghiệm; cùng dấu với a khi x nằm ngoài hai nghiệm
 - Ứng dụng: giải bất phương trình bậc hai
 
 #### Phương trình quy về phương trình bậc hai
@@ -99,9 +99,9 @@
 
 - Mở rộng định nghĩa sin, cos, tan, cot cho góc từ 0° đến 180° (không chỉ góc nhọn như lớp 9)
 - Với góc alpha (0° < alpha < 180°):
-+ sin(alpha) >= 0
-+ cos(alpha) > 0 khi 0° < alpha < 90° (góc tù)
-+ cos(alpha) < 0 khi 90° < alpha < 180° (góc tù)
+  - sin(alpha) >= 0
+  - cos(alpha) > 0 khi 0° < alpha < 90° (góc tù)
+  - cos(alpha) < 0 khi 90° < alpha < 180° (góc tù)
 - tan = sin / cos, cot = cos / sin, tan = 1 / cot
 - Bù nhau: sin(180° - alpha) = sin(alpha); cos(180° - alpha) = -cos(alpha), tan(180° - alpha) = -tan(alpha), cot(180° - alpha) = -cot(alpha)
 - Hỏi: sin(120°) = ?, cos(150°) = ?
@@ -169,19 +169,19 @@
 - Sai sô tương đối: S(a) = Denta(a)/|a|
 - Làm tròn số a ra số quy tròn b
 - Các số đặc trưng đo xu thế trung tâm (ôn lại lớp 7)
-+ Số trung bình (tbc): X gạch ngang = (x1 + x2 + ... + xn)/n (hoặc xtb)
-+ Số trung vị: Sắp xếp thứ tự từ bé đến lớn, lấy số ở giữa (nếu k có thì lấy 2 số ở giữa chia 2)
-+ Tứ phân vị: gồm Q1, Q2, Q3
-  + Sắp xếp thứ tự từ bé đến lớn
-  + Tìm trung vị: Q2
-  + Tìm trung vị nữa bên trái (k bao gồm Q2 nếu lẻ): Q1
-  + Tương tự bên phải: Q3
-+ Mốt: giá trị xuất hiện nhiều nhất
+  - Số trung bình (tbc): X gạch ngang = (x1 + x2 + ... + xn)/n (hoặc xtb)
+  - Số trung vị: Sắp xếp thứ tự từ bé đến lớn, lấy số ở giữa (nếu k có thì lấy 2 số ở giữa chia 2)
+  - Tứ phân vị: gồm Q1, Q2, Q3
+    - Sắp xếp thứ tự từ bé đến lớn
+    - Tìm trung vị: Q2
+    - Tìm trung vị nữa bên trái (k bao gồm Q2 nếu lẻ): Q1
+    - Tương tự bên phải: Q3
+  - Mốt: giá trị xuất hiện nhiều nhất
 - Các số đặc trưng đo mức độ phân tán:
-+ Khoảng biến thiên: R = số lớn nhất - số bé nhất
-+ Khoảng tứ phân vị: Denta(Q) = Q3 - Q1
-+ Phương sai: S^2 = [(x1 - xtb)^2 + (x2 - xtb)^2 + ... + (xn - xtb)^2]/n
-+ Độ lệch chuẩn: S = sqrt(phương sai)
+  - Khoảng biến thiên: R = số lớn nhất - số bé nhất
+  - Khoảng tứ phân vị: Denta(Q) = Q3 - Q1
+  - Phương sai: S^2 = [(x1 - xtb)^2 + (x2 - xtb)^2 + ... + (xn - xtb)^2]/n
+  - Độ lệch chuẩn: S = sqrt(phương sai)
 - Ví dụ: Cho dãy điểm: 5, 6, 7, 8, 9. Tính trung bình, phương sai, độ lệch chuẩn.
 
 ---
@@ -196,11 +196,11 @@
 - Giá của vectơ: đường thẳng chứa vectơ
 - Độ dài (mô-đun) của vectơ: |AB|
 - Hai vectơ cùng phương: giá song song hoặc trùng nhau, a = kb
-+ x2/x1 = y2/y1
+  - x2/x1 = y2/y1
 - Hai vector cùng phương thì cùng hướng hoặc ngược hướng, a = kb
-+ k = x2/x1
-+ k > 0: cùng hướng
-+ k < 0: ngược hướng
+  - k = x2/x1
+  - k > 0: cùng hướng
+  - k < 0: ngược hướng
 - Hai vectơ bằng nhau: cùng hướng và cùng độ dài, a = b
 - Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
 - Vectơ đối: cùng độ dài, ngược hướng, a = -b
@@ -247,8 +247,7 @@
 - Phương trình tổng quát: ax + by + c = 0 với n = (a, b) là vector pháp tuyến, u = (a, -b) hoặc u = (-a, b)
 - Phương trình tham số: { x = x0 + at; y = y0 + bt } (t là tham số)
 - Hệ số góc: y = kx + m (k = -a/b)
-- Khoảng cách từ điểm M(x0; y0) đến đường thẳng ax + by + c = 0:
-+ d = |a.x0 + b.y0 + c| / sqrt(a^2 + b^2)
+- Khoảng cách từ điểm M(x0; y0) đến đường thẳng ax + by + c = 0: d = |a.x0 + b.y0 + c| / sqrt(a^2 + b^2)
 - Góc giữa hai đường thẳng: cos(alpha) = |a1.a2 + b1.b2| / (sqrt(a1^2 + b1^2) x sqrt(a2^2 + b2^2))
 - Hai đường thẳng song song: a1/a2 = b1/b2 ≠ c1/c2
 - Hai đường thẳng vuông góc: a1.a2 + b1.b2 = 0

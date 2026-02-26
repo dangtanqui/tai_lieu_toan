@@ -6,19 +6,7 @@
 
 - Học sinh: Ngô Yến Nhi - Thái Hòa, Lập Thạch, Vĩnh Phúc 
 - Ngày: 24-02-2025 
-- Mục tiêu: (thi vào 10 / củng cố kiến thức / học bám chương trình)  
-
----
-
-## Kỹ năng nền xuyên suốt (6–9)
-
-- [ ] Tính toán & biến đổi cơ bản — Ghi chú:
-- [ ] Tư duy tỉ lệ, so sánh, ước lượng — Ghi chú:
-- [ ] Đọc hiểu đề & mô hình hoá (toán có lời văn) — Ghi chú:
-- [ ] Trình bày lời giải (rõ ràng, đủ bước, lập luận) — Ghi chú:
-- [ ] Kỹ năng vẽ hình & ký hiệu hình học — Ghi chú:
-- [ ] Chứng minh hình học cơ bản (suy luận, dùng định lý) — Ghi chú:
-- [ ] Sử dụng máy tính cầm tay hợp lý (nếu có) — Ghi chú:
+- Mục tiêu: (thi vào 10 / củng cố kiến thức / học bám chương trình)
 
 ---
 
@@ -37,16 +25,16 @@
 
 ### Thống kê cơ bản
 
-- [ ] Thu thập dữ liệu; bảng số liệu; biểu đồ đơn giản; số trung bình cộng — Ghi chú:
+- [ ] Thu thập dữ liệu; bảng số liệu; biểu đồ đơn giản; số trung bình cộng — Ghi chú: chưa test
 
 ### Hình học & đo lường
 
-- [ ] Điểm, đường thẳng, đoạn thẳng, tia; trung điểm — Ghi chú:
-- [ ] Góc: đo góc, các loại góc; tia phân giác — Ghi chú:
-- [ ] Hai đường thẳng song song; vuông góc (nhận biết/vẽ) — Ghi chú:
-- [ ] Tam giác: yếu tố cơ bản; phân loại; chu vi — Ghi chú:
-- [ ] Chu vi – diện tích các hình phẳng cơ bản (vuông, chữ nhật, tam giác, …) — Ghi chú:
-- [ ] Đơn vị đo: độ dài, diện tích, thể tích; đổi đơn vị — Ghi chú:
+- [ ] Điểm, đường thẳng, đoạn thẳng, tia; trung điểm — Ghi chú: 40% - chưa biết tia
+- [ ] Góc: đo góc, các loại góc; tia phân giác — Ghi chú: 50% - chưa biết tia phân giác
+- [ ] Hai đường thẳng song song; vuông góc — Ghi chú: 60% - chưa biết so le trong và trung vị
+- [ ] Tam giác: yếu tố cơ bản; phân loại; chu vi — Ghi chú: 30% - Chưa nắm rõ, chưa rành chu vi
+- [ ] Chu vi – diện tích các hình phẳng cơ bản (vuông, chữ nhật, tam giác, …) — Ghi chú: 30% - chưa nắm chu vi và diện tích
+- [ ] Đơn vị đo: độ dài, diện tích, thể tích; đổi đơn vị — Ghi chú: chưa test
 
 ---
 
@@ -55,25 +43,25 @@
 ### Đại số
 
 - [ ] Số hữu tỉ: khái niệm, biểu diễn, so sánh, 4 phép tính — Ghi chú:
-- [ ] Số thực (mức độ cơ bản theo chương trình); làm tròn, ước lượng — Ghi chú:
+- [ ] Số thực; làm tròn, ước lượng — Ghi chú:
 - [ ] Tỉ lệ thức; dãy tỉ số bằng nhau — Ghi chú:
 - [ ] Đại lượng tỉ lệ thuận; tỉ lệ nghịch; bài toán liên quan — Ghi chú:
 - [ ] Biểu thức đại số: giá trị biểu thức, thay số, quy tắc biến đổi — Ghi chú:
-- [ ] Đơn thức, đa thức; cộng trừ nhân (mức lớp 7) — Ghi chú:
-- [ ] Hàm số & mặt phẳng tọa độ (mức nhập môn); đồ thị đơn giản — Ghi chú:
+- [ ] Đơn thức, đa thức; cộng trừ nhân — Ghi chú:
+- [ ] Hàm số & mặt phẳng tọa độ; đồ thị đơn giản — Ghi chú:
 
 ### Hình học
 
 - [ ] Góc tạo bởi một đường thẳng cắt hai đường thẳng; dấu hiệu song song — Ghi chú:
 - [ ] Tổng các góc trong tam giác; góc ngoài — Ghi chú:
-- [ ] Các trường hợp bằng nhau của tam giác (cơ bản) — Ghi chú:
+- [ ] Các trường hợp bằng nhau của tam giác — Ghi chú:
 - [ ] Quan hệ giữa cạnh và góc trong tam giác — Ghi chú:
-- [ ] Đường trung trực, phân giác, trung tuyến, đường cao (khái niệm & tính chất cơ bản) — Ghi chú:
+- [ ] Đường trung trực, phân giác, trung tuyến, đường cao — Ghi chú:
 - [ ] Tam giác cân, đều; tính chất & dấu hiệu nhận biết — Ghi chú:
 
 ### Thống kê
 
-- [ ] Bảng tần số/tần suất (mức cơ bản); biểu đồ; số trung bình; mốt — Ghi chú:
+- [ ] Bảng tần số/tần suất; biểu đồ; số trung bình; mốt — Ghi chú:
 
 ---
 
@@ -85,19 +73,19 @@
 - [ ] Phân tích đa thức thành nhân tử — Ghi chú:
 - [ ] Phân thức đại số: rút gọn, quy đồng, 4 phép tính — Ghi chú:
 - [ ] Phương trình bậc nhất một ẩn: giải & biện luận đơn giản — Ghi chú:
-- [ ] Giải bài toán bằng cách lập phương trình (mức lớp 8) — Ghi chú:
+- [ ] Giải bài toán bằng cách lập phương trình — Ghi chú:
 - [ ] Bất phương trình bậc nhất một ẩn; biểu diễn tập nghiệm — Ghi chú:
 
 ### Hình học
 
 - [ ] Tứ giác: tính chất cơ bản; các yếu tố (góc, cạnh, đường chéo) — Ghi chú:
 - [ ] Hình thang (thường, cân) & tính chất — Ghi chú:
-- [ ] Hình bình hành; hình chữ nhật; hình thoi; hình vuông (dấu hiệu & tính chất) — Ghi chú:
-- [ ] Đa giác; tổng góc; đường chéo; (mức theo chương trình) — Ghi chú:
+- [ ] Hình bình hành; hình chữ nhật; hình thoi; hình vuông — Ghi chú:
+- [ ] Đa giác; tổng góc; đường chéo; — Ghi chú:
 - [ ] Diện tích các tứ giác & đa giác thông dụng — Ghi chú:
 - [ ] Định lý Thales; hệ quả; đoạn thẳng tỉ lệ — Ghi chú:
 - [ ] Tam giác đồng dạng; các trường hợp đồng dạng; ứng dụng — Ghi chú:
-- [ ] Hình hộp chữ nhật / hình lăng trụ đứng / hình chóp (mức cơ bản); diện tích – thể tích — Ghi chú:
+- [ ] Hình hộp chữ nhật / hình lăng trụ đứng / hình chóp; diện tích – thể tích — Ghi chú:
 
 ---
 
@@ -107,12 +95,12 @@
 
 - [ ] Căn bậc hai; căn thức; điều kiện xác định — Ghi chú:
 - [ ] Biến đổi căn thức (rút gọn, trục căn, quy đồng, …) — Ghi chú:
-- [ ] Hệ trục tọa độ; điểm; đồ thị (mức theo chương trình) — Ghi chú:
+- [ ] Hệ trục tọa độ; điểm; đồ thị — Ghi chú:
 - [ ] Hàm số bậc nhất \(y=ax+b\); đồ thị; sự đồng biến/nghịch biến — Ghi chú:
 - [ ] Hệ phương trình bậc nhất hai ẩn: phương pháp giải & ứng dụng — Ghi chú:
 - [ ] Giải bài toán bằng cách lập hệ phương trình — Ghi chú:
 - [ ] Phương trình bậc hai một ẩn: công thức nghiệm; hệ thức Vi-ét; ứng dụng — Ghi chú:
-- [ ] Bất đẳng thức/biến đổi đại số phụ trợ (mức theo chương trình & ôn thi) — Ghi chú:
+- [ ] Bất đẳng thức/biến đổi đại số phụ trợ — Ghi chú:
 
 ### Hình học
 
@@ -122,15 +110,5 @@
 - [ ] Góc ở tâm; góc nội tiếp; liên hệ số đo góc – cung — Ghi chú:
 - [ ] Tiếp tuyến của đường tròn; hai tiếp tuyến cắt nhau; tính chất — Ghi chú:
 - [ ] Tứ giác nội tiếp; dấu hiệu nhận biết; hệ quả — Ghi chú:
-- [ ] Các bài toán tổng hợp đường tròn (chứng minh – tính toán) — Ghi chú:
-- [ ] Hình trụ – hình nón – hình cầu: diện tích & thể tích (mức theo chương trình) — Ghi chú:
-
----
-
-## Tổng hợp chẩn đoán nhanh (sau khi tick)
-
-- Mảng vững nhất:
-- Mảng hổng/mất gốc rõ:
-- Mục cần học lại theo thứ tự ưu tiên:
-- Ghi chú về thái độ học, tốc độ làm bài, lỗi hay gặp:
-
+- [ ] Các bài toán tổng hợp đường tròn — Ghi chú:
+- [ ] Hình trụ – hình nón – hình cầu: diện tích & thể tích — Ghi chú:
