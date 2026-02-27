@@ -140,6 +140,55 @@
 - Hàm số liên tục trên đoạn [a; b]
 - Hỏi: Hàm y = 1/x có liên tục tại x = 0 không?
 
+### Hàm số mũ và hàm số logarit
+
+#### Lũy thừa (mở rộng)
+
+- Lũy thừa với số mũ nguyên âm: a^(-n) = 1 / a^n (a ≠ 0)
+- Lũy thừa với số mũ hữu tỉ: a^(m/n) = căn bậc n của a^m (a > 0)
+- Tính chất lũy thừa (mở rộng cho số mũ thực):
++ a^x x a^y = a^(x+y)
++ a^x / a^y = a^(x-y)
++ (a^x)^y = a^(xy)
++ (a x b)^x = a^x x b^x
+
+#### Hàm số mũ
+
+- y = a^x (a > 0, a ≠ 1)
+- a > 1: hàm đồng biến; 0 < a < 1: hàm nghịch biến
+- Đồ thị luôn qua điểm (0; 1)
+- TXĐ: R; tập giá trị: (0; +vô cực)
+
+#### Logarit
+
+- log_a(b) = c nghĩa là a^c = b (a > 0, a ≠ 1, b > 0)
+- Logarit tự nhiên: ln(x) = log_e(x) (e ≈ 2,718)
+- Logarit thập phân: lg(x) = log_10(x)
+- Tính chất:
++ log_a(1) = 0; log_a(a) = 1
++ log_a(xy) = log_a(x) + log_a(y)
++ log_a(x/y) = log_a(x) - log_a(y)
++ log_a(x^n) = n x log_a(x)
++ Đổi cơ số: log_a(b) = log_c(b) / log_c(a)
+- Ví dụ: log_2(8) = ?, log_3(1/9) = ?, lg(1000) = ?
+
+#### Hàm số logarit
+
+- y = log_a(x) (a > 0, a ≠ 1)
+- TXĐ: (0; +vô cực); tập giá trị: R
+- a > 1: đồng biến; 0 < a < 1: nghịch biến
+- Đồ thị luôn qua điểm (1; 0)
+- y = log_a(x) là hàm ngược của y = a^x
+
+#### Phương trình, bất phương trình mũ và logarit
+
+- Phương trình mũ cơ bản: a^x = b → x = log_a(b)
+- Phương trình logarit cơ bản: log_a(x) = b → x = a^b
+- Điều kiện: biểu thức trong logarit phải > 0
+- Bất phương trình: chú ý chiều bất đẳng thức phụ thuộc cơ số a > 1 hay 0 < a < 1
+- Ví dụ: Giải 2^x = 16. Giải log_2(x - 1) = 3.
+- Ví dụ: Giải 3^(2x-1) > 27.
+
 ### Đạo hàm
 
 #### Khái niệm đạo hàm

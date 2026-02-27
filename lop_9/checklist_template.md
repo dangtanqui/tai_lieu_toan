@@ -1,13 +1,13 @@
-# Khảo sát Toán – Ngô Yến Nhi
+# Khảo sát Toán – [Tên học sinh]
 
 > Rà soát nhanh mức độ "mất gốc"/lỗ hổng kiến thức.
 
 ## Thông tin
 
-- Học sinh: Ngô Yến Nhi – Thái Hòa, Lập Thạch, Vĩnh Phúc
-- Ngày khảo sát: 24-02-2025
+- Học sinh: [Họ tên] – [Địa chỉ]
+- Ngày khảo sát: [DD-MM-YYYY]
 - Lớp hiện tại: 9
-- Mục tiêu: thi vào 10
+- Mục tiêu: (thi vào 10 / củng cố kiến thức / học bám chương trình)
 
 ---
 
@@ -26,26 +26,26 @@
 
 ### Số học
 
-- [ ] Tập hợp, ký hiệu, so sánh & sắp xếp — Ghi chú: 0%
-- [ ] Số tự nhiên (N), 4 phép tính, tính chất, thứ tự thực hiện, lũy thừa — Ghi chú: 50% - chưa nắm 3 tính chất
-- [ ] Chia hết, ước – bội; ƯCLN – BCNN; số nguyên tố; phân tích thừa số nguyên tố — Ghi chú: 0%
-- [x] Số nguyên (Z): so sánh, 4 phép tính, giá trị tuyệt đối — Ghi chú: 100%
-- [ ] Phân số: rút gọn, quy đồng mẫu, so sánh, 4 phép tính — Ghi chú: 60% - chưa nắm kỹ, nhưng có nền tảng, biết quy đồng mẫu là lợi thế
-- [ ] Số thập phân; làm tròn; 4 phép tính; đổi phân số và thập phân — Ghi chú: 50% - chưa nắm kỹ
-- [ ] Tỉ số – tỉ số phần trăm; bài toán phần trăm cơ bản — Ghi chú: 60% - chỉ nắm được kiến thức cơ bản
-- [ ] Đơn vị đo & đổi đơn vị — Ghi chú: chưa test
+- [ ] Tập hợp, ký hiệu, so sánh & sắp xếp — Ghi chú:
+- [ ] Số tự nhiên (N), 4 phép tính, tính chất, thứ tự thực hiện, lũy thừa — Ghi chú:
+- [ ] Chia hết, ước – bội; ƯCLN – BCNN; số nguyên tố; phân tích thừa số nguyên tố — Ghi chú:
+- [ ] Số nguyên (Z): so sánh, 4 phép tính, giá trị tuyệt đối — Ghi chú:
+- [ ] Phân số: rút gọn, quy đồng mẫu, so sánh, 4 phép tính — Ghi chú:
+- [ ] Số thập phân; làm tròn; 4 phép tính; đổi phân số và thập phân — Ghi chú:
+- [ ] Tỉ số – tỉ số phần trăm; bài toán phần trăm cơ bản — Ghi chú:
+- [ ] Đơn vị đo & đổi đơn vị — Ghi chú:
 
 ### Thống kê cơ bản
 
-- [ ] Thống kê: bảng số liệu, biểu đồ, số trung bình cộng — Ghi chú: chưa test
+- [ ] Thống kê: bảng số liệu, biểu đồ, số trung bình cộng — Ghi chú:
 
 ### Hình học
 
-- [ ] Điểm, đường thẳng, đoạn thẳng, tia; trung điểm — Ghi chú: 40% - chưa biết tia
-- [ ] Song song; vuông góc; cắt nhau — Ghi chú: 60% - chưa biết so le trong
-- [ ] Góc: đo góc, các loại góc; tia phân giác — Ghi chú: 50% - chưa biết tia phân giác
-- [ ] Tam giác, đa giác: yếu tố cơ bản; phân loại — Ghi chú: 30% - chưa nắm rõ
-- [ ] Chu vi – diện tích các hình phẳng cơ bản (vuông, chữ nhật, tam giác, hình tròn, ...) — Ghi chú: 30% - chưa nắm chu vi và diện tích
+- [ ] Điểm, đường thẳng, đoạn thẳng, tia; trung điểm — Ghi chú:
+- [ ] Song song; vuông góc; cắt nhau — Ghi chú:
+- [ ] Góc: đo góc, các loại góc; tia phân giác — Ghi chú:
+- [ ] Tam giác, đa giác: yếu tố cơ bản; phân loại — Ghi chú:
+- [ ] Chu vi – diện tích các hình phẳng cơ bản (vuông, chữ nhật, tam giác, hình tròn, ...) — Ghi chú:
 
 ---
 

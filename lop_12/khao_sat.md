@@ -47,66 +47,13 @@
 - Các dạng hàm số thường khảo sát:
   - Hàm bậc ba: y = ax^3 + bx^2 + cx + d
   - Hàm trùng phương: y = ax^4 + bx^2 + c
-  - Hàm phân thức bật nhất / bật nhất: y = (ax + b) / (cx + d)
-  - Hàm phân thức bật hai / bật nhất: y = (ax^2 + bx + c) / (px + q)
+  - Hàm phân thức bậc nhất / bậc nhất: y = (ax + b) / (cx + d)
+  - Hàm phân thức bậc hai / bậc nhất: y = (ax^2 + bx + c) / (px + q)
 - Ví dụ: Khảo sát và vẽ đồ thị hàm số y = x^3 - 3x^2 + 2.
-
-```
-#### Ứng dụng đồ thị
-
-- Dùng đồ thị biện luận số nghiệm phương trình f(x) = m
-- Tìm m để phương trình có 1 nghiệm, 2 nghiệm, 3 nghiệm
-- Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
-
-### Hàm số mũ và hàm số logarit
-
-#### Lũy thừa (mở rộng)
-
-- Lũy thừa với số mũ nguyên âm: a^(-n) = 1 / a^n (a ≠ 0)
-- Lũy thừa với số mũ hữu tỉ: a^(m/n) = căn bậc n của a^m (a > 0)
-- Tính chất lũy thừa (mở rộng cho số mũ thực):
-+ a^x x a^y = a^(x+y)
-+ a^x / a^y = a^(x-y)
-+ (a^x)^y = a^(xy)
-+ (a x b)^x = a^x x b^x
-
-#### Hàm số mũ
-
-- y = a^x (a > 0, a ≠ 1)
-- a > 1: hàm đồng biến; 0 < a < 1: hàm nghịch biến
-- Đồ thị luôn qua điểm (0; 1)
-- TXĐ: R; tập giá trị: (0; +vô cực)
-
-#### Logarit
-
-- log_a(b) = c nghĩa là a^c = b (a > 0, a ≠ 1, b > 0)
-- Logarit tự nhiên: ln(x) = log_e(x) (e ≈ 2,718)
-- Logarit thập phân: lg(x) = log_10(x)
-- Tính chất:
-+ log_a(1) = 0; log_a(a) = 1
-+ log_a(xy) = log_a(x) + log_a(y)
-+ log_a(x/y) = log_a(x) - log_a(y)
-+ log_a(x^n) = n x log_a(x)
-+ Đổi cơ số: log_a(b) = log_c(b) / log_c(a)
-- Ví dụ: log_2(8) = ?, log_3(1/9) = ?, lg(1000) = ?
-
-#### Hàm số logarit
-
-- y = log_a(x) (a > 0, a ≠ 1)
-- TXĐ: (0; +vô cực); tập giá trị: R
-- a > 1: đồng biến; 0 < a < 1: nghịch biến
-- Đồ thị luôn qua điểm (1; 0)
-- y = log_a(x) là hàm ngược của y = a^x
-
-#### Phương trình, bất phương trình mũ và logarit
-
-- Phương trình mũ cơ bản: a^x = b → x = log_a(b)
-- Phương trình logarit cơ bản: log_a(x) = b → x = a^b
-- Điều kiện: biểu thức trong logarit phải > 0
-- Bất phương trình: chú ý chiều bất đẳng thức phụ thuộc cơ số a > 1 hay 0 < a < 1
-- Ví dụ: Giải 2^x = 16. Giải log_2(x - 1) = 3.
-- Ví dụ: Giải 3^(2x-1) > 27.
-```
+- Ứng dụng đồ thị
+  - Dùng đồ thị biện luận số nghiệm phương trình f(x) = m
+  - Tìm m để phương trình có 1 nghiệm, 2 nghiệm, 3 nghiệm
+  - Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
 
 ### Nguyên hàm – Tích phân
 
@@ -152,59 +99,72 @@
 
 ---
 
-### Thống kê (ôn lại lớp 10)
+## Xác suất có điều kiện
 
-- Tính xấp xỉ a ra số gần đúng a gạch ngang đầu
-- Sai số tuyệt đối: Denta(a) = |a - a gạch ngang|
-- Sai sô tương đối: S(a) = Denta(a)/|a|
-- Làm tròn số a ra số quy tròn b
-- Các số đặc trưng đo xu thế trung tâm (ôn lại lớp 7)
-  - Số trung bình (tbc): X gạch ngang = (x1 + x2 + ... + xn)/n (hoặc xtb)
-  - Số trung vị: Sắp xếp thứ tự từ bé đến lớn, lấy số ở giữa (nếu k có thì lấy 2 số ở giữa chia 2)
-  - Tứ phân vị: gồm Q1, Q2, Q3
-    - Sắp xếp thứ tự từ bé đến lớn
-    - Tìm trung vị: Q2
-    - Tìm trung vị nữa bên trái (k bao gồm Q2 nếu lẻ): Q1
-    - Tương tự bên phải: Q3
-  - Mốt: giá trị xuất hiện nhiều nhất
-- Các số đặc trưng đo mức độ phân tán:
-  - Khoảng biến thiên: R = số lớn nhất - số bé nhất
-  - Khoảng tứ phân vị: Denta(Q) = Q3 - Q1
-  - Phương sai: S^2 = [(x1 - xtb)^2 + (x2 - xtb)^2 + ... + (xn - xtb)^2]/n
-  - Độ lệch chuẩn: S = sqrt(phương sai)
-- Ví dụ: Cho dãy điểm: 5, 6, 7, 8, 9. Tính trung bình, phương sai, độ lệch chuẩn.
-
-## Xác xuất có điều kiện
-
-- Cho hai biến cố A và B. Xác suất của biến cố A, tính trong điều kiện biết rằng biến cố B đã xảy ra, được gọi là xác suất của A với điều kiện B và kí hiệu là P(A | B): P(A | B) = P(AB) / P(B)
-- Công thức nhân xác xuất: P(AB) = P(B).P(A | B)
-- Xác xuất toàn phần: P(B) = P(A).P(B | A) + P(phũ A).P(B | phũ A)
-- Công thức Bayes: P(A | B) = (P(A).P(B | A)) / (P(A).P(B | A) + P(phũ A).P(B | phũ A))
+- Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra: P(A | B) = P(AB) / P(B)
+- Công thức nhân xác suất: P(AB) = P(B) . P(A | B)
+- Xác suất toàn phần: P(B) = P(A) . P(B | A) + P(A') . P(B | A') (A' là biến cố đối của A)
+- Công thức Bayes: P(A | B) = P(A) . P(B | A) / P(B)
 
 ---
 
 ## Hình học
 
-### Vectơ trong không gian – Phương trình mặt phẳng, đường thẳng
+### Vectơ và hệ trục tọa độ trong không gian
+
+#### Vector trong không gian (lớp 10 là 2 chiều)
+
+- Vectơ: đoạn thẳng có hướng, ký hiệu AB (mũi tên từ A đến B)
+- Giá của vectơ: đường thẳng chứa vectơ
+- Độ dài (mô-đun) của vectơ: |AB|
+- Hai vectơ cùng phương: giá song song hoặc trùng nhau, a = kb
+  - x2/x1 = y2/y1
+- Hai vector cùng phương thì cùng hướng hoặc ngược hướng, a = kb
+  - k = x2/x1
+  - k > 0: cùng hướng
+  - k < 0: ngược hướng
+- Hai vectơ bằng nhau: cùng hướng và cùng độ dài, a = b
+- Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
+- Vectơ đối: cùng độ dài, ngược hướng, a = -b
+
+#### Phép cộng, trừ vectơ
+
+- Quy tắc ba điểm: AB + BC = AC
+- Quy tắc hình bình hành: AB + AD = AC (ABCD là hình bình hành)
+- Quy tắc hình hộp: AB + AD + AA' = AC' (ABCD.A'B'C'D' là hình hộp)
+- Phép trừ: AB - AC = CB
+- Ví dụ: Cho tam giác ABC. Rút gọn: AB + BC + CA = ?
+- Tính chất giao hoán: a + b = b + a
+- Tính chất kết hợp: (a + b) + c = a + (b + c)
+
+#### Nhân vectơ với số thực
+
+- Vectơ cùng phương: a = k x b: cùng hướng với a nếu k > 0, ngược hướng với a nếu k < 0, độ dài |a| = |k| x |b|
 
 #### Tọa độ trong không gian Oxyz
 
 - Hệ tọa độ không gian Oxyz: 3 trục Ox, Oy, Oz vuông góc nhau
-- Tọa độ điểm M(x; y; z); tọa độ vectơ a = (a1; a2; a3)
+- Tọa độ điểm M(x; y; z); tọa độ vectơ a = (a1; a2; a3) = a1.i + a2.j + a3.k
 - vector AB = (xB - xA; yB - yA; zB - zA)
 - Khoảng cách: |AB| = sqrt((xB - xA)^2 + (yB - yA)^2 + (zB - zA)^2)
 - Trung điểm đoạn thẳng: M = ((xA + xB)/2; (yA + yB)/2; (zA + zB)/2)
+- Tích 1 số: k.a = (k.a1, k.a2, k.a3)
 - Trọng tâm tam giác: G = ((xA + xB + xC)/3; (yA + yB + yC)/3; (zA + zB + zC)/3)
+
+#### Tích vô hướng
+
+- a . b = |a| . |b| . cos(a, b) = a1.b1 + a2.b2 + a3.b3
+- Hai vectơ vuông góc: a . b = 0
+- Ứng dụng: tính góc giữa 2 vectơ, kiểm tra vuông góc
 
 #### Tích có hướng (tích vectơ)
 
-- Tích vô hướng: a . b = a1.b1 + a2.b2 + a3.b3 = |a|.|b|.cos 0
-  - Ứng dụng tính góc của 2 vector, kiểm tra sự vuông góc
-- Hai vectơ vuông góc: a . b = 0
-- Tích có hướng a x b = (a2.b3 - a3.b2; a3.b1 - a1.b3; a1.b2 - a2.b1)
-  - Ứng dụng tìm 1 vector vuông góc với 2 vector đã cho, tính diện tích hình bình hành, hình tam giác, tìm vectơ pháp tuyến mặt phẳng để viết phương trình mặt phẳng
-- Độ lớn tích có hướng |a x b| = diện tích hình bình hành tạo bởi a và b
-- Độ lớn tích có hướng |a x b| / 2 = diện tích hình tam giác tạo bởi a và b
+- a x b = (a2.b3 - a3.b2; a3.b1 - a1.b3; a1.b2 - a2.b1)
+- Ứng dụng: tìm vectơ vuông góc với 2 vectơ, tìm vectơ pháp tuyến mặt phẳng
+- |a x b| = diện tích hình bình hành tạo bởi a và b
+- |a x b| / 2 = diện tích tam giác tạo bởi a và b
+
+### Phương pháp tọa độ trong không gian
 
 #### Phương trình mặt phẳng
 
@@ -238,36 +198,17 @@
 - Vị trí tương đối giữa đường thẳng và mặt phẳng: cắt (1 điểm), song song, nằm trong mặt phẳng
 - Giao điểm đường thẳng và mặt phẳng: thế tham số vào PT mặt phẳng
 - Ví dụ: Tìm giao điểm đường thẳng { x = 1 + t; y = 2 - t; z = 3 + 2t } với mặt phẳng x + y + z - 6 = 0.
-
-#### Khoảng cách trong không gian (tọa độ)
-
 - Khoảng cách từ điểm đến đường thẳng: dùng tích có hướng
 - Khoảng cách giữa 2 đường thẳng chéo nhau: dùng tích hỗn tạp
-- Khoảng cách từ điểm đến mặt phẳng: dùng công thức
 - Ví dụ: Tính khoảng cách từ A(1; 2; 3) đến mặt phẳng 2x - y + 2z - 6 = 0.
 
-### Mặt nón, mặt trụ, mặt cầu
+#### Công thức tính góc trong không gian
 
-#### Mặt nón tròn xoay
+- Góc giữa 2 đường thẳng: cos(d, d') = |cos(u, v)| = |a.a' + b.b' + c.c'| / (sqrt(a^2 + b^2 + c^2) x sqrt(a'^2 + b'^2 + c'^2))
+- Góc giữa đường thẳng và mặt phẳng: sin(d, P) = |cos(u, n)| = |a.A + b.B + c.C| / (sqrt(a^2 + b^2 + c^2) x sqrt(A^2 + B^2 + C^2))
+- Góc giữa 2 mặt phẳng: cos(P, Q) = |cos(n, n')| = |A.A' + B.B' + C.C'| / (sqrt(A^2 + B^2 + C^2) x sqrt(A'^2 + B'^2 + C'^2))
 
-- Hình nón tròn xoay: quay tam giác vuông quanh 1 cạnh góc vuông
-- Đường sinh l: l^2 = r^2 + h^2
-- Diện tích xung quanh: Sxq = pi x r x l
-- Diện tích toàn phần: Stp = pi x r x (r + l)
-- Thể tích: V = pi x r^2 x h / 3
-- Thiết diện qua trục: tam giác cân
-- Hỏi: Khi cắt hình nón bằng mặt phẳng song song đáy thì thiết diện là gì? (đường tròn)
-
-#### Mặt trụ tròn xoay
-
-- Hình trụ tròn xoay: quay hình chữ nhật quanh 1 cạnh
-- Diện tích xung quanh: Sxq = 2 x pi x r x h (= 2 x pi x r x l vì l = h)
-- Diện tích toàn phần: Stp = 2 x pi x r x (r + h)
-- Thể tích: V = pi x r^2 x h
-- Thiết diện qua trục: hình chữ nhật
-- Ví dụ: Hình trụ r = 5, h = 10. Tính V, Sxq, Stp.
-
-#### Mặt cầu
+#### Phương trình mặt cầu
 
 - Phương trình mặt cầu: (x - a)^2 + (y - b)^2 + (z - c)^2 = R^2 (tâm I(a; b; c), bán kính R)
 - Diện tích mặt cầu: S = 4 x pi x R^2
