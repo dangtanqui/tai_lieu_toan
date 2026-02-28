@@ -23,12 +23,18 @@
 - Mệnh đề chứa ký hiệu "với mọi", "tồn tại"
 - Ví dụ: với mọi x, x^2 >= 0; tồn tại x, x^=4
 
+DẠNG 1: XÁC ĐỊNH MỀNH ĐỀ VÀ MỆNH ĐỀ CHỨA BIẾN
+DẠNG 2: XÉT TÍNH ĐÚNG SAI CỦA MỘT MỆNH ĐỀ
+DẠNG 3: PHỦ ĐỊNH MỘT MỆNH ĐỀ
+DẠNG 4: MỆNH ĐỀ KÉO THEO, MỆNH ĐỀ ĐẢO, MỆNH ĐỀ TƯƠNG ĐƯƠNG
+
 #### Tập hợp và các phép toán
 
 - Nhắc lại tập hợp (lớp 6)
   - Liêt kê
   - Chỉ ra tính chất đặc trưng
   - Tập rỗng
+  - Thuộc và không thuộc
 - Tập con: A là tập con của B nếu mọi phần tử của A đều thuộc B.
 - Hai tập hợp bằng nhau: Mỗi phần tử thuộc A cũng thuộc B và ngược lại (tức A con B và B con A => A = B).
 - Phép hợp: A hợp B = tập gồm các phần tử thuộc A hoặc thuộc B (hoặc cả hai).
@@ -43,6 +49,14 @@
   - [a; b] là đoạn (chứa cả 2 đầu mút)
   - [a; b) hoặc (a; b] là nửa khoảng
 
+DẠNG 1: XÁC ĐỊNH MỘT TẬP HỢP
+DẠNG 2: CÁC PHÉP TOÁN VỀ GIAO, HỢP, HIỆU CỦA HAI TẬP HỢP
+DẠNG 3: PHẦN TỬ CỦA TẬP HỢP, CÁC XÁC ĐỊNH TẬP HỢP
+DẠNG 4: TẬP HỢP CON, TẬP HỢP BẰNG NHAU
+DẠNG 5: BIỂU DIỄN TẬP HỢP SỐ
+DẠNG 6: CÁC PHÉP TOÁN TRÊN TẬP HỢP SỐ
+DẠNG 7: CÁC BÀI TOÁN TÌM ĐIỀU KIỆN CỦA THAM SỐ
+
 ### Bất phương trình và hệ bất phương trình bậc nhất hai ẩn
 
 - Bất phương trình bậc nhất hai ẩn: ax + by < c (hoặc <=, >, >=)
@@ -54,11 +68,18 @@
 - Ví dụ: Xác định miền nghiệm của hệ: { x + y <= 6; x >= 0; y >= 0 }
 - Bài toán tối ưu (quy hoạch tuyến tính đơn giản): tìm giá trị lớn nhất/nhỏ nhất của biểu thức trên miền nghiệm.
 
+DẠNG 1: CÁC BÀI TOÁN BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN
+DẠNG 2: CÁC BÀI TOÁN HỆ BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN
+DẠNG 3: TÌM NGHIỆM BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN 
+DẠNG 4: TÌM MIỀN NGHIỆM CỦA HỆ BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN
+DẠNG 5: TÌM GIÁ TRỊ NHỎ NHẤT- GIÁ TRỊ LỚN NHẤT
+DẠNG 6: ÁP DỤNG BÀI TOÁN THỰC TIỄN
+
 ### Hàm số bậc hai
 
 #### Ôn tập hàm số (lớp 8)
 
-- Nếu mỗi giá trị của x thuộc D, tìm được 1 giá trị của y gọi là hàm số
+- Nếu mỗi giá trị của x thuộc D, tìm được 1 giá trị của y thuộc R gọi là hàm số
 - x là biến số, y là hàm số của x, ký hiệu: y = f(x)
 - D: Tập xác định (TXĐ) của hàm số
 - Hàm chẵn: f(-x) = f(x), đồ thị đối xứng qua trục Oy
@@ -68,6 +89,17 @@
 - Đồng biến: x1 < x2 => f(x1) < f(x2)
 - Nghịch biến: x1 < x2 => f(x1) > f(x2)
 
+DẠNG 1. TÌM TẬP XÁC ĐỊNH CỦA HÀM SỐ
+DẠNG 2. TÌM ĐIỀU KIỆN ĐỂ HÀM SỐ XÁC ĐỊNH TRÊN MỘT TẬP K CHO TRƯỚC
+DẠNG 3. TẬP GIÁ TRỊ CỦA HÀM SỐ
+DẠNG 4. TÍNH ĐỒNG BIẾN, NGHỊCH BIẾN CỦA HÀM SỐ
+DẠNG 5. TÌM ĐIỀU KIỆN CỦA THAM SỐ m ĐỂ HÀM SỐ ĐỒNG BIẾN (NGHỊCH BIẾN) TRÊN MỘT TẬP HỢP CHO TRƯỚC
+- Xét (f(x1) - f(x2)) / (x1 - x2)
+DẠNG 6. BÀI TOÁN THỰC TẾ
+DẠNG 7: XÁC ĐỊNH SỰ BIẾN THIÊN CỦA HÀM SỐ CHO TRƯỚC
+DẠNG 8: XÁC ĐỊNH SỰ BIẾN THIÊN THÔNG QUA ĐỒ THỊ CỦA HÀM SỐ
+DẠNG 9: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỒ THỊ CỦA HÀM SỐ
+
 #### Hàm số bậc hai y = ax^2 + bx + c (a ≠ 0)
 
 - Ôn lại lớp 9 có học đồ thị y = ax^2
@@ -75,9 +107,20 @@
 - Trục đối xứng: x = -b/(2a)
 - a > 0: parabol cong xuống (có giá trị nhỏ nhất)
 - a < 0: parabol cong lên (có giá trị lớn nhất)
-- Bảng biến thiên: xét khi a > 0 và a < 0
+- Bảng biến thiên: xét khi a > 0 và a < 0 với x = -b/2a, y = -denta/4a
 - Ví dụ: Vẽ đồ thị y = x^2 - 4x + 3. Tìm đỉnh, trục đối xứng, điểm cắt trục Ox.
 - Hỏi: Parabol y = -x^2 + 2x + 3 quay lên hay xuống? Đỉnh ở đâu?
+
+DẠNG 1: SỰ BIẾN THIÊN
+DẠNG 2: XÁC ĐỊNH TOẠ ĐỘ ĐỈNH, TRỤC ĐỐI XỨNG, HÀM SỐ BẬC HAI THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC.
+DẠNG 3: ĐỌC ĐỒ THỊ, BẢNG BIẾN THIÊN CỦA HÀM SỐ BẬC HAI
+DẠNG 4: GIÁ TRỊ LỚN NHẤT, GIÁ TRỊ NHỎ NHẤT 
+DẠNG 5: SỰ TƯƠNG GIAO GIỮA PARABOL VỚI ĐỒ THỊ CÁC HÀM SỐ
+DẠNG 6: TÌM ĐIỀU KIỆN ĐỂ HÀM SỐ y = ax^2 + bx + c ĐỒNG BIẾN TRÊN KHOẢNG (a; b)
+DẠNG 7: XÁC ĐỊNH HÀM SỐ BẬC HAI
+DẠNG 8: ĐỒ THỊ HÀM SỐ BẬC HAI
+DẠNG 9: ĐIỂM CỐ ĐỊNH CỦA ĐỒ THỊ HÀM SỐ.
+DẠNG 10: BÀI TOÁN THỰC TẾ
 
 #### Tam thức bậc hai
 
@@ -102,13 +145,32 @@
   - sin(alpha) >= 0
   - cos(alpha) > 0 khi 0° < alpha < 90° (góc tù)
   - cos(alpha) < 0 khi 90° < alpha < 180° (góc tù)
-- tan = sin / cos, cot = cos / sin, tan = 1 / cot
-- Bù nhau: sin(180° - alpha) = sin(alpha); cos(180° - alpha) = -cos(alpha), tan(180° - alpha) = -tan(alpha), cot(180° - alpha) = -cot(alpha)
+- tan = sin / cos, cot = cos / sin, tan.cot = 1
+- sin^2 + cos^2 = 1
+- 1 + tan^2 = 1/cos^2; 1 + cot^2 = 1/sin^2
+- Bù nhau:
+  - sin(180° - alpha) = sin(alpha)
+  - cos(180° - alpha) = -cos(alpha)
+  - tan(180° - alpha) = -tan(alpha)
+  - cot(180° - alpha) = -cot(alpha)
+- Phụ nhau:
+  - sin(90° - alpha) = cos(alpha)
+  - cos(90° - alpha) = sin(alpha)
+  - tan(90° - alpha) = cot(alpha)
+  - cot(90° - alpha) = tan(alpha)
 - Hỏi: sin(120°) = ?, cos(150°) = ?
+
+DẠNG 1: TÍNH CÁC GIÁ TRỊ BIỂU THỨC LƯỢNG GIÁC 
+DẠNG 2: TÍNH GIÁ TRỊ CỦA MỘT BIỂU THỨC LƯỢNG GIÁC , KHI BIẾT TRƯỚC MỘT GIÁ TRỊ LƯỢNG GIÁC. 
+DẠNG 3: CHỨNG MINH CÁC ĐẲNG THỨC, RÚT GỌN CÁC BIỂU THỨC LƯỢNG GIÁC 
+DẠNG 4: DẤU CỦA CÁC GIÁ TRỊ LƯỢNG GIÁC. GIÁ TRỊ LƯỢNG GIÁC
+DẠNG 5: CHO BIẾT MỘT GIÁ TRỊ LƯỢNG GIÁC, TÍNH CÁC GIÁ TRỊ LƯỢNG GIÁC CÒN LẠI 
+DẠNG 6: CHỨNG MINH, RÚT GỌN BIỂU THỨC LƯỢNG GIÁC
+DẠNG 7: TÍNH GIÁ TRỊ BIỂU THỨC LƯỢNG GIÁC 
 
 #### Định lí cosin
 
-- a^2 = b^2 + c^2 - 2bc x cos(A)
+- a^2 = b^2 + c^2 - 2b.c x cos(A) => cos(A) = (b^2 + c^2 - a^2) / (2b.c)
 - Dùng khi biết 2 cạnh và góc xen giữa, hoặc biết 3 cạnh tìm góc.
 - Ví dụ: Tam giác có b = 5, c = 7, góc A = 60°. Tìm a.
 - Hỏi: Khi góc A = 90° thì công thức trở thành Pythagore
@@ -121,14 +183,20 @@
 
 #### Diện tích tam giác
 
-- S = (1/2) x a x b x sin(C) = ... = pr = (a + b + c).r/2 = abc/(4R)
+- S = 1/2a.h = (1/2) x a x b x sin(C) = ... = pr = (a + b + c).r/2 = abc/(4R)
 - Công thức Heron: S = sqrt(p(p - a)(p - b)(p - c))
+- Công thức trung tuyến (bổ sung): ma^2 = (2(b^2 + c^2) - a^2)/4
 - Ví dụ: Tam giác có a = 8, b = 5, góc C = 30°. Tính S.
-- Giải tam giác: cho các yếu tố, tìm các yếu tố còn lại.
 
+DẠNG 1: GIẢI TAM GIÁC: cho các yếu tố, tìm các yếu tố còn lại.
+DẠNG 2: HỆ THỨC LIÊN HỆ GIỮA CÁC YẾU TỐ TRONG TAM GIÁC, NHẬN DẠNG TAM GIÁC
+DẠNG 3: ĐNNH LÝ COSIN, ÁP DỤNG ĐNNH LÝ COSIN ĐỂ GIẢI TOÁN
+DẠNG 4: ĐNNH LÝ SIN, ÁP DỤNG ĐNNH LÝ SIN ĐỂ GIẢI TOÁN
+DẠNG 5: DIỆN TÍCH TAM GIÁC, BÁN KÍNH ĐƯỜNG TRÒN 
+DẠNG 6: ỨNG DỤNG THỰC TẾ
 ---
 
-### Đại số tổ hợp
+### Đại số tổ hợp (chưa ôn)
 
 #### Quy tắc đếm
 
@@ -205,7 +273,11 @@
 - Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
 - Vectơ đối: cùng độ dài, ngược hướng, a = -b
 
-#### Phép cộng, trừ vectơ
+DẠNG 1: XÁC ĐNNH MỘT VECTƠ; PHƯƠNG, HƯỚNG CỦA VECTƠ; ĐỘ DÀI CỦA VECTƠ
+DẠNG 2: CHỨNG MINH HAI VECTƠ BẰNG NHAU
+DẠNG 3: XÁC ĐNNH ĐIỂM THOẢ ĐẲNG THỨC VECTƠ
+
+#### Tổng và hiệu hai vectơ
 
 - Quy tắc ba điểm: AB + BC = AC
 - Quy tắc hình bình hành: AB + AD = AC (ABCD là hình bình hành)
@@ -213,30 +285,61 @@
 - Ví dụ: Cho tam giác ABC. Rút gọn: AB + BC + CA = ?
 - Tính chất giao hoán: a + b = b + a
 - Tính chất kết hợp: (a + b) + c = a + (b + c)
+- Vector 0: 0 + a = a
 
-#### Nhân vectơ với số thực
+DẠNG 1: CÁC BÀI TOÁN LIÊN QUAN ĐẾN TỔNG CÁC VECTƠ
+DẠNG 2: VECTƠ ĐỐI, HIỆU CỦA HAI VECTƠ
+DẠNG 3:CHỨNG MINH ĐẲNG THỨC VECTƠ
+DẠNG 4: CÁC BÀI TOÁN XÁC ĐNNH ĐIỂM THỎA ĐẲNG THỨC VEC TƠ
+DẠNG 5: CÁC BÀI TOÁN TÍNH ĐỘ DÀI CỦA VEC TƠ
+
+#### Tích vectơ với một số
 
 - Vectơ cùng phương: a = k x b: cùng hướng với a nếu k > 0, ngược hướng với a nếu k < 0, độ dài |a| = |k| x |b|
+- Tính chất: k(a + b) = ka + kb, (k + h)a = ka + ha, h(ka) = (hk)a
 - Trung điểm M của AB: OM = (OA + OB) / 2 (với O bất kỳ)
 - Trọng tâm G của tam giác ABC: OG = (OA + OB + OC) / 3
 
+DẠNG 1: XÁC ĐNNH VECTƠ ka
+DẠNG 2: HAI VECTƠ CÙNG PHƯƠNG, BA ĐIỂM THẲNG HÀNG
+DẠNG 3: BIỂU THN MỘT VECTƠ THEO HAI VECTƠ KHÔNG CÙNG PHƯƠNG
+DẠNG 4: ĐẲNG THỨC VECTƠ CHỨA TÍCH CỦA VECTƠ VỚI MỘT SỐ
+
 #### Tọa độ vectơ và tọa độ điểm
 
+- Vector đơn vị i, j có độ dài bằng 1
 - Vectơ a = (a1; a2) trong hệ tọa độ Oxy
 - AB = (xB - xA; yB - yA)
-- Độ dài: |AB| = sqrt((xB - xA)^2 + (yB - yA)^2)
+- Độ dài: |AB| = sqrt((xB - x A)^2 + (yB - yA)^2)
+- Tính chất: a + b = (a1 + b1, a2 + b2), ka = (ka1, ka2)
 - Trung điểm M của AB: M = ((xA + xB)/2; (yA + yB)/2)
 - Trọng tâm G: G = ((xA + xB + xC)/3; (yA + yB + yC)/3)
-- Tích vô hướng theo tọa độ: a . b = a1 x b1 + a2 x b2
-- Hai vectơ vuông góc: a . b = 0
 - Ví dụ: A(1; 2), B(4; 6). Tìm |AB| và trung điểm M.
+
+DẠNG 1: TÌM TỌA ĐỘ ĐIỂM, TỌA ĐỘ VECTƠ TRÊN MẶT PHẲNG
+DẠNG 2: XÁC ĐNNH TỌA ĐỘ ĐIỂM, VECTƠ LIÊN QUAN ĐẾN BIỂU THỨC DẠNG u +/- v, ku
+DẠNG 3: XÁC ĐNNH TỌA ĐỘ CÁC ĐIỂM CỦA MỘT HÌNH
+DẠNG 4: BÀI TOÁN LIÊN QUAN ĐẾN SỰ CÙNG PHƯƠNG CỦA HAI VECTƠ. PHÂN TÍCH MỘT VECTƠ QUA HAI VECTƠ KHÔNG CÙNG PHƯƠNG
 
 #### Tích vô hướng của hai vectơ
 
-- a . b = |a| x |b| x cos(a, b)
-- Tính chất: a . b = b . a; a . (b + c) = a . b + a . c; a . a = |a|^2
-- Hai vectơ vuông góc khi a . b = 0
+- Tích vô hướng: a . b = |a| x |b| x cos(a, b) => cos(a, b) = a . b / (|a| . |b|)
+- Tích vô hướng theo tọa độ: a . b = a1 x b1 + a2 x b2
+- Tính chất: a . b = b . a; a . (b + c) = a . b + a . c; a . a = |a|^2, (ka).b = k(a.b)
+- Áp dụng hẳng đẳng thức
+  - (a +/- b)^2 = a^2 +/- 2ab + b^2
+  - (a - b)(a + b) = a^2 - b^2
+- Hai vectơ vuông góc khi a . b = 0 <=> a1 x b1 + a2 x b2 = 0
+- Độ dài vector: |a| = sqrt(a1^2 + a2^2)
 - Ví dụ: |a| = 3, |b| = 4, góc giữa a và b = 60°. Tính a . b.
+
+DẠNG 1: XÁC ĐỊNH GÓC GIỮA HAI VECTƠ.
+DẠNG 2: TÍCH VÔ HƯỚNG CỦA HAI VECTƠ.
+DẠNG 3: CHỨNG MINH CÁC ĐẲNG THỨC VỀ TÍCH VÔ HƯỚNG HOẶC ĐỘ DÀI.
+DẠNG 4. ỨNG DỤNG TÍCH VÔ HƯỚNG CHỨNG MINH VUÔNG GÓC
+DẠNG 5: CÁC BÀI TOÁN TÌM TẬP HỢP ĐIỂM
+DẠNG 6: CỰC TRỊ.
+DẠNG 7: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỘ DÀI VÉCTƠ
 
 ### Phương pháp tọa độ trong mặt phẳng
 
