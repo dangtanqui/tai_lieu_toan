@@ -226,8 +226,8 @@ DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
   - k > 0: cùng hướng
   - k < 0: ngược hướng
 - Hai vectơ bằng nhau: cùng hướng và cùng độ dài, a = b
-- Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
 - Vectơ đối: cùng độ dài, ngược hướng, a = -b
+- Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
 
 #### Phép cộng, trừ vectơ
 

@@ -126,10 +126,17 @@ DẠNG 10: BÀI TOÁN THỰC TẾ
 
 - ôn lại lớp 9 phương trình bật 2
 - Dấu của tam thức bậc hai: f(x) = ax^2 + bx + c
+- Denta = b^2 - 4a.c
   - Delta < 0: f(x) cùng dấu với a, mọi x
   - Delta = 0: f(x) cùng dấu với a, mọi x ≠ -b/(2a)
-  - Delta > 0: f(x) trái dấu với a khi x nằm giữa hai nghiệm; cùng dấu với a khi x nằm ngoài hai nghiệm
-- Ứng dụng: giải bất phương trình bậc hai
+  - Delta > 0: f(x)
+    - Trái dấu với a khi x nằm giữa hai nghiệm
+    - Cùng dấu với a khi x nằm ngoài hai nghiệm
+- Hoặc tính denta' = b'^2 - a.c
+- Bất phương trình bậc hai: ax^2 + bx + c > 0 (hoặc >= 0, < 0, <= 0)
+
+DẠNG 1: Xét dấu tam thức bậc hai
+DẠNG 2: Giải bất phương trình bậc hai
 
 #### Phương trình quy về phương trình bậc hai
 
@@ -196,7 +203,7 @@ DẠNG 5: DIỆN TÍCH TAM GIÁC, BÁN KÍNH ĐƯỜNG TRÒN
 DẠNG 6: ỨNG DỤNG THỰC TẾ
 ---
 
-### Đại số tổ hợp (chưa ôn)
+### Đại số tổ hợp (chưa học tới)
 
 #### Quy tắc đếm
 
@@ -341,7 +348,7 @@ DẠNG 5: CÁC BÀI TOÁN TÌM TẬP HỢP ĐIỂM
 DẠNG 6: CỰC TRỊ.
 DẠNG 7: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỘ DÀI VÉCTƠ
 
-### Phương pháp tọa độ trong mặt phẳng
+### Phương pháp tọa độ trong mặt phẳng (chưa học tới)
 
 #### Phương trình đường thẳng
 
