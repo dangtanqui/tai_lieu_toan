@@ -102,6 +102,6 @@
 
 - Hình hộp chữ nhật, hình lập phương
 - Diện tích xung quanh và thể tích:
-+ Hình hộp chữ nhật: Sxq = 2h(a + b), V = a x b x h
-+ Hình lập phương: Sxq = 4a^2, V = a^3
+  - Hình hộp chữ nhật: Sxq = 2h(a + b), V = a x b x h
+  - Hình lập phương: Sxq = 4a^2, V = a^3
 - Hình lăng trụ đứng (tam giác / tứ giác): Sxq = C_đáy x h, V = S_đáy x h

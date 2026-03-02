@@ -105,12 +105,12 @@
 #### Chu vi – diện tích các hình phẳng cơ bản
 
 - Công thức tính chu vi và diện tích:
-+ Hình vuông: C = 4a, S = a^2
-+ Hình chữ nhật: C = 2(a + b), S = a x b
-+ Hình bình hành: C = 2(a + b), S = a x h
-+ Hình thang: C = a + b + c + d, S = (a + b) x h / 2
-+ Hình thoi: C = 4a, S = d1 x d2 / 2
-+ Hình tròn: C = 2 x pi x r, S = pi x r^2 (pi ≈ 3,14)
+  - Hình vuông: C = 4a, S = a^2
+  - Hình chữ nhật: C = 2(a + b), S = a x b
+  - Hình bình hành: C = 2(a + b), S = a x h
+  - Hình thang: C = a + b + c + d, S = (a + b) x h / 2
+  - Hình thoi: C = 4a, S = d1 x d2 / 2
+  - Hình tròn: C = 2 x pi x r, S = pi x r^2 (pi ≈ 3,14)
 - Ví dụ: Chu vi tam giác có cạnh 3, 4, 5?
 - Ví dụ: Tính diện tích hình chữ nhật a = 7, b = 3.
 - Ví dụ: Tính chu vi và diện tích hình tròn có r = 5.
