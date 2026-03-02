@@ -109,6 +109,7 @@
 - Tính chất: u(k)^2 = u(k-1) x u(k+1)
 - Ví dụ: CSN có u1 = 2, q = 3. Tìm u5 và S5.
 - Hỏi: Lãi suất đơn/kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
+- Cấp số nhân lùi vô hạn: Vì q < 1 nên lim q^n = 0 => S = u1 / (1 - q)
 
 ### Giới hạn
 
@@ -219,9 +220,38 @@
 
 ### Thống kê
 
-- Bảng tần số, tần suất, tần số tích lũy
-- Biểu đồ tần suất hình cột, biểu đồ đường gấp khúc tần suất
-- Hỏi: Khi nào dùng biểu đồ cột, khi nào dùng biểu đồ tròn?
+- Mẫu số liệu ghép nhóm: là mẫu số liệu cho dưới dạng bảng tần số của các nhóm số liệu. Mỗi nhóm số liệu là tập hợp gồm các giá trị của số liệu được ghép nhóm theo một tiêu chí xác định.
+- Ghép nhóm mẫu số liệu
+  1. Chia miền giá trị của mẫu số liệu thành một số nhóm theo tiêu chí cho trước.
+  2. Đếm số giá trị của mẫu số liệu thuộc mỗi nhóm (tần số) và lập bảng thống kê cho mẫu số liệu ghép nhóm.
+- Số trung bình của mẫu số liệu ghép nhóm: x ngang = (m1.x1 + m2.x2 + ... mn.xn)/n
+  - n = m1 + m2 + ... + mn là cỡ mẫu
+  - xi = (a(i) + a(i + 1)) / 2
+- Trung vị của mẫu số liệu ghép nhóm:
+  1. Xác định nhóm chứa trung vị. GS nhóm thứ p: [a(p), a(p + 1))
+  2. Trung vị: M(e) = a(p) + (n/2 - (m1 + m2 + ... + m(n))) / m(p) . (a(p + 1) - a(p))
+    - n là cỡ mẫu
+    - m(p) là tần số nhóm p
+    - Với p = 1, ta quy ước m1 + m2 + ... + m(p - 1) = 0
+- Tứ phân vị của mẫu số liệu ghép nhóm:
+  - Tứ phân vị thứ nhất Q1
+    1. Xác định nhóm chứa Q1. GS nhóm thứ p: [a(p), a(p + 1))
+    2. Q1 = a(p) + (n/4 - (m1 + m2 + ... + m(p - 1))) / m(p) . (a(p + 1) - a(p))
+      - n là cỡ mẫu
+      - m(p) là tần số nhóm p
+      - Với p = 1, ta quy ước m1 + m2 + ... + m(p - 1) = 0
+  - Tứ phân vị thứ hai Q2 = M(e)
+  - Tứ phân vị thứ ba Q3
+    1. Xác định nhóm chứa Q1. GS nhóm thứ p: [a(p), a(p + 1))
+    2. Q3 = a(p) + (3n/4 - (m1 + m2 + ... + m(p - 1))) / m(p) . (a(p + 1) - a(p))
+      - n là cỡ mẫu
+      - m(p) là tần số nhóm p
+      - Với p = 1, ta quy ước m1 + m2 + ... + m(p - 1) = 0
+- Mốt của mẫu số liệu ghép nhóm:
+  1. Xác định nhóm có tần số lớn nhất
+  2. Mốt: M(0) = a(j) + (m(j) - m(j - 1)) / ((m(j) - m(j - 1)) + (m(j) - m(j + 1))) . h
+    - m(j) là tần số của nhóm j, quy ước m(0) = m(k + 1) = 0
+    - h là độ dài của nhóm
 
 ### Xác suất
 

@@ -133,3 +133,6 @@
 - Mảng hổng/mất gốc rõ:
 - Mục cần học lại theo thứ tự ưu tiên:
 - Ghi chú về thái độ học, tốc độ, lỗi hay gặp:
+
+Toán hình: Xong 8, tiếp 9
+Toán đại: Xong lớp 9

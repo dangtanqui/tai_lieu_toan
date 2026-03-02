@@ -556,7 +556,7 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - OO' < |r - r'|: không cắt nhau (đtròn này đựng đtròn khác)
   - OO' = r + r': cắt nhau tại 1 điểm (tiếp xúc ngoài)
   - OO' = |r - r'|: cắt nhau tại 1 điểm (tiếp xúc trong)
-  - r - r' < OO' < r + r': cắt nhau tại 2 điểm
+  - |r - r'| < OO' < r + r': cắt nhau tại 2 điểm
 - Tiếp tuyến chung của 2 đường tròn (tiếp tuyến ngoài, tiếp tuyến trong)
 
 #### Góc ở tâm; cung tròn; dây; độ dài cung và diện tích hình quạt
@@ -565,7 +565,7 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
 - 2 cung bằng nhau nếu số đo bằng nhau (hoặc dây bằng nhau). Cung nào có số đo lớn hơn (hoặc dây lớn hơn) gọi là cung lớn hơn.
 - C là điểm giữa cung AB: cung AB = cung AC + cung BC
 - Độ dài cung: l = (n x pi x r) / 180 (n là số đo góc ở tâm tính theo độ)
-- Diện tích hình quạt tròn: S = (n x pi x r^2) / 360 = l.r
+- Diện tích hình quạt tròn: S = (n x pi x r^2) / 360 = l.r / 2
 
 #### Góc nội tiếp
 
