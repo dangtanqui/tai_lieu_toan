@@ -377,7 +377,7 @@
 - Hỏi: sqrt(49) = ?, sqrt(0,25) = ?
 - Hỏi: Điều kiện để sqrt(2x - 3) có nghĩa?
 - a > b => sqrt(a) > sqrt(b) (với a, b >= 0)
-- Căn thức bật 2 của hằng đẳng thức: sqrt(a^2) = |a| (không phải luôn bằng a)
+- Căn thức bậc 2 của hằng đẳng thức: sqrt(a^2) = |a| (không phải luôn bằng a)
 - sqrt(a.b) = sqrt(a).sqrt(b) (với a, b >= 0)
 - sqrt(a/b) = sqrt(a)/sqrt(b) (với a >= 0, b > 0)
 
@@ -407,13 +407,13 @@ Dạng 2: Nâng cao phát triển tư duy
 #### Căn bậc ba
 
 - Căn bậc ba của a: số x sao cho x^3 = a; ký hiệu cbrt(a)
-- Khác căn bậc hai, với căn bật 3: cbrt(a) xác định với mọi số thực a (kể cả a < 0)
+- Khác căn bậc hai, với căn bậc 3: cbrt(a) xác định với mọi số thực a (kể cả a < 0)
 - Ví dụ: cbrt(8) = 2, cbrt(-27) = -3.
 - Tính chất: 1/(cbrt(a) +/- cbrt(b)) = (cbrt(a^2) -/+ cbrt(a.b) + cbrt(b^2)) / (a +/- b)
-- Căn bật n:
-  - căn bật n của (căn bật m của a) = căn bật n.m của a
-  - căn bật n của a.b = căn bật n của a . căn bật n của b
-  - (căn bật n của a)^m = căn bật n của a^m
+- Căn bậc n:
+  - căn bậc n của (căn bậc m của a) = căn bậc n.m của a
+  - căn bậc n của a.b = căn bậc n của a . căn bậc n của b
+  - (căn bậc n của a)^m = căn bậc n của a^m
 
 Dạng 1: Toán cơ bản
 Dạng 2: Bài nâng cao phát triển tư duy
@@ -427,7 +427,7 @@ Dạng 2: Bài nâng cao phát triển tư duy
   - Điểm thuộc đồ thị
   - Đồ thị hàm số
   - Hàm số đồng biến, nghịch biến
-  - Hàm chẳn, lẻ
+  - Hàm chẵn, lẻ
 - Hàm số bậc nhất y = ax + b với a khác 0
   - Đồng biến khi a > 0, tạo trục Ox góc nhọn
   - Nghịch biến khi a < 0, tạo trục Ox góc tù
@@ -472,11 +472,11 @@ DẠNG 11: CÁC DẠNG KHÁC
 #### Hàm số y = ax^2
 
 - Hàm số y = ax^2 (a khác 0)
-  - a > 0: nghịch biến khi x < 0 và đống biến khi x > 0. GTNN của hàm số là y = 0
+  - a > 0: nghịch biến khi x < 0 và đồng biến khi x > 0. GTNN của hàm số là y = 0
   - a < 0: đồng biến khi x < 0 và nghịch biến khi x > 0. GTLN của hàm số là y = 0.
 - Đồ thị là Parabol: một đường cong đi qua gốc toạ độ và nhận trục Oy làm trục đối xứng. Đỉnh là gốc tọa độ.
-  - a > 0: đổ thị năm phía trén trục hoành, O là điểm thấp nhất của đồ thị.
-  - a < 0: đổ thị nằm phía dưới trục hoành, O là điểm cao nhất của đó thị.
+  - a > 0: đồ thị nằm phía trên trục hoành, O là điểm thấp nhất của đồ thị.
+  - a < 0: đồ thị nằm phía dưới trục hoành, O là điểm cao nhất của đồ thị.
 
 Dạng 1. Giá trị hàm số y = f(x) = ax^2 tại x = x0
 Dạng 2. Vẽ đồ thị hàm số y = f(x) = ax^2
@@ -491,7 +491,7 @@ Dạng 5. Giải bất phương trình bằng đồ thị
   - Delta > 0: hai nghiệm phân biệt: x1/2 = (-b +/- sqrt(delta)) / 2a
   - Delta = 0: nghiệm kép x1 = x2 = -b/2a
   - Delta < 0: vô nghiệm (trong tập R)
-Hoặc lập Detal' = b'^2 - ac với b' = 2b
+Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - Delta' > 0: hai nghiệm phân biệt: x1/2 = (-b' +/- sqrt(delta)) / a
   - Delta' = 0: nghiệm kép x1 = x2 = -b'/a
   - Delta' < 0: vô nghiệm (trong tập R)
@@ -513,7 +513,7 @@ Hoặc lập Detal' = b'^2 - ac với b' = 2b
 - Ôn Pythagore: c^2 = a^2 + b^2
 - Ví dụ: Tam giác vuông có cạnh góc vuông 6 và 8, cạnh huyền bằng bao nhiêu?
 - Đường cao h trong tam giác vuông, có cạnh a, b, c (h kẻ từ góc vuông xuống cạnh huyền c), a' là hình chiếu vuông góc của a lên c, b' là hình chiếu vuông góc của b lên c:
-  - h^2 = b' x c' (tích hai hình chiếu của hai cạnh góc vuông trên cạnh huyền)
+  - h^2 = a' x b' (tích hai hình chiếu của hai cạnh góc vuông trên cạnh huyền)
   - a^2 = a' x c (mỗi cạnh góc vuông bình phương = hình chiếu của nó nhân cạnh huyền)
   - a x b = c x h
   - 1/h^2 = 1/a^2 + 1/b^2

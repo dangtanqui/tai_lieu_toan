@@ -44,7 +44,7 @@ DẠNG 7: CỰC TRỊ CỦA HÀM y = |f(x)|, y = f(|x|)
 DẠNG 8: TÌM CỰC TRỊ CỦA HÀM SỐ KHI BIẾT BIỂU THỨC f(x), f'(x)
 DẠNG 9: TÌM M ĐỂ HÀM SỐ ĐẠT CỰC TRỊ TẠI x = x0
 - Tính f'(x0) = 0, tìm m
-- Thế m vào f''(x0) nếu f''(x0) < 0 cực tiểu, f''(x0) < 0 cực đại
+- Thế m vào f''(x0) nếu f''(x0) > 0 cực tiểu, f''(x0) < 0 cực đại
 DẠNG 10: HÀM SỐ ĐA THỨC BẬC CAO, HÀM CĂN THỨC
 DẠNG 11: TÌM M ĐỂ HÀM SỐ CÓ N CỰC TRỊ
 - f'(x) có n nghiệm phân biệt
@@ -126,9 +126,9 @@ DẠNG 6: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN ĐỒ THỊ HÀM SỐ THÔNG QUA H
   - Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
 
 DẠNG 1: NHẬN DẠNG HÀM SỐ THƯỜNG GẶP THÔNG QUA ĐỒ THỊ
-- Hàm số bật 3
+- Hàm số bậc 3
 - Hàm số trùng phương
-- Hàm số nhất biến (bật nhất / bật nhất)
+- Hàm số nhất biến (bậc nhất / bậc nhất)
 DẠNG 2: XÉT DẤU CỦA CÁC HỆ SỐ HÀM SỐ THÔNG QUA ĐỒ THỊ
 DẠNG 3: ĐỒ THỊ HÀM SỐ CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI 
 DẠNG 4: BÀI TOÁN TƯƠNG GIAO ĐỒ THỊ THÔNG QUA ĐỒ THỊ, BẢNG BIẾN THIÊN
@@ -314,8 +314,8 @@ DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 #### Phương trình đường thẳng trong không gian
 
 - Vectơ chỉ phương u = (a; b; c), đi qua điểm A(x0; y0, z0)
-- Phương trình đường phẳng (tham số): { x = x0 + at; y = y0 + bt; z = z0 + ct }
-- Phương trình đường phẳng (chính tắc): (x - x0)/a = (y - y0)/b = (z - z0)/c
+- Phương trình đường thẳng (tham số): { x = x0 + at; y = y0 + bt; z = z0 + ct }
+- Phương trình đường thẳng (chính tắc): (x - x0)/a = (y - y0)/b = (z - z0)/c
 - Phương trình đường thẳng đi qua hai điểm
   - Tìm vector chỉ phương từ 2 điểm, rồi tìm ptđt (x - x1)/(x2 - x1) = (y - y1)/(y2 - y1) = (z - z1)/(z2 - z1)
 - Hai đường thẳng vuông góc: n1.n2 = 0 => a1,a2 + b1.b2 + c1.c2 = 0

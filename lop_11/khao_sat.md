@@ -65,7 +65,7 @@
 - Hàm số tang: y = tan(x): TXĐ: x ≠ pi/2 + k.pi, hàm lẻ và tuần hoàn với chu kỳ pi
 - Hàm số côtang:y = cot(x): TXĐ: x ≠ k.pi, hàm lẻ với chu kỳ pi
 - Hỏi: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
-- Hàm chẳn: f(-x) = f(x)
+- Hàm chẵn: f(-x) = f(x)
 - Hàm lẻ: f(-x) = -f(x)
 - Hàm số tuần hoàn: f(x + T) = f(x), T gọi là chu kỳ
 
@@ -90,7 +90,7 @@
 
 - Dãy số: hàm số u(n) với n là số tự nhiên
 - Dãy tăng: u(n+1) > u(n), mọi n; dãy giảm: u(n+1) < u(n), mọi n
-- Dãy bị chặn trên: tồn lại M, u(n) <= M, mọi n; Dãy bị chặn dưới: tồn tại m, u(n) >= m, mọi n; Dãy bị chặn nếu bị chặn trên và dưới
+- Dãy bị chặn trên: tồn tại M, u(n) <= M, mọi n; Dãy bị chặn dưới: tồn tại m, u(n) >= m, mọi n; Dãy bị chặn nếu bị chặn trên và dưới
 - Ví dụ: Dãy un = 2n + 1 tăng hay giảm?
 
 #### Cấp số cộng

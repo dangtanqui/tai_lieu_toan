@@ -15,13 +15,13 @@
 - Lập phương của một hiệu: (A - B)^3 = A^3 - 3A^2B + 3AB^2 - B^3
 - Tổng hai lập phương: A^3 + B^3 = (A + B)(A^2 - AB + B^2)
 - Hiệu hai lập phương: A^3 - B^3 = (A - B)(A^2 + AB + B^2)
-- Một số hẳng đẳng thức tổng quát:
+- Một số hằng đẳng thức tổng quát:
   - a^n - b^n = (a - b) . (a^(n - 1) + a^(n - 2).b + ... + a.b^(n - 2) + b^(n - 1))
   - a^(2n + 1) + b^(2n + 1) = (a + b) . (a^(2n) - a^(2n - 1).b + ... + b^(2n))
   - (a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca
 - Nhị thức Newton: (a + b)^n = a^n + C(1, n).a^(n - 1).b + C(2, n).a^(n - 2).b^2 + .... + C(n - 1, n).a.b^(n - 1) + b^n
   - Trong đó: C(k, n) = (n.(n - 1).(n - 2)...(n - (k - 1))) / (1.2.3...k) = n! / (k! . (n - k)!)
-  - Tính chất: C(k, n) = C(k - 1, n)
+  - Tính chất: C(k, n) = C(n - k, n)
 - Tam giác Patxcan
     1
    1 1
@@ -116,7 +116,7 @@ Dạng 4: TOÁN LÀM CHUNG CÔNG VIỆC
   - Quy tắc chuyển vế: đổi dấu.
   - Quy tắc nhân: Khi nhân hai vế của bất phương trình với cùng một số khác số 0
     - Giữ nguyên chiều bất phương trình nếu số đó dương.
-    - Đổi chiểu bất phương trình nếu số đó âm.
+    - Đổi chiều bất phương trình nếu số đó âm.
 - Phương trình chứa dấu giá trị tuyệt đối
   - Xét từng TH cho biểu thức trong giá trị tuyệt đối
   - |a| = a nếu a > 0; |a| = -a nếu a < 0
@@ -150,7 +150,7 @@ Dạng 12: BẤT PHƯƠNG TRÌNH CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI
   - Song song: a = a' và b khác b'
   - Trùng nhau: a = a' và b = b'
   - Cắt nhau: a khác a'
-  - Vuông góc: a.a' = 1
+  - Vuông góc: a.a' = -1
 - Hệ số góc của đường thẳng
   - a là hệ số góc
   - Gọi alpha là góc tạo bởi đường thẳng và Ox:
@@ -179,7 +179,7 @@ Dạng 17: Khoảng cách từ gốc tọa độ O đến đường thẳng
 
 #### Tứ giác & tính chất
 
-- Tứ giác: mặt định là tứ giác lồi
+- Tứ giác: mặc định là tứ giác lồi
 - Tổng các góc của một tứ giác bằng 360°
 
 Dạng 1: Tính số đo góc
@@ -247,7 +247,7 @@ Dạng 3: Tổng hợp
 - Định lí Thales: đường thẳng song song với một cạnh tam giác, cắt hai cạnh còn lại → chia hai cạnh đó thành các đoạn tỉ lệ tương ứng.
 - Định lí Thales đảo: nếu một đường thẳng cắt hai cạnh tam giác và tạo tỉ lệ tương ứng thì song song với cạnh thứ ba.
 - Đường trung bình của tam giác: nối trung điểm hai cạnh → song song và bằng nửa cạnh thứ ba.
-- Tính chất đường trung bình: bằng nữa cạnh song song
+- Tính chất đường trung bình: bằng nửa cạnh song song
 - Tính chất đường phân giác: chia cạnh đối diện thành hai đoạn tỉ lệ với hai cạnh kề.
 
 Dạng 1: Viết tỉ số các cặp đoạn thẳng hoặc tính tỉ số của hai đoạn thẳng
@@ -260,7 +260,7 @@ Dạng 7: Sử dụng tính chất đường trung bình của tam giác để c
 Dạng 8: Sử dụng tính chất đường trung bình của tam giác để chứng minh tứ giác hình thoi; hình bình hành; hình chữ nhật; hình vuông.
 Dạng 9: Bài toán thực tế liên quan đường trung bình tam giác.
 Dạng 10: Sử dụng tính chất đường phân giác của tam giác để tính độ dài đoạn thẳng
-Dạng 11: Sử dụng tính chất đường phân giác của tam giác để tính tỉ số, chững minh các hệ thức, các đoạn thẳng bằng nhau, các đường thẳng song song
+Dạng 11: Sử dụng tính chất đường phân giác của tam giác để tính tỉ số, chứng minh các hệ thức, các đoạn thẳng bằng nhau, các đường thẳng song song
 
 #### Tam giác đồng dạng
 
