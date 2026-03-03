@@ -10,12 +10,17 @@
 
 - Góc lượng giác: góc có hướng quay (dương: ngược chiều kim đồng hồ; âm: cùng chiều)
 - Đơn vị radian: 1 rad = góc ở tâm chắn cung có độ dài bằng bán kính
-- Đổi đơn vị: 180° = pi rad
+- Đổi đơn vị: 180° = pi rad; 1rad = 1/180°
   - Từ độ sang radian: alpha(rad) = alpha(°) x pi / 180
   - Từ radian sang độ: alpha(°) = alpha(rad) x 180 / pi
 - Ví dụ: 60° = pi/3 rad; 90° = pi/2 rad; 45° = pi/4 rad.
 - Hỏi: 1 rad bằng khoảng bao nhiêu độ? (≈ 57,3°)
-- Độ dài cung tròn: l = r.alpha, với alpha là radian
+- Độ dài cung tròn: l = r.alpha, với alpha đơn vị radian
+- Đường tròn lượng giác có tâm là 0 và bán kính r = 1 
+
+Dạng 1. Mối liên hệ giữa độ và rađian
+Dạng 2. Độ dài cung lượng giác
+Dạng 3. Biểu diễn góc lượng giác trên đường tròn lượng giác
 
 #### Giá trị lượng giác (mở rộng)
 
@@ -30,10 +35,19 @@
   - tan(a) = sin(a) / cos(a); cot(a) = cos(a) / sin(a) = 1 / tan(a); tan(a).cot(a) = 1
   - 1 + tan^2(a) = 1 / cos^2(a); 1 + cot^2(a) = 1 / sin^2(a)
 - Các góc liên quan đặc biệt
-  - Đối nhau: cos(-a) = cos(a), sin(-a) = -sin(a), tan(-a) = -tan(a), cot(-a) = -cot(a)
-  - Bù nhau: sin(pi - a) = sin(a), cos(pi - a) = -cos(a), tan(pi - a) = -tan(a), cot(pi - a) = -cot(a)
-  - Phụ nhau: sin(pi/2 - a) = cos(a), cos(pi/2 - a) = sin(a), tan(pi/2 - a) = cot(a), cot(pi/2 - a) = tan(a)
+  - Đối nhau (cos - đối): cos(-a) = cos(a), sin(-a) = -sin(a), tan(-a) = -tan(a), cot(-a) = -cot(a)
+  - Bù nhau (sin - bù): sin(pi - a) = sin(a), cos(pi - a) = -cos(a), tan(pi - a) = -tan(a), cot(pi - a) = -cot(a)
+  - Phụ nhau (phụ - chéo): sin(pi/2 - a) = cos(a), cos(pi/2 - a) = sin(a), tan(pi/2 - a) = cot(a), cot(pi/2 - a) = tan(a)
   - Hơn kém pi: sin(pi + a) = -sin(a), cos(pi + a) = -cos(a), tan(pi + a) = tan(a), cot(pi + a) = cot(a)
+  - Hơn kém pi/2: sin(pi/2 + a) = cos(a), cos(pi/2 + a) = -sin(a), tan(pi/2 + a) = -cot(a), cot(pi/2 + a) = -tan(a)
+
+Dạng 1. Tính giá trị lượng giác của 1 góc lượng giác
+Dạng 2. Tính giá trị lượng giác liên quan góc đặc biệt
+Dạng 3. Rút gọn biểu thức lượng giác
+Dạng 4. Giá trị lớn nhất – giá trị nhỏ nhất
+
+#### Công thức lượng giác
+
 - Công thức cộng:
   - sin(a + b) = sin(a).cos(b) + cos(a).sin(b)
   - sin(a - b) = sin(a).cos(b) - cos(a).sin(b)
@@ -58,23 +72,33 @@
   - sin(a) + sin(b) = 2.sin((a + b)/2).cos((a - b)/2)
   - sin(a) - sin(b) = 2.cos((a + b)/2).sin((a - b)/2)
 
+Dạng 1. Công thức cộng
+Dạng 2. Công thức nhân đôi
+Dạng 3. Công thức biến đổi tích thành tổng
+Dạng 4. Công thức biến đổi tổng thành tích
+
 #### Hàm số lượng giác
 
-- Hàm số sin: y = sin(x): TXĐ = R, giá trị thuộc [-1; 1], hàm lẻ và tuần hoàn với chu kỳ 2pi
-- Hàm số côsin: y = cos(x): TXĐ = R, giá trị thuộc [-1; 1], hàm chẵn và tuần hoàn với chu kỳ 2pi
-- Hàm số tang: y = tan(x): TXĐ: x ≠ pi/2 + k.pi, hàm lẻ và tuần hoàn với chu kỳ pi
-- Hàm số côtang:y = cot(x): TXĐ: x ≠ k.pi, hàm lẻ với chu kỳ pi
-- Hỏi: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
 - Hàm chẵn: f(-x) = f(x)
 - Hàm lẻ: f(-x) = -f(x)
 - Hàm số tuần hoàn: f(x + T) = f(x), T gọi là chu kỳ
+- Hàm số sin: y = sin(x): TXĐ = R, giá trị thuộc [-1; 1], hàm lẻ và tuần hoàn với chu kỳ 2pi
+- Hàm số cos: y = cos(x): TXĐ = R, giá trị thuộc [-1; 1], hàm chẵn và tuần hoàn với chu kỳ 2pi
+- Hàm số tan: y = tan(x): TXĐ: x ≠ pi/2 + k.pi, hàm lẻ và tuần hoàn với chu kỳ pi
+- Hàm số cot:y = cot(x): TXĐ: x ≠ k.pi, hàm lẻ với chu kỳ pi
+- Hỏi: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
+
+Dạng 1. Tập xác định
+Dạng 2. Tính chẵn - lẻ
+Dạng 3. Tính tuần hoàn
+Dạng 4. Giá trị lớn nhất - nhỏ nhất
 
 #### Phương trình lượng giác cơ bản
 
-- sin(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = pi - alpha + k.2pi (với sin(alpha) = m, alpha thuộc [-pi/2; pi/2])
-- cos(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = -alpha + k.2pi (với cos(alpha) = m, alpha thuộc [0; pi])
-- tan(x) = m: x = alpha + k.pi (với tan(alpha) = m, alpha thuộc [-pi/2; pi/2])
-- cot(x) = m: x = alpha + k.pi (với cot(alpha) = m, alpha thuộc [0; pi])
+- sin(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = pi - alpha + k.2pi (với alpha = arcsin(x), alpha thuộc [-pi/2; pi/2])
+- cos(x) = m (|m| <= 1): x = alpha + k.2pi hoặc x = -alpha + k.2pi (với alpha = arccos(x), alpha thuộc [0; pi])
+- tan(x) = m: x = alpha + k.pi (với alpha = arctan(x), alpha thuộc [-pi/2; pi/2])
+- cot(x) = m: x = alpha + k.pi (với alpha = arccot(x), alpha thuộc [0; pi])
 - Trong đó k là số nguyên (k thuộc Z).
 - Ví dụ: Giải sin(x) = 1/2. Giải cos(2x) = 0.
 - Phương trình dạng a.sin(x) + b.cos(x) = c:
@@ -83,6 +107,12 @@
   - Đặt cos(alpha) = a/sqrt(a^2 + b^2), sin(alpha) = b/sqrt(a^2 + b^2)
   - Phương trình trở thành: sin(x).cos(alpha) + cos(x).sin(alpha) = c/sqrt(a^2 + b^2) = sin(x + alpha)
   - Đưa con số c/sqrt(a^2 + b^2) sang sin(beta) => x + alpha = beta + k.2pi hoặc x + alpha = pi - beta + k.2pi
+
+Dạng 1. Phương trình sinx = a
+Dạng 2. Phương trình cosx = a
+Dạng 3. Phương trình tanx = a và cotx = a
+Dạng 4. Phương trình có nghiệm thuộc khoảng – đoạn
+Dạng 5. Bài toán thực tế liên quan phương trình lượng giác
 
 ### Dãy số
 
@@ -93,23 +123,52 @@
 - Dãy bị chặn trên: tồn tại M, u(n) <= M, mọi n; Dãy bị chặn dưới: tồn tại m, u(n) >= m, mọi n; Dãy bị chặn nếu bị chặn trên và dưới
 - Ví dụ: Dãy un = 2n + 1 tăng hay giảm?
 
+DẠNG 1: BIỂU DIỄN DÃY SỐ, TÌM CÔNG THỨC TỔNG QUÁT
+DẠNG 2: TÌM SỐ HẠNG CỦA DÃY SỐ
+DẠNG 3: XÉT TÍNH TĂNG, GIẢM CỦA DÃY SỐ
+DẠNG 4: XÉT TÍNH BỊ CHẶN CỦA DÃY SỐ
+DẠNG 5: TÍNH TỔNG CỦA DÃY SỐ
+- Tính tổng của dãy số cách đều
+- Tính tổng của dãy số bằng phương pháp khử liên tiếp
+- Tính tổng bằng cách chuyển về phương trình có ẩn là tổng cần tính
+- Tính tổng bằng cách đưa về các tổng đã biết
+DẠNG 6: XÁC ĐỊNH CÔNG THỨC SỐ HẠNG TỔNG QUÁT CỦA DÃY SỐ
+
 #### Cấp số cộng
 
 - Dãy (un) là cấp số cộng nếu u(n+1) - u(n) = d (không đổi, d gọi là công sai)
-- Số hạng tổng quát: un = u1 + (n - 1) x d
-- Tổng n số hạng đầu: Sn = n x (u1 + un) / 2 = n x (2u1 + (n-1)d) / 2
-- Tính chất: u(k) = (u(k-1) + u(k+1)) / 2
+- Dãy tăng: d > 0, dãy giảm: d < 0
+- Số hạng tổng quát: u(n) = u(1) + (n - 1) x d
+  - d = (u(p) - u(q)) / (p - q)
+  - u(1) = u(p) - (p - 1) d
+  - u(p) = (u(p + 1) + u(p - 1)) / 2
+- Tổng n số hạng đầu: S(n) = n . (u(1) + u(n)) / 2 = n . (2u(1) + (n-1)d) / 2 = n.u(1) + (n.(n - 1).d) / 2
 - Ví dụ: CSC có u1 = 3, d = 5. Tìm u10 và S10.
+
+DẠNG 1: NHẬN DIỆN CẤP SỐ CỘNG
+DẠNG 2: TÌM CÔNG THỨC CỦA CẤP SỐ CỘNG
+DẠNG 4: TÌM HẠNG TỬ TRONG CẤP SỐ CỘNG
+DẠNG 3: TÍNH TỔNG VÀ MỘT SỐ BÀI TOÁN LIÊN QUAN
+Dạng 5: Chứng minh một dãy là cấp số cộng.
+Dạng 6: Xác định các đại lượng của cấp số cộng
+Dạng 7: Tổng n số hạng đầu tiên của cấp số cộng
 
 #### Cấp số nhân
 
-- Dãy (un) là cấp số nhân nếu u(n+1) / u(n) = q (không đổi, q gọi là công bội, q ≠ 0)
-- Số hạng tổng quát: un = u1 x q^(n-1)
-- Tổng n số hạng đầu: Sn = u1 x (1 - q^n) / (1 - q) (khi q ≠ 1)
-- Tính chất: u(k)^2 = u(k-1) x u(k+1)
+- Dãy u(n) là cấp số nhân nếu u(n+1) / u(n) = q (không đổi, q gọi là công bội, q ≠ 0)
+- Số hạng tổng quát: u(n) = u(1) . q^(n-1)
+- Tổng n số hạng đầu: S(n) = u(1) . (1 - q^n) / (1 - q) (khi q ≠ 1)
+- Tính chất: u(k)^2 = u(k-1) . u(k+1)
 - Ví dụ: CSN có u1 = 2, q = 3. Tìm u5 và S5.
 - Hỏi: Lãi suất đơn/kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
-- Cấp số nhân lùi vô hạn: Vì q < 1 nên lim q^n = 0 => S = u1 / (1 - q)
+
+DẠNG 1: NHẬN DIỆN CẤP SỐ NHÂN
+DẠNG 2: TÌM CÔNG THỨC CỦA CẤP SỐ NHÂN
+DẠNG 3: TÌM HẠNG TỬ TRONG CẤP SỐ NHÂN
+DẠNG 4: TÍNH TỔNG VÀ MỘT SỐ BÀI TOÁN LIÊN QUAN
+Dạng 5: Chứng minh một dãy là cấp số nhân.
+Dạng 6: Xác định các đại lượng của cấp số nhân
+Dạng 7: Tổng n số hạng đầu tiên của cấp số nhân
 
 ### Giới hạn
 
@@ -117,41 +176,132 @@
 
 - Dãy (un) có giới hạn L: khi n tiến tới vô cùng, un tiến về L; ký hiệu lim(un) = L
 - Các giới hạn cơ bản:
-+ lim(c) = c (c là hằng số)
-+ lim(1/n) = 0
-+ lim(1/n^k) = 0 (k > 0)
+  - lim(c) = c (c là hằng số)
+  - lim n^k = + vô cùng (k > 0)
+  - lim(1/n) = 0
+  - lim(1/n^k) = 0 (k > 0)
+  - lim(q^n) = 0 nếu |q| < 1
+  - lim(q^n) = + vô cùng nếu q > 1
+  - |u(n)| <= |v(n)| và lim(v(n)) = 0 => lim(u(n)) = 0
+  - Nếu lim(u(n)) = a, lim(v(n)) = -/+ vô cùng => lim(u(n) / v(n)) = 0
+  - Nếu lim(u(n)) = a > 0, lim(v(n)) = 0 => lim(u(n) / v(n)) = + vô cùng
+  - Nếu lim(u(n)) = a > 0, lim(v(n)) = + vô cùng => lim(u(n) . v(n)) = + vô cùng
 - Dãy phân kỳ: không có giới hạn hữu hạn
 - Giới hạn vô cực: lim(un) = +vô cực hoặc -vô cực
-- Quy tắc tính: lim(un + vn) = lim(un) + lim(vn); lim(un x vn) = lim(un) x lim(vn)
-- Dạng vô định: vô cực / vô cực → chia cho lũy thừa cao nhất
+- Quy tắc tính: 
+ - lim(un + vn) = lim(un) + lim(vn); lim(un x vn) = lim(un) x lim(vn)
+ - lim(k.u(n)) = k.lim(u(n))
+ - lim(|u(n)|) = |lim(u(n))|
+- Định lý kẹp: Nếu u(n) < v(n) < w(n) và lim(u(n)) = lim(w(n)) = a thì lim(v(n)) = a
+- Dạng vô định:
+  - Vô cực / vô cực → chia cho lũy thừa cao nhất
+  - 0 / 0 -> Phân tích tử và mẫu thành nhân tử chung và rút gọn
+  - Vô cực - vô cực -> Nhân lượng liên hợp để chuyển sang dạng phân thức 0/0 hoặc vô cực / vô cực
+  - 0 . vô cực -> Chuyển sang dạng 0 / 0 hoặc vô cực / vô cực
+  - 1^ vô cực, 0^0, vô cùng ^ 0
+- Quy tắc L'Hospital: đạo hàm nhiều lần tử và mẫu để khử dạng 0/0 và vô cùng / vô cùng
 - Ví dụ: lim((3n^2 + 1) / (n^2 - 2)) = ?
+- Cấp số nhân lùi vô hạn: Vì |q| < 1 nên lim q^n = 0 => S = u1 / (1 - q)
+
+DẠNG 1: CHỨNG MINH DÃY SỐ CÓ GIỚI HẠN 0
+DẠNG 2: TÌM GIỚI HẠN BẰNG 0 CỦA DÃY SỐ
+DẠNG 3: TÍNH GIỚI HẠN CỦA DÃY SỐ u(n) = P(n)/Q(n)
+DẠNG 4: NHÂN VỚI MỘT LƯỢNG LIÊN HỢP
+DẠNG 5: Dãy số (un) trong đó u(n) là một tổng hoặc một tích của n số hạng (hoặc n thừa số)
+DẠNG 6: (un) cho bằng công thức truy hồi
+DẠNG 7: GIỚI HẠN CỦA DÃY CHỨA ĐA THỨC HOẶC CĂN THEO n
+DẠNG 8: GIỚI HẠN CỦA DÃY CHỨA LŨY THỪA BẬC n
+DẠNG 9:. DÃY SỐ DẠNG PHÂN THỨC
+- Phân thức bậc tử bé hơn bậc mẫu
+- Phân thức bậc tử bằng bậc mẫu
+- Phân thức bậc tử lớn hơn bậc mẫu
+- Phân thức chứa căn
+DẠNG 10: DÃY SỐ CHỨA CĂN THỨC
+DẠNG 11: DÃY SỐ CHỨA LŨY THỪA
+DẠNG 12: TỔNG CẤP SỐ NHÂN LÙI VÔ HẠNG
+DẠNG 13: MỘT SỐ BÀI TOÁN KHÁC
 
 #### Giới hạn của hàm số
 
 - lim f(x) khi x tiến đến a: giá trị mà f(x) tiến về khi x gần a (x ≠ a)
-- Giới hạn một bên: giới hạn bên trái và bên phải
+- Giới hạn một bên:
+  - Giới hạn bên trái: x0 > x
+  - Giới hạn bên phải: x0 < x
+  - lim f(x) = L khi x dần tới x0 thì lim f(x) = 0 khi x dần tới x+ hoặc x dần tới x-
 - Giới hạn tại vô cực: lim f(x) khi x tiến đến +vô cực hoặc -vô cực
 - Tiệm cận ngang: y = L nếu lim f(x) = L khi x tiến đến vô cực
 - Tiệm cận đứng: x = a nếu lim f(x) = vô cực khi x tiến đến a
+- Cho lim f(x) = L, lim g(x) = M khi x dần tới x0
+  - lim (f(x) + g(x)) = L + M khi x dần tới x0
+  - lim (f(x) . g(x)) = L . M khi x dần tới x0
+  - Nếu f(x) >= 0 thì L >=0
+- Đặc biệt: lim x = x0 và lim c = c khi x dần tới x0
+- Nguyên lý kẹp: f(x) < g(x) < h(x) => lim f(x) = lim h(x) = L thì lim g(x) = L
 - Ví dụ: lim((x^2 - 1) / (x - 1)) khi x tiến đến 1 = ?
+
+DẠNG 1. HÀM SỐ CÓ GIỚI HẠN HỮU HẠN TẠI x0 KHÔNG CÓ DẠNG VÔ ĐỊNH
+DẠNG 2. DẠNG VÔ ĐỊNH 0/0
+DẠNG 3. DẠNG VÔ ĐỊNH ∞ / ∞
+DẠNG 4. DẠNG VÔ ĐỊNH ∞ − ∞
+DẠNG 5. DẠNG VÔ ĐỊNH 0 . ∞
+DẠNG 6. GIỚI HẠN HỮU HẠN
+DẠNG 7: GIỚI HẠN MỘT BÊN
+DẠNG 8: GIỚI HẠN VÔ CỰC
+DẠNG 9: LIÊN QUAN ĐẾN HÀM ẨN
 
 #### Hàm số liên tục
 
-- f(x) liên tục tại x = a nếu: lim f(x) khi x tiến đến a = f(a)
-- Hàm số liên tục trên đoạn [a; b]
+- f(x) liên tục tại x = x0 nếu: lim f(x) = f(a) khi x tiến đến x0
+- Hàm số không liên tục tại x0 gọi là gián đoạn tại x0
+- Hàm số liên tục trên (a; b) nếu nó liên tục trên mọi điểm trong khoảng đó
+- Hàm số liên tục trên [a; b] nếu nó liên tục trên (a; b) và tại 2 đầu mút
 - Hỏi: Hàm y = 1/x có liên tục tại x = 0 không?
+- Tính chất: giả sử f(x) và g(x) liên tục tại x0
+  - f(x) +/- g(x) và f(x) . g(x) liên tục tại x0
+  - f(x) / g(x) lien tục tại x0 nếu g(x) khác 0
+- Hàm số f(x) liên tục trên [a; b] và f(a).f(b) < 0 thì tồn tại ít nhất một điểm c thuộc (a, b) sao cho f(c) = 0
+
+DẠNG 1: HÀM SỐ LIÊN TỤC TẠI MỘT ĐIỂM
+- Xét tính liên tục tại điểm của hàm số
+- Điểm gián đoạn của hàm số
+- Bài toán chứa tham số
+DẠNG 2: HÀM SỐ LIÊN TỤC TRÊN MỘT KHOẢNG
+- Xét tính liên tục trên khoảng của hàm số
+- Bài toán chứa tham số
+DẠNG 3: CHỨNG MINH PHƯƠNG TRÌNH CÓ NGHIỆM
 
 ### Hàm số mũ và hàm số logarit
 
 #### Lũy thừa (mở rộng)
 
+- Lũy thừa a^n = a.a....a (n thừa số a). a là cơ số, n là mũ số
 - Lũy thừa với số mũ nguyên âm: a^(-n) = 1 / a^n (a ≠ 0)
 - Lũy thừa với số mũ hữu tỉ: a^(m/n) = căn bậc n của a^m (a > 0)
 - Tính chất lũy thừa (mở rộng cho số mũ thực):
-+ a^x x a^y = a^(x+y)
-+ a^x / a^y = a^(x-y)
-+ (a^x)^y = a^(xy)
-+ (a x b)^x = a^x x b^x
+  - a^x x a^y = a^(x+y)
+  - a^x / a^y = a^(x-y)
+  - (a^x)^y = a^(xy)
+  - (a x b)^x = a^x x b^x
+- Nếu a > 1 thì a^n > a^m khi n > m
+- Nếu 0 < a < 1 thì a^n > a^m khi n < m
+
+Dạng 1: Tính giá trị của biểu thức
+DẠNG 2: BIẾN ĐỔI, RÚT GỌN, BIỂU DIỄN CÁC BIỂU THỨC 
+DẠNG 3: BÀI TOÁN LÃI SUẤT KÉP – DÂN SỐ
+
+#### Logarit
+
+- log_a(b) = c nghĩa là a^c = b (a > 0, a ≠ 1, b > 0)
+- Logarit tự nhiên: ln(x) = log_e(x) (e ≈ 2,718)
+- Logarit thập phân: lg(x) = log_10(x)
+- Tính chất:
+  - log_a(1) = 0; log_a(a) = 1
+  - log_a(xy) = log_a(x) + log_a(y)
+  - log_a(x/y) = log_a(x) - log_a(y)
+  - log_a(x^n) = n x log_a(x)
+  - Đổi cơ số: log_a(b) = log_c(b) / log_c(a)
+  - log_a(b) = 1 / log_b(a)
+- Ví dụ: log_2(8) = ?, log_3(1/9) = ?, lg(1000) = ?
 
 #### Hàm số mũ
 
@@ -160,19 +310,6 @@
 - Đồ thị luôn qua điểm (0; 1)
 - TXĐ: R; tập giá trị: (0; +vô cực)
 
-#### Logarit
-
-- log_a(b) = c nghĩa là a^c = b (a > 0, a ≠ 1, b > 0)
-- Logarit tự nhiên: ln(x) = log_e(x) (e ≈ 2,718)
-- Logarit thập phân: lg(x) = log_10(x)
-- Tính chất:
-+ log_a(1) = 0; log_a(a) = 1
-+ log_a(xy) = log_a(x) + log_a(y)
-+ log_a(x/y) = log_a(x) - log_a(y)
-+ log_a(x^n) = n x log_a(x)
-+ Đổi cơ số: log_a(b) = log_c(b) / log_c(a)
-- Ví dụ: log_2(8) = ?, log_3(1/9) = ?, lg(1000) = ?
-
 #### Hàm số logarit
 
 - y = log_a(x) (a > 0, a ≠ 1)
@@ -180,6 +317,10 @@
 - a > 1: đồng biến; 0 < a < 1: nghịch biến
 - Đồ thị luôn qua điểm (1; 0)
 - y = log_a(x) là hàm ngược của y = a^x
+
+DẠNG 1: TÌM TẬP XÁC ĐỊNH CỦA HÀM SỐ MŨ – LOGARIT
+DẠNG 2: ĐỒ THỊ
+DẠNG 3: BÀI TOÁN LÃI SUẤT KÉP
 
 #### Phương trình, bất phương trình mũ và logarit
 
@@ -190,35 +331,56 @@
 - Ví dụ: Giải 2^x = 16. Giải log_2(x - 1) = 3.
 - Ví dụ: Giải 3^(2x-1) > 27.
 
+DẠNG 1: PHƯƠNG TRÌNH MŨ
+DẠNG 2: PHƯƠNG TRÌNH LOGARIT
+DẠNG 3: BẤT PHƯƠNG TRÌNH MŨ
+DẠNG 4: BẤT PHƯƠNG TRÌNH LOGARIT
+
 ### Đạo hàm
 
-#### Khái niệm đạo hàm
-
-- Đạo hàm của f(x) tại x0: f'(x0) = lim((f(x0 + h) - f(x0)) / h) khi h tiến đến 0
+- Đạo hàm của f(x) tại x0: nếu tồn tại x0 sao cho tồn tại giới hạn hữu hạn lim((f(x0 + h) - f(x0)) / h) khi h tiến đến 0. Khi đó: f'(x0) = lim((f(x0 + h) - f(x0)) / h) khi h tiến đến 0
+- Hàm số f(x) có đạo hàm trên (a; b) nếu nó có đạo hàm tại mọi điểm thuộc (a; b)
 - Ý nghĩa hình học: f'(x0) là hệ số góc của tiếp tuyến với đồ thị tại điểm (x0; f(x0))
-- Phương trình tiếp tuyến tại M(x0; y0): y - y0 = f'(x0) x (x - x0)
+- Phương trình tiếp tuyến tại M(x0; y0): y - y0 = f'(x0) x (x - x0) với y0 = f(x0)
 - Ý nghĩa vật lý: vận tốc tức thời v(t) = s'(t)
-
-#### Bảng đạo hàm cơ bản
-
-- (c)' = 0
-- (x^n)' = n x x^(n-1)
-- (sin(x))' = cos(x)
-- (cos(x))' = -sin(x)
-- (tan(x))' = 1 / cos^2(x)
-- (cot(x))' = -1 / sin^2(x)
-
-#### Quy tắc tính đạo hàm
-
-- (u + v)' = u' + v'
-- (u - v)' = u' - v'
-- (u x v)' = u' x v + u x v'
-- (u / v)' = (u' x v - u x v') / v^2
+- Đạo hàm cơ bản
+  - (c)' = 0
+  - (x^n)' = n x x^(n-1)
+  - (sin(x))' = cos(x)
+  - (cos(x))' = -sin(x)
+  - (tan(x))' = 1 / cos^2(x)
+  - (cot(x))' = -1 / sin^2(x)
+- Quy tắc tính đạo hàm
+  - (u + v)' = u' + v'
+  - (u - v)' = u' - v'
+  - (u x v)' = u' x v + u x v'
+  - (k.u)' = k.u'
+  - (u / v)' = (u' x v - u x v') / v^2
+  - (1/v)' = -v'/v^2
 - Đạo hàm hàm hợp: (f(u))' = f'(u) x u'
 - Ví dụ: Tính đạo hàm y = x^3 - 3x^2 + 2. Tính đạo hàm y = sin(2x + 1).
 - Ví dụ: Viết phương trình tiếp tuyến của y = x^2 - 4x + 3 tại x = 1.
+- Hàm mũ:
+  - (e^x)' = e^x
+  - (a^x)' = a^x . ln(a)
+- Hàm logaric:
+  - ln(x)' = 1/x
+  - log_a(x)' = 1/(x.ln(a))
+- Đạo hàm cấp 2: Nếu f'(x) có đạo hàm tại x0 thì đạo hàm f''(x) gọi là đạo hàm cấp 2
+- Ý nghĩa vật lý: gia tốc tức thời a(t) = s''(t)
 
-### Thống kê
+DẠNG 1: TÍNH ĐẠO HÀM TẠI MỘT ĐIỂM
+DẠNG 2: ĐẠO HÀM CỦA HÀM SỐ TRÊN 1 KHOẢNG
+DẠNG 3: Ý NGHĨA CỦA ĐẠO HÀM
+DẠNG 4: TÍNH ĐẠO HÀM TẠI ĐIỂM
+DẠNG 5: TÍNH ĐẠO HÀM CỦA MỘT SỐ HÀM SỐ THƯỜNG GẶP
+DẠNG 6: BÀI TOÁN TIẾP TUYẾN
+DẠNG 7: TÍNH ĐẠO HÀM CỦA HÀM SỐ MŨ
+DẠNG 8: TÍNH ĐẠO HÀM CỦA HÀM SỐ LOGARIT
+DẠNG 9: TÍNH ĐẠO HÀM CẤP HAI
+DẠNG 10: GIA TỐC
+
+### Mẫu số liệu ghép nhóm
 
 - Mẫu số liệu ghép nhóm: là mẫu số liệu cho dưới dạng bảng tần số của các nhóm số liệu. Mỗi nhóm số liệu là tập hợp gồm các giá trị của số liệu được ghép nhóm theo một tiêu chí xác định.
 - Ghép nhóm mẫu số liệu
@@ -282,9 +444,9 @@
 
 - Điểm, đường thẳng, mặt phẳng trong không gian
 - Các tính chất thừa nhận (tiên đề):
-+ Qua 3 điểm không thẳng hàng xác định duy nhất 1 mặt phẳng
-+ Nếu đường thẳng có 2 điểm thuộc mặt phẳng thì nằm trọn trong mặt phẳng
-+ Hai mặt phẳng có 1 điểm chung thì có chung 1 đường thẳng (giao tuyến)
+  - Qua 3 điểm không thẳng hàng xác định duy nhất 1 mặt phẳng
+  - Nếu đường thẳng có 2 điểm thuộc mặt phẳng thì nằm trọn trong mặt phẳng
+  - Hai mặt phẳng có 1 điểm chung thì có chung 1 đường thẳng (giao tuyến)
 - Hình biểu diễn: cách vẽ hình không gian trên mặt phẳng
 
 #### Hai đường thẳng song song trong không gian
@@ -317,7 +479,7 @@
 #### Định lí ba đường vuông góc
 
 - Cho a vuông góc (P), a cắt (P) tại H, b nằm trong (P). Gọi b' là hình chiếu vuông góc lên (P):
-+ b vuông góc b' ↔ b vuông góc hình chiếu
+  - b vuông góc b' ↔ b vuông góc hình chiếu
 
 #### Góc giữa đường thẳng và mặt phẳng
 
