@@ -168,11 +168,12 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - 60°: sin = sqrt(3)/2, cos = 1/2, tan = sqrt(3)
 - Ví dụ: Tam giác vuông, góc A = 30°, cạnh huyền = 10 → tìm cạnh đối diện với A.
 
-#### Đường tròn: nhắc lại và vị trí tương đối
+#### Đường tròn
 
-- Ôn lại: Tâm O, bán kính r, đường kính d = 2r, dây 
+- Tâm O, bán kính r, đường kính d = 2r, dây 
   - Tâm đối xứng
   - Đường kính là trục đối xứng
+  - Điểm thuộc hoặc không thuộc đường tròn
 - Vị trí tương đối của điểm M với đường tròn (O; r):
   - OM < r: M nằm trong đường tròn
   - OM = r: M nằm trên đường tròn
@@ -182,11 +183,15 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - d = r: tiếp tuyến (1 điểm chung)
   - d < r: cắt nhau (2 điểm chung)
 - Tiếp tuyến vuông góc với bán kính tại tiếp điểm
-- Đường kính là dây lớn nhất = 2R
-- 2 dây bằng nhau thì cách đều tâm
-- Dây nào lớn hơn thì gần tâm hơn
-- Đường tròn nội tiếp
-- Đường tròn bàng tiếp
+- Đường tròn ngoại tiếp là đường tròn đi qua các đỉnh của đa giác
+  - Tâm là giao điểm của các đường trung trực
+  - Bán kính là khoản gách từ giao điểm các đường trung trự tới mỗi đỉnh
+- Đừng tròn nội tiếp là đường tròn tiếp xúc với các cạnh của đa giác
+  - Tâm là giao điểm của các đường phân giác
+  - Bán kính là khoảng cách từ giao đểm của các đường phân giác tới mỗi cạnh
+- Đường tròn bàng tiếp là đường tròn tiếp xúc với 1 cạnh và tiếp xúc với các các cạnh kéo dài còn lại
+  - Tâm là giao điểm của các đường phân giác ngoài và 1 phân giác trong đối của cạnh tiếp xúc
+  - Bán kính là khoảng cách từ tâm tới các cạnh tiếp xúc
 - Vị trí tương đối của 2 đường tròn
   - OO' > r + r': không cắt nhau (ở ngoài nhau)
   - OO' < |r - r'|: không cắt nhau (đtròn này đựng đtròn khác)
@@ -195,13 +200,33 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - |r - r'| < OO' < r + r': cắt nhau tại 2 điểm
 - Tiếp tuyến chung của 2 đường tròn (tiếp tuyến ngoài, tiếp tuyến trong)
 
+DẠNG 1. XÁC ĐỊNH ĐIỂM NẰM TRÊN, NẰM TRONG, NẰM NGOÀI ĐƯỜNG TRÒN
+DẠNG 2. CHỨNG MINH NHIỀU ĐIỂM CÙNG THUỘC ĐƯỜNG TRÒN
+Dạng 3. Xác định vị trí tương đối của đường thẳng và đường tròn
+Dạng 4. Chứng minh đường thẳng là tiếp tuyến của đường tròn
+Dạng 1. Xác định vị trí tương đối của hai đường tròn
+Dạng 5. Toán thực tế
+DẠNG 6: XÁC ĐỊNH TÂM VÀ TÍNH BÁN KÍNH ĐƯỜNG TRÒN NGOẠI TIẾP, NỘI TIẾP TAM GIÁC
+DẠNG 7: BÀI TOÁN LIÊN QUAN ĐƯỜNG TRÒN NGOẠI TIẾP, NỘI TIẾP TAM GIÁC
+DẠNG 8: BÀI TOÁN LIÊN QUAN ĐƯỜNG TRÒN BÀNG TIẾP TAM GIÁC
+
 #### Góc ở tâm; cung tròn; dây; độ dài cung và diện tích hình quạt
 
+- Dây là đoạn thẳng nối 2 điểm trên đường tròn
+- Đường kính là dây lớn nhất = 2R
+- 2 dây bằng nhau thì cách đều tâm
+- Dây nào lớn hơn thì gần tâm hơn
 - Góc ở tâm: đỉnh tại tâm O, 2 cạnh chứa 2 bán kính; số đo góc = số đo cung bị chắn
+- Hai điểm trên đường tròn chia đường tròn thành 2 phần, mỗi phần gọi là 1 cung
 - 2 cung bằng nhau nếu số đo bằng nhau (hoặc dây bằng nhau). Cung nào có số đo lớn hơn (hoặc dây lớn hơn) gọi là cung lớn hơn.
 - C là điểm giữa cung AB: cung AB = cung AC + cung BC
-- Độ dài cung: l = (n x pi x r) / 180 (n là số đo góc ở tâm tính theo độ)
+- Độ dài cung: l = (n x pi x r) / 180 (n là số đo góc ở tâm tính theo độ) => l/C = n/360 (vì C = 2.pi.r)
 - Diện tích hình quạt tròn: S = (n x pi x r^2) / 360 = l.r / 2
+- Diện tích hình vành khuyên: S = n(R^2 - r^2) với R > r
+
+Dạng 1. Chứng minh tính chất hình học
+Dạng 2. Tính độ dài các cung tròn. Diện tích các hình
+Dạng 3. Toán thực tế
 
 #### Góc nội tiếp
 
@@ -222,9 +247,17 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
 
 #### Tứ giác nội tiếp
 
-- Tứ giác nội tiếp đường tròn: 4 đỉnh cùng nằm trên đường tròn
+- Tứ giác nội tiếp đường tròn: 4 đỉnh cùng nằm trên đường tròn và đường tròn đó gọi là đường tròn ngoại tiếp
 - Tổng 2 góc đối của tứ giác nội tiếp bằng 180°
 - Ví dụ: Hình chữ nhật, hình vuông, hình thang cân đều là tứ giác nội tiếp.
+- Tứ giác nội tiếp:
+  - Tổng 2 góc đối = 180 độ
+  - Khoảng cách từ tâm tới các đỉnh bằng nhau
+  - 2 góc đối là góc vuông (hoặc 2 góc đối bằng nhau)
+  - 2 góc kề nhau bằng nhau cùng nhìn một cạnh
+
+DẠNG 1: TÍNH GÓC CỦA TỨ GIÁC NỘI TIẾP ĐƯỜNG TRÒN
+DẠNG 2: CHỨNG MINH TỨ GIÁC NỘI TIẾP ĐƯỜNG TRÒN
 
 #### Hình trụ – hình nón – hình cầu
 
