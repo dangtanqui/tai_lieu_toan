@@ -230,12 +230,19 @@ DẠNG 6: ỨNG DỤNG THỰC TẾ
 - Biến cố: tập con của không gian mẫu. tập con này là các kết quả thuận lợi
 - Biến đố đối: biến bố đối của biến cố E là biến cố E không xảy ra, ký hiệu E gạch ngang đầu
 - Xác suất cổ điển: P(A) = số kết quả thuận lợi / tổng số kết quả. = n(A) / n(Omega)
+- A giao B = rỗng => biến cố xung khắc
+- Việc xảy ra hay không xảy ra biến cố này không ảnh hưởng đến biến cố kia => biến cố độc lập
 - Quy tắc cộng xác suất (biến cố xung khắc): P(A hợp B) = P(A) + P(B)
-- Quy tắc nhân xác suất (biến cố độc lập): P(A giao B) = P(A) x P(B)
+- Quy tắc nhân xác suất (biến cố độc lập): P(AB) = P(A giao B) = P(A) x P(B)
 - Biến cố đối: P(A gạch ngang) = 1 - P(A)
 - Ví dụ: Gieo 2 xúc xắc. Tính xác suất tổng bằng 7. Kq: 6/36=1/6
 - Ví dụ: Rút 2 lá bài từ bộ 52 lá. Tính xác suất cả 2 là át. Kq: C(2, 4)/C(2, 52) = 6/1326
 - Ví dụ: Rút lần lượt 2 lá bài từ bộ 52 lá. Tính xác suất cả 2 là át. Kq: A(2, 4)/A(2, 52) = 1/221
+
+DẠNG 1: MÔ TẢ BIẾN CỐ, KHÔNG GIAN MẪU
+DẠNG 2: MỐI LIÊN HỆ GIỮA CÁC BIẾN CỐ
+DẠNG 3: XÁC ĐNNH KHÔNG GIAN MẪU VÀ BIẾN CỐ
+DẠNG 4: TÍNH XÁC SUẤT THEO ĐNNH NGHĨA CỔ ĐIỂN
 
 ### Thống kê
 
@@ -354,14 +361,39 @@ DẠNG 7: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỘ DÀI VÉCTƠ
 
 - Vectơ chỉ phương u = (A; B): nếu giá của nó song song với đường thẳng
 - Vectơ pháp tuyến n = (a; b): nếu giá của nó vuông góc với đường thẳng
-- Phương trình tổng quát: ax + by + c = 0 với n = (a, b) là vector pháp tuyến, u = (a, -b) hoặc u = (-a, b)
-- Phương trình tham số: { x = x0 + at; y = y0 + bt } (t là tham số)
+- u.n = 0
+- Phương trình tổng quát: ax + by + c = 0 với n = (a, b) là vector pháp tuyến, u = (a, -b) hoặc u = (-a, b) là vector chỉ phương
+- Phương trình tham số: { x = x0 + at; y = y0 + bt } (t là tham số) với A(x0, y0) thuộc đường thẳng, vector chỉ phương n = (a, b)
+- Phương trình chính tắt: (x - x0)/a = (y - y0)/b với A(x0, y0) thuộc đường thẳng, vector chỉ phương n = (a, b)
+- Phương trình đường thẳng đi qua A(x0, y0) có vector pháp tuyến n = (a, b): a(x - x0) + b(y - y0) = 0
 - Hệ số góc: y = kx + m (k = -a/b)
-- Khoảng cách từ điểm M(x0; y0) đến đường thẳng ax + by + c = 0: d = |a.x0 + b.y0 + c| / sqrt(a^2 + b^2)
+- Vị trí tương đối giữa 2 đường thẳng
+  - Hai đường thẳng cắt nhau: a1/a2 khác b1/b2
+  - Hai đường thẳng song song: a1/a2 = b1/b2 ≠ c1/c2
+  - Hai đường thẳng trùng nhau: a1/a2 = b1/b2 = c1/c2
+  - Hai đường thẳng vuông góc: a1.a2 + b1.b2 = 0
 - Góc giữa hai đường thẳng: cos(alpha) = |a1.a2 + b1.b2| / (sqrt(a1^2 + b1^2) x sqrt(a2^2 + b2^2))
-- Hai đường thẳng song song: a1/a2 = b1/b2 ≠ c1/c2
-- Hai đường thẳng vuông góc: a1.a2 + b1.b2 = 0
+- Khoảng cách từ điểm M(x0; y0) đến đường thẳng ax + by + c = 0: d = |a.x0 + b.y0 + c| / sqrt(a^2 + b^2)
 - Ví dụ: Viết phương trình đường thẳng qua A(1; 2) và vuông góc với d: 3x + 4y - 5 = 0.
+
+DẠNG 1: XÁC ĐNNH VÉCTƠ CHỈ PHƯƠNG, VÉC TƠ PHÁP TUYẾN CỦA ĐƯỜNG THẲNG, HỆ SỐ GÓC CỦA ĐƯỜNG THẲNG 
+DẠNG 2: VIẾT PHƯƠNG TRÌNH ĐƯỜNG THẲNG THỎA MÃN MỘT SỐ TÍNH CHẤT CHO TRƯỚC
+- Viết phương trình đường thẳng khi biết VTPT hoặc VTCP, HỆ SỐ GÓC và 1 điểm đi qua 
+- Viết phương trình đường thẳng đi qua một điểm vuông góc hoặc với đường thẳng cho trước 
+- Viết phương trình cạnh, đường cao, trung tuyến, phân giác của tam giác
+DẠNG 3: Viết PTTS của đường thẳng.
+DẠNG 4: Viết PTTQ của đường thẳng 
+DẠNG 5: Bài toán chuyển đổi qua lại giữa các dạng phương trình
+DẠNG 6: XÉT VN TRÍ TƯƠNG ĐỐI CỦA HAI ĐƯỜNG THẲNG
+DẠNG 7: TÍNH GÓC, KHOẢNG CÁCH
+- Tính góc của hai đường thẳng cho trước
+- Viết phương trình đường thẳng liên quan đến góc 
+DẠNG 8: KHOẢNG CÁCH 
+- Tính khoảng cách từ 1 điểm đến đường thẳng cho trước 
+- Phương trình đường thẳng liên quan đến khoảng cách
+DẠNG 9: XÁC ĐNNH ĐIỂM 
+- Xác định tọa hình chiếu, điểm đối xứng
+- Xác định điểm liên quan đến yếu tố khoảng cách, góc
 
 #### Phương trình đường tròn
 
@@ -371,9 +403,22 @@ DẠNG 7: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỘ DÀI VÉCTƠ
 - Vị trí tương đối giữa đường thẳng và đường tròn (tính khoảng cách d từ tâm đến đường thẳng, so sánh với R)
 - Tiếp tuyến của đường tròn: d = R
 - Phương trình tiếp tuyến tại điểm M(x0; y0) trên đường tròn: (a - x0)(x - x0) + (b - y0)(y - y0) = 0, có vector pháp tuyến n = (a - x0, b - y0)
+- Vị trí tương dối giữa 2 đường tròn (tính khoảng cách giữa 2 tâm, so sánh với R + R' và |R - R'|)
+  - Tiếp xúc: OO' = |R +/- R'|
+  - Cắt nhau: |R - R'| < OO' < OO'
+  - Không cắt nhau: OO' < |R - R'| hoặc OO' > R + R'
 - Ví dụ: Tìm tâm và bán kính: x^2 + y^2 - 4x + 6y - 3 = 0.
 
-#### Ba đường cong
+DẠNG 1: NHẬN DẠNG PHƯƠNG TRÌNH ĐƯỜNG TRÒN. TÌM TÂM VÀ BÁN KÍNH ĐƯỜNG TRÒN
+DẠNG 2: VIẾT PHƯƠNG TRÌNH ĐƯỜNG TRÒN 
+- Khi biết tâm và bán kính 
+- Khi biết các điểm đi qua
+- Sử dụng điều kiện tiếp xúc 
+DẠNG 3: TRÍ TƯƠNG ĐỐI CỦA ĐIỂM; ĐƯỜNG THẲNG; ĐƯỜNG TRÒN VỚI ĐƯỜNG TRÒN
+DẠNG 4: VIẾT PHƯƠNG TRÌNH TIẾP TUYẾN VỚI ĐƯỜNG TRÒN
+DẠNG 5. CÂU HỎI MIN-MAX
+
+#### Ba đường cong (conic)
 
 - Elip: 2 điểm cố định F1, F2, F1F2 = 2c > 0, với a > c, tập hợp các điểm M với MF1 + MF2 = 2a tạo ra đường elip. F1, F2 là tiêu điểm, F1F2 = 2c là tiêu cự
 - Phương trình chính tắc của elip: x^2/a^2 + y^2/b^2 = 1 thì F1(-sqrt(a^2 - b^2); 0), F2(sqrt(a^2 - b^2); 0), c = sqrt(a^2 - b^2), MF1 + MF2 = 2a
@@ -381,3 +426,7 @@ DẠNG 7: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỘ DÀI VÉCTƠ
 - Phương trình chính tắc của hypebol: x^2/a^2 - y^2/b^2 = 1 thì F1(-c; 0), F2(c; 0), c = sqrt(a^2 + b^2), |MF1 - MF2| = 2a
 - Parabol: điểm cố định F và đường thẳng d không đi qua F, tập hợp các điểm cách điều F và d tạo ra đường parabol. F là tiêu điểm, d là đường chuẩn, khoảng cách F tới d là tham số tiêu
 - Phương trình chính tắc của parabol: y^2 = 2px, tiêu điểm F(p/2; 0), đường chuẩn d: x = -p/2
+
+DẠNG 1: XÁC ĐNNH CÁC YẾU TỐ CỦA ELÍP
+DẠNG 2: VIẾT PHƯƠNG TRÌNH CHÍNH TẮC CỦA ELIP
+DẠNG 3: TÌM ĐIỂM THUỘC ELIP THỎA ĐIỀU KIỆN CHO TRƯỚC

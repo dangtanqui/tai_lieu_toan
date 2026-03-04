@@ -419,10 +419,11 @@ DẠNG 10: GIA TỐC
 
 #### Các quy tắc tính xác suất
 
-- Xác suất có điều kiện: P(A|B) = P(A giao B) / P(B)
-- Công thức nhân: P(A giao B) = P(B) x P(A|B)
-- Hai biến cố độc lập: P(A giao B) = P(A) x P(B)
-- Công thức xác suất toàn phần
+- Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra: P(A | B) = P(AB) / P(B)
+- Nếu A, B độc lập thì P(A | B) = P(A)
+- A giao B = rỗng => biến cố xung khắc
+- Quy tắc cộng xác suất (biến cố xung khắc): P(A hợp B) = P(A) + P(B)
+- Công thức nhân xác suất: P(AB) = P(B) . P(A | B)
 - Ví dụ: Hộp có 3 bi đỏ, 7 bi xanh. Lấy lần lượt 2 bi không trả lại. Tính P(bi thứ 2 đỏ).
 
 #### Biến ngẫu nhiên rời rạc
@@ -443,30 +444,65 @@ DẠNG 10: GIA TỐC
 #### Các khái niệm mở đầu
 
 - Điểm, đường thẳng, mặt phẳng trong không gian
+- Điểm thuộc và không thuộc mặt phẳng, ký hiệu thuộc và không thuộc.
 - Các tính chất thừa nhận (tiên đề):
+  - Qua 2 điểm xác định duy nhất 1 đường thẳng
   - Qua 3 điểm không thẳng hàng xác định duy nhất 1 mặt phẳng
+  - Tồn tại 4 điểm không thuộc 1 mặt phẳng
   - Nếu đường thẳng có 2 điểm thuộc mặt phẳng thì nằm trọn trong mặt phẳng
   - Hai mặt phẳng có 1 điểm chung thì có chung 1 đường thẳng (giao tuyến)
-- Hình biểu diễn: cách vẽ hình không gian trên mặt phẳng
+- Cách xác định mặt phẳng
+  - Đi qua 3 điểm không thẳng hàng
+  - Đi qua 1 điểm và 1 đường thẳng không đi qua điểm đó
+  - Chứa 2 đường thẳng cắt nhau
+  
+DẠNG 1: TÌM GIAO TUYẾN CỦA HAI MẶT PHẲNG.
+DẠNG 2: TÌM GIAO ĐIỂM CỦA ĐƯỜNG THẲNG VÀ MẶT PHẲNG
+DẠNG 3: BÀI TOÁN THIẾT DIỆN
+DẠNG 4: CHỨNG MINH BA ĐIỂM THẲNG HÀNG – BA ĐƯỜNG THẲNG ĐỒNG QUY
 
 #### Hai đường thẳng song song trong không gian
 
-- 3 vị trí tương đối của 2 đường thẳng: cắt nhau, song song, chéo nhau
-- Hỏi: Hai đường thẳng chéo nhau khác song song chỗ nào? (không cùng mặt phẳng)
-- Định lí: Qua 1 điểm ngoài đường thẳng a, có duy nhất 1 đường thẳng song song với a.
-- Nếu 2 đường thẳng cùng song song với đường thẳng thứ ba thì song song với nhau.
+- Nếu 2 đường thẳng nằm trên 1 mặt phẳng gọi là đồng phẳng: cắt nhau, song song, trùng nhau
+- Nếu 2 đường thẳng không cùng nằm trên 1 mặt phẳng thì chéo nhau.
+- Định lí:
+  - Qua 1 điểm ngoài đường thẳng a, có duy nhất 1 đường thẳng song song với a.
+  - Nếu 2 đường thẳng cùng song song với đường thẳng thứ ba thì song song với nhau.
+  - Nếu 3 mặt phẳng đôi 1 cắt nhau thì 3 giao tuyến phân biệt đồng quy hoặc song song
+
+DẠNG 1: CHỨNG MINH HAI ĐƯỜNG THẲNG SONG SONG
+DẠNG 2: TIM GIAO TUYẾN CỦA HAI MẶT PHẲNG
+DẠNG 4. SỬ DỤNG YẾU TỐ SONG SONG TÌM THIẾT DIỆN
 
 #### Đường thẳng song song với mặt phẳng
 
-- Đường thẳng a song song với mặt phẳng (P) nếu a không có điểm chung với (P)
-- Dấu hiệu: a song song với (P) nếu a song song với 1 đường thẳng b nằm trong (P)
-- Hỏi: Nếu đường thẳng a song song (P) thì mọi đường thẳng trong (P) có song song a không? (Không, chỉ những đường cùng phương)
+- Đường thẳng (d) song song với mặt phẳng (P) nếu (d) không có điểm chung với (P)
+- Dấu hiệu: (d) song song với (P) nếu (d) song song với 1 đường thẳng (d') nằm trong (P)
+- Nếu (d) và (P) có duy nhất 1 điểm chung thì (d) và (P) cắt nhau.
+- Nếu (d) và (P) có nhiều hơn 1 điểm chung thì (d) nằm trong (P), hay (P) chứa (d)
+- Nếu đường thẳng song song với 2 mặt phẳng thì song song với đường giao tuyến của 2 mặt phẳng đó
+
+DẠNG 1: XÁC ĐỊNH, CHỨNG MINH ĐƯỜNG THẲNG SONG SONG MẶT PHẲNG
+DẠNG 2: TÌM GIAO TUYẾN CỦA HAI MẶT PHẲNG.
+DẠNG 3: XÁC ĐỊNH THIẾT DIỆN VÀ MỘT SỐ BÀI TOÁN LIÊN QUAN
+DẠNG 4: GIAO ĐIỂM, GIAO TUYẾN LIÊN QUÁN ĐẾN ĐƯỜNG THẲNG SONG SONG VỚI MẶT PHẲNG
 
 #### Hai mặt phẳng song song
 
 - Hai mặt phẳng (P) và (Q) song song nếu không có điểm chung
 - Dấu hiệu: (P) chứa 2 đường thẳng cắt nhau cùng song song với (Q) → (P) // (Q)
-- Tính chất: nếu 2 mp song song thì mọi mặt phẳng cắt chúng sẽ tạo ra 2 giao tuyến song song.
+- Tính chất:
+  - Nếu 2 mặt phẳng song song thì mọi mặt phẳng cắt chúng sẽ tạo ra 2 giao tuyến song song.
+  - Qua 1 điểm ngoài mặt phẳng có 1 và chỉ 1 mặt phẳng song song với mặt phẳng đã cho.
+  - Hai mặt phẳng phân biệt cùng song song với mặt phẳng thứ 3 thì song song với nhau.
+  - Nếu mặt phẳng cắt 2 mặt phẳng song song thì 2 giao tuyến song song
+
+DẠNG 1: CHỨNG MINH 2 MẶT PHẲNG SONG SONG
+DẠNG 2: CHỨNG MINH ĐƯỜNG THẲNG SONG SONG VỚI MẶT PHẲNG
+DẠNG 3: CHỨNG MINH 2 ĐƯỜNG THẲNG SONG SONG
+Dạng 4: Bài toán liên quan đến tỷ lệ độ dài
+DẠNG 5: XÁC ĐỊNH GIAO TUYẾN
+DẠNG 6: XÁC ĐỊNH THIẾT DIỆN
 
 ### Quan hệ vuông góc trong không gian
 
@@ -474,32 +510,59 @@ DẠNG 10: GIA TỐC
 
 - Đường thẳng a vuông góc với mặt phẳng (P) nếu a vuông góc với mọi đường thẳng trong (P)
 - Dấu hiệu: a vuông góc với 2 đường thẳng cắt nhau trong (P) → a vuông góc (P)
-- Hỏi: Muốn chứng minh đường thẳng vuông góc mặt phẳng cần chứng minh bao nhiêu cặp vuông góc? (2 cặp, 2 đường thẳng cắt nhau trong mp)
+- Hệ quả: Nếu 1 đường thẳng vuông góc với 2 cạnh của 1 tam giác thì vuông góc với cạnh còn lại
+- Tính chất:
+  - Có duy nhất 1 đường thẳng đi qua 1 điểm và vuông góc với 1 mặt phẳng
+  - Có duy nhất 1 mặt phẳng đi qua 1 điểm và vuông góc với 1 đường thẳng
+  - Mặt phẳng trung trực là mặt phẳng đi qua trung điểm và vuông góc với đường thẳng đó
+  - Nếu 1 đường thẳng vuông góc với 1 mặt phẳng thì các đường thẳng song song với đường thẳng đó cùng vuông góc với mặt phẳng
+  - Hai đường thẳng phân biệt cùng vuông góc với 1 mặt phẳng thì song song với nhau
+  - Một đường thẳng vuông góc với 1 mặt phẳng thì nó song song với các đường thẳng nào song song với mặt phẳng đó
+  - Hai mặt phẳng phân biệt cùng vuông góc với 1 đường thẳng thì song song với nhau
+
+DẠNG 1: CHỨNG MINH ĐƯỜNG THẲNG VUÔNG GÓC VỚI MẶT PHẲNG
+DẠNG 2: CHỨNG MINH HAI ĐƯỜNG THẲNG VUÔNG GÓC
 
 #### Định lí ba đường vuông góc
 
-- Cho a vuông góc (P), a cắt (P) tại H, b nằm trong (P). Gọi b' là hình chiếu vuông góc lên (P):
-  - b vuông góc b' ↔ b vuông góc hình chiếu
+- Cho (a) không vuông góc (P) và (b) nằm trong (P). Gọi (a') là hình chiếu vuông góc của (a) lên (P): (b) vuông góc (a) ↔ (b) vuông góc (a')
+- Góc giữa (a) và (P) bằng góc giữa (a) và (a')
 
 #### Góc giữa đường thẳng và mặt phẳng
 
-- Hình chiếu của đường thẳng a lên mặt phẳng (P): a' (qua phép chiếu vuông góc)
-- Góc giữa a và (P) = góc giữa a và a' (hình chiếu của a lên P)
-- Góc này nằm trong khoảng [0°; 90°]
+- Hình chiếu của đường thẳng a lên mặt phẳng (P): a' (qua phép chiếu vuông góc). Góc giữa a và (P) = góc giữa a và a' (hình chiếu của a lên P). Góc này nằm trong khoảng [0°; 90°]
 - Đặc biệt: a vuông góc (P) thì góc = 90°; a song song hoặc nằm trong (P) thì góc = 0°
+
+DẠNG 1. XÁC ĐỊNH GÓC GIỮA ĐƯỜNG THẲNG VÀ MẶT PHẲNG
 
 #### Hai mặt phẳng vuông góc
 
-- Góc nhị diện: góc tạo bởi 2 nửa mặt phẳng có chung 1 cạnh
-- Góc nhị diện = góc giữa 2 nửa đường thẳng nằm trên 2 nửa mặt phẳng, cùng vuông góc với cạnh, xuất phát từ 1 điểm trên cạnh
-- Hai mặt phẳng vuông góc: góc nhị diện = 90°
-- Dấu hiệu: (P) chứa đường thẳng a vuông góc với (Q) → (P) vuông góc (Q)
+- Góc giữa 2 mặt phẳng là góc giữa 2 đường thẳng lần lượt vuông góc với 2 mặt phẳng đó.
+- Tính chất: Góc giữ 2 mặt phẳng là góc giữa 2 đường thẳng cùng vuông góc với đường pháp tuyến của 2 mặt phẳng đó
+- Hai mặt phẳng vuông góc: góc = 90°
+- Dấu hiệu: (P) chứa đường thẳng (d) vuông góc với (Q) → (P) vuông góc (Q)
+- Tính chất: Bất kỳ đường nào nằm trong mặt phẳng này vuông góc với pháp tuyến thì vuông góc với mặt phẳng kia
+- Nếu 2 mặt phẳng cùng vuông góc với mặt phẳng thứ 3 thì giao tuyến của chúng cũng vuông góc với mặt phẳng thứ 3
+
+DẠNG 1. XÁC ĐỊNH GÓC GIỮA HAI MẶT PHẲNG BẰNG CÁCH DÙNG ĐỊNH NGHĨA
+DẠNG 2. XÁC ĐỊNH GÓC GIỮA HAI MẶT PHẲNG DỰA TRÊN GIAO TUYẾN
+DẠNG 3. XÁC ĐỊNH GÓC GIỮA HAI MẶT PHẲNG BẰNG CÁCH DÙNG ĐINH LÝ HÌNH CHIẾU
+DẠNG 4: CHỨNG MINH HAI MẶT PHẲNG VUÔNG GÓC
+DẠNG 5: XÁC ĐỊNH QUAN HỆ VUÔNG GÓC GIỮA HAI MP, MP VÀ ĐT
+DẠNG 6: DÙNG MỐI QUAN HỆ VUÔNG GÓC GIẢI BÀI TOÁN THIẾT DIỆN
+DẠNG 7: DỰNG MẶT PHẲNG VUÔNG GÓC VỚI MẶT PHẲNG CHO TRƯỚC. THIẾT DIỆN, DIỆN TÍCH THIẾT DIỆN
 
 #### Khoảng cách
 
-- Khoảng cách từ điểm đến mặt phẳng
-- Khoảng cách từ điểm đến đường thẳng
-- Khoảng cách giữa đường thẳng và mặt phẳng song song
-- Khoảng cách giữa 2 mặt phẳng song song
-- Khoảng cách giữa 2 đường thẳng chéo nhau
+- Khoảng cách từ điểm đến đường thẳng: là khoảng cách từ điểm đó đến hình chiếu của nó trên đường thẳng
+- Khoảng cách từ điểm đến mặt phẳng: là khoảng cách từ điểm đó đến hình chiếu của nó trên mặt phẳng
+- Khoảng cách giữa đường thẳng và mặt phẳng song song: là khoảng cách từ 1 điểm thuộc đường thẳng đến hình chiếu của nó trên mặt phẳng
+- Khoảng cách giữa 2 mặt phẳng song song: là khoảng cách từ 1 điểm thuộc mặt phẳng đến hình chiếu của nó trên mặt phẳng kia
+- Đường vuông góc chung: Đường thẳng cắt 2 đường thẳng chéo nhau và vuông góc với chúng
+- Khoảng cách giữa 2 đường thẳng chéo nhau: là khoảng cách giữa 2 giao điểm của đường vuông góc chung với 2 đường thẳng chéo nhau đó
 - Ví dụ: Cho hình lập phương ABCD.A'B'C'D' cạnh a. Tính khoảng cách từ A đến mp (BDC').
+
+DẠNG 1. KHOẢNG CÁCH TỪ MỘT ĐIỂM TỚI MỘT MẶT PHẲNG
+DẠNG 2: KHOẢNG CÁCH GIỮA HAI ĐƯỜNG THẲNG CHÉO NHAU
+- 2 đường vuông góc với nhau
+- 2 đường không vuông góc với nhau
