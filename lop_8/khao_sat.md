@@ -181,6 +181,7 @@ Dạng 17: Khoảng cách từ gốc tọa độ O đến đường thẳng
 
 - Tứ giác: mặc định là tứ giác lồi
 - Tổng các góc của một tứ giác bằng 360°
+- Đường chéo
 
 Dạng 1: Tính số đo góc
 Dạng 2: Tìm mối liên hệ giữa các cạnh, đường chéo của tứ giác 
