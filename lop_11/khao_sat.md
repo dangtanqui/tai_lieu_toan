@@ -10,7 +10,7 @@
 
 - Góc lượng giác: góc có hướng quay (dương: ngược chiều kim đồng hồ; âm: cùng chiều)
 - Đơn vị radian: 1 rad = góc ở tâm chắn cung có độ dài bằng bán kính
-- Đổi đơn vị: 180° = pi rad; 1rad = 1/180°
+- Đổi đơn vị: 180° = pi rad; 1rad = /180°
   - Từ độ sang radian: alpha(rad) = alpha(°) x pi / 180
   - Từ radian sang độ: alpha(°) = alpha(rad) x 180 / pi
 - Ví dụ: 60° = pi/3 rad; 90° = pi/2 rad; 45° = pi/4 rad.

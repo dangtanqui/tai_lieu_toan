@@ -75,7 +75,7 @@ Dạng 3: Rút gọn phân thức.
 Dạng 4: Quy đồng mẫu nhiều phân thức
 Dạng 5: Cộng, trừ các phân thức đại số thông thường
 Dạng 6: Cộng, trừ các phân thức đại số kết hợp quy tắc đổi dấu
-Dạng 7: Thực hiện phép nhân, chia phân thứ
+Dạng 7: Thực hiện phép nhân, chia phân thức
 Dạng 8: Rút gọn phân thức và tính giá trị của biểu thức đó
 Dạng 9: Toán có nội dung thực tế
 

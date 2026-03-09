@@ -251,8 +251,8 @@ DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
 - Vector AB = (xB - xA; yB - yA; zB - zA)
 - Khoảng cách: |AB| = sqrt((xB - xA)^2 + (yB - yA)^2 + (zB - zA)^2)
 - Trung điểm đoạn thẳng: M = ((xA + xB)/2; (yA + yB)/2; (zA + zB)/2)
-- Tích 1 số: k.a = (k.a1, k.a2, k.a3)
 - Trọng tâm tam giác: G = ((xA + xB + xC)/3; (yA + yB + yC)/3; (zA + zB + zC)/3)
+- Tích 1 số: k.a = (k.a1, k.a2, k.a3)
 
 DẠNG 1: XÁC ĐỊNH TỌA ĐỘ VECTƠ, XÁC ĐỊNH TỌA ĐỘ ĐIỂM, XÁC ĐỊNH TỌA ĐỘ ĐỈNH CỦA HÌNH BÌNH HÀNH VÀ HÌNH HỘP
 DẠNG 2: XÁC ĐỊNH TỌA ĐỘ HÌNH CHIẾU VUÔNG GÓC CỦA MỘT ĐIỂM TRÊN TRỤC TỌA ĐỘ VÀ TRÊN MẶT PHẲNG TỌA ĐỘ
@@ -318,7 +318,7 @@ DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 - Phương trình đường thẳng (chính tắc): (x - x0)/a = (y - y0)/b = (z - z0)/c
 - Phương trình đường thẳng đi qua hai điểm
   - Tìm vector chỉ phương từ 2 điểm, rồi tìm ptđt (x - x1)/(x2 - x1) = (y - y1)/(y2 - y1) = (z - z1)/(z2 - z1)
-- Hai đường thẳng vuông góc: n1.n2 = 0 => a1,a2 + b1.b2 + c1.c2 = 0
+- Hai đường thẳng vuông góc: n1.n2 = 0 => a1.a2 + b1.b2 + c1.c2 = 0
 - Vị trí tương đối giữa 2 đường thẳng: cắt, song song, chéo, trùng
   - Song song nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 không nằm trên đt 2. Hay hệ pt tham số vô nghiệm
   - Trùng nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 nằm trên đt 2. Hay hệ pt tham số vô số nghiệm
@@ -327,8 +327,8 @@ DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 - Vị trí tương đối giữa đường thẳng và mặt phẳng: cắt (1 điểm), song song, nằm trong mặt phẳng
 - Giao điểm đường thẳng và mặt phẳng: thế tham số vào PT mặt phẳng
 - Ví dụ: Tìm giao điểm đường thẳng { x = 1 + t; y = 2 - t; z = 3 + 2t } với mặt phẳng x + y + z - 6 = 0.
-- Khoảng cách từ điểm đến đường thẳng: dùng tích có hướng
-- Khoảng cách giữa 2 đường thẳng chéo nhau: dùng tích hỗn tạp
+- Khoảng cách từ điểm đến đường thẳng: dùng tích có hướng (công thức)
+- Khoảng cách giữa 2 đường thẳng chéo nhau: dùng tích hỗn tạp (công thức)
 - Ví dụ: Tính khoảng cách từ A(1; 2; 3) đến mặt phẳng 2x - y + 2z - 6 = 0.
 
 DẠNG 1: XÁC ĐỊNH VECTOR CHỈ PHƯƠNG CỦA ĐƯỜNG THẲNG
@@ -349,7 +349,7 @@ DẠNG 4: TỌA ĐỘ HÓA BÀI TOÁN HÌNH HỌC KHÔNG GIAN
 #### Phương trình mặt cầu
 
 - Phương trình mặt cầu (loại 1): (x - a)^2 + (y - b)^2 + (z - c)^2 = R^2 (tâm I(a; b; c), bán kính R)
-- Loại 2: x^2 + y^2 + z^2 + 2a.x + 2b.y + 2c.z + d = 0 với r = sqrt(a^2 + b^2 + c^2 - d)
+- Loại 2: x^2 + y^2 + z^2 - 2a.x - 2b.y - 2c.z + d = 0 với r = sqrt(a^2 + b^2 + c^2 - d)
 - Diện tích mặt cầu: S = 4 x pi x R^2
 - Thể tích hình cầu: V = (4/3) x pi x R^3
 - Vị trí tương đối giữa điểm và mặt cầu:

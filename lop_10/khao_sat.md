@@ -124,7 +124,7 @@ DẠNG 10: BÀI TOÁN THỰC TẾ
 
 #### Tam thức bậc hai
 
-- ôn lại lớp 9 phương trình bậc 2
+- Ổn lại lớp 9 phương trình bậc 2
 - Dấu của tam thức bậc hai: f(x) = ax^2 + bx + c
 - Delta = b^2 - 4a.c
   - Delta < 0: f(x) cùng dấu với a, mọi x
@@ -203,12 +203,12 @@ DẠNG 5: DIỆN TÍCH TAM GIÁC, BÁN KÍNH ĐƯỜNG TRÒN
 DẠNG 6: ỨNG DỤNG THỰC TẾ
 ---
 
-### Đại số tổ hợp (chưa học tới)
+### Đại số tổ hợp
 
 #### Quy tắc đếm
 
 - Quy tắc cộng: nếu công việc có thể thực hiện theo cách 1 (m cách) HOẶC cách 2 (n cách) thì tổng = m + n cách.
-- Quy tắc nhân: nếu công việc gồm bước 1 (m cách) VÀ bước 2 (n cách) thì tổng = m x n cách.
+- Quy tắc nhân: nếu công việc gồm bước 1 (m cách) VÀ bước 2 (n cách) thì tích = m x n cách.
 - Ví dụ: Đi từ A đến B có 3 đường, từ B đến C có 4 đường. Đi từ A đến C qua B có mấy cách?
 - Kết hợp 2 quy tắc
 
