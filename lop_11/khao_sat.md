@@ -14,7 +14,7 @@
   - Từ độ sang radian: alpha(rad) = alpha(°) x pi / 180
   - Từ radian sang độ: alpha(°) = alpha(rad) x 180 / pi
 - Ví dụ: 60° = pi/3 rad; 90° = pi/2 rad; 45° = pi/4 rad.
-- Hỏi: 1 rad bằng khoảng bao nhiêu độ? (≈ 57,3°)
+- Ví dụ: 1 rad bằng khoảng bao nhiêu độ? (≈ 57,3°)
 - Độ dài cung tròn: l = r.alpha, với alpha đơn vị radian
 - Đường tròn lượng giác có tâm là 0 và bán kính r = 1 
 
@@ -86,7 +86,7 @@ Dạng 4. Công thức biến đổi tổng thành tích
 - Hàm số cos: y = cos(x): TXĐ = R, giá trị thuộc [-1; 1], hàm chẵn và tuần hoàn với chu kỳ 2pi
 - Hàm số tan: y = tan(x): TXĐ: x ≠ pi/2 + k.pi, hàm lẻ và tuần hoàn với chu kỳ pi
 - Hàm số cot:y = cot(x): TXĐ: x ≠ k.pi, hàm lẻ với chu kỳ pi
-- Hỏi: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
+- Ví dụ: Đồ thị y = sin(x) và y = cos(x) khác nhau thế nào? (dịch pha pi/2)
 
 Dạng 1. Tập xác định
 Dạng 2. Tính chẵn - lẻ
@@ -160,7 +160,7 @@ Dạng 7: Tổng n số hạng đầu tiên của cấp số cộng
 - Tổng n số hạng đầu: S(n) = u(1) . (1 - q^n) / (1 - q) (khi q ≠ 1)
 - Tính chất: u(k)^2 = u(k-1) . u(k+1)
 - Ví dụ: CSN có u1 = 2, q = 3. Tìm u5 và S5.
-- Hỏi: Lãi suất đơn/kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
+- Ví dụ: Lãi suất đơn/kép (tiền gửi ngân hàng) liên quan đến CSC hay CSN?
 
 DẠNG 1: NHẬN DIỆN CẤP SỐ NHÂN
 DẠNG 2: TÌM CÔNG THỨC CỦA CẤP SỐ NHÂN
@@ -187,18 +187,18 @@ Dạng 7: Tổng n số hạng đầu tiên của cấp số nhân
   - Nếu lim(u(n)) = a > 0, lim(v(n)) = 0 => lim(u(n) / v(n)) = + vô cùng
   - Nếu lim(u(n)) = a > 0, lim(v(n)) = + vô cùng => lim(u(n) . v(n)) = + vô cùng
 - Dãy phân kỳ: không có giới hạn hữu hạn
-- Giới hạn vô cực: lim(un) = +vô cực hoặc -vô cực
+- Giới hạn vô cùng: lim(un) = +vô cùng hoặc -vô cùng
 - Quy tắc tính: 
  - lim(un + vn) = lim(un) + lim(vn); lim(un x vn) = lim(un) x lim(vn)
  - lim(k.u(n)) = k.lim(u(n))
  - lim(|u(n)|) = |lim(u(n))|
 - Định lý kẹp: Nếu u(n) < v(n) < w(n) và lim(u(n)) = lim(w(n)) = a thì lim(v(n)) = a
 - Dạng vô định:
-  - Vô cực / vô cực → chia cho lũy thừa cao nhất
+  - vô cùng / vô cùng → chia cho lũy thừa cao nhất
   - 0 / 0 -> Phân tích tử và mẫu thành nhân tử chung và rút gọn
-  - Vô cực - vô cực -> Nhân lượng liên hợp để chuyển sang dạng phân thức 0/0 hoặc vô cực / vô cực
-  - 0 . vô cực -> Chuyển sang dạng 0 / 0 hoặc vô cực / vô cực
-  - 1^ vô cực, 0^0, vô cùng ^ 0
+  - vô cùng - vô cùng -> Nhân lượng liên hợp để chuyển sang dạng phân thức 0/0 hoặc vô cùng / vô cùng
+  - 0 . vô cùng -> Chuyển sang dạng 0 / 0 hoặc vô cùng / vô cùng
+  - 1^ vô cùng, 0^0, vô cùng ^ 0
 - Quy tắc L'Hospital: đạo hàm nhiều lần tử và mẫu để khử dạng 0/0 và vô cùng / vô cùng
 - Ví dụ: lim((3n^2 + 1) / (n^2 - 2)) = ?
 - Cấp số nhân lùi vô hạn: Vì |q| < 1 nên lim q^n = 0 => S = u1 / (1 - q)
@@ -228,9 +228,9 @@ DẠNG 13: MỘT SỐ BÀI TOÁN KHÁC
   - Giới hạn bên trái: x0 > x
   - Giới hạn bên phải: x0 < x
   - lim f(x) = L khi x dần tới x0 thì lim f(x) = 0 khi x dần tới x+ hoặc x dần tới x-
-- Giới hạn tại vô cực: lim f(x) khi x tiến đến +vô cực hoặc -vô cực
-- Tiệm cận ngang: y = L nếu lim f(x) = L khi x tiến đến vô cực
-- Tiệm cận đứng: x = a nếu lim f(x) = vô cực khi x tiến đến a
+- Giới hạn tại vô cùng: lim f(x) khi x tiến đến +vô cùng hoặc -vô cùng
+- Tiệm cận ngang: y = L nếu lim f(x) = L khi x tiến đến vô cùng
+- Tiệm cận đứng: x = a nếu lim f(x) = vô cùng khi x tiến đến a
 - Cho lim f(x) = L, lim g(x) = M khi x dần tới x0
   - lim (f(x) + g(x)) = L + M khi x dần tới x0
   - lim (f(x) . g(x)) = L . M khi x dần tới x0
@@ -246,7 +246,7 @@ DẠNG 4. DẠNG VÔ ĐỊNH ∞ − ∞
 DẠNG 5. DẠNG VÔ ĐỊNH 0 . ∞
 DẠNG 6. GIỚI HẠN HỮU HẠN
 DẠNG 7: GIỚI HẠN MỘT BÊN
-DẠNG 8: GIỚI HẠN VÔ CỰC
+DẠNG 8: GIỚI HẠN vô cùng
 DẠNG 9: LIÊN QUAN ĐẾN HÀM ẨN
 
 #### Hàm số liên tục
@@ -255,7 +255,7 @@ DẠNG 9: LIÊN QUAN ĐẾN HÀM ẨN
 - Hàm số không liên tục tại x0 gọi là gián đoạn tại x0
 - Hàm số liên tục trên (a; b) nếu nó liên tục trên mọi điểm trong khoảng đó
 - Hàm số liên tục trên [a; b] nếu nó liên tục trên (a; b) và tại 2 đầu mút
-- Hỏi: Hàm y = 1/x có liên tục tại x = 0 không?
+- Ví dụ: Hàm y = 1/x có liên tục tại x = 0 không?
 - Tính chất: giả sử f(x) và g(x) liên tục tại x0
   - f(x) +/- g(x) và f(x) . g(x) liên tục tại x0
   - f(x) / g(x) lien tục tại x0 nếu g(x) khác 0
@@ -308,12 +308,12 @@ DẠNG 3: BÀI TOÁN LÃI SUẤT KÉP – DÂN SỐ
 - y = a^x (a > 0, a ≠ 1)
 - a > 1: hàm đồng biến; 0 < a < 1: hàm nghịch biến
 - Đồ thị luôn qua điểm (0; 1)
-- TXĐ: R; tập giá trị: (0; +vô cực)
+- TXĐ: R; tập giá trị: (0; +vô cùng)
 
 #### Hàm số logarit
 
 - y = log_a(x) (a > 0, a ≠ 1)
-- TXĐ: (0; +vô cực); tập giá trị: R
+- TXĐ: (0; +vô cùng); tập giá trị: R
 - a > 1: đồng biến; 0 < a < 1: nghịch biến
 - Đồ thị luôn qua điểm (1; 0)
 - y = log_a(x) là hàm ngược của y = a^x

@@ -15,7 +15,7 @@
 #### Số thực (R); làm tròn, ước lượng
 
 - Số thực R bao gồm tất cả số hữu tỉ (Q) và số vô tỉ (I)
-- Hỏi: Ví dụ về số vô tỉ? (pi, sqrt(2), ...)
+- Ví dụ: Ví dụ về số vô tỉ? (pi, sqrt(2), ...)
 - Ước lượng và làm tròn trong tính toán thực tế
 
 #### Tỉ lệ thức; dãy tỉ số bằng nhau
@@ -26,25 +26,25 @@
 
 #### Tỉ lệ thuận; tỉ lệ nghịch
 
-- Hỏi: Tỉ lệ thuận là gì? Tỉ lệ nghịch là gì?
+- Ví dụ: Tỉ lệ thuận là gì? Tỉ lệ nghịch là gì?
 - Ví dụ: 3 quyển vở giá 18k, 5 quyển giá bao nhiêu? (tỉ lệ thuận)
 - Ví dụ: 4 người làm 6 giờ xong, 8 người làm mấy giờ? (tỉ lệ nghịch)
 
 #### Biểu thức đại số: thay số, biến đổi
 
-- Hỏi: Thay x = -2 vào 2x^2 - 3x + 1
+- Ví dụ: Thay x = -2 vào 2x^2 - 3x + 1
 - Ví dụ: Rút gọn 3a - 2a + 5 - 1.
 
 #### Đơn thức, đa thức; cộng trừ nhân
 
-- Hỏi: Đơn thức là gì? Đa thức là gì?
+- Ví dụ: Đơn thức là gì? Đa thức là gì?
 - Ví dụ: (x^2 + 2x - 3) + (x + 5), (x - 2)(x + 2).
 
 ### Thống kê và xác suất
 
 #### Thống kê
 
-- Hỏi: Số trung bình cộng (mean), trung vị (median), mốt (mode) là gì?
+- Ví dụ: Số trung bình cộng (mean), trung vị (median), mốt (mode) là gì?
 - Ví dụ: Cho dãy số 3, 5, 5, 7, 9 → tìm mean, median, mode.
 
 #### Xác suất

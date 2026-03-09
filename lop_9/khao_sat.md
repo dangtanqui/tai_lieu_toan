@@ -10,8 +10,8 @@
 
 - x^2 = a => x = sqrt(a); hoặc x = - sqrt(a)
 - sqrt(a) có nghĩa khi a >= 0
-- Hỏi: sqrt(49) = ?, sqrt(0,25) = ?
-- Hỏi: Điều kiện để sqrt(2x - 3) có nghĩa?
+- Ví dụ: sqrt(49) = ?, sqrt(0,25) = ?
+- Ví dụ: Điều kiện để sqrt(2x - 3) có nghĩa?
 - a > b => sqrt(a) > sqrt(b) (với a, b >= 0)
 - Căn thức bậc 2 của hằng đẳng thức: sqrt(a^2) = |a| (không phải luôn bằng a)
 - sqrt(a.b) = sqrt(a).sqrt(b) (với a, b >= 0)
@@ -29,7 +29,7 @@ Dạng 7: Nâng cao
 
 - Đưa thừa số ra dấu căn sqrt(a^2.b) = a.sqrt(b) (với a, b >= 0)
 - Đưa thừa số vào dấu căn a.sqrt(b) = sqrt(a^2.b) (với a, b >= 0)
-- Hỏi: Rút gọn sqrt(50), sqrt(12), sqrt(18).
+- Ví dụ: Rút gọn sqrt(50), sqrt(12), sqrt(18).
 - Khử mẫu biểu thức lấy căn: a/sqrt(b) = a.sqrt(b)/b (với a >= 0, b > 0)
 - Trục căn thức ở mẫu:
   - a/sqrt(b) = a.sqrt(b)/b (với a >= 0, b > 0)
@@ -74,7 +74,7 @@ Dạng 2: Bài nâng cao phát triển tư duy
   - Trùng nhau khi a1 = a2 và b1 = b2
   - Cắt nhau khi a1 ≠ a2
   - Vuông góc khi a1.a2 = -1
-- Hỏi: Cho hai đường thẳng y = 3x + 1 và y = 3x - 2, chúng có cắt nhau không?
+- Ví dụ: Cho hai đường thẳng y = 3x + 1 và y = 3x - 2, chúng có cắt nhau không?
 
 Dạng 1: Tìm điều kiện xác định của hàm số
 Dạng 2: Tính giá trị hàm số khi cho giá trị của ẩn
@@ -132,11 +132,11 @@ Hoặc lập Delta' = b'^2 - ac với b = 2b'
   - Delta' = 0: nghiệm kép x1 = x2 = -b'/a
   - Delta' < 0: vô nghiệm (trong tập R)
 - Ví dụ: Giải x^2 - 5x + 6 = 0.
-- Hỏi: Nhìn x^2 - 9 = 0 nhẩm nghiệm?
+- Ví dụ: Nhìn x^2 - 9 = 0 nhẩm nghiệm?
 - Định lí Vi-ét: S = x1 + x2 = -b/a; P = x1 . x2 = c/a
   - x(S - x) = P <=> x^2 - Sx + P = 0
   - Delta = S^2 - 4P
-- Hỏi: Biết tổng hai nghiệm là 5 và tích là 6, viết phương trình bậc hai tương ứng.
+- Ví dụ: Biết tổng hai nghiệm là 5 và tích là 6, viết phương trình bậc hai tương ứng.
 - Phương trình trùng phương: ax^4 + bx^2 + c = 0 (với a khác 0)
 - Phương trình chứa ẩn ở mẫu. Ví dụ: (x^2 - 3x + 6) / (x^2 - 9) = 1 / (x - 3)
 - Phương trình tích. Ví dụ: (x + 1)(x^2 + 2x -3) = 0
@@ -274,7 +274,7 @@ DẠNG 2: CHỨNG MINH TỨ GIÁC NỘI TIẾP ĐƯỜNG TRÒN
 - Diện tích xung quanh: Sxq = pi x r x l
 - Diện tích toàn phần: Stp = pi x r x (r + l)
 - Thể tích: V = pi x r^2 x h / 3
-- Hỏi: Phân biệt chiều cao h và đường sinh l của hình nón.
+- Ví dụ: Phân biệt chiều cao h và đường sinh l của hình nón.
 
 3. Hình cầu
 

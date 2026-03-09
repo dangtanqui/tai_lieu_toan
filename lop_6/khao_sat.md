@@ -10,7 +10,7 @@
 
 - Tập hợp: các đồ vật / chữ cái từ A - Z / số chẵn / số lẻ / số nguyên tố / số chính phương / ...
 - Kí hiệu **thuộc** và **không thuộc**
-- Ví dụ: A = {1; 2; 3; 4}. Hỏi: 3 ? A, 5 ? A.
+- Ví dụ: A = {1; 2; 3; 4}. Ví dụ: 3 ? A, 5 ? A.
 - Tính chất đặc trưng.
 - Ví dụ: P = {1; 3; 5; 7; 9; 11} thì P = {x | x là số tự nhiên lẻ và nhỏ hơn 12}
 
@@ -38,9 +38,9 @@
 
 #### Số nguyên (Z): so sánh, 4 phép tính, giá trị tuyệt đối
 
-- Hỏi: Số âm nào lớn hơn: -3 hay -5?
+- Ví dụ: Số âm nào lớn hơn: -3 hay -5?
 - Ví dụ: -7 + 12, -3 x 5, 20 : (-4).
-- Hỏi: |-6| = ?
+- Ví dụ: |-6| = ?
 
 #### Phân số: rút gọn, quy đồng mẫu, so sánh, 4 phép tính
 
@@ -53,15 +53,15 @@
 
 #### Số thập phân; làm tròn; 4 phép tính; đổi qua lại phân số và thập phân
 
-- Hỏi: 0,125 đổi sang phân số
+- Ví dụ: 0,125 đổi sang phân số
 - Cách làm tròn số?
 - Ví dụ: Làm tròn 3,14159 đến 2 chữ số thập phân.
-- Hỏi: Cách so sánh 2 số thập phân?
-- Hỏi: Khi nhân/chia số thập phân, cách đặt dấu phẩy?
+- Ví dụ: Cách so sánh 2 số thập phân?
+- Ví dụ: Khi nhân/chia số thập phân, cách đặt dấu phẩy?
 
 #### Tỉ số – tỉ số phần trăm; bài toán phần trăm cơ bản
 
-- Hỏi: 15% nghĩa là gì?
+- Ví dụ: 15% nghĩa là gì?
 - Ví dụ: Tìm 20% của 150.
 - Ví dụ: Gửi vào ngân hàng 50 nghìn, lãi 1 tháng là 50%, tháng tới rút hết tiền ra thì được bao nhiêu?
 - Ví dụ: Một số tăng từ 80 lên 92, tăng bao nhiêu %?
@@ -74,33 +74,33 @@
 ### Thống kê cơ bản
 
 - Ví dụ: Tính số trung bình cộng của 6, 7, 8, 9.
-- Hỏi: Đọc số liệu từ bảng thống kê đơn giản.
+- Ví dụ: Đọc số liệu từ bảng thống kê đơn giản.
 
 ### Hình học
 
 #### Điểm, đường thẳng, đoạn thẳng, tia; trung điểm
 
-- Hỏi: Điểm, đường thẳng, đoạn thẳng, tia là gì?
+- Ví dụ: Điểm, đường thẳng, đoạn thẳng, tia là gì?
 - Điểm thuộc / không thuộc đường thẳng?
 - Tia đối?
-- Hỏi: Cách xác định trung điểm?
+- Ví dụ: Cách xác định trung điểm?
 
 #### Song song; vuông góc; cắt nhau
 
-- Hỏi: Hai đường thẳng vuông góc tạo góc bao nhiêu độ?
+- Ví dụ: Hai đường thẳng vuông góc tạo góc bao nhiêu độ?
 - Ví dụ: Nêu 1 cách kiểm tra song song (góc so le trong/đồng vị).
 - Hai đường thẳng cắt nhau?
 
 #### Góc: đo góc, các loại góc; tia phân giác
 
 - Điểm gốc của 2 tia là góc; điểm trong góc, điểm ngoài góc
-- Hỏi: Góc nhọn/vuông/tù/bẹt là khoảng bao nhiêu độ?
+- Ví dụ: Góc nhọn/vuông/tù/bẹt là khoảng bao nhiêu độ?
 
 #### Tam giác, đa giác yếu tố cơ bản; phân loại
 
-- Hỏi: Tam giác cân/đều/vuông?
+- Ví dụ: Tam giác cân/đều/vuông?
 - Hình vuông, hình chữ nhật, hình thoi, hình bình hành, hình thang, hình thang cân?
-- Hỏi: Điều kiện để 3 đoạn a, b, c là 3 cạnh 1 tam giác?
+- Ví dụ: Điều kiện để 3 đoạn a, b, c là 3 cạnh 1 tam giác?
 
 #### Chu vi – diện tích các hình phẳng cơ bản
 
@@ -114,4 +114,4 @@
 - Ví dụ: Chu vi tam giác có cạnh 3, 4, 5?
 - Ví dụ: Tính diện tích hình chữ nhật a = 7, b = 3.
 - Ví dụ: Tính chu vi và diện tích hình tròn có r = 5.
-- Hỏi: Khi nào dùng chu vi, khi nào dùng diện tích?
+- Ví dụ: Khi nào dùng chu vi, khi nào dùng diện tích?

@@ -10,7 +10,7 @@
 
 - Mệnh đề là câu khẳng định đúng hoặc sai (không vừa đúng vừa sai).
 - Ví dụ: "3 là số nguyên tố" → đúng. "5 > 7" → sai.
-- Hỏi: "x + 2 = 5" có phải mệnh đề không? (Không, vì còn phụ thuộc x → mệnh đề chứa biến)
+- Ví dụ: "x + 2 = 5" có phải mệnh đề không? (Không, vì còn phụ thuộc x → mệnh đề chứa biến)
 - Phủ định của mệnh đề P: ký hiệu "Dấu - ở trên P"; nếu P đúng thì phủ P sai và ngược lại.
 - Mệnh đề kéo theo: "Nếu P thì Q" (P => Q).
 - Mệnh đề đảo: Mệnh đề P => Q là mệnh đề đảo của Q => P
@@ -19,7 +19,7 @@
 - Mệnh đề tương đương: P <=> Q nghĩa là P => Q và Q => P đều đúng.
 - Điều kiện cần và đủ, khi và chỉ khi
   - P <=> Q: P là điều kiện cần và đủ để Q; Q khi và chỉ khi P
-- Hỏi: "Tam giác đều => tam giác cân" đúng không? Điều ngược lại thì sao?
+- Ví dụ: "Tam giác đều => tam giác cân" đúng không? Điều ngược lại thì sao?
 - Mệnh đề chứa ký hiệu "với mọi", "tồn tại"
 - Ví dụ: với mọi x, x^2 >= 0; tồn tại x, x^2 = 4
 
@@ -84,7 +84,7 @@ DẠNG 6: ÁP DỤNG BÀI TOÁN THỰC TIỄN
 - D: Tập xác định (TXĐ) của hàm số
 - Hàm chẵn: f(-x) = f(x), đồ thị đối xứng qua trục Oy
 - Hàm lẻ: f(-x) = -f(x), đồ thị đối xứng qua gốc tọa độ O
-- Hỏi: y = x^2 là hàm chẵn hay lẻ? y = x^3 thì sao?
+- Ví dụ: y = x^2 là hàm chẵn hay lẻ? y = x^3 thì sao?
 - Đồ thị của hàm số: tập hợp các điểm M(x, f(x)) trên trục tọa độ
 - Đồng biến: x1 < x2 => f(x1) < f(x2)
 - Nghịch biến: x1 < x2 => f(x1) > f(x2)
@@ -109,7 +109,7 @@ DẠNG 9: MỘT SỐ BÀI TOÁN LIÊN QUAN ĐẾN ĐỒ THỊ CỦA HÀM SỐ
 - a < 0: parabol cong lên (có giá trị lớn nhất)
 - Bảng biến thiên: xét khi a > 0 và a < 0 với x = -b/2a, y = -delta/4a
 - Ví dụ: Vẽ đồ thị y = x^2 - 4x + 3. Tìm đỉnh, trục đối xứng, điểm cắt trục Ox.
-- Hỏi: Parabol y = -x^2 + 2x + 3 quay lên hay xuống? Đỉnh ở đâu?
+- Ví dụ: Parabol y = -x^2 + 2x + 3 quay lên hay xuống? Đỉnh ở đâu?
 
 DẠNG 1: SỰ BIẾN THIÊN
 DẠNG 2: XÁC ĐỊNH TOẠ ĐỘ ĐỈNH, TRỤC ĐỐI XỨNG, HÀM SỐ BẬC HAI THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC.
@@ -165,7 +165,7 @@ DẠNG 2: Giải bất phương trình bậc hai
   - cos(90° - alpha) = sin(alpha)
   - tan(90° - alpha) = cot(alpha)
   - cot(90° - alpha) = tan(alpha)
-- Hỏi: sin(120°) = ?, cos(150°) = ?
+- Ví dụ: sin(120°) = ?, cos(150°) = ?
 
 DẠNG 1: TÍNH CÁC GIÁ TRỊ BIỂU THỨC LƯỢNG GIÁC 
 DẠNG 2: TÍNH GIÁ TRỊ CỦA MỘT BIỂU THỨC LƯỢNG GIÁC , KHI BIẾT TRƯỚC MỘT GIÁ TRỊ LƯỢNG GIÁC. 
@@ -180,7 +180,7 @@ DẠNG 7: TÍNH GIÁ TRỊ BIỂU THỨC LƯỢNG GIÁC
 - a^2 = b^2 + c^2 - 2b.c x cos(A) => cos(A) = (b^2 + c^2 - a^2) / (2b.c)
 - Dùng khi biết 2 cạnh và góc xen giữa, hoặc biết 3 cạnh tìm góc.
 - Ví dụ: Tam giác có b = 5, c = 7, góc A = 60°. Tìm a.
-- Hỏi: Khi góc A = 90° thì công thức trở thành Pythagore
+- Ví dụ: Khi góc A = 90° thì công thức trở thành Pythagore
 
 #### Định lí sin
 
@@ -217,7 +217,7 @@ DẠNG 6: ỨNG DỤNG THỰC TẾ
 - Hoán vị n phần tử: P(n) = n! (sắp xếp tất cả)
 - Chỉnh hợp chập k của n: A(n, k) = n! / (n - k)! (chọn k phần tử có thứ tự, chọn lần lượt để làm công việc khác nhau)
 - Tổ hợp chập k của n: C(n, k) = n! / (k! x (n - k)!) (chọn k phần tử không thứ tự, chọn 1 lần để làm công việc giống nhau)
-- Hỏi: Phân biệt khi nào dùng chỉnh hợp, khi nào dùng tổ hợp?
+- Ví dụ: Phân biệt khi nào dùng chỉnh hợp, khi nào dùng tổ hợp?
 - Ví dụ: Từ 5 bạn, chọn 3 bạn xếp hàng → dùng gì? Chọn 3 bạn lập nhóm → dùng gì?
 - Nhị thức Newton: (a + b)^n = tổng C(n, k) x a^(n-k) x b^k (k từ 0 đến n)
 - Ví dụ: Khai triển (a + b)^4,  (a + b)^5.

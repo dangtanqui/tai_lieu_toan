@@ -8,112 +8,135 @@
 
 #### Tính đơn điệu của hàm số
 
-- Hàm số y = f(x) gọi là đồng biến trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) < f(x2).
-- Hàm số y = f(x) gọi là nghịch biến trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) > f(x2).
+- Hàm số y = f(x) gọi là đồng biến (tăng) trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) < f(x2).
+- Hàm số y = f(x) gọi là nghịch biến (giảm) trên K nếu ∀ x1, x2 ∈ K, x1 < x2 ⇒ f(x1) > f(x2).
 - Hàm số đồng biến hoặc nghịch biến gọi là đơn điệu.
-- f'(x) > 0 trên khoảng (a; b) → f(x) đồng biến trên (a; b)
-- f'(x) < 0 trên khoảng (a; b) → f(x) nghịch biến trên (a; b)
+- f'(x) > 0 trên khoảng K → f(x) đồng biến trên K
+- f'(x) < 0 trên khoảng K → f(x) nghịch biến trên K
+- f'(x) = 0 trên khoảng K → f(x) không đổi trên K
 - Cách xét:
- - Tìm TXĐ
- - Tính f'(x), tìm xi mà f'(x) = 0 hoặc không xác định
- - Lập bảng biến thiên
+  - Tìm TXĐ
+    - 1/P(x) có nghĩa khi P(x) khác 0
+    - sqrt(P(x)) có nghĩa khi P(x) >= 0
+    - 1 / sqrt(P(x)) có nghĩa khi P(x) > 0
+  - Tính f'(x), tìm các x(i) mà tại đó f'(x) = 0 hoặc không xác định
+  - Lập bảng biến thiên
+    - Xét dấu f'(x)
+  - Kết luận
 - Ví dụ: Xét sự đồng biến, nghịch biến của y = x^3 - 3x + 2.
+
+Các dạng bài tập:
+- DẠNG 1: XÉT TÍNH ĐƠN ĐIỆU CỦA HÀM SỐ CHO BỞI BIỂU THỨC
+- DẠNG 2: XÉT TÍNH ĐƠN ĐIỆU CỦA HÀM HỢP CHO BỞI BBT HOẶC ĐỒ THỊ CỦA HÀM SỐ y = f(x) HOẶC y = f′(x).
+- DẠNG 3: TÌM ĐK CỦA THAM SỐ ĐỂ HÀM SỐ ĐỒNG BIẾN, NGHỊCH BIẾN TRÊN MỘT MIỀN CHO TRƯỚC.
 
 #### Cực trị của hàm số
 
+- Cực trị là giá trị mà khiến hàm số đổi chiều biến thiên
 - Tồn tại h > 0 sao cho f(x) < f(x0) với mọi x thuộc (x0 - h; x0 + h) và x khác x0 thì f(x) đạt cực đại tại x0.
 - Tồn tại h > 0 sao cho f(x) > f(x0) với mọi x thuộc (x0 - h; x0 + h) và x khác x0 thì f(x) đạt cực tiểu tại x0.
 - Các điểm cực đại và cực tiểu gọi là cực trị.
+- Lưu ý: giá trị cực đại và cực tiểu không phải là GTLN và GTNN của hàm số
 - Điểm cực đại: f'(x) đổi dấu từ + sang - khi x qua x0 → x0 là cực đại
 - Điểm cực tiểu: f'(x) đổi dấu từ - sang + khi x qua x0 → x0 là cực tiểu
-- Quy tắc 2 (dùng đạo hàm cấp hai): vì f'' thể hiện độ cong (f'' > 0 lỗi, f'' < 0 lõm)
+- Nếu hàm số đạt cực trị tại x0 thì f'(x0) = 0 hoặc tại đó f(x) không có đạo hàm, ngược lại không đúng.
+- Dùng đạo hàm cấp hai: vì f'' thể hiện độ cong (f'' > 0 lồi, f'' < 0 lõm)
   - Với f'(x0) = 0 và f''(x0) < 0 → cực đại
   - Với f'(x0) = 0 và f''(x0) > 0 → cực tiểu
+  - Với f'(x0) = 0 và f''(x0) = 0 cần lập bảng biến thiên
+- f'(x) là hệ số góc của tiếp tuyến tại x0. Tiếp tuyến tại điểm cực trị song song với trục Ox
 - Cách tìm:
- - Tìm TXĐ
- - Tính f'(x), tìm x0 mà f'(x) = 0 hoặc không xác định
- - Lập bảng biến thiên hoặc tìm f''(x0)
+  - Tìm TXĐ
+  - Tính f'(x), tìm các x(i) mà tại đó f'(x) = 0 hoặc không xác định
+  - Lập bảng biến thiên hoặc tính f''(x0)
 
-DẠNG 1: XÉT TÍNH ĐƠN ĐIỆU CỦA HÀM SỐ CHO BỞI BIỂU THỨC
-DẠNG 2: XÉT TÍNH ĐƠN ĐIỆU CỦA HÀM HỢP CHO BỞI BBT HOẶC ĐỒ THỊ CỦA HÀM SỐ y = f(x) HOẶC y = f′(x).
-DẠNG 3: TÌM ĐK CỦA THAM SỐ ĐỂ HÀM SỐ ĐỒNG BIẾN, NGHỊCH BIẾN TRÊN MỘT MIỀN CHO TRƯỚC.
-DẠNG 4: TÌM CỰC TRỊ CỦA HÀM SỐ CHO BỞI BIỂU THỨC.
-DẠNG 5: RIÊNG VỀ CỰC TRỊ HÀM BẬC 3
-DẠNG 6: RIÊNG VỀ CỰC TRỊ HÀM TRÙNG PHƯƠNG
-DẠNG 7: CỰC TRỊ CỦA HÀM y = |f(x)|, y = f(|x|)
-DẠNG 8: TÌM CỰC TRỊ CỦA HÀM SỐ KHI BIẾT BIỂU THỨC f(x), f'(x)
-DẠNG 9: TÌM M ĐỂ HÀM SỐ ĐẠT CỰC TRỊ TẠI x = x0
-- Tính f'(x0) = 0, tìm m
-- Thế m vào f''(x0) nếu f''(x0) > 0 cực tiểu, f''(x0) < 0 cực đại
-DẠNG 10: HÀM SỐ ĐA THỨC BẬC CAO, HÀM CĂN THỨC
-DẠNG 11: TÌM M ĐỂ HÀM SỐ CÓ N CỰC TRỊ
-- f'(x) có n nghiệm phân biệt
-DẠNG 12: ĐƯỜNG THẲNG ĐI QUA 2 ĐIỂM CỰC TRỊ
-- Thực hiện phép chia y cho y', phân tích ra: y = y'. q(x) + h(x)
-- y0 = h(x0) vì y' tại x0 = 0
-- (d): y = h(x)
-DẠNG 13: TÌM M ĐỂ HÀM SỐ BẬC 3 CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
-DẠNG 14: TÌM M ĐỂ HÀM SỐ TRÙNG PHƯƠNG CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
-DẠNG 15: TÌM M ĐỂ HÀM SỐ BẬC 2 TRÊN BẬC 1 CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
-DẠNG 16: BÀI TOÁN CỰC TRỊ HÀM SỐ CHỨA DẤU TRỊ TUYỆT ĐỐI
-- y = |f(x)| => y = sqrt(f^2(x))
-- y' = 2.f(x).f'(x)/sqrt(f^2(x)) = 0 => f(x) = 0 hoặc f'(x) = 0
-DẠNG 17: SỐ ĐIỂM CỰC TRỊ CỦA HÀM HỢP
-- y = f(g(x)) => y' = g'(x).f'(g(x)) = 0 => g'(x) = 0 hoặc f'(g(x)) = 0
-DẠNG 18: TÌM M ĐỂ HÀM SỐ f(g(x)) THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
-DẠNG 19: TÌM CỰC TRỊ CỦA HÀM SỐ HỢP f(g(x)) HOẶC f(g(x)) + h(x) KHI BIẾT ĐỒ THỊ HÀM SỐ f(x) HOẶC f'(x) 
+Các dạng bài tập:
+- DẠNG 1: TÌM CỰC TRỊ CỦA HÀM SỐ CHO BỞI BIỂU THỨC.
+- DẠNG 2: RIÊNG VỀ CỰC TRỊ HÀM BẬC 3
+- DẠNG 3: RIÊNG VỀ CỰC TRỊ HÀM TRÙNG PHƯƠNG
+- DẠNG 4: CỰC TRỊ CỦA HÀM y = |f(x)|, y = f(|x|)
+- DẠNG 5: TÌM CỰC TRỊ CỦA HÀM SỐ KHI BIẾT BIỂU THỨC f(x), f'(x)
+- DẠNG 6: TÌM M ĐỂ HÀM SỐ ĐẠT CỰC TRỊ TẠI x = x0
+  - Tính f'(x0) = 0, tìm m
+  - Thế m vào f''(x0) nếu f''(x0) > 0 cực tiểu, f''(x0) < 0 cực đại
+- DẠNG 7: HÀM SỐ ĐA THỨC BẬC CAO, HÀM CĂN THỨC
+- DẠNG 8: TÌM M ĐỂ HÀM SỐ CÓ N CỰC TRỊ
+  - f'(x) có n nghiệm phân biệt
+- DẠNG 9: ĐƯỜNG THẲNG ĐI QUA 2 ĐIỂM CỰC TRỊ
+  - Thực hiện phép chia y cho y', phân tích ra: y = y'. q(x) + h(x)
+  - y0 = h(x0) vì y' tại x0 = 0
+  - (d): y = h(x)
+- DẠNG 10: TÌM M ĐỂ HÀM SỐ BẬC 3 CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
+- DẠNG 11: TÌM M ĐỂ HÀM SỐ TRÙNG PHƯƠNG CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
+- DẠNG 12: TÌM M ĐỂ HÀM SỐ BẬC 2 TRÊN BẬC 1 CÓ CỰC TRỊ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
+- DẠNG 13: BÀI TOÁN CỰC TRỊ HÀM SỐ CHỨA DẤU TRỊ TUYỆT ĐỐI
+  - y = |f(x)| => y = sqrt(f^2(x))
+  - y' = 2.f(x).f'(x)/sqrt(f^2(x)) = 0 => f(x) = 0 hoặc f'(x) = 0
+- DẠNG 14: SỐ ĐIỂM CỰC TRỊ CỦA HÀM HỢP
+  - y = f(g(x)) => y' = g'(x).f'(g(x)) = 0 => g'(x) = 0 hoặc f'(g(x)) = 0
+- DẠNG 15: TÌM M ĐỂ HÀM SỐ f(g(x)) THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
+- DẠNG 16: TÌM CỰC TRỊ CỦA HÀM SỐ HỢP f(g(x)) HOẶC f(g(x)) + h(x) KHI BIẾT ĐỒ THỊ HÀM SỐ f(x) HOẶC f'(x) 
 
 #### Giá trị lớn nhất, nhỏ nhất
 
-- Trên đoạn [a; b]: so sánh f(a), f(b) và các giá trị f(x) tại điểm cực trị bên trong
+- Tồn tại M, ∀ x ∈ K: f(x) <= M và tồn tại x0 ∈ K, f(x0) = M thì M là GTLN: max(f(x)) = M
+- Tồn tại m, ∀ x ∈ K: f(x) >= m và tồn tại x0 ∈ K, f(x0) = m thì m là GTNN: min(f(x)) = m
+- Trên đoạn [a; b]: so sánh f(a), f(b) và các giá trị f(x(i)) với f'(x(i)) = 0 hoặc tại x(i) hàm số không xác định
 - GTLN = max; GTNN = min trong các giá trị đó
+- Nếu f(x) đồng biến trên [a, b] thì max(f(x)) = f(b) và min(f(x)) = f(a)
+- Nếu f(x) nghịch biến trên [a, b] thì max(f(x)) = f(a) và min(f(x)) = f(b)
 - Ví dụ: Tìm GTLN, GTNN của y = x^3 - 3x trên [-2; 2].
-- Lập bảng biến thiên
-- Hoặc tìm x0 trên đoạn với tính f' = 0 hoặc không tồn tại, tính f(x0), f(a), f(b) và tìm max, min
+- Nâng cao:
+  - Bất đẳng thức AM - GM (cô-si): a + b >= 2.sqrt(a.b) xảy ra dấu = khi a = b
+  - Bất đẳng thức Bunhiacopxki: |a.x + b.y| <= sqrt((a^2 + b^2) . (x^2 + y^2)) xảy ra dấu = khi a.y = b.x
 
-DẠNG 1. TÌM MAX-MIN TRÊN ĐOẠN BẰNG HÀM SỐ CỤ THỂ, BẢNG BIẾN THIÊN, ĐỒ THỊ HÀM SỐ CHO TRÊN ĐOẠN VÀ KHOẢNG.
-DẠNG 2: TÌM MAX- MIN BẰNG PHƯƠNG PHÁP ĐỔI BIẾN
-DẠNG 3: MỘT SỐ BÀI TOÁN CÓ CHỨA THAM SỐ m
-DẠNG 4: PHƯƠNG PHÁP ĐẶT ẨN PHỤ ĐỂ GIẢI QUYẾT BÀI TOÁN TÌM ĐIỀU KIỆN CỦA THAM SỐ m SAO CHO PHƯƠNG TRÌNH f(x, m) = 0 CÓ NGHIỆM (CÓ ỨNG DỤNG GTLN, GTNN )
-DẠNG 5: PHƯƠNG PHÁP ĐẶT ẨN PHỤ ĐỂ GIẢI QUYẾT BÀI TOÁN TÌM ĐIỀU KIỆN CỦA THAM SỐ m ĐỂ BẤT PHƯƠNG TRÌNH CÓ NGHIỆM HOẶC NGHIỆM ĐÚNG VỚI MỌI x ∈ K (CÓ ỨNG DỤNG GTLN, GTNN)
-DẠNG 6: BÀI TOÁN THỰC TẾ
-- Bất đẳng thức AM - GM (cô-si): a + b >= 2.sqrt(a.b) xảy ra dấu = khi a = b
-- Bất đẳng thức Bunhiacopxki: |a.x + b.y| <= sqrt((a^2 + b^2) . (x^2 + y^2)) xảy ra dấu = khi a.y = b.x
-DẠNG 7: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ THÔNG QUA ĐỒ THỊ, BẢNG BIẾN THIÊN
-DẠNG 8: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ TRÊN ĐOẠN
-DẠNG 9: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ TRÊN KHOẢNG
-- Với 2 đầu mút tính lim x -> a+ và lim x -> b-
-DẠNG 10: XÁC ĐỊNH M ĐỂ GTLN-GTNN CỦA HÀM SỐ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
-DẠNG 11: ĐỊNH M ĐỂ GTLN-GTNN CỦA HÀM SỐ CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC (khó)
-DẠNG 12: GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT HÀM ẨN, HÀM HỢP
-DẠNG 13: ỨNG DỤNG GTLN-GTNN GIẢI BÀI TOÁN THỰC TẾ
+Các dạng bài tập:
+- DẠNG 1: TÌM MAX-MIN TRÊN ĐOẠN BẰNG HÀM SỐ CỤ THỂ, BẢNG BIẾN THIÊN, ĐỒ THỊ HÀM SỐ CHO TRÊN ĐOẠN VÀ KHOẢNG.
+- DẠNG 2: TÌM MAX- MIN BẰNG PHƯƠNG PHÁP ĐỔI BIẾN
+- DẠNG 3: MỘT SỐ BÀI TOÁN CÓ CHỨA THAM SỐ m
+- DẠNG 4: PHƯƠNG PHÁP ĐẶT ẨN PHỤ ĐỂ GIẢI QUYẾT BÀI TOÁN TÌM ĐIỀU KIỆN CỦA THAM SỐ m SAO CHO PHƯƠNG TRÌNH f(x, m) = 0 CÓ NGHIỆM (CÓ ỨNG DỤNG GTLN, GTNN )
+- DẠNG 5: PHƯƠNG PHÁP ĐẶT ẨN PHỤ ĐỂ GIẢI QUYẾT BÀI TOÁN TÌM ĐIỀU KIỆN CỦA THAM SỐ m ĐỂ BẤT PHƯƠNG TRÌNH CÓ - NGHIỆM HOẶC NGHIỆM ĐÚNG VỚI MỌI x ∈ K (CÓ ỨNG DỤNG GTLN, GTNN)
+- DẠNG 6: BÀI TOÁN THỰC TẾ
+  - Bất đẳng thức AM - GM (cô-si)
+  - Bất đẳng thức Bunhiacopxki
+- DẠNG 7: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ THÔNG QUA ĐỒ THỊ, BẢNG BIẾN THIÊN
+- DẠNG 8: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ TRÊN ĐOẠN
+- DẠNG 9: XÁC ĐỊNH GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT CỦA HÀM SỐ TRÊN KHOẢNG
+  - Với 2 đầu mút tính lim x -> a+ và lim x -> b-
+- DẠNG 10: XÁC ĐỊNH M ĐỂ GTLN-GTNN CỦA HÀM SỐ THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC
+- DẠNG 11: ĐỊNH M ĐỂ GTLN-GTNN CỦA HÀM SỐ CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI THỎA MÃN ĐIỀU KIỆN CHO TRƯỚC (khó)
+- DẠNG 12: GIÁ TRỊ LỚN NHẤT – GIÁ TRỊ NHỎ NHẤT HÀM ẨN, HÀM HỢP
+- DẠNG 13: ỨNG DỤNG GTLN-GTNN GIẢI BÀI TOÁN THỰC TẾ
 
 #### Đường tiệm cận
 
-- Tiệm cận ngang: y = L nếu lim f(x) = L khi x tiến tới +/- vô cực
-- Tiệm cận đứng: x = a nếu lim f(x) = +/- vô cực khi x tiến tới a+/- (a+ đồ thị bên phải, a- đồ thị bên trái)
-- Tiệm cận xiên: y = ax + b nếu lim [f(x) - (ax  + b)] = 0 khi x tiến tới +/- vô cực
-  - a = lim [f(x) / x]; b = lim[f(x) - ax] khi x tiến tới +/- vô cực
+- y = L là tiệm cận ngang nếu lim f(x) = L khi x tiến tới +/- vô cùng
+- x = a là tiệm cận đứng nếu lim f(x) = +/- vô cùng khi x tiến tới a+/-
+  - a+ đồ thị bên phải
+  - a- đồ thị bên trái
+- Tiệm cận xiên: y = ax + b nếu lim [f(x) - (ax  + b)] = 0 khi x tiến tới +/- vô cùng
+  - a = lim [f(x) / x]; b = lim[f(x) - ax] khi x tiến tới +/- vô cùng
   - Nếu a = 0 thì là tiệm cận ngang y = b
-- Hỏi: Hàm y = (2x + 1) / (x - 1) có tiệm cận ngang và tiệm cận đứng nào?
-- Hàm y = (ax + b) / (cx + d) có tiệm cận đứng x = -d/c, tiệm cận ngang y = a/c
+- Hàm số phân thức y = (ax + b) / (cx + d) có tiệm cận đứng x = -d/c, tiệm cận ngang y = a/c
+- Ví dụ: Hàm y = (2x + 1) / (x - 1)
 
-DẠNG 1: TÌM TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ CHO BỞI CÔNG THỨC
-DẠNG 2: TÌM TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ BIẾT BBT CỦA HÀM SỐ, ĐỒ THỊ CỦA HÀM SỐ ĐÓ HOẶC HÀM SỐ LIÊN QUAN
-DẠNG 3: TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ HÀM HỢP
-DẠNG 4: MỘT SỐ BÀI TOÁN VỀ TIỆM CẬN CHỨA THAM SỐ m
-DẠNG 5: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN THÔNG QUA BẢNG BIẾN THIÊN, ĐỒ THỊ
-DẠNG 6: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN ĐỒ THỊ HÀM SỐ THÔNG QUA HÀM SỐ CHO TRƯỚC
+Các dạng bài tập:
+- DẠNG 1: TÌM TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ CHO BỞI CÔNG THỨC
+- DẠNG 2: TÌM TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ BIẾT BBT CỦA HÀM SỐ, ĐỒ THỊ CỦA HÀM SỐ ĐÓ HOẶC HÀM SỐ LIÊN QUAN
+- DẠNG 3: TIỆM CẬN CỦA ĐỒ THỊ HÀM SỐ HÀM HỢP
+- DẠNG 4: MỘT SỐ BÀI TOÁN VỀ TIỆM CẬN CHỨA THAM SỐ m
+- DẠNG 5: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN THÔNG QUA BẢNG BIẾN THIÊN, ĐỒ THỊ
+- DẠNG 6: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN ĐỒ THỊ HÀM SỐ THÔNG QUA HÀM SỐ CHO TRƯỚC
 
 #### Khảo sát sự biến thiên và vẽ đồ thị hàm số
 
 - Sơ đồ khảo sát hàm số:
-  1. Tìm tập xác định
-  2. Tính đạo hàm, giải f'(x) = 0 hoặc tìm những điểm đạo hàm không tồn tại
-  3. Tìm giới hạn -/+ vô cực, tiệm cận
-  4. Lập bảng biến thiên (Xét dấu f', chiều biến thiên)
-  5. Tìm các điểm đặc biệt: giao Ox, Oy, điểm đối xứng
-  6. Vẽ đồ thị
+  - Tìm tập xác định
+  - Tính đạo hàm, giải f'(x) = 0 hoặc tìm những điểm đạo hàm không tồn tại
+  - Tìm giới hạn -/+ vô cùng, a-/+ để tìm tiệm cận
+  - Lập bảng biến thiên
+  - Tìm các điểm đặc biệt: giao Ox, Oy, điểm đối xứng
+  - Vẽ đồ thị
 - Các dạng hàm số thường khảo sát:
   - Hàm bậc ba: y = ax^3 + bx^2 + cx + d
   - Hàm trùng phương: y = ax^4 + bx^2 + c
@@ -123,19 +146,20 @@ DẠNG 6: XÁC ĐỊNH ĐƯỜNG TIỆM CẬN ĐỒ THỊ HÀM SỐ THÔNG QUA H
 - Ứng dụng đồ thị
   - Dùng đồ thị biện luận số nghiệm phương trình f(x) = m
   - Tìm m để phương trình có 1 nghiệm, 2 nghiệm, 3 nghiệm
-  - Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
+- Ví dụ: Dựa vào đồ thị y = x^3 - 3x, tìm m để x^3 - 3x = m có 3 nghiệm phân biệt.
 
-DẠNG 1: NHẬN DẠNG HÀM SỐ THƯỜNG GẶP THÔNG QUA ĐỒ THỊ
-- Hàm số bậc 3
-- Hàm số trùng phương
-- Hàm số nhất biến (bậc nhất / bậc nhất)
-DẠNG 2: XÉT DẤU CỦA CÁC HỆ SỐ HÀM SỐ THÔNG QUA ĐỒ THỊ
-DẠNG 3: ĐỒ THỊ HÀM SỐ CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI 
-DẠNG 4: BÀI TOÁN TƯƠNG GIAO ĐỒ THỊ THÔNG QUA ĐỒ THỊ, BẢNG BIẾN THIÊN
-DẠNG 5: BÀI TOÁN TƯƠNG GIAO ĐỒ THỊ THÔNG QUA HÀM SỐ CHO TRƯỚC
-DẠNG 6: BÀI TOÁN TƯƠNG GIAO ĐƯỜNG THẲNG VỚI ĐỒ THỊ HÀM SỐ BẬC 3 
-DẠNG 7: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI ĐỒ THỊ HÀM SỐ NHẤT BIẾN 
-DẠNG 8: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI HÀM SỐ TRÙNG PHƯƠNG 
+Các dạng bài tập:
+- DẠNG 1: NHẬN DẠNG HÀM SỐ THƯỜNG GẶP THÔNG QUA ĐỒ THỊ
+  - Hàm số bậc 3
+  - Hàm số trùng phương
+  - Hàm số nhất biến (bậc nhất / bậc nhất)
+- DẠNG 2: XÉT DẤU CỦA CÁC HỆ SỐ HÀM SỐ THÔNG QUA ĐỒ THỊ
+- DẠNG 3: ĐỒ THỊ HÀM SỐ CHỨA DẤU GIÁ TRỊ TUYỆT ĐỐI 
+- DẠNG 4: BÀI TOÁN TƯƠNG GIAO ĐỒ THỊ THÔNG QUA ĐỒ THỊ, BẢNG BIẾN THIÊN
+- DẠNG 5: BÀI TOÁN TƯƠNG GIAO ĐỒ THỊ THÔNG QUA HÀM SỐ CHO TRƯỚC
+- DẠNG 6: BÀI TOÁN TƯƠNG GIAO ĐƯỜNG THẲNG VỚI ĐỒ THỊ HÀM SỐ BẬC 3 
+- DẠNG 7: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI ĐỒ THỊ HÀM SỐ NHẤT BIẾN 
+- DẠNG 8: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI HÀM SỐ TRÙNG PHƯƠNG 
 
 ### Nguyên hàm – Tích phân
 
@@ -159,6 +183,7 @@ DẠNG 8: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI HÀM SỐ TRÙNG
 - Tính chất
   - f(x) liên tục trên K thì có nguyên hàm trên K
   - f(x)dx là vi phân của F(x), ký hiệu dF(x) = F'(x)dx = f(x)dx
+- Phương pháp nguyên hàm từng phần: nguyên hàm (u.dv) = u.v - nguyên hàm (v.du)
 
 #### Tích phân
 
@@ -169,6 +194,9 @@ DẠNG 8: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI HÀM SỐ TRÙNG
   - Tích phân từ a đến b của k.f(x) = k. tích phân từ b đến a của f(x)
   - Tích phân từ a đến b của f(x) + g(x) = tích phân từ b đến a của f(x) + tích phân từ b đến a của g(x)
   - Tích phân từ a đến b = tích phân từ a đến c + tích phân từ c đến b
+  - f(x) >= 0 trên [a, b] => Tích phân từ a đến b của f(x) >= 0
+  - f(x) >= g(x) trên [a, b] => Tích phân từ a đến b của f(x) >= Tích phân từ a đến b của g(x)
+  - m <= f(x) <= M trên [a, b] => m(b - a) <= Tích phân từ a đến b của f(x) <= M(b - a)
 - Phương pháp tính:
   - Phương pháp đổi biến: đặt u = g(x)
   - Phương pháp tích phân từng phần: tích phân (u.dv) = u.v - tích phân (v.du)
@@ -183,30 +211,33 @@ DẠNG 8: BÀI TOÁN TƯƠNG GIAO CỦA ĐƯỜNG THẲNG VỚI HÀM SỐ TRÙNG
 - Thể tích vật thể tròn xoay: V = pi x tích phân từ a đến b của f(x)^2 dx
 - Ví dụ: Tính diện tích hình phẳng giới hạn bởi y = x^2 và y = x.
 
-DẠNG 1: ỨNG DỤNG TICH PHAN DỂ TIM DIỆN TICH
-DẠNG 2: ỨNG DỤNG TICH PHAN DỂ TIM THỂ TICH
+Các dạng bài tập:
+- DẠNG 1: ỨNG DỤNG TÍCH PHÂN ĐỂ TÌM DIỆN TÍCH
+- DẠNG 2: ỨNG DỤNG TÍCH PHÂN ĐỂ TÌM THỂ TÍCH
 
 ---
 
 ## Xác suất có điều kiện
 
-- Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra: P(A | B) = P(AB) / P(B)
-- Nếu A, B độc lập thì P(A | B) = P(A)
-- Công thức nhân xác suất: P(AB) = P(B) . P(A | B)
-- Xác suất toàn phần: P(B) = P(A) . P(B | A) + P(A') . P(B | A') (A' là biến cố đối của A)
-- Công thức Bayes: P(A | B) = P(A) . P(B | A) / P(B)
+- Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra: P(A|B) = P(AB) / P(B)
+- A giao B có thể ký hiệu AB
+- Nếu A, B độc lập thì P(A|B) = P(A)
+- Công thức nhân xác suất: P(AB) = P(B) . P(A|B)
+- Xác suất toàn phần: P(B) = P(A) . P(B|A) + P(A') . P(B|A') (A' là biến cố đối của A)
+- Công thức Bayes: P(A|B) = P(A) . P(B|A) / P(B)
 - Quy tắc:
   - P(A) + P(A') = 1
-  - P(A | B) + P(A' | B) = 1
-  - P(A giao B) + P(A giao B') = P(A)
+  - P(A|B) + P(A'|B) = 1
+  - P(AB) + P(AB') = P(A)
 
-DẠNG 1: TÍNH XÁC SUẤT CÓ ĐIỀU KIỆN SỬ DỤNG CÔNG THỨC.
-DẠNG 2: TÍNH XÁC SUẤT CÓ ĐIỀU KIỆN SỬ DỤNG SƠ ĐỒ HÌNH CÂY.
-DẠNG 3: MÔ TẢ CÔNG THỨC XÁC SUẤT TOÀN PHẦN THÔNG QUA BẢNG DỮ LIỆU THỐNG KÊ 2X2 VÀ SƠ ĐỒ HÌNH CÂY.
-DẠNG 4: MÔ TẢ CÔNG THỨC BAYES THÔNG QUA BẢNG DỮ LIỆU THỐNG KÊ 2X2 VÀ SƠ ĐỒ HÌNH CÂY
-DẠNG 5: CÔNG THỨC XÁC SUẤT TOÀN PHẦN VÀ CÔNG THỨC BAYES
-DẠNG 6: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC XÁC SUẤT TOÀN PHẦN
-DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
+Các dạng bài tập:
+- DẠNG 1: TÍNH XÁC SUẤT CÓ ĐIỀU KIỆN SỬ DỤNG CÔNG THỨC.
+- DẠNG 2: TÍNH XÁC SUẤT CÓ ĐIỀU KIỆN SỬ DỤNG SƠ ĐỒ HÌNH CÂY.
+- DẠNG 3: MÔ TẢ CÔNG THỨC XÁC SUẤT TOÀN PHẦN THÔNG QUA BẢNG DỮ LIỆU THỐNG KÊ 2X2 VÀ SƠ ĐỒ HÌNH CÂY.
+- DẠNG 4: MÔ TẢ CÔNG THỨC BAYES THÔNG QUA BẢNG DỮ LIỆU THỐNG KÊ 2X2 VÀ SƠ ĐỒ HÌNH CÂY
+- DẠNG 5: CÔNG THỨC XÁC SUẤT TOÀN PHẦN VÀ CÔNG THỨC BAYES
+- DẠNG 6: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC XÁC SUẤT TOÀN PHẦN
+- DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
 
 ---
 
@@ -218,7 +249,7 @@ DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
 
 - Vectơ: đoạn thẳng có hướng, ký hiệu AB (mũi tên từ A đến B)
 - Giá của vectơ: đường thẳng chứa vectơ
-- Độ dài (mô-đun) của vectơ: |AB|
+- Độ dài (mô-đun) của vectơ: |AB| là khoảng cách giữa điểm đầu và điểm cuối
 - Hai vectơ cùng phương: giá song song hoặc trùng nhau, a = kb
   - x2/x1 = y2/y1
 - Hai vector cùng phương thì cùng hướng hoặc ngược hướng, a = kb
@@ -229,7 +260,7 @@ DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
 - Vectơ đối: cùng độ dài, ngược hướng, a = -b
 - Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu 0 (mũi tên)
 
-#### Phép cộng, trừ vectơ
+#### Phép cộng, trừ vectơ và nhân vectơ với số thực
 
 - Quy tắc ba điểm: AB + BC = AC
 - Quy tắc hình bình hành: AB + AD = AC (ABCD là hình bình hành)
@@ -239,10 +270,7 @@ DẠNG 7: CÁC BÀI TOÁN THỰC TẾ LIÊN QUAN ĐẾN CÔNG THỨC BAYES.
 - Tính chất giao hoán: a + b = b + a
 - Tính chất kết hợp: (a + b) + c = a + (b + c)
 - Cộng vector 0: a + 0 = a
-
-#### Nhân vectơ với số thực
-
-- Vectơ cùng phương: a = k x b: cùng hướng với a nếu k > 0, ngược hướng với a nếu k < 0, độ dài |a| = |k| x |b|
+- Nhân vector tạo ra vectơ cùng phương: k x a
 
 #### Tọa độ trong không gian Oxyz
 
@@ -263,6 +291,9 @@ DẠNG 4: XÁC ĐỊNH TỌA ĐỘ ĐIỂM
 
 - a . b = |a| . |b| . cos(a, b) = a1.b1 + a2.b2 + a3.b3
 - Hai vectơ vuông góc: a . b = 0
+- Tính chất
+  - Giao hoán: a . b = b . a
+  - Kết hợp: a . (b + c) = a . b + a . c
 - Ứng dụng: tính góc giữa 2 vectơ, kiểm tra vuông góc
 
 DẠNG 1: TÍCH VÔ HƯỚNG VÀ CÁC ỨNG DỤNG CỦA TÍCH VÔ HƯỚNG
