@@ -274,7 +274,7 @@ Các dạng bài tập:
 
 #### Tọa độ trong không gian Oxyz
 
-- Hệ tọa độ không gian Oxyz: 3 trục Ox, Oy, Oz vuông góc nhau
+- Hệ tọa độ không gian Oxyz: 3 trục Ox, Oy, Oz vuông góc nhau, 3 vector đơn vị i, j, k có độ dài bằng 1 lần lượt trên 3 trục.
 - Tọa độ điểm M(x; y; z); tọa độ vectơ a = (a1; a2; a3) = a1.i + a2.j + a3.k
 - Vector AB = (xB - xA; yB - yA; zB - zA)
 - Khoảng cách: |AB| = sqrt((xB - xA)^2 + (yB - yA)^2 + (zB - zA)^2)
@@ -282,10 +282,11 @@ Các dạng bài tập:
 - Trọng tâm tam giác: G = ((xA + xB + xC)/3; (yA + yB + yC)/3; (zA + zB + zC)/3)
 - Tích 1 số: k.a = (k.a1, k.a2, k.a3)
 
-DẠNG 1: XÁC ĐỊNH TỌA ĐỘ VECTƠ, XÁC ĐỊNH TỌA ĐỘ ĐIỂM, XÁC ĐỊNH TỌA ĐỘ ĐỈNH CỦA HÌNH BÌNH HÀNH VÀ HÌNH HỘP
-DẠNG 2: XÁC ĐỊNH TỌA ĐỘ HÌNH CHIẾU VUÔNG GÓC CỦA MỘT ĐIỂM TRÊN TRỤC TỌA ĐỘ VÀ TRÊN MẶT PHẲNG TỌA ĐỘ
-DẠNG 3: XÁC ĐỊNH TỌA ĐỘ CỦA VECTƠ VÀ ĐỘ DÀI CỦA ĐOẠN THẲNG
-DẠNG 4: XÁC ĐỊNH TỌA ĐỘ ĐIỂM
+Các dạng bài tập:
+- DẠNG 1: XÁC ĐỊNH TỌA ĐỘ VECTƠ, XÁC ĐỊNH TỌA ĐỘ ĐIỂM, XÁC ĐỊNH TỌA ĐỘ ĐỈNH CỦA HÌNH BÌNH HÀNH VÀ HÌNH HỘP
+- DẠNG 2: XÁC ĐỊNH TỌA ĐỘ HÌNH CHIẾU VUÔNG GÓC CỦA MỘT ĐIỂM TRÊN TRỤC TỌA ĐỘ VÀ TRÊN MẶT PHẲNG TỌA ĐỘ
+- DẠNG 3: XÁC ĐỊNH TỌA ĐỘ CỦA VECTƠ VÀ ĐỘ DÀI CỦA ĐOẠN THẲNG
+- DẠNG 4: XÁC ĐỊNH TỌA ĐỘ ĐIỂM
 
 #### Tích vô hướng
 
@@ -296,51 +297,57 @@ DẠNG 4: XÁC ĐỊNH TỌA ĐỘ ĐIỂM
   - Kết hợp: a . (b + c) = a . b + a . c
 - Ứng dụng: tính góc giữa 2 vectơ, kiểm tra vuông góc
 
-DẠNG 1: TÍCH VÔ HƯỚNG VÀ CÁC ỨNG DỤNG CỦA TÍCH VÔ HƯỚNG
+Các dạng bài tập:
+- DẠNG 1: TÍCH VÔ HƯỚNG VÀ CÁC ỨNG DỤNG CỦA TÍCH VÔ HƯỚNG
 
 #### Tích có hướng (tích vectơ)
 
-- a x b = (a2.b3 - a3.b2; a3.b1 - a1.b3; a1.b2 - a2.b1)
+- [a, b] = (a2.b3 - a3.b2; a3.b1 - a1.b3; a1.b2 - a2.b1)
 - Ứng dụng: tìm vectơ vuông góc với 2 vectơ, tìm vectơ pháp tuyến mặt phẳng
-- |a x b| = diện tích hình bình hành tạo bởi a và b
-- |a x b| / 2 = diện tích tam giác tạo bởi a và b
+- |[a, b]| = diện tích hình bình hành tạo bởi a và b
+- |[a, b]| / 2 = diện tích tam giác tạo bởi a và b
 
-DẠNG 1: XÁC ĐỊNH VECTƠ VÀ CHỨNG MINH ĐẲNG THỨC VECTƠ
-DẠNG 2: CHỨNG MINH BA ĐIỂM THẲNG HÀNG, PHÂN TÍCH VECTƠ
-DẠNG 3: GÓC GIỮA HAI VECTƠ. TÍCH VÔ HƯỚNG GIỮA HAI VECTƠ
-DẠNG 4: ĐẲNG THỨC VÉC TƠ
-DẠNG 5: PHÂN TÍCH VÉC TƠ THEO CÁC VÉC TƠ CHO TRƯỚC
+Các dạng bài tập:
+- DẠNG 1: XÁC ĐỊNH VECTƠ VÀ CHỨNG MINH ĐẲNG THỨC VECTƠ
+- DẠNG 2: CHỨNG MINH BA ĐIỂM THẲNG HÀNG, PHÂN TÍCH VECTƠ
+- DẠNG 3: GÓC GIỮA HAI VECTƠ. TÍCH VÔ HƯỚNG GIỮA HAI VECTƠ
+- DẠNG 4: ĐẲNG THỨC VÉC TƠ
+- DẠNG 5: PHÂN TÍCH VÉC TƠ THEO CÁC VÉC TƠ CHO TRƯỚC
 
 ### Phương pháp tọa độ trong không gian
 
 #### Phương trình mặt phẳng
 
-- Vectơ pháp tuyến n = (A; B; C): vuông góc với mặt phẳng
-- Phương trình tổng quát: Ax + By + Cz + D = 0
-- Phương trình mặt chắn: A, B, C nằm trên 3 trục tọa độ: x/a + y/b + z/c = 1
+- Vectơ pháp tuyến n = (a; b; c): vuông góc với mặt phẳng
+- Phương trình tổng quát: ax + by + cz + d = 0
+- Phương trình mặt chắn: A(a, 0, 0), B(0, b, 0), C(0, 0, c) nằm trên 3 trục tọa độ: x/a + y/b + z/c = 1
+- Phương trình đi qua 1 điểm: M(x0, y0, z0): a(x – x0) + b(y – y0) + c(z – z0) = 0
 - Viết phương trình mặt phẳng khi biết:
   - 1 điểm + vectơ pháp tuyến
-    - Trong không gian Oxyz, nếu mặt phẳng (α) đi qua điểm M0(x0; y0; z0) và có vectơ pháp tuyến n = (A; B; C) thì có phương trình là: A(x – x0) + B(y – y0) + C(z – z0) = 0 ⇔ Ax + By + Cz + D = 0, với D = −(Ax0 + By0 + Cz0).
+    - Trong không gian Oxyz, nếu mặt phẳng (α) đi qua điểm M0(x0; y0; z0) và có vectơ pháp tuyến n = (a; b; c) thì có phương trình là: a(x – x0) + b(y – y0) + c(z – z0) = 0 ⇔ ax + by + cz + d = 0, với d = −(a.x0 + b.y0 + c.z0).
   - 1 điểm + 2 vectơ chỉ phương a = (a1, a2, a3), b = (b1, b2, b3)
     - Tìm vectơ pháp tuyến: n = (a2.b3 - a3.b2, a3.b1 - a1.b3, a1.b2 - a2.b1)
     - Quay về dạng 1 
   - 3 điểm không thẳng hàng
     - Tìm 2 vector chỉ phương từ 3 điểm, quay về dạng 2
-- 2 mặt phẳng vuông góc nếu 2 vector pháp tuyến vuông góc hay u . v = 0 => A.A' + B.B' + C.C' = 0
-- 2 mặt phẳng song song nếu 2 vector pháp tuyến song song hoặc trùng nhau và D1 khác kD: hay u = kv và D1 khác kD' => A = kA', B = kB', C = kC', D1 khác kD' hay A/A' = B/B' = C/C' khác D/D'
-- 2 mặt phẳng trùng nếu 2 vector pháp tuyến song song hoặc trùng nhau và D1 = kD: hay u = kv và D1 = kD' => A = kA', B = kB', C = kC', D1 = kD' hay A/A' = B/B' = C/C' = D/D'
-- Khoảng cách từ điểm M(x0; y0; z0) đến mặt phẳng: d = |A.x0 + B.y0 + C.z0 + D| / sqrt(A^2 + B^2 + C^2)
+- Vị trí tương đối của 2 mặt phẳng
+  - 2 mặt phẳng vuông góc nếu 2 vector pháp tuyến vuông góc hay u . v = 0 => a.a' + b.b' + c.c' = 0
+  - 2 mặt phẳng song song nếu 2 vector pháp tuyến cùng phương và d khác kd': hay u = kv và d khác kd' => a = ka', b = kb', c = kc', d khác kd' hay a/a' = b/b' = c/c' khác d/d'
+  - 2 mặt phẳng trùng nếu 2 vector pháp tuyến cùng phương và d = kd': hay u = kv và d = kd' => a = ka', b = kb', c = kc', d = kd' hay a/a' = b/b' = c/c' = d/d'
+  - 2 mặt phẳng cắt nhau nếu 2 vector pháp tuyến không cùng phương: hay u khác kv
+- Khoảng cách từ điểm M(x0; y0; z0) đến mặt phẳng: d = |a.x0 + b.y0 + c.z0 + d| / sqrt(a^2 + b^2 + c^2)
 - Góc giữa 2 mặt phẳng: cos(alpha) = |n1 . n2| / (|n1| x |n2|)
 - Ví dụ: Viết phương trình mặt phẳng qua A(1; 0; 2) có vectơ pháp tuyến n = (2; -1; 3).
 
-DẠNG 1: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG KHI BIẾT MỘT ĐIỂM VÀ VECTƠ PHÁP TUYẾN CỦA NÓ.
-DẠNG 2: Viết phương trình mặt phẳng đi qua 1 điểm và song song với 1 mặt phẳng cho trước.
-DẠNG 3: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG ĐI QUA 3 ĐIỂM A, B, C KHÔNG THẲNG HÀNG.
-DẠNG 4: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG QUA HAI DIỂM A, B VÀ VUÔNG GÓC VỚI MẶT PHẲNG. 
-DẠNG 5: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG QUA DIỂM A VÀ VUÔNG GÓC VỚI HAI MẶT PHẲNG
-Dạng 6: Viết phương trình mặt phẳng song song với 1 mặt phẳng và cách một khoảng k cho trước.
-DẠNG 7: KHOẢNG CÁCH TỪ MỘT ĐIỂM ĐẾN MỘT MẶT PHẲNG
-DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
+Các dạng bài tập:
+- DẠNG 1: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG KHI BIẾT MỘT ĐIỂM VÀ VECTƠ PHÁP TUYẾN CỦA NÓ.
+- DẠNG 2: Viết phương trình mặt phẳng đi qua 1 điểm và song song với 1 mặt phẳng cho trước.
+- DẠNG 3: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG ĐI QUA 3 ĐIỂM A, B, C KHÔNG THẲNG HÀNG.
+- DẠNG 4: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG QUA HAI DIỂM A, B VÀ VUÔNG GÓC VỚI MẶT PHẲNG. 
+- DẠNG 5: VIẾT PHƯƠNG TRÌNH MẶT PHẲNG QUA DIỂM A VÀ VUÔNG GÓC VỚI HAI MẶT PHẲNG
+- Dạng 6: Viết phương trình mặt phẳng song song với 1 mặt phẳng và cách một khoảng k cho trước.
+- DẠNG 7: KHOẢNG CÁCH TỪ MỘT ĐIỂM ĐẾN MỘT MẶT PHẲNG
+- DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 
 #### Phương trình đường thẳng trong không gian
 
@@ -350,21 +357,31 @@ DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 - Phương trình đường thẳng đi qua hai điểm
   - Tìm vector chỉ phương từ 2 điểm, rồi tìm ptđt (x - x1)/(x2 - x1) = (y - y1)/(y2 - y1) = (z - z1)/(z2 - z1)
 - Hai đường thẳng vuông góc: n1.n2 = 0 => a1.a2 + b1.b2 + c1.c2 = 0
-- Vị trí tương đối giữa 2 đường thẳng: cắt, song song, chéo, trùng
-  - Song song nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 không nằm trên đt 2. Hay hệ pt tham số vô nghiệm
-  - Trùng nếu vector chỉ phương cùng phương và 1 điểm ở đt 1 nằm trên đt 2. Hay hệ pt tham số vô số nghiệm
-  - Cắt nhau nếu tích có hướng 2 vector chỉ phương khác 0 và vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích = 0). Hay hệ pt tham số có 1 nghiệm duy nhất
-  - Chéo nhau nếu tích có hướng 2 vector chỉ phương không vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích khác 0). Hay hệ pt tham số vô nghiệm
-- Vị trí tương đối giữa đường thẳng và mặt phẳng: cắt (1 điểm), song song, nằm trong mặt phẳng
-- Giao điểm đường thẳng và mặt phẳng: thế tham số vào PT mặt phẳng
+- Viết phương trình đường phẳng khi biết:
+  - Vector chỉ phương và đi qua 1 điểm
+  - Đi qua 2 điểm
+- Vị trí tương đối giữa 2 đường thẳng:
+  - 2 đường thẳng song song nếu vector chỉ phương cùng phương và 1 điểm ở đt này không nằm trên đt kia. Hay hệ pt 2 đt vô nghiệm.
+  - 2 đường thẳng trùng nhau nếu vector chỉ phương cùng phương và 1 điểm ở đt này nằm trên đt kia. Hay hệ pt 2 đt vô số nghiệm.
+  - 2 đường thẳng cắt nhau nếu tích có hướng 2 vector chỉ phương khác 0 và vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích vô hướng = 0). Hay hệ pt 2 đt có 1 nghiệm duy nhất.
+  - 2 đường thẳng chéo nhau nếu tích có hướng 2 vector chỉ phương không vuông góc với vector tạo bởi 2 điểm trên 2 đường thẳng (tích vô hướng khác 0). Hay hệ pt 2 đt vô nghiệm.
+- Vị trí tương đối giữa đường thẳng và mặt phẳng:
+  - Đường thẳng cắt mặt phẳng nếu tích có hướng vector chỉ phương đường thẳng với vector pháp tuyến mặt phẳng khác 0
+  - Đường thẳng song song với mặt phẳng nếu tích có hướng vector chỉ phương đường thẳng với vector pháp tuyến mặt phẳng bằng 0 và 1 điểm ở đt không thuộc mp.
+  - Đường thẳng nằm trên mặt phẳng nếu tích có hướng vector chỉ phương đường thẳng với vector pháp tuyến mặt phẳng bằng 0 và 1 điểm ở đt thuộc mp.
+  - Đường thẳng vuông góc với mặt phẳng nếu vector chỉ phương đường thẳng với vector pháp tuyến mặt phẳng cùng phương
+- Giao điểm giữa 2 đường thẳng: thế PT tham số đường thẳng này vào PTTQ đường thẳng kia
+- Giao điểm đường thẳng và mặt phẳng: thế PT tham số đường thẳng vào PT mặt phẳng
 - Ví dụ: Tìm giao điểm đường thẳng { x = 1 + t; y = 2 - t; z = 3 + 2t } với mặt phẳng x + y + z - 6 = 0.
-- Khoảng cách từ điểm đến đường thẳng: dùng tích có hướng (công thức)
-- Khoảng cách giữa 2 đường thẳng chéo nhau: dùng tích hỗn tạp (công thức)
+- Khoảng cách từ điểm M đến đường thẳng d (u vector chỉ phương): chọn 1 điểm N thuộc đường thẳng, d(M, d) = |[MN, u]| / |u|
+- Khoảng cách giữa 2 đường thẳng chéo nhau d (u vector chỉ phương), d' (vector chỉ phương): chọn M, M' thuộc 2 đường thẳng, d(d, d') = |[u, u'] . MM'| / [u, u']
+  - Cách khác: Tìm AB vuông với 2 đường thẳng => AB . u1 = AB . u2 = 0 => d(d, d') = AB
 - Ví dụ: Tính khoảng cách từ A(1; 2; 3) đến mặt phẳng 2x - y + 2z - 6 = 0.
 
-DẠNG 1: XÁC ĐỊNH VECTOR CHỈ PHƯƠNG CỦA ĐƯỜNG THẲNG
-DẠNG 2: PHƯƠNG TRÌNH ĐƯỜNG THẲNG
-DẠNG 3: VỊ TRÍ TƯƠNG ĐỐI
+Các dạng bài tập:
+- DẠNG 1: XÁC ĐỊNH VECTOR CHỈ PHƯƠNG CỦA ĐƯỜNG THẲNG
+- DẠNG 2: PHƯƠNG TRÌNH ĐƯỜNG THẲNG
+- DẠNG 3: VỊ TRÍ TƯƠNG ĐỐI
 
 #### Công thức tính góc trong không gian
 
@@ -372,39 +389,43 @@ DẠNG 3: VỊ TRÍ TƯƠNG ĐỐI
 - Góc giữa đường thẳng và mặt phẳng: sin(d, P) = |cos(u, n)| = |a.A + b.B + c.C| / (sqrt(a^2 + b^2 + c^2) x sqrt(A^2 + B^2 + C^2))
 - Góc giữa 2 mặt phẳng: cos(P, Q) = |cos(n, n')| = |A.A' + B.B' + C.C'| / (sqrt(A^2 + B^2 + C^2) x sqrt(A'^2 + B'^2 + C'^2))
 
-DẠNG 1: GÓC GIỮA HAI ĐƯỜNG THẲNG
-DẠNG 2: GÓC GIỮA ĐƯỜNG THẲNG VÀ MẶT PHẲNG
-DẠNG 3: GÓC GIỮA HAI MẶT PHẲNG
-DẠNG 4: TỌA ĐỘ HÓA BÀI TOÁN HÌNH HỌC KHÔNG GIAN
+Các dạng bài tập:
+- DẠNG 1: GÓC GIỮA HAI ĐƯỜNG THẲNG
+- DẠNG 2: GÓC GIỮA ĐƯỜNG THẲNG VÀ MẶT PHẲNG
+- DẠNG 3: GÓC GIỮA HAI MẶT PHẲNG
+- DẠNG 4: TỌA ĐỘ HÓA BÀI TOÁN HÌNH HỌC KHÔNG GIAN
 
 #### Phương trình mặt cầu
 
-- Phương trình mặt cầu (loại 1): (x - a)^2 + (y - b)^2 + (z - c)^2 = R^2 (tâm I(a; b; c), bán kính R)
-- Loại 2: x^2 + y^2 + z^2 - 2a.x - 2b.y - 2c.z + d = 0 với r = sqrt(a^2 + b^2 + c^2 - d)
-- Diện tích mặt cầu: S = 4 x pi x R^2
-- Thể tích hình cầu: V = (4/3) x pi x R^3
+- Phương trình mặt cầu chính tắt: (x - a)^2 + (y - b)^2 + (z - c)^2 = R^2 (tâm I(a; b; c), bán kính R)
+- Phương trình mặt cầu tổng quát: x^2 + y^2 + z^2 - 2a.x - 2b.y - 2c.z + d = 0 với a^2 + b^2 + c^2 - d >0. Bán kính: r = sqrt(a^2 + b^2 + c^2 - d)
+- Viết phương trình đường phẳng khi biết:
+  - Tâm và bán kính
+  - Tâm và đi qua 1 đểm
+  - Đi qua 4 điểm => tìm tâm bằng cách giải hệ pt: IA = IB = IC = ID
 - Vị trí tương đối giữa điểm và mặt cầu:
   - M(x0, y0, z0) nằm trong mặt cầu: (x0 - a)^2 + (y0 - b)^2 + (z0 - c)^2 < R^2
   - M(x0, y0, z0) nằm ngoài mặt cầu: (x0 - a)^2 + (y0 - b)^2 + (z0 - c)^2 > R^2
   - M(x0, y0, z0) nằm trên mặt cầu: (x0 - a)^2 + (y0 - b)^2 + (z0 - c)^2 = R^2
-- Vị trí tương đối giữa mặt phẳng và mặt cầu (d là khoảng cách từ tâm đến mặt phẳng):
+- Vị trí tương đối giữa mặt phẳng và mặt cầu (d là khoảng cách từ tâm đến mặt phẳng): chọn 1 điểm M thuộc đường thẳng, d(I, d) = |[MI, u]| / |u|
   - d > R: không giao nhau
   - d = R: tiếp xúc (1 điểm)
   - d < R: cắt nhau (đường tròn giao tuyến có bán kính r = sqrt(R^2 - d^2))
-- Vị trí tương đối giữa đường thẳng và mặt cầu (d là khoảng cách từ tâm đến mặt phẳng):
+- Vị trí tương đối giữa đường thẳng và mặt cầu (d là khoảng cách từ tâm đến mặt phẳng): d(I, P) = |a.A + b.B + c.C + D| / sqrt(A^2 + B^2 + C^2)
   - d > R: không cắt nhau
   - d = R: tiếp xúc (1 điểm)
   - d < R: cắt tại 2 điểm
 - Ví dụ: Cho mặt cầu tâm I(1; 2; 3), R = 5. Viết phương trình mặt cầu. Tìm giao với mp x = 1.
 
-DẠNG 1: XÁC ĐỊNH TÂM – BÁN KÍNH – NHẬN BIẾT PHƯƠNG TRÌNH MẶT CẦU
-DẠNG 2: MẶT CẦU CÓ TÂM VÀ ĐI QUA MỘT ĐIỂM
-DẠNG 3: MẶT CẦU CÓ ĐƯỜNG KÍNH
-- Tìm trung điểm => Tâm
-DẠNG 4: MẶT CẦU QUA 4 ĐIỂM KHÔNG ĐỒNG PHẲNG
-- IA = IB = IC = ID lập hệ 3 phương trình => Tâm
-DẠNG 5: MẶT CẦU CÓ TÂM THUỘC ĐƯỜNG THẲNG/MẶT PHẲNG
-- Viết tọa độ tâm theo đường thẳng/mặt phẳng
-- IA = IB lập hệ phương trình => Tâm
-DẠNG 6: MẶT CẦU TIẾP XÚC ĐƯỜNG THẲNG/MẶT PHẲNG
-DẠNG 7: BÀI TOÁN THỰC TẾ
+Các dạng bài tập:
+- DẠNG 1: XÁC ĐỊNH TÂM – BÁN KÍNH – NHẬN BIẾT PHƯƠNG TRÌNH MẶT CẦU
+- DẠNG 2: MẶT CẦU CÓ TÂM VÀ ĐI QUA MỘT ĐIỂM
+- DẠNG 3: MẶT CẦU CÓ ĐƯỜNG KÍNH
+  - Tìm trung điểm => Tâm
+- DẠNG 4: MẶT CẦU QUA 4 ĐIỂM KHÔNG ĐỒNG PHẲNG
+  - IA = IB = IC = ID lập hệ 3 phương trình => Tâm
+- DẠNG 5: MẶT CẦU CÓ TÂM THUỘC ĐƯỜNG THẲNG/MẶT PHẲNG
+  - Viết tọa độ tâm theo đường thẳng/mặt phẳng
+  - IA = IB lập hệ phương trình => Tâm
+- DẠNG 6: MẶT CẦU TIẾP XÚC ĐƯỜNG THẲNG/MẶT PHẲNG
+- DẠNG 7: BÀI TOÁN THỰC TẾ
