@@ -2,8 +2,6 @@
 
 ---
 
-## Lớp 9
-
 ### Đại số
 
 #### Căn bậc hai; căn thức bậc hai; điều kiện xác định
