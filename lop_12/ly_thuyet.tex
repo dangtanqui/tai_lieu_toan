@@ -259,7 +259,7 @@
 \end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xét tính đơn điệu từ biểu thức.
   \item Xét từ bảng biến thiên hoặc đồ thị.
   \item Tìm tham số $m$ để hàm số đơn điệu trên khoảng cho trước.
@@ -318,7 +318,7 @@
 \end{phuongphap}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Tìm cực trị của hàm số cho bởi biểu thức.
   \item Cực trị hàm bậc ba.
   \item Cực trị hàm trùng phương.
@@ -395,7 +395,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Tìm GTLN--GTNN trên đoạn bằng công thức, bảng biến thiên, đồ thị.
   \item Tìm GTLN--GTNN bằng phương pháp đổi biến.
   \item Bài toán chứa tham số $m$.
@@ -434,7 +434,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Tìm tiệm cận của đồ thị hàm số cho bởi công thức.
   \item Tìm tiệm cận biết bảng biến thiên, đồ thị hoặc hàm số liên quan.
   \item Tiệm cận của hàm hợp.
@@ -478,7 +478,7 @@
 \end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Nhận dạng hàm số thông qua đồ thị (bậc 3, trùng phương, nhất biến).
   \item Xét dấu hệ số hàm số thông qua đồ thị.
   \item Đồ thị hàm chứa dấu giá trị tuyệt đối.
@@ -609,7 +609,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Ứng dụng tích phân tìm diện tích.
   \item Ứng dụng tích phân tìm thể tích.
 \end{enumerate}
@@ -654,7 +654,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Tính xác suất có điều kiện sử dụng công thức.
   \item Tính xác suất có điều kiện sử dụng sơ đồ hình cây.
   \item Công thức xác suất toàn phần qua bảng thống kê $2 \times 2$ và sơ đồ hình cây.
@@ -733,7 +733,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xác định tọa độ vectơ, tọa độ điểm, đỉnh hình bình hành và hình hộp.
   \item Hình chiếu vuông góc của điểm lên trục và mặt phẳng tọa độ.
   \item Tính độ dài đoạn thẳng.
@@ -770,6 +770,29 @@
   \]
 \end{congthuc}
 
+\begin{phuongphap}[title={Cách nhớ nhanh tích có hướng}]
+  Viết tọa độ hai vectơ thành 2 hàng, thêm cột đầu vào cuối:
+  \[
+    \begin{array}{cccc}
+      a_1 & a_2 & a_3 & a_1 \\
+      b_1 & b_2 & b_3 & b_1
+    \end{array}
+  \]
+  Muốn tìm tọa độ thứ $i$ của $[\vec{a},\, \vec{b}]$, ta \textbf{bỏ cột $i$} rồi lấy \textbf{hai cột liên tiếp còn lại} để lập tích $a_j b_k - a_k b_j$.
+
+  \medskip
+  \textbf{Ví dụ:} Cho $\vec{n}_\alpha = (1;\, 1;\, 1)$ và $\vec{n}_\beta = (-1;\, 1;\, 2)$:
+  \[
+    [\vec{n}_\alpha,\, \vec{n}_\beta]
+    = \left(
+      \begin{vmatrix} 1 & 1 \\ 1 & 2 \end{vmatrix};\;\;
+      \begin{vmatrix} 1 & 1 \\ 2 & -1 \end{vmatrix};\;\;
+      \begin{vmatrix} 1 & 1 \\ -1 & 1 \end{vmatrix}
+    \right)
+    = (1;\; 3;\; 2).
+  \]
+\end{phuongphap}
+
 \begin{tinhchat}
   \begin{itemize}
     \item $[\vec{a},\, \vec{b}] \perp \vec{a}$ và $[\vec{a},\, \vec{b}] \perp \vec{b}$.
@@ -790,7 +813,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xác định vectơ và chứng minh đẳng thức vectơ.
   \item Chứng minh ba điểm thẳng hàng, phân tích vectơ.
   \item Góc giữa hai vectơ, tích vô hướng.
@@ -863,7 +886,7 @@
 \end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Viết PT mặt phẳng biết 1 điểm và VTPT.
   \item Viết PT mặt phẳng qua 1 điểm, song song mặt phẳng cho trước.
   \item Viết PT mặt phẳng qua 3 điểm không thẳng hàng.
@@ -905,6 +928,7 @@
     \end{cases}
     \quad\text{VTCP:}\; \vec{u} = [\vec{n}_1,\, \vec{n}_2].
   \]
+  Chọn 1 điểm bằng cách cho $x = x_0$ hoặc $y = y_0$ hoặc $z = z_0$ nào đó (Ví dụ: $0$), rồi giải phương trình tìm 2 tọa độ còn lại
 \end{congthuc}
 
 \begin{congthuc}[title={Vị trí tương đối giữa hai đường thẳng $d(\vec{u})$ và $d'(\vec{v})$}]
@@ -975,7 +999,7 @@
 \end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xác định VTCP của đường thẳng.
   \item Viết phương trình đường thẳng.
   \item Vị trí tương đối (đường thẳng--đường thẳng, đường thẳng--mặt phẳng).
@@ -1011,7 +1035,7 @@
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Góc giữa hai đường thẳng.
   \item Góc giữa đường thẳng và mặt phẳng.
   \item Góc giữa hai mặt phẳng.
@@ -1070,7 +1094,7 @@
 \end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
-\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*]
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xác định tâm, bán kính, nhận biết phương trình mặt cầu.
   \item Mặt cầu có tâm và đi qua một điểm.
   \item Mặt cầu có đường kính (tìm trung điểm $\to$ tâm).
