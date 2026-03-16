@@ -1,0 +1,1379 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 11}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 11};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\sin$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\lim$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$f'$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$\log$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 11}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ======================================================================
+%                      PHẦN 1: ĐẠI SỐ & GIẢI TÍCH
+% ======================================================================
+\section{Đại số \& Giải tích}
+
+% ------ 1.1 Hàm số lượng giác và PTLG ------
+\subsection{Hàm số lượng giác và phương trình lượng giác}
+
+% --- 1.1.1 Góc lượng giác ---
+\subsubsection{Góc lượng giác và đơn vị radian}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Góc lượng giác:} góc có hướng quay (dương: ngược chiều kim đồng hồ; âm: cùng chiều).
+    \item \textbf{Đơn vị radian:} $1\;\text{rad}$ là góc ở tâm chắn cung có độ dài bằng bán kính.
+    \item \textbf{Đổi đơn vị:}
+      \[
+        180^\circ = \pi\;\text{rad},\qquad
+        1\;\text{rad} = \frac{180^\circ}{\pi},\qquad
+        1^\circ = \frac{\pi}{180}\;\text{rad}.
+      \]
+    \item \textbf{Đường tròn lượng giác:} đường tròn tâm $O$, bán kính $R = 1$.
+    \item \textbf{Độ dài cung tròn:} $l = R\,\alpha$, với $\alpha$ tính bằng radian.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bảng giá trị lượng giác đặc biệt}]
+  \[
+    \renewcommand{\arraystretch}{1.8}
+    \begin{array}{|c|c|c|c|c|c|}
+      \hline
+      \alpha & 0^\circ & 30^\circ & 45^\circ & 60^\circ & 90^\circ \\
+      \hline
+      \sin\alpha & 0 & \dfrac{1}{2} & \dfrac{\sqrt{2}}{2} & \dfrac{\sqrt{3}}{2} & 1 \\[4pt]
+      \hline
+      \cos\alpha & 1 & \dfrac{\sqrt{3}}{2} & \dfrac{\sqrt{2}}{2} & \dfrac{1}{2} & 0 \\[4pt]
+      \hline
+      \tan\alpha & 0 & \dfrac{\sqrt{3}}{3} & 1 & \sqrt{3} & \text{kxđ} \\[4pt]
+      \hline
+      \cot\alpha & \text{kxđ} & \sqrt{3} & 1 & \dfrac{\sqrt{3}}{3} & 0 \\[4pt]
+      \hline
+    \end{array}
+  \]
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Mối liên hệ giữa độ và radian.
+  \item Độ dài cung lượng giác.
+  \item Biểu diễn góc lượng giác trên đường tròn lượng giác.
+\end{enumerate}
+
+% --- 1.1.2 Giá trị lượng giác ---
+\subsubsection{Giá trị lượng giác (mở rộng)}
+
+\begin{dinhnghia}
+  Trên đường tròn lượng giác, điểm $M$ ứng với góc $\alpha$ có tọa độ
+  $M\bigl(\cos\alpha;\;\sin\alpha\bigr)$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Dấu của giá trị lượng giác theo góc phần tư}]
+  \begin{itemize}
+    \item Góc phần tư I: $\sin\alpha > 0$, \;$\cos\alpha > 0$, \;$\tan\alpha > 0$, \;$\cot\alpha > 0$.
+    \item Góc phần tư II: $\sin\alpha > 0$, \;$\cos\alpha < 0$, \;$\tan\alpha < 0$, \;$\cot\alpha < 0$.
+    \item Góc phần tư III: $\sin\alpha < 0$, \;$\cos\alpha < 0$, \;$\tan\alpha > 0$, \;$\cot\alpha > 0$.
+    \item Góc phần tư IV: $\sin\alpha < 0$, \;$\cos\alpha > 0$, \;$\tan\alpha < 0$, \;$\cot\alpha < 0$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Các hệ thức lượng giác cơ bản}]
+  \begin{gather}
+    \sin^2\alpha + \cos^2\alpha = 1, \\[4pt]
+    \tan\alpha = \frac{\sin\alpha}{\cos\alpha},\qquad
+    \cot\alpha = \frac{\cos\alpha}{\sin\alpha},\qquad
+    \tan\alpha \cdot \cot\alpha = 1, \\[4pt]
+    1 + \tan^2\alpha = \frac{1}{\cos^2\alpha},\qquad
+    1 + \cot^2\alpha = \frac{1}{\sin^2\alpha}.
+  \end{gather}
+\end{congthuc}
+
+\begin{congthuc}[title={Các góc liên quan đặc biệt}]
+  \begin{itemize}
+    \item \textbf{Đối nhau} (cos -- đối):
+      \[
+        \cos(-\alpha) = \cos\alpha,\quad
+        \sin(-\alpha) = -\sin\alpha,\quad
+        \tan(-\alpha) = -\tan\alpha.
+      \]
+    \item \textbf{Bù nhau} (sin -- bù):
+      \[
+        \sin(\pi - \alpha) = \sin\alpha,\quad
+        \cos(\pi - \alpha) = -\cos\alpha,\quad
+        \tan(\pi - \alpha) = -\tan\alpha.
+      \]
+    \item \textbf{Phụ nhau} (phụ -- chéo):
+      \[
+        \sin\!\left(\frac{\pi}{2} - \alpha\right) = \cos\alpha,\quad
+        \cos\!\left(\frac{\pi}{2} - \alpha\right) = \sin\alpha,\quad
+        \tan\!\left(\frac{\pi}{2} - \alpha\right) = \cot\alpha.
+      \]
+    \item \textbf{Hơn kém} $\pi$:
+      \[
+        \sin(\pi + \alpha) = -\sin\alpha,\quad
+        \cos(\pi + \alpha) = -\cos\alpha,\quad
+        \tan(\pi + \alpha) = \tan\alpha.
+      \]
+    \item \textbf{Hơn kém} $\dfrac{\pi}{2}$:
+      \[
+        \sin\!\left(\frac{\pi}{2} + \alpha\right) = \cos\alpha,\quad
+        \cos\!\left(\frac{\pi}{2} + \alpha\right) = -\sin\alpha,\quad
+        \tan\!\left(\frac{\pi}{2} + \alpha\right) = -\cot\alpha.
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính giá trị lượng giác của một góc lượng giác.
+  \item Tính giá trị lượng giác liên quan góc đặc biệt.
+  \item Rút gọn biểu thức lượng giác.
+  \item Giá trị lớn nhất -- giá trị nhỏ nhất.
+\end{enumerate}
+
+% --- 1.1.3 Công thức lượng giác ---
+\subsubsection{Công thức lượng giác}
+
+\begin{congthuc}[title={Công thức cộng}]
+  \begin{align}
+    \sin(\alpha + \beta) &= \sin\alpha\,\cos\beta + \cos\alpha\,\sin\beta, \\
+    \sin(\alpha - \beta) &= \sin\alpha\,\cos\beta - \cos\alpha\,\sin\beta, \\
+    \cos(\alpha + \beta) &= \cos\alpha\,\cos\beta - \sin\alpha\,\sin\beta, \\
+    \cos(\alpha - \beta) &= \cos\alpha\,\cos\beta + \sin\alpha\,\sin\beta, \\[4pt]
+    \tan(\alpha + \beta) &= \frac{\tan\alpha + \tan\beta}{1 - \tan\alpha\cdot\tan\beta}, \\[4pt]
+    \tan(\alpha - \beta) &= \frac{\tan\alpha - \tan\beta}{1 + \tan\alpha\cdot\tan\beta}.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Công thức nhân đôi}]
+  \begin{align}
+    \sin 2\alpha &= 2\sin\alpha\,\cos\alpha, \\
+    \cos 2\alpha &= \cos^2\alpha - \sin^2\alpha = 2\cos^2\alpha - 1 = 1 - 2\sin^2\alpha, \\[4pt]
+    \tan 2\alpha &= \frac{2\tan\alpha}{1 - \tan^2\alpha}.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Công thức hạ bậc}]
+  \[
+    \sin^2\alpha = \frac{1 - \cos 2\alpha}{2},\qquad
+    \cos^2\alpha = \frac{1 + \cos 2\alpha}{2}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Biến đổi tích thành tổng}]
+  \begin{align}
+    \cos\alpha\,\cos\beta &= \tfrac{1}{2}\bigl[\cos(\alpha - \beta) + \cos(\alpha + \beta)\bigr], \\
+    \sin\alpha\,\sin\beta &= \tfrac{1}{2}\bigl[\cos(\alpha - \beta) - \cos(\alpha + \beta)\bigr], \\
+    \sin\alpha\,\cos\beta &= \tfrac{1}{2}\bigl[\sin(\alpha - \beta) + \sin(\alpha + \beta)\bigr].
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Biến đổi tổng thành tích}]
+  \begin{align}
+    \cos\alpha + \cos\beta &= 2\cos\frac{\alpha + \beta}{2}\;\cos\frac{\alpha - \beta}{2}, \\
+    \cos\alpha - \cos\beta &= -2\sin\frac{\alpha + \beta}{2}\;\sin\frac{\alpha - \beta}{2}, \\
+    \sin\alpha + \sin\beta &= 2\sin\frac{\alpha + \beta}{2}\;\cos\frac{\alpha - \beta}{2}, \\
+    \sin\alpha - \sin\beta &= 2\cos\frac{\alpha + \beta}{2}\;\sin\frac{\alpha - \beta}{2}.
+  \end{align}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Công thức cộng.
+  \item Công thức nhân đôi.
+  \item Biến đổi tích thành tổng.
+  \item Biến đổi tổng thành tích.
+\end{enumerate}
+
+% --- 1.1.4 Hàm số lượng giác ---
+\subsubsection{Hàm số lượng giác}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Hàm chẵn:} $f(-x) = f(x)$, $\forall x$ thuộc TXĐ.
+    \item \textbf{Hàm lẻ:} $f(-x) = -f(x)$, $\forall x$ thuộc TXĐ.
+    \item \textbf{Hàm tuần hoàn:} $f(x + T) = f(x)$, $\forall x$; $T > 0$ nhỏ nhất gọi là \textbf{chu kỳ}.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \[
+    \renewcommand{\arraystretch}{1.6}
+    \begin{array}{|l|c|c|c|c|}
+      \hline
+      & y = \sin x & y = \cos x & y = \tan x & y = \cot x \\
+      \hline
+      \text{TXĐ} & \mathbb{R} & \mathbb{R}
+        & \mathbb{R}\setminus\!\left\{\dfrac{\pi}{2}+k\pi\right\}
+        & \mathbb{R}\setminus\{k\pi\} \\[6pt]
+      \hline
+      \text{Tập giá trị} & [-1;\,1] & [-1;\,1] & \mathbb{R} & \mathbb{R} \\
+      \hline
+      \text{Chẵn/lẻ} & \text{Lẻ} & \text{Chẵn} & \text{Lẻ} & \text{Lẻ} \\
+      \hline
+      \text{Chu kỳ} & 2\pi & 2\pi & \pi & \pi \\
+      \hline
+    \end{array}
+  \]
+\end{tinhchat}
+
+\begin{luuy}
+  Đồ thị $y = \cos x$ là đồ thị $y = \sin x$ dịch sang trái $\dfrac{\pi}{2}$ đơn vị:
+  $\cos x = \sin\!\left(x + \dfrac{\pi}{2}\right)$.
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tập xác định.
+  \item Tính chẵn -- lẻ.
+  \item Tính tuần hoàn.
+  \item Giá trị lớn nhất -- nhỏ nhất.
+\end{enumerate}
+
+% --- 1.1.5 Phương trình lượng giác cơ bản ---
+\subsubsection{Phương trình lượng giác cơ bản}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item $\sin x = m$ \;($|m| \le 1$):
+      \;$\left[\begin{array}{l}
+        x = \alpha + k2\pi \\
+        x = \pi - \alpha + k2\pi
+      \end{array}\right.$
+      với $\alpha = \arcsin m$, \;$\alpha \in \left[-\dfrac{\pi}{2};\;\dfrac{\pi}{2}\right]$.
+
+    \item $\cos x = m$ \;($|m| \le 1$):
+      \;$x = \pm\,\alpha + k2\pi$
+      \;với $\alpha = \arccos m$, \;$\alpha \in [0;\;\pi]$.
+
+    \item $\tan x = m$:
+      \;$x = \alpha + k\pi$
+      \;với $\alpha = \arctan m$, \;$\alpha \in \left(-\dfrac{\pi}{2};\;\dfrac{\pi}{2}\right)$.
+
+    \item $\cot x = m$:
+      \;$x = \alpha + k\pi$
+      \;với $\alpha = \text{arccot}\, m$, \;$\alpha \in (0;\;\pi)$.
+  \end{itemize}
+  Trong đó $k \in \mathbb{Z}$.
+\end{congthuc}
+
+\begin{congthuc}[title={Các trường hợp đặc biệt}]
+  \begin{align}
+    \sin x &= 0 \;\Leftrightarrow\; x = k\pi, &
+    \cos x &= 0 \;\Leftrightarrow\; x = \frac{\pi}{2} + k\pi, \\
+    \sin x &= 1 \;\Leftrightarrow\; x = \frac{\pi}{2} + k2\pi, &
+    \cos x &= 1 \;\Leftrightarrow\; x = k2\pi, \\
+    \sin x &= -1 \;\Leftrightarrow\; x = -\frac{\pi}{2} + k2\pi, &
+    \cos x &= -1 \;\Leftrightarrow\; x = \pi + k2\pi.
+  \end{align}
+\end{congthuc}
+
+\begin{phuongphap}[title={Phương trình $a\sin x + b\cos x = c$}]
+  \begin{enumerate}
+    \item Điều kiện có nghiệm: $a^2 + b^2 \ge c^2$.
+    \item Chia hai vế cho $\sqrt{a^2 + b^2}$.
+    \item Đặt $\cos\varphi = \dfrac{a}{\sqrt{a^2 + b^2}}$, \;$\sin\varphi = \dfrac{b}{\sqrt{a^2 + b^2}}$.
+    \item Phương trình trở thành:
+      \[
+        \sin(x + \varphi) = \frac{c}{\sqrt{a^2 + b^2}}.
+      \]
+    \item Giải phương trình lượng giác cơ bản $\sin(x + \varphi) = \sin\beta$.
+  \end{enumerate}
+\end{phuongphap}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Phương trình $\sin x = a$.
+  \item Phương trình $\cos x = a$.
+  \item Phương trình $\tan x = a$ và $\cot x = a$.
+  \item Phương trình có nghiệm thuộc khoảng -- đoạn cho trước.
+  \item Bài toán thực tế liên quan phương trình lượng giác.
+\end{enumerate}
+
+% ------ 1.2 Dãy số ------
+\subsection{Dãy số}
+
+% --- 1.2.1 Dãy số ---
+\subsubsection{Dãy số, dãy số bị chặn, dãy đơn điệu}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Dãy số} $(u_n)$: hàm số $u \colon \mathbb{N}^{*} \to \mathbb{R}$, \;$n \mapsto u_n$.
+    \item \textbf{Dãy tăng:} $u_{n+1} > u_n$, $\forall n$. \quad
+          \textbf{Dãy giảm:} $u_{n+1} < u_n$, $\forall n$.
+    \item \textbf{Dãy bị chặn trên:} $\exists\, M$: \;$u_n \le M$, \;$\forall n$.
+    \item \textbf{Dãy bị chặn dưới:} $\exists\, m$: \;$u_n \ge m$, \;$\forall n$.
+    \item \textbf{Dãy bị chặn:} bị chặn trên và bị chặn dưới.
+  \end{itemize}
+\end{dinhnghia}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Biểu diễn dãy số, tìm công thức tổng quát.
+  \item Tìm số hạng của dãy số.
+  \item Xét tính tăng, giảm của dãy số.
+  \item Xét tính bị chặn của dãy số.
+  \item Tính tổng của dãy số.
+  \item Xác định công thức số hạng tổng quát từ quy luật.
+\end{enumerate}
+
+% --- 1.2.2 Cấp số cộng ---
+\subsubsection{Cấp số cộng}
+
+\begin{dinhnghia}
+  Dãy $(u_n)$ là \textbf{cấp số cộng} (CSC) nếu:
+  \[
+    u_{n+1} - u_n = d,\quad \forall n \ge 1
+  \]
+  với $d$ là hằng số, gọi là \textbf{công sai}.
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Số hạng tổng quát: $u_n = u_1 + (n-1)d$.
+    \item Công sai: $d = \dfrac{u_p - u_q}{p - q}$; \quad $u_1 = u_p - (p-1)d$.
+    \item Tính chất: $u_k = \dfrac{u_{k-1} + u_{k+1}}{2}$ \;($k \ge 2$).
+    \item Tổng $n$ số hạng đầu:
+      \[
+        S_n = n\,\frac{u_1 + u_n}{2}
+            = n\,u_1 + \frac{n(n-1)}{2}\,d.
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{luuy}
+  $d > 0$: CSC tăng. \quad $d < 0$: CSC giảm. \quad $d = 0$: CSC hằng.
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Nhận diện cấp số cộng.
+  \item Tìm công thức của cấp số cộng.
+  \item Tìm hạng tử trong cấp số cộng.
+  \item Tính tổng và bài toán liên quan.
+  \item Chứng minh một dãy là cấp số cộng.
+  \item Xác định các đại lượng của cấp số cộng.
+  \item Tổng $n$ số hạng đầu tiên của cấp số cộng.
+\end{enumerate}
+
+% --- 1.2.3 Cấp số nhân ---
+\subsubsection{Cấp số nhân}
+
+\begin{dinhnghia}
+  Dãy $(u_n)$ là \textbf{cấp số nhân} (CSN) nếu $u_1 \ne 0$ và:
+  \[
+    \frac{u_{n+1}}{u_n} = q,\quad \forall n \ge 1
+  \]
+  với $q \ne 0$ là hằng số, gọi là \textbf{công bội}.
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Số hạng tổng quát: $u_n = u_1 \cdot q^{n-1}$.
+    \item Tổng $n$ số hạng đầu ($q \ne 1$):
+      \[
+        S_n = u_1 \cdot \frac{1 - q^n}{1 - q} = u_1 \cdot \frac{q^n - 1}{q - 1}.
+      \]
+    \item Tính chất: $u_k^2 = u_{k-1} \cdot u_{k+1}$ \;($k \ge 2$).
+  \end{itemize}
+\end{congthuc}
+
+\begin{luuy}
+  Lãi suất kép liên quan CSN: sau $n$ kỳ hạn, số tiền $A = A_0\,(1 + r)^n$.
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Nhận diện cấp số nhân.
+  \item Tìm công thức của cấp số nhân.
+  \item Tìm hạng tử trong cấp số nhân.
+  \item Tính tổng và bài toán liên quan.
+  \item Chứng minh một dãy là cấp số nhân.
+  \item Xác định các đại lượng của cấp số nhân.
+  \item Tổng $n$ số hạng đầu tiên của cấp số nhân.
+\end{enumerate}
+
+% ------ 1.3 Giới hạn ------
+\subsection{Giới hạn}
+
+% --- 1.3.1 Giới hạn của dãy số ---
+\subsubsection{Giới hạn của dãy số}
+
+\begin{dinhnghia}
+  Dãy $(u_n)$ có \textbf{giới hạn} $L$ khi $n \to +\infty$:
+  \[
+    \lim_{n \to +\infty} u_n = L
+    \qquad\text{(viết tắt: } \lim u_n = L\text{)}.
+  \]
+  Nếu $\lim u_n$ không tồn tại hoặc bằng $\pm\infty$, ta nói dãy \textbf{phân kỳ}.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các giới hạn cơ bản}]
+  \begin{itemize}
+    \item $\lim c = c$ \;($c$ là hằng số).
+    \item $\lim \dfrac{1}{n^k} = 0$ \;($k > 0$).
+    \item $\lim q^n = 0$ nếu $|q| < 1$; \quad $\lim q^n = +\infty$ nếu $q > 1$.
+    \item $\lim n^k = +\infty$ \;($k > 0$).
+    \item Nếu $|u_n| \le |v_n|$ và $\lim v_n = 0$ thì $\lim u_n = 0$.
+    \item Nếu $\lim u_n = a \ne 0$ và $\lim v_n = 0$ thì $\lim \dfrac{u_n}{v_n} = \pm\infty$.
+    \item Nếu $\lim u_n = a > 0$ và $\lim v_n = +\infty$ thì $\lim(u_n \cdot v_n) = +\infty$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Quy tắc tính giới hạn}]
+  Nếu $\lim u_n = L$ và $\lim v_n = M$ thì:
+  \begin{itemize}
+    \item $\lim(u_n \pm v_n) = L \pm M$.
+    \item $\lim(u_n \cdot v_n) = L \cdot M$.
+    \item $\lim \dfrac{u_n}{v_n} = \dfrac{L}{M}$ \;(khi $M \ne 0$).
+    \item $\lim(k \cdot u_n) = k \cdot L$.
+    \item $\lim |u_n| = |L|$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý kẹp (Sandwich)}]
+  Nếu $u_n \le v_n \le w_n$ (với mọi $n$ đủ lớn) và $\lim u_n = \lim w_n = L$ thì $\lim v_n = L$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Xử lý dạng vô định}]
+  \begin{itemize}
+    \item $\dfrac{\infty}{\infty}$: chia tử và mẫu cho lũy thừa cao nhất của $n$.
+    \item $\dfrac{0}{0}$: phân tích tử và mẫu thành nhân tử, rút gọn.
+    \item $\infty - \infty$: nhân lượng liên hợp hoặc chuyển về $\dfrac{0}{0}$, $\dfrac{\infty}{\infty}$.
+    \item $0 \cdot \infty$: chuyển về $\dfrac{0}{0}$ hoặc $\dfrac{\infty}{\infty}$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{congthuc}[title={Cấp số nhân lùi vô hạn}]
+  Khi $|q| < 1$: \;$\lim q^n = 0$, nên:
+  \[
+    S = \lim S_n = \frac{u_1}{1 - q}.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  $\displaystyle\lim \frac{3n^2 + 1}{n^2 - 2}
+  = \lim \frac{3 + \frac{1}{n^2}}{1 - \frac{2}{n^2}}
+  = \frac{3}{1} = 3.$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh dãy số có giới hạn $0$.
+  \item Tìm giới hạn bằng $0$ của dãy số.
+  \item Tính giới hạn dạng $u_n = \dfrac{P(n)}{Q(n)}$.
+  \item Nhân lượng liên hợp.
+  \item Dãy $(u_n)$ cho bằng tổng hoặc tích $n$ số hạng.
+  \item Dãy cho bằng công thức truy hồi.
+  \item Giới hạn dãy chứa đa thức hoặc căn theo $n$.
+  \item Giới hạn dãy chứa lũy thừa bậc $n$.
+  \item Dãy số dạng phân thức.
+  \item Dãy số chứa căn thức.
+  \item Dãy số chứa lũy thừa.
+  \item Tổng cấp số nhân lùi vô hạn.
+\end{enumerate}
+
+% --- 1.3.2 Giới hạn của hàm số ---
+\subsubsection{Giới hạn của hàm số}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to a} f(x) = L$: giá trị mà $f(x)$ tiến về khi $x \to a$ \;($x \ne a$).
+    \item \textbf{Giới hạn một bên:}
+      $\displaystyle\lim_{x \to a^-} f(x)$ (bên trái), \quad
+      $\displaystyle\lim_{x \to a^+} f(x)$ (bên phải).
+    \item $\displaystyle\lim_{x \to a} f(x) = L$ khi và chỉ khi
+      $\displaystyle\lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Quy tắc tính}]
+  Nếu $\displaystyle\lim_{x \to a} f(x) = L$ và $\displaystyle\lim_{x \to a} g(x) = M$ thì:
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to a}\bigl[f(x) \pm g(x)\bigr] = L \pm M$.
+    \item $\displaystyle\lim_{x \to a}\bigl[f(x) \cdot g(x)\bigr] = L \cdot M$.
+    \item $\displaystyle\lim_{x \to a}\frac{f(x)}{g(x)} = \frac{L}{M}$ \;(khi $M \ne 0$).
+  \end{itemize}
+  Đặc biệt: $\displaystyle\lim_{x \to a} x = a$ và $\displaystyle\lim_{x \to a} c = c$.
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Tiệm cận}]
+  \begin{itemize}
+    \item \textbf{Tiệm cận ngang} $y = L$ nếu $\displaystyle\lim_{x \to \pm\infty} f(x) = L$.
+    \item \textbf{Tiệm cận đứng} $x = a$ nếu $\displaystyle\lim_{x \to a^{\pm}} f(x) = \pm\infty$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nguyên lý kẹp (cho hàm số)}]
+  Nếu $f(x) \le g(x) \le h(x)$ trong lân cận $a$
+  và $\displaystyle\lim_{x \to a} f(x) = \lim_{x \to a} h(x) = L$
+  thì $\displaystyle\lim_{x \to a} g(x) = L$.
+\end{dinhly}
+
+\begin{vidu}
+  $\displaystyle\lim_{x \to 1} \frac{x^2 - 1}{x - 1}
+  = \lim_{x \to 1} \frac{(x-1)(x+1)}{x-1}
+  = \lim_{x \to 1} (x+1) = 2.$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Hàm số có giới hạn hữu hạn tại $x_0$ (không vô định).
+  \item Dạng vô định $\dfrac{0}{0}$.
+  \item Dạng vô định $\dfrac{\infty}{\infty}$.
+  \item Dạng vô định $\infty - \infty$.
+  \item Dạng vô định $0 \cdot \infty$.
+  \item Giới hạn hữu hạn.
+  \item Giới hạn một bên.
+  \item Giới hạn vô cùng.
+  \item Liên quan đến hàm ẩn.
+\end{enumerate}
+
+% --- 1.3.3 Hàm số liên tục ---
+\subsubsection{Hàm số liên tục}
+
+\begin{dinhnghia}
+  Hàm số $f(x)$ \textbf{liên tục tại} $x_0$ nếu:
+  \[
+    \lim_{x \to x_0} f(x) = f(x_0).
+  \]
+  Hàm số không liên tục tại $x_0$ gọi là \textbf{gián đoạn} tại $x_0$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $f(x)$ \textbf{liên tục trên} $(a;\,b)$: liên tục tại mọi điểm trong $(a;\,b)$.
+    \item $f(x)$ \textbf{liên tục trên} $[a;\,b]$: liên tục trên $(a;\,b)$, liên tục phải tại $a$ và liên tục trái tại $b$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Nếu $f(x)$ và $g(x)$ liên tục tại $x_0$ thì:
+  \begin{itemize}
+    \item $f(x) \pm g(x)$ và $f(x) \cdot g(x)$ liên tục tại $x_0$.
+    \item $\dfrac{f(x)}{g(x)}$ liên tục tại $x_0$ nếu $g(x_0) \ne 0$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý giá trị trung gian}]
+  Nếu $f(x)$ liên tục trên $[a;\,b]$ và $f(a) \cdot f(b) < 0$ thì tồn tại ít nhất một $c \in (a;\,b)$ sao cho $f(c) = 0$.
+\end{dinhly}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Hàm số liên tục tại một điểm (xét tính liên tục, bài toán tham số).
+  \item Hàm số liên tục trên một khoảng.
+  \item Chứng minh phương trình có nghiệm.
+\end{enumerate}
+
+% ------ 1.4 Hàm số mũ và hàm số logarit ------
+\subsection{Hàm số mũ và hàm số logarit}
+
+% --- 1.4.1 Lũy thừa ---
+\subsubsection{Lũy thừa (mở rộng)}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $a^n = \underbrace{a \cdot a \cdots a}_{n}$ \;($n$ thừa số, $a$: cơ số, $n$: số mũ).
+    \item $a^0 = 1$ \;($a \ne 0$). \quad $a^{-n} = \dfrac{1}{a^n}$ \;($a \ne 0$).
+    \item $a^{m/n} = \sqrt[n]{a^m}$ \;($a > 0$, $n \in \mathbb{N}^*$, $n \ge 2$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tính chất lũy thừa}]
+  Với $a > 0$, $b > 0$ và $x,\, y \in \mathbb{R}$:
+  \begin{align}
+    a^x \cdot a^y &= a^{x+y}, &
+    \frac{a^x}{a^y} &= a^{x-y}, \\
+    (a^x)^y &= a^{xy}, &
+    (ab)^x &= a^x \cdot b^x.
+  \end{align}
+  So sánh:
+  \begin{itemize}
+    \item $a > 1$: \;$a^m > a^n \;\Leftrightarrow\; m > n$.
+    \item $0 < a < 1$: \;$a^m > a^n \;\Leftrightarrow\; m < n$.
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính giá trị biểu thức.
+  \item Biến đổi, rút gọn, biểu diễn biểu thức.
+  \item Bài toán lãi suất kép -- dân số.
+\end{enumerate}
+
+% --- 1.4.2 Logarit ---
+\subsubsection{Logarit}
+
+\begin{dinhnghia}
+  $\log_a b = c$ nghĩa là $a^c = b$ \;($a > 0$, $a \ne 1$, $b > 0$).
+  \begin{itemize}
+    \item \textbf{Logarit tự nhiên:} $\ln x = \log_e x$ \;($e \approx 2{,}718$).
+    \item \textbf{Logarit thập phân:} $\lg x = \log_{10} x$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tính chất logarit}]
+  Với $a > 0$, $a \ne 1$, $x > 0$, $y > 0$:
+  \begin{align}
+    \log_a 1 &= 0, & \log_a a &= 1, \\
+    \log_a(xy) &= \log_a x + \log_a y, &
+    \log_a\frac{x}{y} &= \log_a x - \log_a y, \\
+    \log_a(x^n) &= n\,\log_a x.
+  \end{align}
+  \textbf{Đổi cơ số:}
+  \[
+    \log_a b = \frac{\log_c b}{\log_c a},\qquad
+    \log_a b = \frac{1}{\log_b a}.
+  \]
+\end{congthuc}
+
+% --- 1.4.3 Hàm số mũ ---
+\subsubsection{Hàm số mũ}
+
+\begin{dinhnghia}
+  $y = a^x$ \;($a > 0$, $a \ne 1$):
+  \begin{itemize}
+    \item TXĐ: $\mathbb{R}$. \quad Tập giá trị: $(0;\,+\infty)$.
+    \item $a > 1$: hàm đồng biến. \quad $0 < a < 1$: hàm nghịch biến.
+    \item Đồ thị luôn đi qua $(0;\,1)$.
+  \end{itemize}
+\end{dinhnghia}
+
+% --- 1.4.4 Hàm số logarit ---
+\subsubsection{Hàm số logarit}
+
+\begin{dinhnghia}
+  $y = \log_a x$ \;($a > 0$, $a \ne 1$):
+  \begin{itemize}
+    \item TXĐ: $(0;\,+\infty)$. \quad Tập giá trị: $\mathbb{R}$.
+    \item $a > 1$: đồng biến. \quad $0 < a < 1$: nghịch biến.
+    \item Đồ thị luôn đi qua $(1;\,0)$.
+    \item $y = \log_a x$ là hàm ngược của $y = a^x$.
+  \end{itemize}
+\end{dinhnghia}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm tập xác định của hàm số mũ -- logarit.
+  \item Đồ thị hàm số mũ -- logarit.
+  \item Bài toán lãi suất kép.
+\end{enumerate}
+
+% --- 1.4.5 PT, BPT mũ và logarit ---
+\subsubsection{Phương trình, bất phương trình mũ và logarit}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{PT mũ cơ bản:} $a^x = b \;\Rightarrow\; x = \log_a b$ \;($b > 0$).
+    \item \textbf{PT logarit cơ bản:} $\log_a x = b \;\Rightarrow\; x = a^b$.
+    \item \textbf{Điều kiện:} biểu thức trong logarit phải $> 0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Bất phương trình}]
+  \begin{itemize}
+    \item $a > 1$:
+      \;$a^{f(x)} > a^{g(x)} \;\Leftrightarrow\; f(x) > g(x)$;
+      \;\;$\log_a f(x) > \log_a g(x) \;\Leftrightarrow\; f(x) > g(x) > 0$.
+    \item $0 < a < 1$:
+      \;$a^{f(x)} > a^{g(x)} \;\Leftrightarrow\; f(x) < g(x)$;
+      \;\;$\log_a f(x) > \log_a g(x) \;\Leftrightarrow\; 0 < f(x) < g(x)$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Giải $2^x = 16$: \;$2^x = 2^4 \;\Rightarrow\; x = 4$.
+    \item Giải $\log_2(x - 1) = 3$: \;$x - 1 = 2^3 = 8 \;\Rightarrow\; x = 9$.
+    \item Giải $3^{2x-1} > 27 = 3^3$: \;$2x - 1 > 3 \;\Rightarrow\; x > 2$.
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Phương trình mũ.
+  \item Phương trình logarit.
+  \item Bất phương trình mũ.
+  \item Bất phương trình logarit.
+\end{enumerate}
+
+% ------ 1.5 Đạo hàm ------
+\subsection{Đạo hàm}
+
+\begin{dinhnghia}
+  Đạo hàm của $f(x)$ tại $x_0$:
+  \[
+    f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h}
+  \]
+  nếu giới hạn trên tồn tại và hữu hạn. Hàm số $f(x)$ có đạo hàm trên $(a;\,b)$ nếu nó có đạo hàm tại mọi điểm thuộc $(a;\,b)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Ý nghĩa}]
+  \begin{itemize}
+    \item \textbf{Hình học:} $f'(x_0)$ là hệ số góc của tiếp tuyến với đồ thị $y = f(x)$ tại $M\bigl(x_0;\, f(x_0)\bigr)$.
+    \item \textbf{Phương trình tiếp tuyến} tại $M(x_0;\, y_0)$:
+      \[
+        y - y_0 = f'(x_0)(x - x_0), \qquad y_0 = f(x_0).
+      \]
+    \item \textbf{Vật lý:} vận tốc tức thời $v(t) = s'(t)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bảng đạo hàm cơ bản}]
+  \begin{align}
+    (c)' &= 0, &
+    (x^n)' &= n\,x^{n-1}, \\[2pt]
+    (\sqrt{x})' &= \frac{1}{2\sqrt{x}}, &
+    \left(\frac{1}{x}\right)' &= -\frac{1}{x^2}, \\[4pt]
+    (\sin x)' &= \cos x, &
+    (\cos x)' &= -\sin x, \\[2pt]
+    (\tan x)' &= \frac{1}{\cos^2 x}, &
+    (\cot x)' &= -\frac{1}{\sin^2 x}.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Đạo hàm hàm mũ -- logarit}]
+  \begin{align}
+    (e^x)' &= e^x, &
+    (a^x)' &= a^x\,\ln a, \\[2pt]
+    (\ln x)' &= \frac{1}{x}, &
+    (\log_a x)' &= \frac{1}{x\,\ln a}.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Quy tắc tính đạo hàm}]
+  \begin{align}
+    (u \pm v)' &= u' \pm v', \\
+    (k \cdot u)' &= k \cdot u', \\
+    (u \cdot v)' &= u'\,v + u\,v', \\[2pt]
+    \left(\frac{u}{v}\right)' &= \frac{u'\,v - u\,v'}{v^2} \quad (v \ne 0), \\[4pt]
+    \left(\frac{1}{v}\right)' &= -\frac{v'}{v^2}.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Đạo hàm hàm hợp}]
+  Nếu $y = f(u)$ với $u = u(x)$ thì:
+  \[
+    y'_x = f'(u) \cdot u'(x).
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Đạo hàm cấp hai}]
+  \[
+    f''(x) = \bigl[f'(x)\bigr]'.
+  \]
+  Ý nghĩa vật lý: gia tốc tức thời $a(t) = v'(t) = s''(t)$.
+\end{congthuc}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $y = x^3 - 3x^2 + 2 \;\Rightarrow\; y' = 3x^2 - 6x$.
+    \item $y = \sin(2x + 1) \;\Rightarrow\; y' = \cos(2x + 1) \cdot 2 = 2\cos(2x + 1)$.
+    \item Tiếp tuyến $y = x^2 - 4x + 3$ tại $x_0 = 1$: \\
+      $y_0 = 0$, \;$y' = 2x - 4$, \;$y'(1) = -2$.
+      Vậy: $y = -2(x - 1)$, tức $y = -2x + 2$.
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm tại một điểm.
+  \item Đạo hàm của hàm số trên một khoảng.
+  \item Ý nghĩa của đạo hàm.
+  \item Tính đạo hàm của hàm số thường gặp.
+  \item Bài toán tiếp tuyến.
+  \item Đạo hàm hàm số mũ.
+  \item Đạo hàm hàm số logarit.
+  \item Đạo hàm cấp hai.
+  \item Gia tốc.
+\end{enumerate}
+
+% ------ 1.6 Mẫu số liệu ghép nhóm ------
+\subsection{Mẫu số liệu ghép nhóm}
+
+\begin{dinhnghia}
+  \textbf{Mẫu số liệu ghép nhóm}: chia miền giá trị thành $k$ nhóm
+  $[a_1;\,a_2)$, $[a_2;\,a_3)$, $\ldots$, $[a_k;\,a_{k+1})$
+  với tần số tương ứng $n_1,\, n_2,\, \ldots,\, n_k$.
+
+  \medskip
+  Cỡ mẫu: $n = n_1 + n_2 + \cdots + n_k$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Số trung bình}]
+  \[
+    \bar{x} = \frac{n_1\,c_1 + n_2\,c_2 + \cdots + n_k\,c_k}{n},
+    \qquad c_i = \frac{a_i + a_{i+1}}{2} \;\text{(giá trị đại diện nhóm)}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Trung vị $M_e$}]
+  \begin{enumerate}
+    \item Xác định nhóm chứa trung vị: nhóm thứ $p$ sao cho tần số tích lũy vượt $\dfrac{n}{2}$.
+    \item Công thức:
+      \[
+        M_e = a_p + \frac{\dfrac{n}{2} - F_{p-1}}{n_p}\,(a_{p+1} - a_p),
+      \]
+      trong đó $F_{p-1} = n_1 + n_2 + \cdots + n_{p-1}$ \;(quy ước $F_0 = 0$).
+  \end{enumerate}
+\end{congthuc}
+
+\begin{congthuc}[title={Tứ phân vị}]
+  \begin{itemize}
+    \item \textbf{$Q_1$:} tìm nhóm chứa $Q_1$ (tần số tích lũy vượt $\frac{n}{4}$):
+      \[
+        Q_1 = a_p + \frac{\dfrac{n}{4} - F_{p-1}}{n_p}\,(a_{p+1} - a_p).
+      \]
+    \item \textbf{$Q_2 = M_e$} (trung vị).
+    \item \textbf{$Q_3$:} tìm nhóm chứa $Q_3$ (tần số tích lũy vượt $\frac{3n}{4}$):
+      \[
+        Q_3 = a_p + \frac{\dfrac{3n}{4} - F_{p-1}}{n_p}\,(a_{p+1} - a_p).
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Mốt $M_o$}]
+  \begin{enumerate}
+    \item Xác định nhóm có tần số lớn nhất (nhóm thứ $j$).
+    \item Công thức:
+      \[
+        M_o = a_j + \frac{n_j - n_{j-1}}{(n_j - n_{j-1}) + (n_j - n_{j+1})} \cdot h,
+      \]
+      trong đó $h = a_{j+1} - a_j$ (độ rộng nhóm), quy ước $n_0 = n_{k+1} = 0$.
+  \end{enumerate}
+\end{congthuc}
+
+% ------ 1.7 Xác suất ------
+\subsection{Xác suất}
+
+% --- 1.7.1 Các quy tắc ---
+\subsubsection{Các quy tắc tính xác suất}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Xác suất có điều kiện:}
+      \[
+        P(A \mid B) = \frac{P(A \cap B)}{P(B)},\qquad P(B) > 0.
+      \]
+    \item \textbf{Biến cố xung khắc:} $A \cap B = \varnothing$.
+    \item \textbf{Biến cố đối:} $P(\bar{A}) = 1 - P(A)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{Quy tắc cộng} (biến cố xung khắc):
+      \;$P(A \cup B) = P(A) + P(B)$.
+    \item \textbf{Quy tắc cộng} (tổng quát):
+      \;$P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+    \item \textbf{Công thức nhân:}
+      \;$P(A \cap B) = P(B) \cdot P(A \mid B)$.
+    \item Nếu $A$, $B$ \textbf{độc lập}:
+      \;$P(A \cap B) = P(A) \cdot P(B)$ \;và \;$P(A \mid B) = P(A)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Hộp có 3 bi đỏ, 7 bi xanh. Lấy lần lượt 2 bi không trả lại. \\
+  Gọi $A$: ``bi thứ 2 đỏ'', \;$B$: ``bi thứ 1 đỏ''.
+  \[
+    P(A) = P(B)\,P(A \mid B) + P(\bar{B})\,P(A \mid \bar{B})
+    = \frac{3}{10}\cdot\frac{2}{9} + \frac{7}{10}\cdot\frac{3}{9}
+    = \frac{6 + 21}{90} = \frac{3}{10}.
+  \]
+\end{vidu}
+
+% --- 1.7.2 Biến ngẫu nhiên ---
+\subsubsection{Biến ngẫu nhiên rời rạc}
+
+\begin{dinhnghia}
+  Biến ngẫu nhiên rời rạc $X$ nhận các giá trị $x_1,\, x_2,\, \ldots,\, x_n$ với xác suất tương ứng $p_1,\, p_2,\, \ldots,\, p_n$ \;($p_1 + p_2 + \cdots + p_n = 1$).
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{Kỳ vọng (giá trị trung bình):}
+      \[
+        E(X) = \sum_{i=1}^{n} x_i\, p_i.
+      \]
+    \item \textbf{Phương sai:}
+      \[
+        D(X) = \sum_{i=1}^{n} \bigl(x_i - E(X)\bigr)^2 p_i
+        = \sum_{i=1}^{n} x_i^2\, p_i - \bigl[E(X)\bigr]^2.
+      \]
+    \item \textbf{Độ lệch chuẩn:}
+      $\sigma(X) = \sqrt{D(X)}$.
+  \end{itemize}
+\end{congthuc}
+
+% ======================================================================
+%                      PHẦN 2: HÌNH HỌC
+% ======================================================================
+\section{Hình học}
+
+% ------ 2.1 Quan hệ song song ------
+\subsection{Đường thẳng và mặt phẳng trong không gian -- Quan hệ song song}
+
+% --- 2.1.1 Các khái niệm mở đầu ---
+\subsubsection{Các khái niệm mở đầu}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Ba đối tượng cơ bản: \textbf{điểm}, \textbf{đường thẳng}, \textbf{mặt phẳng}.
+    \item Ký hiệu: thuộc ($\in$), không thuộc ($\notin$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Các tính chất thừa nhận (tiên đề)}]
+  \begin{enumerate}
+    \item Qua 2 điểm phân biệt xác định duy nhất 1 đường thẳng.
+    \item Qua 3 điểm không thẳng hàng xác định duy nhất 1 mặt phẳng.
+    \item Tồn tại 4 điểm không cùng thuộc một mặt phẳng.
+    \item Nếu đường thẳng có 2 điểm thuộc mặt phẳng thì nằm trọn trong mặt phẳng đó.
+    \item Hai mặt phẳng có 1 điểm chung thì có chung 1 đường thẳng (giao tuyến).
+  \end{enumerate}
+\end{dinhly}
+
+\begin{tinhchat}[title={Cách xác định mặt phẳng}]
+  \begin{enumerate}
+    \item Đi qua 3 điểm không thẳng hàng.
+    \item Đi qua 1 điểm và 1 đường thẳng không đi qua điểm đó.
+    \item Chứa 2 đường thẳng cắt nhau.
+  \end{enumerate}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm giao tuyến của hai mặt phẳng.
+  \item Tìm giao điểm của đường thẳng và mặt phẳng.
+  \item Bài toán thiết diện.
+  \item Chứng minh ba điểm thẳng hàng -- ba đường thẳng đồng quy.
+\end{enumerate}
+
+% --- 2.1.2 Hai đường thẳng song song ---
+\subsubsection{Hai đường thẳng song song trong không gian}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Hai đường thẳng \textbf{đồng phẳng}: cùng nằm trên một mặt phẳng $\Rightarrow$ cắt nhau, song song, hoặc trùng nhau.
+    \item Hai đường thẳng \textbf{chéo nhau}: không cùng nằm trên bất kỳ mặt phẳng nào.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}
+  \begin{enumerate}
+    \item Qua 1 điểm ngoài đường thẳng, có duy nhất 1 đường thẳng song song với nó.
+    \item Nếu 2 đường thẳng cùng song song với đường thẳng thứ ba thì song song với nhau.
+    \item Nếu 3 mặt phẳng đôi một cắt nhau thì 3 giao tuyến phân biệt đồng quy hoặc đôi một song song.
+  \end{enumerate}
+\end{dinhly}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh hai đường thẳng song song.
+  \item Tìm giao tuyến của hai mặt phẳng.
+  \item Sử dụng yếu tố song song tìm thiết diện.
+\end{enumerate}
+
+% --- 2.1.3 Đường thẳng song song với mặt phẳng ---
+\subsubsection{Đường thẳng song song với mặt phẳng}
+
+\begin{dinhnghia}
+  Đường thẳng $d$ \textbf{song song} với mặt phẳng $(P)$ nếu $d$ và $(P)$ không có điểm chung. Ký hiệu: $d \parallel (P)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Dấu hiệu nhận biết}]
+  Nếu $d$ song song với một đường thẳng $d'$ nằm trong $(P)$ và $d \not\subset (P)$ thì $d \parallel (P)$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu $d$ và $(P)$ có đúng 1 điểm chung: $d$ cắt $(P)$.
+    \item Nếu $d$ và $(P)$ có nhiều hơn 1 điểm chung: $d \subset (P)$.
+    \item Nếu $d \parallel (P_1)$ và $d \parallel (P_2)$ thì $d$ song song với giao tuyến của $(P_1)$ và $(P_2)$ (nếu tồn tại).
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định, chứng minh đường thẳng song song mặt phẳng.
+  \item Tìm giao tuyến của hai mặt phẳng.
+  \item Xác định thiết diện và bài toán liên quan.
+  \item Giao điểm, giao tuyến liên quan đến đường thẳng song song với mặt phẳng.
+\end{enumerate}
+
+% --- 2.1.4 Hai mặt phẳng song song ---
+\subsubsection{Hai mặt phẳng song song}
+
+\begin{dinhnghia}
+  Hai mặt phẳng $(P)$ và $(Q)$ \textbf{song song} nếu không có điểm chung. Ký hiệu: $(P) \parallel (Q)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Dấu hiệu nhận biết}]
+  Nếu $(P)$ chứa 2 đường thẳng cắt nhau cùng song song với $(Q)$ thì $(P) \parallel (Q)$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu $(P) \parallel (Q)$ thì mọi mặt phẳng cắt $(P)$ đồng thời cắt $(Q)$, và hai giao tuyến song song.
+    \item Qua 1 điểm ngoài $(P)$ có duy nhất 1 mặt phẳng song song với $(P)$.
+    \item Hai mặt phẳng phân biệt cùng song song với mặt phẳng thứ ba thì song song với nhau.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh hai mặt phẳng song song.
+  \item Chứng minh đường thẳng song song với mặt phẳng.
+  \item Chứng minh hai đường thẳng song song.
+  \item Bài toán liên quan đến tỉ lệ độ dài.
+  \item Xác định giao tuyến.
+  \item Xác định thiết diện.
+\end{enumerate}
+
+% ------ 2.2 Quan hệ vuông góc ------
+\subsection{Quan hệ vuông góc trong không gian}
+
+% --- 2.2.1 Đường thẳng vuông góc mặt phẳng ---
+\subsubsection{Đường thẳng vuông góc với mặt phẳng}
+
+\begin{dinhnghia}
+  Đường thẳng $d$ \textbf{vuông góc} với mặt phẳng $(P)$ nếu $d$ vuông góc với mọi đường thẳng nằm trong $(P)$. Ký hiệu: $d \perp (P)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Dấu hiệu nhận biết}]
+  Nếu $d$ vuông góc với 2 đường thẳng cắt nhau trong $(P)$ thì $d \perp (P)$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Qua 1 điểm có duy nhất 1 đường thẳng vuông góc với $(P)$.
+    \item Qua 1 điểm có duy nhất 1 mặt phẳng vuông góc với đường thẳng $d$.
+    \item \textbf{Mặt phẳng trung trực} của $AB$: mặt phẳng đi qua trung điểm $M$ của $AB$ và vuông góc với $AB$.
+    \item Nếu $d \perp (P)$ thì mọi đường thẳng song song với $d$ đều vuông góc với $(P)$.
+    \item Hai đường thẳng phân biệt cùng vuông góc với $(P)$ thì song song với nhau.
+    \item Hai mặt phẳng phân biệt cùng vuông góc với một đường thẳng thì song song với nhau.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{luuy}
+  \textbf{Hệ quả:} Nếu một đường thẳng vuông góc với hai cạnh của tam giác thì vuông góc với cạnh còn lại (vì hai cạnh bất kỳ của tam giác luôn cắt nhau, nên xác định một mặt phẳng).
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh đường thẳng vuông góc với mặt phẳng.
+  \item Chứng minh hai đường thẳng vuông góc.
+\end{enumerate}
+
+% --- 2.2.2 Định lý ba đường vuông góc ---
+\subsubsection{Định lý ba đường vuông góc}
+
+\begin{dinhly}
+  Cho $d$ không vuông góc với $(P)$ và $b \subset (P)$. Gọi $d'$ là hình chiếu vuông góc của $d$ lên $(P)$. Khi đó:
+  \[
+    b \perp d \;\Leftrightarrow\; b \perp d'.
+  \]
+\end{dinhly}
+
+\begin{luuy}
+  Góc giữa $d$ và $(P)$ chính là góc giữa $d$ và hình chiếu $d'$ của nó lên $(P)$.
+\end{luuy}
+
+% --- 2.2.3 Góc giữa đường thẳng và mặt phẳng ---
+\subsubsection{Góc giữa đường thẳng và mặt phẳng}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Gọi $d'$ là hình chiếu vuông góc của $d$ lên $(P)$.
+    \item \textbf{Góc giữa $d$ và $(P)$:} là góc $\widehat{(d,\, d')}$; thuộc $[0^\circ;\, 90^\circ]$.
+    \item $d \perp (P)$: góc $= 90^\circ$. \quad $d \parallel (P)$ hoặc $d \subset (P)$: góc $= 0^\circ$.
+  \end{itemize}
+\end{dinhnghia}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định góc giữa đường thẳng và mặt phẳng.
+\end{enumerate}
+
+% --- 2.2.4 Hai mặt phẳng vuông góc ---
+\subsubsection{Hai mặt phẳng vuông góc}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Góc giữa hai mặt phẳng} $(P)$ và $(Q)$: gọi $\Delta$ là giao tuyến; lấy $O \in \Delta$, kẻ $a \subset (P)$ và $b \subset (Q)$ sao cho $a \perp \Delta$, $b \perp \Delta$ tại $O$. Góc $\widehat{(a,\,b)}$ là góc giữa $(P)$ và $(Q)$; thuộc $[0^\circ;\, 90^\circ]$.
+    \item \textbf{Hai mp vuông góc:} góc giữa chúng bằng $90^\circ$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Dấu hiệu nhận biết}]
+  Nếu $(P)$ chứa đường thẳng $d$ vuông góc với $(Q)$ thì $(P) \perp (Q)$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu $(P) \perp (Q)$ với giao tuyến $\Delta$, và $d \subset (P)$, $d \perp \Delta$ thì $d \perp (Q)$.
+    \item Nếu 2 mặt phẳng cùng vuông góc với mặt phẳng thứ 3 thì giao tuyến của chúng vuông góc với mặt phẳng thứ 3.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định góc giữa hai mặt phẳng bằng định nghĩa.
+  \item Xác định góc giữa hai mặt phẳng dựa trên giao tuyến.
+  \item Xác định góc giữa hai mặt phẳng bằng định lý hình chiếu.
+  \item Chứng minh hai mặt phẳng vuông góc.
+  \item Xác định quan hệ vuông góc giữa mp -- mp, mp -- đt.
+  \item Dùng mối quan hệ vuông góc giải bài toán thiết diện.
+  \item Dựng mặt phẳng vuông góc với mặt phẳng cho trước; thiết diện, diện tích.
+\end{enumerate}
+
+% --- 2.2.5 Khoảng cách ---
+\subsubsection{Khoảng cách}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{KC từ điểm $M$ đến đường thẳng $\Delta$:}
+      $d(M,\,\Delta) = MH$, với $H$ là hình chiếu vuông góc của $M$ lên $\Delta$.
+    \item \textbf{KC từ điểm $M$ đến mặt phẳng $(P)$:}
+      $d(M,\,(P)) = MH$, với $H$ là hình chiếu vuông góc của $M$ lên $(P)$.
+    \item \textbf{KC giữa 2 đường thẳng song song:}
+      lấy 1 điểm trên đường thẳng này, tính KC đến đường thẳng kia.
+    \item \textbf{KC giữa đường thẳng và mp song song:}
+      lấy 1 điểm trên đường thẳng, tính KC đến mp.
+    \item \textbf{KC giữa 2 mp song song:}
+      lấy 1 điểm trên mp này, tính KC đến mp kia.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Khoảng cách giữa 2 đường chéo nhau}]
+  \textbf{Đường vuông góc chung} của $d_1$ và $d_2$ (chéo nhau): đường thẳng cắt cả hai và vuông góc với cả hai. Khoảng cách giữa $d_1$ và $d_2$ là khoảng cách giữa 2 giao điểm trên đường vuông góc chung.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Các cách tính khoảng cách}]
+  \begin{enumerate}
+    \item \textbf{Dùng hình chiếu vuông góc:} dựng đường vuông góc, dùng Pythagore.
+    \item \textbf{Dùng thể tích:} $V = \frac{1}{3}\,S_{\text{đáy}} \cdot h$ $\;\Rightarrow\;$ $h = \frac{3V}{S_{\text{đáy}}}$.
+    \item \textbf{Dùng mặt phẳng trung gian:}
+      \begin{itemize}
+        \item KC giữa 2 đường chéo nhau $d_1$, $d_2$: dựng $(P) \parallel d_2$ chứa $d_1$, thì $d(d_1,\,d_2) = d(d_2,\,(P))$.
+      \end{itemize}
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{congthuc}[title={Công thức tọa độ (bổ sung)}]
+  \begin{itemize}
+    \item KC từ $M$ đến $\Delta$ (qua $M'$, VTCP $\vec{u}$):
+      \[
+        d(M,\,\Delta) = \frac{\bigl|\vec{u} \times \overrightarrow{M'M}\bigr|}{|\vec{u}|}.
+      \]
+    \item KC từ $M(x_0;\,y_0;\,z_0)$ đến mp $\;ax + by + cz + d = 0$:
+      \[
+        d\bigl(M,\,(P)\bigr) = \frac{|a\,x_0 + b\,y_0 + c\,z_0 + d|}{\sqrt{a^2 + b^2 + c^2}}.
+      \]
+    \item KC giữa 2 đường chéo nhau ($\Delta_1$ qua $M_1$ VTCP $\vec{u}_1$; $\Delta_2$ qua $M_2$ VTCP $\vec{u}_2$):
+      \[
+        d(\Delta_1,\,\Delta_2) = \frac{\bigl|(\vec{u}_1 \times \vec{u}_2) \cdot \overrightarrow{M_1 M_2}\bigr|}{|\vec{u}_1 \times \vec{u}_2|}.
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Khoảng cách từ một điểm tới một mặt phẳng.
+  \item Khoảng cách giữa hai đường thẳng chéo nhau.
+\end{enumerate}
+
+\end{document}
