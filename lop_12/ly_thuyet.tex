@@ -1,0 +1,787 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+
+\geometry{a4paper, margin=2cm}
+
+\begin{document}
+
+\section*{Lý thuyết Toán 12}
+\section{Đại số \& Giải tích}
+\subsection{Ứng dụng đạo hàm để khảo sát và vẽ đồ thị hàm số}
+\subsubsection{Tính đơn điệu của hàm số}
+\textbf{Định nghĩa}
+\begin{itemize}
+    \item Hàm số $y=f(x)$ gọi là \textbf{đồng biến (tăng)} trên $K$ nếu:
+\[
+\forall x_1,x_2 \in K,\; x_1<x_2 \Rightarrow f(x_1)<f(x_2)
+\]
+    \item Hàm số $y=f(x)$ gọi là \textbf{nghịch biến (giảm)} trên $K$ nếu:
+\[
+\forall x_1,x_2 \in K,\; x_1<x_2 \Rightarrow f(x_1)>f(x_2)
+\]
+    \item Hàm số đồng biến hoặc nghịch biến gọi chung là \textbf{đơn điệu}.
+\end{itemize}
+\textbf{Ứng dụng đạo hàm}
+\begin{itemize}
+    \item $f'(x) > 0$ trên khoảng $K$ $\Rightarrow$ $f(x)$ đồng biến trên $K$
+    \item $f'(x) < 0$ trên khoảng $K$ $\Rightarrow$ $f(x)$ nghịch biến trên $K$
+    \item $f'(x) = 0$ trên khoảng $K$ $\Rightarrow$ $f(x) = c$ không đổi (hàm hằng)
+\end{itemize}
+\textbf{Các bước xét đơn điệu}
+\begin{enumerate}
+    \item Tìm tập xác định
+    \begin{itemize}
+        \item $\dfrac{1}{P(x)}$ có nghĩa khi $P(x) \ne 0$
+        \item $\sqrt{P(x)}$ có nghĩa khi $P(x)\ge0$
+        \item $\dfrac{1}{\sqrt{P(x)}}$ có nghĩa khi $P(x)>0$
+    \end{itemize}
+    \item Tính $f'(x)$ và giải $f'(x)=0$
+    \item Lập bảng biến thiên (xét dấu $f'(x)$)
+    \item Kết luận khoảng đồng biến, nghịch biến
+\end{enumerate}
+Ví dụ:
+\[
+y=x^3-3x+2
+\]
+\textbf{Các dạng bài}
+\begin{itemize}
+    \item Dạng 1: Xét tính đơn điệu từ biểu thức
+    \item Dạng 2: Xét từ bảng biến thiên hoặc đồ thị
+    \item Dạng 3: Tìm tham số $m$ để hàm đơn điệu
+\end{itemize}
+
+\subsubsection{Cực trị của hàm số}
+\textbf{Định nghĩa}
+\begin{itemize}
+    \item Cực trị là giá trị mà khiến hàm số đổi chiều biến thiên
+    \item $f(x)$ đạt \textbf{cực đại} tại $x_0$ nếu tồn tại $h>0$ sao cho $f(x) < f(x_0), \forall x \in (x_0-h,x_0+h), x\ne x_0$
+    \item $f(x)$ đạt \textbf{cực tiểu} tại $x_0$ nếu tồn tại $h>0$ sao cho $f(x) > f(x_0), \forall x \in (x_0-h,x_0+h), x\ne x_0$
+\end{itemize}
+\textbf{Điều kiện}
+\begin{itemize}
+    \item $f'(x_0)=0$ và đổi dấu $+\to-$ $\Rightarrow$ cực đại
+    \item $f'(x_0)=0$ và đổi dấu $-\to+$ $\Rightarrow$ cực tiểu
+\end{itemize}
+\textbf{Ứng dụng hàm cấp hai} với $f'(x_0)=0$:
+\begin{itemize}
+    \item $f''(x_0)>0$ $\Rightarrow$ cực tiểu
+    \item $f''(x_0)<0$ $\Rightarrow$ cực đại
+\end{itemize}
+\textbf{Lưu ý}
+\begin{itemize}
+    \item Lưu ý: giá trị cực đại và cực tiểu không phải là GTLN và GTNN của hàm số
+    \item $f'(x_0)$ là hệ số góc tiếp tuyến tại $x_0$.
+    \begin{itemize}
+        \item Tiếp tuyến tại điểm $M(x_0, f(x_0))$: $y = f'(x_0)(x - x_0) + f(x_0)$
+        \item Tiếp tuyến có hệ số góc k: giải $f'(x_0) = k$, rồi viết phương trình tiếp tuyến
+    \end{itemize}
+    \item Tiếp tuyến tại điểm cực trị song song trục $Ox$.
+\end{itemize}
+\textbf{Các bước}
+\begin{enumerate}
+    \item Tìm tập xác định
+    \item Tính $f'(x)$
+    \item Giải $f'(x)=0$
+    \item Lập bảng biến thiên hoặc xét $f''(x)$
+    \item Kết luận cực trị
+\end{enumerate}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Tìm cực trị của hàm số cho bởi biểu thức.
+    \item Dạng 2: Riêng về cực trị hàm bậc 3
+    \item Dạng 3: Riêng về cực trị hàm trùng phương
+    \item Dạng 4: Cực trị của hàm $y = |f(x)|, y = f(|x|)$
+    \item Dạng 5: Tìm cực trị của hàm số khi biết biểu thức $f(x)$, $f'(x)$
+    \item Dạng 6: Tìm $m$ để hàm số đạt cực trị tại $x = x_0$
+    \begin{itemize}
+        \item Tính $f'(x_0) = 0$, tìm $m$
+        \item Thế $m$ vào $f''(x_0)$ nếu $f''(x_0) > 0$ cực tiểu, $f''(x_0) < 0$ cực đại
+    \end{itemize}
+    \item Dạng 7: Hàm số đa thức bậc cao, hàm căn thức
+    \item Dạng 8: Tìm $m$ để hàm số có $n$ cực trị
+    \begin{itemize}
+        \item $f'(x)$ có n nghiệm phân biệt
+    \end{itemize}
+    \item Dạng 9: Đường thẳng đi qua 2 điểm cực trị
+    \begin{itemize}
+        \item Thực hiện phép chia $y$ cho $y'$, phân tích ra: $y = y'. q(x) + h(x)$
+        \item $y_0 = h(x_0)$ vì $y'$ tại $x_0 = 0$
+        \item $(d): y = h(x)$
+    \end{itemize}
+    \item Dạng 10: Tìm $m$ để hàm số bậc 3 có cực trị thỏa mãn điều kiện cho trước
+    \item Dạng 11: Tìm $m$ để hàm số trùng phương có cực trị thỏa mãn điều kiện cho trước
+    \item Dạng 12: Tìm $m$ để hàm số bậc 2 trên bậc 1 có cực trị thỏa mãn điều kiện cho trước
+    \item Dạng 13: Bài toán cực trị hàm số chứa dấu trị tuyệt đối
+    \begin{itemize}
+        \item $y = |f(x)| \Rightarrow y = \sqrt{f^2(x)}$
+        \item $y' = \dfrac{2.f(x).f'(x)}{\sqrt{f^2(x)}} = 0 \Rightarrow f(x) = 0$ hoặc $f'(x) = 0$
+    \end{itemize}
+    \item Dạng 14: Số điểm cực trị của hàm hợp
+    \begin{itemize}
+        \item $y = f(g(x)) \rightarrow y' = g'(x).f'(g(x)) = 0 \rightarrow g'(x) = 0$ hoặc $f'(g(x)) = 0$
+    \end{itemize}
+    \item Dạng 15: Tìm $m$ để hàm số $f(g(x))$ thỏa mãn điều kiện cho trước
+    \item Dạng 16: Tìm cực trị của hàm số hợp $f(g(x))$ hoặc $f(g(x)) + h(x)$ khi biết đồ thị hàm số $f(x)$ hoặc $f'(x)$
+\end{itemize}
+\subsubsection{Giá trị lớn nhất – nhỏ nhất}
+\textbf{Định nghĩa}
+\begin{itemize}
+    \item $\max f(x)=M$ nếu tồn tại $M$ sao cho $f(x)\le M$ và tồn tại $x_0$ sao cho $f(x_0)=M$
+    \item $\min f(x)=m$ nếu tồn tại $m$ sao cho $f(x)\ge m$ và tồn tại $x_0$ sao cho $f(x_0)=m$
+\end{itemize}
+\textbf{Trên đoạn $[a,b]$}
+\begin{itemize}
+    \item So sánh $f(a), f(b), f(x_i)$ với $f'(x_i)=0$ lấy max và min
+\end{itemize}
+\textbf{Tính chất}
+\begin{itemize}
+    \item Nếu $f$ đồng biến trên $[a,b]$:
+\[
+\max f(x)=f(b)
+\]
+\[
+\min f(x)=f(a)
+\]
+    \item Nếu $f$ nghịch biến trên $[a,b]$:
+\[
+\max f(x)=f(a)
+\]
+\[
+\min f(x)=f(b)
+\]
+\end{itemize}
+\textbf{Bất đẳng thức thường dùng}
+\begin{itemize}
+    \item AM-GM (cô-si): $\forall a, b \ge 0$
+\[
+a+b\ge 2\sqrt{ab}
+\]
+
+dấu = xảy ra $\Leftrightarrow a=b$
+    \item Bunhiacopxki
+\[
+|ax+by|\le\sqrt{(a^2+b^2)(x^2+y^2)}
+\]
+
+dấu = xảy ra $\Leftrightarrow ay=bx$
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Tìm max - min trên đoạn bằng hàm số cụ thể, bảng biến thiên, đồ thị hàm số cho trên đoạn và khoảng.
+    \item Dạng 2: Tìm max - min bằng phương pháp đổi biến
+    \item Dạng 3: Một số bài toán có chứa tham số m
+    \item Dạng 4: Phương pháp đặt ẩn phụ để giải quyết bài toán tìm điều kiện của tham số $m$ sao cho phương trình $f(x, m) = 0$ có nghiệm (có ứng dụng GTLN, GTNN)
+    \item Dạng 5: Phương pháp đặt ẩn phụ để giải quyết bài toán tìm điều kiện của tham số m để bất phương trình có - nghiệm hoặc nghiệm đúng với mọi $x \in k$ (có ứng dụng GTLN, GTNN)
+    \item Dạng 6: Bài toán thực tế
+    \begin{itemize}
+        \item Bất đẳng thức AM - GM (Cô-si)
+        \item Bất đẳng thức Bunhiacopxki
+    \end{itemize}
+    \item Dạng 7: Xác định giá trị lớn nhất – giá trị nhỏ nhất của hàm số thông qua đồ thị, bảng biến thiên
+    \item Dạng 8: Xác định giá trị lớn nhất – giá trị nhỏ nhất của hàm số trên đoạn
+    \item Dạng 9: Xác định giá trị lớn nhất – giá trị nhỏ nhất của hàm số trên khoảng
+    \begin{itemize}
+        \item với 2 đầu mút tính lim $x \to a^+$ và lim $x \to b^-$
+    \end{itemize}
+    \item Dạng 10: Xác định m để GTLN-GTNN của hàm số thỏa mãn điều kiện cho trước
+    \item Dạng 11: Định m để GTLN-GTNN của hàm số chứa dấu giá trị tuyệt đối thỏa mãn điều kiện cho trước (khó)
+    \item Dạng 12: Giá trị lớn nhất – giá trị nhỏ nhất hàm ẩn, hàm hợp
+    \item Dạng 13: Ứng dụng GTLN-GTNN giải bài toán thực tế
+\end{itemize}
+\subsubsection{Đường tiệm cận}
+\begin{itemize}
+    \item \textbf{Tiệm cận ngang} $y=L$ nếu $\lim_{x\to\pm\infty}f(x)=L$
+    \item \textbf{Tiệm cận đứng} $x=a$ nếu $\lim_{x\to a^\pm}f(x)=\pm\infty$
+    \item \textbf{Tiệm cận xiên} $y=ax+b$ với $a=\lim_{x\to\infty}\dfrac{f(x)}{x}$ và $b=\lim_{x\to\infty}[f(x)-ax]$
+\end{itemize}
+\textbf{Hàm phân thức} $y=\dfrac{ax+b}{cx+d}$
+\[
+\text{TCĐ: } x=-\frac{d}{c}
+\]
+\[
+\text{TCN: } y=\frac{a}{c}
+\]
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Tìm tiệm cận của đồ thị hàm số cho bởi công thức
+    \item Dạng 2: Tìm tiệm cận của đồ thị hàm số biết BBT của hàm số, đồ thị của hàm số đó hoặc hàm số liên quan
+    \item Dạng 3: Tiệm cận của đồ thị hàm số hàm hợp
+    \item Dạng 4: Một số bài toán về tiệm cận chứa tham số $m$
+    \item Dạng 5: Xác định đường tiệm cận thông qua bảng biến thiên, đồ thị
+    \item Dạng 6: Xác định đường tiệm cận đồ thị hàm số thông qua hàm số cho trước
+\end{itemize}
+\subsection{Khảo sát sự biến thiên và vẽ đồ thị hàm số}
+\begin{itemize}
+    \item Sơ đồ khảo sát hàm số:
+    \begin{itemize}
+        \item Tìm tập xác định
+        \item Tính đạo hàm, giải $f'(x) = 0$ hoặc tìm những điểm đạo hàm không tồn tại
+        \item Tìm giới hạn $\pm\infty$, $a^\pm$ để tìm tiệm cận
+        \item Lập bảng biến thiên, xét dấu $f'(x)$, tìm cực trị
+        \item Tìm các điểm đặc biệt: giao $Ox$, $Oy$, điểm đối xứng
+        \item Vẽ đồ thị
+    \end{itemize}
+    \item Các dạng hàm số thường khảo sát:
+    \begin{itemize}
+        \item Hàm bậc ba: $y = ax^3 + bx^2 + cx + d$
+        \item Hàm trùng phương: $y = ax^4 + bx^2 + c$
+        \item Hàm phân thức bậc nhất / bậc nhất: $y = \dfrac{ax + b}{cx + d}$
+        \item Hàm phân thức bậc hai / bậc nhất: $y = \dfrac{ax^2 + bx + c}{px + q}$
+    \end{itemize}
+    \item Ví dụ: Khảo sát và vẽ đồ thị hàm số $y = x^3 - 3x^2 + 2$.
+    \item Ứng dụng đồ thị
+    \begin{itemize}
+        \item Dùng đồ thị biện luận số nghiệm phương trình $f(x) = m$
+        \item Tìm m để phương trình có 1 nghiệm, 2 nghiệm, 3 nghiệm
+    \end{itemize}
+    \item Ví dụ: Dựa vào đồ thị $y = x^3 - 3x$, tìm $m$ để $x^3 - 3x = m$ có 3 nghiệm phân biệt.
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Nhận dạng hàm số thường gặp thông qua đồ thị
+    \begin{itemize}
+        \item Hàm số bậc 3
+        \item Hàm số trùng phương
+        \item Hàm số nhất biến (bậc nhất / bậc nhất)
+    \end{itemize}
+    \item Dạng 2: Xét dấu của các hệ số hàm số thông qua đồ thị
+    \item Dạng 3: Đồ thị hàm số chứa dấu giá trị tuyệt đối
+    \item Dạng 4: Bài toán tương giao đồ thị thông qua đồ thị, bảng biến thiên
+    \item Dạng 5: Bài toán tương giao đồ thị thông qua hàm số cho trước
+    \item Dạng 6: Bài toán tương giao đường thẳng với đồ thị hàm số bậc 3
+    \item Dạng 7: Bài toán tương giao của đường thẳng với đồ thị hàm số nhất biến
+    \item Dạng 8: Bài toán tương giao của đường thẳng với hàm số trùng phương
+\end{itemize}
+
+\subsection{Nguyên hàm}
+\[
+F'(x)=f(x)
+\]
+
+thì
+\[
+\int f(x)dx=F(x)+C
+\]
+\textbf{Bảng nguyên hàm}
+\[
+\int x^n dx=\frac{x^{n+1}}{n+1}+C
+\]
+\[
+\int \frac{1}{x}dx=\ln|x|+C
+\]
+\[
+\int e^x dx=e^x+C
+\]
+\[
+\int a^x dx = \frac{a^x}{\ln a} + C, (a > 0, a \ne 1)
+\]
+\[
+\int \sin x dx=-\cos x+C
+\]
+\[
+\int \cos x dx=\sin x+C
+\]
+\[
+\int \frac{1}{\cos^2 x} dx = \tan x + C
+\]
+\[
+\int \frac{1}{\sin^2 x} dx = -\cot x + C
+\]
+\textbf{Tính chất}
+\[
+\int k.f(x) dx = k . \int f(x)dx
+\]
+\[
+\int (f(x) + g(x))dx = \int f(x)dx + \int g(x)dx
+\]
+\textbf{Nguyên hàm hàm hợp}
+\[
+\int f(u(x)) \cdot u'(x) dx = F(u(x)) + C
+\]
+\textbf{Nguyên hàm từng phần}
+\[
+\int u\,dv=uv-\int v\,du
+\]
+\textbf{Lưu ý}
+\begin{itemize}
+  \item $f(x)$ liên tục trên $K$ thì có nguyên hàm trên $K$
+  \item $f(x)dx$ là vi phân của $F(x)$, ký hiệu $dF(x)$ = $F'(x)dx$ = $f(x)dx$
+\end{itemize}
+
+\subsection{Tích phân}
+\[
+\int_a^b f(x)dx = F(x)|_a^b = F(b)-F(a)
+\]
+\textbf{Tính chất}
+\[
+\int_a^a f(x)dx=0
+\]
+\[
+\int_a^b f(x)dx=-\int_b^a f(x)dx
+\]
+\[
+\int_a^b k.f(x) dx = k . \int_a^b f(x)dx
+\]
+\[
+\int_a^b (f(x)+g(x))dx=\int_a^b f(x)dx+\int_a^b g(x)dx
+\]
+\[
+\int_a^b f(x)dx=\int_a^c f(x)dx+\int_c^b f(x)dx
+\]
+\begin{itemize}
+    \item $f(x) \ge 0$ trên $[a, b] \Rightarrow \int_a^b f(x)dx \ge 0$
+    \item $f(x) \ge g(x)$ trên $[a, b] \Rightarrow \int_a^b f(x)dx \ge \int_a^b g(x)dx$
+    \item $m \le f(x) \le M$ trên $[a, b] \Rightarrow m(b - a) \le \int_a^b f(x) \le M(b - a)$
+    \item $f(x)$ chẵn: $\int_{-a}^{a} f(x) dx = 2\int_0^a f(x) dx$
+    \item $f(x)$ lẻ: $\int_{-a}^{a} f(x) dx = 0$
+\end{itemize}
+\begin{itemize}
+    \item Phương pháp tính:
+    \begin{itemize}
+        \item Phương pháp đổi biến $u = g(x), v=t(x)$
+        \item Phương pháp tích phân từng phần
+\[
+\int_a^b u\,dv=uv|_a^b - \int_a^b v\,du
+\]
+    \end{itemize}
+    \item Ví dụ: Tính
+\[
+\int_0^2 (x^2 + 1)dx
+\]
+\end{itemize}
+
+\subsection{Ứng dụng tích phân}
+\textbf{Diện tích hình phẳng (đồ thị và trục $Ox$)}
+\[
+S=\int_a^b |f(x)|dx
+\]
+
+Giả sử $c \in [a;b]$ nếu $\forall x \in [a;c], f(x) \ge 0$ và $\forall x \in [c;b], f(x) \le 0$ thì:
+\[
+S = \int_a^c{f(x)}dx - \int_c^b{f(x)}dx
+\]
+\textbf{Giữa hai đồ thị}
+\[
+S=\int_a^b |f(x)-g(x)|dx
+\]
+\textbf{Thể tích tròn xoay}
+\[
+V=\pi\int_a^b f^2(x)dx
+\]
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Ứng dụng tích phân để tìm diện tích
+    \item Dạng 2: Ứng dụng tích phân để tìm thể tích
+\end{itemize}
+\section{Xác suất có điều kiện}
+\begin{itemize}
+    \item Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra
+\end{itemize}
+\[
+P(A|B)=\frac{P(AB)}{P(B)}
+\]
+\textbf{Công thức nhân}
+\[
+P(AB)=P(B)P(A|B)
+\]
+\begin{itemize}
+    \item $A$, $B$ độc lập khi $P(AB) = P(A).P(B)$, khi đó $P(A|B) = P(A)$
+\end{itemize}
+\textbf{Xác suất toàn phần}
+\[
+P(A)=P(B)P(A|B)+P(\bar B)P(A|\bar B)
+\]
+\textbf{Công thức Bayes}
+\[
+P(B|A)=\frac{P(B)P(A|B)}{P(A)}
+\]
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Tính xác suất có điều kiện sử dụng công thức.
+    \item Dạng 2: Tính xác suất có điều kiện sử dụng sơ đồ hình cây.
+    \item Dạng 3: Mô tả công thức xác suất toàn phần thông qua bảng dữ liệu thống kê 2x2 và sơ đồ hình cây.
+    \item Dạng 4: Mô tả công thức bayes thông qua bảng dữ liệu thống kê 2x2 và sơ đồ hình cây
+    \item Dạng 5: Công thức xác suất toàn phần và công thức bayes
+    \item Dạng 6: Các bài toán thực tế liên quan đến công thức xác suất toàn phần
+    \item Dạng 7: Các bài toán thực tế liên quan đến công thức bayes.
+\end{itemize}
+
+\section{Hình học}
+\subsection{Vector trong không gian}
+\begin{itemize}
+    \item Vectơ: đoạn thẳng có hướng, ký hiệu $\overrightarrow{AB}$
+    \item Giá của vectơ: đường thẳng chứa vectơ
+    \item Độ dài (mô-đun) của vectơ: $|\overrightarrow{AB}|$ là khoảng cách giữa điểm đầu và điểm cuối
+    \item Hai vectơ cùng phương: giá song song hoặc trùng nhau, $\vec a = k\vec b$. Với $\vec a = (x_1, y_1, z_1), \vec b = (x_2, y_2, z_2):$
+    \begin{itemize}
+        \item $\dfrac{x_1}{x_2} = \dfrac{y_1}{y_2} = \dfrac{z_1}{z_2} = k$
+    \end{itemize}
+    \item Hai vector cùng phương thì cùng hướng hoặc ngược hướng, $\vec a = k\vec b$
+    \begin{itemize}
+        \item $k > 0$: cùng hướng
+        \item $k < 0$: ngược hướng
+    \end{itemize}
+    \item Hai vectơ bằng nhau: cùng hướng và cùng độ dài, $\vec a=\vec b$
+    \item Vectơ đối: cùng độ dài, ngược hướng, $\vec a = -\vec b$
+    \item Vectơ-không: có điểm đầu trùng điểm cuối, ký hiệu $\vec 0$
+\end{itemize}
+\subsection{Phép cộng, trừ vectơ và nhân vectơ với số thực}
+\begin{itemize}
+    \item Quy tắc ba điểm: $\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}$
+    \item Quy tắc hình bình hành: $\overrightarrow{AB} + \overrightarrow{AD} = \overrightarrow{AC}$ ($ABCD$ là hình bình hành)
+    \item Quy tắc hình hộp: $\overrightarrow{AB} + \overrightarrow{AD} + \overrightarrow{AA'} = \overrightarrow{AC'}$ ($ABCD.A'B'C'D'$ là hình hộp)
+    \item Phép trừ: $\overrightarrow{AB} - \overrightarrow{AC} = \overrightarrow{CB}$
+\end{itemize}
+\textbf{Tính chất}
+\begin{itemize}
+    \item Giao hoán: $\vec a + \vec b = \vec b + \vec a$
+    \item Kết hợp: $(\vec a + \vec b) + \vec c = \vec a + (\vec b + \vec c)$
+    \item Cộng vector $\vec 0$: $\vec a + \vec 0 = \vec a$
+    \item Nhân vector tạo ra vectơ cùng phương: $k\vec a$
+\end{itemize}
+\subsection{Tọa độ trong không gian}
+\begin{itemize}
+    \item Hệ tọa độ không gian $Oxyz$: 3 trục $Ox$, $Oy$, $Oz$ vuông góc nhau, 3 vector đơn vị $\vec i$, $\vec j$, $\vec k$ có độ dài bằng 1 lần lượt trên 3 trục.
+    \item Tọa độ điểm $M(x; y; z)$, tọa độ vectơ $\vec a = (a_1; a_2; a_3) = a_1.\vec i + a_2.\vec j + a_3.\vec k$
+    \item Vector $\overrightarrow{AB} = (x_B - x_A; y_B - y_A; z_B - z_A)$
+    \item Khoảng cách: $|\overrightarrow{AB}| = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2 + (z_B - z_A)^2}$
+    \item Trung điểm đoạn thẳng: $M = (\dfrac{x_A + x_B}{2}; \dfrac{y_A + y_B}{2}; \dfrac{z_A + z_B}{2})$
+    \item Trọng tâm tam giác: $G = (\dfrac{x_A + x_B + x_C}{3}; \dfrac{y_A + y_B + y_C}{3}; \dfrac{z_A + z_B + z_C}{3})$
+    \item Tích 1 số: $k.\vec a = (k.a_1, k.a_2, k.a_3)$
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Xác định tọa độ vectơ, xác định tọa độ điểm, xác định tọa độ đỉnh của hình bình hành và hình hộp
+    \item Dạng 2: Xác định tọa độ hình chiếu vuông góc của một điểm trên trục tọa độ và trên mặt phẳng tọa độ
+    \item Dạng 3: Xác định tọa độ của vectơ và độ dài của đoạn thẳng
+    \item Dạng 4: Xác định tọa độ điểm
+\end{itemize}
+
+\subsection{Tích vô hướng}
+\begin{itemize}
+    \item $\vec a \cdot \vec b = |\vec a| . |\vec b| . cos(\vec a, \vec b) = a_1.b_1 + a_2.b_2 + a_3.b_3$
+    \item Hai vectơ vuông góc: $\vec a \cdot \vec b = 0$
+    \item Tính chất
+    \begin{itemize}
+        \item Giao hoán: $\vec a \cdot \vec b = \vec b \cdot \vec a$
+        \item Phân phối: $\vec a \cdot (\vec b + \vec c) = \vec a \cdot \vec b + \vec a \cdot \vec c$
+    \item Ứng dụng: tính góc giữa 2 vectơ, kiểm tra vuông góc
+    \end{itemize}
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Tích vô hướng và các ứng dụng của tích vô hướng
+\end{itemize}
+
+\subsection{Tích có hướng}
+\begin{itemize}
+    \item $[\vec a, \vec b] = (a_2.b_3 - a_3.b_2; a_3.b_1 - a_1.b_3; a_1.b_2 - a_2.b_1)$
+    \item Ứng dụng: tìm vectơ vuông góc với 2 vectơ, tìm vectơ pháp tuyến mặt phẳng
+    \item $|[\vec a, \vec b]|$ = diện tích hình bình hành tạo bởi $\vec a$ và $\vec b$
+    \item $\dfrac{|[\vec a, \vec b]|}{2}$ = diện tích tam giác tạo bởi a và b
+\end{itemize}
+\textbf{Tích hỗn tạp}
+\begin{itemize}
+    \item $[\vec a, \vec b] \cdot \vec c$
+    \item Ứng dụng tính thể tích hình hộp: $V = |[\overrightarrow{AB}, \overrightarrow{AD}] \cdot \overrightarrow{AA'}|$
+    \item Ứng dụng tính thể tích tứ diện: $V = \dfrac{1}{6}|[\overrightarrow{AB}, \overrightarrow{AC}] \cdot \overrightarrow{AD}|$
+    \item Điều kiện đồng phẳng 3 vectơ: $[\vec a, \vec b] \cdot \vec c = 0$
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Xác định vectơ và chứng minh đẳng thức vectơ
+    \item Dạng 2: Chứng minh ba điểm thẳng hàng, phân tích vectơ
+    \item Dạng 3: Góc giữa hai vectơ. tích vô hướng giữa hai vectơ
+    \item Dạng 4: Đẳng thức véc tơ
+    \item Dạng 5: Phân tích véc tơ theo các véc tơ cho trước
+\end{itemize}
+
+\subsection{Phương trình mặt phẳng}
+\begin{itemize}
+    \item Vectơ pháp tuyến $\vec n = (a; b; c)$: vuông góc với mặt phẳng
+    \item Phương trình tổng quát: $ax + by + cz + d = 0$
+    \item Phương trình mặt chắn $A(a; 0; 0), B(0; b; 0), C(0; 0; c)$ nằm trên 3 trục tọa độ: $\dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} = 1$
+    \item Phương trình đi qua 1 điểm $M(x_0; y_0; z_0)$: $a(x - x_0) + b(y - y_0) + c(z - z_0) = 0$
+    \item Viết phương trình mặt phẳng khi biết:
+    \begin{itemize}
+        \item Điểm $M(x_0; y_0; z_0)$ và vectơ pháp tuyến $\vec n = (a; b; c)$: $a(x - x_0) + b(y - y_0) + c(z - z_0) = 0 \Leftrightarrow ax + by + cz + d = 0$, với $d = -(ax_0 + by_0 + cz_0)$.
+        \item 1 điểm + 2 vectơ chỉ phương $\vec a = (a_1, a_2, a_3), \vec b = (b_1, b_2, b_3)$
+        \begin{itemize}
+            \item Tìm vectơ pháp tuyến: $\vec n = (a_2b_3 - a_3b_2, a_3b_1 - a_1b_3, a_1b_2 - a_2b_1)$
+            \item Quay về dạng 1 
+        \end{itemize}
+        \item 3 điểm không thẳng hàng
+        \begin{itemize}
+            \item Lập 2 vector chỉ phương từ 3 điểm
+            \item Quay về dạng 2
+        \end{itemize}
+    \end{itemize}
+    \item Vị trí tương đối giữa điểm và mặt phẳng:
+    \begin{itemize}
+      \item Điểm $M(x_0, y_0, z_0)$ nằm trên mặt phẳng nếu $ax_0 + by_0 + cz_0 + d = 0$
+      \item Điểm $M(x_0, y_0, z_0)$ không nằm trên mặt phẳng nếu $ax_0 + by_0 + cz_0 + d \ne 0$
+    \end{itemize}
+    \item Vị trí tương đối của 2 mặt phẳng
+        \begin{itemize}
+            \item 2 mặt phẳng trùng nhau
+            \begin{itemize}
+                \item Chọn $M \in (P), N \in (Q) => \begin{cases} [\vec n_1 , \vec n_2] = \vec 0 \\ [\vec n_1, \overrightarrow{MN}] = \vec 0 \end{cases}$
+                \item Hoặc: $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2} = \dfrac{d_1}{d_2}$.
+            \end{itemize}
+            \item 2 mặt phẳng song song
+            \begin{itemize}
+                \item Chọn $M \in (P), N \in (Q) => \begin{cases} [\vec n_1, \vec n_2] = \vec 0 \\ [\vec n_1, \overrightarrow{MN}] \ne \vec 0 \end{cases}$
+                \item Hoặc: $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2} \ne \dfrac{d_1}{d_2}$.
+            \end{itemize}
+            \item 2 mặt phẳng cắt nhau
+            \begin{itemize}
+                \item $[\vec n_1 , \vec n_2] \ne \vec 0$
+            \end{itemize}
+            \item 2 mặt phẳng vuông góc
+            \begin{itemize}
+                \item $\vec n_1 \cdot \vec n_2 = 0$
+            \end{itemize}
+        \end{itemize}
+    \item Khoảng cách từ điểm $M(x_0; y_0; z_0)$ đến mặt phẳng: $d = \dfrac{|ax_0 + by_0 + cz_0 + d|}{\sqrt{a^2 + b^2 + c^2}}$
+    \item Khoảng cách từ một mặt phẳng đến một mặt phẳng song song, chọn 1 điểm ở mặt phẳng này, khoảng cách giữa 2 mặt phẳng là khoảng cách từ điểm đó đến mặt phẳng kia
+    \item Ví dụ: Viết phương trình mặt phẳng qua $A(1; 0; 2)$ có vectơ pháp tuyến $\vec n = (2; -1; 3)$.
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Viết phương trình mặt phẳng khi biết một điểm và vectơ pháp tuyến của nó.
+    \item Dạng 2: Viết phương trình mặt phẳng đi qua 1 điểm và song song với 1 mặt phẳng cho trước.
+    \item Dạng 3: Viết phương trình mặt phẳng đi qua 3 điểm a, b, c không thẳng hàng.
+    \item Dạng 4: Viết phương trình mặt phẳng qua hai diểm a, b và vuông góc với mặt phẳng.
+    \item Dạng 5: Viết phương trình mặt phẳng qua diểm a và vuông góc với hai mặt phẳng
+    \item Dạng 6: Viết phương trình mặt phẳng song song với 1 mặt phẳng và cách một khoảng k cho trước.
+    \item Dạng 7: Khoảng cách từ một điểm đến một mặt phẳng
+    \item Dạng 8: Vị trí tương đối hai mặt phẳng
+    \item Dạng 9: Hình chiếu vuông góc của điểm lên mặt phẳng
+    \begin{itemize}
+        \item Viết đường thẳng $(d)$ qua $M$ vuông góc với $(P)$
+        \item Tìm giao điểm $H$ của $(d)$ với $(P)$
+    \end{itemize}
+    \item Dạng 10: Điểm đối xứng qua mặt phẳng
+        \item Tìm hình chiếu $H$ (như trên)
+        \item $M' = 2H - M$ ($H$ là trung điểm $MM'$)
+\end{itemize}
+
+\subsection{Phương trình đường thẳng}
+\begin{itemize}
+    \item Vectơ chỉ phương $\vec u = (a; b; c)$, đi qua điểm $A(x_0; y_0; z_0)$
+    \item Phương trình đường thẳng (tham số):
+\[
+\begin{cases}
+x=x_0+at\\
+y=y_0+bt\\
+z=z_0+ct
+\end{cases}
+\]
+    \item Phương trình đường thẳng (chính tắc):
+\[
+\frac{x-x_0}{a} = \frac{y-y_0}{b} = \frac{z-z_0}{c}
+\]
+    \item Phương trình đường thẳng đi qua hai điểm: Tìm vector chỉ phương từ 2 điểm, rồi viết ptđt
+\[
+\frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1}
+\]
+    \item Viết phương trình đường thẳng khi biết:
+    \begin{itemize}
+        \item Vector chỉ phương $\vec u = (a; b; c)$ và đi qua 1 điểm $M(x_0;y_0;z_0)$
+\[
+\begin{cases}
+x=x_0+at\\
+y=y_0+bt\\
+z=z_0+ct
+\end{cases}
+\]
+        \item Đi qua 2 điểm
+            \begin{itemize}
+                \item Lập vector chỉ phương từ 2 điểm
+                \item Quay về dạng 1
+            \end{itemize}
+    \end{itemize}
+    \item Vị trí tương đối giữa điểm và đường thẳng:
+    \begin{itemize}
+      \item Điểm $M(x_0, y_0, z_0)$ nằm trên đường thẳng nếu tồn tại t sao cho
+\[
+\begin{cases}
+x_0=x_1+at\\
+y_0=y_1+bt\\
+z_0=z_1+ct
+\end{cases}
+\]
+      \item Điểm $M(x_0, y_0, z_0)$ không nằm trên đường thẳng nếu không tồn tại t sao cho
+\[
+\begin{cases}
+x_0=x_1+at\\
+y_0=y_1+bt\\
+z_0=z_1+ct
+\end{cases}
+\]
+    \end{itemize}
+    \item Vị trí tương đối giữa 2 đường thẳng:
+    \begin{itemize}
+        \item 2 đường thẳng trùng nhau
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (d') => \begin{cases} [\vec u , \vec v] = \vec 0 \\ [\vec u, \overrightarrow{MN}] = \vec 0 \end{cases}$
+        \end{itemize}
+        \item 2 đường thẳng song song
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (d') => \begin{cases} [\vec u , \vec v] = \vec 0 \\ [\vec u, \overrightarrow{MN}] \ne \vec 0 \end{cases}$
+        \end{itemize}
+        \item 2 đường thẳng cắt nhau
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (d') => \begin{cases} [\vec u , \vec v] \ne \vec 0 \\ [\vec u, \vec v] \cdot \overrightarrow{MN} = 0 \end{cases}$
+        \end{itemize}
+        \item 2 đường thẳng chéo nhau
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (d') => \begin{cases} [\vec u , \vec v] \ne \vec 0 \\ [\vec u, \vec v] \cdot \overrightarrow{MN} \ne 0 \end{cases}$
+        \end{itemize}
+        \item 2 đường thẳng vuông góc
+        \begin{itemize}
+            \item $\vec u \cdot \vec v = 0$
+        \end{itemize}
+    \end{itemize}
+    \item Vị trí tương đối giữa đường thẳng và mặt phẳng:
+    \begin{itemize}
+        \item Đường thẳng nằm trên mặt phẳng
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (P) => \begin{cases} \vec u \cdot \vec n = 0 \\ \vec u \cdot \overrightarrow{MN} = 0 \end{cases}$
+            \item Hoặc chọn $M \in (d) => \begin{cases} \vec u \cdot \vec n = 0 \\ M \in (P) \end{cases}$
+        \end{itemize}
+        \item Đường thẳng song song mặt phẳng
+        \begin{itemize}
+            \item Chọn $M \in (d), N \in (P) => \begin{cases} \vec u \cdot \vec n = 0 \\ \vec u \cdot \overrightarrow{MN} \ne 0 \end{cases}$
+            \item Hoặc chọn $M \in (d) => \begin{cases} \vec u \cdot \vec n = 0 \\ M \notin (P) \end{cases}$
+        \end{itemize}
+        \item Đường thẳng cắt mặt phẳng
+        \begin{itemize}
+            \item $\vec u \cdot \vec n \ne 0$
+        \end{itemize}
+        \item Đường thẳng vuông góc với mặt phẳng
+        \begin{itemize}
+            \item $[\vec u, \vec n] = 0$
+        \end{itemize}
+    \end{itemize}
+    \item Giao điểm giữa 2 đường thẳng
+        \begin{itemize}
+            \item Cho $x_1 = x_2, y_1 = y_2, z_1 = z_2$
+            \item Chọn hai phương trình bất kỳ trong hệ để giải tìm \(t\) và \(t'\)
+            \item Thay $t$ và $t'$ vừa tìm được vào phương trình thứ ba còn lại để kiểm tra.
+            \begin{itemize}
+                \item Nếu thỏa mãn: Hai đường thẳng cắt nhau.
+                \item Nếu không thỏa mãn: Hai đường thẳng không có giao điểm.
+            \end{itemize}
+        \end{itemize}
+    \item Giao điểm đường thẳng và mặt phẳng: thế PT đường thẳng tham số vào PT mặt phẳng
+    \item Ví dụ: Tìm giao điểm đường thẳng $\begin{cases}x = 1 + t\\ y = 2 - t\\ z = 3 + 2t\end{cases}$ với mặt phẳng $x + y + z - 6 = 0$.
+    \item Khoảng cách từ điểm M đến đường thẳng d
+        \begin{itemize}
+            \item Chọn 1 điểm $N \in (d)$, ta có $ d(M, d) = \dfrac{|[\vec u, \overrightarrow{MN}]|}{|\vec u|}$
+        \end{itemize}
+    \item Khoảng cách giữa 2 đường thẳng chéo nhau $d_1$, $d_2$:
+        \begin{itemize}
+            \item Chọn $M$, $N$ thuộc 2 đường thẳng, $d(d_1, d_2) = \dfrac{|[\vec u, \vec v] \cdot \overrightarrow{MN}|}
+{|[\vec u, \vec v]|}$
+        \end{itemize}
+    \item Ví dụ: Tính khoảng cách từ $A(1; 2; 3)$ đến mặt phẳng $2x - y + 2z - 6 = 0$.
+    \item Giao tuyến của 2 mặt phẳng là 1 đường thẳng
+    \begin{itemize}
+        \item $(d)$: $\begin{cases} a_1x + b_1y + c_1z + d_1 = 0 \\ a_2x + b_2y + c_2z + d_2 = 0 \end{cases}$
+        \item VTCP: $\vec u = [\vec n_1, \vec n_2]$
+    \end{itemize}
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Xác định vector chỉ phương của đường thẳng
+    \item Dạng 2: Phương trình đường thẳng
+    \item Dạng 3: Vị trí tương đối
+    \item Dạng 4: Hình chiếu vuông góc của điểm lên đường thẳng
+    \begin{itemize}
+        \item Hình chiếu $M$ lên đường thẳng $(d)$: viết $H$ thuộc $d$, giải $\overrightarrow{MH} \cdot \vec u = 0$
+    \end{itemize}
+    \item Dạng 5: Điểm đối xứng qua đường thẳng
+    \begin{itemize}
+        \item $M' = 2H - M$ ($H$ là trung điểm $MM'$)
+    \end{itemize}
+\end{itemize}
+
+\subsection{Góc trong không gian}
+\textbf{Hai đường thẳng}
+\[
+\cos(d,d') = \frac{|\vec u \cdot \vec v|}{|\vec u|\,|\vec v|} = \frac{|a a'+b b'+c c'|}{\sqrt{a^2+b^2+c^2}\sqrt{a'^2+b'^2+c'^2}}
+\]
+\textbf{Đường thẳng và mặt phẳng}
+\[
+\sin(d,P) = \frac{|\vec u \cdot \vec n|}{|\vec u|\,|\vec n|} = \frac{|aA+bB+cC|}{\sqrt{a^2+b^2+c^2}\sqrt{A^2+B^2+C^2}}
+\]
+\textbf{Hai mặt phẳng}
+\[
+\cos(P,Q) = \dfrac{|\vec n_1 . \vec n_2|}{|\vec n_1|.|\vec n_2|} = \frac{|AA'+BB'+CC'|}{\sqrt{A^2+B^2+C^2}\sqrt{A'^2+B'^2+C'^2}}
+\]
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Góc giữa hai đường thẳng
+    \item Dạng 2: Góc giữa đường thẳng và mặt phẳng
+    \item Dạng 3: Góc giữa hai mặt phẳng
+\end{itemize}
+
+\subsection{Phương trình mặt cầu}
+\begin{itemize}
+    \item Phương trình mặt cầu (chính tắc): $(x - a)^2 + (y - b)^2 + (z - c)^2 = R^2$ với tâm $I(a; b; c)$, bán kính $R$
+    \item Phương trình mặt cầu (tổng quát): $x^2 + y^2 + z^2 - 2ax - 2by - 2cz + d = 0$ với $a^2 + b^2 + c^2 - d >0$, tâm $I(a; b; c)$, bán kính: $r = \sqrt{a^2 + b^2 + c^2 - d}$
+    \item Viết phương trình mặt cầu khi biết:
+    \begin{itemize}
+        \item Tâm và bán kính
+        \item Tâm và đi qua 1 điểm $\Rightarrow$ tìm bán kính là khoảng cách từ tâm đến điểm đó
+        \item Đi qua 4 điểm $\Rightarrow$ tìm tâm bằng cách giải hệ pt: $IA = IB = IC = ID$
+    \end{itemize}
+    \item Vị trí tương đối giữa điểm và mặt cầu:
+    \begin{itemize}
+      \item Điểm $M(x_0, y_0, z_0)$ nằm trong mặt cầu: $(x_0 - a)^2 + (y_0 - b)^2 + (z_0 - c)^2 < R^2$
+      \item Điểm $M(x_0, y_0, z_0)$ nằm ngoài mặt cầu: $(x_0 - a)^2 + (y_0 - b)^2 + (z_0 - c)^2 > R^2$
+      \item Điểm $M(x_0, y_0, z_0)$ nằm trên mặt cầu: $(x_0 - a)^2 + (y_0 - b)^2 + (z_0 - c)^2 = R^2$
+    \end{itemize}
+    \item  Vị trí tương đối giữa mặt phẳng và mặt cầu ($d$ là khoảng cách từ tâm đến mặt phẳng): $d(I, (P)) = \dfrac{|Aa + Bb + Cc + D|}{\sqrt{A^2 + B^2 + C^2}}$
+    \begin{itemize}
+      \item $d > R$: không giao nhau
+      \item $d = R$: tiếp xúc (1 điểm)
+      \item $d < R$: cắt nhau (đường tròn giao tuyến có bán kính $r = \sqrt{R^2 - d^2}$)
+    \end{itemize}
+    \item Vị trí tương đối giữa đường thẳng và mặt cầu ($d$ là khoảng cách từ tâm đến đường phẳng):  chọn 1 điểm $M$ thuộc đường thẳng, $d(I, d) = \dfrac{|[\vec u, \overrightarrow{MI}]|}{|\vec u|}$
+    \begin{itemize}
+      \item $d > R$: không cắt nhau
+      \item $d = R$: tiếp xúc (1 điểm)
+      \item $d < R$: cắt tại 2 điểm
+    \end{itemize}
+    \item Ví dụ: Cho mặt cầu tâm $I(1; 2; 3)$, $R = 5$. Viết phương trình mặt cầu. Tìm giao với mp $x = 1$.
+\end{itemize}
+\textbf{Các dạng bài tập:}
+\begin{itemize}
+    \item Dạng 1: Xác định tâm – bán kính – nhận biết phương trình mặt cầu
+    \item Dạng 2: Mặt cầu có tâm và đi qua một điểm
+    \item Dạng 3: Mặt cầu có đường kính
+    \begin{itemize}
+      \item Tìm trung điểm $\rightarrow$ tâm
+    \end{itemize}
+    \item Dạng 4: Mặt cầu qua 4 điểm không đồng phẳng
+    \begin{itemize}
+      \item $ia = ib = ic = id$ Lập hệ 3 phương trình $\rightarrow$ tâm
+    \end{itemize}
+    \item Dạng 5: Mặt cầu có tâm thuộc đường thẳng / mặt phẳng
+    \begin{itemize}
+      \item Viết tọa độ tâm theo đường thẳng / mặt phẳng
+      \item $ia = ib$ Lập hệ phương trình $\rightarrow$ tâm
+    \end{itemize}
+    \item Dạng 6: Mặt cầu tiếp xúc đường thẳng/mặt phẳng
+    \item Dạng 7: Bài toán thực tế
+\end{itemize}
+\end{document}
