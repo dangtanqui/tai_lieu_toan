@@ -279,3 +279,5 @@ DẠNG 2: CHỨNG MINH TỨ GIÁC NỘI TIẾP ĐƯỜNG TRÒN
 - Diện tích mặt cầu: S = 4 x pi x r^2
 - Thể tích: V = (4/3) x pi x r^3
 - Ví dụ: Quả bóng bán kính 10 cm → tính thể tích và diện tích mặt cầu.
+
+Hình đã giác: góc, đường chéo, cạnh

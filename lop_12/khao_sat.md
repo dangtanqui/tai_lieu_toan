@@ -349,7 +349,7 @@ Các dạng bài tập:
 - DẠNG 7: KHOẢNG CÁCH TỪ MỘT ĐIỂM ĐẾN MỘT MẶT PHẲNG
 - DẠNG 8: VỊ TRÍ TƯƠNG ĐỐI HAI MẶT PHẲNG
 
-#### Phương trình đường thẳng trong không gian
+#### Phương trình đường thẳng
 
 - Vectơ chỉ phương u = (a; b; c), đi qua điểm A(x0; y0, z0)
 - Phương trình đường thẳng (tham số): { x = x0 + at; y = y0 + bt; z = z0 + ct }
@@ -357,9 +357,6 @@ Các dạng bài tập:
 - Phương trình đường thẳng đi qua hai điểm
   - Tìm vector chỉ phương từ 2 điểm, rồi tìm ptđt (x - x1)/(x2 - x1) = (y - y1)/(y2 - y1) = (z - z1)/(z2 - z1)
 - Hai đường thẳng vuông góc: n1.n2 = 0 => a1.a2 + b1.b2 + c1.c2 = 0
-- Viết phương trình đường phẳng khi biết:
-  - Vector chỉ phương và đi qua 1 điểm
-  - Đi qua 2 điểm
 - Vị trí tương đối giữa 2 đường thẳng:
   - 2 đường thẳng song song nếu vector chỉ phương cùng phương và 1 điểm ở đt này không nằm trên đt kia. Hay hệ pt 2 đt vô nghiệm.
   - 2 đường thẳng trùng nhau nếu vector chỉ phương cùng phương và 1 điểm ở đt này nằm trên đt kia. Hay hệ pt 2 đt vô số nghiệm.

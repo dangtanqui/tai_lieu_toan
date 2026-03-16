@@ -185,7 +185,15 @@ Dạng 17: Khoảng cách từ gốc tọa độ O đến đường thẳng
 
 Dạng 1: Tính số đo góc
 Dạng 2: Tìm mối liên hệ giữa các cạnh, đường chéo của tứ giác 
-Dạng 3: Tổng hợp 
+Dạng 3: Tổng hợp
+
+#### Đa giác đều
+
+- Đa giác đều là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.
+- Đa giác n đỉnh (n ≥ 3) được gọi là hình n-giác hay hình n-cạnh.
+  - Tổng các góc của đa giác n cạnh bằng (n − 2).180 độ.
+  - Mỗi góc của đa giác đều n cạnh bằng (n − 2).180 độ/n.
+  - Số các đường chéo của đa giác lồi n cạnh bằng n(n−3)/2.
 
 #### Hình thang, hình thang cân / bình hành / chữ nhật / thoi / vuông
 
