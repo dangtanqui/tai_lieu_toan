@@ -1043,10 +1043,6 @@
 
 \begin{dinhnghia}
   \begin{itemize}
-    \item \textbf{Xác suất có điều kiện:}
-      \[
-        P(A \mid B) = \frac{P(AB)}{P(B)},\qquad P(B) > 0.
-      \]
     \item \textbf{Biến cố xung khắc:} $AB = \varnothing$.
     \item \textbf{Biến cố đối:} $P(\bar{A}) = 1 - P(A)$.
   \end{itemize}
@@ -1058,22 +1054,10 @@
       \;$P(A \cup B) = P(A) + P(B)$.
     \item \textbf{Quy tắc cộng} (tổng quát):
       \;$P(A \cup B) = P(A) + P(B) - P(AB)$.
-    \item \textbf{Công thức nhân:}
-      \;$P(AB) = P(B) \cdot P(A \mid B)$.
     \item Nếu $A$, $B$ \textbf{độc lập}:
-      \;$P(AB) = P(A) \cdot P(B)$ \;và \;$P(A \mid B) = P(A)$.
+      \;$P(AB) = P(A) \cdot P(B)$.
   \end{itemize}
 \end{congthuc}
-
-\begin{vidu}
-  Hộp có 3 bi đỏ, 7 bi xanh. Lấy lần lượt 2 bi không trả lại. \\
-  Gọi $A$: ``bi thứ 2 đỏ'', \;$B$: ``bi thứ 1 đỏ''.
-  \[
-    P(A) = P(B)\,P(A \mid B) + P(\bar{B})\,P(A \mid \bar{B})
-    = \frac{3}{10}\cdot\frac{2}{9} + \frac{7}{10}\cdot\frac{3}{9}
-    = \frac{6 + 21}{90} = \frac{3}{10}.
-  \]
-\end{vidu}
 
 % --- 1.7.2 Biến ngẫu nhiên ---
 \subsubsection{Biến ngẫu nhiên rời rạc}
@@ -1352,23 +1336,6 @@
       \end{itemize}
   \end{enumerate}
 \end{phuongphap}
-
-\begin{congthuc}[title={Công thức tọa độ (bổ sung)}]
-  \begin{itemize}
-    \item KC từ $M$ đến $\Delta$ (qua $M'$, VTCP $\vec{u}$):
-      \[
-        d(M,\,\Delta) = \frac{\bigl|\vec{u} \times \overrightarrow{M'M}\bigr|}{|\vec{u}|}.
-      \]
-    \item KC từ $M(x_0;\,y_0;\,z_0)$ đến mp $\;ax + by + cz + d = 0$:
-      \[
-        d\bigl(M,\,(P)\bigr) = \frac{|a\,x_0 + b\,y_0 + c\,z_0 + d|}{\sqrt{a^2 + b^2 + c^2}}.
-      \]
-    \item KC giữa 2 đường chéo nhau ($\Delta_1$ qua $M_1$ VTCP $\vec{u}_1$; $\Delta_2$ qua $M_2$ VTCP $\vec{u}_2$):
-      \[
-        d(\Delta_1,\,\Delta_2) = \frac{\bigl|(\vec{u}_1 \times \vec{u}_2) \cdot \overrightarrow{M_1 M_2}\bigr|}{|\vec{u}_1 \times \vec{u}_2|}.
-      \]
-  \end{itemize}
-\end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
 \begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]

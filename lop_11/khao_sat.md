@@ -419,12 +419,11 @@ DẠNG 10: GIA TỐC
 
 #### Các quy tắc tính xác suất
 
-- Cho hai biến cố A và B. Xác suất của A trong điều kiện biết B đã xảy ra: P(A | B) = P(AB) / P(B)
-- Nếu A, B độc lập thì P(A | B) = P(A)
-- A giao B = rỗng => biến cố xung khắc
-- Quy tắc cộng xác suất (biến cố xung khắc): P(A hợp B) = P(A) + P(B)
-- Công thức nhân xác suất: P(AB) = P(B) . P(A | B)
-- Ví dụ: Hộp có 3 bi đỏ, 7 bi xanh. Lấy lần lượt 2 bi không trả lại. Tính P(bi thứ 2 đỏ).
+- Biến cố xung khắc: AB = ∅.
+- Biến cố đối: P (A') = 1 − P(A)
+- Quy tắc cộng (biến cố xung khắc): P (A ∪ B) = P(A) + P(B).
+- Quy tắc cộng (tổng quát): P(A ∪ B) = P(A) + P(B) + P(AB)
+- Nếu A, B độc lập: P(AB) = P(A) . P(B)
 
 #### Biến ngẫu nhiên rời rạc
 
