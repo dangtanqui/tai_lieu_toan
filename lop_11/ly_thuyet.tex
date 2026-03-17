@@ -269,14 +269,14 @@
 \end{tinhchat}
 
 \begin{congthuc}[title={Các hệ thức lượng giác cơ bản}]
-  \begin{gather}
+  \begin{gather*}
     \sin^2\alpha + \cos^2\alpha = 1, \\[4pt]
     \tan\alpha = \frac{\sin\alpha}{\cos\alpha},\qquad
     \cot\alpha = \frac{\cos\alpha}{\sin\alpha},\qquad
     \tan\alpha \cdot \cot\alpha = 1, \\[4pt]
     1 + \tan^2\alpha = \frac{1}{\cos^2\alpha},\qquad
     1 + \cot^2\alpha = \frac{1}{\sin^2\alpha}.
-  \end{gather}
+  \end{gather*}
 \end{congthuc}
 
 \begin{congthuc}[title={Các góc liên quan đặc biệt}]
@@ -326,22 +326,30 @@
 \subsubsection{Công thức lượng giác}
 
 \begin{congthuc}[title={Công thức cộng}]
-  \begin{align}
+  \begin{align*}
     \sin(\alpha + \beta) &= \sin\alpha\,\cos\beta + \cos\alpha\,\sin\beta, \\
     \sin(\alpha - \beta) &= \sin\alpha\,\cos\beta - \cos\alpha\,\sin\beta, \\
     \cos(\alpha + \beta) &= \cos\alpha\,\cos\beta - \sin\alpha\,\sin\beta, \\
     \cos(\alpha - \beta) &= \cos\alpha\,\cos\beta + \sin\alpha\,\sin\beta, \\[4pt]
     \tan(\alpha + \beta) &= \frac{\tan\alpha + \tan\beta}{1 - \tan\alpha\cdot\tan\beta}, \\[4pt]
     \tan(\alpha - \beta) &= \frac{\tan\alpha - \tan\beta}{1 + \tan\alpha\cdot\tan\beta}.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Công thức nhân đôi}]
-  \begin{align}
+  \begin{align*}
     \sin 2\alpha &= 2\sin\alpha\,\cos\alpha, \\
     \cos 2\alpha &= \cos^2\alpha - \sin^2\alpha = 2\cos^2\alpha - 1 = 1 - 2\sin^2\alpha, \\[4pt]
     \tan 2\alpha &= \frac{2\tan\alpha}{1 - \tan^2\alpha}.
-  \end{align}
+  \end{align*}
+\end{congthuc}
+
+\begin{congthuc}[title={Công thức nhân ba}]
+  \begin{align*}
+    \sin 3\alpha &= 3\sin\alpha - 4\sin^3\alpha, \\
+    \cos 3\alpha &= 4\cos^3\alpha - 3\cos\alpha, \\[4pt]
+    \tan 3\alpha &= \frac{3\tan\alpha - \tan^3\alpha}{1 - 3\tan^2\alpha}.
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Công thức hạ bậc}]
@@ -352,20 +360,20 @@
 \end{congthuc}
 
 \begin{congthuc}[title={Biến đổi tích thành tổng}]
-  \begin{align}
+  \begin{align*}
     \cos\alpha\,\cos\beta &= \tfrac{1}{2}\bigl[\cos(\alpha - \beta) + \cos(\alpha + \beta)\bigr], \\
     \sin\alpha\,\sin\beta &= \tfrac{1}{2}\bigl[\cos(\alpha - \beta) - \cos(\alpha + \beta)\bigr], \\
     \sin\alpha\,\cos\beta &= \tfrac{1}{2}\bigl[\sin(\alpha - \beta) + \sin(\alpha + \beta)\bigr].
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Biến đổi tổng thành tích}]
-  \begin{align}
+  \begin{align*}
     \cos\alpha + \cos\beta &= 2\cos\frac{\alpha + \beta}{2}\;\cos\frac{\alpha - \beta}{2}, \\
     \cos\alpha - \cos\beta &= -2\sin\frac{\alpha + \beta}{2}\;\sin\frac{\alpha - \beta}{2}, \\
     \sin\alpha + \sin\beta &= 2\sin\frac{\alpha + \beta}{2}\;\cos\frac{\alpha - \beta}{2}, \\
     \sin\alpha - \sin\beta &= 2\cos\frac{\alpha + \beta}{2}\;\sin\frac{\alpha - \beta}{2}.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
@@ -449,14 +457,14 @@
 \end{congthuc}
 
 \begin{congthuc}[title={Các trường hợp đặc biệt}]
-  \begin{align}
+  \begin{align*}
     \sin x &= 0 \;\Leftrightarrow\; x = k\pi, &
     \cos x &= 0 \;\Leftrightarrow\; x = \frac{\pi}{2} + k\pi, \\
     \sin x &= 1 \;\Leftrightarrow\; x = \frac{\pi}{2} + k2\pi, &
     \cos x &= 1 \;\Leftrightarrow\; x = k2\pi, \\
     \sin x &= -1 \;\Leftrightarrow\; x = -\frac{\pi}{2} + k2\pi, &
     \cos x &= -1 \;\Leftrightarrow\; x = \pi + k2\pi.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{phuongphap}[title={Phương trình $a\sin x + b\cos x = c$}]
@@ -773,12 +781,12 @@
 
 \begin{congthuc}[title={Tính chất lũy thừa}]
   Với $a > 0$, $b > 0$ và $x,\, y \in \mathbb{R}$:
-  \begin{align}
+  \begin{align*}
     a^x \cdot a^y &= a^{x+y}, &
     \frac{a^x}{a^y} &= a^{x-y}, \\
     (a^x)^y &= a^{xy}, &
     (ab)^x &= a^x \cdot b^x.
-  \end{align}
+  \end{align*}
   So sánh:
   \begin{itemize}
     \item $a > 1$: \;$a^m > a^n \;\Leftrightarrow\; m > n$.
@@ -806,12 +814,12 @@
 
 \begin{congthuc}[title={Tính chất logarit}]
   Với $a > 0$, $a \ne 1$, $x > 0$, $y > 0$:
-  \begin{align}
+  \begin{align*}
     \log_a 1 &= 0, & \log_a a &= 1, \\
     \log_a(xy) &= \log_a x + \log_a y, &
     \log_a\frac{x}{y} &= \log_a x - \log_a y, \\
     \log_a(x^n) &= n\,\log_a x.
-  \end{align}
+  \end{align*}
   \textbf{Đổi cơ số:}
   \[
     \log_a b = \frac{\log_c b}{\log_c a},\qquad
@@ -912,7 +920,7 @@
 \end{dinhnghia}
 
 \begin{congthuc}[title={Bảng đạo hàm cơ bản}]
-  \begin{align}
+  \begin{align*}
     (c)' &= 0, &
     (x^n)' &= n\,x^{n-1}, \\[2pt]
     (\sqrt{x})' &= \frac{1}{2\sqrt{x}}, &
@@ -921,26 +929,26 @@
     (\cos x)' &= -\sin x, \\[2pt]
     (\tan x)' &= \frac{1}{\cos^2 x}, &
     (\cot x)' &= -\frac{1}{\sin^2 x}.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Đạo hàm hàm mũ -- logarit}]
-  \begin{align}
+  \begin{align*}
     (e^x)' &= e^x, &
     (a^x)' &= a^x\,\ln a, \\[2pt]
     (\ln x)' &= \frac{1}{x}, &
     (\log_a x)' &= \frac{1}{x\,\ln a}.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Quy tắc tính đạo hàm}]
-  \begin{align}
+  \begin{align*}
     (u \pm v)' &= u' \pm v', \\
     (k \cdot u)' &= k \cdot u', \\
     (u \cdot v)' &= u'\,v + u\,v', \\[2pt]
     \left(\frac{u}{v}\right)' &= \frac{u'\,v - u\,v'}{v^2} \quad (v \ne 0), \\[4pt]
     \left(\frac{1}{v}\right)' &= -\frac{v'}{v^2}.
-  \end{align}
+  \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Đạo hàm hàm hợp}]
@@ -1341,6 +1349,47 @@
 \begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Khoảng cách từ một điểm tới một mặt phẳng.
   \item Khoảng cách giữa hai đường thẳng chéo nhau.
+\end{enumerate}
+
+
+% ------ 2.3 Thể tích khối đa diện ------
+\subsection{Thể tích khối đa diện}
+
+\begin{congthuc}[title={Thể tích các khối đa diện}]
+  \begin{itemize}
+    \item \textbf{Khối hộp chữ nhật} (kích thước $a$, $b$, $c$):
+      \[V = a \cdot b \cdot c\]
+    \item \textbf{Khối lập phương} (cạnh $a$):
+      \[V = a^3\]
+    \item \textbf{Khối lăng trụ} (diện tích đáy $S$, chiều cao $h$):
+      \[V = S \cdot h\]
+    \item \textbf{Khối chóp} (diện tích đáy $S$, chiều cao $h$):
+      \[V = \frac{1}{3}\,S \cdot h\]
+    \item \textbf{Khối chóp cụt} (diện tích đáy lớn $S_1$, đáy nhỏ $S_2$, chiều cao $h$):
+      \[V = \frac{h}{3}\bigl(S_1 + S_2 + \sqrt{S_1 \cdot S_2}\bigr)\]
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu mặt phẳng $(P)$ chia khối chóp thành hai phần, tỉ số thể tích phụ thuộc vào tỉ số diện tích và chiều cao tương ứng.
+    \item \textbf{Tỉ số thể tích:} Hai khối chóp chung đỉnh, đáy cùng nằm trên một mặt phẳng thì tỉ số thể tích bằng tỉ số diện tích đáy.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Diện tích xung quanh hình chóp đều}]
+  \[
+    S_{xq} = \frac{1}{2}\,p \cdot d
+  \]
+  trong đó $p$ là chu vi đáy, $d$ là trung đoạn (apothem) của mặt bên.
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính thể tích khối lăng trụ.
+  \item Tính thể tích khối chóp.
+  \item Tính tỉ số thể tích.
+  \item Bài toán thực tế.
 \end{enumerate}
 
 \end{document}

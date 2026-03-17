@@ -500,7 +500,7 @@
 \end{dinhnghia}
 
 \begin{congthuc}[title={Bảng nguyên hàm cơ bản}]
-  \begin{align}
+  \begin{align*}
     &\int x^n\,dx = \frac{x^{n+1}}{n+1} + C \quad (n \ne -1)
     &\qquad&
     \int \frac{1}{x}\,dx = \ln|x| + C \\[6pt]
@@ -513,14 +513,25 @@
     &\int \frac{1}{\cos^2 x}\,dx = \tan x + C
     &&
     \int \frac{1}{\sin^2 x}\,dx = -\cot x + C
-  \end{align}
+  \end{align*}
+\end{congthuc}
+
+\begin{congthuc}[title={Một số nguyên hàm bổ sung}]
+  \begin{align*}
+    &\int \frac{f'(x)}{f(x)}\,dx = \ln\bigl|f(x)\bigr| + C
+    &\qquad&
+    \int \frac{dx}{x^2 + a^2} = \frac{1}{a}\arctan\frac{x}{a} + C \\[6pt]
+    &\int \frac{dx}{\sqrt{a^2 - x^2}} = \arcsin\frac{x}{a} + C
+    &&
+    \int \frac{dx}{x^2 - a^2} = \frac{1}{2a}\ln\left|\frac{x - a}{x + a}\right| + C
+  \end{align*}
 \end{congthuc}
 
 \begin{tinhchat}
-  \begin{align}
+  \begin{align*}
     &\int k \cdot f(x)\,dx = k \int f(x)\,dx \\[4pt]
     &\int \bigl[f(x) + g(x)\bigr]\,dx = \int f(x)\,dx + \int g(x)\,dx
-  \end{align}
+  \end{align*}
 \end{tinhchat}
 
 \begin{congthuc}[title={Nguyên hàm hàm hợp}]
@@ -553,13 +564,13 @@
 \end{dinhnghia}
 
 \begin{tinhchat}
-  \begin{gather}
+  \begin{gather*}
     \int_a^a f(x)\,dx = 0 \\[4pt]
     \int_a^b f(x)\,dx = -\int_b^a f(x)\,dx \\[4pt]
     \int_a^b k \cdot f(x)\,dx = k \int_a^b f(x)\,dx \\[4pt]
     \int_a^b \bigl[f(x) + g(x)\bigr]\,dx = \int_a^b f(x)\,dx + \int_a^b g(x)\,dx \\[4pt]
     \int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx
-  \end{gather}
+  \end{gather*}
   \begin{itemize}
     \item $f(x) \ge 0$ trên $[a,b]$ $\Rightarrow$ $\displaystyle\int_a^b f(x)\,dx \ge 0$.
     \item $f(x) \ge g(x)$ trên $[a,b]$ $\Rightarrow$ $\displaystyle\int_a^b f(x)\,dx \ge \int_a^b g(x)\,dx$.
@@ -1061,8 +1072,17 @@
     \item \textbf{Biết tâm và bán kính:} áp dụng trực tiếp.
     \item \textbf{Biết tâm và 1 điểm:} $R = |IM|$.
     \item \textbf{Qua 4 điểm:} giải hệ $IA = IB = IC = ID$ tìm tâm.
+    \item \textbf{Tiếp xúc mặt phẳng:} mặt cầu tâm $I(a;\,b;\,c)$ tiếp xúc mặt phẳng $(P)$ thì $R = d\bigl(I,\,(P)\bigr)$.
+    \item \textbf{Tiếp xúc đường thẳng:} mặt cầu tâm $I$ tiếp xúc đường thẳng $\Delta$ thì $R = d(I,\,\Delta)$.
   \end{itemize}
 \end{phuongphap}
+
+\begin{congthuc}[title={Phương trình mặt phẳng tiếp xúc mặt cầu}]
+  Mặt phẳng tiếp xúc với mặt cầu $S(I,\,R)$ tại điểm $M_0(x_0;\,y_0;\,z_0)$ trên mặt cầu có VTPT $\vec{n} = \overrightarrow{IM_0}$:
+  \[
+    (x_0 - a)(x - x_0) + (y_0 - b)(y - y_0) + (z_0 - c)(z - z_0) = 0.
+  \]
+\end{congthuc}
 
 \begin{congthuc}[title={Vị trí tương đối}]
   \textbf{Điểm $M$ và mặt cầu $S(I, R)$:}
