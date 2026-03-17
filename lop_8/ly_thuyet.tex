@@ -1,0 +1,806 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 8}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 8};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$(a+b)^2$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\frac{P}{Q}$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$ax+b=0$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$\triangle$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 8}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ======================================================================
+%                      PHẦN 1: ĐẠI SỐ
+% ======================================================================
+\section{Đại số}
+
+% ------ 1.1 Hằng đẳng thức đáng nhớ ------
+\subsection{Hằng đẳng thức đáng nhớ}
+
+\begin{congthuc}[title={Bảy hằng đẳng thức đáng nhớ}]
+  \begin{enumerate}
+    \item Bình phương của một tổng:
+      \[ (A + B)^2 = A^2 + 2AB + B^2 \]
+    \item Bình phương của một hiệu:
+      \[ (A - B)^2 = A^2 - 2AB + B^2 \]
+    \item Hiệu hai bình phương:
+      \[ A^2 - B^2 = (A - B)(A + B) \]
+    \item Lập phương của một tổng:
+      \[ (A + B)^3 = A^3 + 3A^2B + 3AB^2 + B^3 \]
+    \item Lập phương của một hiệu:
+      \[ (A - B)^3 = A^3 - 3A^2B + 3AB^2 - B^3 \]
+    \item Tổng hai lập phương:
+      \[ A^3 + B^3 = (A + B)(A^2 - AB + B^2) \]
+    \item Hiệu hai lập phương:
+      \[ A^3 - B^3 = (A - B)(A^2 + AB + B^2) \]
+  \end{enumerate}
+\end{congthuc}
+
+\begin{congthuc}[title={Một số hằng đẳng thức tổng quát}]
+  \begin{itemize}
+    \item Hiệu hai lũy thừa cùng bậc:
+      \[ a^n - b^n = (a - b)\bigl(a^{n-1} + a^{n-2}b + \cdots + ab^{n-2} + b^{n-1}\bigr) \]
+    \item Tổng hai lũy thừa bậc lẻ:
+      \[ a^{2n+1} + b^{2n+1} = (a + b)\bigl(a^{2n} - a^{2n-1}b + \cdots + b^{2n}\bigr) \]
+    \item Bình phương của tổng ba số hạng:
+      \[ (a + b + c)^2 = a^2 + b^2 + c^2 + 2ab + 2bc + 2ca \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Nhị thức Newton}]
+  \[
+    (a + b)^n = a^n + \binom{n}{1}a^{n-1}b + \binom{n}{2}a^{n-2}b^2 + \cdots + \binom{n}{n-1}a\,b^{n-1} + b^n
+  \]
+  Trong đó:
+  \[
+    \binom{n}{k} = C_n^k = \frac{n!}{k!\,(n-k)!}
+    = \frac{n(n-1)(n-2)\cdots(n-k+1)}{1 \cdot 2 \cdot 3 \cdots k}
+  \]
+  Tính chất: $\;\binom{n}{k} = \binom{n}{n-k}$.
+\end{congthuc}
+
+\begin{congthuc}[title={Tam giác Pascal}]
+  \[
+    \begin{array}{ccccccccc}
+        &   &   &   & 1 &   &   &   &   \\
+        &   &   & 1 &   & 1 &   &   &   \\
+        &   & 1 &   & 2 &   & 1 &   &   \\
+        & 1 &   & 3 &   & 3 &   & 1 &   \\
+      1 &   & 4 &   & 6 &   & 4 &   & 1 \\
+    \end{array}
+  \]
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Áp dụng trực tiếp các hằng đẳng thức để thực hiện phép tính, tính giá trị các biểu thức số.
+  \item Áp dụng các hằng đẳng thức để thu gọn biểu thức và chứng minh các đẳng thức.
+  \item Áp dụng các hằng đẳng thức để giải bài toán tìm giá trị của biến. Xác định hệ số của đa thức.
+  \item Bài toán tính giá trị biểu thức với các biến có điều kiện.
+  \item Chứng minh bất đẳng thức và bài toán tìm giá trị lớn nhất, giá trị nhỏ nhất của biểu thức đại số.
+  \item Áp dụng các hằng đẳng thức để giải một số bài toán số học và tổ hợp.
+\end{enumerate}
+
+% ------ 1.2 Phân tích đa thức thành nhân tử ------
+\subsection{Phân tích đa thức thành nhân tử}
+
+\begin{phuongphap}[title={Phương pháp đặt nhân tử chung}]
+  \begin{itemize}
+    \item Tìm nhân tử chung là những đơn thức, đa thức có mặt trong tất cả các hạng tử.
+    \item Phân tích mỗi hạng tử thành tích của nhân tử chung và một nhân tử khác.
+    \item Viết nhân tử chung ra ngoài dấu ngoặc, viết các nhân tử còn lại của mỗi hạng tử vào trong dấu ngoặc (kể cả dấu của chúng).
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp dùng hằng đẳng thức}]
+  Dùng các hằng đẳng thức đáng nhớ để phân tích đa thức thành nhân tử.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp nhóm nhiều hạng tử và phối hợp các phương pháp}]
+  \begin{itemize}
+    \item Kết hợp các hạng tử thích hợp thành từng nhóm.
+    \item Áp dụng liên tiếp các phương pháp đặt nhân tử chung hoặc dùng hằng đẳng thức.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Một số phương pháp nâng cao}]
+  \begin{itemize}
+    \item Phương pháp tách một hạng tử thành nhiều hạng tử.
+    \item Phương pháp thêm bớt cùng một hạng tử.
+    \item Phương pháp đổi biến.
+    \item Phương pháp đồng nhất hệ số.
+    \item Phương pháp xét giá trị riêng của các biến.
+    \item Sử dụng hằng đẳng thức, nhóm các hạng tử.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $x^2 - 5x = x(x - 5)$
+    \item $x^2 - 16 = (x - 4)(x + 4)$
+    \item $x^2 + 2x + 1 = (x + 1)^2$
+  \end{itemize}
+\end{vidu}
+
+% ------ 1.3 Phân thức đại số ------
+\subsection{Phân thức đại số}
+
+\begin{dinhnghia}
+  Phân thức đại số là biểu thức có dạng $\dfrac{P}{Q}$, trong đó $P$, $Q$ là các đa thức và $Q \ne 0$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item \textbf{Điều kiện xác định:} mẫu thức $Q \ne 0$.
+    \item \textbf{Hai phân thức bằng nhau:}
+      $\dfrac{A}{B} = \dfrac{C}{D} \;\Leftrightarrow\; AD = BC$.
+    \item \textbf{Rút gọn phân thức:} chia cả tử và mẫu cho nhân tử chung.
+    \item \textbf{Quy đồng mẫu thức:} tìm mẫu thức chung rồi nhân tử và mẫu với nhân tử phụ tương ứng.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Các phép tính trên phân thức}]
+  \begin{itemize}
+    \item \textbf{Cộng, trừ cùng mẫu:}
+      $\dfrac{A}{M} \pm \dfrac{B}{M} = \dfrac{A \pm B}{M}$
+    \item \textbf{Nhân:}
+      $\dfrac{A}{B} \cdot \dfrac{C}{D} = \dfrac{A \cdot C}{B \cdot D}$
+    \item \textbf{Chia:}
+      $\dfrac{A}{B} : \dfrac{C}{D} = \dfrac{A}{B} \cdot \dfrac{D}{C} = \dfrac{A \cdot D}{B \cdot C}$
+    \item \textbf{Tính chất:} giao hoán, kết hợp, phân phối.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Rút gọn: $\dfrac{2x}{4x} = \dfrac{1}{2}$ \;(với $x \ne 0$).
+    \item $\dfrac{1}{x} + \dfrac{1}{2x} = \dfrac{2 + 1}{2x} = \dfrac{3}{2x}$
+    \item $\dfrac{1}{4x + 6} + \dfrac{3}{4x - 6}$
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm điều kiện xác định và giá trị của phân thức.
+  \item Chứng minh hai phân thức bằng nhau.
+  \item Rút gọn phân thức.
+  \item Quy đồng mẫu nhiều phân thức.
+  \item Cộng, trừ các phân thức đại số thông thường.
+  \item Cộng, trừ các phân thức đại số kết hợp quy tắc đổi dấu.
+  \item Thực hiện phép nhân, chia phân thức.
+  \item Rút gọn phân thức và tính giá trị của biểu thức đó.
+  \item Toán có nội dung thực tế.
+\end{enumerate}
+
+% ------ 1.4 Phương trình bậc nhất một ẩn ------
+\subsection{Phương trình bậc nhất một ẩn}
+
+\begin{dinhnghia}
+  Phương trình bậc nhất một ẩn có dạng:
+  \[ ax + b = 0 \quad (a \ne 0) \]
+  Nghiệm: $x = -\dfrac{b}{a}$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phương trình tích}]
+  Dạng:
+  \[ A(x) \cdot B(x) = 0 \;\Leftrightarrow\; \left[\begin{array}{l} A(x) = 0 \\ B(x) = 0 \end{array}\right. \]
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xét xem $x = a$ có là nghiệm của phương trình không.
+  \item Xét hai phương trình có tương đương nhau không.
+  \item Nhận dạng phương trình bậc nhất một ẩn số.
+  \item Giải phương trình bậc nhất.
+  \item Giải bài toán bằng cách lập phương trình.
+  \item Phương trình đưa về dạng phương trình tích.
+  \item Giải phương trình có chứa ẩn ở mẫu.
+  \item Xác định giá trị của $a$ để biểu thức có giá trị bằng hằng số $k$ cho trước.
+\end{enumerate}
+
+% ------ 1.5 Lập phương trình ------
+\subsection{Lập phương trình}
+
+\begin{phuongphap}[title={Giải bài toán bằng cách lập phương trình bậc nhất}]
+  \begin{enumerate}
+    \item Chọn ẩn số và đặt điều kiện thích hợp cho ẩn số.
+    \item Biểu diễn các đại lượng chưa biết theo ẩn và các đại lượng đã biết.
+    \item Từ đó lập phương trình biểu thị sự tương quan giữa các đại lượng.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm số bằng cách lập phương trình: Gấp đôi số đó rồi trừ $5$ được $17$.
+
+  Gọi số cần tìm là $x$. Theo đề bài: $2x - 5 = 17 \;\Rightarrow\; x = 11$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Toán về tỉ số và quan hệ giữa các số.
+  \item Toán chuyển động.
+  \item Toán về công việc.
+  \item Toán làm chung công việc.
+\end{enumerate}
+
+% ------ 1.6 Bất phương trình bậc nhất một ẩn ------
+\subsection{Bất phương trình bậc nhất một ẩn}
+
+\begin{tinhchat}[title={Liên hệ giữa thứ tự, phép cộng và phép nhân}]
+  \begin{itemize}
+    \item $a < b \;\Rightarrow\; a + c < b + c$ \;(tương tự với $\le$, $>$, $\ge$).
+    \item Với $c > 0$: \;$a < b \;\Rightarrow\; a \cdot c < b \cdot c$ \;(tương tự với $\le$, $>$, $\ge$).
+    \item Với $c < 0$: \;$a < b \;\Rightarrow\; a \cdot c > b \cdot c$ \;(tương tự với $\le$, $>$, $\ge$).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+  Bất phương trình bậc nhất một ẩn có dạng:
+  \[ ax + b > 0 \quad \text{(tương tự với } <,\;\le,\;\ge\text{)} \]
+  \begin{itemize}
+    \item \textbf{Quy tắc chuyển vế:} khi chuyển một hạng tử từ vế này sang vế kia, ta đổi dấu hạng tử đó.
+    \item \textbf{Quy tắc nhân:} khi nhân hai vế của bất phương trình với cùng một số khác $0$:
+    \begin{itemize}
+      \item Giữ nguyên chiều bất phương trình nếu số đó dương.
+      \item Đổi chiều bất phương trình nếu số đó âm.
+    \end{itemize}
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phương trình và bất phương trình chứa dấu giá trị tuyệt đối}]
+  Xét từng trường hợp cho biểu thức trong dấu giá trị tuyệt đối:
+  \[
+    |a| = \begin{cases} a & \text{nếu } a \ge 0, \\ -a & \text{nếu } a < 0. \end{cases}
+  \]
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Biểu thị thứ tự các số.
+  \item So sánh hai phân số.
+  \item Chứng minh bất đẳng thức.
+  \item Sử dụng phương pháp làm trội để chứng minh bất đẳng thức.
+  \item Áp dụng bất đẳng thức để tìm giá trị nhỏ nhất, giá trị lớn nhất.
+  \item Kiểm tra $x = a$ có là nghiệm của bất phương trình không.
+  \item Biểu diễn tập nghiệm bất phương trình.
+  \item Lập bất phương trình.
+  \item Chứng minh bất phương trình có nghiệm với mọi giá trị của ẩn số $x$.
+  \item Bất phương trình tương đương.
+  \item Phương trình chứa dấu giá trị tuyệt đối.
+  \item Bất phương trình chứa dấu giá trị tuyệt đối.
+\end{enumerate}
+
+% ------ 1.7 Hàm số và đồ thị hàm số bậc nhất ------
+\subsection{Hàm số và đồ thị hàm số bậc nhất}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Nếu đại lượng $y$ phụ thuộc vào đại lượng $x$ sao cho với mỗi giá trị của $x$ luôn xác định được chỉ một giá trị $y$ thì $y$ là \textbf{hàm số} của $x$. Ta viết $y = f(x)$.
+    \item Giá trị của $y$ tại $x_0$ là $f(x_0)$.
+    \item \textbf{Tập xác định} (TXĐ) là tập hợp tất cả các giá trị của $x$ mà hàm số xác định.
+    \item Khi $x$ thay đổi mà $y$ không thay đổi thì $y = f(x)$ gọi là \textbf{hàm hằng}.
+    \item \textbf{Mặt phẳng tọa độ:} trục hoành $Ox$, trục tung $Oy$, gốc tọa độ $O$, tọa độ điểm $A(x;\, y)$.
+    \item \textbf{Đồ thị hàm số:} tập hợp tất cả các điểm biểu diễn cặp giá trị $\bigl(x;\, f(x)\bigr)$ trên mặt phẳng tọa độ.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính đồng biến, nghịch biến}]
+  \begin{itemize}
+    \item \textbf{Đồng biến:} $x_1 < x_2 \;\Rightarrow\; f(x_1) < f(x_2)$.
+    \item \textbf{Nghịch biến:} $x_1 < x_2 \;\Rightarrow\; f(x_1) > f(x_2)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Hàm số bậc nhất}]
+  Hàm số bậc nhất có dạng $y = ax + b$ \;($a \ne 0$). Đồ thị là một đường thẳng.
+  \begin{itemize}
+    \item $a > 0$: hàm số đồng biến.
+    \item $a < 0$: hàm số nghịch biến.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Vị trí tương đối giữa hai đường thẳng $y = ax + b$ và $y = a'x + b'$}]
+  \begin{itemize}
+    \item Song song: $a = a'$ và $b \ne b'$.
+    \item Trùng nhau: $a = a'$ và $b = b'$.
+    \item Cắt nhau: $a \ne a'$.
+    \item Vuông góc: $a \cdot a' = -1$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Hệ số góc của đường thẳng}]
+  \begin{itemize}
+    \item $a$ là hệ số góc của đường thẳng $y = ax + b$.
+    \item Gọi $\alpha$ là góc tạo bởi đường thẳng và trục $Ox$:
+    \begin{itemize}
+      \item $\alpha < 90^\circ$ thì $a > 0$ và $a = \tan\alpha$.
+      \item $\alpha > 90^\circ$ thì $a < 0$ và $a = -\tan(180^\circ - \alpha)$.
+    \end{itemize}
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính giá trị của hàm số tại một điểm.
+  \item Biểu diễn tọa độ của một điểm trên mặt phẳng tọa độ.
+  \item Xét sự đồng biến và nghịch biến của hàm số.
+  \item Bài toán liên quan đến đồ thị hàm số $y = ax$ \;($a \ne 0$).
+  \item Nhận dạng hàm số bậc nhất.
+  \item Tìm $m$ để hàm số đồng biến, nghịch biến.
+  \item Vẽ đồ thị hàm số $y = ax$ \;($a \ne 0$) và tìm tọa độ giao điểm của hai đường thẳng.
+  \item Xét tính đồng quy của ba đường thẳng.
+  \item Chỉ ra các cặp đường thẳng song song, các cặp đường thẳng cắt nhau.
+  \item Xác định phương trình đường thẳng.
+  \item Xác định hệ số góc của đường thẳng.
+  \item Xác định phương trình đường thẳng dựa vào hệ số góc.
+  \item Viết phương trình đường thẳng.
+  \item Tìm điểm cố định của đường thẳng.
+  \item Ba đường thẳng đồng quy.
+  \item Bài toán liên quan đến diện tích.
+  \item Khoảng cách từ gốc tọa độ $O$ đến đường thẳng.
+\end{enumerate}
+
+\newpage
+
+% ======================================================================
+%                      PHẦN 2: HÌNH HỌC
+% ======================================================================
+\section{Hình học}
+
+% ------ 2.1 Tứ giác & tính chất ------
+\subsection{Tứ giác \& tính chất}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Tứ giác} (mặc định là tứ giác lồi): hình gồm bốn đoạn thẳng nối bốn đỉnh liên tiếp.
+    \item \textbf{Đường chéo:} đoạn thẳng nối hai đỉnh đối nhau.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Tổng các góc của một tứ giác bằng $360^\circ$.
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính số đo góc.
+  \item Tìm mối liên hệ giữa các cạnh, đường chéo của tứ giác.
+  \item Tổng hợp.
+\end{enumerate}
+
+% ------ 2.2 Đa giác đều ------
+\subsection{Đa giác đều}
+
+\begin{dinhnghia}
+  Đa giác đều là đa giác có tất cả các cạnh bằng nhau và tất cả các góc bằng nhau.
+
+  Đa giác $n$ đỉnh ($n \ge 3$) được gọi là hình $n$-giác hay hình $n$-cạnh.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức đa giác đều $n$ cạnh}]
+  \begin{itemize}
+    \item Tổng các góc của đa giác $n$ cạnh:
+      \[ S = (n - 2) \cdot 180^\circ \]
+    \item Mỗi góc của đa giác đều $n$ cạnh:
+      \[ \alpha = \frac{(n - 2) \cdot 180^\circ}{n} \]
+    \item Số đường chéo của đa giác lồi $n$ cạnh:
+      \[ d = \frac{n(n - 3)}{2} \]
+  \end{itemize}
+\end{congthuc}
+
+% ------ 2.3 Hình thang, bình hành, chữ nhật, thoi, vuông ------
+\subsection{Hình thang, hình thang cân, hình bình hành, hình chữ nhật, hình thoi, hình vuông}
+
+\subsubsection{Hình thang, hình thang cân}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Hình thang} là tứ giác có hai cạnh đối song song.
+    \item \textbf{Hình thang cân} là hình thang có hai góc kề một đáy bằng nhau.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Hai cạnh bên bằng nhau.
+    \item Hai đường chéo bằng nhau.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Dấu hiệu nhận biết:}
+\begin{itemize}
+  \item Tứ giác có hai cạnh đối song song và hai đường chéo bằng nhau.
+\end{itemize}
+
+\subsubsection{Hình bình hành}
+
+\begin{dinhnghia}
+  Hình bình hành là tứ giác có các cạnh đối song song.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Các cạnh đối bằng nhau.
+    \item Các góc đối bằng nhau.
+    \item Hai đường chéo cắt nhau tại trung điểm của mỗi đường.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Dấu hiệu nhận biết:}
+\begin{itemize}
+  \item Tứ giác có các cạnh đối bằng nhau.
+  \item Tứ giác có một cặp cạnh đối song song và bằng nhau.
+  \item Tứ giác có các góc đối bằng nhau.
+  \item Tứ giác có hai đường chéo cắt nhau tại trung điểm của mỗi đường.
+\end{itemize}
+
+\subsubsection{Hình chữ nhật}
+
+\begin{dinhnghia}
+  Hình chữ nhật là tứ giác có bốn góc vuông.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Có tất cả các tính chất của hình bình hành.
+    \item Hai đường chéo bằng nhau.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Dấu hiệu nhận biết:}
+\begin{itemize}
+  \item Hình bình hành có một góc vuông là hình chữ nhật.
+  \item Hình bình hành có hai đường chéo bằng nhau là hình chữ nhật.
+\end{itemize}
+
+\subsubsection{Hình thoi}
+
+\begin{dinhnghia}
+  Hình thoi là tứ giác có bốn cạnh bằng nhau.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Có tất cả các tính chất của hình bình hành.
+    \item Hai đường chéo vuông góc và là phân giác các góc.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Dấu hiệu nhận biết:}
+\begin{itemize}
+  \item Hình bình hành có hai cạnh kề bằng nhau.
+  \item Hình bình hành có hai đường chéo vuông góc với nhau.
+  \item Hình bình hành có một đường chéo là đường phân giác của một góc.
+\end{itemize}
+
+\subsubsection{Hình vuông}
+
+\begin{dinhnghia}
+  Hình vuông là tứ giác có bốn góc vuông và bốn cạnh bằng nhau.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Hình vuông có tất cả các tính chất của hình chữ nhật và hình thoi.
+\end{tinhchat}
+
+\medskip\noindent\textbf{Dấu hiệu nhận biết:}
+\begin{itemize}
+  \item Hình chữ nhật có hai cạnh kề bằng nhau.
+  \item Hình chữ nhật có hai đường chéo vuông góc.
+  \item Hình chữ nhật có một đường chéo là đường phân giác của một góc.
+\end{itemize}
+
+% ------ 2.4 Định lý Thales, đoạn thẳng tỉ lệ ------
+\subsection{Định lý Thales, đoạn thẳng tỉ lệ}
+
+\begin{dinhnghia}
+  Hai đoạn thẳng $AB$ và $CD$ gọi là \textbf{tỉ lệ} với hai đoạn thẳng $A'B'$ và $C'D'$ nếu:
+  \[
+    \frac{AB}{CD} = \frac{A'B'}{C'D'} \quad\text{hay}\quad \frac{AB}{A'B'} = \frac{CD}{C'D'}
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Thales}]
+  Nếu một đường thẳng song song với một cạnh của tam giác và cắt hai cạnh còn lại thì nó chia hai cạnh đó thành các đoạn thẳng tương ứng tỉ lệ.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Thales đảo}]
+  Nếu một đường thẳng cắt hai cạnh của tam giác và tạo ra các đoạn thẳng tương ứng tỉ lệ thì đường thẳng đó song song với cạnh thứ ba.
+\end{dinhly}
+
+\begin{tinhchat}[title={Đường trung bình của tam giác}]
+  Đường trung bình của tam giác là đoạn thẳng nối trung điểm hai cạnh. Đường trung bình song song với cạnh thứ ba và bằng nửa cạnh đó.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Tính chất đường phân giác}]
+  Đường phân giác của một góc trong tam giác chia cạnh đối diện thành hai đoạn tỉ lệ với hai cạnh kề.
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Viết tỉ số các cặp đoạn thẳng hoặc tính tỉ số của hai đoạn thẳng.
+  \item Tính độ dài đoạn thẳng hoặc chứng minh đoạn thẳng tỉ lệ.
+  \item Sử dụng hệ quả của định lý Thales để tính độ dài đoạn thẳng.
+  \item Sử dụng định lý Thales đảo để chứng minh các đường thẳng song song.
+  \item Sử dụng hệ quả của định lý Thales để chứng minh hệ thức, các đoạn thẳng bằng nhau.
+  \item Sử dụng tính chất đường trung bình của tam giác để tính độ dài đoạn thẳng.
+  \item Sử dụng tính chất đường trung bình của tam giác để chứng minh hai đoạn thẳng bằng nhau; hai đường thẳng song song.
+  \item Sử dụng tính chất đường trung bình của tam giác để chứng minh tứ giác hình thoi; hình bình hành; hình chữ nhật; hình vuông.
+  \item Bài toán thực tế liên quan đường trung bình tam giác.
+  \item Sử dụng tính chất đường phân giác của tam giác để tính độ dài đoạn thẳng.
+  \item Sử dụng tính chất đường phân giác của tam giác để tính tỉ số, chứng minh các hệ thức, các đoạn thẳng bằng nhau, các đường thẳng song song.
+\end{enumerate}
+
+% ------ 2.5 Tam giác đồng dạng ------
+\subsection{Tam giác đồng dạng}
+
+\begin{dinhnghia}
+  Hai tam giác được gọi là \textbf{đồng dạng} nếu ba góc tương ứng bằng nhau và ba cạnh tương ứng tỉ lệ.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Ba trường hợp đồng dạng của tam giác}]
+  \begin{enumerate}
+    \item \textbf{Cạnh -- cạnh -- cạnh (c.c.c):} ba cạnh tương ứng tỉ lệ.
+    \item \textbf{Cạnh -- góc -- cạnh (c.g.c):} hai cạnh tương ứng tỉ lệ và góc xen giữa bằng nhau.
+    \item \textbf{Góc -- góc (g.g):} hai góc tương ứng bằng nhau.
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Trường hợp đồng dạng của tam giác vuông}]
+  Hai tam giác vuông đồng dạng nếu thỏa một trong các điều kiện:
+  \begin{itemize}
+    \item Cạnh huyền và một cạnh góc vuông tương ứng tỉ lệ.
+    \item Hai cạnh góc vuông tương ứng tỉ lệ.
+    \item Một góc nhọn bằng nhau.
+  \end{itemize}
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Mỗi tam giác đồng dạng với chính nó.
+    \item Nếu $\triangle ABC \sim \triangle A'B'C'$ thì $\triangle A'B'C' \sim \triangle ABC$.
+    \item Nếu $\triangle ABC \sim \triangle A'B'C'$ và $\triangle A'B'C' \sim \triangle A''B''C''$ thì $\triangle ABC \sim \triangle A''B''C''$.
+  \end{itemize}
+\end{tinhchat}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh hai tam giác đồng dạng.
+  \item Sử dụng trường hợp đồng dạng thứ nhất (c.c.c) để tính độ dài các cạnh hoặc chứng minh các góc bằng nhau.
+  \item Sử dụng trường hợp đồng dạng thứ hai (c.g.c) để tính độ dài cạnh hoặc chứng minh các góc bằng nhau.
+  \item Sử dụng trường hợp đồng dạng thứ ba (g.g) để tính độ dài các cạnh, chứng minh hệ thức cạnh hoặc chứng minh các góc bằng nhau.
+\end{enumerate}
+
+% ------ 2.6 Định lý Pythagore ------
+\subsection{Định lý Pythagore}
+
+\begin{dinhly}[title={Định lý Pythagore}]
+  Trong tam giác vuông, bình phương cạnh huyền bằng tổng bình phương hai cạnh góc vuông:
+  \[ c^2 = a^2 + b^2 \]
+  trong đó $c$ là cạnh huyền, $a$ và $b$ là hai cạnh góc vuông.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Pythagore đảo}]
+  Nếu tam giác có $c^2 = a^2 + b^2$ thì tam giác đó vuông tại góc đối diện cạnh $c$.
+\end{dinhly}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính độ dài cạnh của tam giác vuông.
+  \item Nhận biết tam giác vuông.
+  \item Dùng định lý Pythagore giải quyết một số bài toán thực tế liên quan.
+\end{enumerate}
+
+% ------ 2.7 Hình chóp tam giác đều / tứ giác đều ------
+\subsection{Hình chóp tam giác đều / tứ giác đều}
+
+\begin{dinhnghia}[title={Hình chóp tam giác đều $S.ABC$}]
+  \begin{itemize}
+    \item Mặt đáy $ABC$ là một tam giác đều.
+    \item Các mặt bên $SAB$, $SBC$, $SCA$ là những tam giác cân tại $S$.
+    \item Các cạnh đáy $AB$, $BC$, $CA$ bằng nhau; các cạnh bên $SA$, $SB$, $SC$ bằng nhau.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Diện tích xung quanh và thể tích}]
+  \begin{itemize}
+    \item \textbf{Diện tích xung quanh:}
+      \[ S_{\text{xq}} = \frac{1}{2}\,p \cdot d \]
+      trong đó $p$ là chu vi đáy, $d$ là đường cao (trung đoạn) của mặt bên.
+    \item \textbf{Thể tích:}
+      \[ V = \frac{1}{3}\,S_{\text{đáy}} \cdot h \]
+      trong đó $h$ là chiều cao hình chóp.
+  \end{itemize}
+\end{congthuc}
+
+\end{document}

@@ -1,0 +1,1131 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 10}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 10};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\vec{a}$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\Delta$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$C_n^k$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$\cup$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 10}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ======================================================================
+%                      PHẦN 1: ĐẠI SỐ
+% ======================================================================
+\section{Đại số}
+
+% ------ 1.1 Mệnh đề và tập hợp ------
+\subsection{Mệnh đề và tập hợp}
+
+% --- 1.1.1 Mệnh đề ---
+\subsubsection{Mệnh đề}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Mệnh đề} là câu khẳng định đúng hoặc sai (không vừa đúng vừa sai).
+    \item \textbf{Mệnh đề chứa biến:} câu chứa biến, khi thay giá trị cụ thể sẽ trở thành mệnh đề.
+    \item \textbf{Phủ định} của mệnh đề $P$: ký hiệu $\bar{P}$; nếu $P$ đúng thì $\bar{P}$ sai và ngược lại.
+    \item \textbf{Mệnh đề kéo theo:} ``Nếu $P$ thì $Q$'' ($P \Rightarrow Q$).
+    \item \textbf{Mệnh đề đảo:} Mệnh đề đảo của $P \Rightarrow Q$ là $Q \Rightarrow P$.
+    \item \textbf{Điều kiện cần, điều kiện đủ:}
+      \begin{itemize}
+        \item $P \Rightarrow Q$: $P$ là điều kiện đủ để $Q$;\; $Q$ là điều kiện cần để $P$.
+      \end{itemize}
+    \item \textbf{Mệnh đề tương đương:} $P \Leftrightarrow Q$ nghĩa là $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng.
+    \item \textbf{Điều kiện cần và đủ, khi và chỉ khi:}
+      \begin{itemize}
+        \item $P \Leftrightarrow Q$: $P$ là điều kiện cần và đủ để $Q$;\; $Q$ khi và chỉ khi $P$.
+      \end{itemize}
+    \item Mệnh đề chứa ký hiệu ``với mọi $\forall$'', ``tồn tại $\exists$''.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item ``3 là số nguyên tố'' $\;\Rightarrow\;$ đúng.\quad ``$5 > 7$'' $\;\Rightarrow\;$ sai.
+    \item ``$x + 2 = 5$'' có phải mệnh đề không? (Không, vì còn phụ thuộc $x$ $\;\Rightarrow\;$ mệnh đề chứa biến.)
+    \item ``Tam giác đều $\;\Rightarrow\;$ tam giác cân'' đúng không? Điều ngược lại thì sao?
+    \item $\forall x,\; x^2 \ge 0$;\quad $\exists x,\; x^2 = 4$.
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định mệnh đề và mệnh đề chứa biến.
+  \item Xét tính đúng sai của một mệnh đề.
+  \item Phủ định một mệnh đề.
+  \item Mệnh đề kéo theo, mệnh đề đảo, mệnh đề tương đương.
+\end{enumerate}
+
+% --- 1.1.2 Tập hợp và các phép toán ---
+\subsubsection{Tập hợp và các phép toán}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Nhắc lại tập hợp (lớp 6):
+      \begin{itemize}
+        \item Liệt kê.
+        \item Chỉ ra tính chất đặc trưng.
+        \item Tập rỗng.
+        \item Thuộc và không thuộc.
+      \end{itemize}
+    \item \textbf{Tập con:} $A$ là tập con của $B$ nếu mọi phần tử của $A$ đều thuộc $B$.
+    \item \textbf{Hai tập hợp bằng nhau:} mỗi phần tử thuộc $A$ cũng thuộc $B$ và ngược lại (tức $A \subset B$ và $B \subset A \;\Rightarrow\; A = B$).
+    \item \textbf{Phép hợp:} $A \cup B$ = tập gồm các phần tử thuộc $A$ hoặc thuộc $B$ (hoặc cả hai).
+    \item \textbf{Phép giao:} $A \cap B$ = tập gồm các phần tử thuộc cả $A$ và $B$.
+    \item \textbf{Phép hiệu:} $A \setminus B$ = tập gồm các phần tử thuộc $A$ mà không thuộc $B$.
+    \item \textbf{Phần bù:} nếu $A$ là tập con của $E$ thì phần bù của $A$ trong $E$ bằng $E \setminus A$.
+    \item \textbf{Các tập số:} $\mathbb{N},\; \mathbb{Z},\; \mathbb{Q},\; \mathbb{R}$ và mối quan hệ bao hàm.
+    \item \textbf{Khoảng, đoạn, nửa khoảng} trên trục số:
+      \begin{itemize}
+        \item $(a;\, b)$ là khoảng (không chứa 2 đầu mút).
+        \item $[a;\, b]$ là đoạn (chứa cả 2 đầu mút).
+        \item $[a;\, b)$ hoặc $(a;\, b]$ là nửa khoảng.
+      \end{itemize}
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức đếm}]
+  \[
+    |A \cup B| = |A| + |B| - |A \cap B|
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  $A = \{1;\, 2;\, 3;\, 4\}$, $B = \{3;\, 4;\, 5;\, 6\}$. Tìm $A \cap B$, $A \cup B$, $A \setminus B$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định một tập hợp.
+  \item Các phép toán về giao, hợp, hiệu của hai tập hợp.
+  \item Phần tử của tập hợp, các xác định tập hợp.
+  \item Tập hợp con, tập hợp bằng nhau.
+  \item Biểu diễn tập hợp số.
+  \item Các phép toán trên tập hợp số.
+  \item Các bài toán tìm điều kiện của tham số.
+\end{enumerate}
+
+% ------ 1.2 Bất phương trình và hệ BPT bậc nhất hai ẩn ------
+\subsection{Bất phương trình và hệ bất phương trình bậc nhất hai ẩn}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Bất phương trình bậc nhất hai ẩn:} $ax + by < c$ (hoặc $\le,\; >,\; \ge$).
+    \item Cặp $(x_0;\, y_0)$ là một nghiệm nếu thế vào biểu thức đúng.
+    \item \textbf{Miền nghiệm:} là nửa mặt phẳng, bao gồm (nét liền) hoặc không bao gồm (nét đứt) đường biên tùy dấu.
+    \item \textbf{Hệ bất phương trình:} miền nghiệm là phần giao các miền nghiệm.
+    \item Cặp $(x_0;\, y_0)$ là một nghiệm của hệ nếu thế vào tất cả các biểu thức đều đúng.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Xác định miền nghiệm}]
+  Vẽ đường thẳng $ax + by = c$, chọn một điểm thử, xác định nửa mặt phẳng thỏa mãn.
+\end{phuongphap}
+
+\begin{vidu}
+  Xác định miền nghiệm của hệ:
+  $\begin{cases} x + y \le 6 \\ x \ge 0 \\ y \ge 0 \end{cases}$
+\end{vidu}
+
+\begin{luuy}
+  \textbf{Bài toán tối ưu} (quy hoạch tuyến tính đơn giản): tìm giá trị lớn nhất/nhỏ nhất của biểu thức trên miền nghiệm.
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Các bài toán bất phương trình bậc nhất hai ẩn.
+  \item Các bài toán hệ bất phương trình bậc nhất hai ẩn.
+  \item Tìm nghiệm bất phương trình bậc nhất hai ẩn.
+  \item Tìm miền nghiệm của hệ bất phương trình bậc nhất hai ẩn.
+  \item Tìm giá trị nhỏ nhất -- giá trị lớn nhất.
+  \item Áp dụng bài toán thực tiễn.
+\end{enumerate}
+
+% ------ 1.3 Hàm số bậc hai ------
+\subsection{Hàm số bậc hai}
+
+% --- 1.3.1 Ôn tập hàm số ---
+\subsubsection{Ôn tập hàm số (lớp 8)}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Nếu mỗi giá trị của $x \in D$, tìm được một giá trị của $y \in \mathbb{R}$ thì $y$ gọi là \textbf{hàm số} của $x$.
+    \item $x$ là biến số, $y$ là hàm số của $x$, ký hiệu: $y = f(x)$.
+    \item $D$: Tập xác định (TXĐ) của hàm số.
+    \item \textbf{Đồ thị} của hàm số: tập hợp các điểm $M(x;\, f(x))$ trên mặt phẳng tọa độ.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item \textbf{Hàm chẵn:} $f(-x) = f(x)$, đồ thị đối xứng qua trục $Oy$.
+    \item \textbf{Hàm lẻ:} $f(-x) = -f(x)$, đồ thị đối xứng qua gốc tọa độ $O$.
+    \item \textbf{Đồng biến:} $x_1 < x_2 \;\Rightarrow\; f(x_1) < f(x_2)$.
+    \item \textbf{Nghịch biến:} $x_1 < x_2 \;\Rightarrow\; f(x_1) > f(x_2)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $y = x^2$ là hàm chẵn hay lẻ?\quad $y = x^3$ thì sao?
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm tập xác định của hàm số.
+  \item Tìm điều kiện để hàm số xác định trên một tập $K$ cho trước.
+  \item Tập giá trị của hàm số.
+  \item Tính đồng biến, nghịch biến của hàm số.
+  \item Tìm điều kiện của tham số $m$ để hàm số đồng biến (nghịch biến) trên một tập hợp cho trước.
+
+    Xét $\dfrac{f(x_1) - f(x_2)}{x_1 - x_2}$.
+  \item Bài toán thực tế.
+  \item Xác định sự biến thiên của hàm số cho trước.
+  \item Xác định sự biến thiên thông qua đồ thị của hàm số.
+  \item Một số bài toán liên quan đến đồ thị của hàm số.
+\end{enumerate}
+
+% --- 1.3.2 Hàm số bậc hai ---
+\subsubsection{Hàm số bậc hai $y = ax^2 + bx + c\; (a \ne 0)$}
+
+\begin{dinhnghia}
+  Đồ thị hàm số $y = ax^2 + bx + c\; (a \ne 0)$ là một parabol.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các yếu tố của parabol}]
+  \begin{itemize}
+    \item \textbf{Đỉnh:} $I\!\left(\dfrac{-b}{2a};\, \dfrac{-\Delta}{4a}\right)$ với $\Delta = b^2 - 4ac$.
+    \item \textbf{Trục đối xứng:} $x = \dfrac{-b}{2a}$.
+    \item \textbf{Bảng biến thiên:} xét khi $a > 0$ và $a < 0$ với $x = \dfrac{-b}{2a}$, $y = \dfrac{-\Delta}{4a}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $a > 0$: parabol quay bề lõm lên trên (có giá trị nhỏ nhất).
+    \item $a < 0$: parabol quay bề lõm xuống dưới (có giá trị lớn nhất).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{luuy}
+  Ôn lại lớp 9: đồ thị $y = ax^2$.
+\end{luuy}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Vẽ đồ thị $y = x^2 - 4x + 3$. Tìm đỉnh, trục đối xứng, điểm cắt trục $Ox$.
+    \item Parabol $y = -x^2 + 2x + 3$ quay lên hay xuống? Đỉnh ở đâu?
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Sự biến thiên.
+  \item Xác định toạ độ đỉnh, trục đối xứng, hàm số bậc hai thỏa mãn điều kiện cho trước.
+  \item Đọc đồ thị, bảng biến thiên của hàm số bậc hai.
+  \item Giá trị lớn nhất, giá trị nhỏ nhất.
+  \item Sự tương giao giữa parabol với đồ thị các hàm số.
+  \item Tìm điều kiện để hàm số $y = ax^2 + bx + c$ đồng biến trên khoảng $(a;\, b)$.
+  \item Xác định hàm số bậc hai.
+  \item Đồ thị hàm số bậc hai.
+  \item Điểm cố định của đồ thị hàm số.
+  \item Bài toán thực tế.
+\end{enumerate}
+
+% --- 1.3.3 Tam thức bậc hai ---
+\subsubsection{Tam thức bậc hai}
+
+\begin{luuy}
+  Ôn lại lớp 9: phương trình bậc 2.
+\end{luuy}
+
+\begin{tinhchat}[title={Dấu của tam thức bậc hai $f(x) = ax^2 + bx + c$}]
+  Đặt $\Delta = b^2 - 4ac$.
+  \begin{itemize}
+    \item $\Delta < 0$: $f(x)$ cùng dấu với $a$, $\forall x$.
+    \item $\Delta = 0$: $f(x)$ cùng dấu với $a$, $\forall x \ne \dfrac{-b}{2a}$.
+    \item $\Delta > 0$: $f(x)$ có hai nghiệm phân biệt:
+      \begin{itemize}
+        \item Trái dấu với $a$ khi $x$ nằm giữa hai nghiệm.
+        \item Cùng dấu với $a$ khi $x$ nằm ngoài hai nghiệm.
+      \end{itemize}
+  \end{itemize}
+
+  Hoặc tính $\Delta' = b'^2 - ac$ (khi $b = 2b'$).
+\end{tinhchat}
+
+\begin{luuy}
+  ``Trong trái -- Ngoài cùng.''
+\end{luuy}
+
+\begin{dinhnghia}
+  \textbf{Bất phương trình bậc hai:} $ax^2 + bx + c > 0$ (hoặc $\ge 0,\; < 0,\; \le 0$).
+\end{dinhnghia}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xét dấu tam thức bậc hai.
+  \item Giải bất phương trình bậc hai.
+\end{enumerate}
+
+% --- 1.3.4 Phương trình quy về phương trình bậc hai ---
+\subsubsection{Phương trình quy về phương trình bậc hai}
+
+\begin{phuongphap}
+  \begin{itemize}
+    \item Dạng $\sqrt{ax^2 + bx + c} = \sqrt{dx^2 + ex + f}$.
+    \item Dạng $\sqrt{ax^2 + bx + c} = dx + e$.
+  \end{itemize}
+\end{phuongphap}
+
+% ------ 1.4 Hệ thức lượng trong tam giác ------
+\subsection{Hệ thức lượng trong tam giác}
+
+% --- 1.4.1 Giá trị lượng giác ---
+\subsubsection{Giá trị lượng giác của góc từ $0^\circ$ đến $180^\circ$}
+
+\begin{dinhnghia}
+  Mở rộng định nghĩa $\sin,\; \cos,\; \tan,\; \cot$ cho góc từ $0^\circ$ đến $180^\circ$ (không chỉ góc nhọn như lớp 9).
+
+  Với góc $\alpha$ ($0^\circ < \alpha < 180^\circ$):
+  \begin{itemize}
+    \item $\sin\alpha \ge 0$.
+    \item $\cos\alpha > 0$ khi $0^\circ < \alpha < 90^\circ$ (góc nhọn).
+    \item $\cos\alpha < 0$ khi $90^\circ < \alpha < 180^\circ$ (góc tù).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Hệ thức lượng giác cơ bản}]
+  \begin{gather}
+    \tan\alpha = \dfrac{\sin\alpha}{\cos\alpha},\qquad
+    \cot\alpha = \dfrac{\cos\alpha}{\sin\alpha},\qquad
+    \tan\alpha \cdot \cot\alpha = 1, \\[4pt]
+    \sin^2\alpha + \cos^2\alpha = 1, \\[4pt]
+    1 + \tan^2\alpha = \dfrac{1}{\cos^2\alpha},\qquad
+    1 + \cot^2\alpha = \dfrac{1}{\sin^2\alpha}.
+  \end{gather}
+\end{congthuc}
+
+\begin{congthuc}[title={Góc đối nhau (cos - đối)}]
+  \begin{align}
+    \sin(- \alpha) &= -\sin\alpha, \\
+    \cos(- \alpha) &= \cos\alpha, \\
+    \tan(- \alpha) &= -\tan\alpha, \\
+    \cot(- \alpha) &= -\cot\alpha.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Góc bù nhau (sin - bù)}]
+  \begin{align}
+    \sin(180^\circ - \alpha) &= \sin\alpha, \\
+    \cos(180^\circ - \alpha) &= -\cos\alpha, \\
+    \tan(180^\circ - \alpha) &= -\tan\alpha, \\
+    \cot(180^\circ - \alpha) &= -\cot\alpha.
+  \end{align}
+\end{congthuc}
+
+\begin{congthuc}[title={Góc phụ nhau (phụ chéo)}]
+  \begin{align}
+    \sin(90^\circ - \alpha) &= \cos\alpha, \\
+    \cos(90^\circ - \alpha) &= \sin\alpha, \\
+    \tan(90^\circ - \alpha) &= \cot\alpha, \\
+    \cot(90^\circ - \alpha) &= \tan\alpha.
+  \end{align}
+\end{congthuc}
+
+\begin{vidu}
+  $\sin 120^\circ = ?\quad \cos 150^\circ = ?$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính các giá trị biểu thức lượng giác.
+  \item Tính giá trị của một biểu thức lượng giác khi biết trước một giá trị lượng giác.
+  \item Chứng minh các đẳng thức, rút gọn các biểu thức lượng giác.
+  \item Dấu của các giá trị lượng giác. Giá trị lượng giác.
+  \item Cho biết một giá trị lượng giác, tính các giá trị lượng giác còn lại.
+  \item Chứng minh, rút gọn biểu thức lượng giác.
+  \item Tính giá trị biểu thức lượng giác.
+\end{enumerate}
+
+% --- 1.4.2 Định lí cosin ---
+\subsubsection{Định lí cosin}
+
+\begin{dinhly}[title={Định lý cosin}]
+  \[
+    a^2 = b^2 + c^2 - 2bc\cos\widehat{A}
+    \;\Rightarrow\;
+    \cos\widehat{A} = \dfrac{b^2 + c^2 - a^2}{2bc}
+  \]
+  Dùng khi biết 2 cạnh và góc xen giữa, hoặc biết 3 cạnh tìm góc.
+\end{dinhly}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Tam giác có $b = 5,\; c = 7,\; \widehat{A} = 60^\circ$. Tìm $a$.
+    \item Khi $\widehat{A} = 90^\circ$ thì công thức trở thành Pythagore.
+  \end{itemize}
+\end{vidu}
+
+% --- 1.4.3 Định lí sin ---
+\subsubsection{Định lí sin}
+
+\begin{dinhly}[title={Định lý sin}]
+  \[
+    \dfrac{a}{\sin\widehat{A}} = \dfrac{b}{\sin\widehat{B}} = \dfrac{c}{\sin\widehat{C}} = 2R
+  \]
+  ($R$ là bán kính đường tròn ngoại tiếp.)
+
+  Dùng khi biết 1 cạnh + góc đối diện + thêm 1 góc hoặc 1 cạnh.
+\end{dinhly}
+
+\begin{vidu}
+  Tam giác có $\widehat{A} = 30^\circ,\; \widehat{B} = 45^\circ,\; a = 6$. Tìm $b$.
+\end{vidu}
+
+% --- 1.4.4 Diện tích tam giác ---
+\subsubsection{Diện tích tam giác}
+
+\begin{congthuc}[title={Diện tích tam giác}]
+  \[
+    S = \dfrac{1}{2}ah = \dfrac{1}{2}ab\sin\widehat{C} = pr = \dfrac{abc}{4R}
+  \]
+  với $p = \dfrac{a + b + c}{2}$ là nửa chu vi, $r$ là bán kính đường tròn nội tiếp, $R$ là bán kính đường tròn ngoại tiếp.
+\end{congthuc}
+
+\begin{congthuc}[title={Công thức Heron}]
+  \[
+    S = \sqrt{p(p - a)(p - b)(p - c)}
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Công thức trung tuyến}]
+  \[
+    m_a^2 = \dfrac{2(b^2 + c^2) - a^2}{4}
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Tam giác có $a = 8,\; b = 5,\; \widehat{C} = 30^\circ$. Tính $S$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Giải tam giác: cho các yếu tố, tìm các yếu tố còn lại.
+  \item Hệ thức liên hệ giữa các yếu tố trong tam giác, nhận dạng tam giác.
+  \item Định lý cosin, áp dụng định lý cosin để giải toán.
+  \item Định lý sin, áp dụng định lý sin để giải toán.
+  \item Diện tích tam giác, bán kính đường tròn.
+  \item Ứng dụng thực tế.
+\end{enumerate}
+
+% ------ 1.5 Đại số tổ hợp ------
+\subsection{Đại số tổ hợp}
+
+% --- 1.5.1 Quy tắc đếm ---
+\subsubsection{Quy tắc đếm}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Quy tắc cộng:} nếu công việc có thể thực hiện theo cách 1 ($m$ cách) HOẶC cách 2 ($n$ cách) thì tổng $= m + n$ cách.
+    \item \textbf{Quy tắc nhân:} nếu công việc gồm bước 1 ($m$ cách) VÀ bước 2 ($n$ cách) thì tích $= m \cdot n$ cách.
+    \item Kết hợp 2 quy tắc.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  Đi từ $A$ đến $B$ có 3 đường, từ $B$ đến $C$ có 4 đường. Đi từ $A$ đến $C$ qua $B$ có mấy cách?
+\end{vidu}
+
+% --- 1.5.2 Hoán vị, chỉnh hợp, tổ hợp ---
+\subsubsection{Hoán vị, chỉnh hợp, tổ hợp}
+
+\begin{congthuc}[title={Hoán vị, chỉnh hợp, tổ hợp}]
+  \begin{itemize}
+    \item \textbf{Hoán vị} $n$ phần tử:
+      \[
+        P(n) = n!
+      \]
+      (sắp xếp tất cả).
+    \item \textbf{Chỉnh hợp} chập $k$ của $n$:
+      \[
+        A_n^k = \dfrac{n!}{(n - k)!}
+      \]
+      (chọn $k$ phần tử có thứ tự, chọn lần lượt để làm công việc khác nhau).
+    \item \textbf{Tổ hợp} chập $k$ của $n$:
+      \[
+        C_n^k = \dfrac{n!}{k!\,(n - k)!}
+      \]
+      (chọn $k$ phần tử không thứ tự, chọn một lần để làm công việc giống nhau).
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Nhị thức Newton}]
+  \[
+    (a + b)^n = \sum_{k=0}^{n} C_n^k\, a^{n-k}\, b^k
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Phân biệt khi nào dùng chỉnh hợp, khi nào dùng tổ hợp?
+    \item Từ 5 bạn, chọn 3 bạn xếp hàng $\;\Rightarrow\;$ dùng gì? Chọn 3 bạn lập nhóm $\;\Rightarrow\;$ dùng gì?
+    \item Khai triển $(a + b)^4$,\quad $(a + b)^5$.
+  \end{itemize}
+\end{vidu}
+
+% --- 1.5.3 Xác suất ---
+\subsubsection{Xác suất}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Phép thử ngẫu nhiên:} một hành động mà kết quả không biết trước.
+    \item \textbf{Không gian mẫu} (ký hiệu $\Omega$): tập hợp các kết quả có thể xảy ra.
+    \item \textbf{Kết quả thuận lợi:} một biến cố $E$ liên quan đến phép thử $T$ là kết quả của phép thử $T$ làm cho biến cố $E$ xảy ra.
+    \item \textbf{Biến cố:} tập con của không gian mẫu; tập con này là các kết quả thuận lợi.
+    \item \textbf{Biến cố đối:} biến cố đối của biến cố $E$ là biến cố $E$ không xảy ra, ký hiệu $\bar{E}$.
+    \item \textbf{Biến cố xung khắc:} $A \cap B = \varnothing$.
+    \item \textbf{Biến cố độc lập:} việc xảy ra hay không xảy ra biến cố này không ảnh hưởng đến biến cố kia.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Xác suất}]
+  \begin{itemize}
+    \item \textbf{Xác suất cổ điển:}
+      \[
+        P(A) = \dfrac{n(A)}{n(\Omega)}
+      \]
+    \item \textbf{Quy tắc cộng} (biến cố xung khắc): $P(A \cup B) = P(A) + P(B)$.
+    \item \textbf{Quy tắc nhân} (biến cố độc lập): $P(A \cap B) = P(AB) = P(A) \cdot P(B)$.
+    \item \textbf{Biến cố đối:} $P(\bar{A}) = 1 - P(A)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Gieo 2 xúc xắc. Tính xác suất tổng bằng 7.\quad Kết quả: $\dfrac{6}{36} = \dfrac{1}{6}$.
+    \item Rút 2 lá bài từ bộ 52 lá. Tính xác suất cả 2 là át.\quad Kết quả: $\dfrac{C_4^2}{C_{52}^2} = \dfrac{6}{1326}$.
+    \item Rút lần lượt 2 lá bài từ bộ 52 lá. Tính xác suất cả 2 là át.\quad Kết quả: $\dfrac{A_4^2}{A_{52}^2} = \dfrac{1}{221}$.
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Mô tả biến cố, không gian mẫu.
+  \item Mối liên hệ giữa các biến cố.
+  \item Xác định không gian mẫu và biến cố.
+  \item Tính xác suất theo định nghĩa cổ điển.
+\end{enumerate}
+
+% ------ 1.6 Thống kê ------
+\subsection{Thống kê}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Tính xấp xỉ $a$ ra số gần đúng $\bar{a}$.
+    \item \textbf{Sai số tuyệt đối:} $\Delta_a = |a - \bar{a}|$.
+    \item \textbf{Sai số tương đối:} $\delta_a = \dfrac{\Delta_a}{|a|}$.
+    \item Làm tròn số $a$ ra số quy tròn $b$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các số đặc trưng đo xu thế trung tâm (ôn lại lớp 7)}]
+  \begin{itemize}
+    \item \textbf{Số trung bình:}
+      \[
+        \bar{X} = \dfrac{x_1 + x_2 + \cdots + x_n}{n}
+      \]
+    \item \textbf{Số trung vị:} sắp xếp thứ tự từ bé đến lớn, lấy số ở giữa (nếu $n$ chẵn thì lấy trung bình 2 số ở giữa).
+    \item \textbf{Tứ phân vị:} gồm $Q_1, Q_2, Q_3$:
+      \begin{itemize}
+        \item Sắp xếp thứ tự từ bé đến lớn.
+        \item Tìm trung vị: $Q_2$.
+        \item Tìm trung vị nửa bên trái (bao gồm $Q_2$ nếu $n$ lẻ): $Q_1$.
+        \item Tương tự bên phải: $Q_3$.
+      \end{itemize}
+    \item \textbf{Mốt:} giá trị xuất hiện nhiều nhất.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Các số đặc trưng đo mức độ phân tán}]
+  \begin{itemize}
+    \item \textbf{Khoảng biến thiên:} $R = x_{\max} - x_{\min}$.
+    \item \textbf{Khoảng tứ phân vị:} $\Delta_Q = Q_3 - Q_1$.
+    \item \textbf{Phương sai:}
+      \[
+        S^2 = \dfrac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n}
+      \]
+    \item \textbf{Độ lệch chuẩn:} $S = \sqrt{S^2}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Cho dãy điểm: 5, 6, 7, 8, 9. Tính trung bình, phương sai, độ lệch chuẩn.
+\end{vidu}
+
+% ======================================================================
+%                      PHẦN 2: HÌNH HỌC
+% ======================================================================
+\section{Hình học}
+
+% ------ 2.1 Vectơ ------
+\subsection{Vectơ}
+
+% --- 2.1.1 Khái niệm vectơ ---
+\subsubsection{Khái niệm vectơ}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Vectơ:} đoạn thẳng có hướng, ký hiệu $\overrightarrow{AB}$.
+    \item \textbf{Giá} của vectơ: đường thẳng chứa vectơ.
+    \item \textbf{Độ dài} (mô-đun) của vectơ: $|\overrightarrow{AB}|$.
+    \item \textbf{Hai vectơ cùng phương:} giá song song hoặc trùng nhau, $\vec a = k\vec b$.
+      \begin{itemize}
+        \item $\dfrac{x_2}{x_1} = \dfrac{y_2}{y_1}$.
+      \end{itemize}
+    \item Hai vectơ cùng phương thì cùng hướng hoặc ngược hướng, $\vec a = k\vec b$:
+      \begin{itemize}
+        \item $k = \dfrac{x_2}{x_1}$.
+        \item $k > 0$: cùng hướng.
+        \item $k < 0$: ngược hướng.
+      \end{itemize}
+    \item \textbf{Hai vectơ bằng nhau:} cùng hướng và cùng độ dài, $\vec a = \vec b$.
+    \item \textbf{Vectơ-không:} có điểm đầu trùng điểm cuối, ký hiệu $\vec{0}$.
+    \item \textbf{Vectơ đối:} cùng độ dài, ngược hướng, $\vec a = -\vec b$.
+  \end{itemize}
+\end{dinhnghia}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định một vectơ; phương, hướng của vectơ; độ dài của vectơ.
+  \item Chứng minh hai vectơ bằng nhau.
+  \item Xác định điểm thoả đẳng thức vectơ.
+\end{enumerate}
+
+% --- 2.1.2 Tổng và hiệu hai vectơ ---
+\subsubsection{Tổng và hiệu hai vectơ}
+
+\begin{congthuc}[title={Các quy tắc cộng, trừ vectơ}]
+  \begin{itemize}
+    \item \textbf{Quy tắc ba điểm:} $\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC}$.
+    \item \textbf{Quy tắc hình bình hành:} $\overrightarrow{AB} + \overrightarrow{AD} = \overrightarrow{AC}$ ($ABCD$ là hình bình hành).
+    \item \textbf{Phép trừ:} $\overrightarrow{AB} - \overrightarrow{AC} = \overrightarrow{CB}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Tính chất giao hoán: $\vec a + \vec b = \vec b + \vec a$.
+    \item Tính chất kết hợp: $(\vec a + \vec b) + \vec c = \vec a + (\vec b + \vec c)$.
+    \item Vectơ-không: $\vec{0} + \vec a = \vec a$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Cho tam giác $ABC$. Rút gọn: $\overrightarrow{AB} + \overrightarrow{BC} + \overrightarrow{CA} = ?$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Các bài toán liên quan đến tổng các vectơ.
+  \item Vectơ đối, hiệu của hai vectơ.
+  \item Chứng minh đẳng thức vectơ.
+  \item Các bài toán xác định điểm thỏa đẳng thức vectơ.
+  \item Các bài toán tính độ dài của vectơ.
+\end{enumerate}
+
+% --- 2.1.3 Tích vectơ với một số ---
+\subsubsection{Tích vectơ với một số}
+
+\begin{dinhnghia}
+  $k\vec a$: cùng hướng với $\vec a$ nếu $k > 0$, ngược hướng với $\vec a$ nếu $k < 0$, độ dài $|k\vec a| = |k| \cdot |\vec a|$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $k(\vec a + \vec b) = k\vec a + k\vec b$.
+    \item $(k + h)\vec a = k\vec a + h\vec a$.
+    \item $h(k\vec a) = (hk)\vec a$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Trung điểm và trọng tâm}]
+  \begin{itemize}
+    \item \textbf{Trung điểm} $M$ của $AB$ (với $O$ bất kỳ):
+      \[
+        \overrightarrow{OM} = \dfrac{\overrightarrow{OA} + \overrightarrow{OB}}{2}
+      \]
+    \item \textbf{Trọng tâm} $G$ của tam giác $ABC$:
+      \[
+        \overrightarrow{OG} = \dfrac{\overrightarrow{OA} + \overrightarrow{OB} + \overrightarrow{OC}}{3}
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định vectơ $k\vec a$.
+  \item Hai vectơ cùng phương, ba điểm thẳng hàng.
+  \item Biểu thị một vectơ theo hai vectơ không cùng phương.
+  \item Đẳng thức vectơ chứa tích của vectơ với một số.
+\end{enumerate}
+
+% --- 2.1.4 Tọa độ vectơ và tọa độ điểm ---
+\subsubsection{Tọa độ vectơ và tọa độ điểm}
+
+\begin{congthuc}[title={Tọa độ vectơ và tọa độ điểm}]
+  \begin{itemize}
+    \item Vectơ đơn vị $\vec i,\; \vec j$ có độ dài bằng 1.
+    \item Vectơ $\vec a = (a_1;\, a_2)$ trong hệ tọa độ $Oxy$.
+    \item $\overrightarrow{AB} = (x_B - x_A;\, y_B - y_A)$.
+    \item Độ dài: $|\overrightarrow{AB}| = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$.
+    \item Phép cộng: $\vec a + \vec b = (a_1 + b_1;\, a_2 + b_2)$.
+    \item Nhân vô hướng: $k\vec a = (ka_1;\, ka_2)$.
+    \item \textbf{Trung điểm} $M$ của $AB$:
+      \[
+        M = \left(\dfrac{x_A + x_B}{2};\, \dfrac{y_A + y_B}{2}\right)
+      \]
+    \item \textbf{Trọng tâm} $G$:
+      \[
+        G = \left(\dfrac{x_A + x_B + x_C}{3};\, \dfrac{y_A + y_B + y_C}{3}\right)
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  $A(1;\, 2),\; B(4;\, 6)$. Tìm $|\overrightarrow{AB}|$ và trung điểm $M$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm tọa độ điểm, tọa độ vectơ trên mặt phẳng.
+  \item Xác định tọa độ điểm, vectơ liên quan đến biểu thức dạng $\vec u \pm \vec v$, $k\vec u$.
+  \item Xác định tọa độ các điểm của một hình.
+  \item Bài toán liên quan đến sự cùng phương của hai vectơ. Phân tích một vectơ qua hai vectơ không cùng phương.
+\end{enumerate}
+
+% --- 2.1.5 Tích vô hướng của hai vectơ ---
+\subsubsection{Tích vô hướng của hai vectơ}
+
+\begin{dinhnghia}
+  \[
+    \vec a \cdot \vec b = |\vec a| \cdot |\vec b| \cdot \cos(\vec a,\, \vec b)
+    \;\Rightarrow\;
+    \cos(\vec a,\, \vec b) = \dfrac{\vec a \cdot \vec b}{|\vec a| \cdot |\vec b|}
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tích vô hướng theo tọa độ}]
+  \[
+    \vec a \cdot \vec b = a_1 b_1 + a_2 b_2
+  \]
+  \[
+    |\vec a| = \sqrt{a_1^2 + a_2^2}
+  \]
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\vec a \cdot \vec b = \vec b \cdot \vec a$.
+    \item $\vec a \cdot (\vec b + \vec c) = \vec a \cdot \vec b + \vec a \cdot \vec c$.
+    \item $\vec a \cdot \vec a = |\vec a|^2$.
+    \item $(k\vec a) \cdot \vec b = k(\vec a \cdot \vec b)$.
+    \item Áp dụng hằng đẳng thức:
+      \begin{itemize}
+        \item $(\vec a \pm \vec b)^2 = \vec a^{\,2} \pm 2\vec a \cdot \vec b + \vec b^{\,2}$.
+        \item $(\vec a - \vec b)(\vec a + \vec b) = \vec a^{\,2} - \vec b^{\,2}$.
+      \end{itemize}
+    \item \textbf{Hai vectơ vuông góc:} $\vec a \cdot \vec b = 0 \;\Leftrightarrow\; a_1 b_1 + a_2 b_2 = 0$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $|\vec a| = 3,\; |\vec b| = 4$, góc giữa $\vec a$ và $\vec b$ bằng $60^\circ$. Tính $\vec a \cdot \vec b$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định góc giữa hai vectơ.
+  \item Tích vô hướng của hai vectơ.
+  \item Chứng minh các đẳng thức về tích vô hướng hoặc độ dài.
+  \item Ứng dụng tích vô hướng chứng minh vuông góc.
+  \item Các bài toán tìm tập hợp điểm.
+  \item Cực trị.
+  \item Một số bài toán liên quan đến độ dài véctơ.
+\end{enumerate}
+
+% ------ 2.2 Phương pháp tọa độ trong mặt phẳng ------
+\subsection{Phương pháp tọa độ trong mặt phẳng}
+
+% --- 2.2.1 Phương trình đường thẳng ---
+\subsubsection{Phương trình đường thẳng}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Vectơ chỉ phương} $\vec u$: giá của nó song song hoặc trùng với đường thẳng.
+    \item \textbf{Vectơ pháp tuyến} $\vec n$: giá của nó vuông góc với đường thẳng.
+    \item $\vec u \cdot \vec n = 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các dạng phương trình đường thẳng}]
+  \begin{itemize}
+    \item \textbf{Phương trình tổng quát:} $ax + by + c = 0$ với VTPT $\vec n = (a;\, b)$, VTCP $\vec u = (-b;\, a)$.
+    \item \textbf{Phương trình tham số:}
+      \[
+        \begin{cases} x = x_0 + at \\ y = y_0 + bt \end{cases} \quad (t \text{ là tham số})
+      \]
+      với $A(x_0;\, y_0)$ thuộc đường thẳng, VTCP $\vec u = (a;\, b)$.
+    \item \textbf{Phương trình chính tắc:}
+      \[
+        \dfrac{x - x_0}{a} = \dfrac{y - y_0}{b}
+      \]
+      với $A(x_0;\, y_0)$ thuộc đường thẳng, VTCP $\vec u = (a;\, b)$.
+    \item \textbf{PT đi qua $A(x_0;\, y_0)$ có VTPT $\vec n = (a;\, b)$:}
+      \[
+        a(x - x_0) + b(y - y_0) = 0
+      \]
+    \item \textbf{Hệ số góc:} $y = kx + m$ \quad ($k = \dfrac{-a}{b}$).
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Vị trí tương đối giữa hai đường thẳng}]
+  \begin{itemize}
+    \item Hai đường thẳng \textbf{cắt nhau}: $\dfrac{a_1}{a_2} \ne \dfrac{b_1}{b_2}$.
+    \item Hai đường thẳng \textbf{song song}: $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} \ne \dfrac{c_1}{c_2}$.
+    \item Hai đường thẳng \textbf{trùng nhau}: $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2}$.
+    \item Hai đường thẳng \textbf{vuông góc}: $a_1 a_2 + b_1 b_2 = 0$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Góc và khoảng cách}]
+  \begin{itemize}
+    \item \textbf{Góc giữa hai đường thẳng:}
+      \[
+        \cos\alpha = \dfrac{|a_1 a_2 + b_1 b_2|}{\sqrt{a_1^2 + b_1^2} \cdot \sqrt{a_2^2 + b_2^2}}
+      \]
+    \item \textbf{Khoảng cách từ điểm $M(x_0;\, y_0)$ đến đường thẳng $ax + by + c = 0$:}
+      \[
+        d = \dfrac{|ax_0 + by_0 + c|}{\sqrt{a^2 + b^2}}
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Viết phương trình đường thẳng qua $A(1;\, 2)$ và vuông góc với $d\colon 3x + 4y - 5 = 0$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định véctơ chỉ phương, véctơ pháp tuyến của đường thẳng, hệ số góc của đường thẳng.
+  \item Viết phương trình đường thẳng thỏa mãn một số tính chất cho trước.
+    \begin{itemize}
+      \item Viết PT đường thẳng khi biết VTPT hoặc VTCP, hệ số góc và 1 điểm đi qua.
+      \item Viết PT đường thẳng đi qua một điểm vuông góc hoặc song song với đường thẳng cho trước.
+      \item Viết phương trình cạnh, đường cao, trung tuyến, phân giác của tam giác.
+    \end{itemize}
+  \item Viết PTTS của đường thẳng.
+  \item Viết PTTQ của đường thẳng.
+  \item Bài toán chuyển đổi qua lại giữa các dạng phương trình.
+  \item Xét vị trí tương đối của hai đường thẳng.
+  \item Tính góc, khoảng cách.
+    \begin{itemize}
+      \item Tính góc của hai đường thẳng cho trước.
+      \item Viết phương trình đường thẳng liên quan đến góc.
+    \end{itemize}
+  \item Khoảng cách.
+    \begin{itemize}
+      \item Tính khoảng cách từ 1 điểm đến đường thẳng cho trước.
+      \item Phương trình đường thẳng liên quan đến khoảng cách.
+    \end{itemize}
+  \item Xác định điểm.
+    \begin{itemize}
+      \item Xác định tọa độ hình chiếu, điểm đối xứng.
+      \item Xác định điểm liên quan đến yếu tố khoảng cách, góc.
+    \end{itemize}
+\end{enumerate}
+
+% --- 2.2.2 Phương trình đường tròn ---
+\subsubsection{Phương trình đường tròn}
+
+\begin{congthuc}[title={Phương trình đường tròn}]
+  \begin{itemize}
+    \item \textbf{Phương trình chính tắc:}
+      \[
+        (x - a)^2 + (y - b)^2 = R^2
+      \]
+      tâm $I(a;\, b)$, bán kính $R$.
+    \item \textbf{Phương trình khai triển:}
+      \[
+        x^2 + y^2 - 2ax - 2by + c = 0
+      \]
+      tâm $I(a;\, b)$, $R = \sqrt{a^2 + b^2 - c}$.
+    \item \textbf{Điều kiện để là đường tròn:} $a^2 + b^2 - c > 0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Vị trí tương đối}]
+  \begin{itemize}
+    \item \textbf{Đường thẳng và đường tròn:} tính khoảng cách $d$ từ tâm đến đường thẳng, so sánh với $R$.
+    \item \textbf{Tiếp tuyến:} $d = R$.
+    \item \textbf{Phương trình tiếp tuyến} tại điểm $M(x_0;\, y_0)$ trên đường tròn tâm $I(a;\, b)$:
+      \[
+        (x_0 - a)(x - x_0) + (y_0 - b)(y - y_0) = 0
+      \]
+      có vectơ pháp tuyến $\overrightarrow{IM} = (x_0 - a;\, y_0 - b)$.
+    \item \textbf{Vị trí tương đối giữa 2 đường tròn} (tính $OO'$, so sánh với $R + R'$ và $|R - R'|$):
+      \begin{itemize}
+        \item Tiếp xúc: $OO' = |R \pm R'|$.
+        \item Cắt nhau: $|R - R'| < OO' < R + R'$.
+        \item Không cắt nhau: $OO' < |R - R'|$ hoặc $OO' > R + R'$.
+      \end{itemize}
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Tìm tâm và bán kính: $x^2 + y^2 - 4x + 6y - 3 = 0$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Nhận dạng phương trình đường tròn. Tìm tâm và bán kính đường tròn.
+  \item Viết phương trình đường tròn.
+    \begin{itemize}
+      \item Khi biết tâm và bán kính.
+      \item Khi biết các điểm đi qua.
+      \item Sử dụng điều kiện tiếp xúc.
+    \end{itemize}
+  \item Vị trí tương đối của điểm; đường thẳng; đường tròn với đường tròn.
+  \item Viết phương trình tiếp tuyến với đường tròn.
+  \item Câu hỏi min-max.
+\end{enumerate}
+
+% --- 2.2.3 Ba đường cong (conic) ---
+\subsubsection{Ba đường cong (conic)}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Elip:} 2 điểm cố định $F_1,\, F_2$, $F_1F_2 = 2c > 0$, với $a > c$. Tập hợp các điểm $M$ với $MF_1 + MF_2 = 2a$ tạo ra đường elip. $F_1,\, F_2$ là tiêu điểm, $F_1F_2 = 2c$ là tiêu cự.
+    \item \textbf{Hypebol:} 2 điểm cố định $F_1,\, F_2$, $F_1F_2 = 2c > 0$, với $0 < a < c$. Tập hợp các điểm $M$ với $|MF_1 - MF_2| = 2a$ tạo ra đường hypebol.
+    \item \textbf{Parabol:} điểm cố định $F$ và đường thẳng $d$ không đi qua $F$. Tập hợp các điểm cách đều $F$ và $d$ tạo ra đường parabol. $F$ là tiêu điểm, $d$ là đường chuẩn, khoảng cách từ $F$ đến $d$ là tham số tiêu.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phương trình chính tắc}]
+  \begin{itemize}
+    \item \textbf{Elip:}
+      \[
+        \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1
+      \]
+      $F_1(-c;\, 0),\; F_2(c;\, 0)$, $c = \sqrt{a^2 - b^2}$, $MF_1 + MF_2 = 2a$.
+    \item \textbf{Hypebol:}
+      \[
+        \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} = 1
+      \]
+      $F_1(-c;\, 0),\; F_2(c;\, 0)$, $c = \sqrt{a^2 + b^2}$, $|MF_1 - MF_2| = 2a$.
+    \item \textbf{Parabol:}
+      \[
+        y^2 = 2px
+      \]
+      tiêu điểm $F\!\left(\dfrac{p}{2};\, 0\right)$, đường chuẩn $d\colon x = \dfrac{-p}{2}$.
+  \end{itemize}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định các yếu tố của elíp.
+  \item Viết phương trình chính tắc của elip.
+  \item Tìm điểm thuộc elip thỏa điều kiện cho trước.
+\end{enumerate}
+
+\end{document}

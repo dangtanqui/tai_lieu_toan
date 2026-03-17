@@ -1,0 +1,615 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 7}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 7};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\mathbb{Q}$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\frac{a}{b}=\frac{c}{d}$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$\triangle$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$x^n$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 7}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ################################################################
+% #                   PHẦN 1: ĐẠI SỐ                            #
+% ################################################################
+\section{Đại số}
+
+% ============================================================
+\subsection{Số hữu tỉ ($\mathbb{Q}$): biểu diễn, so sánh, bốn phép tính; lũy thừa}
+
+\begin{dinhnghia}
+Số hữu tỉ là số có thể viết được dưới dạng phân số $\dfrac{a}{b}$, trong đó $a, b \in \mathbb{Z}$, $b \neq 0$.
+
+Tập hợp các số hữu tỉ được kí hiệu là $\mathbb{Q}$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={So sánh hai số hữu tỉ}]
+Để so sánh hai số hữu tỉ, ta viết chúng dưới dạng phân số cùng mẫu dương rồi so sánh tử số.
+\end{tinhchat}
+
+\begin{congthuc}[title={Bốn phép tính với số hữu tỉ}]
+Cho $\dfrac{a}{b}$ và $\dfrac{c}{d}$ là hai phân số ($b, d \neq 0$):
+\begin{itemize}
+  \item \textbf{Cộng:} $\dfrac{a}{b} + \dfrac{c}{d} = \dfrac{a \cdot d + b \cdot c}{b \cdot d}$
+  \item \textbf{Trừ:} $\dfrac{a}{b} - \dfrac{c}{d} = \dfrac{a \cdot d - b \cdot c}{b \cdot d}$
+  \item \textbf{Nhân:} $\dfrac{a}{b} \cdot \dfrac{c}{d} = \dfrac{a \cdot c}{b \cdot d}$
+  \item \textbf{Chia:} $\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b} \cdot \dfrac{d}{c}$ \quad ($c \neq 0$)
+\end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Lũy thừa}]
+Với $a \in \mathbb{Q}$ và $m, n \in \mathbb{N}^*$:
+\begin{itemize}
+  \item Nhân hai lũy thừa cùng cơ số: $a^m \cdot a^n = a^{m+n}$
+  \item Chia hai lũy thừa cùng cơ số ($a \neq 0$): $a^m : a^n = a^{m-n}$ \quad ($m \geq n$)
+  \item Lũy thừa của lũy thừa: $(a^m)^n = a^{m \cdot n}$
+\end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Quy tắc chuyển vế}]
+Khi chuyển một số hạng từ vế này sang vế kia của một đẳng thức, ta phải đổi dấu số hạng đó.
+\[
+  a + b = c \iff a = c - b
+\]
+\end{tinhchat}
+
+% ============================================================
+\subsection{Số thực ($\mathbb{R}$); làm tròn, ước lượng}
+
+\begin{dinhnghia}
+Tập hợp số thực $\mathbb{R}$ bao gồm tất cả các số hữu tỉ ($\mathbb{Q}$) và số vô tỉ ($\mathbb{I}$).
+\[
+  \mathbb{R} = \mathbb{Q} \cup \mathbb{I}
+\]
+\end{dinhnghia}
+
+\begin{vidu}
+Một số ví dụ về số vô tỉ:
+\begin{itemize}
+  \item $\pi = 3{,}14159\ldots$
+  \item $\sqrt{2} = 1{,}41421\ldots$
+  \item $\sqrt{3} = 1{,}73205\ldots$
+\end{itemize}
+Đây là các số thập phân vô hạn không tuần hoàn.
+\end{vidu}
+
+\begin{phuongphap}[title={Ước lượng và làm tròn}]
+\begin{itemize}
+  \item Ước lượng là dự đoán gần đúng kết quả tính toán.
+  \item Làm tròn số: nếu chữ số ngay sau hàng cần làm tròn $\geq 5$ thì tăng thêm 1, nếu $< 5$ thì giữ nguyên.
+\end{itemize}
+\end{phuongphap}
+
+% ============================================================
+\subsection{Tỉ lệ thức; dãy tỉ số bằng nhau}
+
+\begin{dinhnghia}
+Tỉ lệ thức là đẳng thức của hai tỉ số:
+\[
+  \frac{a}{b} = \frac{c}{d} \quad (b, d \neq 0)
+\]
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất cơ bản của tỉ lệ thức}]
+Nếu $\dfrac{a}{b} = \dfrac{c}{d}$ thì:
+\[
+  a \cdot d = b \cdot c
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Tính chất dãy tỉ số bằng nhau}]
+Nếu $\dfrac{a}{b} = \dfrac{c}{d}$ thì:
+\[
+  \frac{a}{b} = \frac{c}{d} = \frac{a + c}{b + d} = \frac{a - c}{b - d} \quad (b \neq \pm d)
+\]
+\end{tinhchat}
+
+\begin{vidu}
+Tìm $x$ biết $\dfrac{x}{3} = \dfrac{8}{12}$.
+
+\textbf{Giải:}
+\[
+  \frac{x}{3} = \frac{8}{12} = \frac{2}{3} \implies x = 2
+\]
+\end{vidu}
+
+% ============================================================
+\subsection{Tỉ lệ thuận; tỉ lệ nghịch}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item Hai đại lượng \textbf{tỉ lệ thuận} với nhau nếu đại lượng này tăng (hoặc giảm) bao nhiêu lần thì đại lượng kia cũng tăng (hoặc giảm) bấy nhiêu lần: $y = k \cdot x$ \quad ($k \neq 0$).
+  \item Hai đại lượng \textbf{tỉ lệ nghịch} với nhau nếu đại lượng này tăng bao nhiêu lần thì đại lượng kia giảm bấy nhiêu lần: $y = \dfrac{k}{x}$ \quad ($k \neq 0$).
+\end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}[title={Tỉ lệ thuận}]
+3 quyển vở giá $18\,000$ đồng. Hỏi 5 quyển vở giá bao nhiêu?
+
+\textbf{Giải:} Giá tiền tỉ lệ thuận với số quyển vở:
+\[
+  \frac{18\,000}{3} = \frac{x}{5} \implies x = \frac{18\,000 \cdot 5}{3} = 30\,000 \text{ (đồng)}
+\]
+\end{vidu}
+
+\begin{vidu}[title={Tỉ lệ nghịch}]
+4 người làm xong công việc trong 6 giờ. Hỏi 8 người làm trong bao lâu?
+
+\textbf{Giải:} Số người và thời gian tỉ lệ nghịch:
+\[
+  4 \cdot 6 = 8 \cdot x \implies x = \frac{4 \cdot 6}{8} = 3 \text{ (giờ)}
+\]
+\end{vidu}
+
+% ============================================================
+\subsection{Biểu thức đại số: thay số, biến đổi}
+
+\begin{dinhnghia}
+Biểu thức đại số là biểu thức gồm các số, các biến và các phép tính (cộng, trừ, nhân, chia, lũy thừa).
+\end{dinhnghia}
+
+\begin{vidu}[title={Thay số vào biểu thức}]
+Thay $x = -2$ vào biểu thức $2x^2 - 3x + 1$:
+\[
+  2 \cdot (-2)^2 - 3 \cdot (-2) + 1 = 2 \cdot 4 + 6 + 1 = 15
+\]
+\end{vidu}
+
+\begin{vidu}[title={Rút gọn biểu thức}]
+Rút gọn $3a - 2a + 5 - 1$:
+\[
+  3a - 2a + 5 - 1 = a + 4
+\]
+\end{vidu}
+
+% ============================================================
+\subsection{Đơn thức, đa thức; cộng trừ nhân}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Đơn thức} là biểu thức đại số chỉ gồm một số, một biến, hoặc tích của các số và các biến.
+  \item \textbf{Đa thức} là tổng của các đơn thức.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}[title={Cộng đa thức}]
+\[
+  (x^2 + 2x - 3) + (x + 5) = x^2 + 3x + 2
+\]
+\end{vidu}
+
+\begin{vidu}[title={Nhân đa thức}]
+\[
+  (x - 2)(x + 2) = x^2 + 2x - 2x - 4 = x^2 - 4
+\]
+\end{vidu}
+
+% ################################################################
+% #              PHẦN 2: THỐNG KÊ VÀ XÁC SUẤT                  #
+% ################################################################
+\section{Thống kê và xác suất}
+
+% ============================================================
+\subsection{Thống kê}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Số trung bình cộng (mean):} Tổng tất cả các giá trị chia cho số lượng giá trị.
+  \item \textbf{Trung vị (median):} Giá trị đứng ở vị trí giữa khi sắp xếp dãy số theo thứ tự tăng dần (hoặc giảm dần).
+  \item \textbf{Mốt (mode):} Giá trị xuất hiện nhiều lần nhất trong dãy số.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+Cho dãy số: $3,\ 5,\ 5,\ 7,\ 9$. Tìm mean, median, mode.
+
+\textbf{Giải:}
+\begin{itemize}
+  \item \textbf{Mean:} $\dfrac{3 + 5 + 5 + 7 + 9}{5} = \dfrac{29}{5} = 5{,}8$
+  \item \textbf{Median:} Dãy đã sắp xếp: $3,\ 5,\ \mathbf{5},\ 7,\ 9$ $\Rightarrow$ trung vị $= 5$
+  \item \textbf{Mode:} Giá trị $5$ xuất hiện nhiều nhất $\Rightarrow$ mốt $= 5$
+\end{itemize}
+\end{vidu}
+
+% ============================================================
+\subsection{Xác suất}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Biến cố chắc chắn:} là biến cố mà ta biết trước được luôn xảy ra.
+  \item \textbf{Biến cố không thể:} là biến cố mà ta biết trước được không bao giờ xảy ra.
+  \item \textbf{Biến cố ngẫu nhiên:} là biến cố mà ta không thể biết trước được có xảy ra hay không.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tính xác suất}]
+Xác suất của một biến cố $A$ trong phép thử có các kết quả đồng khả năng:
+\[
+  P(A) = \frac{\text{Số kết quả thuận lợi cho } A}{\text{Tổng số kết quả có thể}}
+\]
+\end{congthuc}
+
+\begin{vidu}
+Gieo một con xúc xắc. Tính xác suất để số chấm xuất hiện là $6$.
+
+\textbf{Giải:} Tổng số kết quả có thể: $6$ (các mặt $1, 2, 3, 4, 5, 6$).
+
+Số kết quả thuận lợi: $1$ (mặt $6$).
+\[
+  P = \frac{1}{6}
+\]
+\end{vidu}
+
+% ################################################################
+% #                   PHẦN 3: HÌNH HỌC                          #
+% ################################################################
+\section{Hình học}
+
+% ============================================================
+\subsection{Góc, đường thẳng cắt hai đường thẳng; dấu hiệu song song; tia phân giác}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Hai góc kề bù:} là hai góc có chung một cạnh, hai cạnh còn lại là hai tia đối nhau. Tổng hai góc kề bù bằng $180^\circ$.
+  \item \textbf{Hai góc đối đỉnh:} là hai góc mà mỗi cạnh của góc này là tia đối của một cạnh của góc kia. Hai góc đối đỉnh thì bằng nhau.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Đường thẳng cắt hai đường thẳng}]
+Khi một đường thẳng cắt hai đường thẳng:
+\begin{itemize}
+  \item \textbf{Góc so le trong:} là hai góc nằm ở hai phía của đường thẳng cắt, nằm trong khoảng giữa hai đường thẳng bị cắt.
+  \item \textbf{Góc đồng vị:} là hai góc nằm cùng phía so với đường thẳng cắt, một góc nằm trong và một góc nằm ngoài.
+\end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Dấu hiệu nhận biết hai đường thẳng song song}]
+Nếu một đường thẳng cắt hai đường thẳng mà tạo thành:
+\begin{itemize}
+  \item Một cặp \textbf{góc so le trong bằng nhau}, hoặc
+  \item Một cặp \textbf{góc đồng vị bằng nhau},
+\end{itemize}
+thì hai đường thẳng đó song song.
+\end{dinhly}
+
+% ============================================================
+\subsection{Tổng góc trong tam giác; góc ngoài}
+
+\begin{dinhly}[title={Tổng ba góc trong tam giác}]
+Tổng ba góc trong một tam giác bằng $180^\circ$:
+\[
+  \widehat{A} + \widehat{B} + \widehat{C} = 180^\circ
+\]
+\end{dinhly}
+
+\begin{dinhnghia}[title={Phân loại tam giác theo góc}]
+\begin{itemize}
+  \item \textbf{Tam giác nhọn:} cả ba góc đều nhọn (nhỏ hơn $90^\circ$).
+  \item \textbf{Tam giác vuông:} có một góc vuông (bằng $90^\circ$).
+  \item \textbf{Tam giác tù:} có một góc tù (lớn hơn $90^\circ$).
+\end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+Tam giác $ABC$ có $\widehat{A} = 50^\circ$, $\widehat{B} = 60^\circ$. Tính $\widehat{C}$.
+
+\textbf{Giải:}
+\[
+  \widehat{C} = 180^\circ - \widehat{A} - \widehat{B} = 180^\circ - 50^\circ - 60^\circ = 70^\circ
+\]
+\end{vidu}
+
+\begin{dinhly}[title={Góc ngoài của tam giác}]
+Góc ngoài của tam giác bằng tổng hai góc trong không kề với nó.
+\[
+  \widehat{A_1} = \widehat{B} + \widehat{C}
+\]
+\end{dinhly}
+
+% ============================================================
+\subsection{Các trường hợp bằng nhau của tam giác}
+
+\begin{dinhly}[title={Ba trường hợp bằng nhau của tam giác}]
+\begin{enumerate}[label=\textbf{TH\arabic*:}, leftmargin=*, align=left]
+  \item \textbf{Cạnh -- cạnh -- cạnh (c.c.c):} Nếu ba cạnh của tam giác này bằng ba cạnh của tam giác kia thì hai tam giác đó bằng nhau.
+  \item \textbf{Cạnh -- góc -- cạnh (c.g.c):} Nếu hai cạnh và góc xen giữa của tam giác này bằng hai cạnh và góc xen giữa của tam giác kia thì hai tam giác đó bằng nhau.
+  \item \textbf{Góc -- cạnh -- góc (g.c.g):} Nếu một cạnh và hai góc kề của tam giác này bằng một cạnh và hai góc kề của tam giác kia thì hai tam giác đó bằng nhau.
+\end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Các trường hợp bằng nhau của tam giác vuông}]
+Hai tam giác vuông bằng nhau nếu có:
+\begin{enumerate}[label=\textbf{TH\arabic*:}, leftmargin=*, align=left]
+  \item Hai \textbf{cạnh góc vuông} tương ứng bằng nhau.
+  \item Một \textbf{cạnh góc vuông} và một \textbf{góc nhọn kề} tương ứng bằng nhau.
+  \item \textbf{Cạnh huyền} và một \textbf{góc nhọn} tương ứng bằng nhau.
+  \item \textbf{Cạnh huyền} và một \textbf{cạnh góc vuông} tương ứng bằng nhau.
+\end{enumerate}
+\end{dinhly}
+
+% ============================================================
+\subsection{Tam giác cân, đều}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Tam giác cân:} là tam giác có hai cạnh bằng nhau. Hai góc ở đáy của tam giác cân bằng nhau.
+  \item \textbf{Tam giác đều:} là tam giác có ba cạnh bằng nhau. Mỗi góc của tam giác đều bằng $60^\circ$.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Dấu hiệu nhận biết tam giác đều}]
+Tam giác đều khi thỏa một trong các điều kiện:
+\begin{itemize}
+  \item Ba cạnh bằng nhau.
+  \item Ba góc bằng nhau (mỗi góc bằng $60^\circ$).
+  \item Tam giác cân có một góc bằng $60^\circ$.
+\end{itemize}
+\end{tinhchat}
+
+% ============================================================
+\subsection{Quan hệ cạnh -- góc trong tam giác; bất đẳng thức tam giác}
+
+\begin{tinhchat}[title={Quan hệ giữa cạnh và góc}]
+Trong một tam giác:
+\begin{itemize}
+  \item Góc đối diện với cạnh lớn hơn là góc lớn hơn.
+  \item Cạnh đối diện với góc lớn hơn là cạnh lớn hơn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Bất đẳng thức tam giác}]
+Trong tam giác có ba cạnh $a$, $b$, $c$:
+\[
+  |a - b| < c < a + b
+\]
+Ba đoạn thẳng có độ dài $a$, $b$, $c$ tạo thành một tam giác khi và chỉ khi tổng hai cạnh bất kỳ lớn hơn cạnh còn lại.
+\end{dinhly}
+
+% ============================================================
+\subsection{Trung tuyến, đường cao, trung trực, phân giác}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Trung tuyến:} đoạn thẳng nối từ một đỉnh đến trung điểm của cạnh đối diện.
+  \item \textbf{Đường cao:} đoạn thẳng kẻ từ một đỉnh vuông góc với cạnh đối diện (hoặc phần kéo dài của cạnh đối diện).
+  \item \textbf{Trung trực:} đường thẳng đi qua trung điểm và vuông góc với cạnh đó.
+  \item \textbf{Phân giác:} đoạn thẳng chia một góc của tam giác thành hai phần bằng nhau.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất trung trực}]
+Điểm nằm trên đường trung trực của một đoạn thẳng thì cách đều hai đầu mút của đoạn thẳng đó.
+\end{tinhchat}
+
+% ============================================================
+\subsection{Sự đồng quy của ba đường trong một tam giác}
+
+\begin{dinhly}[title={Bốn loại đường đồng quy}]
+Trong mỗi tam giác, ba đường cùng loại luôn đồng quy tại một điểm:
+\begin{enumerate}[label=(\arabic*)]
+  \item \textbf{Ba trung tuyến} đồng quy tại \textbf{trọng tâm} $G$. Trọng tâm chia mỗi trung tuyến thành hai phần theo tỉ lệ $2:1$ tính từ đỉnh.
+  \item \textbf{Ba đường cao} đồng quy tại \textbf{trực tâm} $H$.
+  \item \textbf{Ba đường trung trực} đồng quy tại \textbf{tâm đường tròn ngoại tiếp} $O$. Điểm $O$ cách đều ba đỉnh.
+  \item \textbf{Ba đường phân giác} đồng quy tại \textbf{tâm đường tròn nội tiếp} $I$. Điểm $I$ cách đều ba cạnh.
+\end{enumerate}
+\end{dinhly}
+
+% ============================================================
+\subsection{Hình khối}
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Hình hộp chữ nhật:} có 6 mặt là các hình chữ nhật. Ba kích thước: chiều dài $a$, chiều rộng $b$, chiều cao $h$.
+  \item \textbf{Hình lập phương:} là hình hộp chữ nhật có 6 mặt là hình vuông cạnh $a$.
+  \item \textbf{Hình lăng trụ đứng:} có hai đáy là hai đa giác bằng nhau, các mặt bên là hình chữ nhật.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Diện tích xung quanh và thể tích}]
+\textbf{Hình hộp chữ nhật} (kích thước $a$, $b$, $h$):
+\[
+  S_{xq} = 2h(a + b), \qquad V = a \cdot b \cdot h
+\]
+
+\textbf{Hình lập phương} (cạnh $a$):
+\[
+  S_{xq} = 4a^2, \qquad V = a^3
+\]
+
+\textbf{Hình lăng trụ đứng} (chu vi đáy $C_{\text{đáy}}$, diện tích đáy $S_{\text{đáy}}$, chiều cao $h$):
+\[
+  S_{xq} = C_{\text{đáy}} \cdot h, \qquad V = S_{\text{đáy}} \cdot h
+\]
+\end{congthuc}
+
+\end{document}

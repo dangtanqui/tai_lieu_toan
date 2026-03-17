@@ -1,0 +1,660 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 6}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 6};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\mathbb{N}$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\frac{a}{b}$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$\%$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$\pi$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 6}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ============================================================
+%                  PHẦN 1: SỐ HỌC
+% ============================================================
+\section{Số học}
+
+% -----------------------------------------------
+\subsection{Tập hợp, ký hiệu, so sánh \& sắp xếp}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\textbf{Tập hợp} là một nhóm các đối tượng (phần tử) có chung một tính chất nào đó. Các phần tử có thể là đồ vật, chữ cái từ A--Z, số chẵn, số lẻ, số nguyên tố, số chính phương,\ldots
+\end{dinhnghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item Kí hiệu \textbf{thuộc}: $\in$ và \textbf{không thuộc}: $\notin$
+  \item \textbf{Tập con}: $A \subset B$ nghĩa là mọi phần tử của $A$ đều thuộc $B$.
+  \item \textbf{Cách viết tập hợp}: liệt kê phần tử hoặc chỉ ra tính chất đặc trưng.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+\begin{itemize}
+  \item $A = \{1;\; 2;\; 3;\; 4\}$. Khi đó: $3 \in A$, $5 \notin A$.
+  \item $P = \{1;\; 3;\; 5;\; 7;\; 9;\; 11\}$ có thể viết: $P = \{x \mid x \text{ là số tự nhiên lẻ và } x < 12\}$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Số tự nhiên ($\mathbb{N}$), 4 phép tính, tính chất, thứ tự thực hiện, lũy thừa}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+Tập hợp các \textbf{số tự nhiên} được kí hiệu là $\mathbb{N} = \{0;\; 1;\; 2;\; 3;\; \ldots\}$.
+
+Tập hợp các số tự nhiên khác $0$: $\mathbb{N}^{*} = \{1;\; 2;\; 3;\; \ldots\}$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất các phép tính}]
+\begin{itemize}
+  \item \textbf{Giao hoán}: $a + b = b + a$, \quad $a \cdot b = b \cdot a$.
+  \item \textbf{Kết hợp}: $(a + b) + c = a + (b + c)$, \quad $(a \cdot b) \cdot c = a \cdot (b \cdot c)$.
+  \item \textbf{Phân phối}: $a \cdot (b + c) = a \cdot b + a \cdot c$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Thứ tự thực hiện phép tính}]
+\begin{enumerate}
+  \item Thực hiện trong ngoặc trước: $(\;) \to [\;] \to \{\;\}$.
+  \item Lũy thừa $\to$ Nhân, Chia $\to$ Cộng, Trừ.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Lũy thừa}]
+$a^n = \underbrace{a \cdot a \cdot a \cdots a}_{n \text{ thừa số}}$ \quad ($a$ là cơ số, $n$ là số mũ, $n \in \mathbb{N}^{*}$).
+\end{dinhnghia}
+
+\begin{vidu}
+\begin{itemize}
+  \item Số tự nhiên có 3 chữ số khác nhau lập từ ba số $0$, $3$, $5$: $305$, $350$, $503$, $530$.
+  \item $120 : (3 \times 5) + 7 \times 2 = 120 : 15 + 14 = 8 + 14 = 22$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Chia hết, Ước -- Bội, ƯCLN -- BCNN, số nguyên tố}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item $a$ \textbf{chia hết} cho $b$ (kí hiệu $a \mathrel{\vdots} b$) nếu tồn tại số tự nhiên $q$ sao cho $a = b \cdot q$.
+  \item Kí hiệu \textbf{không chia hết}: $a \mathrel{\not\vdots} b$.
+  \item \textbf{Số nguyên tố} là số tự nhiên lớn hơn $1$, chỉ chia hết cho $1$ và chính nó.
+  \item \textbf{Hợp số} là số tự nhiên lớn hơn $1$ và không phải số nguyên tố.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Dấu hiệu chia hết}]
+\begin{itemize}
+  \item Chia hết cho $2$: chữ số tận cùng là $0, 2, 4, 6, 8$.
+  \item Chia hết cho $3$: tổng các chữ số chia hết cho $3$.
+  \item Chia hết cho $5$: chữ số tận cùng là $0$ hoặc $5$.
+  \item Chia hết cho $9$: tổng các chữ số chia hết cho $9$.
+  \item Chia hết cho $10$: chữ số tận cùng là $0$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Tính chất chia hết}]
+\begin{itemize}
+  \item Nếu $a \mathrel{\vdots} c$ và $b \mathrel{\vdots} c$ thì $(a + b) \mathrel{\vdots} c$.
+  \item Nếu $a \mathrel{\vdots} c$ và $b \mathrel{\not\vdots} c$ thì $(a + b) \mathrel{\not\vdots} c$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Phân tích ra thừa số nguyên tố}]
+Chia liên tiếp cho các số nguyên tố $2, 3, 5, 7, 11, 13, \ldots$ cho đến khi thương bằng $1$.
+\end{phuongphap}
+
+\begin{congthuc}[title={ƯCLN và BCNN}]
+\begin{itemize}
+  \item \textbf{ƯCLN}$(a, b)$: Tích các thừa số nguyên tố chung với số mũ \textbf{nhỏ nhất}.
+  \item \textbf{BCNN}$(a, b)$: Tích các thừa số nguyên tố chung và riêng với số mũ \textbf{lớn nhất}.
+\end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+\begin{itemize}
+  \item Các số nguyên tố nhỏ: $2, 3, 5, 7, 11, 13, \ldots$
+  \item Tìm $\text{ƯCLN}(18,\; 24)$:
+    \[18 = 2 \cdot 3^2, \quad 24 = 2^3 \cdot 3 \implies \text{ƯCLN} = 2 \cdot 3 = 6.\]
+  \item Tìm $\text{BCNN}(6,\; 15)$:
+    \[6 = 2 \cdot 3, \quad 15 = 3 \cdot 5 \implies \text{BCNN} = 2 \cdot 3 \cdot 5 = 30.\]
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Số nguyên ($\mathbb{Z}$): so sánh, 4 phép tính, giá trị tuyệt đối}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+Tập hợp các \textbf{số nguyên}: $\mathbb{Z} = \{\ldots,\; -3,\; -2,\; -1,\; 0,\; 1,\; 2,\; 3,\; \ldots\}$.
+
+\textbf{Giá trị tuyệt đối} của số nguyên $a$:
+\[
+|a| = \begin{cases} a & \text{nếu } a \ge 0, \\ -a & \text{nếu } a < 0. \end{cases}
+\]
+\end{dinhnghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item Trong hai số nguyên âm, số nào có giá trị tuyệt đối lớn hơn thì \textbf{nhỏ hơn}.
+  \item Mọi số nguyên dương đều lớn hơn mọi số nguyên âm.
+  \item Quy tắc dấu khi nhân/chia: cùng dấu cho kết quả dương, khác dấu cho kết quả âm.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+\begin{itemize}
+  \item So sánh: $-3 > -5$ \quad (vì $|-3| = 3 < 5 = |-5|$).
+  \item $(-7) + 12 = 5$, \quad $(-3) \times 5 = -15$, \quad $20 : (-4) = -5$.
+  \item $|-6| = 6$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Phân số: rút gọn, quy đồng mẫu, so sánh, 4 phép tính}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\textbf{Phân số} có dạng $\dfrac{a}{b}$ với $a, b \in \mathbb{Z}$, $b \ne 0$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Rút gọn \& Quy đồng}]
+\begin{itemize}
+  \item \textbf{Rút gọn}: chia cả tử và mẫu cho ƯCLN của chúng để được phân số tối giản.
+  \item \textbf{Quy đồng mẫu}: nhân tử và mẫu mỗi phân số để chúng có mẫu chung (bằng BCNN các mẫu).
+\end{itemize}
+\end{phuongphap}
+
+\begin{congthuc}[title={Bốn phép tính với phân số}]
+\begin{itemize}
+  \item Cộng/trừ cùng mẫu: $\dfrac{a}{m} \pm \dfrac{b}{m} = \dfrac{a \pm b}{m}$.
+  \item Nhân: $\dfrac{a}{b} \cdot \dfrac{c}{d} = \dfrac{a \cdot c}{b \cdot d}$.
+  \item Chia: $\dfrac{a}{b} : \dfrac{c}{d} = \dfrac{a}{b} \cdot \dfrac{d}{c}$ \quad ($c \ne 0$).
+\end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+\begin{itemize}
+  \item So sánh $\dfrac{3}{4}$ và $\dfrac{5}{6}$: quy đồng mẫu $12$ $\Rightarrow$ $\dfrac{9}{12} < \dfrac{10}{12}$ $\Rightarrow$ $\dfrac{3}{4} < \dfrac{5}{6}$.
+  \item $\dfrac{2}{3} + \dfrac{1}{6} = \dfrac{4}{6} + \dfrac{1}{6} = \dfrac{5}{6}$.
+  \item $\dfrac{2}{5} \cdot \dfrac{5}{4} = \dfrac{10}{20} = \dfrac{1}{2}$.
+  \item $\dfrac{2}{5} : \dfrac{6}{10} = \dfrac{2}{5} \cdot \dfrac{10}{6} = \dfrac{20}{30} = \dfrac{2}{3}$.
+  \item Rút gọn: $\dfrac{12}{46} = \dfrac{6}{23}$, \quad $\dfrac{6}{8} = \dfrac{3}{4}$.
+  \item Quy đồng $\dfrac{9}{12}$ và $\dfrac{4}{15}$: $\text{BCNN}(12, 15) = 60$ $\Rightarrow$ $\dfrac{45}{60}$ và $\dfrac{16}{60}$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Số thập phân, làm tròn, đổi qua lại}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\textbf{Số thập phân} là cách viết khác của phân số thập phân (mẫu là lũy thừa của $10$).
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Đổi số thập phân $\leftrightarrow$ phân số}]
+\begin{itemize}
+  \item Thập phân $\to$ phân số: viết phần thập phân lên tử, mẫu là $10^n$ ($n$ = số chữ số thập phân), rồi rút gọn.
+  \item Phân số $\to$ thập phân: thực hiện phép chia tử cho mẫu.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Quy tắc làm tròn số}]
+\begin{itemize}
+  \item Nếu chữ số ngay sau hàng cần làm tròn $\ge 5$: làm tròn lên.
+  \item Nếu chữ số ngay sau hàng cần làm tròn $< 5$: giữ nguyên.
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}
+\begin{itemize}
+  \item So sánh hai số thập phân: so sánh lần lượt từ phần nguyên, rồi đến từng chữ số thập phân.
+  \item Khi \textbf{nhân} hai số thập phân: đếm tổng số chữ số thập phân ở cả hai thừa số, đặt dấu phẩy tương ứng trong tích.
+  \item Khi \textbf{chia}: dời dấu phẩy ở số chia để thành số nguyên, dời tương ứng ở số bị chia, rồi chia bình thường.
+\end{itemize}
+\end{luuy}
+
+\begin{vidu}
+\begin{itemize}
+  \item Đổi $0{,}125$ sang phân số: $0{,}125 = \dfrac{125}{1000} = \dfrac{1}{8}$.
+  \item Làm tròn $3{,}14159$ đến 2 chữ số thập phân: $3{,}14159 \approx 3{,}14$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Tỉ số, tỉ số phần trăm}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Tỉ số} của $a$ và $b$ ($b \ne 0$) là thương $\dfrac{a}{b}$.
+  \item \textbf{Tỉ số phần trăm}: $p\% = \dfrac{p}{100}$.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bài toán phần trăm cơ bản}]
+\begin{itemize}
+  \item Tìm $p\%$ của $a$: $\dfrac{p}{100} \cdot a$.
+  \item Tìm một số khi biết $p\%$ của nó bằng $b$: $\dfrac{b \cdot 100}{p}$.
+  \item Tìm tỉ số phần trăm của $a$ so với $b$: $\dfrac{a}{b} \cdot 100\%$.
+\end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+\begin{itemize}
+  \item $15\%$ nghĩa là $\dfrac{15}{100}$.
+  \item Tìm $20\%$ của $150$: $\dfrac{20}{100} \cdot 150 = 30$.
+  \item Gửi vào ngân hàng $50$ nghìn, lãi $1$ tháng là $50\%$, tháng tới rút hết: $50 + 50 \cdot \dfrac{50}{100} = 50 + 25 = 75$ nghìn.
+  \item Một số tăng từ $80$ lên $92$: tăng $\dfrac{92 - 80}{80} \cdot 100\% = \dfrac{12}{80} \cdot 100\% = 15\%$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Đơn vị đo \& đổi đơn vị}
+% -----------------------------------------------
+
+\begin{congthuc}[title={Một số quan hệ đổi đơn vị}]
+\begin{itemize}
+  \item $1\;\text{m} = 100\;\text{cm}$, \quad $1\;\text{km} = 1000\;\text{m}$.
+  \item $1\;\text{m}^2 = 10\,000\;\text{cm}^2$, \quad $1\;\text{km}^2 = 1\,000\,000\;\text{m}^2$.
+  \item $1\;\text{lít} = 1\;\text{dm}^3 = 1000\;\text{cm}^3$.
+\end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+\begin{itemize}
+  \item Đổi $2{,}5\;\text{m}^2$ sang $\text{cm}^2$: $2{,}5 \times 10\,000 = 25\,000\;\text{cm}^2$.
+  \item Đổi $1{,}2\;\text{lít}$ sang $\text{cm}^3$: $1{,}2 \times 1000 = 1200\;\text{cm}^3$.
+\end{itemize}
+\end{vidu}
+
+% ============================================================
+%                  PHẦN 2: THỐNG KÊ CƠ BẢN
+% ============================================================
+\section{Thống kê cơ bản}
+
+\begin{dinhnghia}
+\textbf{Số trung bình cộng} của $n$ giá trị $x_1, x_2, \ldots, x_n$:
+\[
+\overline{x} = \frac{x_1 + x_2 + \cdots + x_n}{n}.
+\]
+\end{dinhnghia}
+
+\begin{phuongphap}
+\begin{itemize}
+  \item Thu thập số liệu, lập bảng thống kê.
+  \item Đọc và phân tích số liệu từ bảng thống kê đơn giản.
+  \item Tính số trung bình cộng để đại diện cho dãy số liệu.
+\end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+\begin{itemize}
+  \item Tính số trung bình cộng của $6, 7, 8, 9$:
+    \[\overline{x} = \frac{6 + 7 + 8 + 9}{4} = \frac{30}{4} = 7{,}5.\]
+  \item Từ bảng thống kê, đọc giá trị lớn nhất, nhỏ nhất và tính trung bình cộng.
+\end{itemize}
+\end{vidu}
+
+% ============================================================
+%                  PHẦN 3: HÌNH HỌC
+% ============================================================
+\section{Hình học}
+
+% -----------------------------------------------
+\subsection{Điểm, đường thẳng, đoạn thẳng, tia, trung điểm}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item \textbf{Điểm}: khái niệm cơ bản, không có kích thước, kí hiệu bằng chữ in hoa ($A$, $B$, $C$,\ldots).
+  \item \textbf{Đường thẳng}: không có điểm đầu, không có điểm cuối, kéo dài vô hạn về hai phía.
+  \item \textbf{Đoạn thẳng} $AB$: phần đường thẳng giới hạn bởi hai điểm $A$ và $B$ (gồm cả $A$, $B$).
+  \item \textbf{Tia} $Ox$: phần đường thẳng bị giới hạn bởi điểm gốc $O$, kéo dài vô hạn về một phía.
+  \item Hai tia chung gốc và tạo thành một đường thẳng gọi là hai \textbf{tia đối nhau}.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Trung điểm}]
+$M$ là \textbf{trung điểm} của đoạn thẳng $AB$ khi $M$ nằm giữa $A$, $B$ và $MA = MB$.
+
+\[MA = MB = \frac{AB}{2}.\]
+\end{dinhnghia}
+
+\begin{luuy}
+\begin{itemize}
+  \item Điểm $M$ \textbf{thuộc} đường thẳng $d$: $M \in d$; \textbf{không thuộc}: $M \notin d$.
+\end{itemize}
+\end{luuy}
+
+\begin{vidu}
+\begin{itemize}
+  \item Xác định trung điểm $M$ của đoạn $AB$: đo $AB$, tìm $M$ sao cho $MA = MB = \dfrac{AB}{2}$.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Song song, vuông góc, cắt nhau}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\begin{itemize}
+  \item Hai đường thẳng \textbf{song song}: không có điểm chung, kí hiệu $a \parallel b$.
+  \item Hai đường thẳng \textbf{vuông góc}: cắt nhau tạo thành góc $90°$, kí hiệu $a \perp b$.
+  \item Hai đường thẳng \textbf{cắt nhau}: có đúng một điểm chung.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item Hai đường thẳng vuông góc tạo thành $4$ góc vuông ($90°$).
+  \item Nhận biết song song: cặp góc so le trong bằng nhau hoặc cặp góc đồng vị bằng nhau.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+\begin{itemize}
+  \item Hai đường thẳng vuông góc tạo góc $90°$.
+  \item Kiểm tra song song bằng cách so sánh góc so le trong hoặc góc đồng vị.
+\end{itemize}
+\end{vidu}
+
+% -----------------------------------------------
+\subsection{Góc: đo góc, các loại góc, tia phân giác}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\textbf{Góc} là hình gồm hai tia chung gốc. Gốc chung gọi là \textbf{đỉnh} của góc, hai tia là hai \textbf{cạnh} của góc.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phân loại góc}]
+\begin{itemize}
+  \item \textbf{Góc nhọn}: $0° < \alpha < 90°$.
+  \item \textbf{Góc vuông}: $\alpha = 90°$.
+  \item \textbf{Góc tù}: $90° < \alpha < 180°$.
+  \item \textbf{Góc bẹt}: $\alpha = 180°$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Tia phân giác}]
+\textbf{Tia phân giác} của một góc là tia nằm giữa hai cạnh của góc và chia góc thành hai góc bằng nhau.
+\end{dinhnghia}
+
+\begin{luuy}
+\begin{itemize}
+  \item Điểm nằm \textbf{trong} góc: nằm ở phía trong vùng tạo bởi hai cạnh.
+  \item Điểm nằm \textbf{ngoài} góc: nằm ở phía ngoài vùng tạo bởi hai cạnh.
+\end{itemize}
+\end{luuy}
+
+% -----------------------------------------------
+\subsection{Tam giác, đa giác: phân loại}
+% -----------------------------------------------
+
+\begin{dinhnghia}
+\textbf{Tam giác} $ABC$ là hình gồm ba đoạn thẳng $AB$, $BC$, $CA$ khi ba điểm $A$, $B$, $C$ không thẳng hàng.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phân loại tam giác}]
+\begin{itemize}
+  \item \textbf{Tam giác cân}: hai cạnh bằng nhau.
+  \item \textbf{Tam giác đều}: ba cạnh bằng nhau.
+  \item \textbf{Tam giác vuông}: có một góc $90°$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Bất đẳng thức tam giác}]
+Ba đoạn thẳng $a$, $b$, $c$ là ba cạnh của một tam giác khi và chỉ khi:
+\[|a - b| < c < a + b.\]
+\end{dinhly}
+
+\begin{tinhchat}[title={Một số đa giác đặc biệt}]
+\begin{itemize}
+  \item \textbf{Hình vuông}: 4 cạnh bằng, 4 góc vuông.
+  \item \textbf{Hình chữ nhật}: 4 góc vuông, hai cặp cạnh đối bằng nhau.
+  \item \textbf{Hình thoi}: 4 cạnh bằng nhau, hai cặp góc đối bằng nhau.
+  \item \textbf{Hình bình hành}: hai cặp cạnh đối song song và bằng nhau.
+  \item \textbf{Hình thang}: có đúng một cặp cạnh đối song song.
+  \item \textbf{Hình thang cân}: hình thang có hai cạnh bên bằng nhau.
+\end{itemize}
+\end{tinhchat}
+
+% -----------------------------------------------
+\subsection{Chu vi -- diện tích các hình phẳng cơ bản}
+% -----------------------------------------------
+
+\begin{congthuc}[title={Chu vi và diện tích}]
+\renewcommand{\arraystretch}{1.8}
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Hình} & \textbf{Chu vi} & \textbf{Diện tích} \\
+\hline
+Hình vuông (cạnh $a$) & $C = 4a$ & $S = a^2$ \\
+\hline
+Hình chữ nhật ($a \times b$) & $C = 2(a + b)$ & $S = a \cdot b$ \\
+\hline
+Hình bình hành (cạnh $a, b$; chiều cao $h$) & $C = 2(a + b)$ & $S = a \cdot h$ \\
+\hline
+Hình thang (đáy $a, b$; cạnh bên $c, d$; cao $h$) & $C = a + b + c + d$ & $S = \dfrac{(a + b) \cdot h}{2}$ \\
+\hline
+Hình thoi (cạnh $a$; hai đường chéo $d_1, d_2$) & $C = 4a$ & $S = \dfrac{d_1 \cdot d_2}{2}$ \\
+\hline
+Hình tròn (bán kính $r$) & $C = 2\pi r$ & $S = \pi r^2$ \\
+\hline
+\end{tabular}
+\end{center}
+\end{congthuc}
+
+\begin{luuy}
+\begin{itemize}
+  \item Chu vi tam giác: tổng ba cạnh.
+  \item Khi nào dùng \textbf{chu vi}: tính độ dài viền, rào, khung,\ldots
+  \item Khi nào dùng \textbf{diện tích}: tính phần bề mặt bên trong hình, lát gạch, sơn,\ldots
+  \item $\pi \approx 3{,}14$.
+\end{itemize}
+\end{luuy}
+
+\begin{vidu}
+\begin{itemize}
+  \item Chu vi tam giác có cạnh $3$, $4$, $5$: $C = 3 + 4 + 5 = 12$.
+  \item Diện tích hình chữ nhật $a = 7$, $b = 3$: $S = 7 \cdot 3 = 21$.
+  \item Hình tròn $r = 5$:
+    \[C = 2\pi \cdot 5 = 10\pi \approx 31{,}4, \quad S = \pi \cdot 5^2 = 25\pi \approx 78{,}5.\]
+\end{itemize}
+\end{vidu}
+
+\end{document}

@@ -1,0 +1,804 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Toán 9}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{36}{42}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {LÝ THUYẾT TOÁN 9};
+
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9.5cm]current page.north west)
+    {Tài liệu tổng hợp kiến thức};
+
+  \node[white, opacity=0.15, font=\fontsize{100}{100}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\sqrt{\phantom{x}}$};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\sin$};
+  \node[white, opacity=0.10, font=\fontsize{90}{90}\selectfont, rotate=-5]
+    at ([xshift=7cm, yshift=-1cm]current page.center)
+    {$\pi$};
+  \node[white, opacity=0.10, font=\fontsize{70}{70}\selectfont, rotate=20]
+    at ([xshift=-5cm, yshift=-3cm]current page.center)
+    {$x^2$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries LÝ THUYẾT TOÁN 9}\\[8pt]
+  {\large Tài liệu tổng hợp kiến thức}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối, chia sẻ dưới bất kỳ hình thức nào (in ấn, kỹ thuật số, trực tuyến) mà không có sự đồng ý bằng văn bản của tác giả.
+
+  \vspace{6pt}
+  Mọi vi phạm sẽ bị xử lý theo quy định của pháp luật về sở hữu trí tuệ.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+% ====================================================================
+%                         PHẦN 1: ĐẠI SỐ
+% ====================================================================
+
+\section{Đại số}
+
+% --------------------------------------------------------------------
+\subsection{Căn bậc hai, căn thức bậc hai}
+% --------------------------------------------------------------------
+
+\subsubsection{Căn bậc hai và điều kiện xác định}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $x^2 = a \;\Rightarrow\; x = \sqrt{a}$ hoặc $x = -\sqrt{a}$.
+    \item $\sqrt{a}$ có nghĩa khi $a \ge 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $\sqrt{49} = ?\;$, \quad $\sqrt{0{,}25} = ?$
+    \item Điều kiện để $\sqrt{2x - 3}$ có nghĩa?
+  \end{itemize}
+\end{vidu}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $a > b \;\Rightarrow\; \sqrt{a} > \sqrt{b}$ \quad (với $a,\, b \ge 0$).
+    \item Căn thức bậc hai của hằng đẳng thức: $\sqrt{a^2} = |a|$ \quad (không phải luôn bằng $a$).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item $\sqrt{a \cdot b} = \sqrt{a} \cdot \sqrt{b}$ \quad (với $a,\, b \ge 0$).
+    \item $\sqrt{\dfrac{a}{b}} = \dfrac{\sqrt{a}}{\sqrt{b}}$ \quad (với $a \ge 0,\; b > 0$).
+  \end{itemize}
+\end{congthuc}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm điều kiện để biểu thức chứa căn có nghĩa
+  \item Tính giá trị biểu thức chứa căn
+  \item Rút gọn biểu thức chứa căn
+  \item So sánh biểu thức chứa căn
+  \item Giải phương trình chứa căn
+  \item Phân tích đa thức thành nhân tử
+  \item Nâng cao
+\end{enumerate}
+
+\subsubsection{Biến đổi căn thức bậc hai}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Đưa thừa số ra ngoài dấu căn: $\sqrt{a^2 b} = a\sqrt{b}$ \quad (với $a \ge 0,\; b \ge 0$).
+    \item Đưa thừa số vào trong dấu căn: $a\sqrt{b} = \sqrt{a^2 b}$ \quad (với $a \ge 0,\; b \ge 0$).
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Rút gọn $\sqrt{50}$, $\sqrt{12}$, $\sqrt{18}$.
+\end{vidu}
+
+\begin{phuongphap}[title={Khử mẫu và trục căn thức ở mẫu}]
+  \begin{itemize}
+    \item Khử mẫu biểu thức lấy căn:
+    \[\frac{a}{\sqrt{b}} = \frac{a\sqrt{b}}{b} \quad (a \ge 0,\; b > 0)\]
+    \item Trục căn thức ở mẫu:
+    \[\frac{c}{\sqrt{a} \pm b} = \frac{c\bigl(\sqrt{a} \mp b\bigr)}{a - b^2} \quad (a \ge 0,\; a \neq b^2)\]
+    \[\frac{c}{\sqrt{a} \pm \sqrt{b}} = \frac{c\bigl(\sqrt{a} \mp \sqrt{b}\bigr)}{a - b} \quad (a,\, b \ge 0,\; a \neq b)\]
+  \end{itemize}
+\end{phuongphap}
+
+\begin{luuy}
+  Rút gọn biểu thức có chứa căn cần kết hợp hằng đẳng thức và điều kiện xác định.
+\end{luuy}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Biến đổi đơn giản biểu thức chứa căn thức bậc hai các dạng cơ bản
+  \item Nâng cao phát triển tư duy
+\end{enumerate}
+
+\subsubsection{Căn bậc ba}
+
+\begin{dinhnghia}
+  Căn bậc ba của $a$ là số $x$ sao cho $x^3 = a$, ký hiệu $\sqrt[3]{a}$.
+
+  Khác với căn bậc hai, $\sqrt[3]{a}$ xác định với \textbf{mọi} số thực $a$ (kể cả $a < 0$).
+\end{dinhnghia}
+
+\begin{vidu}
+  $\sqrt[3]{8} = 2$, \quad $\sqrt[3]{-27} = -3$.
+\end{vidu}
+
+\begin{congthuc}[title={Trục căn thức ở mẫu với căn bậc ba}]
+  \[\frac{1}{\sqrt[3]{a} + \sqrt[3]{b}} = \frac{\sqrt[3]{a^2} - \sqrt[3]{ab} + \sqrt[3]{b^2}}{a + b}\]
+  \[\frac{1}{\sqrt[3]{a} - \sqrt[3]{b}} = \frac{\sqrt[3]{a^2} + \sqrt[3]{ab} + \sqrt[3]{b^2}}{a - b}\]
+\end{congthuc}
+
+\begin{tinhchat}[title={Căn bậc $n$}]
+  \begin{itemize}
+    \item $\sqrt[n]{\sqrt[m]{a}} = \sqrt[nm]{a}$
+    \item $\sqrt[n]{a \cdot b} = \sqrt[n]{a} \cdot \sqrt[n]{b}$
+    \item $\bigl(\sqrt[n]{a}\bigr)^m = \sqrt[n]{a^m}$
+  \end{itemize}
+\end{tinhchat}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Toán cơ bản
+  \item Bài nâng cao phát triển tư duy
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Hàm số bậc nhất $y = ax + b$}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  Ôn lại hàm số $y = f(x)$:
+  \begin{itemize}
+    \item Tập xác định (TXĐ).
+    \item Hệ số $a$ ảnh hưởng đến độ dốc và chiều tăng/giảm; $b$ là tung độ gốc (điểm cắt $Oy$).
+    \item Hệ số góc $a$: $|a|$ càng lớn, đồ thị càng dốc.
+    \item Điểm thuộc đồ thị.
+    \item Đồ thị hàm số.
+    \item Hàm số đồng biến, nghịch biến.
+    \item Hàm chẵn, hàm lẻ.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Hàm số bậc nhất $y = ax + b$ với $a \neq 0$:
+  \begin{itemize}
+    \item \textbf{Đồng biến} khi $a > 0$, đồ thị tạo với trục $Ox$ một góc nhọn.
+    \item \textbf{Nghịch biến} khi $a < 0$, đồ thị tạo với trục $Ox$ một góc tù.
+    \item Đồ thị là \textbf{đường thẳng}.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $y = 2x - 1$: tìm 2 điểm để vẽ; xác định điểm cắt trục $Ox$ và $Oy$.
+\end{vidu}
+
+\begin{tinhchat}[title={Vị trí tương đối của hai đường thẳng}]
+  Hai đường thẳng $y = a_1 x + b_1$ và $y = a_2 x + b_2$:
+  \begin{itemize}
+    \item \textbf{Song song} khi $a_1 = a_2$ và $b_1 \neq b_2$.
+    \item \textbf{Trùng nhau} khi $a_1 = a_2$ và $b_1 = b_2$.
+    \item \textbf{Cắt nhau} khi $a_1 \neq a_2$.
+    \item \textbf{Vuông góc} khi $a_1 \cdot a_2 = -1$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Cho hai đường thẳng $y = 3x + 1$ và $y = 3x - 2$. Chúng có cắt nhau không?
+\end{vidu}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm điều kiện xác định của hàm số
+  \item Tính giá trị hàm số khi cho giá trị của ẩn
+  \item Xác định điểm thuộc (không thuộc) đồ thị hàm số
+  \item Sự đồng biến, nghịch biến của hàm số
+  \item Đồ thị hàm số và hệ số góc của đường thẳng
+  \item Đường thẳng song song và đường thẳng cắt nhau
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Hệ phương trình bậc nhất hai ẩn}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item Phương trình bậc nhất hai ẩn: $ax + by = c$ \quad (với $a$ hoặc $b$ khác $0$).
+    \item Tập nghiệm: $S = \left\{\!\left(x,\; \dfrac{c - ax}{b}\right)\right\}$.
+    \item Hệ hai phương trình bậc nhất hai ẩn:
+    \[\begin{cases} ax + by = c \\ a'x + b'y = c' \end{cases}\]
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}
+  \begin{itemize}
+    \item \textbf{Phương pháp thế} và \textbf{phương pháp cộng đại số}.
+    \item \textbf{Lập hệ phương trình} để giải bài toán bằng cách lập phương trình.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Giải hệ $\begin{cases} x + y = 5 \\ x - y = 1 \end{cases}$ bằng cả hai cách.
+    \item Tổng 2 số là 20, hiệu là 4 --- lập hệ và giải.
+  \end{itemize}
+\end{vidu}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xét cặp số $(x_0,\, y_0)$ có là nghiệm của phương trình $ax + by = c$
+  \item Tìm nghiệm tổng quát của phương trình $ax + by = c$ và vẽ đường thẳng biểu diễn tập nghiệm của nó
+  \item Tính khoảng cách từ gốc tọa độ $O$ đến một đường thẳng
+  \item Giải hệ phương trình bằng phương pháp thế
+  \item Đặt ẩn phụ đưa về phương pháp thế
+  \item Giải hệ phương trình bằng phương pháp cộng đại số
+  \item Đặt ẩn phụ đưa về phương pháp cộng
+  \item Toán về quan hệ giữa các số
+  \item Toán làm chung công việc
+  \item Loại toán chuyển động
+  \item Các dạng khác
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Hàm số $y = ax^2$}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  Hàm số $y = ax^2$ \quad ($a \neq 0$):
+  \begin{itemize}
+    \item $a > 0$: nghịch biến khi $x < 0$ và đồng biến khi $x > 0$. GTNN của hàm số là $y = 0$.
+    \item $a < 0$: đồng biến khi $x < 0$ và nghịch biến khi $x > 0$. GTLN của hàm số là $y = 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Đồ thị là \textbf{Parabol}: một đường cong đi qua gốc tọa độ và nhận trục $Oy$ làm trục đối xứng. Đỉnh là gốc tọa độ.
+  \begin{itemize}
+    \item $a > 0$: đồ thị nằm phía trên trục hoành, $O$ là điểm thấp nhất của đồ thị.
+    \item $a < 0$: đồ thị nằm phía dưới trục hoành, $O$ là điểm cao nhất của đồ thị.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Giá trị hàm số $y = f(x) = ax^2$ tại $x = x_0$
+  \item Vẽ đồ thị hàm số $y = f(x) = ax^2$
+  \item Xác định hệ số $a$ của hàm số $y = f(x) = ax^2$
+  \item Tọa độ giao điểm của parabol và đường thẳng
+  \item Giải bất phương trình bằng đồ thị
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Phương trình bậc hai một ẩn, định lý Vi-ét}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  Dạng tổng quát: $ax^2 + bx + c = 0$ \quad (với $a \neq 0$).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức nghiệm}]
+  Biệt thức $\Delta = b^2 - 4ac$:
+  \begin{itemize}
+    \item $\Delta > 0$: hai nghiệm phân biệt
+    \[x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a}\]
+    \item $\Delta = 0$: nghiệm kép $x_1 = x_2 = \dfrac{-b}{2a}$.
+    \item $\Delta < 0$: vô nghiệm (trong $\mathbb{R}$).
+  \end{itemize}
+
+  \vspace{6pt}
+  Hoặc lập $\Delta' = b'^{\,2} - ac$ với $b = 2b'$:
+  \begin{itemize}
+    \item $\Delta' > 0$: hai nghiệm phân biệt
+    \[x_{1,2} = \frac{-b' \pm \sqrt{\Delta'}}{a}\]
+    \item $\Delta' = 0$: nghiệm kép $x_1 = x_2 = \dfrac{-b'}{a}$.
+    \item $\Delta' < 0$: vô nghiệm (trong $\mathbb{R}$).
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Giải $x^2 - 5x + 6 = 0$.
+    \item Nhìn $x^2 - 9 = 0$, nhẩm nghiệm?
+  \end{itemize}
+\end{vidu}
+
+\begin{dinhly}[title={Định lý Vi-ét}]
+  Nếu $x_1,\, x_2$ là hai nghiệm của phương trình $ax^2 + bx + c = 0$ thì:
+  \[S = x_1 + x_2 = -\frac{b}{a}, \qquad P = x_1 \cdot x_2 = \frac{c}{a}\]
+  Hệ quả:
+  \begin{itemize}
+    \item $x(S - x) = P \;\Leftrightarrow\; x^2 - Sx + P = 0$.
+    \item Điều kiện có 2 nghiệm: $\Delta = S^2 - 4P \ge 0$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{vidu}
+  Biết tổng hai nghiệm là $5$ và tích là $6$, viết phương trình bậc hai tương ứng.
+\end{vidu}
+
+\begin{phuongphap}[title={Các dạng phương trình đặc biệt}]
+  \begin{itemize}
+    \item \textbf{Phương trình trùng phương:} $ax^4 + bx^2 + c = 0$ \quad ($a \neq 0$). Đặt $t = x^2 \ge 0$.
+    \item \textbf{Phương trình chứa ẩn ở mẫu.}
+    \item \textbf{Phương trình tích.}
+    \item \textbf{Giải bài toán bằng cách lập phương trình.}
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Phương trình chứa ẩn ở mẫu: $\dfrac{x^2 - 3x + 6}{x^2 - 9} = \dfrac{1}{x - 3}$.
+    \item Phương trình tích: $(x + 1)(x^2 + 2x - 3) = 0$.
+  \end{itemize}
+\end{vidu}
+
+% ====================================================================
+%                       PHẦN 2: HÌNH HỌC
+% ====================================================================
+
+\section{Hình học}
+
+% --------------------------------------------------------------------
+\subsection{Hệ thức lượng trong tam giác vuông}
+% --------------------------------------------------------------------
+
+\begin{dinhly}[title={Định lý Pythagore}]
+  Trong tam giác vuông với cạnh huyền $c$ và hai cạnh góc vuông $a$, $b$:
+  \[c^2 = a^2 + b^2\]
+\end{dinhly}
+
+\begin{vidu}
+  Tam giác vuông có cạnh góc vuông $6$ và $8$, cạnh huyền bằng bao nhiêu?
+\end{vidu}
+
+\begin{congthuc}[title={Hệ thức lượng}]
+  Trong tam giác vuông có cạnh huyền $c$, hai cạnh góc vuông $a$, $b$, đường cao $h$ kẻ từ đỉnh góc vuông xuống cạnh huyền. Gọi $a'$, $b'$ lần lượt là hình chiếu vuông góc của $a$, $b$ lên $c$:
+  \begin{align*}
+    h^2 &= a' \cdot b' \\
+    a^2 &= a' \cdot c, \quad b^2 = b' \cdot c \\
+    a \cdot b &= c \cdot h \\
+    \frac{1}{h^2} &= \frac{1}{a^2} + \frac{1}{b^2}
+  \end{align*}
+\end{congthuc}
+
+% --------------------------------------------------------------------
+\subsection{Tỉ số lượng giác trong tam giác vuông}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  Trong tam giác vuông:
+  \begin{align*}
+    \sin A &= \frac{\text{cạnh đối}}{\text{cạnh huyền}}, &
+    \cos A &= \frac{\text{cạnh kề}}{\text{cạnh huyền}} \\[6pt]
+    \tan A &= \frac{\text{cạnh đối}}{\text{cạnh kề}}, &
+    \cot A &= \frac{\text{cạnh kề}}{\text{cạnh đối}}
+  \end{align*}
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item $\sin^2 A + \cos^2 A = 1$
+    \item $\tan A \cdot \cot A = 1$
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Hai góc phụ nhau}]
+  Nếu $\widehat{A} + \widehat{B} = 90^\circ$ thì:
+  \[\sin A = \cos B, \quad \cos A = \sin B, \quad \tan A = \cot B, \quad \cot A = \tan B\]
+\end{tinhchat}
+
+\begin{congthuc}[title={Góc đặc biệt}]
+  \[
+  \renewcommand{\arraystretch}{1.8}
+  \begin{array}{|c|c|c|c|}
+    \hline
+    \alpha & 30^\circ & 45^\circ & 60^\circ \\
+    \hline
+    \sin\alpha & \dfrac{1}{2} & \dfrac{\sqrt{2}}{2} & \dfrac{\sqrt{3}}{2} \\[4pt]
+    \hline
+    \cos\alpha & \dfrac{\sqrt{3}}{2} & \dfrac{\sqrt{2}}{2} & \dfrac{1}{2} \\[4pt]
+    \hline
+    \tan\alpha & \dfrac{\sqrt{3}}{3} & 1 & \sqrt{3} \\[4pt]
+    \hline
+  \end{array}
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Tam giác vuông, $\widehat{A} = 30^\circ$, cạnh huyền $= 10$. Tìm cạnh đối diện với $A$.
+\end{vidu}
+
+% --------------------------------------------------------------------
+\subsection{Đường tròn}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  Đường tròn tâm $O$, bán kính $r$, đường kính $d = 2r$, dây:
+  \begin{itemize}
+    \item Tâm là tâm đối xứng.
+    \item Đường kính là trục đối xứng.
+    \item Điểm thuộc hoặc không thuộc đường tròn.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Vị trí tương đối của điểm $M$ với đường tròn $(O;\, r)$}]
+  \begin{itemize}
+    \item $OM < r$: $M$ nằm trong đường tròn.
+    \item $OM = r$: $M$ nằm trên đường tròn.
+    \item $OM > r$: $M$ nằm ngoài đường tròn.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Vị trí tương đối của đường thẳng với đường tròn}]
+  Gọi $d$ là khoảng cách từ tâm đến đường thẳng:
+  \begin{itemize}
+    \item $d > r$: không giao nhau.
+    \item $d = r$: tiếp tuyến (1 điểm chung).
+    \item $d < r$: cắt nhau (2 điểm chung).
+  \end{itemize}
+  Tiếp tuyến vuông góc với bán kính tại tiếp điểm.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Đường tròn ngoại tiếp -- nội tiếp -- bàng tiếp}]
+  \begin{itemize}
+    \item \textbf{Đường tròn ngoại tiếp} là đường tròn đi qua các đỉnh của đa giác:
+    \begin{itemize}
+      \item Tâm là giao điểm của các đường trung trực.
+      \item Bán kính là khoảng cách từ giao điểm các đường trung trực tới mỗi đỉnh.
+    \end{itemize}
+
+    \item \textbf{Đường tròn nội tiếp} là đường tròn tiếp xúc với các cạnh của đa giác:
+    \begin{itemize}
+      \item Tâm là giao điểm của các đường phân giác.
+      \item Bán kính là khoảng cách từ giao điểm của các đường phân giác tới mỗi cạnh.
+    \end{itemize}
+
+    \item \textbf{Đường tròn bàng tiếp} là đường tròn tiếp xúc với một cạnh và tiếp xúc với các cạnh kéo dài còn lại:
+    \begin{itemize}
+      \item Tâm là giao điểm của các đường phân giác ngoài và một phân giác trong đối của cạnh tiếp xúc.
+      \item Bán kính là khoảng cách từ tâm tới các cạnh tiếp xúc.
+    \end{itemize}
+  \end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Vị trí tương đối của hai đường tròn}]
+  Hai đường tròn $(O;\, r)$ và $(O';\, r')$:
+  \begin{itemize}
+    \item $OO' > r + r'$: không cắt nhau (ở ngoài nhau).
+    \item $OO' < |r - r'|$: không cắt nhau (đường tròn này đựng đường tròn khác).
+    \item $OO' = r + r'$: tiếp xúc ngoài (1 điểm chung).
+    \item $OO' = |r - r'|$: tiếp xúc trong (1 điểm chung).
+    \item $|r - r'| < OO' < r + r'$: cắt nhau tại 2 điểm.
+  \end{itemize}
+  Tiếp tuyến chung của 2 đường tròn (tiếp tuyến ngoài, tiếp tuyến trong).
+\end{tinhchat}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Xác định điểm nằm trên, nằm trong, nằm ngoài đường tròn
+  \item Chứng minh nhiều điểm cùng thuộc đường tròn
+  \item Xác định vị trí tương đối của đường thẳng và đường tròn
+  \item Chứng minh đường thẳng là tiếp tuyến của đường tròn
+  \item Xác định vị trí tương đối của hai đường tròn
+  \item Toán thực tế
+  \item Xác định tâm và tính bán kính đường tròn ngoại tiếp, nội tiếp tam giác
+  \item Bài toán liên quan đường tròn ngoại tiếp, nội tiếp tam giác
+  \item Bài toán liên quan đường tròn bàng tiếp tam giác
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Góc ở tâm, cung tròn, dây, độ dài cung và diện tích hình quạt}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Dây} là đoạn thẳng nối 2 điểm trên đường tròn.
+    \item \textbf{Đường kính} là dây lớn nhất, bằng $2R$.
+    \item Hai dây bằng nhau thì cách đều tâm; dây nào lớn hơn thì gần tâm hơn.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Góc ở tâm và cung tròn}]
+  \begin{itemize}
+    \item \textbf{Góc ở tâm}: đỉnh tại tâm $O$, hai cạnh chứa hai bán kính; số đo góc bằng số đo cung bị chắn.
+    \item Hai điểm trên đường tròn chia đường tròn thành 2 phần, mỗi phần gọi là 1 \textbf{cung}.
+    \item Hai cung bằng nhau nếu số đo bằng nhau (hoặc dây bằng nhau). Cung nào có số đo lớn hơn (hoặc dây lớn hơn) gọi là cung lớn hơn.
+    \item $C$ là điểm giữa $\overset{\frown}{AB}$: $\overset{\frown}{AB}$ = $\overset{\frown}{AC}$ + $\overset{\frown}{CB}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Độ dài cung ($n$ là số đo góc ở tâm tính theo độ):
+    \[l = \frac{n \cdot \pi \cdot r}{180} \;\Rightarrow\; \frac{l}{C} = \frac{n}{360} \quad (\text{vì } C = 2\pi r)\]
+    \item Diện tích hình quạt tròn:
+    \[S = \frac{n \cdot \pi \cdot r^2}{360} = \frac{l \cdot r}{2}\]
+    \item Diện tích hình vành khuyên ($R > r$):
+    \[S = \pi(R^2 - r^2)\]
+  \end{itemize}
+\end{congthuc}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh tính chất hình học
+  \item Tính độ dài các cung tròn. Diện tích các hình
+  \item Toán thực tế
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Góc nội tiếp}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  \textbf{Góc nội tiếp}: đỉnh nằm trên đường tròn, hai cạnh là hai dây cung.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Góc nội tiếp bằng \textbf{nửa} góc ở tâm chắn cùng cung.
+    \item Hai góc nội tiếp cùng chắn một cung thì bằng nhau.
+    \item Góc nội tiếp chắn nửa đường tròn (chắn đường kính) bằng $90^\circ$.
+  \end{itemize}
+\end{tinhchat}
+
+% --------------------------------------------------------------------
+\subsection{Tiếp tuyến, hai tiếp tuyến từ một điểm ngoài}
+% --------------------------------------------------------------------
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Tiếp tuyến tại điểm $M$: vuông góc với bán kính $OM$ tại $M$.
+    \item Từ điểm $A$ nằm ngoài đường tròn, kẻ 2 tiếp tuyến $AM$ và $AN$ thì $AM = AN$.
+    \item Tam giác $OAM$ vuông tại $M$.
+    \item $OA$ là đường phân giác của $\widehat{MON}$ và $\widehat{MAN}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Góc tạo bởi tiếp tuyến, dây cung và các góc liên quan}]
+  \begin{itemize}
+    \item Số đo của góc tạo bởi tia tiếp tuyến và dây cung bằng \textbf{nửa} số đo của cung bị chắn.
+    \item Số đo của góc có đỉnh ở \textbf{bên trong} đường tròn bằng nửa \textbf{tổng} số đo hai cung bị chắn.
+    \item Số đo của góc có đỉnh ở \textbf{bên ngoài} đường tròn bằng nửa \textbf{hiệu} số đo hai cung bị chắn.
+  \end{itemize}
+\end{tinhchat}
+
+% --------------------------------------------------------------------
+\subsection{Tứ giác nội tiếp}
+% --------------------------------------------------------------------
+
+\begin{dinhnghia}
+  \textbf{Tứ giác nội tiếp đường tròn}: 4 đỉnh cùng nằm trên đường tròn; đường tròn đó gọi là đường tròn ngoại tiếp.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Tổng hai góc đối của tứ giác nội tiếp bằng $180^\circ$.
+\end{tinhchat}
+
+\begin{vidu}
+  Hình chữ nhật, hình vuông, hình thang cân đều là tứ giác nội tiếp.
+\end{vidu}
+
+\begin{phuongphap}[title={Chứng minh tứ giác nội tiếp}]
+  \begin{itemize}
+    \item Tổng hai góc đối bằng $180^\circ$.
+    \item Khoảng cách từ tâm tới các đỉnh bằng nhau.
+    \item Hai góc đối là góc vuông.
+    \item Hai góc kề nhau bằng nhau cùng nhìn một cạnh.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính góc của tứ giác nội tiếp đường tròn
+  \item Chứng minh tứ giác nội tiếp đường tròn
+\end{enumerate}
+
+% --------------------------------------------------------------------
+\subsection{Hình trụ -- hình nón -- hình cầu}
+% --------------------------------------------------------------------
+
+\subsubsection{Hình trụ}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Diện tích xung quanh: $S_{xq} = 2\pi r h$
+    \item Diện tích toàn phần: $S_{tp} = 2\pi r(r + h)$
+    \item Thể tích: $V = \pi r^2 h$
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  $r = 3$, $h = 5$. Tính $V$ và $S_{xq}$.
+\end{vidu}
+
+\subsubsection{Hình nón}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Đường sinh $l$: $l^2 = r^2 + h^2$ \quad ($l$ là đường nghiêng từ đỉnh xuống vành đáy).
+    \item Diện tích xung quanh: $S_{xq} = \pi r l$
+    \item Diện tích toàn phần: $S_{tp} = \pi r(r + l)$
+    \item Thể tích: $V = \dfrac{1}{3}\pi r^2 h$
+  \end{itemize}
+\end{congthuc}
+
+\begin{luuy}
+  Phân biệt chiều cao $h$ và đường sinh $l$ của hình nón.
+\end{luuy}
+
+\subsubsection{Hình cầu}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Diện tích mặt cầu: $S = 4\pi r^2$
+    \item Thể tích: $V = \dfrac{4}{3}\pi r^3$
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Quả bóng bán kính $10$ cm. Tính thể tích và diện tích mặt cầu.
+\end{vidu}
+
+\end{document}
