@@ -1,0 +1,128 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Giải tích 2}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH 2};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Chuỗi, chuỗi hàm, PTVP --- Năm 1, HK2};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Chuỗi số (tiếp)}
+
+\subsection{Chuỗi có dấu bất kỳ}
+
+\begin{dinhnghia}
+  Chuỗi $\sum a_n$ \textbf{hội tụ tuyệt đối} nếu $\sum |a_n|$ hội tụ. Hội tụ tuyệt đối $\Rightarrow$ hội tụ.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Leibniz -- Chuỗi đan dấu}]
+  Nếu $a_n \ge 0$, $a_n \to 0$, $a_{n+1} \le a_n$ thì chuỗi $\sum (-1)^n a_n$ hội tụ.
+\end{dinhly}
+
+\section{Chuỗi hàm}
+
+\subsection{Chuỗi lũy thừa}
+
+\begin{dinhnghia}
+  $\displaystyle\sum_{n=0}^{\infty} a_n (x - x_0)^n$. Bán kính hội tụ $R$: hội tụ trong $|x - x_0| < R$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Trong khoảng hội tụ, chuỗi lũy thừa có thể lấy đạo hàm và tích phân từng số hạng.
+\end{tinhchat}
+
+\begin{vidu}
+  $e^x$, $\sin x$, $\cos x$, $\ln(1+x)$, $(1+x)^\alpha$ có khai triển Maclaurin chuẩn.
+\end{vidu}
+
+\section{Phương trình vi phân}
+
+\subsection{PTVP cấp 1}
+
+\begin{dinhnghia}
+  \textbf{Tách biến}: $y' = g(x)h(y)$ $\Rightarrow$ $\displaystyle\int \frac{dy}{h(y)} = \int g(x)\,dx$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Tuyến tính}: $y' + p(x)y = q(x)$. Nghiệm tổng quát: $y = e^{-\int p}\left(\int q\,e^{\int p}\,dx + C\right)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Bernoulli}: $y' + p(x)y = q(x)y^n$. Đặt $z = y^{1-n}$ đưa về tuyến tính.
+\end{dinhnghia}
+
+\subsection{PTVP cấp 2 hệ số hằng}
+
+\begin{dinhnghia}
+  $y'' + py' + qy = 0$. Phương trình đặc trưng: $k^2 + pk + q = 0$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Nghiệm}]
+  \begin{itemize}
+    \item Hai nghiệm thực $k_1 \ne k_2$: $y = C_1 e^{k_1 x} + C_2 e^{k_2 x}$.
+    \item Nghiệm kép $k$: $y = (C_1 + C_2 x)e^{kx}$.
+    \item Nghiệm phức $k = \alpha \pm i\beta$: $y = e^{\alpha x}(C_1 \cos\beta x + C_2 \sin\beta x)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={PTVP không thuần nhất $y'' + py' + qy = f(x)$}]
+  Nghiệm tổng quát = nghiệm thuần nhất + nghiệm riêng. Tìm nghiệm riêng bằng phương pháp hệ số bất định hoặc biến thiên hằng số.
+\end{phuongphap}
+
+\end{document}

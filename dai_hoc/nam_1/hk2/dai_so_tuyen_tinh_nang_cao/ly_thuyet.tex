@@ -1,0 +1,152 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Đại số tuyến tính nâng cao}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{22}{28}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {ĐẠI SỐ TUYẾN TÍNH NÂNG CAO};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Không gian vectơ, ánh xạ tuyến tính --- Năm 1, HK2};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Không gian vectơ}
+
+\subsection{Định nghĩa và ví dụ}
+
+\begin{dinhnghia}
+  \textbf{Không gian vectơ} $V$ trên trường $\mathbb{K}$: tập $V$ với phép cộng $+$ và nhân vô hướng $\cdot$ thỏa 8 tiên đề (đóng, giao hoán, kết hợp, phần tử không, phần tử đối, phân phối, đơn vị).
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{R}^n$, $M_{m \times n}(\mathbb{R})$, $\mathbb{R}[x]$ (đa thức), $C[a,b]$ (hàm liên tục).
+\end{vidu}
+
+\subsection{Không gian con}
+
+\begin{dinhnghia}
+  $W \subset V$ là \textbf{không gian con} nếu $W$ đóng với phép cộng và nhân vô hướng.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kiểm tra không gian con}]
+  $W \ne \varnothing$ và $\forall u, v \in W$, $\forall \lambda \in \mathbb{K}$: $u + v \in W$, $\lambda u \in W$.
+\end{phuongphap}
+
+\subsection{Tổ hợp tuyến tính, sinh, cơ sở}
+
+\begin{dinhnghia}
+  $v$ là \textbf{tổ hợp tuyến tính} của $\{v_1, \ldots, v_k\}$ nếu $v = \lambda_1 v_1 + \cdots + \lambda_k v_k$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  $\mathrm{span}\{v_1, \ldots, v_k\}$: tập mọi tổ hợp tuyến tính. Hệ \textbf{sinh} $V$ nếu $\mathrm{span}\{v_1, \ldots, v_k\} = V$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Cơ sở} của $V$: hệ vừa độc lập tuyến tính vừa sinh $V$. Mọi cơ sở có cùng số phần tử $= \dim V$.
+\end{dinhnghia}
+
+\section{Ánh xạ tuyến tính}
+
+\begin{dinhnghia}
+  $T: V \to W$ \textbf{tuyến tính} nếu $T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Núcleus (hạt nhân)}: $\ker T = \{v \in V \mid T(v) = 0\}$. \textbf{Ảnh}: $\mathrm{Im}\,T = T(V)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý chiều}]
+  $\dim V = \dim(\ker T) + \dim(\mathrm{Im}\,T)$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Ma trận của $T$} trong cơ sở $\mathcal{B}_V$, $\mathcal{B}_W$: $[T(v)]_{\mathcal{B}_W} = A [v]_{\mathcal{B}_V}$.
+\end{dinhnghia}
+
+\section{Trị riêng và chéo hóa}
+
+\begin{dinhnghia}
+  $\lambda$ là \textbf{trị riêng} của $A$ nếu $\exists x \ne 0$: $Ax = \lambda x$. $x$: vectơ riêng.
+\end{dinhnghia}
+
+\begin{congthuc}
+  $\lambda$ trị riêng $\Leftrightarrow$ $\det(A - \lambda I) = 0$ (phương trình đặc trưng).
+\end{congthuc}
+
+\begin{dinhnghia}
+  $A$ \textbf{chéo hóa được} nếu tồn tại $P$ khả nghịch: $P^{-1}AP = D$ (ma trận chéo). Khi đó các cột của $P$ là vectơ riêng.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $A$ chéo hóa được $\Leftrightarrow$ $A$ có $n$ vectơ riêng độc lập tuyến tính $\Leftrightarrow$ tổng số chiều các không gian riêng $= n$.
+\end{dinhly}
+
+\section{Dạng toàn phương}
+
+\begin{dinhnghia}
+  \textbf{Dạng toàn phương} $Q(x) = x^T A x = \sum_{i,j} a_{ij} x_i x_j$, $A$ đối xứng.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Luật quán tính Sylvester}]
+  Số hệ số dương và âm trong dạng chính tắc không phụ thuộc cách đưa về chính tắc.
+\end{dinhly}
+
+\begin{dinhnghia}
+  $Q$ \textbf{xác định dương} nếu $Q(x) > 0$ với mọi $x \ne 0$. Tương tự xác định âm, nửa xác định.
+\end{dinhnghia}
+
+\end{document}
