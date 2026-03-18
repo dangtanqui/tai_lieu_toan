@@ -8,12 +8,13 @@
 \usepackage[most]{tcolorbox}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{eso-pic}
 \usepackage{xcolor}
 
 \geometry{a4paper, margin=2cm, bottom=2.5cm}
-\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
 \setlist[itemize]{topsep=4pt, itemsep=2pt}
 \setlist[enumerate]{topsep=4pt, itemsep=2pt}
 
@@ -53,7 +54,7 @@
   \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
     at ([xshift=3cm, yshift=-7.5cm]current page.north west) {ĐẠI SỐ CƠ SỞ};
   \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
-    at ([xshift=3cm, yshift=-9cm]current page.north west) {Tập hợp, ánh xạ, số phức --- Năm 1, HK1};
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Tập hợp, ánh xạ, số phức, cấu trúc đại số --- Năm 1, HK1};
   \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
   \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
   \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
@@ -63,89 +64,593 @@
 \tableofcontents
 \newpage
 
+%% ================================================================
+%%  CHƯƠNG 0: MỆNH ĐỀ VÀ LOGIC
+%% ================================================================
+\section{Mệnh đề và logic}
+
+\subsection{Mệnh đề và giá trị chân lý}
+
+\begin{dinhnghia}
+  \textbf{Mệnh đề} là một khẳng định có giá trị chân lý xác định: \textbf{đúng} (1, true) hoặc \textbf{sai} (0, false). 
+  
+  Mệnh đề không thể vừa đúng vừa sai.
+\end{dinhnghia}
+
+\begin{vidu}
+  ``$3 + 5 = 8$'' (đúng)
+  
+  ``$2 > 5$'' (sai)
+  
+  ``Số 7 là số nguyên tố'' (đúng).
+  
+  Không phải mệnh đề: ``$x + 1 = 0$'' (chứa biến, chưa xác định).
+\end{vidu}
+
+\subsection{Các phép toán logic}
+
+\begin{dinhnghia}
+  Cho hai mệnh đề $A$, $B$:
+  \begin{itemize}
+    \item \textbf{Phủ định} $\neg A$: đúng khi $A$ sai, sai khi $A$ đúng.
+    \item \textbf{Hội} (và) $A \wedge B$: đúng khi cả $A$ và $B$ đều đúng.
+    \item \textbf{Tuyển} (hoặc) $A \vee B$: sai khi cả $A$ và $B$ đều sai.
+    \item \textbf{Kéo theo} $A \Rightarrow B$: sai khi $A$ đúng và $B$ sai; đúng trong các trường hợp còn lại.
+    \item \textbf{Tương đương} $A \Leftrightarrow B$: đúng khi $A$ và $B$ cùng đúng hoặc cùng sai.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bảng chân lý}]
+  \begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c||c|c|c|c|c|}
+  \hline
+  $A$ & $B$ & $\neg A$ & $A \wedge B$ & $A \vee B$ & $A \Rightarrow B$ & $A \Leftrightarrow B$ \\
+  \hline
+  1 & 1 & 0 & 1 & 1 & 1 & 1 \\
+  1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 1 & 1 & 0 & 1 & 1 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+  \hline
+  \end{tabular}
+  \end{center}
+\end{congthuc}
+
+\begin{luuy}
+  $A \Rightarrow B$ chỉ sai khi ``giả thiết đúng nhưng kết luận sai''. 
+  
+  Khi $A$ sai thì $A \Rightarrow B$ luôn đúng (vô nghĩa nhưng quy ước).
+\end{luuy}
+
+\subsection{Tính chất các phép logic}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Phủ định của phủ định: $\neg(\neg A) \Leftrightarrow A$.
+    \item Giao hoán: $A \wedge B \Leftrightarrow B \wedge A$.
+    \item Kết hợp: $(A \wedge B) \wedge C \Leftrightarrow A \wedge (B \wedge C)$.
+    \item Phân phối: $A \vee (B \wedge C) \Leftrightarrow (A \vee B) \wedge (A \vee C)$, $\quad A \wedge (B \vee C) \Leftrightarrow (A \wedge B) \vee (A \wedge C)$.
+    \item Biểu diễn kéo theo: $A \Rightarrow B \Leftrightarrow (\neg A) \vee B \Leftrightarrow \neg(A \wedge (\neg B))$.
+    \item \textbf{Luật De Morgan}: $\neg(A \wedge B) \Leftrightarrow (\neg A) \vee (\neg B)$, $\quad \neg(A \vee B) \Leftrightarrow (\neg A) \wedge (\neg B)$.
+    \item \textbf{Nguyên lý phản đảo}: $A \Rightarrow B \Leftrightarrow (\neg B) \Rightarrow (\neg A)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Chứng minh ``Nếu $n^2$ chẵn thì $n$ chẵn'' tương đương với ``Nếu $n$ lẻ thì $n^2$ lẻ'' (phản đảo dễ chứng minh hơn).
+\end{vidu}
+
+\subsection{Mệnh đề với lượng từ}
+
+\begin{dinhnghia}
+  \textbf{Hàm mệnh đề} $P(x)$: phát biểu phụ thuộc biến $x$, trở thành mệnh đề khi thay $x$ bằng giá trị cụ thể.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Mệnh đề toàn thể}: ``$\forall x \in X$: $P(x)$'' (với mọi $x$, $P(x)$ đúng).
+    \item \textbf{Mệnh đề tồn tại}: ``$\exists x \in X$: $P(x)$'' (tồn tại ít nhất một $x$ sao cho $P(x)$ đúng).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phủ định}]
+  $\neg(\forall x: P(x)) \Leftrightarrow \exists x: \neg P(x)$.
+  
+  $\neg(\exists x: P(x)) \Leftrightarrow \forall x: \neg P(x)$.
+\end{congthuc}
+
+\begin{vidu}
+  Phủ định của ``Mọi số thực đều có bình phương không âm'' là ``Tồn tại số thực có bình phương âm''. Phủ định của ``Tồn tại $x$ sao cho $x^2 = -1$'' là ``Với mọi $x$, $x^2 \ne -1$''.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 1: TẬP HỢP
+%% ================================================================
 \section{Tập hợp}
 
 \subsection{Các khái niệm cơ bản}
 
 \begin{dinhnghia}
-  \textbf{Tập hợp}: tập các đối tượng phân biệt. $x \in A$: $x$ thuộc $A$; $x \notin A$: $x$ không thuộc $A$.
+  \textbf{Tập hợp} là một khái niệm cơ bản của toán học, là một nhóm các đối tượng, các đối tượng gọi là \textbf{các phần tử} của tập hợp.
+  \begin{itemize}
+    \item $x \in A$: $x$ thuộc $A$ (hoặc $x$ là phần tử của $A$).
+    \item $x \notin A$: $x$ không thuộc $A$.
+  \end{itemize}
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Tập con}: $A \subset B$ $\Leftrightarrow$ $\forall x \in A \Rightarrow x \in B$. \textbf{Bằng nhau}: $A = B$ $\Leftrightarrow$ $A \subset B$ và $B \subset A$.
+  \textbf{Tập con}: $A \subset B$ (hoặc $A \subseteq B$) $\Leftrightarrow$ $\forall x \in A \Rightarrow x \in B$.
+  
+  \textbf{Bằng nhau}: $A = B$ $\Leftrightarrow$ $A \subset B$ và $B \subset A$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Tập rỗng} $\varnothing$: tập không chứa phần tử nào. $\varnothing \subset A$ với mọi $A$.
+  \textbf{Tập rỗng} $\varnothing$: tập không chứa phần tử nào. Với mọi tập $A$: $\varnothing \subset A$.
 \end{dinhnghia}
 
-\subsection{Các phép toán}
+\subsection{Cách xác định tập hợp}
+
+\begin{phuongphap}[title={Liệt kê}]
+  Liệt kê tất cả các phần tử trong dấu ngoặc nhọn. Ví dụ: $A = \{1, 2, 3, 4\}$, $B = \{a, b, c\}$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Chỉ ra tính chất đặc trưng}]
+  $A = \{x \mid x \text{ có tính chất } P\}$ hoặc $A = \{x : P(x)\}$.
+  
+  Ví dụ: $E = \{x \in \mathbb{N} \mid x \text{ chẵn và } x < 10\} = \{0, 2, 4, 6, 8\}$.
+\end{phuongphap}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$: tập số tự nhiên.
+    \item $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$: tập số nguyên.
+    \item $\mathbb{Q}$: tập số hữu tỉ.
+    \item $\mathbb{R}$: tập số thực.
+  \end{itemize}
+\end{vidu}
+
+\subsection{Các phép toán trên tập hợp}
 
 \begin{dinhnghia}
-  \textbf{Hợp}: $A \cup B = \{x \mid x \in A \text{ hoặc } x \in B\}$.
+  Cho $A$, $B$ là các tập con của tập $E$ (không gian):
+  \begin{itemize}
+    \item \textbf{Hợp}: $A \cup B = \{x \mid x \in A \text{ hoặc } x \in B\}$.
+    \item \textbf{Giao}: $A \cap B = \{x \mid x \in A \text{ và } x \in B\}$.
+    \item \textbf{Hiệu}: $A \setminus B = \{x \in A \mid x \notin B\}$.
+    \item \textbf{Phần bù} (trong $E$): $\overline{A} = C_E A = E \setminus A$ (khi $A \subset E$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất các phép toán}]
+  \begin{itemize}
+    \item Luỹ đẳng: $A \cup A = A$, $A \cap A = A$
+    \item Giao hoán: $A \cup B = B \cup A$, $A \cap B = B \cap A$.
+    \item Kết hợp: $(A \cup B) \cup C = A \cup (B \cup C)$, $(A \cap B) \cap C = A \cap (B \cap C)$.
+    \item Phân phối: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+    \item Luật De Morgan: $\overline{A \cup B} = \overline{A} \cap \overline{B}$, $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Chứng minh De Morgan}]
+  Chứng minh $\overline{A \cup B} = \overline{A} \cap \overline{B}$:
+  \[
+    x \in \overline{A \cup B} \;\Leftrightarrow\; x \notin A \cup B \;\Leftrightarrow\; x \notin A \text{ và } x \notin B \;\Leftrightarrow\; x \in \overline{A} \text{ và } x \in \overline{B} \;\Leftrightarrow\; x \in \overline{A} \cap \overline{B}.
+  \]
+
+  Chứng minh $\overline{A \cap B} = \overline{A} \cup \overline{B}$:
+  \[
+    x \in \overline{A \cap B} \;\Leftrightarrow\; x \notin A \cap B \;\Leftrightarrow\; x \notin A \text{ hoặc } x \notin B \;\Leftrightarrow\; x \in \overline{A} \text{ hoặc } x \in \overline{B} \;\Leftrightarrow\; x \in \overline{A} \cup \overline{B}.
+  \]
+\end{phuongphap}
+
+\subsection{Hợp và giao của họ tập hợp}
+
+\begin{dinhnghia}
+  Cho họ tập hợp $\{A_i\}_{i \in I}$ (chỉ số trong tập $I$):
+  \begin{itemize}
+    \item \textbf{Hợp}: $\displaystyle\bigcup_{i \in I} A_i = \{x \mid \exists i \in I: x \in A_i\}$.
+    \item \textbf{Giao}: $\displaystyle\bigcap_{i \in I} A_i = \{x \mid \forall i \in I: x \in A_i\}$.
+  \end{itemize}
+  Khi $I = \{1, 2, \ldots, n\}$ viết $\bigcup_{i=1}^{n} A_i$, $\bigcap_{i=1}^{n} A_i$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Luật De Morgan cho họ tập hợp}]
+  Trong không gian $E$: $\displaystyle\overline{\bigcup_{i \in I} A_i} = \bigcap_{i \in I} \overline{A_i}$, $\quad \displaystyle\overline{\bigcap_{i \in I} A_i} = \bigcup_{i \in I} \overline{A_i}$.
+\end{tinhchat}
+
+\begin{vidu}
+  $A_1 = [0,1]$, $A_2 = [1,2]$, $A_3 = [2,3]$. Khi đó $\bigcup_{i=1}^{3} A_i = [0,3]$. $\bigcap_{i=1}^{3} A_i = \varnothing$ vì không có số thực nào thuộc cả ba đoạn.
+\end{vidu}
+
+\subsection{Phân hoạch}
+
+\begin{dinhnghia}
+  Họ các tập con $\{A_1, A_2, \ldots, A_n\}$ của $X$ gọi là \textbf{phân hoạch} của $X$ nếu:
+  \begin{itemize}
+    \item $\bigcup_{i=1}^{n} A_i = X$ (hợp bằng toàn bộ $X$),
+    \item $A_i \cap A_j = \varnothing$ với mọi $i \ne j$ (đôi một rời nhau).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  Phân hoạch $\mathbb{Z}$: $A_0 = \{\ldots, -4, -2, 0, 2, 4, \ldots\}$ (chẵn), $A_1 = \{\ldots, -3, -1, 1, 3, \ldots\}$ (lẻ). Mỗi số nguyên thuộc đúng một trong hai tập.
+\end{vidu}
+
+\subsection{Tích Đề-các}
+
+\begin{dinhnghia}
+  \textbf{Tích Đề-các} (tích Descartes) của $A$ và $B$ (theo thứ tự ấy):
+  \[
+    A \times B = \{(a, b) \mid a \in A,\; b \in B\}.
+  \]
+  Phần tử $(a, b)$ gọi là \textbf{cặp thứ tự}: $(a, b) = (c, d)$ $\Leftrightarrow$ $a = c$ và $b = d$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Tích Đề-các của $n$ tập hợp}: $A_1 \times A_2 \times \cdots \times A_n = \{(a_1, a_2, \ldots, a_n) \mid a_i \in A_i,\; i = 1, \ldots, n\}$. Ký hiệu $A^n = A \times A \times \cdots \times A$ ($n$ lần).
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{R} \times \mathbb{R} = \mathbb{R}^2$ (mặt phẳng). $\mathbb{R}^3$ (không gian ba chiều). 
   
-  \textbf{Giao}: $A \cap B = \{x \mid x \in A \text{ và } x \in B\}$.
+  $\{0,1\}^n$: tập các dãy nhị phân độ dài $n$.
+\end{vidu}
+
+\begin{luuy}
+  Nói chung $A \times B \ne B \times A$. 
   
-  \textbf{Hiệu}: $A \setminus B = \{x \in A \mid x \notin B\}$.
-  
-  \textbf{Phần bù}: $A^c = \mathcal{U} \setminus A$ (trong không gian $\mathcal{U}$).
+  Ví dụ: $\{1\} \times \{2\} = \{(1,2)\}$ còn $\{2\} \times \{1\} = \{(2,1)\}$.
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 2: QUAN HỆ HAI NGÔI
+%% ================================================================
+\section{Quan hệ hai ngôi}
+
+\begin{dinhnghia}
+  \textbf{Quan hệ hai ngôi} $\mathcal{R}$ trên tập $X$ là một tập con của $X \times X$. Viết $x \mathcal{R} y$ (hoặc $x \sim y$) thay cho $(x, y) \in \mathcal{R}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Các tính chất}]
+  Cho quan hệ $\mathcal{R}$ trên $X$:
+  \begin{itemize}
+    \item \textbf{Phản xạ}: $\forall x \in X$: $x \mathcal{R} x$.
+    \item \textbf{Đối xứng}: $\forall x, y \in X$: $x \mathcal{R} y \Rightarrow y \mathcal{R} x$.
+    \item \textbf{Phản đối xứng}: $\forall x, y \in X$: $x \mathcal{R} y$ và $y \mathcal{R} x \Rightarrow x = y$.
+    \item \textbf{Bắc cầu}: $\forall x, y, z \in X$: $x \mathcal{R} y$ và $y \mathcal{R} z \Rightarrow x \mathcal{R} z$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  Trên $\mathbb{Z}$: ``$a \mid b$'' (chia hết) phản xạ, phản đối xứng, bắc cầu (thứ tự bộ phận). ``$a - b$ chẵn'': phản xạ, đối xứng, bắc cầu (tương đương).
+\end{vidu}
+
+\subsection{Quan hệ tương đương}
+
+\begin{dinhnghia}
+  Quan hệ $\sim$ trên $X$ gọi là \textbf{quan hệ tương đương} nếu có tính phản xạ, đối xứng và bắc cầu.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Lớp tương đương} của $x$: $[x] = \{y \in X \mid y \sim x\}$. Tập thương $X/{\sim} = \{[x] \mid x \in X\}$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Các lớp tương đương tạo thành một phân hoạch của $X$: mỗi phần tử thuộc đúng một lớp, hai lớp hoặc trùng nhau hoặc rời nhau.
+\end{dinhly}
+
+\begin{vidu}
+  Trên $\mathbb{Z}$, quan hệ ``đồng dư modulo $n$'': $a \equiv b \pmod{n}$ $\Leftrightarrow$ $n \mid (a-b)$. Đây là quan hệ tương đương. Các lớp: $[0], [1], \ldots, [n-1]$ tạo thành $\mathbb{Z}/n\mathbb{Z}$.
+\end{vidu}
+
+\subsection{Quan hệ thứ tự}
+
+\begin{dinhnghia}
+  Quan hệ $\le$ trên $X$ gọi là \textbf{quan hệ thứ tự} (bộ phận) nếu có tính phản xạ, phản đối xứng và bắc cầu. Khi đó $(X, \le)$ gọi là \textbf{tập sắp thứ tự}.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Thứ tự \textbf{toàn phần} (tuyến tính): mọi cặp phần tử đều so sánh được ($\forall x, y$: $x \le y$ hoặc $y \le x$).
+\end{dinhnghia}
+
+\begin{vidu}
+  $(\mathbb{N}, \le)$, $(\mathbb{R}, \le)$: thứ tự toàn phần. $(\mathcal{P}(X), \subset)$: thứ tự bộ phận (không toàn phần nếu $X$ có hơn 1 phần tử: $\{1\}$ và $\{2\}$ không so sánh được).
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 3: ÁNH XẠ
+%% ================================================================
+\section{Ánh xạ}
+
+\subsection{Định nghĩa và các khái niệm}
+
+\begin{dinhnghia}
+  \textbf{Ánh xạ} $f: A \to B$ là quy tắc cho tương ứng mỗi $x \in A$ với đúng một phần tử $f(x) \in B$.
+  \begin{itemize}
+    \item $A$: \textbf{miền xác định} (tập nguồn).
+    \item $B$: \textbf{tập đích}.
+    \item $f(x)$: \textbf{ảnh} của $x$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Miền giá trị} (ảnh của $f$): $\mathrm{Im}(f) = f(A) = \{f(x) \mid x \in A\} \subset B$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Cho $f: A \to B$, $C \subset A$, $D \subset B$:
+  \begin{itemize}
+    \item \textbf{Ảnh} của $C$: $f(C) = \{f(x) \mid x \in C\}$.
+    \item \textbf{Nghịch ảnh} của $D$: $f^{-1}(D) = \{x \in A \mid f(x) \in D\}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất ảnh và nghịch ảnh}]
+  Cho $f: X \to Y$, $A, B \subset X$, $C, D \subset Y$:
+  \begin{itemize}
+    \item $A \subset B \Rightarrow f(A) \subset f(B)$; \quad $C \subset D \Rightarrow f^{-1}(C) \subset f^{-1}(D)$.
+    \item $f(A \cup B) = f(A) \cup f(B)$; \quad $f(A \cap B) \subset f(A) \cap f(B)$ (đẳng thức khi $f$ đơn ánh).
+    \item $f^{-1}(C \cup D) = f^{-1}(C) \cup f^{-1}(D)$; \quad $f^{-1}(C \cap D) = f^{-1}(C) \cap f^{-1}(D)$.
+    \item $f^{-1}(Y \setminus C) = X \setminus f^{-1}(C)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$. $f(\{-1, 1\}) = \{1\}$. $f^{-1}(\{4\}) = \{-2, 2\}$. $f^{-1}([-1, 4]) = [-2, 2]$.
+\end{vidu}
+
+\subsection{Đơn ánh, toàn ánh, song ánh}
+
+\begin{dinhnghia}
+  Cho $f: A \to B$:
+  \begin{itemize}
+    \item $f$ \textbf{đơn ánh} (injective): $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$. (Hai phần tử khác nhau có ảnh khác nhau.)
+    \item $f$ \textbf{toàn ánh} (surjective): $\mathrm{Im}(f) = B$, tức $\forall y \in B$, $\exists x \in A$: $f(x) = y$.
+    \item $f$ \textbf{song ánh} (bijective): vừa đơn ánh vừa toàn ánh.
+  \end{itemize}
 \end{dinhnghia}
 
 \begin{tinhchat}
-  Luật De Morgan: $(A \cup B)^c = A^c \cap B^c$, $(A \cap B)^c = A^c \cup B^c$.
+  Nếu $f: A \to B$ đơn ánh thì $f: A \to \mathrm{Im}(f)$ là toàn ánh. Mọi song ánh đều có thể xem như đơn ánh từ $A$ lên $B$.
 \end{tinhchat}
 
-\section{Ánh xạ}
-
 \begin{dinhnghia}
-  \textbf{Ánh xạ} $f: A \to B$: quy tắc cho tương ứng mỗi $x \in A$ với đúng một $f(x) \in B$. $A$: tập nguồn, $B$: tập đích.
+  \textbf{Ánh xạ hằng}: $f: A \to B$ gọi là hằng nếu $\exists c \in B$: $f(x) = c$ với mọi $x \in A$. Ký hiệu $f \equiv c$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  $f$ \textbf{đơn ánh} nếu $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$.
-  
-  $f$ \textbf{toàn ánh} nếu $\forall y \in B$, $\exists x \in A$: $f(x) = y$.
-  
-  $f$ \textbf{song ánh} nếu vừa đơn ánh vừa toàn ánh.
+  \textbf{Ánh xạ đồng nhất} trên $A$: $\mathrm{id}_A: A \to A$, $\mathrm{id}_A(x) = x$ với mọi $x \in A$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Ánh xạ ngược}: Nếu $f: A \to B$ song ánh thì tồn tại $f^{-1}: B \to A$ sao cho $f^{-1}(f(x)) = x$, $f(f^{-1}(y)) = y$.
+  Cho $A \subset X$. \textbf{Ánh xạ đặc trưng} (hàm chỉ tiêu) $\chi_A: X \to \{0, 1\}$: $\chi_A(x) = 1$ nếu $x \in A$, $\chi_A(x) = 0$ nếu $x \notin A$.
 \end{dinhnghia}
 
+\begin{dinhnghia}
+  Cho $A_1 \times A_2 \times \cdots \times A_n$. \textbf{Phép chiếu} thứ $i$: $\pi_i: A_1 \times \cdots \times A_n \to A_i$, $\pi_i(a_1, \ldots, a_n) = a_i$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Hai ánh xạ $f, g: A \to B$ \textbf{bằng nhau} ($f = g$) nếu $f(x) = g(x)$ với mọi $x \in A$.
+\end{dinhnghia}
+
+\begin{vidu}
+  $f: \mathbb{R} \to \mathbb{R}$, $f(x) = 5$ là ánh xạ hằng. $\pi_1: \mathbb{R}^2 \to \mathbb{R}$, $\pi_1(x,y) = x$ là phép chiếu lên trục hoành.
+\end{vidu}
+
+\subsection{Ánh xạ ngược và hợp ánh xạ}
+
+\begin{dinhnghia}
+  Nếu $f: A \to B$ song ánh thì tồn tại duy nhất \textbf{ánh xạ ngược} $f^{-1}: B \to A$ sao cho $f^{-1}(f(x)) = x$ và $f(f^{-1}(y)) = y$ với mọi $x \in A$, $y \in B$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Hợp ánh xạ}: $(g \circ f)(x) = g(f(x))$. Điều kiện: $\mathrm{Im}(f) \subset$ miền xác định của $g$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất hợp ánh xạ}]
+  \begin{itemize}
+    \item $f: A \to B$, $g: B \to C$ đơn ánh $\Rightarrow$ $g \circ f$ đơn ánh.
+    \item $f: A \to B$, $g: B \to C$ toàn ánh $\Rightarrow$ $g \circ f$ toàn ánh.
+    \item $f$, $g$ song ánh $\Rightarrow$ $g \circ f$ song ánh và $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $f: \mathbb{R} \to \mathbb{R}^+$, $f(x) = e^x$ (song ánh). $g: \mathbb{R}^+ \to \mathbb{R}$, $g(y) = \ln y$ (song ánh). Khi đó $g \circ f = \mathrm{id}_\mathbb{R}$, $f \circ g = \mathrm{id}_{\mathbb{R}^+}$.
+\end{vidu}
+
+\subsection{Thu hẹp và mở rộng}
+
+\begin{dinhnghia}
+  Cho $f: A \to B$, $C \subset A$. \textbf{Thu hẹp} của $f$ lên $C$: $f|_C: C \to B$, $f|_C(x) = f(x)$ với mọi $x \in C$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  $g: D \to B$ gọi là \textbf{mở rộng} của $f: A \to B$ nếu $A \subset D$ và $g|_A = f$.
+\end{dinhnghia}
+
+\subsection{Lực lượng tập hợp}
+
+\begin{dinhnghia}
+  Hai tập $A$ và $B$ gọi là \textbf{đồng lực lượng} (cùng lực lượng) nếu tồn tại song ánh $f: A \to B$. Ký hiệu $|A| = |B|$ hoặc $A \sim B$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Tập $A$ \textbf{hữu hạn} nếu $A = \varnothing$ hoặc $A \sim \{1, 2, \ldots, n\}$ với $n \in \mathbb{N}$. Khi đó $|A| = n$. Tập \textbf{vô hạn}: không hữu hạn.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ đều đếm được (đồng lực lượng với $\mathbb{N}$). $\mathbb{R}$ không đếm được (lực lượng lớn hơn $\mathbb{N}$).
+\end{dinhly}
+
+\begin{vidu}
+  Song ánh $\mathbb{N} \to \mathbb{Z}$: $0 \mapsto 0$, $1 \mapsto 1$, $2 \mapsto -1$, $3 \mapsto 2$, $4 \mapsto -2$, $\ldots$ (xếp xen kẽ). Vậy $|\mathbb{Z}| = |\mathbb{N}|$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 4: QUY NẠP TOÁN HỌC
+%% ================================================================
+\section{Quy nạp toán học}
+
+\begin{phuongphap}[title={Nguyên lý quy nạp}]
+  Để chứng minh mệnh đề $P(n)$ đúng với mọi $n \in \mathbb{N}$, $n \ge n_0$:
+  \begin{enumerate}
+    \item \textbf{Bước cơ sở}: Chứng minh $P(n_0)$ đúng.
+    \item \textbf{Bước quy nạp}: Chứng minh $\forall k \ge n_0$: $P(k) \Rightarrow P(k+1)$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Chứng minh $1 + 2 + \cdots + n = \dfrac{n(n+1)}{2}$:
+  \begin{itemize}
+    \item Cơ sở: $n=1$: $1 = \dfrac{1 \cdot 2}{2}$ đúng.
+    \item Quy nạp: Giả sử đúng với $n=k$. Khi đó $1 + \cdots + k + (k+1) = \dfrac{k(k+1)}{2} + (k+1) = \dfrac{(k+1)(k+2)}{2}$ đúng với $n=k+1$.
+  \end{itemize}
+\end{vidu}
+
+\begin{vidu}
+  Chứng minh $1^2 + 2^2 + \cdots + n^2 = \dfrac{n(n+1)(2n+1)}{6}$. Bất đẳng thức Bernoulli: $(1+x)^n \ge 1 + nx$ với $x \ge -1$, $n \in \mathbb{N}$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 5: SỐ PHỨC
+%% ================================================================
 \section{Số phức}
 
+\subsection{Dạng đại số}
+
 \begin{dinhnghia}
-  \textbf{Số phức} $z = a + bi$, $a, b \in \mathbb{R}$, $i^2 = -1$. $a$: phần thực, $b$: phần ảo.
+  \textbf{Số phức} $z = a + bi$, với $a, b \in \mathbb{R}$, $i^2 = -1$.
+  \begin{itemize}
+    \item $a = \mathrm{Re}(z)$: phần thực.
+    \item $b = \mathrm{Im}(z)$: phần ảo.
+    \item Số phức liên hợp: $\overline{z} = a - bi$.
+  \end{itemize}
 \end{dinhnghia}
 
-\begin{congthuc}[title={Dạng lượng giác}]
-  $z = r(\cos\varphi + i\sin\varphi)$, $r = |z| = \sqrt{a^2 + b^2}$, $\varphi = \arg z$.
+\begin{congthuc}[title={Các phép toán}]
+  $(a+bi) \pm (c+di) = (a \pm c) + (b \pm d)i$.
+  
+  $(a+bi)(c+di) = (ac-bd) + (ad+bc)i$.
+  
+  $\dfrac{a+bi}{c+di} = \dfrac{(a+bi)(c-di)}{c^2+d^2}$.
+\end{congthuc}
+
+\begin{vidu}
+  $(1+2i)(3-i) = 3 - i + 6i - 2i^2 = 5 + 5i$. $\dfrac{1}{i} = \dfrac{1 \cdot (-i)}{i \cdot (-i)} = \dfrac{-i}{1} = -i$. $|3+4i| = \sqrt{9+16} = 5$.
+\end{vidu}
+
+\subsection{Dạng lượng giác}
+
+\begin{dinhnghia}
+  $z = a + bi = r(\cos\varphi + i\sin\varphi)$, với $r = |z| = \sqrt{a^2 + b^2}$, $\varphi = \arg z$ (argument).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Nhân và chia}]
+  $z_1 z_2 = r_1 r_2\bigl(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2)\bigr)$.
+  
+  $\dfrac{z_1}{z_2} = \dfrac{r_1}{r_2}\bigl(\cos(\varphi_1 - \varphi_2) + i\sin(\varphi_1 - \varphi_2)\bigr)$.
 \end{congthuc}
 
 \begin{congthuc}[title={Công thức Moivre}]
-  $z^n = r^n(\cos n\varphi + i\sin n\varphi)$.
+  $z^n = r^n(\cos n\varphi + i\sin n\varphi)$ với $n \in \mathbb{Z}$.
 \end{congthuc}
 
+\subsection{Đa thức trên trường số phức}
+
 \begin{dinhnghia}
-  \textbf{Căn bậc $n$} của $z = r(\cos\varphi + i\sin\varphi)$:
+  \textbf{Đa thức} với hệ số trong $\mathbb{C}$: $P(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0$, $a_i \in \mathbb{C}$, $a_n \ne 0$. Bậc $\deg P = n$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý cơ bản của đại số}]
+  Mọi đa thức bậc $n \ge 1$ với hệ số phức có ít nhất một nghiệm phức. Hệ quả: đa thức bậc $n$ có đúng $n$ nghiệm (kể cả bội) trong $\mathbb{C}$.
+\end{dinhly}
+
+\begin{vidu}
+  $P(z) = z^2 + 1$ có nghiệm $i$, $-i$. $P(z) = z^n - 1$ có $n$ nghiệm là các căn bậc $n$ của đơn vị: $e^{2\pi ik/n}$, $k = 0, \ldots, n-1$.
+\end{vidu}
+
+\subsection{Căn bậc $n$}
+
+\begin{dinhnghia}
+  \textbf{Căn bậc $n$} của $z = r(\cos\varphi + i\sin\varphi)$ ($z \ne 0$) có đúng $n$ giá trị:
   \[
     w_k = \sqrt[n]{r}\left(\cos\frac{\varphi + 2k\pi}{n} + i\sin\frac{\varphi + 2k\pi}{n}\right), \quad k = 0, 1, \ldots, n-1.
   \]
 \end{dinhnghia}
 
+\begin{vidu}
+  Căn bậc hai của $-1$: $w_0 = i$, $w_1 = -i$. Căn bậc ba của 1: $1$, $\omega = e^{2\pi i/3}$, $\omega^2$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 6: CẤU TRÚC ĐẠI SỐ
+%% ================================================================
 \section{Cấu trúc đại số}
 
-\begin{dinhnghia}
-  \textbf{Nhóm} $(G, *)$: tập $G$ với phép toán $*$ thỏa kết hợp, có phần tử đơn vị, mọi phần tử có nghịch đảo.
-\end{dinhnghia}
+\subsection{Nhóm}
 
 \begin{dinhnghia}
-  \textbf{Vành} $(R, +, \cdot)$: $(R, +)$ là nhóm Abel, phép nhân kết hợp, phân phối với phép cộng.
+  \textbf{Nhóm} $(G, *)$: tập $G$ với phép toán hai ngôi $*$ thỏa:
+  \begin{enumerate}
+    \item \textbf{Kết hợp}: $(a * b) * c = a * (b * c)$.
+    \item \textbf{Phần tử trung hòa} $e$: $a * e = e * a = a$ với mọi $a \in G$.
+    \item \textbf{Phần tử đối xứng}: $\forall a \in G$, $\exists a' \in G$: $a * a' = a' * a = e$.
+  \end{enumerate}
+  Nếu thêm \textbf{giao hoán} $a * b = b * a$ thì gọi là \textbf{nhóm Abel} (giao hoán).
 \end{dinhnghia}
 
+\begin{tinhchat}[title={Tính chất của nhóm}]
+  \begin{itemize}
+    \item Phần tử trung hòa $e$ là duy nhất.
+    \item Phần tử đối xứng $a'$ của $a$ là duy nhất (ký hiệu $a^{-1}$).
+    \item Luật giản ước: $a * x = a * y \Rightarrow x = y$.
+    \item Phương trình $a * x = b$ có nghiệm duy nhất $x = a^{-1} * b$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $(\mathbb{Z}, +)$, $(\mathbb{Q} \setminus \{0\}, \cdot)$, nhóm các phép thế $S_n$.
+\end{vidu}
+
+\subsection{Vành}
+
 \begin{dinhnghia}
-  \textbf{Trường}: vành giao hoán có đơn vị, mọi phần tử khác 0 có nghịch đảo. Ví dụ: $\mathbb{Q}$, $\mathbb{R}$, $\mathbb{C}$.
+  \textbf{Vành} $(R, +, \cdot)$: tập $R$ với hai phép toán $+$ và $\cdot$ thỏa:
+  \begin{itemize}
+    \item $(R, +)$ là nhóm Abel.
+    \item Phép nhân $\cdot$ kết hợp.
+    \item Phân phối: $a \cdot (b + c) = a \cdot b + a \cdot c$, $(a + b) \cdot c = a \cdot c + b \cdot c$.
+  \end{itemize}
+  Vành \textbf{giao hoán} nếu $a \cdot b = b \cdot a$. Vành \textbf{có đơn vị} nếu có phần tử $1$: $1 \cdot a = a \cdot 1 = a$.
 \end{dinhnghia}
+
+\begin{vidu}
+  $(\mathbb{Z}, +, \cdot)$, $(\mathbb{Q}, +, \cdot)$, $(\mathbb{R}, +, \cdot)$: vành giao hoán có đơn vị. Tập các ma trận vuông cấp $n$: vành có đơn vị nhưng không giao hoán khi $n > 1$.
+\end{vidu}
+
+\subsection{Trường}
+
+\begin{dinhnghia}
+  \textbf{Trường} $K$: vành giao hoán có đơn vị sao cho mọi phần tử khác 0 đều có nghịch đảo: $\forall a \in K$, $a \ne 0$, $\exists a^{-1}$: $a \cdot a^{-1} = 1$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của trường}]
+  \begin{itemize}
+    \item Trường là vành nguyên (không có ước của 0).
+    \item $K^* = K \setminus \{0\}$ là nhóm với phép nhân.
+    \item Luật giản ước: $a \ne 0$, $a \cdot x = a \cdot y \Rightarrow x = y$.
+    \item Phương trình $a \cdot x = b$ ($a \ne 0$) có nghiệm duy nhất $x = a^{-1} \cdot b$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Trường con}: $F \subset K$ là trường con của $K$ nếu $F$ là trường với các phép toán cảm sinh từ $K$.
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$. $\mathbb{Q}$ là trường con nhỏ nhất của $\mathbb{R}$. $\mathbb{C} = \mathbb{R}(i)$ mở rộng bởi $i^2 = -1$.
+\end{vidu}
 
 \end{document}
