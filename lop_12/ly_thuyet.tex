@@ -420,8 +420,8 @@
     \item \textbf{Tiệm cận đứng} $x = a$\; nếu $\displaystyle\lim_{x \to a^{\pm}} f(x) = \pm\infty$.
     \item \textbf{Tiệm cận xiên} $y = kx + l$ với
       \[
-        k = \lim_{x \to \infty} \frac{f(x)}{x}, \qquad
-        l = \lim_{x \to \infty} \bigl[f(x) - kx\bigr].
+        k = \lim_{x \to \pm\infty} \frac{f(x)}{x}, \qquad
+        l = \lim_{x \to \pm\infty} \bigl[f(x) - kx\bigr].
       \]
   \end{itemize}
 \end{dinhnghia}
@@ -559,7 +559,7 @@
 \begin{dinhnghia}
   Nếu $F$ là một nguyên hàm của $f$ trên $[a,b]$ thì:
   \[
-    \int_a^b f(x)\,dx = F(b) - F(a) = \bigl[F(x)\bigr]_a^b.
+    \int_a^b f(x)\,dx = F(x)\bigr|_a^b = F(b) - F(a).
   \]
 \end{dinhnghia}
 
@@ -585,7 +585,7 @@
     \item \textbf{Đổi biến:} Đặt $u = g(x)$, đổi cận.
     \item \textbf{Từng phần:}
       \[
-        \int_a^b u\,dv = \bigl[uv\bigr]_a^b - \int_a^b v\,du.
+        \int_a^b u\,dv = uv\bigr|_a^b - \int_a^b v\,du.
       \]
   \end{itemize}
 \end{phuongphap}
@@ -634,20 +634,20 @@
 \begin{dinhnghia}
   Cho hai biến cố $A$ và $B$ với $P(B) > 0$. \textbf{Xác suất có điều kiện} của $A$ khi biết $B$ đã xảy ra:
   \[
-    P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+    P(A \mid B) = \frac{P(AB)}{P(B)}.
   \]
 \end{dinhnghia}
 
 \begin{congthuc}[title={Công thức nhân}]
   \[
-    P(A \cap B) = P(B) \cdot P(A \mid B).
+    P(AB) = P(B) \cdot P(A \mid B).
   \]
 \end{congthuc}
 
 \begin{dinhnghia}[title={Biến cố độc lập}]
   Hai biến cố $A$, $B$ được gọi là \textbf{độc lập} nếu:
   \[
-    P(A \cap B) = P(A) \cdot P(B).
+    P(AB) = P(A) \cdot P(B).
   \]
   Khi đó $P(A \mid B) = P(A)$ và $P(B \mid A) = P(B)$.
 \end{dinhnghia}
