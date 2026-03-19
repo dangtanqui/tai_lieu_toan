@@ -72,7 +72,9 @@
 \subsection{Mệnh đề và giá trị chân lý}
 
 \begin{dinhnghia}
-  \textbf{Mệnh đề} là một khẳng định có giá trị chân lý xác định: \textbf{đúng} (1, true) hoặc \textbf{sai} (0, false). 
+  \textbf{Mệnh đề} là một khẳng định chỉ có thể đúng hoặc sai.
+  
+  Giá trị chân lý: \textbf{đúng} (1, true) hoặc \textbf{sai} (0, false). 
   
   Mệnh đề không thể vừa đúng vừa sai.
 \end{dinhnghia}
@@ -96,7 +98,15 @@
     \item \textbf{Hội} (và) $A \wedge B$: đúng khi cả $A$ và $B$ đều đúng.
     \item \textbf{Tuyển} (hoặc) $A \vee B$: sai khi cả $A$ và $B$ đều sai.
     \item \textbf{Kéo theo} $A \Rightarrow B$: sai khi $A$ đúng và $B$ sai; đúng trong các trường hợp còn lại.
+    \begin{itemize}
+        \item A là điều kiện đủ để có B
+        \item B là điều kiện cần để có A
+    \end{itemize}
     \item \textbf{Tương đương} $A \Leftrightarrow B$: đúng khi $A$ và $B$ cùng đúng hoặc cùng sai.
+    \begin{itemize}
+        \item A là điều kiện cần và đủ để có B
+        \item B cũng là điều kiện cần và đủ để có A
+    \end{itemize}
   \end{itemize}
 \end{dinhnghia}
 
@@ -195,16 +205,23 @@
 \end{phuongphap}
 
 \begin{phuongphap}[title={Chỉ ra tính chất đặc trưng}]
-  $A = \{x \mid x \text{ có tính chất } P\}$ hoặc $A = \{x : P(x)\}$.
+  $A := \{x \mid x \text{ có tính chất } P\}$ hoặc $A := \{x : P(x)\}$.
   
-  Ví dụ: $E = \{x \in \mathbb{N} \mid x \text{ chẵn và } x < 10\} = \{0, 2, 4, 6, 8\}$.
+  Ví dụ: $E := \{x \in \mathbb{N} \mid x \text{ chẵn và } x < 10\} = \{0, 2, 4, 6, 8\}$.
 \end{phuongphap}
+
+\begin{luuy}
+  Ký hiệu $:=$: định nghĩa bởi
+
+  Có thể biểu diễn tập hợp qua biểu đồ \textbf{Ven}
+\end{luuy}
 
 \begin{vidu}
   \begin{itemize}
     \item $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$: tập số tự nhiên.
+    \item $\mathbb{N^*} = \{1, 2, 3, \ldots\}$: tập số tự nhiên khác $0$.
     \item $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$: tập số nguyên.
-    \item $\mathbb{Q}$: tập số hữu tỉ.
+    \item $\mathbb{Q} := \{\dfrac{p}{q}| q \ne 0, p \in \mathbb{Z}, q \in \mathbb{Z} \}$: tập số hữu tỉ.
     \item $\mathbb{R}$: tập số thực.
   \end{itemize}
 \end{vidu}
@@ -216,6 +233,9 @@
   \begin{itemize}
     \item \textbf{Hợp}: $A \cup B = \{x \mid x \in A \text{ hoặc } x \in B\}$.
     \item \textbf{Giao}: $A \cap B = \{x \mid x \in A \text{ và } x \in B\}$.
+    \begin{itemize}
+        \item A và B rời nhau khi $A \cap B = \varnothing$
+    \end{itemize}
     \item \textbf{Hiệu}: $A \setminus B = \{x \in A \mid x \notin B\}$.
     \item \textbf{Phần bù} (trong $E$): $\overline{A} = C_E A = E \setminus A$ (khi $A \subset E$).
   \end{itemize}
@@ -262,13 +282,18 @@
   $A_1 = [0,1]$, $A_2 = [1,2]$, $A_3 = [2,3]$. Khi đó $\bigcup_{i=1}^{3} A_i = [0,3]$. $\bigcap_{i=1}^{3} A_i = \varnothing$ vì không có số thực nào thuộc cả ba đoạn.
 \end{vidu}
 
-\subsection{Phân hoạch}
+\subsection{Phủ và Phân hoạch}
 
 \begin{dinhnghia}
+  Họ các tập con $\{A_1, A_2, \ldots, A_n\}$ của $X$ gọi là \textbf{phủ} của $X$ nếu:
+  \begin{itemize}
+    \item $\bigcup_{i=1}^{n} A_i = X$ (hợp bằng toàn bộ $X$).
+  \end{itemize}
+  
   Họ các tập con $\{A_1, A_2, \ldots, A_n\}$ của $X$ gọi là \textbf{phân hoạch} của $X$ nếu:
   \begin{itemize}
-    \item $\bigcup_{i=1}^{n} A_i = X$ (hợp bằng toàn bộ $X$),
-    \item $A_i \cap A_j = \varnothing$ với mọi $i \ne j$ (đôi một rời nhau).
+    \item Họ các tập con đó là \textbf{phủ} của $X$.
+    \item Và $A_i \cap A_j = \varnothing$ với mọi $i \ne j$ (đôi một rời nhau).
   \end{itemize}
 \end{dinhnghia}
 
@@ -281,7 +306,7 @@
 \begin{dinhnghia}
   \textbf{Tích Đề-các} (tích Descartes) của $A$ và $B$ (theo thứ tự ấy):
   \[
-    A \times B = \{(a, b) \mid a \in A,\; b \in B\}.
+    A \times B := \{(a, b) \mid a \in A,\; b \in B\}.
   \]
   Phần tử $(a, b)$ gọi là \textbf{cặp thứ tự}: $(a, b) = (c, d)$ $\Leftrightarrow$ $a = c$ và $b = d$.
 \end{dinhnghia}
@@ -308,8 +333,16 @@
 \section{Quan hệ hai ngôi}
 
 \begin{dinhnghia}
-  \textbf{Quan hệ hai ngôi} $\mathcal{R}$ trên tập $X$ là một tập con của $X \times X$. Viết $x \mathcal{R} y$ (hoặc $x \sim y$) thay cho $(x, y) \in \mathcal{R}$.
+  \textbf{Quan hệ hai ngôi}: Cho tập $E$ có tính chất $\mathcal{R}$ liên quan đến 2 phần tử của E. Nếu a và b là 2 phần tử của E thỏa mãn tính chất $\mathcal{R}$ thì ta nói a quan hệ $\mathcal{R}$ với b viết $a\mathcal{R}b$.
+
+  Cặp $(a, b)$ là một tập con của $E \times E$ thỏa mãn quan hệ $\mathcal{R}$.
+
+  Đồ thị quan hệ $\mathcal{R}$ là tập hợp các cặp $(a, b)$ đó.
 \end{dinhnghia}
+
+\begin{vidu}
+  Trên tập các đường thẳng trong không gian. "Đường thẳng $(d)$ vuông góc với đường thẳng $(d')$" là 1 quan hệ 2 ngôi.
+\end{vidu}
 
 \begin{dinhnghia}[title={Các tính chất}]
   Cho quan hệ $\mathcal{R}$ trên $X$:
@@ -322,40 +355,64 @@
 \end{dinhnghia}
 
 \begin{vidu}
-  Trên $\mathbb{Z}$: ``$a \mid b$'' (chia hết) phản xạ, phản đối xứng, bắc cầu (thứ tự bộ phận). ``$a - b$ chẵn'': phản xạ, đối xứng, bắc cầu (tương đương).
+  Trên $\mathbb{Z}$: 
+  \begin{itemize}
+  \item ``$a \mid b$'' (chia hết): phản xạ, phản đối xứng, bắc cầu. Không đối xứng, vì chưa chắc $b \mid a$
+  \item ``$a - b$ chẵn'': phản xạ, đối xứng, bắc cầu. Không phản đối xứng, vì với $a - b \text{ chẳn và } b - a \text{ chẳn}$ chưa chắc $a = b$
+  \item $a > b$: bắc cầu. Không phản xạ (vì $a > a$ là sai), không đối xứng (vì $b > a$ là sai), không phản đối xứng (vì với $a > b$ và ${b > a}$ thì vô lý
+  \end{itemize}
 \end{vidu}
 
 \subsection{Quan hệ tương đương}
 
 \begin{dinhnghia}
-  Quan hệ $\sim$ trên $X$ gọi là \textbf{quan hệ tương đương} nếu có tính phản xạ, đối xứng và bắc cầu.
+  Quan hệ $\mathcal{R}$ trên $X$ gọi là \textbf{quan hệ tương đương} nếu có tính phản xạ, đối xứng và bắc cầu. Ký hiệu: $A \sim B \text{ } (\mathcal{R})$
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Lớp tương đương} của $x$: $[x] = \{y \in X \mid y \sim x\}$. Tập thương $X/{\sim} = \{[x] \mid x \in X\}$.
+  \textbf{Lớp tương đương} của $x$: $\mathcal{T}(x, \mathcal{R}) = \{y \in X \mid y \sim x (\mathcal{R}\}$ là gom tất cả những cái “giống x” (theo quan hệ $\mathcal{R}$) lại thành 1 nhóm.
+
+  Quan hệ tương đương chia tập thành các nhóm không giao nhau. Tập thương $\dfrac{X}{\sim} = \{\mathcal{T}(x, \mathcal{R}) \mid x \in X\}$ là tập gồm tất cả các nhóm đó.
+
+  $x$ là phần tử đại diện của $\mathcal{T}(x, \mathcal{R})$
 \end{dinhnghia}
 
-\begin{dinhly}
-  Các lớp tương đương tạo thành một phân hoạch của $X$: mỗi phần tử thuộc đúng một lớp, hai lớp hoặc trùng nhau hoặc rời nhau.
-\end{dinhly}
-
 \begin{vidu}
-  Trên $\mathbb{Z}$, quan hệ ``đồng dư modulo $n$'': $a \equiv b \pmod{n}$ $\Leftrightarrow$ $n \mid (a-b)$. Đây là quan hệ tương đương. Các lớp: $[0], [1], \ldots, [n-1]$ tạo thành $\mathbb{Z}/n\mathbb{Z}$.
+    Chia 3 dư giống nhau $X = \mathbb{Z}, a \sim b \iff a \equiv b \ (\text{mod } 3)$
+    
+    Các lớp tương đương:
+    \begin{itemize}
+        \item $\mathcal{T}(0) = \{..., -3, 0, 3, 6, ...\}$
+        \item $\mathcal{T}(1) = \{..., -2, 1, 4, 7, ...\}$
+        \item $\mathcal{T}(2) = \{..., -1, 2, 5, 8, ...\}$
+    \end{itemize}
+
+    Vậy: $\dfrac{\mathbb{Z}}{\sim} = \{\mathcal{T}(0), \mathcal{T}(1), \mathcal{T}(2)\}$
 \end{vidu}
 
 \subsection{Quan hệ thứ tự}
 
 \begin{dinhnghia}
-  Quan hệ $\le$ trên $X$ gọi là \textbf{quan hệ thứ tự} (bộ phận) nếu có tính phản xạ, phản đối xứng và bắc cầu. Khi đó $(X, \le)$ gọi là \textbf{tập sắp thứ tự}.
+  Quan hệ $\mathcal{R}$ trên $X$ gọi là \textbf{quan hệ thứ tự} (thứ tự bộ phận) nếu có tính phản xạ, phản đối xứng và bắc cầu. Khi đó $(X, \mathcal{R})$ gọi là \textbf{tập sắp thứ tự}.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Thứ tự \textbf{toàn phần} (tuyến tính): mọi cặp phần tử đều so sánh được ($\forall x, y$: $x \le y$ hoặc $y \le x$).
+  Thứ tự \textbf{toàn phần} (tuyến tính): Một quan hệ $\mathcal{R}$ có thứ tự trên tập $X$ và $\forall a, b \in X$ ta đều có $a \mathcal{R} b$ và $b \mathcal{R} a$
 \end{dinhnghia}
 
 \begin{vidu}
-  $(\mathbb{N}, \le)$, $(\mathbb{R}, \le)$: thứ tự toàn phần. $(\mathcal{P}(X), \subset)$: thứ tự bộ phận (không toàn phần nếu $X$ có hơn 1 phần tử: $\{1\}$ và $\{2\}$ không so sánh được).
+  $(\mathbb{N}, \le)$, $(\mathbb{R}, \le)$: thứ tự toàn phần. 
+  
+  $(\mathcal{P}(X), \subset)$: thứ tự bộ phận (không toàn phần nếu $X$ có hơn 1 phần tử: $\{1\}$ và $\{2\}$ không so sánh được).
 \end{vidu}
+
+\begin{dinhnghia}
+    Tập có thứ tự: Xét tập $X$ trong đó có 1 quan hệ thứ tự $\mathcal{R}$. Cho 2 phần tử bất kỳ $a, b \in X$ nếu $a \mathcal{R} b$ ta nói $a$ có thể so sánh được với $b$. Các phần tử có thể so sánh được với nhau, sắp xếp theo 1 thứ tự xác định theo quan hệ $\mathcal{R}$.
+
+    Nếu $\mathcal{R}$ là 1 quan hệ thứ tự toàn phần thì tất cả các phần tử của $X$ đều được sắp xếp thứ tự theo quan hệ $\mathcal{R}$. Ta nói $X$ được sắp thứ tự toàn phần.
+
+    Nếu $\mathcal{R}$ là 1 quan hệ thứ tự không toàn phần thì chỉ có 1 số phần tử của $X$ được sắp xếp theo quan hệ $\mathcal{R}$. Ta nói $X$ là tập có thứ tự bộ phận hay $X$ được sắp thứ tự bộ phận.
+\end{dinhnghia}
 
 %% ================================================================
 %%  CHƯƠNG 3: ÁNH XẠ
@@ -369,7 +426,7 @@
   \begin{itemize}
     \item $A$: \textbf{miền xác định} (tập nguồn).
     \item $B$: \textbf{tập đích}.
-    \item $f(x)$: \textbf{ảnh} của $x$.
+    \item $f(x)$: \textbf{ảnh} của $x$. Hay $x$ là \textbf{nghịch ảnh} của $f(x)$.
   \end{itemize}
 \end{dinhnghia}
 
@@ -396,7 +453,12 @@
 \end{tinhchat}
 
 \begin{vidu}
-  $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$. $f(\{-1, 1\}) = \{1\}$. $f^{-1}(\{4\}) = \{-2, 2\}$. $f^{-1}([-1, 4]) = [-2, 2]$.
+  $f: \mathbb{R} \to \mathbb{R}$, $f(x) = x^2$. 
+  \begin{itemize}
+      \item $f(\{-1, 1\}) = \{1\}$.
+      \item $f^{-1}(\{4\}) = \{-2, 2\}$.
+      \item $f^{-1}([-1, 4]) = [-2, 2]$.
+  \end{itemize}
 \end{vidu}
 
 \subsection{Đơn ánh, toàn ánh, song ánh}
@@ -411,7 +473,11 @@
 \end{dinhnghia}
 
 \begin{tinhchat}
-  Nếu $f: A \to B$ đơn ánh thì $f: A \to \mathrm{Im}(f)$ là toàn ánh. Mọi song ánh đều có thể xem như đơn ánh từ $A$ lên $B$.
+  Nếu $f: A \to B$ đơn ánh thì $f: A \to \mathrm{Im}(f)$ là toàn ánh. 
+  
+  Mọi song ánh đều có thể xem như đơn ánh từ $A$ lên $B$.
+
+  Nếu $f$ song ánh thì $f^-1$ cũng song ánh
 \end{tinhchat}
 
 \begin{dinhnghia}
@@ -419,15 +485,17 @@
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Ánh xạ đồng nhất} trên $A$: $\mathrm{id}_A: A \to A$, $\mathrm{id}_A(x) = x$ với mọi $x \in A$.
+  \textbf{Ánh xạ đồng nhất} trên $A$: $\mathrm{id}_A: A \to A$
+  
+  $\mathrm{id}_A(x) = x$ với mọi $x \in A$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Cho $A \subset X$. \textbf{Ánh xạ đặc trưng} (hàm chỉ tiêu) $\chi_A: X \to \{0, 1\}$: $\chi_A(x) = 1$ nếu $x \in A$, $\chi_A(x) = 0$ nếu $x \notin A$.
+  \textbf{Ánh xạ đặc trưng} (hàm chỉ tiêu): Cho $A \subset X$, ta có $\chi_A: X \to \{0, 1\}$: $\chi_A(x) = 1$ nếu $x \in A$, $\chi_A(x) = 0$ nếu $x \notin A$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Cho $A_1 \times A_2 \times \cdots \times A_n$. \textbf{Phép chiếu} thứ $i$: $\pi_i: A_1 \times \cdots \times A_n \to A_i$, $\pi_i(a_1, \ldots, a_n) = a_i$.
+  \textbf{Phép chiếu} thứ $i$: Cho $A_1 \times A_2 \times \cdots \times A_n$, ta có $\pi_i: A_1 \times \cdots \times A_n \to A_i$, $\pi_i(a_1, \ldots, a_n) = a_i$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
@@ -445,7 +513,11 @@
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Hợp ánh xạ}: $(g \circ f)(x) = g(f(x))$. Điều kiện: $\mathrm{Im}(f) \subset$ miền xác định của $g$.
+  Cho 3 tập hợp E, F, G và 2 ánh xạ: $f: E \to F$ và $g: F \to G$, ta có mỗi $x \in E$ thông qua trung gian $y \in F$ tồn tại duy nhất một $z \in G$ xác định bởi $g(f(x)) = z$
+
+  \textbf{Hợp ánh xạ (tích ánh xạ)}: $(g \circ f)(x) = g(f(x))$. 
+  
+  Điều kiện: $\mathrm{Im}(f) \subset$ miền xác định của $g$.
 \end{dinhnghia}
 
 \begin{tinhchat}[title={Tính chất hợp ánh xạ}]
@@ -457,7 +529,11 @@
 \end{tinhchat}
 
 \begin{vidu}
-  $f: \mathbb{R} \to \mathbb{R}^+$, $f(x) = e^x$ (song ánh). $g: \mathbb{R}^+ \to \mathbb{R}$, $g(y) = \ln y$ (song ánh). Khi đó $g \circ f = \mathrm{id}_\mathbb{R}$, $f \circ g = \mathrm{id}_{\mathbb{R}^+}$.
+  $f: \mathbb{R} \to \mathbb{R}^+$, $f(x) = e^x$ (song ánh). 
+  
+  $g: \mathbb{R}^+ \to \mathbb{R}$, $g(y) = \ln y$ (song ánh). 
+  
+  Khi đó $g \circ f = \mathrm{id}_\mathbb{R}$, $f \circ g = \mathrm{id}_{\mathbb{R}^+}$.
 \end{vidu}
 
 \subsection{Thu hẹp và mở rộng}
@@ -473,15 +549,19 @@
 \subsection{Lực lượng tập hợp}
 
 \begin{dinhnghia}
-  Hai tập $A$ và $B$ gọi là \textbf{đồng lực lượng} (cùng lực lượng) nếu tồn tại song ánh $f: A \to B$. Ký hiệu $|A| = |B|$ hoặc $A \sim B$.
+  Hai tập $A$ và $B$ gọi là \textbf{đồng lực lượng} (cùng lực lượng) nếu tồn tại song ánh $f: A \to B$. Ký hiệu $|A| = |B|$ hoặc $A \mathcal{R} B$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Tập $A$ \textbf{hữu hạn} nếu $A = \varnothing$ hoặc $A \sim \{1, 2, \ldots, n\}$ với $n \in \mathbb{N}$. Khi đó $|A| = n$. Tập \textbf{vô hạn}: không hữu hạn.
+  Tập $A$ \textbf{hữu hạn} nếu $A = \varnothing$ hoặc $A \mathcal{R} \{1, 2, \ldots, n\}$ với $n \in \mathbb{N}$. Khi đó $|A| = n$. 
+  
+  Tập \textbf{vô hạn}: không hữu hạn.
 \end{dinhnghia}
 
 \begin{dinhly}
-  $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ đều đếm được (đồng lực lượng với $\mathbb{N}$). $\mathbb{R}$ không đếm được (lực lượng lớn hơn $\mathbb{N}$).
+  $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ đều đếm được (đồng lực lượng với $\mathbb{N}$). 
+  
+  $\mathbb{R}$ không đếm được (lực lượng lớn hơn $\mathbb{N}$).
 \end{dinhly}
 
 \begin{vidu}
@@ -514,6 +594,114 @@
 \end{vidu}
 
 %% ================================================================
+%%  CHƯƠNG 6: CẤU TRÚC ĐẠI SỐ
+%% ================================================================
+\section{Cấu trúc đại số}
+
+\subsection{Luật hợp thành trong trên một tập}
+
+\begin{dinhnghia}
+    Luật hợp thành trong trên tập $E$, hay phép toán trên $E$, là một quy luật khi tác động lên 2 phần tử $a, b \in E$ sẽ tạo ra 1 và chỉ 1 phần tử cũng $\in E$.
+
+    Luật hợp thành trong trên tập $E$ là 1 ánh xạ từ $E \times E \to E$. Ký hiệu $*$.
+
+    Ta có: $a, b \in E \to a * b \in E$
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của luật hợp thành trong}]
+  \begin{itemize}
+    \item \textbf{Giao hoán}: $a * b = b * a$.
+    \item \textbf{Kết hợp}: $(a * b) * c = a * (b * c)$.
+    \item \textbf{Phần tử trung hòa} $e$: $a * e = e * a = a$.
+    \item \textbf{Phần tử đối xứng}: $\forall a \in E$, $\exists a' \in E$: $a * a' = a' * a = e$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+    Một tập có trang bị 1 hay nhiều \textbf{luật hợp thành trong} với những tính chất xác định tạo thành 1 trong những đối tượng toán học gọi là \textbf{Cấu trúc đại số}
+\end{dinhnghia}
+
+\subsection{Nhóm}
+
+\begin{dinhnghia}
+  \textbf{Nhóm} $(G, *)$: tập $G$ với phép toán hai ngôi $*$ thỏa:
+  \begin{enumerate}
+    \item \textbf{Kết hợp}: $(a * b) * c = a * (b * c)$.
+    \item \textbf{Phần tử trung hòa} $e$: $a * e = e * a = a$.
+    \item \textbf{Phần tử đối xứng}: $\forall a \in G$, $\exists a' \in G$: $a * a' = a' * a = e$.
+  \end{enumerate}
+  Nếu thêm \textbf{giao hoán} $a * b = b * a$ thì gọi là \textbf{nhóm Abel} (nhóm giao hoán).
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của nhóm}]
+  \begin{itemize}
+    \item Phần tử trung hòa $e$ là duy nhất.
+    \item Phần tử đối xứng $a'$ của $a$ là duy nhất (ký hiệu $a^{-1}$).
+    \item Quy tắc giản ước: $a * x = a * y \Rightarrow x = y$.
+    \item Phương trình $a * x = b$ có nghiệm duy nhất $x = a^{-1} * b$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $(\mathbb{Z}, +)$, $(\mathbb{Q} \setminus \{0\}, \cdot)$, nhóm các phép thế $S_n$.
+\end{vidu}
+
+\subsection{Vành}
+
+\begin{dinhnghia}
+  \textbf{Vành} $(R, +, \cdot)$: tập $R$ với hai phép toán $+$ và $\cdot$ thỏa:
+  \begin{itemize}
+    \item $(R, +)$ là nhóm Abel (nhóm giao hoán), thường phần tử trung hòa Luật cộng là $0$.
+    \item Luật nhân ($\cdot$) có tính kết hợp.
+    \item Luật nhân ($\cdot$) có tính phân phối 2 phía với luật cộng ($+$): 
+    \begin{itemize}
+        \item Phân phối trái: $a \cdot (b + c) = a \cdot b + a \cdot c$.
+        \item Phân phối phải: $(a + b) \cdot c = a \cdot c + b \cdot c$.
+    \end{itemize}
+  \end{itemize}
+  Nếu thêm Luật nhân ($\cdot$) có tính \textbf{giao hoán} $a \cdot b = b \cdot a$ thì gọi là Vành \textbf{giao hoán}.
+  
+  Vành \textbf{có đơn vị} nếu Luật nhân ($\cdot$) có phần tử trung hòa $1$: $1 \cdot a = a \cdot 1 = a$.
+\end{dinhnghia}
+
+\begin{vidu}
+  $(\mathbb{Z}, +, \cdot)$, $(\mathbb{Q}, +, \cdot)$, $(\mathbb{R}, +, \cdot)$: vành giao hoán có đơn vị. 
+  
+  Tập các ma trận vuông cấp $n$: vành có đơn vị nhưng không giao hoán khi $n > 1$.
+\end{vidu}
+
+\begin{dinhnghia}
+  \textbf{Vành nguyên} là 1 vành $(G, +, \cdot)$ trong đó có tinh chất: $a.b = 0 \Rightarrow a = 0 \text{ hoặc } b = 0$
+\end{dinhnghia}
+
+\subsection{Trường}
+
+\begin{dinhnghia}
+  \textbf{Trường} $(K, +, \cdot)$: : tập R với hai phép toán + và · thỏa:
+  \begin{itemize}
+    \item Vành giao hoán có đơn vị
+    \item Mọi phần tử khác $0$ (phần tử trung hòa của luật cộng ($+$) đều có nghịch đảo đối với luật nhân ($\cdot$): $\forall a \in K$, $a \ne 0$, $\exists a^{-1}$: $a \cdot a^{-1} = 1$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của trường}]
+  \begin{itemize}
+    \item Trường là vành nguyên.
+    \item $K^* = K \setminus \{0\}$ là nhóm với phép nhân.
+    \item Quy tắt giản ước: $a \ne 0$, $a \cdot x = a \cdot y \Rightarrow x = y$.
+    \item Phương trình $a \cdot x = b$ ($a \ne 0$) có nghiệm duy nhất $x = a^{-1} \cdot b$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Trường con}: $F \subset K$ là trường con của $K$ nếu $F$ là trường với các phép toán cảm sinh từ $K$.
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$. $\mathbb{Q}$ là trường con nhỏ nhất của $\mathbb{R}$. $\mathbb{C} = \mathbb{R}(i)$ mở rộng bởi $i^2 = -1$.
+\end{vidu}
+
+%% ================================================================
 %%  CHƯƠNG 5: SỐ PHỨC
 %% ================================================================
 \section{Số phức}
@@ -521,11 +709,12 @@
 \subsection{Dạng đại số}
 
 \begin{dinhnghia}
-  \textbf{Số phức} $z = a + bi$, với $a, b \in \mathbb{R}$, $i^2 = -1$.
+  \textbf{Số phức} (dạng chính tắt) $z = a + bi$, với $a, b \in \mathbb{R}$, $i^2 = -1$.
   \begin{itemize}
     \item $a = \mathrm{Re}(z)$: phần thực.
     \item $b = \mathrm{Im}(z)$: phần ảo.
-    \item Số phức liên hợp: $\overline{z} = a - bi$.
+    \item Tập các số phức ký hiệu $\mathbb{C}$.
+    \item Tập số phức $\mathbb{C}$ có 2 luật thành trong: cộng ($+$) và nhân ($\cdot$)
   \end{itemize}
 \end{dinhnghia}
 
@@ -535,17 +724,37 @@
   $(a+bi)(c+di) = (ac-bd) + (ad+bc)i$.
   
   $\dfrac{a+bi}{c+di} = \dfrac{(a+bi)(c-di)}{c^2+d^2}$.
+
+  $a + bi = a' + bi \Leftrightarrow a = a' \text{ và } b = b'$
 \end{congthuc}
 
 \begin{vidu}
   $(1+2i)(3-i) = 3 - i + 6i - 2i^2 = 5 + 5i$. $\dfrac{1}{i} = \dfrac{1 \cdot (-i)}{i \cdot (-i)} = \dfrac{-i}{1} = -i$. $|3+4i| = \sqrt{9+16} = 5$.
 \end{vidu}
 
+Tập $\mathbb{C}$ là 1 trường
+- Phần tử trung hòa của luật cộng ($+$) là $(0, 0)$
+- Phần tử đối của luật cộng ($+$) với $(a, b)$ là $(-a, -b) = -(a, b)$ gọi là số phức đối
+- Phần tử trung hòa của luật nhân ($\cdot$) là $(1, 0)$
+- Phần tử đối của luật nhân ($\cdot$) với $(a, b) \ne (0, 0)$ là $(\dfrac{a}{a^2 + b^2}, \dfrac{-b}{a^2 + b^2}) = (a, b)^-1$ là số phức nghịch đảo
+
+Mặt phẳng phức $Oxy$ với tọa độ $M = (a, b)$, số phức $z = a + bi$ gọi là \textbf{tọa vị} của M.
+
+Ảnh của số phức (a, 0), trục thực $Ox$.
+
+Số thực là trường hợp riêng của số phức
+
+Số ảo thuần túy (0, b) có bình phương luôn là số âm ($b \ne 0$). Đơn vị ảo $(0, 1)$, trục ảo $Oy$
+
 \subsection{Dạng lượng giác}
 
 \begin{dinhnghia}
   $z = a + bi = r(\cos\varphi + i\sin\varphi)$, với $r = |z| = \sqrt{a^2 + b^2}$, $\varphi = \arg z$ (argument).
 \end{dinhnghia}
+
+\begin{tinhchat}
+  $r(\cos\varphi + i\sin\varphi) = r'(\cos\varphi' + i\sin\varphi') \Leftrightarrow r = r' \text{ và } \varphi = \varphi' + k2\pi$.
+\end{tinhchat}
 
 \begin{congthuc}[title={Nhân và chia}]
   $z_1 z_2 = r_1 r_2\bigl(\cos(\varphi_1 + \varphi_2) + i\sin(\varphi_1 + \varphi_2)\bigr)$.
@@ -557,19 +766,28 @@
   $z^n = r^n(\cos n\varphi + i\sin n\varphi)$ với $n \in \mathbb{Z}$.
 \end{congthuc}
 
-\subsection{Đa thức trên trường số phức}
+\begin{congthuc}[title={Tổng}]
+  $z_1 + z_2 = a + a' + (b + b')i$. Điểm $A(a, b)$, $B(a', b')$, $C(a + a', b + b')$ tạo ra 3 vector có phép cộng theo quy tắt hình bình nhành.
+
+  Khi đó: $|z1 + z_2| \le |z_1| + |z_2|$
+\end{congthuc}
 
 \begin{dinhnghia}
-  \textbf{Đa thức} với hệ số trong $\mathbb{C}$: $P(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0$, $a_i \in \mathbb{C}$, $a_n \ne 0$. Bậc $\deg P = n$.
+  Số phức liên hợp: $\overline{z} = a - bi$. Đối xứng qua trục $Ox$
 \end{dinhnghia}
 
-\begin{dinhly}[title={Định lý cơ bản của đại số}]
-  Mọi đa thức bậc $n \ge 1$ với hệ số phức có ít nhất một nghiệm phức. Hệ quả: đa thức bậc $n$ có đúng $n$ nghiệm (kể cả bội) trong $\mathbb{C}$.
-\end{dinhly}
-
-\begin{vidu}
-  $P(z) = z^2 + 1$ có nghiệm $i$, $-i$. $P(z) = z^n - 1$ có $n$ nghiệm là các căn bậc $n$ của đơn vị: $e^{2\pi ik/n}$, $k = 0, \ldots, n-1$.
-\end{vidu}
+\begin{tinhchat}
+  \begin{itemize}
+      \item $\overline{\overline{z}} = z$.
+      \item $z + \overline{z} = 2a$.
+      \item $\overline{z}\overline{z} = |z|^2 = a^2 + b^2$.
+      \item $|\overline{z}| = |z|$
+      \item $\dfrac{1}{z} = \dfrac{\overline{z}}{|z|^2}$
+      \item $\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}$
+      \item $\overline{z_1 . z_2} = \overline{z_1} . \overline{z_2}$
+      \item $\overline{(\dfrac{z_1}{z_2})} = \dfrac{\overline{z_1}}{\overline{z_2}}$
+  \end{itemize}
+\end{tinhchat}
 
 \subsection{Căn bậc $n$}
 
@@ -584,73 +802,28 @@
   Căn bậc hai của $-1$: $w_0 = i$, $w_1 = -i$. Căn bậc ba của 1: $1$, $\omega = e^{2\pi i/3}$, $\omega^2$.
 \end{vidu}
 
-%% ================================================================
-%%  CHƯƠNG 6: CẤU TRÚC ĐẠI SỐ
-%% ================================================================
-\section{Cấu trúc đại số}
+\subsection{Giải phương trình bật 2}
 
-\subsection{Nhóm}
+\subsection{Đa thức trên trường số phức}
 
 \begin{dinhnghia}
-  \textbf{Nhóm} $(G, *)$: tập $G$ với phép toán hai ngôi $*$ thỏa:
-  \begin{enumerate}
-    \item \textbf{Kết hợp}: $(a * b) * c = a * (b * c)$.
-    \item \textbf{Phần tử trung hòa} $e$: $a * e = e * a = a$ với mọi $a \in G$.
-    \item \textbf{Phần tử đối xứng}: $\forall a \in G$, $\exists a' \in G$: $a * a' = a' * a = e$.
-  \end{enumerate}
-  Nếu thêm \textbf{giao hoán} $a * b = b * a$ thì gọi là \textbf{nhóm Abel} (giao hoán).
+  \textbf{Đa thức} với hệ số trong $\mathbb{C}$: $P(z) = a_n z^n + a_{n-1} z^{n-1} + \cdots + a_1 z + a_0$, $a_i \in \mathbb{C}$, $a_n \ne 0$. Bậc $\deg P = n$.
 \end{dinhnghia}
 
-\begin{tinhchat}[title={Tính chất của nhóm}]
-  \begin{itemize}
-    \item Phần tử trung hòa $e$ là duy nhất.
-    \item Phần tử đối xứng $a'$ của $a$ là duy nhất (ký hiệu $a^{-1}$).
-    \item Luật giản ước: $a * x = a * y \Rightarrow x = y$.
-    \item Phương trình $a * x = b$ có nghiệm duy nhất $x = a^{-1} * b$.
-  \end{itemize}
-\end{tinhchat}
+\begin{dinhly}[title={Định lý cơ bản của đại số}]
+  Mọi đa thức bậc $n \ge 1$ với hệ số phức có ít nhất một nghiệm phức. Hệ quả: đa thức bậc $n$ có đúng $n$ nghiệm (kể cả bội) trong $\mathbb{C}$.
+\end{dinhly}
 
 \begin{vidu}
-  $(\mathbb{Z}, +)$, $(\mathbb{Q} \setminus \{0\}, \cdot)$, nhóm các phép thế $S_n$.
+  $P(z) = z^2 + 1$ có nghiệm $i$, $-i$. 
+  
+  $P(z) = z^n - 1$ có $n$ nghiệm là các căn bậc $n$ của đơn vị: $e^{2\pi ik/n}$, $k = 0, \ldots, n-1$.
 \end{vidu}
 
-\subsection{Vành}
-
-\begin{dinhnghia}
-  \textbf{Vành} $(R, +, \cdot)$: tập $R$ với hai phép toán $+$ và $\cdot$ thỏa:
-  \begin{itemize}
-    \item $(R, +)$ là nhóm Abel.
-    \item Phép nhân $\cdot$ kết hợp.
-    \item Phân phối: $a \cdot (b + c) = a \cdot b + a \cdot c$, $(a + b) \cdot c = a \cdot c + b \cdot c$.
-  \end{itemize}
-  Vành \textbf{giao hoán} nếu $a \cdot b = b \cdot a$. Vành \textbf{có đơn vị} nếu có phần tử $1$: $1 \cdot a = a \cdot 1 = a$.
-\end{dinhnghia}
-
-\begin{vidu}
-  $(\mathbb{Z}, +, \cdot)$, $(\mathbb{Q}, +, \cdot)$, $(\mathbb{R}, +, \cdot)$: vành giao hoán có đơn vị. Tập các ma trận vuông cấp $n$: vành có đơn vị nhưng không giao hoán khi $n > 1$.
-\end{vidu}
-
-\subsection{Trường}
-
-\begin{dinhnghia}
-  \textbf{Trường} $K$: vành giao hoán có đơn vị sao cho mọi phần tử khác 0 đều có nghịch đảo: $\forall a \in K$, $a \ne 0$, $\exists a^{-1}$: $a \cdot a^{-1} = 1$.
-\end{dinhnghia}
-
-\begin{tinhchat}[title={Tính chất của trường}]
-  \begin{itemize}
-    \item Trường là vành nguyên (không có ước của 0).
-    \item $K^* = K \setminus \{0\}$ là nhóm với phép nhân.
-    \item Luật giản ước: $a \ne 0$, $a \cdot x = a \cdot y \Rightarrow x = y$.
-    \item Phương trình $a \cdot x = b$ ($a \ne 0$) có nghiệm duy nhất $x = a^{-1} \cdot b$.
-  \end{itemize}
-\end{tinhchat}
-
-\begin{dinhnghia}
-  \textbf{Trường con}: $F \subset K$ là trường con của $K$ nếu $F$ là trường với các phép toán cảm sinh từ $K$.
-\end{dinhnghia}
-
-\begin{vidu}
-  $\mathbb{Q} \subset \mathbb{R} \subset \mathbb{C}$. $\mathbb{Q}$ là trường con nhỏ nhất của $\mathbb{R}$. $\mathbb{C} = \mathbb{R}(i)$ mở rộng bởi $i^2 = -1$.
-\end{vidu}
+Phép tính nhân và cộng
+Đạo hàm
+Nguyên hàm
+Chia đa thức
+Đa thức đồng nhất
 
 \end{document}
