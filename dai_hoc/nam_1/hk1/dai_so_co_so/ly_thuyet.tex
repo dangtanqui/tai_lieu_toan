@@ -211,17 +211,15 @@
 \end{phuongphap}
 
 \begin{luuy}
-  Ký hiệu $:=$: định nghĩa bởi
-
-  Có thể biểu diễn tập hợp qua biểu đồ \textbf{Ven}
+  Ký hiệu $:=$ nghĩa là ``được định nghĩa bởi''. Có thể biểu diễn tập hợp qua \textbf{biểu đồ Ven} (hình tròn minh họa giao, hợp, phần bù).
 \end{luuy}
 
 \begin{vidu}
   \begin{itemize}
     \item $\mathbb{N} = \{0, 1, 2, 3, \ldots\}$: tập số tự nhiên.
-    \item $\mathbb{N^*} = \{1, 2, 3, \ldots\}$: tập số tự nhiên khác $0$.
+    \item $\mathbb{N}^* = \{1, 2, 3, \ldots\}$: tập số tự nhiên khác $0$.
     \item $\mathbb{Z} = \{\ldots, -2, -1, 0, 1, 2, \ldots\}$: tập số nguyên.
-    \item $\mathbb{Q} := \{\dfrac{p}{q}| q \ne 0, p \in \mathbb{Z}, q \in \mathbb{Z} \}$: tập số hữu tỉ.
+    \item $\mathbb{Q} := \{\dfrac{p}{q} \mid q \ne 0,\; p \in \mathbb{Z},\; q \in \mathbb{Z}\}$: tập số hữu tỉ.
     \item $\mathbb{R}$: tập số thực.
   \end{itemize}
 \end{vidu}
@@ -358,19 +356,19 @@
   Trên $\mathbb{Z}$: 
   \begin{itemize}
   \item ``$a \mid b$'' (chia hết): phản xạ, phản đối xứng, bắc cầu. Không đối xứng, vì chưa chắc $b \mid a$
-  \item ``$a - b$ chẵn'': phản xạ, đối xứng, bắc cầu. Không phản đối xứng, vì với $a - b \text{ chẳn và } b - a \text{ chẳn}$ chưa chắc $a = b$
-  \item $a > b$: bắc cầu. Không phản xạ (vì $a > a$ là sai), không đối xứng (vì $b > a$ là sai), không phản đối xứng (vì với $a > b$ và ${b > a}$ thì vô lý
+  \item ``$a - b$ chẵn'': phản xạ, đối xứng, bắc cầu. Không phản đối xứng, vì $a - b$ chẵn và $b - a$ chẵn thì $a = b$ chưa chắc đúng (ví dụ $a = 2$, $b = 4$).
+  \item $a > b$: bắc cầu. Không phản xạ ($a > a$ sai), không đối xứng, không phản đối xứng ($a > b$ và $b > a$ không thể cùng đúng).
   \end{itemize}
 \end{vidu}
 
 \subsection{Quan hệ tương đương}
 
 \begin{dinhnghia}
-  Quan hệ $\mathcal{R}$ trên $X$ gọi là \textbf{quan hệ tương đương} nếu có tính phản xạ, đối xứng và bắc cầu. Ký hiệu: $A \sim B \text{ } (\mathcal{R})$
+  Quan hệ $\mathcal{R}$ trên $X$ gọi là \textbf{quan hệ tương đương} nếu có tính phản xạ, đối xứng và bắc cầu. Ký hiệu: $a \sim b \;(\mathcal{R})$ hoặc $a \sim b$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Lớp tương đương} của $x$: $\mathcal{T}(x, \mathcal{R}) = \{y \in X \mid y \sim x (\mathcal{R}\}$ là gom tất cả những cái “giống x” (theo quan hệ $\mathcal{R}$) lại thành 1 nhóm.
+  \textbf{Lớp tương đương} của $x$: $\mathcal{T}(x, \mathcal{R}) = \{y \in X \mid y \sim x \;(\mathcal{R})\}$ là gom tất cả những cái “giống x” (theo quan hệ $\mathcal{R}$) lại thành 1 nhóm.
 
   Quan hệ tương đương chia tập thành các nhóm không giao nhau. Tập thương $\dfrac{X}{\sim} = \{\mathcal{T}(x, \mathcal{R}) \mid x \in X\}$ là tập gồm tất cả các nhóm đó.
 
@@ -397,7 +395,7 @@
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Thứ tự \textbf{toàn phần} (tuyến tính): Một quan hệ $\mathcal{R}$ có thứ tự trên tập $X$ và $\forall a, b \in X$ ta đều có $a \mathcal{R} b$ và $b \mathcal{R} a$
+  Thứ tự \textbf{toàn phần} (tuyến tính): Quan hệ thứ tự $\mathcal{R}$ trên $X$ sao cho $\forall a, b \in X$: $a \mathcal{R} b$ \textbf{hoặc} $b \mathcal{R} a$ (mọi cặp phần tử đều so sánh được).
 \end{dinhnghia}
 
 \begin{vidu}
@@ -477,7 +475,7 @@
   
   Mọi song ánh đều có thể xem như đơn ánh từ $A$ lên $B$.
 
-  Nếu $f$ song ánh thì $f^-1$ cũng song ánh
+  Nếu $f$ song ánh thì $f^{-1}$ cũng song ánh.
 \end{tinhchat}
 
 \begin{dinhnghia}
@@ -485,9 +483,7 @@
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  \textbf{Ánh xạ đồng nhất} trên $A$: $\mathrm{id}_A: A \to A$
-  
-  $\mathrm{id}_A(x) = x$ với mọi $x \in A$.
+  \textbf{Ánh xạ đồng nhất} trên $A$: $\mathrm{id}_A: A \to A$, $\mathrm{id}_A(x) = x$ với mọi $x \in A$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
@@ -549,11 +545,11 @@
 \subsection{Lực lượng tập hợp}
 
 \begin{dinhnghia}
-  Hai tập $A$ và $B$ gọi là \textbf{đồng lực lượng} (cùng lực lượng) nếu tồn tại song ánh $f: A \to B$. Ký hiệu $|A| = |B|$ hoặc $A \mathcal{R} B$.
+  Hai tập $A$ và $B$ gọi là \textbf{đồng lực lượng} (cùng lực lượng) nếu tồn tại song ánh $f: A \to B$. Ký hiệu $|A| = |B|$ hoặc $A \sim B$.
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Tập $A$ \textbf{hữu hạn} nếu $A = \varnothing$ hoặc $A \mathcal{R} \{1, 2, \ldots, n\}$ với $n \in \mathbb{N}$. Khi đó $|A| = n$. 
+  Tập $A$ \textbf{hữu hạn} nếu $A = \varnothing$ hoặc $A \sim \{1, 2, \ldots, n\}$ với $n \in \mathbb{N}$. Khi đó $|A| = n$. 
   
   Tập \textbf{vô hạn}: không hữu hạn.
 \end{dinhnghia}
@@ -653,11 +649,7 @@
   \begin{itemize}
     \item $(R, +)$ là nhóm Abel (nhóm giao hoán), thường phần tử trung hòa Luật cộng là $0$.
     \item Luật nhân ($\cdot$) có tính kết hợp.
-    \item Luật nhân ($\cdot$) có tính phân phối 2 phía với luật cộng ($+$): 
-    \begin{itemize}
-        \item Phân phối trái: $a \cdot (b + c) = a \cdot b + a \cdot c$.
-        \item Phân phối phải: $(a + b) \cdot c = a \cdot c + b \cdot c$.
-    \end{itemize}
+    \item Phân phối: $a \cdot (b + c) = a \cdot b + a \cdot c$, $(a + b) \cdot c = a \cdot c + b \cdot c$.
   \end{itemize}
   Nếu thêm Luật nhân ($\cdot$) có tính \textbf{giao hoán} $a \cdot b = b \cdot a$ thì gọi là Vành \textbf{giao hoán}.
   
@@ -671,13 +663,13 @@
 \end{vidu}
 
 \begin{dinhnghia}
-  \textbf{Vành nguyên} là 1 vành $(G, +, \cdot)$ trong đó có tinh chất: $a.b = 0 \Rightarrow a = 0 \text{ hoặc } b = 0$
+  \textbf{Vành nguyên} là vành $(R, +, \cdot)$ trong đó $a \cdot b = 0 \Rightarrow a = 0$ hoặc $b = 0$ (không có ước của 0).
 \end{dinhnghia}
 
 \subsection{Trường}
 
 \begin{dinhnghia}
-  \textbf{Trường} $(K, +, \cdot)$: : tập R với hai phép toán + và · thỏa:
+  \textbf{Trường} $(K, +, \cdot)$: tập $K$ với hai phép toán $+$ và $\cdot$ thỏa:
   \begin{itemize}
     \item Vành giao hoán có đơn vị
     \item Mọi phần tử khác $0$ (phần tử trung hòa của luật cộng ($+$) đều có nghịch đảo đối với luật nhân ($\cdot$): $\forall a \in K$, $a \ne 0$, $\exists a^{-1}$: $a \cdot a^{-1} = 1$.
@@ -688,7 +680,7 @@
   \begin{itemize}
     \item Trường là vành nguyên.
     \item $K^* = K \setminus \{0\}$ là nhóm với phép nhân.
-    \item Quy tắt giản ước: $a \ne 0$, $a \cdot x = a \cdot y \Rightarrow x = y$.
+    \item Quy tắc giản ước: $a \ne 0$, $a \cdot x = a \cdot y \Rightarrow x = y$.
     \item Phương trình $a \cdot x = b$ ($a \ne 0$) có nghiệm duy nhất $x = a^{-1} \cdot b$.
   \end{itemize}
 \end{tinhchat}
@@ -709,7 +701,7 @@
 \subsection{Dạng đại số}
 
 \begin{dinhnghia}
-  \textbf{Số phức} (dạng chính tắt) $z = a + bi$, với $a, b \in \mathbb{R}$, $i^2 = -1$.
+  \textbf{Số phức} (dạng chính tắc) $z = a + bi$, với $a, b \in \mathbb{R}$, $i^2 = -1$.
   \begin{itemize}
     \item $a = \mathrm{Re}(z)$: phần thực.
     \item $b = \mathrm{Im}(z)$: phần ảo.
@@ -732,19 +724,18 @@
   $(1+2i)(3-i) = 3 - i + 6i - 2i^2 = 5 + 5i$. $\dfrac{1}{i} = \dfrac{1 \cdot (-i)}{i \cdot (-i)} = \dfrac{-i}{1} = -i$. $|3+4i| = \sqrt{9+16} = 5$.
 \end{vidu}
 
-Tập $\mathbb{C}$ là 1 trường
-- Phần tử trung hòa của luật cộng ($+$) là $(0, 0)$
-- Phần tử đối của luật cộng ($+$) với $(a, b)$ là $(-a, -b) = -(a, b)$ gọi là số phức đối
-- Phần tử trung hòa của luật nhân ($\cdot$) là $(1, 0)$
-- Phần tử đối của luật nhân ($\cdot$) với $(a, b) \ne (0, 0)$ là $(\dfrac{a}{a^2 + b^2}, \dfrac{-b}{a^2 + b^2}) = (a, b)^-1$ là số phức nghịch đảo
+\begin{tinhchat}[title={$\mathbb{C}$ là trường}]
+  \begin{itemize}
+    \item Phần tử trung hòa của luật cộng: $(0, 0)$.
+    \item Số phức đối của $(a, b)$: $(-a, -b) = -(a, b)$.
+    \item Phần tử trung hòa của luật nhân: $(1, 0)$.
+    \item Số phức nghịch đảo của $(a, b) \ne (0, 0)$: $\left(\dfrac{a}{a^2 + b^2}, \dfrac{-b}{a^2 + b^2}\right) = (a, b)^{-1}$.
+  \end{itemize}
+\end{tinhchat}
 
-Mặt phẳng phức $Oxy$ với tọa độ $M = (a, b)$, số phức $z = a + bi$ gọi là \textbf{tọa vị} của M.
-
-Ảnh của số phức (a, 0), trục thực $Ox$.
-
-Số thực là trường hợp riêng của số phức
-
-Số ảo thuần túy (0, b) có bình phương luôn là số âm ($b \ne 0$). Đơn vị ảo $(0, 1)$, trục ảo $Oy$
+\begin{dinhnghia}
+  \textbf{Mặt phẳng phức}: Mặt phẳng $Oxy$ với điểm $M = (a, b)$. Số phức $z = a + bi$ gọi là \textbf{tọa vị} của $M$. Trục $Ox$ (số phức $(a, 0)$): \textbf{trục thực}. Trục $Oy$ (số phức $(0, b)$): \textbf{trục ảo}. Số thực là trường hợp riêng của số phức. \textbf{Số ảo thuần túy} $(0, b)$ ($b \ne 0$) có bình phương luôn âm. \textbf{Đơn vị ảo} $i = (0, 1)$.
+\end{dinhnghia}
 
 \subsection{Dạng lượng giác}
 
@@ -766,10 +757,11 @@ Số ảo thuần túy (0, b) có bình phương luôn là số âm ($b \ne 0$).
   $z^n = r^n(\cos n\varphi + i\sin n\varphi)$ với $n \in \mathbb{Z}$.
 \end{congthuc}
 
-\begin{congthuc}[title={Tổng}]
-  $z_1 + z_2 = a + a' + (b + b')i$. Điểm $A(a, b)$, $B(a', b')$, $C(a + a', b + b')$ tạo ra 3 vector có phép cộng theo quy tắt hình bình nhành.
-
-  Khi đó: $|z1 + z_2| \le |z_1| + |z_2|$
+\begin{congthuc}[title={Tổng và bất đẳng thức tam giác}]
+  $z_1 + z_2 = (a + a') + (b + b')i$. Điểm $A(a, b)$, $B(a', b')$, $C(a + a', b + b')$: vectơ $\overrightarrow{OC} = \overrightarrow{OA} + \overrightarrow{OB}$ (quy tắc hình bình hành).
+  \[
+    |z_1 + z_2| \le |z_1| + |z_2| \quad \text{(bất đẳng thức tam giác)}.
+  \]
 \end{congthuc}
 
 \begin{dinhnghia}
@@ -802,7 +794,15 @@ Số ảo thuần túy (0, b) có bình phương luôn là số âm ($b \ne 0$).
   Căn bậc hai của $-1$: $w_0 = i$, $w_1 = -i$. Căn bậc ba của 1: $1$, $\omega = e^{2\pi i/3}$, $\omega^2$.
 \end{vidu}
 
-\subsection{Giải phương trình bật 2}
+\subsection{Phương trình bậc hai}
+
+\begin{dinhnghia}
+  Phương trình $az^2 + bz + c = 0$ ($a \ne 0$, $a, b, c \in \mathbb{C}$). Biệt thức $\Delta = b^2 - 4ac$. Trên $\mathbb{C}$, mọi phương trình bậc hai đều có nghiệm (có thể phức).
+\end{dinhnghia}
+
+\begin{congthuc}
+  Nếu $\Delta \ne 0$: hai nghiệm $z = \dfrac{-b \pm \sqrt{\Delta}}{2a}$. Nếu $\Delta = 0$: nghiệm kép $z = -\dfrac{b}{2a}$.
+\end{congthuc}
 
 \subsection{Đa thức trên trường số phức}
 
@@ -820,10 +820,22 @@ Số ảo thuần túy (0, b) có bình phương luôn là số âm ($b \ne 0$).
   $P(z) = z^n - 1$ có $n$ nghiệm là các căn bậc $n$ của đơn vị: $e^{2\pi ik/n}$, $k = 0, \ldots, n-1$.
 \end{vidu}
 
-Phép tính nhân và cộng
-Đạo hàm
-Nguyên hàm
-Chia đa thức
-Đa thức đồng nhất
+\begin{tinhchat}[title={Phép toán trên đa thức}]
+  Cộng, trừ, nhân đa thức: tương tự số thực. \textbf{Chia đa thức}: $P(x) = Q(x) \cdot D(x) + R(x)$ với $\deg R < \deg Q$. \textbf{Đa thức đồng nhất}: $P(z) = 0$ với mọi $z$ $\Leftrightarrow$ mọi hệ số bằng 0.
+\end{tinhchat}
+
+\subsection{Phân thức hữu tỉ}
+
+\begin{dinhnghia}
+  \textbf{Phân thức hữu tỉ}: $\dfrac{P(x)}{Q(x)}$ với $P, Q$ là đa thức, $Q(x) \ne 0$. \textbf{Phân thức thực sự}: $\deg P < \deg Q$. \textbf{Phân thức không thực sự}: $\deg P \ge \deg Q$ (chia được $P = Q \cdot D + R$, đưa về đa thức cộng phân thức thực sự $\dfrac{R}{Q}$).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Phân thức thực sự đơn giản}: $\dfrac{A}{(x - a)^k}$ hoặc $\dfrac{Bx + C}{(x^2 + px + q)^m}$ (với $x^2 + px + q$ vô nghiệm).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Phân tích thành tổng phân thức đơn giản}]
+  Mọi phân thức thực sự $\dfrac{P}{Q}$ (với $Q$ phân tích được) đều viết được thành tổng các phân thức thực sự đơn giản. Phương pháp: đồng nhất hệ số hoặc thay giá trị đặc biệt.
+\end{dinhly}
 
 \end{document}
