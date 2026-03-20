@@ -1,0 +1,579 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Toán cao cấp 1 -- Đại số tuyến tính}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {TOÁN CAO CẤP 1};
+  \node[anchor=west, white, font=\fontsize{20}{26}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west)
+    {Đại số tuyến tính --- Năm nhất đại học};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-10cm]current page.north west)
+    {Tài liệu lý thuyết};
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{24}{30}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: MA TRẬN VÀ ĐỊNH THỨC
+%% ================================================================
+\section{Ma trận}
+
+\subsection{Định nghĩa ma trận}
+
+\begin{dinhnghia}
+  \textbf{Ma trận} cỡ $m \times n$ (hoặc cấp $m \times n$) là bảng số hình chữ nhật gồm $m$ dòng và $n$ cột:
+  \[
+    A = \begin{pmatrix}
+      a_{11} & a_{12} & \cdots & a_{1n} \\
+      a_{21} & a_{22} & \cdots & a_{2n} \\
+      \vdots & \vdots & \ddots & \vdots \\
+      a_{m1} & a_{m2} & \cdots & a_{mn}
+    \end{pmatrix} = (a_{ij})_{m \times n}.
+  \]
+  Phần tử $a_{ij}$ nằm ở dòng $i$, cột $j$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Ma trận vuông} cấp $n$: $m = n$. Đường chéo chính: $a_{11}, a_{22}, \ldots, a_{nn}$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Các loại ma trận đặc biệt}]
+  \begin{itemize}
+    \item \textbf{Ma trận không} $\mathbf{0}$: mọi phần tử bằng 0.
+    \item \textbf{Ma trận chuyển vị} $A^T$: $(A^T)_{ij} = a_{ji}$. Đổi hàng và cột cho nhau.
+    \item \textbf{Ma trận đối xứng}: $A^T = A$ (ma trận vuông).
+    \item \textbf{Ma trận tam giác trên}: $a_{ij} = 0$ khi $i > j$ (phần tử dưới đường chéo bằng 0).
+    \item \textbf{Ma trận tam giác dưới}: $a_{ij} = 0$ khi $i < j$ (phần tử trên đường chéo bằng 0).
+    \item \textbf{Ma trận chéo}: $a_{ij} = 0$ khi $i \ne j$ (chỉ có đường chéo chính khác 0).
+    \item \textbf{Ma trận bằng nhau}: $A = B$ khi và chỉ khi cùng cỡ và $a_{ij} = b_{ij}$ với mọi $i, j$.
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Các phép toán trên ma trận}
+
+\begin{dinhnghia}
+  \textbf{Cộng ma trận} (cùng cỡ): $(A + B)_{ij} = a_{ij} + b_{ij}$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $A + B = B + A$
+    \item $A + 0 = A$
+    \item $A + (-A) = 0$
+    \item $(A + B) + C = A + (B + C)$
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Nhân ma trận với số}: $(\lambda A)_{ij} = \lambda a_{ij}$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $k(A + B) = kA + kB$
+    \item $(h + k)A = hA + kA$
+    \item $1.A = A$
+    \item $0.A = 0$
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Nhân ma trận} $A_{m \times p}$ với $B_{p \times n}$ ta được ma trận $C_{m \times n}$:
+  \[
+    c_{ij} = (AB)_{ij} = \sum_{k=1}^{p} a_{ik} b_{kj}.
+  \]
+  Điều kiện: số cột của $A$ = số dòng của $B$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $A(BC) = (AB)C$.
+    \item $A(B + C) = AB + AC$.
+    \item $(B + C)A = BA + CA$.
+    \item $k(BC) = (kB)C = B(kC)$
+    \item $(AB)^T = B^T A^T$.
+    \item $AB$ được chưa chắc $BA$ được. Nếu ma trận vuông thì $AB$ và $BA$ được
+    \item Nói chung $AB \ne BA$.
+    \item $A \ne 0, B \ne 0$ nhưng có thể $AB = 0$
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Định thức}
+
+\begin{dinhnghia}
+  \textbf{Định thức} của ma trận vuông $A$ cấp $n$, ký hiệu $\det(A)$ hoặc $|A|$:
+  \begin{itemize}
+    \item Cấp 1: $\det(a) = a$.
+    \item Cấp 2: $\det\begin{pmatrix} a & b \\ c & d \end{pmatrix} = ad - bc$.
+    \item Cấp $n$: khai triển theo dòng $i$: $\det(A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} M_{ij}$, với $M_{ij}$ là định thức con bù của $a_{ij}$ là bỏ hàng $i$ và cột $j$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tính chất định thức}]
+  \begin{itemize}
+    \item $\det(A^T) = \det(A)$.
+    \item Đổi chỗ hai dòng (hoặc hai cột) $\Rightarrow$ định thức đổi dấu.
+    \item Nhân một dòng (cột) với $\lambda$ $\Rightarrow$ định thức nhân với $\lambda$.
+    \item $\det(AB) = \det(A) \cdot \det(B)$.
+    \item Ma trận có 2 hàng (cột) giống nhau $\Rightarrow$ $\det(A) = 0$.
+    \item Ma trận có 2 hàng (cột) tỉ lệ $\Rightarrow$ $\det(A) = 0$.
+    \item Ma trận có 1 hàng (cột) bằng 0 $\Rightarrow$ $\det(A) = 0$.
+    \item Ma trận có 1 hàng (cột) là tổ hợp tuyến tính của các hàng khác hoặc các cột khác $\Rightarrow$ $\det(A) = 0$.
+    \item Ma trận có tất cả các phần tử của 1 hàng (cột) có dạng tổng 2 số hạng thì có thể tách thành tổng 2 định thức.
+    \item Khi cộng bội k của 1 hàng vào 1 hàng khác (hay bội k của 1 cột vào 1 cột khác) thì được định thức mới bằng định thức cũ.
+    \item Ma trận tam giác có định thức là tích đường chéo
+  \end{itemize}
+\end{dinhly}
+
+\begin{phuongphap}[title={Tính định thức}]
+  \begin{enumerate}
+    \item Khai triển theo dòng hoặc cột có nhiều số 0.
+    \item Biến đổi sơ cấp đưa về ma trận tam giác (định thức = tích phần tử đường chéo).
+    \begin{enumerate}
+      \item Nhân 1 hàng với 1 số $k \ne 0$
+      \item Đổi chỗ 2 hàng
+      \item Cộng $k$ lần hàng này vào hàng kia
+    \end{enumerate}
+  \end{enumerate}
+\end{phuongphap}
+
+\subsection{Ma trận nghịch đảo}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Ma trận đơn vị} $I_n$: ma trận vuông cấp $n$, đường chéo chính bằng 1, còn lại bằng 0. Ký hiệu $(I_n)_{ij} = \delta_{ij}$ (Kronecker delta).
+    \item $I \cdot A = A \cdot I = A$ với mọi ma trận vuông $A$ cùng cấp.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Ma trận vuông $A$ gọi là \textbf{khả đảo} (khả nghịch) nếu tồn tại ma trận $B$ sao cho $AB = BA = I$. Khi đó $B$ gọi là \textbf{ma trận nghịch đảo} của $A$, ký hiệu $A^{-1}$. Ma trận nghịch đảo nếu tồn tại thì duy nhất.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện khả đảo}]
+  Ma trận vuông $A$ khả đảo khi và chỉ khi $\det(A) \ne 0$.
+\end{dinhly}
+
+\begin{congthuc}[title={Công thức nghịch đảo qua phụ đại số}]
+  Gọi $A_{ij}$ là phần bù đại số của $a_{ij}$ (tức $A_{ij} = (-1)^{i+j} M_{ij}$ với $M_{ij}$ là định thức con bù). Ma trận phụ hợp $\mathrm{adj}(A)$ có phần tử $(i,j)$ là $A_{ji}$. Khi đó:
+  \[
+    A^{-1} = \frac{1}{\det(A)} \cdot \mathrm{adj}(A).
+  \]
+  Với ma trận cấp 2: $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$, $\det(A) \ne 0$ thì
+  $A^{-1} = \dfrac{1}{ad-bc} \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$.
+\end{congthuc}
+
+\begin{tinhchat}[title={Tính chất ma trận nghịch đảo}]
+  \begin{itemize}
+    \item $(A^{-1})^{-1} = A$.
+    \item $(AB)^{-1} = B^{-1} A^{-1}$ (nghịch đảo của tích = tích nghịch đảo theo thứ tự ngược).
+    \item $(A^T)^{-1} = (A^{-1})^T$.
+    \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Tính $A^{-1}$ bằng Gauss-Jordan}]
+  Viết ma trận mở rộng $[A \mid I]$. Dùng biến đổi sơ cấp trên hàng đưa $A$ về $I$. Khi đó $I$ biến thành $A^{-1}$: $[A \mid I] \xrightarrow{\text{BĐSC}} [I \mid A^{-1}]$.
+\end{phuongphap}
+
+\subsection{Hạng của ma trận}
+
+\begin{dinhnghia}
+  \textbf{Hạng} của ma trận $A$, ký hiệu $\mathrm{rank}(A)$ hoặc $r(A)$, là cấp cao nhất của định thức con khác 0 của $A$. Nói cách khác: $\mathrm{rank}(A)$ = số dòng (hoặc cột) độc lập tuyến tính tối đa.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất hạng}]
+  \begin{itemize}
+    \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$.
+    \item $\mathrm{rank}(A) \le \min(m, n)$ với $A$ cỡ $m \times n$.
+    \item $\mathrm{rank}(AB) \le \min(\mathrm{rank}(A), \mathrm{rank}(B))$.
+    \item $A$ khả đảo $\Leftrightarrow$ $\mathrm{rank}(A) = n$ (với $A$ vuông cấp $n$).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Tính hạng bằng biến đổi sơ cấp}]
+  Dùng biến đổi sơ cấp trên hàng (hoặc cột) đưa $A$ về dạng bậc thang. Số dòng khác 0 của ma trận bậc thang chính là $\mathrm{rank}(A)$. Các biến đổi sơ cấp không làm thay đổi hạng.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: HỆ PHƯƠNG TRÌNH TUYẾN TÍNH
+%% ================================================================
+\section{Hệ phương trình tuyến tính}
+
+\subsection{Dạng ma trận}
+
+\begin{dinhnghia}
+  \textbf{Hệ phương trình tuyến tính} $m$ phương trình $n$ ẩn:
+  \[
+    \begin{cases}
+      a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1 \\
+      a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n = b_2 \\
+      \vdots \\
+      a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+    \end{cases}
+  \]
+  Viết dạng ma trận: $Ax = b$, trong đó
+  \[
+    A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix},\quad
+    x = \begin{pmatrix} x_1 \\ \vdots \\ x_n \end{pmatrix},\quad
+    b = \begin{pmatrix} b_1 \\ \vdots \\ b_m \end{pmatrix}.
+  \]
+  $A$: \textbf{ma trận hệ số} (cỡ $m \times n$). $x$: \textbf{vectơ ẩn}. $b$: \textbf{vectơ vế phải}. \textbf{Ma trận mở rộng} $\overline{A} = [A \mid b]$ (thêm cột $b$ vào bên phải $A$).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Hệ gọi là \textbf{thuần nhất} nếu $b = 0$ (tức $b_1 = \cdots = b_m = 0$). Hệ thuần nhất luôn có ít nhất nghiệm tầm thường $x = 0$.
+\end{dinhnghia}
+
+\subsection{Phương pháp Gauss và Gauss-Jordan}
+
+\begin{phuongphap}[title={Phương pháp Gauss}]
+  Dùng \textbf{biến đổi sơ cấp trên hàng} đưa ma trận mở rộng $\overline{A}$ về dạng \textbf{bậc thang} (tam giác trên):
+  \begin{enumerate}
+    \item Chọn phần tử khác 0 ở cột đầu (pivot), đưa lên hàng đầu nếu cần.
+    \item Dùng pivot khử các phần tử bên dưới trong cùng cột (cộng bội của hàng chứa pivot).
+    \item Lặp với ma trận con (bỏ hàng và cột đã xử lý).
+  \end{enumerate}
+  Từ ma trận bậc thang, thay thế ngược từ dòng cuối lên để tìm nghiệm.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp Gauss-Jordan}]
+  Sau khi đưa về dạng bậc thang, tiếp tục biến đổi để đưa phần khác 0 của ma trận hệ số về \textbf{dạng ma trận đơn vị rút gọn} (mỗi cột pivot chỉ có 1 số 1, còn lại là 0). Khi đó nghiệm đọc trực tiếp từ cột vế phải.
+  
+  \textbf{Ứng dụng tính $A^{-1}$}: Viết $[A \mid I]$, dùng Gauss-Jordan đưa $A$ về $I$. Khi đó $I$ biến thành $A^{-1}$.
+\end{phuongphap}
+
+\begin{luuy}
+  Ba phép biến đổi sơ cấp trên hàng: (1) Đổi chỗ hai hàng. (2) Nhân một hàng với số $k \ne 0$. (3) Cộng $k$ lần hàng này vào hàng kia. Các phép này không đổi tập nghiệm của hệ.
+\end{luuy}
+
+\subsection{Hệ Cramer}
+
+\begin{dinhly}[title={Công thức Cramer}]
+  Hệ $n$ phương trình $n$ ẩn $Ax = b$. Nếu $\det(A) \ne 0$ thì hệ có \textbf{nghiệm duy nhất}:
+  \[
+    x_j = \frac{\det(A_j)}{\det(A)}, \quad j = 1, \ldots, n,
+  \]
+  với $A_j$ là ma trận $A$ thay cột $j$ bởi cột $b$.
+\end{dinhly}
+
+\begin{vidu}
+  Hệ $\begin{cases} 2x_1 + x_2 = 5 \\ x_1 + 3x_2 = 6 \end{cases}$. $\det(A) = 5$, $\det(A_1) = 9$, $\det(A_2) = 7$. Vậy $x_1 = 9/5$, $x_2 = 7/5$.
+\end{vidu}
+
+\subsection{Hệ thuần nhất}
+
+\begin{dinhly}[title={Hệ thuần nhất $Ax = 0$}]
+  \begin{itemize}
+    \item Luôn có nghiệm $x = 0$ (nghiệm tầm thường).
+    \item Có nghiệm không tầm thường khi và chỉ khi $\mathrm{rank}(A) < n$ (tức $A$ có $n$ cột phụ thuộc tuyến tính).
+    \item Khi $\det(A) = 0$: hệ có vô số nghiệm; không gian nghiệm có số chiều $n - \mathrm{rank}(A)$.
+  \end{itemize}
+\end{dinhly}
+
+\subsection{Định lý Kronecker-Capelli}
+
+\begin{dinhly}[title={Định lý Kronecker-Capelli}]
+  Hệ $Ax = b$ có nghiệm khi và chỉ khi $\mathrm{rank}(A) = \mathrm{rank}(\overline{A})$.
+  \begin{itemize}
+    \item Nếu $\mathrm{rank}(A) = \mathrm{rank}(\overline{A}) = n$: hệ có \textbf{nghiệm duy nhất}.
+    \item Nếu $\mathrm{rank}(A) = \mathrm{rank}(\overline{A}) = r < n$: hệ có \textbf{vô số nghiệm}; số ẩn tự do $= n - r$; nghiệm tổng quát có dạng vectơ riêng + tổ hợp tuyến tính của $n-r$ vectơ cơ sở của không gian nghiệm hệ thuần nhất.
+    \item Nếu $\mathrm{rank}(A) < \mathrm{rank}(\overline{A})$: hệ \textbf{vô nghiệm}.
+  \end{itemize}
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: KHÔNG GIAN VECTƠ
+%% ================================================================
+\section{Không gian vectơ}
+
+\subsection{Định nghĩa và tiên đề}
+
+\begin{dinhnghia}
+  Tập $V$ với hai phép toán: \textbf{cộng} $+: V \times V \to V$ và \textbf{nhân vô hướng} $\cdot: \mathbb{R} \times V \to V$, gọi là \textbf{không gian vectơ} trên $\mathbb{R}$ nếu thỏa:
+  \begin{enumerate}
+    \item $(V, +)$ là nhóm Abel: giao hoán, kết hợp, có phần tử không $\mathbf{0}$, mỗi $v$ có phần tử đối $-v$.
+    \item Phân phối: $\lambda(u + v) = \lambda u + \lambda v$, $(\lambda + \mu)v = \lambda v + \mu v$.
+    \item Kết hợp vô hướng: $(\lambda\mu)v = \lambda(\mu v)$.
+    \item Đơn vị: $1 \cdot v = v$.
+  \end{enumerate}
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{R}^n$ (vectơ cột $n$ chiều); $M_{m \times n}(\mathbb{R})$ (ma trận $m \times n$); tập các đa thức bậc $\le n$ với hệ số thực; $C[a,b]$ (hàm liên tục trên $[a,b]$).
+\end{vidu}
+
+\subsection{Không gian con}
+
+\begin{dinhnghia}
+  Tập con $W \subset V$ gọi là \textbf{không gian con} của $V$ nếu $W$ đóng với phép cộng và nhân vô hướng: $u, v \in W$, $\lambda \in \mathbb{R}$ $\Rightarrow$ $u + v \in W$, $\lambda u \in W$. Khi đó $W$ cũng là KGVT với các phép toán cảm sinh.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kiểm tra không gian con}]
+  $W \ne \varnothing$ và $\forall u, v \in W$, $\forall \lambda \in \mathbb{R}$: $u + v \in W$, $\lambda u \in W$. Hoặc tương đương: $\forall u, v \in W$, $\forall \alpha, \beta \in \mathbb{R}$: $\alpha u + \beta v \in W$.
+\end{phuongphap}
+
+\subsection{Tổ hợp tuyến tính và tập sinh}
+
+\begin{dinhnghia}
+  Vectơ $v$ là \textbf{tổ hợp tuyến tính} của $\{v_1, \ldots, v_k\}$ nếu $v = \lambda_1 v_1 + \cdots + \lambda_k v_k$ với $\lambda_i \in \mathbb{R}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Bao tuyến tính} (hay không gian con sinh bởi): $\mathrm{span}\{v_1, \ldots, v_k\} = \{\lambda_1 v_1 + \cdots + \lambda_k v_k \mid \lambda_i \in \mathbb{R}\}$. Hệ $\{v_1, \ldots, v_k\}$ \textbf{sinh} $V$ nếu $\mathrm{span}\{v_1, \ldots, v_k\} = V$.
+\end{dinhnghia}
+
+\subsection{Độc lập tuyến tính, phụ thuộc tuyến tính}
+
+\begin{dinhnghia}
+  Hệ vectơ $\{v_1, \ldots, v_k\}$ \textbf{phụ thuộc tuyến tính} nếu tồn tại $\lambda_1, \ldots, \lambda_k$ không đồng thời bằng 0 sao cho $\lambda_1 v_1 + \cdots + \lambda_k v_k = \mathbf{0}$. Ngược lại là \textbf{độc lập tuyến tính}.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Hệ chứa vectơ $\mathbf{0}$ thì phụ thuộc tuyến tính. Một vectơ $v \ne \mathbf{0}$ thì độc lập tuyến tính. Hai vectơ phụ thuộc tuyến tính $\Leftrightarrow$ chúng tỉ lệ.
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Hạng} của hệ vectơ $\mathrm{rank}\{v_1, \ldots, v_k\}$: số vectơ tối đa độc lập tuyến tính trong hệ (bằng số chiều của $\mathrm{span}\{v_1, \ldots, v_k\}$).
+\end{dinhnghia}
+
+\subsection{Cơ sở và số chiều}
+
+\begin{dinhnghia}
+  Hệ vectơ $\mathcal{B} = \{e_1, \ldots, e_n\}$ là \textbf{cơ sở} của $V$ nếu $\mathcal{B}$ độc lập tuyến tính và sinh $V$ (mọi $v \in V$ biểu diễn duy nhất: $v = x_1 e_1 + \cdots + x_n e_n$).
+\end{dinhnghia}
+
+\begin{dinhly}
+  Mọi cơ sở của $V$ có cùng số phần tử. Số đó gọi là \textbf{số chiều} của $V$, ký hiệu $\dim V$. Nếu $\dim V = n$ thì mọi hệ $n$ vectơ độc lập tuyến tính đều là cơ sở; mọi hệ sinh có ít nhất $n$ phần tử.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Tọa độ} của $v$ trong cơ sở $\mathcal{B}$: $[v]_{\mathcal{B}} = (x_1, \ldots, x_n)^T$ với $v = x_1 e_1 + \cdots + x_n e_n$.
+\end{dinhnghia}
+
+\begin{vidu}
+  Cơ sở chính tắc của $\mathbb{R}^n$: $e_1 = (1,0,\ldots,0)^T$, $\ldots$, $e_n = (0,\ldots,0,1)^T$. $\dim \mathbb{R}^n = n$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 4: ÁNH XẠ TUYẾN TÍNH
+%% ================================================================
+\section{Ánh xạ tuyến tính}
+
+\begin{dinhnghia}
+  Ánh xạ $T: V \to W$ (giữa hai KGVT) gọi là \textbf{tuyến tính} (hay \textbf{đồng cấu}) nếu:
+  \begin{itemize}
+    \item $T(u + v) = T(u) + T(v)$ (bảo toàn phép cộng),
+    \item $T(\lambda u) = \lambda T(u)$ (bảo toàn nhân vô hướng).
+  \end{itemize}
+  Tương đương: $T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)$ với mọi $\alpha, \beta \in \mathbb{R}$, $u, v \in V$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  $T(\mathbf{0}) = \mathbf{0}$, $T(-v) = -T(v)$. Ảnh của không gian con là không gian con; nghịch ảnh của không gian con là không gian con.
+\end{tinhchat}
+
+\begin{dinhnghia}
+  \textbf{Hạt nhân} (kernel): $\ker T = \{v \in V \mid T(v) = \mathbf{0}\} \subset V$. \textbf{Ảnh} (image): $\mathrm{Im}\,T = T(V) = \{T(v) \mid v \in V\} \subset W$. Cả hai đều là không gian con.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý chiều}]
+  $\dim V = \dim(\ker T) + \dim(\mathrm{Im}\,T)$. Số $\dim(\ker T)$ gọi là \textbf{số khuyết}, $\dim(\mathrm{Im}\,T)$ gọi là \textbf{hạng} của $T$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Ma trận của ánh xạ tuyến tính}: Cho $T: V \to W$, cơ sở $\mathcal{B}_V = \{e_1, \ldots, e_n\}$ của $V$, $\mathcal{B}_W = \{f_1, \ldots, f_m\}$ của $W$. Ma trận $A$ cỡ $m \times n$ thỏa $[T(v)]_{\mathcal{B}_W} = A [v]_{\mathcal{B}_V}$ có cột $j$ là $[T(e_j)]_{\mathcal{B}_W}$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Nếu $A$ là ma trận của $T$ trong cơ sở $\mathcal{B}_V$, $\mathcal{B}_W$ thì $\mathrm{rank}(A) = \dim(\mathrm{Im}\,T)$, $\dim(\ker T) = n - \mathrm{rank}(A)$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  $T$ \textbf{đơn cấu} (đơn ánh) $\Leftrightarrow$ $\ker T = \{\mathbf{0}\}$. $T$ \textbf{toàn cấu} (toàn ánh) $\Leftrightarrow$ $\mathrm{Im}\,T = W$. $T$ \textbf{đẳng cấu} $\Leftrightarrow$ vừa đơn cấu vừa toàn cấu (khi đó $\dim V = \dim W$).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 5: TRỊ RIÊNG, VECTƠ RIÊNG, DẠNG TOÀN PHƯƠNG
+%% ================================================================
+\section{Trị riêng và vectơ riêng}
+
+\begin{dinhnghia}
+  Số $\lambda \in \mathbb{R}$ (hoặc $\mathbb{C}$) gọi là \textbf{trị riêng} của ma trận vuông $A$ nếu tồn tại vectơ $x \ne \mathbf{0}$ sao cho $Ax = \lambda x$. Vectơ $x$ gọi là \textbf{vectơ riêng} ứng với $\lambda$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phương trình đặc trưng}]
+  $\lambda$ là trị riêng của $A$ khi và chỉ khi $\det(A - \lambda I) = 0$. Đa thức $p_A(\lambda) = \det(A - \lambda I)$ gọi là \textbf{đa thức đặc trưng}. Các trị riêng là nghiệm của $p_A(\lambda) = 0$.
+\end{congthuc}
+
+\begin{dinhnghia}
+  \textbf{Không gian riêng} ứng với $\lambda$: $E_\lambda = \ker(A - \lambda I) = \{x \mid Ax = \lambda x\}$. Số chiều $\dim E_\lambda$ gọi là \textbf{bội hình học} của $\lambda$; bội của $\lambda$ trong đa thức đặc trưng gọi là \textbf{bội đại số}.
+\end{dinhnghia}
+
+\subsection{Chéo hóa}
+
+\begin{dinhnghia}
+  Ma trận $A$ \textbf{chéo hóa được} nếu tồn tại ma trận khả nghịch $P$ sao cho $P^{-1}AP = D$ là ma trận chéo. Khi đó các cột của $P$ là các vectơ riêng, các phần tử trên đường chéo của $D$ là các trị riêng tương ứng.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện chéo hóa được}]
+  Ma trận $A$ cấp $n$ chéo hóa được khi và chỉ khi $A$ có đủ $n$ vectơ riêng độc lập tuyến tính $\Leftrightarrow$ tổng các bội hình học của mọi trị riêng bằng $n$ $\Leftrightarrow$ $A$ có $n$ trị riêng (kể cả bội) và mỗi trị riêng có bội hình học = bội đại số.
+\end{dinhly}
+
+\begin{phuongphap}[title={Cách chéo hóa}]
+  \begin{enumerate}
+    \item Giải $\det(A - \lambda I) = 0$ tìm các trị riêng $\lambda_1, \ldots, \lambda_k$.
+    \item Với mỗi $\lambda_i$, giải $(A - \lambda_i I)x = 0$ tìm cơ sở của $E_{\lambda_i}$.
+    \item Nếu tổng số vectơ tìm được $= n$: đặt $P$ là ma trận có cột là các vectơ riêng (theo thứ tự trị riêng); $D = P^{-1}AP$ là ma trận chéo.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsection{Dạng toàn phương}
+
+\begin{dinhnghia}
+  \textbf{Dạng toàn phương} trên $\mathbb{R}^n$: $Q(x) = x^T A x = \sum_{i,j} a_{ij} x_i x_j$, với $A$ ma trận đối xứng ($A^T = A$). Có thể giả sử $A$ đối xứng vì $(x^T A x)^T = x^T A^T x = x^T A x$. Ma trận $A$ gọi là \textbf{ma trận của dạng toàn phương}.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Dạng chính tắc}]
+  Mọi dạng toàn phương đều đưa được về dạng chính tắc $Q = \lambda_1 y_1^2 + \cdots + \lambda_n y_n^2$ bằng phép đổi biến trực giao $x = Py$ (với $P$ ma trận trực giao: $P^T P = I$), trong đó $\lambda_i$ là trị riêng của $A$.
+\end{dinhly}
+
+\begin{dinhly}[title={Luật quán tính Sylvester}]
+  Số hệ số dương và số hệ số âm trong dạng chính tắc không phụ thuộc cách đưa về chính tắc. Gọi $(p, q)$ là \textbf{chỉ số quán tính} với $p$ = số dương, $q$ = số âm.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Xác định dấu}]
+  Dạng toàn phương $Q(x)$:
+  \begin{itemize}
+    \item \textbf{Xác định dương}: $Q(x) > 0$ với mọi $x \ne \mathbf{0}$ $\Leftrightarrow$ mọi trị riêng $> 0$.
+    \item \textbf{Xác định âm}: $Q(x) < 0$ với mọi $x \ne \mathbf{0}$ $\Leftrightarrow$ mọi trị riêng $< 0$.
+    \item \textbf{Nửa xác định dương}: $Q(x) \ge 0$ và tồn tại $x \ne \mathbf{0}$ sao cho $Q(x) = 0$.
+    \item \textbf{Không xác định}: $Q$ nhận cả giá trị dương và âm.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tiêu chuẩn Sylvester}]
+  Ma trận đối xứng $A$ xác định dương khi và chỉ khi tất cả các định thức con chính (góc trên-trái) đều dương: $\Delta_1 > 0$, $\Delta_2 > 0$, $\ldots$, $\Delta_n > 0$.
+\end{phuongphap}
+
+\end{document}

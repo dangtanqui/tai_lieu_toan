@@ -1,0 +1,187 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{ĐẠI SỐ ĐẠI CƯƠNG}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {ĐẠI SỐ ĐẠI CƯƠNG};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Vành, ideal, môđun --- Năm 3, HK1};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: VÀNH VÀ IDEAL
+%% ================================================================
+\section{Vành và ideal}
+
+\subsection{Ôn tập vành}
+
+\begin{dinhnghia}
+  \textbf{Vành} $(R, +, \cdot)$: tập $R$ với hai phép toán thỏa $(R,+)$ là nhóm Abel, phép nhân kết hợp, phân phối. \textbf{Vành giao hoán} có đơn vị: $1 \cdot a = a \cdot 1 = a$. \textbf{Phần tử khả nghịch} $a \in R$: tồn tại $b$ sao cho $ab = ba = 1$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Ước của 0}: $a \in R \setminus \{0\}$ là ước trái của 0 nếu $\exists b \ne 0$: $ab = 0$. \textbf{Vành nguyên} (domain): không có ước của 0 khác 0. \textbf{Trường}: vành giao hoán có đơn vị mà mọi phần tử khác 0 đều khả nghịch.
+\end{dinhnghia}
+
+\subsection{Ideal}
+
+\begin{dinhnghia}
+  Tập con $I \subset R$ gọi là \textbf{ideal trái} của vành $R$ nếu:
+  \begin{itemize}
+    \item $(I, +)$ là nhóm con của $(R, +)$.
+    \item $\forall r \in R$, $\forall a \in I$: $ra \in I$ (ổn định với nhân bên trái).
+  \end{itemize}
+  \textbf{Ideal phải}: $ar \in I$. \textbf{Ideal hai phía} (ideal): vừa ideal trái vừa ideal phải. Trong vành giao hoán, mọi ideal trái/phải đều là ideal.
+\end{dinhnghia}
+
+\begin{vidu}
+  $\{0\}$ và $R$ là các ideal tầm thường. $n\mathbb{Z} = \{nk \mid k \in \mathbb{Z}\}$ là ideal của $\mathbb{Z}$. Ideal chính $(a) = Ra = \{ra \mid r \in R\}$ (vành giao hoán).
+\end{vidu}
+
+\begin{dinhnghia}
+  \textbf{Ideal sinh bởi tập} $S \subset R$: ideal nhỏ nhất chứa $S$, ký hiệu $(S)$ hoặc $\langle S \rangle$. Với $S = \{a_1, \ldots, a_n\}$: $(S) = Ra_1 R + \cdots + Ra_n R$ (tổng các ideal chính trong vành tổng quát).
+\end{dinhnghia}
+
+\subsection{Ideal nguyên tố và ideal tối đại}
+
+\begin{dinhnghia}
+  Ideal $P \ne R$ gọi là \textbf{ideal nguyên tố} nếu $ab \in P$ $\Rightarrow$ $a \in P$ hoặc $b \in P$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Ideal $M \ne R$ gọi là \textbf{ideal tối đại} nếu không có ideal nào thực sự chứa $M$ ngoài $R$ (tức $M \subset I \subset R$, $I$ ideal $\Rightarrow$ $I = M$ hoặc $I = R$).
+\end{dinhnghia}
+
+\begin{dinhly}
+  Trong vành giao hoán có đơn vị: $M$ là ideal tối đại $\Leftrightarrow$ $R/M$ là trường. $P$ là ideal nguyên tố $\Leftrightarrow$ $R/P$ là vành nguyên.
+\end{dinhly}
+
+\begin{vidu}
+  Trong $\mathbb{Z}$: $p\mathbb{Z}$ là ideal nguyên tố và tối đại khi $p$ là số nguyên tố. $6\mathbb{Z}$ không nguyên tố vì $2 \cdot 3 \in 6\mathbb{Z}$ nhưng $2, 3 \notin 6\mathbb{Z}$.
+\end{vidu}
+
+\subsection{Vành thương}
+
+\begin{dinhnghia}
+  Cho ideal $I$ của $R$. Vành thương $R/I$: tập các lớp tương đương $a + I$ với quan hệ $a \sim b \Leftrightarrow a - b \in I$. Phép cộng và nhân: $(a+I) + (b+I) = (a+b) + I$, $(a+I)(b+I) = ab + I$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý đồng cấu vành}]
+  Cho đồng cấu vành $\varphi: R \to S$. Khi đó $\ker \varphi$ là ideal của $R$ và $R/\ker \varphi \cong \mathrm{Im}\,\varphi$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: MÔĐUN
+%% ================================================================
+\section{Môđun}
+
+\begin{dinhnghia}
+  Cho vành $R$ (có đơn vị). \textbf{Môđun trái} trên $R$: nhóm Abel $(M, +)$ với phép nhân vô hướng $R \times M \to M$, $(r, m) \mapsto rm$, thỏa:
+  \begin{itemize}
+    \item $r(m + n) = rm + rn$, $(r + s)m = rm + sm$.
+    \item $(rs)m = r(sm)$, $1 \cdot m = m$.
+  \end{itemize}
+  \textbf{Môđun phải}: $mr$ với $m(rs) = (mr)s$. Vành giao hoán: môđun trái = môđun phải.
+\end{dinhnghia}
+
+\begin{vidu}
+  Mọi không gian vectơ trên trường $K$ là $K$-môđun. Mọi nhóm Abel $(A, +)$ là $\mathbb{Z}$-môđun: $n \cdot a = a + \cdots + a$ ($n$ lần). Vành $R$ là môđun trên chính nó: $R$ tác động lên $R$ bằng phép nhân.
+\end{vidu}
+
+\begin{dinhnghia}
+  \textbf{Môđun con} $N \subset M$: nhóm con của $(M,+)$ và $rn \in N$ với mọi $r \in R$, $n \in N$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Môđun thương} $M/N$: nhóm thương $M/N$ với phép nhân vô hướng $r(m + N) = rm + N$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Đồng cấu môđun} $\varphi: M \to N$: đồng cấu nhóm thỏa $\varphi(rm) = r\varphi(m)$. \textbf{Hạt nhân} $\ker \varphi$, \textbf{ảnh} $\mathrm{Im}\,\varphi$ là môđun con.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý đồng cấu môđun}]
+  $\varphi: M \to N$ đồng cấu môđun $\Rightarrow$ $M/\ker \varphi \cong \mathrm{Im}\,\varphi$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Môđun tự do}: môđun đẳng cấu với tổng trực tiếp $\bigoplus_{i \in I} R$ (có cơ sở). \textbf{Hạng} của môđun tự do: lực lượng của tập chỉ số $I$ (trên vành giao hoán có IBN).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: VÀNH ĐA THỨC
+%% ================================================================
+\section{Vành đa thức}
+
+\begin{dinhnghia}
+  \textbf{Vành đa thức} $R[x]$: tập các biểu thức $a_0 + a_1 x + \cdots + a_n x^n$, $a_i \in R$, với phép cộng và nhân thông thường. Phần tử $f = \sum a_i x^i$. \textbf{Bậc} $\deg f$: chỉ số $i$ lớn nhất với $a_i \ne 0$ (quy ước $\deg 0 = -\infty$).
+\end{dinhnghia}
+
+\begin{dinhly}
+  Nếu $R$ là vành nguyên thì $R[x]$ cũng là vành nguyên và $\deg(fg) = \deg f + \deg g$.
+\end{dinhly}
+
+\begin{dinhly}[title={Thuật toán chia}]
+  Cho $R$ vành giao hoán, $f, g \in R[x]$, hệ số bậc cao nhất của $g$ khả nghịch. Khi đó tồn tại duy nhất $q, r \in R[x]$: $f = qg + r$ với $\deg r < \deg g$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  $a \in R$ là \textbf{nghiệm} của $f \in R[x]$ nếu $f(a) = 0$. Khi đó $(x - a) \mid f$ (trong $R[x]$ khi $R$ là trường).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý cơ bản của đại số}]
+  Mọi đa thức bậc $n \ge 1$ với hệ số phức có ít nhất một nghiệm phức. Hệ quả: $f \in \mathbb{C}[x]$, $\deg f = n$ $\Rightarrow$ $f$ có đúng $n$ nghiệm (kể cả bội) trong $\mathbb{C}$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Vành đa thức nhiều biến} $R[x_1, \ldots, x_n]$: xây dựng đệ quy $R[x_1][x_2]\cdots[x_n]$ hoặc vành các đa thức với biến $x_1, \ldots, x_n$.
+\end{dinhnghia}
+
+\end{document}
