@@ -1,14 +1,36 @@
-# Danh sách có thứ tự tất cả các môn toán đại học – tất cả các ngành
+# Danh sách môn toán đại học – Không lặp lại
 
-*Tài liệu tham khảo để soạn giáo án theo từng năm học*
+*Tài liệu tham khảo để soạn giáo án. Mỗi môn/chủ đề chỉ xuất hiện **một lần** trong danh sách chính.*
 
 ---
 
-## Lưu ý chung
+## Cách sử dụng
 
-- Các môn toán **khác nhau theo nhóm ngành** (Toán A, B, C, Toán kinh tế, v.v.).
-- Thứ tự và tên môn có thể thay đổi tùy trường.
-- Tài liệu này **gộp tất cả môn toán** của mọi ngành để không bỏ sót khi soạn giáo án.
+1. **Danh sách chính** (Phần I): Liệt kê từng môn/chủ đề **một lần duy nhất**, kèm năm học và nhóm ngành.
+2. **Bảng ánh xạ** (Phần II): Tên gọi khác nhau ở các trường → môn tương ứng trong danh sách chính.
+3. **Lộ trình theo năm** (Phần III): Thứ tự học theo năm, tham chiếu tới môn trong danh sách chính.
+
+→ Khi soạn xong **Toán cao cấp 1**, không cần soạn thêm **Đại số tuyến tính** hay **Đại số tuyến tính nâng cao** riêng nếu đã gộp nội dung. Chỉ bổ sung phần nâng cao nếu tách môn.
+
+---
+
+## Cấu trúc folder (theo nhóm)
+
+Giáo án soạn vào các folder con trong `dai_hoc/`:
+
+| Nhóm | Đường dẫn |
+|------|-----------|
+| 1 | `nhom_1_dai_so_logic/` |
+| 2 | `nhom_2_giai_tich/` |
+| 3 | `nhom_3_hinh_hoc/` |
+| 4 | `nhom_4_phuong_trinh/` |
+| 5 | `nhom_5_xac_suat_thong_ke/` |
+| 6 | `nhom_6_toan_roi_rac_tin/` |
+| 7 | `nhom_7_toi_uu_ung_dung/` |
+| 8 | `nhom_8_toan_kinh_te_tai_chinh/` |
+| 9 | `nhom_9_khac/` |
+
+Mỗi nhóm có file `README.md` liệt kê folder con và ID tương ứng.
 
 ---
 
@@ -25,189 +47,216 @@
 
 ---
 
-# NĂM 1 (Năm nhất)
+# PHẦN I: DANH SÁCH CHÍNH (MỖI MÔN MỘT LẦN)
 
-## Học kỳ 1
+## Nhóm 1: Đại số và logic (nền tảng)
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 1 | **Toán cao cấp 1** (Đại số tuyến tính) | Hầu hết các ngành | Ma trận, định thức, hệ phương trình tuyến tính |
-| 2 | **Giải tích 1** (Vi tích phân hàm một biến – phần đầu) | Toán A, B, C, Kỹ thuật | Hàm số, giới hạn, liên tục, đạo hàm |
-| 3 | **Đại số** (cơ sở) | Toán A | Tập hợp, ánh xạ, cấu trúc đại số, số phức |
-| 4 | **Toán kinh tế 1** | Kinh tế, Quản trị | Hàm số, đạo hàm, ứng dụng kinh tế |
-| 5 | **Toán cho khoa học xã hội** | Một số ngành KHXH | Toán cơ bản, thống kê mô tả đơn giản |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| A1 | **Đại số đại cương (cơ sở)** | 1 | A | Mệnh đề, logic, tập hợp, quan hệ, ánh xạ, cấu trúc đại số |
+| A2 | **Đại số sơ cấp** | 1 | A | Quy nạp, số phức, phương trình bậc hai, đa thức, phân thức hữu tỉ |
+| A3 | **Đại số tuyến tính** *(gộp TCC1 + nâng cao)* | 1–2 | Hầu hết | Ma trận, định thức, hệ PTTT, không gian vectơ, ánh xạ tuyến tính, trị riêng, dạng toàn phương |
+| A4 | **Đại số đại cương (vành, môđun)** | 3 | A | Nhóm, vành, môđun (chuyên sâu) |
+| A5 | **Lý thuyết nhóm** | 4 | A | Nhóm hữu hạn, biểu diễn |
 
-## Học kỳ 2
+## Nhóm 2: Giải tích
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 6 | **Toán cao cấp 2** (Giải tích một biến) | Hầu hết các ngành | Tích phân, chuỗi số |
-| 7 | **Giải tích 2** (tiếp) | Toán A, B, C | Chuỗi, chuỗi hàm, khái niệm phương trình vi phân |
-| 8 | **Hình học giải tích** | Toán A, B | Đường thẳng, mặt phẳng, mặt bậc hai |
-| 9 | **Đại số tuyến tính** (nâng cao) | Toán A | Không gian vectơ, ánh xạ tuyến tính |
-| 10 | **Toán kinh tế 2** | Kinh tế, Quản trị | Tích phân, ứng dụng kinh tế |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| G1 | **Giải tích 1** | 1 | A,B,C,Kỹ thuật | Hàm số, giới hạn, liên tục, đạo hàm |
+| G2 | **Giải tích 2** | 1 | A,B,C | Tích phân, chuỗi số, chuỗi hàm, PTVP cơ bản |
+| G3 | **Giải tích 3** | 2 | A,B,C,Kỹ thuật | Hàm nhiều biến, tích phân bội, đường, mặt |
+| G4 | **Cơ sở giải tích** | 2 | A | Giải tích thực, dãy, chuỗi (chuyên sâu) |
+| G5 | **Lý thuyết độ đo và tích phân** | 3 | A | Độ đo, tích phân Lebesgue |
+| G6 | **Giải tích phức** | 3 | A | Hàm giải tích, thặng dư, ánh xạ bảo giác |
+| G7 | **Giải tích hàm** | 3–4 | A | Không gian Banach, Hilbert, toán tử, phổ |
 
----
+## Nhóm 3: Hình học
 
-# NĂM 2 (Năm hai)
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| H1 | **Hình học giải tích** | 1 | A,B | Đường thẳng, mặt phẳng, mặt bậc hai |
+| H2 | **Hình học vi phân** | 3 | A,Vật lý | Đường cong, mặt, độ cong |
+| H3 | **Hình học đại số** | 4 | A | Đa tạp đại số, ideal |
 
-## Học kỳ 1
+## Nhóm 4: Phương trình vi phân / đạo hàm riêng
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 11 | **Giải tích 3** (Vi tích phân hàm nhiều biến) | Toán A, B, C, Kỹ thuật | Đạo hàm riêng, tích phân bội, tích phân đường, mặt |
-| 12 | **Phương trình vi phân** | Toán A, B, C, Kỹ thuật | PTVP thường, hệ PTVP |
-| 13 | **Cơ sở giải tích** | Toán A | Giải tích thực, dãy số, chuỗi |
-| 14 | **Xác suất 1** (Lý thuyết xác suất) | Hầu hết các ngành | Biến cố, xác suất, biến ngẫu nhiên |
-| 15 | **Toán rời rạc** | Toán A, CNTT, Khoa học máy tính | Logic, tập hợp, đồ thị, tổ hợp |
-| 16 | **Toán kinh tế 3** / **Toán ứng dụng** | Kinh tế | Tối ưu, quy hoạch tuyến tính cơ bản |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| P1 | **Phương trình vi phân** | 2 | A,B,C,Kỹ thuật | PTVP thường, hệ PTVP |
+| P2 | **Phương trình đạo hàm riêng** | 2–3 | A,Vật lý,Kỹ thuật | Nhiệt, sóng → elliptic, parabolic, hyperbolic |
 
-## Học kỳ 2
+## Nhóm 5: Xác suất và thống kê
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 17 | **Xác suất 2** / **Thống kê toán** | Hầu hết các ngành | Ước lượng, kiểm định giả thuyết |
-| 18 | **Thống kê ứng dụng** | Kinh tế, Khoa học xã hội, Y dược | Thống kê mô tả, suy luận thống kê |
-| 19 | **Đại số tuyến tính nâng cao** | Toán A | Trị riêng, vectơ riêng, dạng toàn phương |
-| 20 | **Phương trình đạo hàm riêng** (cơ bản) | Toán A, Vật lý, Cơ khí | Phương trình truyền nhiệt, sóng |
-| 21 | **Phương pháp số** / **Giải tích số** | Toán A, B, Kỹ thuật | Sai số, nội suy, tích phân số, PTVP số |
-| 22 | **Quy hoạch tuyến tính** | Kinh tế, Kỹ thuật, Toán ứng dụng | Bài toán tối ưu, đơn hình |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| X1 | **Xác suất** | 2 | Hầu hết | Biến cố, xác suất, biến ngẫu nhiên |
+| X2 | **Thống kê toán** | 2 | Hầu hết | Ước lượng, kiểm định |
+| X3 | **Thống kê ứng dụng** | 2 | Kinh tế,KHXH,Y | Thống kê mô tả, suy luận |
+| X4 | **Xác suất và độ đo** | 3 | A | Độ đo, xác suất tiên nghiệm |
+| X5 | **Xác suất thống kê nâng cao** | 3 | A,KHDL | Quá trình ngẫu nhiên, thống kê Bayes |
+| X6 | **Thống kê đa biến** | 3 | Kinh tế,KHDL | PCA, phân tích đa biến |
+| X7 | **Thống kê Bayes** | 4 | A,KHDL | Ước lượng Bayes, MCMC |
+| X8 | **Quá trình ngẫu nhiên** | 4 | A,Tài chính,KHDL | Martingale, Brown |
 
----
+## Nhóm 6: Toán rời rạc và tin
 
-# NĂM 3 (Năm ba)
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| R1 | **Toán rời rạc** | 2 | A,CNTT | Logic, tập hợp, đồ thị, tổ hợp |
+| R2 | **Toán rời rạc nâng cao** | 3 | A,CNTT | Đồ thị, thuật toán, mã hóa |
+| R3 | **Lý thuyết số** | 3 | A | Số nguyên tố, đồng dư |
+| R4 | **Lý thuyết mật mã** | 4 | A,An ninh | Số học môđun, RSA, elliptic curve |
+| R5 | **Toán học tính toán** | 4 | A,CNTT | Thuật toán số, độ phức tạp |
 
-## Học kỳ 1
+## Nhóm 7: Tối ưu và ứng dụng
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 23 | **Xác suất và độ đo** | Toán A | Độ đo, tích phân Lebesgue, xác suất tiên nghiệm |
-| 24 | **Giải tích hàm** | Toán A | Không gian Banach, Hilbert, toán tử |
-| 25 | **Tôpô** | Toán A | Không gian tôpô, liên tục, compact |
-| 26 | **Đại số đại cương** / **Lý thuyết vành và môđun** | Toán A | Nhóm, vành, môđun |
-| 27 | **Lý thuyết số** | Toán A | Số nguyên tố, đồng dư, ứng dụng |
-| 28 | **Hình học vi phân** | Toán A, Vật lý | Đường cong, mặt, độ cong |
-| 29 | **Kinh tế lượng** | Kinh tế, Quản trị | Hồi quy, mô hình kinh tế |
-| 30 | **Thống kê đa biến** | Kinh tế, Khoa học dữ liệu | Phân tích đa biến, PCA |
-| 31 | **Toán tài chính** | Tài chính, Toán kinh tế | Lãi suất, định giá, rủi ro |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| T1 | **Quy hoạch tuyến tính** | 2 | Kinh tế,Kỹ thuật | Bài toán tối ưu, đơn hình |
+| T2 | **Tối ưu / Quy hoạch phi tuyến** | 3 | A,Kỹ thuật,Kinh tế | Tối ưu có/không ràng buộc |
+| T3 | **Phương pháp số** | 2 | A,B,Kỹ thuật | Sai số, nội suy, tích phân số, PTVP số |
+| T4 | **Phương pháp phần tử hữu hạn** | 4 | Kỹ thuật | Rời rạc hóa PDE |
+| T5 | **Điều khiển tối ưu** | 4 | Kỹ thuật | Nguyên lý cực đại |
 
-## Học kỳ 2
+## Nhóm 8: Toán kinh tế, tài chính, bảo hiểm
 
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 32 | **Phương trình đạo hàm riêng** (nâng cao) | Toán A, Vật lý | Phương trình elliptic, parabolic, hyperbolic |
-| 33 | **Giải tích phức** | Toán A | Hàm giải tích, thặng dư, ánh xạ bảo giác |
-| 34 | **Lý thuyết độ đo và tích phân** | Toán A | Độ đo, tích phân Lebesgue |
-| 35 | **Tối ưu** / **Quy hoạch phi tuyến** | Toán A, Kỹ thuật, Kinh tế | Tối ưu không ràng buộc và có ràng buộc |
-| 36 | **Toán rời rạc nâng cao** | Toán A, CNTT | Đồ thị, thuật toán, mã hóa |
-| 37 | **Xác suất thống kê nâng cao** | Toán A, Khoa học dữ liệu | Quá trình ngẫu nhiên, thống kê Bayes |
-| 38 | **Toán bảo hiểm** | Bảo hiểm, Toán kinh tế | Mô hình rủi ro, phí bảo hiểm |
-| 39 | **Toán y sinh** / **Thống kê sinh học** | Y, Dược, Sinh | Thống kê trong nghiên cứu y sinh |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| K1 | **Toán kinh tế 1** | 1 | Kinh tế | Hàm số, đạo hàm trong kinh tế |
+| K2 | **Toán kinh tế 2** | 1 | Kinh tế | Tích phân trong kinh tế |
+| K3 | **Toán kinh tế 3** | 2 | Kinh tế | Tối ưu, QHTT cơ bản |
+| K4 | **Kinh tế lượng** | 3 | Kinh tế | Hồi quy, mô hình |
+| K5 | **Toán tài chính** | 3 | Tài chính | Lãi suất, định giá, rủi ro |
+| K6 | **Toán tài chính định lượng** | 4 | Tài chính | Black–Scholes, rủi ro |
+| K7 | **Toán bảo hiểm** | 3 | Bảo hiểm | Mô hình rủi ro, phí |
+| K8 | **Toán y sinh / Thống kê sinh học** | 3 | Y,Dược,Sinh | Thống kê trong y sinh |
 
----
+## Nhóm 9: Khác
 
-# NĂM 4 (Năm tư)
-
-## Học kỳ 1 & 2
-
-| STT | Môn học | Nhóm ngành | Ghi chú |
-|-----|---------|------------|---------|
-| 40 | **Giải tích hàm nâng cao** | Toán A | Phổ, toán tử compact |
-| 41 | **Hình học đại số** (cơ bản) | Toán A | Đa tạp đại số, ideal |
-| 42 | **Lý thuyết nhóm** | Toán A | Nhóm hữu hạn, biểu diễn |
-| 43 | **Phương trình vi phân nâng cao** | Toán A, Vật lý | Hệ động lực, ổn định |
-| 44 | **Quá trình ngẫu nhiên** | Toán A, Tài chính, Khoa học dữ liệu | Martingale, chuyển động Brown |
-| 45 | **Thống kê Bayes** | Toán A, Khoa học dữ liệu | Ước lượng Bayes, MCMC |
-| 46 | **Học máy – nền tảng toán** | CNTT, Khoa học dữ liệu | Tối ưu, xác suất trong ML |
-| 47 | **Toán tài chính định lượng** | Tài chính, Toán kinh tế | Mô hình Black–Scholes, rủi ro |
-| 48 | **Phương pháp phần tử hữu hạn** | Kỹ thuật, Toán ứng dụng | Rời rạc hóa, giải số PDE |
-| 49 | **Điều khiển tối ưu** | Kỹ thuật, Toán ứng dụng | Điều khiển tối ưu, nguyên lý cực đại |
-| 50 | **Lý thuyết mật mã** | Toán A, An ninh mạng | Số học môđun, RSA, elliptic curve |
-| 51 | **Toán học tính toán** | Toán A, CNTT | Thuật toán số, độ phức tạp |
+| ID | Môn | Năm | Nhóm | Nội dung chính |
+|----|-----|-----|------|----------------|
+| O1 | **Toán cho khoa học xã hội** | 1 | KHXH | Toán cơ bản, thống kê mô tả |
+| O2 | **Tôpô** | 3 | A | Không gian tôpô, liên tục, compact |
+| O3 | **Học máy – nền tảng toán** | 4 | CNTT,KHDL | Tối ưu, xác suất trong ML |
+| O4 | **Phương trình vi phân nâng cao** | 4 | A,Vật lý | Hệ động lực, ổn định |
 
 ---
 
-# Tổng hợp theo năm (để soạn giáo án)
+# PHẦN II: BẢNG ÁNH XẠ (Tên gọi khác → Môn trong danh sách chính)
+
+| Tên gọi ở trường | → Môn tương ứng (ID) |
+|------------------|----------------------|
+| Toán cao cấp 1 | **A3** (Đại số tuyến tính) |
+| Đại số tuyến tính | **A3** |
+| Đại số tuyến tính nâng cao | **A3** (phần trị riêng, dạng toàn phương) hoặc mở rộng A3 |
+| Toán cao cấp 2 | **G2** (Giải tích 2) |
+| Giải tích 1 | **G1** |
+| Giải tích 2 | **G2** |
+| Giải tích 3 | **G3** |
+| Cơ sở giải tích | **G4** |
+| Đại số (cơ sở) | **A1** |
+| Đại số cơ sở | **A1** |
+| Đại số đại cương | **A1** (năm 1) hoặc **A4** (năm 3, vành môđun) |
+| Xác suất 1 | **X1** |
+| Xác suất 2 | **X2** |
+| Thống kê toán | **X2** |
+| Giải tích hàm | **G7** |
+| Giải tích hàm nâng cao | **G7** (phần nâng cao) |
+| Lý thuyết độ đo và tích phân | **G5** |
+| Xác suất và độ đo | **X4** (phần xác suất) + **G5** (phần độ đo) |
+| Phương trình đạo hàm riêng (cơ bản) | **P2** |
+| Phương trình đạo hàm riêng (nâng cao) | **P2** (phần nâng cao) |
+| Giải tích số | **T3** (Phương pháp số) |
+
+---
+
+# PHẦN III: LỘ TRÌNH THEO NĂM (Tham chiếu ID)
 
 ## Năm 1
-1. Toán cao cấp 1 (Đại số tuyến tính)  
-2. Giải tích 1  
-3. Đại số (cơ sở) – Toán A  
-4. Toán kinh tế 1 – Kinh tế  
-5. Toán cao cấp 2 (Giải tích một biến)  
-6. Giải tích 2  
-7. Hình học giải tích  
-8. Đại số tuyến tính (nâng cao) – Toán A  
-9. Toán kinh tế 2 – Kinh tế  
+
+| HK | Môn | ID |
+|----|-----|-----|
+| 1 | Đại số đại cương (cơ sở) | A1 |
+| 1 | Đại số sơ cấp | A2 |
+| 1 | Toán cao cấp 1 (Đại số tuyến tính) | A3 |
+| 1 | Giải tích 1 | G1 |
+| 1 | Toán kinh tế 1 | K1 |
+| 1 | Toán cho khoa học xã hội | O1 |
+| 2 | Toán cao cấp 2 (Giải tích một biến) | G2 |
+| 2 | Giải tích 2 | G2 |
+| 2 | Hình học giải tích | H1 |
+| 2 | Đại số tuyến tính (nâng cao) * | A3 |
+| 2 | Toán kinh tế 2 | K2 |
+
+\* Nếu trường tách: soạn thêm phần nâng cao của A3. Nếu gộp vào TCC1: không soạn lại.
 
 ## Năm 2
-10. Giải tích 3 (hàm nhiều biến)  
-11. Phương trình vi phân  
-12. Cơ sở giải tích – Toán A  
-13. Xác suất 1  
-14. Toán rời rạc  
-15. Toán kinh tế 3 – Kinh tế  
-16. Xác suất 2 / Thống kê toán  
-17. Thống kê ứng dụng  
-18. Đại số tuyến tính nâng cao – Toán A  
-19. Phương trình đạo hàm riêng (cơ bản)  
-20. Phương pháp số / Giải tích số  
-21. Quy hoạch tuyến tính  
+
+| HK | Môn | ID |
+|----|-----|-----|
+| 1 | Giải tích 3 | G3 |
+| 1 | Phương trình vi phân | P1 |
+| 1 | Cơ sở giải tích | G4 |
+| 1 | Xác suất 1 | X1 |
+| 1 | Toán rời rạc | R1 |
+| 1 | Toán kinh tế 3 | K3 |
+| 2 | Xác suất 2 / Thống kê toán | X2 |
+| 2 | Thống kê ứng dụng | X3 |
+| 2 | Đại số tuyến tính nâng cao * | A3 |
+| 2 | Phương trình đạo hàm riêng | P2 |
+| 2 | Phương pháp số | T3 |
+| 2 | Quy hoạch tuyến tính | T1 |
+
+\* Trùng A3: dùng tài liệu đã soạn, chỉ bổ sung nếu thiếu.
 
 ## Năm 3
-22. Xác suất và độ đo – Toán A  
-23. Giải tích hàm – Toán A  
-24. Tôpô – Toán A  
-25. Đại số đại cương – Toán A  
-26. Lý thuyết số – Toán A  
-27. Hình học vi phân – Toán A  
-28. Kinh tế lượng – Kinh tế  
-29. Thống kê đa biến  
-30. Toán tài chính – Tài chính  
-31. Phương trình đạo hàm riêng (nâng cao)  
-32. Giải tích phức – Toán A  
-33. Lý thuyết độ đo và tích phân – Toán A  
-34. Tối ưu / Quy hoạch phi tuyến  
-35. Toán rời rạc nâng cao  
-36. Xác suất thống kê nâng cao  
-37. Toán bảo hiểm – Bảo hiểm  
-38. Toán y sinh / Thống kê sinh học – Y, Dược  
+
+| HK | Môn | ID |
+|----|-----|-----|
+| 1 | Xác suất và độ đo | X4, G5 |
+| 1 | Giải tích hàm | G7 |
+| 1 | Tôpô | O2 |
+| 1 | Đại số đại cương (vành, môđun) | A4 |
+| 1 | Lý thuyết số | R3 |
+| 1 | Hình học vi phân | H2 |
+| 1 | Kinh tế lượng | K4 |
+| 1 | Thống kê đa biến | X6 |
+| 1 | Toán tài chính | K5 |
+| 2 | Phương trình đạo hàm riêng (nâng cao) | P2 |
+| 2 | Giải tích phức | G6 |
+| 2 | Lý thuyết độ đo và tích phân | G5 |
+| 2 | Tối ưu | T2 |
+| 2 | Toán rời rạc nâng cao | R2 |
+| 2 | Xác suất thống kê nâng cao | X5 |
+| 2 | Toán bảo hiểm | K7 |
+| 2 | Toán y sinh | K8 |
 
 ## Năm 4
-39. Giải tích hàm nâng cao – Toán A  
-40. Hình học đại số – Toán A  
-41. Lý thuyết nhóm – Toán A  
-42. Phương trình vi phân nâng cao  
-43. Quá trình ngẫu nhiên  
-44. Thống kê Bayes  
-45. Học máy – nền tảng toán  
-46. Toán tài chính định lượng  
-47. Phương pháp phần tử hữu hạn  
-48. Điều khiển tối ưu  
-49. Lý thuyết mật mã  
-50. Toán học tính toán  
+
+| HK | Môn | ID |
+|----|-----|-----|
+| 1 | Giải tích hàm nâng cao | G7 |
+| 1 | Hình học đại số | H3 |
+| 1 | Lý thuyết nhóm | A5 |
+| 1 | Phương trình vi phân nâng cao | O4 |
+| 1 | Quá trình ngẫu nhiên | X8 |
+| 1 | Thống kê Bayes | X7 |
+| 2 | Học máy | O3 |
+| 2 | Toán tài chính định lượng | K6 |
+| 2 | Phương pháp phần tử hữu hạn | T4 |
+| 2 | Điều khiển tối ưu | T5 |
+| 2 | Lý thuyết mật mã | R4 |
+| 2 | Toán học tính toán | R5 |
 
 ---
 
-# Sơ đồ phụ thuộc (thứ tự học gợi ý)
+# Nguyên tắc soạn giáo án (không lặp)
 
-```
-Năm 1:
-  Toán cao cấp 1 (Đại số tuyến tính) ─┬─► Giải tích 1 ─► Giải tích 2
-                                       │
-                                       └─► Hình học giải tích
-
-Năm 2:
-  Giải tích 2 ─► Giải tích 3 (nhiều biến) ─► Phương trình vi phân
-  Giải tích 2 ─► Phương trình đạo hàm riêng
-  Toán cao cấp 1 ─► Quy hoạch tuyến tính
-  Giải tích 1 ─► Xác suất 1 ─► Xác suất 2 / Thống kê
-  Toán rời rạc (có thể học song song)
-
-Năm 3–4:
-  Các môn chuyên ngành dựa trên nền tảng năm 1–2
-```
+1. **Mỗi ID = một bộ tài liệu**. Soạn xong A3 (Đại số tuyến tính) là xong cho cả TCC1, ĐSTT, ĐSTT nâng cao.
+2. **Kiểm tra ID trước khi soạn**. Nếu môn mới trùng ID → dùng/chỉnh sửa tài liệu cũ, không tạo mới.
+3. **Phần nâng cao**: Nếu môn có "(nâng cao)" và trùng ID, thêm chương/phần vào tài liệu gốc thay vì tạo file mới.
 
 ---
 
-*Tài liệu tham khảo từ chương trình các trường ĐH Khoa học Tự nhiên, ĐH Bách khoa, ĐH Kinh tế, và khung chương trình Bộ Giáo dục và Đào tạo. Cần kiểm tra lại với từng trường cụ thể.*
+*Tham khảo chương trình ĐH Khoa học Tự nhiên, ĐH Bách khoa, ĐH Kinh tế. Kiểm tra lại với từng trường cụ thể.*
