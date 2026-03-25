@@ -422,7 +422,7 @@ DẠNG 10: GIA TỐC
 - Biến cố xung khắc: AB = ∅.
 - Biến cố đối: P (A') = 1 − P(A)
 - Quy tắc cộng (biến cố xung khắc): P (A ∪ B) = P(A) + P(B).
-- Quy tắc cộng (tổng quát): P(A ∪ B) = P(A) + P(B) + P(AB)
+- Quy tắc cộng (tổng quát): P(A ∪ B) = P(A) + P(B) - P(AB)
 - Nếu A, B độc lập: P(AB) = P(A) . P(B)
 
 #### Biến ngẫu nhiên rời rạc
