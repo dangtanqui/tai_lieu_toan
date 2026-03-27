@@ -1,0 +1,343 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Hình học Vectơ 3D}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 9: HÌNH HỌC};
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {VECTƠ 3D};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-11cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=-15] at ([xshift=-3cm, yshift=4cm]current page.center) {$\vec{v}$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 9: HÌNH HỌC VECTƠ 3D}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 9: HÌNH HỌC VECTƠ 3D
+%% ================================================================
+\section{Hình học Vectơ 3D}
+
+%% ----------------------------------------------------------------
+%%  9.1 Dot Product và Cross Product
+%% ----------------------------------------------------------------
+\subsection{Tích vô hướng (Dot Product) và Tích có hướng (Cross Product)}
+
+\begin{congthuc}[title={Tích vô hướng (Dot Product)}]
+  Cho $\vec{a} = (a_1, a_2, a_3)$ và $\vec{b} = (b_1, b_2, b_3)$:
+  \[
+    \vec{a} \cdot \vec{b} = a_1 b_1 + a_2 b_2 + a_3 b_3 = |\vec{a}||\vec{b}|\cos\theta,
+  \]
+  trong đó $\theta$ là góc giữa hai vectơ ($0 \le \theta \le \pi$).
+
+  \textbf{Ứng dụng:}
+  \begin{itemize}
+    \item \textbf{Góc giữa hai vectơ:} $\cos\theta = \dfrac{\vec{a}\cdot\vec{b}}{|\vec{a}||\vec{b}|}$.
+    \item \textbf{Vectơ vuông góc:} $\vec{a} \perp \vec{b} \;\Leftrightarrow\; \vec{a}\cdot\vec{b} = 0$.
+    \item \textbf{Hình chiếu:} Hình chiếu của $\vec{b}$ lên $\vec{a}$: $\text{comp}_{\vec{a}} \vec{b} = \dfrac{\vec{a}\cdot\vec{b}}{|\vec{a}|}$, $\;\text{proj}_{\vec{a}}\vec{b} = \dfrac{\vec{a}\cdot\vec{b}}{|\vec{a}|^2}\vec{a}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Tích có hướng (Cross Product)}]
+  \[
+    \vec{a} \times \vec{b} = \begin{vmatrix}\vec{i} & \vec{j} & \vec{k} \\ a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3\end{vmatrix} = (a_2 b_3 - a_3 b_2,\; a_3 b_1 - a_1 b_3,\; a_1 b_2 - a_2 b_1).
+  \]
+
+  \textbf{Tính chất quan trọng:}
+  \begin{itemize}
+    \item $\vec{a} \times \vec{b}$ vuông góc với cả $\vec{a}$ và $\vec{b}$.
+    \item $|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta$.
+    \item $\vec{a} \times \vec{b} = -(\vec{b} \times \vec{a})$ (phản giao hoán).
+    \item $\vec{a} \parallel \vec{b} \;\Leftrightarrow\; \vec{a} \times \vec{b} = \vec{0}$.
+    \item \textbf{Diện tích hình bình hành:} $S = |\vec{a} \times \vec{b}|$.
+    \item \textbf{Diện tích tam giác:} $S = \dfrac{1}{2}|\vec{a} \times \vec{b}|$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Tích hỗn tạp (Scalar Triple Product)}]
+  \[
+    \vec{a} \cdot (\vec{b} \times \vec{c}) = \begin{vmatrix}a_1 & a_2 & a_3 \\ b_1 & b_2 & b_3 \\ c_1 & c_2 & c_3\end{vmatrix}.
+  \]
+  \textbf{Ứng dụng:}
+  \begin{itemize}
+    \item \textbf{Thể tích hình hộp:} $V = |\vec{a} \cdot (\vec{b} \times \vec{c})|$.
+    \item \textbf{Thể tích tứ diện} $ABCD$: $V = \dfrac{1}{6}|\overrightarrow{AB} \cdot (\overrightarrow{AC} \times \overrightarrow{AD})|$.
+    \item \textbf{Ba vectơ đồng phẳng} $\Leftrightarrow$ tích hỗn tạp $= 0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Cho $\vec{a} = (1, 2, 3)$ và $\vec{b} = (4, 5, 6)$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Tính $\vec{a}\cdot\vec{b}$ và góc giữa $\vec{a}$, $\vec{b}$.
+    \item Tính $\vec{a}\times\vec{b}$ và diện tích hình bình hành.
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\vec{a}\cdot\vec{b} = 4 + 10 + 18 = 32$. $|\vec{a}| = \sqrt{14}$, $|\vec{b}| = \sqrt{77}$.
+      $\cos\theta = \dfrac{32}{\sqrt{14}\sqrt{77}} = \dfrac{32}{\sqrt{1078}}$.
+
+    \item $\vec{a}\times\vec{b} = \begin{vmatrix}\vec{i}&\vec{j}&\vec{k}\\1&2&3\\4&5&6\end{vmatrix} = (12-15, 12-6, 5-8) = (-3, 6, -3)$.
+
+      $|\vec{a}\times\vec{b}| = \sqrt{9+36+9} = \sqrt{54} = 3\sqrt{6}$. Diện tích HBH $= 3\sqrt{6}$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  9.2 Phương trình đường thẳng 3D
+%% ----------------------------------------------------------------
+\subsection{Phương trình đường thẳng trong không gian 3D}
+
+\begin{dinhnghia}[title={Phương trình đường thẳng}]
+  Đường thẳng $\ell$ đi qua điểm $P_0(x_0, y_0, z_0)$ với vectơ chỉ phương $\vec{d} = (a, b, c)$:
+
+  \textbf{Dạng tham số:}
+  \[
+    \begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases}, \quad t \in \mathbb{R}.
+  \]
+
+  \textbf{Dạng chính tắc} (nếu $a, b, c \ne 0$):
+  \[
+    \frac{x - x_0}{a} = \frac{y - y_0}{b} = \frac{z - z_0}{c}.
+  \]
+
+  \textbf{Đường thẳng qua hai điểm $A$ và $B$:} $\vec{d} = \overrightarrow{AB} = B - A$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Vị trí tương đối hai đường thẳng}]
+  Cho $\ell_1$ có VTCP $\vec{d}_1$, $\ell_2$ có VTCP $\vec{d}_2$; $M \in \ell_1$, $N \in \ell_2$:
+  \begin{itemize}
+    \item \textbf{Song song:} $\vec{d}_1 \parallel \vec{d}_2$ và $\overrightarrow{MN} \not\parallel \vec{d}_1$.
+    \item \textbf{Trùng nhau:} $\vec{d}_1 \parallel \vec{d}_2$ và $\overrightarrow{MN} \parallel \vec{d}_1$.
+    \item \textbf{Cắt nhau:} $\vec{d}_1 \times \vec{d}_2 \ne \vec{0}$ và $(\vec{d}_1 \times \vec{d}_2) \cdot \overrightarrow{MN} = 0$.
+    \item \textbf{Chéo nhau:} $\vec{d}_1 \times \vec{d}_2 \ne \vec{0}$ và $(\vec{d}_1 \times \vec{d}_2) \cdot \overrightarrow{MN} \ne 0$.
+    \item \textbf{Vuông góc:} $\vec{d}_1 \cdot \vec{d}_2 = 0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Khoảng cách từ điểm đến đường thẳng}]
+  Điểm $Q$ đến đường thẳng $\ell$ qua $P$ có VTCP $\vec{d}$:
+  \[
+    d(Q, \ell) = \frac{|\overrightarrow{PQ} \times \vec{d}|}{|\vec{d}|}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Khoảng cách giữa hai đường thẳng chéo nhau}]
+  Đường thẳng $\ell_1$ qua $M$ có VTCP $\vec{d}_1$; $\ell_2$ qua $N$ có VTCP $\vec{d}_2$:
+  \[
+    d(\ell_1, \ell_2) = \frac{|(\vec{d}_1 \times \vec{d}_2) \cdot \overrightarrow{MN}|}{|\vec{d}_1 \times \vec{d}_2|}.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Viết phương trình đường thẳng qua $A(1,2,3)$ và $B(3,0,1)$. Tính khoảng cách từ $C(0,0,0)$ đến đường thẳng này.
+
+  \medskip\textbf{Giải:}
+  $\vec{d} = \overrightarrow{AB} = (2,-2,-2)$ (hay $(1,-1,-1)$).
+
+  Dạng tham số: $x = 1+t$, $y = 2-t$, $z = 3-t$.
+
+  Dạng chính tắc: $\dfrac{x-1}{1} = \dfrac{y-2}{-1} = \dfrac{z-3}{-1}$.
+
+  Khoảng cách từ $C(0,0,0)$ đến $\ell$ (lấy $P = A(1,2,3)$):
+  $\overrightarrow{AC} = (-1,-2,-3)$, $\vec{d} = (1,-1,-1)$.
+  $\overrightarrow{AC}\times\vec{d} = \begin{vmatrix}\vec{i}&\vec{j}&\vec{k}\\-1&-2&-3\\1&-1&-1\end{vmatrix} = (2-3, -3+1, 1+2) = (-1,-2,3)$.
+  $|\overrightarrow{AC}\times\vec{d}| = \sqrt{1+4+9} = \sqrt{14}$. $|\vec{d}| = \sqrt{3}$.
+  $d = \dfrac{\sqrt{14}}{\sqrt{3}} = \sqrt{\dfrac{14}{3}}$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  9.3 Phương trình mặt phẳng
+%% ----------------------------------------------------------------
+\subsection{Phương trình mặt phẳng: Xác định từ điểm và vectơ pháp tuyến}
+
+\begin{dinhnghia}[title={Phương trình mặt phẳng}]
+  Mặt phẳng $(\alpha)$ qua điểm $P_0(x_0, y_0, z_0)$ với \textbf{vectơ pháp tuyến (VTPT)} $\vec{n} = (A, B, C)$:
+  \[
+    A(x - x_0) + B(y - y_0) + C(z - z_0) = 0 \quad \Leftrightarrow \quad Ax + By + Cz + D = 0,
+  \]
+  với $D = -(Ax_0 + By_0 + Cz_0)$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Viết phương trình mặt phẳng}]
+  \textbf{Biết 1 điểm và VTPT:} Áp dụng trực tiếp công thức.
+
+  \textbf{Biết 3 điểm $A$, $B$, $C$ không thẳng hàng:}
+  \begin{enumerate}
+    \item Lập hai vectơ: $\vec{u} = \overrightarrow{AB}$, $\vec{v} = \overrightarrow{AC}$.
+    \item VTPT: $\vec{n} = \vec{u} \times \vec{v}$.
+    \item Viết phương trình qua $A$ với VTPT $\vec{n}$.
+  \end{enumerate}
+
+  \textbf{Biết 1 điểm và 2 đường thẳng song song / cắt nhau:} Tương tự, lấy $\vec{u}$, $\vec{v}$ là VTCP của hai đường thẳng.
+\end{phuongphap}
+
+\begin{congthuc}[title={Vị trí tương đối hai mặt phẳng}]
+  $(P_1): A_1x+B_1y+C_1z+D_1=0$ và $(P_2): A_2x+B_2y+C_2z+D_2=0$:
+  \begin{itemize}
+    \item \textbf{Song song:} $\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2} \ne \dfrac{D_1}{D_2}$.
+    \item \textbf{Trùng nhau:} $\dfrac{A_1}{A_2}=\dfrac{B_1}{B_2}=\dfrac{C_1}{C_2}=\dfrac{D_1}{D_2}$.
+    \item \textbf{Cắt nhau:} $\vec{n}_1 \times \vec{n}_2 \ne \vec{0}$.
+    \item \textbf{Vuông góc:} $\vec{n}_1 \cdot \vec{n}_2 = A_1A_2+B_1B_2+C_1C_2 = 0$.
+    \item \textbf{Góc giữa hai mặt phẳng:} $\cos\phi = \dfrac{|\vec{n}_1\cdot\vec{n}_2|}{|\vec{n}_1||\vec{n}_2|}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Viết phương trình mặt phẳng qua $A(1,0,0)$, $B(0,2,0)$, $C(0,0,3)$.
+
+  \medskip\textbf{Giải:}
+  $\vec{u} = \overrightarrow{AB} = (-1,2,0)$, $\vec{v} = \overrightarrow{AC} = (-1,0,3)$.
+
+  $\vec{n} = \vec{u}\times\vec{v} = (2\cdot3-0\cdot0,\; 0\cdot(-1)-(-1)\cdot3,\; (-1)\cdot0-2\cdot(-1)) = (6,3,2)$.
+
+  Phương trình qua $A(1,0,0)$: $6(x-1)+3y+2z=0 \Rightarrow 6x+3y+2z=6$.
+
+  Hoặc dạng mặt chắn: $\dfrac{x}{1}+\dfrac{y}{2}+\dfrac{z}{3}=1$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  9.4 Giao điểm và Khoảng cách
+%% ----------------------------------------------------------------
+\subsection{Giao điểm và Khoảng cách: Đường thẳng -- Mặt phẳng, Điểm -- Mặt phẳng}
+
+\begin{congthuc}[title={Khoảng cách từ điểm đến mặt phẳng}]
+  Khoảng cách từ điểm $M(x_0, y_0, z_0)$ đến mặt phẳng $Ax+By+Cz+D=0$:
+  \[
+    d(M,\, \alpha) = \frac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Tìm giao điểm của đường thẳng và mặt phẳng}]
+  \begin{enumerate}
+    \item Viết đường thẳng dạng tham số: $x=x_0+at$, $y=y_0+bt$, $z=z_0+ct$.
+    \item Thế vào phương trình mặt phẳng $A(x_0+at)+B(y_0+bt)+C(z_0+ct)+D=0$.
+    \item Giải tìm $t$.
+    \item Thế $t$ vào phương trình tham số để tìm tọa độ giao điểm.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Tìm giao tuyến của hai mặt phẳng}]
+  Giao tuyến là đường thẳng có:
+  \begin{itemize}
+    \item \textbf{VTCP:} $\vec{d} = \vec{n}_1 \times \vec{n}_2$.
+    \item \textbf{Một điểm:} Giải hệ 2 phương trình của 2 mặt phẳng (cho $x=0$ hoặc $y=0$ hoặc $z=0$ để tìm điểm thuộc giao tuyến).
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hình chiếu và đối xứng}]
+  \textbf{Hình chiếu vuông góc $H$ của điểm $M$ lên mặt phẳng $(\alpha)$:}
+  \begin{enumerate}
+    \item Viết đường thẳng $\ell$ qua $M$, VTCP $= \vec{n}_\alpha$.
+    \item Tìm giao điểm $H$ của $\ell$ và $(\alpha)$.
+  \end{enumerate}
+  \textbf{Điểm đối xứng $M'$:} $M' = 2H - M$.
+
+  \textbf{Hình chiếu vuông góc $H$ của điểm $M$ lên đường thẳng $\ell$:}
+  \begin{enumerate}
+    \item Viết $H = P + t\vec{d}$ ($P \in \ell$).
+    \item Điều kiện: $\overrightarrow{MH} \perp \vec{d} \Rightarrow \overrightarrow{MH}\cdot\vec{d} = 0$. Giải tìm $t$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm khoảng cách từ $M(1,1,1)$ đến mặt phẳng $2x - y + 2z - 3 = 0$.
+
+  \medskip\textbf{Giải:}
+  $d = \dfrac{|2(1)-1(1)+2(1)-3|}{\sqrt{4+1+4}} = \dfrac{|2-1+2-3|}{\sqrt{9}} = \dfrac{|0|}{3} = 0$.
+
+  Vậy $M$ nằm trên mặt phẳng.
+\end{vidu}
+
+\begin{vidu}
+  Tìm giao điểm của đường thẳng $\dfrac{x-1}{1}=\dfrac{y-2}{-1}=\dfrac{z-3}{2}$ với mặt phẳng $x+y+z=6$.
+
+  \medskip\textbf{Giải:}
+  Dạng tham số: $x=1+t$, $y=2-t$, $z=3+2t$.
+
+  Thế vào MP: $(1+t)+(2-t)+(3+2t)=6 \Rightarrow 6+2t=6 \Rightarrow t=0$.
+
+  Giao điểm: $(1,2,3)$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính dot product, cross product; tìm góc giữa vectơ.
+  \item Tính diện tích tam giác, hình bình hành; thể tích tứ diện.
+  \item Viết phương trình đường thẳng 3D (qua 2 điểm, song song, vuông góc).
+  \item Viết phương trình mặt phẳng (1 điểm + VTPT, 3 điểm, chứa đường thẳng).
+  \item Xác định vị trí tương đối (song song, cắt nhau, chéo nhau, vuông góc).
+  \item Tính khoảng cách (điểm -- mặt phẳng, điểm -- đường thẳng, hai đường chéo nhau).
+  \item Tìm hình chiếu và điểm đối xứng qua mặt phẳng, đường thẳng.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,336 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Số phức}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{30}{36}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 7: SỐ PHỨC};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-9.5cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.12, font=\fontsize{100}{100}\selectfont, rotate=-15] at ([xshift=-3cm, yshift=4cm]current page.center) {$i$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 7: SỐ PHỨC}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 7: SỐ PHỨC
+%% ================================================================
+\section{Số phức}
+
+%% ----------------------------------------------------------------
+%%  7.1 Số ảo và số phức
+%% ----------------------------------------------------------------
+\subsection{Số ảo và số phức}
+
+\begin{dinhnghia}[title={Đơn vị ảo}]
+  \textbf{Đơn vị ảo} $i$ được định nghĩa bởi:
+  \[
+    i = \sqrt{-1}, \qquad i^2 = -1.
+  \]
+  Lũy thừa của $i$ tuần hoàn theo chu kỳ 4:
+  \[
+    i^1 = i, \quad i^2 = -1, \quad i^3 = -i, \quad i^4 = 1, \quad i^5 = i, \quad \ldots
+  \]
+  Tổng quát: $i^n = i^{n \bmod 4}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Số phức}]
+  \textbf{Số phức} là số có dạng:
+  \[
+    z = a + bi, \quad a, b \in \mathbb{R},
+  \]
+  trong đó $a = \text{Re}(z)$ là \textbf{phần thực} và $b = \text{Im}(z)$ là \textbf{phần ảo}.
+
+  \begin{itemize}
+    \item $b = 0$: $z = a$ là số thực.
+    \item $a = 0$: $z = bi$ là \textbf{số thuần ảo}.
+    \item $a = b = 0$: $z = 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phép toán trên số phức dạng $a + bi$}]
+  Cho $z_1 = a + bi$ và $z_2 = c + di$:
+  \begin{itemize}
+    \item \textbf{Cộng/Trừ:} $z_1 \pm z_2 = (a \pm c) + (b \pm d)i$.
+    \item \textbf{Nhân:} $z_1 z_2 = (ac - bd) + (ad + bc)i$.
+    \item \textbf{Số phức liên hợp:} $\bar{z} = a - bi$.
+    \item \textbf{Mô-đun:} $|z| = \sqrt{a^2 + b^2}$.
+    \item \textbf{Chia:} $\dfrac{z_1}{z_2} = \dfrac{z_1 \bar{z_2}}{|z_2|^2} = \dfrac{(ac+bd) + (bc-ad)i}{c^2+d^2}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $z \cdot \bar{z} = |z|^2 = a^2 + b^2$.
+    \item $\overline{z_1 + z_2} = \bar{z_1} + \bar{z_2}$; $\overline{z_1 z_2} = \bar{z_1}\bar{z_2}$.
+    \item $|z_1 z_2| = |z_1||z_2|$; $|z_1 + z_2| \le |z_1| + |z_2|$ (bất đẳng thức tam giác).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Tính $(3 + 4i)(1 - 2i)$ và $\dfrac{2+3i}{1-i}$.
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $(3+4i)(1-2i) = 3 - 6i + 4i - 8i^2 = 3 - 2i + 8 = 11 - 2i$.
+    \item $\dfrac{2+3i}{1-i} = \dfrac{(2+3i)(1+i)}{(1-i)(1+i)} = \dfrac{2+2i+3i+3i^2}{1+1} = \dfrac{2+5i-3}{2} = \dfrac{-1+5i}{2} = -\dfrac{1}{2} + \dfrac{5}{2}i$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  7.2 Các dạng biểu diễn
+%% ----------------------------------------------------------------
+\subsection{Các dạng biểu diễn: Dạng đại số, dạng lượng giác và dạng mũ Euler}
+
+\begin{dinhnghia}[title={Dạng lượng giác (Trigonometric Form)}]
+  Số phức $z = a + bi$ có thể viết dưới dạng:
+  \[
+    z = r(\cos\theta + i\sin\theta),
+  \]
+  trong đó:
+  \begin{itemize}
+    \item $r = |z| = \sqrt{a^2 + b^2}$ là \textbf{mô-đun (modulus)}.
+    \item $\theta = \arg(z) = \arctan\!\left(\dfrac{b}{a}\right)$ là \textbf{argumen (argument)} -- góc mà véc-tơ $(a,b)$ tạo với trục dương thực.
+  \end{itemize}
+  Chú ý: $\theta$ xác định đến bội số của $2\pi$. Giá trị $\theta \in (-\pi, \pi]$ gọi là argumen chính.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Công thức Euler và dạng mũ}]
+  \textbf{Công thức Euler:}
+  \[
+    e^{i\theta} = \cos\theta + i\sin\theta.
+  \]
+  Vì vậy: $z = r e^{i\theta}$ (\textbf{dạng mũ}).
+
+  \textbf{Hệ quả đặc biệt (Đẳng thức Euler):}
+  \[
+    e^{i\pi} + 1 = 0.
+  \]
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Chuyển đổi giữa các dạng biểu diễn}]
+  \textbf{Từ dạng đại số sang lượng giác:}
+  \begin{enumerate}
+    \item Tính $r = \sqrt{a^2 + b^2}$.
+    \item Tính $\theta$: dùng $\cos\theta = \dfrac{a}{r}$, $\sin\theta = \dfrac{b}{r}$ (chú ý góc phần tư).
+  \end{enumerate}
+
+  \textbf{Từ dạng lượng giác sang đại số:}
+  \begin{enumerate}
+    \item $a = r\cos\theta$, $b = r\sin\theta$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{congthuc}[title={Nhân và chia dưới dạng lượng giác}]
+  Cho $z_1 = r_1(\cos\theta_1 + i\sin\theta_1)$ và $z_2 = r_2(\cos\theta_2 + i\sin\theta_2)$:
+  \begin{itemize}
+    \item \textbf{Nhân:} $z_1 z_2 = r_1 r_2 \bigl[\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)\bigr]$.
+    \item \textbf{Chia:} $\dfrac{z_1}{z_2} = \dfrac{r_1}{r_2}\bigl[\cos(\theta_1 - \theta_2) + i\sin(\theta_1 - \theta_2)\bigr]$.
+  \end{itemize}
+  \textbf{Quy tắc nhớ:} Nhân mô-đun, cộng argumen; chia mô-đun, trừ argumen.
+\end{congthuc}
+
+\begin{vidu}
+  Biểu diễn $z = -1 + i\sqrt{3}$ dưới dạng lượng giác và dạng mũ.
+
+  \medskip\textbf{Giải:}
+  $r = \sqrt{(-1)^2 + (\sqrt{3})^2} = \sqrt{4} = 2$.
+
+  $\cos\theta = \dfrac{-1}{2}$, $\sin\theta = \dfrac{\sqrt{3}}{2} \Rightarrow \theta = \dfrac{2\pi}{3}$ (góc phần tư II).
+
+  Dạng lượng giác: $z = 2\!\left(\cos\dfrac{2\pi}{3} + i\sin\dfrac{2\pi}{3}\right)$.
+
+  Dạng mũ: $z = 2e^{i\cdot 2\pi/3}$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  7.3 Mặt phẳng Argand và quỹ tích
+%% ----------------------------------------------------------------
+\subsection{Mặt phẳng Argand: Biểu diễn số phức và Quỹ tích (Loci)}
+
+\begin{dinhnghia}[title={Mặt phẳng Argand (Argand Diagram)}]
+  Số phức $z = a + bi$ được biểu diễn bởi điểm $(a, b)$ hoặc véc-tơ $\overrightarrow{OZ}$ trong mặt phẳng $Oxy$:
+  \begin{itemize}
+    \item \textbf{Trục thực} ($Ox$): biểu diễn phần thực $\text{Re}(z)$.
+    \item \textbf{Trục ảo} ($Oy$): biểu diễn phần ảo $\text{Im}(z)$.
+  \end{itemize}
+  Mặt phẳng này gọi là \textbf{mặt phẳng phức} hay \textbf{mặt phẳng Argand}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tìm quỹ tích điểm thỏa điều kiện}]
+  Quỹ tích (Loci) là tập hợp tất cả các điểm $z$ trong mặt phẳng Argand thỏa mãn điều kiện cho trước.
+
+  \textbf{Các dạng quỹ tích phổ biến:}
+  \begin{enumerate}
+    \item $|z - z_1| = r$: đường tròn tâm $z_1$, bán kính $r$.
+    \item $|z - z_1| = |z - z_2|$: đường trung trực của đoạn $z_1 z_2$.
+    \item $\arg(z - z_1) = \theta$: tia từ $z_1$ tạo góc $\theta$ với trục thực dương.
+    \item $|z - z_1| + |z - z_2| = c$ (với $c > |z_1 - z_2|$): elip hai tiêu điểm $z_1$, $z_2$.
+    \item $|z - z_1| \le r$: hình tròn (đĩa).
+    \item $\text{Re}(z) = k$: đường thẳng thẳng đứng $x = k$.
+    \item $\text{Im}(z) = k$: đường thẳng nằm ngang $y = k$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm và vẽ quỹ tích của $z$ thỏa mãn:
+  \begin{enumerate}[label=(\alph*)]
+    \item $|z - 2 - i| = 3$
+    \item $|z - 1| = |z + 3|$
+    \item $\arg(z - 1) = \dfrac{\pi}{4}$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item Đường tròn tâm $(2, 1)$, bán kính $3$: $(x-2)^2 + (y-1)^2 = 9$.
+    \item Đường trung trực của đoạn từ $1$ đến $-3$ (trên trục thực): $\text{Re}(z) = \dfrac{1+(-3)}{2} = -1$, tức đường thẳng $x = -1$.
+    \item Tia xuất phát từ điểm $z = 1$ (tức $(1,0)$), hướng lên $45°$, tức $y = x - 1$ với $x > 1$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  7.4 Định lý De Moivre
+%% ----------------------------------------------------------------
+\subsection{Định lý De Moivre: Lũy thừa bậc cao và khai căn bậc $n$}
+
+\begin{dinhly}[title={Định lý De Moivre}]
+  Với số phức $z = r(\cos\theta + i\sin\theta)$ và số nguyên $n$:
+  \[
+    z^n = r^n(\cos n\theta + i\sin n\theta).
+  \]
+  Hoặc dưới dạng mũ: $(re^{i\theta})^n = r^n e^{in\theta}$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Tính lũy thừa bậc cao}]
+  \begin{enumerate}
+    \item Chuyển $z$ về dạng lượng giác: $z = r(\cos\theta + i\sin\theta)$.
+    \item Áp dụng De Moivre: $z^n = r^n(\cos n\theta + i\sin n\theta)$.
+    \item Tính giá trị lượng giác và chuyển về dạng đại số.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{congthuc}[title={Khai căn bậc $n$ của số phức}]
+  Căn bậc $n$ của $z = r(\cos\theta + i\sin\theta)$: có đúng $n$ giá trị khác nhau:
+  \[
+    z_k = \sqrt[n]{r}\left(\cos\frac{\theta + 2k\pi}{n} + i\sin\frac{\theta + 2k\pi}{n}\right), \quad k = 0, 1, 2, \ldots, n-1.
+  \]
+  Các căn này phân bố đều trên đường tròn bán kính $\sqrt[n]{r}$, cách nhau góc $\dfrac{2\pi}{n}$.
+\end{congthuc}
+
+\begin{vidu}
+  Tính $(1 + i)^8$.
+
+  \medskip\textbf{Giải:}
+  $1 + i = \sqrt{2}\!\left(\cos\dfrac{\pi}{4} + i\sin\dfrac{\pi}{4}\right)$.
+
+  $(1+i)^8 = (\sqrt{2})^8\!\left(\cos\dfrac{8\pi}{4} + i\sin\dfrac{8\pi}{4}\right) = 16(\cos 2\pi + i\sin 2\pi) = 16$.
+\end{vidu}
+
+\begin{vidu}
+  Tìm tất cả căn bậc 3 của $-8$.
+
+  \medskip\textbf{Giải:}
+  $-8 = 8(\cos\pi + i\sin\pi)$, $r = 8$, $\theta = \pi$.
+
+  $\sqrt[3]{8} = 2$. Ba căn bậc 3:
+  \begin{align*}
+    z_0 &= 2\!\left(\cos\dfrac{\pi}{3} + i\sin\dfrac{\pi}{3}\right) = 2\!\left(\dfrac{1}{2} + i\dfrac{\sqrt{3}}{2}\right) = 1 + i\sqrt{3}. \\
+    z_1 &= 2\!\left(\cos\pi + i\sin\pi\right) = -2. \\
+    z_2 &= 2\!\left(\cos\dfrac{5\pi}{3} + i\sin\dfrac{5\pi}{3}\right) = 2\!\left(\dfrac{1}{2} - i\dfrac{\sqrt{3}}{2}\right) = 1 - i\sqrt{3}.
+  \end{align*}
+\end{vidu}
+
+\begin{vidu}[title={Ứng dụng De Moivre: Chứng minh đẳng thức lượng giác}]
+  Chứng minh $\cos 3\theta = 4\cos^3\theta - 3\cos\theta$.
+
+  \medskip\textbf{Giải:}
+  $(\cos\theta + i\sin\theta)^3 = \cos 3\theta + i\sin 3\theta$.
+
+  Khai triển vế trái bằng nhị thức:
+  \[
+    \cos^3\theta + 3i\cos^2\theta\sin\theta - 3\cos\theta\sin^2\theta - i\sin^3\theta.
+  \]
+  So sánh phần thực: $\cos 3\theta = \cos^3\theta - 3\cos\theta\sin^2\theta = \cos^3\theta - 3\cos\theta(1-\cos^2\theta) = 4\cos^3\theta - 3\cos\theta$. $\square$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Phép tính cộng, trừ, nhân, chia số phức dạng $a + bi$.
+  \item Chuyển đổi giữa dạng đại số và dạng lượng giác/mũ.
+  \item Tìm mô-đun và argumen của số phức.
+  \item Tính lũy thừa bậc cao bằng De Moivre.
+  \item Tìm các căn bậc $n$ của số phức.
+  \item Tìm quỹ tích điểm $z$ thỏa điều kiện cho trước.
+  \item Giải phương trình phức.
+  \item Chứng minh đẳng thức lượng giác bằng số phức.
+\end{enumerate}
+
+\end{document}

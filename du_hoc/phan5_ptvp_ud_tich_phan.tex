@@ -1,0 +1,326 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{PTVP \& Ứng dụng Tích phân}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 5: PHƯƠNG TRÌNH};
+  \node[anchor=west, white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {VI PHÂN \& ỨNG DỤNG TÍCH PHÂN};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-11cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=-15] at ([xshift=-3cm, yshift=4cm]current page.center) {$\dfrac{dy}{dx}$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 5: PHƯƠNG TRÌNH VI PHÂN \& ỨNG DỤNG TÍCH PHÂN}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 5
+%% ================================================================
+\section{Phương trình vi phân và Ứng dụng Tích phân}
+
+%% ----------------------------------------------------------------
+%%  5.1 Trường hướng (Slope Fields)
+%% ----------------------------------------------------------------
+\subsection{Trường hướng (Slope Fields)}
+
+\begin{dinhnghia}[title={Phương trình vi phân bậc nhất}]
+  Một \textbf{phương trình vi phân (PTVP) bậc nhất} có dạng:
+  \[
+    \frac{dy}{dx} = F(x, y).
+  \]
+  Nghiệm của PTVP là hàm $y = f(x)$ thỏa mãn phương trình trên.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Trường hướng (Slope Field / Direction Field)}]
+  \textbf{Trường hướng} của PTVP $\dfrac{dy}{dx} = F(x, y)$ là tập hợp các đoạn thẳng ngắn có hệ số góc $F(x_0, y_0)$ tại mỗi điểm $(x_0, y_0)$ trong mặt phẳng. Nó mô tả \textbf{hướng} mà nghiệm phải đi qua mỗi điểm.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Đọc và vẽ trường hướng}]
+  \begin{enumerate}
+    \item Với mỗi điểm $(x_0, y_0)$ trong miền, tính $\dfrac{dy}{dx} = F(x_0, y_0)$.
+    \item Vẽ đoạn thẳng ngắn có hệ số góc bằng giá trị đó tại điểm tương ứng.
+    \item \textbf{Đường đẳng hướng (isocline):} Tập hợp các điểm có cùng hệ số góc $k$, tức $F(x, y) = k$.
+    \item Đường cong nghiệm là những đường \textbf{tiếp xúc} (song song hoàn hảo) với trường hướng.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Phác họa trường hướng của $\dfrac{dy}{dx} = x - y$ và nhận xét dạng nghiệm.
+
+  \medskip\textbf{Giải:}
+  \begin{itemize}
+    \item Tại $(0,0)$: hệ số góc $= 0$. \quad Tại $(1,0)$: hệ số góc $= 1$. \quad Tại $(0,1)$: hệ số góc $= -1$.
+    \item Đường đẳng hướng $k=0$: $x - y = 0 \Rightarrow y = x$ (đường thẳng nghiêng $45°$).
+    \item Quan sát trường hướng: nghiệm có xu hướng tiến về đường thẳng $y = x - 1$ (nghiệm cụ thể).
+  \end{itemize}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  5.2 Phương trình vi phân tách biến
+%% ----------------------------------------------------------------
+\subsection{Giải phương trình vi phân tách biến (Separable Differential Equations)}
+
+\begin{dinhnghia}[title={PTVP tách biến}]
+  PTVP $\dfrac{dy}{dx} = g(x) h(y)$ được gọi là \textbf{tách biến} vì vế phải là tích của hàm chỉ phụ thuộc $x$ và hàm chỉ phụ thuộc $y$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Giải PTVP tách biến}]
+  \begin{enumerate}
+    \item Tách biến: đưa tất cả $y$ về một phía, tất cả $x$ về phía kia:
+      \[
+        \frac{dy}{h(y)} = g(x)\,dx.
+      \]
+    \item Tích phân hai vế:
+      \[
+        \int \frac{dy}{h(y)} = \int g(x)\,dx + C.
+      \]
+    \item Giải phương trình để tìm $y$ (nếu có thể).
+    \item Nếu có điều kiện ban đầu $y(x_0) = y_0$: thế vào để tìm $C$ (nghiệm đặc biệt).
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Giải PTVP $\dfrac{dy}{dx} = \dfrac{x}{y}$ với điều kiện $y(0) = 2$.
+
+  \medskip\textbf{Giải:}
+  $y\,dy = x\,dx$.
+
+  $\displaystyle\int y\,dy = \int x\,dx \Rightarrow \dfrac{y^2}{2} = \dfrac{x^2}{2} + C_1 \Rightarrow y^2 = x^2 + C$ (với $C = 2C_1$).
+
+  Điều kiện $y(0) = 2$: $4 = 0 + C \Rightarrow C = 4$.
+
+  Nghiệm: $y^2 = x^2 + 4 \Rightarrow y = \sqrt{x^2 + 4}$ (chọn dấu dương vì $y(0) = 2 > 0$).
+\end{vidu}
+
+\begin{vidu}[title={Mô hình tăng trưởng mũ / phân rã mũ}]
+  Giải $\dfrac{dP}{dt} = kP$ (mô hình tăng trưởng Malthus).
+
+  \medskip\textbf{Giải:}
+  $\dfrac{dP}{P} = k\,dt \Rightarrow \ln|P| = kt + C_1 \Rightarrow P = P_0 e^{kt}$ (với $P_0 = P(0)$).
+
+  \begin{itemize}
+    \item $k > 0$: tăng trưởng mũ (vi khuẩn, lãi suất liên tục).
+    \item $k < 0$: phân rã mũ (phóng xạ, làm lạnh).
+  \end{itemize}
+\end{vidu}
+
+\begin{vidu}[title={Phương trình Newton về làm mát}]
+  $\dfrac{dT}{dt} = k(T - T_s)$, trong đó $T_s$ là nhiệt độ môi trường.
+
+  \medskip\textbf{Giải:}
+  Đặt $u = T - T_s$: $\dfrac{du}{dt} = ku \Rightarrow u = u_0 e^{kt} \Rightarrow T(t) = T_s + (T_0 - T_s)e^{kt}$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài toán:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Giải PTVP tách biến tổng quát và tìm nghiệm đặc biệt.
+  \item Bài toán tăng trưởng/phân rã mũ.
+  \item Bài toán Newton làm mát.
+  \item Bài toán logistic: $\dfrac{dP}{dt} = kP\!\left(1 - \dfrac{P}{M}\right)$.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  5.3 Diện tích vùng giữa hai đường cong
+%% ----------------------------------------------------------------
+\subsection{Diện tích vùng nằm giữa hai đường cong}
+
+\begin{congthuc}[title={Diện tích giữa hai đồ thị theo trục $x$}]
+  Cho $f(x) \ge g(x)$ trên $[a, b]$:
+  \[
+    S = \int_a^b [f(x) - g(x)]\,dx.
+  \]
+  Nếu đồ thị giao nhau và không biết hàm nào lớn hơn:
+  \[
+    S = \int_a^b |f(x) - g(x)|\,dx.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Diện tích theo trục $y$ (hàm theo $y$)}]
+  Khi tích phân theo $y$ (với $f(y) \ge g(y)$ trên $[c, d]$):
+  \[
+    S = \int_c^d [f(y) - g(y)]\,dy.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Các bước tính diện tích giữa hai đường cong}]
+  \begin{enumerate}
+    \item Vẽ sơ đồ hai đồ thị.
+    \item Tìm giao điểm: giải $f(x) = g(x)$.
+    \item Xác định hàm nào nằm trên (lớn hơn) trong từng khoảng.
+    \item Tính tích phân.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính diện tích vùng giới hạn bởi $y = x^2$ và $y = 2x - x^2$.
+
+  \medskip\textbf{Giải:}
+  Giao điểm: $x^2 = 2x - x^2 \Rightarrow 2x^2 - 2x = 0 \Rightarrow x = 0$ hoặc $x = 1$.
+
+  Trên $[0,1]$: $2x - x^2 \ge x^2$ (kiểm tra tại $x = 0.5$: $0.75 \ge 0.25$). ✓
+
+  \[
+    S = \int_0^1 \bigl[(2x - x^2) - x^2\bigr]\,dx = \int_0^1 (2x - 2x^2)\,dx
+    = \left[x^2 - \frac{2x^3}{3}\right]_0^1 = 1 - \frac{2}{3} = \frac{1}{3}.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  5.4 Thể tích vật thể tròn xoay (Disk/Washer)
+%% ----------------------------------------------------------------
+\subsection{Thể tích vật thể tròn xoay (Disk and Washer Methods)}
+
+\begin{congthuc}[title={Phương pháp đĩa (Disk Method)}]
+  Quay đồ thị $y = f(x) \ge 0$ trên $[a,b]$ quanh trục $Ox$:
+  \[
+    V = \pi \int_a^b [f(x)]^2\,dx.
+  \]
+  Quay $x = g(y) \ge 0$ trên $[c,d]$ quanh trục $Oy$:
+  \[
+    V = \pi \int_c^d [g(y)]^2\,dy.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Phương pháp vòng đệm (Washer Method)}]
+  Quay vùng giữa $f(x)$ (ngoài) và $g(x)$ (trong), với $f(x) \ge g(x) \ge 0$ trên $[a,b]$, quanh trục $Ox$:
+  \[
+    V = \pi \int_a^b \left\{[f(x)]^2 - [g(x)]^2\right\}\,dx.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Phương pháp vỏ trụ (Shell Method)}]
+  Quay vùng dưới $y = f(x) \ge 0$ trên $[a,b]$ ($a \ge 0$) quanh trục $Oy$:
+  \[
+    V = 2\pi \int_a^b x\,f(x)\,dx.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Tính thể tích khi quay vùng giới hạn bởi $y = \sqrt{x}$ và $y = x$ quanh trục $Ox$.
+
+  \medskip\textbf{Giải:}
+  Giao điểm: $\sqrt{x} = x \Rightarrow x = 0$ hoặc $x = 1$. Trên $[0,1]$: $\sqrt{x} \ge x$.
+
+  Phương pháp Washer (quanh $Ox$):
+  \[
+    V = \pi \int_0^1 \left[(\sqrt{x})^2 - x^2\right]\,dx
+    = \pi \int_0^1 (x - x^2)\,dx
+    = \pi \left[\frac{x^2}{2} - \frac{x^3}{3}\right]_0^1
+    = \pi\left(\frac{1}{2} - \frac{1}{3}\right) = \frac{\pi}{6}.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  5.5 Thể tích vật thể có mặt cắt ngang xác định
+%% ----------------------------------------------------------------
+\subsection{Thể tích vật thể có mặt cắt ngang (Cross-sections) xác định}
+
+\begin{congthuc}[title={Công thức thể tích bằng mặt cắt ngang}]
+  Nếu vật thể có mặt cắt ngang vuông góc với trục $Ox$ là hình phẳng với diện tích $A(x)$, thì:
+  \[
+    V = \int_a^b A(x)\,dx.
+  \]
+\end{congthuc}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Đây là công thức tổng quát nhất; phương pháp Disk/Washer là trường hợp đặc biệt khi mặt cắt là hình tròn/vành khuyên.
+    \item Các dạng mặt cắt phổ biến: hình vuông, hình chữ nhật, nửa đường tròn, tam giác đều.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Vật thể có đáy là vùng giới hạn bởi $y = 1 - x^2$ và $y = 0$. Mặt cắt vuông góc trục $Ox$ là hình vuông. Tính thể tích.
+
+  \medskip\textbf{Giải:}
+  Tại vị trí $x$, chiều dài cạnh hình vuông bằng chiều dài dây cung của parabol: $s = (1-x^2) - 0 = 1 - x^2$.
+
+  Diện tích mặt cắt: $A(x) = s^2 = (1-x^2)^2$.
+
+  \[
+    V = \int_{-1}^1 (1-x^2)^2\,dx = \int_{-1}^1 (1 - 2x^2 + x^4)\,dx
+    = \left[x - \frac{2x^3}{3} + \frac{x^5}{5}\right]_{-1}^1 = 2\left(1 - \frac{2}{3} + \frac{1}{5}\right) = \frac{16}{15}.
+  \]
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp ứng dụng tích phân:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính diện tích vùng giới hạn bởi đường cong và trục tọa độ.
+  \item Tính diện tích vùng giữa hai đường cong (tích phân theo $x$ hoặc $y$).
+  \item Thể tích xoay quanh trục $Ox$ (Disk/Washer method).
+  \item Thể tích xoay quanh trục $Oy$ (Shell method hoặc Washer với biến $y$).
+  \item Thể tích xoay quanh trục song song với trục tọa độ.
+  \item Thể tích vật thể có mặt cắt ngang là hình vuông, tam giác, nửa đường tròn.
+\end{enumerate}
+
+\end{document}

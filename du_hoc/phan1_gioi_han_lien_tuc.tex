@@ -1,0 +1,634 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Giới hạn và Sự liên tục}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{32}{38}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {PHẦN 1: GIỚI HẠN};
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-9.2cm]current page.north west)
+    {VÀ SỰ LIÊN TỤC};
+
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont]
+    at ([xshift=3cm, yshift=-11cm]current page.north west)
+    {Tài liệu luyện thi du học};
+
+  \node[white, opacity=0.12, font=\fontsize{120}{120}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\lim$};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\infty$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+% ==================== TRANG THÔNG TIN BẢN QUYỀN ====================
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 1: GIỚI HẠN VÀ SỰ LIÊN TỤC}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+
+\vspace{2cm}
+
+\begin{tcolorbox}[
+  enhanced, colback=red!3!white, colframe=red!60!black,
+  fonttitle=\bfseries, title={Thông tin bản quyền},
+  boxrule=1.5pt
+]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Tài liệu này là tài sản trí tuệ của tác giả. Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối dưới bất kỳ hình thức nào mà không có sự đồng ý bằng văn bản của tác giả.
+\end{tcolorbox}
+
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+
+% ==================== MỤC LỤC ====================
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 1: GIỚI HẠN VÀ SỰ LIÊN TỤC
+%% ================================================================
+\section{Giới hạn và Sự liên tục}
+
+%% ----------------------------------------------------------------
+%%  1.1 Xác định giới hạn bằng đồ thị và bảng giá trị
+%% ----------------------------------------------------------------
+\subsection{Xác định giới hạn bằng đồ thị và bảng giá trị}
+
+\begin{dinhnghia}[title={Giới hạn của hàm số}]
+  Cho hàm số $f(x)$ xác định trên một khoảng chứa $a$ (hoặc lân cận $a$, không nhất thiết tại $a$). Ta nói \textbf{giới hạn của $f(x)$ khi $x$ tiến đến $a$ bằng $L$}, ký hiệu:
+  \[
+    \lim_{x \to a} f(x) = L,
+  \]
+  nếu $f(x)$ có thể lấy giá trị tuỳ ý gần $L$ khi $x$ đủ gần (nhưng khác) $a$.
+
+  \medskip
+  \textbf{Giới hạn một phía:}
+  \begin{itemize}
+    \item \textbf{Giới hạn trái:} $\displaystyle\lim_{x \to a^-} f(x) = L$ khi $x$ tiến đến $a$ từ phía trái ($x < a$).
+    \item \textbf{Giới hạn phải:} $\displaystyle\lim_{x \to a^+} f(x) = L$ khi $x$ tiến đến $a$ từ phía phải ($x > a$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện tồn tại giới hạn hai phía}]
+  \[
+    \lim_{x \to a} f(x) = L \;\;\Longleftrightarrow\;\; \lim_{x \to a^-} f(x) = \lim_{x \to a^+} f(x) = L.
+  \]
+  Nếu giới hạn trái và giới hạn phải không bằng nhau, thì $\displaystyle\lim_{x \to a} f(x)$ \textbf{không tồn tại}.
+\end{dinhly}
+
+\begin{phuongphap}[title={Đọc giới hạn từ đồ thị}]
+  \begin{enumerate}
+    \item Trên đồ thị $y = f(x)$, khi $x$ tiến đến $a$ từ trái, quan sát $y$ tiến đến giá trị nào $\Rightarrow$ đó là $\displaystyle\lim_{x \to a^-} f(x)$.
+    \item Tương tự từ phía phải $\Rightarrow$ $\displaystyle\lim_{x \to a^+} f(x)$.
+    \item Nếu hai giá trị bằng nhau, đó là giới hạn hai phía.
+    \item \textbf{Lưu ý:} Giá trị $f(a)$ (nếu tồn tại) \textbf{không nhất thiết} bằng giới hạn - điểm trên đồ thị có thể bị ``khoét lỗ'' (hole) hoặc nằm ở vị trí khác.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Đọc giới hạn từ bảng giá trị}]
+  Lập bảng giá trị $f(x)$ với $x$ tiến dần đến $a$ từ hai phía:
+  \[
+    \begin{array}{c|ccccc|ccccc}
+      x & a-0.1 & a-0.01 & a-0.001 & \cdots & a^- & a^+ & \cdots & a + 0.001 & a + 0.01 & a + 0.1 \\
+      \hline
+      f(x) & \cdots & \cdots & \cdots & \cdots & \to L & L \leftarrow & \cdots & \cdots & \cdots & \cdots
+    \end{array}
+  \]
+  Nếu $f(x)$ ổn định dần về $L$ từ cả hai phía thì $\displaystyle\lim_{x \to a} f(x) = L$.
+\end{phuongphap}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Giới hạn \textbf{mô tả xu hướng} của hàm số khi $x$ tiếp cận một điểm, không phải giá trị tại điểm đó.
+    \item Hàm số có thể \textbf{không xác định tại} $a$ nhưng vẫn có giới hạn khi $x \to a$.
+    \item Bảng giá trị chỉ gợi ý (không chứng minh) giá trị giới hạn; cần xác nhận bằng tính toán đại số.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Cho hàm $\displaystyle f(x) = \dfrac{x^2 - 1}{x - 1}$ với $x \ne 1$. Lập bảng giá trị và tìm $\displaystyle\lim_{x \to 1} f(x)$.
+
+  \medskip
+  \textbf{Giải:}
+  \[
+    \begin{array}{c|ccccc|cccc}
+      x & 0.9 & 0.99 & 0.999 & \cdots & \to 1^- & 1^+ \leftarrow & 1.001 & 1.01 & 1.1 \\
+      \hline
+      f(x) & 1.9 & 1.99 & 1.999 & \cdots & \to 2 & 2 \leftarrow & 2.001 & 2.01 & 2.1
+    \end{array}
+  \]
+  Kết luận: $\displaystyle\lim_{x \to 1} \dfrac{x^2 - 1}{x - 1} = 2$ (dù $f(1)$ không xác định).
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Đọc giới hạn một phía và hai phía từ đồ thị cho trước.
+  \item Lập bảng giá trị, ước lượng giới hạn.
+  \item Xác định xem giới hạn có tồn tại hay không dựa trên giới hạn trái và phải.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  1.2 Tính chất của giới hạn và quy tắc tính toán đại số
+%% ----------------------------------------------------------------
+\subsection{Các tính chất của giới hạn và quy tắc tính toán đại số}
+
+\begin{tinhchat}[title={Các quy tắc giới hạn (Limit Laws)}]
+  Giả sử $\displaystyle\lim_{x \to a} f(x) = L$ và $\displaystyle\lim_{x \to a} g(x) = M$ (với $L, M \in \mathbb{R}$). Khi đó:
+  \begin{enumerate}
+    \item \textbf{Tổng / Hiệu:} $\displaystyle\lim_{x \to a} \bigl[f(x) \pm g(x)\bigr] = L \pm M$.
+    \item \textbf{Tích:} $\displaystyle\lim_{x \to a} \bigl[f(x) \cdot g(x)\bigr] = L \cdot M$.
+    \item \textbf{Thương:} $\displaystyle\lim_{x \to a} \dfrac{f(x)}{g(x)} = \dfrac{L}{M}$\; nếu $M \ne 0$.
+    \item \textbf{Hằng số:} $\displaystyle\lim_{x \to a} c = c$ và $\displaystyle\lim_{x \to a} x = a$.
+    \item \textbf{Lũy thừa:} $\displaystyle\lim_{x \to a} \bigl[f(x)\bigr]^n = L^n$ ($n$ là số nguyên dương).
+    \item \textbf{Căn thức:} $\displaystyle\lim_{x \to a} \sqrt[n]{f(x)} = \sqrt[n]{L}$\; (nếu $L \ge 0$ khi $n$ chẵn).
+    \item \textbf{Nhân với hằng số:} $\displaystyle\lim_{x \to a} c \cdot f(x) = c \cdot L$.
+  \end{enumerate}
+\end{tinhchat}
+
+\begin{dinhly}[title={Giới hạn của hàm đa thức và phân thức}]
+  \begin{itemize}
+    \item Với mọi đa thức $p(x)$: $\displaystyle\lim_{x \to a} p(x) = p(a)$ (thế trực tiếp).
+    \item Với hàm phân thức $\dfrac{p(x)}{q(x)}$: nếu $q(a) \ne 0$ thì $\displaystyle\lim_{x \to a} \dfrac{p(x)}{q(x)} = \dfrac{p(a)}{q(a)}$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý kẹp (Squeeze Theorem)}]
+  Nếu $g(x) \le f(x) \le h(x)$ trên một khoảng lân cận $a$ (trừ có thể tại $a$) và
+  \[
+    \lim_{x \to a} g(x) = \lim_{x \to a} h(x) = L,
+  \]
+  thì $\displaystyle\lim_{x \to a} f(x) = L$.
+\end{dinhly}
+
+\begin{congthuc}[title={Giới hạn lượng giác quan trọng}]
+  \[
+    \lim_{x \to 0} \dfrac{\sin x}{x} = 1, \qquad
+    \lim_{x \to 0} \dfrac{1 - \cos x}{x} = 0, \qquad
+    \lim_{x \to 0} \dfrac{\tan x}{x} = 1.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Tính các giới hạn sau:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle\lim_{x \to 3} (2x^2 - 5x + 1)$
+    \item $\displaystyle\lim_{x \to 2} \dfrac{x^2 + 1}{x - 3}$
+    \item $\displaystyle\lim_{x \to 0} x^2 \sin\!\left(\dfrac{1}{x}\right)$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item Thế $x = 3$: $2(9) - 15 + 1 = 4$.
+    \item Thế $x = 2$: $\dfrac{5}{-1} = -5$.
+    \item Dùng định lý kẹp: $-x^2 \le x^2\sin\!\left(\dfrac{1}{x}\right) \le x^2$, vì $\lim_{x\to 0}(-x^2) = \lim_{x\to 0} x^2 = 0$, suy ra giới hạn bằng $0$.
+  \end{enumerate}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính giới hạn bằng cách thế trực tiếp (hàm đa thức, phân thức xác định tại điểm đó).
+  \item Áp dụng các quy tắc giới hạn kết hợp (tổng, tích, thương).
+  \item Áp dụng định lý kẹp để tính giới hạn hàm dao động.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  1.3 Kỹ thuật khử dạng vô định 0/0
+%% ----------------------------------------------------------------
+\subsection{Kỹ thuật khử dạng vô định 0/0: Phân tích nhân tử, nhân liên hợp}
+
+\begin{dinhnghia}[title={Dạng vô định}]
+  Khi tính $\displaystyle\lim_{x \to a} \dfrac{f(x)}{g(x)}$ mà thế trực tiếp cho kết quả $\dfrac{0}{0}$, $\dfrac{\infty}{\infty}$, $0 \cdot \infty$, $\infty - \infty$\ldots, ta gọi đây là \textbf{dạng vô định} (indeterminate form). Cần biến đổi đại số trước khi lấy giới hạn.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kỹ thuật 1: Phân tích nhân tử (Factoring)}]
+  Dùng khi tử và mẫu đều bằng $0$ tại $x = a$, tức $(x - a)$ là nhân tử chung.
+  \begin{enumerate}
+    \item Phân tích tử số và mẫu số thành nhân tử.
+    \item Rút gọn nhân tử $(x-a)$ (hợp lệ vì $x \ne a$ trong quá trình lấy giới hạn).
+    \item Thế trực tiếp vào biểu thức đã rút gọn.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $\displaystyle\lim_{x \to 2} \dfrac{x^2 - 4}{x - 2}$.
+
+  \medskip\textbf{Giải:}
+  \[
+    \lim_{x \to 2} \dfrac{x^2 - 4}{x - 2} = \lim_{x \to 2} \dfrac{(x-2)(x+2)}{x-2} = \lim_{x \to 2} (x + 2) = 4.
+  \]
+\end{vidu}
+
+\begin{phuongphap}[title={Kỹ thuật 2: Nhân liên hợp (Rationalizing)}]
+  Dùng khi biểu thức có chứa căn thức gây ra dạng vô định.
+  \begin{enumerate}
+    \item Nhân tử và mẫu với \textbf{biểu thức liên hợp} của phần chứa căn:
+      \[
+        (\sqrt{A} - \sqrt{B})(\sqrt{A} + \sqrt{B}) = A - B.
+      \]
+    \item Rút gọn và thế trực tiếp.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $\displaystyle\lim_{x \to 9} \dfrac{\sqrt{x} - 3}{x - 9}$.
+
+  \medskip\textbf{Giải:}
+  \[
+    \lim_{x \to 9} \dfrac{\sqrt{x} - 3}{x - 9}
+    = \lim_{x \to 9} \dfrac{(\sqrt{x} - 3)(\sqrt{x} + 3)}{(x - 9)(\sqrt{x} + 3)}
+    = \lim_{x \to 9} \dfrac{x - 9}{(x - 9)(\sqrt{x} + 3)}
+    = \lim_{x \to 9} \dfrac{1}{\sqrt{x} + 3}
+    = \dfrac{1}{6}.
+  \]
+\end{vidu}
+
+\begin{phuongphap}[title={Kỹ thuật 3: Chia cho lũy thừa bậc cao nhất (với $x \to \infty$)}]
+  Dùng khi tính $\displaystyle\lim_{x \to \pm\infty} \dfrac{p(x)}{q(x)}$ dạng $\dfrac{\infty}{\infty}$.
+  \begin{enumerate}
+    \item Chia cả tử và mẫu cho $x^n$, trong đó $n$ là bậc cao nhất của mẫu.
+    \item Áp dụng $\displaystyle\lim_{x \to \infty} \dfrac{c}{x^k} = 0$ với $k > 0$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $\displaystyle\lim_{x \to \infty} \dfrac{3x^2 - 2x + 1}{5x^2 + x - 4}$.
+
+  \medskip\textbf{Giải:}
+  \[
+    \lim_{x \to \infty} \dfrac{3x^2 - 2x + 1}{5x^2 + x - 4}
+    = \lim_{x \to \infty} \dfrac{3 - \dfrac{2}{x} + \dfrac{1}{x^2}}{5 + \dfrac{1}{x} - \dfrac{4}{x^2}}
+    = \dfrac{3 - 0 + 0}{5 + 0 - 0} = \dfrac{3}{5}.
+  \]
+\end{vidu}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Với $\dfrac{p(x)}{q(x)}$ khi $x \to \infty$: so sánh bậc của $p$ và $q$.
+    \item Bậc tử $<$ bậc mẫu $\Rightarrow$ giới hạn bằng $0$.
+    \item Bậc tử $=$ bậc mẫu $\Rightarrow$ giới hạn bằng tỉ số hệ số bậc cao nhất.
+    \item Bậc tử $>$ bậc mẫu $\Rightarrow$ giới hạn bằng $\pm\infty$.
+  \end{itemize}
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính giới hạn dạng $\dfrac{0}{0}$ bằng phân tích nhân tử.
+  \item Tính giới hạn dạng $\dfrac{0}{0}$ có căn thức bằng nhân liên hợp.
+  \item Tính giới hạn khi $x \to \infty$ bằng chia cho lũy thừa bậc cao nhất.
+  \item Tính giới hạn dạng $0 \cdot \infty$ (chuyển về $\dfrac{0}{0}$ hoặc $\dfrac{\infty}{\infty}$).
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  1.4 Giới hạn vô cực và tiệm cận
+%% ----------------------------------------------------------------
+\subsection{Giới hạn vô cực và Tiệm cận đứng/ngang}
+
+\begin{dinhnghia}[title={Giới hạn vô cực}]
+  \begin{itemize}
+    \item Ta nói $\displaystyle\lim_{x \to a} f(x) = +\infty$ nếu $f(x)$ có thể lớn tùy ý khi $x$ đủ gần $a$.
+    \item Ta nói $\displaystyle\lim_{x \to a} f(x) = -\infty$ nếu $f(x)$ có thể nhỏ tùy ý khi $x$ đủ gần $a$.
+    \item Ta nói $\displaystyle\lim_{x \to +\infty} f(x) = L$ nếu $f(x)$ tiến đến $L$ khi $x$ tăng về vô cùng.
+    \item Ta nói $\displaystyle\lim_{x \to -\infty} f(x) = L$ nếu $f(x)$ tiến đến $L$ khi $x$ giảm về vô cùng.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tiệm cận đứng (Vertical Asymptote)}]
+  Đường thẳng $x = a$ là \textbf{tiệm cận đứng} của đồ thị $y = f(x)$ nếu ít nhất một trong các giới hạn sau là $\pm\infty$:
+  \[
+    \lim_{x \to a^-} f(x) = \pm\infty \qquad \text{hoặc} \qquad \lim_{x \to a^+} f(x) = \pm\infty.
+  \]
+  \textbf{Cách tìm:} Tìm các giá trị $x = a$ làm mẫu bằng $0$ mà tử $\ne 0$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tiệm cận ngang (Horizontal Asymptote)}]
+  Đường thẳng $y = L$ là \textbf{tiệm cận ngang} nếu:
+  \[
+    \lim_{x \to +\infty} f(x) = L \qquad \text{hoặc} \qquad \lim_{x \to -\infty} f(x) = L.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các quy tắc tính toán với vô cực}]
+  \begin{align*}
+    &\dfrac{c}{\pm\infty} = 0 \quad (c \in \mathbb{R}), \qquad
+    \dfrac{c}{0^+} = +\infty \quad (c > 0), \qquad
+    \dfrac{c}{0^-} = -\infty \quad (c > 0), \\[4pt]
+    &(+\infty) + (+\infty) = +\infty, \qquad
+    (+\infty) \cdot (+\infty) = +\infty, \qquad
+    c \cdot (+\infty) = +\infty \quad (c > 0).
+  \end{align*}
+
+  \textbf{Các dạng vô định cần chú ý:} $\dfrac{0}{0}$, $\dfrac{\infty}{\infty}$, $0 \cdot \infty$, $\infty - \infty$, $1^\infty$, $0^0$, $\infty^0$.
+\end{congthuc}
+
+\begin{phuongphap}[title={Tìm tiệm cận đứng và ngang}]
+  \textbf{Tiệm cận đứng:}
+  \begin{enumerate}
+    \item Xác định miền xác định; tìm các điểm $x = a$ không thuộc miền xác định (mẫu $= 0$).
+    \item Tính giới hạn một phía tại $x = a$; nếu kết quả là $\pm\infty$ $\Rightarrow$ $x = a$ là TCĐ.
+  \end{enumerate}
+  \textbf{Tiệm cận ngang:}
+  \begin{enumerate}
+    \item Tính $\displaystyle\lim_{x \to +\infty} f(x)$ và $\displaystyle\lim_{x \to -\infty} f(x)$.
+    \item Nếu bằng $L \in \mathbb{R}$ $\Rightarrow$ $y = L$ là TCN.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm tiệm cận của $f(x) = \dfrac{2x^2 + 1}{x^2 - 4}$.
+
+  \medskip\textbf{Giải:}
+  \begin{itemize}
+    \item \textbf{TCĐ:} $x^2 - 4 = 0 \Rightarrow x = \pm 2$. Kiểm tra: $f(x) \to \pm\infty$ khi $x \to \pm 2$. Vậy $x = 2$ và $x = -2$ là TCĐ.
+    \item \textbf{TCN:} $\displaystyle\lim_{x \to \pm\infty} \dfrac{2x^2 + 1}{x^2 - 4} = \lim_{x \to \pm\infty} \dfrac{2 + \dfrac{1}{x^2}}{1 - \dfrac{4}{x^2}} = 2$. Vậy $y = 2$ là TCN.
+  \end{itemize}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm tiệm cận đứng của hàm phân thức.
+  \item Tìm tiệm cận ngang của hàm phân thức và hàm vô tỉ.
+  \item Tính giới hạn vô cực một phía ($x \to a^+$ hoặc $x \to a^-$).
+  \item Phân tích đồ thị có tiệm cận và đọc thông tin.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  1.5 Định nghĩa sự liên tục
+%% ----------------------------------------------------------------
+\subsection{Định nghĩa sự liên tục tại một điểm và trên một khoảng}
+
+\begin{dinhnghia}[title={Hàm số liên tục tại một điểm}]
+  Hàm số $f$ được gọi là \textbf{liên tục tại} $x = a$ nếu thoả mãn đồng thời ba điều kiện:
+  \begin{enumerate}
+    \item $f(a)$ xác định (tức $a$ thuộc miền xác định của $f$).
+    \item $\displaystyle\lim_{x \to a} f(x)$ tồn tại.
+    \item $\displaystyle\lim_{x \to a} f(x) = f(a)$.
+  \end{enumerate}
+  Nếu một trong ba điều kiện trên không thoả, ta nói $f$ \textbf{gián đoạn} (discontinuous) tại $a$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Các loại gián đoạn}]
+  \begin{itemize}
+    \item \textbf{Gián đoạn bỏ được (Removable discontinuity):} $\displaystyle\lim_{x \to a} f(x)$ tồn tại nhưng $f(a)$ không xác định hoặc $f(a) \ne \lim_{x \to a} f(x)$. Có thể ``vá'' bằng cách định nghĩa lại $f(a)$.
+    \item \textbf{Gián đoạn nhảy (Jump discontinuity):} $\displaystyle\lim_{x \to a^-} f(x)$ và $\displaystyle\lim_{x \to a^+} f(x)$ đều tồn tại nhưng không bằng nhau.
+    \item \textbf{Gián đoạn vô cực (Infinite discontinuity):} $\displaystyle\lim_{x \to a^{\pm}} f(x) = \pm\infty$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Liên tục trên khoảng}]
+  \begin{itemize}
+    \item $f$ \textbf{liên tục trên khoảng mở} $(a, b)$ nếu $f$ liên tục tại mọi điểm $c \in (a, b)$.
+    \item $f$ \textbf{liên tục trên đoạn} $[a, b]$ nếu $f$ liên tục trên $(a, b)$, liên tục phải tại $a$ ($\lim_{x \to a^+} f(x) = f(a)$) và liên tục trái tại $b$ ($\lim_{x \to b^-} f(x) = f(b)$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Các hàm liên tục cơ bản}]
+  Các hàm sau đây liên tục trên toàn miền xác định của chúng:
+  \begin{itemize}
+    \item Hàm đa thức: $p(x) = a_n x^n + \cdots + a_0$.
+    \item Hàm phân thức $\dfrac{p(x)}{q(x)}$ tại mọi điểm $q(x) \ne 0$.
+    \item Hàm lượng giác: $\sin x$, $\cos x$ (liên tục trên $\mathbb{R}$); $\tan x$ liên tục tại mọi điểm $x \ne \dfrac{\pi}{2} + k\pi$.
+    \item Hàm mũ $a^x$ và hàm logarit $\log_a x$ ($a > 0, a \ne 1$) liên tục trên miền xác định.
+    \item Tổng, hiệu, tích, thương (tại điểm mẫu $\ne 0$) và hợp của hai hàm liên tục vẫn liên tục.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Kiểm tra tính liên tục của hàm từng khúc}]
+  Với hàm từng khúc $f(x) = \begin{cases} f_1(x) & x < a \\ f_2(x) & x = a \\ f_3(x) & x > a \end{cases}$, kiểm tra liên tục tại $x = a$:
+  \begin{enumerate}
+    \item Tính $\displaystyle\lim_{x \to a^-} f_1(x)$ và $\displaystyle\lim_{x \to a^+} f_3(x)$.
+    \item Nếu hai giới hạn bằng nhau và bằng $f_2(a) = f(a)$, thì $f$ liên tục tại $a$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Xét tính liên tục tại $x = 1$ của $f(x) = \begin{cases} x^2 - 1 & x < 1 \\ 3x - 3 & x \ge 1 \end{cases}$.
+
+  \medskip\textbf{Giải:}
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to 1^-} f(x) = 1 - 1 = 0$.
+    \item $\displaystyle\lim_{x \to 1^+} f(x) = 3(1) - 3 = 0$.
+    \item $f(1) = 3(1) - 3 = 0$.
+  \end{itemize}
+  Vì $\displaystyle\lim_{x \to 1^-} f(x) = \lim_{x \to 1^+} f(x) = f(1) = 0$, hàm liên tục tại $x = 1$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Kiểm tra tính liên tục tại một điểm cho trước.
+  \item Xác định các điểm gián đoạn và phân loại (bỏ được, nhảy, vô cực).
+  \item Tìm tham số để hàm từng khúc liên tục tại điểm nối.
+  \item Kiểm tra liên tục trên một khoảng.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  1.6 Định lý Giá trị Trung gian (IVT)
+%% ----------------------------------------------------------------
+\subsection{Định lý Giá trị Trung gian (Intermediate Value Theorem -- IVT)}
+
+\begin{dinhly}[title={Định lý Giá trị Trung gian (IVT)}]
+  Nếu $f$ liên tục trên đoạn $[a, b]$ và $N$ là bất kỳ số nào nằm giữa $f(a)$ và $f(b)$ (tức $f(a) \ne f(b)$ và $f(a) < N < f(b)$ hoặc $f(b) < N < f(a)$), thì tồn tại ít nhất một số $c \in (a, b)$ sao cho:
+  \[
+    f(c) = N.
+  \]
+\end{dinhly}
+
+\begin{luuy}
+  \begin{itemize}
+    \item IVT đảm bảo \textbf{sự tồn tại} của $c$, nhưng không cho biết $c$ cụ thể là bao nhiêu và không đảm bảo duy nhất.
+    \item \textbf{Hệ quả:} Nếu $f$ liên tục trên $[a, b]$ và $f(a) \cdot f(b) < 0$ (tức $f(a)$ và $f(b)$ trái dấu), thì tồn tại ít nhất một nghiệm $c \in (a, b)$ của phương trình $f(c) = 0$. Đây là cơ sở của phương pháp \textbf{chia đôi khoảng (bisection)} để tìm nghiệm xấp xỉ.
+  \end{itemize}
+\end{luuy}
+
+\begin{phuongphap}[title={Áp dụng IVT để chứng minh nghiệm tồn tại}]
+  \begin{enumerate}
+    \item Xác định hàm số $f(x)$ và khoảng $[a, b]$.
+    \item Chứng minh $f$ liên tục trên $[a, b]$.
+    \item Tính $f(a)$ và $f(b)$.
+    \item Kiểm tra $f(a)$ và $f(b)$ trái dấu ($f(a) \cdot f(b) < 0$) hoặc $N$ nằm giữa $f(a)$ và $f(b)$.
+    \item Kết luận bằng IVT.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Chứng minh rằng phương trình $x^3 - x - 1 = 0$ có nghiệm trong khoảng $(1, 2)$.
+
+  \medskip\textbf{Giải:}
+
+  Đặt $f(x) = x^3 - x - 1$. Hàm $f$ là đa thức nên liên tục trên $\mathbb{R}$, đặc biệt trên $[1, 2]$.
+  \begin{itemize}
+    \item $f(1) = 1 - 1 - 1 = -1 < 0$.
+    \item $f(2) = 8 - 2 - 1 = 5 > 0$.
+  \end{itemize}
+  Vì $f(1) \cdot f(2) = (-1)(5) = -5 < 0$, theo IVT tồn tại ít nhất một $c \in (1, 2)$ sao cho $f(c) = 0$, tức phương trình có nghiệm trong $(1, 2)$. $\square$
+\end{vidu}
+
+\begin{vidu}
+  Chứng minh phương trình $\cos x = x$ có ít nhất một nghiệm thực.
+
+  \medskip\textbf{Giải:}
+
+  Đặt $g(x) = \cos x - x$. Hàm $g$ liên tục trên $\mathbb{R}$.
+  \begin{itemize}
+    \item $g(0) = \cos 0 - 0 = 1 > 0$.
+    \item $g\!\left(\dfrac{\pi}{2}\right) = \cos\dfrac{\pi}{2} - \dfrac{\pi}{2} = 0 - \dfrac{\pi}{2} < 0$.
+  \end{itemize}
+  Theo IVT, tồn tại $c \in \left(0, \dfrac{\pi}{2}\right)$ sao cho $g(c) = 0$, tức $\cos c = c$. $\square$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh phương trình có nghiệm trong một khoảng cho trước bằng IVT.
+  \item Chứng minh phương trình $f(x) = k$ có nghiệm.
+  \item Kết hợp IVT với điều kiện liên tục để tìm tham số.
+  \item Phương pháp chia đôi khoảng: xấp xỉ nghiệm tới $n$ chữ số thập phân.
+\end{enumerate}
+
+\end{document}

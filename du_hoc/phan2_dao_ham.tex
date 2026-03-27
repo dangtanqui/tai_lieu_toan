@@ -1,0 +1,618 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Đạo hàm -- Định nghĩa và Tính chất}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+
+  \draw[white, line width=2pt]
+    ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt]
+    ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+
+  \node[anchor=west, white, font=\fontsize{30}{36}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {PHẦN 2: ĐẠO HÀM};
+  \node[anchor=west, white, font=\fontsize{22}{28}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-9.2cm]current page.north west)
+    {ĐỊNH NGHĨA VÀ TÍNH CHẤT};
+
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont]
+    at ([xshift=3cm, yshift=-11cm]current page.north west)
+    {Tài liệu luyện thi du học};
+
+  \node[white, opacity=0.12, font=\fontsize{120}{120}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$f'$};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=10]
+    at ([xshift=5cm, yshift=3cm]current page.center)
+    {$\dfrac{dy}{dx}$};
+
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 2: ĐẠO HÀM -- ĐỊNH NGHĨA VÀ TÍNH CHẤT}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí
+    \item \textbf{Liên hệ:} 0377\,122\,210
+    \item \textbf{Năm:} \the\year
+  \end{itemize}
+  \vspace{8pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+
+  \vspace{6pt}
+  Nghiêm cấm mọi hình thức sao chép, tái bản, phân phối dưới bất kỳ hình thức nào mà không có sự đồng ý bằng văn bản của tác giả.
+\end{tcolorbox}
+\vfill
+\begin{center}
+  \small\textit{Tài liệu lưu hành nội bộ --- Không phát hành thương mại}
+\end{center}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 2: ĐẠO HÀM -- ĐỊNH NGHĨA VÀ TÍNH CHẤT
+%% ================================================================
+\section{Đạo hàm -- Định nghĩa và Tính chất}
+
+%% ----------------------------------------------------------------
+%%  2.1 Định nghĩa đạo hàm qua giới hạn
+%% ----------------------------------------------------------------
+\subsection{Định nghĩa đạo hàm qua giới hạn (Difference Quotient)}
+
+\begin{dinhnghia}[title={Đạo hàm tại một điểm}]
+  Cho hàm $y = f(x)$. \textbf{Đạo hàm của $f$ tại $x = a$}, ký hiệu $f'(a)$, được định nghĩa bởi:
+  \[
+    f'(a) = \lim_{h \to 0} \dfrac{f(a + h) - f(a)}{h},
+  \]
+  miễn là giới hạn này tồn tại và hữu hạn. Biểu thức $\dfrac{f(a+h) - f(a)}{h}$ gọi là \textbf{thương sai phân (difference quotient)}.
+
+  \medskip
+  \textbf{Dạng tương đương:}
+  \[
+    f'(a) = \lim_{x \to a} \dfrac{f(x) - f(a)}{x - a}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm đạo hàm}]
+  \textbf{Hàm đạo hàm} $f'(x)$ (hay $\dfrac{dy}{dx}$) là hàm số xác định bởi:
+  \[
+    f'(x) = \lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h},
+  \]
+  tại mọi điểm $x$ mà giới hạn trên tồn tại.
+
+  \medskip
+  \textbf{Các ký hiệu thông dụng:} $f'(x)$, $y'$, $\dfrac{dy}{dx}$, $\dfrac{df}{dx}$, $Df(x)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Ý nghĩa hình học}]
+  $f'(a)$ là \textbf{hệ số góc (slope) của tiếp tuyến} với đồ thị $y = f(x)$ tại điểm $M\bigl(a,\, f(a)\bigr)$.
+  \[
+    \text{Phương trình tiếp tuyến tại } M: \quad y = f'(a)(x - a) + f(a).
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Ý nghĩa vật lý}]
+  Nếu $s(t)$ là hàm vị trí của một vật theo thời gian, thì $s'(t)$ là \textbf{vận tốc tức thời} của vật tại thời điểm $t$.
+\end{dinhnghia}
+
+\begin{vidu}
+  Tìm $f'(x)$ từ định nghĩa với $f(x) = x^2$.
+
+  \medskip\textbf{Giải:}
+  \[
+    f'(x) = \lim_{h \to 0} \dfrac{(x+h)^2 - x^2}{h}
+    = \lim_{h \to 0} \dfrac{x^2 + 2xh + h^2 - x^2}{h}
+    = \lim_{h \to 0} \dfrac{2xh + h^2}{h}
+    = \lim_{h \to 0} (2x + h) = 2x.
+  \]
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm từ định nghĩa giới hạn.
+  \item Tính hệ số góc tiếp tuyến và viết phương trình tiếp tuyến.
+  \item Tìm vận tốc tức thời từ hàm vị trí.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  2.2 Tính khả vi và tính liên tục
+%% ----------------------------------------------------------------
+\subsection{Mối liên hệ giữa tính khả vi (Differentiability) và tính liên tục}
+
+\begin{dinhly}[title={Khả vi kéo theo liên tục}]
+  Nếu $f$ \textbf{khả vi} (có đạo hàm) tại $x = a$, thì $f$ \textbf{liên tục} tại $x = a$.
+
+  \medskip
+  \textbf{Ngược lại không đúng:} Hàm liên tục không nhất thiết khả vi.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Các trường hợp hàm không khả vi}]
+  Hàm $f$ \textbf{không khả vi} tại $x = a$ trong các trường hợp:
+  \begin{enumerate}
+    \item \textbf{Điểm góc (Corner):} Đồ thị có ``góc nhọn''; giới hạn trái và phải của thương sai phân tồn tại nhưng khác nhau. Ví dụ: $f(x) = |x|$ tại $x = 0$.
+    \item \textbf{Tiếp tuyến đứng (Vertical tangent):} $f'(a) = \pm\infty$. Ví dụ: $f(x) = \sqrt[3]{x}$ tại $x = 0$.
+    \item \textbf{Điểm gián đoạn:} Hàm không liên tục tại $a$ $\Rightarrow$ không khả vi tại $a$.
+    \item \textbf{Điểm nhọn (Cusp):} Tương tự góc, hai đường tiếp tuyến có hệ số góc khác nhau.
+  \end{enumerate}
+\end{dinhnghia}
+
+\begin{vidu}
+  Chứng minh $f(x) = |x|$ không khả vi tại $x = 0$, dù liên tục tại đó.
+
+  \medskip\textbf{Giải:}
+  \begin{itemize}
+    \item $\displaystyle\lim_{h \to 0^+} \dfrac{|0+h| - |0|}{h} = \lim_{h \to 0^+} \dfrac{h}{h} = 1$.
+    \item $\displaystyle\lim_{h \to 0^-} \dfrac{|0+h| - |0|}{h} = \lim_{h \to 0^-} \dfrac{-h}{h} = -1$.
+  \end{itemize}
+  Vì giới hạn trái $\ne$ giới hạn phải, $f'(0)$ không tồn tại. Tuy nhiên $f(x) = |x|$ rõ ràng liên tục tại $0$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  2.3 Các quy tắc đạo hàm cơ bản
+%% ----------------------------------------------------------------
+\subsection{Các quy tắc đạo hàm cơ bản: Power Rule, Constant, Sum/Difference}
+
+\begin{congthuc}[title={Bảng đạo hàm cơ bản}]
+  \begin{align*}
+    &\dfrac{d}{dx}[c] = 0 \quad (c \text{ là hằng số})
+    &\qquad&
+    \dfrac{d}{dx}[x^n] = n x^{n-1} \quad (\text{Power Rule}) \\[6pt]
+    &\dfrac{d}{dx}[x] = 1
+    &&
+    \dfrac{d}{dx}[\sqrt{x}] = \dfrac{1}{2\sqrt{x}} \\[6pt]
+    &\dfrac{d}{dx}\!\left[\dfrac{1}{x}\right] = -\dfrac{1}{x^2}
+    &&
+    \dfrac{d}{dx}[x^{1/n}] = \dfrac{1}{n} x^{1/n - 1}
+  \end{align*}
+\end{congthuc}
+
+\begin{tinhchat}[title={Các quy tắc kết hợp}]
+  \begin{itemize}
+    \item \textbf{Nhân hằng số:} $\dfrac{d}{dx}[c \cdot f(x)] = c \cdot f'(x)$.
+    \item \textbf{Tổng/Hiệu:} $\dfrac{d}{dx}[f(x) \pm g(x)] = f'(x) \pm g'(x)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Tính đạo hàm của $f(x) = 3x^4 - 5x^2 + 7x - 2$.
+
+  \medskip\textbf{Giải:}
+  \[
+    f'(x) = 3 \cdot 4x^3 - 5 \cdot 2x + 7 = 12x^3 - 10x + 7.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  2.4 Đạo hàm các hàm lượng giác
+%% ----------------------------------------------------------------
+\subsection{Đạo hàm các hàm số lượng giác}
+
+\begin{congthuc}[title={Đạo hàm hàm lượng giác}]
+  \begin{align*}
+    &\dfrac{d}{dx}[\sin x] = \cos x
+    &\qquad&
+    \dfrac{d}{dx}[\cos x] = -\sin x \\[6pt]
+    &\dfrac{d}{dx}[\tan x] = \dfrac{1}{\cos^2 x}
+    &&
+    \dfrac{d}{dx}[\cot x] = -\dfrac{1}{\sin^2 x}
+  \end{align*}
+\end{congthuc}
+
+\begin{luuy}
+  Các công thức trên được chứng minh từ định nghĩa giới hạn, dùng các giới hạn đặc biệt $\displaystyle\lim_{h \to 0} \dfrac{\sin h}{h} = 1$ và $\displaystyle\lim_{h \to 0} \dfrac{\cos h - 1}{h} = 0$.
+\end{luuy}
+
+\begin{vidu}
+  Tính đạo hàm của $f(x) = 3\sin x - 2\cos x + \tan x$.
+
+  \medskip\textbf{Giải:}
+  \[
+    f'(x) = 3\cos x + 2\sin x + \sec^2 x.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  2.5 Quy tắc Tích và Quy tắc Thương
+%% ----------------------------------------------------------------
+\subsection{Quy tắc Tích (Product Rule) và Quy tắc Thương (Quotient Rule)}
+
+\begin{congthuc}[title={Quy tắc Tích (Product Rule)}]
+  Nếu $f$ và $g$ khả vi thì:
+  \[
+    \dfrac{d}{dx}[f(x) \cdot g(x)] = f'(x) \cdot g(x) + f(x) \cdot g'(x).
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Quy tắc Thương (Quotient Rule)}]
+  Nếu $f$ và $g$ khả vi và $g(x) \ne 0$ thì:
+  \[
+    \dfrac{d}{dx}\!\left[\dfrac{f(x)}{g(x)}\right] = \dfrac{f'(x) \cdot g(x) - f(x) \cdot g'(x)}{[g(x)]^2}.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  \begin{enumerate}[label=(\alph*)]
+    \item Tính đạo hàm của $h(x) = x^2 \sin x$.
+    \item Tính đạo hàm của $k(x) = \dfrac{x^2 + 1}{x - 3}$.
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $h'(x) = 2x \sin x + x^2 \cos x$.
+    \item $k'(x) = \dfrac{2x(x-3) - (x^2 + 1)(1)}{(x-3)^2} = \dfrac{2x^2 - 6x - x^2 - 1}{(x-3)^2} = \dfrac{x^2 - 6x - 1}{(x-3)^2}$.
+  \end{enumerate}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm của tích hai hàm số.
+  \item Tính đạo hàm của thương hai hàm số.
+  \item Kết hợp Product Rule và Quotient Rule.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  2.6 Quy tắc Hàm hợp (Chain Rule)
+%% ----------------------------------------------------------------
+\subsection{Quy tắc Hàm hợp (Chain Rule) -- Trọng tâm quan trọng nhất}
+
+\begin{dinhly}[title={Chain Rule}]
+  Nếu $g$ khả vi tại $x$ và $f$ khả vi tại $g(x)$, thì hàm hợp $h(x) = f(g(x))$ khả vi tại $x$ và:
+  \[
+    h'(x) = f'\bigl(g(x)\bigr) \cdot g'(x).
+  \]
+  \textbf{Ký hiệu Leibniz:} Nếu $y = f(u)$ và $u = g(x)$, thì:
+  \[
+    \dfrac{dy}{dx} = \dfrac{dy}{du} \cdot \dfrac{du}{dx}.
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Nhận dạng và áp dụng Chain Rule}]
+  \begin{enumerate}
+    \item Xác định hàm ``ngoài'' $f$ và hàm ``trong'' $u = g(x)$.
+    \item Tính $f'(u)$ (đạo hàm của ngoài theo $u$).
+    \item Tính $g'(x)$ (đạo hàm của trong theo $x$).
+    \item Kết quả: $h'(x) = f'(g(x)) \cdot g'(x)$.
+  \end{enumerate}
+
+  \textbf{Bảng nhận dạng nhanh:}
+  \begin{itemize}
+    \item $[\sin(g(x))]' = \cos(g(x)) \cdot g'(x)$
+    \item $[\cos(g(x))]' = -\sin(g(x)) \cdot g'(x)$
+    \item $[g(x)^n]' = n[g(x)]^{n-1} \cdot g'(x)$
+    \item $[e^{g(x)}]' = e^{g(x)} \cdot g'(x)$
+    \item $[\ln(g(x))]' = \dfrac{g'(x)}{g(x)}$
+    \item $[\sqrt{g(x)}]' = \dfrac{g'(x)}{2\sqrt{g(x)}}$
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính đạo hàm của:
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(x) = \sin(3x^2 + 1)$
+    \item $g(x) = (x^3 - 5x)^{10}$
+    \item $h(x) = \sqrt{2x^2 - 1}$
+    \item $k(x) = \cos^3(x) = [\cos x]^3$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $f'(x) = \cos(3x^2 + 1) \cdot 6x$.
+    \item $g'(x) = 10(x^3 - 5x)^9 \cdot (3x^2 - 5)$.
+    \item $h'(x) = \dfrac{4x}{2\sqrt{2x^2 - 1}} = \dfrac{2x}{\sqrt{2x^2 - 1}}$.
+    \item $k'(x) = 3\cos^2 x \cdot (-\sin x) = -3\cos^2 x \sin x$.
+  \end{enumerate}
+\end{vidu}
+
+\begin{vidu}[title={Chain Rule nhiều lớp}]
+  Tính đạo hàm của $f(x) = \sin^2(3x)$.
+
+  \medskip\textbf{Giải:}
+  Nhận dạng: $f(x) = [\sin(3x)]^2$ -- có ba lớp.
+  \[
+    f'(x) = 2\sin(3x) \cdot \cos(3x) \cdot 3 = 6\sin(3x)\cos(3x) = 3\sin(6x).
+  \]
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chain Rule với hàm lũy thừa, lượng giác, căn thức.
+  \item Chain Rule nhiều lớp (hàm hợp của hàm hợp).
+  \item Kết hợp Chain Rule với Product Rule hoặc Quotient Rule.
+  \item Tìm phương trình tiếp tuyến khi dùng Chain Rule.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  2.7 Đạo hàm ẩn (Implicit Differentiation)
+%% ----------------------------------------------------------------
+\subsection{Đạo hàm ẩn (Implicit Differentiation)}
+
+\begin{phuongphap}[title={Phương pháp đạo hàm ẩn}]
+  Dùng khi $y$ được xác định \textbf{ẩn} (không giải được $y$ theo $x$ một cách tường minh).
+  \begin{enumerate}
+    \item Đạo hàm cả hai vế theo $x$, coi $y$ là hàm của $x$.
+    \item Mỗi khi đạo hàm $y$, áp dụng Chain Rule: $\dfrac{d}{dx}[f(y)] = f'(y) \cdot \dfrac{dy}{dx}$.
+    \item Tập hợp tất cả các số hạng chứa $\dfrac{dy}{dx}$ về một phía.
+    \item Giải phương trình để tìm $\dfrac{dy}{dx}$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm $\dfrac{dy}{dx}$ với $x^2 + y^2 = 25$ (đường tròn tâm $O$, bán kính $5$).
+
+  \medskip\textbf{Giải:}
+  Đạo hàm hai vế theo $x$:
+  \[
+    2x + 2y \cdot \dfrac{dy}{dx} = 0
+    \;\Rightarrow\;
+    \dfrac{dy}{dx} = -\dfrac{x}{y} \quad (y \ne 0).
+  \]
+\end{vidu}
+
+\begin{vidu}
+  Tìm phương trình tiếp tuyến với $x^3 + y^3 = 6xy$ tại điểm $(3, 3)$.
+
+  \medskip\textbf{Giải:}
+  Đạo hàm ẩn:
+  \[
+    3x^2 + 3y^2 y' = 6y + 6x y'
+    \;\Rightarrow\;
+    y'(3y^2 - 6x) = 6y - 3x^2
+    \;\Rightarrow\;
+    y' = \dfrac{6y - 3x^2}{3y^2 - 6x}.
+  \]
+  Tại $(3, 3)$: $y' = \dfrac{18 - 27}{27 - 18} = \dfrac{-9}{9} = -1$.
+
+  Phương trình tiếp tuyến: $y - 3 = -1(x - 3) \Rightarrow y = -x + 6$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm $\dfrac{dy}{dx}$ bằng đạo hàm ẩn.
+  \item Tìm phương trình tiếp tuyến của đường cong ẩn.
+  \item Tính đạo hàm bậc hai $\dfrac{d^2y}{dx^2}$ bằng đạo hàm ẩn.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  2.8 Đạo hàm hàm mũ và logarit
+%% ----------------------------------------------------------------
+\subsection{Đạo hàm của hàm mũ và hàm Logarit}
+
+\begin{congthuc}[title={Đạo hàm hàm mũ}]
+  \begin{align*}
+    &\dfrac{d}{dx}[e^x] = e^x
+    &\qquad&
+    \dfrac{d}{dx}[a^x] = a^x \ln a \quad (a > 0,\, a \ne 1) \\[6pt]
+    &\dfrac{d}{dx}[e^{u(x)}] = e^{u(x)} \cdot u'(x)
+    &&
+    \dfrac{d}{dx}[a^{u(x)}] = a^{u(x)} \ln a \cdot u'(x)
+  \end{align*}
+\end{congthuc}
+
+\begin{congthuc}[title={Đạo hàm hàm Logarit}]
+  \begin{align*}
+    &\dfrac{d}{dx}[\ln x] = \dfrac{1}{x} \quad (x > 0)
+    &\qquad&
+    \dfrac{d}{dx}[\log_a x] = \dfrac{1}{x \ln a} \quad (x > 0) \\[6pt]
+    &\dfrac{d}{dx}[\ln|x|] = \dfrac{1}{x}
+    &&
+    \dfrac{d}{dx}[\ln u(x)] = \dfrac{u'(x)}{u(x)}
+  \end{align*}
+\end{congthuc}
+
+\begin{phuongphap}[title={Logarithmic Differentiation (Đạo hàm Logarit)}]
+  Dùng khi hàm số có dạng $y = [f(x)]^{g(x)}$ (cơ số và số mũ đều phụ thuộc $x$):
+  \begin{enumerate}
+    \item Lấy $\ln$ cả hai vế: $\ln y = g(x) \ln f(x)$.
+    \item Đạo hàm ẩn hai vế: $\dfrac{y'}{y} = g'(x) \ln f(x) + g(x) \cdot \dfrac{f'(x)}{f(x)}$.
+    \item Nhân hai vế với $y$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tính đạo hàm của $y = x^x$ ($x > 0$).
+
+  \medskip\textbf{Giải:}
+  $\ln y = x \ln x$. Đạo hàm hai vế:
+  \[
+    \dfrac{y'}{y} = \ln x + x \cdot \dfrac{1}{x} = \ln x + 1.
+    \;\Rightarrow\;
+    y' = y(\ln x + 1) = x^x(\ln x + 1).
+  \]
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm hàm mũ cơ số $e$ và $a$.
+  \item Tính đạo hàm hàm logarit.
+  \item Kết hợp Chain Rule với hàm mũ và logarit.
+  \item Đạo hàm logarit để tính $[f(x)]^{g(x)}$.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  2.9 Đạo hàm hàm ngược và hàm lượng giác ngược
+%% ----------------------------------------------------------------
+\subsection{Đạo hàm của hàm ngược và hàm lượng giác ngược}
+
+\begin{dinhly}[title={Đạo hàm hàm ngược}]
+  Nếu $f$ khả vi và có hàm ngược $f^{-1}$, thì tại điểm $y = f(x)$:
+  \[
+    (f^{-1})'(y) = \dfrac{1}{f'(x)} = \dfrac{1}{f'(f^{-1}(y))}.
+  \]
+  \textbf{Ý nghĩa:} Hệ số góc của tiếp tuyến tại $(y, x)$ trên đồ thị $f^{-1}$ bằng nghịch đảo hệ số góc tại $(x, y)$ trên đồ thị $f$.
+\end{dinhly}
+
+\begin{congthuc}[title={Đạo hàm hàm lượng giác ngược}]
+  \begin{align*}
+    &\dfrac{d}{dx}[\arcsin x] = \dfrac{1}{\sqrt{1 - x^2}}, \quad |x| < 1
+    &\qquad&
+    \dfrac{d}{dx}[\arccos x] = -\dfrac{1}{\sqrt{1 - x^2}}, \quad |x| < 1 \\[6pt]
+    &\dfrac{d}{dx}[\arctan x] = \dfrac{1}{1 + x^2}
+    &&
+    \dfrac{d}{dx}[\text{arccot}\, x] = -\dfrac{1}{1 + x^2}
+  \end{align*}
+\end{congthuc}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Kết hợp với Chain Rule: $\dfrac{d}{dx}[\arcsin(u)] = \dfrac{u'}{\sqrt{1-u^2}}$, $\dfrac{d}{dx}[\arctan(u)] = \dfrac{u'}{1+u^2}$.
+    \item Nhớ: $\arcsin$ và $\arccos$ bổ sung nhau: đạo hàm của chúng đối nhau (một cái dương, một cái âm).
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Tính đạo hàm của:
+  \begin{enumerate}[label=(\alph*)]
+    \item $f(x) = \arctan(2x)$
+    \item $g(x) = \arcsin(x^2)$
+    \item $h(x) = x \arctan x - \dfrac{1}{2}\ln(1 + x^2)$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $f'(x) = \dfrac{2}{1 + (2x)^2} = \dfrac{2}{1 + 4x^2}$.
+    \item $g'(x) = \dfrac{2x}{\sqrt{1 - x^4}}$.
+    \item $h'(x) = \arctan x + \dfrac{x}{1+x^2} - \dfrac{x}{1+x^2} = \arctan x$.
+  \end{enumerate}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm hàm lượng giác ngược cơ bản.
+  \item Kết hợp Chain Rule với lượng giác ngược.
+  \item Tính đạo hàm hàm hợp phức tạp chứa arcsin, arccos, arctan.
+  \item Bài toán tìm tiếp tuyến, pháp tuyến với đồ thị hàm lượng giác ngược.
+\end{enumerate}
+
+\end{document}

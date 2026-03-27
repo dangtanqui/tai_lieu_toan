@@ -1,0 +1,315 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\usepackage{array}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Lý thuyết Đồ thị \& Thuật toán}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{24}{30}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 12: LÝ THUYẾT};
+  \node[anchor=west, white, font=\fontsize{20}{26}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {ĐỒ THỊ \& THUẬT TOÁN};
+  \node[anchor=west, white, font=\fontsize{14}{18}\selectfont] at ([xshift=3cm, yshift=-10.7cm]current page.north west) {(Decision Mathematics)};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-12cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13.5cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-15cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 12: LÝ THUYẾT ĐỒ THỊ \& THUẬT TOÁN}\\[8pt]
+  {\large (Decision Mathematics)}\\[4pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 12: LÝ THUYẾT ĐỒ THỊ & THUẬT TOÁN
+%% ================================================================
+\section{Lý thuyết Đồ thị \& Thuật toán (Decision Mathematics)}
+
+%% ----------------------------------------------------------------
+%%  12.1 Thuật toán tìm đường ngắn nhất: Dijkstra, Prim, Kruskal
+%% ----------------------------------------------------------------
+\subsection{Thuật toán tìm đường ngắn nhất và cây khung tối tiểu}
+
+\subsubsection{Khái niệm cơ bản về đồ thị}
+
+\begin{dinhnghia}[title={Đồ thị (Graph)}]
+  \textbf{Đồ thị} $G = (V, E)$ gồm:
+  \begin{itemize}
+    \item $V$: tập đỉnh (vertices/nodes).
+    \item $E$: tập cạnh (edges), mỗi cạnh nối hai đỉnh.
+  \end{itemize}
+  \textbf{Phân loại:}
+  \begin{itemize}
+    \item \textbf{Đồ thị vô hướng:} cạnh không có hướng.
+    \item \textbf{Đồ thị có hướng (digraph):} mỗi cạnh có hướng.
+    \item \textbf{Đồ thị có trọng số:} mỗi cạnh gán một trọng số (weight) thể hiện khoảng cách, chi phí.
+    \item \textbf{Đồ thị liên thông:} tồn tại đường đi giữa mọi cặp đỉnh.
+    \item \textbf{Cây (Tree):} đồ thị liên thông không có chu trình, $|E| = |V| - 1$.
+  \end{itemize}
+\end{dinhnghia}
+
+\subsubsection{Thuật toán Dijkstra (Đường đi ngắn nhất)}
+
+\begin{phuongphap}[title={Thuật toán Dijkstra}]
+  Tìm đường đi ngắn nhất từ đỉnh nguồn $s$ đến tất cả các đỉnh khác trong đồ thị \textbf{có trọng số không âm}.
+
+  \textbf{Thuật toán:}
+  \begin{enumerate}
+    \item \textbf{Khởi tạo:} Gán $d(s) = 0$, $d(v) = \infty$ với mọi $v \ne s$. Tập $S = \emptyset$ (đỉnh đã xử lý), $Q = V$ (đỉnh chưa xử lý).
+    \item \textbf{Lặp:} Trong khi $Q \ne \emptyset$:
+      \begin{enumerate}
+        \item Chọn đỉnh $u \in Q$ có $d(u)$ nhỏ nhất.
+        \item Chuyển $u$ từ $Q$ sang $S$ (đánh dấu đã xử lý).
+        \item Với mỗi láng giềng $v$ của $u$ chưa xử lý:
+          \[
+            \text{Nếu } d(u) + w(u,v) < d(v): \quad d(v) \leftarrow d(u) + w(u,v),\quad \text{prev}(v) \leftarrow u.
+          \]
+      \end{enumerate}
+    \item \textbf{Kết quả:} $d(v)$ là độ dài đường đi ngắn nhất từ $s$ đến $v$.
+  \end{enumerate}
+
+  \textbf{Độ phức tạp:} $O(V^2)$ (đơn giản) hoặc $O((V+E)\log V)$ (dùng hàng đợi ưu tiên).
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm đường đi ngắn nhất từ $A$ đến tất cả đỉnh trong đồ thị:
+
+  \begin{center}
+    \begin{tikzpicture}[every node/.style={circle, draw, minimum size=6mm}]
+      \node (A) at (0,2) {A};
+      \node (B) at (2,3) {B};
+      \node (C) at (2,1) {C};
+      \node (D) at (4,3) {D};
+      \node (E) at (4,1) {E};
+      \draw (A) -- node[above, draw=none] {4} (B);
+      \draw (A) -- node[below, draw=none] {2} (C);
+      \draw (B) -- node[above, draw=none] {3} (D);
+      \draw (B) -- node[left, draw=none] {1} (C);
+      \draw (C) -- node[below, draw=none] {5} (E);
+      \draw (D) -- node[right, draw=none] {2} (E);
+    \end{tikzpicture}
+  \end{center}
+
+  \medskip\textbf{Giải:}
+  \begin{itemize}
+    \item Khởi tạo: $d(A)=0$, $d(B)=d(C)=d(D)=d(E)=\infty$.
+    \item Chọn $A$ ($d=0$): Cập nhật $d(B)=4$, $d(C)=2$.
+    \item Chọn $C$ ($d=2$): Cập nhật $d(B)=\min(4,2+1)=3$, $d(E)=7$.
+    \item Chọn $B$ ($d=3$): Cập nhật $d(D)=\min(\infty,3+3)=6$.
+    \item Chọn $D$ ($d=6$): Cập nhật $d(E)=\min(7,6+2)=7$ (không đổi).
+    \item Chọn $E$ ($d=7$).
+  \end{itemize}
+  Kết quả: $d(A)=0$, $d(C)=2$, $d(B)=3$, $d(D)=6$, $d(E)=7$.
+\end{vidu}
+
+\subsubsection{Cây khung nhỏ nhất (Minimum Spanning Tree)}
+
+\begin{dinhnghia}[title={Cây khung (Spanning Tree)}]
+  Cây khung của đồ thị $G = (V,E)$ là cây (đồ thị liên thông, không chu trình) gồm tất cả $|V|$ đỉnh và $|V|-1$ cạnh của $G$.
+
+  \textbf{Cây khung nhỏ nhất (MST):} cây khung có tổng trọng số nhỏ nhất.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Thuật toán Prim (Xây dựng MST từ một đỉnh)}]
+  \begin{enumerate}
+    \item Bắt đầu từ đỉnh tùy ý, thêm vào tập $T$ (cây đang xây dựng).
+    \item Lặp cho đến khi $T$ có $|V|$ đỉnh:
+      \begin{itemize}
+        \item Tìm cạnh trọng số nhỏ nhất nối đỉnh trong $T$ với đỉnh ngoài $T$.
+        \item Thêm cạnh đó (và đỉnh mới) vào $T$.
+      \end{itemize}
+  \end{enumerate}
+  \textbf{Nguyên lý:} Luôn chọn cạnh có trọng số nhỏ nhất ra ngoài cây hiện tại.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Thuật toán Kruskal (Xây dựng MST theo cạnh)}]
+  \begin{enumerate}
+    \item Sắp xếp tất cả cạnh theo trọng số tăng dần.
+    \item Lặp qua từng cạnh theo thứ tự:
+      \begin{itemize}
+        \item Nếu thêm cạnh này vào cây \textbf{không tạo ra chu trình}: thêm vào.
+        \item Ngược lại: bỏ qua cạnh này.
+      \end{itemize}
+    \item Dừng khi cây có $|V|-1$ cạnh.
+  \end{enumerate}
+  \textbf{Dùng Union-Find (Disjoint Set)} để kiểm tra chu trình hiệu quả.
+
+  \textbf{Độ phức tạp:} $O(E \log E)$.
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm MST của đồ thị với các cạnh: $AB=4$, $AC=2$, $BC=1$, $BD=3$, $CE=5$, $DE=2$.
+
+  \medskip\textbf{Dùng Kruskal:}
+  Sắp xếp cạnh: $BC(1)$, $AC(2)$, $DE(2)$, $BD(3)$, $AB(4)$, $CE(5)$.
+  \begin{enumerate}
+    \item $BC(1)$: Thêm (không chu trình). Cây: $\{BC\}$.
+    \item $AC(2)$: Thêm. Cây: $\{BC, AC\}$.
+    \item $DE(2)$: Thêm. Cây: $\{BC, AC, DE\}$.
+    \item $BD(3)$: Thêm (nối hai thành phần $\{A,B,C\}$ và $\{D,E\}$). Cây: $\{BC, AC, DE, BD\}$.
+    \item Cây có $5-1=4$ cạnh. Dừng.
+  \end{enumerate}
+  MST có tổng trọng số: $1+2+2+3 = 8$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  12.2 Quy hoạch tuyến tính
+%% ----------------------------------------------------------------
+\subsection{Quy hoạch tuyến tính (Linear Programming)}
+
+\begin{dinhnghia}[title={Bài toán quy hoạch tuyến tính}]
+  \textbf{Quy hoạch tuyến tính (Linear Programming -- LP)} là bài toán tìm cực trị (lớn nhất hoặc nhỏ nhất) của một \textbf{hàm mục tiêu tuyến tính} đối với các \textbf{ràng buộc tuyến tính}.
+
+  \textbf{Dạng chuẩn:}
+  \[
+    \text{Tối ưu: } z = c_1 x_1 + c_2 x_2 + \cdots + c_n x_n
+  \]
+  \[
+    \text{Ràng buộc: } \begin{cases} a_{11}x_1 + \cdots + a_{1n}x_n \le b_1 \\ \vdots \\ a_{m1}x_1 + \cdots + a_{mn}x_n \le b_m \\ x_1, x_2, \ldots, x_n \ge 0 \end{cases}
+  \]
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương pháp đồ thị (cho 2 biến)}]
+  Dùng khi chỉ có hai biến $x$ và $y$:
+  \begin{enumerate}
+    \item \textbf{Xác định miền khả thi:} Vẽ tất cả các bất đẳng thức ràng buộc trên hệ trục $Oxy$; miền nghiệm là giao của tất cả nửa mặt phẳng.
+    \item \textbf{Tìm các đỉnh (vertex) của miền khả thi:} Giải từng cặp phương trình ràng buộc để tìm các đỉnh góc.
+    \item \textbf{Áp dụng Định lý đỉnh:} Giá trị cực trị của hàm mục tiêu tuyến tính đạt được tại một \textbf{đỉnh} của miền khả thi.
+    \item Tính $z$ tại mỗi đỉnh, chọn giá trị lớn nhất (hoặc nhỏ nhất).
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{dinhly}[title={Định lý điểm cực (Corner Point Theorem)}]
+  Nếu bài toán LP có nghiệm tối ưu, thì nghiệm tối ưu đạt được tại \textbf{ít nhất một đỉnh} (điểm góc) của miền khả thi lồi.
+\end{dinhly}
+
+\begin{vidu}
+  Một công ty sản xuất hai loại sản phẩm $A$ và $B$. Mỗi $A$ lãi $5$ đơn vị, mỗi $B$ lãi $4$ đơn vị. Ràng buộc:
+  \begin{itemize}
+    \item Nguyên liệu: $2A + B \le 14$.
+    \item Thời gian: $A + 2B \le 14$.
+    \item Không âm: $A \ge 0$, $B \ge 0$.
+  \end{itemize}
+  Tối đa hóa lợi nhuận $z = 5A + 4B$.
+
+  \medskip\textbf{Giải:}
+  Tìm các đỉnh của miền khả thi:
+  \begin{itemize}
+    \item Giao $A=0$ và $B=0$: $(0,0)$, $z=0$.
+    \item Giao $2A+B=14$ và $B=0$: $A=7$, $(7,0)$, $z=35$.
+    \item Giao $2A+B=14$ và $A+2B=14$: Giải hệ: $3A=14 \Rightarrow A=14/3$, ... giải ra: $A=\dfrac{14}{3}$... thực ra:
+      $\begin{cases}2A+B=14\\A+2B=14\end{cases} \Rightarrow$ trừ: $A-B=0 \Rightarrow A=B$. Thế vào: $3A=14 \Rightarrow A=B=\dfrac{14}{3}$. $z = 5\cdot\dfrac{14}{3}+4\cdot\dfrac{14}{3} = \dfrac{9\cdot14}{3} = 42$.
+    \item Giao $A+2B=14$ và $A=0$: $B=7$, $(0,7)$, $z=28$.
+  \end{itemize}
+
+  So sánh: $z_{\max} = 42$ tại $A = B = \dfrac{14}{3} \approx 4.67$.
+
+  \textbf{Nếu $A$, $B$ phải là số nguyên}: kiểm tra $(4,5)$: $z=40$; $(5,4)$: $z=41$; $(4,4)$ cần kiểm tra ràng buộc: $2(5)+(4)=14\le14$ ✓, $5+2(4)=13\le14$ ✓; $z=41$. Vậy $z_{\max}=41$ tại $(5,4)$ (hoặc kiểm tra thêm).
+\end{vidu}
+
+\begin{vidu}
+  \textbf{Bài toán pha trộn (Mixture Problem):}
+  Một nhà dinh dưỡng cần pha trộn hai loại thức ăn $F_1$ và $F_2$ sao cho:
+  \begin{itemize}
+    \item Protein tối thiểu: $3x + 5y \ge 15$.
+    \item Carb tối thiểu: $x + y \ge 4$.
+    \item Chi phí tối thiểu: $z = 2x + 3y$ ($x, y \ge 0$).
+  \end{itemize}
+
+  \medskip\textbf{Giải:}
+  Đây là bài toán \textbf{tối thiểu hóa} với ràng buộc $\ge$ (miền khả thi không giới nội).
+
+  Đỉnh miền khả thi:
+  \begin{itemize}
+    \item Giao $3x+5y=15$ và $y=0$: $(5, 0)$, $z=10$.
+    \item Giao $3x+5y=15$ và $x+y=4$: $3x+5(4-x)=15 \Rightarrow -2x=-5 \Rightarrow x=2.5$, $y=1.5$. $z=5+4.5=9.5$.
+    \item Giao $x+y=4$ và $x=0$: $(0,4)$, $z=12$.
+  \end{itemize}
+
+  $z_{\min} = 9.5$ tại $(2.5,\, 1.5)$.
+\end{vidu}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Nếu miền khả thi \textbf{rỗng}: bài toán vô nghiệm.
+    \item Nếu miền khả thi \textbf{không bị giới hạn} (unbounded) và tối đa hóa: có thể không có cực đại (cần kiểm tra).
+    \item Bài toán \textbf{LP nguyên} (Integer LP -- $x, y \in \mathbb{Z}$): phức tạp hơn, nghiệm tối ưu không nhất thiết tại đỉnh của LP liên tục.
+  \end{itemize}
+\end{luuy}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tìm đường đi ngắn nhất bằng thuật toán Dijkstra (cho bảng hoặc đồ thị).
+  \item Tìm MST bằng thuật toán Prim (từ đỉnh bất kỳ).
+  \item Tìm MST bằng thuật toán Kruskal (theo cạnh).
+  \item So sánh Prim và Kruskal trên cùng một đồ thị.
+  \item Tối đa hóa hàm mục tiêu LP hai biến (tìm đỉnh và tính $z$).
+  \item Tối thiểu hóa chi phí LP hai biến.
+  \item Biện luận khi thay đổi hệ số hàm mục tiêu hoặc ràng buộc.
+  \item LP nguyên (Integer Programming) -- kiểm tra các điểm nguyên gần đỉnh tối ưu.
+\end{enumerate}
+
+\end{document}

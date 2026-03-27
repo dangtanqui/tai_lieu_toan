@@ -1,0 +1,330 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Xác suất và Thống kê}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 11: XÁC SUẤT};
+  \node[anchor=west, white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {VÀ THỐNG KÊ};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-11cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=-15] at ([xshift=-3cm, yshift=4cm]current page.center) {$\sigma$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 11: XÁC SUẤT VÀ THỐNG KÊ}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 11: XÁC SUẤT VÀ THỐNG KÊ
+%% ================================================================
+\section{Xác suất và Thống kê}
+
+%% ----------------------------------------------------------------
+%%  11.1 Các loại phân phối
+%% ----------------------------------------------------------------
+\subsection{Các loại phân phối: Phân phối Nhị thức, Poisson và Chuẩn}
+
+\subsubsection{Phân phối Nhị thức (Binomial Distribution)}
+
+\begin{dinhnghia}[title={Thí nghiệm Bernoulli và phân phối nhị thức}]
+  \textbf{Thí nghiệm Bernoulli} là thí nghiệm chỉ có hai kết quả: ``thành công'' (xác suất $p$) và ``thất bại'' (xác suất $1-p = q$).
+
+  Nếu thực hiện $n$ thí nghiệm Bernoulli độc lập với cùng xác suất thành công $p$, biến ngẫu nhiên $X$ = ``số lần thành công'' có \textbf{phân phối nhị thức}: $X \sim B(n, p)$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phân phối nhị thức}]
+  \[
+    P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, 2, \ldots, n.
+  \]
+  Với $\binom{n}{k} = \dfrac{n!}{k!(n-k)!}$ là hệ số tổ hợp.
+
+  \textbf{Kỳ vọng và phương sai:}
+  \[
+    \mu = E[X] = np, \qquad \sigma^2 = \text{Var}(X) = np(1-p) = npq.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Gieo đồng xu (xác suất sấp $p=0.5$) $n=10$ lần. Tính xác suất được đúng $4$ lần sấp.
+
+  \medskip\textbf{Giải:}
+  $X \sim B(10, 0.5)$.
+  $P(X=4) = \binom{10}{4}(0.5)^4(0.5)^6 = 210 \times (0.5)^{10} = \dfrac{210}{1024} \approx 0.205$.
+\end{vidu}
+
+\subsubsection{Phân phối Poisson}
+
+\begin{dinhnghia}[title={Phân phối Poisson}]
+  Biến ngẫu nhiên $X$ có \textbf{phân phối Poisson} với tham số $\lambda > 0$ ($\lambda$ là tốc độ trung bình xảy ra sự kiện) nếu:
+  \[
+    P(X = k) = \frac{e^{-\lambda} \lambda^k}{k!}, \quad k = 0, 1, 2, \ldots
+  \]
+  \textbf{Kỳ vọng và phương sai:}
+  \[
+    \mu = E[X] = \lambda, \qquad \sigma^2 = \text{Var}(X) = \lambda.
+  \]
+\end{dinhnghia}
+
+\begin{luuy}
+  Phân phối Poisson thường dùng để mô hình hóa:
+  \begin{itemize}
+    \item Số cuộc gọi đến tổng đài trong một giờ.
+    \item Số lỗi trên $1\,\text{m}$ sợi dây.
+    \item Số khách hàng đến trong một khoảng thời gian.
+  \end{itemize}
+  \textbf{Xấp xỉ nhị thức:} Khi $n$ lớn, $p$ nhỏ và $\lambda = np$ (trung bình): $B(n,p) \approx \text{Poisson}(\lambda)$.
+\end{luuy}
+
+\begin{vidu}
+  Trung bình có $\lambda = 3$ xe đến trạm xăng mỗi phút. Tính xác suất đúng $5$ xe đến trong một phút.
+
+  \medskip\textbf{Giải:}
+  $P(X=5) = \dfrac{e^{-3} \cdot 3^5}{5!} = \dfrac{e^{-3} \cdot 243}{120} \approx \dfrac{0.04979 \times 243}{120} \approx 0.1008$.
+\end{vidu}
+
+\subsubsection{Phân phối Chuẩn (Normal Distribution)}
+
+\begin{dinhnghia}[title={Phân phối chuẩn}]
+  Biến ngẫu nhiên liên tục $X$ có \textbf{phân phối chuẩn} với tham số $\mu$ (kỳ vọng) và $\sigma^2$ (phương sai), ký hiệu $X \sim N(\mu, \sigma^2)$, nếu hàm mật độ xác suất là:
+  \[
+    f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad x \in \mathbb{R}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân phối chuẩn tắc (Standard Normal)}]
+  \textbf{Phân phối chuẩn tắc} $Z \sim N(0,1)$ có hàm mật độ:
+  \[
+    \phi(z) = \frac{1}{\sqrt{2\pi}} e^{-z^2/2}.
+  \]
+  và hàm phân phối tích lũy: $\Phi(z) = P(Z \le z) = \displaystyle\int_{-\infty}^z \phi(t)\,dt$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Chuẩn hóa (Standardization)}]
+  Nếu $X \sim N(\mu, \sigma^2)$, đặt $Z = \dfrac{X - \mu}{\sigma}$, thì $Z \sim N(0,1)$.
+
+  \[
+    P(a \le X \le b) = P\!\left(\frac{a-\mu}{\sigma} \le Z \le \frac{b-\mu}{\sigma}\right) = \Phi\!\left(\frac{b-\mu}{\sigma}\right) - \Phi\!\left(\frac{a-\mu}{\sigma}\right).
+  \]
+\end{phuongphap}
+
+\begin{tinhchat}[title={Quy tắc Empirical (68--95--99.7)}]
+  Với $X \sim N(\mu, \sigma^2)$:
+  \begin{itemize}
+    \item $P(\mu - \sigma < X < \mu + \sigma) \approx 68\%$.
+    \item $P(\mu - 2\sigma < X < \mu + 2\sigma) \approx 95\%$.
+    \item $P(\mu - 3\sigma < X < \mu + 3\sigma) \approx 99.7\%$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Chiều cao học sinh $X \sim N(165, 36)$ cm (tức $\mu = 165$, $\sigma = 6$). Tìm $P(159 < X < 177)$.
+
+  \medskip\textbf{Giải:}
+  $P(159 < X < 177) = P\!\left(\dfrac{159-165}{6} < Z < \dfrac{177-165}{6}\right) = P(-1 < Z < 2) = \Phi(2) - \Phi(-1)$.
+
+  $= \Phi(2) - (1 - \Phi(1)) \approx 0.9772 - (1 - 0.8413) = 0.9772 - 0.1587 = 0.8185$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  11.2 Kiểm định giả thuyết
+%% ----------------------------------------------------------------
+\subsection{Kiểm định giả thuyết (Hypothesis Testing)}
+
+\begin{dinhnghia}[title={Khái niệm cơ bản}]
+  \begin{itemize}
+    \item \textbf{Giả thuyết không ($H_0$):} Phát biểu mặc định, ``không có hiệu ứng'', cần kiểm tra.
+    \item \textbf{Giả thuyết thay thế ($H_1$ hay $H_a$):} Phát biểu ta muốn ủng hộ.
+    \item \textbf{Mức ý nghĩa ($\alpha$):} Xác suất mắc \textbf{lỗi loại I} (bác bỏ $H_0$ đúng). Thường $\alpha = 0.05$ hoặc $0.01$.
+    \item \textbf{Giá trị p (p-value):} Xác suất thu được kết quả mẫu cực đoan như quan sát (hoặc cực đoan hơn) nếu $H_0$ đúng.
+    \item \textbf{Quy tắc quyết định:} Bác bỏ $H_0$ nếu p-value $\le \alpha$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Kiểm định $z$ (Z-test) -- trung bình tổng thể}]
+  Khi mẫu lớn ($n \ge 30$) hoặc biết $\sigma$: thống kê kiểm định:
+  \[
+    Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1) \quad \text{(dưới } H_0).
+  \]
+  \begin{itemize}
+    \item $H_0: \mu = \mu_0$ so với $H_1: \mu \ne \mu_0$ (hai phía): bác bỏ nếu $|Z| > z_{\alpha/2}$.
+    \item $H_1: \mu > \mu_0$ (một phía phải): bác bỏ nếu $Z > z_\alpha$.
+    \item $H_1: \mu < \mu_0$ (một phía trái): bác bỏ nếu $Z < -z_\alpha$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Kiểm định $t$ (T-test) -- mẫu nhỏ}]
+  Khi mẫu nhỏ ($n < 30$) và không biết $\sigma$: thống kê kiểm định:
+  \[
+    T = \frac{\bar{X} - \mu_0}{s/\sqrt{n}} \sim t_{n-1} \quad \text{(phân phối t với } n-1 \text{ bậc tự do)}.
+  \]
+  trong đó $s$ là độ lệch chuẩn mẫu: $s = \sqrt{\dfrac{\sum(x_i - \bar{x})^2}{n-1}}$.
+\end{congthuc}
+
+\begin{congthuc}[title={Kiểm định Chi-squared ($\chi^2$)}]
+  Kiểm định sự phù hợp (goodness-of-fit) hoặc độc lập trong bảng phân phối tần số:
+  \[
+    \chi^2 = \sum \frac{(O_i - E_i)^2}{E_i},
+  \]
+  trong đó $O_i$ là tần số quan sát và $E_i$ là tần số kỳ vọng. So sánh với $\chi^2_{k-1}$ ($k$ là số hạng).
+\end{congthuc}
+
+\begin{phuongphap}[title={Quy trình kiểm định giả thuyết}]
+  \begin{enumerate}
+    \item Phát biểu $H_0$ và $H_1$; chọn mức ý nghĩa $\alpha$.
+    \item Chọn phép kiểm định phù hợp ($z$-test, $t$-test, $\chi^2$-test, \ldots).
+    \item Tính thống kê kiểm định từ dữ liệu mẫu.
+    \item Tính p-value (hoặc so sánh với giá trị tới hạn).
+    \item Ra quyết định: bác bỏ hay không bác bỏ $H_0$.
+    \item Kết luận trong bối cảnh bài toán.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Một nhà sản xuất tuyên bố trọng lượng trung bình bánh $\mu_0 = 200\,\text{g}$. Mẫu $n=36$ bánh cho $\bar{x} = 197.5\,\text{g}$, $\sigma = 6\,\text{g}$. Kiểm định với $\alpha = 0.05$ có đủ bằng chứng $\mu < 200$ không?
+
+  \medskip\textbf{Giải:}
+  $H_0: \mu = 200$, $H_1: \mu < 200$ (một phía trái).
+
+  $Z = \dfrac{197.5 - 200}{6/\sqrt{36}} = \dfrac{-2.5}{1} = -2.5$.
+
+  $z_\alpha = z_{0.05} = 1.645$ (một phía). Bác bỏ $H_0$ nếu $Z < -1.645$.
+
+  $Z = -2.5 < -1.645$: \textbf{bác bỏ $H_0$}. Có đủ bằng chứng trọng lượng thực nhỏ hơn $200\,\text{g}$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  11.3 Hàm mật độ xác suất (PDF)
+%% ----------------------------------------------------------------
+\subsection{Hàm mật độ xác suất (PDF): Kết hợp giải tích để tính xác suất}
+
+\begin{dinhnghia}[title={Biến ngẫu nhiên liên tục và PDF}]
+  Biến ngẫu nhiên liên tục $X$ có \textbf{hàm mật độ xác suất (PDF)} $f(x)$ nếu:
+  \begin{enumerate}
+    \item $f(x) \ge 0$ với mọi $x$.
+    \item $\displaystyle\int_{-\infty}^{+\infty} f(x)\,dx = 1$.
+    \item $P(a \le X \le b) = \displaystyle\int_a^b f(x)\,dx$.
+  \end{enumerate}
+  \textbf{Hàm phân phối tích lũy (CDF):} $F(x) = P(X \le x) = \displaystyle\int_{-\infty}^x f(t)\,dt$, và $F'(x) = f(x)$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Kỳ vọng và phương sai của biến liên tục}]
+  \begin{itemize}
+    \item \textbf{Kỳ vọng:} $E[X] = \displaystyle\int_{-\infty}^{+\infty} x\,f(x)\,dx$.
+    \item \textbf{Phương sai:} $\text{Var}(X) = E[(X-\mu)^2] = \displaystyle\int_{-\infty}^{+\infty} (x-\mu)^2 f(x)\,dx = E[X^2] - (E[X])^2$.
+    \item \textbf{Kỳ vọng hàm $g(X)$:} $E[g(X)] = \displaystyle\int_{-\infty}^{+\infty} g(x)\,f(x)\,dx$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Cho PDF $f(x) = \begin{cases} cx^2 & 0 \le x \le 3 \\ 0 & \text{khác}\end{cases}$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Tìm $c$.
+    \item Tính $P(1 \le X \le 2)$ và $E[X]$.
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle\int_0^3 cx^2\,dx = c\cdot\dfrac{27}{3} = 9c = 1 \Rightarrow c = \dfrac{1}{9}$.
+
+    \item $P(1 \le X \le 2) = \displaystyle\int_1^2 \dfrac{x^2}{9}\,dx = \dfrac{1}{9}\cdot\dfrac{x^3}{3}\Big|_1^2 = \dfrac{1}{27}(8-1) = \dfrac{7}{27}$.
+
+      $E[X] = \displaystyle\int_0^3 x \cdot \dfrac{x^2}{9}\,dx = \dfrac{1}{9}\int_0^3 x^3\,dx = \dfrac{1}{9}\cdot\dfrac{81}{4} = \dfrac{9}{4}$.
+  \end{enumerate}
+\end{vidu}
+
+\begin{congthuc}[title={Phân phối đều liên tục}]
+  $X \sim U(a,b)$: PDF đều trên $[a,b]$:
+  \[
+    f(x) = \frac{1}{b-a}, \quad a \le x \le b.
+  \]
+  $E[X] = \dfrac{a+b}{2}$, $\quad \text{Var}(X) = \dfrac{(b-a)^2}{12}$.
+\end{congthuc}
+
+\begin{congthuc}[title={Phân phối mũ (Exponential)}]
+  $X \sim \text{Exp}(\lambda)$: PDF $f(x) = \lambda e^{-\lambda x}$ với $x \ge 0$.
+  \[
+    E[X] = \frac{1}{\lambda}, \qquad \text{Var}(X) = \frac{1}{\lambda^2}.
+  \]
+  \textbf{Tính không có ký ức:} $P(X > s+t \mid X > s) = P(X > t)$.
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính xác suất dùng phân phối nhị thức.
+  \item Tính xác suất dùng phân phối Poisson; xấp xỉ nhị thức bằng Poisson.
+  \item Chuẩn hóa và tính xác suất dùng phân phối chuẩn (tra bảng hoặc tính).
+  \item Kiểm định $z$-test (trung bình với $\sigma$ biết).
+  \item Kiểm định $t$-test (trung bình với $\sigma$ không biết, mẫu nhỏ).
+  \item Kiểm định $\chi^2$ (bảng tần số, độc lập hay phù hợp).
+  \item Tìm hằng số $c$ để hàm cho trước là PDF; tính xác suất, kỳ vọng, phương sai.
+  \item Tìm CDF từ PDF; tìm trung vị, phân vị.
+\end{enumerate}
+
+\end{document}

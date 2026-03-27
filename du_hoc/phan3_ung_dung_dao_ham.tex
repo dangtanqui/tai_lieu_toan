@@ -1,0 +1,518 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Ứng dụng của Đạo hàm}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable,
+  colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable,
+  colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable,
+  colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable,
+  colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {PHẦN 3: ỨNG DỤNG};
+  \node[anchor=west, white, font=\fontsize{24}{30}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-9.2cm]current page.north west)
+    {CỦA ĐẠO HÀM};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont]
+    at ([xshift=3cm, yshift=-11cm]current page.north west)
+    {Tài liệu luyện thi du học};
+  \node[white, opacity=0.12, font=\fontsize{80}{80}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\max$};
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east)
+    {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 3: ỨNG DỤNG CỦA ĐẠO HÀM}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \begin{itemize}[leftmargin=*]
+    \item \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year
+  \end{itemize}
+  \vspace{6pt}
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill
+\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 3: ỨNG DỤNG CỦA ĐẠO HÀM
+%% ================================================================
+\section{Ứng dụng của Đạo hàm}
+
+%% ----------------------------------------------------------------
+%%  3.1 Related Rates
+%% ----------------------------------------------------------------
+\subsection{Tỉ lệ thay đổi liên quan (Related Rates)}
+
+\begin{dinhnghia}
+  \textbf{Bài toán tỉ lệ thay đổi liên quan} là bài toán trong đó nhiều đại lượng cùng thay đổi theo thời gian $t$, và các đại lượng này liên hệ với nhau qua một phương trình hình học hoặc vật lý. Nhiệm vụ là tìm tốc độ thay đổi của một đại lượng này khi biết tốc độ của đại lượng kia.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Các bước giải bài toán Related Rates}]
+  \begin{enumerate}
+    \item \textbf{Vẽ sơ đồ} (nếu cần) và gán biến cho các đại lượng thay đổi.
+    \item \textbf{Viết phương trình} liên hệ các đại lượng (Pythagoras, công thức thể tích, diện tích, \ldots).
+    \item \textbf{Đạo hàm hai vế} theo $t$ (áp dụng Chain Rule).
+    \item \textbf{Thế giá trị} đã biết vào phương trình đạo hàm để tìm tốc độ cần tìm.
+    \item \textbf{Kết luận} với đơn vị đo.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Một cái thang dài $5\,\text{m}$ tựa vào tường. Chân thang trượt ra xa tường với tốc độ $1\,\text{m/s}$. Tìm tốc độ đầu thang trượt xuống tường khi chân thang cách tường $3\,\text{m}$.
+
+  \medskip\textbf{Giải:}
+  Gọi $x$ = khoảng cách chân thang đến tường, $y$ = chiều cao đầu thang.
+
+  Phương trình: $x^2 + y^2 = 25$.
+
+  Đạo hàm theo $t$: $2x\dfrac{dx}{dt} + 2y\dfrac{dy}{dt} = 0 \;\Rightarrow\; \dfrac{dy}{dt} = -\dfrac{x}{y}\cdot\dfrac{dx}{dt}$.
+
+  Khi $x = 3$: $y = \sqrt{25 - 9} = 4$.
+
+  $\dfrac{dy}{dt} = -\dfrac{3}{4} \cdot 1 = -\dfrac{3}{4}\,\text{m/s}$.
+
+  Vậy đầu thang trượt xuống với tốc độ $\dfrac{3}{4}\,\text{m/s}$.
+\end{vidu}
+
+\begin{vidu}
+  Nước được đổ vào một bình hình nón (đỉnh quay xuống) với bán kính đáy $4\,\text{m}$ và chiều cao $10\,\text{m}$, tốc độ $2\,\text{m}^3/\text{phút}$. Tìm tốc độ mực nước dâng lên khi mực nước cao $5\,\text{m}$.
+
+  \medskip\textbf{Giải:}
+  Gọi $r$ và $h$ là bán kính và chiều cao mực nước. Theo tỉ lệ đồng dạng: $\dfrac{r}{h} = \dfrac{4}{10} \Rightarrow r = \dfrac{2h}{5}$.
+
+  Thể tích: $V = \dfrac{\pi}{3} r^2 h = \dfrac{\pi}{3} \cdot \dfrac{4h^2}{25} \cdot h = \dfrac{4\pi h^3}{75}$.
+
+  Đạo hàm: $\dfrac{dV}{dt} = \dfrac{4\pi}{75} \cdot 3h^2 \dfrac{dh}{dt} = \dfrac{4\pi h^2}{25} \dfrac{dh}{dt}$.
+
+  Khi $h = 5$: $2 = \dfrac{4\pi \cdot 25}{25} \dfrac{dh}{dt} = 4\pi \dfrac{dh}{dt}$.
+
+  $\dfrac{dh}{dt} = \dfrac{1}{2\pi} \approx 0{,}159\,\text{m/phút}$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Bài toán thang tựa tường, bóng đổ.
+  \item Bài toán chứa nước vào bình (hình nón, hình trụ, hình cầu).
+  \item Bài toán khoảng cách giữa hai vật chuyển động.
+  \item Bài toán góc thay đổi (máy quay, đèn chiếu).
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  3.2 Xấp xỉ tuyến tính
+%% ----------------------------------------------------------------
+\subsection{Xấp xỉ tuyến tính (Linear Approximation) và vi phân}
+
+\begin{dinhnghia}[title={Xấp xỉ tuyến tính}]
+  Đường tiếp tuyến tại $(a, f(a))$ được gọi là \textbf{xấp xỉ tuyến tính} của $f$ tại $a$:
+  \[
+    L(x) = f(a) + f'(a)(x - a).
+  \]
+  Khi $x$ gần $a$: $f(x) \approx L(x) = f(a) + f'(a)(x - a)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Vi phân (Differentials)}]
+  Với $y = f(x)$, vi phân của $x$ là $dx = \Delta x$ (gia số của $x$). Vi phân của $y$ là:
+  \[
+    dy = f'(x)\,dx.
+  \]
+  \textbf{Ý nghĩa:} $dy \approx \Delta y$ khi $\Delta x$ nhỏ, trong đó $\Delta y = f(x + \Delta x) - f(x)$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Một số xấp xỉ thường dùng (khi $x \approx 0$)}]
+  \begin{align*}
+    &(1+x)^n \approx 1 + nx, &\quad& e^x \approx 1 + x, \\
+    &\ln(1+x) \approx x, &\quad& \sin x \approx x, \\
+    &\cos x \approx 1 - \dfrac{x^2}{2}, &\quad& \tan x \approx x.
+  \end{align*}
+\end{congthuc}
+
+\begin{vidu}
+  Dùng xấp xỉ tuyến tính để tính gần đúng $\sqrt{4.01}$.
+
+  \medskip\textbf{Giải:}
+  Đặt $f(x) = \sqrt{x}$, $a = 4$. Thì $f'(x) = \dfrac{1}{2\sqrt{x}}$, $f'(4) = \dfrac{1}{4}$.
+  \[
+    \sqrt{4.01} \approx f(4) + f'(4)(4.01 - 4) = 2 + \frac{1}{4}(0.01) = 2.0025.
+  \]
+  (Giá trị thực: $\sqrt{4.01} \approx 2.002499...$)
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  3.3 MVT và Định lý Rolle
+%% ----------------------------------------------------------------
+\subsection{Định lý Giá trị Trung bình (MVT) và Định lý Rolle}
+
+\begin{dinhly}[title={Định lý Rolle}]
+  Nếu $f$ thỏa mãn:
+  \begin{enumerate}[label=(\roman*)]
+    \item $f$ liên tục trên $[a, b]$,
+    \item $f$ khả vi trên $(a, b)$,
+    \item $f(a) = f(b)$,
+  \end{enumerate}
+  thì tồn tại ít nhất một $c \in (a, b)$ sao cho $f'(c) = 0$.
+
+  \medskip
+  \textbf{Ý nghĩa hình học:} Có ít nhất một điểm trên đồ thị mà tiếp tuyến tại đó song song với trục $Ox$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Giá trị Trung bình (MVT -- Mean Value Theorem)}]
+  Nếu $f$ liên tục trên $[a, b]$ và khả vi trên $(a, b)$, thì tồn tại ít nhất một $c \in (a, b)$ sao cho:
+  \[
+    f'(c) = \frac{f(b) - f(a)}{b - a}.
+  \]
+  \textbf{Ý nghĩa hình học:} Có ít nhất một điểm mà tiếp tuyến song song với dây cung $AB$ (với $A = (a, f(a))$, $B = (b, f(b))$).
+\end{dinhly}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Định lý Rolle là trường hợp đặc biệt của MVT với $f(a) = f(b)$.
+    \item MVT là công cụ lý thuyết quan trọng: dùng để chứng minh các bất đẳng thức, chứng minh nghiệm duy nhất, v.v.
+    \item MVT \textbf{đảm bảo sự tồn tại} của $c$, không cho biết $c$ cụ thể.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Kiểm tra MVT với $f(x) = x^2 - x - 2$ trên $[0, 3]$ và tìm $c$.
+
+  \medskip\textbf{Giải:}
+  $f$ là đa thức, liên tục và khả vi trên $[0, 3]$.
+  \[
+    \frac{f(3) - f(0)}{3 - 0} = \frac{(9 - 3 - 2) - (0 - 0 - 2)}{3} = \frac{4 - (-2)}{3} = 2.
+  \]
+  $f'(x) = 2x - 1$. Giải $f'(c) = 2$: $2c - 1 = 2 \Rightarrow c = \dfrac{3}{2} \in (0, 3)$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  3.4 Kiểm tra đạo hàm bậc nhất
+%% ----------------------------------------------------------------
+\subsection{Kiểm tra đạo hàm bậc nhất: Tìm khoảng đồng biến, nghịch biến và cực trị}
+
+\begin{dinhly}[title={Kiểm tra đồng biến/nghịch biến (First Derivative Test)}]
+  Cho $f$ liên tục và khả vi trên $(a, b)$:
+  \begin{itemize}
+    \item $f'(x) > 0,\;\forall x \in (a,b)$ $\Rightarrow$ $f$ \textbf{đồng biến} (tăng) trên $(a,b)$.
+    \item $f'(x) < 0,\;\forall x \in (a,b)$ $\Rightarrow$ $f$ \textbf{nghịch biến} (giảm) trên $(a,b)$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Kiểm tra đạo hàm bậc nhất để tìm cực trị}]
+  Giả sử $f'(c) = 0$ hoặc $f'(c)$ không tồn tại tại điểm tới hạn $c$:
+  \begin{itemize}
+    \item Nếu $f'$ đổi dấu từ \textbf{âm sang dương} khi $x$ qua $c$ $\Rightarrow$ $f(c)$ là \textbf{cực tiểu}.
+    \item Nếu $f'$ đổi dấu từ \textbf{dương sang âm} khi $x$ qua $c$ $\Rightarrow$ $f(c)$ là \textbf{cực đại}.
+    \item Nếu $f'$ \textbf{không đổi dấu} khi qua $c$ $\Rightarrow$ $f(c)$ \textbf{không là cực trị}.
+  \end{itemize}
+\end{dinhly}
+
+\begin{phuongphap}[title={Các bước tìm cực trị bằng kiểm tra đạo hàm bậc nhất}]
+  \begin{enumerate}
+    \item Tính $f'(x)$.
+    \item Tìm \textbf{điểm tới hạn}: giải $f'(x) = 0$ và tìm điểm $f'(x)$ không xác định.
+    \item Lập bảng dấu $f'(x)$ trên các khoảng phân chia bởi điểm tới hạn.
+    \item Kết luận về cực trị và khoảng đồng/nghịch biến.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Tìm khoảng đồng biến, nghịch biến và cực trị của $f(x) = x^3 - 3x^2 - 9x + 5$.
+
+  \medskip\textbf{Giải:}
+  $f'(x) = 3x^2 - 6x - 9 = 3(x^2 - 2x - 3) = 3(x-3)(x+1)$.
+
+  Điểm tới hạn: $x = -1$ và $x = 3$.
+
+  Bảng dấu $f'(x)$:
+  \[
+    \begin{array}{c|cccccc}
+      x & (-\infty,-1) & -1 & (-1,3) & 3 & (3,+\infty) \\
+      \hline
+      f'(x) & + & 0 & - & 0 & + \\
+      \hline
+      f(x) & \nearrow & \text{cực đại} & \searrow & \text{cực tiểu} & \nearrow
+    \end{array}
+  \]
+
+  \begin{itemize}
+    \item Đồng biến: $(-\infty, -1)$ và $(3, +\infty)$.
+    \item Nghịch biến: $(-1, 3)$.
+    \item Cực đại: $f(-1) = -1 - 3 + 9 + 5 = 10$.
+    \item Cực tiểu: $f(3) = 27 - 27 - 27 + 5 = -22$.
+  \end{itemize}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  3.5 Kiểm tra đạo hàm bậc hai: Lõm và điểm uốn
+%% ----------------------------------------------------------------
+\subsection{Kiểm tra đạo hàm bậc hai: Xét tính lồi/lõm và điểm uốn (Inflection points)}
+
+\begin{dinhnghia}[title={Tính lồi và lõm (Concavity)}]
+  \begin{itemize}
+    \item $f$ \textbf{lõm lên (concave up)} trên $(a,b)$ nếu đồ thị nằm \textit{trên} tất cả các tiếp tuyến. Tương đương: $f''(x) > 0$ trên $(a,b)$.
+    \item $f$ \textbf{lõm xuống (concave down)} trên $(a,b)$ nếu đồ thị nằm \textit{dưới} tất cả các tiếp tuyến. Tương đương: $f''(x) < 0$ trên $(a,b)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Điểm uốn (Inflection Point)}]
+  Điểm $(c, f(c))$ là \textbf{điểm uốn} nếu $f$ liên tục tại $c$ và tính lõm \textbf{đổi chiều} tại $c$ (từ lõm lên sang lõm xuống hoặc ngược lại).
+
+  \textbf{Điều kiện cần:} $f''(c) = 0$ hoặc $f''(c)$ không tồn tại.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Kiểm tra đạo hàm bậc hai để tìm cực trị}]
+  Giả sử $f'(c) = 0$:
+  \begin{itemize}
+    \item $f''(c) > 0$ $\Rightarrow$ $f(c)$ là \textbf{cực tiểu}.
+    \item $f''(c) < 0$ $\Rightarrow$ $f(c)$ là \textbf{cực đại}.
+    \item $f''(c) = 0$ $\Rightarrow$ \textbf{không kết luận được}; phải dùng bảng dấu $f'$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{vidu}
+  Tìm điểm uốn và khoảng lồi/lõm của $f(x) = x^4 - 4x^3$.
+
+  \medskip\textbf{Giải:}
+  $f'(x) = 4x^3 - 12x^2$, $\quad f''(x) = 12x^2 - 24x = 12x(x-2)$.
+
+  $f''(x) = 0$: $x = 0$ hoặc $x = 2$.
+
+  Bảng dấu $f''$:
+  \[
+    \begin{array}{c|ccccc}
+      x & (-\infty, 0) & 0 & (0, 2) & 2 & (2, +\infty) \\
+      \hline
+      f''(x) & + & 0 & - & 0 & + \\
+      \hline
+      \text{Lõm} & \text{lên} & \text{đổi} & \text{xuống} & \text{đổi} & \text{lên}
+    \end{array}
+  \]
+
+  Điểm uốn: $(0, f(0)) = (0, 0)$ và $(2, f(2)) = (2, -16)$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  3.6 Vẽ đồ thị hàm số dựa trên đạo hàm
+%% ----------------------------------------------------------------
+\subsection{Vẽ đồ thị hàm số dựa trên các đặc điểm của đạo hàm}
+
+\begin{phuongphap}[title={Quy trình vẽ đồ thị đầy đủ (Curve Sketching)}]
+  \begin{enumerate}
+    \item \textbf{Miền xác định:} Tìm tất cả $x$ mà $f(x)$ xác định.
+    \item \textbf{Điểm đặc biệt:} Tìm giao với $Ox$ ($f(x)=0$) và $Oy$ ($f(0)$).
+    \item \textbf{Tính đối xứng:} Hàm chẵn ($f(-x)=f(x)$), hàm lẻ ($f(-x)=-f(x)$), hay tuần hoàn.
+    \item \textbf{Tiệm cận:} Tính $\lim_{x\to\pm\infty} f(x)$ (TCN) và các TCĐ.
+    \item \textbf{Đạo hàm bậc nhất $f'$:} Tìm điểm tới hạn, bảng dấu $f'$, khoảng đơn điệu và cực trị.
+    \item \textbf{Đạo hàm bậc hai $f''$:} Bảng dấu $f''$, điểm uốn, khoảng lồi/lõm.
+    \item \textbf{Phác thảo đồ thị} dựa trên tất cả thông tin trên.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Vẽ đồ thị $f(x) = \dfrac{x^2}{x^2 - 1}$.
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}
+    \item MXĐ: $x \ne \pm 1$.
+    \item Giao $Oy$: $f(0) = 0$. Giao $Ox$: $f(x) = 0 \Rightarrow x = 0$.
+    \item Hàm chẵn: $f(-x) = f(x)$.
+    \item TCĐ: $x = \pm 1$. TCN: $\lim_{x\to\pm\infty} f(x) = 1$, tức $y = 1$.
+    \item $f'(x) = \dfrac{2x(x^2-1) - x^2 \cdot 2x}{(x^2-1)^2} = \dfrac{-2x}{(x^2-1)^2}$.
+      \begin{itemize}
+        \item $f'(x) = 0$: $x = 0$. $f'(x) > 0$ khi $x < 0$ ($x \ne -1$), $f'(x) < 0$ khi $x > 0$ ($x \ne 1$).
+        \item Cực đại tại $x = 0$: $f(0) = 0$.
+      \end{itemize}
+    \item $f''(x) = \dfrac{2(3x^2+1)}{(x^2-1)^3}$: lõm lên trên $(-\infty,-1)$ và $(1,+\infty)$; lõm xuống trên $(-1,1)$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  3.7 Bài toán tối ưu hóa
+%% ----------------------------------------------------------------
+\subsection{Bài toán tối ưu hóa (Optimization Problems)}
+
+\begin{phuongphap}[title={Quy trình giải bài toán tối ưu hóa}]
+  \begin{enumerate}
+    \item \textbf{Đọc đề, vẽ sơ đồ} (nếu cần), nhận dạng đại lượng cần tối ưu và đại lượng ràng buộc.
+    \item \textbf{Đặt biến} cho đại lượng có thể thay đổi (ví dụ: $x$, $r$, $h$, \ldots).
+    \item \textbf{Viết hàm mục tiêu} $f(x)$ (diện tích, thể tích, chi phí, lợi nhuận, thời gian, \ldots) theo một biến duy nhất (dùng điều kiện ràng buộc để khử biến phụ).
+    \item \textbf{Xác định miền xác định} của $x$ (thường là đoạn hoặc nửa đoạn).
+    \item \textbf{Tìm giá trị lớn nhất/nhỏ nhất:}
+      \begin{itemize}
+        \item Tính $f'(x)$, giải $f'(x) = 0$ để tìm điểm tới hạn.
+        \item Kiểm tra bằng bảng dấu hoặc $f''$.
+        \item Nếu bài cho đoạn đóng $[a,b]$: so sánh $f$ tại điểm tới hạn và hai đầu mút.
+      \end{itemize}
+    \item \textbf{Kết luận} và trả lời câu hỏi bài toán.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Hãy tìm hình chữ nhật có chu vi $80\,\text{cm}$ sao cho diện tích lớn nhất.
+
+  \medskip\textbf{Giải:}
+  Gọi chiều dài là $x$, chiều rộng là $y$. Chu vi: $2x + 2y = 80 \Rightarrow y = 40 - x$.
+
+  Diện tích: $A(x) = x(40 - x) = 40x - x^2$, với $x \in (0, 40)$.
+
+  $A'(x) = 40 - 2x = 0 \Rightarrow x = 20$. $A''(x) = -2 < 0 \Rightarrow$ cực đại.
+
+  Vậy $x = y = 20\,\text{cm}$, diện tích lớn nhất $A = 400\,\text{cm}^2$ (hình vuông).
+\end{vidu}
+
+\begin{vidu}
+  Tìm hình trụ có thể tích $V = 1000\,\text{cm}^3$ sao cho diện tích toàn phần nhỏ nhất.
+
+  \medskip\textbf{Giải:}
+  Gọi $r$ là bán kính đáy, $h$ là chiều cao. Ràng buộc: $\pi r^2 h = 1000 \Rightarrow h = \dfrac{1000}{\pi r^2}$.
+
+  Diện tích toàn phần: $S = 2\pi r^2 + 2\pi r h = 2\pi r^2 + \dfrac{2000}{r}$.
+
+  $S'(r) = 4\pi r - \dfrac{2000}{r^2} = 0 \Rightarrow r^3 = \dfrac{500}{\pi} \Rightarrow r = \sqrt[3]{\dfrac{500}{\pi}}$.
+
+  Kiểm tra $S'' > 0$: cực tiểu. Chiều cao $h = \dfrac{1000}{\pi r^2} = 2r$.
+
+  Kết luận: hình trụ có $S$ nhỏ nhất khi $h = 2r$ (chiều cao bằng đường kính).
+\end{vidu}
+
+\begin{vidu}
+  Nông dân muốn rào một mảnh đất hình chữ nhật, một mặt sát sông (không cần rào). Tổng chiều dài hàng rào có thể dùng là $1200\,\text{m}$. Tìm kích thước để diện tích lớn nhất.
+
+  \medskip\textbf{Giải:}
+  Gọi $x$ là cạnh song song với sông, $y$ là hai cạnh vuông góc.
+
+  Ràng buộc: $x + 2y = 1200 \Rightarrow x = 1200 - 2y$.
+
+  Diện tích: $A = xy = (1200 - 2y)y = 1200y - 2y^2$.
+
+  $A'(y) = 1200 - 4y = 0 \Rightarrow y = 300$, $x = 600$.
+
+  Diện tích lớn nhất: $A = 600 \times 300 = 180\,000\,\text{m}^2$.
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tối ưu hóa diện tích (hình chữ nhật, tam giác, hình thang, \ldots).
+  \item Tối ưu hóa thể tích (hộp, hình trụ, hình nón, \ldots).
+  \item Tối ưu hóa chi phí, khoảng cách, thời gian.
+  \item Tối ưu góc nhìn, lợi nhuận kinh tế.
+\end{enumerate}
+
+\end{document}

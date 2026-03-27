@@ -1,0 +1,426 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Các chủ đề nâng cao}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 6: CÁC CHỦ ĐỀ};
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {NÂNG CAO};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-11cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=-10] at ([xshift=-3cm, yshift=4cm]current page.center) {$\sum$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 6: CÁC CHỦ ĐỀ NÂNG CAO}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 6: CÁC CHỦ ĐỀ NÂNG CAO
+%% ================================================================
+\section{Các chủ đề nâng cao}
+
+%% ----------------------------------------------------------------
+%%  6.1 Phương trình tham số
+%% ----------------------------------------------------------------
+\subsection{Phương trình tham số (Parametric Equations): Đạo hàm, độ dài cung}
+
+\begin{dinhnghia}[title={Đường cong tham số}]
+  Đường cong được mô tả bởi \textbf{phương trình tham số} là:
+  \[
+    x = f(t), \quad y = g(t), \quad t \in [a, b].
+  \]
+  Tham số $t$ thường là thời gian. Khi $t$ tăng từ $a$ đến $b$, điểm $(x(t), y(t))$ vẽ ra đường cong.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm theo trục $x$}]
+  \[
+    \frac{dy}{dx} = \frac{dy/dt}{dx/dt} = \frac{g'(t)}{f'(t)} \quad (f'(t) \ne 0).
+  \]
+  Đạo hàm bậc hai:
+  \[
+    \frac{d^2y}{dx^2} = \frac{d}{dx}\!\left[\frac{dy}{dx}\right] = \frac{\dfrac{d}{dt}\!\left[\dfrac{dy}{dx}\right]}{dx/dt}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Độ dài cung (Arc Length)}]
+  \[
+    L = \int_a^b \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2}\,dt.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Diện tích mặt tròn xoay (Surface Area)}]
+  Quay đường cong tham số quanh trục $Ox$:
+  \[
+    S = 2\pi \int_a^b |y(t)| \sqrt{\left(\frac{dx}{dt}\right)^2 + \left(\frac{dy}{dt}\right)^2}\,dt.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Cho đường cycloid $x = t - \sin t$, $y = 1 - \cos t$, $t \in [0, 2\pi]$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Tìm $\dfrac{dy}{dx}$ tại $t = \dfrac{\pi}{2}$.
+    \item Tính độ dài cung một cung cycloid.
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\dfrac{dx}{dt} = 1 - \cos t$, $\dfrac{dy}{dt} = \sin t$.
+      $\dfrac{dy}{dx} = \dfrac{\sin t}{1 - \cos t}$.
+      Tại $t = \dfrac{\pi}{2}$: $\dfrac{dy}{dx} = \dfrac{1}{1-0} = 1$.
+
+    \item $L = \displaystyle\int_0^{2\pi} \sqrt{(1-\cos t)^2 + \sin^2 t}\,dt = \int_0^{2\pi} \sqrt{2 - 2\cos t}\,dt$.
+      Dùng $2-2\cos t = 4\sin^2(t/2)$:
+      $L = \displaystyle\int_0^{2\pi} 2|\sin(t/2)|\,dt = 2\int_0^{2\pi} \sin(t/2)\,dt = 2\left[-2\cos(t/2)\right]_0^{2\pi} = 8$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.2 Tọa độ cực
+%% ----------------------------------------------------------------
+\subsection{Tọa độ cực (Polar Coordinates): Đạo hàm và tính diện tích miền cực}
+
+\begin{dinhnghia}[title={Tọa độ cực}]
+  Mỗi điểm trong mặt phẳng được biểu diễn bởi $(r, \theta)$:
+  \begin{itemize}
+    \item $r$: khoảng cách từ gốc tọa độ (cực) đến điểm.
+    \item $\theta$: góc tạo bởi tia kéo đến điểm và trục cực (dương $= $ trục $Ox$).
+  \end{itemize}
+
+  \textbf{Chuyển đổi:}
+  \[
+    x = r\cos\theta, \quad y = r\sin\theta, \quad r^2 = x^2 + y^2, \quad \tan\theta = \frac{y}{x}.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm trong tọa độ cực}]
+  Với $r = f(\theta)$ (xem như đường cong tham số với $x = r\cos\theta$, $y = r\sin\theta$):
+  \[
+    \frac{dy}{dx} = \frac{f'(\theta)\sin\theta + f(\theta)\cos\theta}{f'(\theta)\cos\theta - f(\theta)\sin\theta}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Diện tích miền cực}]
+  Diện tích vùng giới hạn bởi $r = f(\theta)$ với $\alpha \le \theta \le \beta$:
+  \[
+    S = \frac{1}{2}\int_\alpha^\beta [f(\theta)]^2\,d\theta = \frac{1}{2}\int_\alpha^\beta r^2\,d\theta.
+  \]
+  Diện tích giữa hai đường cong cực $r_1(\theta) \le r_2(\theta)$:
+  \[
+    S = \frac{1}{2}\int_\alpha^\beta \bigl[r_2(\theta)^2 - r_1(\theta)^2\bigr]\,d\theta.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Độ dài cung trong tọa độ cực}]
+  \[
+    L = \int_\alpha^\beta \sqrt{r^2 + \left(\frac{dr}{d\theta}\right)^2}\,d\theta.
+  \]
+\end{congthuc}
+
+\begin{vidu}
+  Tính diện tích vùng giới hạn bởi cardioid $r = 1 + \cos\theta$.
+
+  \medskip\textbf{Giải:}
+  \[
+    S = \frac{1}{2}\int_0^{2\pi} (1+\cos\theta)^2\,d\theta
+    = \frac{1}{2}\int_0^{2\pi} (1 + 2\cos\theta + \cos^2\theta)\,d\theta.
+  \]
+  Dùng $\cos^2\theta = \dfrac{1+\cos 2\theta}{2}$:
+  \[
+    = \frac{1}{2}\int_0^{2\pi} \left(\frac{3}{2} + 2\cos\theta + \frac{\cos 2\theta}{2}\right)\,d\theta
+    = \frac{1}{2}\left[\frac{3\theta}{2} + 2\sin\theta + \frac{\sin 2\theta}{4}\right]_0^{2\pi}
+    = \frac{1}{2} \cdot 3\pi = \frac{3\pi}{2}.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.3 Vectơ trong mặt phẳng
+%% ----------------------------------------------------------------
+\subsection{Vectơ trong mặt phẳng: Vị trí, vận tốc, gia tốc}
+
+\begin{dinhnghia}[title={Vectơ vị trí, vận tốc, gia tốc}]
+  Cho vật chuyển động với vectơ vị trí $\vec{r}(t) = \langle x(t),\, y(t) \rangle$ (hoặc trong không gian $\langle x, y, z \rangle$):
+  \begin{itemize}
+    \item \textbf{Vận tốc:} $\vec{v}(t) = \vec{r}'(t) = \langle x'(t),\, y'(t) \rangle$.
+    \item \textbf{Tốc độ (speed):} $|\vec{v}(t)| = \sqrt{[x'(t)]^2 + [y'(t)]^2}$.
+    \item \textbf{Gia tốc:} $\vec{a}(t) = \vec{v}'(t) = \vec{r}''(t) = \langle x''(t),\, y''(t) \rangle$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Quãng đường và độ dời}]
+  \begin{itemize}
+    \item \textbf{Độ dời (displacement)} từ $t=a$ đến $t=b$: $\vec{r}(b) - \vec{r}(a) = \displaystyle\int_a^b \vec{v}(t)\,dt$.
+    \item \textbf{Quãng đường (distance traveled)}: $s = \displaystyle\int_a^b |\vec{v}(t)|\,dt$.
+    \item Tọa độ tại thời điểm $t$: $\vec{r}(t) = \vec{r}(0) + \displaystyle\int_0^t \vec{v}(u)\,du$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}
+  Vật có vận tốc $\vec{v}(t) = \langle \cos t,\, \sin t \rangle$, ban đầu tại $(0,0)$.
+  \begin{enumerate}[label=(\alph*)]
+    \item Tìm vị trí tại thời điểm $t$.
+    \item Tính quãng đường từ $t=0$ đến $t = 2\pi$.
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\vec{r}(t) = \langle \sin t, -\cos t + 1 \rangle$ (vật chạy trên đường tròn $x^2 + (y-1)^2 = 1$).
+    \item $|\vec{v}(t)| = \sqrt{\cos^2 t + \sin^2 t} = 1$. Quãng đường $= \displaystyle\int_0^{2\pi} 1\,dt = 2\pi$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.4 Dãy số và tiêu chuẩn hội tụ
+%% ----------------------------------------------------------------
+\subsection{Dãy số vô hạn và các tiêu chuẩn hội tụ}
+
+\begin{dinhnghia}[title={Dãy số và giới hạn}]
+  Dãy số $\{a_n\}$ hội tụ đến $L$ nếu $\displaystyle\lim_{n\to\infty} a_n = L$ (tồn tại và hữu hạn). Ngược lại là phân kỳ.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Chuỗi số (Series)}]
+  Chuỗi số là tổng vô hạn $\displaystyle\sum_{n=1}^\infty a_n$. Tổng riêng thứ $N$ là $S_N = \displaystyle\sum_{n=1}^N a_n$.
+
+  Chuỗi \textbf{hội tụ} nếu $\displaystyle\lim_{N\to\infty} S_N = S$ (tồn tại hữu hạn); ngược lại \textbf{phân kỳ}.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Các chuỗi đặc biệt}]
+  \begin{itemize}
+    \item \textbf{Chuỗi hình học:} $\displaystyle\sum_{n=0}^\infty ar^n = \dfrac{a}{1-r}$ \; hội tụ khi $|r| < 1$; phân kỳ khi $|r| \ge 1$.
+    \item \textbf{Chuỗi $p$:} $\displaystyle\sum_{n=1}^\infty \dfrac{1}{n^p}$: hội tụ khi $p > 1$; phân kỳ khi $p \le 1$.
+    \item \textbf{Chuỗi harmonic:} $\displaystyle\sum_{n=1}^\infty \dfrac{1}{n}$ phân kỳ (trường hợp $p=1$).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Các tiêu chuẩn hội tụ}]
+  \textbf{1. Tiêu chuẩn so sánh (Comparison Test):}
+  Nếu $0 \le a_n \le b_n$: $\sum b_n$ hội tụ $\Rightarrow$ $\sum a_n$ hội tụ; $\sum a_n$ phân kỳ $\Rightarrow$ $\sum b_n$ phân kỳ.
+
+  \textbf{2. Tiêu chuẩn so sánh giới hạn (Limit Comparison):}
+  Nếu $\displaystyle\lim_{n\to\infty} \dfrac{a_n}{b_n} = c > 0$: $\sum a_n$ và $\sum b_n$ cùng hội tụ hoặc cùng phân kỳ.
+
+  \textbf{3. Tiêu chuẩn tích phân (Integral Test):}
+  Nếu $f$ giảm, dương, liên tục trên $[1,\infty)$ và $f(n) = a_n$: $\sum a_n$ hội tụ $\Leftrightarrow$ $\displaystyle\int_1^\infty f(x)\,dx$ hội tụ.
+
+  \textbf{4. Tiêu chuẩn tỉ số (Ratio Test):}
+  $L = \displaystyle\lim_{n\to\infty}\left|\dfrac{a_{n+1}}{a_n}\right|$: hội tụ nếu $L < 1$; phân kỳ nếu $L > 1$; không kết luận nếu $L = 1$.
+
+  \textbf{5. Tiêu chuẩn căn (Root Test):}
+  $L = \displaystyle\lim_{n\to\infty} \sqrt[n]{|a_n|}$: hội tụ nếu $L < 1$; phân kỳ nếu $L > 1$; không kết luận nếu $L = 1$.
+
+  \textbf{6. Tiêu chuẩn Leibniz (Alternating Series Test):}
+  Chuỗi xen dấu $\displaystyle\sum (-1)^n b_n$ ($b_n > 0$) hội tụ nếu $b_n$ giảm và $b_n \to 0$.
+\end{congthuc}
+
+\begin{vidu}
+  Xét sự hội tụ của $\displaystyle\sum_{n=1}^\infty \dfrac{n^2}{n!}$ bằng tiêu chuẩn tỉ số.
+
+  \medskip\textbf{Giải:}
+  $\dfrac{a_{n+1}}{a_n} = \dfrac{(n+1)^2}{(n+1)!} \cdot \dfrac{n!}{n^2} = \dfrac{(n+1)^2}{(n+1) \cdot n^2} = \dfrac{n+1}{n^2} \to 0$ khi $n \to \infty$.
+
+  Vì $L = 0 < 1$, chuỗi \textbf{hội tụ tuyệt đối}.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.5 Chuỗi lũy thừa
+%% ----------------------------------------------------------------
+\subsection{Chuỗi lũy thừa (Power Series) và bán kính hội tụ}
+
+\begin{dinhnghia}[title={Chuỗi lũy thừa}]
+  Chuỗi lũy thừa tâm $a$ là:
+  \[
+    \sum_{n=0}^\infty c_n (x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + \cdots
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bán kính và khoảng hội tụ}]
+  Với mỗi chuỗi lũy thừa, tồn tại $R \in [0, +\infty]$ gọi là \textbf{bán kính hội tụ} sao cho:
+  \begin{itemize}
+    \item Chuỗi hội tụ tuyệt đối khi $|x - a| < R$.
+    \item Chuỗi phân kỳ khi $|x - a| > R$.
+    \item Tại $|x - a| = R$: cần kiểm tra riêng.
+  \end{itemize}
+  Tính $R$ bằng: $\dfrac{1}{R} = \displaystyle\lim_{n\to\infty}\left|\dfrac{c_{n+1}}{c_n}\right|$ hoặc $\dfrac{1}{R} = \lim_{n\to\infty} \sqrt[n]{|c_n|}$.
+\end{dinhly}
+
+\begin{congthuc}[title={Đạo hàm và tích phân chuỗi lũy thừa}]
+  Trong khoảng hội tụ $|x-a| < R$:
+  \begin{itemize}
+    \item \textbf{Đạo hàm:} $\displaystyle\left[\sum_{n=0}^\infty c_n(x-a)^n\right]' = \sum_{n=1}^\infty n\,c_n(x-a)^{n-1}$.
+    \item \textbf{Tích phân:} $\displaystyle\int \sum_{n=0}^\infty c_n(x-a)^n\,dx = \sum_{n=0}^\infty \frac{c_n}{n+1}(x-a)^{n+1} + C$.
+  \end{itemize}
+  Bán kính hội tụ không thay đổi sau khi đạo hàm hoặc tích phân.
+\end{congthuc}
+
+\begin{vidu}
+  Tìm bán kính và khoảng hội tụ của $\displaystyle\sum_{n=1}^\infty \dfrac{(-1)^n x^n}{n}$.
+
+  \medskip\textbf{Giải:}
+  $\dfrac{1}{R} = \displaystyle\lim_{n\to\infty}\left|\dfrac{c_{n+1}}{c_n}\right| = \lim_{n\to\infty} \dfrac{n}{n+1} = 1 \Rightarrow R = 1$.
+
+  Kiểm tra đầu mút:
+  \begin{itemize}
+    \item $x = 1$: $\displaystyle\sum \dfrac{(-1)^n}{n}$ -- chuỗi xen dấu, hội tụ (Leibniz).
+    \item $x = -1$: $\displaystyle\sum \dfrac{-1}{n}$ -- chuỗi harmonic âm, phân kỳ.
+  \end{itemize}
+  Khoảng hội tụ: $(-1, 1]$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.6 Chuỗi Taylor và Maclaurin
+%% ----------------------------------------------------------------
+\subsection{Chuỗi Taylor và chuỗi Maclaurin (Xấp xỉ hàm số bằng đa thức)}
+
+\begin{dinhnghia}[title={Chuỗi Taylor và Maclaurin}]
+  Nếu $f$ có đạo hàm mọi bậc tại $a$, chuỗi Taylor của $f$ tâm $a$ là:
+  \[
+    f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(a)}{n!}(x-a)^n = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots
+  \]
+  \textbf{Chuỗi Maclaurin} là chuỗi Taylor tâm $a = 0$:
+  \[
+    f(x) = \sum_{n=0}^\infty \frac{f^{(n)}(0)}{n!} x^n.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các chuỗi Maclaurin quan trọng}]
+  \begin{align*}
+    e^x &= \sum_{n=0}^\infty \frac{x^n}{n!} = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots & (\text{mọi } x) \\[4pt]
+    \sin x &= \sum_{n=0}^\infty \frac{(-1)^n x^{2n+1}}{(2n+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots & (\text{mọi } x) \\[4pt]
+    \cos x &= \sum_{n=0}^\infty \frac{(-1)^n x^{2n}}{(2n)!} = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots & (\text{mọi } x) \\[4pt]
+    \frac{1}{1-x} &= \sum_{n=0}^\infty x^n = 1 + x + x^2 + \cdots & (|x| < 1) \\[4pt]
+    \ln(1+x) &= \sum_{n=1}^\infty \frac{(-1)^{n+1} x^n}{n} = x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots & (-1 < x \le 1) \\[4pt]
+    (1+x)^k &= \sum_{n=0}^\infty \binom{k}{n} x^n & (|x|<1)
+  \end{align*}
+\end{congthuc}
+
+\begin{vidu}
+  Tìm chuỗi Maclaurin của $f(x) = e^{-x^2}$ và dùng nó để xấp xỉ $\displaystyle\int_0^1 e^{-x^2}\,dx$ đến 3 chữ số thập phân.
+
+  \medskip\textbf{Giải:}
+  Thay $x \to -x^2$ vào chuỗi của $e^x$:
+  \[
+    e^{-x^2} = \sum_{n=0}^\infty \frac{(-1)^n x^{2n}}{n!} = 1 - x^2 + \frac{x^4}{2!} - \frac{x^6}{3!} + \cdots
+  \]
+  Tích phân hạng theo hạng từ $0$ đến $1$:
+  \[
+    \int_0^1 e^{-x^2}\,dx = 1 - \frac{1}{3} + \frac{1}{10} - \frac{1}{42} + \frac{1}{216} - \cdots \approx 0.747.
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  6.7 Sai số Lagrange
+%% ----------------------------------------------------------------
+\subsection{Sai số Lagrange (Lagrange Error Bound)}
+
+\begin{dinhly}[title={Phần dư Taylor và cận sai số Lagrange}]
+  Khi dùng đa thức Taylor bậc $n$ ($T_n(x)$) để xấp xỉ $f(x)$ tại điểm $x$ (tâm $a$):
+  \[
+    R_n(x) = f(x) - T_n(x) = \frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+  \]
+  cho một số $c$ nào đó giữa $a$ và $x$ (định lý Lagrange).
+
+  \textbf{Cận trên của sai số:}
+  \[
+    |R_n(x)| \le \frac{M}{(n+1)!}|x-a|^{n+1},
+  \]
+  trong đó $M = \max_{t \text{ giữa } a \text{ và } x} |f^{(n+1)}(t)|$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Sử dụng Lagrange Error Bound}]
+  \begin{enumerate}
+    \item Xác định $n$ (bậc đa thức đang dùng).
+    \item Tính $f^{(n+1)}(x)$ và tìm $M = \max |f^{(n+1)}(t)|$ trên đoạn liên quan.
+    \item Thế vào công thức: $|R_n(x)| \le \dfrac{M}{(n+1)!}|x-a|^{n+1}$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Dùng đa thức Taylor bậc 3 của $\sin x$ tâm $0$ để xấp xỉ $\sin(0.1)$. Ước lượng sai số.
+
+  \medskip\textbf{Giải:}
+  $T_3(x) = x - \dfrac{x^3}{6}$. Xấp xỉ: $\sin(0.1) \approx 0.1 - \dfrac{0.001}{6} \approx 0.09983$.
+
+  Phần dư bậc 4: $f^{(4)}(x) = \sin x$, $|f^{(4)}(x)| \le 1$ với mọi $x$.
+
+  $|R_3(0.1)| \le \dfrac{1}{4!}|0.1|^4 = \dfrac{0.0001}{24} \approx 4.17 \times 10^{-6}$.
+
+  Rất chính xác (sai số không quá $5 \times 10^{-6}$).
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính đạo hàm và độ dài cung của đường cong tham số.
+  \item Tính diện tích trong tọa độ cực.
+  \item Xác định sự hội tụ của dãy và chuỗi số.
+  \item Tìm bán kính và khoảng hội tụ của chuỗi lũy thừa.
+  \item Tìm chuỗi Taylor/Maclaurin của hàm số.
+  \item Ước lượng sai số bằng Lagrange Error Bound.
+\end{enumerate}
+
+\end{document}

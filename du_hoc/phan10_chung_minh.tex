@@ -1,0 +1,350 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Chứng minh Toán học}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8] (current page.south west) -- (current page.north west) -- ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {\fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);}
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHẦN 10: CHỨNG MINH};
+  \node[anchor=west, white, font=\fontsize{24}{30}\bfseries\selectfont] at ([xshift=3cm, yshift=-9.2cm]current page.north west) {TOÁN HỌC};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont] at ([xshift=3cm, yshift=-11cm]current page.north west) {Tài liệu luyện thi du học};
+  \node[white, opacity=0.10, font=\fontsize{80}{80}\selectfont, rotate=-15] at ([xshift=-3cm, yshift=4cm]current page.center) {$\square$};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large] at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small] at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được phép};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 10: CHỨNG MINH TOÁN HỌC}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 10: CHỨNG MINH TOÁN HỌC
+%% ================================================================
+\section{Chứng minh Toán học}
+
+%% ----------------------------------------------------------------
+%%  10.1 Chứng minh quy nạp
+%% ----------------------------------------------------------------
+\subsection{Chứng minh quy nạp (Proof by Mathematical Induction)}
+
+\begin{dinhnghia}[title={Nguyên lý quy nạp toán học}]
+  \textbf{Nguyên lý quy nạp:} Giả sử $P(n)$ là một mệnh đề về số nguyên dương $n$. Nếu:
+  \begin{enumerate}
+    \item \textbf{Cơ sở quy nạp (Base Case):} $P(1)$ đúng (hoặc $P(n_0)$ đúng cho một $n_0$ nào đó).
+    \item \textbf{Bước quy nạp (Inductive Step):} Giả sử $P(k)$ đúng (giả thiết quy nạp), suy ra $P(k+1)$ đúng.
+  \end{enumerate}
+  Thì $P(n)$ đúng với mọi $n \ge 1$ (hoặc $n \ge n_0$).
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Các bước viết chứng minh quy nạp}]
+  \begin{enumerate}
+    \item \textbf{Phát biểu rõ:} Gọi $P(n)$ là mệnh đề cần chứng minh.
+    \item \textbf{Bước cơ sở:} Chứng minh $P(1)$ (hoặc $P(n_0)$) đúng.
+    \item \textbf{Bước quy nạp:} Giả sử $P(k)$ đúng cho một số nguyên $k \ge 1$ tùy ý. Chứng minh $P(k+1)$ đúng.
+    \item \textbf{Kết luận:} Theo nguyên lý quy nạp, $P(n)$ đúng với mọi $n \ge 1$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Trong bước quy nạp, \textbf{không được} chứng minh $P(k)$ đúng -- ta chỉ \textbf{giả thiết} nó đúng và sử dụng.
+    \item Cần viết rõ ràng đâu là giả thiết quy nạp và đâu là hệ quả.
+    \item \textbf{Quy nạp mạnh (Strong Induction):} Giả thiết $P(1), P(2), \ldots, P(k)$ đều đúng, suy ra $P(k+1)$.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}[title={Chứng minh tổng}]
+  Chứng minh: $1 + 2 + 3 + \cdots + n = \dfrac{n(n+1)}{2}$ với mọi $n \ge 1$.
+
+  \medskip\textbf{Chứng minh:}
+
+  Gọi $P(n)$: $\displaystyle\sum_{k=1}^n k = \dfrac{n(n+1)}{2}$.
+
+  \textbf{Bước cơ sở:} $P(1)$: VT $= 1$, VP $= \dfrac{1\cdot 2}{2} = 1$. Đúng. $\checkmark$
+
+  \textbf{Bước quy nạp:} Giả sử $P(k)$ đúng: $\displaystyle\sum_{i=1}^k i = \dfrac{k(k+1)}{2}$.
+
+  Ta cần chứng minh $P(k+1)$: $\displaystyle\sum_{i=1}^{k+1} i = \dfrac{(k+1)(k+2)}{2}$.
+
+  \begin{align*}
+    \sum_{i=1}^{k+1} i &= \underbrace{\sum_{i=1}^k i}_{\text{giả thiết}} + (k+1)
+    = \frac{k(k+1)}{2} + (k+1)
+    = (k+1)\!\left(\frac{k}{2} + 1\right)
+    = \frac{(k+1)(k+2)}{2}. \checkmark
+  \end{align*}
+
+  Theo nguyên lý quy nạp, $P(n)$ đúng với mọi $n \ge 1$. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Chứng minh bất đẳng thức}]
+  Chứng minh: $2^n > n$ với mọi $n \ge 1$.
+
+  \medskip\textbf{Chứng minh:}
+
+  \textbf{Bước cơ sở:} $n=1$: $2^1 = 2 > 1$. Đúng. $\checkmark$
+
+  \textbf{Bước quy nạp:} Giả sử $2^k > k$ với $k \ge 1$ tùy ý. Cần chứng minh $2^{k+1} > k+1$.
+  \[
+    2^{k+1} = 2 \cdot 2^k > 2k \quad (\text{vì } 2^k > k)
+  \]
+  Cần $2k \ge k+1$, tức $k \ge 1$. Điều này đúng theo giả thiết.
+  Vậy $2^{k+1} > 2k \ge k+1$. $\checkmark$
+
+  Kết luận: $2^n > n$ với mọi $n \ge 1$. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Chứng minh chia hết}]
+  Chứng minh: $n^3 + 2n$ chia hết cho $3$ với mọi $n \ge 1$.
+
+  \medskip\textbf{Chứng minh:}
+
+  \textbf{Bước cơ sở:} $n=1$: $1+2=3 \divisionsymbol 3$. Đúng. $\checkmark$
+
+  \textbf{Bước quy nạp:} Giả sử $k^3+2k \divisionsymbol 3$. Ta viết $k^3+2k=3m$ với $m\in\mathbb{Z}$.
+
+  Xét $(k+1)^3+2(k+1) = k^3+3k^2+3k+1+2k+2 = (k^3+2k) + 3k^2+3k+3 = 3m + 3(k^2+k+1)$.
+
+  Vì $3m + 3(k^2+k+1) = 3[m+(k^2+k+1)]$, nên $(k+1)^3+2(k+1) \divisionsymbol 3$. $\checkmark$
+
+  Kết luận: $n^3+2n \divisionsymbol 3$ với mọi $n \ge 1$. $\blacksquare$
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập quy nạp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh công thức tổng: $\displaystyle\sum_{k=1}^n f(k) = g(n)$.
+  \item Chứng minh công thức tích.
+  \item Chứng minh bất đẳng thức bằng quy nạp.
+  \item Chứng minh tính chia hết bằng quy nạp.
+  \item Quy nạp mạnh để chứng minh tính duy nhất phân tích nhân tử.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  10.2 Chứng minh phản chứng
+%% ----------------------------------------------------------------
+\subsection{Chứng minh phản chứng (Proof by Contradiction)}
+
+\begin{phuongphap}[title={Phương pháp phản chứng (Reductio ad Absurdum)}]
+  Để chứng minh mệnh đề $P$:
+  \begin{enumerate}
+    \item \textbf{Giả sử ngược lại:} $P$ sai (tức $\neg P$ đúng).
+    \item \textbf{Suy luận:} Từ $\neg P$, dùng các bước suy luận hợp lý, dẫn đến một \textbf{mâu thuẫn} (contradiction) -- tức một phát biểu sai như $a \ne a$, hoặc mâu thuẫn với giả thiết đã biết.
+    \item \textbf{Kết luận:} Do giả sử $\neg P$ dẫn đến mâu thuẫn, $\neg P$ phải sai. Vậy $P$ đúng.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}
+  Phản chứng đặc biệt hữu ích khi:
+  \begin{itemize}
+    \item Chứng minh sự tồn tại hoặc vô hạn của cái gì đó.
+    \item Chứng minh số vô tỉ, số nguyên tố không hữu hạn.
+    \item Chứng minh điều không thể.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}[title={$\sqrt{2}$ là số vô tỉ}]
+  Chứng minh $\sqrt{2}$ là số vô tỉ.
+
+  \medskip\textbf{Chứng minh:}
+
+  Giả sử ngược lại: $\sqrt{2}$ hữu tỉ. Thì $\sqrt{2} = \dfrac{p}{q}$ với $p, q \in \mathbb{Z}$, $q \ne 0$, $\gcd(p,q) = 1$ (tối giản).
+
+  $\Rightarrow 2 = \dfrac{p^2}{q^2} \Rightarrow p^2 = 2q^2$.
+
+  Vậy $p^2$ chẵn $\Rightarrow p$ chẵn $\Rightarrow p = 2m$ với $m \in \mathbb{Z}$.
+
+  $\Rightarrow 4m^2 = 2q^2 \Rightarrow q^2 = 2m^2 \Rightarrow q^2$ chẵn $\Rightarrow q$ chẵn.
+
+  Nhưng cả $p$ và $q$ đều chẵn mâu thuẫn với $\gcd(p,q) = 1$.
+
+  Vậy giả sử sai, $\sqrt{2}$ là số vô tỉ. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Có vô hạn số nguyên tố}]
+  Chứng minh có vô hạn số nguyên tố.
+
+  \medskip\textbf{Chứng minh (Euclid):}
+
+  Giả sử ngược lại: chỉ có hữu hạn số nguyên tố $p_1, p_2, \ldots, p_n$.
+
+  Xét $N = p_1 p_2 \cdots p_n + 1$.
+
+  Vì $N > 1$, $N$ có một ước nguyên tố $p$ nào đó. Nhưng $p \ne p_i$ với mọi $i$ (vì $N \equiv 1 \pmod{p_i}$, tức $N$ chia $p_i$ dư $1$, không thể chia hết).
+
+  Mâu thuẫn với giả thiết $p_1, \ldots, p_n$ là tất cả các số nguyên tố.
+
+  Vậy có vô hạn số nguyên tố. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Chứng minh bất phương trình}]
+  Chứng minh: Nếu $a + b = 1$ ($a, b > 0$) thì $a^2 + b^2 \ge \dfrac{1}{2}$.
+
+  \medskip\textbf{Chứng minh (trực tiếp):}
+  $a^2 + b^2 = (a+b)^2 - 2ab = 1 - 2ab$.
+
+  Bởi AM-GM: $ab \le \dfrac{(a+b)^2}{4} = \dfrac{1}{4}$.
+
+  Vậy $a^2 + b^2 = 1 - 2ab \ge 1 - 2 \cdot \dfrac{1}{4} = \dfrac{1}{2}$. $\blacksquare$
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  10.3 Chứng minh trực tiếp và Phép loại trừ
+%% ----------------------------------------------------------------
+\subsection{Chứng minh trực tiếp và Phép loại trừ (Exhaustion)}
+
+\begin{phuongphap}[title={Chứng minh trực tiếp (Direct Proof)}]
+  Để chứng minh $P \Rightarrow Q$:
+  \begin{enumerate}
+    \item \textbf{Giả sử $P$ đúng.}
+    \item \textbf{Suy luận logic}, áp dụng định nghĩa, tính chất, định lý đã biết.
+    \item \textbf{Kết luận $Q$ đúng.}
+  \end{enumerate}
+  Đây là phương pháp đơn giản, tự nhiên nhất.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Chứng minh thuận -- nghịch chiều (Biconditional)}]
+  Để chứng minh $P \Leftrightarrow Q$, cần chứng minh cả hai chiều:
+  \begin{enumerate}
+    \item $P \Rightarrow Q$ (chiều thuận).
+    \item $Q \Rightarrow P$ (chiều nghịch).
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Chứng minh phản đảo (Proof by Contrapositive)}]
+  Mệnh đề $P \Rightarrow Q$ tương đương với mệnh đề phản đảo $\neg Q \Rightarrow \neg P$.
+
+  Đôi khi dễ hơn khi chứng minh: ``Nếu $Q$ không đúng thì $P$ không đúng.''
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phép loại trừ (Proof by Exhaustion / Case Analysis)}]
+  Chia tất cả các trường hợp có thể thành các \textbf{trường hợp rời rạc, không chồng chéo và bao hàm tất cả}, rồi chứng minh mệnh đề trong từng trường hợp.
+
+  \textbf{Khi dùng:}
+  \begin{itemize}
+    \item Số trường hợp hữu hạn và quản lý được.
+    \item Mệnh đề phụ thuộc vào chẵn/lẻ, dương/âm/bằng không, v.v.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}[title={Chứng minh trực tiếp -- tích hai số lẻ là số lẻ}]
+  Chứng minh: Tích của hai số nguyên lẻ là số nguyên lẻ.
+
+  \medskip\textbf{Chứng minh:}
+  Gọi $a = 2m+1$ và $b = 2n+1$ (với $m,n\in\mathbb{Z}$) là hai số nguyên lẻ bất kỳ.
+
+  $ab = (2m+1)(2n+1) = 4mn+2m+2n+1 = 2(2mn+m+n)+1$.
+
+  Vì $2mn+m+n \in \mathbb{Z}$, $ab$ có dạng $2k+1$ với $k = 2mn+m+n$, tức $ab$ là số lẻ. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Chứng minh phản đảo}]
+  Chứng minh: Nếu $n^2$ lẻ thì $n$ lẻ.
+
+  \medskip\textbf{Chứng minh (phản đảo):}
+
+  Phản đảo: Nếu $n$ chẵn thì $n^2$ chẵn.
+
+  Giả sử $n$ chẵn: $n = 2k$ với $k\in\mathbb{Z}$.
+
+  $n^2 = 4k^2 = 2(2k^2)$, tức $n^2$ chẵn. Mệnh đề phản đảo đúng, vậy mệnh đề gốc đúng. $\blacksquare$
+\end{vidu}
+
+\begin{vidu}[title={Phép loại trừ -- chia trường hợp}]
+  Chứng minh: $n^2 + n$ chẵn với mọi $n \in \mathbb{Z}$.
+
+  \medskip\textbf{Chứng minh:}
+
+  \textbf{Trường hợp 1:} $n$ chẵn, $n = 2k$: $n^2+n = 4k^2+2k = 2(2k^2+k)$ -- chẵn. $\checkmark$
+
+  \textbf{Trường hợp 2:} $n$ lẻ, $n = 2k+1$: $n^2+n = (2k+1)^2+(2k+1) = 4k^2+4k+1+2k+1 = 4k^2+6k+2 = 2(2k^2+3k+1)$ -- chẵn. $\checkmark$
+
+  Hai trường hợp bao phủ tất cả $n\in\mathbb{Z}$, vậy $n^2+n$ luôn chẵn. $\blacksquare$
+\end{vidu}
+
+\begin{congthuc}[title={Tóm tắt các phương pháp chứng minh}]
+  \begin{tabular}{lll}
+    \textbf{Phương pháp} & \textbf{Cấu trúc} & \textbf{Dùng khi nào} \\
+    \hline
+    Trực tiếp & $P \Rightarrow Q$ trực tiếp & Suy luận tự nhiên \\
+    Phản chứng & Giả sử $\neg P$, dẫn đến mâu thuẫn & Khó chứng minh trực tiếp \\
+    Phản đảo & Chứng minh $\neg Q \Rightarrow \neg P$ & Phủ định dễ hơn \\
+    Quy nạp & Base + Inductive step & Mệnh đề về $n \in \mathbb{N}$ \\
+    Loại trừ & Phân chia cases, chứng minh từng case & Số cases hữu hạn \\
+  \end{tabular}
+\end{congthuc}
+
+\medskip\noindent\textbf{Các dạng bài tập tổng hợp:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Chứng minh công thức tổng, tích bằng quy nạp.
+  \item Chứng minh bất đẳng thức bằng quy nạp.
+  \item Chứng minh tính chia hết bằng quy nạp.
+  \item Chứng minh số vô tỉ bằng phản chứng.
+  \item Chứng minh mệnh đề số học bằng phản đảo.
+  \item Chứng minh bằng phân chia trường hợp (loại trừ).
+  \item Kết hợp nhiều phương pháp trong một bài.
+\end{enumerate}
+
+\end{document}

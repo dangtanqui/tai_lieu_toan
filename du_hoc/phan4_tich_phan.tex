@@ -1,0 +1,452 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+% ==================== WATERMARK ====================
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{%
+        \fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí%
+      };
+    \end{tikzpicture}%
+  }%
+}
+
+% ==================== HEADER / FOOTER ====================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Tích phân và Sự thay đổi tích lũy}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% ==================== CUSTOM ENVIRONMENTS ====================
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+% ==================== DOCUMENT ====================
+\begin{document}
+
+% ==================== TRANG BÌA ====================
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west)
+    {PHẦN 4: TÍCH PHÂN};
+  \node[anchor=west, white, font=\fontsize{20}{26}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-9.2cm]current page.north west)
+    {VÀ SỰ THAY ĐỔI TÍCH LŨY};
+  \node[anchor=west, white, font=\fontsize{16}{20}\selectfont]
+    at ([xshift=3cm, yshift=-11cm]current page.north west)
+    {Tài liệu luyện thi du học};
+  \node[white, opacity=0.12, font=\fontsize{120}{120}\selectfont, rotate=-15]
+    at ([xshift=-3cm, yshift=4cm]current page.center)
+    {$\displaystyle\int$};
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west)
+    {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west)
+    {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west)
+    {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south)
+    {Tài liệu có bản quyền --- Cấm sao chép, phân phối khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{5cm}
+\begin{center}
+  {\Large\bfseries PHẦN 4: TÍCH PHÂN VÀ SỰ THAY ĐỔI TÍCH LŨY}\\[8pt]
+  {\large Tài liệu luyện thi du học}
+\end{center}
+\vspace{2cm}
+\begin{tcolorbox}[enhanced, colback=red!3!white, colframe=red!60!black, fonttitle=\bfseries, title={Thông tin bản quyền}, boxrule=1.5pt]
+  \textbf{Tác giả:} Đặng Tấn Quí \quad \textbf{Liên hệ:} 0377\,122\,210 \quad \textbf{Năm:} \the\year \\[6pt]
+  \textbf{Bản quyền \textcopyright\ \the\year\ Đặng Tấn Quí. Bảo lưu mọi quyền.}
+\end{tcolorbox}
+\vfill\begin{center}\small\textit{Tài liệu lưu hành nội bộ}\end{center}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  PHẦN 4: TÍCH PHÂN VÀ SỰ THAY ĐỔI TÍCH LŨY
+%% ================================================================
+\section{Tích phân và Sự thay đổi tích lũy}
+
+%% ----------------------------------------------------------------
+%%  4.1 Tổng Riemann và Quy tắc hình thang
+%% ----------------------------------------------------------------
+\subsection{Tổng Riemann (Trái, Phải, Điểm giữa) và Quy tắc hình thang}
+
+\begin{dinhnghia}[title={Tổng Riemann}]
+  Để xấp xỉ diện tích dưới đường cong $y = f(x)$ trên $[a, b]$, chia đoạn thành $n$ khoảng bằng nhau, mỗi khoảng rộng $\Delta x = \dfrac{b-a}{n}$. Gọi $x_i = a + i\Delta x$ ($i = 0, 1, \ldots, n$). Khi đó:
+  \begin{itemize}
+    \item \textbf{Tổng Riemann trái:} $L_n = \Delta x \displaystyle\sum_{i=0}^{n-1} f(x_i) = \Delta x[f(x_0) + f(x_1) + \cdots + f(x_{n-1})]$.
+    \item \textbf{Tổng Riemann phải:} $R_n = \Delta x \displaystyle\sum_{i=1}^{n} f(x_i) = \Delta x[f(x_1) + f(x_2) + \cdots + f(x_n)]$.
+    \item \textbf{Tổng Riemann điểm giữa:} $M_n = \Delta x \displaystyle\sum_{i=1}^{n} f\!\left(\frac{x_{i-1}+x_i}{2}\right)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Quy tắc hình thang (Trapezoid Rule)}]
+  \[
+    T_n = \frac{\Delta x}{2}\bigl[f(x_0) + 2f(x_1) + 2f(x_2) + \cdots + 2f(x_{n-1}) + f(x_n)\bigr].
+  \]
+  Quy tắc hình thang chính xác hơn tổng Riemann trái/phải vì nó lấy trung bình: $T_n = \dfrac{L_n + R_n}{2}$.
+\end{congthuc}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Nếu $f$ tăng trên $[a,b]$: $L_n \le \text{giá trị thực} \le R_n$ (đánh giá dưới và trên).
+    \item Nếu $f$ giảm trên $[a,b]$: $R_n \le \text{giá trị thực} \le L_n$.
+    \item Tổng Riemann là ý tưởng nền tảng cho định nghĩa tích phân xác định.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Xấp xỉ $\displaystyle\int_0^2 x^2\,dx$ bằng $n = 4$ hình chữ nhật trái, phải, và quy tắc hình thang.
+
+  \medskip\textbf{Giải:}
+  $\Delta x = 0.5$. Các điểm: $x_0=0, x_1=0.5, x_2=1, x_3=1.5, x_4=2$.
+
+  $f(x) = x^2$: $f(0)=0, f(0.5)=0.25, f(1)=1, f(1.5)=2.25, f(2)=4$.
+
+  $L_4 = 0.5(0 + 0.25 + 1 + 2.25) = 0.5 \times 3.5 = 1.75$.
+
+  $R_4 = 0.5(0.25 + 1 + 2.25 + 4) = 0.5 \times 7.5 = 3.75$.
+
+  $T_4 = \dfrac{1.75 + 3.75}{2} = 2.75$.
+
+  Giá trị thực: $\displaystyle\int_0^2 x^2\,dx = \dfrac{8}{3} \approx 2.667$.
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  4.2 Định lý cơ bản của Giải tích (FTC)
+%% ----------------------------------------------------------------
+\subsection{Định lý cơ bản của Giải tích (Fundamental Theorem of Calculus -- FTC)}
+
+\begin{dinhly}[title={FTC -- Phần 1: Đạo hàm của hàm tích phân có cận biến}]
+  Nếu $f$ liên tục trên $[a, b]$ và $g(x) = \displaystyle\int_a^x f(t)\,dt$, thì $g$ khả vi trên $(a, b)$ và:
+  \[
+    g'(x) = \frac{d}{dx}\int_a^x f(t)\,dt = f(x).
+  \]
+  \textbf{Dạng tổng quát (Chain Rule kết hợp):}
+  \[
+    \frac{d}{dx}\int_a^{u(x)} f(t)\,dt = f(u(x)) \cdot u'(x).
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={FTC -- Phần 2: Công thức Newton--Leibniz}]
+  Nếu $f$ liên tục trên $[a, b]$ và $F$ là nguyên hàm bất kỳ của $f$ ($F' = f$), thì:
+  \[
+    \int_a^b f(x)\,dx = F(b) - F(a) = \bigl[F(x)\bigr]_a^b.
+  \]
+\end{dinhly}
+
+\begin{luuy}
+  \begin{itemize}
+    \item FTC nối liền \textbf{đạo hàm và tích phân}: hai phép toán ngược nhau.
+    \item FTC--1 nói rằng tích phân là nguyên hàm (tích phân có cận biến là nguyên hàm của hàm dưới dấu tích phân).
+    \item FTC--2 (Newton--Leibniz) cho phép tính tích phân xác định mà không cần tính tổng Riemann.
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Tính $\dfrac{d}{dx}\displaystyle\int_1^{x^3} \sin(t^2)\,dt$.
+
+  \medskip\textbf{Giải:}
+  Dùng FTC--1 kết hợp Chain Rule với $u = x^3$:
+  \[
+    \frac{d}{dx}\int_1^{x^3} \sin(t^2)\,dt = \sin\!\left[(x^3)^2\right] \cdot 3x^2 = 3x^2 \sin(x^6).
+  \]
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  4.3 Tích phân bất định và nguyên hàm cơ bản
+%% ----------------------------------------------------------------
+\subsection{Tích phân bất định và các công thức nguyên hàm cơ bản}
+
+\begin{dinhnghia}
+  \[
+    \int f(x)\,dx = F(x) + C \;\;\Leftrightarrow\;\; F'(x) = f(x),\quad C \in \mathbb{R}.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bảng nguyên hàm cơ bản}]
+  \begin{align*}
+    &\int x^n\,dx = \frac{x^{n+1}}{n+1} + C \quad (n \ne -1)
+    &\quad&
+    \int \frac{1}{x}\,dx = \ln|x| + C \\[5pt]
+    &\int e^x\,dx = e^x + C
+    &&
+    \int a^x\,dx = \frac{a^x}{\ln a} + C \\[5pt]
+    &\int \sin x\,dx = -\cos x + C
+    &&
+    \int \cos x\,dx = \sin x + C \\[5pt]
+    &\int \sec^2 x\,dx = \tan x + C
+    &&
+    \int \csc^2 x\,dx = -\cot x + C \\[5pt]
+    &\int \sec x \tan x\,dx = \sec x + C
+    &&
+    \int \csc x \cot x\,dx = -\csc x + C \\[5pt]
+    &\int \frac{1}{\sqrt{1-x^2}}\,dx = \arcsin x + C
+    &&
+    \int \frac{1}{1+x^2}\,dx = \arctan x + C \\[5pt]
+    &\int \frac{dx}{x^2+a^2} = \frac{1}{a}\arctan\frac{x}{a} + C
+    &&
+    \int \frac{dx}{\sqrt{a^2-x^2}} = \arcsin\frac{x}{a} + C
+  \end{align*}
+\end{congthuc}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\displaystyle\int [f(x) \pm g(x)]\,dx = \int f(x)\,dx \pm \int g(x)\,dx$.
+    \item $\displaystyle\int c\cdot f(x)\,dx = c \int f(x)\,dx$ ($c$ là hằng số).
+  \end{itemize}
+\end{tinhchat}
+
+%% ----------------------------------------------------------------
+%%  4.4 U-Substitution
+%% ----------------------------------------------------------------
+\subsection{Phương pháp đổi biến (U-Substitution)}
+
+\begin{phuongphap}[title={U-Substitution}]
+  Dùng khi nhận ra biểu thức tích phân có dạng $\displaystyle\int f(g(x)) g'(x)\,dx$ (Chain Rule ngược):
+  \begin{enumerate}
+    \item Chọn $u = g(x)$ (thường là biểu thức ``bên trong'', phức tạp hơn).
+    \item Tính $du = g'(x)\,dx$.
+    \item Thế vào: $\displaystyle\int f(u)\,du = F(u) + C$.
+    \item Thế $u$ trở lại theo $x$.
+  \end{enumerate}
+  \textbf{Với tích phân xác định:} đổi cận theo $u$ (không cần đổi $u$ về $x$ ở cuối).
+\end{phuongphap}
+
+\begin{vidu}
+  Tính các tích phân sau:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle\int 2x\,e^{x^2}\,dx$
+    \item $\displaystyle\int_0^1 x\sqrt{1+x^2}\,dx$
+    \item $\displaystyle\int \frac{\cos(\ln x)}{x}\,dx$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item Đặt $u = x^2$, $du = 2x\,dx$:
+      $\displaystyle\int e^u\,du = e^u + C = e^{x^2} + C$.
+    \item Đặt $u = 1+x^2$, $du = 2x\,dx$. Khi $x=0$: $u=1$; $x=1$: $u=2$.
+      $\dfrac{1}{2}\displaystyle\int_1^2 \sqrt{u}\,du = \dfrac{1}{2}\cdot\dfrac{2}{3}u^{3/2}\Big|_1^2 = \dfrac{1}{3}(2^{3/2} - 1) = \dfrac{2\sqrt{2}-1}{3}$.
+    \item Đặt $u = \ln x$, $du = \dfrac{1}{x}\,dx$:
+      $\displaystyle\int \cos u\,du = \sin u + C = \sin(\ln x) + C$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  4.5 Tích phân từng phần
+%% ----------------------------------------------------------------
+\subsection{Tích phân từng phần (Integration by Parts)}
+
+\begin{congthuc}[title={Công thức tích phân từng phần}]
+  \[
+    \int u\,dv = uv - \int v\,du.
+  \]
+  Dạng tích phân xác định:
+  \[
+    \int_a^b u\,dv = \bigl[uv\bigr]_a^b - \int_a^b v\,du.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Chọn $u$ và $dv$ -- Quy tắc LIATE}]
+  Ưu tiên chọn $u$ theo thứ tự \textbf{LIATE}:
+  \begin{enumerate}
+    \item \textbf{L}ogarit: $\ln x$, $\log x$, \ldots
+    \item \textbf{I}nverse trig: $\arcsin x$, $\arctan x$, \ldots
+    \item \textbf{A}lgebraic: $x^n$, đa thức.
+    \item \textbf{T}rig: $\sin x$, $\cos x$, \ldots
+    \item \textbf{E}xponential: $e^x$, $a^x$, \ldots
+  \end{enumerate}
+  Phần còn lại (không chọn làm $u$) gán là $dv$.
+\end{phuongphap}
+
+\begin{vidu}
+  Tính:
+  \begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle\int x e^x\,dx$
+    \item $\displaystyle\int x^2 \sin x\,dx$
+    \item $\displaystyle\int \ln x\,dx$
+  \end{enumerate}
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item Chọn $u = x$, $dv = e^x\,dx$ $\Rightarrow$ $du = dx$, $v = e^x$:
+      $\displaystyle\int x e^x\,dx = xe^x - \int e^x\,dx = xe^x - e^x + C = (x-1)e^x + C$.
+
+    \item Dùng từng phần hai lần. Chọn $u = x^2$, $dv = \sin x\,dx$:
+      \begin{align*}
+        \int x^2 \sin x\,dx &= -x^2 \cos x + 2\int x \cos x\,dx \\
+        &= -x^2\cos x + 2\left(x\sin x - \int\sin x\,dx\right) \\
+        &= -x^2\cos x + 2x\sin x + 2\cos x + C.
+      \end{align*}
+
+    \item Chọn $u = \ln x$, $dv = dx$ $\Rightarrow$ $du = \dfrac{1}{x}dx$, $v = x$:
+      $\displaystyle\int \ln x\,dx = x\ln x - \int 1\,dx = x\ln x - x + C$.
+  \end{enumerate}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+%%  4.6 Phân thức hữu tỉ
+%% ----------------------------------------------------------------
+\subsection{Tích phân bằng phân thức hữu tỉ (Partial Fractions)}
+
+\begin{phuongphap}[title={Phân tích thành phân thức hữu tỉ (Partial Fraction Decomposition)}]
+  Dùng để tính $\displaystyle\int \frac{p(x)}{q(x)}\,dx$ khi bậc $\deg(p) < \deg(q)$ và $q(x)$ phân tích được thành nhân tử.
+
+  \textbf{Các dạng phân thức:}
+  \begin{enumerate}
+    \item \textbf{Mẫu có nhân tử bậc nhất phân biệt:} $\dfrac{A}{x-a} + \dfrac{B}{x-b} + \cdots$
+    \item \textbf{Mẫu có nhân tử bậc nhất lặp lại:} $(x-a)^n \to \dfrac{A_1}{x-a} + \dfrac{A_2}{(x-a)^2} + \cdots + \dfrac{A_n}{(x-a)^n}$
+    \item \textbf{Mẫu có nhân tử bậc hai bất khả quy:} $x^2 + bx + c \to \dfrac{Ax + B}{x^2 + bx + c}$
+  \end{enumerate}
+  \textbf{Nếu bậc tử $\ge$ bậc mẫu:} Chia đa thức trước, sau đó phân tích phần dư.
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $\displaystyle\int \frac{2x+1}{x^2 - x - 2}\,dx$.
+
+  \medskip\textbf{Giải:}
+  Phân tích: $x^2 - x - 2 = (x-2)(x+1)$.
+
+  $\dfrac{2x+1}{(x-2)(x+1)} = \dfrac{A}{x-2} + \dfrac{B}{x+1}$.
+
+  Nhân hai vế với $(x-2)(x+1)$: $2x+1 = A(x+1) + B(x-2)$.
+
+  Cho $x = 2$: $5 = 3A \Rightarrow A = \dfrac{5}{3}$.
+  Cho $x = -1$: $-1 = -3B \Rightarrow B = \dfrac{1}{3}$.
+
+  \[
+    \int \frac{2x+1}{x^2-x-2}\,dx = \frac{5}{3}\ln|x-2| + \frac{1}{3}\ln|x+1| + C.
+  \]
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Phân tích phân thức với mẫu có nhân tử thực phân biệt.
+  \item Phân tích với mẫu có nhân tử lặp lại.
+  \item Phân tích với mẫu có nhân tử bậc hai bất khả quy.
+  \item Chia đa thức trước khi phân tích.
+\end{enumerate}
+
+%% ----------------------------------------------------------------
+%%  4.7 Tích phân suy rộng
+%% ----------------------------------------------------------------
+\subsection{Tích phân suy rộng (Improper Integrals)}
+
+\begin{dinhnghia}[title={Tích phân suy rộng loại 1 (Cận vô cực)}]
+  \[
+    \int_a^{+\infty} f(x)\,dx = \lim_{b \to +\infty} \int_a^b f(x)\,dx.
+  \]
+  Nếu giới hạn tồn tại (hữu hạn), tích phân \textbf{hội tụ}; ngược lại \textbf{phân kỳ}.
+
+  Tương tự:
+  \[
+    \int_{-\infty}^b f(x)\,dx = \lim_{a \to -\infty} \int_a^b f(x)\,dx.
+  \]
+  \[
+    \int_{-\infty}^{+\infty} f(x)\,dx = \int_{-\infty}^c f(x)\,dx + \int_c^{+\infty} f(x)\,dx \quad \text{(cả hai phải hội tụ)}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tích phân suy rộng loại 2 (Hàm bị gián đoạn)}]
+  Nếu $f$ không liên tục tại $b$:
+  \[
+    \int_a^b f(x)\,dx = \lim_{t \to b^-} \int_a^t f(x)\,dx.
+  \]
+  Nếu $f$ không liên tục tại $a$:
+  \[
+    \int_a^b f(x)\,dx = \lim_{t \to a^+} \int_t^b f(x)\,dx.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tích phân $p$}]
+  \[
+    \int_1^{+\infty} \frac{1}{x^p}\,dx \begin{cases} = \dfrac{1}{p-1} & \text{nếu } p > 1 \quad \text{(hội tụ)} \\ \text{phân kỳ} & \text{nếu } p \le 1 \end{cases}
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Kiểm tra hội tụ bằng so sánh}]
+  \textbf{Tiêu chuẩn so sánh:} Nếu $0 \le f(x) \le g(x)$ với $x \ge a$:
+  \begin{itemize}
+    \item $\displaystyle\int_a^{+\infty} g(x)\,dx$ hội tụ $\Rightarrow$ $\displaystyle\int_a^{+\infty} f(x)\,dx$ hội tụ.
+    \item $\displaystyle\int_a^{+\infty} f(x)\,dx$ phân kỳ $\Rightarrow$ $\displaystyle\int_a^{+\infty} g(x)\,dx$ phân kỳ.
+  \end{itemize}
+  \textbf{Tiêu chuẩn so sánh giới hạn:} Nếu $\displaystyle\lim_{x\to\infty} \frac{f(x)}{g(x)} = L > 0$ (hữu hạn), thì $\int f$ và $\int g$ cùng hội tụ hoặc cùng phân kỳ.
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $\displaystyle\int_1^{+\infty} \frac{1}{x^2}\,dx$ và $\displaystyle\int_0^1 \frac{1}{\sqrt{x}}\,dx$.
+
+  \medskip\textbf{Giải:}
+  \begin{enumerate}[label=(\alph*)]
+    \item $\displaystyle\int_1^{+\infty} \frac{1}{x^2}\,dx = \lim_{b\to\infty}\left[-\frac{1}{x}\right]_1^b = \lim_{b\to\infty}\left(-\frac{1}{b}+1\right) = 1$. Hội tụ.
+    \item $\displaystyle\int_0^1 \frac{1}{\sqrt{x}}\,dx = \lim_{t\to 0^+}\left[2\sqrt{x}\right]_t^1 = \lim_{t\to 0^+}(2 - 2\sqrt{t}) = 2$. Hội tụ.
+  \end{enumerate}
+\end{vidu}
+
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Tính tích phân suy rộng loại 1 (cận $+\infty$, $-\infty$).
+  \item Tính tích phân suy rộng loại 2 (hàm gián đoạn trong đoạn).
+  \item Kiểm tra hội tụ/phân kỳ bằng tiêu chuẩn so sánh.
+  \item Kiểm tra hội tụ của tích phân $p$.
+\end{enumerate}
+
+\end{document}
