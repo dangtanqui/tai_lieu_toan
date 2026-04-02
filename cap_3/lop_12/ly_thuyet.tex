@@ -625,11 +625,8 @@
   \item Ứng dụng tích phân tìm thể tích.
 \end{enumerate}
 
-%% ================================================================
-%%  PHẦN II: XÁC SUẤT CÓ ĐIỀU KIỆN
-%% ================================================================
-\newpage
-\section{Xác suất có điều kiện}
+% ------ 1.5 Xác suất có điều kiện ------
+\subsection{Xác suất có điều kiện}
 
 \begin{dinhnghia}
   Cho hai biến cố $A$ và $B$ với $P(B) > 0$. \textbf{Xác suất có điều kiện} của $A$ khi biết $B$ đã xảy ra:
@@ -760,6 +757,9 @@
     = |\vec{a}| \cdot |\vec{b}| \cdot \cos\bigl(\vec{a},\, \vec{b}\bigr)
     = a_1 b_1 + a_2 b_2 + a_3 b_3.
   \]
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_vo_huong.png}
+  \end{center}
 \end{congthuc}
 
 \begin{tinhchat}
@@ -807,8 +807,14 @@
 \begin{tinhchat}
   \begin{itemize}
     \item $[\vec{a},\, \vec{b}] \perp \vec{a}$ và $[\vec{a},\, \vec{b}] \perp \vec{b}$.
-    \item Diện tích hình bình hành: $S_{\text{hbh}} = \bigl|[\vec{a},\, \vec{b}]\bigr|$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_co_huong.png}
+    \end{center}
+    \item Diện tích hình bình hành: $S_{\text{hbh}} = \bigl|[\vec{a},\, \vec{b}]\bigr| = |\vec{a}|.|\vec{b}|.\sin{(\vec{a}, \vec{b})}$.
     \item Diện tích tam giác: $S_{\triangle} = \dfrac{1}{2}\bigl|[\vec{a},\, \vec{b}]\bigr|$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_co_huong_dien_tich.png}
+    \end{center}
   \end{itemize}
 \end{tinhchat}
 
@@ -838,11 +844,17 @@
 \begin{dinhnghia}
   \begin{itemize}
     \item \textbf{Vectơ pháp tuyến (VTPT):} $\vec{n} = (A;\, B;\, C)$ vuông góc với mặt phẳng.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/vector_phap_tuyen_mat_phang.png}
+    \end{center}
     \item \textbf{Phương trình tổng quát:} $Ax + By + Cz + D = 0$.
     \item \textbf{Phương trình mặt chắn} (cắt ba trục tại $A(a;0;0)$, $B(0;b;0)$, $C(0;0;c)$):
       \[
         \frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1.
       \]
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_chan.png}
+    \end{center}
     \item \textbf{Đi qua} $M(x_0;\, y_0;\, z_0)$ với VTPT $\vec{n} = (A;\, B;\, C)$:
       \[
         A(x - x_0) + B(y - y_0) + C(z - z_0) = 0.
@@ -853,10 +865,14 @@
 \begin{phuongphap}[title={Viết phương trình mặt phẳng}]
   \begin{enumerate}
     \item \textbf{Biết 1 điểm và VTPT:} áp dụng trực tiếp.
-    \item \textbf{Biết 1 điểm và 2 VTCP} $\vec{a}$, $\vec{b}$:
-      tìm $\vec{n} = [\vec{a},\, \vec{b}]$, quay về dạng 1.
-    \item \textbf{Biết 3 điểm không thẳng hàng:}
-      lập 2 VTCP từ 3 điểm, quay về dạng 2.
+    \item \textbf{Biết 1 điểm và 2 VTCP} $\vec{a}$, $\vec{b}$: tìm $\vec{n} = [\vec{a},\, \vec{b}]$, quay về dạng 1.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_phang_di_qua_1_diem_va_co_2_vector_chi_phuong.png}
+    \end{center}
+    \item \textbf{Biết 3 điểm không thẳng hàng:} lập 2 VTCP từ 3 điểm, quay về dạng 2.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_phan_di_qua_3_diem.png}
+    \end{center}
   \end{enumerate}
 \end{phuongphap}
 
@@ -866,7 +882,13 @@
     \item \textbf{Trùng nhau:} $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2} = \dfrac{d_1}{d_2}$.
     \item \textbf{Song song:} $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2} \ne \dfrac{d_1}{d_2}$.
     \item \textbf{Cắt nhau:} $[\vec{n}_1,\, \vec{n}_2] \ne \vec{0}$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/2_mat_phang_cat_nhau.png}
+    \end{center}
     \item \textbf{Vuông góc:} $\vec{n}_1 \cdot \vec{n}_2 = 0$, tức $a_1 a_2 + b_1 b_2 + c_1 c_2 = 0$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/2_mat_phang_vuong_goc.png}
+    \end{center}
   \end{itemize}
 \end{congthuc}
 
@@ -876,7 +898,17 @@
       \[
         d\bigl(M,\, (P)\bigr) = \frac{\bigl|\vec{n} \cdot \overrightarrow{MN}\bigr|}{|\vec{n}|} = \frac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
       \]
-    \item \textbf{Hai mặt phẳng song song:} chọn 1 điểm trên mặt phẳng này, tính khoảng cách đến mặt phẳng kia. Hoặc sử dụng công thức: $d(P, Q) = \dfrac{|D_1 - D_2|}{\sqrt{A^2 + B^2 + C^2}}$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/khoang_cach_1_diem_den_1_mat_phang.png}
+    \end{center}
+    \item \textbf{Hai mặt phẳng song song:} chọn 1 điểm trên mặt phẳng này, tính khoảng cách đến mặt phẳng kia. Hoặc sử dụng công thức: $d(P, Q) = \dfrac{|D_1 - D_2|}{\sqrt{A^2 + B^2 + C^2}}$. Với:
+    \begin{itemize}
+        \item $(P)$: $Ax + By + Cz + D_1 = 0$
+        \item $(Q)$: $Ax + By + Cz + D_2 = 0$
+    \end{itemize}
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/khoang_cach_giua_2_mat_phang_song_song.png}
+    \end{center}
   \end{itemize}
 \end{congthuc}
 
@@ -885,11 +917,17 @@
   \begin{enumerate}
     \item Viết đường thẳng $d$ qua $M$ có VTCP $= \vec{n}_{(P)}$.
     \item Tìm giao điểm $H$ của $d$ với $(P)$. Điểm $H$ là hình chiếu.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/hinh_chieu_vuong_goc_1_diem_len_mat_phang.png}
+    \end{center}
   \end{enumerate}
   \textbf{Điểm đối xứng} $M'$ của $M$ qua $(P)$:
   \begin{itemize}
     \item Tìm hình chiếu $H$ (như trên), rồi $M' = 2H - M$.
   \end{itemize}
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/diem_doi_xung_qua_mat_phang.png}
+  \end{center}
 \end{phuongphap}
 
 \begin{vidu}
@@ -916,10 +954,11 @@
 \begin{dinhnghia}
   Đường thẳng $d$ qua $M_0(x_0;\, y_0;\, z_0)$ có VTCP $\vec{u} = (a;\, b;\, c)$:
   \begin{itemize}
-    \item \textbf{Dạng tham số:}
-      $\;\begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases}$\quad $(t \in \mathbb{R})$.
-    \item \textbf{Dạng chính tắc:}
-      $\;\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}$.
+    \item \textbf{Dạng tham số:} $\;\begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases}$\quad $(t \in \mathbb{R})$.
+    \item \textbf{Dạng chính tắc:} $\;\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/duong_thang_va_vector_chi_phong_phap_tuyen.png}
+    \end{center}
   \end{itemize}
 \end{dinhnghia}
 
@@ -928,6 +967,9 @@
   \[
     \frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1}.
   \]
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/duong_thang_di_qua_2_diem.png}
+  \end{center}
 \end{congthuc}
 
 \begin{congthuc}[title={Đường thẳng là giao tuyến của hai mặt phẳng}]
@@ -940,6 +982,9 @@
     \quad\text{VTCP:}\; \vec{u} = [\vec{n}_1,\, \vec{n}_2].
   \]
   Chọn 1 điểm bằng cách cho $x = x_0$ hoặc $y = y_0$ hoặc $z = z_0$ nào đó (Ví dụ: $0$), rồi giải phương trình tìm 2 tọa độ còn lại
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/giao_tuyen_2_mat_phang.png}
+  \end{center}
 \end{congthuc}
 
 \begin{congthuc}[title={Vị trí tương đối giữa hai đường thẳng $d(\vec{u})$ và $d'(\vec{v})$}]
@@ -996,8 +1041,14 @@
   \textbf{Hình chiếu vuông góc} $H$ của $M$ lên $d$:
   \begin{itemize}
     \item Viết $H$ thuộc $d$ (theo tham số $t$), giải $\overrightarrow{MH} \cdot \vec{u} = 0$ tìm $t$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/hinh_chieu_diem_len_duong_thang.png}
+    \end{center}
   \end{itemize}
   \textbf{Điểm đối xứng:} $M' = 2H - M$.
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/diem_doi_xung_qua_duong_thang.png}
+  \end{center}
 \end{phuongphap}
 
 \begin{vidu}
@@ -1027,6 +1078,9 @@
     = \frac{|\vec{u} \cdot \vec{v}|}{|\vec{u}| \cdot |\vec{v}|}
     = \frac{|aa' + bb' + cc'|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{a'^2 + b'^2 + c'^2}}.
   \]
+  \begin{center}
+      \includegraphics[width=1\linewidth]{cap_3//hinh_12/goc_giua_2_duong_thang.png}
+  \end{center}
 \end{congthuc}
 
 \begin{congthuc}[title={Góc giữa đường thẳng $d(\vec{u})$ và mặt phẳng $(P)(\vec{n})$}]
@@ -1035,6 +1089,9 @@
     = \frac{|\vec{u} \cdot \vec{n}|}{|\vec{u}| \cdot |\vec{n}|}
     = \frac{|aA + bB + cC|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{A^2 + B^2 + C^2}}.
   \]
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/goc_giua_duong_thang_va_mat_phang.png}
+  \end{center}
 \end{congthuc}
 
 \begin{congthuc}[title={Góc giữa hai mặt phẳng $(P)(\vec{n}_1)$ và $(Q)(\vec{n}_2)$}]
@@ -1043,6 +1100,9 @@
     = \frac{|\vec{n}_1 \cdot \vec{n}_2|}{|\vec{n}_1| \cdot |\vec{n}_2|}
     = \frac{|A_1 A_2 + B_1 B_2 + C_1 C_2|}{\sqrt{A_1^2 + B_1^2 + C_1^2}\;\sqrt{A_2^2 + B_2^2 + C_2^2}}.
   \]
+  \begin{center}
+      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/gioc_giua_2_mat_phang.png}
+  \end{center}
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
@@ -1064,6 +1124,9 @@
       $x^2 + y^2 + z^2 - 2ax - 2by - 2cz + d = 0$
       \;(điều kiện $a^2 + b^2 + c^2 - d > 0$),
       \;tâm $I(a;\, b;\, c)$, bán kính $R = \sqrt{a^2 + b^2 + c^2 - d}$.
+     \begin{center}
+         \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_cau.png}
+     \end{center}
   \end{itemize}
 \end{dinhnghia}
 
@@ -1098,6 +1161,9 @@
     \item $d > R$: không giao nhau.
     \item $d = R$: tiếp xúc tại 1 điểm.
     \item $d < R$: cắt nhau theo đường tròn bán kính $r = \sqrt{R^2 - d^2}$.
+    \begin{center}
+        \includegraphics[width=1\linewidth]{cap_3//hinh_12/vivi_tri_mat_phang_va_mat_cau.png}
+    \end{center}
   \end{itemize}
 
   \textbf{Đường thẳng $\Delta$ và mặt cầu $S(I, R)$:}
@@ -1106,6 +1172,9 @@
     \item $d > R$: không cắt nhau.
     \item $d = R$: tiếp xúc tại 1 điểm.
     \item $d < R$: cắt tại 2 điểm.
+    \begin{center}
+        \includegraphics[width=1\linewidth]{cap_3//hinh_12/vi_tri_duong_thang_va_mat_cau.png}
+    \end{center}
   \end{itemize}
 \end{congthuc}
 
