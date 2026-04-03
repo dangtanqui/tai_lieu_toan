@@ -983,18 +983,18 @@
     \end{itemize}
   \item Viết PT mặt phẳng $(P)$ biết 1 điểm và 2 VTCP.
     \begin{itemize}
-        \item Qua $A$, $B$ và song song $(d)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{u_d} \bigr|$
-        \item Qua $A$, $B$ và song song $CD$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \overrightarrow{CD} \bigr|$
-        \item Chứa $(d)$ và song song $(d')$: chọn $M \in (d)$ và $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
-        \item Chứa $(d)$ và song song $AB$: chọn $M \in (d)$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{u_d} \bigr|$
-        \item Qua $A$, $B$ và vuông góc $(Q)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{n_q} \bigr|$
-        \item Chứa $(d)$ và vuông góc $(Q)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{n_q} \bigr|$
-        \item Qua 1 điểm và vuông góc với 2 mặt phẳng $(Q)$, $(R)$: $\vec{n_p} =\bigl| \vec{n_q} \cdot \vec{n_r} \bigr|$
-        \item Qua 1 điểm và song song với 2 đường thẳng $(d)$, $(d')$: $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
-        \item Qua 1 điểm, vuông góc với mặt phẳng $(Q)$ và song song đường thẳng $(d)$: $\vec{n_p} =\bigl| \vec{n_q} \cdot \vec{u_d} \bigr|$
-        \item Chứa $(d)$ và đi qua 1 điểm $M \notin (d)$: Lấy $N \in (d)$, $\vec{n_p} =\bigl| \overrightarrow{MN} \cdot \vec{u_d} \bigr|$
-        \item Chứa 2 đường thẳng cắt nhau $(d)$ và $(d')$: Lấy $M \in (d)$ hoặc $\in (d')$, $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
-        \item Chứa 2 đường thẳng song song $(d)$ và $(d')$: Lấy $M \in (d)$ và $N \in (d')$, $\vec{n_p} =\bigl| \overrightarrow{MN} \cdot \vec{u_d} \bigr|$ hoặc $=\bigl| \overrightarrow{MN} \cdot \vec{u_{d'}} \bigr|$
+        \item Qua $A$, $B$ và song song $(d)$: chọn $A$ hoặc $B$ và $\vec{n_p} = \bigl[\overrightarrow{AB}, \vec{u_d}\bigr]$
+        \item Qua $A$, $B$ và song song $CD$: chọn $A$ hoặc $B$ và $\vec{n_p} = \bigl[\overrightarrow{AB}, \overrightarrow{CD}\bigr]$
+        \item Chứa $(d)$ và song song $(d')$: chọn $M \in (d)$ và $\vec{n_p} = \bigl[\vec{u_d}, \vec{u_{d'}}\bigr]$
+        \item Chứa $(d)$ và song song $AB$: chọn $M \in (d)$ và $\vec{n_p} = \bigl[\overrightarrow{AB}, \vec{u_d}\bigr]$
+        \item Qua $A$, $B$ và vuông góc $(Q)$: chọn $A$ hoặc $B$ và $\vec{n_p} = \bigl[\overrightarrow{AB}, \vec{n_q}\bigr]$
+        \item Chứa $(d)$ và vuông góc $(Q)$: chọn $M \in (d)$ và $\vec{n_p} = \bigl[\vec{u_d}, \vec{n_q}\bigr]$
+        \item Qua 1 điểm và vuông góc với 2 mặt phẳng $(Q)$, $(R)$: $\vec{n_p} = \bigl[\vec{n_q}, \vec{n_r}\bigr]$
+        \item Qua 1 điểm và song song với 2 đường thẳng $(d)$, $(d')$: $\vec{n_p} = \bigl[\vec{u_d}, \vec{u_{d'}}\bigr]$
+        \item Qua 1 điểm, vuông góc với mặt phẳng $(Q)$ và song song đường thẳng $(d)$: $\vec{n_p} = \bigl[\vec{n_q}, \vec{u_d}\bigr]$
+        \item Chứa $(d)$ và đi qua 1 điểm $M \notin (d)$: Lấy $N \in (d)$, $\vec{n_p} = \bigl[\overrightarrow{MN}, \vec{u_d}\bigr]$
+        \item Chứa 2 đường thẳng cắt nhau $(d)$ và $(d')$: Lấy $M \in (d)$ hoặc $\in (d')$, $\vec{n_p} = \bigl[\vec{u_d}, \vec{u_{d'}}\bigr]$
+        \item Chứa 2 đường thẳng song song $(d)$ và $(d')$: Lấy $M \in (d)$ và $N \in (d')$, $\vec{n_p} = \bigl[\overrightarrow{MN}, \vec{u_d}\bigr]$ hoặc $= \bigl[\overrightarrow{MN}, \vec{u_{d'}}\bigr]$
     \end{itemize}
   \item Viết PT mặt phẳng qua 3 điểm không thẳng hàng.
   \item Viết PT mặt phẳng song song với 1 mặt phẳng, cách khoảng $k$ cho trước.
@@ -1129,19 +1129,19 @@
       \item Qua $A$ và song song $(d')$: $\vec{u_d} = \vec{u_{d'}}$
       \item Qua $A$ và vuông góc mặt phẳng $(P)$: $\vec{u_d} = \vec{n_p}$
   \end{itemize}
-  \item Viết phương trình đường thẳng $(d)$ đi qua 1 điểm và có VTPT.
+  \item Viết phương trình đường thẳng $(d)$ đi qua 1 điểm, có 2 VTPT.
   \begin{itemize}
-      \item Qua $A$ và vuông góc với 2 đường thẳng $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d_1}} \cdot \vec{u_{d_2}} \bigr|$
-      \item Qua $A$ và song song với 2 mặt thẳng $(P)$ và $(Q)$ (hoặc chứa trong 1 mặt phẳng): $\vec{u_d} = \bigl| \vec{n_q} \cdot \vec{n_q} \bigr|$
-      \item Giao tuyến của 2 mặt thẳng $(P)$ và $(Q)$: Tìm $I \in (P) \cap (Q)$ và $\vec{u_d} = \bigl| \vec{n_q} \cdot \vec{n_q} \bigr|$
-      \item Qua $A$ và vuông góc với đường thẳng $(d')$ và song song với mặt phẳng $(P)$: $\vec{u_d} = \bigl| \vec{u_{d'}} \cdot \vec{n_p} \bigr|$
-      \item Qua $A$ và vuông góc với đường thẳng $(d_1)$ và cắt đường thẳng $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d'}} \cdot \vec{n_p} \bigr|$ với $(P)$ là mặt phẳng đi qua $A$ và $(d_2)$
+      \item Qua $A$ và vuông góc với 2 đường thẳng $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl[\vec{u_{d_1}}, \vec{u_{d_2}}\bigr]$
+      \item Qua $A$ và song song với 2 mặt phẳng $(P)$ và $(Q)$ (hoặc chứa trong 1 mặt phẳng): $\vec{u_d} = \bigl[\vec{n_p}, \vec{n_q}\bigr]$
+      \item Giao tuyến của 2 mặt phẳng $(P)$ và $(Q)$: Tìm $I \in (P) \cap (Q)$ và $\vec{u_d} = \bigl[\vec{n_p}, \vec{n_q}\bigr]$
+      \item Qua $A$ và vuông góc với đường thẳng $(d')$ và song song với mặt phẳng $(P)$: $\vec{u_d} = \bigl[\vec{u_{d'}}, \vec{n_p}\bigr]$
+      \item Qua $A$ và vuông góc với đường thẳng $(d_1)$ và cắt đường thẳng $(d_2)$: $\vec{u_d} = \bigl[\vec{u_{d_1}}, \vec{n_p}\bigr]$ với $(P)$ là mặt phẳng đi qua $A$ và $(d_2)$
   \end{itemize}
-  \item Qua $A$ và vuông góc và cắt đường thẳng $(d')$: $\vec{u_d} = \overrightarrow{AB}$ với $B$ là hình chiếu của $A$ lên $(d')$. Hoặc chọn $M \in (d')$ và tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d')$ là $\vec{n_p} = \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{u_{d'}} \bigr| = \bigl| \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr| \cdot \vec{u_{d'}} \bigr|$.
-  \item Là hình chiếu của đường thẳng $(d')$ lên mặt phẳng $(P)$: Lấy $A, B \in (d)$ tìm hình chiếu $A', B'$ lên mặt phẳng $(P)$ khi đó $\vec{u_d} = \overrightarrow{AB}$.
-  \item Qua $A$ và cắt 2 đường thẳng $(d_1)$ và $(d_2)$: Lấy $M \in (d_1)$ và $N \in (d_2)$, tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d_1)$ là $\vec{n_p} = \bigl| \vec{u_{d_1}} \cdot \overrightarrow{AM} \bigr|$ và mặt phẳng $(Q)$ qua $A$ và chứa $(d_2)$ là $\vec{n_q} = \bigl| \vec{u_{d_2}} \cdot \overrightarrow{AN} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{n_q} \bigr| = \bigl| \bigl| \vec{u_{d_1}} \cdot \overrightarrow{AM} \bigr| \cdot \bigl| \vec{u_{d_2}} \cdot \overrightarrow{AN} \bigr| \bigr|$.
-  \item Qua $A$, cắt đường thẳng $(d')$ và song song mặt phẳng $(P)$: Lấy $M \in (d')$, tìm pháp tuyến mặt phẳng $(Q)$ qua $A$ và chứa $(d')$ là $\vec{n_q} = \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{n_q} \bigr| = \bigl| \vec{n_p} \cdot \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr| \bigr|$
-  \item Là đường vuông góc chung của 2 đường thẳng chéo nhau $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d_1}} \cdot \vec{u_{d_2}} \bigr|$ Lấy $M \in (d_1)$, tìm mặt phẳng $(P)$ qua $M$ có pháp tuyến $\vec{u_p} = \bigl| \vec{u_{d}} \cdot \vec{u_{d_1}} \bigr|$, tìm giao điểm $A = (d_2) \cap (P)$.
+  \item Qua $A$ và vuông góc và cắt đường thẳng $(d')$: $\vec{u_d} = \overrightarrow{AB}$ với $B$ là hình chiếu của $A$ lên $(d')$. Hoặc chọn $M \in (d')$ và tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d')$ là $\vec{n_p} = \bigl[\vec{u_{d'}}, \overrightarrow{AM}\bigr]$. Khi đó: $\vec{u_d} = \bigl[\vec{n_p}, \vec{u_{d'}}\bigr] = \bigl[\bigl[\vec{u_{d'}}, \overrightarrow{AM}\bigr], \vec{u_{d'}}\bigr]$.
+  \item Là hình chiếu của đường thẳng $(d')$ lên mặt phẳng $(P)$: Lấy $A, B \in (d')$ tìm hình chiếu $A', B'$ lên mặt phẳng $(P)$ khi đó $\vec{u_d} = \overrightarrow{A'B'}$.
+  \item Qua $A$ và cắt 2 đường thẳng $(d_1)$ và $(d_2)$: Lấy $M \in (d_1)$ và $N \in (d_2)$, tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d_1)$ là $\vec{n_p} = \bigl[\vec{u_{d_1}}, \overrightarrow{AM}\bigr]$ và mặt phẳng $(Q)$ qua $A$ và chứa $(d_2)$ là $\vec{n_q} = \bigl[\vec{u_{d_2}}, \overrightarrow{AN}\bigr]$. Khi đó: $\vec{u_d} = \bigl[\vec{n_p}, \vec{n_q}\bigr] = \bigl[\bigl[\vec{u_{d_1}}, \overrightarrow{AM}\bigr], \bigl[\vec{u_{d_2}}, \overrightarrow{AN}\bigr]\bigr]$.
+  \item Qua $A$, cắt đường thẳng $(d')$ và song song mặt phẳng $(P)$: Lấy $M \in (d')$, tìm pháp tuyến mặt phẳng $(Q)$ qua $A$ và chứa $(d')$ là $\vec{n_q} = \bigl[\vec{u_{d'}}, \overrightarrow{AM}\bigr]$. Khi đó: $\vec{u_d} = \bigl[\vec{n_p}, \vec{n_q}\bigr] = \bigl[\vec{n_p}, \bigl[\vec{u_{d'}}, \overrightarrow{AM}\bigr]\bigr]$
+  \item Là đường vuông góc chung của 2 đường thẳng chéo nhau $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl[\vec{u_{d_1}}, \vec{u_{d_2}}\bigr]$. Lấy $M \in (d_1)$, tìm mặt phẳng $(P)$ qua $M$ có pháp tuyến $\vec{n_p} = \bigl[\vec{u_d}, \vec{u_{d_1}}\bigr]$, tìm giao điểm $A = (d_2) \cap (P)$.
   \item Vị trí tương đối (đường thẳng - đường thẳng, đường thẳng - mặt phẳng).
   \item Hình chiếu vuông góc của điểm lên đường thẳng.
   \item Điểm đối xứng qua đường thẳng.
