@@ -286,18 +286,26 @@
   Giả sử $f'(x_0) = 0$:
   \begin{itemize}
     \item $f'(x)$ đổi dấu từ $+$ sang $-$ khi $x$ qua $x_0$ $\Rightarrow$ $f$ đạt \textbf{cực đại} tại $x_0$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/cuc_dai.png}
+    \end{center}
     \item $f'(x)$ đổi dấu từ $-$ sang $+$ khi $x$ qua $x_0$ $\Rightarrow$ $f$ đạt \textbf{cực tiểu} tại $x_0$.
+    \begin{center}
+        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/cuc_tieu.png}
+    \end{center}
   \end{itemize}
   \textbf{Quy tắc đạo hàm cấp hai:} Nếu $f'(x_0) = 0$ thì:
   \begin{itemize}
     \item $f''(x_0) > 0 \;\Rightarrow\; x_0$ là điểm cực tiểu.
     \item $f''(x_0) < 0 \;\Rightarrow\; x_0$ là điểm cực đại.
+    \item Vậy $f'(x_0) = 0$ và $f''(x_0) \ne 0$ thì hàm số đạt cực trị tại $x_0$.
   \end{itemize}
 \end{dinhly}
 
 \begin{luuy}
   \begin{itemize}
     \item Giá trị cực đại, cực tiểu \textbf{không nhất thiết} là giá trị lớn nhất, nhỏ nhất của hàm số.
+    \item Nếu $f'(x) = 0$ có $n$ nghiệm đơn $x_i$ thì hàm số có $n$ điểm cực trị.
     \item $f'(x_0)$ là hệ số góc của tiếp tuyến tại $x_0$.
     \item \textbf{Phương trình tiếp tuyến} tại điểm $M\bigl(x_0,\, f(x_0)\bigr)$:
       \[
@@ -381,6 +389,13 @@
   \end{itemize}
 \end{tinhchat}
 
+\begin{luuy}
+  \begin{itemize}
+    \item Nếu hàm số liên tục chỉ có 1 cực đại $x_0$ trên $(a, b)$ thì $\max f = f(x_0)$
+    \item Nếu hàm số liên tục chỉ có 1 cực tiểu $x_0$ trên $(a, b)$ thì $\min f = f(x_0)$
+  \end{itemize}
+\end{luuy}
+
 \begin{congthuc}[title={Bất đẳng thức thường dùng}]
   \begin{itemize}
     \item \textbf{AM--GM (Cô-si):} Với $a, b \ge 0$,
@@ -389,7 +404,7 @@
       \]
     \item \textbf{Bunhiacopxki (Cauchy--Schwarz):}
       \[
-        |ax + by| \le \sqrt{(a^2 + b^2)(x^2 + y^2)}, \qquad \text{dấu ``$=$'' xảy ra} \;\Leftrightarrow\; \frac{a}{x} = \frac{b}{y}.
+        |ax + by| \le \sqrt{(a^2 + b^2)(x^2 + y^2)}, \qquad \text{dấu ``$=$'' xảy ra} \;\Leftrightarrow\; \dfrac{a}{x} = \dfrac{b}{y}.
       \]
   \end{itemize}
 \end{congthuc}
@@ -420,7 +435,7 @@
     \item \textbf{Tiệm cận đứng} $x = a$\; nếu $\displaystyle\lim_{x \to a^{\pm}} f(x) = \pm\infty$.
     \item \textbf{Tiệm cận xiên} $y = kx + l$ với
       \[
-        k = \lim_{x \to \pm\infty} \frac{f(x)}{x}, \qquad
+        k = \lim_{x \to \pm\infty} \dfrac{f(x)}{x}, \qquad
         l = \lim_{x \to \pm\infty} \bigl[f(x) - kx\bigr].
       \]
   \end{itemize}
@@ -428,8 +443,8 @@
 
 \begin{congthuc}[title={Hàm phân thức $y = \dfrac{ax + b}{cx + d}$ \;$(c \ne 0,\; ad - bc \ne 0)$}]
   \[
-    \text{TCĐ:}\; x = -\frac{d}{c}, \qquad
-    \text{TCN:}\; y = \frac{a}{c}.
+    \text{TCĐ:}\; x = -\dfrac{d}{c}, \qquad
+    \text{TCN:}\; y = \dfrac{a}{c}.
   \]
 \end{congthuc}
 
@@ -501,36 +516,47 @@
 
 \begin{congthuc}[title={Bảng nguyên hàm cơ bản}]
   \begin{align*}
-    &\int x^n\,dx = \frac{x^{n+1}}{n+1} + C \quad (n \ne -1)
+    &\int 0 dx = C
     &\qquad&
-    \int \frac{1}{x}\,dx = \ln|x| + C \\[6pt]
+    \int k dx = kx + C \\[6pt]
+    &\int x^n\,dx = \dfrac{x^{n+1}}{n+1} + C \quad (n \ne -1)
+    &\qquad&
+    \int \dfrac{1}{x}\,dx = \ln|x| + C \\[6pt]
+    &\int \dfrac{1}{\sqrt{x}}\,dx = 2\sqrt{x} + C
+    &\qquad&
+    \int \dfrac{1}{x^n}\,dx = \dfrac{-1}{(n - 1)x^{n - 1}} + C \\[6pt]
     &\int e^x\,dx = e^x + C
     &&
-    \int a^x\,dx = \frac{a^x}{\ln a} + C \quad (a > 0,\, a \ne 1) \\[6pt]
+    \int a^x\,dx = \dfrac{a^x}{\ln a} + C \quad (a > 0,\, a \ne 1) \\[6pt]
     &\int \sin x\,dx = -\cos x + C
     &&
     \int \cos x\,dx = \sin x + C \\[6pt]
-    &\int \frac{1}{\cos^2 x}\,dx = \tan x + C
+    &\int \dfrac{1}{\cos^2 x}\,dx = \tan x + C
     &&
-    \int \frac{1}{\sin^2 x}\,dx = -\cot x + C
+    \int \dfrac{1}{\sin^2 x}\,dx = -\cot x + C \\[6pt]
+    &\int \tan x dx = -\ln{|cos x|} + C
+    &&
+    \int \cot x dx = \ln{|sin x|} + C
   \end{align*}
 \end{congthuc}
 
 \begin{congthuc}[title={Một số nguyên hàm bổ sung}]
   \begin{align*}
-    &\int \frac{f'(x)}{f(x)}\,dx = \ln\bigl|f(x)\bigr| + C
+    &\int \dfrac{f'(x)}{f(x)}\,dx = \ln\bigl|f(x)\bigr| + C
     &\qquad&
-    \int \frac{dx}{x^2 + a^2} = \frac{1}{a}\arctan\frac{x}{a} + C \\[6pt]
-    &\int \frac{dx}{\sqrt{a^2 - x^2}} = \arcsin\frac{x}{a} + C
+    \int \dfrac{dx}{x^2 + a^2} = \dfrac{1}{a}\arctan\dfrac{x}{a} + C \\[6pt]
+    &\int \dfrac{dx}{\sqrt{a^2 - x^2}} = \arcsin\dfrac{x}{a} + C
     &&
-    \int \frac{dx}{x^2 - a^2} = \frac{1}{2a}\ln\left|\frac{x - a}{x + a}\right| + C
+    \int \dfrac{dx}{x^2 - a^2} = \dfrac{1}{2a}\ln\left|\dfrac{x - a}{x + a}\right| + C
   \end{align*}
 \end{congthuc}
 
 \begin{tinhchat}
   \begin{align*}
+    &\int f'(x)\,dx = f(x) + C \\[4pt]
     &\int k \cdot f(x)\,dx = k \int f(x)\,dx \\[4pt]
-    &\int \bigl[f(x) + g(x)\bigr]\,dx = \int f(x)\,dx + \int g(x)\,dx
+    &\int \bigl[f(x) + g(x)\bigr]\,dx = \int f(x)\,dx + \int g(x)\,dx \\[4pt]
+    &\int f(ax + b)\,dx = \dfrac{1}{a} F(ax + b) + C
   \end{align*}
 \end{tinhchat}
 
@@ -557,7 +583,7 @@
 \subsection{Tích phân}
 
 \begin{dinhnghia}
-  Nếu $F$ là một nguyên hàm của $f$ trên $[a,b]$ thì:
+  Nếu $F(x)$ là một nguyên hàm của $f(x)$ trên $[a,b]$ thì:
   \[
     \int_a^b f(x)\,dx = F(x)\bigr|_a^b = F(b) - F(a).
   \]
@@ -567,6 +593,7 @@
   \begin{gather*}
     \int_a^a f(x)\,dx = 0 \\[4pt]
     \int_a^b f(x)\,dx = -\int_b^a f(x)\,dx \\[4pt]
+    \int_a^b f(x)\,dx = \int_a^b f(-x)\,dx \\[4pt]
     \int_a^b k \cdot f(x)\,dx = k \int_a^b f(x)\,dx \\[4pt]
     \int_a^b \bigl[f(x) + g(x)\bigr]\,dx = \int_a^b f(x)\,dx + \int_a^b g(x)\,dx \\[4pt]
     \int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx
@@ -594,6 +621,12 @@
   Tính $\displaystyle\int_0^2 (x^2 + 1)\,dx$.
 \end{vidu}
 
+\medskip\noindent\textbf{Các dạng bài tập:}
+\begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
+  \item Phân thức hữu tỉ.
+  \item Tích của các hàm lượng giác.
+\end{enumerate}
+
 % ------ 1.5 Ứng dụng tích phân ------
 \subsection{Ứng dụng tích phân}
 
@@ -617,6 +650,10 @@
   \[
     V = \pi \int_a^b f^2(x)\,dx.
   \]
+  \textbf{Giữa hai đồ thị $y = f(x)$ và $y = g(x)$ với $f(x).g(x) \ge 0$:}
+  \[
+    V = \pi \int_a^b |f^2(x) - g^2(x)|\,dx.
+  \]
 \end{congthuc}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
@@ -631,7 +668,7 @@
 \begin{dinhnghia}
   Cho hai biến cố $A$ và $B$ với $P(B) > 0$. \textbf{Xác suất có điều kiện} của $A$ khi biết $B$ đã xảy ra:
   \[
-    P(A \mid B) = \frac{P(AB)}{P(B)}.
+    P(A \mid B) = \dfrac{P(AB)}{P(B)}.
   \]
 \end{dinhnghia}
 
@@ -657,7 +694,7 @@
 
 \begin{congthuc}[title={Công thức Bayes}]
   \[
-    P(B \mid A) = \frac{P(B) \cdot P(A \mid B)}{P(A)}.
+    P(B \mid A) = \dfrac{P(B) \cdot P(A \mid B)}{P(A)}.
   \]
 \end{congthuc}
 
@@ -826,6 +863,7 @@
     \item Thể tích hình hộp: $V = \bigl|[\overrightarrow{AB},\, \overrightarrow{AD}] \cdot \overrightarrow{AA'}\bigr|$.
     \item Thể tích tứ diện: $V = \dfrac{1}{6}\bigl|[\overrightarrow{AB},\, \overrightarrow{AC}] \cdot \overrightarrow{AD}\bigr|$.
     \item Ba vectơ đồng phẳng $\Leftrightarrow$ $[\vec{a},\, \vec{b}] \cdot \vec{c} = 0$.
+    \item Ba đểm A, B, C thẳng hàng $\Leftrightarrow \bigl|\overrightarrow{AB}, \overrightarrow{AC}\bigl| = \vec{0}$
   \end{itemize}
 \end{congthuc}
 
@@ -850,7 +888,7 @@
     \item \textbf{Phương trình tổng quát:} $Ax + By + Cz + D = 0$.
     \item \textbf{Phương trình mặt chắn} (cắt ba trục tại $A(a;0;0)$, $B(0;b;0)$, $C(0;0;c)$):
       \[
-        \frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1.
+        \dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} = 1.
       \]
     \begin{center}
         \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_chan.png}
@@ -896,7 +934,7 @@
   \begin{itemize}
     \item \textbf{Điểm $M(x_0;\, y_0;\, z_0)$ đến mặt phẳng $Ax + By + Cz + D = 0$:} chọn $N \in (P)$,
       \[
-        d\bigl(M,\, (P)\bigr) = \frac{\bigl|\vec{n} \cdot \overrightarrow{MN}\bigr|}{|\vec{n}|} = \frac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
+        d\bigl(M,\, (P)\bigr) = \dfrac{\bigl|\vec{n} \cdot \overrightarrow{MN}\bigr|}{|\vec{n}|} = \dfrac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
       \]
     \begin{center}
         \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/khoang_cach_1_diem_den_1_mat_phang.png}
@@ -936,12 +974,34 @@
 
 \medskip\noindent\textbf{Các dạng bài tập:}
 \begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
-  \item Viết PT mặt phẳng biết 1 điểm và VTPT.
-  \item Viết PT mặt phẳng qua 1 điểm, song song mặt phẳng cho trước.
+  \item Viết PT mặt phẳng $(P)$ biết 1 điểm và VTPT.
+    \begin{itemize}
+        \item Mặt phẳng trung trực đoạn $AB$: $M$ là trung điểm $AB$ và $\vec{n_p} = \overrightarrow{AB}$
+        \item Qua 1 điểm, song song mặt phẳng $(Q)$ cho trước: $\vec{n_p} = \vec{n_q}$
+        \item Qua 1 điểm, vuông góc đường thẳng $(d)$ cho trước: $\vec{n_p} = \vec{u_d}$
+        \item Qua 1 điểm, vuông góc đoạn thẳng $AB$ cho trước: $\vec{n_p} = \overrightarrow{AB}$
+    \end{itemize}
+  \item Viết PT mặt phẳng $(P)$ biết 1 điểm và 2 VTCP.
+    \begin{itemize}
+        \item Qua $A$, $B$ và song song $(d)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{u_d} \bigr|$
+        \item Qua $A$, $B$ và song song $CD$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \overrightarrow{CD} \bigr|$
+        \item Chứa $(d)$ và song song $(d')$: chọn $M \in (d)$ và $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
+        \item Chứa $(d)$ và song song $AB$: chọn $M \in (d)$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{u_d} \bigr|$
+        \item Qua $A$, $B$ và vuông góc $(Q)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \overrightarrow{AB} \cdot \vec{n_q} \bigr|$
+        \item Chứa $(d)$ và vuông góc $(Q)$: chọn $A$ hoặc $B$ và $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{n_q} \bigr|$
+        \item Qua 1 điểm và vuông góc với 2 mặt phẳng $(Q)$, $(R)$: $\vec{n_p} =\bigl| \vec{n_q} \cdot \vec{n_r} \bigr|$
+        \item Qua 1 điểm và song song với 2 đường thẳng $(d)$, $(d')$: $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
+        \item Qua 1 điểm, vuông góc với mặt phẳng $(Q)$ và song song đường thẳng $(d)$: $\vec{n_p} =\bigl| \vec{n_q} \cdot \vec{u_d} \bigr|$
+        \item Chứa $(d)$ và đi qua 1 điểm $M \notin (d)$: Lấy $N \in (d)$, $\vec{n_p} =\bigl| \overrightarrow{MN} \cdot \vec{u_d} \bigr|$
+        \item Chứa 2 đường thẳng cắt nhau $(d)$ và $(d')$: Lấy $M \in (d)$ hoặc $\in (d')$, $\vec{n_p} =\bigl| \vec{u_d} \cdot \vec{u_{d'}} \bigr|$
+        \item Chứa 2 đường thẳng song song $(d)$ và $(d')$: Lấy $M \in (d)$ và $N \in (d')$, $\vec{n_p} =\bigl| \overrightarrow{MN} \cdot \vec{u_d} \bigr|$ hoặc $=\bigl| \overrightarrow{MN} \cdot \vec{u_{d'}} \bigr|$
+    \end{itemize}
   \item Viết PT mặt phẳng qua 3 điểm không thẳng hàng.
-  \item Viết PT mặt phẳng qua 2 điểm, vuông góc với 1 mặt phẳng.
-  \item Viết PT mặt phẳng qua 1 điểm, vuông góc với 2 mặt phẳng.
   \item Viết PT mặt phẳng song song với 1 mặt phẳng, cách khoảng $k$ cho trước.
+  \item Viết PT mặt phẳng cắt 3 trục tọa độ tại $A$, $B$, $C$ với $H(a, b, c)$ là trực tâm tam giác $ABC$.
+  \[
+  (P): ax + by + cz - (a^2 + b^2 + c^2) = 0
+  \]
   \item Khoảng cách từ điểm đến mặt phẳng.
   \item Vị trí tương đối hai mặt phẳng.
   \item Hình chiếu vuông góc của điểm lên mặt phẳng.
@@ -965,7 +1025,7 @@
 \begin{congthuc}[title={Đường thẳng qua hai điểm $A(x_1;\, y_1;\, z_1)$ và $B(x_2;\, y_2;\, z_2)$}]
   VTCP $\vec{u} = \overrightarrow{AB}$, phương trình chính tắc:
   \[
-    \frac{x - x_1}{x_2 - x_1} = \frac{y - y_1}{y_2 - y_1} = \frac{z - z_1}{z_2 - z_1}.
+    \dfrac{x - x_1}{x_2 - x_1} = \dfrac{y - y_1}{y_2 - y_1} = \dfrac{z - z_1}{z_2 - z_1}.
   \]
   \begin{center}
       \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/duong_thang_di_qua_2_diem.png}
@@ -1028,11 +1088,11 @@
   \begin{itemize}
     \item \textbf{Điểm $M$ đến đường thẳng $d$:} chọn $N \in d$,
       \[
-        d(M,\, d) = \frac{\bigl|[\vec{u},\, \overrightarrow{MN}]\bigr|}{|\vec{u}|}.
+        d(M,\, d) = \dfrac{\bigl|[\vec{u},\, \overrightarrow{MN}]\bigr|}{|\vec{u}|}.
       \]
     \item \textbf{Hai đường thẳng chéo nhau $d_1(\vec{u})$ và $d_2(\vec{v})$:} chọn $M \in d_1$, $N \in d_2$,
       \[
-        d(d_1,\, d_2) = \frac{\bigl|[\vec{u},\, \vec{v}] \cdot \overrightarrow{MN}\bigr|}{\bigl|[\vec{u},\, \vec{v}]\bigr|}.
+        d(d_1,\, d_2) = \dfrac{\bigl|[\vec{u},\, \vec{v}] \cdot \overrightarrow{MN}\bigr|}{\bigl|[\vec{u},\, \vec{v}]\bigr|}.
       \]
   \end{itemize}
 \end{congthuc}
@@ -1063,8 +1123,26 @@
 \medskip\noindent\textbf{Các dạng bài tập:}
 \begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
   \item Xác định VTCP của đường thẳng.
-  \item Viết phương trình đường thẳng.
-  \item Vị trí tương đối (đường thẳng--đường thẳng, đường thẳng--mặt phẳng).
+  \item Viết phương trình đường thẳng $(d)$ đi qua 1 điểm và có VTCP.
+  \begin{itemize}
+      \item Qua 2 điểm $A$, $B$: Chọn $A$ hoặc $B$ và $\vec{u_d} = \overrightarrow{AB}$
+      \item Qua $A$ và song song $(d')$: $\vec{u_d} = \vec{u_{d'}}$
+      \item Qua $A$ và vuông góc mặt phẳng $(P)$: $\vec{u_d} = \vec{n_p}$
+  \end{itemize}
+  \item Viết phương trình đường thẳng $(d)$ đi qua 1 điểm và có VTPT.
+  \begin{itemize}
+      \item Qua $A$ và vuông góc với 2 đường thẳng $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d_1}} \cdot \vec{u_{d_2}} \bigr|$
+      \item Qua $A$ và song song với 2 mặt thẳng $(P)$ và $(Q)$ (hoặc chứa trong 1 mặt phẳng): $\vec{u_d} = \bigl| \vec{n_q} \cdot \vec{n_q} \bigr|$
+      \item Giao tuyến của 2 mặt thẳng $(P)$ và $(Q)$: Tìm $I \in (P) \cap (Q)$ và $\vec{u_d} = \bigl| \vec{n_q} \cdot \vec{n_q} \bigr|$
+      \item Qua $A$ và vuông góc với đường thẳng $(d')$ và song song với mặt phẳng $(P)$: $\vec{u_d} = \bigl| \vec{u_{d'}} \cdot \vec{n_p} \bigr|$
+      \item Qua $A$ và vuông góc với đường thẳng $(d_1)$ và cắt đường thẳng $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d'}} \cdot \vec{n_p} \bigr|$ với $(P)$ là mặt phẳng đi qua $A$ và $(d_2)$
+  \end{itemize}
+  \item Qua $A$ và vuông góc và cắt đường thẳng $(d')$: $\vec{u_d} = \overrightarrow{AB}$ với $B$ là hình chiếu của $A$ lên $(d')$. Hoặc chọn $M \in (d')$ và tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d')$ là $\vec{n_p} = \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{u_{d'}} \bigr| = \bigl| \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr| \cdot \vec{u_{d'}} \bigr|$.
+  \item Là hình chiếu của đường thẳng $(d')$ lên mặt phẳng $(P)$: Lấy $A, B \in (d)$ tìm hình chiếu $A', B'$ lên mặt phẳng $(P)$ khi đó $\vec{u_d} = \overrightarrow{AB}$.
+  \item Qua $A$ và cắt 2 đường thẳng $(d_1)$ và $(d_2)$: Lấy $M \in (d_1)$ và $N \in (d_2)$, tìm pháp tuyến mặt phẳng $(P)$ qua $A$ và chứa $(d_1)$ là $\vec{n_p} = \bigl| \vec{u_{d_1}} \cdot \overrightarrow{AM} \bigr|$ và mặt phẳng $(Q)$ qua $A$ và chứa $(d_2)$ là $\vec{n_q} = \bigl| \vec{u_{d_2}} \cdot \overrightarrow{AN} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{n_q} \bigr| = \bigl| \bigl| \vec{u_{d_1}} \cdot \overrightarrow{AM} \bigr| \cdot \bigl| \vec{u_{d_2}} \cdot \overrightarrow{AN} \bigr| \bigr|$.
+  \item Qua $A$, cắt đường thẳng $(d')$ và song song mặt phẳng $(P)$: Lấy $M \in (d')$, tìm pháp tuyến mặt phẳng $(Q)$ qua $A$ và chứa $(d')$ là $\vec{n_q} = \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr|$. Khi đó: $\vec{u_d} = \bigl| \vec{n_p} \cdot \vec{n_q} \bigr| = \bigl| \vec{n_p} \cdot \bigl| \vec{u_{d'}} \cdot \overrightarrow{AM} \bigr| \bigr|$
+  \item Là đường vuông góc chung của 2 đường thẳng chéo nhau $(d_1)$ và $(d_2)$: $\vec{u_d} = \bigl| \vec{u_{d_1}} \cdot \vec{u_{d_2}} \bigr|$ Lấy $M \in (d_1)$, tìm mặt phẳng $(P)$ qua $M$ có pháp tuyến $\vec{u_p} = \bigl| \vec{u_{d}} \cdot \vec{u_{d_1}} \bigr|$, tìm giao điểm $A = (d_2) \cap (P)$.
+  \item Vị trí tương đối (đường thẳng - đường thẳng, đường thẳng - mặt phẳng).
   \item Hình chiếu vuông góc của điểm lên đường thẳng.
   \item Điểm đối xứng qua đường thẳng.
 \end{enumerate}
@@ -1075,8 +1153,8 @@
 \begin{congthuc}[title={Góc giữa hai đường thẳng $d(\vec{u})$ và $d'(\vec{v})$}]
   \[
     \cos\bigl(d,\, d'\bigr)
-    = \frac{|\vec{u} \cdot \vec{v}|}{|\vec{u}| \cdot |\vec{v}|}
-    = \frac{|aa' + bb' + cc'|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{a'^2 + b'^2 + c'^2}}.
+    = \dfrac{|\vec{u} \cdot \vec{v}|}{|\vec{u}| \cdot |\vec{v}|}
+    = \dfrac{|aa' + bb' + cc'|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{a'^2 + b'^2 + c'^2}}.
   \]
   \begin{center}
       \includegraphics[width=1\linewidth]{cap_3//hinh_12/goc_giua_2_duong_thang.png}
@@ -1086,8 +1164,8 @@
 \begin{congthuc}[title={Góc giữa đường thẳng $d(\vec{u})$ và mặt phẳng $(P)(\vec{n})$}]
   \[
     \sin\bigl(d,\, (P)\bigr)
-    = \frac{|\vec{u} \cdot \vec{n}|}{|\vec{u}| \cdot |\vec{n}|}
-    = \frac{|aA + bB + cC|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{A^2 + B^2 + C^2}}.
+    = \dfrac{|\vec{u} \cdot \vec{n}|}{|\vec{u}| \cdot |\vec{n}|}
+    = \dfrac{|aA + bB + cC|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{A^2 + B^2 + C^2}}.
   \]
   \begin{center}
       \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/goc_giua_duong_thang_va_mat_phang.png}
@@ -1097,8 +1175,8 @@
 \begin{congthuc}[title={Góc giữa hai mặt phẳng $(P)(\vec{n}_1)$ và $(Q)(\vec{n}_2)$}]
   \[
     \cos\bigl((P),\, (Q)\bigr)
-    = \frac{|\vec{n}_1 \cdot \vec{n}_2|}{|\vec{n}_1| \cdot |\vec{n}_2|}
-    = \frac{|A_1 A_2 + B_1 B_2 + C_1 C_2|}{\sqrt{A_1^2 + B_1^2 + C_1^2}\;\sqrt{A_2^2 + B_2^2 + C_2^2}}.
+    = \dfrac{|\vec{n}_1 \cdot \vec{n}_2|}{|\vec{n}_1| \cdot |\vec{n}_2|}
+    = \dfrac{|A_1 A_2 + B_1 B_2 + C_1 C_2|}{\sqrt{A_1^2 + B_1^2 + C_1^2}\;\sqrt{A_2^2 + B_2^2 + C_2^2}}.
   \]
   \begin{center}
       \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/gioc_giua_2_mat_phang.png}
