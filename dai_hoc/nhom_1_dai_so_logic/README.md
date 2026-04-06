@@ -16,7 +16,7 @@
 |-----|----------|-----------|
 | **A1** (cơ sở) | Logic, tập hợp, quan hệ, ánh xạ, **nhóm/vành/trường** (định nghĩa cơ bản) | Nền tảng cho tất cả |
 | **A2** (sơ cấp) | Quy nạp, số phức, đa thức, phân thức hữu tỉ | Độc lập |
-| **A3** (tuyến tính) | Ma trận, định thức, HPTTT, KGVT, ánh xạ tuyến tính, trị riêng, dạng toàn phương | Độc lập |
+| **A3** (tuyến tính) | Ma trận, định thức, hệ phương trình tuyến tính, không gian vectơ, ánh xạ tuyến tính, trị riêng, dạng toàn phương | Độc lập |
 | **A4** (vành, môđun) | **Ideal**, ideal nguyên tố/tối đại, **môđun**, vành đa thức | Nâng cao của A1 (phần vành); không có nhóm chuyên sâu |
 | **A5** (lý thuyết nhóm) | Nhóm con, nhóm cyclic, **định lý Lagrange**, **đồng cấu nhóm**, nhóm thương, **$S_n$, $A_n$** | Nâng cao của A1 (phần nhóm); chuyên sâu về nhóm |
 
