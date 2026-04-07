@@ -21,3 +21,39 @@
 | **A5** (lý thuyết nhóm) | Nhóm con, nhóm cyclic, **định lý Lagrange**, **đồng cấu nhóm**, nhóm thương, **$S_n$, $A_n$** | Nâng cao của A1 (phần nhóm); chuyên sâu về nhóm |
 
 → **A1** có nhóm/vành/trường cơ bản. **A4** đi sâu vành (ideal, môđun). **A5** đi sâu nhóm (Lagrange, đồng cấu, $S_n$).
+
+---
+
+## Nội dung A5 – Lý thuyết nhóm (theo Judson, AATA)
+
+### Cần học (chương trình chuẩn)
+
+| Chủ đề | Nội dung chi tiết |
+|--------|-------------------|
+| Nhóm con | Nhóm con, nhóm con tầm thường, nhóm con thực sự |
+| Nhóm cyclic | Nhóm con cyclic, nhóm nhân các số phức, phương pháp bình phương lặp |
+| Nhóm hoán vị | Định nghĩa và ký hiệu, nhóm nhị diện |
+| Lớp kề và định lý Lagrange | Lớp kề, định lý Lagrange, định lý Fermat–Euler |
+| Đẳng cấu | Định nghĩa, tích trực tiếp |
+| Nhóm con chuẩn tắc và nhóm thương | Nhóm con chuẩn tắc, nhóm thương, tính đơn giản của nhóm thay phiên $A_n$ |
+| Đồng cấu nhóm | Đồng cấu nhóm, các định lý đẳng cấu |
+| Tác động nhóm | Nhóm tác động lên tập hợp, công thức lớp, định lý đếm Burnside |
+| Các định lý Sylow | |
+
+### Tham khảo / nâng cao
+
+| Chủ đề | Nội dung chi tiết | Ghi chú |
+|--------|-------------------|---------|
+| Nhóm ma trận và đối xứng | | Lồng vào ĐSTT hoặc bỏ qua |
+| Cấu trúc nhóm | Nhóm Abel hữu hạn, nhóm giải được | Chuyên sâu, năm 4 / sau ĐH |
+| Trường hữu hạn | Cấu trúc, mã đa thức | Chuyên sâu |
+| Lý thuyết Galois | Tự đẳng cấu trường, định lý cơ bản, ứng dụng | Chuyên sâu, năm 4 / sau ĐH |
+
+### Không thuộc A5 (nên chuyển hoặc bỏ)
+
+| Chủ đề | Nội dung chi tiết | Nên để ở |
+|--------|-------------------|----------|
+| Mật mã học | Mật mã khóa riêng, khóa công khai | Môn riêng (An toàn thông tin) |
+| Lý thuyết mã hóa đại số | Mã tuyến tính, ma trận kiểm tra, giải mã | Môn riêng (Lý thuyết mã) |
+| Miền nguyên | Trường phân thức, phân tích thừa số | **A4** (vành, môđun) |
+| Dàn và đại số Boole | Dàn, đại số Boole, đại số mạch điện | Toán rời rạc / Logic |

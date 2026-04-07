@@ -73,7 +73,7 @@
   Để chứng minh mệnh đề $P(n)$ đúng với mọi $n \in \mathbb{N}$, $n \ge n_0$:
   \begin{enumerate}
     \item \textbf{Bước cơ sở}: Chứng minh $P(n_0)$ đúng.
-    \item \textbf{Bước quy nạp}: Chứng minh $\forall k \ge n_0$: $P(k) \Rightarrow P(k+1)$.
+    \item \textbf{Bước quy nạp}: Chứng minh $\forall k \ge n_0$: $P(k) \Rightarrow P(k+1)$ hoặc $P(n_0), P(n_0+1),...,P(k) \Rightarrow P(k + 1)$.
   \end{enumerate}
 \end{phuongphap}
 
@@ -104,7 +104,7 @@
     \item $a = \mathrm{Re}(z)$: phần thực.
     \item $b = \mathrm{Im}(z)$: phần ảo.
     \item Tập các số phức ký hiệu $\mathbb{C}$.
-    \item Tập số phức $\mathbb{C}$ có 2 luật thành trong: cộng ($+$) và nhân ($\cdot$)
+    \item Tập số phức $\mathbb{C}$ là 1 trường có 2 luật thành trong: cộng ($+$) và nhân ($\cdot$)
   \end{itemize}
 \end{dinhnghia}
 
@@ -247,11 +247,21 @@
 \section{Đa thức}
 
 \begin{tinhchat}[title={Phép toán trên đa thức}]
+  Đa thức: $P(x) = a_0 + a_1x + ... + a_nx^n$
+
   Cộng, trừ, nhân đa thức: tương tự số thực.
+
+  Tính giá trị đa thức tại điểm $x_0$ bằng cách thay vào: $P(x_0) = a_0 + a_1x_0 + ... + a_nx_0^n$
+
+  Đa thức luôn có đạo hàm: $P'(x_0) = a_1 + 2a_2x + ... + na_nx^{n-1}$
+
+  Đa thức luôn có nguyên hàm: $\int P(x) dx = C +a_0x + a_1\dfrac{x^2}{2} + ... + a_n\dfrac{x^{n+1}}{n+1}$
   
   \textbf{Chia đa thức}: $P(x) = Q(x) \cdot D(x) + R(x)$ với $\deg R < \deg Q$.
   
   \textbf{Đa thức đồng nhất}: $P(z) = 0$ với mọi $z$ $\Leftrightarrow$ mọi hệ số bằng 0.
+
+  Nghiệm đa thức: $P(x) = 0$ có nghiệm $x = a$ nếu $P(x) = (x - a)Q(x)$
 \end{tinhchat}
 
 %% ================================================================

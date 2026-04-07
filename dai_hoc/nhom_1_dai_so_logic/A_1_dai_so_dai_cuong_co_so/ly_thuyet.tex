@@ -85,8 +85,12 @@
   ``$2 > 5$'' (sai)
   
   ``Số 7 là số nguyên tố'' (đúng).
+
+  ``$2x = 6$ đúng khi $x = 4$'' (sai).
   
   Không phải mệnh đề: ``$x + 1 = 0$'' (chứa biến, chưa xác định).
+  
+  Không phải mệnh đề: ``$x^3 - 4x^2 + 5x - 6$'' (chứa biến, chưa xác định).
 \end{vidu}
 
 \subsection{Các phép toán logic}
@@ -192,6 +196,10 @@
   \textbf{Tập con}: $A \subset B$ (hoặc $A \subseteq B$) $\Leftrightarrow$ $\forall x \in A \Rightarrow x \in B$.
   
   \textbf{Bằng nhau}: $A = B$ $\Leftrightarrow$ $A \subset B$ và $B \subset A$.
+
+  \textbf{Tập con thật sự}: $A \subset B$ và $A \ne B$
+
+  Không phải tập con: $A \not \subset B$
 \end{dinhnghia}
 
 \begin{dinhnghia}
@@ -262,6 +270,12 @@
     x \in \overline{A \cap B} \;\Leftrightarrow\; x \notin A \cap B \;\Leftrightarrow\; x \notin A \text{ hoặc } x \notin B \;\Leftrightarrow\; x \in \overline{A} \text{ hoặc } x \in \overline{B} \;\Leftrightarrow\; x \in \overline{A} \cup \overline{B}.
   \]
 \end{phuongphap}
+
+\begin{luuy}
+    \begin{itemize}
+        \item $(A \setminus B) \cap (B \setminus A) = \varnothing$
+    \end{itemize}
+\end{luuy}
 
 \subsection{Hợp và giao của họ tập hợp}
 
@@ -482,6 +496,14 @@
   Nếu $f$ song ánh thì $f^{-1}$ cũng song ánh.
 \end{tinhchat}
 
+\begin{luuy}
+  Nếu phương trình $f(x) = y$ với ẩn $x$ không thể có quá 1 nghiệm với mọi $y \in B$ thì $f$ đơn ánh
+  
+  Nếu phương trình $f(x) = y$ với ẩn $x$ có nghiệm với mọi $y \in B$ thì $f$ toàn ánh
+  
+  Nếu phương trình $f(x) = y$ với ẩn $x$ có đúng 1 nghiệm với mọi $y \in B$ thì $f$ song ánh
+\end{luuy}
+
 \begin{dinhnghia}
   \textbf{Ánh xạ hằng}: $f: A \to B$ gọi là hằng nếu $\exists c \in B$: $f(x) = c$ với mọi $x \in A$. Ký hiệu $f \equiv c$.
 \end{dinhnghia}
@@ -517,13 +539,14 @@
 \begin{dinhnghia}
   Cho 3 tập hợp E, F, G và 2 ánh xạ: $f: E \to F$ và $g: F \to G$, ta có mỗi $x \in E$ thông qua trung gian $y \in F$ tồn tại duy nhất một $z \in G$ xác định bởi $g(f(x)) = z$
 
-  \textbf{Hợp ánh xạ (tích ánh xạ)}: $(g \circ f)(x) = g(f(x))$. 
+  \textbf{Hợp ánh xạ (tích ánh xạ)}: $(g \circ f)(x) = g(f(x))$. Và $(f \circ g)(x) = f(g(x))$. Nói chung $g \circ f \neq f \circ g$
   
   Điều kiện: $\mathrm{Im}(f) \subset$ miền xác định của $g$.
 \end{dinhnghia}
 
 \begin{tinhchat}[title={Tính chất hợp ánh xạ}]
   \begin{itemize}
+    \item Tính kết hợp: $(h \circ g) \circ f = h \circ (g \circ f)$
     \item $f: A \to B$, $g: B \to C$ đơn ánh $\Rightarrow$ $g \circ f$ đơn ánh.
     \item $f: A \to B$, $g: B \to C$ toàn ánh $\Rightarrow$ $g \circ f$ toàn ánh.
     \item $f$, $g$ song ánh $\Rightarrow$ $g \circ f$ song ánh và $(g \circ f)^{-1} = f^{-1} \circ g^{-1}$.
@@ -536,7 +559,15 @@
   $g: \mathbb{R}^+ \to \mathbb{R}$, $g(y) = \ln y$ (song ánh). 
   
   Khi đó $g \circ f = \mathrm{id}_\mathbb{R}$, $f \circ g = \mathrm{id}_{\mathbb{R}^+}$.
+
+  Cho $f(x) = x^2$ và $g(x) = 2x + 5$. Khi đó: $(f \circ g)(x) = f(g(x)) = (2x + 5)^2 = 4x^2 + 20x + 25$ và $(g \circ f)(x) = 2x^2 + 5$
 \end{vidu}
+
+\begin{luuy}
+    \begin{itemize}
+        \item Nếu $f \circ g = \mathrm{id}_\mathbb{A}$ và $g \circ f = \mathrm{id}_{\mathbb{B}}$ thì $g$ là ánh xạ nghịch đảo của $f$
+    \end{itemize}
+\end{luuy}
 
 \subsection{Thu hẹp và mở rộng}
 
@@ -630,7 +661,7 @@
   \begin{itemize}
     \item $(R, +)$ là nhóm Abel (nhóm giao hoán), thường phần tử trung hòa Luật cộng là $0$.
     \item Luật nhân ($\cdot$) có tính kết hợp.
-    \item Phân phối: $a \cdot (b + c) = a \cdot b + a \cdot c$, $(a + b) \cdot c = a \cdot c + b \cdot c$.
+    \item Luật nhân ($\cdot$) có tính phân phối 2 phía đối với luật cộng ($+$): $a \cdot (b + c) = a \cdot b + a \cdot c$, $(a + b) \cdot c = a \cdot c + b \cdot c$.
   \end{itemize}
   Nếu thêm Luật nhân ($\cdot$) có tính \textbf{giao hoán} $a \cdot b = b \cdot a$ thì gọi là Vành \textbf{giao hoán}.
   
