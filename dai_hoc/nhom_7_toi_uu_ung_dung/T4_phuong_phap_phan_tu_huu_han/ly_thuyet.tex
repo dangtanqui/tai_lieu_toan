@@ -1,0 +1,204 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{PHƯƠNG PHÁP PHẦN TỬ HỮU HẠN}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHƯƠNG PHÁP PHẦN TỬ HỮU HẠN};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Galerkin, Lax--Milgram, lắp ghép, sai số, thích nghi};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: CƠ SỞ --- DẠNG YẾU VÀ GALERKIN
+%% ================================================================
+\section{Dạng yếu và phương pháp Galerkin}
+
+\begin{dinhnghia}[title={Bài toán biên mẫu (Poisson)}]
+  \[
+    -\Delta u = f \;\text{trên}\; \Omega, \qquad u = 0 \;\text{trên}\; \partial\Omega.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian Sobolev}]
+  $H^1(\Omega) = \{u \in L^2(\Omega) : \nabla u \in [L^2(\Omega)]^d\}$, chuẩn $\|u\|_{H^1} = (\|u\|^2_{L^2} + \|\nabla u\|^2_{L^2})^{1/2}$.
+
+  $H^1_0(\Omega) = \{u \in H^1(\Omega) : u|_{\partial\Omega} = 0\}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Dạng yếu (Variational formulation)}]
+  Tìm $u \in H^1_0(\Omega)$:
+  \[
+    a(u, v) = \ell(v) \quad \forall v \in H^1_0(\Omega),
+  \]
+  trong đó $a(u, v) = \int_\Omega \nabla u \cdot \nabla v\,dx$, $\ell(v) = \int_\Omega fv\,dx$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Lax--Milgram}]
+  Nếu $a(\cdot, \cdot)$ liên tục và ép (coercive) trên không gian Hilbert $V$, $\ell$ liên tục thì bài toán biến phân có nghiệm duy nhất.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Phương pháp Galerkin}]
+  Chọn không gian con hữu hạn chiều $V_h \subset V$. Tìm $u_h \in V_h$:
+  \[
+    a(u_h, v_h) = \ell(v_h) \quad \forall v_h \in V_h.
+  \]
+  Dẫn đến hệ $\mathbf{K}\mathbf{u} = \mathbf{f}$ với $K_{ij} = a(\varphi_j, \varphi_i)$, $f_i = \ell(\varphi_i)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bổ đề Céa}]
+  $\|u - u_h\|_V \le \frac{M}{\alpha}\inf_{v_h \in V_h}\|u - v_h\|_V$, với $M$ hằng liên tục, $\alpha$ hằng ép.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: RỜI RẠC HÓA --- PHẦN TỬ HỮU HẠN
+%% ================================================================
+\section{Rời rạc hóa --- Phần tử hữu hạn}
+
+\begin{dinhnghia}[title={Lưới (Mesh)}]
+  Chia $\Omega$ thành các phần tử: tam giác / tứ giác (2D), tứ diện / lục diện (3D). $h = \max_K \text{diam}(K)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phần tử hữu hạn Lagrange}]
+  Bộ ba $(K, \mathcal{P}, \Sigma)$:
+  \begin{itemize}
+    \item $K$: miền hình học (tam giác, tứ giác, \ldots).
+    \item $\mathcal{P}$: không gian đa thức trên $K$ (bậc $k$).
+    \item $\Sigma$: tập bậc tự do (giá trị tại các nút).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phần tử phổ biến}]
+  \begin{itemize}
+    \item \textbf{P1}: tam giác, đa thức tuyến tính, 3 nút (đỉnh).
+    \item \textbf{P2}: tam giác, đa thức bậc 2, 6 nút (đỉnh + trung điểm cạnh).
+    \item \textbf{Q1}: tứ giác, song tuyến tính, 4 nút.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Hàm dạng (Shape functions)}]
+  $\varphi_i(x_j) = \delta_{ij}$ (Kronecker). Trên phần tử tham chiếu $\hat{K}$: $\hat{\varphi}_i(\hat{x})$, ánh xạ ngược $x = F_K(\hat{x})$.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: LẮP GHÉP VÀ GIẢI HỆ
+%% ================================================================
+\section{Lắp ghép và giải hệ}
+
+\begin{phuongphap}[title={Lắp ghép (Assembly)}]
+  Ma trận phần tử: $K_{ij}^{(e)} = \int_{K_e}\nabla\varphi_j\cdot\nabla\varphi_i\,dx$. Tính trên phần tử tham chiếu:
+  \[
+    K_{ij}^{(e)} = \int_{\hat{K}} (\mathbf{J}^{-T}\hat{\nabla}\hat{\varphi}_j)\cdot(\mathbf{J}^{-T}\hat{\nabla}\hat{\varphi}_i)\,|\det\mathbf{J}|\,d\hat{x}.
+  \]
+  Lắp ghép: $\mathbf{K} = \sum_e \mathbf{L}_e^T\mathbf{K}^{(e)}\mathbf{L}_e$, $\mathbf{L}_e$ ma trận kết nối.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Áp điều kiện biên}]
+  \textbf{Dirichlet}: loại bỏ hàng/cột hoặc phương pháp phạt lớn.
+
+  \textbf{Neumann}: tích phân biên bổ sung vào vế phải.
+
+  \textbf{Robin}: $\alpha u + \beta\frac{\partial u}{\partial n} = g$: thêm vào cả $\mathbf{K}$ và $\mathbf{f}$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Giải hệ $\mathbf{K}\mathbf{u} = \mathbf{f}$}]
+  $\mathbf{K}$ thưa, đối xứng, xác định dương.
+  \begin{itemize}
+    \item Trực tiếp: Cholesky thưa (CHOLMOD).
+    \item Lặp: Gradient liên hợp (CG) + tiền điều kiện (IC, AMG).
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 4: ƯỚC LƯỢNG SAI SỐ VÀ HỘI TỤ
+%% ================================================================
+\section{Ước lượng sai số và hội tụ}
+
+\begin{dinhly}[title={Sai số nội suy}]
+  Với phần tử bậc $k$, $u \in H^{k+1}$:
+  \[
+    \|u - \Pi_h u\|_{H^m} \le Ch^{k+1-m}|u|_{H^{k+1}}, \quad m = 0, 1.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Ước lượng sai số \textit{a priori}}]
+  \[
+    \|u - u_h\|_{H^1} \le Ch^k|u|_{H^{k+1}}, \qquad \|u - u_h\|_{L^2} \le Ch^{k+1}|u|_{H^{k+1}} \quad (\text{Aubin--Nitsche}).
+  \]
+\end{dinhly}
+
+\begin{dinhnghia}[title={Ước lượng sai số \textit{a posteriori}}]
+  Bộ chỉ báo phần tử $\eta_K$: dựa trên thặng dư (residual) hoặc recovery (ZZ).
+  \[
+    \|u - u_h\|_{H^1}^2 \le C\sum_K \eta_K^2, \qquad \eta_K^2 = h_K^2\|r_K\|^2_{L^2(K)} + h_K\|j_E\|^2_{L^2(\partial K)}.
+  \]
+  $r_K$: thặng dư phần tử, $j_E$: bước nhảy thông lượng trên cạnh.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tinh chỉnh lưới thích nghi (Adaptive mesh refinement)}]
+  Vòng lặp: Giải $\to$ Ước lượng $\to$ Đánh dấu (Dörfler) $\to$ Tinh chỉnh.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 5: MỞ RỘNG
+%% ================================================================
+\section{Mở rộng}
+
+\begin{tinhchat}[title={Bài toán phụ thuộc thời gian}]
+  $\partial_t u - \Delta u = f$. Rời rạc thời gian: Euler ẩn, Crank--Nicolson, Newmark-$\beta$ (bài toán sóng).
+\end{tinhchat}
+
+\begin{tinhchat}[title={Bài toán phi tuyến}]
+  Rời rạc không gian bằng FEM, giải hệ phi tuyến bằng Newton--Raphson tại mỗi bước thời gian.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Phần tử hỗn hợp (Mixed FEM)}]
+  Bài toán Stokes: $V_h \times Q_h$ phải thỏa điều kiện LBB (inf-sup). Ví dụ: Taylor--Hood (P2--P1).
+\end{tinhchat}
+
+\end{document}

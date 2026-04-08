@@ -1,0 +1,290 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN RỜI RẠC}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN RỜI RẠC};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Logic, đồ thị, tổ hợp};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: LOGIC MỆNH ĐỀ
+%% ================================================================
+\section{Logic mệnh đề}
+
+\begin{dinhnghia}[title={Mệnh đề và phép nối}]
+  \textbf{Mệnh đề}: câu khẳng định đúng hoặc sai. Giá trị chân lý: $T$ (đúng), $F$ (sai).
+  \begin{itemize}
+    \item \textbf{Phủ định:} $\neg p$.
+    \item \textbf{Hội (và):} $p \wedge q$.
+    \item \textbf{Tuyển (hoặc):} $p \vee q$.
+    \item \textbf{Kéo theo:} $p \to q$ ($\equiv \neg p \vee q$).
+    \item \textbf{Tương đương:} $p \leftrightarrow q$ ($\equiv (p \to q) \wedge (q \to p)$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại}]
+  \begin{itemize}
+    \item \textbf{Hằng đúng} (tautology): đúng với mọi phép gán.
+    \item \textbf{Hằng sai} (contradiction): sai với mọi phép gán.
+    \item \textbf{Thỏa được}: đúng với ít nhất một phép gán.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Các luật tương đương quan trọng}]
+  \begin{itemize}
+    \item De Morgan: $\neg(p \wedge q) \equiv \neg p \vee \neg q$, $\neg(p \vee q) \equiv \neg p \wedge \neg q$.
+    \item Phân phối: $p \wedge (q \vee r) \equiv (p \wedge q) \vee (p \wedge r)$.
+    \item Phản chứng: $p \to q \equiv \neg q \to \neg p$.
+    \item Luật hấp thụ: $p \vee (p \wedge q) \equiv p$.
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Logic vị từ}
+
+\begin{dinhnghia}
+  \textbf{Vị từ} $P(x)$: mệnh đề phụ thuộc biến.
+  \begin{itemize}
+    \item \textbf{Lượng từ với mọi:} $\forall x\, P(x)$ --- đúng nếu $P(x)$ đúng $\forall x$.
+    \item \textbf{Lượng từ tồn tại:} $\exists x\, P(x)$ --- đúng nếu $\exists x$ mà $P(x)$ đúng.
+    \item Phủ định: $\neg\forall x\,P(x) \equiv \exists x\,\neg P(x)$; $\neg\exists x\,P(x) \equiv \forall x\,\neg P(x)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương pháp chứng minh}]
+  \begin{itemize}
+    \item \textbf{Trực tiếp}: giả sử $p$, suy ra $q$.
+    \item \textbf{Phản chứng}: giả sử $\neg q$, suy ra mâu thuẫn.
+    \item \textbf{Phản ví dụ}: bác bỏ $\forall$ bằng một ví dụ $\neg P(x_0)$.
+    \item \textbf{Quy nạp toán học}: chứng minh $P(0)$; $P(k) \Rightarrow P(k+1)$.
+    \item \textbf{Quy nạp mạnh}: giả thiết $P(0), \ldots, P(k)$, chứng minh $P(k+1)$.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: TẬP HỢP, QUAN HỆ, HÀM
+%% ================================================================
+\section{Tập hợp, quan hệ, hàm}
+
+\begin{dinhnghia}[title={Quan hệ}]
+  $R \subset A \times B$. \textbf{Quan hệ trên $A$}: $R \subset A \times A$.
+  \begin{itemize}
+    \item \textbf{Phản xạ}: $aRa$ $\forall a$.
+    \item \textbf{Đối xứng}: $aRb \Rightarrow bRa$.
+    \item \textbf{Phản đối xứng}: $aRb \wedge bRa \Rightarrow a = b$.
+    \item \textbf{Bắc cầu}: $aRb \wedge bRc \Rightarrow aRc$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Quan hệ tương đương và quan hệ thứ tự}]
+  \begin{itemize}
+    \item \textbf{Quan hệ tương đương}: phản xạ + đối xứng + bắc cầu. Lớp tương đương $[a]$ tạo phân hoạch.
+    \item \textbf{Quan hệ thứ tự bộ phận}: phản xạ + phản đối xứng + bắc cầu. $(A, \le)$: poset.
+    \item \textbf{Thứ tự toàn phần}: mọi cặp so sánh được.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm}]
+  $f: A \to B$. \textbf{Đơn ánh}: $f(a_1) = f(a_2) \Rightarrow a_1 = a_2$. \textbf{Toàn ánh}: $\forall b\, \exists a: f(a) = b$. \textbf{Song ánh}: đơn ánh + toàn ánh.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nguyên lý Dirichlet (ngăn kéo)}]
+  Nếu $n+1$ vật đặt vào $n$ ngăn thì ít nhất một ngăn chứa $\ge 2$ vật. Tổng quát: $\ge \lceil N/n \rceil$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: TỔ HỢP VÀ ĐẾM
+%% ================================================================
+\section{Tổ hợp và đếm}
+
+\begin{congthuc}[title={Quy tắc đếm cơ bản}]
+  \begin{itemize}
+    \item \textbf{Quy tắc cộng}: $|A \cup B| = |A| + |B|$ (nếu $A \cap B = \varnothing$).
+    \item \textbf{Quy tắc nhân}: $|A \times B| = |A| \cdot |B|$.
+    \item \textbf{Bao -- loại}: $\left|\bigcup A_i\right| = \sum|A_i| - \sum|A_i \cap A_j| + \cdots$
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Hoán vị, chỉnh hợp, tổ hợp}]
+  \begin{itemize}
+    \item \textbf{Hoán vị} $n$ phần tử: $P_n = n!$
+    \item \textbf{Chỉnh hợp} chập $k$ của $n$: $A_n^k = \dfrac{n!}{(n-k)!}$.
+    \item \textbf{Tổ hợp} chập $k$ của $n$: $C_n^k = \binom{n}{k} = \dfrac{n!}{k!(n-k)!}$.
+    \item \textbf{Hoán vị lặp}: $\dfrac{n!}{n_1! n_2! \cdots n_k!}$ (đa thức).
+    \item \textbf{Tổ hợp lặp}: $\binom{n+k-1}{k}$ (chọn $k$ từ $n$ loại, có lặp).
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhly}[title={Nhị thức Newton}]
+  $(x + y)^n = \displaystyle\sum_{k=0}^{n} \binom{n}{k} x^k y^{n-k}$.
+\end{dinhly}
+
+\begin{tinhchat}[title={Đồng nhất thức tổ hợp}]
+  \begin{itemize}
+    \item $\binom{n}{k} = \binom{n}{n-k}$ (đối xứng).
+    \item $\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}$ (Pascal).
+    \item Vandermonde: $\binom{m+n}{r} = \sum_{k=0}^{r}\binom{m}{k}\binom{n}{r-k}$.
+    \item $\sum_{k=0}^n \binom{n}{k} = 2^n$.
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 4: HỆ THỨC TRUY HỒI
+%% ================================================================
+\section{Hệ thức truy hồi}
+
+\begin{dinhnghia}
+  Quan hệ xác định phần tử $a_n$ qua $a_{n-1}, a_{n-2}, \ldots$ cùng điều kiện đầu.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Truy hồi tuyến tính hệ số hằng}]
+  $a_n + c_1 a_{n-1} + \cdots + c_k a_{n-k} = f(n)$.
+
+  \textbf{Phương trình thuần nhất} ($f = 0$): giải phương trình đặc trưng $r^k + c_1 r^{k-1} + \cdots + c_k = 0$.
+  \begin{itemize}
+    \item Nghiệm đơn $r_i$: $a_n^{(h)} = \sum \alpha_i r_i^n$.
+    \item Nghiệm bội $m$: thêm $n, n^2, \ldots, n^{m-1}$ nhân $r^n$.
+  \end{itemize}
+  \textbf{Không thuần nhất}: nghiệm riêng + nghiệm thuần nhất.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hàm sinh (generating function)}]
+  $G(x) = \sum_{n=0}^{\infty} a_n x^n$. Biến đổi truy hồi thành phương trình đại số cho $G(x)$, giải rồi khai triển Taylor.
+\end{phuongphap}
+
+\begin{vidu}
+  Fibonacci: $F_n = F_{n-1} + F_{n-2}$, $F_0 = 0$, $F_1 = 1$.
+
+  PT đặc trưng: $r^2 = r + 1$, $r = \frac{1 \pm \sqrt{5}}{2}$. Công thức Binet:
+  $F_n = \frac{1}{\sqrt{5}}\left[\left(\frac{1+\sqrt{5}}{2}\right)^n - \left(\frac{1-\sqrt{5}}{2}\right)^n\right]$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 5: LÝ THUYẾT ĐỒ THỊ CƠ BẢN
+%% ================================================================
+\section{Lý thuyết đồ thị cơ bản}
+
+\begin{dinhnghia}[title={Đồ thị}]
+  $G = (V, E)$: $V$ tập đỉnh, $E$ tập cạnh.
+  \begin{itemize}
+    \item \textbf{Đồ thị vô hướng}: $E \subset \binom{V}{2}$.
+    \item \textbf{Đồ thị có hướng}: $E \subset V \times V$.
+    \item \textbf{Bậc đỉnh}: $\deg(v)$ = số cạnh kề $v$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bổ đề bắt tay}]
+  $\sum_{v \in V} \deg(v) = 2|E|$. Hệ quả: số đỉnh bậc lẻ là chẵn.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Đường đi, chu trình, liên thông}]
+  \begin{itemize}
+    \item \textbf{Đường đi}: dãy đỉnh $v_0, v_1, \ldots, v_k$ kề nhau liên tiếp.
+    \item \textbf{Chu trình}: đường đi kín ($v_0 = v_k$, $k \ge 3$).
+    \item \textbf{Liên thông}: $\forall u, v$ tồn tại đường đi.
+    \item \textbf{Thành phần liên thông}: lớp tương đương theo quan hệ ``có đường đi nối''.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đồ thị đặc biệt}]
+  \begin{itemize}
+    \item $K_n$: đồ thị đầy đủ $n$ đỉnh.
+    \item $K_{m,n}$: đồ thị hai phía đầy đủ.
+    \item $C_n$: chu trình $n$ đỉnh.
+    \item $Q_n$: đồ thị lập phương chiều $n$ ($2^n$ đỉnh).
+    \item \textbf{Phẳng} (planar): vẽ trên mặt phẳng không giao cạnh.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Công thức Euler (đồ thị phẳng liên thông)}]
+  $v - e + f = 2$ ($v$: đỉnh, $e$: cạnh, $f$: mặt).
+
+  Hệ quả: $e \le 3v - 6$ (nếu $v \ge 3$). $K_5$ và $K_{3,3}$ không phẳng.
+\end{dinhly}
+
+\begin{dinhly}[title={Kuratowski}]
+  $G$ phẳng $\Leftrightarrow$ $G$ không chứa phân chia (subdivision) của $K_5$ hoặc $K_{3,3}$.
+\end{dinhly}
+
+\subsection{Đường Euler và Hamilton}
+
+\begin{dinhly}[title={Đường đi / chu trình Euler}]
+  \begin{itemize}
+    \item \textbf{Chu trình Euler} (đi qua mọi cạnh đúng 1 lần) tồn tại $\Leftrightarrow$ liên thông và mọi đỉnh bậc chẵn.
+    \item \textbf{Đường đi Euler} tồn tại $\Leftrightarrow$ liên thông và có đúng 0 hoặc 2 đỉnh bậc lẻ.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}[title={Đường Hamilton}]
+  Đi qua mọi đỉnh đúng 1 lần. Bài toán NP-đầy đủ (không có điều kiện cần và đủ đơn giản).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện đủ (Dirac)}]
+  $|V| = n \ge 3$ và $\deg(v) \ge n/2$ $\forall v$ $\Rightarrow$ $G$ có chu trình Hamilton.
+\end{dinhly}
+
+\subsection{Cây}
+
+\begin{dinhnghia}
+  \textbf{Cây}: đồ thị liên thông không có chu trình. $|E| = |V| - 1$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Cayley}]
+  Số cây gắn nhãn trên $n$ đỉnh: $n^{n-2}$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Cây khung nhỏ nhất (MST)}]
+  \begin{itemize}
+    \item \textbf{Kruskal}: sắp xếp cạnh tăng, thêm cạnh không tạo chu trình.
+    \item \textbf{Prim}: bắt đầu từ 1 đỉnh, mở rộng bằng cạnh nhỏ nhất nối ra ngoài.
+  \end{itemize}
+\end{phuongphap}
+
+\end{document}

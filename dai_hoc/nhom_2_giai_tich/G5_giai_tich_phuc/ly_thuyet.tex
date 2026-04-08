@@ -1,0 +1,401 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{GIẢI TÍCH PHỨC}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH PHỨC};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Số phức, hàm giải tích, tích phân, chuỗi Laurent, thặng dư, ánh xạ bảo giác};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: SỐ PHỨC VÀ MẶT PHẲNG PHỨC
+%% ================================================================
+\section{Số phức và mặt phẳng phức}
+
+\begin{dinhnghia}[title={Số phức}]
+  $z = x + iy$ với $x, y \in \mathbb{R}$, $i^2 = -1$.
+  \begin{itemize}
+    \item \textbf{Phần thực:} $\text{Re}\,z = x$. \quad \textbf{Phần ảo:} $\text{Im}\,z = y$.
+    \item \textbf{Liên hợp:} $\bar{z} = x - iy$.
+    \item \textbf{Mô-đun:} $|z| = \sqrt{x^2 + y^2}$.
+    \item \textbf{Argument:} $\arg z = \theta$ sao cho $z = |z|(\cos\theta + i\sin\theta)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Dạng lượng giác và dạng mũ}]
+  \[
+    z = r(\cos\theta + i\sin\theta) = r\,e^{i\theta}, \qquad e^{i\theta} = \cos\theta + i\sin\theta \;\text{(Euler)}.
+  \]
+  \begin{itemize}
+    \item Nhân: $z_1 z_2 = r_1 r_2\, e^{i(\theta_1 + \theta_2)}$.
+    \item Chia: $z_1/z_2 = (r_1/r_2)\, e^{i(\theta_1 - \theta_2)}$.
+    \item Lũy thừa (De Moivre): $z^n = r^n e^{in\theta}$.
+    \item Căn bậc $n$: $\sqrt[n]{z} = \sqrt[n]{r}\, e^{i(\theta + 2k\pi)/n}$, $k = 0, 1, \ldots, n-1$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhnghia}[title={Tô-pô mặt phẳng phức}]
+  \begin{itemize}
+    \item \textbf{Hình tròn mở:} $D(z_0, r) = \{z : |z - z_0| < r\}$.
+    \item \textbf{Vành khuyên:} $\{z : r_1 < |z - z_0| < r_2\}$.
+    \item \textbf{Miền:} tập mở và liên thông.
+    \item \textbf{Miền đơn liên:} mọi đường cong kín đều co được về 1 điểm.
+    \item \textbf{Mặt cầu Riemann:} $\hat{\mathbb{C}} = \mathbb{C} \cup \{\infty\}$ (bổ sung điểm vô cùng).
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: HÀM BIẾN PHỨC VÀ HÀM GIẢI TÍCH
+%% ================================================================
+\section{Hàm biến phức và hàm giải tích}
+
+\begin{dinhnghia}[title={Hàm biến phức}]
+  $f: D \subset \mathbb{C} \to \mathbb{C}$, viết $f(z) = u(x, y) + iv(x, y)$ với $z = x + iy$, $u, v: \mathbb{R}^2 \to \mathbb{R}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Giới hạn và liên tục}]
+  $\displaystyle\lim_{z \to z_0} f(z) = L$ nếu $\forall \varepsilon > 0$, $\exists \delta > 0$: $0 < |z - z_0| < \delta \Rightarrow |f(z) - L| < \varepsilon$.
+
+  $f$ liên tục tại $z_0$ nếu $\displaystyle\lim_{z \to z_0} f(z) = f(z_0)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đạo hàm phức --- Hàm chỉnh hình}]
+  $f$ \textbf{khả vi phức} (chỉnh hình, holomorphic) tại $z_0$ nếu tồn tại:
+  \[
+    f'(z_0) = \lim_{h \to 0} \frac{f(z_0 + h) - f(z_0)}{h} \quad (h \in \mathbb{C}).
+  \]
+  $f$ chỉnh hình trên miền $D$ nếu $f'(z)$ tồn tại $\forall z \in D$. Ký hiệu $\mathcal{H}(D)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện Cauchy--Riemann}]
+  $f = u + iv$ khả vi phức tại $z_0 = x_0 + iy_0$ khi và chỉ khi $u, v$ khả vi thực tại $(x_0, y_0)$ và thỏa:
+  \[
+    \frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}, \qquad \frac{\partial u}{\partial y} = -\frac{\partial v}{\partial x}.
+  \]
+  Khi đó: $f'(z) = u'_x + iv'_x = v'_y - iu'_y$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $u$ và $v$ là hàm \textbf{điều hòa}: $\Delta u = u''_{xx} + u''_{yy} = 0$, tương tự $\Delta v = 0$.
+    \item $u$ và $v$ gọi là cặp \textbf{hàm điều hòa liên hợp}.
+    \item Quy tắc đạo hàm: tổng, tích, thương, hàm hợp giống hệt hàm thực.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Hàm giải tích (analytic)}]
+  $f$ \textbf{giải tích} tại $z_0$ nếu $f$ khai triển được thành chuỗi lũy thừa hội tụ trong lân cận $z_0$. Trên $\mathbb{C}$: chỉnh hình $\Leftrightarrow$ giải tích.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Hàm sơ cấp phức}]
+  \begin{itemize}
+    \item $e^z = e^x(\cos y + i\sin y)$, tuần hoàn $2\pi i$: $e^{z + 2\pi i} = e^z$.
+    \item $\sin z = \dfrac{e^{iz} - e^{-iz}}{2i}$, \quad $\cos z = \dfrac{e^{iz} + e^{-iz}}{2}$.
+    \item $\ln z = \ln|z| + i\,\text{Arg}\,z$ (đa trị, vô hạn nhánh).
+    \item $z^\alpha = e^{\alpha \ln z}$ (đa trị khi $\alpha \notin \mathbb{Z}$).
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 3: TÍCH PHÂN PHỨC
+%% ================================================================
+\section{Tích phân phức}
+
+\begin{dinhnghia}
+  Cho $\gamma: [a, b] \to \mathbb{C}$ là đường cong trơn từng khúc, $f$ liên tục trên $\gamma$:
+  \[
+    \int_\gamma f(z)\,dz = \int_a^b f\bigl(\gamma(t)\bigr)\,\gamma'(t)\,dt.
+  \]
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Tuyến tính: $\int_\gamma (\alpha f + \beta g)\,dz = \alpha\int_\gamma f\,dz + \beta\int_\gamma g\,dz$.
+    \item Đổi chiều: $\int_{-\gamma} f\,dz = -\int_\gamma f\,dz$.
+    \item Đánh giá mô-đun: $\left|\int_\gamma f\,dz\right| \le \max_\gamma |f| \cdot L(\gamma)$, trong đó $L(\gamma)$ là độ dài cung.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý Cauchy}]
+  Nếu $f \in \mathcal{H}(D)$ và $D$ là miền đơn liên thì với mọi đường cong kín $\gamma$ trong $D$:
+  \[
+    \oint_\gamma f(z)\,dz = 0.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Công thức tích phân Cauchy}]
+  Nếu $f \in \mathcal{H}(D)$, $z_0 \in D$, $\gamma$ là đường cong kín đơn bao quanh $z_0$ (ngược chiều kim đồng hồ):
+  \[
+    f(z_0) = \frac{1}{2\pi i}\oint_\gamma \frac{f(z)}{z - z_0}\,dz.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Công thức đạo hàm Cauchy}]
+  Dưới giả thiết trên:
+  \[
+    f^{(n)}(z_0) = \frac{n!}{2\pi i}\oint_\gamma \frac{f(z)}{(z - z_0)^{n+1}}\,dz, \qquad n = 0, 1, 2, \ldots
+  \]
+  Hệ quả: hàm chỉnh hình có đạo hàm mọi cấp (cũng chỉnh hình).
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Morera}]
+  Nếu $f$ liên tục trên miền $D$ và $\displaystyle\oint_\gamma f(z)\,dz = 0$ với mọi đường cong kín trong $D$ thì $f \in \mathcal{H}(D)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Cauchy}]
+  Nếu $f \in \mathcal{H}\bigl(D(z_0, R)\bigr)$, $|f(z)| \le M$ trên $|z - z_0| = r < R$ thì:
+  \[
+    |f^{(n)}(z_0)| \le \frac{n!\,M}{r^n}.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Liouville}]
+  Nếu $f$ chỉnh hình trên toàn $\mathbb{C}$ (nguyên) và bị chặn thì $f$ là hằng số.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý cơ bản của đại số (hệ quả)}]
+  Mọi đa thức bậc $n \ge 1$ có đúng $n$ nghiệm phức (kể bội).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 4: CHUỖI LŨY THỪA VÀ CHUỖI LAURENT
+%% ================================================================
+\section{Chuỗi lũy thừa và chuỗi Laurent}
+
+\subsection{Chuỗi lũy thừa phức}
+
+\begin{dinhly}[title={Bán kính hội tụ}]
+  $\displaystyle\sum_{n=0}^{\infty} a_n(z - z_0)^n$ hội tụ tuyệt đối khi $|z - z_0| < R$, phân kỳ khi $|z - z_0| > R$, với:
+  \[
+    R = \frac{1}{\displaystyle\limsup_{n \to \infty} \sqrt[n]{|a_n|}}.
+  \]
+  Tổng là hàm chỉnh hình trên $D(z_0, R)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Khai triển Taylor}]
+  Nếu $f \in \mathcal{H}\bigl(D(z_0, R)\bigr)$ thì:
+  \[
+    f(z) = \sum_{n=0}^{\infty} \frac{f^{(n)}(z_0)}{n!}(z - z_0)^n, \qquad |z - z_0| < R.
+  \]
+\end{dinhly}
+
+\subsection{Chuỗi Laurent}
+
+\begin{dinhly}[title={Khai triển Laurent}]
+  Nếu $f$ chỉnh hình trên vành khuyên $r < |z - z_0| < R$ thì:
+  \[
+    f(z) = \sum_{n=-\infty}^{+\infty} c_n(z - z_0)^n = \underbrace{\sum_{n=0}^{\infty} c_n(z - z_0)^n}_{\text{phần chính quy}} + \underbrace{\sum_{n=1}^{\infty} c_{-n}(z - z_0)^{-n}}_{\text{phần chính}},
+  \]
+  \[
+    c_n = \frac{1}{2\pi i}\oint_\gamma \frac{f(\zeta)}{(\zeta - z_0)^{n+1}}\,d\zeta.
+  \]
+\end{dinhly}
+
+\subsection{Điểm bất thường cô lập}
+
+\begin{dinhnghia}
+  $z_0$ là \textbf{điểm bất thường cô lập} (singularity) nếu $f$ chỉnh hình trên $0 < |z - z_0| < r$ nhưng không tại $z_0$. Phân loại theo chuỗi Laurent:
+  \begin{itemize}
+    \item \textbf{Điểm bất thường bỏ được}: phần chính $= 0$ (tức $c_{-n} = 0$ $\forall n \ge 1$). $f$ mở rộng chỉnh hình tại $z_0$.
+    \item \textbf{Cực bậc $m$}: phần chính có hữu hạn số hạng, $c_{-m} \ne 0$, $c_{-n} = 0$ $\forall n > m$.
+    \item \textbf{Điểm bất thường cốt yếu}: phần chính có vô hạn số hạng.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Đặc trưng}]
+  \begin{itemize}
+    \item Bỏ được $\Leftrightarrow$ $\lim_{z \to z_0} f(z)$ tồn tại hữu hạn $\Leftrightarrow$ $f$ bị chặn gần $z_0$.
+    \item Cực bậc $m$ $\Leftrightarrow$ $\lim_{z \to z_0} (z - z_0)^m f(z)$ tồn tại hữu hạn $\ne 0$ $\Leftrightarrow$ $\lim_{z \to z_0} |f(z)| = \infty$.
+    \item Cốt yếu $\Leftrightarrow$ $\lim_{z \to z_0} f(z)$ không tồn tại (kể cả $\infty$).
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Casorati--Weierstrass}]
+  Nếu $z_0$ là điểm bất thường cốt yếu thì $f$ nhận giá trị tùy ý gần mọi số phức trong mọi lân cận $z_0$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 5: THẶNG DƯ
+%% ================================================================
+\section{Thặng dư}
+
+\begin{dinhnghia}
+  \textbf{Thặng dư} (residue) của $f$ tại điểm bất thường cô lập $z_0$:
+  \[
+    \text{Res}(f, z_0) = c_{-1} = \frac{1}{2\pi i}\oint_\gamma f(z)\,dz,
+  \]
+  trong đó $\gamma$ là đường tròn nhỏ quanh $z_0$ (chỉ chứa $z_0$).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý thặng dư}]
+  Cho $f$ chỉnh hình trong miền $D$ trừ các điểm bất thường cô lập $z_1, \ldots, z_n$. Nếu $\gamma$ là đường cong kín đơn trong $D$ bao quanh tất cả $z_k$:
+  \[
+    \oint_\gamma f(z)\,dz = 2\pi i \sum_{k=1}^{n} \text{Res}(f, z_k).
+  \]
+\end{dinhly}
+
+\begin{congthuc}[title={Tính thặng dư}]
+  \begin{itemize}
+    \item \textbf{Cực đơn} ($m = 1$): $\text{Res}(f, z_0) = \displaystyle\lim_{z \to z_0} (z - z_0)f(z)$.
+    \item Nếu $f = g/h$, $g(z_0) \ne 0$, $h(z_0) = 0$, $h'(z_0) \ne 0$: $\text{Res}(f, z_0) = \dfrac{g(z_0)}{h'(z_0)}$.
+    \item \textbf{Cực bậc $m$}: $\text{Res}(f, z_0) = \dfrac{1}{(m-1)!}\displaystyle\lim_{z \to z_0} \frac{d^{m-1}}{dz^{m-1}}\bigl[(z-z_0)^m f(z)\bigr]$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Ứng dụng tính tích phân thực}]
+  \begin{itemize}
+    \item \textbf{Dạng $\int_0^{2\pi} R(\cos\theta, \sin\theta)\,d\theta$:} Đặt $z = e^{i\theta}$, $\cos\theta = \frac{z + z^{-1}}{2}$, $\sin\theta = \frac{z - z^{-1}}{2i}$, $d\theta = \frac{dz}{iz}$, tích phân trên $|z| = 1$.
+    \item \textbf{Dạng $\int_{-\infty}^{+\infty} f(x)\,dx$:} Bổ sung nửa đường tròn lớn (trên hoặc dưới), dùng bổ đề Jordan.
+    \item \textbf{Dạng $\int_{-\infty}^{+\infty} f(x) e^{iax}\,dx$:} Tương tự, chọn nửa mặt phẳng phù hợp theo dấu $a$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{dinhly}[title={Bổ đề Jordan}]
+  Nếu $|f(z)| \to 0$ đều khi $|z| \to \infty$ trên nửa mặt phẳng trên thì:
+  \[
+    \lim_{R \to \infty} \int_{C_R^+} f(z)\,e^{iaz}\,dz = 0 \quad (a > 0),
+  \]
+  trong đó $C_R^+$ là nửa đường tròn trên bán kính $R$.
+\end{dinhly}
+
+\begin{dinhly}[title={Nguyên lý argument}]
+  Nếu $f \in \mathcal{H}(D)$ không triệt tiêu trên $\gamma = \partial D$, có $N$ không điểm và $P$ cực (kể bội) trong $D$:
+  \[
+    \frac{1}{2\pi i}\oint_\gamma \frac{f'(z)}{f(z)}\,dz = N - P.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Rouché}]
+  Nếu $|g(z)| < |f(z)|$ trên $\gamma$ thì $f$ và $f + g$ có cùng số không điểm (kể bội) trong miền $D$ giới hạn bởi $\gamma$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 6: ÁNH XẠ BẢO GIÁC
+%% ================================================================
+\section{Ánh xạ bảo giác}
+
+\begin{dinhnghia}
+  $f$ là \textbf{ánh xạ bảo giác} (conformal mapping) tại $z_0$ nếu $f$ bảo toàn góc và hướng quay tại $z_0$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $f \in \mathcal{H}(D)$ là bảo giác tại $z_0$ khi và chỉ khi $f'(z_0) \ne 0$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Phép biến đổi Möbius (phân tuyến tính)}]
+  \[
+    w = \frac{az + b}{cz + d}, \qquad ad - bc \ne 0.
+  \]
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất Möbius}]
+  \begin{itemize}
+    \item Bảo giác trên $\hat{\mathbb{C}}$.
+    \item Biến đường tròn/đường thẳng thành đường tròn/đường thẳng.
+    \item Bảo toàn tỉ số kép: $(z_1, z_2; z_3, z_4)$.
+    \item Hợp của hai Möbius vẫn là Möbius. Nghịch đảo cũng là Möbius.
+    \item Xác định duy nhất bởi ảnh của 3 điểm phân biệt.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Các ánh xạ bảo giác quan trọng}]
+  \begin{itemize}
+    \item Nửa mặt phẳng trên $\to$ đĩa đơn vị: $w = \dfrac{z - i}{z + i}$.
+    \item Đĩa đơn vị $\to$ đĩa đơn vị (tự đẳng cấu): $w = e^{i\alpha}\dfrac{z - z_0}{1 - \bar{z}_0 z}$, $|z_0| < 1$.
+    \item $w = e^z$: dải $0 < y < \pi$ $\to$ nửa mặt phẳng trên.
+    \item $w = z^n$: góc $\pi/n$ $\to$ nửa mặt phẳng.
+    \item Hàm Joukowski: $w = \dfrac{1}{2}\left(z + \dfrac{1}{z}\right)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhly}[title={Định lý ánh xạ Riemann}]
+  Mọi miền đơn liên $D \subsetneq \mathbb{C}$ ($D \ne \mathbb{C}$) đều bảo giác đẳng cấu với đĩa đơn vị mở $\mathbb{D}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Nguyên lý đối xứng Schwarz}]
+  Nếu $f$ chỉnh hình trên miền $D$ đối xứng qua trục thực, $f$ thực trên đoạn trục thực, thì $f(\bar{z}) = \overline{f(z)}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Bổ đề Schwarz}]
+  Nếu $f: \mathbb{D} \to \mathbb{D}$ chỉnh hình, $f(0) = 0$ thì:
+  \begin{enumerate}
+    \item $|f(z)| \le |z|$ trên $\mathbb{D}$.
+    \item $|f'(0)| \le 1$.
+    \item Đẳng thức xảy ra $\Leftrightarrow$ $f(z) = e^{i\alpha} z$.
+  \end{enumerate}
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 7: BỔ SUNG
+%% ================================================================
+\section{Bổ sung}
+
+\begin{dinhly}[title={Nguyên lý giá trị lớn nhất}]
+  Nếu $f \in \mathcal{H}(D)$ không hằng thì $|f|$ không đạt giá trị lớn nhất trong $D$ (chỉ đạt trên biên).
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Weierstrass (nhân tử)}]
+  Mọi hàm nguyên có thể biểu diễn dưới dạng tích vô hạn từ các không điểm, kể bội.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Mittag-Leffler}]
+  Cho dãy cực $z_n \to \infty$ và phần chính tương ứng, tồn tại hàm phân hình trên $\mathbb{C}$ có đúng các cực đó với các phần chính cho trước.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Hàm điều hòa}]
+  $u: D \subset \mathbb{R}^2 \to \mathbb{R}$ là \textbf{điều hòa} nếu $\Delta u = u''_{xx} + u''_{yy} = 0$.
+
+  \textbf{Công thức Poisson} (trên đĩa):
+  \[
+    u(r, \theta) = \frac{1}{2\pi}\int_0^{2\pi} \frac{R^2 - r^2}{R^2 - 2Rr\cos(\theta - \varphi) + r^2}\,u(R, \varphi)\,d\varphi.
+  \]
+\end{dinhnghia}
+
+\end{document}

@@ -1,0 +1,369 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Hình học giải tích}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {HÌNH HỌC GIẢI TÍCH};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Đường thẳng, mặt phẳng, mặt bậc hai --- Năm 1, HK2};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: VECTƠ TRONG KHÔNG GIAN
+%% ================================================================
+\section{Vectơ trong không gian}
+
+\subsection{Vectơ và các phép toán}
+
+\begin{dinhnghia}
+  \textbf{Vectơ} $\vec{u} = (u_1, u_2, u_3) \in \mathbb{R}^3$. \textbf{Độ dài:} $|\vec{u}| = \sqrt{u_1^2 + u_2^2 + u_3^2}$.
+
+  \textbf{Vectơ đơn vị:} $\hat{u} = \dfrac{\vec{u}}{|\vec{u}|}$. \quad \textbf{Cosin chỉ phương:} $\cos\alpha = \dfrac{u_1}{|\vec{u}|}$, $\cos\beta = \dfrac{u_2}{|\vec{u}|}$, $\cos\gamma = \dfrac{u_3}{|\vec{u}|}$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tích vô hướng}]
+  \[
+    \vec{u} \cdot \vec{v} = u_1 v_1 + u_2 v_2 + u_3 v_3 = |\vec{u}|\,|\vec{v}|\cos\varphi.
+  \]
+  \begin{itemize}
+    \item $\vec{u} \perp \vec{v} \Leftrightarrow \vec{u} \cdot \vec{v} = 0$.
+    \item Hình chiếu $\vec{u}$ lên $\vec{v}$: $\text{pr}_{\vec{v}}\vec{u} = \dfrac{\vec{u} \cdot \vec{v}}{|\vec{v}|}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Tích có hướng (vectơ)}]
+  \[
+    \vec{u} \times \vec{v} = \begin{vmatrix} \vec{i} & \vec{j} & \vec{k} \\ u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \end{vmatrix}, \qquad |\vec{u} \times \vec{v}| = |\vec{u}|\,|\vec{v}|\,|\sin\varphi|.
+  \]
+  \begin{itemize}
+    \item $|\vec{u} \times \vec{v}|$ = diện tích hình bình hành tạo bởi $\vec{u}, \vec{v}$.
+    \item $\vec{u} \times \vec{v} = \vec{0} \Leftrightarrow \vec{u} \parallel \vec{v}$.
+    \item Phản giao hoán: $\vec{u} \times \vec{v} = -\vec{v} \times \vec{u}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Tích hỗn tạp (vô hướng ba)}]
+  \[
+    [\vec{u}, \vec{v}, \vec{w}] = \vec{u} \cdot (\vec{v} \times \vec{w}) = \begin{vmatrix} u_1 & u_2 & u_3 \\ v_1 & v_2 & v_3 \\ w_1 & w_2 & w_3 \end{vmatrix}.
+  \]
+  Thể tích hình hộp $= |[\vec{u}, \vec{v}, \vec{w}]|$. Ba vectơ đồng phẳng $\Leftrightarrow [\vec{u}, \vec{v}, \vec{w}] = 0$.
+\end{congthuc}
+
+\begin{congthuc}[title={Tích kép (Lagrange)}]
+  $\vec{a} \times (\vec{b} \times \vec{c}) = \vec{b}(\vec{a} \cdot \vec{c}) - \vec{c}(\vec{a} \cdot \vec{b})$ \quad (``BAC--CAB'').
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 2: HỆ TỌA ĐỘ
+%% ================================================================
+\section{Hệ tọa độ}
+
+\subsection{Tọa độ Descartes}
+
+\begin{dinhnghia}
+  Hệ tọa độ Descartes vuông góc $Oxyz$: gốc $O$, ba trục $Ox, Oy, Oz$ đôi một vuông góc với vectơ đơn vị $\vec{i}, \vec{j}, \vec{k}$.
+\end{dinhnghia}
+
+\subsection{Phép biến đổi tọa độ}
+
+\begin{congthuc}[title={Phép tịnh tiến gốc tọa độ}]
+  Gốc mới $O'(a, b, c)$:
+  \[
+    x = x' + a, \quad y = y' + b, \quad z = z' + c.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Phép quay trục tọa độ}]
+  \[
+    \begin{pmatrix} x \\ y \\ z \end{pmatrix} = Q \begin{pmatrix} x' \\ y' \\ z' \end{pmatrix}, \qquad Q \in SO(3) \;\text{(ma trận trực giao, }\det Q = 1\text{)}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Tọa độ trụ}]
+  \[
+    x = r\cos\theta, \quad y = r\sin\theta, \quad z = z, \qquad r \ge 0,\; \theta \in [0, 2\pi).
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Tọa độ cầu}]
+  \[
+    x = \rho\sin\varphi\cos\theta, \quad y = \rho\sin\varphi\sin\theta, \quad z = \rho\cos\varphi, \qquad \rho \ge 0,\; \varphi \in [0, \pi],\; \theta \in [0, 2\pi).
+  \]
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 3: ĐƯỜNG THẲNG TRONG KHÔNG GIAN
+%% ================================================================
+\section{Đường thẳng trong không gian}
+
+\begin{dinhnghia}[title={Các dạng phương trình đường thẳng}]
+  Đường thẳng $\Delta$ qua $M_0(x_0, y_0, z_0)$ có VTCP $\vec{u} = (a, b, c)$:
+  \begin{itemize}
+    \item \textbf{Tham số:} $x = x_0 + at$, $y = y_0 + bt$, $z = z_0 + ct$.
+    \item \textbf{Chính tắc:} $\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}$ \;(khi $abc \ne 0$).
+    \item \textbf{Giao hai mặt phẳng:} $\begin{cases} A_1 x + B_1 y + C_1 z + D_1 = 0 \\ A_2 x + B_2 y + C_2 z + D_2 = 0 \end{cases}$, VTCP: $\vec{u} = \vec{n}_1 \times \vec{n}_2$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Vị trí tương đối hai đường thẳng}]
+  Cho $\Delta_1$: VTCP $\vec{u}_1$, qua $M_1$ và $\Delta_2$: VTCP $\vec{u}_2$, qua $M_2$.
+  \begin{itemize}
+    \item \textbf{Trùng nhau:} $\vec{u}_1 \parallel \vec{u}_2$ và $\overrightarrow{M_1 M_2} \parallel \vec{u}_1$.
+    \item \textbf{Song song:} $\vec{u}_1 \parallel \vec{u}_2$ và $\overrightarrow{M_1 M_2} \not\parallel \vec{u}_1$.
+    \item \textbf{Cắt nhau:} $[\vec{u}_1, \vec{u}_2, \overrightarrow{M_1 M_2}] = 0$ và $\vec{u}_1 \not\parallel \vec{u}_2$.
+    \item \textbf{Chéo nhau:} $[\vec{u}_1, \vec{u}_2, \overrightarrow{M_1 M_2}] \ne 0$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{congthuc}[title={Khoảng cách}]
+  \begin{itemize}
+    \item Từ điểm $M$ đến $\Delta$ (qua $M_0$, VTCP $\vec{u}$): $d(M, \Delta) = \dfrac{|\overrightarrow{M_0 M} \times \vec{u}|}{|\vec{u}|}$.
+    \item Giữa hai đường chéo nhau: $d(\Delta_1, \Delta_2) = \dfrac{|[\vec{u}_1, \vec{u}_2, \overrightarrow{M_1 M_2}]|}{|\vec{u}_1 \times \vec{u}_2|}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Góc giữa hai đường thẳng}]
+  $\cos\varphi = \dfrac{|\vec{u}_1 \cdot \vec{u}_2|}{|\vec{u}_1|\,|\vec{u}_2|}$, \quad $\varphi \in [0, \pi/2]$.
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 4: MẶT PHẲNG
+%% ================================================================
+\section{Mặt phẳng}
+
+\begin{dinhnghia}[title={Các dạng phương trình mặt phẳng}]
+  \begin{itemize}
+    \item \textbf{Tổng quát:} $Ax + By + Cz + D = 0$, VTPT $\vec{n} = (A, B, C)$.
+    \item \textbf{Qua điểm $M_0$ với VTPT $\vec{n}$:} $A(x - x_0) + B(y - y_0) + C(z - z_0) = 0$.
+    \item \textbf{Đoạn chắn:} $\dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} = 1$ \;(cắt $Ox, Oy, Oz$ tại $a, b, c$).
+    \item \textbf{Qua 3 điểm} $A, B, C$: $\overrightarrow{AM} \cdot (\overrightarrow{AB} \times \overrightarrow{AC}) = 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Khoảng cách từ điểm đến mặt phẳng}]
+  \[
+    d\bigl(M_0,\; Ax + By + Cz + D = 0\bigr) = \frac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Góc}]
+  \begin{itemize}
+    \item Giữa hai mặt phẳng: $\cos\varphi = \dfrac{|\vec{n}_1 \cdot \vec{n}_2|}{|\vec{n}_1|\,|\vec{n}_2|}$.
+    \item Giữa đường thẳng (VTCP $\vec{u}$) và mặt phẳng (VTPT $\vec{n}$): $\sin\alpha = \dfrac{|\vec{u} \cdot \vec{n}|}{|\vec{u}|\,|\vec{n}|}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Vị trí tương đối đường thẳng và mặt phẳng}]
+  Đường thẳng VTCP $\vec{u}$, mặt phẳng VTPT $\vec{n}$:
+  \begin{itemize}
+    \item $\vec{u} \cdot \vec{n} \ne 0$: cắt nhau.
+    \item $\vec{u} \cdot \vec{n} = 0$: song song hoặc nằm trên (thế điểm để kiểm tra).
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Chùm mặt phẳng}]
+  Cho hai mặt phẳng $(P_1): A_1 x + B_1 y + C_1 z + D_1 = 0$ và $(P_2)$. \textbf{Chùm mặt phẳng} qua giao tuyến:
+  \[
+    \alpha(A_1 x + B_1 y + C_1 z + D_1) + \beta(A_2 x + B_2 y + C_2 z + D_2) = 0, \quad (\alpha, \beta) \ne (0, 0).
+  \]
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 5: ĐƯỜNG CONIC (MẶT PHẲNG)
+%% ================================================================
+\section{Đường conic}
+
+\begin{dinhnghia}[title={Đường bậc hai tổng quát trên $\mathbb{R}^2$}]
+  \[
+    Ax^2 + 2Bxy + Cy^2 + 2Dx + 2Ey + F = 0.
+  \]
+  Ma trận: $\mathbf{A} = \begin{pmatrix} A & B \\ B & C \end{pmatrix}$, \quad $\bar{\mathbf{A}} = \begin{pmatrix} A & B & D \\ B & C & E \\ D & E & F \end{pmatrix}$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phân loại đường conic (bất biến)}]
+  Đặt $\Delta = \det \bar{\mathbf{A}}$, $\delta = \det \mathbf{A} = AC - B^2$, $S = A + C$.
+  \begin{itemize}
+    \item $\delta > 0$, $\Delta \ne 0$, $S\Delta < 0$: \textbf{Ellipse}.
+    \item $\delta > 0$, $\Delta \ne 0$, $S\Delta > 0$: ellipse ảo (không có điểm thực).
+    \item $\delta > 0$, $\Delta = 0$: một điểm (ellipse suy biến).
+    \item $\delta < 0$, $\Delta \ne 0$: \textbf{Hyperbola}.
+    \item $\delta < 0$, $\Delta = 0$: hai đường thẳng cắt nhau.
+    \item $\delta = 0$, $\Delta \ne 0$: \textbf{Parabola}.
+    \item $\delta = 0$, $\Delta = 0$: hai đường thẳng song song, trùng, hoặc ảo.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{congthuc}[title={Phương trình chính tắc}]
+  \begin{itemize}
+    \item \textbf{Ellipse:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$ \;($a \ge b > 0$). Tâm sai $e = c/a$, $c^2 = a^2 - b^2$.
+    \item \textbf{Hyperbola:} $\dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} = 1$. Tiệm cận: $y = \pm\dfrac{b}{a}x$. $e = c/a > 1$, $c^2 = a^2 + b^2$.
+    \item \textbf{Parabola:} $y^2 = 2px$ \;($p > 0$). Tiêu điểm $F(p/2, 0)$, đường chuẩn $x = -p/2$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{tinhchat}[title={Tiêu điểm, đường chuẩn, tâm sai}]
+  Với ellipse/hyperbola: hai tiêu điểm $F_1, F_2$ trên trục lớn, khoảng cách $2c$.
+
+  \textbf{Định nghĩa tiêu -- chuẩn:} Đường conic là quỹ tích điểm $M$ sao cho $\dfrac{d(M, F)}{d(M, \ell)} = e$ ($F$: tiêu điểm, $\ell$: đường chuẩn).
+  \begin{itemize}
+    \item $e < 1$: ellipse. \quad $e = 1$: parabola. \quad $e > 1$: hyperbola.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Phương trình tiêu cực}]
+  \[
+    r = \frac{p}{1 - e\cos\theta} \qquad\text{(gốc tại tiêu điểm)}.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Đưa về dạng chính tắc}]
+  \begin{enumerate}
+    \item Tìm tâm (giải $\nabla F = 0$) hoặc xác định đường conic vô tâm (parabola).
+    \item Tịnh tiến gốc về tâm.
+    \item Quay trục: chéo hóa ma trận $\mathbf{A}$, góc quay $\tan 2\alpha = \dfrac{2B}{A - C}$.
+    \item Viết phương trình chính tắc.
+  \end{enumerate}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 6: MẶT BẬC HAI
+%% ================================================================
+\section{Mặt bậc hai}
+
+\begin{dinhnghia}[title={Phương trình mặt bậc hai tổng quát}]
+  \[
+    \sum_{i,j=1}^{3} a_{ij} x_i x_j + 2\sum_{i=1}^{3} b_i x_i + c = 0, \qquad a_{ij} = a_{ji}.
+  \]
+\end{dinhnghia}
+
+\subsection{Các dạng chính tắc}
+
+\begin{congthuc}[title={Ellipsoid}]
+  $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$. \quad Mặt kín, giới hạn bởi $|x| \le a$, $|y| \le b$, $|z| \le c$.
+\end{congthuc}
+
+\begin{congthuc}[title={Hyperboloid một tầng}]
+  $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1$. \quad Mặt liên thông, chứa hai họ đường thẳng sinh (mặt kẻ).
+\end{congthuc}
+
+\begin{congthuc}[title={Hyperboloid hai tầng}]
+  $-\dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$. \quad Hai thành phần liên thông ($z > c$ và $z < -c$).
+\end{congthuc}
+
+\begin{congthuc}[title={Mặt nón bậc hai}]
+  $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 0$. \quad Đỉnh tại gốc tọa độ, mặt kẻ.
+\end{congthuc}
+
+\begin{congthuc}[title={Paraboloid elliptic}]
+  $z = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}$. \quad Thiết diện ngang là ellipse, mặt ``chén''.
+\end{congthuc}
+
+\begin{congthuc}[title={Paraboloid hyperbolic (yên ngựa)}]
+  $z = \dfrac{x^2}{a^2} - \dfrac{y^2}{b^2}$. \quad Điểm yên ngựa tại gốc, mặt kẻ.
+\end{congthuc}
+
+\begin{congthuc}[title={Mặt trụ bậc hai}]
+  \begin{itemize}
+    \item \textbf{Trụ elliptic:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$ (thiếu $z$).
+    \item \textbf{Trụ hyperbolic:} $\dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} = 1$.
+    \item \textbf{Trụ parabolic:} $y^2 = 2px$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{Phân loại mặt bậc hai}
+
+\begin{phuongphap}[title={Phân loại bằng bất biến}]
+  Ma trận $\mathbf{A}$ (phần bậc hai $3 \times 3$), ma trận mở rộng $\bar{\mathbf{A}}$ ($4 \times 4$).
+
+  Các bất biến: $\text{rank}\,\mathbf{A}$, $\text{rank}\,\bar{\mathbf{A}}$, $\det\mathbf{A}$, $\det\bar{\mathbf{A}}$, $\text{tr}\,\mathbf{A}$, dấu trị riêng.
+
+  Dùng bảng phân loại 17 dạng chính tắc (kể cả suy biến).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Đưa về dạng chính tắc}]
+  \begin{enumerate}
+    \item Chéo hóa phần bậc hai: tìm trị riêng $\lambda_1, \lambda_2, \lambda_3$ của $\mathbf{A}$, quay trục.
+    \item Hoàn thành bình phương các biến có hệ số bậc hai.
+    \item Tịnh tiến gốc để khử phần bậc nhất.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsection{Thiết diện và đường sinh}
+
+\begin{dinhnghia}[title={Thiết diện}]
+  Giao của mặt bậc hai với mặt phẳng là đường bậc hai (conic). Dùng thiết diện song song để nghiên cứu hình dạng mặt.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đường sinh (ruling)}]
+  Đường thẳng nằm hoàn toàn trên mặt. Mặt kẻ (ruled surface) chứa (ít nhất) một họ đường sinh.
+  \begin{itemize}
+    \item Hyperboloid một tầng: hai họ đường sinh.
+    \item Paraboloid hyperbolic: hai họ đường sinh.
+    \item Mặt nón, mặt trụ: một họ đường sinh.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Mặt phẳng tiếp xúc}]
+  Mặt $F(x, y, z) = 0$ tại điểm $M_0(x_0, y_0, z_0)$:
+  \[
+    F'_x(M_0)(x - x_0) + F'_y(M_0)(y - y_0) + F'_z(M_0)(z - z_0) = 0.
+  \]
+  Với mặt bậc hai $\mathbf{x}^T \mathbf{A}\, \mathbf{x} + 2\mathbf{b}^T \mathbf{x} + c = 0$: mặt phẳng tiếp xúc tại $M_0$ dùng công thức cực.
+\end{phuongphap}
+
+\end{document}

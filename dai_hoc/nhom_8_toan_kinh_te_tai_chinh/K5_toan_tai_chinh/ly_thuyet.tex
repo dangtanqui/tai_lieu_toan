@@ -1,0 +1,132 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN TÀI CHÍNH}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN TÀI CHÍNH};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Lãi suất, trái phiếu, Markowitz, CAPM, quyền chọn};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+\section{Lãi suất và giá trị thời gian của tiền}
+
+\begin{dinhnghia}[title={Lãi đơn và lãi kép}]
+  Lãi đơn: $FV = PV(1 + rn)$. Lãi kép: $FV = PV(1 + r)^n$.
+
+  Lãi kép liên tục: $FV = PVe^{rT}$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Annuity và Perpetuity}]
+  Annuity: $PV = A\cdot\dfrac{1 - (1+r)^{-n}}{r}$. Perpetuity: $PV = \dfrac{A}{r}$.
+
+  Growing perpetuity: $PV = \dfrac{A}{r - g}$ ($g < r$).
+\end{congthuc}
+
+\begin{dinhnghia}[title={Lãi suất hiệu dụng}]
+  Ghép lãi $m$ lần/năm: $r_{\text{eff}} = \left(1 + \dfrac{r_{\text{nom}}}{m}\right)^m - 1$. Liên tục: $r_{\text{eff}} = e^{r_{\text{nom}}} - 1$.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Định giá trái phiếu}
+
+\begin{dinhnghia}[title={Trái phiếu coupon}]
+  Mệnh giá $F$, coupon $C$ mỗi kỳ, $n$ kỳ, lãi suất thị trường $y$:
+  \[
+    P = \sum_{t=1}^{n}\frac{C}{(1+y)^t} + \frac{F}{(1+y)^n} = C\cdot\frac{1-(1+y)^{-n}}{y} + F(1+y)^{-n}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Duration và Convexity}]
+  \textbf{Macaulay duration}: $D = \frac{1}{P}\sum_{t=1}^{n}\frac{tC_t}{(1+y)^t}$.
+
+  \textbf{Modified duration}: $D^* = D/(1+y)$. $\Delta P/P \approx -D^*\Delta y$.
+
+  \textbf{Convexity}: $\text{Conv} = \frac{1}{P}\sum_{t=1}^{n}\frac{t(t+1)C_t}{(1+y)^{t+2}}$. Hiệu chỉnh bậc 2.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Lý thuyết danh mục đầu tư}
+
+\begin{dinhnghia}[title={Suất sinh lợi và rủi ro}]
+  $E(R_p) = \sum w_i E(R_i)$, $\sigma_p^2 = \sum_i\sum_j w_i w_j \sigma_{ij}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Biên hiệu quả Markowitz}]
+  $\min \mathbf{w}^T\boldsymbol{\Sigma}\mathbf{w}$ t.c. $\mathbf{w}^T\boldsymbol{\mu} = \mu_p$, $\mathbf{w}^T\mathbf{1} = 1$.
+
+  Nghiệm: kết hợp hai danh mục biên (two-fund theorem).
+\end{dinhly}
+
+\begin{dinhly}[title={CAPM (Capital Asset Pricing Model)}]
+  $E(R_i) = R_f + \beta_i[E(R_M) - R_f]$, $\beta_i = \dfrac{\text{Cov}(R_i, R_M)}{\text{Var}(R_M)}$.
+
+  Đường thị trường chứng khoán (SML): giá tài sản hợp lý khi nằm trên SML.
+\end{dinhly}
+
+%% ================================================================
+\section{Quyền chọn --- Cơ bản}
+
+\begin{dinhnghia}[title={Call và Put}]
+  \textbf{Call châu Âu}: quyền mua, payoff $\max(S_T - K, 0)$.
+
+  \textbf{Put châu Âu}: quyền bán, payoff $\max(K - S_T, 0)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Ngang giá Put--Call}]
+  $C - P = S_0 - Ke^{-rT}$ (quyền chọn châu Âu).
+\end{dinhly}
+
+\begin{phuongphap}[title={Mô hình nhị thức (CRR)}]
+  Một bước: $S$ lên $Su$ hoặc xuống $Sd$. Xác suất trung hòa rủi ro: $q = \dfrac{e^{r\Delta t} - d}{u - d}$.
+
+  $C = e^{-r\Delta t}[qC_u + (1-q)C_d]$. Mở rộng $n$ bước: cây nhị thức.
+\end{phuongphap}
+
+\end{document}

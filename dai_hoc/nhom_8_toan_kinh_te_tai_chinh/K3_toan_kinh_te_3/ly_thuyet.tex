@@ -1,0 +1,135 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN KINH TẾ 3}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN KINH TẾ 3};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Lagrange, KKT, QHTT, lý thuyết trò chơi, Nash};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+\section{Tối ưu không ràng buộc}
+
+\begin{dinhnghia}[title={Bài toán}]
+  $\max f(x_1, \ldots, x_n)$ (hoặc $\min$). Điều kiện cần: $\nabla f = \mathbf{0}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện đủ (cấp 2)}]
+  Tại điểm dừng, xét ma trận Hesse $\mathbf{H}$:
+  \begin{itemize}
+    \item $\mathbf{H}$ xác định âm: cực đại.
+    \item $\mathbf{H}$ xác định dương: cực tiểu.
+    \item $\mathbf{H}$ bất định: yên ngựa.
+  \end{itemize}
+  Kiểm tra qua định thức con chính: $H_1 < 0, H_2 > 0, H_3 < 0, \ldots$ (cực đại).
+\end{dinhly}
+
+%% ================================================================
+\section{Tối ưu có ràng buộc}
+
+\begin{phuongphap}[title={Nhân tử Lagrange}]
+  $\max f(x)$ t.c. $g_i(x) = 0$, $i = 1, \ldots, m$.
+
+  $\mathcal{L} = f - \sum \lambda_i g_i$. Hệ: $\nabla f = \sum \lambda_i \nabla g_i$, $g_i = 0$.
+
+  $\lambda_i$: giá ẩn (shadow price) --- giá trị biên của ràng buộc thứ $i$.
+\end{phuongphap}
+
+\begin{dinhly}[title={Điều kiện KKT (ràng buộc bất đẳng thức)}]
+  $\max f(x)$ t.c. $g_i(x) \le 0$:
+  \begin{enumerate}
+    \item $\nabla f = \sum \lambda_i \nabla g_i$.
+    \item $\lambda_i \ge 0$, $g_i(x) \le 0$, $\lambda_i g_i(x) = 0$.
+  \end{enumerate}
+\end{dinhly}
+
+\begin{vidu}[title={Tối đa tiện ích}]
+  $\max U = x_1^{0.4}x_2^{0.6}$ t.c. $2x_1 + 3x_2 = 120$.
+\end{vidu}
+
+%% ================================================================
+\section{Quy hoạch tuyến tính trong kinh tế}
+
+\begin{dinhnghia}[title={Dạng chuẩn}]
+  $\max \mathbf{c}^T\mathbf{x}$ t.c. $\mathbf{A}\mathbf{x} \le \mathbf{b}$, $\mathbf{x} \ge 0$.
+
+  Ứng dụng: phân bổ nguồn lực, lập kế hoạch sản xuất, vận tải.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương pháp đơn hình}]
+  Xuất phát BFS, cải thiện hàm mục tiêu qua pivot. Đối ngẫu: giá ẩn $\mathbf{y}$ cho biết giá trị biên của tài nguyên.
+\end{phuongphap}
+
+\begin{dinhly}[title={Phân tích độ nhạy}]
+  Thay đổi $\Delta b_i$ trong RHS: $\Delta z^* \approx y_i^* \Delta b_i$ (trong vùng tối ưu cơ sở không đổi).
+\end{dinhly}
+
+%% ================================================================
+\section{Lý thuyết trò chơi cơ bản}
+
+\begin{dinhnghia}[title={Trò chơi dạng chuẩn tắc}]
+  $(N, S_i, u_i)$: $N$ người chơi, $S_i$ tập chiến lược, $u_i$ hàm lợi ích.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Cân bằng Nash}]
+  $s^* = (s_1^*, \ldots, s_n^*)$: $u_i(s_i^*, s_{-i}^*) \ge u_i(s_i, s_{-i}^*)$ $\forall s_i \in S_i$, $\forall i$.
+
+  Không ai có lợi khi đơn phương đổi chiến lược.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nash (1950)}]
+  Mọi trò chơi hữu hạn đều có ít nhất một cân bằng Nash (có thể chiến lược hỗn hợp).
+\end{dinhly}
+
+\begin{dinhnghia}[title={Chiến lược trội}]
+  $s_i$ bị trội chặt bởi $s_i'$ nếu $u_i(s_i', s_{-i}) > u_i(s_i, s_{-i})$ $\forall s_{-i}$.
+\end{dinhnghia}
+
+\end{document}

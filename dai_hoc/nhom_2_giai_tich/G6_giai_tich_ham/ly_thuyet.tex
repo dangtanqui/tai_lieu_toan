@@ -1,0 +1,401 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{GIẢI TÍCH HÀM}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH HÀM};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Không gian Banach, Hilbert, toán tử, lý thuyết phổ};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: KHÔNG GIAN METRIC
+%% ================================================================
+\section{Không gian metric}
+
+\begin{dinhnghia}
+  \textbf{Không gian metric} $(X, d)$: tập $X$ với hàm khoảng cách $d: X \times X \to [0, +\infty)$ thỏa:
+  \begin{enumerate}
+    \item $d(x, y) = 0 \Leftrightarrow x = y$.
+    \item $d(x, y) = d(y, x)$ (đối xứng).
+    \item $d(x, z) \le d(x, y) + d(y, z)$ (bất đẳng thức tam giác).
+  \end{enumerate}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Sự hội tụ và tính đầy đủ}]
+  \begin{itemize}
+    \item Dãy $(x_n) \to x$ nếu $d(x_n, x) \to 0$.
+    \item \textbf{Dãy Cauchy:} $\forall \varepsilon > 0$, $\exists N$: $m, n > N \Rightarrow d(x_m, x_n) < \varepsilon$.
+    \item $(X, d)$ \textbf{đầy đủ} nếu mọi dãy Cauchy đều hội tụ trong $X$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tập compact}]
+  $K \subset X$ \textbf{compact} nếu mọi phủ mở đều có phủ con hữu hạn. Tương đương (trong metric): mọi dãy trong $K$ có dãy con hội tụ trong $K$ (\textbf{compact dãy}).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Ánh xạ co --- Định lý Banach (điểm bất động)}]
+  Cho $(X, d)$ đầy đủ và $T: X \to X$ là \textbf{ánh xạ co}: $d(Tx, Ty) \le q\,d(x, y)$ với $0 \le q < 1$. Thì $T$ có duy nhất điểm bất động $x^* = Tx^*$ và $x_n = T^n(x_0) \to x^*$ với mọi $x_0$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: KHÔNG GIAN ĐỊNH CHUẨN VÀ BANACH
+%% ================================================================
+\section{Không gian định chuẩn và Banach}
+
+\begin{dinhnghia}[title={Không gian định chuẩn}]
+  $(X, \|\cdot\|)$: $X$ là không gian vectơ (trên $\mathbb{R}$ hoặc $\mathbb{C}$) với chuẩn $\|\cdot\|: X \to [0, +\infty)$ thỏa:
+  \begin{enumerate}
+    \item $\|x\| = 0 \Leftrightarrow x = 0$.
+    \item $\|\alpha x\| = |\alpha|\,\|x\|$ (thuần nhất).
+    \item $\|x + y\| \le \|x\| + \|y\|$ (bất đẳng thức tam giác).
+  \end{enumerate}
+  Chuẩn sinh metric: $d(x, y) = \|x - y\|$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian Banach}]
+  Không gian định chuẩn \textbf{đầy đủ} gọi là \textbf{không gian Banach}.
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $\mathbb{R}^n$ với $\|x\|_p = \left(\sum |x_i|^p\right)^{1/p}$ ($1 \le p < \infty$) hoặc $\|x\|_\infty = \max|x_i|$: Banach.
+    \item $C[a, b]$ với $\|f\|_\infty = \max_{[a,b]}|f(x)|$: Banach.
+    \item $L^p(\mu)$ với $\|f\|_p = \left(\int |f|^p\,d\mu\right)^{1/p}$: Banach ($1 \le p \le \infty$).
+    \item $\ell^p = \{(x_n) : \sum |x_n|^p < \infty\}$: Banach.
+  \end{itemize}
+\end{vidu}
+
+\begin{dinhnghia}[title={Chuỗi trong không gian Banach}]
+  Chuỗi $\sum x_n$ trong $X$ \textbf{hội tụ tuyệt đối} nếu $\sum \|x_n\| < \infty$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $X$ là Banach khi và chỉ khi mọi chuỗi hội tụ tuyệt đối đều hội tụ.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Chuẩn tương đương}]
+  $\|\cdot\|_1$ và $\|\cdot\|_2$ \textbf{tương đương} nếu $\exists c, C > 0$: $c\|x\|_1 \le \|x\|_2 \le C\|x\|_1$, $\forall x$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Trên không gian hữu hạn chiều, mọi chuẩn đều tương đương. Mọi không gian định chuẩn hữu hạn chiều đều là Banach.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: TOÁN TỬ TUYẾN TÍNH BỊ CHẶN
+%% ================================================================
+\section{Toán tử tuyến tính bị chặn}
+
+\begin{dinhnghia}
+  $T: X \to Y$ ($X, Y$ là không gian định chuẩn) là \textbf{toán tử tuyến tính} nếu $T(\alpha x + \beta y) = \alpha Tx + \beta Ty$.
+
+  $T$ \textbf{bị chặn} nếu $\exists C \ge 0$: $\|Tx\| \le C\|x\|$, $\forall x \in X$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $T$ tuyến tính thì: $T$ bị chặn $\Leftrightarrow$ $T$ liên tục $\Leftrightarrow$ $T$ liên tục tại $0$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Chuẩn toán tử}]
+  \[
+    \|T\| = \sup_{\|x\| \le 1} \|Tx\| = \sup_{x \ne 0} \frac{\|Tx\|}{\|x\|} = \inf\{C : \|Tx\| \le C\|x\|\}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian $\mathcal{B}(X, Y)$}]
+  Tập tất cả toán tử tuyến tính bị chặn $T: X \to Y$ với chuẩn toán tử. Nếu $Y$ là Banach thì $\mathcal{B}(X, Y)$ là Banach.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian đối ngẫu}]
+  $X^* = \mathcal{B}(X, \mathbb{K})$ --- không gian các \textbf{phiếm hàm tuyến tính liên tục} (functional) trên $X$. $X^*$ luôn là Banach.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 4: CÁC ĐỊNH LÝ CƠ BẢN
+%% ================================================================
+\section{Các định lý cơ bản của giải tích hàm}
+
+\begin{dinhly}[title={Định lý Hahn--Banach (dạng giải tích)}]
+  Cho $X$ là không gian định chuẩn, $M \subset X$ là không gian con, $f_0 \in M^*$. Thì tồn tại $f \in X^*$ sao cho:
+  \begin{enumerate}
+    \item $f|_M = f_0$ (mở rộng).
+    \item $\|f\| = \|f_0\|$ (bảo toàn chuẩn).
+  \end{enumerate}
+\end{dinhly}
+
+\begin{tinhchat}[title={Hệ quả Hahn--Banach}]
+  \begin{itemize}
+    \item $\forall x \ne 0$, $\exists f \in X^*$: $\|f\| = 1$ và $f(x) = \|x\|$.
+    \item $X^*$ phân li các điểm của $X$: nếu $f(x) = f(y)$ $\forall f \in X^*$ thì $x = y$.
+    \item $\|x\| = \sup\{|f(x)| : f \in X^*,\, \|f\| \le 1\}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Nguyên lý bị chặn đều (Banach--Steinhaus)}]
+  Cho $X$ Banach, $Y$ định chuẩn, $(T_\alpha)_{\alpha \in A} \subset \mathcal{B}(X, Y)$. Nếu $\sup_\alpha \|T_\alpha x\| < \infty$ với mọi $x \in X$ thì $\sup_\alpha \|T_\alpha\| < \infty$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý ánh xạ mở (Banach)}]
+  Nếu $T: X \to Y$ là toán tử tuyến tính bị chặn toàn ánh giữa hai không gian Banach thì $T$ là ánh xạ mở (biến tập mở thành tập mở).
+
+  Hệ quả: nếu $T$ song ánh thì $T^{-1}$ bị chặn (liên tục).
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý đồ thị đóng}]
+  $T: X \to Y$ tuyến tính ($X, Y$ Banach). $T$ bị chặn khi và chỉ khi đồ thị $\text{graph}(T) = \{(x, Tx) : x \in X\}$ là tập đóng trong $X \times Y$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 5: KHÔNG GIAN HILBERT
+%% ================================================================
+\section{Không gian Hilbert}
+
+\begin{dinhnghia}[title={Tích vô hướng}]
+  \textbf{Không gian tích vô hướng}: không gian vectơ $H$ (trên $\mathbb{R}$ hoặc $\mathbb{C}$) với hàm $\langle \cdot, \cdot \rangle: H \times H \to \mathbb{K}$ thỏa:
+  \begin{enumerate}
+    \item $\langle x, x \rangle \ge 0$; \;$\langle x, x \rangle = 0 \Leftrightarrow x = 0$.
+    \item $\langle \alpha x + \beta y, z \rangle = \alpha\langle x, z \rangle + \beta\langle y, z \rangle$ (tuyến tính vế trái).
+    \item $\langle x, y \rangle = \overline{\langle y, x \rangle}$ (liên hợp đối xứng).
+  \end{enumerate}
+  Chuẩn: $\|x\| = \sqrt{\langle x, x \rangle}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian Hilbert}]
+  Không gian tích vô hướng \textbf{đầy đủ} gọi là \textbf{không gian Hilbert}.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bất đẳng thức Cauchy--Schwarz}]
+  $|\langle x, y \rangle| \le \|x\|\,\|y\|$. Đẳng thức xảy ra $\Leftrightarrow$ $x, y$ phụ thuộc tuyến tính.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Trực giao}]
+  $x \perp y$ nếu $\langle x, y \rangle = 0$. Tập $A \subset H$: $A^\perp = \{x \in H : \langle x, a \rangle = 0,\, \forall a \in A\}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý hình chiếu}]
+  Cho $M$ là không gian con \textbf{đóng} của không gian Hilbert $H$. Thì:
+  \[
+    H = M \oplus M^\perp \quad\text{(tổng trực tiếp trực giao)}.
+  \]
+  $\forall x \in H$, $\exists!$ $m \in M$: $\|x - m\| = \min_{y \in M}\|x - y\|$ (hình chiếu trực giao).
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý biểu diễn Riesz}]
+  Cho $H$ là Hilbert và $f \in H^*$. Thì $\exists!$ $y \in H$ sao cho $f(x) = \langle x, y \rangle$ $\forall x$ và $\|f\| = \|y\|$.
+
+  Vậy $H^* \cong H$ (đẳng cự phản tuyến tính).
+\end{dinhly}
+
+\subsection{Hệ trực chuẩn}
+
+\begin{dinhnghia}
+  $\{e_\alpha\}$ là \textbf{hệ trực chuẩn} nếu $\langle e_\alpha, e_\beta \rangle = \delta_{\alpha\beta}$. Hệ trực chuẩn là \textbf{đầy đủ} (cơ sở Hilbert) nếu $\overline{\text{span}\{e_\alpha\}} = H$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Khai triển Fourier tổng quát}]
+  Cho $\{e_n\}$ là cơ sở trực chuẩn đếm được. Với $x \in H$:
+  \[
+    x = \sum_{n=1}^{\infty} \langle x, e_n \rangle\, e_n, \qquad \|x\|^2 = \sum_{n=1}^{\infty} |\langle x, e_n \rangle|^2 \;\text{(Parseval)}.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Bessel}]
+  Với hệ trực chuẩn $\{e_n\}$ (không cần đầy đủ): $\displaystyle\sum_{n=1}^{\infty} |\langle x, e_n \rangle|^2 \le \|x\|^2$.
+
+  Đẳng thức (Parseval) $\Leftrightarrow$ hệ đầy đủ.
+\end{dinhly}
+
+\begin{phuongphap}[title={Trực chuẩn hóa Gram--Schmidt}]
+  Cho $\{v_1, v_2, \ldots\}$ độc lập tuyến tính:
+  \[
+    e_1 = \frac{v_1}{\|v_1\|}, \qquad e_n = \frac{v_n - \sum_{k=1}^{n-1}\langle v_n, e_k \rangle e_k}{\left\|v_n - \sum_{k=1}^{n-1}\langle v_n, e_k \rangle e_k\right\|}.
+  \]
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 6: TOÁN TỬ TRÊN KHÔNG GIAN HILBERT
+%% ================================================================
+\section{Toán tử trên không gian Hilbert}
+
+\begin{dinhnghia}[title={Toán tử liên hợp}]
+  Cho $T \in \mathcal{B}(H)$. \textbf{Toán tử liên hợp} $T^*$ xác định bởi:
+  \[
+    \langle Tx, y \rangle = \langle x, T^*y \rangle, \qquad \forall x, y \in H.
+  \]
+  $T^*$ tồn tại duy nhất (Riesz) và $\|T^*\| = \|T\|$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại toán tử}]
+  \begin{itemize}
+    \item \textbf{Tự liên hợp} (self-adjoint): $T^* = T$ $\Leftrightarrow$ $\langle Tx, y \rangle = \langle x, Ty \rangle$.
+    \item \textbf{Chuẩn tắc} (normal): $T^*T = TT^*$.
+    \item \textbf{Unitary:} $T^*T = TT^* = I$ $\Leftrightarrow$ $T$ là đẳng cự toàn ánh.
+    \item \textbf{Dương} (positive): $\langle Tx, x \rangle \ge 0$ $\forall x$.
+    \item \textbf{Toán tử chiếu trực giao}: $P^2 = P = P^*$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Toán tử tự liên hợp}]
+  Cho $T = T^* \in \mathcal{B}(H)$:
+  \begin{itemize}
+    \item Mọi trị riêng đều thực.
+    \item Vectơ riêng ứng với trị riêng khác nhau thì trực giao.
+    \item $\|T\| = \sup_{\|x\|=1} |\langle Tx, x \rangle|$.
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Toán tử compact}
+
+\begin{dinhnghia}
+  $T: X \to Y$ là \textbf{compact} nếu $T$ biến mọi tập bị chặn thành tập tương đối compact (có bao đóng compact). Tương đương: mọi dãy bị chặn $(x_n)$, dãy $(Tx_n)$ có dãy con hội tụ.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Toán tử compact là bị chặn (liên tục).
+    \item Hợp toán tử compact với toán tử bị chặn là compact.
+    \item Giới hạn (theo chuẩn toán tử) của dãy toán tử compact là compact.
+    \item Toán tử hạng hữu hạn (ảnh hữu hạn chiều) là compact.
+    \item Trên không gian vô hạn chiều, toán tử đồng nhất $I$ không compact.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Lý thuyết Fredholm--Riesz}]
+  Cho $T$ compact trên Banach $X$, $\lambda \ne 0$:
+  \begin{enumerate}
+    \item $\ker(\lambda I - T)$ hữu hạn chiều.
+    \item $\text{Im}(\lambda I - T)$ đóng.
+    \item $\lambda I - T$ toàn ánh $\Leftrightarrow$ $\lambda I - T$ đơn ánh.
+    \item Phổ $\sigma(T) \setminus \{0\}$ là tập đếm được (hữu hạn hoặc dãy $\to 0$), mỗi $\lambda \ne 0$ trong phổ là trị riêng.
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý phổ (Hilbert--Schmidt)}]
+  Cho $T = T^*$ compact trên Hilbert $H$. Thì tồn tại cơ sở trực chuẩn $\{e_n\}$ gồm các vectơ riêng của $T$:
+  \[
+    Tx = \sum_{n=1}^{\infty} \lambda_n \langle x, e_n \rangle\, e_n,
+  \]
+  với $(\lambda_n)$ là dãy trị riêng thực, $\lambda_n \to 0$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 7: LÝ THUYẾT PHỔ
+%% ================================================================
+\section{Lý thuyết phổ}
+
+\begin{dinhnghia}
+  Cho $T \in \mathcal{B}(X)$, $X$ Banach:
+  \begin{itemize}
+    \item \textbf{Tập phân giải} (resolvent set): $\rho(T) = \{\lambda \in \mathbb{C} : (\lambda I - T)^{-1} \in \mathcal{B}(X)\}$.
+    \item \textbf{Phổ}: $\sigma(T) = \mathbb{C} \setminus \rho(T)$.
+    \item \textbf{Toán tử phân giải}: $R_\lambda(T) = (\lambda I - T)^{-1}$, $\lambda \in \rho(T)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại phổ}]
+  \begin{itemize}
+    \item \textbf{Phổ điểm} $\sigma_p(T)$: $\lambda$ là trị riêng ($\ker(\lambda I - T) \ne \{0\}$).
+    \item \textbf{Phổ liên tục} $\sigma_c(T)$: $(\lambda I - T)$ đơn ánh, $\overline{\text{Im}(\lambda I - T)} = X$ nhưng $\text{Im} \ne X$.
+    \item \textbf{Phổ thặng dư} $\sigma_r(T)$: $(\lambda I - T)$ đơn ánh nhưng $\overline{\text{Im}(\lambda I - T)} \ne X$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\sigma(T)$ là tập compact, không rỗng.
+    \item $\sigma(T) \subset \{\lambda : |\lambda| \le \|T\|\}$.
+    \item \textbf{Bán kính phổ:} $r(T) = \max\{|\lambda| : \lambda \in \sigma(T)\} = \displaystyle\lim_{n \to \infty} \|T^n\|^{1/n}$.
+    \item Toán tử phân giải $R_\lambda$ giải tích trên $\rho(T)$: $R_\lambda = \sum_{n=0}^{\infty} \dfrac{T^n}{\lambda^{n+1}}$ khi $|\lambda| > r(T)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Phổ toán tử tự liên hợp}]
+  Cho $T = T^*$ trên Hilbert:
+  \begin{itemize}
+    \item $\sigma(T) \subset \mathbb{R}$.
+    \item $\sigma_r(T) = \varnothing$.
+    \item $\sigma(T) \subset [m, M]$ với $m = \inf_{\|x\|=1}\langle Tx, x \rangle$, $M = \sup_{\|x\|=1}\langle Tx, x \rangle$.
+    \item $m, M \in \sigma(T)$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Phổ toán tử chuẩn tắc}]
+  Cho $T$ chuẩn tắc ($T^*T = TT^*$) trên Hilbert: $\sigma_r(T) = \varnothing$ và $\|T\| = r(T)$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 8: CÁC TÔPÔ YẾU
+%% ================================================================
+\section{Các tôpô yếu}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Tôpô yếu} trên $X$: tôpô yếu nhất sao cho mọi $f \in X^*$ liên tục. $x_n \xrightarrow{w} x$ nếu $f(x_n) \to f(x)$ $\forall f \in X^*$.
+    \item \textbf{Tôpô yếu-$*$} trên $X^*$: $f_n \xrightarrow{w^*} f$ nếu $f_n(x) \to f(x)$ $\forall x \in X$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Banach--Alaoglu}]
+  Hình cầu đơn vị đóng $\{f \in X^* : \|f\| \le 1\}$ là compact trong tôpô yếu-$*$.
+\end{dinhly}
+
+\begin{dinhly}[title={Không gian phản xạ}]
+  $X$ \textbf{phản xạ} (reflexive) nếu ánh xạ chính tắc $J: X \to X^{**}$, $Jx(f) = f(x)$ là đẳng cự toàn ánh.
+  \begin{itemize}
+    \item Hilbert $\Rightarrow$ phản xạ. $L^p$ ($1 < p < \infty$) phản xạ.
+    \item $L^1$, $L^\infty$, $C[a,b]$ không phản xạ.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Eberlein--Šmulian}]
+  Trong Banach phản xạ, hình cầu đơn vị đóng compact yếu (tương đương: mọi dãy bị chặn có dãy con hội tụ yếu).
+\end{dinhly}
+
+\end{document}

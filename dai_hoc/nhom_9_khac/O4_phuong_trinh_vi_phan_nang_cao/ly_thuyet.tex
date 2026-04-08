@@ -1,0 +1,187 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{PTVP NÂNG CAO}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PTVP NÂNG CAO};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {PDE, Sobolev, Lax--Milgram, Lyapunov, Hopf bifurcation};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: PHƯƠNG TRÌNH ĐẠO HÀM RIÊNG (PDE)
+%% ================================================================
+\section{Phương trình đạo hàm riêng}
+
+\begin{dinhnghia}[title={Phân loại PDE bậc 2}]
+  $Au_{xx} + 2Bu_{xy} + Cu_{yy} + \cdots = 0$.
+  \begin{itemize}
+    \item $B^2 - AC < 0$: elliptic (Laplace, Poisson).
+    \item $B^2 - AC = 0$: parabolic (nhiệt).
+    \item $B^2 - AC > 0$: hyperbolic (sóng).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phương trình nhiệt}]
+  $u_t = k\Delta u$. Nghiệm cơ bản: $\Phi(x, t) = \frac{1}{(4\pi kt)^{n/2}}\exp\!\left(-\frac{|x|^2}{4kt}\right)$. Nguyên lý cực đại.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phương trình sóng}]
+  $u_{tt} = c^2\Delta u$. 1D: $u(x, t) = f(x - ct) + g(x + ct)$ (d'Alembert).
+
+  Năng lượng: $E(t) = \frac{1}{2}\int(u_t^2 + c^2|\nabla u|^2)dx$ bảo toàn.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phương trình Laplace và Poisson}]
+  $\Delta u = 0$ (Laplace), $\Delta u = f$ (Poisson). Hàm điều hòa: thỏa tính chất trung bình, nguyên lý cực đại.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tách biến (Fourier)}]
+  $u(x, t) = X(x)T(t)$. Dẫn đến bài toán trị riêng Sturm--Liouville. Khai triển Fourier.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: KHÔNG GIAN SOBOLEV
+%% ================================================================
+\section{Không gian Sobolev}
+
+\begin{dinhnghia}[title={Đạo hàm yếu}]
+  $v$ là đạo hàm yếu bậc $\alpha$ của $u$ nếu $\int u D^\alpha\varphi = (-1)^{|\alpha|}\int v\varphi$ $\forall \varphi \in C_c^\infty$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian $W^{k,p}(\Omega)$}]
+  $W^{k,p} = \{u \in L^p : D^\alpha u \in L^p,\; |\alpha| \le k\}$, chuẩn $\|u\|_{W^{k,p}} = \sum_{|\alpha| \le k}\|D^\alpha u\|_{L^p}$.
+
+  $H^k = W^{k,2}$: Hilbert. $H^1_0(\Omega)$: bao đóng $C_c^\infty$ trong $H^1$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nhúng Sobolev}]
+  $W^{k,p}(\Omega) \hookrightarrow L^q(\Omega)$ nếu $\frac{1}{q} \ge \frac{1}{p} - \frac{k}{n}$ ($q < \infty$ khi $kp < n$; liên tục khi $kp > n$).
+
+  Rellich--Kondrachov: nhúng compact $W^{1,p}(\Omega) \hookrightarrow\hookrightarrow L^q(\Omega)$ ($q < p^*$).
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Poincaré}]
+  $\|u\|_{L^2(\Omega)} \le C\|\nabla u\|_{L^2(\Omega)}$ $\forall u \in H^1_0(\Omega)$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: NGHIỆM YẾU CỦA PDE
+%% ================================================================
+\section{Nghiệm yếu của PDE}
+
+\begin{dinhnghia}[title={Dạng biến phân}]
+  $-\Delta u = f$ trên $\Omega$, $u = 0$ trên $\partial\Omega$. Dạng yếu: tìm $u \in H^1_0$:
+  \[
+    \int_\Omega \nabla u \cdot \nabla v = \int_\Omega fv \quad \forall v \in H^1_0.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Lax--Milgram}]
+  $a(u,v)$ liên tục, ép trên $V$ (Hilbert), $\ell(v)$ liên tục $\Rightarrow$ tồn tại duy nhất $u \in V$: $a(u,v) = \ell(v)$ $\forall v$.
+\end{dinhly}
+
+\begin{dinhly}[title={Tính chính quy}]
+  Nếu $f \in L^2$, $\Omega$ trơn thì $u \in H^2(\Omega)$ và $\|u\|_{H^2} \le C\|f\|_{L^2}$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 4: HỆ ĐỘNG LỰC
+%% ================================================================
+\section{Hệ động lực}
+
+\begin{dinhnghia}[title={Hệ tự trị}]
+  $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x})$, $\mathbf{x} \in \mathbb{R}^n$. Điểm cân bằng: $\mathbf{f}(\mathbf{x}^*) = \mathbf{0}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại (2D)}]
+  Tuyến tính hóa: $\mathbf{A} = D\mathbf{f}(\mathbf{x}^*)$, trị riêng $\lambda_{1,2}$:
+  \begin{itemize}
+    \item $\lambda_{1,2}$ thực âm: nút ổn định (stable node).
+    \item $\lambda_{1,2}$ thực dương: nút bất ổn định.
+    \item Khác dấu: yên ngựa (saddle).
+    \item Phức $\alpha \pm i\beta$: xoắn ốc ($\alpha < 0$: ổn định, $\alpha > 0$: bất ổn).
+    \item Thuần ảo: tâm (center) --- tuyến tính, cần thêm phân tích phi tuyến.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Ổn định Lyapunov}]
+  Nếu tồn tại $V(\mathbf{x}) > 0$ ($V(\mathbf{x}^*) = 0$) và $\dot{V} = \nabla V \cdot \mathbf{f} \le 0$: ổn định.
+
+  $\dot{V} < 0$: ổn định tiệm cận. $\dot{V} \le 0$ trên tập: dùng LaSalle invariance principle.
+\end{dinhly}
+
+\begin{dinhly}[title={Poincaré--Bendixson}]
+  Trên $\mathbb{R}^2$: quỹ đạo bị chặn không chứa điểm cân bằng $\Rightarrow$ tiến đến chu trình giới hạn (limit cycle).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 5: PHÂN NHÁNH
+%% ================================================================
+\section{Lý thuyết phân nhánh (Bifurcation)}
+
+\begin{dinhnghia}[title={Phân nhánh}]
+  $\dot{x} = f(x, \mu)$: thay đổi tính chất định tính (số điểm cân bằng, ổn định) khi $\mu$ qua giá trị phân nhánh $\mu_c$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phân nhánh cơ bản (1D)}]
+  \begin{itemize}
+    \item \textbf{Saddle-node}: $\dot{x} = \mu - x^2$. Hai cân bằng khi $\mu > 0$, không khi $\mu < 0$.
+    \item \textbf{Transcritical}: $\dot{x} = \mu x - x^2$. Hai nhánh trao đổi ổn định.
+    \item \textbf{Pitchfork}: $\dot{x} = \mu x - x^3$ (supercritical), $\dot{x} = \mu x + x^3$ (subcritical).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Phân nhánh Hopf}]
+  $\dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, \mu)$ trong $\mathbb{R}^2$. Trị riêng $\lambda(\mu) = \alpha(\mu) \pm i\beta(\mu)$, $\alpha(\mu_c) = 0$, $\alpha'(\mu_c) \ne 0$:
+
+  Phân nhánh Hopf: xuất hiện/mất chu trình giới hạn. Supercritical: cycle ổn định; subcritical: cycle bất ổn.
+\end{dinhly}
+
+\end{document}

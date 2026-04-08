@@ -1,0 +1,191 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{THỐNG KÊ ỨNG DỤNG}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {THỐNG KÊ ỨNG DỤNG};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Mô tả, tương quan, hồi quy, ANOVA};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: THỐNG KÊ MÔ TẢ
+%% ================================================================
+\section{Thống kê mô tả}
+
+\begin{dinhnghia}[title={Các đại lượng đo xu hướng trung tâm}]
+  \begin{itemize}
+    \item \textbf{Trung bình mẫu:} $\bar{x} = \dfrac{1}{n}\sum x_i$.
+    \item \textbf{Trung vị} (median): giá trị ở vị trí giữa khi sắp xếp.
+    \item \textbf{Mode}: giá trị xuất hiện nhiều nhất.
+    \item \textbf{Trung bình cắt xén} (trimmed mean): loại bỏ phần trăm hai đuôi.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Các đại lượng đo độ phân tán}]
+  \begin{itemize}
+    \item \textbf{Phương sai mẫu:} $s^2 = \dfrac{1}{n-1}\sum(x_i - \bar{x})^2$. \textbf{Độ lệch chuẩn:} $s$.
+    \item \textbf{Khoảng tứ phân vị} (IQR): $Q_3 - Q_1$.
+    \item \textbf{Khoảng biến thiên} (range): $x_{\max} - x_{\min}$.
+    \item \textbf{Hệ số biến thiên:} $CV = s/\bar{x}$ (so sánh phân tán giữa các nhóm).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hình dạng phân phối}]
+  \begin{itemize}
+    \item \textbf{Độ lệch} (skewness): $g_1 = \dfrac{m_3}{s^3}$, $m_3 = \frac{1}{n}\sum(x_i-\bar{x})^3$. $g_1 > 0$: lệch phải.
+    \item \textbf{Độ nhọn} (kurtosis): $g_2 = \dfrac{m_4}{s^4} - 3$. $g_2 > 0$: nhọn hơn chuẩn.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Biểu đồ}]
+  \begin{itemize}
+    \item \textbf{Histogram}: phân phối tần suất.
+    \item \textbf{Box plot}: tóm tắt 5 số ($\min$, $Q_1$, trung vị, $Q_3$, $\max$) + outlier.
+    \item \textbf{Scatter plot}: quan hệ hai biến.
+    \item \textbf{Q--Q plot}: kiểm tra phân phối chuẩn.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: TƯƠNG QUAN VÀ HỒI QUY
+%% ================================================================
+\section{Tương quan và hồi quy}
+
+\begin{dinhnghia}[title={Hệ số tương quan Pearson}]
+  \[
+    r = \frac{\sum(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum(x_i-\bar{x})^2\sum(y_i-\bar{y})^2}}, \qquad -1 \le r \le 1.
+  \]
+  $|r|$ gần 1: tương quan tuyến tính mạnh. $r = 0$: không tương quan tuyến tính.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tương quan hạng (Spearman)}]
+  $r_s = 1 - \dfrac{6\sum d_i^2}{n(n^2-1)}$, $d_i$: hiệu hạng. Đo tương quan đơn điệu, bền với outlier.
+\end{dinhnghia}
+
+\subsection{Hồi quy tuyến tính đơn}
+
+\begin{dinhnghia}
+  Mô hình: $Y_i = \beta_0 + \beta_1 x_i + \varepsilon_i$, $\varepsilon_i \sim \mathcal{N}(0, \sigma^2)$ iid.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Ước lượng OLS (bình phương nhỏ nhất)}]
+  \[
+    \hat{\beta}_1 = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2} = \frac{S_{xy}}{S_{xx}}, \qquad \hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}.
+  \]
+\end{congthuc}
+
+\begin{dinhnghia}[title={Hệ số xác định}]
+  $R^2 = 1 - \dfrac{SS_{\text{res}}}{SS_{\text{tot}}} = \dfrac{SS_{\text{reg}}}{SS_{\text{tot}}}$, $0 \le R^2 \le 1$.
+
+  $R^2$: tỉ lệ biến thiên của $Y$ được giải thích bởi mô hình. Hồi quy đơn: $R^2 = r^2$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kiểm định trong hồi quy}]
+  \begin{itemize}
+    \item Kiểm định $H_0: \beta_1 = 0$: $t = \dfrac{\hat{\beta}_1}{SE(\hat{\beta}_1)} \sim t(n-2)$.
+    \item CI cho $\beta_1$: $\hat{\beta}_1 \pm t_{\alpha/2}(n-2)\,SE(\hat{\beta}_1)$.
+    \item Dự báo: CI cho $E[Y|x_0]$ và PI cho $Y_{\text{new}}|x_0$.
+  \end{itemize}
+\end{phuongphap}
+
+\subsection{Hồi quy tuyến tính bội}
+
+\begin{dinhnghia}
+  $\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$, $\mathbf{X}$ là ma trận thiết kế $n \times (p+1)$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={OLS bội}]
+  $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$.
+
+  $R^2_{\text{adj}} = 1 - \dfrac{(1-R^2)(n-1)}{n-p-1}$ (điều chỉnh cho số biến).
+\end{congthuc}
+
+\begin{phuongphap}[title={Chẩn đoán mô hình}]
+  \begin{itemize}
+    \item Đồ thị phần dư: kiểm tra tuyến tính, đẳng phương sai.
+    \item Đa cộng tuyến: VIF $= \dfrac{1}{1 - R_j^2}$, VIF $> 10$: đáng lo.
+    \item Điểm ảnh hưởng: khoảng cách Cook, leverage.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 3: PHÂN TÍCH PHƯƠNG SAI (ANOVA)
+%% ================================================================
+\section{Phân tích phương sai (ANOVA)}
+
+\begin{dinhnghia}[title={ANOVA một yếu tố}]
+  So sánh trung bình $k$ nhóm: $H_0: \mu_1 = \mu_2 = \cdots = \mu_k$.
+
+  Phân tích tổng bình phương: $SS_T = SS_B + SS_W$ (tổng = giữa nhóm + trong nhóm).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Bảng ANOVA}]
+  \begin{itemize}
+    \item $SS_B = \sum n_j(\bar{X}_j - \bar{X})^2$, \;$df_B = k - 1$.
+    \item $SS_W = \sum\sum(X_{ij} - \bar{X}_j)^2$, \;$df_W = n - k$.
+    \item $F = \dfrac{MS_B}{MS_W} = \dfrac{SS_B/(k-1)}{SS_W/(n-k)} \sim F(k-1, n-k)$ dưới $H_0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={So sánh hậu kiểm (post-hoc)}]
+  \begin{itemize}
+    \item \textbf{Tukey HSD}: so sánh tất cả các cặp, kiểm soát FWER.
+    \item \textbf{Bonferroni}: $\alpha' = \alpha/m$ ($m$ phép so sánh).
+    \item \textbf{Scheffé}: linh hoạt cho mọi tương phản tuyến tính.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={ANOVA hai yếu tố}]
+  Mô hình: $X_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk}$.
+
+  Kiểm định: hiệu ứng chính $A$, $B$ và tương tác $A \times B$.
+\end{dinhnghia}
+
+\end{document}

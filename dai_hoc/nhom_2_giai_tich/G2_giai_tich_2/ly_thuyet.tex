@@ -1,0 +1,681 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Giải tích 2}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH 2};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Hàm nhiều biến, tích phân bội, tích phân đường mặt --- Năm 2};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: HÀM SỐ NHIỀU BIẾN SỐ
+%% ================================================================
+\section{Hàm số nhiều biến số}
+
+\subsection{Khái niệm cơ bản}
+
+\begin{dinhnghia}[title={Hàm số nhiều biến}]
+  Hàm số $f: D \subset \mathbb{R}^n \to \mathbb{R}$, \;$(x_1, x_2, \ldots, x_n) \mapsto f(x_1, x_2, \ldots, x_n)$.
+
+  Trường hợp hay gặp: $z = f(x, y)$ --- hàm hai biến, $u = f(x, y, z)$ --- hàm ba biến.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tập hợp trong $\mathbb{R}^n$}]
+  \begin{itemize}
+    \item \textbf{Hình cầu mở} tâm $\mathbf{a}$, bán kính $r$: $B(\mathbf{a}, r) = \{\mathbf{x} \in \mathbb{R}^n : \|\mathbf{x} - \mathbf{a}\| < r\}$.
+    \item \textbf{Điểm trong} của $D$: $\mathbf{a} \in D$ sao cho $\exists B(\mathbf{a}, r) \subset D$.
+    \item \textbf{Tập mở}: mọi điểm đều là điểm trong.
+    \item \textbf{Tập đóng}: phần bù là tập mở (tương đương: chứa mọi điểm biên).
+    \item \textbf{Tập liên thông}: mọi hai điểm đều nối được bằng đường liên tục nằm trong tập.
+    \item \textbf{Miền}: tập mở và liên thông. \textbf{Miền đóng}: miền cùng với biên của nó.
+    \item \textbf{Tập bị chặn}: nằm trong một hình cầu đủ lớn.
+    \item \textbf{Tập compact}: đóng và bị chặn.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Giới hạn hàm nhiều biến}]
+  $\displaystyle\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = L$ nếu:
+  \[
+    \forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < \|\mathbf{x} - \mathbf{a}\| < \delta \;\Rightarrow\; |f(\mathbf{x}) - L| < \varepsilon.
+  \]
+\end{dinhnghia}
+
+\begin{luuy}
+  Giới hạn phải cho cùng giá trị theo mọi đường tiến đến $\mathbf{a}$. Nếu tồn tại hai đường cho giới hạn khác nhau thì giới hạn không tồn tại.
+\end{luuy}
+
+\begin{dinhnghia}[title={Tính liên tục}]
+  $f$ \textbf{liên tục} tại $\mathbf{a} \in D$ nếu $\displaystyle\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = f(\mathbf{a})$.
+
+  $f$ liên tục trên tập compact $K$ thì $f$ bị chặn và đạt giá trị lớn nhất, nhỏ nhất trên $K$ (Weierstrass).
+\end{dinhnghia}
+
+\subsection{Đạo hàm và vi phân}
+
+\begin{dinhnghia}[title={Đạo hàm riêng}]
+  Đạo hàm riêng của $f(x_1, \ldots, x_n)$ theo biến $x_i$ tại $\mathbf{a}$:
+  \[
+    \frac{\partial f}{\partial x_i}(\mathbf{a}) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_i + h, \ldots, a_n) - f(\mathbf{a})}{h}.
+  \]
+  Tính bằng cách đạo hàm theo $x_i$ và coi các biến còn lại là hằng số.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Vi phân toàn phần}]
+  $f$ \textbf{khả vi} tại $\mathbf{a}$ nếu:
+  \[
+    \Delta f = f(\mathbf{a} + \Delta\mathbf{x}) - f(\mathbf{a}) = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(\mathbf{a})\,\Delta x_i + o(\|\Delta\mathbf{x}\|).
+  \]
+  Khi đó \textbf{vi phân toàn phần}: $df = \displaystyle\sum_{i=1}^{n} \frac{\partial f}{\partial x_i}\,dx_i$.
+
+  Trường hợp hai biến: $df = \dfrac{\partial f}{\partial x}\,dx + \dfrac{\partial f}{\partial y}\,dy$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Nếu các đạo hàm riêng $\dfrac{\partial f}{\partial x_i}$ tồn tại và liên tục trong lân cận $\mathbf{a}$ thì $f$ khả vi tại $\mathbf{a}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Đạo hàm hàm hợp (Chain rule)}]
+  Nếu $z = f(u, v)$ với $u = u(x, y)$, $v = v(x, y)$ thì:
+  \[
+    \frac{\partial z}{\partial x} = \frac{\partial f}{\partial u}\cdot\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\cdot\frac{\partial v}{\partial x}, \qquad
+    \frac{\partial z}{\partial y} = \frac{\partial f}{\partial u}\cdot\frac{\partial u}{\partial y} + \frac{\partial f}{\partial v}\cdot\frac{\partial v}{\partial y}.
+  \]
+\end{dinhly}
+
+\begin{dinhnghia}[title={Đạo hàm và vi phân cấp cao}]
+  Đạo hàm riêng cấp 2:
+  \[
+    \frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial x}\right),\quad
+    \frac{\partial^2 f}{\partial x\,\partial y} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial y}\right),\quad
+    \frac{\partial^2 f}{\partial y\,\partial x} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial x}\right).
+  \]
+  \textbf{Định lý Schwarz:} Nếu $\dfrac{\partial^2 f}{\partial x\,\partial y}$ và $\dfrac{\partial^2 f}{\partial y\,\partial x}$ liên tục thì chúng bằng nhau.
+
+  Vi phân cấp 2: $d^2 f = f''_{xx}\,dx^2 + 2f''_{xy}\,dx\,dy + f''_{yy}\,dy^2$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm số thuần nhất}]
+  $f(\mathbf{x})$ là \textbf{thuần nhất bậc $k$} nếu $f(t\mathbf{x}) = t^k f(\mathbf{x})$, $\forall t > 0$.
+
+  \textbf{Định lý Euler:} Nếu $f(x,y)$ thuần nhất bậc $k$ và khả vi thì:
+  \[
+    x\,\frac{\partial f}{\partial x} + y\,\frac{\partial f}{\partial y} = k\,f(x,y).
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đạo hàm theo hướng và gradient}]
+  \begin{itemize}
+    \item \textbf{Đạo hàm theo hướng} $\mathbf{l} = (\cos\alpha, \cos\beta)$ (vectơ đơn vị):
+      \[
+        \frac{\partial f}{\partial \mathbf{l}} = \frac{\partial f}{\partial x}\cos\alpha + \frac{\partial f}{\partial y}\cos\beta = \nabla f \cdot \mathbf{l}.
+      \]
+    \item \textbf{Gradient:} $\nabla f = \text{grad}\,f = \left(\dfrac{\partial f}{\partial x},\, \dfrac{\partial f}{\partial y}\right)$.
+    \item $\nabla f$ chỉ hướng $f$ tăng nhanh nhất; $|\nabla f|$ là tốc độ tăng lớn nhất.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức Taylor nhiều biến}]
+  Cho $f(x,y)$ có đạo hàm riêng đến cấp $n+1$, tại $(a,b)$:
+  \[
+    f(a+h, b+k) = \sum_{m=0}^{n} \frac{1}{m!}\left(h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y}\right)^m f(a,b) + R_n,
+  \]
+  trong đó $\left(h\dfrac{\partial}{\partial x} + k\dfrac{\partial}{\partial y}\right)^m f$ là đa thức vi phân thuần nhất bậc $m$ trong $h, k$.
+
+  Bậc 2: $f(a+h, b+k) \approx f(a,b) + f'_x h + f'_y k + \frac{1}{2}(f''_{xx}h^2 + 2f''_{xy}hk + f''_{yy}k^2)$.
+\end{congthuc}
+
+\subsection{Cực trị}
+
+\begin{dinhnghia}
+  $f$ đạt \textbf{cực đại địa phương} tại $(a,b)$ nếu $\exists \delta > 0:\; f(x,y) \le f(a,b)$ với mọi $(x,y) \in B\bigl((a,b), \delta\bigr)$. Tương tự cho cực tiểu.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện cần}]
+  Nếu $f$ đạt cực trị tại $(a,b)$ và có đạo hàm riêng cấp 1 tại đó thì:
+  \[
+    f'_x(a,b) = 0, \qquad f'_y(a,b) = 0.
+  \]
+  Điểm thỏa hệ trên gọi là \textbf{điểm dừng} (điểm tới hạn).
+\end{dinhly}
+
+\begin{dinhly}[title={Điều kiện đủ cực trị (hai biến)}]
+  Tại điểm dừng $(a,b)$, đặt:
+  \[
+    A = f''_{xx}(a,b),\quad B = f''_{xy}(a,b),\quad C = f''_{yy}(a,b),\quad \Delta = AC - B^2.
+  \]
+  \begin{itemize}
+    \item $\Delta > 0$, $A > 0$: cực tiểu.
+    \item $\Delta > 0$, $A < 0$: cực đại.
+    \item $\Delta < 0$: không phải cực trị (điểm yên ngựa).
+    \item $\Delta = 0$: chưa kết luận.
+  \end{itemize}
+\end{dinhly}
+
+\begin{phuongphap}[title={GTLN, GTNN trên miền đóng bị chặn}]
+  Cho $f$ liên tục trên miền đóng bị chặn $\overline{D}$:
+  \begin{enumerate}
+    \item Tìm tất cả điểm dừng trong $D$, tính $f$ tại các điểm đó.
+    \item Tìm GTLN/GTNN trên biên $\partial D$ (dùng tham số hóa hoặc Lagrange).
+    \item So sánh tất cả giá trị thu được.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsection{Hàm số ẩn và cực trị có điều kiện}
+
+\begin{dinhly}[title={Định lý hàm ẩn (hai biến)}]
+  Cho $F(x, y) = 0$ với $F$ liên tục, có đạo hàm riêng liên tục, $F(x_0, y_0) = 0$ và $F'_y(x_0, y_0) \ne 0$. Khi đó tồn tại duy nhất hàm $y = y(x)$ xác định trong lân cận $x_0$ thỏa $F(x, y(x)) = 0$ và:
+  \[
+    y'(x) = -\frac{F'_x}{F'_y}.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Hàm ẩn nhiều biến}]
+  Cho $F(x, y, z) = 0$, $F'_z \ne 0$. Khi đó $z = z(x,y)$ tồn tại và:
+  \[
+    \frac{\partial z}{\partial x} = -\frac{F'_x}{F'_z}, \qquad \frac{\partial z}{\partial y} = -\frac{F'_y}{F'_z}.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý hàm ngược}]
+  Cho ánh xạ $\mathbf{F}: \mathbb{R}^n \to \mathbb{R}^n$ khả vi liên tục, nếu định thức Jacobi $\det J_{\mathbf{F}}(\mathbf{a}) \ne 0$ thì $\mathbf{F}$ có hàm ngược địa phương $\mathbf{F}^{-1}$ khả vi trong lân cận $\mathbf{F}(\mathbf{a})$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Cực trị có điều kiện --- Phương pháp nhân tử Lagrange}]
+  Tìm cực trị $f(x, y, z)$ với ràng buộc $g(x,y,z) = 0$:
+
+  Lập hàm Lagrange: $L = f + \lambda\, g$. Giải hệ:
+  \[
+    \frac{\partial L}{\partial x} = 0,\quad \frac{\partial L}{\partial y} = 0,\quad \frac{\partial L}{\partial z} = 0,\quad g(x,y,z) = 0.
+  \]
+
+  Với nhiều ràng buộc $g_1 = 0, \ldots, g_m = 0$: $L = f + \lambda_1 g_1 + \cdots + \lambda_m g_m$.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: ỨNG DỤNG VI PHÂN TRONG HÌNH HỌC
+%% ================================================================
+\section{Ứng dụng của vi phân trong hình học}
+
+\subsection{Trong hình học phẳng}
+
+\subsubsection{Tiếp tuyến và pháp tuyến}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item Đường cong $y = f(x)$ tại $M(x_0, y_0)$:
+      \begin{itemize}
+        \item Tiếp tuyến: $y - y_0 = f'(x_0)(x - x_0)$.
+        \item Pháp tuyến: $y - y_0 = -\dfrac{1}{f'(x_0)}(x - x_0)$.
+      \end{itemize}
+    \item Đường cong tham số $x = x(t)$, $y = y(t)$: tiếp tuyến có vectơ chỉ phương $(x'(t),\, y'(t))$.
+    \item Đường cong $F(x,y) = 0$: tiếp tuyến $F'_x(x_0,y_0)(x-x_0) + F'_y(x_0,y_0)(y-y_0) = 0$.
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{Độ cong}
+
+\begin{dinhnghia}
+  \textbf{Độ cong} của đường cong tại điểm $M$:
+  \[
+    K = \frac{|y''|}{(1 + y'^2)^{3/2}} \quad\text{(dạng tường minh)}.
+  \]
+  Dạng tham số:
+  \[
+    K = \frac{|x'y'' - x''y'|}{(x'^2 + y'^2)^{3/2}}.
+  \]
+  \textbf{Bán kính cong:} $R = \dfrac{1}{K}$.
+\end{dinhnghia}
+
+\subsubsection{Đường tròn chính khúc và khúc tâm}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Đường tròn chính khúc} (đường tròn mật tiếp) tại $M$: đường tròn bán kính $R = 1/K$, tâm nằm trên pháp tuyến, phía lõm.
+    \item \textbf{Tâm cong} (khúc tâm): tâm của đường tròn chính khúc:
+      \[
+        X = x - y'\,\frac{1 + y'^2}{y''}, \qquad Y = y + \frac{1 + y'^2}{y''}.
+      \]
+  \end{itemize}
+\end{dinhnghia}
+
+\subsubsection{Đường túc bế và đường thân khai}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Đường tiêu chuất} (evolute): quỹ tích tâm cong khi $M$ chạy trên đường cong.
+    \item \textbf{Đường thân khai} (involute): đường sinh bởi đầu sợi dây quấn quanh evolute.
+    \item Đường cong ban đầu là thân khai của evolute, và evolute là bao của các pháp tuyến.
+  \end{itemize}
+\end{dinhnghia}
+
+\subsubsection{Hình bao của họ đường phụ thuộc tham số}
+
+\begin{dinhnghia}
+  Cho họ đường $F(x, y, c) = 0$ phụ thuộc tham số $c$. \textbf{Hình bao} là đường cong tiếp xúc với mọi đường trong họ, xác định bởi hệ:
+  \[
+    \begin{cases} F(x, y, c) = 0, \\ F'_c(x, y, c) = 0. \end{cases}
+  \]
+  Khử $c$ từ hệ trên thu được phương trình hình bao.
+\end{dinhnghia}
+
+\subsection{Trong hình học không gian}
+
+\subsubsection{Hàm vectơ}
+
+\begin{dinhnghia}
+  \textbf{Hàm vectơ}: $\mathbf{r}(t) = \bigl(x(t),\, y(t),\, z(t)\bigr)$, $t \in [a, b]$.
+
+  $\mathbf{r}'(t) = \bigl(x'(t),\, y'(t),\, z'(t)\bigr)$ --- vectơ tiếp tuyến.
+
+  $|\mathbf{r}'(t)| = \sqrt{x'^2 + y'^2 + z'^2}$ --- tốc độ.
+\end{dinhnghia}
+
+\subsubsection{Đường cong trong không gian}
+
+\begin{congthuc}
+  Đường cong $\mathbf{r}(t)$:
+  \begin{itemize}
+    \item \textbf{Vectơ tiếp tuyến đơn vị:} $\mathbf{T} = \dfrac{\mathbf{r}'}{|\mathbf{r}'|}$.
+    \item \textbf{Vectơ pháp tuyến chính:} $\mathbf{N} = \dfrac{\mathbf{T}'}{|\mathbf{T}'|}$.
+    \item \textbf{Vectơ trùng pháp:} $\mathbf{B} = \mathbf{T} \times \mathbf{N}$.
+    \item \textbf{Độ cong:} $K = \dfrac{|\mathbf{r}' \times \mathbf{r}''|}{|\mathbf{r}'|^3}$.
+    \item \textbf{Xoắn:} $\tau = \dfrac{(\mathbf{r}',\, \mathbf{r}'',\, \mathbf{r}''')}{|\mathbf{r}' \times \mathbf{r}''|^2}$.
+    \item \textbf{Độ dài cung:} $s = \displaystyle\int_a^b |\mathbf{r}'(t)|\,dt$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhly}[title={Công thức Frenet}]
+  \[
+    \mathbf{T}' = K\,|\mathbf{r}'|\,\mathbf{N},\qquad
+    \mathbf{N}' = |\mathbf{r}'|(-K\,\mathbf{T} + \tau\,\mathbf{B}),\qquad
+    \mathbf{B}' = -\tau\,|\mathbf{r}'|\,\mathbf{N}.
+  \]
+\end{dinhly}
+
+\subsubsection{Mặt cong}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Mặt dạng tường minh:} $z = f(x, y)$.
+    \item \textbf{Mặt dạng ẩn:} $F(x, y, z) = 0$.
+    \item \textbf{Mặt tham số:} $\mathbf{r}(u, v) = \bigl(x(u,v),\, y(u,v),\, z(u,v)\bigr)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Mặt phẳng tiếp xúc và pháp tuyến}]
+  \begin{itemize}
+    \item Mặt $F(x,y,z) = 0$ tại $M(x_0, y_0, z_0)$:
+      \begin{itemize}
+        \item Pháp tuyến: vectơ $\nabla F = (F'_x,\, F'_y,\, F'_z)$.
+        \item Mặt phẳng tiếp xúc: $F'_x(x-x_0) + F'_y(y-y_0) + F'_z(z-z_0) = 0$.
+      \end{itemize}
+    \item Mặt tham số: vectơ pháp $\mathbf{n} = \mathbf{r}'_u \times \mathbf{r}'_v$.
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 3: TÍCH PHÂN BỘI
+%% ================================================================
+\section{Tích phân bội}
+
+\subsection{Tích phân phụ thuộc tham số}
+
+\subsubsection{Tích phân xác định phụ thuộc tham số}
+
+\begin{dinhnghia}
+  $I(\alpha) = \displaystyle\int_a^b f(x, \alpha)\,dx$, với $\alpha \in [\alpha_1, \alpha_2]$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Nếu $f(x, \alpha)$ liên tục trên $[a,b] \times [\alpha_1, \alpha_2]$ thì:
+  \begin{enumerate}
+    \item $I(\alpha)$ liên tục trên $[\alpha_1, \alpha_2]$.
+    \item \textbf{Đạo hàm dưới dấu tích phân (Leibniz):} Nếu $f'_\alpha$ liên tục:
+      \[
+        I'(\alpha) = \int_a^b \frac{\partial f}{\partial \alpha}(x, \alpha)\,dx.
+      \]
+    \item \textbf{Tích phân đổi thứ tự:}
+      $\displaystyle\int_{\alpha_1}^{\alpha_2}\!\left(\int_a^b f(x,\alpha)\,dx\right)d\alpha = \int_a^b\!\left(\int_{\alpha_1}^{\alpha_2} f(x,\alpha)\,d\alpha\right)dx$.
+  \end{enumerate}
+\end{tinhchat}
+
+\begin{congthuc}[title={Công thức Leibniz tổng quát}]
+  Nếu $I(\alpha) = \displaystyle\int_{a(\alpha)}^{b(\alpha)} f(x, \alpha)\,dx$ thì:
+  \[
+    I'(\alpha) = \int_{a(\alpha)}^{b(\alpha)} f'_\alpha(x,\alpha)\,dx + f\bigl(b(\alpha), \alpha\bigr)\,b'(\alpha) - f\bigl(a(\alpha), \alpha\bigr)\,a'(\alpha).
+  \]
+\end{congthuc}
+
+\subsubsection{Tích phân suy rộng phụ thuộc tham số}
+
+\begin{dinhnghia}
+  $I(\alpha) = \displaystyle\int_a^{+\infty} f(x, \alpha)\,dx$. \textbf{Hội tụ đều} theo $\alpha$ trên $A$ nếu:
+  \[
+    \forall \varepsilon > 0,\; \exists N:\; \forall b > N,\; \forall \alpha \in A:\; \left|\int_b^{+\infty} f(x,\alpha)\,dx\right| < \varepsilon.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn Weierstrass}]
+  Nếu $|f(x, \alpha)| \le g(x)$ với mọi $\alpha \in A$ và $\displaystyle\int_a^{+\infty} g(x)\,dx$ hội tụ thì $I(\alpha)$ hội tụ đều trên $A$.
+\end{dinhly}
+
+\begin{tinhchat}
+  Nếu $I(\alpha)$ hội tụ đều:
+  \begin{enumerate}
+    \item $I(\alpha)$ liên tục.
+    \item Được phép đổi thứ tự tích phân.
+    \item Được phép đạo hàm dưới dấu tích phân (với điều kiện bổ sung).
+  \end{enumerate}
+\end{tinhchat}
+
+\subsection{Tích phân kép}
+
+\begin{dinhnghia}
+  Cho $f(x,y)$ xác định trên miền $D \subset \mathbb{R}^2$. \textbf{Tích phân kép}:
+  \[
+    \iint_D f(x,y)\,dA = \lim_{\|\Delta\| \to 0} \sum_{i=1}^{n} f(\xi_i, \eta_i)\,\Delta\sigma_i.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tính trong hệ tọa độ Descartes}]
+  \begin{itemize}
+    \item \textbf{Miền loại 1} ($D: a \le x \le b,\; \varphi_1(x) \le y \le \varphi_2(x)$):
+      \[
+        \iint_D f\,dA = \int_a^b\!\left(\int_{\varphi_1(x)}^{\varphi_2(x)} f(x,y)\,dy\right)dx.
+      \]
+    \item \textbf{Miền loại 2} ($D: c \le y \le d,\; \psi_1(y) \le x \le \psi_2(y)$):
+      \[
+        \iint_D f\,dA = \int_c^d\!\left(\int_{\psi_1(y)}^{\psi_2(y)} f(x,y)\,dx\right)dy.
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Đổi biến --- Tọa độ cực}]
+  Đặt $x = r\cos\varphi$, $y = r\sin\varphi$, Jacobian $|J| = r$:
+  \[
+    \iint_D f(x,y)\,dx\,dy = \iint_{D'} f(r\cos\varphi,\, r\sin\varphi)\,r\,dr\,d\varphi.
+  \]
+  Tổng quát: đặt $x = x(u,v)$, $y = y(u,v)$, $J = \dfrac{\partial(x,y)}{\partial(u,v)}$:
+  \[
+    \iint_D f(x,y)\,dx\,dy = \iint_{D'} f\bigl(x(u,v),\, y(u,v)\bigr)\,|J|\,du\,dv.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Ứng dụng hình học}]
+  \begin{itemize}
+    \item Diện tích: $S = \displaystyle\iint_D dx\,dy$.
+    \item Thể tích dưới mặt $z = f(x,y) \ge 0$: $V = \displaystyle\iint_D f(x,y)\,dx\,dy$.
+    \item Diện tích mặt $z = f(x,y)$: $S = \displaystyle\iint_D \sqrt{1 + f_x'^2 + f_y'^2}\,dx\,dy$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Ứng dụng cơ học}]
+  Cho bản mỏng chiếm miền $D$ với mật độ $\rho(x,y)$:
+  \begin{itemize}
+    \item Khối lượng: $m = \displaystyle\iint_D \rho(x,y)\,dx\,dy$.
+    \item Trọng tâm: $\bar{x} = \dfrac{1}{m}\displaystyle\iint_D x\,\rho\,dA$, \;$\bar{y} = \dfrac{1}{m}\displaystyle\iint_D y\,\rho\,dA$.
+    \item Mô men quán tính: $I_x = \displaystyle\iint_D y^2 \rho\,dA$, \;$I_y = \displaystyle\iint_D x^2 \rho\,dA$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{Tích phân bội ba}
+
+\begin{dinhnghia}
+  Cho $f(x,y,z)$ trên miền $V \subset \mathbb{R}^3$:
+  \[
+    \iiint_V f(x,y,z)\,dV = \lim_{\|\Delta\| \to 0} \sum f(\xi_i, \eta_i, \zeta_i)\,\Delta V_i.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Tính trong hệ tọa độ Descartes}]
+  $V: (x,y) \in D,\; z_1(x,y) \le z \le z_2(x,y)$:
+  \[
+    \iiint_V f\,dV = \iint_D\!\left(\int_{z_1(x,y)}^{z_2(x,y)} f(x,y,z)\,dz\right)dx\,dy.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Đổi biến}]
+  \begin{itemize}
+    \item \textbf{Tọa độ trụ} ($x = r\cos\varphi$, $y = r\sin\varphi$, $z = z$): $|J| = r$.
+      \[
+        \iiint_V f\,dV = \iiint_{V'} f(r\cos\varphi,\, r\sin\varphi,\, z)\,r\,dr\,d\varphi\,dz.
+      \]
+    \item \textbf{Tọa độ cầu} ($x = r\sin\theta\cos\varphi$, $y = r\sin\theta\sin\varphi$, $z = r\cos\theta$): $|J| = r^2\sin\theta$.
+      \[
+        \iiint_V f\,dV = \iiint_{V'} f(\ldots)\,r^2\sin\theta\,dr\,d\theta\,d\varphi.
+      \]
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Ứng dụng}]
+  \begin{itemize}
+    \item Thể tích: $V = \displaystyle\iiint_V dV$.
+    \item Khối lượng: $m = \displaystyle\iiint_V \rho(x,y,z)\,dV$.
+    \item Trọng tâm: $\bar{x} = \dfrac{1}{m}\displaystyle\iiint_V x\,\rho\,dV$, tương tự cho $\bar{y}$, $\bar{z}$.
+    \item Mô men quán tính: $I_z = \displaystyle\iiint_V (x^2+y^2)\rho\,dV$.
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 4: TÍCH PHÂN ĐƯỜNG, TÍCH PHÂN MẶT
+%% ================================================================
+\section{Tích phân đường, tích phân mặt}
+
+\subsection{Tích phân đường loại 1 (theo độ dài cung)}
+
+\begin{dinhnghia}
+  Cho cung $AB$ và $f$ liên tục trên cung:
+  \[
+    \int_{AB} f(x,y)\,ds = \lim_{\|\Delta\| \to 0} \sum f(\xi_i, \eta_i)\,\Delta s_i.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Cách tính}]
+  \begin{itemize}
+    \item Đường $y = y(x)$, $x \in [a,b]$: $\displaystyle\int_{AB} f\,ds = \int_a^b f(x, y(x))\sqrt{1 + y'^2}\,dx$.
+    \item Tham số $x = x(t)$, $y = y(t)$, $t \in [\alpha, \beta]$:
+      $\displaystyle\int_{AB} f\,ds = \int_\alpha^\beta f(x(t), y(t))\sqrt{x'^2 + y'^2}\,dt$.
+    \item Cực $r = r(\varphi)$: $ds = \sqrt{r^2 + r'^2}\,d\varphi$.
+    \item \textbf{Không gian}: $\mathbf{r}(t) = (x(t), y(t), z(t))$:
+      $\displaystyle\int_C f\,ds = \int_\alpha^\beta f(\ldots)\sqrt{x'^2 + y'^2 + z'^2}\,dt$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Ứng dụng}]
+  \begin{itemize}
+    \item Độ dài cung: $L = \displaystyle\int_{AB} ds$.
+    \item Khối lượng dây: $m = \displaystyle\int_{AB} \rho\,ds$.
+    \item Trọng tâm: $\bar{x} = \dfrac{1}{m}\displaystyle\int_{AB} x\,\rho\,ds$, tương tự $\bar{y}$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{Tích phân đường loại 2 (theo tọa độ)}
+
+\begin{dinhnghia}
+  \[
+    \int_{AB} P\,dx + Q\,dy = \lim_{\|\Delta\| \to 0} \sum \bigl[P(\xi_i,\eta_i)\Delta x_i + Q(\xi_i,\eta_i)\Delta y_i\bigr].
+  \]
+  Tích phân phụ thuộc vào \textbf{chiều} của đường: đổi chiều thì đổi dấu.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Cách tính}]
+  Tham số hóa $x = x(t)$, $y = y(t)$, $t: \alpha \to \beta$ (theo chiều):
+  \[
+    \int_{AB} P\,dx + Q\,dy = \int_\alpha^\beta \bigl[P(x(t), y(t))\,x'(t) + Q(x(t), y(t))\,y'(t)\bigr]\,dt.
+  \]
+\end{congthuc}
+
+\begin{dinhly}[title={Công thức Green}]
+  Cho $D$ là miền đóng bị chặn có biên $\partial D$ (đi ngược chiều kim đồng hồ), $P, Q$ có đạo hàm riêng liên tục trên $\overline{D}$:
+  \[
+    \oint_{\partial D} P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dx\,dy.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Tích phân đường không phụ thuộc đường đi}]
+  Trong miền đơn liên $D$, các mệnh đề sau tương đương:
+  \begin{enumerate}
+    \item $\displaystyle\int_{AB} P\,dx + Q\,dy$ không phụ thuộc đường đi trong $D$.
+    \item $\oint_C P\,dx + Q\,dy = 0$ với mọi đường cong kín $C$ trong $D$.
+    \item $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$ trong $D$.
+    \item Tồn tại $U(x,y)$ sao cho $dU = P\,dx + Q\,dy$ (vi phân toàn phần).
+  \end{enumerate}
+  Khi đó: $\displaystyle\int_A^B P\,dx + Q\,dy = U(B) - U(A)$.
+\end{dinhly}
+
+\begin{congthuc}[title={Tích phân đường loại 2 trong không gian}]
+  $\displaystyle\int_C P\,dx + Q\,dy + R\,dz$: tham số hóa $\mathbf{r}(t)$, $t \in [\alpha, \beta]$:
+  \[
+    \int_C = \int_\alpha^\beta \bigl[P\,x'(t) + Q\,y'(t) + R\,z'(t)\bigr]\,dt.
+  \]
+\end{congthuc}
+
+\subsection{Tích phân mặt loại 1 (theo diện tích)}
+
+\begin{dinhnghia}
+  Cho mặt $S$ và $f$ liên tục trên $S$:
+  \[
+    \iint_S f(x,y,z)\,d\sigma = \lim_{\|\Delta\| \to 0} \sum f(\xi_i, \eta_i, \zeta_i)\,\Delta\sigma_i.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Cách tính}]
+  Mặt $z = z(x,y)$, $(x,y) \in D$:
+  \[
+    \iint_S f\,d\sigma = \iint_D f(x, y, z(x,y))\sqrt{1 + z_x'^2 + z_y'^2}\,dx\,dy.
+  \]
+  Mặt tham số $\mathbf{r}(u,v)$: $d\sigma = |\mathbf{r}'_u \times \mathbf{r}'_v|\,du\,dv$.
+\end{congthuc}
+
+\begin{congthuc}[title={Ứng dụng}]
+  \begin{itemize}
+    \item Diện tích mặt: $\sigma = \displaystyle\iint_S d\sigma$.
+    \item Khối lượng: $m = \displaystyle\iint_S \rho\,d\sigma$.
+    \item Trọng tâm: $\bar{x} = \dfrac{1}{m}\displaystyle\iint_S x\,\rho\,d\sigma$, tương tự $\bar{y}$, $\bar{z}$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{Tích phân mặt loại 2 (theo tọa độ)}
+
+\begin{dinhnghia}
+  \[
+    \iint_S P\,dy\,dz + Q\,dz\,dx + R\,dx\,dy
+  \]
+  phụ thuộc vào \textbf{phía} (hướng pháp tuyến) đã chọn cho mặt $S$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Cách tính}]
+  Mặt $z = z(x,y)$, chọn phía trên ($\cos\gamma > 0$):
+  \[
+    \iint_S R(x,y,z)\,dx\,dy = \iint_D R(x, y, z(x,y))\,dx\,dy.
+  \]
+  Nếu chọn phía dưới: thêm dấu trừ. Tương tự cho $P\,dy\,dz$ và $Q\,dz\,dx$.
+\end{congthuc}
+
+\begin{dinhly}[title={Công thức Stokes}]
+  Cho mặt $S$ có biên $\partial S$ (định hướng theo quy tắc vặn nút chai):
+  \[
+    \oint_{\partial S} P\,dx + Q\,dy + R\,dz = \iint_S \left|\begin{array}{ccc} \cos\alpha & \cos\beta & \cos\gamma \\ \dfrac{\partial}{\partial x} & \dfrac{\partial}{\partial y} & \dfrac{\partial}{\partial z} \\[4pt] P & Q & R \end{array}\right| d\sigma,
+  \]
+  hay $\displaystyle\oint_{\partial S} \mathbf{F} \cdot d\mathbf{r} = \iint_S (\nabla \times \mathbf{F}) \cdot d\mathbf{S}$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Vectơ rota (curl)}]
+  \[
+    \text{rot}\,\mathbf{F} = \nabla \times \mathbf{F} = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)\mathbf{i} + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)\mathbf{j} + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\mathbf{k}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={TP đường trong không gian không phụ thuộc đường đi}]
+  Trong miền đơn liên $V \subset \mathbb{R}^3$, $\displaystyle\int_C P\,dx + Q\,dy + R\,dz$ không phụ thuộc đường đi khi và chỉ khi $\text{rot}\,\mathbf{F} = \mathbf{0}$, tức:
+  \[
+    \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x},\quad \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y},\quad \frac{\partial P}{\partial z} = \frac{\partial R}{\partial x}.
+  \]
+  Khi đó $\mathbf{F} = \nabla U$ (\textbf{trường thế}), và $\displaystyle\int_A^B \mathbf{F}\cdot d\mathbf{r} = U(B) - U(A)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Công thức Ostrogradsky--Gauss}]
+  Cho $V$ là miền đóng bị chặn có biên $S = \partial V$ (hướng ngoài):
+  \[
+    \oiint_S P\,dy\,dz + Q\,dz\,dx + R\,dx\,dy = \iiint_V \left(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\right)dV.
+  \]
+  Hay: $\displaystyle\oiint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \text{div}\,\mathbf{F}\,dV$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Divergence}]
+  \[
+    \text{div}\,\mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}.
+  \]
+  Ý nghĩa: đo tốc độ ``phát tán'' của trường vectơ tại một điểm.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Toán tử Hamilton (nabla) $\nabla$}]
+  \[
+    \nabla = \mathbf{i}\frac{\partial}{\partial x} + \mathbf{j}\frac{\partial}{\partial y} + \mathbf{k}\frac{\partial}{\partial z}.
+  \]
+  \begin{itemize}
+    \item $\nabla f = \text{grad}\,f$ (gradient).
+    \item $\nabla \cdot \mathbf{F} = \text{div}\,\mathbf{F}$ (divergence).
+    \item $\nabla \times \mathbf{F} = \text{rot}\,\mathbf{F}$ (curl).
+    \item \textbf{Laplacian:} $\Delta f = \nabla^2 f = \dfrac{\partial^2 f}{\partial x^2} + \dfrac{\partial^2 f}{\partial y^2} + \dfrac{\partial^2 f}{\partial z^2}$.
+  \end{itemize}
+  Hệ thức: $\text{div}(\text{rot}\,\mathbf{F}) = 0$, \;$\text{rot}(\text{grad}\,f) = \mathbf{0}$.
+\end{congthuc}
+
+\end{document}

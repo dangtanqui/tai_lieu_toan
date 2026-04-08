@@ -1,0 +1,181 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{LÝ THUYẾT SỐ}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {LÝ THUYẾT SỐ};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Chia hết, đồng dư, Euler--Fermat, thặng dư bậc hai, hàm số học};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: CHIA HẾT VÀ SỐ NGUYÊN TỐ
+%% ================================================================
+\section{Chia hết và số nguyên tố}
+
+\begin{dinhnghia}[title={Chia hết}]
+  $a \mid b$ ($a$ chia hết $b$): $\exists k \in \mathbb{Z}$: $b = ka$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Chia Euclid}]
+  $\forall a, b \in \mathbb{Z}$, $b > 0$: $\exists!$ $q, r$: $a = bq + r$, $0 \le r < b$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={ƯCLN, BCNN}]
+  $\gcd(a, b)$: ước chung lớn nhất. $\text{lcm}(a, b)$: bội chung nhỏ nhất.
+
+  $\gcd(a,b) \cdot \text{lcm}(a,b) = |ab|$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Thuật toán Euclid}]
+  $\gcd(a, b) = \gcd(b, a \bmod b)$. Lặp đến $r = 0$.
+
+  \textbf{Euclid mở rộng}: tìm $x, y$: $ax + by = \gcd(a, b)$ (Bézout).
+\end{phuongphap}
+
+\begin{dinhly}[title={Định lý cơ bản của số học}]
+  Mọi $n \ge 2$ phân tích duy nhất: $n = p_1^{e_1} p_2^{e_2} \cdots p_k^{e_k}$, $p_i$ nguyên tố.
+\end{dinhly}
+
+\begin{dinhly}
+  Số lượng số nguyên tố là vô hạn (Euclid). \textbf{Định lý số nguyên tố:} $\pi(x) \sim \dfrac{x}{\ln x}$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: ĐỒNG DƯ
+%% ================================================================
+\section{Đồng dư}
+
+\begin{dinhnghia}
+  $a \equiv b \pmod{m}$ nếu $m \mid (a - b)$. Quan hệ tương đương; $\mathbb{Z}_m = \mathbb{Z}/m\mathbb{Z}$ là vành.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $a \equiv b$, $c \equiv d$ $\pmod{m}$ $\Rightarrow$ $a \pm c \equiv b \pm d$, $ac \equiv bd$.
+    \item $a$ có nghịch đảo modulo $m$ $\Leftrightarrow$ $\gcd(a, m) = 1$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý thặng dư Trung Hoa (CRT)}]
+  Nếu $m_1, \ldots, m_k$ đôi một nguyên tố cùng nhau thì hệ:
+  \[
+    x \equiv a_i \pmod{m_i}, \quad i = 1, \ldots, k
+  \]
+  có nghiệm duy nhất modulo $M = m_1 m_2 \cdots m_k$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Hàm Euler}]
+  $\varphi(n) = |\{k : 1 \le k \le n,\, \gcd(k, n) = 1\}|$.
+
+  $\varphi(p^e) = p^{e-1}(p-1)$. Tính nhân: $\gcd(m,n)=1 \Rightarrow \varphi(mn) = \varphi(m)\varphi(n)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Euler--Fermat}]
+  Nếu $\gcd(a, m) = 1$: $a^{\varphi(m)} \equiv 1 \pmod{m}$.
+
+  \textbf{Fermat nhỏ} ($m = p$ nguyên tố): $a^{p-1} \equiv 1 \pmod{p}$, hay $a^p \equiv a \pmod{p}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Wilson}]
+  $p$ nguyên tố $\Leftrightarrow$ $(p-1)! \equiv -1 \pmod{p}$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Bậc và căn nguyên thủy}]
+  \textbf{Bậc} $\text{ord}_m(a)$: $d$ nhỏ nhất sao cho $a^d \equiv 1 \pmod{m}$. $\text{ord}_m(a) \mid \varphi(m)$.
+
+  $g$ là \textbf{căn nguyên thủy} mod $m$ nếu $\text{ord}_m(g) = \varphi(m)$. Tồn tại khi $m = 2, 4, p^k, 2p^k$.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: ĐỒNG DƯ BẬC HAI VÀ THẶNG DƯ
+%% ================================================================
+\section{Đồng dư bậc hai}
+
+\begin{dinhnghia}[title={Thặng dư bậc hai}]
+  $a$ là \textbf{thặng dư bậc hai} mod $p$ nếu $\exists x$: $x^2 \equiv a \pmod{p}$. \textbf{Ký hiệu Legendre:}
+  \[
+    \left(\frac{a}{p}\right) = \begin{cases} 1 & \text{nếu } a \text{ là thặng dư bậc hai} \\ -1 & \text{nếu } a \text{ là phi thặng dư bậc hai} \\ 0 & \text{nếu } p \mid a. \end{cases}
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn Euler}]
+  $\left(\dfrac{a}{p}\right) \equiv a^{(p-1)/2} \pmod{p}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Luật thuận nghịch bậc hai (Gauss)}]
+  Với $p, q$ nguyên tố lẻ phân biệt:
+  \[
+    \left(\frac{p}{q}\right)\left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2}\cdot\frac{q-1}{2}}.
+  \]
+  Bổ sung: $\left(\dfrac{-1}{p}\right) = (-1)^{(p-1)/2}$, \;$\left(\dfrac{2}{p}\right) = (-1)^{(p^2-1)/8}$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 4: HÀM SỐ HỌC
+%% ================================================================
+\section{Hàm số học}
+
+\begin{dinhnghia}[title={Một số hàm số học quan trọng}]
+  \begin{itemize}
+    \item $\tau(n) = \sum_{d|n} 1$ (số ước).
+    \item $\sigma(n) = \sum_{d|n} d$ (tổng ước).
+    \item $\mu(n)$: hàm Möbius --- $\mu(1)=1$; $\mu(n) = (-1)^k$ nếu $n = p_1\cdots p_k$; $\mu(n) = 0$ nếu $n$ có ước bình phương.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Công thức nghịch đảo Möbius}]
+  Nếu $f(n) = \sum_{d|n} g(d)$ thì $g(n) = \sum_{d|n} \mu(n/d)\,f(d)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Tích chập Dirichlet}]
+  $(f * g)(n) = \sum_{d|n} f(d)\,g(n/d)$. Vành giao hoán. $\varphi = \mu * \text{id}$, $\sigma = \text{id} * \mathbf{1}$.
+\end{dinhly}
+
+\end{document}

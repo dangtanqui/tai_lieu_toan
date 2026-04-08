@@ -1,0 +1,290 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{HÌNH HỌC ĐẠI SỐ}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {HÌNH HỌC ĐẠI SỐ};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Đa tạp đại số, ideal, Nullstellensatz, đường cong đại số};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: KHÔNG GIAN AFFINE VÀ XẠ ẢNH
+%% ================================================================
+\section{Không gian affine và xạ ảnh}
+
+\begin{dinhnghia}[title={Không gian affine $\mathbb{A}^n$}]
+  $\mathbb{A}^n(k) = k^n$ (với $k$ là trường, thường $k = \mathbb{R}$ hoặc $k = \mathbb{C}$) cùng với tập các đa thức $k[x_1, \ldots, x_n]$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tập đại số affine}]
+  Cho $S \subset k[x_1, \ldots, x_n]$. \textbf{Tập không điểm} (zero set, tập đại số):
+  \[
+    V(S) = \{P \in \mathbb{A}^n : f(P) = 0,\;\forall f \in S\}.
+  \]
+  $V(S)$ gọi là \textbf{đa tạp đại số affine} (affine algebraic variety).
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $V(\{0\}) = \mathbb{A}^n$, \;$V(\{1\}) = \varnothing$.
+    \item $V(S_1) \cup V(S_2) = V(S_1 \cdot S_2)$.
+    \item $\bigcap_\alpha V(S_\alpha) = V\!\left(\bigcup_\alpha S_\alpha\right)$.
+    \item Các tập $V(S)$ tạo thành tập đóng của \textbf{tôpô Zariski} trên $\mathbb{A}^n$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Ideal tập đại số}]
+  Cho $X \subset \mathbb{A}^n$. \textbf{Ideal của $X$}:
+  \[
+    I(X) = \{f \in k[x_1, \ldots, x_n] : f(P) = 0,\;\forall P \in X\}.
+  \]
+  $I(X)$ luôn là ideal trong $k[x_1, \ldots, x_n]$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Vành tọa độ}]
+  $k[X] = k[x_1, \ldots, x_n] / I(X)$ --- \textbf{vành tọa độ} (coordinate ring) của $X$. Đây là vành các hàm đa thức trên $X$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Không gian xạ ảnh $\mathbb{P}^n$}]
+  $\mathbb{P}^n(k) = (k^{n+1} \setminus \{0\}) / {\sim}$, trong đó $(x_0, \ldots, x_n) \sim (\lambda x_0, \ldots, \lambda x_n)$, $\lambda \ne 0$.
+
+  Tọa độ thuần nhất: $[x_0 : x_1 : \cdots : x_n]$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đa tạp xạ ảnh}]
+  Cho $S \subset k[x_0, \ldots, x_n]$ gồm đa thức thuần nhất:
+  \[
+    V(S) = \{[x_0 : \cdots : x_n] \in \mathbb{P}^n : f(x_0, \ldots, x_n) = 0,\;\forall f \in S\}.
+  \]
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Quan hệ affine -- xạ ảnh}]
+  \begin{itemize}
+    \item $\mathbb{A}^n \hookrightarrow \mathbb{P}^n$: $(x_1, \ldots, x_n) \mapsto [1 : x_1 : \cdots : x_n]$.
+    \item $\mathbb{P}^n = \mathbb{A}^n \sqcup \mathbb{P}^{n-1}$ ($\mathbb{P}^{n-1}$: ``siêu phẳng tại vô cùng'' $x_0 = 0$).
+    \item Đa tạp xạ ảnh compact trong tôpô Zariski.
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 2: IDEAL VÀ NULLSTELLENSATZ
+%% ================================================================
+\section{Ideal và Nullstellensatz}
+
+\begin{dinhly}[title={Định lý cơ sở Hilbert (Hilbert Basis Theorem)}]
+  Nếu $k$ là trường thì $k[x_1, \ldots, x_n]$ là vành Noether: mọi ideal đều hữu hạn sinh.
+
+  Hệ quả: mọi $V(S)$ đều có thể viết $V(S) = V(f_1, \ldots, f_r)$ với hữu hạn đa thức.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Ideal căn}]
+  $\sqrt{I} = \{f : f^m \in I \text{ với một số } m \ge 1\}$. $I$ là \textbf{ideal căn} (radical) nếu $\sqrt{I} = I$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Hilbert Nullstellensatz (dạng yếu)}]
+  Nếu $k$ là trường đóng đại số (ví dụ $k = \mathbb{C}$) thì các ideal cực đại của $k[x_1, \ldots, x_n]$ có dạng $(x_1 - a_1, \ldots, x_n - a_n)$ với $(a_1, \ldots, a_n) \in k^n$.
+
+  Hệ quả: $V(I) = \varnothing$ $\Leftrightarrow$ $I = k[x_1, \ldots, x_n]$ (tức $1 \in I$).
+\end{dinhly}
+
+\begin{dinhly}[title={Hilbert Nullstellensatz (dạng mạnh)}]
+  Nếu $k$ đóng đại số thì:
+  \[
+    I\bigl(V(J)\bigr) = \sqrt{J}, \qquad \forall\, \text{ideal } J \subset k[x_1, \ldots, x_n].
+  \]
+  Đặc biệt: có song ánh (đảo thứ tự)
+  \[
+    \{\text{đa tạp affine trong } \mathbb{A}^n\} \xleftrightarrow{1-1} \{\text{ideal căn trong } k[x_1, \ldots, x_n]\}.
+  \]
+\end{dinhly}
+
+\begin{tinhchat}[title={Hệ quả Nullstellensatz}]
+  \begin{itemize}
+    \item $V$ bất khả quy $\Leftrightarrow$ $I(V)$ là ideal nguyên tố $\Leftrightarrow$ $k[V]$ là miền nguyên.
+    \item Mỗi đa tạp phân tích duy nhất thành hợp hữu hạn đa tạp bất khả quy.
+    \item Điểm $P \in \mathbb{A}^n$ $\leftrightarrow$ ideal cực đại $\mathfrak{m}_P = (x_1 - a_1, \ldots, x_n - a_n)$.
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 3: CHIỀU VÀ ĐỘ
+%% ================================================================
+\section{Chiều và độ (degree)}
+
+\begin{dinhnghia}[title={Chiều (dimension)}]
+  \textbf{Chiều Krull} của $V$:
+  \[
+    \dim V = \text{chiều Krull của } k[V] = \max\{n : \mathfrak{p}_0 \subsetneq \mathfrak{p}_1 \subsetneq \cdots \subsetneq \mathfrak{p}_n,\;\mathfrak{p}_i \text{ nguyên tố}\}.
+  \]
+  Tương đương: $\dim V = \text{tr.deg}_k\, k(V)$ (bậc siêu việt của trường hàm).
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\dim \mathbb{A}^n = n$.
+    \item $V \subset \mathbb{A}^n$ là \textbf{siêu mặt} (hypersurface) $\Leftrightarrow$ $\dim V = n - 1$ $\Leftrightarrow$ $I(V) = (f)$.
+    \item $\dim(V \cap W) \ge \dim V + \dim W - n$ (bất đẳng thức chiều).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Độ (degree) của đa tạp xạ ảnh}]
+  $\deg V$ = số điểm giao (kể bội) của $V$ với một không gian tuyến tính tổng quát chiều $n - \dim V$ trong $\mathbb{P}^n$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Bézout}]
+  Cho $V, W \subset \mathbb{P}^n$ là hai đa tạp xạ ảnh, $\dim V + \dim W \ge n$. Khi đó (kể bội giao):
+  \[
+    \sum_Z i(Z;\, V \cdot W)\,\deg Z = \deg V \cdot \deg W,
+  \]
+  trong đó tổng lấy trên các thành phần bất khả quy $Z$ của $V \cap W$.
+
+  Trường hợp đặc biệt: hai đường cong xạ ảnh bậc $d$ và $e$ trong $\mathbb{P}^2$ giao nhau tại đúng $de$ điểm (kể bội).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 4: ĐƯỜNG CONG ĐẠI SỐ PHẲNG
+%% ================================================================
+\section{Đường cong đại số phẳng}
+
+\begin{dinhnghia}
+  \textbf{Đường cong phẳng affine} $C: f(x, y) = 0$, $f \in k[x, y]$, $\deg f = d$ (bậc đường cong).
+
+  \textbf{Đường cong xạ ảnh:} thuần nhất hóa $F(X, Y, Z) = 0$ trong $\mathbb{P}^2$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Điểm kỳ dị và điểm trơn}]
+  $P \in C$ là \textbf{điểm kỳ dị} (singular) nếu $\dfrac{\partial f}{\partial x}(P) = \dfrac{\partial f}{\partial y}(P) = 0$. Ngược lại $P$ là \textbf{điểm trơn} (smooth).
+
+  Tại điểm trơn, đường tiếp tuyến: $f'_x(P)(x - x_0) + f'_y(P)(y - y_0) = 0$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Bội giao (intersection multiplicity)}]
+  $i_P(C, D)$: \textbf{bội giao} của hai đường $C: f = 0$ và $D: g = 0$ tại $P$:
+  \[
+    i_P(C, D) = \dim_k \mathcal{O}_{P,\mathbb{A}^2} / (f, g),
+  \]
+  trong đó $\mathcal{O}_{P}$ là vành địa phương tại $P$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất bội giao}]
+  \begin{itemize}
+    \item $i_P(C, D) \ge 1$ $\Leftrightarrow$ $P \in C \cap D$.
+    \item $i_P(C, D) \ge 2$ $\Leftrightarrow$ $C, D$ tiếp xúc tại $P$.
+    \item $i_P$ giao hoán, cộng tính theo thành phần, bất biến qua đẳng cấu.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Giống (genus)}]
+  Với đường cong trơn xạ ảnh bậc $d$ trong $\mathbb{P}^2$:
+  \[
+    g = \frac{(d-1)(d-2)}{2}.
+  \]
+  Công thức genus--degree, trường hợp có điểm kỳ dị cần trừ đóng góp kỳ dị.
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Đường thẳng ($d = 1$): $g = 0$.
+    \item Đường conic ($d = 2$): $g = 0$.
+    \item Đường bậc ba elliptic ($d = 3$, trơn): $g = 1$.
+  \end{itemize}
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 5: ÁNH XẠ ĐA THỨC VÀ ÁNH XẠ HỮU TỈ
+%% ================================================================
+\section{Ánh xạ đa thức và ánh xạ hữu tỉ}
+
+\begin{dinhnghia}[title={Ánh xạ đa thức (morphism)}]
+  $\varphi: V \to W$, $\varphi = (f_1, \ldots, f_m)$ với $f_i \in k[V]$. Kéo ngược: $\varphi^*: k[W] \to k[V]$, $g \mapsto g \circ \varphi$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đẳng cấu}]
+  $V \cong W$ nếu $\exists$ ánh xạ đa thức song ánh $\varphi: V \to W$ với $\varphi^{-1}$ cũng là đa thức. Tương đương: $k[V] \cong k[W]$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Ánh xạ hữu tỉ (rational map)}]
+  $\varphi: V \dashrightarrow W$ xác định trên tập mở trù mật. $V$ và $W$ \textbf{song hữu tỉ} (birational) nếu $\exists$ ánh xạ hữu tỉ nghịch đảo. Tương đương: $k(V) \cong k(W)$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Mọi đa tạp bất khả quy chiều $d$ đều song hữu tỉ với một siêu mặt trong $\mathbb{A}^{d+1}$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 6: BỔ SUNG
+%% ================================================================
+\section{Bổ sung}
+
+\begin{dinhnghia}[title={Không gian tiếp xúc Zariski}]
+  Tại $P \in V$, \textbf{không gian tiếp xúc}:
+  \[
+    T_P V = \left\{(v_1, \ldots, v_n) \in k^n : \sum_i \frac{\partial f}{\partial x_i}(P)\,v_i = 0,\;\forall f \in I(V)\right\}.
+  \]
+  $P$ trơn $\Leftrightarrow$ $\dim T_P V = \dim V$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Vành địa phương}]
+  $\mathcal{O}_{V,P} = \{f/g : f, g \in k[V],\; g(P) \ne 0\}$ --- vành các hàm hữu tỉ xác định tại $P$. Ideal cực đại $\mathfrak{m}_P = \{h \in \mathcal{O}_{V,P} : h(P) = 0\}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Đường cong elliptic --- Cấu trúc nhóm}]
+  Đường cong trơn bậc 3 trong $\mathbb{P}^2$ (đường cong elliptic $E$, giống $g = 1$) mang cấu trúc \textbf{nhóm Abel}: với điểm gốc $O \in E$, phép cộng xác định qua quy tắc ``ba điểm thẳng hàng có tổng bằng $O$''.
+\end{dinhly}
+
+\begin{congthuc}[title={Dạng Weierstrass}]
+  Mọi đường cong elliptic (trên trường $\text{char} \ne 2, 3$) có thể đưa về:
+  \[
+    y^2 = x^3 + ax + b, \qquad \Delta = -16(4a^3 + 27b^2) \ne 0.
+  \]
+  $\Delta \ne 0$ đảm bảo đường cong trơn. $j$-bất biến: $j = -1728 \cdot \dfrac{(4a)^3}{\Delta}$.
+\end{congthuc}
+
+\end{document}

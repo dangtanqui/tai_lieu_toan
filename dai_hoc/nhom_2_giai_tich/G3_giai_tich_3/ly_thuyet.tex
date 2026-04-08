@@ -1,0 +1,637 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{GIẢI TÍCH 3}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH 3};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Chuỗi số, chuỗi hàm, phương trình vi phân --- Năm 2};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: CHUỖI SỐ
+%% ================================================================
+\section{Chuỗi số}
+
+\begin{dinhnghia}
+  \textbf{Chuỗi số} $\displaystyle\sum_{n=1}^{\infty} a_n$: tổng vô hạn $a_1 + a_2 + \cdots$. 
+  
+  Tổng riêng $S_n = a_1 + \cdots + a_n$. 
+  
+  Chuỗi \textbf{hội tụ} nếu $\displaystyle\lim_{n \to \infty} S_n$ tồn tại hữu hạn.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện cần hội tụ}]
+  Nếu $\displaystyle\sum a_n$ hội tụ thì $\displaystyle\lim_{n \to \infty} a_n = 0$. (Điều ngược lại không đúng.)
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu $\sum a_n$ hội tụ thì $\sum c\,a_n$ hội tụ ($c$ hằng số).
+    \item Nếu $\sum a_n$ và $\sum b_n$ hội tụ thì $\sum (a_n \pm b_n)$ hội tụ.
+    \item Bỏ hoặc thêm hữu hạn số hạng không ảnh hưởng tính hội tụ.
+    \item Đặt ngoặc các số hạng liên tiếp không ảnh hưởng tổng (nếu chuỗi hội tụ).
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Chuỗi số dương}
+
+\begin{dinhly}[title={Tiêu chuẩn so sánh}]
+  Cho $0 \le a_n \le b_n$ ($\forall n \ge n_0$):
+  \begin{itemize}
+    \item $\sum b_n$ hội tụ $\Rightarrow$ $\sum a_n$ hội tụ.
+    \item $\sum a_n$ phân kỳ $\Rightarrow$ $\sum b_n$ phân kỳ.
+  \end{itemize}
+  \textbf{So sánh giới hạn:} Nếu $a_n, b_n > 0$ và $\displaystyle\lim \frac{a_n}{b_n} = c$ ($0 < c < +\infty$) thì $\sum a_n$ và $\sum b_n$ cùng hội tụ hoặc cùng phân kỳ.
+\end{dinhly}
+
+\begin{dinhly}[title={Tiêu chuẩn D'Alembert (tỉ số)}]
+  Cho chuỗi dương $\sum a_n$, $\displaystyle\lim_{n \to \infty} \frac{a_{n+1}}{a_n} = L$:
+  \begin{itemize}
+    \item $L < 1$: chuỗi hội tụ.
+    \item $L > 1$: chuỗi phân kỳ.
+    \item $L = 1$: chưa kết luận.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Tiêu chuẩn Cauchy (căn)}]
+  Cho chuỗi dương $\sum a_n$, $\displaystyle\lim_{n \to \infty} \sqrt[n]{a_n} = L$:
+  \begin{itemize}
+    \item $L < 1$: hội tụ. \quad $L > 1$: phân kỳ. \quad $L = 1$: chưa kết luận.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Tiêu chuẩn tích phân (Cauchy--Maclaurin)}]
+  Nếu $f(x)$ liên tục, dương, giảm trên $[1, +\infty)$ và $a_n = f(n)$ thì $\sum_{n=1}^{\infty} a_n$ và $\int_1^{+\infty} f(x)\,dx$ cùng hội tụ hoặc cùng phân kỳ.
+\end{dinhly}
+
+\begin{congthuc}[title={Chuỗi mẫu}]
+  \begin{itemize}
+    \item \textbf{Chuỗi $p$:} $\displaystyle\sum_{n=1}^{\infty} \frac{1}{n^p}$: hội tụ khi $p > 1$, phân kỳ khi $p \le 1$.
+    \item \textbf{Chuỗi hình học:} $\displaystyle\sum_{n=0}^{\infty} q^n = \frac{1}{1-q}$ khi $|q| < 1$; phân kỳ khi $|q| \ge 1$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{Chuỗi có số hạng với dấu bất kỳ}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $\sum a_n$ \textbf{hội tụ tuyệt đối} nếu $\sum |a_n|$ hội tụ.
+    \item $\sum a_n$ \textbf{hội tụ bán phần} (hội tụ có điều kiện) nếu $\sum a_n$ hội tụ nhưng $\sum |a_n|$ phân kỳ.
+  \end{itemize}
+  Hội tụ tuyệt đối $\Rightarrow$ hội tụ. Điều ngược lại không đúng.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn Leibniz (chuỗi đan dấu)}]
+  Chuỗi đan dấu $\displaystyle\sum_{n=1}^{\infty} (-1)^{n+1} a_n$ ($a_n > 0$) hội tụ nếu:
+  \begin{enumerate}
+    \item $(a_n)$ giảm: $a_{n+1} \le a_n$,
+    \item $\displaystyle\lim_{n \to \infty} a_n = 0$.
+  \end{enumerate}
+  Khi đó tổng $S$ thỏa: $|S - S_n| \le a_{n+1}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Tiêu chuẩn Abel và Dirichlet}]
+  \begin{itemize}
+    \item \textbf{Abel:} Nếu $\sum a_n$ hội tụ và $(b_n)$ đơn điệu bị chặn thì $\sum a_n b_n$ hội tụ.
+    \item \textbf{Dirichlet:} Nếu dãy tổng riêng $\sum_{k=1}^n a_k$ bị chặn và $(b_n)$ đơn điệu giảm về $0$ thì $\sum a_n b_n$ hội tụ.
+  \end{itemize}
+\end{dinhly}
+
+\subsection{Dãy hàm số}
+
+\begin{dinhnghia}
+  Dãy hàm $(f_n(x))$ trên $D$ \textbf{hội tụ điểm} đến $f(x)$ nếu $\forall x \in D$: $\displaystyle\lim_{n \to \infty} f_n(x) = f(x)$.
+
+  Dãy hàm \textbf{hội tụ đều} đến $f$ trên $D$ nếu:
+  \[
+    \forall \varepsilon > 0,\; \exists N:\; \forall n > N,\; \forall x \in D:\; |f_n(x) - f(x)| < \varepsilon.
+  \]
+  Tương đương: $\displaystyle\lim_{n \to \infty} \sup_{x \in D} |f_n(x) - f(x)| = 0$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn Cauchy về hội tụ đều}]
+  $(f_n)$ hội tụ đều trên $D$ khi và chỉ khi $\forall \varepsilon > 0,\; \exists N:\; \forall m, n > N,\; \forall x \in D:\; |f_n(x) - f_m(x)| < \varepsilon$.
+\end{dinhly}
+
+\begin{tinhchat}[title={Tính chất dãy hàm hội tụ đều}]
+  Nếu $(f_n)$ hội tụ đều đến $f$ trên $[a,b]$:
+  \begin{enumerate}
+    \item Nếu mỗi $f_n$ liên tục thì $f$ liên tục.
+    \item $\displaystyle\lim_{n \to \infty} \int_a^b f_n(x)\,dx = \int_a^b f(x)\,dx$ (đổi giới hạn và tích phân).
+    \item Nếu mỗi $f_n$ khả vi, $f_n'$ hội tụ đều thì $f' = \lim f_n'$ (đổi giới hạn và đạo hàm).
+  \end{enumerate}
+\end{tinhchat}
+
+\subsection{Chuỗi hàm số}
+
+\begin{dinhnghia}
+  Chuỗi hàm $\displaystyle\sum_{n=1}^{\infty} u_n(x)$ \textbf{hội tụ} tại $x_0$ nếu chuỗi số $\sum u_n(x_0)$ hội tụ. Tập hợp các $x$ mà chuỗi hội tụ gọi là \textbf{miền hội tụ}.
+
+  Chuỗi hàm \textbf{hội tụ đều} trên $D$ nếu dãy tổng riêng hội tụ đều trên $D$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn Weierstrass (so sánh hội tụ đều)}]
+  Nếu $|u_n(x)| \le M_n$ trên $D$ ($\forall n$) và $\sum M_n$ hội tụ thì $\sum u_n(x)$ hội tụ đều (và tuyệt đối) trên $D$.
+\end{dinhly}
+
+\begin{tinhchat}[title={Tính chất chuỗi hàm hội tụ đều}]
+  Nếu $\sum u_n(x)$ hội tụ đều trên $[a,b]$:
+  \begin{enumerate}
+    \item Nếu mỗi $u_n$ liên tục thì tổng $S(x) = \sum u_n(x)$ liên tục.
+    \item $\displaystyle\int_a^b S(x)\,dx = \sum_{n=1}^{\infty} \int_a^b u_n(x)\,dx$ (tích phân từng số hạng).
+    \item Nếu mỗi $u_n$ khả vi, $\sum u_n'$ hội tụ đều thì $S'(x) = \sum u_n'(x)$ (đạo hàm từng số hạng).
+  \end{enumerate}
+\end{tinhchat}
+
+\subsection{Chuỗi lũy thừa}
+
+\begin{dinhnghia}
+  \textbf{Chuỗi lũy thừa:}
+  \[
+    \sum_{n=0}^{\infty} a_n (x - x_0)^n = a_0 + a_1(x-x_0) + a_2(x-x_0)^2 + \cdots
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Abel}]
+  Nếu chuỗi $\sum a_n x^n$ hội tụ tại $x = x_1 \ne 0$ thì nó hội tụ tuyệt đối với mọi $|x| < |x_1|$. Nếu phân kỳ tại $x_2$ thì phân kỳ với mọi $|x| > |x_2|$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Bán kính hội tụ}]
+  Tồn tại $R \ge 0$ (hoặc $R = +\infty$) sao cho $\sum a_n x^n$:
+  \begin{itemize}
+    \item Hội tụ tuyệt đối khi $|x| < R$.
+    \item Phân kỳ khi $|x| > R$.
+    \item Khi $|x| = R$: cần xét riêng.
+  \end{itemize}
+  Khoảng $(-R, R)$ gọi là \textbf{khoảng hội tụ}.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức tính bán kính hội tụ}]
+  \[
+    R = \lim_{n \to \infty} \left|\frac{a_n}{a_{n+1}}\right| \quad\text{hoặc}\quad R = \frac{1}{\displaystyle\limsup_{n \to \infty} \sqrt[n]{|a_n|}} \quad\text{(Cauchy--Hadamard)}.
+  \]
+\end{congthuc}
+
+\begin{tinhchat}[title={Tính chất chuỗi lũy thừa}]
+  Trên khoảng hội tụ $(-R, R)$:
+  \begin{enumerate}
+    \item Tổng $S(x) = \sum a_n x^n$ liên tục.
+    \item Có thể tích phân từng số hạng: $\displaystyle\int_0^x S(t)\,dt = \sum_{n=0}^{\infty} \frac{a_n}{n+1} x^{n+1}$.
+    \item Có thể đạo hàm từng số hạng: $S'(x) = \sum_{n=1}^{\infty} n\,a_n x^{n-1}$.
+    \item Chuỗi đạo hàm và chuỗi tích phân có cùng bán kính hội tụ $R$.
+  \end{enumerate}
+\end{tinhchat}
+
+\begin{congthuc}[title={Khai triển Maclaurin thường gặp (bán kính hội tụ)}]
+  \begin{align*}
+    e^x &= \sum_{n=0}^{\infty} \frac{x^n}{n!} & (R = +\infty), \\
+    \sin x &= \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{(2n+1)!} & (R = +\infty), \\
+    \cos x &= \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{(2n)!} & (R = +\infty), \\
+    \ln(1+x) &= \sum_{n=1}^{\infty} \frac{(-1)^{n-1} x^n}{n} & (R = 1), \\
+    \frac{1}{1-x} &= \sum_{n=0}^{\infty} x^n & (R = 1), \\
+    (1+x)^\alpha &= \sum_{n=0}^{\infty} \binom{\alpha}{n} x^n & (R = 1), \\
+    \arctan x &= \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n+1}}{2n+1} & (R = 1).
+  \end{align*}
+\end{congthuc}
+
+\begin{phuongphap}[title={Ứng dụng tính gần đúng}]
+  \begin{itemize}
+    \item \textbf{Tính xấp xỉ hàm số:} Dùng tổng riêng $S_n(x)$ của chuỗi lũy thừa, sai số $|R_n| \le a_{n+1}$ (chuỗi đan dấu).
+    \item \textbf{Tính tích phân:} Khi $\displaystyle\int f(x)\,dx$ không tính được bằng hàm sơ cấp, khai triển $f(x)$ thành chuỗi lũy thừa rồi tích phân từng số hạng.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{vidu}
+  $\displaystyle\int_0^1 e^{-x^2}\,dx = \int_0^1 \sum_{n=0}^{\infty} \frac{(-1)^n x^{2n}}{n!}\,dx = \sum_{n=0}^{\infty} \frac{(-1)^n}{n!(2n+1)} = 1 - \frac{1}{3} + \frac{1}{10} - \frac{1}{42} + \cdots$
+\end{vidu}
+
+\subsection{Chuỗi Fourier}
+
+\subsubsection{Chuỗi lượng giác}
+
+\begin{dinhnghia}
+  \textbf{Chuỗi lượng giác:}
+  \[
+    \frac{a_0}{2} + \sum_{n=1}^{\infty} \bigl(a_n \cos nx + b_n \sin nx\bigr).
+  \]
+  Hệ hàm $\{1, \cos x, \sin x, \cos 2x, \sin 2x, \ldots\}$ là hệ \textbf{trực giao} trên $[-\pi, \pi]$:
+  \[
+    \int_{-\pi}^{\pi} \cos mx \cdot \cos nx\,dx = \begin{cases} 0 & m \ne n, \\ \pi & m = n \ne 0, \end{cases}
+  \]
+  và tương tự cho $\sin$ và tích chéo $\sin \cdot \cos$.
+\end{dinhnghia}
+
+\subsubsection{Chuỗi Fourier}
+
+\begin{dinhnghia}
+  Cho $f(x)$ tuần hoàn chu kỳ $2\pi$, khả tích trên $[-\pi, \pi]$. \textbf{Chuỗi Fourier} của $f$:
+  \[
+    f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty} \bigl(a_n \cos nx + b_n \sin nx\bigr),
+  \]
+  với các \textbf{hệ số Fourier}:
+  \[
+    a_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\cos nx\,dx, \qquad b_n = \frac{1}{\pi}\int_{-\pi}^{\pi} f(x)\sin nx\,dx.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện Dirichlet (điều kiện đủ hội tụ)}]
+  Nếu $f$ tuần hoàn $2\pi$ và trên $[-\pi, \pi]$:
+  \begin{enumerate}
+    \item $f$ liên tục (trừ có thể hữu hạn điểm gián đoạn loại 1),
+    \item $f$ đơn điệu từng khúc (hữu hạn khoảng đơn điệu),
+  \end{enumerate}
+  thì chuỗi Fourier hội tụ và:
+  \[
+    \frac{a_0}{2} + \sum_{n=1}^{\infty} (a_n \cos nx + b_n \sin nx) = \begin{cases} f(x) & \text{tại điểm liên tục,} \\[4pt] \dfrac{f(x^-) + f(x^+)}{2} & \text{tại điểm gián đoạn.} \end{cases}
+  \]
+\end{dinhly}
+
+\subsubsection{Khai triển trên đoạn bất kỳ}
+
+\begin{congthuc}[title={Chuỗi Fourier trên $[-l,\, l]$}]
+  Với $f$ tuần hoàn chu kỳ $2l$:
+  \[
+    f(x) \sim \frac{a_0}{2} + \sum_{n=1}^{\infty} \left(a_n \cos\frac{n\pi x}{l} + b_n \sin\frac{n\pi x}{l}\right),
+  \]
+  \[
+    a_n = \frac{1}{l}\int_{-l}^{l} f(x)\cos\frac{n\pi x}{l}\,dx, \qquad b_n = \frac{1}{l}\int_{-l}^{l} f(x)\sin\frac{n\pi x}{l}\,dx.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Khai triển hàm trên $[0, l]$}]
+  \begin{itemize}
+    \item \textbf{Khai triển chẵn} (chỉ chứa $\cos$): mở rộng $f$ thành hàm chẵn trên $[-l, l]$, khi đó $b_n = 0$.
+    \item \textbf{Khai triển lẻ} (chỉ chứa $\sin$): mở rộng $f$ thành hàm lẻ trên $[-l, l]$, khi đó $a_n = 0$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{dinhly}[title={Đẳng thức Parseval}]
+  Nếu $f$ khả tích bình phương trên $[-\pi, \pi]$ thì:
+  \[
+    \frac{1}{\pi}\int_{-\pi}^{\pi} f^2(x)\,dx = \frac{a_0^2}{2} + \sum_{n=1}^{\infty} \bigl(a_n^2 + b_n^2\bigr).
+  \]
+  Đẳng thức này thể hiện sự bảo toàn năng lượng (bằng nhau giữa miền thời gian và miền tần số).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: PHƯƠNG TRÌNH VI PHÂN
+%% ================================================================
+\section{Phương trình vi phân}
+
+\subsection{Phương trình vi phân cấp 1}
+
+\subsubsection{Đại cương}
+
+\begin{dinhnghia}
+  \textbf{PTVP cấp 1} có dạng tổng quát $F(x, y, y') = 0$, hay dạng chính tắc $y' = f(x, y)$.
+
+  \begin{itemize}
+    \item \textbf{Nghiệm}: hàm $y = \varphi(x)$ thỏa mãn PT trên khoảng $(a, b)$.
+    \item \textbf{Nghiệm tổng quát}: $\Phi(x, y, C) = 0$ chứa 1 hằng số tùy ý $C$.
+    \item \textbf{Nghiệm riêng}: ứng với giá trị cụ thể của $C$.
+    \item \textbf{Bài toán Cauchy}: tìm nghiệm thỏa điều kiện ban đầu $y(x_0) = y_0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Picard (tồn tại và duy nhất)}]
+  Nếu $f(x,y)$ liên tục và thỏa điều kiện Lipschitz theo $y$ trong lân cận $(x_0, y_0)$ thì bài toán Cauchy $y' = f(x,y)$, $y(x_0) = y_0$ có nghiệm duy nhất.
+\end{dinhly}
+
+\subsubsection{Phương trình khuyết}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{Khuyết $y$}: $F(x, y') = 0$ --- đặt $y' = p$, giải PT theo $x$ và $p$.
+    \item \textbf{Khuyết $x$}: $F(y, y') = 0$ --- đặt $y' = p$, coi $p = p(y)$.
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{PT biến số phân li}
+
+\begin{dinhnghia}
+  Dạng $M(x)\,dx + N(y)\,dy = 0$, hay $g(y)\,dy = f(x)\,dx$.
+\end{dinhnghia}
+
+\begin{phuongphap}
+  Tích phân hai vế: $\displaystyle\int g(y)\,dy = \int f(x)\,dx + C$.
+\end{phuongphap}
+
+\subsubsection{PT thuần nhất}
+
+\begin{dinhnghia}
+  $y' = f\!\left(\dfrac{y}{x}\right)$, hay $M(x,y)\,dx + N(x,y)\,dy = 0$ với $M$, $N$ thuần nhất cùng bậc.
+\end{dinhnghia}
+
+\begin{phuongphap}
+  Đặt $u = \dfrac{y}{x}$ ($y = ux$, $y' = u + xu'$), PT trở thành biến số phân li theo $x$ và $u$.
+\end{phuongphap}
+
+\subsubsection{PT tuyến tính cấp 1}
+
+\begin{dinhnghia}
+  $y' + P(x)\,y = Q(x)$.
+  \begin{itemize}
+    \item $Q(x) = 0$: PT tuyến tính \textbf{thuần nhất}.
+    \item $Q(x) \ne 0$: PT tuyến tính \textbf{không thuần nhất}.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Nghiệm tổng quát}]
+  \[
+    y = e^{-\int P\,dx}\left(\int Q\,e^{\int P\,dx}\,dx + C\right).
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Phương pháp biến thiên hằng số (Lagrange)}]
+  \begin{enumerate}
+    \item Giải PT thuần nhất $y' + Py = 0$: $y_{tn} = Ce^{-\int P\,dx}$.
+    \item Thay $C = C(x)$, đặt $y = C(x)\,e^{-\int P\,dx}$ vào PT đầy đủ, tìm $C(x)$.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsubsection{PT Bernoulli}
+
+\begin{dinhnghia}
+  $y' + P(x)\,y = Q(x)\,y^\alpha$ \quad ($\alpha \ne 0, 1$).
+\end{dinhnghia}
+
+\begin{phuongphap}
+  Chia hai vế cho $y^\alpha$, đặt $z = y^{1-\alpha}$, PT trở thành tuyến tính cấp 1 theo $z$:
+  \[
+    z' + (1-\alpha)P(x)\,z = (1-\alpha)Q(x).
+  \]
+\end{phuongphap}
+
+\subsubsection{PT vi phân toàn phần}
+
+\begin{dinhnghia}
+  $P(x,y)\,dx + Q(x,y)\,dy = 0$ là \textbf{toàn phần} nếu $\dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x}$.
+
+  Khi đó tồn tại $U(x,y)$ sao cho $dU = P\,dx + Q\,dy$, và nghiệm: $U(x,y) = C$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tìm $U$}]
+  $U(x,y) = \displaystyle\int_{x_0}^{x} P(t, y_0)\,dt + \int_{y_0}^{y} Q(x, s)\,ds$, hoặc:
+
+  $U = \displaystyle\int P\,dx + \varphi(y)$, rồi xác định $\varphi(y)$ từ $U'_y = Q$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Thừa số tích phân}]
+  Nếu PT chưa toàn phần, nhân với $\mu(x,y)$ sao cho $\mu P\,dx + \mu Q\,dy = 0$ trở thành toàn phần:
+  \begin{itemize}
+    \item Nếu $\dfrac{1}{Q}\!\left(\dfrac{\partial P}{\partial y} - \dfrac{\partial Q}{\partial x}\right)$ chỉ phụ thuộc $x$: $\mu = e^{\int (\ldots)\,dx}$.
+    \item Nếu $\dfrac{1}{P}\!\left(\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}\right)$ chỉ phụ thuộc $y$: $\mu = e^{\int (\ldots)\,dy}$.
+  \end{itemize}
+\end{phuongphap}
+
+\subsubsection{PT Clairaut}
+
+\begin{dinhnghia}
+  $y = xy' + \psi(y')$.
+\end{dinhnghia}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{Nghiệm tổng quát} (họ đường thẳng): $y = Cx + \psi(C)$.
+    \item \textbf{Nghiệm kỳ dị} (hình bao): khử $p$ từ $\begin{cases} y = xp + \psi(p), \\ 0 = x + \psi'(p). \end{cases}$
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{PT Lagrange}
+
+\begin{dinhnghia}
+  $y = x\,\varphi(y') + \psi(y')$ \quad ($\varphi(p) \ne p$ để không phải Clairaut).
+\end{dinhnghia}
+
+\begin{phuongphap}
+  Đặt $y' = p$, đạo hàm hai vế theo $x$, thu PT tuyến tính cấp 1 theo $x = x(p)$.
+\end{phuongphap}
+
+\subsubsection{Quỹ đạo trực giao}
+
+\begin{dinhnghia}
+  Cho họ đường $\Phi(x, y, C) = 0$. \textbf{Quỹ đạo trực giao} là đường cắt vuông góc mọi đường trong họ.
+\end{dinhnghia}
+
+\begin{phuongphap}
+  \begin{enumerate}
+    \item Tìm PTVP của họ: khử $C$ từ $\Phi = 0$ và $\Phi'_x + \Phi'_y \cdot y' = 0$, được $y' = f(x,y)$.
+    \item PTVP quỹ đạo trực giao: $y' = -\dfrac{1}{f(x,y)}$.
+    \item Giải PTVP mới.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsection{Phương trình vi phân cấp 2}
+
+\subsubsection{Đại cương}
+
+\begin{dinhnghia}
+  Dạng tổng quát: $F(x, y, y', y'') = 0$, hay $y'' = f(x, y, y')$.
+
+  Nghiệm tổng quát chứa 2 hằng số tùy ý. Bài toán Cauchy: $y(x_0) = y_0$, $y'(x_0) = y_0'$.
+\end{dinhnghia}
+
+\subsubsection{PT cấp 2 khuyết}
+
+\begin{phuongphap}
+  \begin{itemize}
+    \item \textbf{Khuyết $y$ và $y'$}: $y'' = f(x)$ --- tích phân hai lần.
+    \item \textbf{Khuyết $y$}: $y'' = f(x, y')$ --- đặt $p = y'$, được PT cấp 1: $p' = f(x, p)$.
+    \item \textbf{Khuyết $x$}: $y'' = f(y, y')$ --- đặt $p = y'$, $y'' = p\,\dfrac{dp}{dy}$, được $p\,\dfrac{dp}{dy} = f(y, p)$.
+  \end{itemize}
+\end{phuongphap}
+
+\subsubsection{PT tuyến tính cấp 2}
+
+\begin{dinhnghia}
+  $y'' + p(x)\,y' + q(x)\,y = f(x)$.
+  \begin{itemize}
+    \item $f(x) = 0$: PT tuyến tính \textbf{thuần nhất} (PTTTTN).
+    \item $f(x) \ne 0$: PT tuyến tính \textbf{không thuần nhất}.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Cấu trúc nghiệm}]
+  \begin{itemize}
+    \item Nghiệm tổng quát PTTTTN: $y_{tn} = C_1 y_1 + C_2 y_2$, với $y_1, y_2$ là hệ nghiệm cơ bản (độc lập tuyến tính, tức Wronskian $W(y_1, y_2) \ne 0$).
+    \item Nghiệm tổng quát PT không thuần nhất: $y = y_{tn} + y_{rn}$, trong đó $y_{rn}$ là một nghiệm riêng.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}[title={Wronskian}]
+  \[
+    W(y_1, y_2) = \begin{vmatrix} y_1 & y_2 \\ y_1' & y_2' \end{vmatrix} = y_1 y_2' - y_2 y_1'.
+  \]
+  $y_1, y_2$ độc lập tuyến tính $\Leftrightarrow$ $W \ne 0$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Biến thiên hằng số (tìm nghiệm riêng)}]
+  Đặt $y_{rn} = C_1(x)\,y_1 + C_2(x)\,y_2$, giải hệ:
+  \[
+    \begin{cases} C_1' y_1 + C_2' y_2 = 0, \\ C_1' y_1' + C_2' y_2' = f(x). \end{cases}
+  \]
+\end{phuongphap}
+
+\subsubsection{PT tuyến tính cấp 2 hệ số không đổi}
+
+\begin{dinhnghia}
+  $y'' + py' + qy = f(x)$ \quad ($p, q$ là hằng số).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Giải PT thuần nhất}]
+  PT đặc trưng: $k^2 + pk + q = 0$.
+  \begin{itemize}
+    \item Hai nghiệm thực phân biệt $k_1 \ne k_2$: $y_{tn} = C_1 e^{k_1 x} + C_2 e^{k_2 x}$.
+    \item Nghiệm kép $k_1 = k_2 = k$: $y_{tn} = (C_1 + C_2 x)e^{kx}$.
+    \item Nghiệm phức $k = \alpha \pm \beta i$: $y_{tn} = e^{\alpha x}(C_1\cos\beta x + C_2\sin\beta x)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Nghiệm riêng --- Phương pháp hệ số bất định}]
+  \begin{itemize}
+    \item $f(x) = e^{\alpha x} P_n(x)$: tìm $y_{rn} = x^s e^{\alpha x} Q_n(x)$, $s$ = bội của $\alpha$ trong PT đặc trưng.
+    \item $f(x) = e^{\alpha x}\bigl[P_n(x)\cos\beta x + R_m(x)\sin\beta x\bigr]$:
+      tìm $y_{rn} = x^s e^{\alpha x}\bigl[\tilde{P}_l(x)\cos\beta x + \tilde{R}_l(x)\sin\beta x\bigr]$, $l = \max(n,m)$, $s$ = bội của $\alpha + \beta i$.
+  \end{itemize}
+\end{phuongphap}
+
+\subsubsection{PT Euler}
+
+\begin{dinhnghia}
+  $x^2 y'' + axy' + by = f(x)$ \quad ($a, b$ hằng số).
+\end{dinhnghia}
+
+\begin{phuongphap}
+  Đặt $x = e^t$ (khi $x > 0$): $xy' = \dot{y}$, $x^2 y'' = \ddot{y} - \dot{y}$, PT trở thành PT hệ số không đổi theo $t$.
+\end{phuongphap}
+
+\subsubsection{PT dao động}
+
+\begin{congthuc}
+  \begin{itemize}
+    \item \textbf{Dao động tự do}: $y'' + \omega^2 y = 0$ $\Rightarrow$ $y = A\cos(\omega x + \varphi)$.
+    \item \textbf{Dao động tắt dần}: $y'' + 2\beta y' + \omega^2 y = 0$ ($\beta < \omega$) $\Rightarrow$ $y = Ae^{-\beta x}\cos(\omega_1 x + \varphi)$, $\omega_1 = \sqrt{\omega^2 - \beta^2}$.
+    \item \textbf{Dao động cưỡng bức}: $y'' + 2\beta y' + \omega^2 y = F_0\cos\Omega x$.
+    \item \textbf{Cộng hưởng}: xảy ra khi $\Omega = \omega$ (dao động tự do) hoặc $\Omega = \sqrt{\omega^2 - 2\beta^2}$ (có cản).
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{Nghiệm khai triển thành chuỗi lũy thừa}
+
+\begin{phuongphap}
+  Tìm nghiệm dạng $y = \displaystyle\sum_{n=0}^{\infty} a_n x^n$: thế vào PT, so sánh hệ số cùng bậc, tìm công thức truy hồi cho $a_n$.
+\end{phuongphap}
+
+\subsection{Hệ phương trình vi phân}
+
+\subsubsection{Đại cương}
+
+\begin{dinhnghia}
+  Hệ PTVP cấp 1 dạng chuẩn tắc:
+  \[
+    \begin{cases}
+      x_1' = f_1(t, x_1, x_2, \ldots, x_n), \\
+      x_2' = f_2(t, x_1, x_2, \ldots, x_n), \\
+      \vdots \\
+      x_n' = f_n(t, x_1, x_2, \ldots, x_n).
+    \end{cases}
+  \]
+  Dạng ma trận: $\mathbf{x}' = \mathbf{f}(t, \mathbf{x})$.
+\end{dinhnghia}
+
+\begin{luuy}
+  Mọi PTVP cấp $n$ đều chuyển được về hệ cấp 1: đặt $x_1 = y$, $x_2 = y'$, \ldots, $x_n = y^{(n-1)}$.
+\end{luuy}
+
+\subsubsection{Cách giải hệ PTVP}
+
+\begin{phuongphap}[title={Phương pháp khử}]
+  Từ hệ, khử dần các ẩn để được 1 PT cấp cao theo 1 ẩn, giải rồi thế ngược lại.
+\end{phuongphap}
+
+\subsubsection{Hệ tuyến tính thuần nhất hệ số không đổi}
+
+\begin{dinhnghia}
+  $\mathbf{x}' = A\,\mathbf{x}$, với $A$ là ma trận hằng $n \times n$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương pháp trị riêng}]
+  \begin{enumerate}
+    \item Tìm trị riêng $\lambda$ từ PT đặc trưng $\det(A - \lambda I) = 0$.
+    \item Với mỗi $\lambda_i$, tìm vectơ riêng $\mathbf{v}_i$: $(A - \lambda_i I)\mathbf{v}_i = \mathbf{0}$.
+    \item Nghiệm cơ bản: $\mathbf{x}_i(t) = e^{\lambda_i t}\,\mathbf{v}_i$.
+    \item Nghiệm tổng quát: $\mathbf{x}(t) = C_1\,\mathbf{x}_1(t) + C_2\,\mathbf{x}_2(t) + \cdots + C_n\,\mathbf{x}_n(t)$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{congthuc}[title={Các trường hợp (hệ $2 \times 2$)}]
+  PT đặc trưng $\lambda^2 - \text{tr}(A)\,\lambda + \det(A) = 0$:
+  \begin{itemize}
+    \item \textbf{Hai trị riêng thực phân biệt} $\lambda_1 \ne \lambda_2$:
+      $\mathbf{x} = C_1 e^{\lambda_1 t}\mathbf{v}_1 + C_2 e^{\lambda_2 t}\mathbf{v}_2$.
+    \item \textbf{Trị riêng kép} $\lambda$, thiếu vectơ riêng:
+      $\mathbf{x} = C_1 e^{\lambda t}\mathbf{v} + C_2 e^{\lambda t}(t\mathbf{v} + \mathbf{w})$, trong đó $(A - \lambda I)\mathbf{w} = \mathbf{v}$.
+    \item \textbf{Trị riêng phức} $\lambda = \alpha \pm \beta i$, vectơ riêng $\mathbf{v} = \mathbf{p} + i\mathbf{q}$:
+      \begin{align*}
+        \mathbf{x} &= C_1 e^{\alpha t}(\mathbf{p}\cos\beta t - \mathbf{q}\sin\beta t) + C_2 e^{\alpha t}(\mathbf{p}\sin\beta t + \mathbf{q}\cos\beta t).
+      \end{align*}
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Ma trận mũ}]
+  Nghiệm tổng quát: $\mathbf{x}(t) = e^{At}\,\mathbf{x}(0)$, với $e^{At} = I + At + \dfrac{(At)^2}{2!} + \cdots$
+
+  Hệ không thuần nhất $\mathbf{x}' = A\mathbf{x} + \mathbf{b}(t)$:
+  \[
+    \mathbf{x}(t) = e^{At}\mathbf{x}(0) + \int_0^t e^{A(t-s)}\mathbf{b}(s)\,ds.
+  \]
+\end{phuongphap}
+
+\end{document}

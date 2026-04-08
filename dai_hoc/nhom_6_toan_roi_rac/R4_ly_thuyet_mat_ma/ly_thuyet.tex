@@ -1,0 +1,164 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{LÝ THUYẾT MẬT MÃ}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {LÝ THUYẾT MẬT MÃ};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Đối xứng, RSA, Diffie--Hellman, ECC, chữ ký số};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: TỔNG QUAN MẬT MÃ HỌC
+%% ================================================================
+\section{Tổng quan}
+
+\begin{dinhnghia}[title={Hệ mật mã}]
+  $(P, C, K, E, D)$: $P$ bản rõ, $C$ bản mã, $K$ không gian khóa, $E_k: P \to C$ mã hóa, $D_k: C \to P$ giải mã. $D_k(E_k(m)) = m$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại}]
+  \begin{itemize}
+    \item \textbf{Mã đối xứng} (khóa bí mật): cùng khóa mã hóa/giải mã.
+    \item \textbf{Mã bất đối xứng} (khóa công khai): khóa công khai $\ne$ khóa bí mật.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={An toàn}]
+  \begin{itemize}
+    \item \textbf{An toàn vô điều kiện}: bản mã không tiết lộ bản rõ (Shannon). Ví dụ: One-Time Pad.
+    \item \textbf{An toàn tính toán}: phá mã cần thời gian siêu đa thức.
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: MÃ ĐỐI XỨNG
+%% ================================================================
+\section{Mã đối xứng}
+
+\begin{dinhnghia}[title={Mã dòng và mã khối}]
+  \begin{itemize}
+    \item \textbf{Mã dòng}: mã hóa từng bit/byte với dòng khóa giả ngẫu nhiên.
+    \item \textbf{Mã khối}: mã hóa khối cố định ($n$ bit). Ví dụ: DES (64-bit), AES (128-bit).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Chế độ hoạt động mã khối}]
+  \begin{itemize}
+    \item \textbf{ECB}: mỗi khối mã hóa độc lập (yếu: khối giống $\to$ mã giống).
+    \item \textbf{CBC}: $C_i = E_k(P_i \oplus C_{i-1})$, cần IV.
+    \item \textbf{CTR}: $C_i = P_i \oplus E_k(\text{ctr} + i)$ (song song hóa tốt).
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: MÃ KHÓA CÔNG KHAI
+%% ================================================================
+\section{Mã khóa công khai}
+
+\begin{phuongphap}[title={RSA}]
+  \begin{enumerate}
+    \item Chọn $p, q$ nguyên tố lớn, $n = pq$, $\varphi(n) = (p-1)(q-1)$.
+    \item Chọn $e$: $\gcd(e, \varphi(n)) = 1$. Tính $d = e^{-1} \bmod \varphi(n)$.
+    \item Khóa công khai $(n, e)$, khóa bí mật $d$.
+    \item Mã hóa: $c = m^e \bmod n$. Giải mã: $m = c^d \bmod n$.
+  \end{enumerate}
+  An toàn dựa trên độ khó phân tích $n$ thành thừa số.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Trao đổi khóa Diffie--Hellman}]
+  \begin{enumerate}
+    \item Thỏa thuận $p$ (nguyên tố), $g$ (căn nguyên thủy mod $p$).
+    \item Alice chọn $a$ bí mật, gửi $A = g^a \bmod p$.
+    \item Bob chọn $b$ bí mật, gửi $B = g^b \bmod p$.
+    \item Khóa chung: $K = B^a = A^b = g^{ab} \bmod p$.
+  \end{enumerate}
+  An toàn dựa trên bài toán logarit rời rạc.
+\end{phuongphap}
+
+\begin{phuongphap}[title={ElGamal}]
+  Dựa trên Diffie--Hellman. Mã hóa: $(c_1, c_2) = (g^k, m \cdot h^k)$ ($h = g^x$: khóa công khai, $k$ ngẫu nhiên).
+\end{phuongphap}
+
+\subsection{Mật mã đường cong elliptic (ECC)}
+
+\begin{dinhnghia}[title={Đường cong elliptic trên $\mathbb{F}_p$}]
+  $E: y^2 = x^3 + ax + b \pmod{p}$, $4a^3 + 27b^2 \not\equiv 0$.
+
+  $(E(\mathbb{F}_p), +)$ là nhóm Abel (phép cộng hình học + điểm vô cùng $\mathcal{O}$).
+\end{dinhnghia}
+
+\begin{luuy}
+  ECC đạt cùng mức an toàn với RSA nhưng khóa ngắn hơn nhiều (256-bit ECC $\approx$ 3072-bit RSA).
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 4: CHỮ KÝ SỐ VÀ HÀM BĂM
+%% ================================================================
+\section{Chữ ký số và hàm băm}
+
+\begin{dinhnghia}[title={Hàm băm (hash function)}]
+  $H: \{0,1\}^* \to \{0,1\}^n$. Yêu cầu:
+  \begin{itemize}
+    \item \textbf{Kháng tiền ảnh}: cho $h$, khó tìm $m$: $H(m) = h$.
+    \item \textbf{Kháng tiền ảnh thứ hai}: cho $m_1$, khó tìm $m_2 \ne m_1$: $H(m_1) = H(m_2)$.
+    \item \textbf{Kháng va chạm}: khó tìm $m_1 \ne m_2$: $H(m_1) = H(m_2)$.
+  \end{itemize}
+  Ví dụ: SHA-256, SHA-3.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Chữ ký số}]
+  \begin{itemize}
+    \item \textbf{Ký}: $\sigma = \text{Sign}(sk, m)$ (khóa bí mật).
+    \item \textbf{Xác minh}: $\text{Verify}(pk, m, \sigma) \in \{0, 1\}$ (khóa công khai).
+  \end{itemize}
+  RSA signature: $\sigma = H(m)^d \bmod n$, xác minh $\sigma^e \equiv H(m)$.
+\end{dinhnghia}
+
+\end{document}

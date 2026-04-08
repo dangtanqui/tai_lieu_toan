@@ -1,0 +1,146 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{XÁC SUẤT THỐNG KÊ NÂNG CAO}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {XÁC SUẤT THỐNG KÊ NÂNG CAO};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Ước lượng nâng cao, kiểm định GLRT, bootstrap, EM};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: LÝ THUYẾT ƯỚC LƯỢNG NÂNG CAO
+%% ================================================================
+\section{Lý thuyết ước lượng nâng cao}
+
+\begin{dinhnghia}[title={Họ mũ (exponential family)}]
+  $f(x;\theta) = h(x)\,c(\theta)\,\exp\!\left(\sum_{j=1}^k \eta_j(\theta)\,T_j(x)\right)$.
+
+  Thống kê đủ tối thiểu: $\bigl(T_1(\mathbf{X}), \ldots, T_k(\mathbf{X})\bigr)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Lehmann--Scheffé}]
+  Nếu $T$ đủ đầy đủ (complete sufficient) và $g(T)$ không chệch cho $\tau(\theta)$ thì $g(T)$ là ước lượng không chệch phương sai nhỏ nhất duy nhất (UMVUE).
+\end{dinhly}
+
+\begin{dinhnghia}[title={Tính hiệu quả tiệm cận}]
+  $\hat{\theta}_n$ \textbf{tiệm cận hiệu quả} nếu $\sqrt{n}(\hat{\theta}_n - \theta) \xrightarrow{d} \mathcal{N}(0, I(\theta)^{-1})$.
+
+  MLE là tiệm cận hiệu quả dưới điều kiện chính quy.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương pháp delta}]
+  Nếu $\sqrt{n}(\hat{\theta} - \theta) \xrightarrow{d} \mathcal{N}(0, \sigma^2)$ và $g$ khả vi, $g'(\theta) \ne 0$:
+  \[
+    \sqrt{n}\bigl(g(\hat{\theta}) - g(\theta)\bigr) \xrightarrow{d} \mathcal{N}\!\left(0, [g'(\theta)]^2\sigma^2\right).
+  \]
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: KIỂM ĐỊNH NÂNG CAO
+%% ================================================================
+\section{Kiểm định nâng cao}
+
+\begin{dinhly}[title={Kiểm định tỉ số hợp lý tổng quát (GLRT)}]
+  $\Lambda = \dfrac{\sup_{\theta \in \Theta_0} L(\theta)}{\sup_{\theta \in \Theta} L(\theta)}$. Bác bỏ $H_0$ khi $\Lambda < c$.
+
+  Dưới $H_0$ và điều kiện chính quy: $-2\ln\Lambda \xrightarrow{d} \chi^2(r)$, $r = \dim\Theta - \dim\Theta_0$.
+\end{dinhly}
+
+\begin{dinhly}[title={Kiểm định Wald}]
+  $W = \dfrac{(\hat{\theta} - \theta_0)^2}{\widehat{\text{Var}}(\hat{\theta})} \xrightarrow{d} \chi^2(1)$ dưới $H_0: \theta = \theta_0$.
+\end{dinhly}
+
+\begin{dinhly}[title={Kiểm định Score (Rao)}]
+  $S = \dfrac{U(\theta_0)^2}{I(\theta_0)} \xrightarrow{d} \chi^2(1)$, \;$U(\theta) = \dfrac{\partial \ell}{\partial \theta}$.
+
+  Ưu điểm: chỉ cần tính tại $\theta_0$ (không cần MLE).
+\end{dinhly}
+
+\begin{luuy}
+  Ba kiểm định GLRT, Wald, Score tiệm cận tương đương. Mẫu hữu hạn: GLRT thường tốt hơn.
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 3: THỐNG KÊ TIỆM CẬN
+%% ================================================================
+\section{Thống kê tiệm cận}
+
+\begin{dinhnghia}[title={Hiệu quả tương đối tiệm cận (ARE)}]
+  $\text{ARE}(\hat{\theta}_1, \hat{\theta}_2) = \dfrac{\text{Var}_{\text{asy}}(\hat{\theta}_2)}{\text{Var}_{\text{asy}}(\hat{\theta}_1)}$.
+
+  Số mẫu cần thiết để $\hat{\theta}_2$ đạt cùng độ chính xác với $\hat{\theta}_1$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Glivenko--Cantelli}]
+  $\sup_x |\hat{F}_n(x) - F(x)| \xrightarrow{\text{a.s.}} 0$ (hàm phân phối thực nghiệm hội tụ đều a.s.).
+\end{dinhly}
+
+\begin{dinhly}[title={Hệ quả CLT cho $\hat{F}_n$}]
+  $\sqrt{n}\bigl(\hat{F}_n(x) - F(x)\bigr) \xrightarrow{d} \mathcal{N}\!\left(0, F(x)(1-F(x))\right)$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Bootstrap}]
+  \begin{enumerate}
+    \item Rút mẫu lặp $B$ lần từ $\hat{F}_n$ (hoặc tham số từ $\hat{\theta}$).
+    \item Tính thống kê $T^*_b$ trên mỗi mẫu bootstrap.
+    \item Xấp xỉ phân phối, CI, sai số chuẩn từ $(T^*_1, \ldots, T^*_B)$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp EM (Expectation--Maximization)}]
+  Cho dữ liệu không đầy đủ $(X, Z)$, $Z$ ẩn:
+  \begin{enumerate}
+    \item \textbf{E-step:} $Q(\theta|\theta^{(t)}) = E_{Z|X,\theta^{(t)}}[\ln L(\theta; X, Z)]$.
+    \item \textbf{M-step:} $\theta^{(t+1)} = \arg\max_\theta Q(\theta|\theta^{(t)})$.
+  \end{enumerate}
+  $\ell(\theta^{(t+1)}) \ge \ell(\theta^{(t)})$ (tăng đơn điệu). Hội tụ về điểm dừng (cực đại địa phương).
+\end{phuongphap}
+
+\end{document}

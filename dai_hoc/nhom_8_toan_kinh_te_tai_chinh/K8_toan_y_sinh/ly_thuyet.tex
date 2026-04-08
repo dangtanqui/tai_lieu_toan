@@ -1,0 +1,150 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN Y SINH}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN Y SINH};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Kaplan--Meier, Cox, SIR, logistic, thiết kế TN};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+\section{Thống kê sinh học cơ bản}
+
+\begin{dinhnghia}[title={Thiết kế thí nghiệm}]
+  \begin{itemize}
+    \item \textbf{Ngẫu nhiên hóa} (randomization): phân nhóm ngẫu nhiên giảm bias.
+    \item \textbf{Mù đôi} (double-blind): cả bệnh nhân và bác sĩ không biết nhóm.
+    \item \textbf{Đối chứng} (control): nhóm placebo / standard care.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Cỡ mẫu}]
+  So sánh hai tỉ lệ: $n = \dfrac{(z_{\alpha/2} + z_\beta)^2[p_1(1-p_1) + p_2(1-p_2)]}{(p_1 - p_2)^2}$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kiểm định thường dùng}]
+  \begin{itemize}
+    \item So sánh hai nhóm: $t$-test, Mann--Whitney.
+    \item Bảng $2 \times 2$: $\chi^2$, Fisher exact.
+    \item Dữ liệu ghép cặp: paired $t$-test, Wilcoxon signed-rank.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+\section{Phân tích sống còn (Survival Analysis)}
+
+\begin{dinhnghia}[title={Hàm sống còn}]
+  $S(t) = \Pr(T > t) = 1 - F(t)$. Hàm nguy cơ: $h(t) = \dfrac{f(t)}{S(t)} = -\dfrac{d}{dt}\ln S(t)$.
+
+  Hàm nguy cơ tích lũy: $H(t) = \int_0^t h(s)\,ds = -\ln S(t)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Censoring}]
+  \textbf{Right-censoring}: biết $T > c$ nhưng không biết $T$ chính xác (bệnh nhân mất theo dõi, kết thúc nghiên cứu).
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kaplan--Meier}]
+  Ước lượng phi tham số:
+  \[
+    \hat{S}(t) = \prod_{t_i \le t}\left(1 - \frac{d_i}{n_i}\right),
+  \]
+  $d_i$: số sự kiện tại $t_i$, $n_i$: số at risk.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Log-rank test}]
+  So sánh hai đường sống còn: $\chi^2 = \dfrac{(\sum O_{1i} - \sum E_{1i})^2}{\sum V_i}$.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Mô hình Cox (proportional hazards)}]
+  $h(t \mid \mathbf{x}) = h_0(t)\exp(\boldsymbol{\beta}^T\mathbf{x})$.
+
+  Semi-parametric: $h_0(t)$ tùy ý, ước lượng $\boldsymbol{\beta}$ bằng partial likelihood.
+
+  Hazard ratio: $\text{HR} = e^{\beta_j}$ cho biến $x_j$ tăng 1 đơn vị.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Mô hình dịch tễ}
+
+\begin{dinhnghia}[title={Các chỉ số dịch tễ}]
+  \begin{itemize}
+    \item \textbf{Tỉ lệ hiện mắc} (prevalence): tỉ lệ bệnh tại thời điểm.
+    \item \textbf{Tỉ suất mắc mới} (incidence rate): số ca mới / person-time.
+    \item \textbf{Rủi ro tương đối} (RR): $\dfrac{p_1}{p_0}$. \textbf{Odds ratio} (OR): $\dfrac{p_1/(1-p_1)}{p_0/(1-p_0)}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mô hình SIR}]
+  \begin{align*}
+    \frac{dS}{dt} &= -\beta SI, \\
+    \frac{dI}{dt} &= \beta SI - \gamma I, \\
+    \frac{dR}{dt} &= \gamma I.
+  \end{align*}
+  Số tái sinh cơ bản: $R_0 = \beta/\gamma$. Dịch bùng phát khi $R_0 > 1$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Mở rộng}]
+  SEIR (thêm exposed), SIRS (mất miễn dịch), SIS (không miễn dịch). Thêm: tiêm chủng, giãn cách, tử vong.
+\end{tinhchat}
+
+%% ================================================================
+\section{Hồi quy logistic trong y học}
+
+\begin{dinhnghia}[title={Mô hình}]
+  $Y \in \{0, 1\}$: bệnh / không. $\text{logit}(p) = \ln\dfrac{p}{1-p} = \boldsymbol{\beta}^T\mathbf{x}$.
+
+  $p = \dfrac{1}{1 + e^{-\boldsymbol{\beta}^T\mathbf{x}}}$. Ước lượng bằng MLE.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Diễn giải}]
+  $e^{\beta_j}$: odds ratio điều chỉnh khi $x_j$ tăng 1 đơn vị (giữ cố định các biến khác).
+\end{tinhchat}
+
+\end{document}

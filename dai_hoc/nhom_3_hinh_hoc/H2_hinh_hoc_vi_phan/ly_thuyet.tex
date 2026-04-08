@@ -1,0 +1,343 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{HÌNH HỌC VI PHÂN}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {HÌNH HỌC VI PHÂN};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Đường cong, mặt cong, độ cong Gauss, Gauss--Bonnet};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: ĐƯỜNG CONG TRONG MẶT PHẲNG
+%% ================================================================
+\section{Đường cong trong mặt phẳng}
+
+\begin{dinhnghia}[title={Đường cong tham số}]
+  $\gamma: I \to \mathbb{R}^2$, $\gamma(t) = \bigl(x(t), y(t)\bigr)$, $t \in I \subset \mathbb{R}$.
+
+  $\gamma$ \textbf{chính quy} nếu $\gamma'(t) \ne \vec{0}$ $\forall t$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ dài cung}]
+  \[
+    s(t) = \int_{t_0}^{t} |\gamma'(\tau)|\,d\tau = \int_{t_0}^{t} \sqrt{x'^2 + y'^2}\,d\tau.
+  \]
+  \textbf{Tham số hóa theo độ dài cung:} $|\gamma'(s)| = 1$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ cong (curvature) trong mặt phẳng}]
+  Với tham số hóa theo $s$: $\kappa(s) = |{\gamma}''(s)|$.
+
+  Với tham số $t$ bất kỳ:
+  \[
+    \kappa = \frac{|x'y'' - x''y'|}{(x'^2 + y'^2)^{3/2}}.
+  \]
+  Với $y = f(x)$: $\kappa = \dfrac{|f''|}{(1 + f'^2)^{3/2}}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ cong có dấu}]
+  $\kappa_s = \dfrac{x'y'' - x''y'}{(x'^2 + y'^2)^{3/2}}$. Dấu chỉ hướng cong (trái/phải).
+
+  \textbf{Bán kính cong:} $R = 1/|\kappa|$. \textbf{Tâm cong:} $C = \gamma + R\,\vec{n}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đường bao (evolute)}]
+  Quỹ tích tâm cong khi điểm chạy trên $\gamma$. Đường bao là đường cong tiếp xúc với tất cả pháp tuyến.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: ĐƯỜNG CONG TRONG KHÔNG GIAN
+%% ================================================================
+\section{Đường cong trong không gian}
+
+\begin{dinhnghia}[title={Đường cong không gian}]
+  $\gamma: I \to \mathbb{R}^3$, $\gamma(t) = \bigl(x(t), y(t), z(t)\bigr)$. Chính quy: $\gamma'(t) \ne \vec{0}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ dài cung}]
+  $s = \displaystyle\int_{t_0}^{t} |\gamma'(\tau)|\,d\tau = \int_{t_0}^{t}\sqrt{x'^2 + y'^2 + z'^2}\,d\tau$.
+\end{dinhnghia}
+
+\subsection{Hệ Frenet}
+
+\begin{dinhnghia}[title={Ba vectơ Frenet}]
+  Tham số hóa theo $s$:
+  \begin{itemize}
+    \item \textbf{Vectơ tiếp tuyến:} $\vec{T} = \gamma'(s)$, \;$|\vec{T}| = 1$.
+    \item \textbf{Vectơ pháp tuyến chính:} $\vec{N} = \dfrac{\vec{T}\,'}{|\vec{T}\,'|}$.
+    \item \textbf{Vectơ pháp tuyến phụ (binormal):} $\vec{B} = \vec{T} \times \vec{N}$.
+  \end{itemize}
+  $(\vec{T}, \vec{N}, \vec{B})$ tạo hệ trực chuẩn thuận (khung Frenet).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ cong và độ xoắn}]
+  \begin{itemize}
+    \item \textbf{Độ cong:} $\kappa(s) = |\vec{T}\,'(s)| = |\gamma''(s)|$.
+    \item \textbf{Độ xoắn:} $\tau(s)$ xác định bởi $\vec{B}\,' = -\tau \vec{N}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức Frenet--Serret}]
+  \[
+    \begin{pmatrix} \vec{T}\,' \\ \vec{N}\,' \\ \vec{B}\,' \end{pmatrix}
+    = \begin{pmatrix} 0 & \kappa & 0 \\ -\kappa & 0 & \tau \\ 0 & -\tau & 0 \end{pmatrix}
+    \begin{pmatrix} \vec{T} \\ \vec{N} \\ \vec{B} \end{pmatrix}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Tính $\kappa$, $\tau$ theo tham số $t$ bất kỳ}]
+  \[
+    \kappa = \frac{|\gamma' \times \gamma''|}{|\gamma'|^3}, \qquad
+    \tau = \frac{(\gamma' \times \gamma'') \cdot \gamma'''}{|\gamma' \times \gamma''|^2}.
+  \]
+\end{congthuc}
+
+\begin{dinhly}[title={Định lý cơ bản của lý thuyết đường cong}]
+  Cho $\kappa(s) > 0$ và $\tau(s)$ liên tục. Thì tồn tại duy nhất (sai khác phép dời hình) đường cong trong $\mathbb{R}^3$ có độ cong $\kappa$ và độ xoắn $\tau$.
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\gamma$ là đường thẳng $\Leftrightarrow$ $\kappa \equiv 0$.
+    \item $\gamma$ nằm trên mặt phẳng $\Leftrightarrow$ $\tau \equiv 0$.
+    \item $\gamma$ nằm trên mặt cầu $\Leftrightarrow$ $R^2 + (R'/\tau)^2 = \text{const}$ (với $R = 1/\kappa$).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Các mặt phẳng đặc biệt}]
+  Tại mỗi điểm $P$ trên đường cong:
+  \begin{itemize}
+    \item \textbf{Mặt phẳng mật tiếp} (osculating plane): chứa $\vec{T}, \vec{N}$; phương trình $(\vec{r} - \vec{P}) \cdot \vec{B} = 0$.
+    \item \textbf{Mặt phẳng pháp tuyến} (normal plane): chứa $\vec{N}, \vec{B}$; phương trình $(\vec{r} - \vec{P}) \cdot \vec{T} = 0$.
+    \item \textbf{Mặt phẳng chỉnh} (rectifying plane): chứa $\vec{T}, \vec{B}$.
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: MẶT CONG --- DẠNG CƠ BẢN THỨ NHẤT
+%% ================================================================
+\section{Mặt cong --- Dạng cơ bản thứ nhất}
+
+\begin{dinhnghia}[title={Mặt tham số}]
+  $\vec{r}: U \subset \mathbb{R}^2 \to \mathbb{R}^3$, $\vec{r}(u, v) = \bigl(x(u,v),\, y(u,v),\, z(u,v)\bigr)$.
+
+  Chính quy: $\vec{r}_u \times \vec{r}_v \ne \vec{0}$ (hai vectơ tiếp tuyến độc lập tuyến tính).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mặt phẳng tiếp xúc và pháp tuyến}]
+  Tại $P = \vec{r}(u_0, v_0)$:
+  \begin{itemize}
+    \item \textbf{Mặt phẳng tiếp xúc:} sinh bởi $\vec{r}_u, \vec{r}_v$.
+    \item \textbf{Vectơ pháp tuyến:} $\vec{n} = \dfrac{\vec{r}_u \times \vec{r}_v}{|\vec{r}_u \times \vec{r}_v|}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Dạng cơ bản thứ nhất (First Fundamental Form)}]
+  \[
+    \mathrm{I} = ds^2 = E\,du^2 + 2F\,du\,dv + G\,dv^2,
+  \]
+  trong đó:
+  \[
+    E = \vec{r}_u \cdot \vec{r}_u, \quad F = \vec{r}_u \cdot \vec{r}_v, \quad G = \vec{r}_v \cdot \vec{r}_v.
+  \]
+  Ma trận: $\mathbf{I} = \begin{pmatrix} E & F \\ F & G \end{pmatrix}$, $\det \mathbf{I} = EG - F^2 > 0$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Ứng dụng dạng I}]
+  \begin{itemize}
+    \item \textbf{Độ dài cung:} $L = \displaystyle\int_a^b \sqrt{E\,u'^2 + 2F\,u'v' + G\,v'^2}\,dt$.
+    \item \textbf{Diện tích:} $A = \displaystyle\iint_D \sqrt{EG - F^2}\,du\,dv$.
+    \item \textbf{Góc giữa hai đường cong} trên mặt: $\cos\theta = \dfrac{E\,du_1\,du_2 + F(du_1\,dv_2 + du_2\,dv_1) + G\,dv_1\,dv_2}{ds_1\,ds_2}$.
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 4: DẠNG CƠ BẢN THỨ HAI VÀ ĐỘ CONG
+%% ================================================================
+\section{Dạng cơ bản thứ hai và độ cong}
+
+\begin{dinhnghia}[title={Dạng cơ bản thứ hai (Second Fundamental Form)}]
+  \[
+    \mathrm{II} = L\,du^2 + 2M\,du\,dv + N\,dv^2,
+  \]
+  trong đó:
+  \[
+    L = \vec{r}_{uu} \cdot \vec{n}, \quad M = \vec{r}_{uv} \cdot \vec{n}, \quad N = \vec{r}_{vv} \cdot \vec{n}.
+  \]
+  Hay $L = -\vec{r}_u \cdot \vec{n}_u$, $M = -\vec{r}_u \cdot \vec{n}_v = -\vec{r}_v \cdot \vec{n}_u$, $N = -\vec{r}_v \cdot \vec{n}_v$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Toán tử Weingarten (shape operator)}]
+  $S = -d\vec{n}$: ánh xạ tuyến tính trên mặt phẳng tiếp xúc. Ma trận:
+  \[
+    \mathbf{S} = \mathbf{I}^{-1}\,\mathbf{II} = \frac{1}{EG - F^2}\begin{pmatrix} GL - FM & GM - FN \\ EM - FL & EN - FM \end{pmatrix}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độ cong chính, Gauss, trung bình}]
+  $\kappa_1, \kappa_2$ là trị riêng của $\mathbf{S}$ (hai \textbf{độ cong chính}).
+  \begin{itemize}
+    \item \textbf{Độ cong Gauss:} $K = \kappa_1 \kappa_2 = \dfrac{LN - M^2}{EG - F^2} = \det \mathbf{S}$.
+    \item \textbf{Độ cong trung bình:} $H = \dfrac{\kappa_1 + \kappa_2}{2} = \dfrac{EN - 2FM + GL}{2(EG - F^2)} = \dfrac{1}{2}\text{tr}\,\mathbf{S}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại điểm trên mặt}]
+  \begin{itemize}
+    \item $K > 0$ ($\kappa_1, \kappa_2$ cùng dấu): \textbf{điểm elliptic} (mặt lồi cục bộ).
+    \item $K < 0$ ($\kappa_1, \kappa_2$ trái dấu): \textbf{điểm hyperbolic} (yên ngựa).
+    \item $K = 0$, $H \ne 0$: \textbf{điểm parabolic}.
+    \item $K = 0$, $H = 0$ ($\kappa_1 = \kappa_2 = 0$): \textbf{điểm phẳng}.
+    \item $\kappa_1 = \kappa_2 \ne 0$: \textbf{điểm rốn} (umbilic).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đường cong pháp tuyến và định lý Meusnier}]
+  \textbf{Độ cong pháp tuyến} theo hướng $(du : dv)$:
+  \[
+    \kappa_n = \frac{\mathrm{II}}{\mathrm{I}} = \frac{L\,du^2 + 2M\,du\,dv + N\,dv^2}{E\,du^2 + 2F\,du\,dv + G\,dv^2}.
+  \]
+  $\kappa_n$ nằm giữa $\kappa_1$ và $\kappa_2$ (công thức Euler: $\kappa_n = \kappa_1\cos^2\theta + \kappa_2\sin^2\theta$).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 5: HÌNH HỌC NỘI TẠI
+%% ================================================================
+\section{Hình học nội tại}
+
+\begin{dinhnghia}[title={Ký hiệu Christoffel}]
+  $\Gamma^k_{ij}$ xác định từ dạng I:
+  \[
+    \Gamma^k_{ij} = \frac{1}{2}\sum_l g^{kl}\left(\frac{\partial g_{il}}{\partial u^j} + \frac{\partial g_{jl}}{\partial u^i} - \frac{\partial g_{ij}}{\partial u^l}\right),
+  \]
+  trong đó $(g_{ij}) = \begin{pmatrix} E & F \\ F & G \end{pmatrix}$ và $(g^{ij}) = (g_{ij})^{-1}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Theorema Egregium (Gauss)}]
+  Độ cong Gauss $K$ chỉ phụ thuộc vào dạng cơ bản thứ nhất $E, F, G$ và các đạo hàm riêng của chúng. Tức $K$ là \textbf{bất biến nội tại} (isometric invariant).
+\end{dinhly}
+
+\begin{luuy}
+  Hệ quả: không thể ``trải phẳng'' mặt cầu (hay bất kỳ mặt $K \ne 0$) lên mặt phẳng mà bảo toàn khoảng cách.
+\end{luuy}
+
+\begin{dinhnghia}[title={Đường trắc địa (geodesic)}]
+  Đường cong trên mặt có độ cong trắc địa $\kappa_g = 0$, tức vectơ gia tốc luôn vuông góc với mặt. Phương trình:
+  \[
+    \ddot{u}^k + \sum_{i,j} \Gamma^k_{ij}\,\dot{u}^i\,\dot{u}^j = 0, \quad k = 1, 2.
+  \]
+  Trắc địa là đường ``thẳng nhất'' trên mặt (cực trị hóa độ dài).
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Trên mặt phẳng: trắc địa là đường thẳng.
+    \item Trên mặt cầu bán kính $R$: trắc địa là cung đường tròn lớn (great circle), $K = 1/R^2$.
+  \end{itemize}
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 6: ĐỊNH LÝ GAUSS--BONNET
+%% ================================================================
+\section{Định lý Gauss--Bonnet}
+
+\begin{dinhly}[title={Gauss--Bonnet cục bộ}]
+  Cho $\gamma$ là đường cong kín đơn trơn từng khúc trên mặt, bao quanh miền $R$. Gọi $\theta_i$ là các góc ngoài tại đỉnh. Thì:
+  \[
+    \int_\gamma \kappa_g\,ds + \iint_R K\,dA + \sum_i (\pi - \theta_i) = 2\pi,
+  \]
+  trong đó $\kappa_g$ là độ cong trắc địa, $K$ là độ cong Gauss.
+\end{dinhly}
+
+\begin{dinhly}[title={Gauss--Bonnet toàn cục}]
+  Cho $S$ là mặt compact, khả hướng, không biên:
+  \[
+    \iint_S K\,dA = 2\pi\,\chi(S),
+  \]
+  trong đó $\chi(S) = 2 - 2g$ là \textbf{đặc trưng Euler} ($g$ là genus --- số ``lỗ'' của mặt).
+\end{dinhly}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Mặt cầu: $g = 0$, $\chi = 2$, $\iint K\,dA = 4\pi$.
+    \item Xuyến (torus): $g = 1$, $\chi = 0$, $\iint K\,dA = 0$.
+  \end{itemize}
+\end{vidu}
+
+\begin{luuy}
+  Gauss--Bonnet kết nối hình học (độ cong) với tôpô (genus), là một trong những định lý sâu sắc nhất của hình học vi phân.
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 7: MẶT CỰC TIỂU VÀ MẶT ĐẶC BIỆT
+%% ================================================================
+\section{Một số mặt đặc biệt}
+
+\begin{dinhnghia}[title={Mặt cực tiểu (minimal surface)}]
+  Mặt có $H = 0$ mọi nơi. Cực tiểu hóa diện tích cục bộ với biên cố định.
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item \textbf{Mặt phẳng}: $H = 0$, $K = 0$.
+    \item \textbf{Catenoid}: $\vec{r} = (\cosh v\cos u,\, \cosh v\sin u,\, v)$.
+    \item \textbf{Helicoid}: $\vec{r} = (v\cos u,\, v\sin u,\, u)$.
+  \end{itemize}
+\end{vidu}
+
+\begin{dinhnghia}[title={Mặt kẻ và mặt khả triển}]
+  \begin{itemize}
+    \item \textbf{Mặt kẻ} (ruled): $\vec{r}(u, v) = \vec{\alpha}(u) + v\,\vec{\beta}(u)$.
+    \item \textbf{Mặt khả triển} (developable): mặt kẻ có $K = 0$. Có thể trải phẳng bảo toàn khoảng cách.
+    \item Mặt khả triển gồm: mặt trụ, mặt nón, mặt tiếp tuyến (tangent surface).
+  \end{itemize}
+\end{dinhnghia}
+
+\end{document}

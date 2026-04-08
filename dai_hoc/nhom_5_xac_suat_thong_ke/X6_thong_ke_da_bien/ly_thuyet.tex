@@ -1,0 +1,181 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{THỐNG KÊ ĐA BIẾN}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {THỐNG KÊ ĐA BIẾN};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {PCA, phân tích nhân tố, phân biệt, phân cụm};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: PHÂN PHỐI CHUẨN NHIỀU CHIỀU
+%% ================================================================
+\section{Phân phối chuẩn nhiều chiều}
+
+\begin{dinhnghia}
+  $\mathbf{X} = (X_1, \ldots, X_p)^T \sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
+  \[
+    f(\mathbf{x}) = \frac{1}{(2\pi)^{p/2}|\boldsymbol{\Sigma}|^{1/2}}\exp\!\left(-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x}-\boldsymbol{\mu})\right).
+  \]
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Mọi tổ hợp tuyến tính $\mathbf{a}^T\mathbf{X} \sim \mathcal{N}(\mathbf{a}^T\boldsymbol{\mu}, \mathbf{a}^T\boldsymbol{\Sigma}\mathbf{a})$.
+    \item Phân phối biên: $X_i \sim \mathcal{N}(\mu_i, \sigma_{ii})$.
+    \item Không tương quan $\Leftrightarrow$ độc lập (đặc trưng của chuẩn).
+    \item $(\mathbf{X}-\boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{X}-\boldsymbol{\mu}) \sim \chi^2(p)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Phân phối Wishart}]
+  Nếu $\mathbf{X}_i \sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ iid thì:
+  $\mathbf{W} = \sum_{i=1}^n (\mathbf{X}_i - \bar{\mathbf{X}})(\mathbf{X}_i - \bar{\mathbf{X}})^T \sim W_p(n-1, \boldsymbol{\Sigma})$.
+\end{dinhly}
+
+\begin{dinhly}[title={Hotelling $T^2$}]
+  $T^2 = n(\bar{\mathbf{X}} - \boldsymbol{\mu}_0)^T \mathbf{S}^{-1}(\bar{\mathbf{X}} - \boldsymbol{\mu}_0)$. Dưới $H_0: \boldsymbol{\mu} = \boldsymbol{\mu}_0$:
+  \[
+    \frac{n - p}{(n-1)p}\,T^2 \sim F(p, n-p).
+  \]
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: PHÂN TÍCH THÀNH PHẦN CHÍNH (PCA)
+%% ================================================================
+\section{Phân tích thành phần chính (PCA)}
+
+\begin{dinhnghia}
+  PCA tìm các tổ hợp tuyến tính $Y_k = \mathbf{a}_k^T \mathbf{X}$ sao cho $\text{Var}(Y_k)$ lớn nhất, các $Y_k$ không tương quan.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Thành phần chính thứ $k$ ứng với \textbf{trị riêng} $\lambda_k$ và \textbf{vectơ riêng} $\mathbf{a}_k$ của $\boldsymbol{\Sigma}$ (hoặc $\mathbf{S}$), $\lambda_1 \ge \lambda_2 \ge \cdots \ge \lambda_p \ge 0$:
+  \[
+    \text{Var}(Y_k) = \lambda_k, \qquad \text{Tỉ lệ giải thích} = \frac{\lambda_k}{\sum_{j=1}^p \lambda_j}.
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Thực hành PCA}]
+  \begin{enumerate}
+    \item Chuẩn hóa dữ liệu (trung bình 0, phương sai 1) nếu các biến khác đơn vị.
+    \item Chéo hóa ma trận hiệp phương sai (hoặc tương quan) mẫu.
+    \item Chọn số thành phần: scree plot, tỉ lệ phương sai tích lũy $\ge 80\%$.
+    \item Giải thích: xem loading (hệ số trong $\mathbf{a}_k$) để hiểu ý nghĩa thành phần.
+  \end{enumerate}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 3: PHÂN TÍCH NHÂN TỐ (FA)
+%% ================================================================
+\section{Phân tích nhân tố (Factor Analysis)}
+
+\begin{dinhnghia}
+  Mô hình: $\mathbf{X} - \boldsymbol{\mu} = \mathbf{L}\mathbf{F} + \boldsymbol{\varepsilon}$, với $\mathbf{F}$ ($m$ nhân tố chung), $\boldsymbol{\varepsilon}$ (nhiễu riêng), $\mathbf{L}$ (ma trận tải $p \times m$).
+
+  $\boldsymbol{\Sigma} = \mathbf{L}\mathbf{L}^T + \boldsymbol{\Psi}$, $\boldsymbol{\Psi} = \text{diag}(\psi_1, \ldots, \psi_p)$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ước lượng và xoay}]
+  \begin{itemize}
+    \item Ước lượng $\mathbf{L}$: phương pháp thành phần chính, hoặc MLE.
+    \item \textbf{Xoay nhân tố}: Varimax (trực giao), Promax (xiên) --- dễ giải thích hơn.
+    \item \textbf{Điểm nhân tố}: ước lượng $\hat{\mathbf{F}}$ cho từng quan sát.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 4: PHÂN TÍCH PHÂN BIỆT VÀ PHÂN CỤM
+%% ================================================================
+\section{Phân tích phân biệt và phân cụm}
+
+\subsection{Phân tích phân biệt (Discriminant Analysis)}
+
+\begin{dinhnghia}[title={LDA (Linear Discriminant Analysis)}]
+  Phân loại $\mathbf{x}$ vào nhóm $k$ cực đại hóa:
+  \[
+    \delta_k(\mathbf{x}) = \mathbf{x}^T\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}_k - \frac{1}{2}\boldsymbol{\mu}_k^T\boldsymbol{\Sigma}^{-1}\boldsymbol{\mu}_k + \ln\pi_k,
+  \]
+  với $\pi_k = P(\text{nhóm } k)$. Giả sử $\boldsymbol{\Sigma}$ chung.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={QDA (Quadratic DA)}]
+  Nới lỏng: mỗi nhóm có $\boldsymbol{\Sigma}_k$ riêng. Biên phân loại là bậc hai.
+\end{dinhnghia}
+
+\subsection{Phân cụm (Clustering)}
+
+\begin{phuongphap}[title={K-means}]
+  \begin{enumerate}
+    \item Chọn $K$ tâm ban đầu.
+    \item Gán mỗi điểm vào cụm gần nhất.
+    \item Cập nhật tâm = trung bình cụm.
+    \item Lặp đến hội tụ. Cực tiểu $\sum_{k=1}^K \sum_{i \in C_k} \|\mathbf{x}_i - \boldsymbol{\mu}_k\|^2$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phân cụm phân cấp}]
+  \begin{itemize}
+    \item \textbf{Agglomerative} (bottom-up): ghép dần.
+    \item \textbf{Divisive} (top-down): tách dần.
+    \item Liên kết: single, complete, average, Ward.
+    \item Kết quả: dendrogram.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Chọn số cụm}]
+  \begin{itemize}
+    \item Phương pháp khuỷu tay (elbow method).
+    \item Silhouette score.
+    \item Gap statistic.
+  \end{itemize}
+\end{phuongphap}
+
+\end{document}

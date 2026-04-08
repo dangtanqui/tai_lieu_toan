@@ -1,0 +1,217 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{XÁC SUẤT 2}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {XÁC SUẤT 2};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Ước lượng, MLE, kiểm định giả thuyết};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: MẪU VÀ THỐNG KÊ MÔ TẢ
+%% ================================================================
+\section{Mẫu và thống kê mô tả}
+
+\begin{dinhnghia}[title={Mẫu ngẫu nhiên}]
+  $X_1, X_2, \ldots, X_n$ iid từ phân phối $F_\theta$. \textbf{Cỡ mẫu:} $n$. \textbf{Mẫu quan sát:} $(x_1, \ldots, x_n)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Thống kê (statistic)}]
+  Hàm $T = T(X_1, \ldots, X_n)$ không phụ thuộc tham số chưa biết.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các thống kê mẫu}]
+  \begin{itemize}
+    \item \textbf{Trung bình mẫu:} $\bar{X} = \dfrac{1}{n}\sum_{i=1}^n X_i$. \;$E[\bar{X}] = \mu$, $\text{Var}(\bar{X}) = \sigma^2/n$.
+    \item \textbf{Phương sai mẫu:} $S^2 = \dfrac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$. \;$E[S^2] = \sigma^2$.
+    \item \textbf{Thống kê thứ tự:} $X_{(1)} \le X_{(2)} \le \cdots \le X_{(n)}$.
+    \item \textbf{Hàm phân phối thực nghiệm:} $\hat{F}_n(x) = \dfrac{1}{n}\sum_{i=1}^{n}\mathbf{1}(X_i \le x)$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhly}[title={Phân phối mẫu (tổng thể chuẩn)}]
+  Nếu $X_i \sim \mathcal{N}(\mu, \sigma^2)$ iid:
+  \begin{itemize}
+    \item $\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)$.
+    \item $\dfrac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$.
+    \item $\bar{X}$ và $S^2$ \textbf{độc lập}.
+    \item $\dfrac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$.
+  \end{itemize}
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: ƯỚC LƯỢNG ĐIỂM
+%% ================================================================
+\section{Ước lượng điểm}
+
+\begin{dinhnghia}[title={Ước lượng và tính chất}]
+  $\hat{\theta} = T(X_1, \ldots, X_n)$ là \textbf{ước lượng điểm} cho $\theta$.
+  \begin{itemize}
+    \item \textbf{Không chệch} (unbiased): $E[\hat{\theta}] = \theta$.
+    \item \textbf{Vững} (consistent): $\hat{\theta}_n \xrightarrow{P} \theta$.
+    \item \textbf{Hiệu quả}: phương sai nhỏ nhất trong lớp ước lượng không chệch.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Thống kê đủ (sufficient)}]
+  $T$ \textbf{đủ} cho $\theta$ nếu phân phối có điều kiện $X_1, \ldots, X_n | T$ không phụ thuộc $\theta$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn phân tích nhân tử (Fisher--Neyman)}]
+  $T$ đủ $\Leftrightarrow$ $f(\mathbf{x}; \theta) = g\bigl(T(\mathbf{x}), \theta\bigr)\,h(\mathbf{x})$.
+\end{dinhly}
+
+\begin{dinhly}[title={Cận dưới Cramér--Rao}]
+  Nếu $\hat{\theta}$ không chệch thì:
+  \[
+    \text{Var}(\hat{\theta}) \ge \frac{1}{I(\theta)}, \qquad I(\theta) = E\!\left[\left(\frac{\partial}{\partial\theta}\ln f(X;\theta)\right)^2\right] = -E\!\left[\frac{\partial^2}{\partial\theta^2}\ln f\right].
+  \]
+  $I(\theta)$: \textbf{thông tin Fisher}. Cho mẫu cỡ $n$ iid: $I_n(\theta) = n\,I(\theta)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Rao--Blackwell}]
+  Nếu $\hat{\theta}$ không chệch và $T$ đủ thì $\tilde{\theta} = E[\hat{\theta}|T]$ cũng không chệch và $\text{Var}(\tilde{\theta}) \le \text{Var}(\hat{\theta})$.
+\end{dinhly}
+
+\subsection{Phương pháp ước lượng}
+
+\begin{phuongphap}[title={Phương pháp moment (MME)}]
+  Giải hệ $\mu_k(\theta) = \hat{\mu}_k$ ($k = 1, 2, \ldots$), trong đó $\mu_k(\theta) = E[X^k]$ và $\hat{\mu}_k = \frac{1}{n}\sum X_i^k$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp hợp lý cực đại (MLE)}]
+  \textbf{Hàm hợp lý:} $L(\theta) = \prod_{i=1}^n f(x_i; \theta)$. \textbf{Log-likelihood:} $\ell(\theta) = \sum \ln f(x_i; \theta)$.
+
+  $\hat{\theta}_{\text{MLE}} = \arg\max_\theta L(\theta)$: giải $\dfrac{\partial \ell}{\partial \theta} = 0$.
+\end{phuongphap}
+
+\begin{tinhchat}[title={Tính chất MLE}]
+  \begin{itemize}
+    \item Bất biến: nếu $\hat{\theta}$ là MLE thì $g(\hat{\theta})$ là MLE cho $g(\theta)$.
+    \item Tiệm cận không chệch và tiệm cận hiệu quả.
+    \item Tiệm cận chuẩn: $\sqrt{n}(\hat{\theta} - \theta) \xrightarrow{d} \mathcal{N}\!\left(0, I(\theta)^{-1}\right)$.
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 3: ƯỚC LƯỢNG KHOẢNG
+%% ================================================================
+\section{Ước lượng khoảng}
+
+\begin{dinhnghia}
+  \textbf{Khoảng tin cậy} (CI) mức $1 - \alpha$ cho $\theta$: $[\hat{\theta}_L, \hat{\theta}_U]$ sao cho $P(\hat{\theta}_L \le \theta \le \hat{\theta}_U) \ge 1 - \alpha$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={CI cho trung bình $\mu$ (tổng thể chuẩn)}]
+  \begin{itemize}
+    \item $\sigma^2$ đã biết: $\bar{X} \pm z_{\alpha/2}\,\dfrac{\sigma}{\sqrt{n}}$.
+    \item $\sigma^2$ chưa biết: $\bar{X} \pm t_{\alpha/2}(n-1)\,\dfrac{S}{\sqrt{n}}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={CI cho phương sai $\sigma^2$}]
+  $\left[\dfrac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)},\; \dfrac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}\right]$.
+\end{congthuc}
+
+\begin{congthuc}[title={CI cho tỉ lệ $p$ (mẫu lớn)}]
+  $\hat{p} \pm z_{\alpha/2}\sqrt{\dfrac{\hat{p}(1-\hat{p})}{n}}$, \quad $\hat{p} = \dfrac{k}{n}$.
+\end{congthuc}
+
+\begin{congthuc}[title={Cỡ mẫu cần thiết}]
+  Để sai số $\le \varepsilon$ với độ tin cậy $1 - \alpha$:
+  \begin{itemize}
+    \item Cho $\mu$: $n \ge \left(\dfrac{z_{\alpha/2}\,\sigma}{\varepsilon}\right)^2$.
+    \item Cho $p$: $n \ge \dfrac{z_{\alpha/2}^2\,p(1-p)}{\varepsilon^2}$ (nếu chưa biết $p$, dùng $p = 0.5$).
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 4: KIỂM ĐỊNH GIẢ THUYẾT
+%% ================================================================
+\section{Kiểm định giả thuyết}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $H_0$: \textbf{giả thuyết không} (null hypothesis).
+    \item $H_1$: \textbf{giả thuyết đối} (alternative).
+    \item \textbf{Sai lầm loại I} ($\alpha$): bác bỏ $H_0$ khi $H_0$ đúng. \textbf{Mức ý nghĩa:} $\alpha$.
+    \item \textbf{Sai lầm loại II} ($\beta$): không bác bỏ $H_0$ khi $H_0$ sai. \textbf{Lực kiểm định:} $1 - \beta$.
+    \item \textbf{p-value:} xác suất thu được thống kê ``cực đoan'' hơn giá trị quan sát, giả sử $H_0$ đúng.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bổ đề Neyman--Pearson}]
+  Kiểm định tỉ số hợp lý mạnh nhất (Most Powerful) cho giả thuyết đơn $H_0: \theta = \theta_0$ vs $H_1: \theta = \theta_1$:
+  \[
+    \text{Bác bỏ } H_0 \text{ khi } \frac{L(\theta_1)}{L(\theta_0)} > c.
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Các kiểm định tham số thông dụng}]
+  \begin{itemize}
+    \item \textbf{z-test} ($\sigma$ biết): $Z = \dfrac{\bar{X} - \mu_0}{\sigma/\sqrt{n}}$, bác bỏ khi $|Z| > z_{\alpha/2}$.
+    \item \textbf{t-test} ($\sigma$ chưa biết): $T = \dfrac{\bar{X} - \mu_0}{S/\sqrt{n}} \sim t(n-1)$.
+    \item \textbf{So sánh hai trung bình:} t-test hai mẫu (bằng/khác phương sai), t-test cặp đôi.
+    \item \textbf{$\chi^2$-test cho phương sai:} $\chi^2 = \dfrac{(n-1)S^2}{\sigma_0^2}$.
+    \item \textbf{F-test so sánh hai phương sai:} $F = S_1^2/S_2^2 \sim F(n_1 - 1, n_2 - 1)$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Kiểm định phi tham số}]
+  \begin{itemize}
+    \item \textbf{$\chi^2$ phù hợp} (goodness-of-fit): $\chi^2 = \sum \dfrac{(O_i - E_i)^2}{E_i}$.
+    \item \textbf{$\chi^2$ độc lập} (bảng chéo): kiểm định sự độc lập hai biến phân loại.
+    \item \textbf{Kolmogorov--Smirnov}: $D_n = \sup_x |\hat{F}_n(x) - F_0(x)|$.
+    \item \textbf{Wilcoxon rank-sum} (Mann--Whitney): so sánh hai mẫu không cần chuẩn.
+    \item \textbf{Wilcoxon signed-rank}: so sánh cặp đôi phi tham số.
+  \end{itemize}
+\end{phuongphap}
+
+\end{document}

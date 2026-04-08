@@ -1,0 +1,190 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TỐI ƯU}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TỐI ƯU};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Gradient, Newton, KKT, đối ngẫu, lồi, SQP};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: TỐI ƯU KHÔNG RÀNG BUỘC
+%% ================================================================
+\section{Tối ưu không ràng buộc}
+
+\begin{dinhnghia}[title={Bài toán}]
+  $\min_{x \in \mathbb{R}^n} f(x)$, $f: \mathbb{R}^n \to \mathbb{R}$ đủ trơn.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện cần --- Cực tiểu}]
+  Nếu $x^*$ là cực tiểu địa phương thì:
+  \begin{itemize}
+    \item Cấp 1: $\nabla f(x^*) = \mathbf{0}$.
+    \item Cấp 2: $\nabla^2 f(x^*) \succeq 0$ (nửa xác định dương).
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Điều kiện đủ --- Cực tiểu}]
+  Nếu $\nabla f(x^*) = \mathbf{0}$ và $\nabla^2 f(x^*) \succ 0$ (xác định dương) thì $x^*$ là cực tiểu địa phương chặt.
+\end{dinhly}
+
+\begin{phuongphap}[title={Gradient descent}]
+  $x_{k+1} = x_k - \alpha_k \nabla f(x_k)$. Chọn bước $\alpha_k$: cố định, Armijo backtracking, Wolfe. Hội tụ tuyến tính nếu $f$ lồi mạnh.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp Newton}]
+  $x_{k+1} = x_k - [\nabla^2 f(x_k)]^{-1}\nabla f(x_k)$. Hội tụ bậc 2 (superlinear) gần nghiệm. Chi phí: $O(n^3)$ mỗi bước.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Quasi-Newton (BFGS)}]
+  Xấp xỉ $\nabla^2 f$ bằng ma trận $B_k$ cập nhật theo công thức BFGS:
+  \[
+    B_{k+1} = B_k - \frac{B_k s_k s_k^T B_k}{s_k^T B_k s_k} + \frac{y_k y_k^T}{y_k^T s_k},
+  \]
+  $s_k = x_{k+1} - x_k$, $y_k = \nabla f(x_{k+1}) - \nabla f(x_k)$. Siêu tuyến tính, không cần tính Hessian.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Gradient liên hợp (Conjugate Gradient)}]
+  Hướng tìm: $d_k = -\nabla f(x_k) + \beta_k d_{k-1}$. Các công thức $\beta_k$: Fletcher--Reeves, Polak--Ribière. Giải chính xác bài toán bậc hai $n$ chiều trong $n$ bước.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: TỐI ƯU LỒI
+%% ================================================================
+\section{Tối ưu lồi}
+
+\begin{dinhnghia}[title={Tập lồi}]
+  $C \subseteq \mathbb{R}^n$ lồi nếu $\forall x, y \in C$, $\forall \lambda \in [0, 1]$: $\lambda x + (1-\lambda)y \in C$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm lồi}]
+  $f: C \to \mathbb{R}$ lồi nếu $f(\lambda x + (1-\lambda)y) \le \lambda f(x) + (1-\lambda)f(y)$, $\forall x, y \in C$, $\lambda \in [0, 1]$.
+
+  Tương đương: $\nabla^2 f(x) \succeq 0$ $\forall x \in C$ (nếu $f \in C^2$).
+\end{dinhnghia}
+
+\begin{dinhly}
+  Mọi cực tiểu địa phương của hàm lồi trên tập lồi đều là cực tiểu toàn cục. Nếu $f$ lồi chặt thì cực tiểu là duy nhất.
+\end{dinhly}
+
+\begin{tinhchat}[title={Phép toán bảo toàn tính lồi}]
+  \begin{itemize}
+    \item Tổ hợp dương, supremum, hàm hợp affine.
+    \item Giao của các tập lồi là tập lồi.
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 3: TỐI ƯU CÓ RÀNG BUỘC
+%% ================================================================
+\section{Tối ưu có ràng buộc}
+
+\begin{dinhnghia}[title={Bài toán tổng quát}]
+  \[
+    \min f(x) \quad \text{t.c.} \quad g_i(x) \le 0,\; i=1,\ldots,m; \quad h_j(x) = 0,\; j=1,\ldots,p.
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm Lagrange}]
+  \[
+    L(x, \lambda, \mu) = f(x) + \sum_{i=1}^{m}\lambda_i g_i(x) + \sum_{j=1}^{p}\mu_j h_j(x), \quad \lambda_i \ge 0.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện KKT (Karush--Kuhn--Tucker)}]
+  Nếu $x^*$ là cực tiểu và thỏa điều kiện chính quy (LICQ, Slater, \ldots) thì tồn tại $\lambda^*, \mu^*$:
+  \begin{enumerate}
+    \item $\nabla_x L(x^*, \lambda^*, \mu^*) = \mathbf{0}$ \quad (dừng).
+    \item $g_i(x^*) \le 0$ $\forall i$ \quad (khả thi gốc).
+    \item $\lambda_i^* \ge 0$ $\forall i$ \quad (đối ngẫu).
+    \item $\lambda_i^* g_i(x^*) = 0$ $\forall i$ \quad (bù lỏng).
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Đối ngẫu Lagrange}]
+  Hàm đối ngẫu: $g(\lambda, \mu) = \inf_x L(x, \lambda, \mu) \le f(x^*)$ (đối ngẫu yếu).
+
+  Nếu $f, g_i$ lồi, $h_j$ affine và điều kiện Slater thỏa: khe đối ngẫu bằng 0 (đối ngẫu mạnh).
+\end{dinhly}
+
+\begin{phuongphap}[title={Phương pháp nhân tử Lagrange}]
+  Ràng buộc đẳng thức: $\min f(x)$ t.c. $h_j(x) = 0$.
+
+  Hệ: $\nabla f = \sum_j \mu_j \nabla h_j$ kết hợp $h_j(x) = 0$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp hình phạt và rào cản}]
+  \textbf{Hình phạt}: $\min_x f(x) + \frac{\rho}{2}\sum g_i^+(x)^2$, $\rho \to \infty$.
+
+  \textbf{Rào cản (barrier)}: $\min_x f(x) - t\sum \ln(-g_i(x))$, $t \to 0^+$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={SQP --- Sequential Quadratic Programming}]
+  Mỗi bước giải bài toán QP con xấp xỉ: $\min \nabla f^T d + \tfrac{1}{2}d^T B d$ t.c. $\nabla g_i^T d + g_i \le 0$. Hội tụ siêu tuyến tính.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 4: QUY HOẠCH NGUYÊN VÀ TỔ HỢP
+%% ================================================================
+\section{Quy hoạch nguyên và tổ hợp}
+
+\begin{dinhnghia}[title={Quy hoạch nguyên}]
+  $\min \mathbf{c}^T\mathbf{x}$ t.c. $\mathbf{A}\mathbf{x} \le \mathbf{b}$, $x_i \in \mathbb{Z}$ (một phần hoặc toàn bộ).
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Nhánh cận (Branch \& Bound)}]
+  Chia nhánh: cố định biến nguyên. Cận: giải relaxation LP. Cắt: loại phần không nguyên.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Mặt cắt (Cutting Plane --- Gomory)}]
+  Thêm ràng buộc tuyến tính cắt bỏ nghiệm phân số: $\sum_j f_{ij}x_j \ge f_{i0}$ (cắt Gomory phân số).
+\end{phuongphap}
+
+\end{document}

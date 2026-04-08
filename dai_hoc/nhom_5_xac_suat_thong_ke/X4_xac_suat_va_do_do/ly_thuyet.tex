@@ -1,0 +1,217 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{XÁC SUẤT VÀ ĐỘ ĐO}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {XÁC SUẤT VÀ ĐỘ ĐO};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Không gian xác suất, hội tụ, kỳ vọng có điều kiện, hàm đặc trưng};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: KHÔNG GIAN XÁC SUẤT
+%% ================================================================
+\section{Không gian xác suất}
+
+\begin{dinhnghia}
+  $(\Omega, \mathcal{F}, P)$: $\Omega$ không gian mẫu, $\mathcal{F}$ là $\sigma$-đại số trên $\Omega$, $P: \mathcal{F} \to [0, 1]$ là độ đo xác suất ($P(\Omega) = 1$).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Biến ngẫu nhiên (đo được)}]
+  $X: (\Omega, \mathcal{F}) \to (\mathbb{R}, \mathcal{B})$ đo được: $X^{-1}(B) \in \mathcal{F}$ $\forall B \in \mathcal{B}(\mathbb{R})$.
+
+  \textbf{Phân phối} (luật) của $X$: $P_X = P \circ X^{-1}$, là độ đo xác suất trên $(\mathbb{R}, \mathcal{B})$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tích phân Lebesgue là kỳ vọng}]
+  $E[X] = \displaystyle\int_\Omega X(\omega)\,dP(\omega) = \int_{\mathbb{R}} x\,dP_X(x)$.
+
+  Tồn tại khi $E[|X|] < \infty$ ($X \in L^1(\Omega, P)$).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: CÁC LOẠI HỘI TỤ
+%% ================================================================
+\section{Các loại hội tụ}
+
+\begin{dinhnghia}
+  Cho $(X_n)$ dãy BNN:
+  \begin{itemize}
+    \item \textbf{Hội tụ hầu chắc chắn} (a.s.): $P\!\left(\lim_{n \to \infty} X_n = X\right) = 1$, viết $X_n \xrightarrow{\text{a.s.}} X$.
+    \item \textbf{Hội tụ theo xác suất:} $\forall \varepsilon > 0$: $P(|X_n - X| > \varepsilon) \to 0$, viết $X_n \xrightarrow{P} X$.
+    \item \textbf{Hội tụ trong $L^p$:} $E[|X_n - X|^p] \to 0$, viết $X_n \xrightarrow{L^p} X$.
+    \item \textbf{Hội tụ theo phân phối:} $F_{X_n}(x) \to F_X(x)$ tại mọi điểm liên tục của $F_X$, viết $X_n \xrightarrow{d} X$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Quan hệ giữa các loại hội tụ}]
+  \[
+    \text{a.s.} \Rightarrow P \Rightarrow d, \qquad L^p \Rightarrow P \Rightarrow d \quad(p \ge 1).
+  \]
+  Ngược lại không đúng nói chung, ngoại trừ:
+  \begin{itemize}
+    \item $X_n \xrightarrow{P} X$ $\Rightarrow$ $\exists$ dãy con $X_{n_k} \xrightarrow{\text{a.s.}} X$.
+    \item $X_n \xrightarrow{d} c$ (hằng số) $\Leftrightarrow$ $X_n \xrightarrow{P} c$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Bổ đề Borel--Cantelli}]
+  \begin{enumerate}
+    \item Nếu $\sum P(A_n) < \infty$ thì $P(\limsup A_n) = 0$ (``hầu hết hữu hạn $A_n$ xảy ra'').
+    \item Nếu $A_n$ \textbf{độc lập} và $\sum P(A_n) = \infty$ thì $P(\limsup A_n) = 1$.
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Slutsky}]
+  Nếu $X_n \xrightarrow{d} X$ và $Y_n \xrightarrow{P} c$ (hằng) thì:
+  $X_n + Y_n \xrightarrow{d} X + c$, \;$X_n Y_n \xrightarrow{d} cX$, \;$X_n/Y_n \xrightarrow{d} X/c$ ($c \ne 0$).
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý ánh xạ liên tục (Continuous Mapping)}]
+  Nếu $X_n \xrightarrow{d} X$ và $g$ liên tục thì $g(X_n) \xrightarrow{d} g(X)$. Tương tự cho a.s. và theo $P$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: HÀM ĐẶC TRƯNG
+%% ================================================================
+\section{Hàm đặc trưng}
+
+\begin{dinhnghia}
+  $\varphi_X(t) = E[e^{itX}] = \displaystyle\int e^{itx}\,dF_X(x)$, $t \in \mathbb{R}$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\varphi_X(0) = 1$, $|\varphi_X(t)| \le 1$, $\varphi_X$ liên tục đều.
+    \item $\varphi_X$ xác định duy nhất phân phối.
+    \item $X, Y$ độc lập: $\varphi_{X+Y}(t) = \varphi_X(t)\,\varphi_Y(t)$.
+    \item Nếu $E[|X|^k] < \infty$: $\varphi_X^{(k)}(0) = i^k E[X^k]$.
+    \item $\varphi_{aX+b}(t) = e^{ibt}\varphi_X(at)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý liên tục Lévy}]
+  $X_n \xrightarrow{d} X$ $\Leftrightarrow$ $\varphi_{X_n}(t) \to \varphi_X(t)$ $\forall t$.
+\end{dinhly}
+
+\begin{vidu}
+  \begin{itemize}
+    \item $\mathcal{N}(\mu, \sigma^2)$: $\varphi(t) = e^{i\mu t - \sigma^2 t^2/2}$.
+    \item Poisson$(\lambda)$: $\varphi(t) = e^{\lambda(e^{it}-1)}$.
+    \item Exp$(\lambda)$: $\varphi(t) = \dfrac{\lambda}{\lambda - it}$.
+  \end{itemize}
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 4: KỲ VỌNG CÓ ĐIỀU KIỆN
+%% ================================================================
+\section{Kỳ vọng có điều kiện}
+
+\begin{dinhnghia}[title={Kỳ vọng có điều kiện theo $\sigma$-đại số}]
+  Cho $X \in L^1$ và $\mathcal{G} \subset \mathcal{F}$ là $\sigma$-đại số con. $E[X|\mathcal{G}]$ là BNN $\mathcal{G}$-đo được duy nhất (a.s.) sao cho:
+  \[
+    \int_G E[X|\mathcal{G}]\,dP = \int_G X\,dP, \qquad \forall G \in \mathcal{G}.
+  \]
+  $E[X|Y] := E[X|\sigma(Y)]$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất kỳ vọng có điều kiện}]
+  \begin{enumerate}
+    \item \textbf{Tuyến tính:} $E[\alpha X + \beta Y|\mathcal{G}] = \alpha E[X|\mathcal{G}] + \beta E[Y|\mathcal{G}]$.
+    \item \textbf{Tower property:} $E\bigl[E[X|\mathcal{G}]\bigr] = E[X]$. Tổng quát: nếu $\mathcal{H} \subset \mathcal{G}$ thì $E\bigl[E[X|\mathcal{G}]\big|\mathcal{H}\bigr] = E[X|\mathcal{H}]$.
+    \item \textbf{Pull-out:} Nếu $Y$ là $\mathcal{G}$-đo được thì $E[XY|\mathcal{G}] = Y\,E[X|\mathcal{G}]$.
+    \item \textbf{Độc lập:} Nếu $X$ độc lập với $\mathcal{G}$ thì $E[X|\mathcal{G}] = E[X]$.
+    \item \textbf{Jensen:} $\varphi$ lồi $\Rightarrow$ $\varphi(E[X|\mathcal{G}]) \le E[\varphi(X)|\mathcal{G}]$ a.s.
+    \item \textbf{Hội tụ:} MCT, DCT vẫn đúng cho kỳ vọng có điều kiện.
+  \end{enumerate}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Xác suất có điều kiện}]
+  $P(A|\mathcal{G}) = E[\mathbf{1}_A|\mathcal{G}]$. \textbf{Phân phối có điều kiện chính quy:} tồn tại $P(B|Y = y)$ là hàm đo được theo $y$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phương sai có điều kiện}]
+  $\text{Var}(X|Y) = E[X^2|Y] - (E[X|Y])^2$.
+
+  \textbf{Công thức phương sai toàn phần:}
+  \[
+    \text{Var}(X) = E[\text{Var}(X|Y)] + \text{Var}(E[X|Y]).
+  \]
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 5: LUẬT SỐ LỚN VÀ CLT (DẠNG ĐỘ ĐO)
+%% ================================================================
+\section{Luật số lớn và CLT (góc nhìn độ đo)}
+
+\begin{dinhly}[title={Luật mạnh số lớn (Kolmogorov)}]
+  Nếu $X_n$ iid, $E[|X_1|] < \infty$ thì $\bar{X}_n \xrightarrow{\text{a.s.}} E[X_1]$.
+\end{dinhly}
+
+\begin{dinhly}[title={CLT Lindeberg--Lévy}]
+  $X_n$ iid, $E[X_1] = \mu$, $\text{Var}(X_1) = \sigma^2 < \infty$:
+  $\dfrac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1)$.
+\end{dinhly}
+
+\begin{dinhly}[title={CLT Lindeberg--Feller (không đồng phân phối)}]
+  Cho $X_n$ độc lập (không nhất thiết cùng phân phối), $s_n^2 = \sum_{k=1}^n \sigma_k^2$. Nếu thỏa \textbf{điều kiện Lindeberg}: $\forall \varepsilon > 0$,
+  \[
+    \frac{1}{s_n^2}\sum_{k=1}^n E\bigl[(X_k - \mu_k)^2\,\mathbf{1}(|X_k - \mu_k| > \varepsilon s_n)\bigr] \to 0,
+  \]
+  thì $\dfrac{S_n - E[S_n]}{s_n} \xrightarrow{d} \mathcal{N}(0, 1)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Luật logarit lặp (Hartman--Wintner)}]
+  $X_n$ iid, $E[X_1] = 0$, $\text{Var}(X_1) = 1$:
+  \[
+    \limsup_{n \to \infty} \frac{S_n}{\sqrt{2n\ln\ln n}} = 1 \quad\text{a.s.}
+  \]
+\end{dinhly}
+
+\end{document}

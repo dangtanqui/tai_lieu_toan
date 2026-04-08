@@ -1,0 +1,412 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{LÝ THUYẾT NHÓM}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {LÝ THUYẾT NHÓM};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Nhóm hữu hạn, đồng cấu, nhóm đối xứng --- Năm 4};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: NHÓM VÀ NHÓM CON
+%% ================================================================
+\section{Nhóm con}
+
+\subsection{Ôn tập nhóm}
+
+\begin{dinhnghia}
+  \textbf{Nhóm} $(G, \cdot)$: tập $G$ với phép toán hai ngôi thỏa kết hợp, có phần tử trung hòa $e$, mọi phần tử có nghịch đảo. \textbf{Nhóm Abel} (giao hoán): $ab = ba$ với mọi $a, b \in G$. \textbf{Cấp} của nhóm $|G|$: số phần tử (nếu hữu hạn).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Cấp} của phần tử $a \in G$: số nguyên dương nhỏ nhất $n$ sao cho $a^n = e$ (nếu tồn tại); ký hiệu $o(a)$. Nếu không tồn tại thì $o(a) = \infty$.
+\end{dinhnghia}
+
+\subsection{Nhóm con}
+
+\begin{dinhnghia}
+  Tập con $H \subset G$ gọi là \textbf{nhóm con} của $G$ (ký hiệu $H \le G$) nếu $H$ đóng với phép toán và nghịch đảo: $e \in H$; $a, b \in H \Rightarrow ab \in H$; $a \in H \Rightarrow a^{-1} \in H$. Tương đương: $H \ne \varnothing$ và $a, b \in H \Rightarrow ab^{-1} \in H$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Nhóm con tầm thường}: $\{e\}$ và $G$. \textbf{Nhóm con thực sự}: $H \le G$ mà $H \ne G$ (ký hiệu $H < G$).
+\end{dinhnghia}
+
+\begin{vidu}
+  $n\mathbb{Z} \le \mathbb{Z}$ với phép cộng. $SL_n(\mathbb{R}) = \{A \mid \det A = 1\} \le GL_n(\mathbb{R})$.
+\end{vidu}
+
+\begin{dinhnghia}
+  \textbf{Nhóm con sinh bởi} $S \subset G$: $\langle S \rangle = \bigcap \{H \mid H \le G,\; S \subset H\}$ = tập mọi tích hữu hạn các phần tử của $S$ và nghịch đảo của chúng.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: NHÓM CYCLIC
+%% ================================================================
+\section{Nhóm cyclic}
+
+\subsection{Định nghĩa và tính chất}
+
+\begin{dinhnghia}
+  Nhóm $G$ gọi là \textbf{cyclic} nếu tồn tại $a \in G$ sao cho $G = \langle a \rangle = \{a^n \mid n \in \mathbb{Z}\}$. Phần tử $a$ gọi là \textbf{phần tử sinh}.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Mọi nhóm cyclic vô hạn đẳng cấu với $\mathbb{Z}$. Mọi nhóm cyclic hữu hạn cấp $n$ đẳng cấu với $\mathbb{Z}/n\mathbb{Z}$. Nhóm cyclic cấp $n$ có đúng $\varphi(n)$ phần tử sinh ($\varphi$: hàm Euler).
+\end{dinhly}
+
+\begin{dinhly}
+  Nhóm con của nhóm cyclic là cyclic. Nếu $G = \langle a \rangle$ cấp $n$ thì với mỗi ước $d$ của $n$ có đúng một nhóm con cấp $d$ là $\langle a^{n/d} \rangle$.
+\end{dinhly}
+
+\subsection{Nhóm nhân các số phức}
+
+\begin{dinhnghia}
+  \textbf{Nhóm căn bậc $n$ đơn vị}: $U_n = \{z \in \mathbb{C} \mid z^n = 1\} = \{e^{2\pi i k/n} \mid k = 0, 1, \ldots, n-1\}$. Đây là nhóm cyclic cấp $n$ sinh bởi $\omega = e^{2\pi i/n}$, tức $U_n \cong \mathbb{Z}/n\mathbb{Z}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Nhóm đường tròn đơn vị}: $\mathbb{T} = \{z \in \mathbb{C} \mid |z| = 1\}$ với phép nhân phức. Mọi nhóm cyclic hữu hạn nhúng vào $\mathbb{T}$ qua $U_n \subset \mathbb{T}$.
+\end{dinhnghia}
+
+\subsection{Phương pháp bình phương lặp}
+
+\begin{phuongphap}
+  Tính $a^k \bmod n$ hiệu quả bằng \textbf{bình phương lặp} (repeated squaring): viết $k$ ở dạng nhị phân $k = \sum b_i 2^i$, tính lần lượt $a^1, a^2, a^4, a^8, \ldots$ bằng cách bình phương, rồi nhân các lũy thừa tương ứng bit 1. Độ phức tạp: $O(\log k)$ phép nhân thay vì $O(k)$.
+\end{phuongphap}
+
+\begin{vidu}
+  Tính $2^{13} \bmod 23$: $13 = 1101_2$, ta có $2^1 = 2$, $2^2 = 4$, $2^4 = 16$, $2^8 = 256 \equiv 3$. Vậy $2^{13} = 2^8 \cdot 2^4 \cdot 2^1 = 3 \cdot 16 \cdot 2 = 96 \equiv 4 \pmod{23}$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 3: NHÓM HOÁN VỊ
+%% ================================================================
+\section{Nhóm hoán vị}
+
+\subsection{Nhóm đối xứng $S_n$}
+
+\begin{dinhnghia}
+  \textbf{Nhóm đối xứng} $S_n$: nhóm các song ánh $\sigma: \{1,2,\ldots,n\} \to \{1,2,\ldots,n\}$ với phép hợp. Phần tử $\sigma$ gọi là \textbf{phép thế} (hoán vị) bậc $n$. $|S_n| = n!$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Ký hiệu chu trình}: $(i_1 \, i_2 \, \cdots \, i_k)$ nghĩa là $i_1 \mapsto i_2 \mapsto \cdots \mapsto i_k \mapsto i_1$. Mọi phép thế phân tích được thành tích các chu trình rời nhau (duy nhất, sai khác thứ tự).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Chu trình độ dài 2} gọi là \textbf{chuyển vị}. Mọi phép thế viết được thành tích các chuyển vị. \textbf{Dấu} của phép thế $\varepsilon(\sigma) = (-1)^{\text{số chuyển vị}}$ (tính chẵn/lẻ không phụ thuộc cách phân tích).
+\end{dinhnghia}
+
+\begin{vidu}
+  Trong $S_3$: $(123) = (12)(13)$ (chẵn), $(12)$ (lẻ). $S_3 = \langle (12), (123) \rangle$, $|S_3| = 6$.
+\end{vidu}
+
+\subsection{Nhóm nhị diện}
+
+\begin{dinhnghia}
+  \textbf{Nhóm nhị diện} $D_n$ (cấp $2n$): nhóm các phép đối xứng của đa giác đều $n$ cạnh, gồm $n$ phép quay và $n$ phép đối xứng gương.
+  \[
+    D_n = \langle r, s \mid r^n = s^2 = e,\; srs^{-1} = r^{-1} \rangle
+  \]
+  Phần tử: $\{e, r, r^2, \ldots, r^{n-1}, s, sr, sr^2, \ldots, sr^{n-1}\}$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  $D_n$ không Abel khi $n \ge 3$. Nhóm con quay $\langle r \rangle \cong \mathbb{Z}/n\mathbb{Z}$ là nhóm con chuẩn tắc chỉ số 2 trong $D_n$. $D_3 \cong S_3$.
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 4: LỚP KỀ VÀ ĐỊNH LÝ LAGRANGE
+%% ================================================================
+\section{Lớp kề và định lý Lagrange}
+
+\subsection{Lớp kề}
+
+\begin{dinhnghia}
+  Cho $H \le G$, $a \in G$. \textbf{Lớp kề trái}: $aH = \{ah \mid h \in H\}$. \textbf{Lớp kề phải}: $Ha = \{ha \mid h \in H\}$. Các lớp kề trái tạo thành phân hoạch của $G$; mỗi lớp kề có $|H|$ phần tử.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  $aH = bH \Leftrightarrow b^{-1}a \in H$. Quan hệ $a \sim b \Leftrightarrow b^{-1}a \in H$ là quan hệ tương đương; lớp tương đương chính là lớp kề trái.
+\end{tinhchat}
+
+\subsection{Định lý Lagrange}
+
+\begin{dinhly}[title={Định lý Lagrange}]
+  Cho $G$ nhóm hữu hạn, $H \le G$. Khi đó $|H|$ chia hết $|G|$. Số $[G:H] = |G|/|H|$ gọi là \textbf{chỉ số} của $H$ trong $G$ (= số lớp kề trái).
+\end{dinhly}
+
+\begin{dinhly}
+  Cấp của mọi phần tử $a \in G$ chia hết $|G|$. Hệ quả: $a^{|G|} = e$ với mọi $a \in G$.
+\end{dinhly}
+
+\begin{luuy}
+  Chiều ngược không đúng: nếu $d \mid |G|$ thì chưa chắc tồn tại nhóm con cấp $d$ (xem định lý Sylow cho $d = p^k$).
+\end{luuy}
+
+\subsection{Định lý Fermat và Euler}
+
+\begin{dinhly}[title={Định lý nhỏ Fermat}]
+  Cho $p$ nguyên tố, $a \not\equiv 0 \pmod{p}$. Khi đó $a^{p-1} \equiv 1 \pmod{p}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Euler}]
+  Cho $n \ge 1$, $\gcd(a, n) = 1$. Khi đó $a^{\varphi(n)} \equiv 1 \pmod{n}$, trong đó $\varphi(n) = |\mathbb{Z}_n^*|$ là hàm Euler.
+\end{dinhly}
+
+\begin{luuy}
+  Cả hai đều là hệ quả trực tiếp của định lý Lagrange áp dụng cho nhóm $\mathbb{Z}_p^*$ (cấp $p - 1$) và $\mathbb{Z}_n^*$ (cấp $\varphi(n)$).
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 5: ĐẲNG CẤU
+%% ================================================================
+\section{Đẳng cấu}
+
+\subsection{Đẳng cấu nhóm}
+
+\begin{dinhnghia}
+  Đồng cấu $\varphi: G \to H$ gọi là \textbf{đẳng cấu} nếu $\varphi$ là song ánh. Khi đó $G \cong H$ (đẳng cấu). Tự đẳng cấu: đẳng cấu $G \to G$; tập các tự đẳng cấu $\mathrm{Aut}(G)$ tạo thành nhóm.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Nếu $G \cong H$ thì $G, H$ có cùng cấp, cùng số phần tử mỗi cấp, cùng Abel hoặc không, cùng cyclic hoặc không.
+\end{tinhchat}
+
+\begin{vidu}
+  $\mathbb{Z}/6\mathbb{Z} \cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/3\mathbb{Z}$ (vì $\gcd(2,3) = 1$). Nhưng $\mathbb{Z}/4\mathbb{Z} \not\cong \mathbb{Z}/2\mathbb{Z} \times \mathbb{Z}/2\mathbb{Z}$ (nhóm trái có phần tử cấp 4, nhóm phải không có).
+\end{vidu}
+
+\subsection{Tích trực tiếp}
+
+\begin{dinhnghia}
+  \textbf{Tích trực tiếp ngoài} $G_1 \times G_2 \times \cdots \times G_k$: nhóm trên tập tích Descartes với phép toán theo từng thành phần. $|G_1 \times \cdots \times G_k| = |G_1| \cdots |G_k|$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  $\mathbb{Z}/m\mathbb{Z} \times \mathbb{Z}/n\mathbb{Z} \cong \mathbb{Z}/mn\mathbb{Z}$ khi và chỉ khi $\gcd(m, n) = 1$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý cơ bản về nhóm Abel hữu hạn}]
+  Mọi nhóm Abel hữu hạn đẳng cấu với tích trực tiếp các nhóm cyclic cấp lũy thừa số nguyên tố:
+  $G \cong \mathbb{Z}/p_1^{a_1}\mathbb{Z} \times \mathbb{Z}/p_2^{a_2}\mathbb{Z} \times \cdots \times \mathbb{Z}/p_k^{a_k}\mathbb{Z}$.
+  Phân tích này là duy nhất (sai khác thứ tự).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 6: NHÓM CON CHUẨN TẮC VÀ NHÓM THƯƠNG
+%% ================================================================
+\section{Nhóm con chuẩn tắc và nhóm thương}
+
+\subsection{Nhóm con chuẩn tắc}
+
+\begin{dinhnghia}
+  Nhóm con $N \le G$ gọi là \textbf{chuẩn tắc} (ký hiệu $N \trianglelefteq G$) nếu $gNg^{-1} = N$ với mọi $g \in G$, tức $gN = Ng$ (lớp kề trái = lớp kề phải).
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Hạt nhân của mọi đồng cấu là nhóm con chuẩn tắc. Ngược lại, $N \trianglelefteq G$ khi và chỉ khi $N = \ker \varphi$ cho đồng cấu $\varphi$ nào đó. Nhóm con chỉ số 2 luôn chuẩn tắc.
+\end{tinhchat}
+
+\subsection{Nhóm thương}
+
+\begin{dinhnghia}
+  Cho $N \trianglelefteq G$. \textbf{Nhóm thương} $G/N$: tập các lớp kề $\{gN \mid g \in G\}$ với phép nhân $(gN)(hN) = (gh)N$. $|G/N| = [G:N]$.
+\end{dinhnghia}
+
+\begin{vidu}
+  $\mathbb{Z}/n\mathbb{Z}$: nhóm thương của $(\mathbb{Z}, +)$ theo nhóm con $n\mathbb{Z}$. $S_n / A_n \cong \mathbb{Z}/2\mathbb{Z}$.
+\end{vidu}
+
+\subsection{Nhóm thay phiên $A_n$ và tính đơn giản}
+
+\begin{dinhnghia}
+  \textbf{Nhóm thay phiên} $A_n = \{\sigma \in S_n \mid \varepsilon(\sigma) = 1\}$: nhóm các phép thế chẵn. $|A_n| = n!/2$, $A_n \trianglelefteq S_n$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Nhóm $G$ gọi là \textbf{đơn} nếu $G \ne \{e\}$ và $G$ không có nhóm con chuẩn tắc thực sự (chỉ có $\{e\}$ và $G$).
+\end{dinhnghia}
+
+\begin{dinhly}
+  $A_n$ là nhóm đơn khi $n \ge 5$. Đây là kết quả then chốt trong chứng minh phương trình bậc $\ge 5$ không giải được bằng căn thức (định lý Abel--Ruffini).
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 7: ĐỒNG CẤU NHÓM
+%% ================================================================
+\section{Đồng cấu nhóm}
+
+\subsection{Định nghĩa và tính chất}
+
+\begin{dinhnghia}
+  Ánh xạ $\varphi: G \to H$ giữa hai nhóm gọi là \textbf{đồng cấu} nếu $\varphi(ab) = \varphi(a)\varphi(b)$ với mọi $a, b \in G$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  $\varphi(e_G) = e_H$, $\varphi(a^{-1}) = \varphi(a)^{-1}$. Ảnh nhóm con là nhóm con; nghịch ảnh nhóm con là nhóm con. \textbf{Hạt nhân}: $\ker \varphi = \varphi^{-1}(\{e_H\}) \trianglelefteq G$. \textbf{Ảnh}: $\mathrm{Im}\,\varphi = \varphi(G) \le H$.
+\end{tinhchat}
+
+\begin{tinhchat}
+  $\varphi$ đơn ánh $\Leftrightarrow \ker \varphi = \{e_G\}$. $\varphi$ toàn ánh $\Leftrightarrow \mathrm{Im}\,\varphi = H$.
+\end{tinhchat}
+
+\subsection{Các định lý đẳng cấu}
+
+\begin{dinhly}[title={Định lý đẳng cấu thứ nhất}]
+  Cho đồng cấu $\varphi: G \to H$. Khi đó $G/\ker \varphi \cong \mathrm{Im}\,\varphi$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý đẳng cấu thứ hai}]
+  Cho $N \trianglelefteq G$, $H \le G$. Khi đó $HN \le G$, $N \cap H \trianglelefteq H$, và $HN/N \cong H/(N \cap H)$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý đẳng cấu thứ ba}]
+  Cho $K \le N \trianglelefteq G$, $K \trianglelefteq G$. Khi đó $N/K \trianglelefteq G/K$ và $(G/K)/(N/K) \cong G/N$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 8: TÁC ĐỘNG NHÓM
+%% ================================================================
+\section{Tác động nhóm}
+
+\subsection{Nhóm tác động lên tập hợp}
+
+\begin{dinhnghia}
+  \textbf{Tác động trái} của nhóm $G$ lên tập $X$: ánh xạ $G \times X \to X$, $(g, x) \mapsto g \cdot x$, thỏa:
+  \begin{enumerate}
+    \item $e \cdot x = x$ với mọi $x \in X$;
+    \item $g \cdot (h \cdot x) = (gh) \cdot x$ với mọi $g, h \in G$, $x \in X$.
+  \end{enumerate}
+  Tương đương với đồng cấu $G \to \mathrm{Sym}(X)$ (nhóm hoán vị của $X$).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  \textbf{Quỹ đạo} của $x$: $\mathrm{Orb}(x) = G \cdot x = \{g \cdot x \mid g \in G\}$. \textbf{Nhóm ổn định} (stabilizer) của $x$: $\mathrm{Stab}(x) = G_x = \{g \in G \mid g \cdot x = x\} \le G$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý quỹ đạo -- ổn định}]
+  $|\mathrm{Orb}(x)| = [G : \mathrm{Stab}(x)] = |G| / |\mathrm{Stab}(x)|$.
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Điểm bất động} của $g$: $\mathrm{Fix}(g) = \{x \in X \mid g \cdot x = x\}$. \textbf{Tâm} (center) của nhóm: $Z(G) = \{g \in G \mid gx = xg\; \forall x \in G\}$.
+\end{dinhnghia}
+
+\subsection{Công thức lớp}
+
+\begin{dinhnghia}
+  \textbf{Tác động liên hợp}: $G$ tác động lên chính nó bởi $g \cdot x = gxg^{-1}$. Quỹ đạo: \textbf{lớp liên hợp} $\mathrm{Cl}(x) = \{gxg^{-1} \mid g \in G\}$. Nhóm ổn định: \textbf{tâm hóa tử} $C_G(x) = \{g \in G \mid gx = xg\}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Công thức lớp}]
+  Cho $G$ nhóm hữu hạn, $x_1, \ldots, x_r$ là đại diện các lớp liên hợp có nhiều hơn một phần tử. Khi đó:
+  \[
+    |G| = |Z(G)| + \sum_{i=1}^{r} [G : C_G(x_i)]
+  \]
+\end{dinhly}
+
+\begin{dinhly}
+  Nếu $|G| = p^n$ ($p$ nguyên tố, $n \ge 1$) thì $Z(G) \ne \{e\}$. Hệ quả: nhóm cấp $p^2$ luôn Abel.
+\end{dinhly}
+
+\subsection{Định lý đếm Burnside}
+
+\begin{dinhly}[title={Bổ đề Burnside (Cauchy--Frobenius)}]
+  Cho nhóm hữu hạn $G$ tác động lên tập hữu hạn $X$. Số quỹ đạo:
+  \[
+    |\text{số quỹ đạo}| = \frac{1}{|G|} \sum_{g \in G} |\mathrm{Fix}(g)|
+  \]
+\end{dinhly}
+
+\begin{vidu}
+  Đếm số cách tô 4 đỉnh hình vuông bằng 2 màu (khi xoay được coi như nhau): $G = \{e, r, r^2, r^3\} \cong \mathbb{Z}/4\mathbb{Z}$ tác động lên $2^4 = 16$ cách tô. $|\mathrm{Fix}(e)| = 16$, $|\mathrm{Fix}(r)| = |\mathrm{Fix}(r^3)| = 2$, $|\mathrm{Fix}(r^2)| = 4$. Số quỹ đạo $= (16 + 2 + 4 + 2)/4 = 6$.
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 9: CÁC ĐỊNH LÝ SYLOW
+%% ================================================================
+\section{Các định lý Sylow}
+
+\begin{dinhnghia}
+  Cho $G$ nhóm hữu hạn, $|G| = p^a m$ với $p$ nguyên tố, $\gcd(p, m) = 1$. Nhóm con cấp $p^a$ gọi là \textbf{$p$-nhóm con Sylow} (ký hiệu $\mathrm{Syl}_p(G)$: tập các $p$-nhóm con Sylow; $n_p = |\mathrm{Syl}_p(G)|$).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Sylow thứ nhất}]
+  $\mathrm{Syl}_p(G) \ne \varnothing$, tức tồn tại $p$-nhóm con Sylow.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Sylow thứ hai}]
+  Mọi $p$-nhóm con Sylow đều liên hợp: nếu $P, Q \in \mathrm{Syl}_p(G)$ thì tồn tại $g \in G$ sao cho $Q = gPg^{-1}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Sylow thứ ba}]
+  $n_p \equiv 1 \pmod{p}$ và $n_p \mid m$ (với $|G| = p^a m$, $\gcd(p, m) = 1$).
+\end{dinhly}
+
+\begin{tinhchat}
+  $n_p = 1 \Leftrightarrow$ $p$-nhóm con Sylow duy nhất $\Leftrightarrow$ $p$-nhóm con Sylow chuẩn tắc.
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý Cauchy}]
+  Cho $G$ nhóm hữu hạn, $p$ nguyên tố, $p \mid |G|$. Khi đó $G$ có phần tử cấp $p$.
+\end{dinhly}
+
+\begin{vidu}
+  $|G| = 12 = 2^2 \cdot 3$. Thì $n_2 \mid 3$ và $n_2 \equiv 1 \pmod{2}$, nên $n_2 \in \{1, 3\}$. $n_3 \mid 4$ và $n_3 \equiv 1 \pmod{3}$, nên $n_3 \in \{1, 4\}$.
+\end{vidu}
+
+\begin{phuongphap}
+  Để phân loại nhóm cấp $n$: dùng ràng buộc Sylow để giới hạn $n_p$; nếu $n_p = 1$ thì có nhóm con chuẩn tắc; kết hợp tích nửa trực tiếp để liệt kê các nhóm không đẳng cấu.
+\end{phuongphap}
+
+\end{document}

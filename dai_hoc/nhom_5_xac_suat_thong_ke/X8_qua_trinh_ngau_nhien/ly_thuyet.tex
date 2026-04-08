@@ -1,0 +1,237 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{QUÁ TRÌNH NGẪU NHIÊN}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {QUÁ TRÌNH NGẪU NHIÊN};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Xích Markov, Poisson, martingale, chuyển động Brown};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: TỔNG QUAN QUÁ TRÌNH NGẪU NHIÊN
+%% ================================================================
+\section{Tổng quan}
+
+\begin{dinhnghia}
+  \textbf{Quá trình ngẫu nhiên} (stochastic process): họ BNN $\{X_t\}_{t \in T}$ trên $(\Omega, \mathcal{F}, P)$.
+  \begin{itemize}
+    \item $T = \{0, 1, 2, \ldots\}$: thời gian rời rạc.
+    \item $T = [0, \infty)$: thời gian liên tục.
+    \item \textbf{Quỹ đạo} (trajectory): $t \mapsto X_t(\omega)$ với $\omega$ cố định.
+    \item \textbf{Phân phối hữu hạn chiều:} $(X_{t_1}, \ldots, X_{t_n})$ xác định phân phối quá trình (Kolmogorov).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại}]
+  \begin{itemize}
+    \item \textbf{Dừng} (stationary): phân phối đồng thời bất biến với dịch thời gian.
+    \item \textbf{Dừng yếu} (wide-sense): $E[X_t] = \mu$ const, $\text{Cov}(X_s, X_t) = R(|t-s|)$.
+    \item \textbf{Độc lập gia số}: $X_{t_1} - X_{t_0}$, $X_{t_2} - X_{t_1}$, \ldots\ độc lập.
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: XÍCH MARKOV
+%% ================================================================
+\section{Xích Markov}
+
+\begin{dinhnghia}
+  $(X_n)_{n \ge 0}$ trên không gian trạng thái $S$ (đếm được) là \textbf{xích Markov} nếu:
+  \[
+    P(X_{n+1} = j \mid X_n = i, X_{n-1}, \ldots, X_0) = P(X_{n+1} = j \mid X_n = i) = p_{ij}.
+  \]
+  $\mathbf{P} = (p_{ij})$: \textbf{ma trận chuyển}.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $p_{ij} \ge 0$, $\sum_j p_{ij} = 1$ (hàng ngẫu nhiên).
+    \item $P(X_n = j | X_0 = i) = (\mathbf{P}^n)_{ij}$ (xác suất chuyển $n$ bước).
+    \item \textbf{Chapman--Kolmogorov:} $\mathbf{P}^{m+n} = \mathbf{P}^m \cdot \mathbf{P}^n$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Phân loại trạng thái}]
+  \begin{itemize}
+    \item $i \to j$ (thông nhau): $\exists n \ge 1$ sao cho $p_{ij}^{(n)} > 0$.
+    \item \textbf{Bất khả quy}: mọi cặp trạng thái thông nhau.
+    \item \textbf{Chu kỳ} $d(i) = \gcd\{n : p_{ii}^{(n)} > 0\}$. \textbf{Phi chu kỳ}: $d = 1$.
+    \item \textbf{Hồi quy} (recurrent): $P(\text{quay lại } i | X_0 = i) = 1$.
+    \item \textbf{Tạm thời} (transient): xác suất quay lại $< 1$.
+    \item \textbf{Hồi quy dương}: $E[\text{thời gian quay lại}] < \infty$; \textbf{hồi quy null}: $= \infty$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Phân phối dừng (stationary distribution)}]
+  $\boldsymbol{\pi} = (\pi_j)$ là phân phối dừng nếu $\boldsymbol{\pi}\mathbf{P} = \boldsymbol{\pi}$, $\sum \pi_j = 1$, $\pi_j \ge 0$.
+
+  Nếu xích bất khả quy, phi chu kỳ, hồi quy dương thì:
+  \begin{enumerate}
+    \item Tồn tại duy nhất $\boldsymbol{\pi}$.
+    \item $\pi_j = 1/E_j[\tau_j]$ ($\tau_j$: thời gian quay lại $j$).
+    \item $\lim_{n \to \infty} p_{ij}^{(n)} = \pi_j$ (hội tụ về phân phối dừng).
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Ergodic}]
+  Dưới điều kiện trên: $\dfrac{1}{n}\sum_{k=0}^{n-1} f(X_k) \xrightarrow{\text{a.s.}} \sum_j f(j)\,\pi_j$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Cân bằng chi tiết (detailed balance)}]
+  $\pi_i\, p_{ij} = \pi_j\, p_{ji}$ $\forall i, j$. Nếu thỏa thì $\boldsymbol{\pi}$ là phân phối dừng (xích khả đảo).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 3: QUÁ TRÌNH POISSON
+%% ================================================================
+\section{Quá trình Poisson}
+
+\begin{dinhnghia}
+  $\{N(t)\}_{t \ge 0}$ là \textbf{quá trình Poisson} cường độ $\lambda > 0$ nếu:
+  \begin{enumerate}
+    \item $N(0) = 0$.
+    \item Gia số độc lập.
+    \item $N(t) - N(s) \sim \text{Poisson}\bigl(\lambda(t-s)\bigr)$.
+  \end{enumerate}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $E[N(t)] = \lambda t$, $\text{Var}(N(t)) = \lambda t$.
+    \item Thời gian giữa các sự kiện: $T_k \sim \text{Exp}(\lambda)$ iid.
+    \item Thời điểm sự kiện thứ $n$: $S_n = \sum T_k \sim \text{Gamma}(n, \lambda)$.
+    \item \textbf{Thinning}: lọc với xác suất $p$ $\Rightarrow$ Poisson$(\lambda p)$.
+    \item \textbf{Chồng chất}: hợp hai Poisson độc lập $\lambda_1, \lambda_2$ $\Rightarrow$ Poisson$(\lambda_1 + \lambda_2)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Quá trình Poisson không thuần nhất}]
+  Cường độ $\lambda(t)$ thay đổi theo thời gian: $N(t) - N(s) \sim \text{Poisson}\!\left(\int_s^t \lambda(u)\,du\right)$.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 4: MARTINGALE
+%% ================================================================
+\section{Martingale}
+
+\begin{dinhnghia}
+  Quá trình $(M_n, \mathcal{F}_n)_{n \ge 0}$ là \textbf{martingale} nếu:
+  \begin{enumerate}
+    \item $M_n$ thích nghi với $\mathcal{F}_n$ (adapted).
+    \item $E[|M_n|] < \infty$.
+    \item $E[M_{n+1}|\mathcal{F}_n] = M_n$ a.s.
+  \end{enumerate}
+  Thay $=$ bằng $\le$: \textbf{supermartingale}. Thay bằng $\ge$: \textbf{submartingale}.
+\end{dinhnghia}
+
+\begin{vidu}
+  \begin{itemize}
+    \item Bước đi ngẫu nhiên đối xứng $S_n = \sum X_i$ ($P(X_i = \pm 1) = 1/2$).
+    \item $M_n = S_n^2 - n$.
+    \item Tỉ số hợp lý: $L_n = \prod_{i=1}^n \frac{f_1(X_i)}{f_0(X_i)}$.
+    \item $M_n = e^{\theta S_n}/\bigl(E[e^{\theta X}]\bigr)^n$ (martingale mũ).
+  \end{itemize}
+\end{vidu}
+
+\begin{dinhly}[title={Bất đẳng thức Doob}]
+  Cho $(M_n)$ submartingale:
+  \[
+    P\!\left(\max_{0 \le k \le n} M_k \ge \lambda\right) \le \frac{E[M_n^+]}{\lambda}, \qquad \lambda > 0.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý hội tụ martingale (Doob)}]
+  Nếu $(M_n)$ là martingale (hoặc submartingale) và $\sup_n E[M_n^+] < \infty$ thì $M_n \xrightarrow{\text{a.s.}} M_\infty$ hữu hạn.
+\end{dinhly}
+
+\begin{dinhly}[title={Optional Stopping Theorem}]
+  Nếu $(M_n)$ martingale và $\tau$ là thời điểm dừng bị chặn ($\tau \le N$) thì $E[M_\tau] = E[M_0]$.
+
+  Dạng mạnh hơn yêu cầu tính khả tích đều hoặc $E[\tau] < \infty$ kèm điều kiện bổ sung.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 5: CHUYỂN ĐỘNG BROWN
+%% ================================================================
+\section{Chuyển động Brown (Wiener process)}
+
+\begin{dinhnghia}
+  $\{B_t\}_{t \ge 0}$ là \textbf{chuyển động Brown chuẩn} nếu:
+  \begin{enumerate}
+    \item $B_0 = 0$.
+    \item Gia số độc lập.
+    \item $B_t - B_s \sim \mathcal{N}(0, t - s)$ ($0 \le s < t$).
+    \item Quỹ đạo $t \mapsto B_t(\omega)$ liên tục a.s.
+  \end{enumerate}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $E[B_t] = 0$, $\text{Cov}(B_s, B_t) = \min(s, t)$.
+    \item Quỹ đạo liên tục nhưng \textbf{không khả vi} tại bất kỳ điểm nào a.s.
+    \item \textbf{Tự tương tự}: $\{c^{-1/2}B_{ct}\} \overset{d}{=} \{B_t\}$.
+    \item \textbf{Tính Markov mạnh}: $\{B_{t+\tau} - B_\tau\}$ là Brown độc lập với $\mathcal{F}_\tau$.
+    \item $B_t$ là martingale; $B_t^2 - t$ cũng là martingale.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Biến phân bậc hai}]
+  $[B]_t := \lim_{n \to \infty} \sum_{k} (B_{t_{k+1}} - B_{t_k})^2 = t$ a.s. (``$dB_t \cdot dB_t = dt$'').
+\end{dinhly}
+
+\begin{dinhnghia}[title={Chuyển động Brown hình học}]
+  $S_t = S_0 \exp\!\left((\mu - \sigma^2/2)t + \sigma B_t\right)$, nghiệm SDE: $dS_t = \mu S_t\,dt + \sigma S_t\,dB_t$.
+\end{dinhnghia}
+
+\begin{luuy}
+  Chuyển động Brown là nền tảng cho giải tích ngẫu nhiên (tích phân Itô) và tài chính toán (Black--Scholes).
+\end{luuy}
+
+\end{document}

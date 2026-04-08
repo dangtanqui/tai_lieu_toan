@@ -1,0 +1,303 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{XÁC SUẤT 1}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {XÁC SUẤT 1};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Biến cố, xác suất, biến ngẫu nhiên, phân phối, CLT};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: BIẾN CỐ VÀ XÁC SUẤT
+%% ================================================================
+\section{Biến cố và xác suất}
+
+\begin{dinhnghia}[title={Không gian mẫu và biến cố}]
+  \begin{itemize}
+    \item \textbf{Phép thử ngẫu nhiên}: thí nghiệm có kết quả không dự đoán trước.
+    \item \textbf{Không gian mẫu} $\Omega$: tập tất cả kết quả có thể.
+    \item \textbf{Biến cố} $A \subset \Omega$: tập con của không gian mẫu.
+    \item Biến cố chắc chắn $\Omega$, biến cố không thể $\varnothing$.
+    \item $\bar{A} = \Omega \setminus A$ (biến cố đối); $A \cup B$, $A \cap B$, $A \setminus B$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hệ tiên đề Kolmogorov}]
+  \textbf{Xác suất} là hàm $P: \mathcal{F} \to [0, 1]$ (với $\mathcal{F}$ là $\sigma$-đại số trên $\Omega$) thỏa:
+  \begin{enumerate}
+    \item $P(\Omega) = 1$.
+    \item \textbf{$\sigma$-cộng tính:} Nếu $A_1, A_2, \ldots$ đôi một xung khắc thì $P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)$.
+  \end{enumerate}
+  Bộ ba $(\Omega, \mathcal{F}, P)$ gọi là \textbf{không gian xác suất}.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $P(\varnothing) = 0$, \;$P(\bar{A}) = 1 - P(A)$.
+    \item $A \subset B \Rightarrow P(A) \le P(B)$.
+    \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
+    \item \textbf{Công thức bao -- loại:} $P\!\left(\bigcup_{i=1}^{n} A_i\right) = \sum_i P(A_i) - \sum_{i<j} P(A_i \cap A_j) + \cdots$
+    \item \textbf{Liên tục:} $A_n \uparrow A \Rightarrow P(A_n) \to P(A)$; \;$A_n \downarrow A \Rightarrow P(A_n) \to P(A)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{congthuc}[title={Xác suất cổ điển}]
+  Nếu $\Omega$ hữu hạn, các kết quả đồng khả năng:
+  \[
+    P(A) = \frac{|A|}{|\Omega|} = \frac{\text{số kết quả thuận lợi}}{\text{tổng số kết quả}}.
+  \]
+\end{congthuc}
+
+\subsection{Xác suất có điều kiện}
+
+\begin{dinhnghia}
+  $P(A|B) = \dfrac{P(A \cap B)}{P(B)}$ \;($P(B) > 0$).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức nhân}]
+  $P(A_1 \cap \cdots \cap A_n) = P(A_1)\,P(A_2|A_1)\,P(A_3|A_1 \cap A_2)\cdots$
+\end{congthuc}
+
+\begin{dinhly}[title={Công thức xác suất toàn phần}]
+  Nếu $B_1, B_2, \ldots, B_n$ là hệ đầy đủ ($\bigsqcup B_i = \Omega$, $P(B_i) > 0$):
+  \[
+    P(A) = \sum_{i=1}^{n} P(A|B_i)\,P(B_i).
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Công thức Bayes}]
+  \[
+    P(B_k|A) = \frac{P(A|B_k)\,P(B_k)}{\sum_{i=1}^{n} P(A|B_i)\,P(B_i)}.
+  \]
+\end{dinhly}
+
+\begin{dinhnghia}[title={Độc lập}]
+  $A, B$ \textbf{độc lập} nếu $P(A \cap B) = P(A)\,P(B)$.
+
+  $A_1, \ldots, A_n$ \textbf{độc lập toàn phần} nếu với mọi tập con $I \subset \{1, \ldots, n\}$:
+  $P\!\left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} P(A_i)$.
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: BIẾN NGẪU NHIÊN
+%% ================================================================
+\section{Biến ngẫu nhiên}
+
+\begin{dinhnghia}
+  \textbf{Biến ngẫu nhiên} (BNN) $X: \Omega \to \mathbb{R}$ là hàm đo được: $\{X \le x\} \in \mathcal{F}$ $\forall x$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm phân phối (CDF)}]
+  $F_X(x) = P(X \le x)$, $x \in \mathbb{R}$.
+  \begin{itemize}
+    \item Không giảm, liên tục phải.
+    \item $\lim_{x \to -\infty} F(x) = 0$, \;$\lim_{x \to +\infty} F(x) = 1$.
+    \item $P(a < X \le b) = F(b) - F(a)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\subsection{BNN rời rạc}
+
+\begin{dinhnghia}
+  $X$ \textbf{rời rạc} nếu nhận đếm được giá trị $x_1, x_2, \ldots$ Bảng phân phối: $p_i = P(X = x_i)$, $\sum p_i = 1$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các phân phối rời rạc quan trọng}]
+  \begin{itemize}
+    \item \textbf{Bernoulli}$(p)$: $P(X = 1) = p$, $P(X = 0) = 1 - p$.
+    \item \textbf{Nhị thức} $B(n, p)$: $P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$, $E[X] = np$, $\text{Var}(X) = np(1-p)$.
+    \item \textbf{Poisson}$(\lambda)$: $P(X = k) = e^{-\lambda}\dfrac{\lambda^k}{k!}$, $E[X] = \text{Var}(X) = \lambda$.
+    \item \textbf{Hình học}$(p)$: $P(X = k) = (1-p)^{k-1}p$, $E[X] = 1/p$.
+    \item \textbf{Siêu hình học}: $P(X = k) = \dfrac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}$.
+    \item \textbf{Nhị thức âm} $NB(r, p)$: $P(X = k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}$.
+  \end{itemize}
+\end{congthuc}
+
+\subsection{BNN liên tục}
+
+\begin{dinhnghia}
+  $X$ \textbf{liên tục} nếu $\exists$ hàm mật độ $f_X(x) \ge 0$:
+  \[
+    F_X(x) = \int_{-\infty}^{x} f_X(t)\,dt, \qquad \int_{-\infty}^{+\infty} f_X(x)\,dx = 1.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các phân phối liên tục quan trọng}]
+  \begin{itemize}
+    \item \textbf{Đều} $U(a, b)$: $f(x) = \dfrac{1}{b-a}$ trên $[a, b]$. $E[X] = \dfrac{a+b}{2}$, $\text{Var}(X) = \dfrac{(b-a)^2}{12}$.
+    \item \textbf{Chuẩn} $\mathcal{N}(\mu, \sigma^2)$: $f(x) = \dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}$.
+    \item \textbf{Chuẩn tắc} $\mathcal{N}(0, 1)$: $\Phi(x) = \displaystyle\int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-t^2/2}\,dt$.
+    \item \textbf{Mũ} $\text{Exp}(\lambda)$: $f(x) = \lambda e^{-\lambda x}$ ($x \ge 0$). $E[X] = 1/\lambda$. Tính không nhớ.
+    \item \textbf{Gamma} $\Gamma(\alpha, \beta)$: $f(x) = \dfrac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ ($x > 0$).
+    \item \textbf{Beta} $\text{Beta}(\alpha, \beta)$: $f(x) = \dfrac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}$ trên $(0, 1)$.
+    \item \textbf{Chi-bình phương} $\chi^2(n)$: tổng bình phương $n$ BNN $\mathcal{N}(0,1)$ độc lập.
+    \item \textbf{Student} $t(n)$: $T = Z/\sqrt{V/n}$, $Z \sim \mathcal{N}(0,1)$, $V \sim \chi^2(n)$ độc lập.
+    \item \textbf{Fisher} $F(m, n)$: $F = (U/m)/(V/n)$, $U \sim \chi^2(m)$, $V \sim \chi^2(n)$.
+  \end{itemize}
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 3: KỲ VỌNG, PHƯƠNG SAI, MOMENT
+%% ================================================================
+\section{Kỳ vọng, phương sai, moment}
+
+\begin{dinhnghia}[title={Kỳ vọng (mean)}]
+  \begin{itemize}
+    \item Rời rạc: $E[X] = \sum_i x_i\,p_i$.
+    \item Liên tục: $E[X] = \displaystyle\int_{-\infty}^{+\infty} x\,f(x)\,dx$.
+    \item Tổng quát: $E[g(X)] = \int g(x)\,dF(x)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất kỳ vọng}]
+  \begin{itemize}
+    \item Tuyến tính: $E[\alpha X + \beta Y] = \alpha E[X] + \beta E[Y]$ (luôn đúng).
+    \item $X \ge 0$ a.s. $\Rightarrow$ $E[X] \ge 0$.
+    \item $X, Y$ độc lập $\Rightarrow$ $E[XY] = E[X]\,E[Y]$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Phương sai (variance)}]
+  $\text{Var}(X) = E\bigl[(X - E[X])^2\bigr] = E[X^2] - (E[X])^2$.
+
+  \textbf{Độ lệch chuẩn:} $\sigma_X = \sqrt{\text{Var}(X)}$.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\text{Var}(aX + b) = a^2 \text{Var}(X)$.
+    \item $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)$.
+    \item Độc lập $\Rightarrow$ $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Hiệp phương sai và hệ số tương quan}]
+  $\text{Cov}(X, Y) = E[(X - EX)(Y - EY)] = E[XY] - EX \cdot EY$.
+
+  $\rho_{XY} = \dfrac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$, \;$|\rho| \le 1$. $\rho = 0$: không tương quan. Độc lập $\Rightarrow \rho = 0$ (ngược lại không đúng nói chung).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Moment và hàm sinh moment}]
+  \begin{itemize}
+    \item \textbf{Moment bậc $k$:} $\mu_k = E[X^k]$. \textbf{Moment trung tâm:} $\mu'_k = E[(X - EX)^k]$.
+    \item \textbf{Hàm sinh moment:} $M_X(t) = E[e^{tX}]$. Nếu tồn tại: $E[X^k] = M_X^{(k)}(0)$.
+    \item $M_X$ xác định duy nhất phân phối (trong lân cận $t = 0$).
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 4: VECTƠ NGẪU NHIÊN
+%% ================================================================
+\section{Vectơ ngẫu nhiên}
+
+\begin{dinhnghia}[title={Phân phối đồng thời}]
+  $(X, Y)$: CDF đồng thời $F(x, y) = P(X \le x, Y \le y)$.
+
+  Rời rạc: $p_{ij} = P(X = x_i, Y = y_j)$. Liên tục: $f_{X,Y}(x, y)$ sao cho $F(x,y) = \int\!\!\int f\,du\,dv$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân phối biên và phân phối có điều kiện}]
+  \begin{itemize}
+    \item \textbf{Biên:} $f_X(x) = \displaystyle\int_{-\infty}^{+\infty} f_{X,Y}(x, y)\,dy$.
+    \item \textbf{Có điều kiện:} $f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x, y)}{f_X(x)}$ \;($f_X(x) > 0$).
+    \item $X, Y$ \textbf{độc lập} $\Leftrightarrow$ $f_{X,Y}(x,y) = f_X(x)\,f_Y(y)$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Phân phối chuẩn nhiều chiều}]
+  $\mathbf{X} = (X_1, \ldots, X_n)^T \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
+  \[
+    f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}|\boldsymbol{\Sigma}|^{1/2}}\exp\!\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right).
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Hàm của biến ngẫu nhiên}]
+  Nếu $Y = g(X)$, $g$ đơn điệu và khả vi: $f_Y(y) = f_X\!\bigl(g^{-1}(y)\bigr)\,\left|\dfrac{d}{dy}g^{-1}(y)\right|$.
+
+  Tổng quát (Jacobian): $\mathbf{Y} = \mathbf{g}(\mathbf{X})$: $f_{\mathbf{Y}}(\mathbf{y}) = f_{\mathbf{X}}\!\bigl(\mathbf{g}^{-1}(\mathbf{y})\bigr)\,|J^{-1}|$.
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 5: CÁC BẤT ĐẲNG THỨC VÀ ĐỊNH LÝ GIỚI HẠN
+%% ================================================================
+\section{Các bất đẳng thức và định lý giới hạn}
+
+\begin{dinhly}[title={Bất đẳng thức Markov}]
+  Nếu $X \ge 0$ thì $P(X \ge a) \le \dfrac{E[X]}{a}$, $\forall a > 0$.
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Chebyshev}]
+  $P(|X - EX| \ge \varepsilon) \le \dfrac{\text{Var}(X)}{\varepsilon^2}$.
+\end{dinhly}
+
+\begin{dinhly}[title={Luật số lớn yếu (Khinchin)}]
+  Cho $X_1, X_2, \ldots$ iid với $E[X_i] = \mu$. Đặt $\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n}X_i$. Thì:
+  \[
+    \bar{X}_n \xrightarrow{P} \mu \qquad (n \to \infty).
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Luật số lớn mạnh (Kolmogorov)}]
+  Dưới điều kiện trên: $\bar{X}_n \xrightarrow{\text{a.s.}} \mu$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý giới hạn trung tâm (CLT)}]
+  Cho $X_1, X_2, \ldots$ iid, $E[X_i] = \mu$, $\text{Var}(X_i) = \sigma^2 < \infty$. Thì:
+  \[
+    \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1).
+  \]
+  Xấp xỉ: $\bar{X}_n \approx \mathcal{N}\!\left(\mu, \dfrac{\sigma^2}{n}\right)$ khi $n$ lớn.
+\end{dinhly}
+
+\begin{luuy}
+  CLT giải thích tại sao phân phối chuẩn xuất hiện khắp nơi: tổng nhiều yếu tố ngẫu nhiên nhỏ, độc lập sẽ xấp xỉ phân phối chuẩn.
+\end{luuy}
+
+\end{document}

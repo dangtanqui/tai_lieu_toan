@@ -1,0 +1,208 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{PHƯƠNG PHÁP SỐ}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {PHƯƠNG PHÁP SỐ};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Sai số, nội suy, tích phân số, Runge--Kutta, hệ tuyến tính};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: SAI SỐ VÀ ỔN ĐỊNH
+%% ================================================================
+\section{Sai số và ổn định}
+
+\begin{dinhnghia}[title={Sai số}]
+  \begin{itemize}
+    \item \textbf{Sai số tuyệt đối}: $\Delta x = |x - \tilde{x}|$.
+    \item \textbf{Sai số tương đối}: $\delta x = \dfrac{|x - \tilde{x}|}{|x|}$, $x \ne 0$.
+    \item \textbf{Sai số làm tròn}: do biểu diễn dấu phẩy động (IEEE 754), $\varepsilon_{\text{mach}} \approx 2.2 \times 10^{-16}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Số điều kiện}]
+  $\text{cond}(\mathbf{A}) = \|\mathbf{A}\|\cdot\|\mathbf{A}^{-1}\|$. Bài toán \textbf{ill-conditioned} khi $\text{cond}(\mathbf{A}) \gg 1$: sai số nhỏ ở dữ liệu gây sai số lớn ở nghiệm.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Ổn định}]
+  Thuật toán \textbf{ổn định} nếu sai số tích lũy không tăng vượt mức so với sai số đầu vào. Phân biệt: ổn định thuận (forward), ổn định ngược (backward).
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: GIẢI HỆ PHƯƠNG TRÌNH TUYẾN TÍNH
+%% ================================================================
+\section{Giải hệ phương trình tuyến tính}
+
+\begin{phuongphap}[title={Khử Gauss (LU)}]
+  $\mathbf{A} = \mathbf{L}\mathbf{U}$ (phân tích LU). Chọn pivot (partial pivoting): $\mathbf{P}\mathbf{A} = \mathbf{L}\mathbf{U}$. Chi phí: $\frac{2}{3}n^3$ flops.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phân tích Cholesky}]
+  $\mathbf{A}$ đối xứng xác định dương: $\mathbf{A} = \mathbf{L}\mathbf{L}^T$. Chi phí: $\frac{1}{3}n^3$ flops.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp lặp: Jacobi, Gauss--Seidel, SOR}]
+  \textbf{Jacobi}: $x_i^{(k+1)} = \frac{1}{a_{ii}}\Bigl(b_i - \sum_{j \ne i}a_{ij}x_j^{(k)}\Bigr)$.
+
+  \textbf{Gauss--Seidel}: dùng $x_j^{(k+1)}$ ngay khi có.
+
+  \textbf{SOR}: $x^{(k+1)} = (1-\omega)x^{(k)} + \omega\,x^{(k+1)}_{\text{GS}}$, $\omega \in (0, 2)$.
+
+  Hội tụ khi bán kính phổ $\rho(\mathbf{M}) < 1$. Đủ: $\mathbf{A}$ chéo trội chặt.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 3: NỘI SUY VÀ XẤP XỈ
+%% ================================================================
+\section{Nội suy và xấp xỉ}
+
+\begin{dinhnghia}[title={Nội suy đa thức}]
+  Cho $(x_i, y_i)$, $i = 0, \ldots, n$ (các $x_i$ phân biệt). Tìm đa thức $P_n(x)$ bậc $\le n$: $P_n(x_i) = y_i$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Nội suy Lagrange}]
+  \[
+    P_n(x) = \sum_{i=0}^{n} y_i \prod_{\substack{j=0\\j \ne i}}^{n} \frac{x - x_j}{x_i - x_j}.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Sai phân chia --- Newton}]
+  $P_n(x) = f[x_0] + f[x_0, x_1](x - x_0) + \cdots + f[x_0, \ldots, x_n]\prod_{i=0}^{n-1}(x - x_i)$.
+\end{congthuc}
+
+\begin{dinhly}[title={Sai số nội suy}]
+  $f(x) - P_n(x) = \frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^{n}(x - x_i)$ với $\xi$ nào đó trong khoảng chứa $x, x_0, \ldots, x_n$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Spline bậc 3}]
+  Nội suy từng đoạn bởi đa thức bậc 3, liên tục $C^2$. Tránh hiện tượng Runge.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Xấp xỉ bình phương tối thiểu}]
+  $\min \sum_{i=0}^{m}\bigl(y_i - P(x_i)\bigr)^2$. Hệ phương trình chuẩn tắc: $\mathbf{A}^T\mathbf{A}\mathbf{c} = \mathbf{A}^T\mathbf{y}$.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 4: PHƯƠNG TRÌNH PHI TUYẾN
+%% ================================================================
+\section{Giải phương trình phi tuyến}
+
+\begin{phuongphap}[title={Chia đôi (Bisection)}]
+  $f$ liên tục, $f(a)f(b) < 0$. Lặp: $c = (a+b)/2$. Hội tụ tuyến tính: $|x_k - x^*| \le (b-a)/2^k$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Newton--Raphson}]
+  $x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}$. Hội tụ bậc 2 nếu $f'(x^*) \ne 0$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Dây cung (Secant)}]
+  $x_{k+1} = x_k - f(x_k)\frac{x_k - x_{k-1}}{f(x_k) - f(x_{k-1})}$. Bậc hội tụ $\approx 1.618$ (tỉ số vàng).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Lặp điểm bất động}]
+  $x_{k+1} = g(x_k)$. Hội tụ nếu $|g'(x)| < 1$ trong lân cận nghiệm.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 5: TÍCH PHÂN SỐ
+%% ================================================================
+\section{Tích phân số}
+
+\begin{congthuc}[title={Hình thang}]
+  $\displaystyle\int_a^b f(x)\,dx \approx \frac{h}{2}\Bigl[f(a) + 2\sum_{i=1}^{n-1}f(x_i) + f(b)\Bigr]$, $h = \frac{b-a}{n}$. Sai số $O(h^2)$.
+\end{congthuc}
+
+\begin{congthuc}[title={Simpson}]
+  $\displaystyle\int_a^b f(x)\,dx \approx \frac{h}{3}\Bigl[f(x_0) + 4\sum_{\text{lẻ}}f(x_i) + 2\sum_{\text{chẵn}}f(x_i) + f(x_n)\Bigr]$, $n$ chẵn. Sai số $O(h^4)$.
+\end{congthuc}
+
+\begin{congthuc}[title={Cầu phương Gauss}]
+  $\displaystyle\int_{-1}^{1}f(x)\,dx \approx \sum_{i=1}^{n}w_i f(x_i)$, $x_i$ là nghiệm của đa thức Legendre $P_n$. Chính xác cho đa thức bậc $\le 2n - 1$.
+\end{congthuc}
+
+%% ================================================================
+%%  CHƯƠNG 6: PHƯƠNG TRÌNH VI PHÂN SỐ
+%% ================================================================
+\section{Phương trình vi phân thường --- Giải số}
+
+\begin{dinhnghia}[title={Bài toán Cauchy}]
+  $y' = f(t, y)$, $y(t_0) = y_0$. Tìm $y(t)$ trên $[t_0, T]$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Euler tiến}]
+  $y_{k+1} = y_k + hf(t_k, y_k)$. Bậc 1: sai số cục bộ $O(h^2)$, toàn cục $O(h)$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Euler lùi (ẩn)}]
+  $y_{k+1} = y_k + hf(t_{k+1}, y_{k+1})$. A-stable, phù hợp bài toán cứng (stiff).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Runge--Kutta bậc 4 (RK4)}]
+  \begin{align*}
+    k_1 &= f(t_k, y_k), \quad k_2 = f(t_k + h/2,\; y_k + hk_1/2), \\
+    k_3 &= f(t_k + h/2,\; y_k + hk_2/2), \quad k_4 = f(t_k + h,\; y_k + hk_3), \\
+    y_{k+1} &= y_k + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4).
+  \end{align*}
+  Sai số toàn cục $O(h^4)$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phương pháp đa bước (Adams)}]
+  \textbf{Adams--Bashforth} (hiện): dùng $f$ tại $k, k-1, \ldots$
+
+  \textbf{Adams--Moulton} (ẩn): bao gồm $f$ tại $k+1$. Ổn định hơn.
+
+  Kết hợp: predictor-corrector.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Ổn định tuyệt đối}]
+  Phương trình test: $y' = \lambda y$, $\text{Re}(\lambda) < 0$. Vùng ổn định: $\{h\lambda \in \mathbb{C} : |y_{k+1}/y_k| \le 1\}$.
+\end{dinhnghia}
+
+\end{document}

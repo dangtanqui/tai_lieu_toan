@@ -1,0 +1,192 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN RỜI RẠC NÂNG CAO}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN RỜI RẠC NÂNG CAO};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Đường đi ngắn nhất, luồng, tô màu, Ramsey, matroid};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: ĐƯỜNG ĐI NGẮN NHẤT
+%% ================================================================
+\section{Đường đi ngắn nhất}
+
+\begin{phuongphap}[title={Thuật toán Dijkstra}]
+  Đồ thị có trọng số không âm, một nguồn.
+  \begin{enumerate}
+    \item $d[s] = 0$, $d[v] = \infty$ $\forall v \ne s$.
+    \item Lặp: chọn $u$ chưa xét có $d[u]$ nhỏ nhất; cập nhật $d[v] = \min(d[v],\, d[u] + w(u,v))$.
+  \end{enumerate}
+  Độ phức tạp: $O((V + E)\log V)$ (hàng đợi ưu tiên).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Thuật toán Bellman--Ford}]
+  Cho phép trọng số âm (không có chu trình âm):
+  \begin{enumerate}
+    \item Lặp $|V|-1$ lần: với mọi cạnh $(u,v)$, cập nhật $d[v] = \min(d[v],\, d[u]+w(u,v))$.
+    \item Lần thứ $|V|$: nếu còn cải thiện $\Rightarrow$ tồn tại chu trình âm.
+  \end{enumerate}
+  Độ phức tạp: $O(VE)$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Floyd--Warshall (mọi cặp đỉnh)}]
+  $d[i][j] = \min(d[i][j],\, d[i][k] + d[k][j])$ với mọi $k$. Độ phức tạp: $O(V^3)$.
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 2: LUỒNG CỰC ĐẠI
+%% ================================================================
+\section{Luồng cực đại}
+
+\begin{dinhnghia}[title={Mạng và luồng}]
+  Mạng $G = (V, E, c, s, t)$: đồ thị có hướng với khả năng thông qua $c(u,v) \ge 0$, nguồn $s$, đích $t$.
+
+  \textbf{Luồng} $f: E \to \mathbb{R}_{\ge 0}$:
+  \begin{enumerate}
+    \item $0 \le f(u,v) \le c(u,v)$ (ràng buộc khả năng).
+    \item Bảo toàn: $\sum_u f(u,v) = \sum_w f(v,w)$ $\forall v \ne s, t$.
+  \end{enumerate}
+  \textbf{Giá trị luồng:} $|f| = \sum_v f(s,v) - \sum_v f(v,s)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Lát cắt}]
+  \textbf{Lát cắt} $(S, T)$: $S \cup T = V$, $s \in S$, $t \in T$. Khả năng: $c(S,T) = \sum_{u \in S, v \in T} c(u,v)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Max-flow Min-cut}]
+  Giá trị luồng cực đại = khả năng lát cắt cực tiểu:
+  \[
+    \max_f |f| = \min_{(S,T)} c(S, T).
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Ford--Fulkerson}]
+  Lặp: tìm đường tăng (augmenting path) trong đồ thị thặng dư, tăng luồng dọc đường. Kết thúc khi không còn đường tăng.
+
+  \textbf{Edmonds--Karp} (BFS): $O(VE^2)$.
+\end{phuongphap}
+
+\begin{dinhly}[title={Đối sánh hai phía (bipartite matching)}]
+  Đối sánh cực đại trong đồ thị hai phía = luồng cực đại trong mạng tương ứng.
+
+  \textbf{Định lý Hall}: đối sánh hoàn hảo tồn tại $\Leftrightarrow$ $|N(S)| \ge |S|$ $\forall S \subset A$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: TÔ MÀU ĐỒ THỊ
+%% ================================================================
+\section{Tô màu đồ thị}
+
+\begin{dinhnghia}
+  \textbf{Tô màu đỉnh}: gán mỗi đỉnh một màu sao cho hai đỉnh kề có màu khác nhau. \textbf{Sắc số} $\chi(G)$: số màu ít nhất cần dùng.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $\chi(K_n) = n$.
+    \item $\chi(C_{2k}) = 2$, $\chi(C_{2k+1}) = 3$.
+    \item $G$ hai phía $\Leftrightarrow$ $\chi(G) \le 2$ $\Leftrightarrow$ không có chu trình lẻ.
+    \item $\chi(G) \le \Delta(G) + 1$ ($\Delta$: bậc cực đại). \textbf{Brooks}: $\chi \le \Delta$ trừ $K_n$ và $C_{2k+1}$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhly}[title={Định lý bốn màu}]
+  Mọi đồ thị phẳng có $\chi \le 4$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Đa thức sắc}]
+  $P(G, k)$: số cách tô $k$ màu hợp lệ. Là đa thức bậc $|V|$ theo $k$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tô màu cạnh}]
+  \textbf{Chỉ số sắc} $\chi'(G)$: số màu ít nhất tô cạnh sao cho hai cạnh chung đỉnh khác màu.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Vizing}]
+  $\Delta(G) \le \chi'(G) \le \Delta(G) + 1$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 4: TỔ HỢP NÂNG CAO
+%% ================================================================
+\section{Tổ hợp nâng cao}
+
+\begin{dinhly}[title={Ramsey}]
+  $R(s, t)$: số nguyên nhỏ nhất $n$ sao cho trong bất kỳ cách tô 2 màu cạnh $K_n$, luôn tồn tại $K_s$ đơn sắc hoặc $K_t$ đơn sắc. $R(s, t)$ luôn hữu hạn. $R(3,3) = 6$.
+\end{dinhly}
+
+\begin{dinhly}[title={Bổ đề Burnside (Cauchy--Frobenius)}]
+  Số quỹ đạo của nhóm $G$ tác động trên $X$:
+  \[
+    |X/G| = \frac{1}{|G|}\sum_{g \in G} |X^g|,
+  \]
+  $X^g = \{x : g \cdot x = x\}$ (tập điểm bất động).
+\end{dinhly}
+
+\begin{dinhly}[title={Đếm Pólya}]
+  Số cách tô $k$ màu lên cấu hình dưới nhóm đối xứng $G$:
+  \[
+    |X/G| = \frac{1}{|G|}\sum_{g \in G} k^{c(g)},
+  \]
+  $c(g)$: số chu trình trong phân tích hoán vị $g$.
+\end{dinhly}
+
+\begin{dinhnghia}[title={Matroid}]
+  $(E, \mathcal{I})$: $E$ hữu hạn, $\mathcal{I} \subset \mathcal{P}(E)$ (tập độc lập) thỏa:
+  \begin{enumerate}
+    \item $\varnothing \in \mathcal{I}$.
+    \item $A \in \mathcal{I}$, $B \subset A$ $\Rightarrow$ $B \in \mathcal{I}$ (tính di truyền).
+    \item $A, B \in \mathcal{I}$, $|A| < |B|$ $\Rightarrow$ $\exists b \in B \setminus A$: $A \cup \{b\} \in \mathcal{I}$ (tính trao đổi).
+  \end{enumerate}
+  Ví dụ: matroid đồ thị (tập cạnh không chứa chu trình), matroid tuyến tính.
+\end{dinhnghia}
+
+\end{document}

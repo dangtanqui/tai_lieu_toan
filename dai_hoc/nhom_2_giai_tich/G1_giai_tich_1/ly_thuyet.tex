@@ -1,0 +1,998 @@
+\documentclass[12pt,a4paper]{article}
+
+% ==================== PACKAGES ====================
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Giải tích 1}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+  \fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+\newtcolorbox{dinhnghia}[1][]{%
+  enhanced, breakable, colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1%
+}
+\newtcolorbox{dinhly}[1][]{%
+  enhanced, breakable, colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý}, #1%
+}
+\newtcolorbox{tinhchat}[1][]{%
+  enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black,
+  fonttitle=\bfseries, title={Tính chất}, #1%
+}
+\newtcolorbox{phuongphap}[1][]{%
+  enhanced, breakable, colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp}, #1%
+}
+\newtcolorbox{luuy}[1][]{%
+  enhanced, breakable, colback=red!3!white, colframe=red!50!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1%
+}
+\newtcolorbox{congthuc}[1][]{%
+  enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black,
+  fonttitle=\bfseries, title={Công thức}, #1%
+}
+\newtcolorbox{vidu}[1][]{%
+  enhanced, breakable, colback=violet!3!white, colframe=violet!50!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1%
+}
+
+\begin{document}
+
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH 1};
+  \node[anchor=west, white, font=\fontsize{20}{26}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Vi tích phân hàm một biến --- Năm 1, HK1};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-10cm]current page.north west) {Tài liệu lý thuyết};
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{24}{30}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+
+\newpage
+\tableofcontents
+\newpage
+
+%% ================================================================
+%%  CHƯƠNG 1: HÀM SỐ, GIỚI HẠN, LIÊN TỤC
+%% ================================================================
+\section{Hàm số, giới hạn và liên tục}
+
+\subsection{Hàm số}
+
+\begin{dinhnghia}
+  \textbf{Hàm số} $f: D \to \mathbb{R}$ (ánh xạ) là quy tắc cho tương ứng mỗi $x \in D$ với đúng một số thực $f(x)$.
+  
+  $D$ hoặc $D_f$ gọi là \textbf{tập xác định}. $x \in D_f$ là đối số.
+
+  $f(D)$ hoặc $R_f$ gọi là \textbf{miền giá trị}. $f(x) \in R_f$ là hàm số
+\end{dinhnghia}
+
+Đồ thị: tập các cặp số $(a, b) \in \mathbb{R} X \mathbb{R}$
+
+\begin{dinhnghia}
+  Hàm số $f$ gọi là \textbf{chẵn} nếu $f(-x) = f(x)$, nhận trục $Oy$ làm trục đối xứng.
+  
+  \textbf{Lẻ} nếu $f(-x) = -f(x)$, nhận tâm $O$ làm tâm đối xứng.
+\end{dinhnghia}
+
+\begin{vidu}
+    Hàm số $y = x^n$ là chẳn nếu $n$ chẳn, là lẻ nếu $n$ lẻ
+\end{vidu}
+
+\begin{dinhnghia}
+  Hàm số $f$ gọi là \textbf{tuần hoàn} chu kỳ $T > 0$ và $T$ nhỏ nhất nếu $f(x + T) = f(x)$ với mọi $x$.
+\end{dinhnghia}
+
+\begin{vidu}
+    Hàm số $y = \sin x, y = \cos x$ tuần hoàn với $T = 2\pi$
+
+    Hàm số $y = \tan x, y = \cot x$ tuần hoàn với $T = \pi$
+\end{vidu}
+
+\begin{dinhnghia}[title={Hàm số đơn điệu}]
+  Cho $f: D \to \mathbb{R}$ và $I \subset D$ là khoảng.
+  \begin{itemize}
+    \item $f$ \textbf{tăng} trên $I$ nếu $\forall x_1, x_2 \in I:\; x_1 < x_2 \Rightarrow f(x_1) \le f(x_2)$.
+    \item $f$ \textbf{tăng nghiêm ngặt} trên $I$ nếu $\forall x_1, x_2 \in I:\; x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$.
+    \item $f$ \textbf{giảm} trên $I$ nếu $\forall x_1, x_2 \in I:\; x_1 < x_2 \Rightarrow f(x_1) \ge f(x_2)$.
+    \item $f$ \textbf{giảm nghiêm ngặt} trên $I$ nếu $\forall x_1, x_2 \in I:\; x_1 < x_2 \Rightarrow f(x_1) > f(x_2)$.
+  \end{itemize}
+  Hàm tăng hoặc giảm gọi chung là \textbf{hàm đơn điệu}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm số bị chặn}]
+  Hàm $f: D \to \mathbb{R}$ gọi là \textbf{bị chặn trên} nếu $\exists M:\; f(x) \le M,\; \forall x \in D$. 
+  
+  \textbf{Bị chặn dưới} nếu $\exists m:\; f(x) \ge m,\; \forall x \in D$.
+  
+  Bị chặn trên và dưới gọi là \textbf{bị chặn}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm số hợp}]
+  Cho $g: D_1 \to \mathbb{R}$ và $f: D_2 \to \mathbb{R}$ với $g(D_1) \subset D_2$. \textbf{Hàm hợp} $f \circ g$ xác định bởi:
+  \[
+    (f \circ g)(x) = f\bigl(g(x)\bigr),\quad x \in D_1.
+  \]
+\end{dinhnghia}
+
+\begin{vidu}
+    Hàm số $f(x) = x^2 + 2, g(x) = 3x + 1$. Khi đó $f(g(x)) = (3x+1)^2 + 2$ và $g(f(x)) = 3(x^2 + 2) + 1$
+\end{vidu}
+
+\begin{dinhnghia}[title={Hàm số ngược}]
+  Nếu $f: D \to E$ là song ánh (đơn ánh và toàn ánh), thì tồn tại \textbf{hàm ngược} $f^{-1}: E \to D$ sao cho:
+  \[
+    y = f(x) \;\Leftrightarrow\; x = f^{-1}(y).
+  \]
+  Đồ thị $y = f^{-1}(x)$ đối xứng với đồ thị $y = f(x)$ qua đường thẳng $y = x$.
+\end{dinhnghia}
+
+\begin{vidu}
+    Hàm số $f: R_+ \to R_+: f(x) = x^2$. Khi đó $x^2 = y$ có nghiệm duy nhất $x = \sqrt{y}$ nên có hàm số ngược là $f^{-1}(y) = \sqrt{y}$.
+\end{vidu}
+
+\begin{luuy}
+  Hàm đơn điệu nghiêm ngặt trên $D$ luôn có hàm ngược. Nếu $f$ tăng nghiêm ngặt thì $f^{-1}$ cũng tăng nghiêm ngặt; tương tự với giảm nghiêm ngặt.
+\end{luuy}
+
+\subsubsection{Các hàm số sơ cấp cơ bản}
+
+\begin{congthuc}[title={Bảng hàm số sơ cấp cơ bản}]
+  \begin{enumerate}
+    \item \textbf{Hàm lũy thừa:} $y = x^\alpha$ ($\alpha \in \mathbb{R}$), TXĐ phụ thuộc $\alpha$.
+    \begin{itemize}
+        \item Nếu $\alpha \in \mathbb{N}$ thì TXĐ là $\mathbb{R}$
+        \item Nếu $\alpha \in \mathbb{Z}_-$ thì TXĐ là $\mathbb{R} \backslash{0}$
+        \item Nếu $\alpha$ có dạng $\dfrac{1}{p}$ với $p \in \mathbb{Z} \backslash{0}$ thì
+        \begin{itemize}
+            \item Nếu $p \in \mathbb{N}^*$ chẵn thì TXĐ là $\mathbb{R}_+ \cup 0$
+            \item Nếu $p \in \mathbb{N}^*$ lẻ thì TXĐ là $\mathbb{R}$
+            \item Nếu $p \in \mathbb{Z}_-$ chẵn thì TXĐ là $\mathbb{R}_+$
+            \item Nếu $p \in \mathbb{Z}_-$ lẻ thì TXĐ là $\mathbb{R} \backslash{0}$
+        \end{itemize}
+        \item Nếu $\alpha$ là số vô tỉ thì
+        \begin{itemize}
+            \item Nếu $\alpha > 0$ thì TXĐ là $\mathbb{R}_+ \cup 0$
+            \item Nếu $\alpha < 0$ thì TXĐ là $\mathbb{R}_+$
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Hàm mũ:} $y = a^x$ ($a > 0,\, a \ne 1$), TXĐ là $\mathbb{R}$, tập giá trị $(0, +\infty)$.
+    \item \textbf{Hàm logarit:} $y = \log_a x$ ($a > 0,\, a \ne 1$), TXĐ là $\mathbb{R_+}$, tập giá trị $\mathbb{R}$.
+    \item \textbf{Hàm lượng giác:}
+    \begin{itemize}
+        \item $\sin x$, $\cos x$, TXĐ là $\mathbb{R}$, tập giá trị $[-1,1]$
+        \item $\tan x$, TXĐ là $\mathbb{R} \backslash{\dfrac{\pi}{2} + k\pi}$, $k \in \mathbb{Z}$, tập giá trị $\mathbb{R}$
+        \item $\cot x$, TXĐ là $\mathbb{R} \backslash{k\pi}$, $k \in \mathbb{Z}$, tập giá trị $\mathbb{R}$
+    \end{itemize}
+    \item \textbf{Hàm lượng giác ngược:}
+      \begin{itemize}
+        \item $y = \arcsin x$: TXĐ là $[-1, 1]$, tập giá trị $\left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]$.
+        \item $y = \arccos x$: TXĐ là $[-1, 1]$, tập giá trị $[0, \pi]$.
+        \item $y = \arctan x$: TXĐ là $\mathbb{R}$, tập giá trị $\left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right)$.
+        \item $y = \text{arccot}\, x$: TXĐ là $\mathbb{R}$, tập giá trị $(0, \pi)$.
+      \end{itemize}
+    \item \textbf{Hàm hyperbolic:} $\sinh x = \dfrac{e^x - e^{-x}}{2}$, \;$\cosh x = \dfrac{e^x + e^{-x}}{2}$, \;$\tanh x = \dfrac{\sinh x}{\cosh x}$.
+  \end{enumerate}
+\end{congthuc}
+
+\begin{tinhchat}[title={Tổng, hiệu, tích, thương hàm số}]
+  Cho $f, g: D \to \mathbb{R}$:
+  \begin{itemize}
+    \item $(f \pm g)(x) = f(x) \pm g(x)$, \quad $(f \cdot g)(x) = f(x) \cdot g(x)$.
+    \item $\left(\dfrac{f}{g}\right)(x) = \dfrac{f(x)}{g(x)}$ với $g(x) \ne 0$.
+  \end{itemize}
+  \textbf{Hàm số sơ cấp} là hàm được tạo từ các hàm sơ cấp cơ bản qua hữu hạn lần phép tính đại số và phép hợp.
+\end{tinhchat}
+
+\begin{vidu}
+    Hàm số $y = \sin 8x + \cos (2x+ \dfrac{\pi}{4}) + 3\sqrt{x^3} + \dfrac{x + x^2 + 1}{\lg(3x + 7) + 2^{-x}} - 3$ là hàm số sơ cấp
+\end{vidu}
+
+Đa thức bậc n
+
+Phân thức hữu tỉ
+
+\subsubsection{Đa thức nội suy}
+
+\begin{dinhnghia}[title={Nội suy Lagrange}]
+  Cho $n+1$ điểm phân biệt $(x_0, y_0), (x_1, y_1), \ldots, (x_n, y_n)$. Đa thức nội suy Lagrange bậc $n$:
+  \[
+    L_n(x) = \sum_{i=0}^{n} y_i \prod_{\substack{j=0 \\ j \ne i}}^{n} \frac{x - x_j}{x_i - x_j}.
+  \]
+\end{dinhnghia}
+
+\begin{vidu}
+  \textbf{Nội suy tuyến tính} (bậc 1): Qua 2 điểm $(x_0, y_0)$, $(x_1, y_1)$:
+  \[
+    L_1(x) = y_0 \cdot \frac{x - x_1}{x_0 - x_1} + y_1 \cdot \frac{x - x_0}{x_1 - x_0}.
+  \]
+  \textbf{Nội suy bậc hai}: Qua 3 điểm $(x_0, y_0)$, $(x_1, y_1)$, $(x_2, y_2)$:
+  \[
+    L_2(x) = y_0 \cdot \frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)} + y_1 \cdot \frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)} + y_2 \cdot \frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)}.
+  \]
+\end{vidu}
+
+\subsection{Giới hạn dãy số}
+
+\begin{dinhnghia}
+  Dãy $(x_n)$ có \textbf{giới hạn} $L$ (viết $\displaystyle\lim_{n \to \infty} x_n = L$) nếu:
+  \[
+    \forall \varepsilon > 0,\; \exists N \in \mathbb{N}:\; n > N \Rightarrow |x_n - L| < \varepsilon.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Giới hạn cơ bản}]
+  \begin{itemize}
+    \item $\displaystyle\lim_{n \to \infty} \frac{1}{n^p} = 0$ ($p > 0$).
+    \item $\displaystyle\lim_{n \to \infty} q^n = 0$ nếu $|q| < 1$.
+    \item $\displaystyle\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e$.
+  \end{itemize}
+\end{dinhly}
+
+\subsection{Giới hạn hàm số}
+
+\begin{dinhnghia}
+  $\displaystyle\lim_{x \to x_0} f(x) = L$ với $x_0 \in (a, b)$ nếu:
+  \[
+    \forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < |x - x_0| < \delta \Rightarrow |f(x) - L| < \varepsilon.
+  \]
+
+  Hoặc nếu bất kỳ dãy $(x_n) \in (a, b) \backslash {x_0}$ mà $\displaystyle\lim_{n \to \infty} x_n = x_0$ thì $\displaystyle\lim_{n \to \infty} f(x_n) = L$
+\end{dinhnghia}
+
+\begin{congthuc}[title={Giới hạn quan trọng}]
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to 0} \frac{\sin x}{x} = 1$.
+    \item $\displaystyle\lim_{x \to 0} \frac{e^x - 1}{x} = 1$.
+    \item $\displaystyle\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhnghia}[title={Giới hạn một phía}]
+  \begin{itemize}
+    \item \textbf{Giới hạn bên phải:} $\displaystyle\lim_{x \to x_0^+} f(x) = L$ nếu $\forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < x - x_0 < \delta \Rightarrow |f(x) - L| < \varepsilon$.
+    \item \textbf{Giới hạn bên trái:} $\displaystyle\lim_{x \to x_0^-} f(x) = L$ nếu $\forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < x_0 - x < \delta \Rightarrow |f(x) - L| < \varepsilon$.
+  \end{itemize}
+  $\displaystyle\lim_{x \to x_0} f(x) = L$ khi và chỉ khi $\displaystyle\lim_{x \to x_0^+} f(x) = \lim_{x \to x_0^-} f(x) = L$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Các phép toán trên giới hạn}]
+  Nếu $\displaystyle\lim_{x \to x_0} f(x) = L$ và $\displaystyle\lim_{x \to x_0} g(x) = M$ thì:
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to x_0} \bigl[f(x) \pm g(x)\bigr] = L \pm M$.
+    \item $\displaystyle\lim_{x \to x_0} \bigl[f(x) \cdot g(x)\bigr] = L \cdot M$.
+    \item $\displaystyle\lim_{x \to x_0} \dfrac{f(x)}{g(x)} = \dfrac{L}{M}$ khi $M \ne 0$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Các dạng vô định}]
+  Khi tính giới hạn, ta có thể gặp các \textbf{dạng vô định} sau:
+  \[
+    \frac{0}{0}, \quad \frac{\infty}{\infty}, \quad 0 \cdot \infty, \quad \infty - \infty, \quad 1^\infty, \quad 0^0, \quad \infty^0.
+  \]
+  Các dạng vô định cần biến đổi trước khi tính giới hạn (phân tích, nhân liên hợp, khai triển Taylor, quy tắc L'Hôpital\ldots).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Giới hạn quan trọng mở rộng}]
+  \begin{itemize}
+    \item $\displaystyle\lim_{x \to 0} \frac{\tan x}{x} = 1$, \quad $\displaystyle\lim_{x \to 0} \frac{\arcsin x}{x} = 1$, \quad $\displaystyle\lim_{x \to 0} \frac{\arctan x}{x} = 1$.
+    \item $\displaystyle\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1$, \quad $\displaystyle\lim_{x \to 0} \frac{a^x - 1}{x} = \ln a$ ($a > 0$).
+    \item $\displaystyle\lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x} = \alpha$ ($\alpha \in \mathbb{R}$).
+    \item $\displaystyle\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}$.
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{Vô cùng bé và vô cùng lớn}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item $\alpha(x)$ là \textbf{vô cùng bé} (VCB) khi $x \to x_0$ nếu $\displaystyle\lim_{x \to x_0} \alpha(x) = 0$.
+    \item $A(x)$ là \textbf{vô cùng lớn} (VCL) khi $x \to x_0$ nếu $\displaystyle\lim_{x \to x_0} |A(x)| = +\infty$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={So sánh các VCB}]
+  Cho $\alpha(x)$ và $\beta(x)$ là VCB khi $x \to x_0$, $\beta(x) \ne 0$ trong lân cận $x_0$:
+  \begin{itemize}
+    \item Nếu $\displaystyle\lim \frac{\alpha}{\beta} = 0$: $\alpha$ là VCB \textbf{bậc cao hơn} $\beta$, ký hiệu $\alpha = o(\beta)$.
+    \item Nếu $\displaystyle\lim \frac{\alpha}{\beta} = c \ne 0$ (hữu hạn): $\alpha$ và $\beta$ \textbf{cùng bậc}.
+    \item Nếu $\displaystyle\lim \frac{\alpha}{\beta} = 1$: $\alpha$ và $\beta$ \textbf{tương đương}, ký hiệu $\alpha \sim \beta$.
+    \item Nếu $\displaystyle\lim \frac{\alpha}{\beta^k} = c \ne 0$: $\alpha$ là VCB \textbf{bậc $k$} so với $\beta$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{congthuc}[title={Các VCB tương đương cơ bản khi $x \to 0$}]
+  \begin{gather*}
+    \sin x \sim x, \quad \tan x \sim x, \quad \arcsin x \sim x, \quad \arctan x \sim x, \\
+    1 - \cos x \sim \frac{x^2}{2}, \quad e^x - 1 \sim x, \quad \ln(1+x) \sim x, \\
+    a^x - 1 \sim x \ln a, \quad (1+x)^\alpha - 1 \sim \alpha x.
+  \end{gather*}
+\end{congthuc}
+
+\begin{dinhly}[title={Nguyên lý thay thế VCB tương đương}]
+  Nếu $\alpha \sim \alpha'$ và $\beta \sim \beta'$ khi $x \to x_0$ thì:
+  \[
+    \lim_{x \to x_0} \frac{\alpha(x)}{\beta(x)} = \lim_{x \to x_0} \frac{\alpha'(x)}{\beta'(x)}
+  \]
+  (nếu giới hạn vế phải tồn tại).
+\end{dinhly}
+
+\subsection{Hàm số liên tục}
+
+\begin{dinhnghia}
+  Hàm số $f$ \textbf{liên tục} tại $x_0$ nếu $\displaystyle\lim_{x \to x_0} f(x) = f(x_0)$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Phép toán trên hàm liên tục}]
+  Nếu $f$ và $g$ liên tục tại $x_0$ thì:
+  \begin{itemize}
+    \item $f \pm g$, \;$f \cdot g$ liên tục tại $x_0$.
+    \item $\dfrac{f}{g}$ liên tục tại $x_0$ nếu $g(x_0) \ne 0$.
+    \item $f \circ g$ liên tục tại $x_0$ (nếu $g$ liên tục tại $x_0$ và $f$ liên tục tại $g(x_0)$).
+  \end{itemize}
+  Mọi hàm sơ cấp đều liên tục trên tập xác định của nó.
+\end{tinhchat}
+
+\begin{dinhnghia}[title={Phân loại điểm gián đoạn}]
+  Nếu $f$ gián đoạn tại $x_0$:
+  \begin{itemize}
+    \item \textbf{Gián đoạn loại 1:} cả $\displaystyle\lim_{x \to x_0^-} f(x)$ và $\displaystyle\lim_{x \to x_0^+} f(x)$ đều tồn tại hữu hạn.
+    \begin{itemize}
+      \item Gián đoạn bỏ được: hai giới hạn bằng nhau nhưng $\ne f(x_0)$ (hoặc $f$ chưa xác định).
+      \item Gián đoạn không bỏ được (nhảy): hai giới hạn khác nhau.
+    \end{itemize}
+    \item \textbf{Gián đoạn loại 2:} ít nhất một giới hạn một phía không tồn tại hữu hạn.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý giá trị trung gian (Bolzano)}]
+  Nếu $f$ liên tục trên $[a,b]$ và $f(a) \cdot f(b) < 0$ thì tồn tại $c \in (a,b)$ sao cho $f(c) = 0$.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Weierstrass}]
+  Nếu $f$ liên tục trên $[a,b]$ (đoạn đóng, bị chặn) thì:
+  \begin{enumerate}
+    \item $f$ bị chặn trên $[a,b]$.
+    \item $f$ đạt giá trị lớn nhất và nhỏ nhất trên $[a,b]$.
+  \end{enumerate}
+\end{dinhly}
+
+\begin{dinhly}[title={Tính chất giá trị trung gian}]
+  Nếu $f$ liên tục trên $[a,b]$, $m = \min_{[a,b]} f$ và $M = \max_{[a,b]} f$, thì với mọi $\gamma \in [m, M]$, tồn tại $c \in [a,b]$ sao cho $f(c) = \gamma$.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 2: ĐẠO HÀM VÀ VI PHÂN
+%% ================================================================
+\section{Đạo hàm và vi phân}
+
+\subsection{Đạo hàm}
+
+\begin{dinhnghia}
+  \textbf{Đạo hàm} của $f$ tại $x_0$:
+  \[
+    f'(x_0) = \lim_{h \to 0} \frac{f(x_0 + h) - f(x_0)}{h} = \lim_{x \to x_0} \frac{f(x) - f(x_0)}{x - x_0}.
+  \]
+
+  Với $h = x - x_0$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đạo hàm một phía}]
+  \begin{itemize}
+    \item \textbf{Đạo hàm bên phải:} $f'_+(x_0) = \displaystyle\lim_{h \to 0^+} \frac{f(x_0 + h) - f(x_0)}{h}$.
+    \item \textbf{Đạo hàm bên trái:} $f'_-(x_0) = \displaystyle\lim_{h \to 0^-} \frac{f(x_0 + h) - f(x_0)}{h}$.
+  \end{itemize}
+  $f$ có đạo hàm tại $x_0$ khi và chỉ khi $f'_+(x_0) = f'_-(x_0)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tính khả vi}]
+  Hàm $f$ \textbf{khả vi} (differentiable) tại $x_0$ nếu tồn tại số $A$ sao cho:
+  \[
+    f(x_0 + h) - f(x_0) = Ah + o(h) \quad (h \to 0).
+  \]
+  Khi đó $A = f'(x_0)$.
+\end{dinhnghia}
+
+\begin{dinhly}
+  Nếu $f$ khả vi tại $x_0$ thì $f$ liên tục tại $x_0$. Điều ngược lại \textbf{không đúng} (ví dụ $f(x) = |x|$ liên tục tại $0$ nhưng không khả vi).
+\end{dinhly}
+
+\begin{congthuc}[title={Bảng đạo hàm cơ bản}]
+  \begin{align*}
+    (c)' &= 0, & (x^\alpha)' &= \alpha x^{\alpha - 1} \;(\alpha \in \mathbb{R}), \\
+    (\sin x)' &= \cos x, & (\cos x)' &= -\sin x, \\
+    (\tan x)' &= \frac{1}{\cos^2 x}, & (\cot x)' &= -\frac{1}{\sin^2 x}, \\
+    (e^x)' &= e^x, & (a^x)' &= a^x \ln a, \\
+    (\ln x)' &= \frac{1}{x}, & (\log_a x)' &= \frac{1}{x \ln a}, \\
+    (\arcsin x)' &= \frac{1}{\sqrt{1-x^2}}, & (\arccos x)' &= -\frac{1}{\sqrt{1-x^2}}, \\
+    (\arctan x)' &= \frac{1}{1+x^2}, & (\text{arccot}\, x)' &= -\frac{1}{1+x^2}, \\
+    (\sinh x)' &= \cosh x, & (\cosh x)' &= \sinh x.
+  \end{align*}
+\end{congthuc}
+
+\begin{congthuc}[title={Quy tắc tính đạo hàm}]
+  \begin{itemize}
+    \item $(u \pm v)' = u' \pm v'$, \quad $(cu)' = cu'$.
+    \item $(u \cdot v)' = u'v + uv'$.
+    \item $\left(\dfrac{u}{v}\right)' = \dfrac{u'v - uv'}{v^2}$ ($v \ne 0$).
+  \end{itemize}
+\end{congthuc}
+
+\subsubsection{Đạo hàm hàm hợp và hàm ngược}
+
+\begin{dinhly}[title={Đạo hàm hàm hợp (Chain rule)}]
+  Nếu $u = g(x)$ khả vi tại $x$ và $y = f(u)$ khả vi tại $u = g(x)$ thì $y = f(g(x))$ khả vi tại $x$ và:
+  \[
+    \bigl(f \circ g\bigr)'(x) = f'\bigl(g(x)\bigr) \cdot g'(x).
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Đạo hàm hàm ngược}]
+  Nếu $y = f(x)$ khả vi, đơn điệu nghiêm ngặt và $f'(x) \ne 0$, thì hàm ngược $x = f^{-1}(y)$ khả vi và:
+  \[
+    \bigl(f^{-1}\bigr)'(y) = \frac{1}{f'(x)} = \frac{1}{f'\bigl(f^{-1}(y)\bigr)}.
+  \]
+\end{dinhly}
+
+\begin{phuongphap}[title={Đạo hàm logarit}]
+  Khi $y = u(x)^{v(x)}$ (với $u > 0$), lấy $\ln$ hai vế rồi đạo hàm ẩn:
+  \[
+    \ln y = v(x) \ln u(x) \quad\Rightarrow\quad \frac{y'}{y} = v' \ln u + v \cdot \frac{u'}{u}.
+  \]
+\end{phuongphap}
+
+\subsection{Vi phân}
+
+\begin{dinhnghia}
+  \textbf{Vi phân} của $f$ tại $x$:
+  \[
+    df = f'(x)\, dx,
+  \]
+  trong đó $dx = \Delta x$ là số gia của biến độc lập. Vi phân $df$ là phần tuyến tính chính của số gia $\Delta f = f(x + dx) - f(x)$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính bất biến của dạng vi phân}]
+  Dù $x$ là biến độc lập hay hàm trung gian, công thức $df = f'(x)\,dx$ vẫn đúng. Cụ thể, nếu $x = \varphi(t)$ thì:
+  \[
+    df = f'(x)\,dx = f'\bigl(\varphi(t)\bigr)\,\varphi'(t)\,dt.
+  \]
+\end{tinhchat}
+
+\begin{congthuc}[title={Ứng dụng vi phân: tính gần đúng}]
+  $f(x_0 + \Delta x) \approx f(x_0) + f'(x_0)\,\Delta x$ khi $|\Delta x|$ nhỏ.
+\end{congthuc}
+
+\subsection{Đạo hàm và vi phân cấp cao}
+
+\begin{dinhnghia}
+  \textbf{Đạo hàm cấp $n$} của $f$ ký hiệu $f^{(n)}(x)$, xác định bởi đệ quy:
+  \[
+    f^{(n)}(x) = \bigl(f^{(n-1)}(x)\bigr)', \quad n \ge 2.
+  \]
+  \textbf{Vi phân cấp $n$}: $d^n f = f^{(n)}(x)\,(dx)^n$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm cấp $n$ thường gặp}]
+  \begin{itemize}
+    \item $(x^m)^{(n)} = m(m-1)\cdots(m-n+1)\,x^{m-n}$, \;$(x^n)^{(n)} = n!$.
+    \item $(e^{ax})^{(n)} = a^n e^{ax}$.
+    \item $(a^x)^{(n)} = a^x (\ln a)^n$.
+    \item $(\sin x)^{(n)} = \sin\!\left(x + \dfrac{n\pi}{2}\right)$, \;$(\cos x)^{(n)} = \cos\!\left(x + \dfrac{n\pi}{2}\right)$.
+    \item $(\ln x)^{(n)} = \dfrac{(-1)^{n-1}(n-1)!}{x^n}$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{dinhly}[title={Công thức Leibniz}]
+  Nếu $u$ và $v$ có đạo hàm cấp $n$ thì:
+  \[
+    (uv)^{(n)} = \sum_{k=0}^{n} \binom{n}{k}\, u^{(k)}\, v^{(n-k)}.
+  \]
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 3: CÁC ĐỊNH LÝ VỀ GIÁ TRỊ TRUNG BÌNH
+%% ================================================================
+\section{Các định lý về giá trị trung bình}
+
+\subsection{Định lý Fermat}
+
+\begin{dinhly}[title={Định lý Fermat}]
+  Nếu $f$ đạt cực trị địa phương tại $x_0$ và $f'(x_0)$ tồn tại thì $f'(x_0) = 0$.
+\end{dinhly}
+
+\subsection{Định lý Rolle}
+
+\begin{dinhly}[title={Định lý Rolle}]
+  Nếu $f$ thỏa:
+  \begin{enumerate}
+    \item Liên tục trên $[a,b]$,
+    \item Có đạo hàm trên $(a,b)$,
+    \item $f(a) = f(b)$,
+  \end{enumerate}
+  thì tồn tại $c \in (a,b)$ sao cho $f'(c) = 0$.
+\end{dinhly}
+
+\begin{luuy}
+  Định lý Rolle là trường hợp đặc biệt của định lý Lagrange khi $f(a) = f(b)$. Ý nghĩa hình học: tồn tại điểm trên đồ thị mà tiếp tuyến song song với trục hoành.
+\end{luuy}
+
+\subsection{Định lý Lagrange}
+
+\begin{dinhly}[title={Định lý Lagrange}]
+  Nếu $f$ liên tục trên $[a,b]$ và có đạo hàm trên $(a,b)$ thì tồn tại $c \in (a,b)$:
+  \[
+    f'(c) = \frac{f(b) - f(a)}{b - a}.
+  \]
+\end{dinhly}
+
+\subsection{Định lý Cauchy}
+
+\begin{dinhly}[title={Định lý Cauchy (Giá trị trung bình tổng quát)}]
+  Nếu $f$ và $g$ thỏa:
+  \begin{enumerate}
+    \item Liên tục trên $[a,b]$,
+    \item Có đạo hàm trên $(a,b)$,
+    \item $g'(x) \ne 0$ với mọi $x \in (a,b)$,
+  \end{enumerate}
+  thì tồn tại $c \in (a,b)$ sao cho:
+  \[
+    \frac{f'(c)}{g'(c)} = \frac{f(b) - f(a)}{g(b) - g(a)}.
+  \]
+\end{dinhly}
+
+\begin{luuy}
+  Khi $g(x) = x$, định lý Cauchy trở thành định lý Lagrange.
+\end{luuy}
+
+\subsection{Khai triển Taylor}
+
+\begin{congthuc}
+  \textbf{Khai triển Taylor} của $f$ tại $x_0$:
+  \[
+    f(x) = f(x_0) + f'(x_0)(x - x_0) + \frac{f''(x_0)}{2!}(x - x_0)^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + R_n(x).
+  \]
+  Khi $x_0 = 0$ gọi là \textbf{khai triển Maclaurin}.
+\end{congthuc}
+
+\begin{congthuc}[title={Các dạng số dư Taylor}]
+  \begin{itemize}
+    \item \textbf{Số dư Lagrange:} $R_n(x) = \dfrac{f^{(n+1)}(c)}{(n+1)!}(x - x_0)^{n+1}$, với $c$ nằm giữa $x_0$ và $x$.
+    \item \textbf{Số dư Cauchy:} $R_n(x) = \dfrac{f^{(n+1)}(c)}{n!}(x - c)^n(x - x_0)$, với $c$ nằm giữa $x_0$ và $x$.
+    \item \textbf{Số dư Peano:} $R_n(x) = o\bigl((x - x_0)^n\bigr)$ khi $x \to x_0$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{vidu}[title={Khai triển Maclaurin thường gặp}]
+  \begin{align*}
+    e^x &= 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots + \frac{x^n}{n!} + o(x^n), \\
+    \sin x &= x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots + \frac{(-1)^n x^{2n+1}}{(2n+1)!} + o(x^{2n+2}), \\
+    \cos x &= 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots + \frac{(-1)^n x^{2n}}{(2n)!} + o(x^{2n+1}), \\
+    \ln(1+x) &= x - \frac{x^2}{2} + \frac{x^3}{3} - \cdots + \frac{(-1)^{n-1} x^n}{n} + o(x^n), \\
+    (1+x)^\alpha &= 1 + \alpha x + \frac{\alpha(\alpha-1)}{2!}x^2 + \cdots + \binom{\alpha}{n} x^n + o(x^n), \\
+    \frac{1}{1-x} &= 1 + x + x^2 + \cdots + x^n + o(x^n) \quad (|x| < 1).
+  \end{align*}
+\end{vidu}
+
+\subsection{Mở rộng định lý Lagrange}
+
+\begin{dinhly}[title={Định lý Lagrange dạng hữu hạn}]
+  Nếu $f$ có đạo hàm đến cấp $n$ trên $(a,b)$, liên tục trên $[a,b]$, và $f'(a) = f''(a) = \cdots = f^{(n-1)}(a) = 0$, thì tồn tại $c \in (a,b)$ sao cho:
+  \[
+    f(b) - f(a) = \frac{f^{(n)}(c)}{n!}(b - a)^n.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Darboux (Tính chất giá trị trung gian của đạo hàm)}]
+  Nếu $f$ có đạo hàm trên $[a,b]$ (không cần $f'$ liên tục) thì $f'$ có tính chất giá trị trung gian: với mọi $\gamma$ nằm giữa $f'(a)$ và $f'(b)$, tồn tại $c \in (a,b)$ sao cho $f'(c) = \gamma$.
+\end{dinhly}
+
+\subsection{Ứng dụng}
+
+\subsubsection{Quy tắc L'Hôpital}
+
+\begin{dinhly}[title={Quy tắc L'Hôpital}]
+  Nếu:
+  \begin{enumerate}
+    \item $\displaystyle\lim_{x \to a} f(x) = \lim_{x \to a} g(x) = 0$ \;(hoặc cùng $= \pm\infty$),
+    \item $f$ và $g$ khả vi trong lân cận $a$ (trừ có thể tại $a$), $g'(x) \ne 0$,
+    \item $\displaystyle\lim_{x \to a} \frac{f'(x)}{g'(x)}$ tồn tại (hữu hạn hoặc $\pm\infty$),
+  \end{enumerate}
+  thì:
+  \[
+    \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{f'(x)}{g'(x)}.
+  \]
+  Quy tắc áp dụng cho cả $x \to a^{\pm}$, $x \to +\infty$, $x \to -\infty$.
+\end{dinhly}
+
+\begin{luuy}
+  Các dạng vô định $0 \cdot \infty$, $\infty - \infty$, $1^\infty$, $0^0$, $\infty^0$ cần biến đổi về $\dfrac{0}{0}$ hoặc $\dfrac{\infty}{\infty}$ trước khi áp dụng L'Hôpital.
+\end{luuy}
+
+\subsubsection{Khảo sát sự biến thiên của hàm số}
+
+\begin{dinhly}[title={Điều kiện đơn điệu}]
+  Cho $f$ khả vi trên $(a,b)$:
+  \begin{itemize}
+    \item $f'(x) \ge 0$ trên $(a,b)$ $\Leftrightarrow$ $f$ tăng trên $(a,b)$.
+    \item $f'(x) \le 0$ trên $(a,b)$ $\Leftrightarrow$ $f$ giảm trên $(a,b)$.
+    \item $f'(x) > 0$ trên $(a,b)$ (trừ hữu hạn điểm) $\Rightarrow$ $f$ tăng nghiêm ngặt.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}[title={Cực trị}]
+  $f$ đạt \textbf{cực đại địa phương} tại $x_0$ nếu $\exists \delta > 0:\; f(x) \le f(x_0),\;\forall x \in (x_0 - \delta, x_0 + \delta)$. Tương tự cho \textbf{cực tiểu}.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện đủ cực trị}]
+  \begin{itemize}
+    \item \textbf{Dấu hiệu 1 (đạo hàm cấp 1):} Nếu $f'$ đổi dấu qua $x_0$: từ $+$ sang $-$ thì $x_0$ là cực đại; từ $-$ sang $+$ thì $x_0$ là cực tiểu.
+    \item \textbf{Dấu hiệu 2 (đạo hàm cấp 2):} Nếu $f'(x_0) = 0$ và $f''(x_0) \ne 0$:
+      \begin{itemize}
+        \item $f''(x_0) < 0$: $x_0$ là cực đại.
+        \item $f''(x_0) > 0$: $x_0$ là cực tiểu.
+      \end{itemize}
+    \item \textbf{Dấu hiệu $n$ (đạo hàm cấp cao):} Nếu $f'(x_0) = \cdots = f^{(n-1)}(x_0) = 0$ và $f^{(n)}(x_0) \ne 0$:
+      \begin{itemize}
+        \item $n$ lẻ: $x_0$ không phải cực trị.
+        \item $n$ chẵn, $f^{(n)}(x_0) > 0$: cực tiểu; $f^{(n)}(x_0) < 0$: cực đại.
+      \end{itemize}
+  \end{itemize}
+\end{dinhly}
+
+\subsubsection{Hàm số lồi --- lõm}
+
+\begin{dinhnghia}
+  Hàm $f$ xác định trên khoảng $I$:
+  \begin{itemize}
+    \item \textbf{Lồi} (convex) trên $I$ nếu $\forall x_1, x_2 \in I,\; \forall \lambda \in [0,1]$:
+      \[
+        f\bigl(\lambda x_1 + (1-\lambda)x_2\bigr) \le \lambda f(x_1) + (1-\lambda) f(x_2).
+      \]
+    \item \textbf{Lõm} (concave) nếu bất đẳng thức ngược lại.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}
+  Nếu $f$ có đạo hàm cấp 2 trên $(a,b)$:
+  \begin{itemize}
+    \item $f''(x) \ge 0$ trên $(a,b)$ $\Leftrightarrow$ $f$ lồi trên $(a,b)$.
+    \item $f''(x) \le 0$ trên $(a,b)$ $\Leftrightarrow$ $f$ lõm trên $(a,b)$.
+  \end{itemize}
+  Điểm mà $f''$ đổi dấu gọi là \textbf{điểm uốn}.
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Jensen}]
+  Nếu $f$ lồi trên $I$, $x_1, \ldots, x_n \in I$, $\lambda_1, \ldots, \lambda_n \ge 0$, $\sum \lambda_i = 1$ thì:
+  \[
+    f\!\left(\sum_{i=1}^{n} \lambda_i x_i\right) \le \sum_{i=1}^{n} \lambda_i f(x_i).
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức về số trung bình}]
+  Với $a_1, \ldots, a_n > 0$:
+  \[
+    \frac{n}{\sum \frac{1}{a_i}} \le \sqrt[n]{\prod a_i} \le \frac{\sum a_i}{n} \le \sqrt{\frac{\sum a_i^2}{n}}
+  \]
+  (trung bình điều hòa $\le$ trung bình nhân $\le$ trung bình cộng $\le$ trung bình bình phương).
+\end{dinhly}
+
+\begin{dinhly}[title={Bất đẳng thức Hölder và Minkowski}]
+  Cho $p, q > 1$ với $\dfrac{1}{p} + \dfrac{1}{q} = 1$:
+  \begin{itemize}
+    \item \textbf{Hölder:} $\displaystyle\sum_{i=1}^{n} |a_i b_i| \le \left(\sum_{i=1}^{n} |a_i|^p\right)^{1/p} \left(\sum_{i=1}^{n} |b_i|^q\right)^{1/q}$.
+    \item \textbf{Minkowski:} $\displaystyle\left(\sum_{i=1}^{n} |a_i + b_i|^p\right)^{1/p} \le \left(\sum_{i=1}^{n} |a_i|^p\right)^{1/p} + \left(\sum_{i=1}^{n} |b_i|^p\right)^{1/p}$.
+  \end{itemize}
+\end{dinhly}
+
+\subsubsection{Sơ đồ khảo sát hàm số}
+
+\begin{phuongphap}
+  \begin{enumerate}
+    \item Tìm tập xác định.
+    \item Xét tính chẵn, lẻ, tuần hoàn (nếu có).
+    \item Tính $f'(x)$, tìm các điểm $f'(x) = 0$ hoặc $f'$ không xác định; lập bảng biến thiên.
+    \item Tính $f''(x)$, xác định khoảng lồi --- lõm và điểm uốn.
+    \item Tìm tiệm cận (ngang, đứng, xiên):
+      \begin{itemize}
+        \item Tiệm cận ngang: $y = \displaystyle\lim_{x \to \pm\infty} f(x)$.
+        \item Tiệm cận đứng: $x = a$ khi $\displaystyle\lim_{x \to a^{\pm}} f(x) = \pm\infty$.
+        \item Tiệm cận xiên: $y = kx + b$ với $k = \displaystyle\lim_{x \to \infty} \frac{f(x)}{x}$, $b = \displaystyle\lim_{x \to \infty} \bigl[f(x) - kx\bigr]$.
+      \end{itemize}
+    \item Vẽ đồ thị.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsubsection{Đường cong cho dưới dạng tham số}
+
+\begin{dinhnghia}
+  Đường cong tham số: $\begin{cases} x = x(t), \\ y = y(t), \end{cases}$ với $t \in [a,b]$.
+
+  Đạo hàm:
+  \[
+    y'_x = \frac{y'_t}{x'_t}, \qquad y''_{xx} = \frac{(y'_x)'_t}{x'_t} = \frac{y''_t \cdot x'_t - y'_t \cdot x''_t}{(x'_t)^3}.
+  \]
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 4: TÍCH PHÂN
+%% ================================================================
+\section{Tích phân}
+
+\subsection{Nguyên hàm}
+
+\begin{dinhnghia}
+  $F$ gọi là \textbf{nguyên hàm} của $f$ trên $I$ nếu $F'(x) = f(x)$ với mọi $x \in I$. Ký hiệu $\displaystyle\int f(x)\,dx = F(x) + C$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Nguyên hàm cơ bản}]
+  \begin{itemize}
+    \item $\displaystyle\int x^n\,dx = \frac{x^{n+1}}{n+1} + C$ ($n \ne -1$).
+    \item $\displaystyle\int \frac{1}{x}\,dx = \ln|x| + C$.
+    \item $\displaystyle\int e^x\,dx = e^x + C$.
+    \item $\displaystyle\int \sin x\,dx = -\cos x + C$, $\displaystyle\int \cos x\,dx = \sin x + C$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Phương pháp đổi biến}]
+  Đặt $x = \varphi(t)$ với $\varphi$ khả vi, đơn điệu. Khi đó $\displaystyle\int f(x)\,dx = \int f(\varphi(t))\,\varphi'(t)\,dt$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Tích phân từng phần}]
+  $\displaystyle\int u\,dv = uv - \int v\,du$.
+\end{phuongphap}
+
+\subsubsection{Tích phân phân thức hữu tỉ}
+
+\begin{phuongphap}
+  Để tính $\displaystyle\int \frac{P(x)}{Q(x)}\,dx$ với $\deg P \ge \deg Q$, ta chia đa thức trước. Với phân thức thực sự $\left(\deg P < \deg Q\right)$, phân tích $Q(x)$ thành tích các nhân tử và tách phân thức thành tổng các phân thức đơn giản:
+  \begin{itemize}
+    \item $\displaystyle\int \frac{A}{x - a}\,dx = A\ln|x - a| + C$.
+    \item $\displaystyle\int \frac{A}{(x - a)^k}\,dx = \frac{A}{(1-k)(x-a)^{k-1}} + C$ ($k \ge 2$).
+    \item $\displaystyle\int \frac{Mx + N}{x^2 + px + q}\,dx$ (với $p^2 - 4q < 0$): tách $Mx + N = \frac{M}{2}(2x + p) + \left(N - \frac{Mp}{2}\right)$, rồi dùng:
+      \[
+        \int \frac{dx}{x^2 + a^2} = \frac{1}{a}\arctan\frac{x}{a} + C.
+      \]
+  \end{itemize}
+\end{phuongphap}
+
+\subsubsection{Tích phân biểu thức lượng giác}
+
+\begin{phuongphap}
+  Dạng $\displaystyle\int R(\sin x, \cos x)\,dx$:
+  \begin{itemize}
+    \item \textbf{Phép thế vạn năng:} Đặt $t = \tan\dfrac{x}{2}$, khi đó:
+      \[
+        \sin x = \frac{2t}{1+t^2}, \quad \cos x = \frac{1-t^2}{1+t^2}, \quad dx = \frac{2\,dt}{1+t^2}.
+      \]
+    \item Nếu $R(-\sin x, \cos x) = -R(\sin x, \cos x)$: đặt $t = \cos x$.
+    \item Nếu $R(\sin x, -\cos x) = -R(\sin x, \cos x)$: đặt $t = \sin x$.
+    \item Nếu $R(-\sin x, -\cos x) = R(\sin x, \cos x)$: đặt $t = \tan x$.
+    \item $\displaystyle\int \sin^m x \cos^n x\,dx$: dùng công thức hạ bậc hoặc biến đổi lượng giác.
+  \end{itemize}
+\end{phuongphap}
+
+\subsubsection{Tích phân biểu thức vô tỉ}
+
+\begin{phuongphap}[title={Phép thế lượng giác (Euler)}]
+  \begin{itemize}
+    \item $\displaystyle\int R\bigl(x,\, \sqrt{a^2 - x^2}\bigr)\,dx$: đặt $x = a\sin t$ (hoặc $x = a\cos t$).
+    \item $\displaystyle\int R\bigl(x,\, \sqrt{x^2 + a^2}\bigr)\,dx$: đặt $x = a\tan t$.
+    \item $\displaystyle\int R\bigl(x,\, \sqrt{x^2 - a^2}\bigr)\,dx$: đặt $x = \dfrac{a}{\cos t}$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phép thế Euler}]
+  Với $\displaystyle\int R\bigl(x,\, \sqrt{ax^2 + bx + c}\bigr)\,dx$:
+  \begin{itemize}
+    \item $a > 0$: đặt $\sqrt{ax^2+bx+c} = t \pm x\sqrt{a}$.
+    \item $c > 0$: đặt $\sqrt{ax^2+bx+c} = xt \pm \sqrt{c}$.
+    \item $ax^2+bx+c = a(x - x_1)(x - x_2)$: đặt $\sqrt{ax^2+bx+c} = t(x - x_1)$.
+  \end{itemize}
+\end{phuongphap}
+
+\subsection{Tích phân xác định}
+
+\begin{dinhnghia}
+  \textbf{Tích phân xác định}: $\displaystyle\int_a^b f(x)\,dx = F(b) - F(a)$, với $F$ là nguyên hàm của $f$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý cơ bản của giải tích (Newton--Leibniz)}]
+  Nếu $f$ liên tục trên $[a,b]$ và $F$ là nguyên hàm của $f$ trên $[a,b]$ thì:
+  \[
+    \int_a^b f(x)\,dx = F(b) - F(a) = F(x)\Big|_a^b.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={Hàm tích phân có cận biến đổi}]
+  Nếu $f$ liên tục trên $[a,b]$ và $\Phi(x) = \displaystyle\int_a^x f(t)\,dt$ thì $\Phi'(x) = f(x)$ trên $[a,b]$.
+
+  Tổng quát: nếu $\Phi(x) = \displaystyle\int_{\alpha(x)}^{\beta(x)} f(t)\,dt$ thì $\Phi'(x) = f\bigl(\beta(x)\bigr)\beta'(x) - f\bigl(\alpha(x)\bigr)\alpha'(x)$.
+\end{dinhly}
+
+\subsubsection{Điều kiện khả tích}
+
+\begin{dinhly}
+  Hàm $f$ \textbf{khả tích Riemann} trên $[a,b]$ nếu với mọi $\varepsilon > 0$, tồn tại phân hoạch $P$ sao cho $U(f, P) - L(f, P) < \varepsilon$, trong đó $U$ và $L$ là tổng Darboux trên và dưới. Các trường hợp khả tích:
+  \begin{itemize}
+    \item $f$ liên tục trên $[a,b]$.
+    \item $f$ đơn điệu và bị chặn trên $[a,b]$.
+    \item $f$ bị chặn và chỉ có hữu hạn điểm gián đoạn trên $[a,b]$.
+  \end{itemize}
+\end{dinhly}
+
+\subsubsection{Các tính chất tích phân xác định}
+
+\begin{tinhchat}
+  \begin{enumerate}
+    \item $\displaystyle\int_a^a f(x)\,dx = 0$, \quad $\displaystyle\int_a^b f(x)\,dx = -\int_b^a f(x)\,dx$.
+    \item Tuyến tính: $\displaystyle\int_a^b \bigl[\alpha f(x) + \beta g(x)\bigr]\,dx = \alpha\int_a^b f(x)\,dx + \beta\int_a^b g(x)\,dx$.
+    \item Cộng cận: $\displaystyle\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx$.
+    \item Nếu $f(x) \ge 0$ trên $[a,b]$ thì $\displaystyle\int_a^b f(x)\,dx \ge 0$.
+    \item Nếu $f(x) \le g(x)$ trên $[a,b]$ thì $\displaystyle\int_a^b f(x)\,dx \le \int_a^b g(x)\,dx$.
+    \item $\left|\displaystyle\int_a^b f(x)\,dx\right| \le \int_a^b |f(x)|\,dx$.
+    \item \textbf{Định lý giá trị trung bình:} Nếu $f$ liên tục trên $[a,b]$, tồn tại $c \in [a,b]$:
+      \[
+        \int_a^b f(x)\,dx = f(c)(b-a).
+      \]
+  \end{enumerate}
+\end{tinhchat}
+
+\subsubsection{Phép đổi biến và tích phân từng phần}
+
+\begin{congthuc}[title={Đổi biến trong tích phân xác định}]
+  Đặt $x = \varphi(t)$, $\varphi$ khả vi, $\varphi(\alpha) = a$, $\varphi(\beta) = b$:
+  \[
+    \int_a^b f(x)\,dx = \int_\alpha^\beta f\bigl(\varphi(t)\bigr)\,\varphi'(t)\,dt.
+  \]
+\end{congthuc}
+
+\begin{congthuc}[title={Tích phân từng phần}]
+  \[
+    \int_a^b u\,dv = uv\Big|_a^b - \int_a^b v\,du.
+  \]
+\end{congthuc}
+
+\begin{tinhchat}[title={Các tính chất đặc biệt}]
+  \begin{itemize}
+    \item Nếu $f$ \textbf{chẵn}: $\displaystyle\int_{-a}^{a} f(x)\,dx = 2\int_0^a f(x)\,dx$.
+    \item Nếu $f$ \textbf{lẻ}: $\displaystyle\int_{-a}^{a} f(x)\,dx = 0$.
+    \item Nếu $f$ tuần hoàn chu kỳ $T$: $\displaystyle\int_a^{a+T} f(x)\,dx = \int_0^T f(x)\,dx$.
+    \item \textbf{Công thức Wallis:} $\displaystyle\int_0^{\pi/2} \sin^n x\,dx = \int_0^{\pi/2} \cos^n x\,dx = \begin{cases} \dfrac{(n-1)!!}{n!!} \cdot \dfrac{\pi}{2} & \text{nếu } n \text{ chẵn}, \\[6pt] \dfrac{(n-1)!!}{n!!} & \text{nếu } n \text{ lẻ}. \end{cases}$
+  \end{itemize}
+\end{tinhchat}
+
+\subsubsection{Tính gần đúng tích phân xác định}
+
+\begin{congthuc}[title={Công thức Simpson (parabol)}]
+  Chia $[a,b]$ thành $2n$ phần bằng nhau, $h = \dfrac{b-a}{2n}$, $x_k = a + kh$:
+  \[
+    \int_a^b f(x)\,dx \approx \frac{h}{3}\Bigl[f(x_0) + 4f(x_1) + 2f(x_2) + 4f(x_3) + \cdots + 4f(x_{2n-1}) + f(x_{2n})\Bigr].
+  \]
+  Sai số: $|R| \le \dfrac{(b-a)^5}{180(2n)^4}\, M_4$, với $M_4 = \max_{[a,b]}|f^{(4)}(x)|$.
+\end{congthuc}
+
+\subsubsection{Ứng dụng hình học của tích phân}
+
+\begin{congthuc}[title={Diện tích hình phẳng}]
+  \begin{itemize}
+    \item Miền giữa $y = f(x)$ và trục $Ox$ trên $[a,b]$: $S = \displaystyle\int_a^b |f(x)|\,dx$.
+    \item Miền giữa $y = f(x)$ và $y = g(x)$: $S = \displaystyle\int_a^b |f(x) - g(x)|\,dx$.
+    \item Đường cong tham số $x = x(t)$, $y = y(t)$: $S = \displaystyle\int_\alpha^\beta |y(t) \cdot x'(t)|\,dt$.
+    \item Tọa độ cực $r = r(\varphi)$: $S = \dfrac{1}{2}\displaystyle\int_\alpha^\beta r^2(\varphi)\,d\varphi$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Thể tích vật thể tròn xoay}]
+  \begin{itemize}
+    \item Quay quanh $Ox$: $V_x = \pi\displaystyle\int_a^b f^2(x)\,dx$.
+    \item Quay quanh $Oy$: $V_y = 2\pi\displaystyle\int_a^b x\,|f(x)|\,dx$ (phương pháp vỏ trụ).
+    \item Miền giữa $f(x)$ và $g(x)$ quay quanh $Ox$: $V = \pi\displaystyle\int_a^b \bigl|f^2(x) - g^2(x)\bigr|\,dx$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{congthuc}[title={Độ dài cung và diện tích mặt tròn xoay}]
+  \begin{itemize}
+    \item \textbf{Độ dài cung:} $L = \displaystyle\int_a^b \sqrt{1 + \bigl(f'(x)\bigr)^2}\,dx$. Tham số: $L = \displaystyle\int_\alpha^\beta \sqrt{x'^2(t) + y'^2(t)}\,dt$.
+    \item \textbf{Diện tích mặt tròn xoay} (quay quanh $Ox$): $S = 2\pi\displaystyle\int_a^b |f(x)|\sqrt{1 + f'^2(x)}\,dx$.
+  \end{itemize}
+\end{congthuc}
+
+\begin{phuongphap}[title={Hai sơ đồ ứng dụng tích phân}]
+  \begin{enumerate}
+    \item \textbf{Sơ đồ tổng tích phân:} Chia đối tượng thành $n$ phần nhỏ, tính giá trị gần đúng mỗi phần, lấy tổng rồi cho $n \to \infty$ thu được tích phân.
+    \item \textbf{Sơ đồ vi phân:} Tìm vi phân $dQ$ của đại lượng $Q$ cần tính, rồi lấy tích phân $Q = \displaystyle\int_a^b dQ$.
+  \end{enumerate}
+\end{phuongphap}
+
+\subsubsection{Tích phân suy rộng}
+
+\begin{dinhnghia}[title={Tích phân suy rộng loại 1 (cận vô hạn)}]
+  \[
+    \int_a^{+\infty} f(x)\,dx = \lim_{b \to +\infty} \int_a^b f(x)\,dx.
+  \]
+  Nếu giới hạn tồn tại hữu hạn: tích phân \textbf{hội tụ}; ngược lại: \textbf{phân kỳ}. Tương tự cho $\displaystyle\int_{-\infty}^b$ và $\displaystyle\int_{-\infty}^{+\infty}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn hội tụ loại 1}]
+  \begin{itemize}
+    \item \textbf{So sánh:} Nếu $0 \le f(x) \le g(x)$ trên $[a, +\infty)$:
+      \begin{itemize}
+        \item $\int_a^{+\infty} g(x)\,dx$ hội tụ $\Rightarrow$ $\int_a^{+\infty} f(x)\,dx$ hội tụ.
+        \item $\int_a^{+\infty} f(x)\,dx$ phân kỳ $\Rightarrow$ $\int_a^{+\infty} g(x)\,dx$ phân kỳ.
+      \end{itemize}
+    \item \textbf{So sánh giới hạn:} Nếu $f, g > 0$ và $\displaystyle\lim_{x \to +\infty} \frac{f(x)}{g(x)} = c$ ($0 < c < +\infty$) thì hai tích phân cùng hội tụ hoặc cùng phân kỳ.
+    \item \textbf{Tích phân mẫu:} $\displaystyle\int_1^{+\infty} \frac{dx}{x^p}$: hội tụ khi $p > 1$, phân kỳ khi $p \le 1$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}[title={Tích phân suy rộng loại 2 (hàm không bị chặn)}]
+  Nếu $f$ không bị chặn khi $x \to b^-$:
+  \[
+    \int_a^b f(x)\,dx = \lim_{\varepsilon \to 0^+} \int_a^{b-\varepsilon} f(x)\,dx.
+  \]
+  Tương tự nếu $f$ không bị chặn khi $x \to a^+$ hoặc tại điểm $c \in (a,b)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tiêu chuẩn hội tụ loại 2}]
+  \begin{itemize}
+    \item \textbf{Tích phân mẫu:} $\displaystyle\int_0^1 \frac{dx}{x^p}$: hội tụ khi $p < 1$, phân kỳ khi $p \ge 1$.
+    \item Các tiêu chuẩn so sánh tương tự loại 1.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}[title={Hội tụ tuyệt đối}]
+  $\displaystyle\int_a^{+\infty} f(x)\,dx$ \textbf{hội tụ tuyệt đối} nếu $\displaystyle\int_a^{+\infty} |f(x)|\,dx$ hội tụ. Hội tụ tuyệt đối $\Rightarrow$ hội tụ (điều ngược lại không đúng).
+\end{dinhnghia}
+
+\end{document}

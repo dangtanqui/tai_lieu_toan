@@ -1,0 +1,206 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{ĐIỀU KHIỂN TỐI ƯU}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {ĐIỀU KHIỂN TỐI ƯU};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Pontryagin, Hamilton--Jacobi--Bellman, LQR, Riccati};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: BÀI TOÁN ĐIỀU KHIỂN TỐI ƯU
+%% ================================================================
+\section{Bài toán điều khiển tối ưu}
+
+\begin{dinhnghia}[title={Dạng tổng quát}]
+  \[
+    \min_{u(\cdot)} J[x, u] = \varphi(x(T), T) + \int_{t_0}^{T} L(x(t), u(t), t)\,dt,
+  \]
+  t.c. $\dot{x}(t) = f(x(t), u(t), t)$, $x(t_0) = x_0$, $u(t) \in U$.
+
+  \begin{itemize}
+    \item $x(t) \in \mathbb{R}^n$: trạng thái, $u(t) \in \mathbb{R}^m$: điều khiển.
+    \item $\varphi$: chi phí cuối (Mayer), $L$: chi phí chạy (Lagrange), $J$: dạng Bolza.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phân loại}]
+  \begin{itemize}
+    \item \textbf{Thời gian cố định / tự do}: $T$ cho trước hay $T$ cần tối ưu.
+    \item \textbf{Trạng thái cuối tự do / ràng buộc}: $x(T) = x_f$ hoặc $\psi(x(T)) = 0$.
+    \item \textbf{Ràng buộc điều khiển}: $u \in U$ (tập đóng).
+  \end{itemize}
+\end{dinhnghia}
+
+%% ================================================================
+%%  CHƯƠNG 2: PHÉP TÍNH BIẾN PHÂN
+%% ================================================================
+\section{Phép tính biến phân}
+
+\begin{dinhnghia}[title={Phiếm hàm và biến phân}]
+  $J[y] = \int_a^b F(x, y, y')\,dx$. Biến phân bậc nhất:
+  \[
+    \delta J = \int_a^b \Bigl(\frac{\partial F}{\partial y}\delta y + \frac{\partial F}{\partial y'}\delta y'\Bigr)dx.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Phương trình Euler--Lagrange}]
+  Điều kiện cần: $\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'} = 0$.
+\end{dinhly}
+
+\begin{tinhchat}[title={Điều kiện biên tự nhiên (Transversality)}]
+  Nếu đầu mút tự do: $\frac{\partial F}{\partial y'}\Big|_{x = b} = 0$.
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 3: NGUYÊN LÝ CỰC ĐẠI PONTRYAGIN
+%% ================================================================
+\section{Nguyên lý cực đại Pontryagin}
+
+\begin{dinhnghia}[title={Hàm Hamilton}]
+  \[
+    H(x, u, p, t) = L(x, u, t) + p^T f(x, u, t),
+  \]
+  $p(t) \in \mathbb{R}^n$: biến đối ngẫu (costate, adjoint).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nguyên lý cực đại Pontryagin}]
+  Nếu $(x^*, u^*)$ tối ưu thì tồn tại $p(t)$ sao cho:
+  \begin{enumerate}
+    \item \textbf{Phương trình trạng thái}: $\dot{x} = \frac{\partial H}{\partial p} = f(x, u, t)$.
+    \item \textbf{Phương trình đối ngẫu}: $\dot{p} = -\frac{\partial H}{\partial x}$.
+    \item \textbf{Điều kiện cực đại}: $H(x^*, u^*, p, t) \le H(x^*, u, p, t)$ $\forall u \in U$ (min $J$ $\Leftrightarrow$ min $H$ hoặc max $H$ tùy quy ước dấu).
+    \item \textbf{Điều kiện biên}: $p(T) = \frac{\partial\varphi}{\partial x}(x(T), T)$ (transversality).
+  \end{enumerate}
+\end{dinhly}
+
+\begin{luuy}
+  Nếu $U = \mathbb{R}^m$ (không ràng buộc): điều kiện cực đại $\Rightarrow$ $\frac{\partial H}{\partial u} = 0$.
+\end{luuy}
+
+\begin{vidu}[title={Bang-bang control}]
+  $U = [-1, 1]$, $H$ tuyến tính theo $u$: $u^* = -\text{sign}(\frac{\partial H}{\partial u})$. Điều khiển chuyển mạch (switching).
+\end{vidu}
+
+%% ================================================================
+%%  CHƯƠNG 4: QUY HOẠCH ĐỘNG --- BELLMAN
+%% ================================================================
+\section{Quy hoạch động --- Phương trình Bellman}
+
+\begin{dinhnghia}[title={Hàm giá trị}]
+  \[
+    V(x, t) = \min_{u(\cdot)} \Bigl\{\varphi(x(T), T) + \int_t^T L(x, u, s)\,ds\Bigr\}.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Phương trình Hamilton--Jacobi--Bellman (HJB)}]
+  \[
+    -\frac{\partial V}{\partial t} = \min_{u \in U}\Bigl\{L(x, u, t) + \nabla_x V \cdot f(x, u, t)\Bigr\}, \quad V(x, T) = \varphi(x, T).
+  \]
+  Nghiệm $V$ cho phép tổng hợp điều khiển phản hồi: $u^*(x, t) = \arg\min_{u}[\cdots]$.
+\end{dinhly}
+
+\begin{luuy}
+  HJB là PDE phi tuyến bậc nhất; khó giải cho $n$ lớn (\textit{curse of dimensionality}).
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 5: ĐIỀU KHIỂN TUYẾN TÍNH --- LQR
+%% ================================================================
+\section{Điều khiển tuyến tính bậc hai (LQR)}
+
+\begin{dinhnghia}[title={Bài toán LQR}]
+  $\dot{x} = Ax + Bu$,
+  \[
+    J = \frac{1}{2}x(T)^T S_f x(T) + \frac{1}{2}\int_0^T (x^T Qx + u^T Ru)\,dt, \quad Q \succeq 0,\; R \succ 0.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Nghiệm LQR hữu hạn}]
+  $u^*(t) = -R^{-1}B^T P(t)x(t)$, với $P(t)$ thỏa phương trình Riccati:
+  \[
+    -\dot{P} = A^T P + PA - PBR^{-1}B^T P + Q, \quad P(T) = S_f.
+  \]
+\end{dinhly}
+
+\begin{dinhly}[title={LQR vô hạn (steady-state)}]
+  $T \to \infty$, $S_f = 0$. Nếu $(A, B)$ ổn định được thì $P$ nghiệm của phương trình Riccati đại số (ARE):
+  \[
+    A^T P + PA - PBR^{-1}B^T P + Q = 0.
+  \]
+  Hệ kín $\dot{x} = (A - BK)x$, $K = R^{-1}B^T P$, ổn định tiệm cận.
+\end{dinhly}
+
+%% ================================================================
+%%  CHƯƠNG 6: BỔ SUNG
+%% ================================================================
+\section{Bổ sung}
+
+\begin{tinhchat}[title={Điều khiển được và quan sát được}]
+  \begin{itemize}
+    \item \textbf{Điều khiển được}: $\text{rank}[B, AB, \ldots, A^{n-1}B] = n$ (Kalman).
+    \item \textbf{Quan sát được}: $\text{rank}[C^T, A^TC^T, \ldots, (A^T)^{n-1}C^T] = n$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Ổn định Lyapunov}]
+  $V(x) > 0$, $\dot{V}(x) < 0$ dọc quỹ đạo $\Rightarrow$ gốc ổn định tiệm cận.
+
+  Hệ tuyến tính: ổn định $\Leftrightarrow$ tất cả trị riêng của $A$ có phần thực âm.
+\end{tinhchat}
+
+\begin{phuongphap}[title={Giải số bài toán điều khiển}]
+  \begin{itemize}
+    \item \textbf{Shooting}: đoán $p(t_0)$, tích phân hệ trạng thái + đối ngẫu, điều chỉnh.
+    \item \textbf{Collocation / Direct}: rời rạc hóa thành bài toán quy hoạch phi tuyến lớn (NLP).
+  \end{itemize}
+\end{phuongphap}
+
+\end{document}

@@ -1,0 +1,147 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{KINH TẾ LƯỢNG}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {KINH TẾ LƯỢNG};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {OLS, Gauss--Markov, chẩn đoán, ARIMA, đồng liên kết};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+\section{Mô hình hồi quy tuyến tính}
+
+\begin{dinhnghia}[title={Mô hình hồi quy đơn}]
+  $Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i$, $i = 1, \ldots, n$. Giả thiết: $E(\varepsilon_i) = 0$, $\text{Var}(\varepsilon_i) = \sigma^2$, $\text{Cov}(\varepsilon_i, \varepsilon_j) = 0$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={OLS --- Bình phương tối thiểu thông thường}]
+  $\min \sum_{i=1}^{n}(Y_i - \beta_0 - \beta_1 X_i)^2$.
+
+  $\hat{\beta}_1 = \dfrac{\sum(X_i - \bar{X})(Y_i - \bar{Y})}{\sum(X_i - \bar{X})^2}$, $\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1\bar{X}$.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Mô hình hồi quy bội}]
+  $\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$. OLS: $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{Y}$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Gauss--Markov}]
+  Dưới giả thiết cổ điển (sai số trung bình 0, đồng phương sai, không tương quan), $\hat{\boldsymbol{\beta}}_{\text{OLS}}$ là ước lượng tuyến tính không chệch tốt nhất (BLUE).
+\end{dinhly}
+
+\begin{congthuc}[title={$R^2$ và $R^2$ hiệu chỉnh}]
+  $R^2 = 1 - \dfrac{SSR}{SST}$, $R^2_{\text{adj}} = 1 - \dfrac{SSR/(n-k-1)}{SST/(n-1)}$.
+\end{congthuc}
+
+%% ================================================================
+\section{Kiểm định và chẩn đoán}
+
+\begin{phuongphap}[title={Kiểm định ý nghĩa hệ số}]
+  $t = \dfrac{\hat{\beta}_j}{se(\hat{\beta}_j)} \sim t_{n-k-1}$ dưới $H_0: \beta_j = 0$.
+
+  Kiểm định $F$ tổng thể: $F = \dfrac{R^2/k}{(1-R^2)/(n-k-1)}$.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Đa cộng tuyến}]
+  Các biến độc lập tương quan cao. Hệ quả: $\text{Var}(\hat{\beta}_j)$ lớn. Phát hiện: VIF $= \dfrac{1}{1 - R_j^2} > 10$.
+
+  Khắc phục: loại biến, Ridge regression, PCA.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phương sai thay đổi (Heteroscedasticity)}]
+  $\text{Var}(\varepsilon_i) = \sigma_i^2$ thay đổi. Kiểm định: Breusch--Pagan, White.
+
+  Khắc phục: WLS, robust standard errors (HC).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tự tương quan}]
+  $\text{Cov}(\varepsilon_t, \varepsilon_s) \ne 0$. Kiểm định: Durbin--Watson, Breusch--Godfrey.
+
+  Khắc phục: GLS, Newey--West standard errors.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Mô hình mở rộng}
+
+\begin{dinhnghia}[title={Biến giả (Dummy)}]
+  $D_i \in \{0, 1\}$: mã hóa biến định tính. Bẫy biến giả: $k$ nhóm dùng $k - 1$ biến giả.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Biến công cụ (IV) và 2SLS}]
+  Biến nội sinh: $\text{Cov}(X, \varepsilon) \ne 0$. Dùng công cụ $Z$: $\text{Cov}(Z, X) \ne 0$, $\text{Cov}(Z, \varepsilon) = 0$.
+
+  2SLS: (1) hồi quy $X$ theo $Z$, (2) hồi quy $Y$ theo $\hat{X}$.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Chuỗi thời gian}
+
+\begin{dinhnghia}[title={Chuỗi dừng}]
+  $\{Y_t\}$ dừng (yếu): $E(Y_t)$, $\text{Var}(Y_t)$ không đổi, $\text{Cov}(Y_t, Y_{t+k})$ chỉ phụ thuộc $k$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mô hình ARMA}]
+  $\text{AR}(p)$: $Y_t = c + \phi_1 Y_{t-1} + \cdots + \phi_p Y_{t-p} + \varepsilon_t$.
+
+  $\text{MA}(q)$: $Y_t = \mu + \varepsilon_t + \theta_1\varepsilon_{t-1} + \cdots + \theta_q\varepsilon_{t-q}$.
+
+  $\text{ARMA}(p,q)$: kết hợp AR và MA.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Nghiệm đơn vị và ARIMA}]
+  Kiểm định ADF: $H_0$: có nghiệm đơn vị (chuỗi không dừng).
+
+  ARIMA$(p,d,q)$: sai phân $d$ lần trước khi áp ARMA$(p,q)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đồng liên kết (Cointegration)}]
+  Các chuỗi $I(1)$ nhưng tổ hợp tuyến tính dừng $I(0)$. Kiểm định: Engle--Granger, Johansen. Mô hình ECM hiệu chỉnh sai số.
+\end{dinhnghia}
+
+\end{document}

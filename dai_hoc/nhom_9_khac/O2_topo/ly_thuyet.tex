@@ -1,0 +1,175 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TÔPÔ}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TÔPÔ};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Tôpô, Hausdorff, compact, liên thông, $\pi_1$, van Kampen};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+\section{Không gian tôpô}
+
+\begin{dinhnghia}[title={Tôpô}]
+  $(X, \tau)$: $\tau \subseteq \mathcal{P}(X)$ thỏa: $\varnothing, X \in \tau$; hợp tùy ý $\in \tau$; giao hữu hạn $\in \tau$. Phần tử $\tau$ gọi là tập mở.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Cơ sở (Base)}]
+  $\mathcal{B} \subseteq \tau$ là cơ sở nếu mọi $U \in \tau$ là hợp các phần tử $\mathcal{B}$. Ví dụ: các khoảng mở $(a, b)$ là cơ sở cho $\mathbb{R}$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tôpô quen thuộc}]
+  \begin{itemize}
+    \item Tôpô rời rạc: $\tau = \mathcal{P}(X)$. Tôpô tầm thường: $\tau = \{\varnothing, X\}$.
+    \item Tôpô metric: sinh bởi các hình cầu mở $B(x, r)$.
+    \item Tôpô tích: $\tau_{X \times Y}$ sinh bởi $U \times V$, $U \in \tau_X$, $V \in \tau_Y$.
+    \item Tôpô thương: $\pi: X \to X/{\sim}$; $U$ mở nếu $\pi^{-1}(U)$ mở.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Lân cận, đóng, bao đóng, nội}]
+  Tập đóng: phần bù mở. $\overline{A}$: giao tất cả tập đóng chứa $A$. $A^\circ$: hợp tất cả tập mở $\subseteq A$.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Hàm liên tục}
+
+\begin{dinhnghia}[title={Liên tục (tôpô)}]
+  $f: X \to Y$ liên tục $\Leftrightarrow$ $f^{-1}(V)$ mở $\forall V$ mở trong $Y$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phép đồng phôi (Homeomorphism)}]
+  $f$ song ánh, liên tục và $f^{-1}$ liên tục. Khi đó $X \cong Y$: cùng tính chất tôpô.
+\end{dinhnghia}
+
+%% ================================================================
+\section{Tiên đề tách}
+
+\begin{dinhnghia}[title={Các tiên đề}]
+  \begin{itemize}
+    \item $T_1$: $\forall x \ne y$, $\exists U$ mở chứa $x$ không chứa $y$.
+    \item $T_2$ (Hausdorff): $\forall x \ne y$, $\exists U, V$ mở rời nhau: $x \in U$, $y \in V$.
+    \item Regular ($T_3$): Hausdorff + tách điểm và tập đóng.
+    \item Normal ($T_4$): Hausdorff + tách hai tập đóng rời nhau.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Urysohn}]
+  $(X, \tau)$ normal, $A, B$ đóng rời nhau $\Rightarrow$ $\exists f: X \to [0, 1]$ liên tục: $f|_A = 0$, $f|_B = 1$.
+\end{dinhly}
+
+%% ================================================================
+\section{Compact}
+
+\begin{dinhnghia}[title={Compact}]
+  $K$ compact: mọi phủ mở đều có phủ con hữu hạn.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tính chất}]
+  \begin{itemize}
+    \item Tập con đóng của compact là compact.
+    \item Ảnh liên tục của compact là compact.
+    \item Hausdorff + compact $\Rightarrow$ tập compact là đóng.
+    \item $f: K \to \mathbb{R}$ liên tục, $K$ compact $\Rightarrow$ $f$ đạt max, min (Weierstrass).
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Heine--Borel}]
+  $A \subseteq \mathbb{R}^n$ compact $\Leftrightarrow$ $A$ đóng và bị chặn.
+\end{dinhly}
+
+\begin{dinhly}[title={Tychonoff}]
+  Tích tùy ý các không gian compact (tôpô tích) là compact.
+\end{dinhly}
+
+%% ================================================================
+\section{Liên thông}
+
+\begin{dinhnghia}[title={Liên thông}]
+  $X$ liên thông nếu không thể viết $X = U \cup V$ với $U, V$ mở, rời nhau, khác rỗng.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Liên thông đường (path-connected)}]
+  $\forall x, y \in X$, $\exists \gamma: [0,1] \to X$ liên tục: $\gamma(0) = x$, $\gamma(1) = y$.
+
+  Liên thông đường $\Rightarrow$ liên thông (ngược lại không đúng tổng quát).
+\end{dinhnghia}
+
+\begin{dinhly}
+  Ảnh liên tục của không gian liên thông là liên thông. $[0,1]$ liên thông nên $\mathbb{R}$ liên thông.
+\end{dinhly}
+
+%% ================================================================
+\section{Nhóm cơ bản}
+
+\begin{dinhnghia}[title={Vòng (loop) và đồng luân (homotopy)}]
+  Vòng tại $x_0$: $\gamma: [0,1] \to X$, $\gamma(0) = \gamma(1) = x_0$.
+
+  $\gamma_0 \simeq \gamma_1$ (đồng luân): tồn tại $H: [0,1]^2 \to X$ liên tục, $H(s, 0) = \gamma_0(s)$, $H(s, 1) = \gamma_1(s)$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Nhóm cơ bản $\pi_1(X, x_0)$}]
+  Tập các lớp đồng luân $[\gamma]$ với phép nhân: nối vòng. Đơn vị: vòng hằng. Nghịch đảo: $\gamma$ đi ngược.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Ví dụ}]
+  $\pi_1(\mathbb{R}^n) = 0$, $\pi_1(S^1) \cong \mathbb{Z}$, $\pi_1(T^2) \cong \mathbb{Z}^2$.
+
+  $X$ đơn liên (simply connected): $\pi_1(X) = 0$.
+\end{tinhchat}
+
+\begin{dinhly}[title={Seifert--van Kampen}]
+  $X = U \cup V$, $U, V, U \cap V$ liên thông đường:
+  \[
+    \pi_1(X) \cong \pi_1(U) *_{\pi_1(U \cap V)} \pi_1(V) \quad \text{(tích tự do amalgamated)}.
+  \]
+\end{dinhly}
+
+\end{document}

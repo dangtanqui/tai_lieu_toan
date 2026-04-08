@@ -1,0 +1,159 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{xcolor}
+\geometry{a4paper, margin=2cm, bottom=2.5cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+\AddToShipoutPictureFG{%
+  \AtPageCenter{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
+    \end{tikzpicture}%
+  }%
+}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{TOÁN HỌC TÍNH TOÁN}}
+\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
+\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
+\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {TOÁN HỌC TÍNH TOÁN};
+  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Độ phức tạp, P vs NP, thuật toán số, Turing};
+  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
+\newpage
+\tableofcontents
+\newpage
+%% ================================================================
+%%  CHƯƠNG 1: ĐỘ PHỨC TẠP TÍNH TOÁN
+%% ================================================================
+\section{Độ phức tạp tính toán}
+
+\begin{dinhnghia}[title={Ký hiệu tiệm cận}]
+  \begin{itemize}
+    \item $f = O(g)$: $\exists c, n_0$: $|f(n)| \le c\,g(n)$ $\forall n \ge n_0$ (cận trên).
+    \item $f = \Omega(g)$: $\exists c, n_0$: $f(n) \ge c\,g(n)$ $\forall n \ge n_0$ (cận dưới).
+    \item $f = \Theta(g)$: $f = O(g)$ và $f = \Omega(g)$.
+    \item $f = o(g)$: $f/g \to 0$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mô hình tính toán --- Máy Turing}]
+  $(Q, \Sigma, \Gamma, \delta, q_0, q_{\text{acc}}, q_{\text{rej}})$: tập trạng thái, bảng chữ cái input, bảng chữ băng, hàm chuyển, trạng thái đầu/chấp nhận/từ chối.
+
+  $L(M)$: ngôn ngữ mà $M$ chấp nhận.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Lớp phức tạp}]
+  \begin{itemize}
+    \item \textbf{P}: các bài toán quyết định giải được trong thời gian đa thức (deterministc).
+    \item \textbf{NP}: xác minh lời giải trong thời gian đa thức (hoặc: máy Turing không tất định đa thức).
+    \item \textbf{co-NP}: phần bù của NP.
+    \item \textbf{PSPACE}: giải được với bộ nhớ đa thức.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Quy dẫn và NP-đầy đủ}]
+  $A \le_p B$ ($A$ quy dẫn đa thức về $B$): $\exists f$ đa thức sao cho $x \in A \Leftrightarrow f(x) \in B$.
+
+  $B$ \textbf{NP-khó}: mọi $A \in \text{NP}$ đều $A \le_p B$. $B$ \textbf{NP-đầy đủ}: NP-khó $\cap$ NP.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Cook--Levin}]
+  SAT (bài toán thỏa mãn) là NP-đầy đủ.
+\end{dinhly}
+
+\begin{vidu}[title={Bài toán NP-đầy đủ quan trọng}]
+  SAT, 3-SAT, Clique, Vertex Cover, Hamilton Cycle, TSP (quyết định), Graph Coloring, Subset Sum, Knapsack, \ldots
+\end{vidu}
+
+\begin{luuy}
+  Câu hỏi mở nổi tiếng: $\textbf{P} \overset{?}{=} \textbf{NP}$ (bài toán triệu đô Clay).
+\end{luuy}
+
+%% ================================================================
+%%  CHƯƠNG 2: THUẬT TOÁN SỐ HỌC
+%% ================================================================
+\section{Thuật toán số học}
+
+\begin{phuongphap}[title={Lũy thừa modular nhanh}]
+  Tính $a^n \bmod m$ bằng bình phương liên tiếp: $O(\log n)$ phép nhân modular.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Kiểm tra nguyên tố}]
+  \begin{itemize}
+    \item \textbf{Chia thử}: $O(\sqrt{n})$.
+    \item \textbf{Miller--Rabin}: xác suất, $O(k\log^2 n)$ ($k$ vòng).
+    \item \textbf{AKS}: tất định đa thức (lý thuyết), $O(\log^{6+\varepsilon} n)$.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phân tích thừa số}]
+  \begin{itemize}
+    \item \textbf{Chia thử}: $O(\sqrt{n})$.
+    \item \textbf{Pollard's $\rho$}: $O(n^{1/4})$ heuristic.
+    \item \textbf{Sàng trường số (NFS)}: $O\!\left(\exp\!\left(c(\ln n)^{1/3}(\ln\ln n)^{2/3}\right)\right)$ --- tốt nhất hiện nay.
+  \end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Logarit rời rạc}]
+  Tìm $x$: $g^x \equiv h \pmod{p}$.
+  \begin{itemize}
+    \item \textbf{Baby-step Giant-step} (Shanks): $O(\sqrt{p})$ thời gian và bộ nhớ.
+    \item \textbf{Pollard's $\rho$}: $O(\sqrt{p})$ thời gian, $O(1)$ bộ nhớ.
+    \item \textbf{Index Calculus}: dưới mũ (cho $\mathbb{F}_p^*$), không áp dụng cho ECC.
+  \end{itemize}
+\end{phuongphap}
+
+%% ================================================================
+%%  CHƯƠNG 3: TÍNH TOÁN VÀ QUYẾT ĐỊNH ĐƯỢC
+%% ================================================================
+\section{Tính toán và quyết định được}
+
+\begin{dinhnghia}[title={Quyết định được}]
+  Ngôn ngữ $L$ \textbf{quyết định được} (decidable/recursive) nếu tồn tại máy Turing luôn dừng và chấp nhận đúng $L$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Liệt kê được}]
+  $L$ \textbf{liệt kê được} (recursively enumerable, r.e.) nếu tồn tại MT chấp nhận mọi $x \in L$ (có thể không dừng với $x \notin L$).
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bài toán dừng (Halting Problem)}]
+  Không tồn tại MT quyết định: ``MT $M$ có dừng trên input $w$?''. Bài toán dừng là \textbf{không quyết định được} nhưng liệt kê được.
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý Rice}]
+  Mọi tính chất không tầm thường của ngôn ngữ r.e. đều không quyết định được.
+\end{dinhly}
+
+\end{document}
