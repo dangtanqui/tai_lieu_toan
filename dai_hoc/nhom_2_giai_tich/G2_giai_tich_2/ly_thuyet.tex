@@ -11,6 +11,7 @@
 \usepackage{tikz}
 \usepackage{eso-pic}
 \usepackage{xcolor}
+\usepackage{esint}
 
 \geometry{a4paper, margin=2cm, bottom=2.5cm}
 \hypersetup{colorlinks=true, linkcolor=blue!70!black}
@@ -53,7 +54,7 @@
   \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
     at ([xshift=3cm, yshift=-7.5cm]current page.north west) {GIẢI TÍCH 2};
   \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
-    at ([xshift=3cm, yshift=-9cm]current page.north west) {Hàm nhiều biến, tích phân bội, tích phân đường mặt --- Năm 2};
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {Hàm nhiều biến, tích phân bội, tích phân đường mặt - Năm 2};
   \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
   \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
   \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
@@ -73,35 +74,59 @@
 \begin{dinhnghia}[title={Hàm số nhiều biến}]
   Hàm số $f: D \subset \mathbb{R}^n \to \mathbb{R}$, \;$(x_1, x_2, \ldots, x_n) \mapsto f(x_1, x_2, \ldots, x_n)$.
 
-  Trường hợp hay gặp: $z = f(x, y)$ --- hàm hai biến, $u = f(x, y, z)$ --- hàm ba biến.
+  Trường hợp hay gặp: $z = f(x, y)$ - hàm hai biến, $u = f(x, y, z)$ - hàm ba biến.
 \end{dinhnghia}
 
 \begin{dinhnghia}[title={Tập hợp trong $\mathbb{R}^n$}]
   \begin{itemize}
-    \item \textbf{Hình cầu mở} tâm $\mathbf{a}$, bán kính $r$: $B(\mathbf{a}, r) = \{\mathbf{x} \in \mathbb{R}^n : \|\mathbf{x} - \mathbf{a}\| < r\}$.
-    \item \textbf{Điểm trong} của $D$: $\mathbf{a} \in D$ sao cho $\exists B(\mathbf{a}, r) \subset D$.
-    \item \textbf{Tập mở}: mọi điểm đều là điểm trong.
-    \item \textbf{Tập đóng}: phần bù là tập mở (tương đương: chứa mọi điểm biên).
-    \item \textbf{Tập liên thông}: mọi hai điểm đều nối được bằng đường liên tục nằm trong tập.
-    \item \textbf{Miền}: tập mở và liên thông. \textbf{Miền đóng}: miền cùng với biên của nó.
-    \item \textbf{Tập bị chặn}: nằm trong một hình cầu đủ lớn.
-    \item \textbf{Tập compact}: đóng và bị chặn.
+    \item \textbf{Khoảng cách Euclid:} với $M(x_1,\ldots,x_n)$ và $N(y_1,\ldots,y_n)$:
+    \[
+      d(M,N)=\|M-N\|=\sqrt{\sum_{i=1}^{n}(x_i-y_i)^2}.
+    \]
+    \item \textbf{Bất đẳng thức tam giác:} $d(A,C)\le d(A,B)+d(B,C)$.
+    \item \textbf{Hình cầu mở} (lân cận bán kính $r$) của $M_0$:
+    \[
+      B(M_0,r)=\{M\in\mathbb{R}^n:\ d(M,M_0)<r\}.
+    \]
+    \item \textbf{Điểm trong} của $D$: $M\in D$ sao cho $\exists r>0:\ B(M,r)\subset D$.
+    \item \textbf{Điểm ngoài} của $D$: $M\notin D$ sao cho $\exists r>0:\ B(M,r)\cap D=\varnothing$.
+    \item \textbf{Điểm biên} của $D$: $M$ sao cho $\forall r>0$ ta đều có $B(M,r)\cap D\neq\varnothing$ và $B(M,r)\cap(\mathbb{R}^n\setminus D)\neq\varnothing$.
+    \item \textbf{Tập mở}: $D$ mở nếu mọi điểm của $D$ là điểm trong.
+    \item \textbf{Tập đóng}: $D$ đóng nếu $\mathbb{R}^n\setminus D$ mở (tương đương: $D$ chứa mọi điểm biên của nó).
+    \item \textbf{Liên thông}: không thể viết $D=U\cup V$ với $U,V$ mở trong $D$, rời nhau và khác rỗng. \textbf{Liên thông đường}: mọi hai điểm nối được bởi một đường cong liên tục nằm trong $D$.
+    \item \textbf{Miền}: tập mở và liên thông (thường hiểu là liên thông đường trong $\mathbb{R}^n$).
+    \item \textbf{Miền đóng}: $\overline{\Omega}$ (bao đóng của miền $\Omega$), tức ``miền kèm theo biên''.
+    \item \textbf{Bị chặn}: $D$ bị chặn nếu $\exists R>0,\exists M_0:\ D\subset B(M_0,R)$.
+    \item \textbf{Compact}: trong $\mathbb{R}^n$, $K$ compact $\Leftrightarrow$ $K$ đóng và bị chặn (Heine--Borel).
   \end{itemize}
 \end{dinhnghia}
 
+\begin{vidu}[title={Ví dụ}]
+  Trong $\mathbb{R}$, lấy $D=(0,1)$:
+  \begin{itemize}
+    \item $D$ \textbf{mở} vì với mọi $x\in(0,1)$, chọn $r=\min\{x,1-x\}>0$ thì $B(x,r)\subset(0,1)$. Ví dụ chọn $x = 0,3$ thì $r = 0.3$ suy ra $B(0.3, 0.3) \subset (0, 1)$; chọn $x = 0.6$ thì $r = 0.4$ suy ra $B(0.6, 0.4) \subset (0,1)$.
+    \item $0$ và $1$ là \textbf{điểm biên}, chọn $r = 0,01$ thì $B(0, 0.01)\cap (0,1) \ne \varnothing$ và $B(0, 0.01)\cap \mathbb{R}\setminus(0,1) \ne \varnothing$, tương tự với $1$.
+    \item $D$ \textbf{là tập mở (không đóng)} vì $0$ và $1$ là \textbf{điểm biên} nhưng không thuộc $D$.
+    \item Biên: $D=\{0,1\}$
+    \item Miền đóng: $[0,1]$.
+    \item $(0, 1)$ bị chặn, vì $D \subset B(0, 2)$
+    \item $[0,1]$ \textbf{compact} (đóng và bị chặn), còn $(0,1)$ không compact (bị chặn nhưng không đóng).
+  \end{itemize}
+\end{vidu}
+
 \begin{dinhnghia}[title={Giới hạn hàm nhiều biến}]
-  $\displaystyle\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = L$ nếu:
+    Với $M, M_0 \in \mathbb{R}^n$, ta có $\displaystyle\lim_{M \to M_0} f(\mathbf{M}) = L$ nếu:
   \[
-    \forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < \|\mathbf{x} - \mathbf{a}\| < \delta \;\Rightarrow\; |f(\mathbf{x}) - L| < \varepsilon.
+    \forall \varepsilon > 0,\; \exists \delta > 0:\; 0 < \|M - M_0\| < \delta \;\Rightarrow\; |f(M) - L| < \varepsilon.
   \]
 \end{dinhnghia}
 
 \begin{luuy}
-  Giới hạn phải cho cùng giá trị theo mọi đường tiến đến $\mathbf{a}$. Nếu tồn tại hai đường cho giới hạn khác nhau thì giới hạn không tồn tại.
+  Giới hạn phải cho cùng giá trị theo mọi đường tiến đến $M_0$. Nếu tồn tại hai đường cho giới hạn khác nhau thì giới hạn không tồn tại.
 \end{luuy}
 
 \begin{dinhnghia}[title={Tính liên tục}]
-  $f$ \textbf{liên tục} tại $\mathbf{a} \in D$ nếu $\displaystyle\lim_{\mathbf{x} \to \mathbf{a}} f(\mathbf{x}) = f(\mathbf{a})$.
+  $f$ \textbf{liên tục} tại $M_0 \in D$ nếu $\displaystyle\lim_{M \to M_0} f(M) = f(M_0)$.
 
   $f$ liên tục trên tập compact $K$ thì $f$ bị chặn và đạt giá trị lớn nhất, nhỏ nhất trên $K$ (Weierstrass).
 \end{dinhnghia}
@@ -109,87 +134,126 @@
 \subsection{Đạo hàm và vi phân}
 
 \begin{dinhnghia}[title={Đạo hàm riêng}]
-  Đạo hàm riêng của $f(x_1, \ldots, x_n)$ theo biến $x_i$ tại $\mathbf{a}$:
+  Đạo hàm riêng của $f(x_1, \ldots, x_n)$ theo biến $x_i$ tại $M_0$:
   \[
-    \frac{\partial f}{\partial x_i}(\mathbf{a}) = \lim_{h \to 0} \frac{f(a_1, \ldots, a_i + h, \ldots, a_n) - f(\mathbf{a})}{h}.
+    \dfrac{\partial f}{\partial x_i}(M_0) = \lim_{h \to 0} \dfrac{f(a_1, \ldots, a_i + h, \ldots, a_n) - f(M_0)}{h}.
   \]
   Tính bằng cách đạo hàm theo $x_i$ và coi các biến còn lại là hằng số.
 \end{dinhnghia}
 
+\begin{vidu}
+    Cho $z = x^y$ thì $\dfrac{\partial z}{ \partial x} = yx^{y - 1}$ và $\dfrac{\partial z}{ \partial y} = x^y \ln x$
+\end{vidu}
+
 \begin{dinhnghia}[title={Vi phân toàn phần}]
-  $f$ \textbf{khả vi} tại $\mathbf{a}$ nếu:
+  $f$ \textbf{khả vi} tại $M_0$ nếu:
   \[
-    \Delta f = f(\mathbf{a} + \Delta\mathbf{x}) - f(\mathbf{a}) = \sum_{i=1}^{n} \frac{\partial f}{\partial x_i}(\mathbf{a})\,\Delta x_i + o(\|\Delta\mathbf{x}\|).
+    \Delta f = f(M_0 + \Delta M) - f(M_0) = \sum_{i=1}^{n} \dfrac{\partial f}{\partial x_i}(M_0)\,\Delta x_i + o(\|\Delta M\|).
   \]
-  Khi đó \textbf{vi phân toàn phần}: $df = \displaystyle\sum_{i=1}^{n} \frac{\partial f}{\partial x_i}\,dx_i$.
+  Khi đó \textbf{vi phân toàn phần}: $df = \displaystyle\sum_{i=1}^{n} \dfrac{\partial f}{\partial x_i}\,dx_i$.
 
   Trường hợp hai biến: $df = \dfrac{\partial f}{\partial x}\,dx + \dfrac{\partial f}{\partial y}\,dy$.
 \end{dinhnghia}
 
 \begin{dinhly}
-  Nếu các đạo hàm riêng $\dfrac{\partial f}{\partial x_i}$ tồn tại và liên tục trong lân cận $\mathbf{a}$ thì $f$ khả vi tại $\mathbf{a}$.
+  Nếu các đạo hàm riêng $\dfrac{\partial f}{\partial x_i}$ tồn tại và liên tục trong lân cận $M_0$ thì $f$ khả vi tại $M_0$.
 \end{dinhly}
 
 \begin{dinhly}[title={Đạo hàm hàm hợp (Chain rule)}]
   Nếu $z = f(u, v)$ với $u = u(x, y)$, $v = v(x, y)$ thì:
   \[
-    \frac{\partial z}{\partial x} = \frac{\partial f}{\partial u}\cdot\frac{\partial u}{\partial x} + \frac{\partial f}{\partial v}\cdot\frac{\partial v}{\partial x}, \qquad
-    \frac{\partial z}{\partial y} = \frac{\partial f}{\partial u}\cdot\frac{\partial u}{\partial y} + \frac{\partial f}{\partial v}\cdot\frac{\partial v}{\partial y}.
+    \dfrac{\partial z}{\partial x} = \dfrac{\partial f}{\partial u}\cdot\dfrac{\partial u}{\partial x} + \dfrac{\partial f}{\partial v}\cdot\dfrac{\partial v}{\partial x}, \qquad
+    \dfrac{\partial z}{\partial y} = \dfrac{\partial f}{\partial u}\cdot\dfrac{\partial u}{\partial y} + \dfrac{\partial f}{\partial v}\cdot\dfrac{\partial v}{\partial y}.
   \]
 \end{dinhly}
+
+Ma trận và định thức Jacobi
+
+\begin{vidu}
+    Cho $z = e^u \ln v, u = xy, v = x^2 + y^2$. Ta có
+    \[
+    \dfrac{\partial f}{\partial x} = e^u \ln v .y + e^u \dfrac{1}{v}.2x = e^{xy}[y \ln (x^2 + y^2) + \dfrac{2x}{x^2 + y^2}]
+    \]
+    \[
+    \dfrac{\partial f}{\partial y} = e^u \ln v . x + e^u \dfrac{1}{v}.2y = e^{xy}[x \ln (x^2 + y^2) + \dfrac{2y}{x^2 + y^2}]
+    \]
+\end{vidu}
 
 \begin{dinhnghia}[title={Đạo hàm và vi phân cấp cao}]
   Đạo hàm riêng cấp 2:
   \[
-    \frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial x}\right),\quad
-    \frac{\partial^2 f}{\partial x\,\partial y} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial y}\right),\quad
-    \frac{\partial^2 f}{\partial y\,\partial x} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial x}\right).
+    \dfrac{\partial^2 f}{\partial x^2} = \dfrac{\partial}{\partial x}\!\left(\dfrac{\partial f}{\partial x}\right),\quad
+    \dfrac{\partial^2 f}{\partial x\,\partial y} = \dfrac{\partial}{\partial x}\!\left(\dfrac{\partial f}{\partial y}\right),\quad
+    \dfrac{\partial^2 f}{\partial y\,\partial x} = \dfrac{\partial}{\partial y}\!\left(\dfrac{\partial f}{\partial x}\right),\quad
+    \dfrac{\partial^2 f}{\partial y^2} = \dfrac{\partial}{\partial y}\!\left(\dfrac{\partial f}{\partial y}\right).
   \]
   \textbf{Định lý Schwarz:} Nếu $\dfrac{\partial^2 f}{\partial x\,\partial y}$ và $\dfrac{\partial^2 f}{\partial y\,\partial x}$ liên tục thì chúng bằng nhau.
 
   Vi phân cấp 2: $d^2 f = f''_{xx}\,dx^2 + 2f''_{xy}\,dx\,dy + f''_{yy}\,dy^2$.
 \end{dinhnghia}
 
-\begin{dinhnghia}[title={Hàm số thuần nhất}]
-  $f(\mathbf{x})$ là \textbf{thuần nhất bậc $k$} nếu $f(t\mathbf{x}) = t^k f(\mathbf{x})$, $\forall t > 0$.
+\begin{vidu}
+    Cho $z = x^2 y^3 + x^4$. Khi đó:
+    
+    $z'_x = 2xy^3 + 4x, z''_x = 2y^3 + 12x^2, z'_{xy} = 6xy^2$
 
-  \textbf{Định lý Euler:} Nếu $f(x,y)$ thuần nhất bậc $k$ và khả vi thì:
+    $z'_y = 3x^2y^2, z''y = 6x^2y, z'_{yx} = 6xy^2$
+\end{vidu}
+
+\begin{dinhnghia}[title={Hàm số thuần nhất}]
+  $f(M)$ là \textbf{thuần nhất bậc $k$} nếu $f(tM) = t^k f(M)$, $\forall t > 0$.
+
+  \textbf{Định lý Euler:} Nếu $f(x_1,x_2,...,x_n)$ thuần nhất bậc $k$ và khả vi thì:
   \[
-    x\,\frac{\partial f}{\partial x} + y\,\frac{\partial f}{\partial y} = k\,f(x,y).
+    \displaystyle \sum _{i=1}^n x_i\,\dfrac{\partial f}{\partial x_i} = k\,f(x_1,x_2,...,x_n).
   \]
 \end{dinhnghia}
 
 \begin{dinhnghia}[title={Đạo hàm theo hướng và gradient}]
   \begin{itemize}
-    \item \textbf{Đạo hàm theo hướng} $\mathbf{l} = (\cos\alpha, \cos\beta)$ (vectơ đơn vị):
+    \item \textbf{Đạo hàm theo hướng} $\vec{\mathbf{l}} = (\cos\alpha, \cos\beta, \cos\gamma)$ (vectơ đơn vị):
       \[
-        \frac{\partial f}{\partial \mathbf{l}} = \frac{\partial f}{\partial x}\cos\alpha + \frac{\partial f}{\partial y}\cos\beta = \nabla f \cdot \mathbf{l}.
+        \dfrac{\partial f}{\partial \vec{\mathbf{l}}} = \dfrac{\partial f}{\partial x}\cos\alpha + \dfrac{\partial f}{\partial y}\cos\beta + \dfrac{\partial f}{\partial z}\cos\gamma = \nabla f \cdot \vec{\mathbf{l}}.
       \]
-    \item \textbf{Gradient:} $\nabla f = \text{grad}\,f = \left(\dfrac{\partial f}{\partial x},\, \dfrac{\partial f}{\partial y}\right)$.
+    \item \textbf{Gradient:} $\nabla f = \text{grad}\,f = \left(\dfrac{\partial f}{\partial x},\, \dfrac{\partial f}{\partial y}, \dfrac{\partial f}{\partial z}\right)$.
     \item $\nabla f$ chỉ hướng $f$ tăng nhanh nhất; $|\nabla f|$ là tốc độ tăng lớn nhất.
   \end{itemize}
 \end{dinhnghia}
 
+\begin{vidu}
+    Cho $u = x^3 + y^3 + z^3 + 3xyz$. Tính grad $u$ và $\dfrac{\partial u}{\partial \vec{\mathbf{l}}}$ tại $M_0(1, 2, -1)$ biết $\vec{\mathbf{l}}$ là vectơ đơn vị của $\vec {M_0M}$ với $M_1(2, 0 ,1)$
+
+    Ta có: $u'_x = 3x^2 + 3yz, u'_y = 3y^2 + 3zx, u'_z = 3z^2 + 3xy$
+
+    grad $u = 3(x^2 + yz)\vec{i} + 3(y^2 + zx)\vec{j} + 3(z^2 + xy)\vec{k}$
+
+    grad $u(M_0) = 3(-\vec{i} + 3\vec{j} +3\vec{k})$
+
+    $\vec{M_0M} = (1, -2, 2)$ nên $cos \alpha = \dfrac{1}{3}, cos \beta = \dfrac{-2}{3}, cos \gamma = \dfrac{2}{3}$
+
+    $\dfrac{\partial u}{\partial \vec{\mathbf{l}}}(M_0) = (-3).\dfrac{1}{3} + 9.\dfrac{-2}{3} + 9.\dfrac{2}{3} = -1$
+\end{vidu}
+
 \begin{congthuc}[title={Công thức Taylor nhiều biến}]
   Cho $f(x,y)$ có đạo hàm riêng đến cấp $n+1$, tại $(a,b)$:
   \[
-    f(a+h, b+k) = \sum_{m=0}^{n} \frac{1}{m!}\left(h\frac{\partial}{\partial x} + k\frac{\partial}{\partial y}\right)^m f(a,b) + R_n,
+    f(a+h, b+k) = \sum_{m=0}^{n} \dfrac{1}{m!}\left(h\dfrac{\partial}{\partial x} + k\dfrac{\partial}{\partial y}\right)^m f(a,b) + R_n,
   \]
   trong đó $\left(h\dfrac{\partial}{\partial x} + k\dfrac{\partial}{\partial y}\right)^m f$ là đa thức vi phân thuần nhất bậc $m$ trong $h, k$.
 
-  Bậc 2: $f(a+h, b+k) \approx f(a,b) + f'_x h + f'_y k + \frac{1}{2}(f''_{xx}h^2 + 2f''_{xy}hk + f''_{yy}k^2)$.
+  Bậc 2: $f(a+h, b+k) \approx f(a,b) + f'_x h + f'_y k + \dfrac{1}{2}(f''_{xx}h^2 + 2f''_{xy}hk + f''_{yy}k^2)$.
 \end{congthuc}
 
 \subsection{Cực trị}
 
 \begin{dinhnghia}
-  $f$ đạt \textbf{cực đại địa phương} tại $(a,b)$ nếu $\exists \delta > 0:\; f(x,y) \le f(a,b)$ với mọi $(x,y) \in B\bigl((a,b), \delta\bigr)$. Tương tự cho cực tiểu.
+  $f$ đạt \textbf{cực đại địa phương} tại $M_0$ nếu $\exists \delta > 0:\; f(M) \le f(M_0)$ với mọi $M \in B\bigl(M_0, \delta\bigr)$. Tương tự cho cực tiểu.
 \end{dinhnghia}
 
 \begin{dinhly}[title={Điều kiện cần}]
-  Nếu $f$ đạt cực trị tại $(a,b)$ và có đạo hàm riêng cấp 1 tại đó thì:
+  Nếu $f$ đạt cực trị tại $M_0$ và có đạo hàm riêng cấp 1 tại đó thì:
   \[
-    f'_x(a,b) = 0, \qquad f'_y(a,b) = 0.
+    f'_{x_i}(M_0) = 0
   \]
   Điểm thỏa hệ trên gọi là \textbf{điểm dừng} (điểm tới hạn).
 \end{dinhly}
@@ -216,32 +280,34 @@
   \end{enumerate}
 \end{phuongphap}
 
+Ví dụ
+
 \subsection{Hàm số ẩn và cực trị có điều kiện}
 
 \begin{dinhly}[title={Định lý hàm ẩn (hai biến)}]
   Cho $F(x, y) = 0$ với $F$ liên tục, có đạo hàm riêng liên tục, $F(x_0, y_0) = 0$ và $F'_y(x_0, y_0) \ne 0$. Khi đó tồn tại duy nhất hàm $y = y(x)$ xác định trong lân cận $x_0$ thỏa $F(x, y(x)) = 0$ và:
   \[
-    y'(x) = -\frac{F'_x}{F'_y}.
+    y'(x) = -\dfrac{F'_x}{F'_y}.
   \]
 \end{dinhly}
 
 \begin{dinhly}[title={Hàm ẩn nhiều biến}]
   Cho $F(x, y, z) = 0$, $F'_z \ne 0$. Khi đó $z = z(x,y)$ tồn tại và:
   \[
-    \frac{\partial z}{\partial x} = -\frac{F'_x}{F'_z}, \qquad \frac{\partial z}{\partial y} = -\frac{F'_y}{F'_z}.
+    \dfrac{\partial z}{\partial x} = -\dfrac{F'_x}{F'_z}, \qquad \dfrac{\partial z}{\partial y} = -\dfrac{F'_y}{F'_z}.
   \]
 \end{dinhly}
 
 \begin{dinhly}[title={Định lý hàm ngược}]
-  Cho ánh xạ $\mathbf{F}: \mathbb{R}^n \to \mathbb{R}^n$ khả vi liên tục, nếu định thức Jacobi $\det J_{\mathbf{F}}(\mathbf{a}) \ne 0$ thì $\mathbf{F}$ có hàm ngược địa phương $\mathbf{F}^{-1}$ khả vi trong lân cận $\mathbf{F}(\mathbf{a})$.
+  Cho ánh xạ $\mathbf{F}: \mathbb{R}^n \to \mathbb{R}^n$ khả vi liên tục, nếu định thức Jacobi $\det J_{\mathbf{F}}(M_0) \ne 0$ thì $\mathbf{F}$ có hàm ngược địa phương $\mathbf{F}^{-1}$ khả vi trong lân cận $\mathbf{F}(M_0)$.
 \end{dinhly}
 
-\begin{phuongphap}[title={Cực trị có điều kiện --- Phương pháp nhân tử Lagrange}]
+\begin{phuongphap}[title={Cực trị có điều kiện - Phương pháp nhân tử Lagrange}]
   Tìm cực trị $f(x, y, z)$ với ràng buộc $g(x,y,z) = 0$:
 
   Lập hàm Lagrange: $L = f + \lambda\, g$. Giải hệ:
   \[
-    \frac{\partial L}{\partial x} = 0,\quad \frac{\partial L}{\partial y} = 0,\quad \frac{\partial L}{\partial z} = 0,\quad g(x,y,z) = 0.
+    \dfrac{\partial L}{\partial x} = 0,\quad \dfrac{\partial L}{\partial y} = 0,\quad \dfrac{\partial L}{\partial z} = 0,\quad g(x,y,z) = 0.
   \]
 
   Với nhiều ràng buộc $g_1 = 0, \ldots, g_m = 0$: $L = f + \lambda_1 g_1 + \cdots + \lambda_m g_m$.
@@ -273,11 +339,11 @@
 \begin{dinhnghia}
   \textbf{Độ cong} của đường cong tại điểm $M$:
   \[
-    K = \frac{|y''|}{(1 + y'^2)^{3/2}} \quad\text{(dạng tường minh)}.
+    K = \dfrac{|y''|}{(1 + y'^2)^{3/2}} \quad\text{(dạng tường minh)}.
   \]
   Dạng tham số:
   \[
-    K = \frac{|x'y'' - x''y'|}{(x'^2 + y'^2)^{3/2}}.
+    K = \dfrac{|x'y'' - x''y'|}{(x'^2 + y'^2)^{3/2}}.
   \]
   \textbf{Bán kính cong:} $R = \dfrac{1}{K}$.
 \end{dinhnghia}
@@ -289,7 +355,7 @@
     \item \textbf{Đường tròn chính khúc} (đường tròn mật tiếp) tại $M$: đường tròn bán kính $R = 1/K$, tâm nằm trên pháp tuyến, phía lõm.
     \item \textbf{Tâm cong} (khúc tâm): tâm của đường tròn chính khúc:
       \[
-        X = x - y'\,\frac{1 + y'^2}{y''}, \qquad Y = y + \frac{1 + y'^2}{y''}.
+        X = x - y'\,\dfrac{1 + y'^2}{y''}, \qquad Y = y + \dfrac{1 + y'^2}{y''}.
       \]
   \end{itemize}
 \end{dinhnghia}
@@ -321,9 +387,9 @@
 \begin{dinhnghia}
   \textbf{Hàm vectơ}: $\mathbf{r}(t) = \bigl(x(t),\, y(t),\, z(t)\bigr)$, $t \in [a, b]$.
 
-  $\mathbf{r}'(t) = \bigl(x'(t),\, y'(t),\, z'(t)\bigr)$ --- vectơ tiếp tuyến.
+  $\mathbf{r}'(t) = \bigl(x'(t),\, y'(t),\, z'(t)\bigr)$ - vectơ tiếp tuyến.
 
-  $|\mathbf{r}'(t)| = \sqrt{x'^2 + y'^2 + z'^2}$ --- tốc độ.
+  $|\mathbf{r}'(t)| = \sqrt{x'^2 + y'^2 + z'^2}$ - tốc độ.
 \end{dinhnghia}
 
 \subsubsection{Đường cong trong không gian}
@@ -388,12 +454,20 @@
     \item $I(\alpha)$ liên tục trên $[\alpha_1, \alpha_2]$.
     \item \textbf{Đạo hàm dưới dấu tích phân (Leibniz):} Nếu $f'_\alpha$ liên tục:
       \[
-        I'(\alpha) = \int_a^b \frac{\partial f}{\partial \alpha}(x, \alpha)\,dx.
+        I'(\alpha) = \int_a^b \dfrac{\partial f}{\partial \alpha}(x, \alpha)\,dx.
       \]
     \item \textbf{Tích phân đổi thứ tự:}
       $\displaystyle\int_{\alpha_1}^{\alpha_2}\!\left(\int_a^b f(x,\alpha)\,dx\right)d\alpha = \int_a^b\!\left(\int_{\alpha_1}^{\alpha_2} f(x,\alpha)\,d\alpha\right)dx$.
   \end{enumerate}
 \end{tinhchat}
+
+\begin{vidu}
+    Tính $I = \displaystyle \int_0^1 \dfrac{x^b-x^a}{\ln x}dx$ với $0 < a < b$.
+
+    Vì $\dfrac{x^b-x^a}{\ln x} = \displaystyle\int_a^b x^ydy$ nên $I = \displaystyle\int_0^1(\int_a^b x^ydy)dx$
+
+    Suy ra: $I = \displaystyle\int_a^b(\int_0^1x^ydx)dy=\int_a^b(\dfrac{x^{y+1}}{y + 1}|_{x = 0}^{x = 1})dy = \int_a^b \dfrac{dy}{y + 1} = \ln \dfrac{b + 1}{a + 1}$
+\end{vidu}
 
 \begin{congthuc}[title={Công thức Leibniz tổng quát}]
   Nếu $I(\alpha) = \displaystyle\int_{a(\alpha)}^{b(\alpha)} f(x, \alpha)\,dx$ thì:
@@ -446,7 +520,7 @@
   \end{itemize}
 \end{congthuc}
 
-\begin{congthuc}[title={Đổi biến --- Tọa độ cực}]
+\begin{congthuc}[title={Đổi biến - Tọa độ cực}]
   Đặt $x = r\cos\varphi$, $y = r\sin\varphi$, Jacobian $|J| = r$:
   \[
     \iint_D f(x,y)\,dx\,dy = \iint_{D'} f(r\cos\varphi,\, r\sin\varphi)\,r\,dr\,d\varphi.
@@ -564,7 +638,7 @@
 \begin{dinhly}[title={Công thức Green}]
   Cho $D$ là miền đóng bị chặn có biên $\partial D$ (đi ngược chiều kim đồng hồ), $P, Q$ có đạo hàm riêng liên tục trên $\overline{D}$:
   \[
-    \oint_{\partial D} P\,dx + Q\,dy = \iint_D \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)dx\,dy.
+    \oint_{\partial D} P\,dx + Q\,dy = \iint_D \left(\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}\right)dx\,dy.
   \]
 \end{dinhly}
 
@@ -638,14 +712,14 @@
 
 \begin{dinhnghia}[title={Vectơ rota (curl)}]
   \[
-    \text{rot}\,\mathbf{F} = \nabla \times \mathbf{F} = \left(\frac{\partial R}{\partial y} - \frac{\partial Q}{\partial z}\right)\mathbf{i} + \left(\frac{\partial P}{\partial z} - \frac{\partial R}{\partial x}\right)\mathbf{j} + \left(\frac{\partial Q}{\partial x} - \frac{\partial P}{\partial y}\right)\mathbf{k}.
+    \text{rot}\,\mathbf{F} = \nabla \times \mathbf{F} = \left(\dfrac{\partial R}{\partial y} - \dfrac{\partial Q}{\partial z}\right)\mathbf{i} + \left(\dfrac{\partial P}{\partial z} - \dfrac{\partial R}{\partial x}\right)\mathbf{j} + \left(\dfrac{\partial Q}{\partial x} - \dfrac{\partial P}{\partial y}\right)\mathbf{k}.
   \]
 \end{dinhnghia}
 
 \begin{dinhly}[title={TP đường trong không gian không phụ thuộc đường đi}]
   Trong miền đơn liên $V \subset \mathbb{R}^3$, $\displaystyle\int_C P\,dx + Q\,dy + R\,dz$ không phụ thuộc đường đi khi và chỉ khi $\text{rot}\,\mathbf{F} = \mathbf{0}$, tức:
   \[
-    \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x},\quad \frac{\partial Q}{\partial z} = \frac{\partial R}{\partial y},\quad \frac{\partial P}{\partial z} = \frac{\partial R}{\partial x}.
+    \dfrac{\partial P}{\partial y} = \dfrac{\partial Q}{\partial x},\quad \dfrac{\partial Q}{\partial z} = \dfrac{\partial R}{\partial y},\quad \dfrac{\partial P}{\partial z} = \dfrac{\partial R}{\partial x}.
   \]
   Khi đó $\mathbf{F} = \nabla U$ (\textbf{trường thế}), và $\displaystyle\int_A^B \mathbf{F}\cdot d\mathbf{r} = U(B) - U(A)$.
 \end{dinhly}
@@ -653,21 +727,21 @@
 \begin{dinhly}[title={Công thức Ostrogradsky--Gauss}]
   Cho $V$ là miền đóng bị chặn có biên $S = \partial V$ (hướng ngoài):
   \[
-    \oiint_S P\,dy\,dz + Q\,dz\,dx + R\,dx\,dy = \iiint_V \left(\frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}\right)dV.
+    \oiint_S P\,dy\,dz + Q\,dz\,dx + R\,dx\,dy = \iiint_V \left(\dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}\right)dV.
   \]
   Hay: $\displaystyle\oiint_S \mathbf{F} \cdot d\mathbf{S} = \iiint_V \text{div}\,\mathbf{F}\,dV$.
 \end{dinhly}
 
 \begin{dinhnghia}[title={Divergence}]
   \[
-    \text{div}\,\mathbf{F} = \nabla \cdot \mathbf{F} = \frac{\partial P}{\partial x} + \frac{\partial Q}{\partial y} + \frac{\partial R}{\partial z}.
+    \text{div}\,\mathbf{F} = \nabla \cdot \mathbf{F} = \dfrac{\partial P}{\partial x} + \dfrac{\partial Q}{\partial y} + \dfrac{\partial R}{\partial z}.
   \]
   Ý nghĩa: đo tốc độ ``phát tán'' của trường vectơ tại một điểm.
 \end{dinhnghia}
 
 \begin{congthuc}[title={Toán tử Hamilton (nabla) $\nabla$}]
   \[
-    \nabla = \mathbf{i}\frac{\partial}{\partial x} + \mathbf{j}\frac{\partial}{\partial y} + \mathbf{k}\frac{\partial}{\partial z}.
+    \nabla = \mathbf{i}\dfrac{\partial}{\partial x} + \mathbf{j}\dfrac{\partial}{\partial y} + \mathbf{k}\dfrac{\partial}{\partial z}.
   \]
   \begin{itemize}
     \item $\nabla f = \text{grad}\,f$ (gradient).
