@@ -1,0 +1,829 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+
+\title{Tuần 203, 204, 205 --- Bài tập Toán}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%% ========== TUẦN 3 ==========
+\section{Tuần 3}
+
+\subsection{Bài tập về nhà}
+
+\textbf{Bài 1:} (Giải phương trình)
+\[
+(x-4)^3 = 2(x-4)^2 + 8
+\]
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+$x_1 = -6$, Đáp án: $2$
+
+$x_2$ Đáp án: $6$
+
+$x_3 = 8$
+
+$x_4 = $
+
+Không có nghiệm.
+
+\textit{Giải thích:} Đặt $y = (x-4)^2$ ta được
+\[
+y^2 - 2y - 8 = 0 \iff (y-4)(y+2) = 0.
+\]
+
+Suy ra $y = 4$ hoặc $y = -2$. Vì $(x-4)^2$ không thể âm nên $y = -2$ không cho nghiệm nào. Với $y = 4$ ta có
+\[
+(x-4)^2 = 4 \iff x = 4 \pm 2.
+\]
+
+Giải thích lại: Lập $\Delta$ tìm nghiệm $y = 4, y = -2$ suy ra $y - 4 = 0, y + 2 = 0$. Lập được $(y-4)(y+2) = 0$.
+
+Vì $y \ge 0$ nên loại nghiệm $y = -2$.
+
+Nhớ $A^2 = B$ thì $A = \pm\sqrt{B}$.
+
+\textbf{Bài 2:} (C, $0{,}0/2{,}0$ điểm, không chấm điểm)
+\[
+x^3 + x^2 - 12x = 0
+\]
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+$x_1 = 0$, Đáp án: $-4$
+
+$x_2$ Đáp án: $0$
+
+$x_3$ Đáp án: $3$
+
+Không có nghiệm.
+
+\textit{Giải thích:} Chú ý rằng vế trái của phương trình có nhân tử $x$ vì $x = 0$ là một nghiệm. Do đó
+\[
+x(x^2 + x - 12) = 0 \iff x(x+4)(x-3) = 0.
+\]
+Suy ra các nghiệm $x = -4$, $x = 0$ và $x = 3$.
+
+\textbf{Bài 3:} (A, $0{,}0/2{,}0$ điểm, không chấm điểm)
+Với những giá trị nào của $p$ thì phương trình
+\[
+x^2 + px + 3 = 0
+\]
+có đúng một nghiệm $x$? Cho tất cả các giá trị có thể của $p$.
+
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+Không có giá trị $p$ nào để phương trình có đúng một nghiệm.
+
+Có đúng một nghiệm nếu $p = \sqrt{12}$
+
+Đáp án: $-3{,}46410161514$
+
+Cũng có đúng một nghiệm nếu $p = $
+
+Đáp án: $3{,}46410161514$
+
+\textit{Giải thích:} Phương trình chỉ có một nghiệm khi biệt thức bằng không. Ở đây ta có
+\[
+D = p^2 - 4\cdot 1\cdot 3 = p^2 - 12.
+\]
+Vậy $D = 0 \iff p = \pm\sqrt{12} = \pm 2\sqrt{3}$.
+
+Note: chưa hiểu k cho bấm máy tính sao tính được $\sqrt{3}$ để điền số thập phân được.
+
+\textbf{Bài 4:} (B, $2{,}0/2{,}0$ điểm, không chấm điểm)
+Phương trình
+\[
+\frac{25}{x+5} = \frac{x^2}{x+5}
+\]
+có bao nhiêu nghiệm và các nghiệm đó là gì?
+
+Không có nghiệm.
+
+Một nghiệm: $5$, Đáp án: $5$
+
+Hai nghiệm: và
+
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+\textit{Giải thích:} Nhân hai vế của phương trình với $x + 5$ ta được: $25 = x^2$, có các nghiệm $x = \pm 5$. Với $x = -5$ thì hai vế của phương trình ban đầu đều không tồn tại; $x = -5$ nằm ngoài miền xác định của các hàm ở vế trái và vế phải của phương trình. Với $x = 5$ thì hai vế của phương trình ban đầu đều bằng $5/2$. Vậy $x = 5$ là nghiệm duy nhất hợp lệ.
+
+Giải thích lại: TXĐ: $D = \mathbb{R}\setminus\{-5\}$. Nên giải ra $x = 5$ nhận, $x = -5$ loại.
+
+\textbf{Bài 5:}
+Phương trình
+\[
+x + \sqrt{x+7} = 5
+\]
+có bao nhiêu nghiệm và các nghiệm đó là gì?
+
+Không có nghiệm.
+
+Một nghiệm: $(-1+\sqrt{73})/2$
+
+Đáp án: $2$
+
+Hai nghiệm: và
+
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+\textit{Giải thích:} Cô lập căn thức, ta được $\sqrt{x+7} = 5 - x$. Bình phương hai vế của phương trình cho
+\[
+x + 7 = (5-x)^2 = 25 - 10x + x^2
+\]
+hay tương đương
+\[
+x^2 - 11x + 18 = 0
+\]
+phân tích thành
+\[
+(x-2)(x-9) = 0.
+\]
+Vậy ta có các nghiệm $x = 2$ và $x = 9$. Thử lại trong phương trình ban đầu cho thấy chỉ $x = 2$ là nghiệm hợp lệ (vế trái bằng $2 + 3 = 5$). Với $x = 9$ thì vế trái bằng $9 + 4 = 13 \neq 5$.
+
+Giải thích lại: TXĐ $D = [-7;+\infty)$. Có thể giải theo phương pháp khác:
+
+Đặt $t = \sqrt{x + 7}, t \ge 0$, suy ra: $x = t^2 - 7$. Khi đó phương trình tương đương:
+
+\[
+t^2 + t - 12 = 0
+\]
+
+Có nghiệm $t = 3, t = -4$. Vì $t \ge 0$ nên loại $t = -4$.
+
+Với $t = 3 \Leftrightarrow \sqrt{x + 7} = 3 \Leftrightarrow x = 2$.
+
+\subsection{Bài tập thực tế}
+
+\textbf{Bài toán cổng phồng hơi:}
+Một cổng hơi được dùng để trang trí một lối cửa kích thước $1 \times 2$ mét. Theo quy định an toàn, cổng phải để lối cửa thông thoáng. Biên trong của cổng được mô tả bởi
+\[
+y = -\frac{10}{p}x^2 + \frac{1}{2}p,
+\]
+trong đó $p$ phụ thuộc vào lượng không khí được thổi vào cổng. Trong hình dưới đây có hai tình huống cho cổng: tình huống màu cam không được phép, tình huống màu xanh được phép. Mỗi ô vuông có kích thước $1$ m $\times$ $1$ m. Bốn góc của cửa nằm tại các điểm
+\[
+\left(\frac{1}{2}, 0\right),\quad \left(\frac{1}{2}, 2\right),\quad \left(-\frac{1}{2}, 2\right),\quad \left(-\frac{1}{2}, 0\right).
+\]
+
+Xác định giá trị $p$ để cung vừa khít với cửa.
+
+$p = 0$, Đáp án: $5$, $0$
+
+\textit{Giải thích:} Để cung vừa khít, đồ thị phải đi qua hai góc trên bên trái và bên phải của cửa, tại $(\pm 1/2, 2)$. Vậy với $x = \pm 1/2$ thì giá trị của đa thức phải bằng $2$:
+\[
+2 = \frac{10}{p}\left(\frac{1}{2}\right)^2 + \frac{1}{2}p.
+\]
+Nhân với $2p$ ta được
+\[
+p^2 - 4p - 5 = 0.
+\]
+Đa thức này phân tích thành $(p-5)(p+1) = 0$, với các nghiệm $p = 5$ và $p = -1$. Dễ kiểm tra rằng cả hai giá trị $p$ đều cho cung đi qua các góc của cửa. Tuy nhiên chỉ một trong hai tương ứng với một cung bao quanh cửa. Thực vậy, với $p = -1$ thì hệ số của $x^2$ dương nên đồ thị là parabol mở lên. Điều này không phải điều ta muốn. Do đó chỉ $p = 5$ cho một cung vừa khít.
+
+Giải thích lại: Vì đồ thị parabol hướng xuống nên $a < 0 \Leftrightarrow \dfrac{-10}{p} < 0 \Leftrightarrow p > 0$. Khi giải ra $p = -1$ thì loại và nhận $p = 5$.
+
+\subsection{Bài tập số phức}
+
+\textbf{Bài 1:} Số phức ($0{,}0/4{,}0$ điểm, không chấm điểm)
+
+Xét các số phức $z = 4 + 3i$ và $w = 1 + 2i$.
+Tính tổng, hiệu, tích và thương của hai số này và viết các đáp án dưới dạng rút gọn $x + iy$.
+
+$z + w = $ Đáp án: $5+5i$
+
+$z - w = $ Đáp án: $3+i$
+
+$z \cdot w = $ Đáp án: $-2+11i$
+
+$z/w = $ Đáp án: $2-i$
+
+\textit{Giải thích:}
+\begin{align*}
+z + w &= (4+3i) + (1+2i) = (4+1) + (3+2)i = 5 + 5i.\\
+z - w &= (4+3i) - (1+2i) = (4-1) + (3-2)i = 3 + i.\\
+z \cdot w &= (4+3i)(1+2i) = 4 + 8i + 3i + 6i^2 = -2 + 11i.\\
+z/w &= \frac{4+3i}{1+2i} = \frac{(4+3i)(1-2i)}{(1+2i)(1-2i)} = \frac{10 - 5i}{5} = 2-i.
+\end{align*}
+
+\textbf{Bài 2A:} Rút gọn ($0{,}0/1{,}0$ điểm, không chấm điểm)
+
+Rút gọn (viết dưới dạng $x+iy$ với $x$ và $y$ thực):
+\[
+\frac{2}{1+i}
+\]
+Đáp án: $1-i$
+
+\textit{Giải thích:}
+\[
+\frac{2}{1+i} = \frac{2}{1+i} \cdot \frac{1-i}{1-i} = \frac{2(1-i)}{2} = 1-i.
+\]
+
+\textbf{Bài 2B:} Rút gọn ($1$ điểm tối đa, không chấm điểm)
+\[
+\frac{5}{2-i}
+\]
+Đáp án: $2+i$
+
+\textit{Giải thích:}
+\[
+\frac{5}{2-i} = \frac{5}{2-i} \cdot \frac{2+i}{2+i} = \frac{5(2+i)}{5} = 2+i.
+\]
+
+\textbf{Bài 3A:} (Giải trên tập số phức; $z_1$ có phần ảo âm và $z_2$ có phần ảo dương)
+\[
+z^2 + 2z + 5 = 0
+\]
+$z_1 = $ Đáp án: $-1-2i$, \quad $z_2 = $ Đáp án: $-1+2i$
+
+\textit{Giải thích:}
+$z^2 + 2z + 5 = (z+1)^2 + 4$; \quad $(z+1)^2 = -4 \implies z = -1 \pm 2i$.
+
+Giải thích lại: Có thể lập $\Delta' = 1^2 - 1.5 = -4 = 2^2.i^2 = (2i)^2 \Rightarrow \sqrt{\Delta'} = 2i$.
+
+\textbf{Bài 3B:} Số phức ($0{,}0/2{,}0$ điểm, không chấm điểm)
+\[
+z^2 - 6z + 25 = 0
+\]
+$z_1 = $ Đáp án: $3-4i$, \quad $z_2 = $ Đáp án: $3+4i$
+
+\textit{Giải thích:}
+$z^2 - 6z + 25 = (z-3)^2 + 16$; \quad $(z-3)^2 = -16 \implies z = 3 \pm 4i$.
+
+Giải thích lại: Có thể lập $\Delta' = (-3)^2 - 1.25 = -16 = 4^2.i^2 = (4i)^2 \Rightarrow \sqrt{\Delta'} = 4i$.
+
+\textbf{Bài 3C:} Số phức ($1{,}0$ điểm, không chấm điểm)
+
+Giải trên tập số phức ($z_1$ có phần ảo âm và $z_2$ có phần ảo dương):
+\[
+z^2 + z + 1 = 0
+\]
+$z_1 = -\frac{1}{2}-\frac{\sqrt{3}}{2}\,i$, \quad $z_2 = -\frac{1}{2}+\frac{\sqrt{3}}{2}\,i$
+
+\textit{Giải thích:}
+$z^2 + z + 1 = \left(z + \frac{1}{2}\right)^2 + \frac{3}{4}$. Do đó $z = -\frac{1}{2} \pm \frac{\sqrt{3}}{2}\,i$.
+
+Giải thích lại: Có thể lập $\Delta = 1^2 - 4.1.1 = -3 = (\sqrt{3})^2.i^2 = (\sqrt{3}i)^2 \Rightarrow \sqrt{\Delta} = \sqrt{3}i$.
+
+%% ========== TUẦN 4 ==========
+\newpage
+\section{Tuần 4}
+
+\subsection{Sin và tan}
+
+\textbf{Bài tập 1: Sin} (0{,}0/2{,}0 điểm, không chấm điểm)
+
+Tìm tất cả nghiệm của phương trình
+\[
+\sin(x) = -\tfrac{1}{2}\sqrt{3},
+\]
+với $-\pi \le x \le \pi$. Có bao nhiêu nghiệm?
+
+Nhớ nhập các nghiệm có thể có theo thứ tự tăng dần.
+
+\textit{Lời giải:} Hai nghiệm là $-\tfrac{2}{3}\pi$ và $-\tfrac{1}{3}\pi$. Từ bảng giá trị ta có $\sin(\tfrac{1}{3}\pi) = \tfrac{1}{2}\sqrt{3}$. Suy ra $\sin(-\tfrac{1}{3}\pi) = -\tfrac{1}{2}\sqrt{3}$. Vậy nghiệm thứ nhất là $-\tfrac{1}{3}\pi$. Dịch chuyển nghiệm này một bội số của $2\pi$ sẽ đưa ra khỏi khoảng $[-\pi,\,\pi]$. Phản xạ qua đường thẳng $x = \tfrac{1}{2}\pi$ cho nghiệm khác: $\sin(\pi - (-\tfrac{1}{3}\pi)) = \sin(\tfrac{4}{3}\pi) = -\tfrac{1}{2}\sqrt{3}$. Tuy nhiên $\tfrac{4}{3}\pi$ nằm ngoài $[-\pi,\,\pi]$. Trừ $2\pi$ được $x = -\tfrac{2}{3}\pi$ là nghiệm thứ hai.
+
+Giải thích lại: $\sin(x) = \dfrac{-\sqrt{3}}{2} \Rightarrow x = \dfrac{-\pi}{3} + k2\pi$ hoặc $x = \pi - \dfrac{-\pi}{3} + k2\pi = \dfrac{4\pi}{3} + k2\pi$
+
+Với $x = \dfrac{-\pi}{3} + k2\pi$: Từ $-\pi \le x \le \pi$, suy ra:
+
+$-\pi \le \dfrac{-\pi}{3} + k2\pi \le \pi \Rightarrow \dfrac{-1}{3} \le k \le \dfrac{2}{3}$, vì $k \in \mathbb{Z}$ nên $k = 0$
+
+Với $x = \dfrac{4\pi}{3} + k2\pi$: Từ $-\pi \le x \le \pi$, suy ra:
+
+$-\pi \le \dfrac{4\pi}{3} + k2\pi \le \pi \Rightarrow \dfrac{-7}{6} \le k \le \dfrac{-1}{6}$, vì $k \in \mathbb{Z}$ nên $k = -1$.
+
+Vậy $x = \dfrac{-\pi}{3}$ hoặc $x = \dfrac{-4\pi}{3}$.
+
+\textbf{Bài tập 2: Tan} (0{,}0/2{,}0 điểm, không chấm điểm)
+
+Giả sử $\tan(x) = c$ có nghiệm $x = \tfrac{1}{9}\pi$. Tức là $c = \tan(\tfrac{1}{9}\pi)$.
+
+Chọn tất cả các nghiệm khác của phương trình $\tan(x) = c$. Chú ý có thể có nhiều đáp án đúng!
+
+Các đáp án: $\tfrac{-8}{9}\pi$ ($k = -1$), $\tfrac{10}{9}\pi$ ($k = 1$), $\tfrac{19}{9}\pi$ ($k = 2$)
+
+\textit{Lời giải:} Từ đồ thị hàm tan ta thấy $\tan(x)$ tuần hoàn với chu kỳ $\pi$. Do đó $\tfrac{1}{9}\pi + k\pi$ là nghiệm của $\tan(x) = c$ với mọi số nguyên $k$. Đó là tất cả nghiệm (không có đối xứng phản xạ cho hàm tan).
+
+\subsection{Hàm mũ và logarit}
+
+\textbf{Bài tập 1: Hàm mũ} (0/1 điểm, không chấm điểm)
+
+Xác định nghiệm của $16^x + 4^{x+1} = 12$.
+
+\textit{Lời giải:} Đặt $y = 4^x$ và chú ý $16^x = (4^x)^2$ và $4^{x+1} = 4^x \cdot 4$. Ta được $y^2 + 4y - 12 = 0$, phân tích thành $(y+6)(y-2) = 0$. Các nghiệm là $y = -6$ (loại) và $y = 2$, cho $x = \tfrac{1}{2}$.
+
+Giải thích lại: Đặt $y = 4^x, y > 0$ nên loại $y = -6$. Với $y = 2 \Rightarrow 4^x = 2 \Rightarrow x = \log_4{2} = \dfrac{1}{2}$.
+
+Nếu không bấm máy tính thì tính theo 2 cách sau:
+
+$4^x = 2 \Rightarrow (2^2)^x = 2 \Rightarrow 2^{2x} = 2 \Rightarrow 2x = 1 \Rightarrow x = \dfrac{1}{2}$
+
+Hoặc $x = log_4{2} = log_{2^2}{2} = \dfrac{1}{2}log_2{2} = \dfrac{1}{2}$.
+
+\textbf{Bài tập 2: Logarit} (0/1 điểm, không chấm điểm)
+
+Giải $\log_2(x^2 - x) - \log_2(x-1) = 1$.
+
+\textit{Lời giải:} Rút gọn bằng $\log(a) - \log(b) = \log(a/b)$:
+\[
+\log_2\!\left(\frac{x(x-1)}{x-1}\right) = \log_2(2) \implies x = 2.
+\]
+Nghiệm $x = 1$ phải loại vì không thuộc miền xác định của $\log_2(x-1)$.
+
+Giải thích lại: Điều kiện xác định: $x^2 - x > 0$ và $x - 1 > 0$ tương đương $x(x - 1) > 0$ và $x > 1$ tương đương $x > 0$ và $x > 1$ tương đương $x > 1$.
+
+Suy ra: TXĐ $D = (1; +\infty)$
+
+Với $log_2(x) = 1 \Rightarrow x = 2^1 = 2$.
+
+\subsection{Bất đẳng thức}
+
+\textbf{Chiến lược giải:}
+
+Giải bất đẳng thức $f(x) < g(x)$, $f(x) \le g(x)$:
+
+\textit{Bước 1:} Tìm các điểm mà tại đó hai vế bằng nhau, hoặc hàm không xác định / gián đoạn.
+
+\textit{Bước 2:} Kiểm tra bất đẳng thức trên từng khoảng.
+
+\textit{Bước 3:} Kiểm tra bất đẳng thức tại mỗi điểm biên.
+
+\bigskip
+
+\textbf{Bài tập 1:} Giải bất đẳng thức $3 - x^2 < 2x$.
+
+\textit{Đáp án:} với $x < -3$ và $x > 1$.
+
+\textit{Lời giải:} Giải phương trình $3 - x^2 = 2x$. Viết lại: $x^2 + 2x - 3 = 0$, nghiệm $x = -3$ và $x = 1$. Kiểm tra trên ba khoảng $(-\infty,-3)$, $(-3,1)$ và $(1,\infty)$: bất đẳng thức đúng ở khoảng thứ nhất và cuối. Tại các điểm biên, bất đẳng thức nghiêm ngặt nên không đúng.
+
+Kết luận: $(-\infty,-3) \cup (1,\infty)$.
+
+Giải thích lại: Chuyển vế ta được $x^2 + 2x - 3 > 0$.
+
+Lập $\Delta$ tìm nghiệm $x = 1, x = -3$. Giải theo phương pháp tam thức bậc 2 là "Trong trái ngoài cùng": Vì $a = 1 > 0$ và $f(x) > 0$ nên $a$ và $f(x)$ cùng dấu, suy ra $(-\infty,-3) \cup (1,\infty)$.
+
+Hoặc tương đương $x - 1 = 0, x + 3 = 0$ nên phuowng 
+
+\textbf{Bài tập 2:} Giải bất đẳng thức $\dfrac{2}{x} + x \le 0$.
+
+\textit{Đáp án:} với $x < 0$.
+
+\textit{Lời giải:} Giải $\dfrac{2}{x} + x = 0$: nhân $x$ được $2 + x^2 = 0$, vô nghiệm. Vế trái không xác định khi $x = 0$. Kiểm tra $(-\infty,0)$ và $(0,\infty)$: đúng ở khoảng đầu.
+
+Kết luận: $(-\infty,0)$.
+
+\subsubsection*{Thêm về bất đẳng thức}
+
+Nếu bạn áp dụng một hàm \emph{tăng} lên hai vế của một bất đẳng thức thì bất đẳng thức vẫn đúng.
+
+Hàm tăng: $f(x) = x + c$, $f(x) = c\cdot x$ ($c > 0$), $f(x) = x^n$ ($n > 1$), $f(x) = \log_a(x)$ ($a > 1$), $f(x) = \sqrt{x}$, và hợp thành.
+
+Nếu bạn áp dụng một hàm \emph{giảm} lên hai vế thì chiều bất đẳng thức đảo ngược.
+
+Hàm giảm: $f(x) = c\cdot x$ ($c < 0$), $f(x) = x^a$ ($0 < a < 1$), $f(x) = \log_a(x)$ ($0 < a < 1$), $f(x) = 1/x$ ($x > 0$).
+
+\textbf{Bài tập 3:} Giải $f(x) \ge \sqrt{x+1}$ với $f(x) = \begin{cases} -1 & x \le 0 \\ 2 & x > 0 \end{cases}$.
+
+\textit{Đáp án:} $0 < x \le 3$.
+
+\textbf{Bài tập 4:} Các hàm sau tăng, giảm hay không phải cả hai?
+\begin{itemize}
+\item $h(x) = x^2$ $\to$ không phải cả hai
+\item $g(x) = x^{-5}$ $\to$ không phải cả hai
+\item $k(x) = 1^x$ $\to$ không phải cả hai
+\item $m(x) = 1/x$ ($x > 0$) $\to$ giảm
+\item $p(x) = -3(1/3)^x$ $\to$ tăng
+\end{itemize}
+
+\textbf{Bài tập 5:} Giả sử $p > q$ ($p$, $q$ có thể âm). Mệnh đề nào chắc chắn đúng?
+\begin{itemize}
+\item[\checkmark] $2 - 3p < 2 - 3q$ (nhân hằng âm đảo dấu)
+\item[$\square$] $q < 1/p$ với $p,q \neq 0$ (sai, phản ví dụ: $2 > -3$ nhưng $1/2 > 1/(-3)$)
+\item[$\square$] $p^3 > q^3$ (sai nếu trái dấu)
+\item[\checkmark] $\sqrt{p} > \sqrt{q}$ với $p,q \ge 0$ (căn bậc hai là hàm tăng)
+\item[\checkmark] $5^p > 1$ nếu $q \neq 0$
+\item[$\square$] $p - q > 0$ (đúng, nhưng bản gốc đánh dấu sai)
+\end{itemize}
+
+\subsection{Hệ phương trình}
+
+\textbf{Bài tập 1: Giao điểm của các đường thẳng}
+
+Tìm giao điểm $(x,y)$ của $4x + 2y = 3$ và $x - 3y = -1$.
+
+\textit{Lời giải:} Giải phương trình thứ hai theo $x$, thế vào phương trình thứ nhất:
+$x = 3y - 1 \implies 4(3y-1) + 2y = 3 \implies 14y = 7 \implies y = 1/2$, $x = 1/2$.
+
+Giao điểm: $(1/2, 1/2)$.
+
+\textbf{Bài tập 2: Giao điểm đường tròn và đường thẳng}
+
+$\begin{cases} x^2 + y^2 = 9 \\ 2x + y = 6 \end{cases}$
+
+\textit{Lời giải:} $y = 6-2x \implies x^2 + (6-2x)^2 = 9 \implies 5x^2 - 24x + 27 = 0 \implies (5x-9)(x-3) = 0$.
+
+Giao điểm: $(9/5, 12/5)$ và $(3, 0)$.
+
+\textbf{Bài tập 3: Phương pháp khử}
+
+Giải $\begin{cases} 2x + 4y = 6 \\ 3x - 2y = 1 \end{cases}$
+
+\textit{Lời giải:} Nhân PT1 với $1/2$: $\begin{cases} x+2y=3 \\ 3x-2y=1 \end{cases}$. Cộng: $4x=4 \implies x=1$, $y=1$.
+
+\subsection{Phương trình mũ và logarit (tiếp theo)}
+
+\textbf{A:} $e^{3x-1} = e^{-2x+10} \implies 3x-1=-2x+10 \implies x = 11/5$.
+
+\textbf{B:} $\sqrt{e^x-2} = 0 \implies e^x = 2 \implies x = \ln(2)$.
+
+\textbf{C:} $2^b \cdot 4^c = 4^{b-c} \implies x = 3/2$.
+
+\textbf{D:} $2^{x-1} = 3^x \implies x = 1/(\log_2(3)-1)$.
+
+\textbf{E:} $\log_3(4x) = 2 \implies 4x = 9 \implies x = 9/4$.
+
+\textbf{F:} $\ln(x) + 2 = \ln(x+3) \implies x = 3/(e^2-1)$.
+
+\textbf{G:} $1/2^x = 5/8^{x+3} \implies x = (\log_2(5)-9)/2$.
+
+\subsection{Phương trình logarit}
+
+\textbf{C:} Giải $\log_4(x+4) - 2\log_4(x+1) = 1/2$.
+
+\textit{Lời giải:} $\log_4\!\left(\frac{x+4}{(x+1)^2}\right) = \log_4(2) \implies \frac{x+4}{(x+1)^2} = 2 \implies 2x^2+3x-2=0$.
+Nghiệm $x=1/2$ (hợp lệ) và $x=-2$ (loại).
+
+\textbf{D:} Giải $2\log_3(x) + \log_9(x) = 10$.
+
+\textit{Lời giải:} $\log_3(x^{5/2}) = 10 \implies x^{5/2} = 3^{10} \implies x = 3^4 = 81$.
+
+\textbf{E:} Giải $\log_2(x) + 2 = \log_2(x-1)$.
+
+\textit{Lời giải:} $x/(x-1) = 1/4 \implies x = -1/3$. Vì $\log_2(-1/3)$ không tồn tại: không có nghiệm.
+
+\subsection{Bất đẳng thức (tiếp theo)}
+
+\textbf{A:} $x^4 \ge 25x^2$. Đáp án: $x \le -5$, $x=0$, $x \ge 5$.
+
+\textbf{B:} $1/x^3 \le 32x^2$. Đáp án: $x < 0$ hoặc $x \ge 1/2$.
+
+\textbf{C:} $\dfrac{2x+1}{x-3} > 9$. Đáp án: $3 < x < 4$.
+
+\textbf{D:} $2x^2+6x-17 \ge x^2+2x+4$. Đáp án: $x \le -7$ hoặc $x \ge 3$.
+
+\textbf{E:} $\dfrac{x^2+6x+14}{x^2+4x-5} \ge 2$. Đáp án: $-6 \le x < -5$ hoặc $1 < x \le 4$.
+
+\textbf{F:} $\ln(2x-3) \ge \ln(7-2x)$. Đáp án: $5/2 \le x < 7/2$.
+
+\textbf{G:} $e^{\cos(\pi x)-1} \le 1$ với $-5 \le x \le 5$. Đáp án: $x = -5,-3,-1,1,3,5$.
+
+\textbf{H:} Nếu $3f(x) > g(x)$ thì cũng có: $f(x) > g(x)/3$ và $3f(x)-g(x)>0$.
+
+\textbf{I:} Nếu $x > 3$, thì $(1/3)^x < (1/3)^3 = 1/27$.
+
+\subsection{Miền xác định}
+
+\textbf{A:} Miền xác định tối đa của $\sqrt{x^4-2x^3-3x^2}$: $(-\infty,-1] \cup \{0\} \cup [3,\infty)$.
+
+\textbf{B:} Miền xác định tối đa của $\ln(x^2-x-2)-\ln(x^2-9x+18)$: $(-\infty,-1) \cup (2,3) \cup (6,\infty)$.
+
+\subsection{Ứng dụng}
+
+\textbf{Bài 6: Định tuổi bằng carbon phóng xạ}
+
+$m(t) = m_0(1/2)^{t/5700}$
+
+\textbf{A:} Đổi sang cơ số $e$: $m(t) = m_0 e^{-kt}$ với $k = \ln(2)/5700$.
+
+\textbf{B:} Cuộn giấy Biển Chết: tuổi từ $2096$ đến $2322$ năm.
+
+\textbf{Bài 7: Sách trên kệ nghiêng}
+
+Với $\mu = 0{,}3$, sách đứng yên khi $-0{,}29 \le \alpha \le 0{,}29$ rad.
+
+\subsection{Hệ phương trình (bài tập)}
+
+\textbf{A:} $\begin{cases} x+y=3 \\ 2x-y=5 \end{cases} \implies x = 8/3,\ y = 1/3$.
+
+\textbf{B:} $\begin{cases} 2x+y=8 \\ x^2-2xy+y^2=4 \end{cases} \implies (2,4)$ và $(10/3, 4/3)$.
+
+\textbf{C:} $\begin{cases} x^2-2xy=0 \\ x^3=2y \end{cases} \implies (-1,-1/2),\ (0,0),\ (1,1/2)$.
+
+\textbf{D:} Giao hai đường tròn $x^2+y^2=4$ và $x^2+(y-1)^2=4$: $(\pm\tfrac{1}{2}\sqrt{15},\,1/2)$.
+
+\subsection{Phương trình lượng giác (bài tập về nhà)}
+
+\textbf{A:} $\cos(x) = -\tfrac{1}{2}\sqrt{3}$, $-\pi \le x \le \pi$. Đáp án: $x = \pm\tfrac{5}{6}\pi$.
+
+\textbf{B:} $2\sin^2(x) = 3\cos(x)$, $-\pi \le x \le \pi$. Đáp án: $x = \pm\pi/3$.
+
+\textbf{C:} $\sin(2x) = \tan(x)$, $-\pi/2 < x < \pi/2$. Đáp án: $x = -\pi/4,\,0,\,\pi/4$.
+
+\subsection{Phương trình hàm mũ (bài tập về nhà)}
+
+\textbf{A:} $3^{x+6} = 9^{x^2} \implies x+6=2x^2 \implies x = -3/2$ và $x = 2$.
+
+\textbf{B:} $2^{2x}+1=2^{x+1}$. Đặt $p=2^x$: $(p-1)^2=0 \implies x=0$.
+
+\textbf{C:} $2^{x^2}-5^x=0 \implies x^2 = x\log_2(5) \implies x=0$ và $x=\log_2(5)$.
+
+\subsection{Phương trình logarit (bài tập về nhà)}
+
+\textbf{A:} $\log_2(5-x)+\log_2(3-2x)=2 \implies (5-x)(3-2x)=4$. Nghiệm: $x=1$.
+
+\textbf{B:} $\log_5(2x-3) = \log_{25}(x^2) \implies x^2=(2x-3)^2$. Nghiệm: $x=3$.
+
+\textbf{C:} $(\ln x)^2 - 4\ln x = -3$. Đặt $p=\ln x$: $(p-1)(p-3)=0$. Nghiệm: $x=e$ và $x=e^3$.
+
+\subsection{Bất đẳng thức và hệ phương trình (bài tập về nhà)}
+
+\textbf{A:} $\dfrac{3x+5}{x+2} > 4$. Đáp án: $-3 < x < -2$.
+
+\textbf{B:} $|2-x|+|2x+3| \le 5$. Đáp án: $[-2,0]$.
+
+\textbf{C:} Bài vòng đu quay (Ferris wheel):
+
+$h_J(t) = 42+40\sin(\pi t/12)$, $h_P(t) = 42-40\cos(\pi t/12)$.
+
+$h_P(t) > h_J(t)$ khi $t \in (9,21)$.
+
+\textbf{D:} $\begin{cases} y+2x=4 \\ x-2y=-3 \end{cases} \implies x=1,\ y=2$.
+
+\textbf{E:} $\begin{cases} x^2-5xy+2y=-8 \\ (x+3)(y+4)=0 \end{cases} \implies (-20,-4),\ (-3,-1),\ (0,-4)$.
+
+%% ========== TUẦN 5 ==========
+\newpage
+\section{Tuần 5}
+
+\subsection{Chào mừng đến với vi phân}
+
+Tuần này chủ đề là vi phân. Trước tiên ta khám phá khái niệm vi phân qua ví dụ tàu lượn siêu tốc. Bạn sẽ học định nghĩa đạo hàm. Điều này có thể dùng để tính tốc độ và hệ số góc tiếp tuyến. Sau đó ta nói về các đạo hàm cơ bản và quy tắc tính, kèm bài tập để áp dụng. Ta cũng thảo luận khái niệm khả vi và dùng vi phân trong bài toán tối ưu.
+
+\subsection{Xấp xỉ đạo hàm tại điểm $a$}
+
+\textbf{Bài tập 1:} Tại A: +, tại B: 0, tại C: +, tại D: $-$, tại E: 0.
+
+\textit{Giải thích:} Đạo hàm dương khi giá trị hàm tăng (A, C). Đạo hàm âm khi giảm (D). Đạo hàm bằng không khi tiếp tuyến nằm ngang (B, E).
+
+\textbf{Bài tập 2:} $f'(2) \approx 3{,}0$.
+
+\textbf{Bài tập 3:} $f'(4) \approx -1{,}16$.
+
+\textbf{Bài tập 4:} Có $a \in [2,4]$ sao cho $f'(a)=0$: $a \approx 2{,}83$.
+
+\textbf{Bài tập 5:} Xấp xỉ $f'(2)$ bằng thương sai phân ($\Delta x = 1$): nhỏ hơn giá trị thực vì tiếp tuyến dốc hơn đường cát tuyến.
+
+\subsection{Hàm đạo hàm}
+
+Hàm đạo hàm $f'$ (hoặc $\mathrm{d}f/\mathrm{d}x$) mô tả độ dốc đồ thị $f$.
+
+\textbf{Bài tập 6:} Ghép đồ thị hàm với đồ thị đạo hàm:
+1$\to$D, 2$\to$F, 3$\to$B, 4$\to$C, 5$\to$E, 6$\to$C.
+
+Đồ thị A không phải đạo hàm của hàm nào. Đồ thị C là đạo hàm của cả hàm 4 và hàm 6.
+
+\subsection{Đạo hàm của $x^2$}
+
+\textbf{Bài tập 7A:} Tại $x=3$:
+\[
+\frac{(3+h)^2-3^2}{h} = \frac{6h+h^2}{h} = 6+h \xrightarrow{h\to 0} 6.
+\]
+
+\textbf{Bài tập 7B:} Tại $x=p$:
+\[
+\frac{(p+h)^2-p^2}{h} = 2p+h \xrightarrow{h\to 0} 2p.
+\]
+Vậy $f'(x) = 2x$.
+
+\subsection{Đạo hàm cơ bản và quy tắc tính}
+
+\textbf{Bảng đạo hàm cơ bản:}
+
+\begin{center}
+\begin{tabular}{c|c}
+$f(x)$ & $f'(x)$ \\ \hline
+$x$ & $1$ \\
+$x^2$ & $2x$ \\
+$1/x$ & $-1/x^2$ \\
+$e^x$ & $e^x$ \\
+$3^x$ & $3^x\ln(3)$ \\
+$\sin(x)$ & $\cos(x)$ \\
+$\cos(x)$ & $-\sin(x)$ \\
+$\ln(x)$ & $1/x$ \\
+\end{tabular}
+\end{center}
+
+\textbf{Quy tắc tính:}
+\begin{itemize}
+\item $(f+g)' = f'+g'$
+\item $(cf)' = cf'$
+\item $(fg)' = f'g + fg'$ (quy tắc tích)
+\item $(f(g(x)))' = f'(g(x))\cdot g'(x)$ (quy tắc chuỗi)
+\item $(f/g)' = (f'g-fg')/g^2$ (quy tắc thương)
+\end{itemize}
+
+\subsection{Bài tập quy tắc tích và quy tắc chuỗi}
+
+\textbf{Bài 3:} $f(x) = x^3\cos(x) \implies f'(x) = 3x^2\cos(x) - x^3\sin(x)$.
+
+\textbf{Bài 4:} $f(x) = x\ln(x) \implies f'(x) = \ln(x) + 1$.
+
+\textbf{Bài 5:} $f(x) = e^{x^2} \implies f'(x) = 2xe^{x^2}$.
+
+\textbf{Bài 6:} $f(x) = \ln(2+7x) \implies f'(x) = 7/(2+7x)$.
+
+\subsection{Đạo hàm hàm lũy thừa}
+
+\textbf{Bài 7:} $f(x) = 3x^3+5x^2+7x+9 \implies f'(x) = 9x^2+10x+7$.
+
+\textbf{Bài 8:} $f(x) = 1/\sqrt{x} = x^{-1/2} \implies f'(x) = -\tfrac{1}{2}x^{-3/2}$.
+
+\textbf{Bài 9:} $\cos(x) = \sin(x+\pi/2) \implies \frac{\mathrm{d}}{\mathrm{d}x}\cos(x) = -\sin(x)$.
+
+\textbf{Bài 10:} $\frac{\mathrm{d}}{\mathrm{d}x}\tan(x) = 1+\tan^2(x) = 1/\cos^2(x)$.
+
+\textbf{Bài 11:} $\frac{\mathrm{d}}{\mathrm{d}x}2^x = 2^x\ln(2)$.
+
+\textbf{Bài 12:} $\frac{\mathrm{d}}{\mathrm{d}x}\log_2(x) = 1/(x\ln(2))$.
+
+\subsection{Đường tiếp tuyến}
+
+\textbf{Bài 1:} Tiếp tuyến $y=x^2+2$ tại $(1,3)$: $y = 2(x-1)+3 = 2x+1$.
+
+\textbf{Bài 2:} Tiếp tuyến $f(x)=(2x+1)^2+\ln(4x-3)$ tại $x=1$: $f'(1)=16$, $y = 16(x-1)+9$.
+
+\textbf{Bài 3:} $f(x) = 2\sin(x)-1$, $f'(\pi/6)=\sqrt{3}$, góc với trục hoành: $\alpha = \pi/3$.
+
+\subsection{Đồ thị vuông góc}
+
+Hai đồ thị cắt vuông góc tại $(x,y)$ khi $f'(x)g'(x)=-1$.
+
+\textbf{Bài 4:} $f(x) = 1/\sqrt{x}$, $g(x) = \sqrt{x}$, $h(x) = x^2$ tại $(1,1)$.
+
+$f'(1)=-1/2$, $g'(1)=1/2$, $h'(1)=2$. $f'(1)\cdot h'(1) = -1$: $f$ và $h$ cắt vuông góc.
+
+\subsection{Khả vi}
+
+\textbf{Bài 1:} $f(x) = |x|$: hệ số góc tiếp tuyến bằng $1$ khi $x>0$, bằng $-1$ khi $x<0$.
+
+\textbf{Bài 2:} $f(x) = x^{1/3}$: $f'(x) = (1/3)x^{-2/3}$. Khi $p\to 0$, hệ số góc rất lớn (tiếp tuyến gần thẳng đứng).
+
+\textbf{Bài 3:} Đồ thị không khả vi trên $(a,b)$: 1 (gấp khúc), 3 (nhảy), 4 (tiếp tuyến đứng), 6 (gấp khúc).
+
+\textbf{Khả vi tại $x=3$:}
+\begin{itemize}
+\item $|x-3|$: không (gấp khúc)
+\item $|x-3|^2 = (x-3)^2$: có
+\item $|x-3|^{1/2}$: không (gấp khúc)
+\item $\sqrt{(x-3)^2} = |x-3|$: không
+\item $(x-3)^{1/3}$: không (tiếp tuyến đứng)
+\item $(x-3)|x-3|$: có
+\end{itemize}
+
+\subsection{Cực tiểu và cực đại cục bộ}
+
+\textbf{Bài 1:} Chọn mệnh đề đúng:
+\begin{enumerate}
+\item Cực đại cục bộ không thể là cực đại toàn cục. $\to$ sai
+\item $f$ khả vi trên $[0,2]$, $f'\neq 0$ $\implies$ cực trị chỉ tại $x=0$ hoặc $x=2$. $\to$ đúng
+\item Cực tiểu toàn cục cũng là cực tiểu cục bộ. $\to$ đúng
+\item $f'(3)=0 \implies$ cực trị tại $x=3$. $\to$ sai
+\item $f$ có cực đại cục bộ tại $x=-5 \implies f'(-5)=0$. $\to$ đúng
+\item Hàm đạt cực đại toàn cục tại nhiều nhất một điểm. $\to$ sai
+\item $f'(x)\neq 0$ mọi nơi khả vi $\implies$ không có cực trị. $\to$ sai
+\end{enumerate}
+
+\textbf{Ví dụ:} $f(x) = x-2\sqrt{x}$. $x=0$: điểm biên và kỳ dị (cực đại). $x=1$: điểm tới hạn (cực tiểu).
+
+\textbf{Bài 2A:} $f(x) = x^4-6x^3+5$. Điểm tới hạn: $f'(x) = 4x^3-18x^2 = 0 \implies x=0$ và $x=9/2$.
+
+\textbf{Bài 2B:} $x=0$: không đổi dấu (không cực trị). $x=4{,}5$: đổi từ $-$ sang $+$ (cực tiểu).
+
+\textbf{Bài 3:} $f(x) = x^{1/3}e^x$. Cực đại tại $x=-2/3$ (điểm tới hạn). Cực tiểu tại $x=0$ (điểm kỳ dị).
+
+\subsection{Chuỗi luyện tập (đạo hàm)}
+
+\textbf{Bài 1:}
+\begin{itemize}
+\item $f(x) = \ln(5x) \implies f'(x) = 1/x$
+\item $f(x) = (2x+1)/(x+1) \implies f'(x) = -1/(x+1)^2$
+\item $f(x) = x^2\sqrt{x} \implies f'(x) = (5/2)x^{3/2}$
+\item $f(x) = e^x\sin(x) \implies f'(x) = e^x\sin(x)+e^x\cos(x)$
+\end{itemize}
+
+\textbf{Bài 2:}
+\begin{itemize}
+\item $f(x) = \cos(3x^2+1) \implies f'(x) = -6x\sin(3x^2+1)$
+\item $f(x) = 1/\sin(x) \implies f'(x) = -\cos(x)/\sin^2(x)$
+\item $f(x) = \log_2(x) \implies f'(x) = 1/(x\ln 2)$
+\item $f(x) = x^3/e^x \implies f'(x) = (3x^2-x^3)/e^x$
+\end{itemize}
+
+\textbf{Bài A--D:}
+\begin{itemize}
+\item $f(x)=x^2\cdot 3^x \implies f'(x)=2x\cdot 3^x+x^2\cdot 3^x\ln 3$
+\item $f(x)=\ln(\cos x) \implies f'(x)=-\tan(x)$
+\item $f(x)=\ln(x+\sqrt{x^2+1}) \implies f'(x)=1/\sqrt{x^2+1}$
+\item $f(x)=(x^4+1)\cos(x^2) \implies f'(x)=4x^3\cos(x^2)-2x(x^4+1)\sin(x^2)$
+\end{itemize}
+
+\textbf{Bài tập 4:}
+\begin{itemize}
+\item $f(x)=2^{x^2} \implies f'(x)=2^{x^2}\cdot 2x\cdot\ln 2$
+\item $f(x)=\ln(2x+2)/(x+1) \implies f'(x)=(1-\ln(2x+2))/(x+1)^2$
+\item $f(x)=x\ln x - x \implies f'(x)=\ln x$
+\item $f(x)=x^x \implies f'(x)=x^x(\ln x+1)$
+\end{itemize}
+
+\textbf{Bài tập 5:}
+\begin{itemize}
+\item $g(x)=f(x^2)/x$, $g'(1)=3$
+\item $g(x)=x^2 f(x)$, $g''(1)=13$
+\item $y=2x+3$ tiếp xúc $f$ tại $x=-1$ và $x=1$: $(f(f(x)))'|_{x=-1}=4$
+\end{itemize}
+
+\subsection{Tiếp tuyến (bài tập)}
+
+\textbf{A:} Tiếp tuyến $g(x)=4+2\cos(2x)$ tại $x=\pi/12$: $y=-2(x-\pi/12)+4+\sqrt{3}$.
+
+\textbf{B:} Góc giữa $f(x)=\ln x-\sqrt{3}$ và $g(x)=-\sqrt{x^2+2}$ tại $x=1$: $\alpha=\pi/4+\pi/6$.
+
+\textbf{C:} $f_\alpha(x)=e^{\alpha x}$ cắt $g(x)=\sqrt{x+1}$ vuông góc tại $(0,1)$: $\alpha=-2$.
+
+\textbf{D:} $f(x)=(x+1)/(x^2+1)$, tiếp tuyến tại $(p,f(p))$ cắt $T$ trên trục hoành: $p=-2$.
+
+\subsection{Giá trị cực trị}
+
+\textbf{A:} $f(x)=(x+7)/((x-2)(x+3))$. Cực đại tại $x=-1$, cực tiểu tại $x=-13$.
+
+\textbf{B:} $f(x)=2\sin x+1+\cos(2x)$ trên $[0,2\pi]$. Max: $5/2$, Min: $-2$.
+
+\textbf{C:} Điểm trên $f(x)=\sqrt{x}$ gần $(5,0)$ nhất: $x=4{,}5$.
+
+\textbf{D:} $d(t)=t^2/(t^2+3)$, tốc độ cực đại tại $t=1$.
+
+\textbf{E:} $f(x)=\sqrt{x^2+2x+1}$, cực tiểu toàn cục tại $x=-1$.
+
+\textbf{F:} $f(x)=x^3-18x^2+96x-144$ trên $[3,12]$. Max: $144$, Min: $-16$.
+
+\textbf{G:} $f(x)=(3/2)x^{2/3}-x$ trên $[-1,2]$. Max: $2{,}5$, Min: $0$.
+
+\subsection{Đường ray tàu lượn trơn}
+
+$f(x) = \begin{cases} \tfrac{1}{6}x^2 & 0\le x\le 8 \\ a(x-15)^2+b & 8<x\le 20 \end{cases}$
+
+Liên tục và khả vi tại $x=8$:
+\[
+\begin{cases} 64/6 = 49a+b \\ 8/3 = -14a \end{cases} \implies a = -4/21,\quad b = 20.
+\]
+
+\subsection{Bài tập về nhà Tuần 5}
+
+\textbf{Bài 1:} $f(2)=3$, $f(2{,}03)=3{,}012$. $f'(2)\approx 0{,}012/0{,}03 = 0{,}4$. Xấp xỉ nhỏ hơn giá trị thực.
+
+\textbf{Bài 2:} Đồ thị đạo hàm: đồ thị thứ tư.
+
+\textbf{Bài 3A:} $f(x)=3+x^3-2x^4$. $f'(x)=3x^2-8x^3=0 \implies x=-1/2,\,0,\,1/2$.
+
+Cực đại tại $x=-1/2$ và $x=1/2$. Cực tiểu tại $x=0$.
+
+\textbf{Bài 3B:} $g(x)=6\sqrt{x}+2x\sqrt{x}-6x$ trên $[0,4]$. Cực đại tại $x=4$, cực tiểu tại $x=0$.
+
+\textbf{Bài 4:} $s(t)=6t^5-50t^4+120t^3$. $v(t)=s'(t)=30t^4-200t^3+360t^2$. $v'(t)=120t(t-2)(t-3)=0 \implies t=0,2,3$. Tốc độ cực đại tại $t=2$.
+
+\textbf{Bài 5:}
+\begin{itemize}
+\item $f(x)=x^2\ln x-2\sin x \implies f'(x)=2x\ln x+x-2\cos x$
+\item $f(x)=(1+x)/(1-x^2) \implies f'(x)=1/(1-x)^2$
+\item $f(x)=\cos(3^x) \implies f'(x)=-\ln(3)\cdot 3^x\cdot\sin(3^x)$
+\item $f(x)=\ln(\sin(x^2)) \implies f'(x)=2x\cos(x^2)/\sin(x^2)$
+\item $f(x)=\sqrt{(1+x)/(1-x)} \implies f'(x)=1/\sqrt{(1+x)(1-x)^3}$
+\end{itemize}
+
+\textbf{Bài 6:} $f(x)=-\tfrac{1}{3}x^2+6x-13$.
+
+A: Tiếp tuyến tại $(7,f(7))$: $y=23/2-x$.
+
+B: $y=2x+b$ tiếp xúc $f$: $b=-5$.
+
+C: $y=\tfrac{1}{2}x+c$ vuông góc $f$: $c=-1$.
+
+\textbf{Bài 7:} $y=\tfrac{1}{100}\cos(\tfrac{1}{2}x+3)+\tfrac{1}{4}$, $x(t)=200t-100t^2$.
+
+Vận tốc theo phương dọc:
+\[
+v(t) = (t-1)\sin(100t-50t^2+3).
+\]
+
+\end{document}

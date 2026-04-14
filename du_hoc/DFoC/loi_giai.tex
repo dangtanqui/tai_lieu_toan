@@ -1,0 +1,1169 @@
+\chapter*{Lời giải chọn lọc}
+\addcontentsline{toc}{chapter}{Lời giải chọn lọc}
+
+\begin{warningbox}
+Hãy thử tự làm bài tập trước khi xem lời giải!
+\end{warningbox}
+
+%% ============================================================
+\section*{Lời giải 2.1}
+\addcontentsline{toc}{section}{Lời giải 2.1}
+
+\textbf{1.}
+
+\begin{center}
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p \lor q$ \\
+\hline
+0 & 0 & 0 \\
+0 & 1 & 1 \\
+1 & 0 & 1 \\
+1 & 1 & 1
+\end{tabular}
+\qquad
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p \land q$ \\
+\hline
+0 & 0 & 0 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{tabular}
+\qquad
+\begin{tabular}{c|c}
+$p$ & $\neg p$ \\
+\hline
+0 & 1 \\
+1 & 0
+\end{tabular}
+\end{center}
+
+\medskip
+\textbf{2.}
+
+\textbf{a)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \to q}^{A}$ & $\overbrace{p \land (A)}^{B}$ & $(B) \to q$ \\
+\hline
+0 & 0 & 1 & 0 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+Vì mệnh đề luôn đúng, mệnh đề là một hằng đúng.
+
+\medskip
+\textbf{b)}
+\begin{center}
+\begin{tabular}{ccc|cccccc}
+$p$ & $q$ & $r$ & $\overbrace{p \to q}^{A}$ & $\overbrace{q \to r}^{B}$ & $\overbrace{(A) \land (B)}^{C}$ & $\overbrace{p \to r}^{D}$ & $(C) \to (D)$ \\
+\hline
+0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 & 0 & 0 & 1 \\
+1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 1 & 0 & 0 & 0 & 1 \\
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+Vì mệnh đề luôn đúng, mệnh đề là một hằng đúng.
+
+\medskip
+\textbf{c)}
+\begin{center}
+\begin{tabular}{c|c}
+$p$ & $p \land \neg p$ \\
+\hline
+0 & 0 \\
+1 & 0
+\end{tabular}
+\end{center}
+Vì mệnh đề luôn sai, mệnh đề là một mâu thuẫn.
+
+\medskip
+\textbf{d)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \lor q}^{A}$ & $\overbrace{p \land q}^{B}$ & $(A) \to (B)$ \\
+\hline
+0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+Vì mệnh đề đôi khi đúng và đôi khi sai, mệnh đề là một tùy thuộc.
+
+\medskip
+\textbf{e)}
+\begin{center}
+\begin{tabular}{c|c}
+$p$ & $p \lor \neg p$ \\
+\hline
+0 & 1 \\
+1 & 1
+\end{tabular}
+\end{center}
+Vì mệnh đề luôn đúng, mệnh đề là một hằng đúng.
+
+\medskip
+\textbf{f)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \land q}^{A}$ & $\overbrace{p \lor q}^{B}$ & $(A) \to (B)$ \\
+\hline
+0 & 0 & 0 & 0 & 1 \\
+0 & 1 & 0 & 1 & 1 \\
+1 & 0 & 0 & 1 & 1 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+Vì mệnh đề luôn đúng, mệnh đề là một hằng đúng.
+
+\bigskip
+\textbf{3.} Ta sẽ so sánh bảng chân trị của các câu hỏi con với bảng chân trị của $p \leftrightarrow q$:
+
+\begin{center}
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p \leftrightarrow q$ \\
+\hline
+0 & 0 & 1 \\
+0 & 1 & 0 \\
+1 & 0 & 0 \\
+1 & 1 & 1
+\end{tabular}
+\end{center}
+
+\textbf{a)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \to q}^{A}$ & $\overbrace{q \to p}^{B}$ & $A \land B$ \\
+\hline
+0 & 0 & 1 & 1 & 1 \\
+0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+
+\textbf{b)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{\neg p}^{A}$ & $\overbrace{\neg q}^{B}$ & $A \leftrightarrow B$ \\
+\hline
+0 & 0 & 1 & 1 & 1 \\
+0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 0 \\
+1 & 1 & 0 & 0 & 1
+\end{tabular}
+\end{center}
+
+\textbf{c)}
+\begin{center}
+\begin{tabular}{cc|ccccccc}
+$p$ & $q$ & $\overbrace{p \to q}^{A}$ & $\overbrace{\neg p}^{B}$ & $\overbrace{\neg q}^{C}$ & $\overbrace{B \to C}^{D}$ & $A \land D$ \\
+\hline
+0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+0 & 1 & 1 & 1 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 \\
+1 & 1 & 1 & 0 & 0 & 1 & 1
+\end{tabular}
+\end{center}
+
+\textbf{d)}
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \oplus q}^{A}$ & $\neg A$ \\
+\hline
+0 & 0 & 0 & 1 \\
+0 & 1 & 1 & 0 \\
+1 & 0 & 1 & 0 \\
+1 & 1 & 0 & 1
+\end{tabular}
+\end{center}
+
+\bigskip
+\textbf{4.}
+\begin{center}
+\begin{tabular}{ccc|ccccccc}
+$p$ & $q$ & $r$ & $\overbrace{p \to q}^{A}$ & $\overbrace{A \to r}^{B}$ & $\overbrace{q \to r}^{C}$ & $\overbrace{p \to C}^{D}$ \\
+\hline
+0 & 0 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 1 & 1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 1 \\
+1 & 0 & 1 & 0 & 1 & 1 & 1 \\
+1 & 1 & 0 & 1 & 0 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+
+Vì bảng chân trị của hai biểu thức (cột B và D) khác nhau, chúng không tương đương. Phản ví dụ là: $p = q = r = 0$. Vậy $\to$ không có tính kết hợp.
+Còn $\leftrightarrow$ thì sao?
+
+\bigskip
+\textbf{5.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $p \lor q$
+\item $\neg p \to q$
+\end{enumerate}
+
+\bigskip
+\textbf{6.} Bốn mệnh đề là:
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item Galileo không bị buộc tội oan và Trái Đất là trung tâm của vũ trụ.
+\item Nếu Trái Đất chuyển động thì Trái Đất không phải là trung tâm của vũ trụ.
+\item Trái Đất chuyển động khi và chỉ khi Trái Đất không phải là trung tâm của vũ trụ.
+\item Nếu Trái Đất chuyển động thì Galileo bị buộc tội oan, nhưng nếu Trái Đất là trung tâm của vũ trụ thì Galileo không bị buộc tội oan.
+\end{enumerate}
+
+\bigskip
+\textbf{7.}
+
+\textbf{a)}
+
+\textbf{Đảo:} Nếu Sinterklaas mang đồ chơi cho bạn, thì bạn ngoan.
+
+\textbf{Phản đảo:} Nếu Sinterklaas không mang đồ chơi cho bạn, thì bạn không ngoan.
+
+\textbf{b)}
+
+\textbf{Đảo:} Nếu bạn cần trả thêm phí bưu chính, thì gói hàng nặng hơn một kilô.
+
+\textbf{Phản đảo:} Nếu bạn không cần trả thêm phí bưu chính, thì gói hàng không nặng hơn một kilô.
+
+\textbf{c)}
+
+\textbf{Đảo:} Nếu tôi không ăn bí ngòi, tôi có sự lựa chọn.
+
+\textbf{Phản đảo:} Nếu tôi ăn bí ngòi, tôi không có sự lựa chọn.
+
+\bigskip
+\textbf{8.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item Lá bài duy nhất thỏa mãn điều này là quân mười cơ.
+\item Một bộ bài thông thường có 4 lá bài thỏa mãn điều kiện là quân mười, và 13 lá bài thỏa mãn điều kiện là lá cơ, quân mười cơ đã được đếm hai lần. Vậy tổng số lá bài thỏa mãn tất cả các điều kiện là 16.
+\item Tất cả các lá bài không phải quân mười sẽ thỏa mãn điều kiện này, cũng như các lá bài vừa là quân mười vừa là lá cơ, tức chỉ có quân mười cơ. Vậy chỉ có ba lá bài không thỏa mãn điều kiện này, đó là mười rô, mười bích và mười nhép.
+\item Dễ hơn nếu ta suy luận về các lá bài không thỏa mãn điều kiện. Tất cả các lá bài là quân mười mà không phải lá cơ đều không thỏa mãn điều kiện, cũng như tất cả các lá bài là lá cơ mà không phải quân mười. Có 3 lá bài là quân mười mà không phải lá cơ (mười rô, mười bích, mười nhép). Có 12 lá bài là lá cơ mà không phải quân mười. Vậy tổng số lá bài không thỏa mãn điều kiện này là 15, có nghĩa là có 37 lá bài thỏa mãn điều kiện.
+\end{enumerate}
+
+\bigskip
+\textbf{9.} Dấu $*$ được dùng để chỉ bước mà ta có thể dừng việc viết lại, vì phương trình sẽ sử dụng $\downarrow$ hoặc các phép toán khác đã trình bày trước đó.
+
+\textbf{1.}
+\begin{align*}
+\neg p &\equiv (\neg p \land \neg p) \\
+&\equiv \neg(p \lor p) \\
+&\equiv p \downarrow p
+\end{align*}
+
+\textbf{2.}
+\begin{align*}
+p \land q &\equiv \neg(\neg p \lor \neg q) \\
+&\equiv \neg p \downarrow \neg q \tag{$*$}\\
+&\equiv (p \downarrow p) \downarrow (q \downarrow q)
+\end{align*}
+
+\textbf{3.}
+\begin{align*}
+p \lor q &\equiv \neg\neg(p \lor q) \\
+&\equiv \neg(p \downarrow q) \tag{$*$}\\
+&\equiv (p \downarrow q) \downarrow (p \downarrow q)
+\end{align*}
+
+\textbf{4.}
+\begin{align*}
+p \to q &\equiv \neg p \lor q \tag{$*$}\\
+&\equiv (\neg p \downarrow q) \downarrow (\neg p \downarrow q) \\
+&\equiv ((p \downarrow p) \downarrow q) \downarrow ((p \downarrow p) \downarrow q)
+\end{align*}
+
+\textbf{5.}
+\begin{align*}
+p \leftrightarrow q &\equiv (p \to q) \land (q \to p) \tag{$*$}\\
+&\equiv (((p \downarrow p) \downarrow q) \downarrow ((p \downarrow p) \downarrow q)) \land (((q \downarrow q) \downarrow p) \downarrow ((q \downarrow q) \downarrow p)) \\
+&\equiv (((((p \downarrow p) \downarrow q) \downarrow ((p \downarrow p) \downarrow q)) \downarrow (((p \downarrow p) \downarrow q) \downarrow ((p \downarrow p) \downarrow q))) \\
+&\quad \downarrow ((((q \downarrow q) \downarrow p) \downarrow ((q \downarrow q) \downarrow p)) \downarrow (((q \downarrow q) \downarrow p) \downarrow ((q \downarrow q) \downarrow p))))
+\end{align*}
+
+\textbf{6.}
+\begin{align*}
+p \oplus q &\equiv (p \land \neg q) \lor (\neg p \land q) \tag{$*$}\\
+&\equiv (p \land (q \downarrow q)) \lor ((p \downarrow p) \land q) \\
+&\equiv ((p \downarrow p) \downarrow ((q \downarrow q) \downarrow (q \downarrow q))) \lor (((p \downarrow p) \downarrow (p \downarrow p)) \downarrow (q \downarrow q)) \\
+&\equiv ((((p \downarrow p) \downarrow ((q \downarrow q) \downarrow (q \downarrow q))) \downarrow (((p \downarrow p) \downarrow (p \downarrow p)) \downarrow (q \downarrow q))) \\
+&\quad \downarrow (((p \downarrow p) \downarrow ((q \downarrow q) \downarrow (q \downarrow q))) \downarrow (((p \downarrow p) \downarrow (p \downarrow p)) \downarrow (q \downarrow q))))
+\end{align*}
+
+\bigskip
+\textbf{10.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item Bảng chân trị cho công thức chứa hai nguyên tử duy nhất sẽ có 4 hàng. Mỗi hàng trong 4 hàng này có thể cho kết quả 0 hoặc 1. Điều này có nghĩa là sẽ có $2^4$ bảng chân trị duy nhất cho công thức chứa 2 nguyên tử duy nhất.
+
+\item
+\begin{center}
+\begin{tabular}{cc|cccccccc}
+$p$ & $q$ & $p \land \neg p$ & $p \land q$ & $p \land \neg q$ & $p$ & $\neg p \land q$ & $q$ & $\neg(p \leftrightarrow q)$ & $p \lor q$ \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{cc|cccccccc}
+$p$ & $q$ & $\neg p \land \neg q$ & $p \leftrightarrow q$ & $\neg q$ & $q \to p$ & $\neg p$ & $p \to q$ & $\neg p \lor \neg q$ & $p \lor \neg p$ \\
+\hline
+0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 0 & 1
+\end{tabular}
+\end{center}
+
+\item Cho trước rằng ta có thể tạo một công thức cho mỗi bảng chân trị khả dĩ bằng cách sử dụng 5 phép toán này. Hơn nữa, ta biết rằng chỉ có $2^{2^n}$ bảng chân trị khả dĩ, trong đó $n$ là số nguyên tử duy nhất. Cho trước rằng mỗi bảng chân trị đều có một công thức tương ứng chỉ sử dụng 5 phép toán, mà ta ký hiệu là $f_i$, trong đó $1 \le i \le 2^{2^n} - 1$. Bây giờ lấy một công thức $f'$ sử dụng các nguyên tử duy nhất giống nhau, nhưng không nhất thiết phải dùng các phép toán giống nhau từ tập 5 phép toán đã nêu trong mô tả. Bảng chân trị của công thức $f'$ sẽ bằng một trong $2^{2^n}$ bảng chân trị khả dĩ, điều này cũng có nghĩa là tồn tại một $f_i$ tương đương với $f'$, nên ta có thể viết lại $f'$.
+\end{enumerate}
+
+%% ============================================================
+\section*{Lời giải 2.2}
+\addcontentsline{toc}{section}{Lời giải 2.2}
+
+\textbf{4.} Không phải. Ví dụ lấy $p = q = 0$. Trong trường hợp này $\neg(p \leftrightarrow q)$ là sai, nhưng $(\neg p) \leftrightarrow (\neg q)$ là đúng. Hãy thử tìm xem biểu thức đơn giản hơn nào mà $(\neg p) \leftrightarrow (\neg q)$ tương đương với.
+
+\medskip
+\textbf{10.} Kiểm tra các đáp án sau bằng bảng chân trị!
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $q \to p$ \qquad \textbf{b)} $\mathbb{F}$ \qquad \textbf{c)} $\neg p$
+
+\item[\textbf{d)}] $\neg p \land q$ \qquad \textbf{e)} $\mathbb{T}$ \qquad \textbf{f)} $q$
+\end{enumerate}
+
+\medskip
+\textbf{11.} Khi dịch, hãy cố gắng làm cho các câu tiếng Việt mạch lạc hơn một chút mà không thêm ràng buộc nào. Ví dụ bằng cách dùng từ ``nhưng'' thay vì ``và'' trong hai ví dụ dưới đây.
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item Trời không nắng hoặc trời không lạnh.
+\item Tôi sẽ không có stroopwafels cũng không có appeltaart.
+\item Hôm nay là thứ Ba, nhưng đây không phải là Bỉ.
+\item Bạn đã qua kỳ thi cuối kỳ, nhưng bạn không qua môn học.
+\end{enumerate}
+
+%% ============================================================
+\section*{Lời giải 2.4}
+\addcontentsline{toc}{section}{Lời giải 2.4}
+
+\textbf{1.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $\exists x(P(x))$
+\item $\forall x(\neg P(x) \lor \neg Q(x))$
+\item $\exists z(P(z) \land \neg Q(z))$
+\item $(\exists x(\neg P(x))) \lor (\exists y(\neg Q(y)))$
+\item $\exists x \forall y \neg P(x, y)$
+\item $\forall x(\neg R(x) \lor \exists y \neg S(x, y))$
+\item $\forall y((\neg P(y) \land Q(y)) \lor (P(y) \land \neg Q(y)))$
+\item $\exists x(P(x) \land (\forall y \neg Q(x, y)))$
+\end{enumerate}
+
+\medskip
+\textbf{8.} Ta sử dụng các vị từ $\textit{Ball}(x)$ cho ``$x$ là một quả bóng'' và $\textit{Have}(x, y)$ cho ``$x$ phải có $y$''. Ta cũng sử dụng hằng số $\textit{you}$ để đại diện cho bạn.
+\[\exists x(\textit{Ball}(x) \land \forall y(x \neq y \to \neg \textit{Ball}(y)) \land \textit{Have}(\textit{you}, x))\]
+
+\medskip
+\textbf{13.} Sử dụng các vị từ $\textit{Person}(x)$ cho ``$x$ là một người'', $\textit{Question}(x)$ cho ``$x$ là một câu hỏi'', $\textit{Answer}(x)$ cho ``$x$ là một câu trả lời'', và $\textit{Has}(x, y)$ cho ``$x$ có $y$''. Hai cách diễn giải khác nhau là:
+
+\[\exists x(\textit{Person}(x) \land \forall y(\textit{Question}(y) \to (\exists z(\textit{Answer}(z) \land \textit{Has}(x, z)))))\]
+
+Nói cách khác, có một người duy nhất biết câu trả lời cho tất cả các câu hỏi.
+
+\[\forall x(\textit{Question}(x) \to \exists y \exists z(\textit{Person}(y) \land \textit{Answer}(z) \land \textit{Has}(y, z)))\]
+
+Nói cách khác, mọi câu hỏi đều có câu trả lời và có người biết nó (nhưng những người khác nhau có thể biết câu trả lời cho các câu hỏi khác nhau).
+
+%% ============================================================
+\section*{Lời giải 2.5}
+\addcontentsline{toc}{section}{Lời giải 2.5}
+
+\textbf{1.} Để kiểm tra tính hợp lệ của \textit{modus tollens}, ta cần kiểm tra rằng $((p \to q) \land \neg q) \to \neg p$ là một hằng đúng. Điều này có thể thực hiện bằng cách xây dựng bảng chân trị sau. Bảng chân trị cho thấy kết luận luôn đúng, và do đó xác nhận rằng \textit{modus tollens} là hợp lệ.
+
+\begin{center}
+\begin{tabular}{cc|cccc}
+$p$ & $q$ & $\overbrace{p \to q}^{A}$ & $\overbrace{A \land \neg q}^{B}$ & $B \to \neg p$ \\
+\hline
+0 & 0 & 1 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+1 & 0 & 0 & 0 & 1 \\
+1 & 1 & 1 & 0 & 1
+\end{tabular}
+\end{center}
+
+Để kiểm tra tính hợp lệ của Luật Tam đoạn luận, hãy xây dựng một bảng chân trị khác để chỉ ra rằng $((p \to q) \land (q \to r)) \to (p \to r)$ cũng là một hằng đúng.
+
+\medskip
+\textbf{2.} Lưu ý rằng các đáp án sau đây là các luận cứ ví dụ, và có nhiều đáp án hợp lệ khác.
+\begin{itemize}
+\item Vì không phải ban ngày, nên phải là ban đêm.
+\item Tôi có bánh mì và tôi có phô mai ở trên, vậy tôi có bánh mì phô mai.
+\item Tôi có bánh mì phô mai, vậy tôi có phô mai.
+\item Vì tôi hát suốt, tôi luôn đang hát hoặc đang nói.
+\end{itemize}
+
+\medskip
+\textbf{3.} Với cả hai luận cứ, khi $p$ sai và $q$ đúng thì các tiền đề thỏa mãn nhưng kết luận thì không.
+\begin{itemize}
+\item Khi trời mưa thì mặt đất ướt. Mặt đất ướt. Vậy trời mưa.
+\item Khi tôi ở trên thuyền thì tôi không ở trên đất liền. Tôi không ở trên thuyền. Vậy tôi ở trên đất liền.
+\end{itemize}
+
+\medskip
+\textbf{4.} Với bộ lời giải này, hãy nhớ rằng một phương pháp ít hình thức hơn một chút là sử dụng bảng chân trị để chứng minh tính hợp lệ của các luận cứ trong logic mệnh đề. Nếu bạn có thể chỉ ra rằng ở tất cả các hàng mà mọi tiền đề đều đúng, kết luận cũng đúng, thì luận cứ phải hợp lệ!
+
+\textbf{a)} Không hợp lệ. Phản ví dụ cho luận cứ này là khi $p$ và $q$ sai và $s$ đúng.
+
+\textbf{b)} Hợp lệ.
+\begin{align*}
+p \land q && (\text{tiền đề}) && (5.1)\\
+q && (\text{từ 1}) && (5.2)\\
+q \to (r \lor s) && (\text{tiền đề}) && (5.3)\\
+r \lor s && (\text{từ 2 và 3 theo \textit{modus ponens}}) && (5.4)\\
+\neg r && (\text{tiền đề}) && (5.5)\\
+s && (\text{từ 4 và 5}) && (5.6)
+\end{align*}
+
+\textbf{c)} Hợp lệ.
+\begin{align*}
+p \lor q && (\text{tiền đề}) && (5.1)\\
+\neg p && (\text{tiền đề}) && (5.2)\\
+q && (\text{từ 1 và 2}) && (5.3)\\
+q \to (r \land s) && (\text{tiền đề}) && (5.4)\\
+r \land s && (\text{từ 3 và 4 theo \textit{modus ponens}}) && (5.5)\\
+s && (\text{từ 5}) && (5.6)
+\end{align*}
+
+\textbf{d)} Hợp lệ.
+\begin{align*}
+\neg(q \lor t) && (\text{tiền đề}) && (5.1)\\
+\neg q \land \neg t && (\text{từ 1 theo De Morgan}) && (5.2)\\
+\neg t && (\text{từ 2}) && (5.3)\\
+(\neg p) \to t && (\text{tiền đề}) && (5.4)\\
+\neg(\neg p) && (\text{từ 3 và 4 theo \textit{modus tollens}}) && (5.5)\\
+p && (\text{từ 5}) && (5.6)
+\end{align*}
+
+\textbf{e)} Không hợp lệ. Phản ví dụ cho luận cứ này là khi $p$, $r$ và $s$ đúng và $q$ sai.
+
+\textbf{f)} Hợp lệ.
+\begin{align*}
+p && (\text{tiền đề}) && (5.1)\\
+p \to (t \to s) && (\text{tiền đề}) && (5.2)\\
+t \to s && (\text{từ 1 và 2 theo \textit{modus ponens}}) && (5.3)\\
+q \to t && (\text{tiền đề}) && (5.4)\\
+q \to s && (\text{từ 3 và 4 theo Luật Tam đoạn luận}) && (5.5)
+\end{align*}
+
+\bigskip
+\textbf{5.}
+
+\textbf{a)} Đặt $s$ = ``hôm nay là Chủ nhật'', $r$ = ``hôm nay trời mưa'' và $s$ = ``hôm nay trời có tuyết''.
+
+$s \to (r \lor s)$
+
+$s$
+
+$\neg r$
+
+$\therefore s$
+
+Luận cứ này hợp lệ.
+
+\medskip
+\textbf{b)} Đặt $h$ = ``có cá trích trên pizza'', $n$ = ``Jack không ăn pizza'', $a$ = ``Jack giận dữ''.
+
+$h \to n$
+
+$n \to a$
+
+$a$
+
+$\therefore h$
+
+Luận cứ này không hợp lệ vì ta không thể suy ra bất cứ điều gì từ việc Jack giận dữ, có thể có nhiều lý do khác khiến Jack giận dữ.
+Lưu ý rằng bài tập này trở nên khó hơn khi ta dịch sang logic vị từ thay vì logic mệnh đề. Với logic vị từ, ``a'' pizza được dịch khác với ``the'' pizza.
+Bài tập này trong logic vị từ sẽ trở thành:
+Đặt $P(x)$ nghĩa là $x$ là một pizza, $H(x)$ nghĩa là $x$ là cá trích, $\textit{On}(x, y)$ nghĩa là $x$ ở trên $y$, $E(x, y)$ nghĩa là $x$ ăn $y$ và cuối cùng $A(x)$ nghĩa là $x$ giận dữ. Đặt $j$ = Jack.
+
+$P(a)$
+
+$\forall x((H(x) \land \textit{On}(x, a)) \to \neg E(j, a))$
+
+$\neg\exists x((P(x) \land E(j, x)) \to A(j))$
+
+$A(j)$
+
+$\therefore \exists x(H(x) \land \textit{On}(x, a))$
+
+Như một bài tập cho bạn, hãy thử dịch phần c sang logic vị từ cũng như logic mệnh đề.
+
+\medskip
+\textbf{c)} Đặt $a$ = ``bây giờ là 8:00'', $l$ = ``Jane học ở thư viện'' và $h$ = ``Jane làm việc ở nhà''.
+
+$a \to (l \lor h)$
+
+$a$
+
+$\neg l$
+
+$\therefore h$
+
+Luận cứ này hợp lệ.
+
+%% ============================================================
+\section*{Lời giải 3.2}
+\addcontentsline{toc}{section}{Lời giải 3.2}
+
+\textbf{5.} Khẳng định là: $(r \mid s) \land (s \mid t) \to r \mid t$.
+
+\begin{proof}
+Ta cần chứng minh điều gì đó đúng cho mọi số nguyên $r, s, t$, nên lấy các số nguyên tùy ý $k, m, n$ sao cho: $k \mid m$, $m \mid n$.
+Bây giờ ta cần chứng minh rằng $k \mid n$ đúng.
+Vì $k \mid m$, ta biết rằng $m = ak$ cho số nguyên $a$ nào đó. Tương tự $n = bm$ cho số nguyên $b$ nào đó.
+Vậy $n = bm = bak = ck$ với số nguyên $c = ba$.
+Vậy $k \mid n$.
+Vì $k, m, n$ là tùy ý, điều này đúng cho mọi số nguyên.
+\end{proof}
+
+%% ============================================================
+\section*{Lời giải 3.3}
+\addcontentsline{toc}{section}{Lời giải 3.3}
+
+\textbf{1.}
+
+\begin{proof}
+Giả sử rằng tất cả các số $a_i$ đều nhỏ hơn hoặc bằng 10. Vì giá trị lớn nhất của mỗi $a_i$ là 10, giá trị lớn nhất của $a_1 + a_2 + \ldots + a_{10}$ bây giờ là 100. Tuy nhiên ta đã giả sử rằng tổng lớn hơn 100 một cách nghiêm ngặt. Mâu thuẫn này có nghĩa là giả sử rằng tất cả các số đều nhỏ hơn hoặc bằng 10 phải sai và do đó ít nhất một $a_i$ phải lớn hơn 10.
+\end{proof}
+
+\bigskip
+\textbf{2.}
+\begin{itemize}
+\item \textbf{a)}
+\begin{proof}
+Giả sử rằng tồn tại một số nguyên lẻ mà bình phương của nó là chẵn, tức là $\exists n \in \mathbb{Z}((2 \mid n^2) \land (2 \nmid n)) \equiv \exists n \in \mathbb{Z}((2 \nmid n) \land (2 \mid n^2))$. Lấy một số nguyên lẻ tùy ý $m = 2p - 1, p \in \mathbb{Z}$. Bình phương của nó là
+\[m^2 = (2k - 1)^2 = 4k^2 - 4k + 1 = 2(2k^2 - 2k) + 1 = 2a + 1, a \in \mathbb{Z}\]
+Điều này có nghĩa là bình phương vẫn là số lẻ. Vì số nguyên ta chọn là tùy ý, điều này đúng cho mọi số nguyên lẻ. Từ đây suy ra mâu thuẫn: trong giả thiết của ta, ta đã phát biểu rằng phải tồn tại một số nguyên lẻ có bình phương là chẵn, điều này không bao giờ xảy ra. Vì lý do này, giả thiết là sai, và khẳng định ban đầu phải đúng.
+\end{proof}
+
+\item \textbf{b)}
+\begin{proof}
+Giả sử $\sqrt{2}$ là số hữu tỉ. Điều này có nghĩa là $\sqrt{2}$ có thể được viết dưới dạng
+\[\sqrt{2} = \frac{a}{b},\; a, b \in \mathbb{Z}\]
+trong đó $a$ và $b$ không có ước chung nào (= phân số không thể rút gọn). Khi đó:
+\begin{align}
+2 &= \frac{a^2}{b^2} \\
+2b^2 &= a^2
+\end{align}
+Điều này suy ra rằng $a^2$ là chẵn. Từ phần a), ta biết rằng nếu $a^2$ chẵn thì $a$ cũng chẵn.
+$a$ có thể viết dưới dạng $a = 2k, k \in \mathbb{Z}$.
+\begin{align}
+2b^2 &= a^2 = (2k)^2 = 4k^2 \\
+2b^2 &= 4k^2 \\
+b^2 &= 2k^2
+\end{align}
+Do đó, $b^2$ là chẵn nên $b$ cũng chẵn. Tuy nhiên, vì $\frac{a}{b}$ được giả sử là không có ước chung nào và $a$ và $b$ đều chẵn (phải có 2 là ước chung), ta đã suy ra mâu thuẫn. Điều này bác bỏ giả thiết của ta và kết quả là $\sqrt{2}$ phải là số vô tỉ.
+
+\textit{Lưu ý: trong trường hợp này, việc chứng minh bằng phản chứng và lấy phủ định của mệnh đề đã giúp ích, vì ta chuyển từ làm việc với số vô tỉ sang làm việc với phân số của các số nguyên.}
+\end{proof}
+
+\item \textbf{c)}
+\begin{proof}
+Giả sử rằng tổng của một số hữu tỉ và một số vô tỉ là số hữu tỉ. Khi đó:
+\begin{align}
+r &= \frac{a}{b},\; a, b \in \mathbb{Z}, b \neq 0 \\
+r + x &= \frac{c}{d},\; c, d \in \mathbb{Z}, d \neq 0
+\end{align}
+trong đó $x \in \mathbb{R} - \mathbb{Z}$ (tức là số vô tỉ). Các phân số này không thể rút gọn. Bây giờ:
+\begin{align}
+\frac{a}{b} + x &= \frac{c}{d} \\
+x &= \frac{c}{d} - \frac{a}{b} \\
+&= \frac{cb - ad}{db},\; db \neq 0
+\end{align}
+Số hạng $cd - ab$ là một số nguyên, và $db$ cũng vậy. Điều này có nghĩa là $x$ là phân số của 2 số nguyên -- nói cách khác, $x$ là hữu tỉ. Vì ta đã giả sử $x$ là vô tỉ, đây là mâu thuẫn. Do đó ta có thể kết luận rằng tổng của một số hữu tỉ và một số vô tỉ phải là số vô tỉ.
+
+\textit{Lưu ý: trong trường hợp này, việc chứng minh bằng phản chứng và lấy phủ định của mệnh đề đã giúp ích, vì ta chuyển từ làm việc với số vô tỉ sang làm việc với phân số của các số nguyên.}
+\end{proof}
+
+\item \textbf{d)}
+\begin{proof}
+Giả sử rằng $rx$ là số hữu tỉ. Khi đó:
+\begin{align}
+r &= \frac{a}{b},\; a, b \in \mathbb{Z}, a, b \neq 0 \\
+rx &= \frac{c}{d},\; c, d \in \mathbb{Z}, c, d \neq 0
+\end{align}
+trong đó $x \in \mathbb{R} - \mathbb{Z}$ (tức là số vô tỉ). Các phân số này không thể rút gọn. Khi đó:
+\begin{align}
+rx &= \frac{c}{d} = \frac{xa}{b} \\
+cb &= xad \\
+x &= \frac{cb}{ad},\; a, b, c, d \neq 0
+\end{align}
+Số hạng $cd$ là một số nguyên khác không, và $ad$ cũng vậy. Điều này có nghĩa là $x$ là phân số của 2 số nguyên -- nói cách khác, $x$ là hữu tỉ. Vì ta đã giả sử $x$ là vô tỉ, đây là mâu thuẫn. Do đó ta có thể kết luận rằng tích của một số hữu tỉ và một số vô tỉ phải là số vô tỉ.
+
+\textit{Lưu ý: trong trường hợp này, việc chứng minh bằng phản chứng và lấy phủ định của mệnh đề đã giúp ích, vì ta chuyển từ làm việc với số vô tỉ sang làm việc với phân số của các số nguyên.}
+\end{proof}
+
+\item \textbf{e)}
+\begin{proof}
+Giả sử rằng $r$ và $r + x$ đều là hữu tỉ và $x$ là vô tỉ. Khi đó:
+\begin{align}
+r &= \frac{a}{b},\; a, b \in \mathbb{Z}, a, b \neq 0 \\
+r + x &= \frac{c}{d},\; c, d \in \mathbb{Z}, c, d \neq 0
+\end{align}
+trong đó $x \in \mathbb{R} - \mathbb{Z}$ (tức là số vô tỉ). Bây giờ, điều quan trọng là nhận ra rằng $x$ không thể biểu diễn dưới dạng số hữu tỉ, tức là $\neg\exists i, j$ sao cho $\big(x = \frac{i}{j}\big)$. Bây giờ:
+\begin{align}
+\frac{a}{b} + x &= \frac{c}{d} \\
+x &= \frac{c}{d} - \frac{a}{b} \\
+x &= \frac{cb - ad}{db}
+\end{align}
+Số hạng $cb - ad$ là một số nguyên khác không, và $db$ cũng vậy. Điều này có nghĩa là $x$ là phân số của 2 số nguyên -- nói cách khác, $x$ là hữu tỉ. Vì ta đã giả sử $x$ là vô tỉ, đây là mâu thuẫn. Do đó ta có thể kết luận rằng nếu $r$ và $r + x$ đều hữu tỉ, thì $x$ là hữu tỉ.
+
+\textit{Lưu ý: ở đây, chứng minh bằng phản chứng không giúp ích nhiều. Đi từ hữu tỉ sang vô tỉ không mang lại cải thiện, vì ta chỉ biết cách \textbf{không} viết một số vô tỉ.}
+\end{proof}
+\end{itemize}
+
+\bigskip
+\textbf{3.}
+
+\begin{proof}
+Giả sử rằng mỗi lỗ có nhiều nhất một con chim bồ câu. Điều này có nghĩa là có ít hơn $k$ con chim bồ câu tổng cộng. Vì $n > k$, điều này tạo thành mâu thuẫn. Do đó giả thiết rằng mỗi lỗ có nhiều nhất một con chim bồ câu là sai và phải có ít nhất một lỗ chứa hai hoặc nhiều hơn con chim bồ câu.
+\end{proof}
+
+(Hãy cẩn thận lật các lượng từ đúng cách khi thực hiện chứng minh bằng phản chứng! $\neg\forall x(\ldots)$ trở thành $\exists x(\neg \ldots)$.)
+
+%% ============================================================
+\section*{Lời giải 3.7}
+\addcontentsline{toc}{section}{Lời giải 3.7}
+
+\textbf{1.}
+
+\textit{Chứng minh:} Ta chứng minh bằng quy nạp.
+\begin{itemize}
+\item \textbf{Trường hợp cơ sở:} Khi $n = 0$ và khi $n = 1$, khẳng định rõ ràng đúng, vì $f_0 = 0 < 1 = 2^0$ và $f_1 = 1 < 2 = 2^1$, nên $f_0 < 2^0$ và $f_1 < 2^1$.
+\item \textbf{Bước quy nạp:} Nếu ta bây giờ lấy $k$ tùy ý sao cho $k \ge 2$, ta giả sử rằng $f_n < 2^n$ đúng cho $n = k - 1$ và $n = k - 2$. Để hoàn thành quy nạp, ta cần chỉ ra rằng $f_k < 2^k$ cũng đúng:
+\begin{align*}
+f_k &= f_{k-1} + f_{k-2} \\
+&< 2^{k-1} + 2^{k-2} && \text{(giả thiết quy nạp)}\\
+&= \frac{2^k}{2} + \frac{2^k}{4} \\
+&= \frac{3}{4} \cdot 2^k \\
+&< 2^k
+\end{align*}
+Điều này chỉ ra rằng $f_k < 2^k$ đúng, hoàn thành phép quy nạp.
+\end{itemize}
+
+\bigskip
+\textbf{2.}
+
+\textit{Chứng minh:} Ta chứng minh phương trình bằng quy nạp.
+\begin{itemize}
+\item \textbf{Trường hợp cơ sở:} Khi $n = 1$, $a_1 = 1 \cdot 2^{1-1}$ đúng vì cả hai vế đều bằng 1.
+\item \textbf{Bước quy nạp:} Cho $k \ge 1$ là một số nguyên tùy ý. Ta giả sử rằng $a_n = n2^{n-1}$ đúng cho $n = k - 1$. Để hoàn thành quy nạp, ta cần chỉ ra rằng phương trình cũng đúng cho $n = k$.
+\begin{align*}
+a_k &= 2a_{k-1} + 2^{k-1} \\
+&= 2(k - 1)2^{k-1-1} + 2^{k-1} && \text{(giả thiết quy nạp)}\\
+&= (k - 1)2^{k-1} + 2^{k-1} \\
+&= ((k - 1) + 1)2^{k-1} \\
+&= k2^{k-1}
+\end{align*}
+Điều này chứng minh rằng phương trình cũng đúng cho $n = k$. Do đó phép quy nạp hoàn tất.
+\end{itemize}
+
+%% ============================================================
+\section*{Lời giải 4.1}
+\addcontentsline{toc}{section}{Lời giải 4.1}
+
+\textbf{1.} Các khả năng là 2, 3, 4 và 5 phần tử khác nhau.
+\begin{itemize}
+\item 2: Trong trường hợp $a = b = c$. Khi đó tập hợp có thể viết là:
+\[\{a, a, \{a\}, \{a, a\}, \{a, a, a\}\} = \{a, \{a\}\}\]
+\item 3: Trong trường hợp $a = b \neq c$. Khi đó tập hợp có thể viết là:
+\[\{a, a, \{a\}, \{a, c\}, \{a, c\}\} = \{a, \{a\}, \{a, c\}\}\]
+\item 4: Trong trường hợp $a \neq b$ và $a = c$. Khi đó tập hợp có thể viết là:
+\[\{a, b, \{a\}, \{a, a\}, \{a, b, a\}\} = \{a, b, \{a\}, \{a, b\}\}\]
+\item 5: Trong trường hợp $a \neq b \neq c$. Khi đó tập hợp có thể viết là:
+\[\{a, b, \{a\}, \{a, c\}, \{a, b, c\}\}\]
+\end{itemize}
+
+\bigskip
+\textbf{2.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $A \cup B = \{a, b, c\}$;\; $A \cap B = \varnothing$;\; $A \setminus B = \{a, b, c\}$
+\item $A \cup B = \{1, 2, 3, 4, 5, 6, 8, 10\}$;\; $A \cap B = \{2, 4\}$;\; $A \setminus B = \{1, 3, 5\}$
+\item $A \cup B = \{a, b, c, d\}$;\; $A \cap B = \{a, b\}$;\; $A \setminus B = \varnothing$
+\item $A \cup B = \{a, b, \{a\}, \{a, b\}\}$;\; $A \cap B = \{\{a, b\}\}$;\; $A \setminus B = \{a, b\}$
+\end{enumerate}
+
+\bigskip
+\textbf{3.} (Biểu đồ Venn -- xem sách gốc cho các hình minh họa)
+
+\textbf{a)} Biểu đồ Venn với $A$ chứa $a$, $B$ rỗng giao nhau, $c$ ở phần giao.
+
+\textbf{b)} Biểu đồ Venn với $A = \{1, 2, 3, 4, 5\}$, $B = \{2, 4, 6, 8, 10\}$, phần giao $\{2, 4\}$.
+
+\textbf{c)} Biểu đồ Venn với $A = \{a, b\}$, $B = \{a, b, c, d\}$, $A \subseteq B$.
+
+\textbf{d)} Biểu đồ Venn với $A = \{a, b, \{a,b\}\}$, $B = \{\{a,b\}, \{a\}\}$, phần giao $\{\{a,b\}\}$.
+
+\bigskip
+\textbf{4.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $X \cap Y = \{5, 6, 7, 8, 9, 10\}$
+\item $X \cup Y = \mathbb{N}$
+\item $X \setminus Y = \{11, 12, 13, \ldots\}$
+\item $\mathbb{N} \setminus Z = \{1, 3, 5, \ldots\}$
+\item $X \cap Z = \{6, 8, 10, \ldots\}$
+\item $Y \cap Z = \{0, 2, 4, 6, 8, 10\}$
+\item $Y \cup Z = \{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, \ldots\}$
+\item $Z \setminus \mathbb{N} = \varnothing$
+\end{enumerate}
+
+\bigskip
+\textbf{5.} $\mathcal{P}(\{1, 2, 3\}) = \{\varnothing, \{1\}, \{2\}, \{3\}, \{1, 2\}, \{1, 3\}, \{2, 3\}, \{1, 2, 3\}\}$
+
+\bigskip
+\textbf{6.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item Sai. Mặc dù $b$ là thành phần của hai tập hợp là phần tử của $A$, cụ thể là $\{b\}$ và $\{a, b\}$, nhưng bản thân phần tử $b$ không phải là phần tử của $A$.
+\item Sai. Để $\{a, b\}$ là tập con của $A$, cả $a$ và $b$ phải là phần tử của $A$. Như ta đã chỉ ra ở phần a), $b \notin A$, do đó $\{a, b\} \not\subseteq A$.
+\item Đúng. Để $\{a, b\}$ là tập con của $A$, cả $a$ và $b$ phải là phần tử của $A$, mà chúng đúng là vậy.
+\item Sai. Mặc dù $a$ và $b$ đều là các phần tử riêng lẻ của $B$, nhưng tập hợp kết hợp $\{a, b\}$ thì không.
+\item Sai. Mặc dù $a$ và $\{b\}$ đều là các phần tử riêng lẻ của $B$, nhưng tập hợp kết hợp $\{a, \{b\}\}$ thì không.
+\item Đúng. $\{a, \{b\}\}$ là một phần tử của $B$.
+\end{enumerate}
+
+\bigskip
+\textbf{7.} Có, điều này là khả thi.
+\[\mathcal{P}(\mathcal{P}(\varnothing)) = \mathcal{P}(\{\varnothing\}) = \{\varnothing, \{\varnothing\}\}\]
+
+\begin{align*}
+\mathcal{P}(\mathcal{P}(\{a, b\})) &= \mathcal{P}(\{\varnothing, \{a\}, \{b\}, \{a, b\}\}) \\
+&= \{\varnothing, \\
+&\quad \{\varnothing\}, \{\{a\}\}, \{\{b\}\}, \{\{a, b\}\}, \\
+&\quad \{\varnothing, \{a\}\}, \{\varnothing, \{b\}\}, \{\varnothing, \{a, b\}\}, \{\{a\}, \{b\}\}, \{\{a\}, \{a, b\}\}, \{\{b\}, \{a, b\}\}, \\
+&\quad \{\varnothing, \{a\}, \{b\}\}, \{\varnothing, \{a\}, \{a, b\}\}, \{\varnothing, \{b\}, \{a, b\}\}, \{\{a\}, \{b\}, \{a, b\}\}, \\
+&\quad \{\varnothing, \{a\}, \{b\}, \{a, b\}\}\}
+\end{align*}
+
+\bigskip
+\textbf{8.} Câu ``Cô ấy thích những con chó nhỏ, đáng yêu và dễ thương'' nói về những con chó vừa nhỏ, vừa đáng yêu, vừa dễ thương. Do đó, những con chó cô ấy thích phải nằm trong tập hợp các con chó nhỏ, tập hợp các con chó đáng yêu và tập hợp các con chó dễ thương. Vì vậy, tập hợp các con chó cô ấy thích là giao của ba tập hợp.
+
+Mặt khác, câu ``Cô ấy thích những con chó nhỏ, những con chó đáng yêu, và những con chó dễ thương'' nói về những con chó hoặc nhỏ, hoặc đáng yêu, hoặc dễ thương. Do đó, tập hợp các con chó được thích là hợp của ba tập hợp này.
+
+\bigskip
+\textbf{9.} $A \cup A = A$ (nhớ rằng tập hợp không có phần tử trùng lặp)
+
+$A \cap A = A$ (rốt cuộc mọi thứ trong $A$ cũng có trong $A$, là tất cả)
+
+$A \setminus A = \varnothing$ (loại bỏ khỏi $A$ mọi thứ có trong $A$ thì không còn gì)
+
+\bigskip
+\textbf{10.} Ta biết rằng $A \subseteq B$. Điều này có nghĩa là mỗi phần tử của $A$ cũng ở trong $B$. Do đó, nếu ta lấy $A \cup B$ ta có một tập hợp bằng $B$, vì mọi phần tử của $A$ đều ở trong $B$. Với lý luận tương tự, $A \cap B$ bằng $A$, vì mọi phần tử của $A$ đều ở trong $B$. Hơn nữa, vì điều này, $A \setminus B$ cho tập rỗng, vì không còn phần tử nào khi loại bỏ khỏi $A$ mọi phần tử cũng có trong $B$.
+
+\bigskip
+\textbf{11.}
+
+\begin{proof}
+Để chứng minh rằng $C \subseteq A \cap B \leftrightarrow (C \subseteq A \land C \subseteq B)$, ta phải chỉ ra rằng $C \subseteq A \cap B \to (C \subseteq A \land C \subseteq B)$ và $(C \subseteq A \land C \subseteq B) \to C \subseteq A \cap B$.
+
+\begin{itemize}
+\item $C \subseteq A \cap B \to (C \subseteq A \land C \subseteq B)$:
+
+Ta giả sử rằng $C \subseteq A \cap B$. Lấy một phần tử tùy ý $x$ trong $C$. Vì $C \subseteq A \cap B$, $x$ ở trong giao của $A$ và $B$. Vì điều này, $x$ ở trong cả $A$ và $B$. Vì điều này đúng cho một phần tử tùy ý trong $C$, nó đúng cho mọi phần tử trong $C$. Do đó, mọi phần tử của $C$ đều là phần tử của cả $A$ và $B$, và do đó $C \subseteq A \land C \subseteq B$.
+
+\item $(C \subseteq A \land C \subseteq B) \to C \subseteq A \cap B$:
+
+Ta giả sử rằng $C \subseteq A$ và $C \subseteq B$. Lấy một phần tử tùy ý $x$ trong $C$. Vì $C \subseteq A$ và $C \subseteq B$, $x$ ở trong cả $A$ và $B$. Vì điều này, $x$ ở trong giao của $A$ và $B$ ($A \cap B$). Vì điều này đúng cho một phần tử tùy ý trong $C$, nó đúng cho mọi phần tử trong $C$. Do đó, mọi phần tử của $C$ đều ở trong $A \cap B$ và do đó $C \subseteq A \cap B$.
+\end{itemize}
+\end{proof}
+
+\bigskip
+\textbf{12.}
+
+\begin{proof}
+Giả sử rằng $A \subseteq B$ và $B \subseteq C$, tức là $\forall x(x \in A \to x \in B)$ và $\forall x(x \in B \to x \in C)$. Lấy một phần tử tùy ý $x$ trong $A$. Vì $A \subseteq B$, $x$ cũng ở trong $B$. Hơn nữa, vì $B \subseteq C$, ta có $x$ cũng ở trong $C$. Vì $x$ là phần tử tùy ý của $A$, điều này đúng cho mọi phần tử của $A$ rằng chúng cũng ở trong $C$. Do đó, $A \subseteq C$.
+\end{proof}
+
+\bigskip
+\textbf{13.}
+
+\begin{proof}
+Giả sử rằng $A \subseteq B$. Lấy một phần tử tùy ý $a$ trong $\mathcal{P}(A)$. Vì $a$ ở trong tập lũy thừa của $A$, nó là tập con của $A$. Từ $a \subseteq A$, $A \subseteq B$ và câu hỏi trước, ta biết rằng $a \subseteq B$. Vì điều này, $a \in \mathcal{P}(B)$. Vì $a$ là phần tử tùy ý từ $\mathcal{P}(A)$, điều này đúng cho mọi phần tử trong $\mathcal{P}(A)$ và do đó, $\mathcal{P}(A) \subseteq \mathcal{P}(B)$.
+\end{proof}
+
+\bigskip
+\textbf{14.}
+
+\begin{proof}
+Ta chứng minh bằng phản chứng. Do đó, giả sử rằng $P(M)$ và $P(k) \to P(k+1)$. Ta giả sử rằng $P(n)$ không đúng cho mọi $n \ge M$. Khi đó tồn tại ít nhất một số $s \ge n$ mà $P(s)$ sai. Lấy số nhỏ nhất $s^* \ge n$ sao cho $P(s^*)$ sai. Bây giờ, vì $s^*$ là số nhỏ nhất, ta có $s^* - 1$ là đúng. Tuy nhiên ta biết rằng $P(k) \to P(k+1)$ đúng cho mọi $k \ge M$, do đó cũng đúng cho $s^* - 1$. Vậy $P(s^* - 1) \to P(s^*)$ đúng, bây giờ ta có $P(s^*)$ là đúng, dẫn đến mâu thuẫn. Do đó, $P(n)$ phải đúng cho mọi $n \ge M$.
+\end{proof}
+
+\bigskip
+\textbf{15.}
+
+\begin{proof}
+Cho $C(\phi)$ ký hiệu số phép nối trong $\phi$, và $V(\phi)$ ký hiệu số biến mệnh đề. Cho $P(\phi)$ là phát biểu rằng $V(\phi) \le C(\phi) + 1$, tức là số biến mệnh đề nhiều nhất hơn số phép nối một đơn vị.
+
+\textbf{Trường hợp cơ sở:} $V(x) = 1$
+
+Theo quy tắc Nguyên tử bởi định nghĩa của $\textit{PROP}$, $C(\phi) = 0$. Do đó, số biến (1) rõ ràng nhiều nhất hơn số phép nối (0) một đơn vị. Do đó, $P(\phi)$ đúng.
+
+\textbf{Bước quy nạp:}
+
+Giả sử rằng ta có hai công thức $x, y \in \textit{PROP}$, mà $P(x)$ và $P(y)$ đúng, tức là $V(x) \le C(x) + 1$ và $V(y) \le C(y) + 1$. Ta muốn chỉ ra rằng $P(\neg x)$ và $P(x * y)$ cho $* \in \{\to, \land, \lor\}$ cũng đúng. Ta sẽ chia chứng minh thành phần cho phủ định và các phép nối khác:
+
+\begin{itemize}
+\item $\neg$:
+
+Ta muốn chỉ ra rằng $P(\neg x)$ đúng.
+\[V(\neg x) = V(x) \overset{\text{GT QN}}{\le} C(x) + 1 \le C(x) + 2 = C(\neg x) + 1\]
+Từ đây, ta thấy rằng $V(\neg x) \le C(\neg x) + 1$, do đó $P(\neg x)$ đúng.
+
+\item $\to, \land, \lor$:
+
+Trong trường hợp này, ta muốn chỉ ra rằng $P(x * y)$ đúng cho $* \in \{\to, \land, \lor\}$.
+\[V(x * y) = V(x) + V(y) \overset{\text{GT QN}}{\le} C(x) + 1 + C(y) + 1 = C(x) + C(y) + 2 = C(x * y) + 1\]
+Điều này chỉ ra rằng $V(x * y) \le C(x * y) + 1$, và do đó, $P(x * y)$ đúng cho $* \in \{\to, \land, \lor\}$.
+\end{itemize}
+
+Tổng hợp lại, ta đã chỉ ra rằng $P(x)$ đúng cho một nguyên tử $x$ và rằng với mọi $x, y \in \textit{PROP}$ và $* \in \{\to, \land, \lor, \neg\}$, $P(x) \land P(y) \to P(\neg x) \land P(x * y)$. Do đó, theo nguyên lý quy nạp cấu trúc, $P(\phi)$ đúng cho mọi $\phi \in \textit{PROP}$, nên với mọi công thức mệnh đề, số biến mệnh đề nhiều nhất hơn số phép nối một đơn vị. Điều này hoàn thành chứng minh bằng quy nạp cấu trúc.
+\end{proof}
+
+%% ============================================================
+\section*{Lời giải 4.2}
+\addcontentsline{toc}{section}{Lời giải 4.2}
+
+\textbf{1.}
+\begin{align*}
+x \in A \cup (B \cup C) &\leftrightarrow x \in A \lor (x \in B \lor x \in C) && \text{(định nghĩa của $\cup$)}\\
+&\leftrightarrow (x \in A \lor x \in B) \lor x \in C && \text{(tính kết hợp của $\lor$)}\\
+&\leftrightarrow x \in (A \cup B) \cup C && \text{(định nghĩa của $\cup$)}
+\end{align*}
+
+\begin{align*}
+x \in A \cap (B \cap C) &\leftrightarrow x \in A \land (x \in B \land x \in C) && \text{(định nghĩa của $\cap$)}\\
+&\leftrightarrow (x \in A \land x \in B) \land x \in C && \text{(tính kết hợp của $\land$)}\\
+&\leftrightarrow x \in (A \cap B) \cap C && \text{(định nghĩa của $\cap$)}
+\end{align*}
+
+\bigskip
+\textbf{2.}
+\begin{align*}
+x \in A &\to x \in A \lor x \in B \\
+&\leftrightarrow x \in A \cup B && \text{(định nghĩa của $\cup$)}
+\end{align*}
+
+\begin{align*}
+x \in A \cap B &\leftrightarrow x \in A \land x \in B && \text{(định nghĩa của $\cap$)}\\
+&\to x \in A
+\end{align*}
+
+\bigskip
+\textbf{3.}
+\begin{align*}
+A \triangle B &\leftrightarrow \{x \mid (x \in A) \oplus (x \in B)\} && \text{(định nghĩa của $\triangle$)}\\
+&\leftrightarrow \{x \mid (x \in A \land \neg(x \in B)) \lor (\neg(x \in A) \land x \in B)\} && \text{(định nghĩa của $\oplus$)}\\
+&\leftrightarrow \{x \mid (x \in A \land x \notin B) \lor (x \notin A \land x \in B)\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \mid (x \in A \setminus B) \lor (x \in B \setminus A)\} && \text{(định nghĩa của $\setminus$)}\\
+&\leftrightarrow (A \setminus B) \cup (B \setminus A) && \text{(định nghĩa của $\cup$)}
+\end{align*}
+
+\bigskip
+\textbf{4.} (Biểu đồ Venn với ba tập hợp $A$, $B$, $C$ giao nhau -- xem sách gốc cho hình minh họa)
+
+\bigskip
+\textbf{5.}
+\begin{align*}
+\overline{A} &\leftrightarrow \{x \in U \mid x \notin \overline{A}\} && \text{(định nghĩa của phần bù)}\\
+&\leftrightarrow \{x \in U \mid \neg(x \in \overline{A})\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \in U \mid \neg(x \notin A)\} && \text{(định nghĩa của phần bù)}\\
+&\leftrightarrow \{x \in U \mid \neg\neg(x \in A)\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \in U \mid x \in A\} && \text{(định nghĩa của phủ định kép)}\\
+&\leftrightarrow A
+\end{align*}
+
+\begin{align*}
+A \cup \overline{A} &\leftrightarrow \{x \in U \mid x \in A \lor x \in \overline{A}\} && \text{(định nghĩa của $\cup$)}\\
+&\leftrightarrow \{x \in U \mid x \in A \lor x \notin A\} && \text{(định nghĩa của phần bù)}\\
+&\leftrightarrow \{x \in U \mid x \in A \lor \neg(x \in A)\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \in U \mid \mathbb{T}\} && \text{(luật loại trừ trung gian ($p \lor \neg p \equiv \mathbb{T}$))}\\
+&\leftrightarrow U
+\end{align*}
+
+\bigskip
+\textbf{6.}
+\begin{align*}
+\overline{A \cap B} &\leftrightarrow \{x \in U \mid x \notin A \cap B\} && \text{(định nghĩa của phần bù)}\\
+&\leftrightarrow \{x \in U \mid \neg(x \in A \cap B)\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \in U \mid \neg(x \in A \land x \in B)\} && \text{(định nghĩa của $\cap$)}\\
+&\leftrightarrow \{x \in U \mid (\neg(x \in A)) \lor (\neg(x \in B))\} && \text{(Luật De Morgan cho logic)}\\
+&\leftrightarrow \{x \in U \mid (x \notin A) \lor (x \notin B)\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \in U \mid (x \in \overline{A}) \lor (x \in \overline{B})\} && \text{(định nghĩa của phần bù)}\\
+&\leftrightarrow \overline{A} \cup \overline{B} && \text{(định nghĩa của $\cup$)}
+\end{align*}
+
+\bigskip
+\textbf{7.}
+
+\textbf{a)}
+\begin{align*}
+(p \land q) \leftrightarrow p &\equiv ((p \land q) \to p) \land (p \to (p \land q)) && \text{(định nghĩa của $\leftrightarrow$)}\\
+&\equiv (\neg(p \land q) \lor p) \land (\neg p \lor (p \land q)) && \text{(định nghĩa của $\to$)}\\
+&\equiv (\neg p \lor \neg q \lor p) \land ((\neg p \lor p) \land (\neg p \lor q)) && \text{(Luật De Morgan và Phân phối)}\\
+&\equiv \mathbb{T} \land (\neg p \lor q) && (p \lor \neg p \equiv \mathbb{T})\\
+&\equiv p \to q && \text{(định nghĩa của $\to$)}
+\end{align*}
+
+\begin{align*}
+(p \lor q) \leftrightarrow q &\equiv ((p \lor q) \to q) \land (q \to (p \lor q)) && \text{(định nghĩa của $\leftrightarrow$)}\\
+&\equiv (\neg(p \lor q) \lor q) \land (\neg q \lor (p \lor q)) && \text{(định nghĩa của $\to$)}\\
+&\equiv (\neg p \lor q) \land \mathbb{T} && \text{(Luật De Morgan và Phân phối)}\\
+&\equiv p \to q && \text{(định nghĩa của $\to$)}
+\end{align*}
+
+\textbf{b)} Để chỉ ra rằng ba phát biểu này tương đương, ta chỉ ra rằng $A \subseteq B \to A \cap B = A$, $A \cap B = A \to A \cup B = B$, và $A \cup B = B \to A \subseteq B$:
+
+\begin{itemize}
+\item $A \subseteq B \to A \cap B = A$:
+
+Ta chứng minh bằng phản chứng, và do đó giả sử rằng $A \subseteq B$ và $A \cap B \neq A$. Vì điều sau, ta biết rằng có một phần tử trong $A$ không ở trong $B$. Tuy nhiên, điều này mâu thuẫn với giả thiết rằng $A \subseteq B$, do đó ta biết rằng phép suy luận ban đầu là đúng.
+
+\item $A \cap B = A \to A \cup B = B$:
+
+Ta chứng minh bằng phản chứng, và do đó giả sử rằng $A \cap B = A$ và $A \cup B \neq B$. Từ điều sau, ta biết rằng bây giờ tồn tại một phần tử trong $A$ không ở trong $B$, gọi là $x$. Tuy nhiên, điều này có nghĩa là $x$ cũng phải bị loại khỏi $A \cap B$, và do đó $A \cap B \neq A$, mâu thuẫn với giả thiết. Do đó, phép suy luận ban đầu là đúng.
+
+\item $A \cup B = B \to A \subseteq B$:
+
+Ta chứng minh bằng phản chứng, và do đó giả sử rằng $A \cup B = B$ và $\neg(A \subseteq B)$. Vì điều sau, tồn tại ít nhất một phần tử, gọi là $x$, sao cho $x \in A$ và $x \notin B$. Điều này có nghĩa là $C = A \setminus B \neq \varnothing$. Tuy nhiên, điều này có nghĩa là $A \cup B = B \cup C$. Điều này mâu thuẫn với giả thiết khác rằng $A \cup B = B$, vì $A \cup B$ chỉ chứa phần tử của $B$, trong khi ta đã suy ra rằng điều này không thể. Vì mâu thuẫn này, ta kết luận rằng $A \cup B = B \to A \subseteq B$.
+\end{itemize}
+
+Vì ta đã chỉ ra rằng cả ba phép suy luận đúng, ta đã chứng minh rằng ba phát biểu tương đương logic.
+
+\bigskip
+\textbf{8.}
+\begin{align*}
+\overline{A} &\leftrightarrow \{x \in U \mid x \notin A\} && \text{(định nghĩa của $\overline{A}$)}\\
+&\leftrightarrow \{x \mid x \in U \land x \notin A\} \\
+&\leftrightarrow U \setminus A && \text{(định nghĩa của $\setminus$)}
+\end{align*}
+
+\begin{align*}
+C \setminus (A \cup B) &\leftrightarrow \{x \mid x \in C \land x \notin (A \cup B)\} && \text{(định nghĩa của $\setminus$)}\\
+&\leftrightarrow \{x \mid x \in C \land \neg(x \in (A \cup B))\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \mid x \in C \land \neg(x \in A \lor x \in B)\} && \text{(định nghĩa của $\cup$)}\\
+&\leftrightarrow \{x \mid x \in C \land (x \notin A \land x \notin B)\} && \text{(Luật De Morgan)}\\
+&\leftrightarrow \{x \mid (x \in C \land x \notin A) \land (x \in C \land x \notin B)\} && \text{(Luật Phân phối)}\\
+&\leftrightarrow \{x \mid (x \in C \setminus A) \land (x \in C \setminus B)\} && \text{(định nghĩa của $\setminus$)}\\
+&\leftrightarrow \{x \mid x \in (C \setminus A) \cap (C \setminus B)\} && \text{(định nghĩa của $\cap$)}\\
+&\leftrightarrow (C \setminus A) \cap (C \setminus B)
+\end{align*}
+
+\begin{align*}
+C \setminus (A \cap B) &\leftrightarrow \{x \mid x \in C \land x \notin (A \cap B)\} && \text{(định nghĩa của $\setminus$)}\\
+&\leftrightarrow \{x \mid x \in C \land \neg(x \in (A \cap B))\} && \text{(định nghĩa của $\notin$)}\\
+&\leftrightarrow \{x \mid x \in C \land \neg(x \in A \land x \in B)\} && \text{(định nghĩa của $\cap$)}\\
+&\leftrightarrow \{x \mid x \in C \land (x \notin A \lor x \notin B)\} && \text{(Luật De Morgan)}\\
+&\leftrightarrow \{x \mid (x \in C \land x \notin A) \lor (x \in C \land x \notin B)\} && \text{(Luật Phân phối)}\\
+&\leftrightarrow \{x \mid (x \in C \setminus A) \lor (x \in C \setminus B)\} && \text{(định nghĩa của $\setminus$)}\\
+&\leftrightarrow \{x \mid x \in (C \setminus A) \cup (C \setminus B)\} && \text{(định nghĩa của $\cup$)}\\
+&\leftrightarrow (C \setminus A) \cup (C \setminus B)
+\end{align*}
+
+\bigskip
+\textbf{9.}
+\begin{align*}
+A \cup (A \cap B) &\leftrightarrow (A \cup A) \cap (A \cup B) && \text{(Luật Phân phối)}\\
+&\leftrightarrow A \cap (A \cup B) && \text{(Luật Lũy đẳng)}\\
+&\leftrightarrow A && (A \subseteq A \cup B \text{ (xem 2)})
+\end{align*}
+
+\bigskip
+\textbf{10.}
+
+\textbf{a)}
+\begin{align*}
+X \cup (Y \cup X) &\leftrightarrow (X \cup (X \cup Y)) && \text{(Luật Giao hoán)}\\
+&\leftrightarrow (X \cup X) \cup Y && \text{(Luật Kết hợp)}\\
+&\leftrightarrow X \cup Y && \text{(Luật Lũy đẳng)}
+\end{align*}
+
+\textbf{b)}
+\begin{align*}
+(X \cap Y) \cap \overline{X} &\leftrightarrow (Y \cap X) \cap \overline{X} && \text{(Luật Giao hoán)}\\
+&\leftrightarrow Y \cap (X \cap \overline{X}) && \text{(Luật Kết hợp)}\\
+&\leftrightarrow Y \cap \varnothing && \text{(Luật khác $A \cap \overline{A} = \varnothing$)}\\
+&\leftrightarrow \varnothing && \text{(Luật khác $A \cap \varnothing = \varnothing$)}
+\end{align*}
+
+\textbf{c)}
+\begin{align*}
+(X \cup Y) \cap \overline{Y} &\leftrightarrow (X \cap \overline{Y}) \cup (Y \cap \overline{Y}) && \text{(Luật Phân phối)}\\
+&\leftrightarrow (X \cap \overline{Y}) \cup \varnothing && \text{(Luật khác $A \cap \overline{A} = \varnothing$)}\\
+&\leftrightarrow X \cap \overline{Y} && \text{(Luật khác $A \cup \varnothing = A$)}
+\end{align*}
+
+\textbf{d)}
+\begin{align*}
+(X \cup Y) \cup (X \cap Y) &\leftrightarrow (X \cup (X \cap Y)) \cup (Y \cup (X \cap Y)) && \text{(Luật Phân phối)}\\
+&\leftrightarrow ((X \cap X) \cup (X \cap Y)) \cup ((Y \cap X) \cup (Y \cap Y)) && \text{(Luật Phân phối)}\\
+&\leftrightarrow (X \cup (X \cap Y)) \cup ((Y \cap X) \cup Y) && \text{(Luật Lũy đẳng)}\\
+&\leftrightarrow X \cup Y && (A \subseteq A \cup B \text{ (xem 2)})
+\end{align*}
+
+\bigskip
+\textbf{11.}
+
+\textbf{a)}
+\[\overline{A \cup B \cup C} \leftrightarrow \overline{A} \cap \overline{B} \cap \overline{C} \qquad \text{(Định lý 4.5)}\]
+
+\textbf{b)}
+\begin{align*}
+\overline{A \cup (B \cap C)} &\leftrightarrow \overline{A} \cap \overline{B \cap C} && \text{(Luật De Morgan)}\\
+&\leftrightarrow \overline{A} \cap (\overline{B} \cup \overline{C}) && \text{(Luật De Morgan)}
+\end{align*}
+
+\textbf{c)}
+\begin{align*}
+\overline{\overline{A \cup B}} &\leftrightarrow \overline{\overline{A} \cap \overline{B}} && \text{(Luật De Morgan)}\\
+&\leftrightarrow A \cup B && \text{(Luật De Morgan)}
+\end{align*}
+
+\textbf{d)}
+\[\overline{B \cap C} \leftrightarrow \overline{B} \cup C \qquad \text{(Luật De Morgan)}\]
+
+\textbf{e)}
+\begin{align*}
+\overline{A \cap \overline{B} \cap \overline{C}} &\leftrightarrow \overline{A \cap \overline{B}} \cup C && \text{(Luật De Morgan)}\\
+&\leftrightarrow \overline{A} \cap \overline{\overline{B}} \cap \overline{C} && \text{(Luật De Morgan)}\\
+&\leftrightarrow (\overline{A} \cup B) \cap \overline{C}
+\end{align*}
+
+\textbf{f)}
+\begin{align*}
+A \cap \overline{A \cup B} &\leftrightarrow A \cap \overline{A} \cap \overline{B} && \text{(Luật De Morgan)}\\
+&\leftrightarrow \varnothing \cap \overline{B} && \text{(Luật khác $A \cap \overline{A} = \varnothing$)}\\
+&\leftrightarrow \varnothing && \text{(Luật khác $A \cap \varnothing = \varnothing$)}
+\end{align*}
+
+\bigskip
+\textbf{12.}
+
+\begin{proof}
+Ta chứng minh bằng quy nạp. Trong trường hợp cơ sở, $n = 2$, phát biểu là $\overline{X_1 \cap X_2} = \overline{X_1} \cup \overline{X_2}$. Điều này đúng vì nó chỉ là áp dụng Luật De Morgan cho hai tập hợp.
+
+Với bước quy nạp, giả sử rằng phát biểu đúng cho $n = k$. Do đó, ta giả sử giả thiết quy nạp: $\overline{X_1 \cap X_2 \cap \cdots \cap X_k} = \overline{X_1} \cup \overline{X_2} \cup \cdots \cup \overline{X_k}$, cho $X_1, X_2, \ldots, X_{k+1}$ là $k + 1$ tập hợp bất kỳ. Khi đó ta có:
+\begin{align*}
+\overline{X_1 \cap X_2 \cap \cdots \cap X_{k+1}} &= \overline{(X_1 \cap X_2 \cap \cdots \cap X_k) \cap X_{k+1}} \\
+&= \overline{(X_1 \cap X_2 \cap \cdots \cap X_k)} \cup \overline{X_{k+1}} \\
+&= (\overline{X_1} \cup \overline{X_2} \cup \cdots \cup \overline{X_k}) \cup \overline{X_{k+1}} \qquad \text{(GT QN)}\\
+&= \overline{X_1} \cup \overline{X_2} \cup \cdots \cup \overline{X_{k+1}}
+\end{align*}
+
+Trong phép tính này, bước thứ hai suy ra từ Luật De Morgan cho hai tập hợp, còn bước thứ ba suy ra từ giả thiết quy nạp. Do đó theo nguyên lý quy nạp ta đã chứng minh được định lý.
+\end{proof}
+
+\bigskip
+\textbf{13.}
+
+\begin{itemize}
+\item Với mọi số tự nhiên $n \ge 2$ và mọi tập hợp $Q, P_1, P_2, \ldots, P_n$:
+\[Q \cap (P_1 \cup P_2 \cup \ldots \cup P_n) = (Q \cap P_1) \cup (Q \cap P_2) \cup \ldots \cup (Q \cap P_n)\]
+
+\begin{proof}
+Ta chứng minh bằng quy nạp. Trong trường hợp cơ sở, $n = 2$, phát biểu là $Q \cap (P_1 \cup P_2) = (Q \cap P_1) \cup (Q \cap P_2)$. Điều này đúng vì nó chỉ là áp dụng Luật Phân phối cho ba tập hợp.
+
+Với bước quy nạp, giả sử rằng phát biểu đúng cho $n = k$, trong đó $k$ là số nguyên tùy ý lớn hơn hoặc bằng 2. Do đó, ta giả sử giả thiết quy nạp: $Q \cap (P_1 \cup P_2 \cup \ldots \cup P_k) = (Q \cap P_1) \cup (Q \cap P_2) \cup \ldots \cup (Q \cap P_k)$, cho $Q, P_1, P_2, \ldots, P_{k+1}$ là $k + 2$ tập hợp bất kỳ. Khi đó ta có:
+\begin{align*}
+Q \cap (P_1 \cup P_2 \cup \ldots \cup P_{k+1}) &= (Q \cap (P_1 \cup P_2 \cup \ldots \cup P_k)) \cup (Q \cap P_{k+1}) \\
+&= ((Q \cap P_1) \cup (Q \cap P_2) \cup \ldots \cup (Q \cap P_k)) \cup (Q \cap P_{k+1}) \quad \text{(GT QN)}\\
+&= (Q \cap P_1) \cup (Q \cap P_2) \cup \ldots \cup (Q \cap P_{k+1})
+\end{align*}
+
+Trong phép tính này, bước thứ hai suy ra từ Luật Phân phối cho ba tập hợp, còn bước thứ ba suy ra từ giả thiết quy nạp. Do đó theo nguyên lý quy nạp ta đã chứng minh được định lý.
+\end{proof}
+
+\item Với mọi số tự nhiên $n \ge 2$ và mọi tập hợp $Q, P_1, P_2, \ldots, P_n$:
+\[Q \cup (P_1 \cap P_2 \cap \ldots \cap P_n) = (Q \cup P_1) \cap (Q \cup P_2) \cap \ldots \cap (Q \cup P_n)\]
+
+\begin{proof}
+Ta chứng minh bằng quy nạp. Trong trường hợp cơ sở, $n = 2$, phát biểu là $Q \cup (P_1 \cap P_2) = (Q \cup P_1) \cap (Q \cup P_2)$. Điều này đúng vì nó chỉ là áp dụng Luật Phân phối cho ba tập hợp.
+
+Với bước quy nạp, giả sử rằng phát biểu đúng cho $n = k$, trong đó $k$ là số nguyên tùy ý lớn hơn hoặc bằng 2. $Q \cup (P_1 \cap P_2 \cap \ldots \cap P_k) = (Q \cup P_1) \cap (Q \cup P_2) \cap \ldots \cap (Q \cup P_k)$, cho $Q, P_1, P_2, \ldots, P_{k+1}$ là $k + 2$ tập hợp bất kỳ. Khi đó ta có:
+\begin{align*}
+Q \cup (P_1 \cap P_2 \cap \ldots \cap P_{k+1}) &= (Q \cup (P_1 \cap P_2 \cap \ldots \cap P_k)) \cap (Q \cup P_{k+1}) \\
+&= ((Q \cup P_1) \cap (Q \cup P_2) \cap \ldots \cap (Q \cup P_k)) \cap (Q \cup P_{k+1}) \quad \text{(GT QN)}\\
+&= (Q \cup P_1) \cap (Q \cup P_2) \cap \ldots \cap (Q \cup P_{k+1})
+\end{align*}
+
+Trong phép tính này, bước thứ hai suy ra từ Luật Phân phối cho ba tập hợp, còn bước thứ ba suy ra từ giả thiết quy nạp. Do đó theo nguyên lý quy nạp ta đã chứng minh được định lý.
+\end{proof}
+\end{itemize}
+
+%% ============================================================
+\section*{Lời giải 4.4}
+\addcontentsline{toc}{section}{Lời giải 4.4}
+
+\textbf{1.}
+\begin{align*}
+A \times B &= \{(1,a), (1,b), (1,c), (2,a), (2,b), (2,c), (3,a), (3,b), (3,c), (4,a), (4,b), (4,c)\}\\
+B \times A &= \{(a,1), (a,2), (a,3), (a,4), (b,1), (b,2), (b,3), (b,4), (c,1), (c,2), (c,3), (c,4)\}
+\end{align*}
+
+\bigskip
+\textbf{2.}
+\[g \circ f = \{(a, c), (b, c), (c, b), (d, d)\}\]
+
+\bigskip
+\textbf{3.}
+\begin{align*}
+B^A = \{&\{(a,0),(b,0),(c,0)\}, \{(a,0),(b,0),(c,1)\}, \{(a,0),(b,1),(c,0)\}, \{(a,0),(b,1),(c,1)\},\\
+&\{(a,1),(b,0),(c,0)\}, \{(a,1),(b,0),(c,1)\}, \{(a,1),(b,1),(c,0)\}, \{(a,1),(b,1),(c,1)\}\}
+\end{align*}
+
+\bigskip
+\textbf{4.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $f$ không phải toàn ánh, vì không tồn tại phần tử $x$ trong $\mathbb{Z}$ sao cho $f(x) = 2x = 3$, vì điều này có nghĩa là $x = 1{,}5$, không phải số nguyên. Tuy nhiên, nó là đơn ánh. Lấy hai số $a$ và $b$ tùy ý sao cho $f(a) = f(b)$. Do đó, $2a = 2b$, điều này chỉ đúng khi $a = b$.
+
+\item $g$ là toàn ánh; lấy $y$ tùy ý trong $\mathbb{Z}$. Khi đó tồn tại $x$ sao cho $g(x) = y$, cụ thể $x = y - 1$ ($g(x) = g(y-1) = y - 1 + 1 = y$), là số nguyên và do đó thuộc $\mathbb{Z}$. Hơn nữa, $g$ cũng là đơn ánh. Lấy hai số $a$ và $b$ tùy ý sao cho $g(a) = g(b)$. Do đó $a + 1 = b + 1$, điều này chỉ đúng khi $a = b$.
+
+\item $h$ không phải toàn ánh, vì không tồn tại phần tử $x$ trong $\mathbb{Z}$ sao cho $h(x) = x^2 + x + 1 = 4$. Điều này là vì $x^2 + x + 1 = 4 \leftrightarrow x = \frac{\pm\sqrt{13} - 1}{2}$, không phải số nguyên. Nó cũng không phải đơn ánh, vì giải $x^2 + x + 1 = a$ cho hai nghiệm với mọi $a$. Lấy $a = 3$, khi đó cả $x = -2$ và $y = 1$ đều cho $h(x) = h(y) = 3$, tuy nhiên $x \neq y$.
+
+\item $s$ là toàn ánh; lấy $y$ tùy ý trong $\mathbb{Z}$. Khi đó tồn tại $x$ sao cho $s(x) = y$, cụ thể $x = 2y$ ($s(x) = s(2y) = \frac{2y}{2} = y$). Tuy nhiên, nó không phải đơn ánh. Lấy số nguyên chẵn $a$ tùy ý và $b = a - 1$. $s(a) = \frac{a}{2} = \frac{(a-1)+1}{2} = s(b)$, tuy nhiên $a \neq b$.
+\end{enumerate}
+
+\bigskip
+\textbf{5.} Với mọi $x \in A$:
+\[((h \circ g) \circ f)(x) = (h \circ g)(f(x)) = (h(g(f(x)))) = h((g \circ f)(x)) = (h \circ (g \circ f))(x)\]
+
+\bigskip
+\textbf{6.}
+
+\textbf{a)} \textbf{Cần chứng minh:} $g \circ f$ là đơn ánh $\to$ $f$ là đơn ánh
+
+\begin{proof}
+Ta chứng minh bằng phản chứng. Ta giả sử rằng $g \circ f$ là đơn ánh, nhưng $f$ thì không. Vì $f$ không phải đơn ánh, nên tồn tại $a, b \in A$ sao cho $f(a) = y = f(b)$, nhưng $a \neq b$. Tuy nhiên, vì $g : B \to C$, ta có phần tử $x \in C$ sao cho $g(y) = x$. Tuy nhiên, điều này có nghĩa là với cả $a$ và $b$, $(g \circ f)(a) = (g \circ f)(b) = x$, chỉ ra rằng $g \circ f$ không phải đơn ánh. Tuy nhiên, điều này mâu thuẫn với giả thiết rằng $g \circ f$ là đơn ánh, nghĩa là không thể xảy ra $g \circ f$ đơn ánh mà $f$ không đơn ánh. Do đó, phát biểu cần chứng minh là đúng.
+\end{proof}
+
+\textbf{b)} Cho $A = \{1\}$, $B = \{a, b\}$, $C = \{c\}$, $f(1) = a$, $g(a) = g(b) = c$. Mặc dù $g$ không phải đơn ánh, vì $g(a) = g(b) = c$, ta có $g \circ f(1) = c$, là đơn ánh.
+
+\bigskip
+\textbf{7.}
+
+\textbf{a)} \textbf{Cần chứng minh:} $g \circ f$ là toàn ánh $\to$ $g$ là toàn ánh
+
+\begin{proof}
+Ta chứng minh bằng phản chứng. Ta giả sử rằng $g \circ f$ là toàn ánh, nhưng $g$ thì không. Vì $g$ không phải toàn ánh, điều này có nghĩa là tồn tại phần tử $c \in C$ sao cho với mọi phần tử $b \in B$: $g(b) \neq c$. Tuy nhiên, điều này có nghĩa là $g \circ f$ không thể là toàn ánh, vì không có phần tử nào trong $B$ mà $f$ có thể ánh xạ tới sao cho $g \circ f(x) = c$. Tuy nhiên, điều này mâu thuẫn với giả thiết rằng $g \circ f$ là toàn ánh, nghĩa là không thể xảy ra $g \circ f$ toàn ánh mà $g$ không toàn ánh. Do đó, phát biểu cần chứng minh là đúng.
+\end{proof}
+
+\textbf{b)} Cho $A = \{a\}$, $B = \{b, c\}$, $C = \{d\}$, $f(a) = b$, $g(b) = d$. Mặc dù $f$ không phải toàn ánh, vì không có $x \in A$ sao cho $f(x) = c$, ta có với mọi phần tử trong $C$, cụ thể $d$, tồn tại phần tử trong $A$, cụ thể $a$, sao cho $(g \circ f)(a) = d$. Do đó $g \circ f$ là toàn ánh.

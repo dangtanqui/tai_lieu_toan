@@ -1,0 +1,872 @@
+% Chương 4 (tiếp theo): Hàm và Quan hệ
+% Sections 4.5 -- 4.9
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Hàm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Cả thế giới thực lẫn thế giới toán học đều đầy những thứ được gọi, trong toán học, là ``quan hệ hàm'' (functional relationship). Một quan hệ hàm là một quan hệ giữa hai tập hợp, trong đó liên kết \emph{chính xác một} phần tử từ tập thứ hai với mỗi phần tử của tập thứ nhất.
+
+Ví dụ, mỗi mặt hàng bán trong cửa hàng có một giá. Tập hợp thứ nhất trong quan hệ này là tập các mặt hàng trong cửa hàng. Với mỗi mặt hàng trong cửa hàng, có một giá tương ứng, nên tập hợp thứ hai trong quan hệ này là tập các mức giá có thể. Quan hệ này là một quan hệ hàm bởi vì mỗi mặt hàng đều có một giá. Nghĩa là, câu hỏi ``Giá của mặt hàng này là bao nhiêu?'' có một câu trả lời duy nhất, xác định cho mỗi mặt hàng trong cửa hàng.
+
+Tương tự, câu hỏi ``Ai là mẹ (sinh học) của người này?'' có một câu trả lời duy nhất, xác định cho mỗi người.\footnote{Để phục vụ cho ví dụ này, chúng ta bỏ qua các khả năng mang thai hộ, v.v.} Vì vậy, quan hệ `mẹ của' định nghĩa một quan hệ hàm. Trong trường hợp này, hai tập hợp trong quan hệ là cùng một tập hợp, cụ thể là tập tất cả mọi người. Mặt khác, quan hệ `con của' không phải là một quan hệ hàm. Câu hỏi ``Ai là con của người này?'' không có một câu trả lời duy nhất, xác định cho mỗi người. Một người có thể không có con nào. Và một người có thể có nhiều hơn một con. Một trong hai trường hợp --- một người không có con hoặc một người có nhiều hơn một con --- đều đủ để chỉ ra rằng quan hệ `con của' không phải là một quan hệ hàm.
+
+Hoặc hãy xem xét một bản đồ thông thường, chẳng hạn như bản đồ của Zuid-Holland hay bản đồ đường phố của Roma. Toàn bộ ý nghĩa của bản đồ, nếu nó chính xác, là có một quan hệ hàm giữa các điểm trên bản đồ và các điểm trên bề mặt Trái Đất. Có lẽ vì ví dụ này mà một quan hệ hàm đôi khi được gọi là một \textbf{ánh xạ} (mapping).
+
+Cũng có nhiều ví dụ tự nhiên về quan hệ hàm trong toán học. Ví dụ, mọi hình chữ nhật đều có một diện tích tương ứng. Thực tế này biểu thị một quan hệ hàm giữa tập các hình chữ nhật và tập các số. Mọi số tự nhiên $n$ đều có một bình phương, $n^2$. Quan hệ `bình phương của' là một quan hệ hàm từ tập các số tự nhiên đến chính nó.
+
+\subsection{Hình thức hóa khái niệm hàm}
+
+Trong toán học, tất nhiên, chúng ta cần làm việc với các quan hệ hàm một cách trừu tượng. Để làm điều này, chúng ta giới thiệu ý tưởng về \textbf{hàm} (function). Bạn nên coi hàm như một đối tượng toán học biểu diễn một quan hệ hàm giữa hai tập hợp. Ký hiệu $f\colon A \to B$ biểu thị thực tế rằng $f$ là một hàm từ tập $A$ đến tập $B$. Nghĩa là, $f$ là tên cho một đối tượng toán học biểu diễn một quan hệ hàm từ tập $A$ đến tập $B$. Ký hiệu $f\colon A \to B$ được đọc là ``$f$ là một hàm từ $A$ đến $B$'' hoặc đơn giản hơn là ``$f$ ánh xạ $A$ đến $B$''.
+
+\begin{notebox}
+Các hàm toán học khác với các hàm trong ngôn ngữ lập trình như Java. Chúng ta sẽ quay lại vấn đề này ở phần tiếp theo.
+\end{notebox}
+
+Nếu $f\colon A \to B$ và nếu $a \in A$, thực tế rằng $f$ là một quan hệ hàm từ $A$ đến $B$ có nghĩa là $f$ liên kết một phần tử nào đó của $B$ với $a$. Phần tử đó được ký hiệu là $f(a)$. Nghĩa là, với mỗi $a \in A$, $f(a) \in B$ và $f(a)$ là câu trả lời duy nhất, xác định cho câu hỏi ``Phần tử nào của $B$ được liên kết với $a$ bởi hàm $f$?'' Thực tế rằng $f$ là một hàm từ $A$ đến $B$ có nghĩa là câu hỏi này có một câu trả lời duy nhất, được xác định rõ ràng. Cho trước $a \in A$, $f(a)$ được gọi là \textbf{giá trị} của hàm $f$ tại $a$.
+
+\begin{example}
+Ví dụ, nếu $I$ là tập các mặt hàng bán trong một cửa hàng nhất định và $M$ là tập các mức giá có thể, thì có một hàm $c\colon I \to M$ được xác định bởi thực tế rằng với mỗi $x \in I$, $c(x)$ là giá của mặt hàng $x$. Tương tự, nếu $P$ là tập những người, thì có một hàm $m\colon P \to P$ sao cho với mỗi người $p$, $m(p)$ là mẹ của $p$. Và nếu $\mathbb{N}$ là tập các số tự nhiên, thì công thức $s(n) = n^2$ xác định một hàm $s\colon \mathbb{N} \to \mathbb{N}$.
+\end{example}
+
+Chính ở dạng các công thức như $s(n) = n^2$ hay $f(x) = x^3 - 3x + 7$ mà hầu hết mọi người lần đầu gặp hàm. Nhưng bạn nên lưu ý rằng một công thức tự nó không phải là một hàm, mặc dù nó có thể xác định một hàm giữa hai tập số cho trước. Hàm tổng quát hơn nhiều so với công thức, và chúng áp dụng cho mọi loại tập hợp, không chỉ tập các số.
+
+\subsection{Các phép toán trên hàm}
+
+Giả sử $f\colon A \to B$ và $g\colon B \to C$ là các hàm. Cho trước $a \in A$, có một phần tử tương ứng $f(a) \in B$. Vì $g$ là một hàm từ $B$ đến $C$, và vì $f(a) \in B$, $g$ liên kết một phần tử nào đó của $C$ với $f(a)$. Phần tử đó là $g(f(a))$. Bắt đầu với một phần tử $a$ của $A$, chúng ta đã tạo ra một phần tử tương ứng $g(f(a))$ của $C$. Điều này có nghĩa là chúng ta đã định nghĩa một hàm mới từ tập $A$ đến tập $C$. Hàm này được gọi là \textbf{hợp thành} (composition) của $g$ với $f$, và nó được ký hiệu bằng $g \circ f$. Nghĩa là, nếu $f\colon A \to B$ và $g\colon B \to C$ là các hàm, thì $g \circ f\colon A \to C$ là hàm được xác định bởi
+\[
+(g \circ f)(a) = g(f(a))
+\]
+với mỗi $a \in A$. Ví dụ, giả sử $p$ là hàm liên kết mỗi mặt hàng trong cửa hàng với giá của mặt hàng đó, và giả sử $t$ là hàm liên kết số tiền thuế trên một mức giá với mỗi mức giá có thể. Hợp thành $t \circ p$ là hàm liên kết mỗi mặt hàng với số tiền thuế trên mặt hàng đó. Hoặc giả sử $s\colon \mathbb{N} \to \mathbb{N}$ và $r\colon \mathbb{N} \to \mathbb{N}$ là các hàm được xác định bởi các công thức $s(n) = n^2$ và $r(n) = 3n + 1$, với mỗi $n \in \mathbb{N}$. Khi đó $r \circ s$ là một hàm từ $\mathbb{N}$ đến $\mathbb{N}$, và với $n \in \mathbb{N}$, $(r \circ s)(n) = r(s(n)) = r(n^2) = 3n^2 + 1$. Trong trường hợp này, chúng ta cũng có hàm $s \circ r$, thỏa mãn $(s \circ r)(n) = s(r(n)) = s(3n+1) = (3n+1)^2 = 9n^2 + 6n + 1$. Lưu ý đặc biệt rằng $r \circ s$ và $s \circ r$ không phải là cùng một hàm. Phép toán $\circ$ không có tính giao hoán.
+
+Nếu $A$ là một tập hợp và $f\colon A \to A$, thì $f \circ f$, hợp thành của $f$ với chính nó, được xác định. Ví dụ, sử dụng hàm $s$ từ ví dụ trước, $s \circ s$ là hàm từ $\mathbb{N}$ đến $\mathbb{N}$ cho bởi công thức $(s \circ s)(n) = s(s(n)) = s(n^2) = (n^2)^2 = n^4$. Nếu $m$ là hàm từ tập người đến chính nó liên kết mỗi người với mẹ của người đó, thì $m \circ m$ là hàm liên kết mỗi người với bà ngoại của người đó.
+
+Cho trước một hàm $f\colon A \to B$, xét tập $\{(a,b) \in A \times B \mid a \in A \text{ và } b = f(a)\}$. Tập các cặp có thứ tự này bao gồm tất cả các cặp $(a,b)$ sao cho $a \in A$ và $b$ là phần tử của $B$ được liên kết với $a$ bởi hàm $f$. Tập $\{(a,b) \in A \times B \mid a \in A \text{ và } b = f(a)\}$ được gọi là \textbf{đồ thị} (graph) của hàm $f$. Vì $f$ là một hàm, mỗi phần tử $a \in A$ xuất hiện một lần và chỉ một lần với tư cách là tọa độ thứ nhất trong các cặp có thứ tự trong đồ thị của $f$. Cho trước $a \in A$, chúng ta có thể xác định $f(a)$ bằng cách tìm cặp có thứ tự đó và nhìn vào tọa độ thứ hai. Thực ra, thuận tiện khi coi hàm và đồ thị của nó là cùng một thứ, và sử dụng điều này làm định nghĩa toán học chính thức của chúng ta.\footnote{Đây là một định nghĩa thuận tiện cho thế giới toán học, nhưng như thường xảy ra trong toán học, nó bỏ qua nhiều điều trong thế giới thực. Các quan hệ hàm trong thế giới thực là \emph{có ý nghĩa}, nhưng chúng ta mô hình hóa chúng trong toán học bằng các tập cặp có thứ tự vô nghĩa. Chúng ta làm điều này vì lý do thường thấy: để có một thứ đủ chính xác và chặt chẽ để có thể suy luận logic và chứng minh mọi thứ về nó.}
+
+Bạn đã quen thuộc với quá trình vẽ đồ thị hàm số từ trường phổ thông (ví dụ, bạn có thể vẽ đồ thị công thức $f(n) = n^2$ như trong Hình~4.7a), nhưng chúng ta cũng có thể vẽ đồ thị các hàm phi số như được chỉ ra trong Hình~4.7b. Để làm vậy, chúng ta vẽ tất cả các phần tử từ tập $A$ và nối chúng với các phần tử của $B$ mà chúng ánh xạ đến.
+
+\begin{definition}
+Cho $A$ và $B$ là các tập hợp. Một \textbf{hàm} từ $A$ đến $B$ là một tập con của $A \times B$ có tính chất rằng với mỗi $a \in A$, tập hợp chứa một và chỉ một cặp có thứ tự có tọa độ thứ nhất là $a$. Nếu $(a,b)$ là cặp có thứ tự đó, thì $b$ được gọi là \textbf{giá trị} của hàm tại $a$ và được ký hiệu là $f(a)$. Nếu $b = f(a)$, thì ta cũng nói rằng hàm $f$ \textbf{ánh xạ} $a$ đến $b$. Thực tế rằng $f$ là một hàm từ $A$ đến $B$ được biểu thị bằng ký hiệu $f\colon A \to B$.
+\end{definition}
+
+\begin{example}
+Ví dụ, nếu $X = \{a,b\}$ và $Y = \{1,2,3\}$, thì tập $\{(a,2),(b,1)\}$ là một hàm từ $X$ đến $Y$, và $\{(1,a),(2,a),(3,b)\}$ là một hàm từ $Y$ đến $X$. Mặt khác, $\{(1,a),(2,b)\}$ không phải là một hàm từ $Y$ đến $X$, vì nó không xác định giá trị nào cho $3$. Và $\{(a,1),(a,2),(b,3)\}$ không phải là một hàm từ $X$ đến $Y$ vì nó chỉ định hai giá trị khác nhau, $1$ và $2$, liên kết với cùng phần tử $a$ của $X$.
+\end{example}
+
+Mặc dù định nghĩa kỹ thuật của hàm là một tập các cặp có thứ tự, thường tốt hơn khi nghĩ về hàm từ $A$ đến $B$ như một thứ liên kết một phần tử nào đó của $B$ với mọi phần tử của $A$. Tập các cặp có thứ tự là một cách biểu diễn sự liên kết này. Nếu sự liên kết được biểu diễn theo cách khác, thì dễ dàng viết ra tập các cặp có thứ tự. Ví dụ, hàm $s\colon \mathbb{N} \to \mathbb{N}$ được xác định bởi công thức $s(n) = n^2$ có thể được viết dưới dạng tập các cặp có thứ tự $\{(n,n^2) \mid n \in \mathbb{N}\}$.
+
+\subsection{Tính chất của hàm}
+
+Giả sử $f\colon A \to B$ là một hàm từ tập $A$ đến tập $B$. Ta nói rằng $A$ là \textbf{miền xác định} (domain) của hàm $f$ và $B$ là \textbf{miền đích} (range) của hàm. Ta định nghĩa \textbf{ảnh} (image) của hàm $f$ là tập $\{b \in B \mid \exists\, a \in A\, (b = f(a))\}$. Nói đơn giản hơn, ảnh của $f$ là tập $\{f(a) \mid a \in A\}$. Nghĩa là, ảnh là tập tất cả các giá trị $f(a)$ của hàm, với mọi $a \in A$. Ví dụ, với hàm $s\colon \mathbb{N} \to \mathbb{N}$ được xác định bởi $s(n) = n^2$, cả miền xác định và miền đích đều là $\mathbb{N}$, và ảnh là tập $\{n^2 \mid n \in \mathbb{N}\}$, hay $\{0, 1, 4, 9, 16, \ldots\}$.
+
+\begin{infobox}
+Trong một số trường hợp --- đặc biệt trong các khóa học như \emph{Giải tích} --- thuật ngữ `miền giá trị' (range) được dùng để chỉ cái mà chúng ta đang gọi là ảnh.
+\end{infobox}
+
+Lưu ý rằng ảnh của một hàm là tập con của miền đích của nó. Nó có thể là tập con thực sự, như trong ví dụ trên, nhưng cũng có thể ảnh của hàm bằng miền đích. Trong trường hợp đó, hàm được gọi là \textbf{toàn ánh} (onto). Đôi khi, thuật ngữ đẹp hơn \textbf{surjective} (toàn ánh) được sử dụng thay thế. Một cách hình thức, một hàm $f\colon A \to B$ được gọi là toàn ánh (surjective) nếu mọi phần tử của $B$ đều bằng $f(a)$ với một phần tử $a$ nào đó của $A$. Theo ngôn ngữ logic, $f$ là toàn ánh khi và chỉ khi
+\[
+\forall b \in B\; \exists\, a \in A\; (b = f(a)).
+\]
+
+\begin{example}
+Ví dụ, cho $X = \{a,b\}$ và $Y = \{1,2,3\}$, và xét hàm từ $Y$ đến $X$ được xác định bởi tập các cặp có thứ tự $\{(1,a),(2,a),(3,b)\}$. Hàm này là toàn ánh vì ảnh của nó, $\{a,b\}$, bằng miền đích $X$. Tuy nhiên, hàm từ $X$ đến $Y$ cho bởi $\{(a,1),(b,3)\}$ không phải toàn ánh, vì ảnh của nó, $\{1,3\}$, là tập con thực sự của miền đích $Y$.
+
+Một ví dụ khác, xét hàm $f$ từ $\mathbb{Z}$ đến $\mathbb{Z}$ cho bởi $f(n) = n - 52$. Để chứng minh $f$ là toàn ánh, ta cần chọn một $b$ tùy ý trong miền đích $\mathbb{Z}$ và chỉ ra rằng có một số $a$ nào đó trong miền xác định $\mathbb{Z}$ sao cho $f(a) = b$. Vậy cho $b$ là một số nguyên tùy ý; ta muốn tìm $a$ sao cho $a - 52 = b$. Rõ ràng phương trình này đúng khi $a = b + 52$. Vậy mọi phần tử $b$ là ảnh của số $a = b + 52$, và $f$ do đó là toàn ánh. Lưu ý rằng nếu $f$ được chỉ định có miền xác định là $\mathbb{N}$, thì $f$ sẽ \emph{không} phải toàn ánh, vì với một số $b \in \mathbb{Z}$, số $a = b + 52$ không thuộc miền xác định $\mathbb{N}$ (ví dụ, số nguyên $-73$ không nằm trong ảnh của $f$, vì $-21$ không thuộc $\mathbb{N}$.)
+\end{example}
+
+Nếu $f\colon A \to B$ và nếu $a \in A$, thì $a$ chỉ được liên kết với một phần tử duy nhất của $B$. Đây là một phần của định nghĩa hàm. Tuy nhiên, không có hạn chế nào như vậy cho các phần tử của $B$. Nếu $b \in B$, thì $b$ có thể được liên kết với không, một, hai, ba, \ldots, hoặc thậm chí vô hạn phần tử của $A$. Trong trường hợp mỗi phần tử của miền đích được liên kết với nhiều nhất một phần tử của miền xác định, hàm được gọi là \textbf{đơn ánh} (one-to-one). Đôi khi, thuật ngữ \textbf{injective} (đơn ánh) được sử dụng thay thế. Hàm $f$ là đơn ánh (injective) nếu với bất kỳ hai phần tử phân biệt $x$ và $y$ nào trong miền xác định của $f$, $f(x)$ và $f(y)$ cũng phân biệt. Theo ngôn ngữ logic, $f\colon A \to B$ là đơn ánh khi và chỉ khi
+\[
+\forall x \in A\; \forall y \in A\; \big(x \neq y \to f(x) \neq f(y)\big).
+\]
+Vì một mệnh đề tương đương với phản đảo của nó, ta có thể viết điều kiện này tương đương là
+\[
+\forall x \in A\; \forall y \in A\; \big(f(x) = f(y) \to x = y\big).
+\]
+Đôi khi, dễ hơn khi làm việc với định nghĩa đơn ánh khi nó được biểu diễn ở dạng này.
+
+\begin{example}
+Hàm liên kết mỗi người với mẹ của họ không phải đơn ánh vì hai người khác nhau có thể có cùng một mẹ. Hàm $s\colon \mathbb{N} \to \mathbb{N}$ được xác định bởi $s(n) = n^2$ là đơn ánh. Tuy nhiên, ta có thể định nghĩa một hàm $r\colon \mathbb{Z} \to \mathbb{Z}$ bởi cùng công thức: $r(n) = n^2$, với $n \in \mathbb{Z}$. Hàm $r$ \emph{không} phải đơn ánh vì hai số nguyên khác nhau có thể có cùng bình phương. Ví dụ, $r(-2) = r(2)$.
+\end{example}
+
+Một hàm vừa đơn ánh vừa toàn ánh được gọi là \textbf{song ánh} (bijective).\footnote{Hình ảnh: \texttt{commons.wikimedia.org/wiki/File:Bijection.svg}.} Hàm liên kết mỗi điểm trên bản đồ của Zuid-Holland với một điểm trong chính tỉnh đó có lẽ là song ánh. Với mỗi điểm trên bản đồ, có một điểm tương ứng trong tỉnh, và ngược lại. Nếu ta xác định hàm $f$ từ tập $\{1,2,3\}$ đến tập $\{a,b,c\}$ là tập các cặp có thứ tự $\{(1,b),(2,a),(3,c)\}$, thì $f$ là một hàm song ánh. Hoặc xét hàm từ $\mathbb{Z}$ đến $\mathbb{Z}$ cho bởi $f(n) = n - 52$. Ta đã chứng minh rằng $f$ là toàn ánh. Ta có thể chứng minh rằng nó cũng là đơn ánh.
+
+\begin{proof}
+Chọn $x$ và $y$ tùy ý trong $\mathbb{Z}$ và giả sử rằng $f(x) = f(y)$. Điều này có nghĩa là $x - 52 = y - 52$, và cộng $52$ vào cả hai vế của phương trình cho $x = y$. Vì $x$ và $y$ là tùy ý, ta đã chứng minh $\forall x \in \mathbb{Z}\; \forall y \in \mathbb{Z}\; (f(x) = f(y) \to x = y)$, nghĩa là $f$ là đơn ánh.
+\end{proof}
+
+Tổng hợp lại, $f$ là một song ánh.
+
+\subsection{Hàm trên cây}
+
+Sử dụng định nghĩa hình thức của $\mathit{TREE}$ từ Mục~4.1.10, giờ ta có thể định nghĩa các hàm cho một số tính chất và phép toán trên các cây này. Tại sao? Vâng, hãy nhớ rằng ta đã định nghĩa chiều cao của một cây là: độ dài của đường đi dài nhất từ một lá đến gốc. Giờ ta có thể sử dụng một hàm đệ quy $h\colon \mathit{TREE} \to \mathbb{N}$ để định nghĩa điều này một cách hình thức hơn:
+\[
+h(t) = \begin{cases}
+0 & \text{nếu } t = \varnothing \\
+0 & \text{nếu } t = (x, \varnothing) \text{ với } x \in D \\
+1 + \max_{1 \le i \le k}(h(T_i)) & \text{trường hợp còn lại}
+\end{cases}
+\]
+
+Bạn sẽ thấy rằng vì cây là cấu trúc dữ liệu đệ quy, nhiều hàm trên cây cũng được định nghĩa đệ quy. Ở đây ta cũng thấy rằng hàm của chúng ta tuân theo chặt chẽ định nghĩa hình thức của $\mathit{TREE}$, với một kết quả cho mỗi quy tắc từ định nghĩa.
+
+Tương tự, ta cũng có thể định nghĩa một hàm $r\colon \mathit{TREE} \times D \times D \to \mathit{TREE}$ thay thế các phần tử trong cây. Ví dụ $r(t,8,42)$ sẽ đổi tất cả giá trị $8$ thành $42$ trong cây $t$. Lại một lần nữa, hàm của chúng ta sẽ tuân theo các quy tắc từ định nghĩa của $\mathit{TREE}$, gọi đệ quy hàm trên các cây con, cũng như thay thế bất kỳ giá trị nào cần được thay thế. Nói cách khác, ta có thể định nghĩa $r$ như sau:
+\[
+r(t,s,d) = \begin{cases}
+\varnothing & \text{nếu } t = \varnothing \\
+(d, \varnothing) & \text{nếu } t = (s, \varnothing) \\
+(x, \varnothing) & \text{nếu } t = (x, \varnothing) \wedge x \neq s \text{ với } x \in D \\
+(d, (r(T_1,s,d), \ldots, r(T_k,s,d))) & \text{nếu } t = (s, (T_1, \ldots, T_k)) \\
+(x, (r(T_1,s,d), \ldots, r(T_k,s,d))) & \text{trường hợp còn lại}
+\end{cases}
+\]
+
+\begin{infobox}
+Trong \emph{Algorithms \& Data Structures}, bạn sẽ cài đặt các hàm này trong Java, cũng như phân tích \emph{độ phức tạp thời gian chạy} của chúng!
+\end{infobox}
+
+\subsection{Hàm trên đồ thị}
+
+Khi chúng ta thêm hàm vào các cấu trúc đồ thị từ Mục~4.3, ta có thể bắt đầu mô hình hóa các bài toán thú vị hơn. Không chỉ ta có thể có các hàm hoạt động trên đồ thị --- ví dụ một hàm $n\colon G \to \mathbb{N}$ tính số đỉnh trong đồ thị --- mà ta cũng có thể thêm các hàm để cung cấp cho các phần tử của đồ thị thêm tính chất!
+
+Xét một bản đồ của Hà Lan được biểu diễn như một đồ thị. Các thành phố trở thành đỉnh, và các đường cao tốc trở thành cạnh giữa chúng. Trong mô hình mà ta đã thấy trước đó, giờ ta có thể trả lời các câu hỏi như: ``Có đường đi nào từ Haarlem đến Delft không?''. Tuy nhiên, nếu ta thêm một hàm trọng số $w\colon E \to \mathbb{N}$ gán trọng số cho các cạnh (ví dụ thời gian di chuyển tính bằng phút), ta có thể bắt đầu đặt câu hỏi như: ``Đường đi ngắn nhất từ Haarlem đến Delft là gì?'' Trong đồ thị có trọng số sau đây, chúng ta đã chỉ ra trọng số của các cạnh trên các cạnh. Đường đi ngắn nhất từ $s$ đến $t$ ở đây có tổng trọng số là $8$, và là $((s,b),(b,t))$.
+
+\begin{infobox}
+Trong \emph{Algorithms \& Data Structures} cũng như \emph{Algorithm Design}, bạn sẽ học về rất nhiều thuật toán khác nhau hoạt động trên đồ thị. Từ thuật toán Dijkstra cho đường đi ngắn nhất, đến Ford-Fulkerson để giải các bài toán luồng cực đại.
+\end{infobox}
+
+\subsection{Đối tượng hạng nhất}
+
+Một khó khăn mà mọi người đôi khi gặp với toán học là tính tổng quát của nó. Một tập hợp là một tập các thực thể, nhưng một `thực thể' có thể là bất cứ thứ gì, bao gồm cả các tập hợp khác. Một khi chúng ta đã định nghĩa cặp có thứ tự, ta có thể dùng cặp có thứ tự làm phần tử của tập hợp. Ta cũng có thể tạo cặp có thứ tự của các tập hợp. Bây giờ, khi đã định nghĩa hàm, mỗi hàm tự nó là một thực thể. Điều này có nghĩa là ta có thể có các tập hợp chứa hàm. Ta thậm chí có thể có hàm mà miền xác định và miền đích của nó là tập các hàm. Tương tự, miền xác định hoặc miền đích của một hàm có thể là tập các tập hợp, hoặc tập các cặp có thứ tự. Các nhà khoa học máy tính có tên gọi hay cho điều này. Họ sẽ nói rằng tập hợp, cặp có thứ tự, và hàm là \textbf{đối tượng hạng nhất} (first-class objects) hay \textbf{công dân hạng nhất} (first-class citizens). Một khi tập hợp, cặp có thứ tự, hoặc hàm đã được định nghĩa, nó có thể được sử dụng giống như bất kỳ thực thể nào khác. Nếu chúng không phải đối tượng hạng nhất, có thể có các hạn chế về cách sử dụng chúng. Ví dụ, có thể không thể sử dụng hàm làm phần tử của tập hợp. (Điều này sẽ khiến chúng thành `hạng hai'.)
+
+\begin{notebox}
+Một cách mà các ngôn ngữ lập trình khác nhau là ở những gì chúng cho phép làm đối tượng hạng nhất. Ví dụ, Java đã thêm một `cú pháp lambda' để giúp viết `closure' trong phiên bản 8.
+\end{notebox}
+
+Ví dụ, giả sử $A$, $B$, và $C$ là các tập hợp. Khi đó vì $A \times B$ là một tập hợp, ta có thể có hàm $f\colon A \times B \to C$. Nếu $(a,b) \in A \times B$, thì giá trị của $f$ tại $(a,b)$ sẽ được ký hiệu là $f((a,b))$. Tuy nhiên, trong thực hành, một cặp dấu ngoặc thường được bỏ đi, và giá trị của $f$ tại $(a,b)$ được ký hiệu là $f(a,b)$. Như một ví dụ cụ thể, ta có thể định nghĩa hàm $p\colon \mathbb{N} \times \mathbb{N} \to \mathbb{N}$ với công thức $p(n,m) = nm + 1$. Tương tự, ta có thể định nghĩa hàm $q\colon \mathbb{N} \times \mathbb{N} \times \mathbb{N} \to \mathbb{N} \times \mathbb{N}$ bởi $q(n,m,k) = (nm - k,\, nk - n)$.
+
+Giả sử $A$ và $B$ là tập hợp. Nói chung, có nhiều hàm ánh xạ $A$ đến $B$. Ta có thể gom tất cả các hàm đó vào một tập hợp. Tập hợp này, mà các phần tử của nó là tất cả các hàm từ $A$ đến $B$, được ký hiệu là $B^A$. (Ta sẽ thấy sau tại sao ký hiệu này là hợp lý.) Sử dụng ký hiệu này, nói $f\colon A \to B$ hoàn toàn tương đương với nói $f \in B^A$. Cả hai ký hiệu đều khẳng định rằng $f$ là hàm từ $A$ đến $B$. Tất nhiên, ta cũng có thể tạo vô số tập hợp khác, chẳng hạn tập lũy thừa $\mathcal{P}(B^A)$, tích chéo $B^A \times A$, hay tập $A^{A \times A}$, chứa tất cả các hàm từ tập $A \times A$ đến tập $A$. Và tất nhiên, bất kỳ tập nào trong số này đều có thể là miền xác định hoặc miền đích của một hàm.
+
+Một ví dụ về điều này là hàm $\mathcal{E}\colon B^A \times A \to B$ được xác định bởi công thức $\mathcal{E}(f,a) = f(a)$. Hãy xem liệu ta có thể hiểu ký hiệu này. Vì miền xác định của $\mathcal{E}$ là $B^A \times A$, một phần tử trong miền xác định là một cặp có thứ tự trong đó tọa độ thứ nhất là hàm từ $A$ đến $B$ và tọa độ thứ hai là phần tử của $A$. Do đó, $\mathcal{E}(f,a)$ được xác định cho hàm $f\colon A \to B$ và phần tử $a \in A$. Cho trước $f$ và $a$ như vậy, ký hiệu $f(a)$ xác định một phần tử của $B$, nên định nghĩa $\mathcal{E}(f,a)$ là $f(a)$ có nghĩa. Hàm $\mathcal{E}$ được gọi là `hàm đánh giá' (evaluation function) vì nó nắm bắt ý tưởng đánh giá một hàm tại một phần tử của miền xác định của nó.
+
+\subsubsection*{Bài tập}
+
+\begin{enumerate}
+\item[\dag 1.] Cho $A = \{1,2,3,4\}$ và $B = \{a,b,c\}$. Tìm các tập $A \times B$ và $B \times A$.
+
+\item[\dag 2.] Cho $A$ là tập $\{a,b,c,d\}$. Cho $f$ là hàm từ $A$ đến $A$ cho bởi tập các cặp có thứ tự $\{(a,b),(b,b),(c,a),(d,c)\}$, và cho $g$ là hàm cho bởi tập các cặp có thứ tự $\{(a,b),(b,c),(c,d),(d,d)\}$. Tìm tập các cặp có thứ tự cho phép hợp $g \circ f$.
+
+\item[\dag 3.] Cho $A = \{a,b,c\}$ và $B = \{0,1\}$. Tìm tất cả các hàm có thể từ $A$ đến $B$. Cho mỗi hàm dưới dạng tập các cặp có thứ tự. (Gợi ý: Mỗi hàm như vậy tương ứng với một tập con của $A$.)
+
+\item[\dag 4.] Xét các hàm từ $\mathbb{Z}$ đến $\mathbb{Z}$ được xác định bởi các công thức sau. Quyết định xem mỗi hàm có phải toàn ánh và đơn ánh không; chứng minh các câu trả lời của bạn.
+
+\begin{enumerate}[label=\alph*)]
+\item $f(n) = 2n$
+\item $g(n) = n + 1$
+\item $h(n) = n^2 + n + 1$
+\item $s(n) = \begin{cases} n/2, & \text{nếu } n \text{ chẵn} \\ (n+1)/2, & \text{nếu } n \text{ lẻ} \end{cases}$
+\end{enumerate}
+
+\item[\dag 5.] Chứng minh rằng phép hợp thành hàm là phép toán kết hợp. Nghĩa là, chứng minh rằng với các hàm $f\colon A \to B$, $g\colon B \to C$, và $h\colon C \to D$, các hợp thành $(h \circ g) \circ f$ và $h \circ (g \circ f)$ bằng nhau.
+
+\item[\dag 6.] Giả sử $f\colon A \to B$ và $g\colon B \to C$ là các hàm và $g \circ f$ là đơn ánh.
+\begin{enumerate}[label=\alph*)]
+\item Chứng minh rằng $f$ là đơn ánh. (Gợi ý: dùng chứng minh phản chứng.)
+\item Tìm một ví dụ cụ thể cho thấy $g$ không nhất thiết phải đơn ánh.
+\end{enumerate}
+
+\item[\dag 7.] Giả sử $f\colon A \to B$ và $g\colon B \to C$, và giả sử hợp thành $g \circ f$ là hàm toàn ánh.
+\begin{enumerate}[label=\alph*)]
+\item Chứng minh rằng $g$ là hàm toàn ánh.
+\item Tìm một ví dụ cụ thể cho thấy $f$ không nhất thiết phải toàn ánh.
+\end{enumerate}
+
+\item[8.] Với mỗi mô tả hàm sau, cho một định nghĩa hàm (đệ quy).
+\begin{enumerate}[label=\alph*)]
+\item Tạo hàm $n\colon \mathit{TREE} \to \mathbb{N}$ đếm số lá trong một cây.
+\item Tạo hàm $m\colon \mathit{TREE} \to \mathbb{N}$ đếm số giá trị lẻ xuất hiện trong cây.
+\item Tạo hàm $b\colon \mathit{TREE} \to \{0,1\}$ trả về 1 khi và chỉ khi số giá trị trong cây là lẻ.
+\item Tạo hàm $=\colon \mathit{TREE} \times \mathit{TREE} \to \{0,1\}$ trả về 1 khi và chỉ khi hai cây đầu vào giống nhau.
+\end{enumerate}
+
+\item[9.] Vẽ một đồ thị có hướng có trọng số $G$ trong đó có 3 đường đi có tổng trọng số bằng nhau từ đỉnh $s$ đến đỉnh $t$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ứng dụng: Lập trình với Hàm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Hàm là nền tảng trong lập trình máy tính, mặc dù không phải mọi thứ trong lập trình mang tên `hàm' đều là hàm theo định nghĩa toán học.
+
+\begin{warningbox}
+Trong phần này, chúng ta đi sâu vào chi tiết về hàm trong lập trình máy tính. Bạn sẽ không bị kiểm tra về phần này trong \emph{Reasoning \& Logic}! Bạn sẽ thấy rằng một lần nữa có khá nhiều trùng lặp với tài liệu học từ \emph{Object-Oriented Programming} và sau này trong chương trình học với \emph{Concepts of Programming Languages}.
+\end{warningbox}
+
+Trong lập trình máy tính, hàm là một chương trình con nhận một số dữ liệu làm đầu vào và sẽ tính toán rồi trả về một câu trả lời dựa trên dữ liệu đó. Ví dụ, trong Java, một hàm tính bình phương của một số nguyên có thể được viết là
+
+\begin{lstlisting}[language=Java]
+int square(int n) {
+    return n*n;
+}
+\end{lstlisting}
+
+Trong Java, \texttt{int} là một kiểu dữ liệu. Từ quan điểm toán học, một kiểu dữ liệu là một tập hợp. Kiểu dữ liệu \texttt{int} là tập tất cả các số nguyên có thể biểu diễn dưới dạng số nhị phân 32 bit. Về mặt toán học, $\mathit{int} \subseteq \mathbb{Z}$. (Bạn nên quen với thực tế rằng tập hợp và hàm có thể có tên gồm nhiều hơn một ký tự, vì điều này được thực hiện thường xuyên trong lập trình máy tính.) Dòng đầu tiên của định nghĩa hàm trên, \texttt{int square(int n)}, nói rằng ta đang định nghĩa một hàm tên là \textit{square} có miền đích là \textit{int} và miền xác định cũng là \textit{int}. Trong ký hiệu thông thường cho hàm, ta sẽ biểu diễn điều này là $\mathit{square}\colon \mathit{int} \to \mathit{int}$, hoặc có thể là $\mathit{square} \in \mathit{int}^{\mathit{int}}$, trong đó $\mathit{int}^{\mathit{int}}$ là tập tất cả các hàm ánh xạ tập \textit{int} đến tập \textit{int}.
+
+Dòng đầu tiên của hàm, \texttt{int square(int n)}, được gọi là \textbf{nguyên mẫu} (prototype) của hàm. Nguyên mẫu xác định tên, miền xác định, và miền đích của hàm và do đó mang chính xác cùng thông tin như ký hiệu $f\colon A \to B$. Ký tự `\texttt{n}' trong nguyên mẫu \texttt{int square(int n)} là tên cho một phần tử tùy ý của kiểu dữ liệu \textit{int}. Ta gọi $n$ là một \textbf{tham số} (parameter) của hàm. Phần còn lại của định nghĩa \textit{square} chỉ cho máy tính cách tính giá trị của $\mathit{square}(n)$ với bất kỳ $n \in \mathit{int}$ bằng cách nhân $n$ với $n$. Câu lệnh \texttt{return n*n} nói rằng $n * n$ là giá trị được tính, hay `trả về', bởi hàm. (Dấu $*$ đại diện cho phép nhân.)
+
+Java có nhiều kiểu dữ liệu ngoài \textit{int}. Có kiểu dữ liệu boolean tên là \textit{boolean}. Các giá trị của kiểu \textit{boolean} là \textit{true} và \textit{false}. Về mặt toán học, \textit{boolean} là tên cho tập $\{\mathit{true}, \mathit{false}\}$. Kiểu \textit{double} gồm các số thực, có thể bao gồm dấu chấm thập phân. Tất nhiên, trên máy tính, không thể biểu diễn toàn bộ tập vô hạn các số thực, nên \textit{double} biểu diễn một tập con nào đó của tập toán học các số thực. Cũng có kiểu dữ liệu mà giá trị là chuỗi ký tự, chẳng hạn ``Hello world'' hay ``xyz152QQZ''. Tên của kiểu dữ liệu này trong Java là \textit{string}. Tất cả các kiểu này, và nhiều kiểu khác, có thể được sử dụng trong hàm. Ví dụ, trong Java, $m \mathbin{\%} n$ là phần dư khi chia số nguyên $m$ cho số nguyên $n$. Ta có thể định nghĩa hàm kiểm tra xem một số nguyên có chẵn không như sau:
+
+\begin{lstlisting}[language=Java]
+boolean even(int k) {
+    return k % 2 == 0;
+}
+\end{lstlisting}
+
+Bạn không cần lo lắng về tất cả các chi tiết ở đây, nhưng bạn nên hiểu rằng nguyên mẫu \texttt{boolean even(int k)} nói rằng \textit{even} là hàm từ tập \textit{int} đến tập \textit{boolean}. Nghĩa là, $\mathit{even}\colon \mathit{int} \to \mathit{boolean}$. Cho trước một số nguyên $N$, $\mathit{even}(N)$ có giá trị \textit{true} nếu $N$ là số nguyên chẵn, và nó có giá trị \textit{false} nếu $N$ là số nguyên lẻ.
+
+Một hàm có thể có nhiều hơn một tham số. Ví dụ, ta có thể định nghĩa hàm với nguyên mẫu \texttt{int index(string str, string sub)}. Nếu $s$ và $t$ là các chuỗi, thì $\mathit{index}(s,t)$ sẽ là giá trị \textit{int} là giá trị của hàm tại cặp có thứ tự $(s,t)$. Ta thấy rằng miền xác định của \textit{index} là tích chéo $\mathit{string} \times \mathit{string}$, và ta có thể viết $\mathit{index}\colon \mathit{string} \times \mathit{string} \to \mathit{int}$ hoặc tương đương, $\mathit{index} \in \mathit{int}^{\mathit{string} \times \mathit{string}}$.
+
+Không phải mọi hàm Java đều thực sự là hàm theo nghĩa toán học. Trong toán học, một hàm phải liên kết một giá trị duy nhất trong miền đích với mỗi giá trị trong miền xác định. Có hai thứ có thể sai: giá trị của hàm có thể không được xác định cho mọi phần tử của miền xác định, và hàm có thể liên kết nhiều giá trị khác nhau với cùng một phần tử của miền xác định. Cả hai điều này đều có thể xảy ra với hàm Java.
+
+Trong lập trình máy tính, rất thường gặp việc một `hàm' không được xác định cho một số giá trị của tham số. Trong toán học, \textbf{hàm bộ phận} (partial function) từ tập $A$ đến tập $B$ được định nghĩa là hàm từ một tập con của $A$ đến $B$. Một hàm bộ phận từ $A$ đến $B$ có thể không xác định cho một số phần tử của $A$, nhưng khi nó được xác định cho một $a \in A$ nào đó, nó liên kết đúng một phần tử của $B$ với $a$. Nhiều hàm trong chương trình máy tính thực ra là hàm bộ phận. (Khi xử lý hàm bộ phận, hàm thông thường, được xác định cho mọi phần tử của miền xác định, đôi khi được gọi là \textbf{hàm toàn phần} (total function). Lưu ý rằng --- với logic quay đầu đặc trưng của các nhà toán học --- hàm toàn phần là một loại hàm bộ phận, vì tập hợp là tập con của chính nó.)
+
+Cũng rất thường gặp việc một `hàm' trong chương trình máy tính tạo ra nhiều giá trị khác nhau cho cùng một giá trị tham số. Một ví dụ phổ biến là hàm với nguyên mẫu \texttt{int random(int N)}, trả về một số nguyên ngẫu nhiên từ 1 đến $N$. Giá trị của $\mathit{random}(5)$ có thể là 1, 2, 3, 4, hoặc 5. Đây không phải là hành vi của một hàm toán học --- nhưng nó rất hữu ích khi lập trình!
+
+Mặc dù nhiều hàm trong chương trình máy tính không thực sự là hàm toán học, chúng ta sẽ tiếp tục gọi chúng là hàm trong phần này. Các nhà toán học sẽ phải mở rộng định nghĩa một chút để phù hợp với thực tế của lập trình máy tính.
+
+\subsection{Hàm như đối tượng hạng nhất}
+
+Trong hầu hết các ngôn ngữ lập trình, hàm không phải là đối tượng hạng nhất. Nghĩa là, hàm không thể được coi như giá trị dữ liệu theo cách giống như \textit{string} hay \textit{int}. Tuy nhiên, các phiên bản mới hơn của Java đã tiến một bước theo hướng này với `biểu thức lambda'. Trong Java, chưa hoàn toàn có thể sử dụng hàm làm tham số cho hàm khác. Ví dụ, giả sử trong Java ta có thể viết nguyên mẫu hàm
+
+\begin{lstlisting}[language=Java]
+double sumten(Function<Integer,Double> f)
+\end{lstlisting}
+
+Đây là nguyên mẫu cho hàm tên \textit{sumten} có tham số là một hàm. Tham số được chỉ định bởi nguyên mẫu \texttt{Function<Integer,Double> f}. Điều này có nghĩa là tham số phải là hàm từ \textit{int} đến \textit{double}. Tên tham số $f$ đại diện cho một hàm như vậy tùy ý. Về mặt toán học, $f \in \mathit{double}^{\mathit{int}}$, và do đó $\mathit{sumten}\colon \mathit{double}^{\mathit{int}} \to \mathit{double}$.
+
+Ý tưởng của tôi là $\mathit{sumten}(f)$ sẽ tính $f(1) + f(2) + \cdots + f(10)$. Một hàm hữu ích hơn sẽ có thể tính $f(a) + f(a+1) + \cdots + f(b)$ với bất kỳ số nguyên $a$ và $b$ nào. Điều này chỉ có nghĩa là $a$ và $b$ nên là tham số của hàm. Nguyên mẫu cho hàm cải tiến sẽ trông như
+
+\begin{lstlisting}[language=Java]
+double sum(Function<Integer,Double> f, int a, int b)
+\end{lstlisting}
+
+Các tham số của \textit{sum} tạo thành bộ ba có thứ tự trong đó tọa độ thứ nhất là hàm và tọa độ thứ hai và thứ ba là số nguyên. Vì vậy, ta có thể viết
+\[
+\mathit{sum}\colon \mathit{double}^{\mathit{int}} \times \mathit{int} \times \mathit{int} \to \mathit{double}
+\]
+Thật thú vị rằng các lập trình viên máy tính thường xuyên làm việc với các đối tượng phức tạp như vậy.
+
+Các ngôn ngữ mà hàm là đối tượng hạng nhất ví dụ như Python và Scala. Các ngôn ngữ này hỗ trợ cái được gọi là \textbf{lập trình hàm} (functional programming).
+
+Một trong những ngôn ngữ dễ tiếp cận nhất hỗ trợ lập trình hàm là JavaScript, ngôn ngữ được dùng trên trang web. (Mặc dù tên giống nhau, JavaScript và Java chỉ có quan hệ xa. Bạn có lẽ đã biết điều đó.) Trong JavaScript, hàm tính bình phương của tham số có thể được định nghĩa là
+
+\begin{lstlisting}[language=Java]
+function square(n) {
+    return n*n;
+}
+\end{lstlisting}
+
+Điều này tương tự với định nghĩa Java của cùng hàm, nhưng bạn sẽ nhận thấy rằng không có kiểu nào được chỉ định cho tham số $n$ hoặc cho giá trị tính bởi hàm. Với định nghĩa này của \textit{square}, $\mathit{square}(x)$ sẽ hợp lệ với bất kỳ $x$ thuộc bất kỳ kiểu nào. (Tất nhiên, giá trị của $\mathit{square}(x)$ sẽ không xác định cho hầu hết các kiểu, nên \textit{square} là hàm bộ phận rất mạnh, như hầu hết các hàm trong JavaScript.) Thực chất, tất cả giá trị dữ liệu có thể trong JavaScript được gom lại thành một tập, mà tôi sẽ gọi là \textit{data}. Khi đó ta có $\mathit{square}\colon \mathit{data} \to \mathit{data}$.\footnote{Không phải tất cả ngôn ngữ lập trình hàm đều gom các kiểu dữ liệu lại như thế này. Có ngôn ngữ lập trình hàm, Haskell chẳng hạn, nghiêm ngặt về kiểu như C++. Để biết thêm về Haskell, xem \texttt{www.haskell.org}.}
+
+Trong JavaScript, hàm thực sự là đối tượng hạng nhất. Ta có thể bắt đầu thấy điều này bằng cách nhìn vào một định nghĩa thay thế của hàm \textit{square}:
+
+\begin{lstlisting}[language=Java]
+square = function(n) { return n*n; }
+\end{lstlisting}
+
+Ở đây, ký hiệu \texttt{function(n) \{ return n*n; \}} tạo ra một hàm tính bình phương của tham số, nhưng nó không đặt tên nào cho hàm này. Đối tượng hàm này sau đó được gán cho biến tên \textit{square}. Giá trị của \textit{square} có thể được thay đổi sau, bằng câu lệnh gán khác, thành hàm khác hoặc thậm chí kiểu giá trị khác. Ký hiệu này để tạo đối tượng hàm có thể được sử dụng ở những nơi khác ngoài câu lệnh gán. Giả sử, ví dụ, hàm với nguyên mẫu \texttt{function sum(f,a,b)} đã được định nghĩa trong chương trình JavaScript để tính $f(a) + f(a+1) + \cdots + f(b)$. Khi đó ta có thể tính $1^2 + 2^2 + \cdots + 100^2$ bằng cách viết
+
+\begin{lstlisting}[language=Java]
+sum(function(n) { return n*n; }, 1, 100)
+\end{lstlisting}
+
+Ở đây, tham số đầu tiên là hàm tính bình phương. Ta đã tạo và sử dụng hàm này mà không bao giờ đặt tên cho nó.
+
+Thậm chí có thể trong JavaScript cho hàm trả về một hàm khác làm giá trị. Ví dụ,
+
+\begin{lstlisting}[language=Java]
+function monomial(a, n) {
+    return (function(x) { a*Math.pow(x,n); });
+}
+\end{lstlisting}
+
+Ở đây, \texttt{Math.pow(x,n)} tính $x^n$, nên với bất kỳ số $a$ và $n$ nào, giá trị của $\mathit{monomial}(a,n)$ là hàm tính $ax^n$. Do đó,
+
+\begin{lstlisting}[language=Java]
+f = monomial(2,3);
+\end{lstlisting}
+
+sẽ định nghĩa $f$ là hàm thỏa mãn $f(x) = 2x^3$, và nếu \textit{sum} là hàm được mô tả ở trên, thì
+
+\begin{lstlisting}[language=Java]
+sum( monomial(8,4), 3, 6 )
+\end{lstlisting}
+
+sẽ tính $8 \cdot 3^4 + 8 \cdot 4^4 + 8 \cdot 5^4 + 8 \cdot 6^4$. Thực ra, \textit{monomial} có thể được dùng để tạo vô số hàm mới từ đầu. Thậm chí có thể viết $\mathit{monomial}(2,3)(5)$ để chỉ kết quả của việc áp dụng hàm $\mathit{monomial}(2,3)$ cho giá trị $5$. Giá trị biểu diễn bởi $\mathit{monomial}(2,3)(5)$ là $2 \cdot 5^3$, hay $250$. Đây là lập trình hàm thực sự và có thể cho bạn ý tưởng về sức mạnh của nó.
+
+\subsubsection*{Bài tập}
+
+\begin{enumerate}
+\item[1.] Với mỗi nguyên mẫu hàm dạng Java sau, dịch nguyên mẫu sang đặc tả hàm toán học chuẩn, chẳng hạn $\mathit{func}\colon \mathit{float} \to \mathit{int}$.
+\begin{enumerate}[label=\alph*)]
+\item \texttt{int strlen(string s)}
+\item \texttt{double pythag(double x, double y)}
+\item \texttt{int round(double x)}
+\item \texttt{string sub(string s, int n, int m)}
+\item \texttt{string unlikely(Function<String,Integer> f)}
+\item \texttt{int h( Function<Integer,Integer> f, Function<Integer,Integer> g )}
+\end{enumerate}
+
+\item[2.] Viết nguyên mẫu hàm dạng Java cho hàm thuộc mỗi tập sau.
+\begin{enumerate}[label=\alph*)]
+\item $\mathit{string}^{\mathit{string}}$
+\item $\mathit{boolean}^{\mathit{float} \times \mathit{float}}$
+\item $\mathit{float}^{\mathit{int}^{\mathit{int}}}$
+\end{enumerate}
+
+\item[3.] Có thể định nghĩa kiểu mới trong Java bằng cách dùng lớp (class). Ví dụ, định nghĩa
+
+\begin{lstlisting}[language=Java]
+Class point {
+    double x;
+    double y;
+}
+\end{lstlisting}
+
+định nghĩa kiểu mới tên là \textit{point}. Một giá trị kiểu \textit{point} chứa hai giá trị kiểu \textit{double}. Phép toán toán học nào tương ứng với cấu trúc của kiểu dữ liệu này? Tại sao?
+
+\item[4.] Cho \textit{square}, \textit{sum} và \textit{monomial} là các hàm JavaScript được mô tả trong phần này. Giá trị của mỗi biểu thức sau là gì?
+\begin{enumerate}[label=\alph*)]
+\item $\mathit{sum}(\mathit{square}, 2, 4)$
+\item $\mathit{sum}(\mathit{monomial}(5,2), 1, 3)$
+\item $\mathit{monomial}(\mathit{square}(2), 7)$
+\item $\mathit{sum}(\text{function}(n) \{ \text{return } 2*n; \}, 1, 5)$
+\item $\mathit{square}(\mathit{sum}(\mathit{monomial}(2,3), 1, 2))$
+\end{enumerate}
+
+\item[5.] Viết một hàm JavaScript tên \textit{compose} tính phép hợp thành của hai hàm. Nghĩa là, $\mathit{compose}(f,g)$ là $f \circ g$, trong đó $f$ và $g$ là hàm một tham số. Nhắc lại rằng $f \circ g$ là hàm xác định bởi $(f \circ g)(x) = f(g(x))$.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Đếm qua Vô hạn}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Khi còn nhỏ, tất cả chúng ta đều học cách trả lời câu hỏi ``Bao nhiêu?'' bằng cách đếm với các số: 1, 2, 3, 4, \ldots. Nhưng câu hỏi ``Bao nhiêu?'' đã được đặt ra và trả lời từ lâu trước khi khái niệm trừu tượng về số được phát minh. Câu trả lời có thể được đưa ra bằng ``nhiều bằng''. Bạn có bao nhiêu anh chị em họ? Nhiều bằng số ngón tay trên hai bàn tay tôi. Bạn sở hữu bao nhiêu con cừu? Nhiều bằng số vết khắc trên cây gậy này. Tôi phải nộp bao nhiêu rổ phô-mai thuế? Nhiều rổ bằng số viên đá trong hộp này. Câu hỏi có bao nhiêu thứ trong một bộ sưu tập đối tượng được trả lời bằng cách đưa ra một bộ sưu tập khác, thuận tiện hơn, có cùng số lượng thành viên.
+
+Trong lý thuyết tập hợp, ý tưởng một tập có cùng số thành viên với tập khác được biểu diễn bằng \textbf{tương ứng một-một} (one-to-one correspondence). Một tương ứng một-một giữa hai tập $A$ và $B$ ghép mỗi phần tử của $A$ với một phần tử của $B$ sao cho mọi phần tử của $B$ được ghép với một và chỉ một phần tử của $A$. Quá trình đếm, như trẻ em học, thiết lập một tương ứng một-một giữa tập $n$ đối tượng và tập các số từ 1 đến $n$. Các quy tắc đếm là các quy tắc của tương ứng một-một: Đảm bảo đếm mọi đối tượng, đảm bảo không đếm cùng đối tượng quá một lần. Nghĩa là, đảm bảo mỗi đối tượng tương ứng với một và chỉ một số. Trước đó trong chương này, ta đã dùng tên đẹp `hàm song ánh' để chỉ ý tưởng này, nhưng giờ ta có thể nhìn nó như cách trực giác cũ để trả lời câu hỏi ``Bao nhiêu?''
+
+\subsection{Lực lượng}
+
+Trong việc đếm, như được học từ thuở nhỏ, tập $\{1,2,3,\ldots,n\}$ được dùng làm tập tiêu biểu chứa $n$ phần tử. Trong toán học và khoa học máy tính, việc bắt đầu đếm từ không thay vì từ một đã trở nên phổ biến hơn, nên ta định nghĩa các tập sau làm cơ sở cho việc đếm:
+\begin{align*}
+N_0 &= \varnothing, & &\text{một tập có 0 phần tử} \\
+N_1 &= \{0\}, & &\text{một tập có 1 phần tử} \\
+N_2 &= \{0,1\}, & &\text{một tập có 2 phần tử} \\
+N_3 &= \{0,1,2\}, & &\text{một tập có 3 phần tử} \\
+N_4 &= \{0,1,2,3\}, & &\text{một tập có 4 phần tử}
+\end{align*}
+và tiếp tục. Tổng quát, $N_n = \{0,1,2,\ldots,n-1\}$ với mỗi $n \in \mathbb{N}$. Với mỗi số tự nhiên $n$, $N_n$ là tập có $n$ phần tử. Lưu ý rằng nếu $n \neq m$, thì không có tương ứng một-một giữa $N_n$ và $N_m$. Điều này là hiển nhiên, nhưng như nhiều thứ hiển nhiên, không dễ chứng minh chặt chẽ, và ta bỏ qua lập luận ở đây.
+
+\begin{theorem}
+Với mỗi $n \in \mathbb{N}$, cho $N_n$ là tập $N_n = \{0,1,\ldots,n-1\}$. Nếu $n \neq m$, thì không có hàm song ánh từ $N_m$ đến $N_n$.
+\end{theorem}
+
+Giờ ta có thể đưa ra các định nghĩa sau:
+
+\begin{definition}
+Một tập $A$ được gọi là \textbf{hữu hạn} nếu có tương ứng một-một giữa $A$ và $N_n$ với một số tự nhiên $n$ nào đó. Khi đó ta nói rằng $n$ là \textbf{lực lượng} (cardinality) của $A$. Ký hiệu $|A|$ được dùng để chỉ lực lượng của $A$. Nghĩa là, nếu $A$ là tập hữu hạn, thì $|A|$ là số tự nhiên $n$ sao cho có tương ứng một-một giữa $A$ và $N_n$. Nói nôm na: $|A|$ là số phần tử trong $A$. Một tập không hữu hạn được gọi là \textbf{vô hạn}. Nghĩa là, tập $B$ là vô hạn nếu với mọi $n \in \mathbb{N}$, không có tương ứng một-một giữa $B$ và $N_n$.
+\end{definition}
+
+May mắn thay, ta không phải lúc nào cũng cần đếm từng phần tử trong tập để xác định lực lượng. Xét ví dụ tập $A \times B$, với $A$ và $B$ là tập hữu hạn. Nếu ta đã biết $|A|$ và $|B|$, thì ta có thể xác định $|A \times B|$ bằng tính toán, không cần đếm từng phần tử. Thực ra, $|A \times B| = |A| \cdot |B|$. Lực lượng của tích chéo $A \times B$ có thể được tính bằng cách nhân lực lượng của $A$ với lực lượng của $B$. Để hiểu tại sao điều này đúng, hãy nghĩ cách bạn có thể đếm các phần tử của $A \times B$. Bạn có thể xếp các phần tử thành từng nhóm, trong đó tất cả cặp có thứ tự trong một nhóm có cùng tọa độ thứ nhất. Có bao nhiêu nhóm bằng số phần tử của $A$, và mỗi nhóm chứa bao nhiêu cặp có thứ tự bằng số phần tử của $B$. Nghĩa là, có $|A|$ nhóm, mỗi nhóm có $|B|$ phần tử. Theo định nghĩa phép nhân, tổng số phần tử trong tất cả các nhóm là $|A| \cdot |B|$. Kết quả tương tự đúng cho tích chéo của nhiều hơn hai tập hữu hạn. Ví dụ, $|A \times B \times C| = |A| \cdot |B| \cdot |C|$.
+
+Cũng dễ tính $|A \cup B|$ trong trường hợp $A$ và $B$ là tập hữu hạn rời nhau. (Nhắc lại rằng hai tập $A$ và $B$ được gọi là rời nhau nếu chúng không có phần tử chung, nghĩa là $A \cap B = \varnothing$.) Giả sử $|A| = n$ và $|B| = m$. Nếu ta muốn đếm các phần tử của $A \cup B$, ta có thể dùng $n$ số từ $0$ đến $n-1$ để đếm các phần tử của $A$ và sau đó dùng $m$ số từ $n$ đến $n+m-1$ để đếm các phần tử của $B$. Điều này tương đương với tương ứng một-một giữa $A \cup B$ và tập $N_{n+m}$. Ta thấy rằng $|A \cup B| = n + m$. Nghĩa là, với tập hữu hạn rời nhau $A$ và $B$, $|A \cup B| = |A| + |B|$.
+
+Vậy còn $A \cup B$ khi $A$ và $B$ không rời nhau? Ta phải cẩn thận không đếm các phần tử của $A \cap B$ hai lần. Sau khi đếm các phần tử của $A$, chỉ còn $|B| - |A \cap B|$ phần tử mới trong $B$ cần đếm. Vậy ta thấy rằng với bất kỳ hai tập hữu hạn $A$ và $B$, $|A \cup B| = |A| + |B| - |A \cap B|$.
+
+Còn số tập con của tập hữu hạn $A$ thì sao? Mối quan hệ giữa $|A|$ và $|\mathcal{P}(A)|$ là gì? Câu trả lời được cho bởi định lý sau.
+
+\begin{theorem}
+Một tập hữu hạn có lực lượng $n$ có $2^n$ tập con.
+\end{theorem}
+
+\begin{proof}
+Cho $P(n)$ là mệnh đề ``Bất kỳ tập nào có lực lượng $n$ đều có $2^n$ tập con''. Ta sẽ dùng quy nạp để chứng minh $P(n)$ đúng với mọi $n \in \mathbb{N}$.
+
+\textbf{Trường hợp cơ sở:} Với $n = 0$, $P(n)$ là mệnh đề rằng tập có lực lượng $0$ có $2^0$ tập con. Tập duy nhất có 0 phần tử là tập rỗng. Tập rỗng có chính xác 1 tập con, chính là nó. Vì $2^0 = 1$, $P(0)$ đúng.
+
+\textbf{Bước quy nạp:} Cho $k$ là phần tử tùy ý của $\mathbb{N}$, và giả sử $P(k)$ đúng. Nghĩa là, giả sử bất kỳ tập nào có lực lượng $k$ đều có $2^k$ tập con. (Đây là giả thuyết quy nạp.) Ta phải chỉ ra rằng $P(k+1)$ suy ra từ giả thiết này. Nghĩa là, sử dụng giả thiết rằng bất kỳ tập nào có lực lượng $k$ đều có $2^k$ tập con, ta phải chỉ ra rằng bất kỳ tập nào có lực lượng $k+1$ đều có $2^{k+1}$ tập con.
+
+Cho $A$ là tập tùy ý có lực lượng $k+1$. Ta phải chỉ ra rằng $|\mathcal{P}(A)| = 2^{k+1}$. Vì $|A| > 0$, $A$ chứa ít nhất một phần tử. Cho $x$ là phần tử nào đó của $A$, và cho $B = A \setminus \{x\}$. Lực lượng của $B$ là $k$, nên theo giả thuyết quy nạp $|\mathcal{P}(B)| = 2^k$. Bây giờ, ta có thể chia các tập con của $A$ thành hai lớp: tập con của $A$ không chứa $x$ và tập con của $A$ có chứa $x$. Cho $Y$ là tập các tập con của $A$ không chứa $x$, và cho $X$ là tập các tập con của $A$ có chứa $x$. $X$ và $Y$ rời nhau, vì không thể có tập con của $A$ vừa chứa vừa không chứa $x$. Suy ra $|\mathcal{P}(A)| = |X \cup Y| = |X| + |Y|$.
+
+Bây giờ, một phần tử của $Y$ là tập con của $A$ không chứa $x$. Nhưng đó chính xác là nói rằng phần tử của $Y$ là tập con của $B$. Vậy $Y = \mathcal{P}(B)$, mà ta biết chứa $2^k$ phần tử. Còn $X$, có tương ứng một-một giữa $\mathcal{P}(B)$ và $X$. Cụ thể, hàm $f\colon \mathcal{P}(B) \to X$ xác định bởi $f(C) = C \cup \{x\}$ là hàm song ánh. (Chứng minh điều này để lại như bài tập.) Từ đó, suy ra $|X| = |\mathcal{P}(B)| = 2^k$. Gộp lại, ta thấy $|\mathcal{P}(A)| = |X| + |Y| = 2^k + 2^k = 2 \cdot 2^k = 2^{k+1}$. Điều này hoàn thành chứng minh $P(k) \to P(k+1)$.
+\end{proof}
+
+Ta đã thấy rằng ký hiệu $A^B$ biểu diễn tập tất cả các hàm từ $B$ đến $A$. Giả sử $A$ và $B$ hữu hạn, và $|A| = n$ và $|B| = m$. Khi đó $|A^B| = n^m = |A|^{|B|}$. (Thực tế này là một trong các lý do tại sao ký hiệu $A^B$ là hợp lý.) Một cách nhìn là lưu ý rằng có tương ứng một-một giữa $A^B$ và tích chéo $A \times A \times \cdots \times A$, trong đó số lần $A$ xuất hiện trong tích chéo là $m$. (Điều này sẽ được chỉ ra trong một bài tập ở cuối phần này.) Suy ra $|A^B| = |A| \cdot |A| \cdots |A| = n \cdot n \cdots n$, trong đó thừa số $n$ xuất hiện $m$ lần trong tích. Tích này, theo định nghĩa, là $n^m$.
+
+Thảo luận về tính lực lượng này được tóm tắt trong định lý sau:
+
+\begin{theorem}
+Cho $A$ và $B$ là tập hữu hạn. Khi đó
+\begin{itemize}
+\item $|A \times B| = |A| \cdot |B|$.
+\item $|A \cup B| = |A| + |B| - |A \cap B|$.
+\item Nếu $A$ và $B$ rời nhau thì $|A \cup B| = |A| + |B|$.
+\item $|A^B| = |A|^{|B|}$.
+\item $|\mathcal{P}(A)| = 2^{|A|}$.
+\end{itemize}
+\end{theorem}
+
+Khi nói đến đếm và tính lực lượng, định lý này chỉ là khởi đầu. Có cả một nhánh lớn và sâu của toán học được gọi là \textbf{tổ hợp} (combinatorics) chủ yếu dành cho bài toán đếm. Nhưng định lý này đã đủ để trả lời nhiều câu hỏi về lực lượng.
+
+Ví dụ, giả sử $|A| = n$ và $|B| = m$. Ta có thể tạo tập $\mathcal{P}(A \times B)$, gồm tất cả tập con của $A \times B$. Dùng định lý, ta có thể tính $|\mathcal{P}(A \times B)| = 2^{|A \times B|} = 2^{|A| \cdot |B|} = 2^{nm}$. Nếu ta giả sử $A$ và $B$ rời nhau, thì ta có thể tính $|A^{A \cup B}| = |A|^{|A \cup B|} = n^{n+m}$.
+
+\begin{example}
+Để cụ thể hơn, cho $X = \{a,b,c,d,e\}$ và $Y = \{c,d,e,f\}$ trong đó $a, b, c, d, e$ và $f$ đôi một phân biệt. Khi đó $|X \times Y| = 5 \cdot 4 = 20$ trong khi $|X \cup Y| = 5 + 4 - |\{c,d,e\}| = 6$ và $|X^Y| = 5^4 = 625$.
+\end{example}
+
+Ta cũng có thể trả lời một số câu hỏi thực tế đơn giản. Giả sử rằng trong một nhà hàng bạn có thể chọn một món khai vị và một món chính. Số bữa ăn có thể là bao nhiêu? Nếu $A$ là tập các món khai vị có thể và $C$ là tập các món chính có thể, thì bữa ăn của bạn là cặp có thứ tự thuộc tập $A \times C$. Số bữa ăn có thể là $|A \times C|$, bằng tích của số món khai vị và số món chính.
+
+Hoặc giả sử bốn giải thưởng khác nhau cần được trao, và tập những người đủ điều kiện nhận giải là $A$. Giả sử $|A| = n$. Có bao nhiêu cách trao giải? Một cách trả lời là coi cách trao giải như hàm từ tập giải thưởng đến tập người. Khi đó, nếu $P$ là tập giải thưởng, số cách trao giải khác nhau là $|A^P|$. Vì $|P| = 4$ và $|A| = n$, đây là $n^4$. Cách khác để nhìn là lưu ý rằng những người thắng giải tạo thành bộ có thứ tự $(a,b,c,d)$, là phần tử của $A \times A \times A \times A$. Vậy số cách trao giải khác nhau là $|A \times A \times A \times A|$, bằng $|A| \cdot |A| \cdot |A| \cdot |A|$. Đây là $|A|^4$, hay $n^4$, cùng câu trả lời như trước.\footnote{Thảo luận này giả sử một người có thể nhận bất kỳ số giải thưởng nào. Nếu giải phải trao cho bốn người khác nhau thì sao? Câu hỏi này đưa ta hơi xa vào tổ hợp, nhưng câu trả lời không khó. Giải đầu tiên có thể trao cho bất kỳ ai trong $n$ người. Giải thứ hai trao cho một trong $n-1$ người còn lại. Có $n-2$ lựa chọn cho giải thứ ba và $n-3$ cho giải thứ tư. Số cách trao giải cho bốn người khác nhau là tích $n(n-1)(n-2)(n-3)$. Còn việc chia các đối tượng tùy ý cho số người tùy ý? Đó là một chủ đề của \emph{lý thuyết lựa chọn xã hội}.}
+
+\subsection{Đếm đến vô hạn}
+
+Cho đến nay, ta chỉ thảo luận tập hữu hạn. $\mathbb{N}$, tập các số tự nhiên $\{0,1,2,3,\ldots\}$, là ví dụ về tập vô hạn. Không có tương ứng một-một giữa $\mathbb{N}$ và bất kỳ tập hữu hạn $N_n$ nào. Ví dụ khác về tập vô hạn là tập các số tự nhiên chẵn, $E = \{0,2,4,6,8,\ldots\}$. Theo nghĩa tự nhiên, tập $\mathbb{N}$ và $E$ có cùng số phần tử. Nghĩa là, có tương ứng một-một giữa chúng. Hàm $f\colon \mathbb{N} \to E$ xác định bởi $f(n) = 2n$ là song ánh. Ta sẽ nói rằng $\mathbb{N}$ và $E$ có cùng lực lượng, mặc dù lực lượng đó không phải là số hữu hạn. Lưu ý rằng $E$ là tập con thực sự của $\mathbb{N}$. Nghĩa là, $\mathbb{N}$ có tập con thực sự có cùng lực lượng với $\mathbb{N}$.
+
+Ta sẽ thấy rằng không phải tất cả tập vô hạn đều có cùng lực lượng. Khi nói đến tập vô hạn, trực giác không phải lúc nào cũng là hướng dẫn tốt. Hầu hết mọi người dường như bị giằng xé giữa hai ý tưởng mâu thuẫn. Một mặt, họ nghĩ, có vẻ như tập con thực sự của tập nên có ít phần tử hơn chính tập đó. Mặt khác, có vẻ như bất kỳ hai tập vô hạn nào cũng nên có cùng số phần tử. Không điều nào trong hai điều này đúng, ít nhất nếu ta định nghĩa có cùng số phần tử theo tương ứng một-một.
+
+Tập $A$ được gọi là \textbf{vô hạn đếm được} (countably infinite) nếu có tương ứng một-một giữa $\mathbb{N}$ và $A$. Tập được gọi là \textbf{đếm được} (countable) nếu nó hữu hạn hoặc vô hạn đếm được. Tập vô hạn không phải vô hạn đếm được được gọi là \textbf{không đếm được} (uncountable). Nếu $X$ là tập không đếm được, thì không có tương ứng một-một giữa $\mathbb{N}$ và $X$.
+
+Ý tưởng của `vô hạn đếm được' là mặc dù tập vô hạn đếm được không thể đếm hết trong thời gian hữu hạn, ta có thể tưởng tượng đếm tất cả phần tử của $A$, từng cái một, trong quá trình vô hạn. Hàm song ánh $f\colon \mathbb{N} \to A$ cung cấp danh sách vô hạn như vậy: $(f(0), f(1), f(2), f(3), \ldots)$. Vì $f$ là toàn ánh, danh sách vô hạn này bao gồm tất cả phần tử của $A$. Thực ra, việc lập danh sách như vậy chứng tỏ rằng $A$ là vô hạn đếm được, vì danh sách tương đương với hàm song ánh từ $\mathbb{N}$ đến $A$. Với tập không đếm được, không thể lập danh sách, dù là danh sách vô hạn, chứa tất cả phần tử của tập.
+
+Trước khi bạn tin vào tập không đếm được, bạn nên yêu cầu một ví dụ. Trong Chương~3, ta đã làm việc với các tập vô hạn $\mathbb{Z}$ (các số nguyên), $\mathbb{Q}$ (các số hữu tỉ), $\mathbb{R}$ (các số thực), và $\mathbb{R} \setminus \mathbb{Q}$ (các số vô tỉ). Theo trực giác, tất cả đều `lớn hơn' $\mathbb{N}$, nhưng như ta đã đề cập, trực giác là hướng dẫn tồi khi nói đến tập vô hạn. Có tập nào trong $\mathbb{Z}$, $\mathbb{Q}$, $\mathbb{R}$, và $\mathbb{R} \setminus \mathbb{Q}$ thực sự không đếm được?
+
+Hóa ra cả $\mathbb{Z}$ và $\mathbb{Q}$ đều chỉ vô hạn đếm được. Chứng minh $\mathbb{Z}$ đếm được để lại như bài tập; ta sẽ chỉ ra ở đây rằng tập các số hữu tỉ không âm là đếm được. (Thực tế $\mathbb{Q}$ đếm được suy ra dễ dàng từ đây.) Lý do là có thể lập danh sách vô hạn chứa tất cả số hữu tỉ không âm. Bắt đầu danh sách với tất cả số hữu tỉ không âm $n/m$ sao cho $n + m = 1$. Chỉ có một số như vậy, cụ thể là $0/1$. Tiếp theo là các số với $n + m = 2$. Chúng là $0/2$ và $1/1$, nhưng ta bỏ $0/2$ vì nó chỉ là cách viết khác của $0/1$, đã có trong danh sách. Bây giờ, ta thêm các số với $n + m = 3$, cụ thể là $0/3$, $1/2$, và $2/1$. Lại bỏ $0/3$ vì nó bằng số đã trong danh sách. Tiếp theo là các số với $n + m = 4$. Bỏ $0/4$ và $2/2$ vì chúng đã trong danh sách, ta thêm $1/3$ và $3/1$. Ta tiếp tục theo cách này, thêm các số với $n + m = 5$, rồi $n + m = 6$, v.v. Danh sách trông như:
+\[
+\left(\frac{0}{1},\, \frac{1}{1},\, \frac{1}{2},\, \frac{2}{1},\, \frac{1}{3},\, \frac{3}{1},\, \frac{1}{4},\, \frac{2}{3},\, \frac{3}{2},\, \frac{4}{1},\, \frac{1}{5},\, \frac{5}{1},\, \frac{1}{6},\, \frac{2}{5},\, \ldots\right)
+\]
+Quá trình này có thể tiếp tục vô hạn, và mọi số hữu tỉ không âm cuối cùng sẽ xuất hiện trong danh sách. Vậy ta có danh sách đầy đủ, vô hạn các số hữu tỉ không âm. Điều này chứng tỏ tập các số hữu tỉ không âm thực sự đếm được.
+
+\subsection{Tập không đếm được}
+
+Mặt khác, $\mathbb{R}$ là không đếm được. Không thể lập danh sách vô hạn chứa mọi số thực. Thậm chí không thể lập danh sách chứa mọi số thực giữa không và một. Cách nói khác là mọi danh sách vô hạn các số thực giữa không và một, cho dù được xây dựng thế nào, đều bỏ sót thứ gì đó. Để hiểu tại sao điều này đúng, hãy tưởng tượng danh sách như vậy, hiển thị trong cột dài vô hạn. Mỗi hàng chứa một số, có vô số chữ số sau dấu thập phân. Vì nó là số giữa không và một, chữ số duy nhất trước dấu thập phân là không. Ví dụ, danh sách có thể trông như:
+\begin{align*}
+&0.\mathbf{9}0398937249879561297927654857945\ldots \\
+&0.1\mathbf{2}349342094059875980239230834549\ldots \\
+&0.22\mathbf{4}000043298436234709323279989579\ldots \\
+&0.500\mathbf{0}00000000000000000000000000000\ldots \\
+&0.7774\mathbf{3}3449234234876990120909480009\ldots \\
+&0.77755\mathbf{5}55588888889498888980000111\ldots \\
+&0.123456\mathbf{7}8888888888888888800000000\ldots \\
+&0.3483544\mathbf{0}009848712712123940320577\ldots \\
+&0.93473244\mathbf{4}47900498340999990948900\ldots \\
+&\vdots
+\end{align*}
+
+Đây chỉ là (một phần nhỏ của) một danh sách có thể. Làm sao ta có thể chắc chắn rằng \emph{mọi} danh sách như vậy đều bỏ sót số thực nào đó giữa không và một? Thủ thuật là nhìn vào các chữ số in đậm. Ta có thể dùng các chữ số này để xây dựng một số không nằm trong danh sách. Vì số thứ nhất trong danh sách có chữ số 9 ở vị trí đầu tiên sau dấu thập phân, ta biết số này không thể bằng bất kỳ số nào có dạng $0.4\ldots$. Vì số thứ hai có chữ số 2 ở vị trí thứ hai sau dấu thập phân, \emph{không} số nào trong hai số đầu tiên bằng bất kỳ số nào bắt đầu bằng $0.44\ldots$. Vì số thứ ba có chữ số 4 ở vị trí thứ ba sau dấu thập phân, \emph{không} số nào trong ba số đầu tiên bằng bất kỳ số nào bắt đầu $0.445\ldots$. Ta có thể tiếp tục xây dựng số theo cách này, và ta kết thúc với một số khác mọi số trong danh sách. Chữ số thứ $n$ của số ta đang xây phải khác chữ số thứ $n$ của số thứ $n$ trong danh sách. Đây là các chữ số in đậm trong danh sách trên. Để xác định, ta dùng chữ số 5 khi chữ số đậm tương ứng là 4, và ngược lại ta dùng 4. Với danh sách trên, điều này cho số bắt đầu $0.44544445\ldots$. Số được xây theo cách này không nằm trong danh sách đã cho, nên danh sách không đầy đủ. Phép xây dựng tương tự rõ ràng hoạt động cho bất kỳ danh sách nào các số thực giữa không và một. Không danh sách nào có thể là liệt kê đầy đủ các số thực giữa không và một, và do đó không thể có liệt kê đầy đủ tất cả số thực. Ta kết luận rằng tập $\mathbb{R}$ là không đếm được.
+
+Kỹ thuật dùng trong lập luận này được gọi là \textbf{đường chéo hóa} (diagonalization). Nó được đặt tên theo thực tế rằng các chữ số in đậm trong danh sách trên nằm dọc theo đường chéo.
+
+\begin{warningbox}
+Chứng minh bằng đường chéo hóa không phải phần của \emph{Reasoning \& Logic}. Bạn nên có khả năng chứng minh tập là vô hạn đếm được (bằng cách tìm song ánh từ $\mathbb{N}$ đến tập), nhưng bạn sẽ không bị yêu cầu chứng minh tập là không đếm được. Ta để điều đó cho khóa \emph{Automata, Computability and Complexity} sau này trong chương trình học.
+\end{warningbox}
+
+Chứng minh này được phát hiện bởi nhà toán học Georg Cantor, người đã gây ra khá nhiều tranh cãi trong thế kỷ mười chín khi ông đưa ra ý tưởng rằng có nhiều loại vô hạn khác nhau. Kể từ đó, khái niệm của ông về việc dùng tương ứng một-một để định nghĩa lực lượng của tập vô hạn đã được chấp nhận. Các nhà toán học giờ coi gần như trực giác rằng $\mathbb{N}$, $\mathbb{Z}$, và $\mathbb{Q}$ có cùng lực lượng trong khi $\mathbb{R}$ có lực lượng lớn hơn hẳn.
+
+\begin{infobox}
+Nói rằng Georg Cantor (1845--1918) gây ra xáo trộn trong toán học là nói ít nhất. Lý thuyết số siêu hữu hạn của Cantor ban đầu bị coi là phản trực giác đến mức --- thậm chí gây sốc --- nên nó gặp phải sự phản đối từ các nhà toán học đương thời. Giống Frege, Cantor là nhà toán học Đức đóng góp cho logic và lý thuyết tập hợp. Giống Peirce, các ý tưởng của Cantor không được chấp nhận cho đến cuối đời ông. Năm 1904, Hội Hoàng gia Anh trao cho Cantor Huy chương Sylvester, danh hiệu cao quý nhất mà hội có thể trao cho công trình toán học.
+
+Nguồn: \texttt{en.wikipedia.org/wiki/Georg\_Cantor}.
+\end{infobox}
+
+\begin{theorem}
+Giả sử $X$ là tập không đếm được, và $K$ là tập con đếm được của $X$. Khi đó tập $X \setminus K$ là không đếm được.
+\end{theorem}
+
+\begin{proof}
+Cho $X$ là tập không đếm được. Cho $K \subseteq X$, và giả sử $K$ đếm được. Cho $L = X \setminus K$. Ta muốn chỉ ra rằng $L$ không đếm được. Giả sử $L$ đếm được. Ta sẽ chỉ ra rằng giả thiết này dẫn đến mâu thuẫn.
+
+Lưu ý rằng $X = K \cup (X \setminus K) = K \cup L$. Bạn sẽ chỉ ra trong Bài tập~11 của phần này rằng hợp của hai tập đếm được là đếm được. Vì $X$ là hợp của tập đếm được $K$ và $L$, suy ra $X$ đếm được. Nhưng điều này mâu thuẫn với thực tế rằng $X$ không đếm được. Mâu thuẫn này chứng minh định lý.
+\end{proof}
+
+Trong chứng minh, cả $q$ và $\neg q$ đều được chỉ ra suy từ các giả thiết, trong đó $q$ là mệnh đề ``$X$ đếm được''. Mệnh đề $q$ được chỉ ra suy từ giả thiết rằng $X \setminus K$ đếm được. Mệnh đề $\neg q$ đúng theo giả thiết ban đầu. Vì $q$ và $\neg q$ không thể đồng thời đúng, ít nhất một trong các giả thiết phải sai. Giả thiết duy nhất có thể sai là giả thiết rằng $X \setminus K$ đếm được.
+
+Nhân tiện, định lý này có hệ quả dễ dàng sau. (\textbf{Hệ quả} (corollary) là định lý suy ra dễ dàng từ định lý khác đã chứng minh.)
+
+\begin{corollary}
+Tập các số thực vô tỉ là không đếm được.
+\end{corollary}
+
+\begin{proof}
+Cho $I$ là tập các số thực vô tỉ. Theo định nghĩa, $I = \mathbb{R} \setminus \mathbb{Q}$. Ta đã chỉ ra rằng $\mathbb{R}$ không đếm được và $\mathbb{Q}$ đếm được, nên kết quả suy ra trực tiếp từ định lý trước.
+\end{proof}
+
+Bạn có thể vẫn nghĩ rằng $\mathbb{R}$ lớn nhất có thể, nghĩa là, bất kỳ tập vô hạn nào đều tương ứng một-một với $\mathbb{R}$ hoặc với tập con nào đó của $\mathbb{R}$. Thực ra, nếu $X$ là tập bất kỳ thì có thể tìm được tập có lực lượng lớn hơn hẳn $X$. Thực ra, $\mathcal{P}(X)$ là tập như vậy. Một biến thể của kỹ thuật đường chéo hóa có thể được dùng để chỉ ra rằng không có tương ứng một-một giữa $X$ và $\mathcal{P}(X)$. Lưu ý rằng điều này hiển nhiên cho tập hữu hạn, vì với tập hữu hạn $X$, $|\mathcal{P}(X)| = 2^{|X|}$, lớn hơn $|X|$. Điểm mấu chốt của định lý là nó đúng cả cho tập vô hạn.
+
+\begin{theorem}
+Cho $X$ là tập bất kỳ. Khi đó không có tương ứng một-một giữa $X$ và $\mathcal{P}(X)$.
+\end{theorem}
+
+\begin{proof}
+Cho hàm tùy ý $f\colon X \to \mathcal{P}(X)$, ta có thể chỉ ra rằng $f$ không phải toàn ánh. Vì tương ứng một-một vừa đơn ánh vừa toàn ánh, điều này chỉ ra rằng $f$ không phải tương ứng một-một.
+
+Nhắc lại rằng $\mathcal{P}(X)$ là tập các tập con của $X$. Vậy, với mỗi $x \in X$, $f(x)$ là tập con của $X$. Ta phải chỉ ra rằng cho dù $f$ được định nghĩa thế nào, có tập con nào đó của $X$ không nằm trong ảnh của $f$.
+
+Cho trước $f$, ta định nghĩa $A$ là tập $A = \{x \in X \mid x \notin f(x)\}$. Phép thử `$x \notin f(x)$' có nghĩa vì $f(x)$ là tập. Vì $A \subseteq X$, ta có $A \in \mathcal{P}(X)$. Tuy nhiên, $A$ không nằm trong ảnh của $f$. Nghĩa là, với mọi $y \in X$, $A \neq f(y)$.\footnote{Thực ra, ta đã xây dựng $A$ sao cho các tập $A$ và $f(y)$ khác nhau ít nhất một phần tử, cụ thể là $y$ chính nó. Đây là nơi `đường chéo hóa' xuất hiện.} Để hiểu tại sao, cho $y$ là phần tử bất kỳ của $X$. Có hai trường hợp xét. Hoặc $y \in f(y)$ hoặc $y \notin f(y)$. Ta chỉ ra rằng trong cả hai trường hợp, $A \neq f(y)$. Nếu đúng rằng $y \in f(y)$, thì theo định nghĩa $A$, $y \notin A$. Vì $y \in f(y)$ nhưng $y \notin A$, $f(y)$ và $A$ không có cùng phần tử và do đó không bằng nhau. Mặt khác, giả sử $y \notin f(y)$. Lại theo định nghĩa $A$, điều này suy ra $y \in A$. Vì $y \notin f(y)$ nhưng $y \in A$, $f(y)$ và $A$ không có cùng phần tử và do đó không bằng nhau. Trong cả hai trường hợp, $A \neq f(y)$. Vì điều này đúng với mọi $y \in X$, ta kết luận rằng $A$ không nằm trong ảnh của $f$ và do đó $f$ không phải tương ứng một-một.
+\end{proof}
+
+Từ định lý này, suy ra rằng không có tương ứng một-một giữa $\mathbb{R}$ và $\mathcal{P}(\mathbb{R})$. Lực lượng của $\mathcal{P}(\mathbb{R})$ lớn hơn hẳn lực lượng của $\mathbb{R}$. Nhưng không dừng ở đó. $\mathcal{P}(\mathcal{P}(\mathbb{R}))$ có lực lượng còn lớn hơn, và lực lượng của $\mathcal{P}(\mathcal{P}(\mathcal{P}(\mathbb{R})))$ lớn hơn nữa. Ta có thể tiếp tục mãi mãi, và vẫn chưa cạn kiệt tất cả lực lượng có thể. Nếu ta cho $\mathbb{X}$ là hợp vô hạn $\mathbb{R} \cup \mathcal{P}(\mathbb{R}) \cup \mathcal{P}(\mathcal{P}(\mathbb{R})) \cup \cdots$, thì $\mathbb{X}$ có lực lượng lớn hơn bất kỳ tập nào trong hợp. Và rồi còn $\mathcal{P}(\mathbb{X})$, $\mathcal{P}(\mathcal{P}(\mathbb{X}))$, $\mathbb{X} \cup \mathcal{P}(\mathbb{X}) \cup \mathcal{P}(\mathcal{P}(\mathbb{X})) \cup \cdots$. Không có giới hạn. Không có cận trên cho các lực lượng có thể, thậm chí không phải cận vô hạn! Ta đã đếm qua vô hạn.
+
+\subsection{Ghi chú cuối về các loại vô hạn}
+
+Ta đã thấy rằng $|\mathbb{R}|$ lớn hơn hẳn $|\mathbb{N}|$. Ta kết thúc phần này với câu hỏi trông có vẻ đơn giản: Có tập con nào của $\mathbb{R}$ không tương ứng một-một với $\mathbb{N}$ lẫn $\mathbb{R}$ không? Nghĩa là, lực lượng của $\mathbb{R}$ có phải lực lượng lớn nhất tiếp theo sau lực lượng của $\mathbb{N}$ không, hay có lực lượng trung gian giữa chúng? Bài toán này chưa được giải trong thời gian dài, và lời giải, khi được tìm ra, hóa ra hoàn toàn bất ngờ. Người ta đã chỉ ra rằng cả `có' và `không' đều là câu trả lời nhất quán cho câu hỏi này! Nghĩa là, cấu trúc logic xây trên hệ tiên đề đã được chấp nhận làm nền tảng lý thuyết tập hợp không đủ mở rộng để trả lời câu hỏi. Câu hỏi là `không quyết định được' (undecidable) trong hệ thống đó. Ta sẽ quay lại `tính không quyết định được' trong Chương~5.
+
+Có thể mở rộng hệ tiên đề nền tảng lý thuyết tập hợp theo nhiều cách. Trong một số mở rộng, câu trả lời là có. Trong các mở rộng khác, câu trả lời là không. Bạn có thể phản đối, ``Đúng, nhưng câu trả lời nào đúng cho các số thực \emph{thật}?'' Thật đáng tiếc, thậm chí không rõ liệu câu hỏi này có ý nghĩa không, vì trong thế giới toán học, các số thực chỉ là phần của cấu trúc xây từ hệ tiên đề. Và hoàn toàn không rõ liệu `các số thực' có tồn tại theo nghĩa nào đó trong thế giới thực hay không. Nếu tất cả điều này nghe như mớ hỗn độn triết học, thì đúng là vậy. Đó là tình trạng hiện nay ở nền tảng toán học, và nó có hệ quả cho nền tảng khoa học máy tính, như ta sẽ thấy trong chương tiếp theo.
+
+\subsubsection*{Bài tập}
+
+\begin{enumerate}
+\item[1.] Giả sử $A$, $B$, và $C$ là tập hữu hạn rời nhau đôi một. (Nghĩa là, $A \cap B = A \cap C = B \cap C = \varnothing$.) Biểu diễn lực lượng của mỗi tập sau theo $|A|$, $|B|$, và $|C|$. Câu trả lời nào phụ thuộc vào việc các tập rời nhau đôi một?
+\begin{enumerate}[label=\alph*)]
+\item $\mathcal{P}(A \cup B)$
+\item $A \times (B^C)$
+\item $\mathcal{P}(A) \times \mathcal{P}(C)$
+\item $A^{B \times C}$
+\item $(A \times B)^C$
+\item $\mathcal{P}(A^B)$
+\item $(A \cup B)^C$
+\item $(A \cup B) \times A$
+\item $A \times A \times B \times B$
+\end{enumerate}
+
+\item[2.] Giả sử $A$ và $B$ là tập hữu hạn không nhất thiết rời nhau. Các giá trị có thể cho $|A \cup B|$ là gì?
+
+\item[3.] Giả sử một `định danh' gồm một hoặc hai ký tự. Ký tự thứ nhất là một trong hai mươi sáu chữ cái ($A, B, \ldots, C$). Ký tự thứ hai, nếu có, là chữ cái hoặc một trong mười chữ số ($0, 1, \ldots, 9$). Có bao nhiêu định danh khác nhau? Giải thích câu trả lời theo hợp và tích chéo.
+
+\item[4.] Giả sử có năm quyển sách bạn có thể mang theo đọc trong kỳ nghỉ. Có bao nhiêu cách khác nhau bạn có thể quyết định mang sách nào, giả sử bạn muốn mang ít nhất một quyển? Tại sao?
+
+\item[5.] Chứng minh rằng lực lượng của tập hữu hạn được xác định rõ. Nghĩa là, chứng minh rằng nếu $f$ là hàm song ánh từ tập $A$ đến $N_n$, và $g$ là hàm song ánh từ $A$ đến $N_m$, thì $n = m$.
+
+\item[6.] Hoàn thành chứng minh Định lý~4.7 bằng cách chứng minh mệnh đề sau: Cho $A$ là tập không rỗng, và cho $x \in A$. Cho $B = A \setminus \{x\}$. Cho $X = \{C \subseteq A \mid x \in C\}$. Định nghĩa $f\colon \mathcal{P}(B) \to X$ bởi công thức $f(C) = C \cup \{x\}$. Chứng minh rằng $f$ là hàm song ánh.
+
+\item[7.] Dùng quy nạp trên lực lượng của $B$ để chứng minh rằng với bất kỳ tập hữu hạn $A$ và $B$, $|A^B| = |A|^{|B|}$. (Gợi ý: Với trường hợp $B \neq \varnothing$, chọn $x \in B$, và chia $A^B$ thành các lớp theo giá trị $f(x)$.)
+
+\item[8.] Cho $A$ và $B$ là tập hữu hạn với $|A| = n$ và $|B| = m$. Liệt kê các phần tử của $B$ là $B = \{b_0, b_1, \ldots, b_{m-1}\}$. Định nghĩa hàm $\mathcal{F}\colon A^B \to A \times A \times \cdots \times A$, trong đó $A$ xuất hiện $m$ lần trong tích chéo, bởi $\mathcal{F}(f) = (f(b_0), f(b_1), \ldots, f(b_{m-1}))$. Chứng minh rằng $\mathcal{F}$ là tương ứng một-một.
+
+\item[9.] Chứng minh rằng $\mathbb{Z}$, tập các số nguyên, đếm được bằng cách tìm tương ứng một-một giữa $\mathbb{N}$ và $\mathbb{Z}$.
+
+\item[10.] Chứng minh rằng tập $\mathbb{N} \times \mathbb{N}$ đếm được.
+
+\item[11.] Hoàn thành chứng minh Định lý~2.9 như sau:
+\begin{enumerate}[label=\alph*)]
+\item Giả sử $A$ và $B$ là tập vô hạn đếm được. Chứng minh rằng $A \cup B$ là vô hạn đếm được.
+\item Giả sử $A$ và $B$ là tập đếm được. Chứng minh rằng $A \cup B$ đếm được.
+\end{enumerate}
+
+\item[12.] Chứng minh mỗi mệnh đề sau đúng. Trong mỗi trường hợp, dùng chứng minh phản chứng.
+\begin{enumerate}[label=\alph*)]
+\item Cho $X$ là tập vô hạn đếm được, và cho $N$ là tập con hữu hạn của $X$. Khi đó $X \setminus N$ là vô hạn đếm được.
+\item Cho $A$ là tập vô hạn, và cho $X$ là tập con của $A$. Khi đó ít nhất một trong hai tập $X$ và $A \setminus X$ là vô hạn.
+\item Mọi tập con của tập hữu hạn đều hữu hạn.
+\end{enumerate}
+
+\item[13.] Cho $A$ và $B$ là tập hợp và cho $\bot$ là thực thể \emph{không} phải thành viên của $B$. Chứng minh rằng có tương ứng một-một giữa tập các hàm từ $A$ đến $B \cup \{\bot\}$ và tập các hàm bộ phận từ $A$ đến $B$. (Hàm bộ phận được định nghĩa trong Mục~4.6. Ký hiệu `$\bot$' đôi khi được dùng trong khoa học máy tính lý thuyết để biểu diễn giá trị `không xác định'.)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Quan hệ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Trong Mục~4.5, ta đã thấy rằng `mẹ của' là quan hệ hàm vì, theo mục đích của ví dụ, mỗi người có một và chỉ một mẹ (sinh học), nhưng `con của' không phải quan hệ hàm, vì một người có thể không có con hoặc có nhiều hơn một con. Tuy nhiên, quan hệ được biểu diễn bởi `con của' chắc chắn là quan hệ mà ta có quyền quan tâm và nên có thể xử lý bằng toán học. Ta đã thấy khái niệm (toán học) về `con' khi xét cây.
+
+Có nhiều ví dụ về quan hệ không phải quan hệ hàm. Quan hệ giữa hai số tự nhiên $n$ và $m$ khi $n \le m$ là ví dụ trong toán học. Quan hệ giữa một người và sách mà người đó mượn từ thư viện là ví dụ khác. Một số quan hệ liên quan đến nhiều hơn hai thực thể, chẳng hạn quan hệ liên kết tên, địa chỉ và số điện thoại trong danh bạ, hoặc quan hệ giữa ba số thực $x$, $y$, và $z$ nếu $x^2 + y^2 + z^2 = 1$. Mỗi quan hệ này có thể được biểu diễn toán học bằng cái gọi là `quan hệ'.
+
+\textbf{Quan hệ} (relation) trên hai tập $A$ và $B$ được định nghĩa là tập con của $A \times B$. Vì hàm từ $A$ đến $B$ được định nghĩa, về mặt hình thức, là tập con của $A \times B$ thỏa mãn một số tính chất nhất định, nên hàm là quan hệ. Tuy nhiên, quan hệ tổng quát hơn hàm, vì \emph{bất kỳ} tập con nào của $A \times B$ cũng là quan hệ. Ta cũng định nghĩa quan hệ trên ba hay nhiều tập hơn là tập con của tích chéo các tập đó. Đặc biệt, quan hệ trên $A$, $B$, và $C$ là tập con của $A \times B \times C$.
+
+\begin{example}
+Ví dụ, nếu $P$ là tập người và $B$ là tập sách thuộc sở hữu thư viện, thì ta có thể định nghĩa quan hệ $\mathcal{R}$ trên các tập $P$ và $B$ là tập $\mathcal{R} = \{(p,b) \in P \times B \mid p \text{ đang mượn } b\}$. Thực tế rằng một cặp $(p,b) \in \mathcal{R}$ cụ thể là sự thật về thế giới mà thư viện chắc chắn muốn theo dõi. Khi tập hợp các sự thật về thế giới được lưu trữ trên máy tính, nó được gọi là \textbf{cơ sở dữ liệu} (database). Ta sẽ thấy trong phần tiếp theo rằng quan hệ là phương tiện phổ biến nhất để biểu diễn dữ liệu trong cơ sở dữ liệu.
+\end{example}
+
+Nếu $A$ là tập và $\mathcal{R}$ là quan hệ trên các tập $A$ và $A$ (nghĩa là, trên hai bản sao của $A$), thì $\mathcal{R}$ được gọi là \textbf{quan hệ hai ngôi} (binary relation) trên $A$. Nghĩa là, quan hệ hai ngôi trên tập $A$ là tập con của $A \times A$. Quan hệ gồm tất cả cặp có thứ tự $(c,p)$ của người sao cho $c$ là con của $p$ là quan hệ hai ngôi trên tập người. Tập $\{(n,m) \in \mathbb{N} \times \mathbb{N} \mid n \le m\}$ là quan hệ hai ngôi trên $\mathbb{N}$. Tương tự, ta định nghĩa \textbf{quan hệ ba ngôi} (ternary relation) trên tập $A$ là tập con của $A \times A \times A$. Tập $\{(x,y,z) \in \mathbb{R} \times \mathbb{R} \times \mathbb{R} \mid x^2 + y^2 + z^2 = 1\}$ là quan hệ ba ngôi trên $\mathbb{R}$. Tổng quát, ta có thể định nghĩa \textbf{quan hệ $n$-ngôi} ($n$-ary relation) trên $A$, với bất kỳ số nguyên dương $n$, là tập con của $A \times A \times \cdots \times A$, trong đó $A$ xuất hiện $n$ lần trong tích chéo.
+
+Trong phần còn lại của phần này, ta sẽ làm việc chỉ với quan hệ hai ngôi. Giả sử $\mathcal{R} \subseteq A \times A$. Nghĩa là, giả sử $\mathcal{R}$ là quan hệ hai ngôi trên tập $A$. Nếu $(a,b) \in \mathcal{R}$, thì ta nói $a$ \textbf{có quan hệ} với $b$ theo $\mathcal{R}$. Thay vì viết `$(a,b) \in \mathcal{R}$', ta thường viết `$a\,\mathcal{R}\,b$'. Ký hiệu này được dùng tương tự ký hiệu $n \le m$ để biểu thị quan hệ $n$ nhỏ hơn hoặc bằng $m$. Nhớ rằng $a\,\mathcal{R}\,b$ chỉ là cách viết thay thế cho $(a,b) \in \mathcal{R}$. Thực ra, ta có thể coi quan hệ $\le$ là tập các cặp có thứ tự và viết $(n,m) \in {\le}$ thay cho ký hiệu $n \le m$.
+
+\subsection{Tính chất của quan hệ}
+
+Trong nhiều ứng dụng, sự chú ý được giới hạn vào các quan hệ thỏa mãn một số tính chất. (Tất nhiên, đây chính xác là điều ta làm khi nghiên cứu hàm.) Ta bắt đầu thảo luận về quan hệ hai ngôi bằng cách xem xét một số tính chất quan trọng. Trong thảo luận này, cho $A$ là tập và $\mathcal{R}$ là quan hệ hai ngôi trên $A$, nghĩa là tập con của $A \times A$.
+
+$\mathcal{R}$ được gọi là \textbf{phản xạ} (reflexive) nếu $\forall a \in A\; (a\,\mathcal{R}\,a)$. Nghĩa là, quan hệ hai ngôi trên tập là phản xạ nếu mọi phần tử của tập đều có quan hệ với chính nó. Điều này đúng, ví dụ, cho quan hệ $\le$ trên tập $\mathbb{N}$, vì $n \le n$ với mọi $n \in \mathbb{N}$. Mặt khác, nó không đúng cho quan hệ $<$ trên $\mathbb{N}$, vì, ví dụ, mệnh đề $17 < 17$ là sai.\footnote{Lưu ý rằng để chỉ ra quan hệ $\mathcal{R}$ \emph{không} phản xạ, bạn chỉ cần tìm một $a$ sao cho $a\,\mathcal{R}\,a$ sai. Điều này suy từ thực tế rằng $\neg(\forall a \in A\; (a\,\mathcal{R}\,a)) \equiv \exists a \in A\; (\neg(a\,\mathcal{R}\,a))$. Nhận xét tương tự đúng cho mỗi tính chất của quan hệ được thảo luận ở đây.}
+
+$\mathcal{R}$ được gọi là \textbf{bắc cầu} (transitive) nếu $\forall a \in A,\, \forall b \in A,\, \forall c \in A\; \big((a\,\mathcal{R}\,b \wedge b\,\mathcal{R}\,c) \to (a\,\mathcal{R}\,c)\big)$. Tính bắc cầu cho phép ta `nối chuỗi' hai mệnh đề đúng $a\,\mathcal{R}\,b$ và $b\,\mathcal{R}\,c$, được `liên kết' bởi $b$ xuất hiện trong mỗi mệnh đề, để suy ra $a\,\mathcal{R}\,c$. Ví dụ, giả sử $P$ là tập người, và định nghĩa quan hệ $\mathcal{C}$ trên $P$ sao cho $x\,\mathcal{C}\,y$ khi và chỉ khi $x$ là con của $y$. Quan hệ $\mathcal{C}$ không bắc cầu vì con của con của một người không phải là con của người đó. Mặt khác, giả sử ta định nghĩa quan hệ $\mathcal{D}$ trên $P$ sao cho $x\,\mathcal{D}\,y$ khi và chỉ khi $x$ là hậu duệ của $y$. Khi đó $\mathcal{D}$ là quan hệ bắc cầu trên tập người, vì hậu duệ của hậu duệ của một người là hậu duệ của người đó. Trong thế giới toán học, quan hệ $\le$ và $<$ trên $\mathbb{N}$ đều bắc cầu.
+
+$\mathcal{R}$ được gọi là \textbf{đối xứng} (symmetric) nếu $\forall a \in A,\, \forall b \in B\; (a\,\mathcal{R}\,b \to b\,\mathcal{R}\,a)$. Nghĩa là, bất cứ khi nào $a$ có quan hệ với $b$, thì $b$ cũng có quan hệ với $a$. Quan hệ `anh chị em họ bậc nhất' trên tập người là đối xứng, vì bất cứ khi nào $x$ là anh chị em họ bậc nhất của $y$, ta tự động có $y$ là anh chị em họ bậc nhất của $x$. Mặt khác, quan hệ `con của' chắc chắn không đối xứng. Quan hệ $\le$ trên $\mathbb{N}$ không đối xứng. Từ thực tế $n \le m$, ta không thể kết luận $m \le n$. Đúng là với \emph{một số} $n$ và $m$ trong $\mathbb{N}$ thì $n \le m \to m \le n$, nhưng không đúng cho \emph{tất cả} $n$ và $m$ trong $\mathbb{N}$.
+
+Cuối cùng, $\mathcal{R}$ là \textbf{phản đối xứng} (antisymmetric) nếu $\forall a \in A,\, \forall b \in B\; \big((a\,\mathcal{R}\,b \wedge b\,\mathcal{R}\,a) \to a = b\big)$. Quan hệ $\mathcal{R}$ là phản đối xứng nếu với bất kỳ hai phần tử \emph{phân biệt} $x$ và $y$ của $A$, ta không thể có đồng thời $x\,\mathcal{R}\,y$ và $y\,\mathcal{R}\,x$. Quan hệ $\le$ trên $\mathbb{N}$ là phản đối xứng vì từ $n \le m$ và $m \le n$, ta có thể suy ra $n = m$. Quan hệ `con của' trên tập người là phản đối xứng vì không thể có đồng thời $x$ là con $y$ và $y$ là con $x$.
+
+\begin{infobox}
+Trong các bài giảng, ta sẽ suy nghĩ về cách vẽ quan hệ bằng đồ thị. Xem hình trong Mục~4.5.3 cho một cách biểu diễn đồ họa.
+\end{infobox}
+
+Có một vài tổ hợp tính chất định nghĩa các loại quan hệ hai ngôi đặc biệt hữu ích. Quan hệ $\le$ trên tập $\mathbb{N}$ là phản xạ, phản đối xứng, và bắc cầu. Các tính chất này định nghĩa cái gọi là \textbf{thứ tự bộ phận} (partial order): thứ tự bộ phận trên tập $A$ là quan hệ hai ngôi trên $A$ phản xạ, phản đối xứng, và bắc cầu.
+
+Ví dụ khác về thứ tự bộ phận là quan hệ tập con, $\subseteq$, trên tập lũy thừa của bất kỳ tập nào. Nếu $X$ là tập, thì tất nhiên $\mathcal{P}(X)$ là tập theo đúng nghĩa, và $\subseteq$ có thể được coi là quan hệ hai ngôi trên tập này. Hai phần tử $A$ và $B$ của $\mathcal{P}(X)$ có quan hệ $\subseteq$ khi và chỉ khi $A \subseteq B$. Quan hệ này phản xạ vì mọi tập là tập con của chính nó. Tính phản đối xứng suy từ Định lý~4.1. Tính bắc cầu đã là Bài tập~11 trong Mục~4.1.
+
+Thứ tự trên $\mathbb{N}$ theo $\le$ có một tính chất quan trọng mà thứ tự tập con theo $\subseteq$ không có. Nếu $n$ và $m$ là số tự nhiên, thì ít nhất một trong hai mệnh đề $n \le m$ và $m \le n$ phải đúng. Tuy nhiên, nếu $A$ và $B$ là tập con của tập $X$, hoàn toàn có thể cả $A \subseteq B$ và $B \subseteq A$ đều sai. Quan hệ hai ngôi $\mathcal{R}$ trên tập $A$ được gọi là \textbf{thứ tự toàn phần} (total order) nếu nó là thứ tự bộ phận và hơn nữa với bất kỳ hai phần tử $a$ và $b$ của $A$, hoặc $a\,\mathcal{R}\,b$ hoặc $b\,\mathcal{R}\,a$. Quan hệ $\le$ trên tập $\mathbb{N}$ là thứ tự toàn phần. Quan hệ $\subseteq$ trên $\mathcal{P}(X)$ thì không. (Lưu ý một lần nữa ngôn ngữ toán học hơi lạ: Thứ tự toàn phần là một loại thứ tự bộ phận --- không phải, như bạn có thể nghĩ, đối lập của thứ tự bộ phận.)
+
+Một ví dụ khác về thứ tự, cho $L$ là tập các chuỗi có thể được tạo từ chữ cái viết thường. $L$ chứa cả từ tiếng Anh và chuỗi vô nghĩa như ``sxjja''. Có một thứ tự toàn phần thường dùng trên tập $L$, cụ thể là thứ tự bảng chữ cái.
+
+\subsection{Quan hệ tương đương}
+
+Ta sẽ tiếp cận một loại quan hệ hai ngôi quan trọng khác một cách gián tiếp, thông qua cái thoạt đầu có vẻ là ý tưởng không liên quan. Cho $A$ là tập. \textbf{Phân hoạch} (partition) của $A$ được định nghĩa là tập hợp các tập con không rỗng của $A$ sao cho mỗi cặp tập con phân biệt trong tập hợp đều rời nhau và hợp của tất cả các tập con trong tập hợp là $A$. Phân hoạch của $A$ chỉ đơn giản là phân chia tất cả phần tử của $A$ thành các tập con không giao nhau. Ví dụ, các tập $\{1,2,6\}$, $\{3,7\}$, $\{4,5,8,10\}$, và $\{9\}$ tạo thành phân hoạch của tập $\{1,2,\ldots,10\}$. Mỗi phần tử của $\{1,2,\ldots,10\}$ xuất hiện trong đúng một trong các tập tạo nên phân hoạch. Ví dụ khác, các nhà sinh học phân hoạch tập tất cả người thành hai tập, tập những người có nhiễm sắc thể XY và tập những người có nhiễm sắc thể XX. Các nhà sinh học cũng cố phân hoạch tập tất cả sinh vật thành các loài khác nhau. Thủ thư cố phân hoạch sách thành các thể loại khác nhau như tiểu thuyết, tiểu sử, và thơ. Trong thế giới thực, phân loại mọi thứ thành các nhóm là hoạt động thiết yếu, mặc dù ranh giới giữa các nhóm không phải lúc nào cũng rõ ràng. Khái niệm trừu tượng toán học về phân hoạch tập mô hình hóa khái niệm phân loại trong thế giới thực. Trong thế giới toán học, các nhóm là tập và ranh giới giữa hai nhóm là rõ ràng.
+
+Trong thế giới thực, các đối tượng được phân loại vào cùng nhóm vì chúng có quan hệ theo cách nào đó. Điều này đưa ta từ phân hoạch trở lại quan hệ. Giả sử ta có phân hoạch của tập $A$. Ta có thể định nghĩa quan hệ $\mathcal{R}$ trên $A$ bằng cách tuyên bố rằng với bất kỳ $a$ và $b$ nào trong $A$, $a\,\mathcal{R}\,b$ khi và chỉ khi $a$ và $b$ là thành viên của cùng tập con trong phân hoạch. Nghĩa là, hai phần tử của $A$ có quan hệ nếu chúng thuộc cùng nhóm. Rõ ràng rằng quan hệ được định nghĩa theo cách này là phản xạ, đối xứng, và bắc cầu.
+
+\textbf{Quan hệ tương đương} (equivalence relation) được định nghĩa là quan hệ hai ngôi phản xạ, đối xứng, và bắc cầu. Bất kỳ quan hệ nào được định nghĩa, như trên, từ phân hoạch đều là quan hệ tương đương. Ngược lại, ta có thể chỉ ra rằng bất kỳ quan hệ tương đương nào cũng định nghĩa một phân hoạch. Giả sử $\mathcal{R}$ là quan hệ tương đương trên tập $A$. Cho $a \in A$. Ta định nghĩa \textbf{lớp tương đương} (equivalence class) của $a$ theo quan hệ tương đương $\mathcal{R}$ là tập con $[a]_{\mathcal{R}}$ xác định bởi $[a]_{\mathcal{R}} = \{b \in A \mid b\,\mathcal{R}\,a\}$. Nghĩa là, lớp tương đương của $a$ là tập tất cả phần tử của $A$ có quan hệ với $a$. Trong hầu hết trường hợp, ta sẽ giả sử quan hệ đang xét là rõ ràng, và ta sẽ viết $[a]$ thay vì $[a]_{\mathcal{R}}$. Lưu ý rằng mỗi lớp tương đương là tập con của $A$. Định lý sau chỉ ra rằng tập hợp các lớp tương đương tạo thành phân hoạch của $A$.
+
+\begin{theorem}
+Cho $A$ là tập và $\mathcal{R}$ là quan hệ tương đương trên $A$. Khi đó tập hợp tất cả các lớp tương đương theo $\mathcal{R}$ là phân hoạch của $A$.
+\end{theorem}
+
+\begin{proof}
+Để chỉ ra rằng tập hợp các tập con của $A$ là phân hoạch, ta phải chỉ ra rằng mỗi tập con không rỗng, giao của hai tập con phân biệt là rỗng, và hợp của tất cả tập con là $A$.
+
+Nếu $[a]$ là một lớp tương đương, nó chắc chắn không rỗng, vì $a \in [a]$. (Điều này suy từ thực tế rằng $\mathcal{R}$ phản xạ, nên $a\,\mathcal{R}\,a$.) Để chỉ ra rằng $A$ là hợp của tất cả lớp tương đương, ta chỉ cần chỉ ra rằng mỗi phần tử của $A$ là thành viên của một lớp tương đương nào đó. Thực tế $a \in [a]$ với mỗi $a \in A$ chỉ ra điều này.
+
+Cuối cùng, ta phải chỉ ra rằng giao của hai lớp tương đương phân biệt là rỗng. Giả sử $a$ và $b$ là phần tử của $A$ và xét các lớp tương đương $[a]$ và $[b]$. Ta phải chỉ ra rằng nếu $[a] \neq [b]$, thì $[a] \cap [b] = \varnothing$. Tương đương, ta có thể chỉ ra phản đảo: Nếu $[a] \cap [b] \neq \varnothing$ thì $[a] = [b]$. Vậy, giả sử $[a] \cap [b] \neq \varnothing$. Nói rằng tập không rỗng nghĩa là tập chứa phần tử nào đó, nên phải có $x \in A$ sao cho $x \in [a] \cap [b]$. Vì $x \in [a]$, $x\,\mathcal{R}\,a$. Vì $\mathcal{R}$ đối xứng, ta cũng có $a\,\mathcal{R}\,x$. Vì $x \in [b]$, $x\,\mathcal{R}\,b$. Vì $\mathcal{R}$ bắc cầu và $(a\,\mathcal{R}\,x) \wedge (x\,\mathcal{R}\,b)$, suy ra $a\,\mathcal{R}\,b$.
+
+Mục tiêu là suy ra $[a] = [b]$. Vì $[a]$ và $[b]$ là tập, chúng bằng nhau khi và chỉ khi $[a] \subseteq [b]$ và $[b] \subseteq [a]$. Để chỉ ra $[a] \subseteq [b]$, cho $c$ là phần tử tùy ý của $[a]$. Ta phải chỉ ra $c \in [b]$. Vì $c \in [a]$, ta có $c\,\mathcal{R}\,a$. Và ta đã chỉ ra $a\,\mathcal{R}\,b$. Từ hai thực tế này và tính bắc cầu của $\mathcal{R}$, suy ra $c\,\mathcal{R}\,b$. Theo định nghĩa, điều này có nghĩa $c \in [b]$. Ta đã chỉ ra mọi thành viên của $[a]$ là thành viên của $[b]$ nên $[a] \subseteq [b]$. Tương tự có thể chỉ ra $[b] \subseteq [a]$. Ta suy ra $[a] = [b]$, chứng minh hoàn tất.
+\end{proof}
+
+Điểm mấu chốt của định lý này là nếu ta tìm được quan hệ hai ngôi thỏa mãn các tính chất nhất định, cụ thể là tính chất của quan hệ tương đương, thì ta có thể phân loại mọi thứ vào các nhóm, trong đó các nhóm là các lớp tương đương.
+
+Ví dụ, giả sử $U$ là tập có thể vô hạn. Định nghĩa quan hệ hai ngôi $\sim$ trên $\mathcal{P}(U)$ như sau: Với $X$ và $Y$ trong $\mathcal{P}(U)$, $X \sim Y$ khi và chỉ khi có hàm song ánh từ tập $X$ đến tập $Y$. Nói cách khác, $X \sim Y$ nghĩa là $X$ và $Y$ có cùng lực lượng. Khi đó $\sim$ là quan hệ tương đương trên $\mathcal{P}(U)$. (Ký hiệu $\sim$ thường được dùng để chỉ quan hệ tương đương. Nó thường được đọc là `tương đương với'.) Nếu $X \in \mathcal{P}(U)$, thì lớp tương đương $[X]_{\sim}$ gồm tất cả tập con của $U$ có cùng lực lượng với $X$. Ta đã phân loại tất cả tập con của $U$ theo lực lượng --- mặc dù ta chưa bao giờ nói lực lượng vô hạn \emph{là} gì. (Ta chỉ nói thế nào là có cùng lực lượng.)
+
+Bạn có thể biết trò chơi xếp hình nổi tiếng gọi là Khối Rubik,\footnote{Hình ảnh: \texttt{commons.wikimedia.org/wiki/File:Rubiks\_cube\_scrambled.jpg}.} một khối lập phương gồm các khối nhỏ hơn với mặt có màu mà có thể thao tác bằng cách xoay các lớp khối nhỏ. Mục tiêu là thao tác khối sao cho màu của các khối nhỏ tạo thành cấu hình nhất định. Định nghĩa hai cấu hình của khối là tương đương nếu có thể thao tác từ cấu hình này sang cấu hình kia bằng chuỗi xoay. Đây thực ra là quan hệ tương đương trên tập các cấu hình có thể. (Tính đối xứng suy từ thực tế rằng mỗi bước là thuận nghịch.) Đã được chứng minh rằng quan hệ tương đương này có chính xác mười hai lớp tương đương. Thực tế thú vị là nó có nhiều hơn một lớp tương đương: Nếu cấu hình khối đang ở và cấu hình bạn muốn đạt không cùng lớp tương đương, thì bạn chắc chắn thất bại.
+
+\begin{example}
+May mắn thay, nếu bạn mua khối ở cấu hình bạn muốn (nghĩa là, với 6 mặt đều cùng một màu), bạn vẫn có thể thành công. Vì tất cả cấu hình bạn có thể đạt bằng các bước hợp lệ đều cùng lớp, bạn chỉ có thể chuyển sang lớp khác bằng bước không hợp lệ. Vì vậy, chỉ khi tháo rời khối và lắp lại không đúng bạn mới thực sự thay đổi trò chơi từ khó sang không thể.
+
+Vì ta đang nói về giải Khối Rubik, bạn có thể viết chương trình máy tính để giải nó không? Cho khối ở trạng thái ban đầu nào đó, chuỗi bước ngắn nhất để đến trạng thái đã giải là gì --- hoặc chứng minh không thể? Xem Agostinelli, McAleer, Shmakov \& Baldi, \emph{Solving the Rubik's cube with deep reinforcement learning and search}, Nature Machine Intelligence (2019).
+\end{example}
+
+Giả sử $\mathcal{R}$ là quan hệ hai ngôi trên tập $A$. Mặc dù $\mathcal{R}$ có thể không bắc cầu, luôn có thể xây dựng quan hệ bắc cầu từ $\mathcal{R}$ một cách tự nhiên. Nếu ta nghĩ $a\,\mathcal{R}\,b$ có nghĩa rằng $a$ có quan hệ với $b$ theo $\mathcal{R}$ `trong một bước', thì ta xét quan hệ giữa hai phần tử $x$ và $y$ khi $x$ có quan hệ với $y$ theo $\mathcal{R}$ `trong một hoặc nhiều bước'. Quan hệ này định nghĩa quan hệ hai ngôi trên $A$ được gọi là \textbf{bao đóng bắc cầu} (transitive closure) của $\mathcal{R}$. Bao đóng bắc cầu của $\mathcal{R}$ được ký hiệu $\mathcal{R}^*$. Một cách hình thức, $\mathcal{R}^*$ được xác định như sau: Với $a$ và $b$ trong $A$, $a\,\mathcal{R}^*\,b$ nếu tồn tại dãy $x_0, x_1, \ldots, x_n$ các phần tử của $A$, với $n > 0$ và $x_0 = a$ và $x_n = b$, sao cho $x_0\,\mathcal{R}\,x_1$, $x_1\,\mathcal{R}\,x_2$, \ldots, và $x_{n-1}\,\mathcal{R}\,x_n$.
+
+\begin{infobox}
+Bạn sẽ gặp lại khái niệm bao đóng bắc cầu trong khóa \emph{Automata, Computability and Complexity}.
+\end{infobox}
+
+Ví dụ, nếu $a\,\mathcal{R}\,c$, $c\,\mathcal{R}\,d$, và $d\,\mathcal{R}\,b$, thì ta sẽ có $a\,\mathcal{R}^*\,b$. Tất nhiên, ta cũng có $a\,\mathcal{R}^*\,c$, và $a\,\mathcal{R}^*\,d$.
+
+\begin{example}
+Ví dụ thực tế, giả sử $C$ là tập tất cả thành phố và $\mathcal{A}$ là quan hệ hai ngôi trên $C$ sao cho với $x$ và $y$ trong $C$, $x\,\mathcal{A}\,y$ nếu có chuyến bay thường lệ từ $x$ đến $y$. Khi đó bao đóng bắc cầu $\mathcal{A}^*$ có giải thích tự nhiên: $x\,\mathcal{A}^*\,y$ nếu có thể đi từ $x$ đến $y$ bằng chuỗi một hoặc nhiều chuyến bay thường lệ. Bạn sẽ tìm thấy thêm ví dụ về bao đóng bắc cầu trong bài tập.
+\end{example}
+
+\subsubsection*{Bài tập}
+
+\begin{enumerate}
+\item[1.] Với tập hữu hạn, có thể định nghĩa quan hệ hai ngôi trên tập bằng cách liệt kê các phần tử của quan hệ, coi như tập các cặp có thứ tự. Cho $A$ là tập $\{a,b,c,d\}$, với $a$, $b$, $c$, $d$ phân biệt. Xét mỗi quan hệ hai ngôi sau trên $A$. Quan hệ đó phản xạ không? Đối xứng? Phản đối xứng? Bắc cầu? Nó có phải thứ tự bộ phận? Quan hệ tương đương?
+\begin{enumerate}[label=\alph*)]
+\item $\mathcal{R} = \{(a,b),\, (a,c),\, (a,d)\}$.
+\item $\mathcal{S} = \{(a,a),\, (b,b),\, (c,c),\, (d,d),\, (a,b),\, (b,a)\}$.
+\item $\mathcal{T} = \{(b,b),\, (c,c),\, (d,d)\}$.
+\item $\mathcal{C} = \{(a,b),\, (b,c),\, (a,c),\, (d,d)\}$.
+\item $\mathcal{D} = \{(a,b),\, (b,a),\, (c,d),\, (d,c)\}$.
+\end{enumerate}
+
+\item[2.] Cho $A$ là tập $\{1,2,3,4,5,6\}$. Xét phân hoạch của $A$ thành các tập con $\{1,4,5\}$, $\{3\}$, và $\{2,6\}$. Viết ra quan hệ tương đương tương ứng trên $A$ dưới dạng tập các cặp có thứ tự.
+
+\item[3.] Xét mỗi quan hệ sau trên tập người. Quan hệ đó phản xạ? Đối xứng? Bắc cầu? Nó có phải quan hệ tương đương?
+\begin{enumerate}[label=\alph*)]
+\item $x$ có quan hệ với $y$ nếu $x$ và $y$ có cùng cha mẹ sinh học.
+\item $x$ có quan hệ với $y$ nếu $x$ và $y$ có ít nhất một cha/mẹ sinh học chung.
+\item $x$ có quan hệ với $y$ nếu $x$ và $y$ sinh cùng năm.
+\item $x$ có quan hệ với $y$ nếu $x$ cao hơn $y$.
+\item $x$ có quan hệ với $y$ nếu $x$ và $y$ đều đã đến Indonesia.
+\item $x$ có quan hệ với $y$ nếu $x$ và $y$ đều đã mắc cùng bệnh.
+\end{enumerate}
+
+\item[4.] Có thể có quan hệ vừa đối xứng vừa phản đối xứng. Ví dụ, quan hệ bằng, $=$, là quan hệ trên bất kỳ tập nào vừa đối xứng vừa phản đối xứng. Giả sử $A$ là tập và $\mathcal{R}$ là quan hệ trên $A$ vừa đối xứng vừa phản đối xứng. Chứng minh rằng $\mathcal{R}$ là tập con của $=$ (khi cả hai quan hệ được coi là tập các cặp có thứ tự). Nghĩa là, chứng minh với bất kỳ $a$ và $b$ trong $A$, $(a\,\mathcal{R}\,b) \to (a = b)$.
+
+\item[5.] Cho $\sim$ là quan hệ trên $\mathbb{R}$, tập các số thực, sao cho với $x$ và $y$ trong $\mathbb{R}$, $x \sim y$ khi và chỉ khi $x - y \in \mathbb{Z}$. Ví dụ, $\sqrt{2} - 1 \sim \sqrt{2} + 17$ vì hiệu $(\sqrt{2} - 1) - (\sqrt{2} + 17) = -18$, là số nguyên. Chứng minh rằng $\sim$ là quan hệ tương đương. Chứng minh rằng mỗi lớp tương đương $[x]_{\sim}$ chứa chính xác một số $a$ thỏa mãn $0 \le a < 1$. (Do đó, tập các lớp tương đương theo $\sim$ tương ứng một-một với khoảng nửa mở $[0,1)$.)
+
+\item[6.] Cho $A$ và $B$ là tập bất kỳ, và giả sử $f\colon A \to B$. Định nghĩa quan hệ $\sim$ trên $A$ sao cho với bất kỳ $x$ và $y$ trong $A$, $x \sim y$ khi và chỉ khi $f(x) = f(y)$. Chứng minh rằng $\sim$ là quan hệ tương đương trên $A$.
+
+\item[7.] Cho $\mathbb{Z}^+$ là tập các số nguyên dương $\{1,2,3,\ldots\}$. Định nghĩa quan hệ hai ngôi $\mathcal{D}$ trên $\mathbb{Z}^+$ sao cho với $n$ và $m$ trong $\mathbb{Z}^+$, $n\,\mathcal{D}\,m$ nếu $n$ chia hết $m$, không dư. Tương đương, $n\,\mathcal{D}\,m$ nếu $n$ là ước của $m$, nghĩa là, tồn tại $k$ trong $\mathbb{Z}^+$ sao cho $m = nk$. Chứng minh rằng $\mathcal{D}$ là thứ tự bộ phận.
+
+\item[8.] Xét tập $\mathbb{N} \times \mathbb{N}$, gồm tất cả cặp có thứ tự các số tự nhiên. Vì $\mathbb{N} \times \mathbb{N}$ là tập, có thể có quan hệ hai ngôi trên $\mathbb{N} \times \mathbb{N}$. Quan hệ như vậy sẽ là tập con của $(\mathbb{N} \times \mathbb{N}) \times (\mathbb{N} \times \mathbb{N})$. Định nghĩa quan hệ hai ngôi $\preceq$ trên $\mathbb{N} \times \mathbb{N}$ sao cho với $(m,n)$ và $(k,\ell)$ trong $\mathbb{N} \times \mathbb{N}$, $(m,n) \preceq (k,\ell)$ khi và chỉ khi hoặc $m < k$ hoặc $((m = k) \wedge (n \le \ell))$. Mệnh đề nào sau đây đúng?
+\begin{enumerate}[label=\alph*)]
+\item $(2,7) \preceq (5,1)$
+\item $(8,5) \preceq (8,0)$
+\item $(0,1) \preceq (0,2)$
+\item $(17,17) \preceq (17,17)$
+\end{enumerate}
+Chứng minh rằng $\preceq$ là thứ tự toàn phần trên $\mathbb{N} \times \mathbb{N}$.
+
+\item[9.] Cho $\sim$ là quan hệ trên $\mathbb{N} \times \mathbb{N}$ sao cho $(n,m) \sim (k,\ell)$ khi và chỉ khi $n + \ell = m + k$. Chứng minh rằng $\sim$ là quan hệ tương đương.
+
+\item[10.] Cho $P$ là tập người và $\mathcal{C}$ là quan hệ `con của'. Nghĩa là $x\,\mathcal{C}\,y$ có nghĩa $x$ là con của $y$. Ý nghĩa của bao đóng bắc cầu $\mathcal{C}^*$ là gì? Giải thích câu trả lời.
+
+\item[11.] Cho $\mathcal{R}$ là quan hệ hai ngôi trên $\mathbb{N}$ sao cho $x\,\mathcal{R}\,y$ khi và chỉ khi $y = x + 1$. Xác định bao đóng bắc cầu $\mathcal{R}^*$. (Đó là quan hệ quen thuộc.) Giải thích câu trả lời.
+
+\item[12.] Giả sử $\mathcal{R}$ là quan hệ hai ngôi phản xạ, đối xứng trên tập $A$. Chứng minh rằng bao đóng bắc cầu $\mathcal{R}^*$ là quan hệ tương đương.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ứng dụng: Cơ sở dữ liệu quan hệ}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Một trong những ứng dụng chính của hệ thống máy tính là lưu trữ và thao tác các bộ sưu tập dữ liệu. \textbf{Cơ sở dữ liệu} (database) là tập hợp dữ liệu đã được tổ chức sao cho có thể thêm và xóa thông tin, cập nhật dữ liệu chứa trong đó, và truy xuất các phần dữ liệu cụ thể. \textbf{Hệ quản trị cơ sở dữ liệu} (Database Management System, hay DBMS) là chương trình máy tính cho phép tạo và thao tác cơ sở dữ liệu. Một DBMS phải có khả năng nhận và xử lý các lệnh thao tác dữ liệu trong cơ sở dữ liệu mà nó quản lý. Các lệnh này được gọi là \textbf{truy vấn} (queries), và ngôn ngữ mà chúng được viết gọi là \textbf{ngôn ngữ truy vấn} (query languages). Ngôn ngữ truy vấn là loại ngôn ngữ lập trình chuyên biệt.
+
+Có nhiều cách khác nhau mà dữ liệu trong cơ sở dữ liệu có thể được biểu diễn. Các DBMS khác nhau sử dụng nhiều cách biểu diễn dữ liệu và ngôn ngữ truy vấn khác nhau. Tuy nhiên, dữ liệu phổ biến nhất được lưu trữ trong quan hệ. Quan hệ trong cơ sở dữ liệu là quan hệ theo nghĩa toán học. Nghĩa là, nó là tập con của tích chéo các tập. Cơ sở dữ liệu lưu dữ liệu trong quan hệ được gọi là \textbf{cơ sở dữ liệu quan hệ} (relational database). Ngôn ngữ truy vấn cho hầu hết hệ quản trị cơ sở dữ liệu quan hệ là dạng nào đó của ngôn ngữ được biết đến là \textbf{Ngôn ngữ Truy vấn có Cấu trúc} (Structured Query Language), hay \textbf{SQL}. Trong phần này, ta sẽ xem qua rất ngắn gọn về SQL, cơ sở dữ liệu quan hệ, và cách chúng sử dụng quan hệ.
+
+\begin{infobox}
+Bạn sẽ học thêm về cơ sở dữ liệu trong các khóa \emph{Web \& Database Technology} và \emph{Information \& Data Management}.
+\end{infobox}
+
+Quan hệ chỉ là tập con của tích chéo các tập. Vì ta đang thảo luận biểu diễn dữ liệu trên máy tính, các tập là kiểu dữ liệu. Như trong Mục~4.6, ta sẽ dùng tên kiểu dữ liệu như \textit{int} và \textit{string} để chỉ các tập này. Quan hệ là tập con của tích chéo $\mathit{int} \times \mathit{int} \times \mathit{string}$ sẽ gồm các bộ ba có thứ tự như $(17, 42, \text{``hike''})$. Trong cơ sở dữ liệu quan hệ, dữ liệu được lưu dưới dạng một hoặc nhiều quan hệ như vậy. Các quan hệ được gọi là \textbf{bảng} (tables), và các bộ chứa trong chúng được gọi là \textbf{hàng} (rows) hay \textbf{bản ghi} (records).
+
+Xét ví dụ một thư viện cho mượn muốn lưu dữ liệu về thành viên, sách sở hữu, và sách nào đang được mượn. Dữ liệu này có thể được biểu diễn trong ba bảng, như minh họa trong Hình~4.8. Các quan hệ được hiển thị dưới dạng bảng thay vì tập các bộ có thứ tự, nhưng mỗi bảng thực chất là một quan hệ. Các hàng của bảng là các bộ. Bảng \texttt{Members} (Thành viên), ví dụ, là tập con của $\mathit{int} \times \mathit{string} \times \mathit{string} \times \mathit{string}$, và một trong các bộ là $(1782, \text{``Smit, Johan''}, \text{``107 Main St''}, \text{``New York, NY''})$. Bảng có một thứ mà quan hệ thông thường trong toán học không có. Mỗi cột trong bảng có tên. Các tên này được dùng trong ngôn ngữ truy vấn để thao tác dữ liệu trong bảng.
+
+Dữ liệu trong bảng \texttt{Members} là thông tin cơ bản mà thư viện cần để theo dõi thành viên, cụ thể là tên và địa chỉ của mỗi thành viên. Mỗi thành viên cũng có số \texttt{MemberID}, được thư viện gán. Hai thành viên khác nhau không thể có cùng \texttt{MemberID}, dù họ có thể có cùng tên hoặc cùng địa chỉ. \texttt{MemberID} đóng vai trò \textbf{khóa chính} (primary key) cho bảng \texttt{Members}. Một giá trị cho trước của khóa chính xác định duy nhất một hàng trong bảng. Tương tự, \texttt{BookID} trong bảng \texttt{Books} (Sách) là khóa chính cho bảng đó. Trong bảng \texttt{Loans} (Mượn), chứa thông tin về sách nào đang được mượn bởi thành viên nào, \texttt{MemberID} xác định rõ ràng thành viên mượn sách, và \texttt{BookID} cho biết rõ ràng sách nào. Mọi bảng đều có khóa chính, nhưng khóa có thể gồm nhiều hơn một cột. DBMS thực thi tính duy nhất của khóa chính. Nghĩa là, nó không cho phép người dùng sửa đổi bảng nếu điều đó dẫn đến hai hàng có cùng khóa chính.
+
+Thực tế rằng quan hệ là tập --- tập các bộ --- có nghĩa nó không thể chứa cùng bộ quá một lần. Theo ngôn ngữ bảng, bảng không nên chứa hai hàng giống hệt nhau. Nhưng vì không hai hàng nào có thể chứa cùng khóa chính, không thể có hai hàng giống hệt nhau. Vậy bảng thực sự là quan hệ theo nghĩa toán học.
+
+Thư viện phải có cách thêm và xóa thành viên và sách, và ghi nhận khi sách được mượn hoặc trả. Nó cũng nên có cách thay đổi địa chỉ thành viên hoặc ngày đến hạn sách mượn. Các phép toán như vậy được thực hiện bằng ngôn ngữ truy vấn của DBMS. SQL có các lệnh \texttt{INSERT}, \texttt{DELETE}, và \texttt{UPDATE} để thực hiện các phép toán này. Lệnh thêm Barack Obama làm thành viên thư viện với \texttt{MemberID} 999 sẽ là
+
+\begin{lstlisting}[language=SQL]
+INSERT INTO Members
+VALUES (999, "Barack Obama",
+        "1600 Pennsylvania Ave", "Washington, DC")
+\end{lstlisting}
+
+Khi nói đến xóa và sửa hàng, mọi thứ trở nên thú vị hơn vì cần xác định hàng nào sẽ bị ảnh hưởng. Điều này được thực hiện bằng cách chỉ định điều kiện mà hàng phải thỏa mãn. Ví dụ, lệnh này sẽ xóa thành viên có ID 4277:
+
+\begin{lstlisting}[language=SQL]
+DELETE FROM Members
+WHERE MemberID = 4277
+\end{lstlisting}
+
+Một lệnh có thể ảnh hưởng nhiều hàng. Ví dụ,
+
+\begin{lstlisting}[language=SQL]
+DELETE FROM Members
+WHERE Name = "Smit, Johan"
+\end{lstlisting}
+
+sẽ xóa mọi hàng có tên là ``Smit, Johan''. Lệnh cập nhật cũng chỉ định những thay đổi nào cần thực hiện:
+
+\begin{lstlisting}[language=SQL]
+UPDATE Members
+SET Address="19 South St", City="Hartford, CT"
+WHERE MemberID = 4277
+\end{lstlisting}
+
+Tất nhiên, thư viện cũng cần cách truy xuất thông tin từ cơ sở dữ liệu. SQL cung cấp lệnh \texttt{SELECT} cho mục đích này. Ví dụ, truy vấn
+
+\begin{lstlisting}[language=SQL]
+SELECT Name, Address
+FROM Members
+WHERE City = "New York, NY"
+\end{lstlisting}
+
+yêu cầu tên và địa chỉ của mọi thành viên sống ở New York City. Dòng cuối của truy vấn là điều kiện chọn ra một số hàng nhất định của quan hệ ``Members'', cụ thể là tất cả hàng có \texttt{City} là ``New York, NY''. Dòng đầu chỉ định dữ liệu nào từ các hàng đó nên được truy xuất. Dữ liệu thực sự được trả về dưới dạng bảng. Ví dụ, với dữ liệu trong Hình~4.8, truy vấn sẽ trả về bảng:
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Smit, Johan & 107 Main St \\
+Jones, Mary & 1515 Center Ave \\
+Lee, Joseph & 90 Park Ave \\
+De Jong, Sally & 89 Main St \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Bảng trả về bởi truy vấn \texttt{SELECT} thậm chí có thể được dùng để xây dựng truy vấn phức tạp hơn. Ví dụ, nếu bảng trả về bởi \texttt{SELECT} chỉ có một cột, thì nó có thể được dùng với toán tử \texttt{IN} để chỉ định bất kỳ giá trị nào liệt kê trong cột đó. Truy vấn sau sẽ tìm \texttt{BookID} của mọi sách đang được mượn bởi thành viên sống ở New York City:
+
+\begin{lstlisting}[language=SQL]
+SELECT BookID
+FROM Loans
+WHERE MemberID IN (SELECT MemberID
+                   FROM Members
+                   WHERE City = "New York, NY")
+\end{lstlisting}
+
+Nhiều hơn một bảng có thể được liệt kê trong phần \texttt{FROM} của truy vấn. Các bảng được liệt kê sẽ được nối thành một bảng lớn, sau đó dùng cho truy vấn. Bảng lớn này thực chất là tích chéo của các bảng được nối, khi các bảng được hiểu là tập các bộ. Ví dụ, giả sử ta muốn tựa đề của tất cả sách đang được mượn bởi thành viên sống ở New York City. Tựa đề nằm trong bảng \texttt{Books}, trong khi thông tin về mượn sách nằm trong bảng \texttt{Loans}. Để có dữ liệu mong muốn, ta có thể nối các bảng và trích xuất câu trả lời từ bảng đã nối:
+
+\begin{lstlisting}[language=SQL]
+SELECT Title
+FROM Books, Loans
+WHERE MemberID IN (SELECT MemberID
+                   FROM Members
+                   WHERE City = "New York, NY")
+\end{lstlisting}
+
+Thực ra, ta có thể thực hiện cùng truy vấn mà không dùng \texttt{SELECT} lồng. Ta cần thêm một chút ký hiệu: Nếu hai bảng có cột trùng tên, các cột có thể được đặt tên rõ ràng bằng cách kết hợp tên bảng với tên cột. Ví dụ, nếu bảng \texttt{Members} và bảng \texttt{Loans} đều đang được xét, thì các cột \texttt{MemberID} trong hai bảng có thể được gọi là \texttt{Members.MemberID} và \texttt{Loans.MemberID}. Vậy ta có thể viết:
+
+\begin{lstlisting}[language=SQL]
+SELECT Title
+FROM Books, Loans
+WHERE City = "New York, NY"
+      AND Members.MemberID = Loans.MemberID
+\end{lstlisting}
+
+Đây chỉ là mẫu nhỏ về những gì có thể làm với SQL và cơ sở dữ liệu quan hệ. Các điều kiện trong mệnh đề \texttt{WHERE} có thể rất phức tạp, và có các phép toán khác ngoài tích chéo để kết hợp bảng. Các phép toán cơ sở dữ liệu cần thiết để hoàn thành truy vấn có thể phức tạp và tốn thời gian. Trước khi thực hiện truy vấn, DBMS cố gắng \textbf{tối ưu hóa} nó. Nghĩa là, nó biến đổi truy vấn thành dạng có thể thực hiện hiệu quả nhất. Các quy tắc thao tác và đơn giản hóa truy vấn tạo thành \textbf{đại số quan hệ} (algebra of relations), và nghiên cứu lý thuyết cơ sở dữ liệu quan hệ phần lớn là nghiên cứu đại số quan hệ.
+
+\subsubsection*{Bài tập}
+
+\begin{enumerate}
+\item[1.] Sử dụng cơ sở dữ liệu thư viện từ Hình~4.8, kết quả của mỗi lệnh SQL sau là gì?
+
+\begin{enumerate}[label=\alph*)]
+\item
+\begin{lstlisting}[language=SQL]
+SELECT Name, Address
+FROM Members
+WHERE Name = "Smit, Johan"
+\end{lstlisting}
+
+\item
+\begin{lstlisting}[language=SQL]
+DELETE FROM Books
+WHERE Author = "Isaac Asimov"
+\end{lstlisting}
+
+\item
+\begin{lstlisting}[language=SQL]
+UPDATE Loans
+SET DueDate = "20 November"
+WHERE BookID = 221
+\end{lstlisting}
+
+\item
+\begin{lstlisting}[language=SQL]
+SELECT Title
+FROM Books, Loans
+WHERE Books.BookID = Loans.BookID
+\end{lstlisting}
+
+\item
+\begin{lstlisting}[language=SQL]
+DELETE FROM Loans
+WHERE MemberID IN (SELECT MemberID
+                   FROM Members
+                   WHERE Name = "Lee, Joseph")
+\end{lstlisting}
+\end{enumerate}
+
+\item[2.] Sử dụng cơ sở dữ liệu thư viện từ Hình~4.8, viết lệnh SQL để thực hiện mỗi thao tác cơ sở dữ liệu sau:
+\begin{enumerate}[label=\alph*)]
+\item Tìm \texttt{BookID} của mọi sách đến hạn ngày 1 tháng 11 năm 2010.
+\item Đổi \texttt{DueDate} của sách có \texttt{BookID} 221 thành 15 tháng 11 năm 2010.
+\item Đổi \texttt{DueDate} của sách có tựa ``Summer Lightning'' thành 14 tháng 11 năm 2010. Dùng \texttt{SELECT} lồng.
+\item Tìm tên mọi thành viên đang mượn sách. Dùng bảng nối trong mệnh đề \texttt{FROM} của lệnh \texttt{SELECT}.
+\end{enumerate}
+
+\item[3.] Giả sử một trường đại học muốn dùng cơ sở dữ liệu để lưu thông tin về sinh viên, các khóa học được mở trong học kỳ nhất định, và sinh viên nào đang học khóa nào. Thiết kế các bảng có thể dùng trong cơ sở dữ liệu quan hệ để biểu diễn dữ liệu này. Sau đó viết lệnh SQL để thực hiện mỗi thao tác cơ sở dữ liệu sau. (Bạn nên thiết kế bảng sao cho chúng hỗ trợ tất cả các lệnh này.)
+\begin{enumerate}[label=\alph*)]
+\item Ghi danh sinh viên có mã số 1928882900 vào ``English 260''.
+\item Loại ``Johan Smit'' khỏi ``Biology 110''.
+\item Loại sinh viên có mã số 2099299001 khỏi mọi khóa học mà sinh viên đó đang theo học.
+\item Tìm tên và địa chỉ của sinh viên đang học ``Computer Science 229''.
+\item Hủy khóa học ``History 101''.
+\end{enumerate}
+\end{enumerate}

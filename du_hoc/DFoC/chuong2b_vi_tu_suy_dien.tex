@@ -1,0 +1,709 @@
+%!TEX root = main.tex
+\section{Logic Vị từ}
+
+Trong logic mệnh đề, ta có thể cho $p$ đại diện cho ``Hoa hồng có màu đỏ'' và $q$ đại diện cho ``Hoa violet có màu xanh''. Khi đó $p \land q$ sẽ đại diện cho ``Hoa hồng có màu đỏ và hoa violet có màu xanh''. Nhưng chúng ta mất đi rất nhiều trong quá trình dịch sang logic. Vì logic mệnh đề chỉ xử lý các giá trị chân lý, nên không có gì ta có thể làm với $p$ và $q$ trong logic mệnh đề mà liên quan đến hoa hồng, hoa violet, hay màu sắc. Để áp dụng logic cho những thứ như vậy, chúng ta cần \textbf{vị từ}. Loại logic sử dụng vị từ được gọi là \textbf{logic vị từ} hay, khi nhấn mạnh vào việc thao tác và lập luận với các vị từ, \textbf{phép tính vị từ}.
+
+\subsection{Vị từ}
+
+Một vị từ là một dạng mệnh đề chưa hoàn chỉnh, trở thành mệnh đề khi nó được áp dụng cho một thực thể nào đó (hoặc, như ta sẽ thấy sau, cho nhiều thực thể). Trong mệnh đề ``bông hồng có màu đỏ'', vị từ là \textit{có màu đỏ}. Bản thân ``có màu đỏ'' không phải là một mệnh đề. Hãy nghĩ nó như có một chỗ trống cần được điền vào để tạo thành mệnh đề: ``--- có màu đỏ''. Trong mệnh đề ``bông hồng có màu đỏ'', chỗ trống được điền bởi thực thể ``bông hồng'', nhưng nó cũng có thể được điền bởi các thực thể khác: ``cái kho có màu đỏ''; ``rượu vang có màu đỏ''; ``quả chuối có màu đỏ''. Mỗi mệnh đề này sử dụng cùng một vị từ, nhưng chúng là các mệnh đề khác nhau và có thể có các giá trị chân lý khác nhau.
+
+Nếu $P$ là một vị từ và $a$ là một thực thể, thì $P(a)$ đại diện cho mệnh đề được tạo thành khi $P$ được áp dụng cho $a$. Nếu $P$ đại diện cho ``có màu đỏ'' và $a$ đại diện cho ``bông hồng'', thì $P(a)$ là ``bông hồng có màu đỏ''. Nếu $M$ là vị từ ``là hữu tử'' và $s$ là ``Socrates'', thì $M(s)$ là mệnh đề ``Socrates là hữu tử''.
+
+Bây giờ, bạn có thể hỏi, \textit{thực thể} chính xác là gì? Tôi sử dụng thuật ngữ này để chỉ một thứ cụ thể, có thể xác định được mà một vị từ có thể được áp dụng lên. Nói chung, không hợp lý khi áp dụng một vị từ cho trước lên mọi thực thể có thể, mà chỉ cho các thực thể thuộc một phạm trù nhất định. Ví dụ, có lẽ không hợp lý khi áp dụng vị từ ``là hữu tử'' cho chiếc sofa phòng khách của bạn. Vị từ này chỉ áp dụng cho các thực thể thuộc phạm trù sinh vật sống, vì không có cách nào một thứ có thể hữu tử trừ khi nó đang sống. Phạm trù này được gọi là \textbf{miền diễn ngôn} (domain of discourse) cho vị từ.\footnote{Trong ngôn ngữ lý thuyết tập hợp, sẽ được giới thiệu ở Chương~4, ta có thể nói rằng miền diễn ngôn là một tập hợp $U$, và vị từ là một hàm từ $U$ đến tập các giá trị chân lý. Định nghĩa này đủ rõ ràng mà không cần đến ngôn ngữ hình thức của lý thuyết tập hợp, và trên thực tế bạn nên xem định nghĩa này---và nhiều định nghĩa khác---như động lực cho ngôn ngữ đó.}
+
+Bây giờ ta đã sẵn sàng cho một định nghĩa hình thức về vị từ một ngôi. Một vị từ một ngôi, giống như tất cả các ví dụ ta đã thấy cho đến nay, có một chỗ trống duy nhất có thể được điền bởi một thực thể:
+
+\begin{definition}[Vị từ một ngôi]
+Một \textbf{vị từ một ngôi} liên kết một mệnh đề với mỗi thực thể trong một tập hợp các thực thể nào đó. Tập hợp này được gọi là \textbf{miền diễn ngôn} cho vị từ. Nếu $P$ là một vị từ và $a$ là một thực thể trong miền diễn ngôn của $P$, thì $P(a)$ ký hiệu mệnh đề được liên kết với $a$ bởi $P$. Ta nói rằng $P(a)$ là kết quả của việc \textbf{áp dụng} $P$ cho $a$.
+\end{definition}
+
+Rõ ràng ta có thể mở rộng điều này cho các vị từ có thể áp dụng cho hai hoặc nhiều thực thể. Trong mệnh đề ``John yêu Mary'', \textit{yêu} là một vị từ hai ngôi. Bên cạnh John và Mary, nó có thể được áp dụng cho các cặp thực thể khác: ``John yêu Jane'', ``Bill yêu Mary'', ``John yêu Bill'', ``John yêu John''. Nếu $Q$ là một vị từ hai ngôi, thì $Q(a,b)$ ký hiệu mệnh đề thu được khi $Q$ được áp dụng cho các thực thể $a$ và $b$. Lưu ý rằng mỗi ``chỗ trống'' trong một vị từ hai ngôi có thể có miền diễn ngôn riêng. Ví dụ, nếu $Q$ đại diện cho vị từ ``sở hữu'', thì $Q(a,b)$ chỉ có nghĩa khi $a$ là một người và $b$ là một vật thể vô tri. Một ví dụ về vị từ ba ngôi là ``$a$ đã tặng $b$ cho $c$'', và một vị từ bốn ngôi sẽ là ``$a$ đã mua $b$ từ $c$ với giá $d$ euro''. Nhưng hãy nhớ rằng không phải mọi vị từ đều phải tương ứng với một câu tiếng Anh.
+
+Khi các vị từ được áp dụng cho các thực thể, kết quả là các mệnh đề, và tất cả các phép toán của logic mệnh đề có thể được áp dụng cho các mệnh đề này giống như chúng có thể áp dụng cho bất kỳ mệnh đề nào. Cho $R$ là vị từ ``có màu đỏ'', và cho $L$ là vị từ hai ngôi ``yêu''. Nếu $a$, $b$, $j$, $m$ và $b$ là các thực thể thuộc các phạm trù thích hợp, thì ta có thể tạo các mệnh đề phức hợp như:
+\begin{align*}
+R(a) \land R(b) & \qquad \text{$a$ có màu đỏ và $b$ có màu đỏ} \\
+\neg R(a) & \qquad \text{$a$ không có màu đỏ} \\
+L(j,m) \land \neg L(m,j) & \qquad \text{$j$ yêu $m$, và $m$ không yêu $j$} \\
+L(j,m) \to L(b,m) & \qquad \text{nếu $j$ yêu $m$ thì $b$ yêu $m$} \\
+R(a) \leftrightarrow L(j,j) & \qquad \text{$a$ có màu đỏ khi và chỉ khi $j$ yêu $j$}
+\end{align*}
+
+\begin{infobox}
+Logic vị từ được xây dựng trên các ý tưởng phát triển bởi Charles Sanders Peirce (1839--1914), một nhà triết học, nhà logic học, nhà toán học và nhà khoa học người Mỹ. Nhiều đóng góp của ông cho logic chỉ được đánh giá cao nhiều năm sau khi ông qua đời. Ông được gọi là ``nhà triết học độc đáo và đa tài nhất của Mỹ và nhà logic học vĩ đại nhất của Mỹ'' và ``một trong những nhà triết học vĩ đại nhất từ trước đến nay''. Ngay từ năm 1886, ông đã nhận ra rằng các phép toán logic có thể được thực hiện bằng các mạch chuyển mạch điện; cùng ý tưởng này đã được sử dụng nhiều thập kỷ sau để sản xuất máy tính số, như chúng ta đã thấy ở Mục~2.3.
+
+Nguồn: \texttt{en.wikipedia.org/wiki/Charles\_Sanders\_Peirce}.
+\end{infobox}
+
+\subsection{Lượng từ}
+
+Hãy quay lại mệnh đề mà chúng ta đã bắt đầu phần này: ``Hoa hồng có màu đỏ''. Câu này khó xử lý hơn vẻ ngoài. Chúng ta vẫn chưa thể biểu diễn nó đúng cách trong logic. Vấn đề là mệnh đề này không nói về một thực thể cụ thể nào. Nó thực sự nói rằng \textit{tất cả} hoa hồng đều có màu đỏ (đây là một khẳng định sai, nhưng đó là ý nghĩa của nó). Vị từ chỉ có thể được áp dụng cho các thực thể riêng lẻ.
+
+Nhiều câu khác gặp khó khăn tương tự: ``Mọi người đều hữu tử.'' ``Một số hoa hồng có màu đỏ, nhưng không hoa hồng nào có màu đen.'' ``Tất cả các môn toán đều thú vị.'' ``Mọi số nguyên tố lớn hơn hai đều là số lẻ.'' Các từ như \textit{tất cả}, \textit{không}, \textit{một số}, và \textit{mọi} được gọi là \textbf{lượng từ}. Chúng ta cần có khả năng biểu diễn các khái niệm tương tự trong logic.
+
+Giả sử $P$ là một vị từ, và chúng ta muốn biểu diễn mệnh đề rằng $P$ đúng khi áp dụng cho bất kỳ thực thể nào trong miền diễn ngôn. Nghĩa là, chúng ta muốn nói ``với mọi thực thể $x$ trong miền diễn ngôn, $P(x)$ là đúng''. Trong logic vị từ, ta viết điều này bằng ký hiệu $\forall x(P(x))$. Ký hiệu $\forall$, trông giống chữ `A' lộn ngược, thường được đọc là ``với mọi'', sao cho $\forall x(P(x))$ được đọc là ``với mọi $x$, $P(x)$''. (Được hiểu rằng điều này có nghĩa là với mọi $x$ trong miền diễn ngôn của $P$.) Ví dụ, nếu $R$ là vị từ ``có màu đỏ'' và miền diễn ngôn bao gồm tất cả hoa hồng, thì $\forall x(R(x))$ biểu diễn mệnh đề ``Tất cả hoa hồng đều có màu đỏ''. Lưu ý rằng cùng một mệnh đề có thể được diễn đạt bằng tiếng Việt là ``Mọi bông hồng đều đỏ'' hoặc ``Bất kỳ bông hồng nào cũng đỏ''.
+
+Bây giờ, giả sử chúng ta muốn nói rằng một vị từ $P$ đúng cho \textit{một số} thực thể trong miền diễn ngôn của nó. Điều này được biểu diễn trong logic vị từ là $\exists x(P(x))$. Ký hiệu $\exists$, trông giống chữ `E' lật ngược, thường được đọc là ``tồn tại'', nhưng cách đọc chính xác hơn là ``tồn tại ít nhất một''. Do đó, $\exists x(P(x))$ được đọc là ``Tồn tại một $x$ sao cho $P(x)$'', và nó có nghĩa là ``tồn tại ít nhất một $x$ trong miền diễn ngôn của $P$ mà $P(x)$ đúng''. Nếu, một lần nữa, $R$ đại diện cho ``có màu đỏ'' và miền diễn ngôn là ``hoa hồng'', thì $\exists x(R(x))$ có thể được diễn đạt bằng tiếng Việt là ``Tồn tại một bông hồng đỏ'' hoặc ``Ít nhất một bông hồng có màu đỏ'' hoặc ``Có bông hồng màu đỏ''. Nó cũng có thể được diễn đạt là ``Một số hoa hồng có màu đỏ'', nhưng dạng số nhiều hơi gây hiểu nhầm vì $\exists x(R(x))$ đúng ngay cả khi chỉ có một bông hồng đỏ. Bây giờ ta có thể đưa ra các định nghĩa hình thức:
+
+\begin{definition}[Lượng từ phổ dụng và lượng từ tồn tại]
+Giả sử $P$ là một vị từ một ngôi. Khi đó $\forall x(P(x))$ là một mệnh đề, đúng khi và chỉ khi $P(a)$ đúng cho mọi thực thể $a$ trong miền diễn ngôn của $P$. Và $\exists x(P(x))$ là một mệnh đề, đúng khi và chỉ khi tồn tại ít nhất một thực thể $a$ trong miền diễn ngôn của $P$ mà $P(a)$ đúng. Ký hiệu $\forall$ được gọi là \textbf{lượng từ phổ dụng}, và $\exists$ được gọi là \textbf{lượng từ tồn tại}.
+\end{definition}
+
+$x$ trong $\forall x(P(x))$ và $\exists x(P(x))$ là một \textit{biến}. (Chính xác hơn, nó là một biến thực thể, vì giá trị của nó chỉ có thể là một thực thể.) Lưu ý rằng $P(x)$ đơn thuần---không có $\forall x$ hay $\exists x$---không phải là một mệnh đề. $P(x)$ không đúng cũng không sai vì $x$ không phải là một thực thể cụ thể, mà chỉ là một chỗ giữ chỗ trong một vị trí có thể được điền bằng một thực thể. $P(x)$ sẽ đại diện cho thứ gì đó như phát biểu ``$x$ có màu đỏ'', mà thực sự không phải là một phát biểu hoàn chỉnh. Nhưng nó trở thành một phát biểu khi $x$ được thay thế bởi một thực thể cụ thể, chẳng hạn ``bông hồng''. Tương tự, $P(x)$ trở thành một mệnh đề nếu một thực thể $a$ nào đó được thay thế cho $x$, cho ta $P(a)$.\footnote{Chắc chắn có chỗ cho sự nhầm lẫn về tên gọi ở đây. Trong thảo luận này, $x$ là một biến và $a$ là một thực thể. Nhưng đó chỉ là vì chúng ta đã quy ước như vậy. Bất kỳ chữ cái nào cũng có thể được sử dụng trong cả hai vai trò, và bạn phải chú ý đến ngữ cảnh để hiểu chuyện gì đang xảy ra. Thông thường, $x$, $y$ và $z$ sẽ là các biến.}
+
+Một \textbf{phát biểu mở} là một biểu thức chứa một hoặc nhiều biến thực thể, trở thành mệnh đề khi các thực thể được thay thế cho các biến. (Một phát biểu mở có các ``vị trí'' mở cần được điền vào.) $P(x)$ và ``$x$ có màu đỏ'' là các ví dụ về phát biểu mở chứa một biến. Nếu $L$ là một vị từ hai ngôi và $x$, $y$ là các biến, thì $L(x,y)$ là một phát biểu mở chứa hai biến. Một ví dụ bằng tiếng Việt sẽ là ``$x$ yêu $y$''. Các biến trong một phát biểu mở được gọi là \textbf{biến tự do}. Một phát biểu mở chứa $x$ như một biến tự do có thể được lượng hóa bằng $\forall x$ hoặc $\exists x$. Biến $x$ khi đó được gọi là \textbf{bị ràng buộc}. Ví dụ, $x$ là tự do trong $P(x)$ và bị ràng buộc trong $\forall x(P(x))$ và $\exists x(P(x))$. Biến tự do $y$ trong $L(x,y)$ trở thành bị ràng buộc trong $\forall y(L(x,y))$ và trong $\exists y(L(x,y))$.
+
+Lưu ý rằng $\forall y(L(x,y))$ vẫn là một phát biểu mở, vì nó chứa $x$ như một biến tự do. Do đó, có thể áp dụng lượng từ $\forall x$ hoặc $\exists x$ cho $\forall y(L(x,y))$, cho ta $\forall x \forall y(L(x,y))$ và $\exists x \forall y(L(x,y))$. Vì tất cả các biến đều bị ràng buộc trong các biểu thức này, chúng là các mệnh đề. Nếu $L(x,y)$ đại diện cho ``$x$ yêu $y$'', thì $\forall y(L(x,y))$ là thứ gì đó giống ``$x$ yêu tất cả mọi người'', và $\exists x \forall y(L(x,y))$ là mệnh đề ``Tồn tại một người yêu tất cả mọi người''. Tất nhiên, ta cũng có thể bắt đầu với $\exists x(L(x,y))$: ``Tồn tại một người yêu $y$''. Áp dụng $\forall y$ cho biểu thức này ta được $\forall y \exists x(L(x,y))$, nghĩa là ``Với mọi người, tồn tại một ai đó yêu người đó''. Đặc biệt lưu ý rằng $\exists x \forall y(L(x,y))$ và $\forall y \exists x(L(x,y))$ \textit{không} có cùng nghĩa. Tổng cộng, có tám mệnh đề khác nhau có thể thu được từ $L(x,y)$ bằng cách áp dụng các lượng từ, với sáu nghĩa phân biệt trong số đó.
+
+\begin{infobox}
+Từ bây giờ, chúng ta sẽ bỏ dấu ngoặc đơn khi không có sự nhập nhằng. Ví dụ, ta sẽ viết $\forall x\, P(x)$ thay vì $\forall x(P(x))$ và $\exists x \exists y\, L(x,y)$ thay vì $\exists x(\exists y(L(x,y)))$. Tuy nhiên, hãy đảm bảo rằng khi bạn bỏ dấu ngoặc đơn, bạn chỉ làm vậy khi không tồn tại sự nhập nhằng. Trong một bài tập của chương này, bạn sẽ thấy một ví dụ về hai phát biểu rất giống nhau mà dấu ngoặc đơn thay đổi nghĩa đáng kể!
+
+Hơn nữa, đôi khi chúng ta sẽ đặt tên cho vị từ và thực thể bằng các từ hoàn chỉnh thay vì chỉ bằng chữ cái, như trong $Red(x)$ và $Loves(john, mary)$. Điều này có thể giúp các ví dụ dễ đọc hơn.
+\end{infobox}
+
+\subsection{Các phép toán}
+
+Trong logic vị từ, các phép toán và các quy luật của đại số Boole vẫn áp dụng. Ví dụ, nếu $P$ và $Q$ là các vị từ một ngôi và $a$ là một thực thể trong miền diễn ngôn, thì $P(a) \to Q(a)$ là một mệnh đề, và nó tương đương logic với $\neg P(a) \lor Q(a)$. Hơn nữa, nếu $x$ là một biến, thì $P(x) \to Q(x)$ là một phát biểu mở, và $\forall x(P(x) \to Q(x))$ là một mệnh đề. $P(a) \land (\exists x\, Q(x))$ và $(\forall x\, P(x)) \to (\exists x\, P(x))$ cũng là các mệnh đề. Rõ ràng, logic vị từ có thể rất biểu cảm. Tiếc thay, việc dịch giữa logic vị từ và các câu tiếng Việt không phải lúc nào cũng hiển nhiên.
+
+\begin{warningbox}
+Một trong những lỗi thường gặp nhất trong logic vị từ là sự khác biệt trong cách dịch giữa các phát biểu như: ``Mọi người đều hữu tử'' và ``Tồn tại một người hữu tử''. Chúng tôi thảo luận về sự khác biệt trong cách dịch các phát biểu này trong một video bài giảng: \texttt{youtu.be/BJeGHIX\_ldY}.
+\end{warningbox}
+
+Hãy xem lại mệnh đề ``Hoa hồng có màu đỏ'' một lần nữa. Nếu miền diễn ngôn bao gồm hoa hồng, thì nó được dịch sang logic vị từ là $\forall x\, Red(x)$. Tuy nhiên, câu này có ý nghĩa hơn nếu miền diễn ngôn lớn hơn---ví dụ nếu nó bao gồm tất cả các loài hoa. Khi đó ``Hoa hồng có màu đỏ'' phải được đọc là ``Tất cả các loài hoa là hoa hồng đều có màu đỏ'', hoặc ``Với bất kỳ loài hoa nào, nếu loài hoa đó là hoa hồng, thì nó có màu đỏ''. Dạng cuối cùng được dịch trực tiếp sang logic là $\forall x(Rose(x) \to Red(x))$. Giả sử chúng ta muốn nói rằng tất cả hoa hồng đỏ đều đẹp. Cụm từ ``hoa hồng đỏ'' đang nói rằng cả hai điều: loài hoa là hoa hồng và nó có màu đỏ, và phải được dịch như một phép hội, $Rose(x) \land Red(x)$. Vậy, ``Tất cả hoa hồng đỏ đều đẹp'' có thể được biểu diễn là $\forall x((Rose(x) \land Red(x)) \to Pretty(x))$.
+
+\begin{notebox}
+Dưới đây là một vài ví dụ nữa về cách dịch từ logic vị từ sang tiếng Việt. Cho $H(x)$ đại diện cho ``$x$ hạnh phúc'', cho $C(y)$ đại diện cho ``$y$ là máy tính'', và cho $O(x,y)$ đại diện cho ``$x$ sở hữu $y$''. Khi đó ta có các bản dịch sau:
+
+\begin{itemize}
+\item Jack sở hữu một máy tính: $\exists x(O(jack, x) \land C(x))$. (Nghĩa là, tồn tại ít nhất một thứ sao cho Jack sở hữu thứ đó và thứ đó là máy tính.)
+
+\item Mọi thứ Jack sở hữu đều là máy tính: $\forall x(O(jack, x) \to C(x))$.
+
+\item Nếu Jack sở hữu một máy tính, thì anh ấy hạnh phúc:
+\[(\exists y(O(jack, y) \land C(y))) \to H(jack).\]
+
+\item Mọi người sở hữu một máy tính đều hạnh phúc:
+\[\forall x\big((\exists y(O(x,y) \land C(y))) \to H(x)\big).\]
+
+\item Mọi người đều sở hữu một máy tính: $\forall x \exists y(C(y) \land O(x,y))$. (Lưu ý rằng điều này cho phép mỗi người sở hữu một máy tính khác nhau. Mệnh đề $\exists y \forall x(C(y) \land O(x,y))$ sẽ có nghĩa là tồn tại một máy tính duy nhất được sở hữu bởi tất cả mọi người.)
+
+\item Mọi người đều hạnh phúc: $\forall x\, H(x)$.
+
+\item Mọi người đều không hạnh phúc: $\forall x(\neg H(x))$.
+
+\item Có người không hạnh phúc: $\exists x(\neg H(x))$.
+
+\item Ít nhất hai người hạnh phúc: $\exists x \exists y(H(x) \land H(y) \land (x \neq y))$. (Điều kiện $x \neq y$ là cần thiết vì hai biến khác nhau có thể tham chiếu đến cùng một thực thể. Mệnh đề $\exists x \exists y(H(x) \land H(y))$ đúng ngay cả khi chỉ có một người hạnh phúc.)
+
+\item Có đúng một người hạnh phúc:
+\[(\exists x\, H(x)) \land \forall y \forall z((H(y) \land H(z)) \to (y = z)).\]
+(Phần đầu của phép hội này nói rằng tồn tại ít nhất một người hạnh phúc. Phần thứ hai nói rằng nếu $y$ và $z$ đều là người hạnh phúc, thì thực ra họ là cùng một người. Nghĩa là, không thể tìm được hai người khác nhau mà đều hạnh phúc. Phát biểu này có thể được đơn giản hóa thành: $\exists x(H(x) \land \forall y(H(y) \to (x = y)))$. Bạn có thấy tại sao cách viết này cũng đúng không?)
+
+\item Để xem thêm một ví dụ chi tiết, hãy xem video bài giảng tại: \texttt{https://youtu.be/XsI2DJpaGYA}
+\end{itemize}
+\end{notebox}
+
+\subsection{Thế giới Tarski và cấu trúc hình thức}
+
+Để giúp bạn lập luận về các tập hợp phát biểu logic vị từ, hoặc thậm chí các lập luận được biểu diễn bằng logic vị từ, chúng ta thường sử dụng một ``cấu trúc toán học''. Đối với một số cấu trúc như vậy, một cách trực quan hóa dưới dạng \textbf{thế giới Tarski} đôi khi có thể hữu ích.
+
+\begin{infobox}
+Chân lý là gì? Năm 1933, nhà toán học người Ba Lan Alfred Tarski (1901--1983) đã công bố một bài báo rất dài bằng tiếng Ba Lan (có tựa đề \textit{Pojecie prawdy w jezykach nauk dedukcyjnych}), trình bày một định nghĩa toán học về chân lý cho các ngôn ngữ hình thức. ``Cùng với người đương thời Kurt Gödel [mà chúng ta sẽ gặp ở Chương~4], ông đã thay đổi diện mạo của logic trong thế kỷ hai mươi, đặc biệt thông qua công trình về khái niệm chân lý và lý thuyết mô hình.''
+
+Nguồn: \texttt{en.wikipedia.org/wiki/Alfred\_Tarski}.
+\end{infobox}
+
+Trong thế giới Tarski, có thể mô tả các tình huống bằng các công thức có thể đánh giá chân lý, được biểu diễn bằng ngôn ngữ bậc nhất sử dụng các vị từ như $Rightof(x,y)$, nghĩa là $x$ nằm ở bên phải của $y$ (ở đâu đó, không nhất thiết trực tiếp), hoặc $Blue(x)$, nghĩa là $x$ có màu xanh dương. Trong thế giới ở Hình~2.9, chẳng hạn, công thức $\forall x(Triangle(x) \to Blue(x))$ đúng, vì tất cả các tam giác đều có màu xanh dương, nhưng mệnh đề đảo của công thức này, $\forall x(Blue(x) \to Triangle(x))$, không đúng, vì đối tượng $c$ có màu xanh dương nhưng không phải tam giác.
+
+Một trường hợp cụ thể của thế giới Tarski có thể được mô tả hình thức hơn dưới dạng một ``cấu trúc toán học'' (mà đôi khi chúng ta gọi là \textbf{cấu trúc hình thức}). Các cấu trúc này cho phép ta đánh giá các phát biểu trong logic vị từ là đúng hoặc sai. Để hình thức hóa một cấu trúc, ta cần mô tả hai thứ: miền diễn ngôn $D$ của cấu trúc và với tất cả các vị từ, cho những đối tượng nào của miền chúng đúng. Ta thực hiện điều này bằng ký hiệu tập hợp, sẽ được thảo luận sâu hơn ở Chương~4. Mô tả hình thức của cấu trúc $S$ được minh họa trong Hình~2.9 là:
+\begin{itemize}
+\item $D = \{a, b, c, d, e\}$
+\item $Blue^S = \{b, c\}$
+\item $Gray^S = \{a, d\}$
+\item $Red^S = \{e\}$
+\item $Square^S = \{a\}$
+\item $Triangle^S = \{b\}$
+\item $Circle^S = \{c, d, e\}$
+\item $RightOf^S = \{(b,a), (c,a), (d,a), (e,a), (b,c), (d,c), (b,e), (c,e), (d,e)\}$
+\item $LeftOf^S = \{(a,b), (c,b), (e,b), (a,c), (e,c), (a,d), (c,d), (e,d), (a,e)\}$
+\item $BelowOf^S = \{(a,c), (a,d), (a,e), (b,c), (b,d), (b,e), (c,d), (c,e)\}$
+\item $AboveOf^S = \{(c,a), (c,b), (d,a), (d,b), (d,c), (e,a), (e,b), (e,c)\}$
+\end{itemize}
+
+Lưu ý rằng đối với các vị từ một ngôi, ta có một tập hợp các đối tượng mà vị từ đó đúng (ví dụ, chỉ $b$ và $c$ có màu xanh dương) và tập hợp này được ký hiệu bằng các dấu `\{' và `\}', gọi là ``ngoặc nhọn''.\footnote{Xem Chương~4.} Đối với các vị từ hai ngôi, ta có một tập hợp các \textbf{bộ} (tuple) được ký hiệu bằng các dấu `(' và `)', gọi là ``ngoặc tròn''. Trong trường hợp này, chẳng hạn, việc $(a,b)$ nằm trong tập $LeftOf^S$ có nghĩa là $LeftOf(a,b)$ đúng với cấu trúc này, tức là $a$ ở bên trái $b$.
+
+Các cấu trúc hình thức như vậy cũng có thể được định nghĩa để bác bỏ các lập luận được viết bằng logic vị từ, như chúng ta sẽ thấy ở Mục~2.5.3.
+
+\subsection{Tương đương logic}
+
+Để tính toán trong logic vị từ, chúng ta cần một khái niệm về tương đương logic. Rõ ràng, có các cặp mệnh đề trong logic vị từ có cùng ý nghĩa. Xét các mệnh đề $\neg(\forall x\, H(x))$ và $\exists x(\neg H(x))$, trong đó $H(x)$ đại diện cho ``$x$ hạnh phúc''. Mệnh đề đầu tiên có nghĩa ``Không phải mọi người đều hạnh phúc'', và mệnh đề thứ hai có nghĩa ``Có người không hạnh phúc''. Hai phát biểu này có cùng giá trị chân lý: nếu không phải mọi người đều hạnh phúc, thì có ai đó không hạnh phúc và ngược lại. Nhưng tương đương logic mạnh hơn nhiều so với việc chỉ có cùng giá trị chân lý. Trong logic mệnh đề, tương đương logic được định nghĩa theo các biến mệnh đề: hai mệnh đề phức hợp là tương đương logic nếu chúng có cùng giá trị chân lý cho tất cả các tổ hợp giá trị chân lý có thể của các biến mệnh đề mà chúng chứa. Trong logic vị từ, hai công thức là tương đương logic nếu chúng có cùng giá trị chân lý cho tất cả các vị từ có thể.
+
+Xét $\neg(\forall x\, P(x))$ và $\exists x(\neg P(x))$. Hai công thức này có nghĩa cho bất kỳ vị từ $P$ nào, và với bất kỳ vị từ $P$ nào chúng có cùng giá trị chân lý. Tiếc thay, ta không thể---như đã làm trong logic mệnh đề---chỉ kiểm tra điều này bằng bảng chân lý: không có các mệnh đề con, nối bởi $\land$, $\lor$, v.v., để xây dựng bảng. Vậy, hãy lập luận: Nói $\neg(\forall x\, P(x))$ đúng tức là nói rằng không phải trường hợp $P(x)$ đúng cho tất cả các thực thể $x$ có thể. Vậy, phải tồn tại một thực thể $a$ nào đó mà $P(a)$ sai. Vì $P(a)$ sai, $\neg P(a)$ đúng. Nhưng nói rằng tồn tại $a$ mà $\neg P(a)$ đúng chính là nói $\exists x(\neg P(x))$ đúng. Vậy, sự đúng của $\neg(\forall x\, P(x))$ kéo theo sự đúng của $\exists x(\neg P(x))$. Mặt khác, nếu $\neg(\forall x\, P(x))$ sai, thì $\forall x\, P(x)$ đúng. Vì $P(x)$ đúng với mọi $x$, $\neg P(x)$ sai với mọi $x$; nghĩa là, không tồn tại thực thể $a$ nào mà phát biểu $\neg P(a)$ đúng. Nhưng điều này chính là nói rằng phát biểu $\exists x(\neg P(x))$ sai. Trong mọi trường hợp, giá trị chân lý của $\neg(\forall x\, P(x))$ và $\exists x(\neg P(x))$ là như nhau. Vì điều này đúng cho bất kỳ vị từ $P$ nào, ta sẽ nói rằng hai công thức này tương đương logic và viết $\neg(\forall x\, P(x)) \equiv \exists x(\neg P(x))$.
+
+Một lập luận tương tự sẽ chứng minh rằng $\neg(\exists x\, P(x)) \equiv \forall x(\neg P(x))$. Hai tương đương này, giải thích mối quan hệ giữa phủ định và lượng hóa, được gọi là \textbf{Luật De Morgan cho logic vị từ}. (Chúng có liên quan chặt chẽ với Luật De Morgan cho logic mệnh đề; xem các bài tập.) Các luật này có thể được dùng để đơn giản hóa biểu thức. Ví dụ,
+\begin{align*}
+\neg \forall y(R(y) \lor Q(y)) &\equiv \exists y(\neg(R(y) \lor Q(y))) \\
+&\equiv \exists y((\neg R(y)) \land (\neg Q(y)))
+\end{align*}
+Có thể chưa rõ tại sao điều này đủ tiêu chuẩn là ``đơn giản hóa'', nhưng nói chung được coi là đơn giản hơn khi phép phủ định được áp dụng cho các mệnh đề cơ bản như $R(y)$, thay vì cho các biểu thức có lượng từ như $\forall y(R(y) \lor Q(y))$. Với một ví dụ phức tạp hơn:
+\begin{align*}
+&\neg \exists x\big(P(x) \land (\forall y(Q(y) \to Q(x)))\big) \\
+&\equiv \forall x\big(\neg(P(x) \land (\forall y(Q(y) \to Q(x))))\big) \\
+&\equiv \forall x\big((\neg P(x)) \lor (\neg \forall y(Q(y) \to Q(x)))\big) \\
+&\equiv \forall x\big((\neg P(x)) \lor (\exists y(\neg(Q(y) \to Q(x))))\big) \\
+&\equiv \forall x\big((\neg P(x)) \lor (\exists y(\neg(\neg Q(y) \lor Q(x))))\big) \\
+&\equiv \forall x\big((\neg P(x)) \lor (\exists y(\neg\neg Q(y) \land \neg Q(x)))\big) \\
+&\equiv \forall x\big((\neg P(x)) \lor (\exists y(Q(y) \land \neg Q(x)))\big)
+\end{align*}
+
+Luật De Morgan được liệt kê trong Hình~2.10 cùng với hai luật khác của logic vị từ. Các luật còn lại cho phép bạn hoán đổi thứ tự các biến khi hai lượng từ cùng loại (cả hai đều $\exists$ hoặc cả hai đều $\forall$) xuất hiện cùng nhau.
+
+\begin{figure}[h]
+\centering
+\begin{tabular}{|c|}
+\hline
+$\neg(\forall x\, P(x)) \equiv \exists x(\neg P(x))$ \\
+$\neg(\exists x\, P(x)) \equiv \forall x(\neg P(x))$ \\
+$\forall x \forall y\, Q(x,y) \equiv \forall y \forall x\, Q(x,y)$ \\
+$\exists x \exists y\, Q(x,y) \equiv \exists y \exists x\, Q(x,y)$ \\
+\hline
+\end{tabular}
+\caption{Bốn quy tắc quan trọng của logic vị từ. $P$ có thể là bất kỳ vị từ một ngôi nào, và $Q$ có thể là bất kỳ vị từ hai ngôi nào. Hai quy tắc đầu tiên được gọi là Luật De Morgan cho logic vị từ.}
+\end{figure}
+
+\begin{warningbox}
+Tuy nhiên, lưu ý rằng ta \textit{không được} thay đổi thứ tự của các lượng từ khác loại! Chẳng hạn: $\forall x \exists y(R(x,y)) \not\equiv \exists y \forall x(R(x,y))$. Nếu bạn chưa tin điều này, hãy thử vẽ một thế giới Tarski chứng minh sự không tương đương này.
+\end{warningbox}
+
+Để định nghĩa tương đương logic trong logic vị từ một cách hình thức hơn, ta cần nói về các công thức chứa \textit{biến vị từ}, tức là các biến đóng vai trò giữ chỗ cho các vị từ tùy ý giống như cách biến mệnh đề giữ chỗ cho mệnh đề và biến thực thể giữ chỗ cho thực thể. Với ý tưởng này, ta có thể định nghĩa tương đương logic và khái niệm liên quan chặt chẽ---hằng đúng---cho logic vị từ. Ta sẽ thấy rằng đây là những công cụ quan trọng trong việc viết chứng minh.
+
+\begin{definition}[Hằng đúng và tương đương logic trong logic vị từ]
+Cho $\mathcal{P}$ là một công thức của logic vị từ chứa một hoặc nhiều biến vị từ. $\mathcal{P}$ được gọi là \textbf{hằng đúng} nếu nó đúng mỗi khi tất cả các biến vị từ mà nó chứa được thay thế bằng các vị từ thực tế. Hai công thức $\mathcal{P}$ và $\mathcal{Q}$ được gọi là \textbf{tương đương logic} nếu $\mathcal{P} \leftrightarrow \mathcal{Q}$ là hằng đúng, tức là nếu $\mathcal{P}$ và $\mathcal{Q}$ luôn có cùng giá trị chân lý khi các biến vị từ mà chúng chứa được thay thế bằng các vị từ thực tế. Ký hiệu $\mathcal{P} \equiv \mathcal{Q}$ khẳng định rằng $\mathcal{P}$ tương đương logic với $\mathcal{Q}$.
+\end{definition}
+
+\subsection*{Bài tập}
+
+\begin{exercise}
+Đơn giản hóa mỗi mệnh đề sau. Trong câu trả lời, phép toán $\neg$ chỉ nên được áp dụng cho các vị từ riêng lẻ.
+\begin{enumerate}[label=\alph*)]
+\item $\neg \forall x(\neg P(x))$
+\item $\neg \exists x(P(x) \land Q(x))$
+\item $\neg \forall z(P(z) \to Q(z))$
+\item $\neg((\forall x\, P(x)) \land (\forall y\, Q(y)))$
+\item $\neg \forall x \exists y\, P(x,y)$
+\item $\neg \exists x(R(x) \land \forall y\, S(x,y))$
+\item $\neg \exists y(P(y) \leftrightarrow Q(y))$
+\item $\neg \forall x(P(x) \to (\exists y\, Q(x,y)))$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Đưa ra một lập luận cẩn thận để chứng minh rằng luật De Morgan thứ hai cho phép tính vị từ, $\neg(\forall x\, P(x)) \equiv \exists x(\neg P(x))$, là hợp lệ.
+\end{exercise}
+
+\begin{exercise}
+Tìm phủ định của mỗi mệnh đề sau. Đơn giản hóa kết quả; trong câu trả lời, phép toán $\neg$ chỉ nên được áp dụng cho các vị từ riêng lẻ.
+\begin{enumerate}[label=\alph*)]
+\item $\exists n(\forall s\, C(s,n))$
+\item $\exists n(\forall s(L(s,n) \to P(s)))$
+\item $\exists n(\forall s(L(s,n) \to (\exists x \exists y \exists z\, Q(x,y,z))))$
+\item $\exists n(\forall s(L(s,n) \to (\exists x \exists y \exists z(s = xyz \land R(x,y) \land T(y) \land U(x,y,z)))))$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Giả sử miền diễn ngôn cho vị từ $P$ chỉ chứa hai thực thể. Chứng minh rằng $\forall x\, P(x)$ tương đương với một phép hội của hai mệnh đề đơn giản, và $\exists x\, P(x)$ tương đương với một phép tuyển. Chứng minh rằng trong trường hợp này, Luật De Morgan cho logic mệnh đề và Luật De Morgan cho logic vị từ thực sự nói cùng một điều. Mở rộng kết quả cho miền diễn ngôn chứa đúng ba thực thể.
+\end{exercise}
+
+\begin{exercise}
+Cho $H(x)$ đại diện cho ``$x$ hạnh phúc'', trong đó miền diễn ngôn bao gồm mọi người. Biểu diễn mệnh đề ``Có đúng ba người hạnh phúc'' bằng logic vị từ.
+\end{exercise}
+
+\begin{exercise}
+Sự khác biệt giữa hai phát biểu sau là gì?
+\[\exists x\, Red(x) \land \exists x\, Square(x) \qquad \text{và} \qquad \exists x(Red(x) \land Square(x))\]
+\end{exercise}
+
+\begin{exercise}
+Vẽ một thế giới Tarski cho bài tập trên.
+\end{exercise}
+
+\begin{exercise}
+Biểu diễn câu nói của Johan Cruyff ``Chỉ có một quả bóng, nên bạn cần phải có nó'' bằng logic vị từ.
+\end{exercise}
+
+\begin{exercise}
+Cho $T(x,y)$ đại diện cho ``$x$ đã học $y$'', trong đó miền diễn ngôn cho $x$ bao gồm sinh viên và miền diễn ngôn cho $y$ bao gồm các môn khoa học máy tính (tại \textbf{TU}Delft). Dịch mỗi mệnh đề sau thành một câu tiếng Việt rõ ràng:
+\begin{enumerate}[label=\alph*)]
+\item $\forall x \forall y\, T(x,y)$
+\item $\forall x \exists y\, T(x,y)$
+\item $\forall y \exists x\, T(x,y)$
+\item $\exists x \exists y\, T(x,y)$
+\item $\exists x \forall y\, T(x,y)$
+\item $\exists y \forall x\, T(x,y)$
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Cho $F(x,t)$ đại diện cho ``Bạn có thể lừa người $x$ tại thời điểm $t$''. Dịch câu sau sang logic vị từ: ``Bạn có thể lừa một số người mọi lúc, và bạn có thể lừa mọi người một số lúc, nhưng bạn không thể lừa mọi người mọi lúc.''
+\end{exercise}
+
+\begin{exercise}
+Dịch mỗi câu sau thành một mệnh đề sử dụng logic vị từ. Tạo bất kỳ vị từ nào bạn cần. Nêu rõ ý nghĩa của mỗi vị từ.
+\begin{enumerate}[label=\alph*)]
+\item Tất cả quạ đều đen.
+\item Bất kỳ con chim trắng nào cũng không phải là quạ.
+\item Không phải tất cả chính trị gia đều trung thực.
+\item Tất cả voi tím đều có chân xanh.
+\item Không ai không thích pizza.
+\item Bất kỳ ai vượt qua kỳ thi cuối kỳ sẽ qua môn.\footnote{Điều này không đúng với môn \textit{Lập luận \& Logic}: xem đề cương môn học.}
+\item Nếu $x$ là một số dương bất kỳ, thì tồn tại một số $y$ sao cho $y^2 = x$.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Xét mô tả sau của một Thế giới Tarski. Liệu có tồn tại một trường hợp Thế giới Tarski với các tính chất này không? Nếu có, đưa ra một trường hợp với miền có tối đa 5 phần tử. Nếu không tồn tại, giải thích tại sao.
+\begin{itemize}
+\item $\forall x(Circle(x) \to \neg Blue(x))$
+\item $\exists x(Circle(x)) \land \exists x(Blue(x))$
+\item $RightOf(a,b)$
+\item $LeftOf(a,b) \lor Square(c)$
+\end{itemize}
+\end{exercise}
+
+\begin{exercise}
+Câu ``Có người có câu trả lời cho mọi câu hỏi'' là nhập nhằng. Đưa ra hai bản dịch của câu này sang logic vị từ, và giải thích sự khác biệt về nghĩa.
+\end{exercise}
+
+\begin{exercise}
+Câu ``Jane đang tìm một con chó'' là nhập nhằng. Một nghĩa là có một con chó cụ thể---có thể là con mà cô ấy đã mất---mà Jane đang tìm. Nghĩa khác là Jane đang tìm một con chó bất kỳ---có thể vì cô ấy muốn mua một con. Biểu diễn nghĩa đầu tiên bằng logic vị từ. Giải thích tại sao nghĩa thứ hai \textit{không} được biểu diễn bằng $\forall x(Dog(x) \to LooksFor(jane, x))$. Trên thực tế, nghĩa thứ hai không thể được biểu diễn trong logic vị từ. Các nhà triết học ngôn ngữ dành nhiều thời gian suy nghĩ về những điều như thế này. Họ đặc biệt thích câu ``Jane đang tìm một con kỳ lân'', đây là câu không nhập nhằng khi áp dụng vào thế giới thực. Tại sao lại như vậy?
+\end{exercise}
+
+%% =============================
+%% SECTION 2.5 - DEDUCTION
+%% =============================
+
+\section{Suy diễn}
+
+Logic có thể được áp dụng để rút ra kết luận từ một tập hợp các \textbf{tiền đề}. Một tiền đề chỉ đơn giản là một mệnh đề được biết là đúng hoặc đã được chấp nhận là đúng vì mục đích lập luận, và một kết luận là một mệnh đề có thể được suy ra một cách logic từ các tiền đề. Ý tưởng là nếu bạn tin rằng các tiền đề là đúng, thì logic buộc bạn phải chấp nhận rằng kết luận là đúng. Một \textbf{lập luận} là một khẳng định rằng một kết luận nhất định được suy ra từ một tập hợp tiền đề cho trước. Đây là một lập luận được trình bày theo định dạng truyền thống:
+\begin{center}
+\begin{tabular}{l}
+Nếu hôm nay là thứ Ba, thì đây là nước Bỉ \\
+Hôm nay là thứ Ba \\
+\hline
+$\therefore$ Đây là nước Bỉ
+\end{tabular}
+\end{center}
+Các tiền đề của lập luận được trình bày phía trên đường kẻ, và kết luận ở phía dưới. Ký hiệu $\therefore$ được đọc là ``do đó''. Khẳng định ở đây là kết luận ``Đây là nước Bỉ'' có thể được suy ra một cách logic từ hai tiền đề ``Nếu hôm nay là thứ Ba, thì đây là nước Bỉ'' và ``Hôm nay là thứ Ba''. Trên thực tế, khẳng định này là đúng. Logic buộc bạn phải chấp nhận lập luận này. Tại sao lại như vậy?
+
+\subsection{Lập luận}
+
+Cho $p$ đại diện cho mệnh đề ``Hôm nay là thứ Ba'', và cho $q$ đại diện cho mệnh đề ``Đây là nước Bỉ''. Khi đó lập luận trên có dạng
+\begin{center}
+\begin{tabular}{l}
+$p \to q$ \\
+$p$ \\
+\hline
+$\therefore\; q$
+\end{tabular}
+\end{center}
+
+Bây giờ, với \textit{bất kỳ} mệnh đề $p$ và $q$ nào---không chỉ những mệnh đề trong lập luận cụ thể này---nếu $p \to q$ đúng và $p$ đúng, thì $q$ cũng phải đúng. Điều này dễ dàng kiểm tra bằng bảng chân lý:
+\begin{center}
+\begin{tabular}{cc|c}
+$p$ & $q$ & $p \to q$ \\
+\hline
+0 & 0 & 1 \\
+0 & 1 & 1 \\
+1 & 0 & 0 \\
+1 & 1 & 1 \\
+\end{tabular}
+\end{center}
+Trường hợp duy nhất mà cả $p \to q$ và $p$ đều đúng là ở dòng cuối cùng của bảng, và trong trường hợp này, $q$ cũng đúng. Nếu bạn tin $p \to q$ và $p$, bạn không có lựa chọn logic nào khác ngoài việc tin $q$. Điều này áp dụng bất kể $p$ và $q$ đại diện cho gì. Ví dụ, nếu bạn tin ``Nếu Jill đang thở, thì Jill phải đóng thuế'', và bạn tin rằng ``Jill đang thở'', logic buộc bạn phải tin rằng ``Jill phải đóng thuế''. Lưu ý rằng ta không thể nói chắc chắn rằng kết luận đúng, chỉ rằng \textit{nếu} các tiền đề đúng, \textit{thì} kết luận phải đúng.
+
+Sự kiện này có thể được diễn đạt lại bằng cách nói rằng $((p \to q) \land p) \to q$ là một hằng đúng. Tổng quát hơn, với bất kỳ mệnh đề phức hợp $\mathcal{P}$ và $\mathcal{Q}$ nào, nói ``$\mathcal{P} \to \mathcal{Q}$ là hằng đúng'' cũng giống như nói ``trong mọi trường hợp mà $\mathcal{P}$ đúng, $\mathcal{Q}$ cũng đúng''.\footnote{Ở đây, ``trong mọi trường hợp'' có nghĩa là cho tất cả các tổ hợp giá trị chân lý của các biến mệnh đề trong $\mathcal{P}$ và $\mathcal{Q}$, tức là trong mọi tình huống. Nói $\mathcal{P} \to \mathcal{Q}$ là hằng đúng có nghĩa là nó đúng trong mọi trường hợp. Nhưng theo định nghĩa của $\to$, nó tự động đúng trong các trường hợp mà $\mathcal{P}$ sai. Trong các trường hợp mà $\mathcal{P}$ đúng, $\mathcal{P} \to \mathcal{Q}$ sẽ đúng khi và chỉ khi $\mathcal{Q}$ đúng.} Ta sẽ sử dụng ký hiệu $\mathcal{P} \Longrightarrow \mathcal{Q}$ để chỉ rằng $\mathcal{P} \to \mathcal{Q}$ là hằng đúng. Hãy nghĩ $\mathcal{P}$ là tiền đề của một lập luận hoặc phép hội của nhiều tiền đề. Nói $\mathcal{P} \Longrightarrow \mathcal{Q}$ tức là nói rằng $\mathcal{Q}$ được suy ra một cách logic từ $\mathcal{P}$. Ta sẽ dùng cùng ký hiệu trong cả logic mệnh đề và logic vị từ. (Lưu ý rằng quan hệ giữa $\Longrightarrow$ và $\to$ giống như quan hệ giữa $\equiv$ và $\leftrightarrow$.)
+
+\begin{definition}[Suy diễn logic]
+Cho $\mathcal{P}$ và $\mathcal{Q}$ là bất kỳ công thức nào trong logic mệnh đề hoặc logic vị từ. Ký hiệu $\mathcal{P} \Longrightarrow \mathcal{Q}$ được dùng để chỉ rằng $\mathcal{P} \to \mathcal{Q}$ là hằng đúng. Nghĩa là, trong mọi trường hợp mà $\mathcal{P}$ đúng, $\mathcal{Q}$ cũng đúng. Khi đó ta nói rằng $\mathcal{Q}$ có thể được \textbf{suy diễn logic} từ $\mathcal{P}$ hay $\mathcal{P}$ \textbf{kéo theo logic} $\mathcal{Q}$.
+\end{definition}
+
+Một lập luận mà kết luận được suy ra logic từ các tiền đề được gọi là \textbf{lập luận hợp lệ}. Để kiểm tra một lập luận có hợp lệ hay không, bạn phải thay thế các mệnh đề hoặc vị từ cụ thể mà nó chứa bằng các biến, rồi kiểm tra xem phép hội của các tiền đề có kéo theo logic kết luận hay không. Ta đã thấy rằng bất kỳ lập luận nào có dạng
+\begin{center}
+\begin{tabular}{l}
+$p \to q$ \\
+$p$ \\
+\hline
+$\therefore\; q$
+\end{tabular}
+\end{center}
+là hợp lệ, vì $((p \to q) \land p) \to q$ là hằng đúng. Quy tắc suy diễn này được gọi là \textbf{modus ponens}. Nó đóng vai trò trung tâm trong logic. Một quy tắc khác, liên quan chặt chẽ, là \textbf{modus tollens}, áp dụng cho các lập luận có dạng
+\begin{center}
+\begin{tabular}{l}
+$p \to q$ \\
+$\neg q$ \\
+\hline
+$\therefore\; \neg p$
+\end{tabular}
+\end{center}
+Để xác minh đây là lập luận hợp lệ, chỉ cần kiểm tra rằng $((p \to q) \land \neg q) \Longrightarrow \neg p$, tức là $((p \to q) \land \neg q) \to \neg p$ là hằng đúng. Ví dụ, lập luận sau có dạng modus tollens và do đó là lập luận hợp lệ:
+\begin{center}
+\begin{tabular}{l}
+Nếu Feyenoord là đội bóng tuyệt vời, thì tôi là vua Hà Lan \\
+Tôi không phải là vua Hà Lan \\
+\hline
+$\therefore$ Feyenoord không phải là đội bóng tuyệt vời
+\end{tabular}
+\end{center}
+Bạn nên lưu ý cẩn thận rằng tính hợp lệ của lập luận này không liên quan gì đến việc Feyenoord có thể chơi bóng đá giỏi hay không. Lập luận buộc bạn chấp nhận kết luận chỉ khi bạn chấp nhận các tiền đề. Bạn có thể tin một cách logic rằng kết luận là sai, miễn là bạn tin rằng ít nhất một trong các tiền đề là sai.\footnote{Trừ khi kết luận là hằng đúng. Nếu vậy, thì ngay cả khi một tiền đề sai, kết luận vẫn đúng. Tuy nhiên bạn luôn biết rằng nếu kết luận sai thì ít nhất một trong các tiền đề sai.}
+
+Một quy tắc suy diễn có tên khác là \textbf{Luật Tam đoạn luận} (Law of Syllogism), có dạng
+\begin{center}
+\begin{tabular}{l}
+$p \to q$ \\
+$q \to r$ \\
+\hline
+$\therefore\; p \to r$
+\end{tabular}
+\end{center}
+Ví dụ:
+\begin{center}
+\begin{tabular}{l}
+Nếu bạn học chăm chỉ, bạn học tốt ở trường \\
+Nếu bạn học tốt ở trường, bạn có việc làm tốt \\
+\hline
+$\therefore$ Nếu bạn học chăm chỉ, bạn có việc làm tốt
+\end{tabular}
+\end{center}
+
+Có nhiều quy tắc khác nữa. Dưới đây là một vài quy tắc có thể hữu ích. Một số trong số chúng có vẻ tầm thường, nhưng đừng đánh giá thấp sức mạnh của một quy tắc đơn giản khi nó được kết hợp với các quy tắc khác.
+\begin{center}
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p \lor q$ \\
+$\neg p$ \\
+\hline
+$\therefore\; q$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p$ \\
+$q$ \\
+\hline
+$\therefore\; p \land q$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p \land q$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p$ \\
+\hline
+$\therefore\; p \lor q$
+\end{tabular}
+\end{minipage}
+\end{center}
+
+Suy diễn logic có liên quan đến tương đương logic. Ta đã định nghĩa $\mathcal{P}$ và $\mathcal{Q}$ tương đương logic nếu $\mathcal{P} \leftrightarrow \mathcal{Q}$ là hằng đúng. Vì $\mathcal{P} \leftrightarrow \mathcal{Q}$ tương đương với $(\mathcal{P} \to \mathcal{Q}) \land (\mathcal{Q} \to \mathcal{P})$, ta thấy rằng $\mathcal{P} \equiv \mathcal{Q}$ khi và chỉ khi cả $\mathcal{Q} \Longrightarrow \mathcal{P}$ và $\mathcal{P} \Longrightarrow \mathcal{Q}$. Do đó, ta có thể chứng minh hai phát biểu tương đương logic bằng cách chứng minh rằng mỗi phát biểu có thể được suy diễn logic từ phát biểu kia. Ngoài ra, ta có rất nhiều quy tắc suy diễn logic ``miễn phí''---hai quy tắc suy diễn cho mỗi tương đương logic mà ta biết. Ví dụ, vì $\neg(p \land q) \equiv (\neg p \lor \neg q)$, ta suy ra $\neg(p \land q) \Longrightarrow (\neg p \lor \neg q)$. Chẳng hạn, nếu ta biết ``Trời không vừa nắng vừa ấm'', thì ta có thể suy diễn logic ``Hoặc trời không nắng hoặc trời không ấm.'' (Và ngược lại.)
+
+\subsection{Lập luận hợp lệ và chứng minh}
+
+Nói chung, các lập luận phức tạp hơn những gì ta đã xét cho đến nay. Đây là một ví dụ về lập luận có năm tiền đề:
+\begin{center}
+\begin{tabular}{l}
+$(p \land r) \to s$ \\
+$q \to p$ \\
+$t \to r$ \\
+$q$ \\
+$t$ \\
+\hline
+$\therefore\; s$
+\end{tabular}
+\end{center}
+Lập luận này có hợp lệ không? Tất nhiên, bạn có thể sử dụng bảng chân lý để kiểm tra xem phép hội của các tiền đề có kéo theo logic kết luận hay không. Nhưng với năm biến mệnh đề, bảng sẽ có 32 dòng, và kích thước bảng tăng nhanh khi sử dụng nhiều biến mệnh đề hơn. Vì vậy, nói chung, bảng chân lý không thực tế khi ta có nhiều biến.
+
+\begin{notebox}
+Với một số lượng biến tương đối nhỏ (ví dụ ba hoặc ít hơn), bảng chân lý có thể là phương pháp khá hiệu quả để kiểm tra tính hợp lệ của một lập luận. Trong một video bài giảng, tôi trình bày cách sử dụng bảng chân lý để kiểm tra tính hợp lệ cũng như cách tìm phản ví dụ cho các lập luận không hợp lệ: \texttt{youtu.be/lSZS3qbA88o}
+\end{notebox}
+
+May thay, có một cách khác để tiến hành, dựa trên sự kiện rằng có thể xâu chuỗi nhiều suy diễn logic lại với nhau. Nghĩa là, nếu $\mathcal{P} \Longrightarrow \mathcal{Q}$ và $\mathcal{Q} \Longrightarrow \mathcal{R}$, thì suy ra $\mathcal{P} \Longrightarrow \mathcal{R}$. Điều này có nghĩa là ta có thể chứng minh tính hợp lệ của một lập luận bằng cách suy diễn kết luận từ các tiền đề qua một chuỗi các bước. Các bước này có thể được trình bày dưới dạng một chứng minh:
+
+\begin{definition}[Chứng minh hình thức]
+Một \textbf{chứng minh hình thức} rằng một lập luận là hợp lệ bao gồm một dãy các mệnh đề sao cho mệnh đề cuối cùng trong dãy là kết luận của lập luận, và mỗi mệnh đề trong dãy hoặc là một tiền đề của lập luận hoặc được suy ra bằng suy diễn logic từ các mệnh đề đứng trước nó trong danh sách.
+\end{definition}
+
+Sự tồn tại của một chứng minh như vậy cho thấy kết luận được suy ra logic từ các tiền đề, và do đó lập luận là hợp lệ. Đây là một chứng minh hình thức rằng lập luận nêu trên là hợp lệ. Các mệnh đề trong chứng minh được đánh số, và mỗi mệnh đề có một lý giải.
+
+\begin{proof}
+\begin{enumerate}
+\item $q \to p$ \hfill tiền đề
+\item $q$ \hfill tiền đề
+\item $p$ \hfill từ 1 và 2 (modus ponens)
+\item $t \to r$ \hfill tiền đề
+\item $t$ \hfill tiền đề
+\item $r$ \hfill từ 4 và 5 (modus ponens)
+\item $p \land r$ \hfill từ 3 và 6
+\item $(p \land r) \to s$ \hfill tiền đề
+\item $s$ \hfill từ 7 và 8 (modus ponens)
+\end{enumerate}
+\end{proof}
+
+\begin{notebox}
+Một khi chứng minh hình thức đã được xây dựng, nó rất thuyết phục. Tiếc thay, không nhất thiết dễ dàng để đưa ra chứng minh. Thông thường, phương pháp tốt nhất là sự kết hợp giữa làm việc tiến (``Đây là những gì tôi biết, tôi có thể suy ra gì từ đó?'') và làm việc lùi (``Đây là những gì tôi cần chứng minh, những điều gì khác sẽ kéo theo điều đó?''). Với chứng minh này, tôi có thể đã nghĩ: Tôi muốn chứng minh $s$. Tôi biết rằng $p \land r$ kéo theo $s$, nên nếu tôi có thể chứng minh $p \land r$, tôi sẽ ổn. Nhưng để chứng minh $p \land r$, chỉ cần chứng minh $p$ và $r$ riêng biệt...
+\end{notebox}
+
+Tất nhiên, không phải mọi lập luận đều hợp lệ, vì vậy câu hỏi cũng đặt ra là, làm thế nào ta có thể chứng minh rằng một lập luận là không hợp lệ? Giả sử rằng lập luận đã được đưa về dạng tổng quát, với tất cả các mệnh đề cụ thể được thay thế bằng các biến mệnh đề. Lập luận hợp lệ nếu trong mọi trường hợp mà tất cả các tiền đề đúng, kết luận cũng đúng. Lập luận không hợp lệ nếu tồn tại dù chỉ một trường hợp mà tất cả các tiền đề đúng nhưng kết luận sai. Ta có thể chứng minh rằng một lập luận không hợp lệ bằng cách tìm một phép gán giá trị chân lý cho các biến mệnh đề làm cho tất cả các tiền đề đúng nhưng kết luận sai. Ta gọi phép gán như vậy là một \textbf{phản ví dụ}. Để bác bỏ tính hợp lệ của một lập luận, bạn phải luôn đưa ra một phản ví dụ. Điều này áp dụng trong logic mệnh đề, logic vị từ, và bất kỳ loại lập luận nào khác mà bạn có thể được yêu cầu bác bỏ.
+
+Ví dụ, xét lập luận có dạng:
+\begin{center}
+\begin{tabular}{l}
+$p \to q$ \\
+$q \to (p \land r)$ \\
+$r$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+\end{center}
+Trong trường hợp $p$ sai, $q$ sai, và $r$ đúng, ba tiền đề của lập luận này đều đúng, nhưng kết luận sai. Phản ví dụ này chứng minh rằng lập luận không hợp lệ.
+
+Để áp dụng tất cả điều này cho các lập luận được phát biểu bằng tiếng Việt, ta phải đưa vào các biến mệnh đề để đại diện cho tất cả các mệnh đề trong lập luận. Ví dụ, xét:
+\begin{quote}
+John sẽ đến bữa tiệc nếu Mary có mặt và Bill không có mặt. Mary sẽ đến bữa tiệc nếu đó là thứ Sáu hoặc thứ Bảy. Nếu Bill đến bữa tiệc, Tom sẽ có mặt. Tom sẽ không đến bữa tiệc nếu đó là thứ Sáu. Bữa tiệc vào thứ Sáu. Do đó, John sẽ đến bữa tiệc.
+\end{quote}
+Cho $j$ đại diện cho ``John sẽ đến bữa tiệc'', $m$ cho ``Mary sẽ có mặt'', $b$ cho ``Bill sẽ có mặt'', $t$ cho ``Tom sẽ có mặt'', $f$ cho ``Bữa tiệc vào thứ Sáu'', và $s$ cho ``Bữa tiệc vào thứ Bảy''. Khi đó lập luận này có dạng
+\begin{center}
+\begin{tabular}{l}
+$(m \land \neg b) \to j$ \\
+$(f \lor s) \to m$ \\
+$b \to t$ \\
+$f \to \neg t$ \\
+$f$ \\
+\hline
+$\therefore\; j$
+\end{tabular}
+\end{center}
+Đây là lập luận hợp lệ, như chứng minh sau đây cho thấy:
+\begin{proof}
+\begin{enumerate}
+\item $f \to \neg t$ \hfill tiền đề
+\item $f$ \hfill tiền đề
+\item $\neg t$ \hfill từ 1 và 2 (modus ponens)
+\item $b \to t$ \hfill tiền đề
+\item $\neg b$ \hfill từ 4 và 3 (modus tollens)
+\item $f \lor s$ \hfill từ 2
+\item $(f \lor s) \to m$ \hfill tiền đề
+\item $m$ \hfill từ 6 và 7 (modus ponens)
+\item $m \land \neg b$ \hfill từ 8 và 5
+\item $(m \land \neg b) \to j$ \hfill tiền đề
+\item $j$ \hfill từ 10 và 9 (modus ponens)
+\end{enumerate}
+\end{proof}
+
+\begin{infobox}
+Bạn có thể đã nhận thấy rằng chúng ta bắt đầu chứng minh bằng từ ``Chứng minh'' và kết thúc bằng một hình vuông nhỏ. Điều này được thực hiện để chỉ rõ nơi chứng minh bắt đầu và kết thúc. Trong lịch sử, nhiều ký hiệu và cách diễn đạt khác nhau đã được sử dụng để chỉ ra rằng chứng minh đã hoàn tất. Bạn có thể đã nghe đến chữ viết tắt Q.E.D. cho ``Quod Erat Demonstrandum'', dịch ra là: ``điều phải chứng minh''. Thậm chí ở Hy Lạp cổ đại, một phiên bản tiếng Hy Lạp của Q.E.D. đã được sử dụng bởi các nhà toán học Hy Lạp như Euclid. Bạn được tự do chọn giữa Q.E.D. và hình vuông mở, miễn là bạn nhớ rằng không có chứng minh nào hoàn chỉnh nếu nó không có một trong hai ký hiệu đó.
+\end{infobox}
+
+\subsection{Chứng minh trong logic vị từ}
+
+Cho đến nay trong phần này, ta chủ yếu làm việc với logic mệnh đề. Nhưng các định nghĩa về lập luận hợp lệ và suy diễn logic cũng áp dụng cho logic vị từ.
+
+Một trong những quy tắc suy diễn cơ bản nhất trong logic vị từ nói rằng $(\forall x\, P(x)) \Longrightarrow P(a)$ cho bất kỳ thực thể $a$ nào trong miền diễn ngôn của vị từ $P$. Nghĩa là, nếu một vị từ đúng với tất cả các thực thể, thì nó đúng với bất kỳ thực thể cụ thể nào. Quy tắc này có thể được kết hợp với các quy tắc suy diễn của logic mệnh đề để cho các lập luận hợp lệ sau:
+\begin{center}
+\begin{minipage}{0.35\textwidth}
+\begin{tabular}{l}
+$\forall x(P(x) \to Q(x))$ \\
+$P(a)$ \\
+\hline
+$\therefore\; Q(a)$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\textwidth}
+\begin{tabular}{l}
+$\forall x(P(x) \to Q(x))$ \\
+$\neg Q(a)$ \\
+\hline
+$\therefore\; \neg P(a)$
+\end{tabular}
+\end{minipage}
+\end{center}
+Các lập luận hợp lệ này mang tên \textbf{modus ponens} và \textbf{modus tollens} cho logic vị từ. Lưu ý rằng từ tiền đề $\forall x(P(x) \to Q(x))$ ta có thể suy ra $P(a) \to Q(a)$. Từ đây và từ tiền đề $P(a)$, ta có thể suy ra $Q(a)$ bằng modus ponens. Vậy lập luận đầu tiên ở trên là hợp lệ. Lập luận thứ hai tương tự, sử dụng modus tollens.
+
+Suy diễn logic nổi tiếng nhất mọi thời đại là một ứng dụng của modus ponens cho logic vị từ:
+\begin{center}
+\begin{tabular}{l}
+Mọi người đều hữu tử \\
+Socrates là người \\
+\hline
+$\therefore$ Socrates là hữu tử
+\end{tabular}
+\end{center}
+Đây có dạng modus ponens với $P(x)$ đại diện cho ``$x$ là người'', $Q(x)$ đại diện cho ``$x$ là hữu tử'', và $a$ đại diện cho thực thể nổi tiếng, Socrates.
+
+Để bác bỏ tính hợp lệ của các lập luận trong logic vị từ, bạn cần lại phải đưa ra một phản ví dụ. Những phản ví dụ này dễ dàng nhất được đưa ra dưới dạng một cấu trúc toán học. Ví dụ, xét lập luận sau:
+\begin{center}
+\begin{tabular}{l}
+$\exists x\, P(x)$ \\
+$\forall x(P(x) \to Q(x))$ \\
+\hline
+$\therefore\; \forall x\, Q(x)$
+\end{tabular}
+\end{center}
+Lập luận này không hợp lệ và ta có thể chứng minh điều đó bằng cấu trúc $\mathcal{A}$ sau:
+\begin{itemize}
+\item $D = \{a, b\}$
+\item $P^{\mathcal{A}} = \{a\}$
+\item $Q^{\mathcal{A}} = \{a\}$
+\end{itemize}
+Như bạn có thể thấy, tiền đề đầu tiên đúng. Tồn tại $x$ sao cho $P(x)$ đúng, cụ thể $x = a$. Tiền đề thứ hai cũng đúng, vì với mọi $x$ mà $P(x)$ đúng (chỉ $x = a$), $Q(x)$ cũng đúng (và thật vậy $Q(a)$ đúng). Tuy nhiên, kết luận sai, vì $Q(b)$ không đúng, nên $Q(x)$ không đúng với mọi $x$.
+
+Còn rất nhiều điều để nói về suy diễn logic và chứng minh trong logic vị từ, và chúng ta sẽ dành toàn bộ chương tiếp theo cho chủ đề này.
+
+\subsection*{Bài tập}
+
+\begin{exercise}
+Xác minh tính hợp lệ của modus tollens và Luật Tam đoạn luận.
+\end{exercise}
+
+\begin{exercise}
+Mỗi quy tắc suy diễn sau là hợp lệ. Với mỗi quy tắc, đưa ra một ví dụ về lập luận hợp lệ bằng tiếng Việt sử dụng quy tắc đó.
+
+\begin{center}
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p \lor q$ \\
+$\neg p$ \\
+\hline
+$\therefore\; q$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p \land q$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p$ \\
+$q$ \\
+\hline
+$\therefore\; p \land q$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.2\textwidth}
+\begin{tabular}{l}
+$p$ \\
+\hline
+$\therefore\; p \lor q$
+\end{tabular}
+\end{minipage}
+\end{center}
+\end{exercise}
+
+\begin{exercise}
+Có hai lập luận không hợp lệ nổi tiếng trông giống một cách lừa dối như modus ponens và modus tollens:
+
+\begin{center}
+\begin{minipage}{0.35\textwidth}
+\begin{tabular}{l}
+$p \to q$ \\
+$q$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+\end{minipage}
+\hfill
+\begin{minipage}{0.35\textwidth}
+\begin{tabular}{l}
+$p \to q$ \\
+$\neg p$ \\
+\hline
+$\therefore\; \neg q$
+\end{tabular}
+\end{minipage}
+\end{center}
+
+Chứng minh rằng mỗi lập luận này là không hợp lệ. Đưa ra một ví dụ bằng tiếng Việt sử dụng mỗi lập luận này.
+\end{exercise}
+
+\begin{exercise}
+Xác định xem mỗi lập luận sau có hợp lệ hay không. Nếu hợp lệ, đưa ra một chứng minh hình thức. Nếu không hợp lệ, chứng minh rằng nó không hợp lệ bằng cách tìm phép gán giá trị chân lý thích hợp cho các biến mệnh đề.
+\begin{enumerate}[label=\alph*)]
+\item
+\begin{tabular}[t]{l}
+$p \to q$ \\
+$q \to s$ \\
+$s$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+
+\item
+\begin{tabular}[t]{l}
+$p \land q$ \\
+$q \to (r \lor s)$ \\
+$\neg r$ \\
+\hline
+$\therefore\; s$
+\end{tabular}
+
+\item
+\begin{tabular}[t]{l}
+$p \lor q$ \\
+$q \to (r \land s)$ \\
+$\neg p$ \\
+\hline
+$\therefore\; s$
+\end{tabular}
+
+\item
+\begin{tabular}[t]{l}
+$(\neg p) \to t$ \\
+$q \to s$ \\
+$r \to q$ \\
+$\neg(q \lor t)$ \\
+\hline
+$\therefore\; p$
+\end{tabular}
+
+\item
+\begin{tabular}[t]{l}
+$p$ \\
+$s \to r$ \\
+$q \lor r$ \\
+$q \to \neg p$ \\
+\hline
+$\therefore\; \neg s$
+\end{tabular}
+
+\item
+\begin{tabular}[t]{l}
+$q \to t$ \\
+$p \to (t \to s)$ \\
+$p$ \\
+\hline
+$\therefore\; q \to s$
+\end{tabular}
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Với mỗi lập luận tiếng Việt sau, biểu diễn lập luận bằng logic mệnh đề và xác định xem lập luận có hợp lệ hay không.
+\begin{enumerate}[label=\alph*)]
+\item Nếu hôm nay là Chủ nhật, thì trời mưa hoặc tuyết rơi. Hôm nay là Chủ nhật và trời không mưa. Do đó, tuyết phải đang rơi.
+\item Nếu có cá trích trên pizza, Jack sẽ không ăn nó. Nếu Jack không ăn pizza, anh ấy sẽ tức giận. Jack đang tức giận. Do đó, có cá trích trên pizza.
+\item Lúc 8:00, Jane học trong thư viện hoặc làm việc ở nhà. Bây giờ là 8:00 và Jane không học trong thư viện. Vậy cô ấy phải đang làm việc ở nhà.
+\end{enumerate}
+\end{exercise}

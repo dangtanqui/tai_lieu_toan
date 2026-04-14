@@ -1,0 +1,46 @@
+\chapter{Giới thiệu và Mục tiêu Học tập}
+
+\textsc{Logic ban đầu có nghĩa là} `từ ngữ' hay `điều được nói ra' ở Hy Lạp cổ đại, và ngày nay có nghĩa là `tư duy' hay `lý luận'.\footnote{Trong tiếng Hy Lạp cổ đại, $\lambda o\gamma\iota\kappa\acute{\eta}$, theo Wikipedia: ``có lý trí, trí tuệ, biện chứng, lập luận''.} Với tư cách là một môn học, logic quan tâm đến các quy luật tổng quát nhất của chân lý. Tại sao chúng ta cần nghiên cứu loại lập luận này trong khoa học máy tính?
+
+Logic rất quan trọng vì máy tính số hoạt động với sự chính xác, vì việc thiết kế thuật toán đòi hỏi sự chính xác, và vì việc so sánh các thuật toán cũng đòi hỏi sự chính xác.
+
+Ngay cả khi một máy tính dường như đang tính toán với các đại lượng mơ hồ hoặc không chính xác, thì phép tính toán bên dưới vẫn là chính xác.\footnote{Bạn có thể tham gia một khóa học về tính toán lượng tử để tìm hiểu xem chúng có phải là ngoại lệ hay không.} Ví dụ, khi một mạng nơ-ron sâu đang được huấn luyện để nhận dạng mèo, thuật toán được sử dụng để huấn luyện mạng đó được đặc tả một cách chính xác. Hơn thế nữa, các tiêu chí mà chúng ta dùng để đánh giá xem mạng đã học đủ tốt hay chưa cũng được đặc tả một cách chính xác. Và mọi tính chất lý thuyết về thuật toán đều đã được chứng minh một cách chính xác.
+
+Lập luận, logic, và các khái niệm toán học liên quan như tập hợp, là nền tảng cho khoa học máy tính. Một phần ba chương trình năm nhất ngành Khoa học Máy tính tại \textbf{TU}Delft là toán học: \textit{Lập luận \& Logic}, \textit{Giải tích}, \textit{Đại số Tuyến tính} và \textit{Lý thuyết Xác suất \& Thống kê}.
+
+Với tư cách là một nhà khoa học máy tính, bạn phải có khả năng giải quyết các bài toán phức tạp. Một khía cạnh quan trọng là có thể đi đến những kết luận đúng đắn. Dựa trên các định lý và các quan sát từng phần, bạn có thể thu thập thêm kiến thức và bằng chứng để giúp chứng minh rằng một kết luận cụ thể là đúng về mặt toán học và logic. Bạn sẽ học cách làm điều này thông qua môn học \textit{Lập luận \& Logic}.
+
+Các kỹ năng toán học nền tảng mà bạn học được trong \textit{Lập luận \& Logic} được sử dụng trong tất cả các môn toán khác mà bạn sẽ học, cũng như trong các môn \textit{Tổ chức Máy tính}, \textit{Thuật toán \& Cấu trúc Dữ liệu}, \textit{Quản lý Thông tin \& Dữ liệu}, \textit{Học Máy}, và nhiều môn học khác. Trên thực tế, logic được nghiên cứu và sử dụng không chỉ trong toán học và khoa học máy tính, mà còn trong triết học (từ thời Hy Lạp cổ đại) và ngày nay trong các lĩnh vực như ngôn ngữ học và tâm lý học.
+
+Cuốn sách này được thiết kế để giúp bạn đạt được các mục tiêu học tập của môn \textit{Lập luận \& Logic}:
+
+\begin{enumerate}
+    \item Chuyển đổi một khẳng định chính xác về mặt logic sang và từ ngôn ngữ tự nhiên.
+    \item Mô tả hoạt động của các phép nối logic và các lượng từ.
+    \item Mô tả khái niệm tính hợp lệ logic.
+    \item Giải thích và áp dụng các phép toán cơ bản trên tập hợp và đồ thị.
+    \item Định nghĩa và thực hiện các phép tính với hàm, quan hệ và các lớp tương đương.
+    \item Xây dựng và diễn giải các định nghĩa đệ quy, bao gồm các cấu trúc dữ liệu đệ quy như cây.
+    \item Xây dựng một hàm hoặc quan hệ phù hợp khi cho trước một mô tả (bằng ngôn ngữ tự nhiên hoặc ký hiệu hình thức).
+    \item Xây dựng một chứng minh trực tiếp hoặc gián tiếp (bằng phản chứng, chia trường hợp, tổng quát hóa, hoặc quy nạp [cấu trúc]) hoặc tương đương logic---hoặc phản ví dụ cho các lập luận (không) hợp lệ---trong logic mệnh đề, logic vị từ và lý thuyết tập hợp.
+    \item Xác định loại chứng minh nào phù hợp cho một khẳng định cho trước.
+    \item Giải các bài toán Thỏa mãn Boolean (SAT) đơn giản.
+    \item Phát triển các đặc tả cho các công cụ xác minh như bộ giải SAT hoặc SMT.
+    \item Diễn giải phản hồi của các công cụ xác minh như bộ giải SAT hoặc SMT.
+\end{enumerate}
+
+\begin{warningbox}
+Chúng tôi không đề cập mọi chủ đề ở cùng một mức độ chi tiết. Một số chủ đề có thêm các video podcast đi kèm với cuốn sách. Các chủ đề khác, chẳng hạn như bộ giải SAT và SMT, chúng tôi hoàn toàn không đề cập. Hơn nữa, các bài giảng sẽ không bao quát hết mọi thứ trong sách. Một số chủ đề trong các bài giảng bạn sẽ chuẩn bị bằng các tài liệu khác: những tài liệu này sẽ được thông báo.
+\end{warningbox}
+
+\begin{infobox}
+Các phần có đánh dấu sao trong mục lục của cuốn sách này không nằm trong chương trình học của môn \textit{Lập luận \& Logic}.
+\end{infobox}
+
+\begin{infobox}
+Chúng tôi cung cấp lời giải cho một số bài tập, bắt đầu từ trang~183. Các bài tập có lời giải được đánh dấu bằng ký hiệu dao găm~(\textdagger). Bạn có thể đóng góp lời giải cho các bài tập còn lại!
+\end{infobox}
+
+Chủ đề xuyên suốt của cuốn sách là về việc đi đến kết luận đúng: chứng minh tính hợp lệ logic của các \textit{lập luận}. Thế nào là một lập luận hợp lệ? Khi nào một lập luận hợp lệ về mặt logic và khi nào thì không? Làm thế nào để xác định liệu một lập luận có hợp lệ về mặt logic hay không? Làm thế nào để suy ra một kết luận hợp lệ về mặt logic từ các tiên đề? Hoặc làm thế nào để chứng minh rằng một kết luận không phải là hệ quả logic của các tiên đề? Và làm thế nào để sử dụng các khả năng này trong khoa học máy tính?
+
+Chúng ta sẽ bắt đầu bằng việc tìm hiểu sâu hơn về logic.

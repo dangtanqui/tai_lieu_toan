@@ -1,0 +1,32 @@
+\chapter{Nhìn xa hơn *}
+
+\textsc{Đi đến kết luận đúng đắn} đã là chủ đề xuyên suốt của cuốn sách này. Chúng ta đã học cách biểu diễn các mệnh đề một cách hình thức trong Chương~2, và cách chứng minh hoặc bác bỏ các mệnh đề trong Chương~3. Chúng ta đã xem xét các phần nền tảng quan trọng hơn của khoa học máy tính trong Chương~4: tập hợp, hàm và quan hệ.
+
+Chương trước, chúng ta đã nói rằng các nền tảng của toán học đang ở trong ``một mớ hỗn độn triết học''. Đó là ở cuối phần thảo luận của chúng ta về việc đếm vượt qua vô hạn (Mục~4.7). Các câu hỏi từ công trình của Cantor, Russell và những người khác trở nên sâu sắc hơn vào những năm 1930 nhờ Kurt Gödel, người mà chúng ta đã đề cập ngắn gọn trong Chương~3. Tất cả điều này xảy ra ngay trước khi các máy tính thực tế được phát minh---đúng vậy, nghiên cứu lý thuyết về tính toán đã bắt đầu trước khi máy tính số tồn tại!
+
+Vì cuốn sách này nói về các nền tảng của tính toán, hãy nói thêm một chút về Gödel và người cùng thời với ông, Alan Turing.
+
+Gödel đã công bố hai \textbf{định lý bất toàn} (\textit{incompleteness theorems}) của mình vào năm 1931. Định lý bất toàn thứ nhất phát biểu rằng đối với bất kỳ hệ tiên đề đệ quy tự nhất quán nào đủ mạnh để mô tả số học của các số tự nhiên\footnote{Ví dụ, số học Peano, là một định nghĩa đệ quy của $\mathbb{N}$: xem \texttt{en.wikipedia.org/wiki/Peano\_axioms}.}, tồn tại các mệnh đề đúng về các số tự nhiên mà không thể được chứng minh từ các tiên đề. Nói cách khác, trong bất kỳ hệ hình thức nào của logic, sẽ luôn tồn tại các mệnh đề mà bạn không bao giờ có thể chứng minh cũng không thể bác bỏ: bạn không biết.
+
+Hai định lý này đã kết thúc nửa thế kỷ nỗ lực, bắt đầu với công trình của Frege và đạt đỉnh cao trong công trình của Russell và những người khác, nhằm tìm ra một tập hợp các tiên đề đủ cho toàn bộ toán học. Trò chơi kết thúc: tất cả các hệ tiên đề đều là những tấm biển chỉ đường trong khoảng không.
+
+\begin{infobox}
+John von Neumann, một trong những người tiên phong của các máy tính đầu tiên, đã viết ``Thành tựu của Kurt Gödel trong logic hiện đại là duy nhất và vĩ đại---thực sự nó còn hơn cả một tượng đài, nó là một cột mốc sẽ còn hiển hiện xa trong không gian và thời gian.'' John von Neumann là một nhà toán học, vật lý học và nhà khoa học máy tính người Mỹ gốc Hungary xuất sắc. Trong số nhiều thành tựu khác, ông đã phát minh ra kiến trúc von Neumann (quen thuộc từ môn \textit{Tổ chức Máy tính}?) và được gọi là ``bà đỡ'' của máy tính hiện đại.
+
+\medskip
+\noindent Nguồn: \texttt{en.wikipedia.org/wiki/Kurt\_Gödel} và \texttt{en.wikipedia.org/wiki/John\_von\_Neumann}.
+\end{infobox}
+
+Cùng khoảng thời gian đó, một trong những mô hình tính toán đầu tiên đã được phát triển bởi nhà toán học người Anh, Alan Turing. Turing quan tâm đến việc nghiên cứu các khả năng và giới hạn lý thuyết của tính toán. (Điều này vẫn là trước khi có các máy tính đầu tiên! Von Neumann biết Turing và nhấn mạnh rằng ``quan niệm nền tảng [về máy tính hiện đại] là nhờ Turing'' chứ không phải nhờ bản thân ông.\footnote{Một trích dẫn từ Frankel, đồng nghiệp của von Neumann. Xem \texttt{en.wikipedia.org/wiki/Von\_Neumann\_architecture}.}) Mô hình tính toán của Turing là một máy tính trừu tượng, rất đơn giản, mà ngày nay được biết đến với tên gọi \textbf{Máy Turing} (\textit{Turing machine}). Mặc dù Máy Turing không thực tế lắm, việc chúng được sử dụng như một mô hình nền tảng cho tính toán có nghĩa là mọi nhà khoa học máy tính nên quen thuộc với chúng, ít nhất ở mức tổng quát.\footnote{Thực tế, ngôn ngữ lập trình Brainf*ck mà chúng ta đã đề cập trước đó không khác nhiều so với một Máy Turing.} Bạn sẽ học về chúng trong môn \textit{Ôtômát, Tính toán được và Độ phức tạp}.
+
+Chúng ta cũng có thể sử dụng Máy Turing để định nghĩa các ``ngôn ngữ tính toán được''. Ý tưởng là bất cứ thứ gì có thể tính toán được, bạn đều có thể tính toán bằng một Máy Turing (chỉ là rất chậm). Turing, cùng với nhà toán học người Mỹ Alonzo Church, đã đưa ra một giả thuyết về bản chất của các hàm tính toán được.\footnote{Đây không phải là một định lý vì nó không được chứng minh, nhưng tất cả các nhà khoa học máy tính lý thuyết đều tin rằng nó đúng. Church và Turing đã chứng minh được rằng một hàm là $\lambda$-tính toán được khi và chỉ khi nó là Turing-tính toán được khi và chỉ khi nó là đệ quy tổng quát. Một giả thuyết khác được tin tưởng rộng rãi nhưng chưa được chứng minh là: đối với những thứ chúng ta có thể tính toán, có sự khác biệt giữa những thứ chỉ cần thời gian đa thức (theo kích thước đầu vào) để tính toán và những thứ cần nhiều hơn thời gian đa thức. Tìm hiểu thêm về điều này trong \textit{Ôtômát, Tính toán được và Độ phức tạp}.} Giả thuyết này phát biểu rằng một hàm trên các số tự nhiên là tính toán được bởi con người theo một thuật toán (bỏ qua các giới hạn tài nguyên), khi và chỉ khi nó tính toán được bởi một Máy Turing.
+
+Như vậy, Gödel đã thiết lập rằng có một số thứ chúng ta không bao giờ có thể biết chúng đúng hay sai, và Turing đã thiết lập một mô hình tính toán cho những thứ chúng ta có thể tính toán.
+
+Có mối liên hệ nào giữa các kết quả này không? \textbf{Bài toán dừng} (\textit{halting problem}) là bài toán xác định, cho trước một chương trình và một đầu vào cho chương trình đó, liệu chương trình có dừng khi chạy với đầu vào đó hay không. Turing đã chứng minh vào năm 1936 rằng một thuật toán tổng quát để giải bài toán dừng cho tất cả các cặp chương trình-đầu vào có thể không thể tồn tại.
+
+Chúng ta kết thúc cuốn sách với ý tưởng của chứng minh:
+
+\begin{proof}
+Xét một mô hình tính toán, chẳng hạn một Máy Turing. Với bất kỳ chương trình $f$ nào có thể xác định liệu các chương trình có dừng hay không, ta xây dựng một chương trình ``bệnh lý'' $g$ như sau. Khi được gọi với một đầu vào, $g$ truyền mã nguồn của chính nó và đầu vào của nó cho $f$, và khi $f$ trả về kết quả (dừng/không dừng), $g$ sẽ làm chính xác điều ngược lại với những gì $f$ dự đoán $g$ sẽ làm. Không tồn tại $f$ nào có thể xử lý trường hợp này.
+\end{proof}
