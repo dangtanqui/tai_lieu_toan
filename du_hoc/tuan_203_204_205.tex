@@ -906,39 +906,81 @@ Cuối cùng, bất phương trình không đúng tại \(t=9\), cũng như \(t=
 
 Tuần này chủ đề là vi phân. Trước tiên ta khám phá khái niệm vi phân qua ví dụ tàu lượn siêu tốc. Bạn sẽ học định nghĩa đạo hàm. Điều này có thể dùng để tính tốc độ và hệ số góc tiếp tuyến. Sau đó ta nói về các đạo hàm cơ bản và quy tắc tính, kèm bài tập để áp dụng. Ta cũng thảo luận khái niệm khả vi và dùng vi phân trong bài toán tối ưu.
 
-\subsection{Xấp xỉ đạo hàm tại điểm $a$}
+\subsection{Xấp xỉ đạo hàm tại điểm a}
 
-\textbf{Bài tập 1:} Tại A: +, tại B: 0, tại C: +, tại D: $-$, tại E: 0.
+\textbf{Bài tập 1:} Dựa vào hình:
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/tau_luon.png}
+\end{center}
+
+Tại A: +, tại B: 0, tại C: +, tại D: $-$, tại E: 0.
 
 \textit{Giải thích:} Đạo hàm dương khi giá trị hàm tăng (A, C). Đạo hàm âm khi giảm (D). Đạo hàm bằng không khi tiếp tuyến nằm ngang (B, E).
 
-\textbf{Bài tập 2:} $f'(2) \approx 3{,}0$.
+\textbf{Bài tập 2:}
 
-\textbf{Bài tập 3:} $f'(4) \approx -1{,}16$.
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/dao_hao_tai_1_diem.png}
+\end{center}
 
-\textbf{Bài tập 4:} Có $a \in [2,4]$ sao cho $f'(a)=0$: $a \approx 2{,}83$.
+$f'(2) = \dfrac{0.26621}{0.09} = 2.95789... \approx 3{,}0$.
 
-\textbf{Bài tập 5:} Xấp xỉ $f'(2)$ bằng thương sai phân ($\Delta x = 1$): nhỏ hơn giá trị thực vì tiếp tuyến dốc hơn đường cát tuyến.
+\textbf{Bài tập 3:}
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/dao_ham_tai_1_diem_bai_3.png}
+\end{center}
+
+$f'(4) = \dfrac{-0.10561}{0.09} = 1.1734... \approx -1.17$.
+
+\textbf{Bài tập 4:}
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/dao_ham_theo_hinh_ve_bai_4.png}
+\end{center}
+
+Có $a \in [2,4]$ sao cho $f'(a)=0$: $a = 2.83 \approx 2.8$.
+
+\textbf{Bài tập 5:} 
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/dao_ham_theo_hinh_ve_bai_5.png}
+\end{center}
+
+
+$f'(2)$ là hệ số góc của tiếp tuyến tại điểm $x = 2$. Tỉ số vi phân $\dfrac{f(2 + \Delta x) - f(2)}{\Delta x} = \dfrac{f(2 + \Delta x) - f(2)}{(2 + \Delta x) - 2}$ là hệ số góc của đường cát tuyến (đường màu xanh lá cây). Từ đồ thị so sánh độ dốc, đường tiếp tuyến sẽ dốc hơn nên hệ số góc > hệ số góc của cát tuyến (giá trị xấp xỉ). Do đó xấp xỉ của giá trị thực tế nhỏ hơn $f'(2)$.
 
 \subsection{Hàm đạo hàm}
 
-Hàm đạo hàm $f'$ (hoặc $\mathrm{d}f/\mathrm{d}x$) mô tả độ dốc đồ thị $f$.
+Hàm đạo hàm $f'$ (hoặc $\dfrac{\mathrm{d}f}{\mathrm{d}x}$) mô tả độ dốc đồ thị $f$.
 
-\textbf{Bài tập 6:} Ghép đồ thị hàm với đồ thị đạo hàm:
-1$\to$D, 2$\to$F, 3$\to$B, 4$\to$C, 5$\to$E, 6$\to$C.
+\textbf{Bài tập 6:} 
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/do_thi_ham.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/do_thi_dao_ham.png}
+\end{center}
+
+Ghép đồ thị hàm với đồ thị đạo hàm: 1$\to$D, 2$\to$F, 3$\to$B, 4$\to$C, 5$\to$E, 6$\to$C.
 
 Đồ thị A không phải đạo hàm của hàm nào. Đồ thị C là đạo hàm của cả hàm 4 và hàm 6.
+
+Giải thích lại: Dựa vào đồng biến (đi lên) hay nghịch biến (đi xuống) để xác định.
 
 \subsection{Đạo hàm của $x^2$}
 
 \textbf{Bài tập 7A:} Tại $x=3$:
 \[
-\dfrac{(3+h)^2-3^2}{h} = \dfrac{6h+h^2}{h} = 6+h \xrightarrow{h\to 0} 6.
+f'(3) = \lim_{h \to 0} \dfrac{(3+h)^2-3^2}{h} = \lim_{h \to 0} \dfrac{6h+h^2}{h} = \lim_{h \to 0} (6+h) = 6.
 \]
 
 \textbf{Bài tập 7B:} Tại $x=p$:
 \[
-\dfrac{(p+h)^2-p^2}{h} = 2p+h \xrightarrow{h\to 0} 2p.
+f'(p) = \lim_{h \to 0} \dfrac{(p+h)^2-p^2}{h} = \lim_{h \to 0} \dfrac{2ph + h^2}{h} = \lim_{h \to 0} 2p+h = 2p.
 \]
 Vậy $f'(x) = 2x$.
 
@@ -951,12 +993,12 @@ Vậy $f'(x) = 2x$.
 $f(x)$ & $f'(x)$ \\ \hline
 $x$ & $1$ \\
 $x^2$ & $2x$ \\
-$1/x$ & $-1/x^2$ \\
+$\dfrac{1}{x}$ & $\dfrac{-1}{x^2}$ \\
 $e^x$ & $e^x$ \\
 $3^x$ & $3^x\ln(3)$ \\
 $\sin(x)$ & $\cos(x)$ \\
 $\cos(x)$ & $-\sin(x)$ \\
-$\ln(x)$ & $1/x$ \\
+$\ln(x)$ & $\dfrac{1}{x}$ \\
 \end{tabular}
 \end{center}
 
@@ -965,11 +1007,13 @@ $\ln(x)$ & $1/x$ \\
 \item $(f+g)' = f'+g'$
 \item $(cf)' = cf'$
 \item $(fg)' = f'g + fg'$ (quy tắc tích)
-\item $(f(g(x)))' = f'(g(x))\cdot g'(x)$ (quy tắc chuỗi)
-\item $(f/g)' = (f'g-fg')/g^2$ (quy tắc thương)
+\item $(f(g(x)))' = f'(g(x))\cdot g'(x)$ (quy tắc chuỗi - hàm hợp)
+\item $(\dfrac{f}{g})' = \dfrac{f'g-fg'}{g^2}$ (quy tắc thương)
 \end{itemize}
 
 \subsection{Bài tập quy tắc tích và quy tắc chuỗi}
+
+\textbf{Bài 2:} $(3f(x))' = 3f'(x)$
 
 \textbf{Bài 3:} $f(x) = x^3\cos(x) \Rightarrow f'(x) = 3x^2\cos(x) - x^3\sin(x)$.
 
@@ -983,49 +1027,67 @@ $\ln(x)$ & $1/x$ \\
 
 \textbf{Bài 7:} $f(x) = 3x^3+5x^2+7x+9 \Rightarrow f'(x) = 9x^2+10x+7$.
 
-\textbf{Bài 8:} $f(x) = 1/\sqrt{x} = x^{-1/2} \Rightarrow f'(x) = -\tfrac{1}{2}x^{-3/2}$.
+\textbf{Bài 8:} $f(x) = \dfrac{1}{\sqrt{x}} = x^{-1/2} \Rightarrow f'(x) = -\tfrac{1}{2}x^{-3/2} = \dfrac{-1}{x\sqrt{x}}$.
 
-\textbf{Bài 9:} $\cos(x) = \sin(x+\pi/2) \Rightarrow \dfrac{\mathrm{d}}{\mathrm{d}x}\cos(x) = -\sin(x)$.
+\textbf{Bài 9:} $\cos(x) = \sin(x+\dfrac{\pi}{2}) \Rightarrow \dfrac{\mathrm{d}}{\mathrm{d}x}\cos(x) = \dfrac{\mathrm{d}}{\mathrm{d}x}\sin(x+\dfrac{\pi}{2}) = \cos(x+\dfrac{\pi}{2}) = -\sin(x)$.
 
-\textbf{Bài 10:} $\dfrac{\mathrm{d}}{\mathrm{d}x}\tan(x) = 1+\tan^2(x) = 1/\cos^2(x)$.
+\textbf{Bài 10:} $\dfrac{\mathrm{d}}{\mathrm{d}x}\tan(x) = \dfrac{\mathrm{d}}{\mathrm{d}x}\dfrac{\sin x}{\cos x} = 1 + \dfrac{\sin^2x}{\cos^2 x} = 1+\tan^2(x) = \dfrac{1}{\cos^2(x)}$.
 
 \textbf{Bài 11:} $\dfrac{\mathrm{d}}{\mathrm{d}x}2^x = 2^x\ln(2)$.
 
-\textbf{Bài 12:} $\dfrac{\mathrm{d}}{\mathrm{d}x}\log_2(x) = 1/(x\ln(2))$.
+\textbf{Bài 12:} $\dfrac{\mathrm{d}}{\mathrm{d}x}\log_2{x} = \dfrac{1}{x\ln{2}}$.
 
-\subsection{Đường tiếp tuyến}
+\subsection{PT tiếp tuyến}
 
-\textbf{Bài 1:} Tiếp tuyến $y=x^2+2$ tại $(1,3)$: $y = 2(x-1)+3 = 2x+1$.
+$y = y'(x_0)(x - x_0) + y(x_0)$.
 
-\textbf{Bài 2:} Tiếp tuyến $f(x)=(2x+1)^2+\ln(4x-3)$ tại $x=1$: $f'(1)=16$, $y = 16(x-1)+9$.
+\textbf{Bài 1:} Tiếp tuyến $y=x^2+2$ tại $(1,3)$:
 
-\textbf{Bài 3:} $f(x) = 2\sin(x)-1$, $f'(\pi/6)=\sqrt{3}$, góc với trục hoành: $\alpha = \pi/3$.
+$y'=2x \Rightarrow y'(1) = 2$
+
+PTTT: $y = 2(x-1)+3 = 2x+1$.
+
+\textbf{Bài 2:} Tiếp tuyến $f(x)=(2x+1)^2+\ln(4x-3)$ tại $x=1$
+
+$f'(x) = 4(2x + 1)^2 \Rightarrow f'(1)=16$
+
+$f(1) = 9$
+
+PTTT: $y = 16(x-1)+9$.
+
+\textbf{Bài 3:} $f(x) = 2\sin(x)-1$
+
+$f'(\dfrac{\pi}{6})=\sqrt{3}$, góc với trục hoành:
+
+$\tan \alpha = \sqrt{3} \Rightarrow \alpha = \dfrac{\pi}{3}$.
 
 \subsection{Đồ thị vuông góc}
 
-Hai đồ thị cắt vuông góc tại $(x,y)$ khi $f'(x)g'(x)=-1$.
+Hai đồ thị vuông góc tại $(x,y)$ khi $f'(x)g'(x)=-1$.
 
-\textbf{Bài 4:} $f(x) = 1/\sqrt{x}$, $g(x) = \sqrt{x}$, $h(x) = x^2$ tại $(1,1)$.
+\textbf{Bài 4:} $f(x) = \dfrac{1}{\sqrt{x}}$, $g(x) = \sqrt{x}$, $h(x) = x^2$ tại $(1,1)$.
 
-$f'(1)=-1/2$, $g'(1)=1/2$, $h'(1)=2$. $f'(1)\cdot h'(1) = -1$: $f$ và $h$ cắt vuông góc.
+$f'(x) = \dfrac{-1}{2x\sqrt{x}} \Rightarrow f'(1)=\dfrac{-1}{2}$
 
-\subsection{Khả vi}
+$g'(x) = \dfrac{1}{2\sqrt{x}} \Rightarrow g'(1)=\dfrac{1}{2}$
+
+$h'(x) = 2x \Rightarrow h'(1)=2$
+
+$f'(1)\cdot h'(1) = -1$: $f$ và $h$ vuông góc.
+
+\subsection{Bài tập}
 
 \textbf{Bài 1:} $f(x) = |x|$: hệ số góc tiếp tuyến bằng $1$ khi $x>0$, bằng $-1$ khi $x<0$.
 
-\textbf{Bài 2:} $f(x) = x^{1/3}$: $f'(x) = (1/3)x^{-2/3}$. Khi $p\to 0$, hệ số góc rất lớn (tiếp tuyến gần thẳng đứng).
+\textbf{Bài 2:} $f(x) = x^{\dfrac{1}{3}}$: $f'(x) = (\dfrac{1}{3})x^{\dfrac{-2}{3}} = \dfrac{1}{x^{\dfrac{2}{3}}}$. Khi $p\to 0$, hệ số góc rất lớn $\lim_{x \to 0}{f'(x)} = \lim_{x \to 0} \dfrac{1}{3x^{\dfrac{-2}{3}}} = \infty$ (tiếp tuyến gần thẳng đứng).
 
-\textbf{Bài 3:} Đồ thị không khả vi trên $(a,b)$: 1 (gấp khúc), 3 (nhảy), 4 (tiếp tuyến đứng), 6 (gấp khúc).
+\textbf{Bài 3:}
 
-\textbf{Khả vi tại $x=3$:}
-\begin{itemize}
-\item $|x-3|$: không (gấp khúc)
-\item $|x-3|^2 = (x-3)^2$: có
-\item $|x-3|^{1/2}$: không (gấp khúc)
-\item $\sqrt{(x-3)^2} = |x-3|$: không
-\item $(x-3)^{1/3}$: không (tiếp tuyến đứng)
-\item $(x-3)|x-3|$: có
-\end{itemize}
+\begin{center}
+    \includegraphics[width=0.5\linewidth]{du_hoc//images/do_thi_bai_3.png}
+\end{center}
+
+Đồ thị không khả vi trên $(a,b)$: 1 (gấp khúc), 3 (nhảy), 4 (tiếp tuyến đứng), 6 (gấp khúc).
 
 \subsection{Cực tiểu và cực đại cục bộ}
 
@@ -1034,86 +1096,231 @@ $f'(1)=-1/2$, $g'(1)=1/2$, $h'(1)=2$. $f'(1)\cdot h'(1) = -1$: $f$ và $h$ cắt
 \item Cực đại cục bộ không thể là cực đại toàn cục. $\to$ sai
 \item $f$ khả vi trên $[0,2]$, $f'\neq 0$ $\Rightarrow$ cực trị chỉ tại $x=0$ hoặc $x=2$. $\to$ đúng
 \item Cực tiểu toàn cục cũng là cực tiểu cục bộ. $\to$ đúng
-\item $f'(3)=0 \Rightarrow$ cực trị tại $x=3$. $\to$ sai
+\item $f'(3)=0 \Rightarrow$ cực trị tại $x=3$. $\to$ sai, xét $f(x) = (x - 3)^2$
 \item $f$ có cực đại cục bộ tại $x=-5 \Rightarrow f'(-5)=0$. $\to$ đúng
-\item Hàm đạt cực đại toàn cục tại nhiều nhất một điểm. $\to$ sai
-\item $f'(x)\neq 0$ mọi nơi khả vi $\Rightarrow$ không có cực trị. $\to$ sai
+\item Hàm đạt cực đại toàn cục tại nhiều nhất một điểm. $\to$ sai, xét $f(x) = \sin x$
+\item $f'(x)\neq 0$ mọi nơi khả vi $\Rightarrow$ không có cực trị. $\to$ sai, vì có thể xảy ra tại điểm không khả vi, ví dụ $f(x) = |x|$ không khả vi tại $x = 0$ vì khi $x > 0$ ta có $f'(x) = 1$ và khi $x < 0$ ta có $f'(x) = -1$, nhưng cực tiểu tại $x = 0$.
 \end{enumerate}
 
-\textbf{Ví dụ:} $f(x) = x-2\sqrt{x}$. $x=0$: điểm biên và kỳ dị (cực đại). $x=1$: điểm tới hạn (cực tiểu).
+\textbf{Ví dụ:} $f(x) = x-2\sqrt{x}$.
 
-\textbf{Bài 2A:} $f(x) = x^4-6x^3+5$. Điểm tới hạn: $f'(x) = 4x^3-18x^2 = 0 \Rightarrow x=0$ và $x=9/2$.
+TXĐ: $x \ge 0$
 
-\textbf{Bài 2B:} $x=0$: không đổi dấu (không cực trị). $x=4{,}5$: đổi từ $-$ sang $+$ (cực tiểu).
+$f'(x) = 1 - \dfrac{1}{\sqrt{x}}$
 
-\textbf{Bài 3:} $f(x) = x^{1/3}e^x$. Cực đại tại $x=-2/3$ (điểm tới hạn). Cực tiểu tại $x=0$ (điểm kỳ dị).
+$f'(x)$ không xác định tại $x = 0$. Với $x > 0$ ta có:
+
+$f'(x) = 0 \Rightarrow x = 1$
+
+$x=0$: điểm biên và kỳ dị (cực đại).
+
+$x=1$: điểm tới hạn (cực tiểu).
+
+\textbf{Bài 2A:} $f(x) = x^4-6x^3+5$. 
+
+$f'(x) = 4x^3-18x^2$
+
+Điểm tới hạn: $f'(x) = 0 \Rightarrow 4x^3-18x^2 = 0 \Rightarrow 2x^2(2x - 9) = 0 \Rightarrow x=0$ và $x=\dfrac{9}{2}$.
+
+\textbf{Bài 2B:} Vẽ bảng biến thiên
+
+$x=0$: không đổi dấu (không cực trị). 
+
+$x=\dfrac{9}{2}$: đổi từ $-$ sang $+$ (cực tiểu).
+
+\textbf{Bài 3:} $f(x) = x^{\dfrac{2}{3}}e^x$.
+
+$f'(x) = \dfrac{2}{3}.x^{\dfrac{-1}{3}}e^x + x^{\dfrac{2}{3}}e^x = (\dfrac{2}{3x^{\dfrac{1}{3}}} + x^{\dfrac{2}{3}})e^x$
+
+$f'(x)$ không xác định tại $x = 0$. Xét $x \ne 0$ ta có:
+
+$f'(x) = 0 \Rightarrow (\dfrac{2}{3x^{\dfrac{1}{3}}} + x^{\dfrac{2}{3}})e^x = 0 \Rightarrow \dfrac{2}{3x^{\dfrac{1}{3}}} + x^{\dfrac{2}{3}} = 0 \Rightarrow x^{\dfrac{2}{3}}.x^{\dfrac{1}{3}} = \dfrac{-2}{3} \Rightarrow x = \dfrac{-2}{3}$
+
+Lập bảng xét dấu
+
+Cực đại tại $x=\dfrac{-2}{3}$ (điểm tới hạn). 
+
+Cực tiểu tại $x=0$ (điểm kỳ dị).
 
 \subsection{Chuỗi luyện tập (đạo hàm)}
 
 \textbf{Bài 1:}
 \begin{itemize}
-\item $f(x) = \ln(5x) \Rightarrow f'(x) = 1/x$
-\item $f(x) = (2x+1)/(x+1) \Rightarrow f'(x) = -1/(x+1)^2$
-\item $f(x) = x^2\sqrt{x} \Rightarrow f'(x) = (5/2)x^{3/2}$
+\item $f(x) = \ln(5x) \Rightarrow f'(x) = \dfrac{5}{5x} = \dfrac{1}{x}$
+\item $f(x) = \dfrac{2x+1}{x+1} \Rightarrow f'(x) = \dfrac{-1}{(x+1)^2}$
+\item $f(x) = x^2\sqrt{x} \Rightarrow f(x) = x^2.x^{\dfrac{1}{2}} = x^{\dfrac{5}{2}} \Rightarrow f'(x) = \dfrac{5}{2}x^{\dfrac{3}{2}} = \dfrac{5x\sqrt{x}}{2}$
 \item $f(x) = e^x\sin(x) \Rightarrow f'(x) = e^x\sin(x)+e^x\cos(x)$
 \end{itemize}
 
 \textbf{Bài 2:}
 \begin{itemize}
 \item $f(x) = \cos(3x^2+1) \Rightarrow f'(x) = -6x\sin(3x^2+1)$
-\item $f(x) = 1/\sin(x) \Rightarrow f'(x) = -\cos(x)/\sin^2(x)$
-\item $f(x) = \log_2(x) \Rightarrow f'(x) = 1/(x\ln 2)$
-\item $f(x) = x^3/e^x \Rightarrow f'(x) = (3x^2-x^3)/e^x$
+\item $f(x) = \dfrac{1}{\sin(x)} \Rightarrow f'(x) = \dfrac{-\cos(x)}{\sin^2(x)}$
+\item $f(x) = \log_2 x \Rightarrow f'(x) = \dfrac{1}{x\ln 2}$
+\item $f(x) = \dfrac{x^3}{e^x} \Rightarrow f'(x) = \dfrac{3x^2e^x-x^3e^x}{e^{2x}} = \dfrac{3x^2-x^3}{e^x}$
 \end{itemize}
 
-\textbf{Bài A--D:}
+\textbf{Bài 3:}
+
 \begin{itemize}
-\item $f(x)=x^2\cdot 3^x \Rightarrow f'(x)=2x\cdot 3^x+x^2\cdot 3^x\ln 3$
-\item $f(x)=\ln(\cos x) \Rightarrow f'(x)=-\tan(x)$
-\item $f(x)=\ln(x+\sqrt{x^2+1}) \Rightarrow f'(x)=1/\sqrt{x^2+1}$
-\item $f(x)=(x^4+1)\cos(x^2) \Rightarrow f'(x)=4x^3\cos(x^2)-2x(x^4+1)\sin(x^2)$
+    \item \textbf{A:} $f(x)=x^2\cdot 3^x \Rightarrow f'(x)=2x\cdot 3^x+x^2\cdot 3^x\ln 3$
+    \item \textbf{B:} $f(x)=\ln(\cos x) \Rightarrow f'(x)= \dfrac{-\sin x}{\cos x} = -\tan(x)$
+    \item \textbf{C:} $f(x)=\ln(x+\sqrt{x^2+1}) \Rightarrow f'(x) = \dfrac{1 + \dfrac{2x}{2\sqrt{x^2 + 1}}}{x + \sqrt{x^2 + 1}} = \dfrac{\dfrac{x + \sqrt{x^2 + 1}}{\sqrt{x^2 + 1}}}{x + \sqrt{x^2 + 1}} = \dfrac{1}{\sqrt{x^2+1}}$
+    \item \textbf{D:} $f(x)=(x^4+1)\cos(x^2) \Rightarrow f'(x) = 4x^3\cos(x^2)-2x(x^4+1)\sin(x^2)$
 \end{itemize}
 
-\textbf{Bài tập 4:}
+\textbf{Bài 4:}
 \begin{itemize}
-\item $f(x)=2^{x^2} \Rightarrow f'(x)=2^{x^2}\cdot 2x\cdot\ln 2$
-\item $f(x)=\ln(2x+2)/(x+1) \Rightarrow f'(x)=(1-\ln(2x+2))/(x+1)^2$
-\item $f(x)=x\ln x - x \Rightarrow f'(x)=\ln x$
-\item $f(x)=x^x \Rightarrow f'(x)=x^x(\ln x+1)$
+\item \textbf{A:} $f(x)=2^{x^2} \Rightarrow f'(x)=2^{x^2}\cdot 2x\cdot\ln 2$
+\item \textbf{B:} $f(x)=\dfrac{\ln(2x+2)}{x+1} \Rightarrow f'(x) = \dfrac{\dfrac{2}{2x + 2}.(x + 1) - \ln (2x + 2)}{(x + 1)^2} = \dfrac{1-\ln(2x+2)}{(x+1)^2}$
+\item \textbf{C:} $f(x)=x\ln x - x \Rightarrow f'(x) = \ln x + \dfrac{x}{x} - 1 = \ln x$
+\item \textbf{D:} $f(x)=x^x = e^{x \ln x} \Rightarrow f'(x) = e^{x \ln x} (\ln x + \dfrac{x}{x}) = x^x(\ln x+1)$
 \end{itemize}
 
-\textbf{Bài tập 5:}
+\textbf{Bài 5:}
 \begin{itemize}
-\item $g(x)=f(x^2)/x$, $g'(1)=3$
-\item $g(x)=x^2 f(x)$, $g''(1)=13$
-\item $y=2x+3$ tiếp xúc $f$ tại $x=-1$ và $x=1$: $(f(f(x)))'|_{x=-1}=4$
+\item \textbf{A:} Cho $f(1) = 1, f'(1) = 2$ và $f''(1) = 3$. Cho $g(x)= \dfrac{f(x^2)}{x}$, Tính $g'(1)$
+
+$g'(x) = \dfrac{2xf'(x^2).x - f(x^2)}{x^2} = \dfrac{2x^2f'(x^2) - f(x^2)}{x^2}$
+
+$g'(1) = \dfrac{2.1^2.f'(1) -f(1)}{1^2} = 3$
+
+\item \textbf{B:} Cho $f(1) = 1, f'(1) = 2$ và $f''(1) = 3$. Cho $g(x)=x^2 f(x)$, Tính $g''(1)$
+
+$g'(x) = 2xf(x) + x^2f'(x) \Rightarrow g''(x) = 2f(x) + 2xf'(x) + 2xf'(x) + x^2 f''(x) = 2f(x) + 4xf'(x) + x^2 f''(x)$
+
+$g''(1) = 2f(1) + 4.1.f'(1) + 1^2.f''(1) = 13$
+
+\item \textbf{C:} $y=2x+3$ tiếp xúc $f(x)$ tại $x=-1$ và $x=1$. Tính $(f(f(-1)))'$
+
+$f'(x) = 2$
+
+Tiếp xúc tại $x=-1$ và $x=1$. Suy ra: $f'(-1) = f'(1) = 2$
+
+$f(-1) = 1$
+
+$(f(f(x)))' = f'(x)f'(f(x))$
+
+$(f(f(-1)))' = f'(-1)f'(f(-1)) = f'(-1).f'(1) = 4$
+
 \end{itemize}
 
-\subsection{Tiếp tuyến (bài tập)}
+\textbf{Bài 6:}
+\begin{itemize}
+    \item \textbf{A:} Tiếp tuyến $g(x)=4+2\cos(2x)$ tại $x=\dfrac{\pi}{12}$
 
-\textbf{A:} Tiếp tuyến $g(x)=4+2\cos(2x)$ tại $x=\pi/12$: $y=-2(x-\pi/12)+4+\sqrt{3}$.
+    $g'(x) = -4\sin 2x \Rightarrow g'(\dfrac{\pi}{12}) = -4\sin \dfrac{\pi}{6} = -2$
 
-\textbf{B:} Góc giữa $f(x)=\ln x-\sqrt{3}$ và $g(x)=-\sqrt{x^2+2}$ tại $x=1$: $\alpha=\pi/4+\pi/6$.
+    $g(\dfrac{\pi}{12}) = 4 + 2\cos \dfrac{\pi}{6} = 4 + \sqrt{3}$
+    
+    $y=-2(x-\dfrac{\pi}{12})+4+\sqrt{3}$.
+    \item \textbf{B:} Góc giữa $f(x)=\ln x-\sqrt{3}$ và $g(x)=-\sqrt{x^2+2}$ tại $x=1$
 
-\textbf{C:} $f_\alpha(x)=e^{\alpha x}$ cắt $g(x)=\sqrt{x+1}$ vuông góc tại $(0,1)$: $\alpha=-2$.
+    $f'(x) = \dfrac{1}{x} \Rightarrow f'(1) = 1 \Rightarrow \tan a = 1 \Rightarrow a = \dfrac{\pi}{4}$
 
-\textbf{D:} $f(x)=(x+1)/(x^2+1)$, tiếp tuyến tại $(p,f(p))$ cắt $T$ trên trục hoành: $p=-2$.
+    $g'(x) = \dfrac{-2x}{2\sqrt{x^2 + 2}} = \dfrac{-x}{\sqrt{x^2 + 2}} \Rightarrow g'(1) = \dfrac{-1}{\sqrt{3}} = \dfrac{-\sqrt{3}}{3} \Rightarrow \tan b = \dfrac{-\sqrt{3}}{3} \Rightarrow b = \dfrac{-\pi}{6}$
+    
+    $\alpha=\dfrac{\pi}{4}-(\dfrac{-\pi}{6}) = \dfrac{\pi}{4} + \dfrac{\pi}{6}$.
+    \item \textbf{C:} Tìm $\alpha$ để $f_\alpha(x)=e^{\alpha x}$ vuông góc $g(x)=\sqrt{x+1}$ tại $(0,1)$
 
-\subsection{Giá trị cực trị}
+    $f'(x) = \alpha e^{\alpha x} \Rightarrow f'(0) = \alpha$
 
-\textbf{A:} $f(x)=(x+7)/((x-2)(x+3))$. Cực đại tại $x=-1$, cực tiểu tại $x=-13$.
+    $g'(x) = \dfrac{1}{2\sqrt{x + 1}} \Rightarrow g'(0) = \dfrac{1}{2}$
 
-\textbf{B:} $f(x)=2\sin x+1+\cos(2x)$ trên $[0,2\pi]$. Max: $5/2$, Min: $-2$.
+    Suy ra: $f'(1).g'(1) = - 1 \Rightarrow \alpha.\dfrac{1}{2} = -1 \Rightarrow \alpha = -2$
+    \item \textbf{D:} $f(x)=\dfrac{x+1}{x^2+1}$, có $T$ là tiếp tuyến tại điểm $(1, 1)$. Tìm $p$ để tiếp tuyến tại $(p,f(p))$ cắt $T$ trên trục hoành.
 
-\textbf{C:} Điểm trên $f(x)=\sqrt{x}$ gần $(5,0)$ nhất: $x=4{,}5$.
+    $f'(x) = \dfrac{x^2 + 1 - 2x(x + 1)}{(x^2 + 1)^2} = \dfrac{-x^2 - 2x + 1}{(x^2 + 1)^2}$
 
-\textbf{D:} $d(t)=t^2/(t^2+3)$, tốc độ cực đại tại $t=1$.
+    $f'(1) = \dfrac{-1}{2}$. Suy ra PTTT $(T): y = \dfrac{-1}{2}(x - 1) + 1 = \dfrac{-x}{2} + \dfrac{3}{2}$
 
-\textbf{E:} $f(x)=\sqrt{x^2+2x+1}$, cực tiểu toàn cục tại $x=-1$.
+    Giao với trục $Ox$ khi $y = 0 \Rightarrow x = 3$.
 
-\textbf{F:} $f(x)=x^3-18x^2+96x-144$ trên $[3,12]$. Max: $144$, Min: $-16$.
+    PTTT tại $x = p$: $y = f'(p)(x - p) + f(p)$. Giao với trục $Ox$ tại $(0, 3)$. Suy ra
 
-\textbf{G:} $f(x)=(3/2)x^{2/3}-x$ trên $[-1,2]$. Max: $2{,}5$, Min: $0$.
+    $f'(p)(3 - p) + f(p) = 0 \Rightarrow \dfrac{-p^2 - 2p + 1}{(p^2 + 1)^2}.(3 - p) + \dfrac{p+1}{p^2+1} = 0$
+
+    $\Rightarrow (p^2 + 2p - 1)(p - 3) + (p + 1)(p^2 + 1) = 0$
+    
+    $\Rightarrow p^3 + 2p^2 -p-3p^2-6p+3 + p^3+p^2+p+1 = 0$
+
+    $\Rightarrow 2p^3 - 6p + 4 = 0 \Rightarrow p^3 -3p + 2 = 0$. Nhẩm nghiệm là 1
+
+    $\Rightarrow p^3 - p^2 + p^2 - p - 2(p - 1) = 0$
+
+    $\Rightarrow (p - 1)(p^2 + p - 2) = 0$. Nhẩm nghiệm là 1 nữa
+
+    $\Rightarrow (p - 1)^2(p + 2) = 0$. Với $p = 1$ loại, vì nó là hệ số của tiếp tuyến $(T)$.
+
+    Vậy $p=-2$
+\end{itemize}
+
+\textbf{Bài 7:}
+
+\textbf{A:} Hàm số $f(x) = |x - 3|$ khả vi tại $x = 3$? Không
+
+\textbf{B:} Hàm số $f(x) = |x - 3|^2$ khả vi tại $x = 3$? Có
+
+\textbf{C:} Hàm số $f(x) = |x - 3|^{\dfrac{1}{2}}$ khả vi tại $x = 3$? Không
+
+\textbf{D:} Hàm số $f(x) = \sqrt{(x - 3)^2}$ khả vi tại $x = 3$? Không. $f(x) = |x - 3|$
+
+\textbf{E:} Hàm số $f(x) = (x - 3)^{\dfrac{1}{3}}$ khả vi tại $x = 3$? Không
+
+\textbf{F:} Hàm số $f(x) = (x - 3).|x - 3|$ khả vi tại $x = 3$?
+
+Xét $x > 3 \Rightarrow f(x) = (x - 3)^2 \Rightarrow f'(x) = 2(x - 3) \Rightarrow f'(3) = 0$
+
+Xét $x < 3 \Rightarrow f(x) = -(x - 3)^2 \Rightarrow f'(x) = -2(x - 3) \Rightarrow f'(3) = 0$
+
+Do đó: Có khả vi tại $x = 3$.
+
+\textbf{Bài 8:}
+
+\begin{itemize}
+    \item \textbf{A:} Tìm cực trị của hàm số $f(x)=\dfrac{x+7}{(x-2)(x+3)}$.
+
+    TXĐ: $D = \mathbb{R}\setminus \{2;-3\}$
+
+    $f(x) = \dfrac{x + 7}{x^2 + x - 6}$
+
+    $f'(x) = \dfrac{x^2 + x - 6 - (x + 7)(2x + 1)}{(x - 2)^2(x + 3)^2} = \dfrac{-x^2 - 14x - 13}{(x - 2)^2(x + 3)^2}$
+
+    $f'(x) = 0 \Rightarrow -x^2 - 14x - 13 = 0 \Rightarrow x^2 + 14x + 13 = 0$. Nhẩm nghiệm $x = -1$, $x = -13$.
+
+    Lập bảng biến thiên tại 4 điểm $x = 2$, $x = -3, x = -1$, $x = -13$.
+    
+    Cực đại tại $x=-1$, cực tiểu tại $x=-13$.
+    \item \textbf{B:} Tìm GTLN và GTNN của hàm số $f(x)=2\sin x+1+\cos(2x)$ trên $[0,2\pi]$.
+
+    $f'(x) = 2\cos x - 2\sin 2x = 0 \Rightarrow \cos x - 2\sin x \cos x = 0 \Rightarrow \cos x = 0$ hoặc $\sin x = \dfrac{1}{2}$
+
+    Với $\cos x = 0 \Rightarrow x = \dfrac{\pi}{2}$ hoặc $x = \dfrac{3\pi}{2}$
+
+    Với $\sin x = \dfrac{1}{2} \Rightarrow x = \dfrac{\pi}{6}$ hoặc $x = \dfrac{5\pi}{6}$
+
+    Ta có
+
+    $f(0) = 2, f(\dfrac{\pi}{6}) = \dfrac{5}{2}, f(\dfrac{\pi}{2}) = 2, f(\dfrac{5\pi}{6}) = \dfrac{5}{2}, f(\dfrac{3\pi}{2}) = -2, f(2\pi) = 2$
+    
+    Max: $\dfrac{5}{2}$, Min: $-2$.
+\end{itemize}
+
+\textbf{Bài 9:}
+
+\begin{itemize}
+    \item \textbf{A:} Điểm $P$ trên $f(x)=\sqrt{x}$ gần $Q(5,0)$ nhất là bao nhiêu?
+
+    $P(x, \sqrt{x})$. Suy ra: $\overrightarrow{QP} = (x - 5, \sqrt{x})$
+
+    $\Rightarrow PQ = $
+    
+    $x=4.5$.
+    \item \textbf{B:} $d(t)=t^2/(t^2+3)$, tốc độ cực đại tại $t=1$.
+    \item \textbf{C:} $f(x)=\sqrt{x^2+2x+1}$, cực tiểu toàn cục tại $x=-1$.
+    \item \textbf{D:} $f(x)=x^3-18x^2+96x-144$ trên $[3,12]$. Max: $144$, Min: $-16$.
+    \item \textbf{E:} $f(x)=(3/2)x^{2/3}-x$ trên $[-1,2]$. Max: $2{,}5$, Min: $0$.
+\end{itemize}
 
 \subsection{Đường ray tàu lượn trơn}
 
