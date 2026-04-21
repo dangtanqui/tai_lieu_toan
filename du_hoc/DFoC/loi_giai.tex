@@ -1,4 +1,55 @@
-\chapter*{Lời giải chọn lọc}
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{fancybox}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+
+\title{Chương 2a - Mệnh đề Boolean}
+\author{}
+\date{}
+
+\usepackage[most]{tcolorbox}
+
+\newtcolorbox{infobox}{
+  colback=blue!5!white,
+  colframe=blue!75!black,
+  title=Info,
+  fonttitle=\bfseries
+}
+
+\newtcolorbox{notebox}{
+  colback=yellow!10,
+  colframe=yellow!50!black,
+  fonttitle=\bfseries,
+  title=Note
+}
+
+\newtcolorbox{warningbox}{
+  colback=red!5,
+  colframe=red!65!black,
+  fonttitle=\bfseries,
+  title=Cảnh báo
+}
+
+\usepackage{amsthm}
+
+\newtheorem{theorem}{Định lý}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Định nghĩa}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Lời giải chọn lọc}
 \addcontentsline{toc}{chapter}{Lời giải chọn lọc}
 
 \begin{warningbox}
@@ -305,6 +356,10 @@ p \oplus q &\equiv (p \land \neg q) \lor (\neg p \land q) \tag{$*$}\\
 \begin{enumerate}[label=\textbf{\alph*)}]
 \item Bảng chân trị cho công thức chứa hai nguyên tử duy nhất sẽ có 4 hàng. Mỗi hàng trong 4 hàng này có thể cho kết quả 0 hoặc 1. Điều này có nghĩa là sẽ có $2^4$ bảng chân trị duy nhất cho công thức chứa 2 nguyên tử duy nhất.
 
+\begin{center}
+    \includegraphics[width=1\linewidth]{du_hoc//images/bang_cha_tri.png}
+\end{center}
+
 \item
 \begin{center}
 \begin{tabular}{cc|cccccccc}
@@ -328,31 +383,138 @@ $p$ & $q$ & $\neg p \land \neg q$ & $p \leftrightarrow q$ & $\neg q$ & $q \to p$
 \end{tabular}
 \end{center}
 
-\item Cho trước rằng ta có thể tạo một công thức cho mỗi bảng chân trị khả dĩ bằng cách sử dụng 5 phép toán này. Hơn nữa, ta biết rằng chỉ có $2^{2^n}$ bảng chân trị khả dĩ, trong đó $n$ là số nguyên tử duy nhất. Cho trước rằng mỗi bảng chân trị đều có một công thức tương ứng chỉ sử dụng 5 phép toán, mà ta ký hiệu là $f_i$, trong đó $1 \le i \le 2^{2^n} - 1$. Bây giờ lấy một công thức $f'$ sử dụng các nguyên tử duy nhất giống nhau, nhưng không nhất thiết phải dùng các phép toán giống nhau từ tập 5 phép toán đã nêu trong mô tả. Bảng chân trị của công thức $f'$ sẽ bằng một trong $2^{2^n}$ bảng chân trị khả dĩ, điều này cũng có nghĩa là tồn tại một $f_i$ tương đương với $f'$, nên ta có thể viết lại $f'$.
+\item Cho trước rằng ta có thể tạo một công thức cho mỗi bảng chân trị khả dĩ bằng cách sử dụng 5 phép toán này (câu $a, b$). 
+
+Hơn nữa, ta biết rằng chỉ có $2^{2^n}$ bảng chân trị khả dĩ, trong đó $n$ là số nguyên tử duy nhất. (câu $a, b$ với $n = 2$ thì $2^4 = 16$)
+
+Cho trước rằng mỗi bảng chân trị đều có một công thức tương ứng chỉ sử dụng 5 phép toán, mà ta ký hiệu là $f_i$, trong đó $1 \le i \le 2^{2^n}$.
+
+Bây giờ lấy một công thức $f'$ sử dụng các nguyên tử duy nhất giống nhau, nhưng không nhất thiết phải dùng các phép toán giống nhau từ tập 5 phép toán đã nêu trong mô tả. Bảng chân trị của công thức $f'$ sẽ bằng một trong $2^{2^n}$ bảng chân trị khả dĩ, điều này cũng có nghĩa là tồn tại một $f_i$ tương đương với $f'$, nên ta có thể viết lại $f'$.
 \end{enumerate}
 
 %% ============================================================
 \section*{Lời giải 2.2}
 \addcontentsline{toc}{section}{Lời giải 2.2}
 
+\textbf{1.} Các luật phân phối:
+
+\begin{itemize}
+    \item Luật phân phối của phép hội $\land$ đối với phép tuyển $\lor$: $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$
+
+    \begin{center}
+        \includegraphics[width=1\linewidth]{du_hoc//images/ban_chan_tri_cua_luat_phan_phoi.png}
+    \end{center}
+    \item Luật phân phối của phép tuyển $\lor$ đối với phép hội $\land$: $p \lor (q \land r) \equiv (p \lor q) \land (p \lor r)$
+
+    \begin{center}
+        \includegraphics[width=1\linewidth]{du_hoc//images/bang_chan_tri_cua_luat_phan_phoi2.png}
+    \end{center}
+\end{itemize}
+
+\textbf{2.} \textbf{a.} 
+\begin{center}
+    \includegraphics[width=1\linewidth]{du_hoc//images/cau_2_a.png}
+\end{center}
+
+\textbf{b.}
+\begin{center}
+    \includegraphics[width=1\linewidth]{du_hoc//images/cau_2_b.png}
+\end{center}
+
+\textbf{c.}
+\begin{center}
+    \includegraphics[width=1\linewidth]{du_hoc//images/cau_2_c_1.png}
+\end{center}
+\begin{center}
+    \includegraphics[width=1\linewidth]{du_hoc//images/cau_2_c_2.png}
+\end{center}
+
+\textbf{3.} \textbf{a, b, c.}
+
+\begin{center}
+    \centering
+    \includegraphics[width=1\linewidth]{du_hoc//images/cau_3_a_b_c.png}
+\end{center}
+
+\textbf{d.} $\neg (p \to q) \equiv \neg(\neg p \lor q) \equiv p \land \neg q$
+
 \textbf{4.} Không phải. Ví dụ lấy $p = q = 0$. Trong trường hợp này $\neg(p \leftrightarrow q)$ là sai, nhưng $(\neg p) \leftrightarrow (\neg q)$ là đúng. Hãy thử tìm xem biểu thức đơn giản hơn nào mà $(\neg p) \leftrightarrow (\neg q)$ tương đương với.
+
+\textbf{5.} $x + y.z = (x + y) . (x + z)$
+
+Không phải luật đúng trong đại số số
+
+\textbf{6.} Áp dụng luật giao hoán và phân phối trái:
+
+$(p \lor q) \land r \equiv r \land (p \lor q) \equiv (r \land q) \lor (r \land p) \equiv (q \land r) \lor (q \land r)$
+
+$(p \land q) \lor r \equiv r \land (p \lor q) = (r \lor p) \land (r \lor q) \equiv (p \lor r) \land (q \lor r)$
+
+\textbf{7.} Quy nạp: $p \land (q_1 \lor q_2 \lor ... \lor q_n) \equiv (p \land q_1) \lor (p \land q_2) \lor ... \lor (p \land q_n)$
+
+Đúng với $n = 2$
+
+Giả sử đúng với $n = k$. Tức: $p \land (q_1 \lor q_2 \lor ... \lor q_k) \equiv (p \land q_1) \lor (p \land q_2) \lor ... \lor (p \land q_k)$
+
+Ta có: $p \land (q_1 \lor q_2 \lor ... \lor q_{k + 1}) \equiv [p \land (q_1 \lor q_2 \lor ... \lor q_k)] \lor (p \land q_{k + 1}) \equiv (p \land q_1) \lor (p \land q_2) \lor ... \lor (p \land q_k) \lor (p \land q_{k + 1})$ (đpcm)
+
+\textbf{8.} Luật chi phối: $p \land \mathbb{F} = \mathbb{F}$ và $p \lor \mathbb{T} = \mathbb{T}$
+
+Luật đơn vị: $p \land \mathbb{T} = p$ và $p \lor \mathbb{F} = p$
+
+\textbf{9.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $p \land (q \land p) \equiv (p \land p) \land q \equiv p \land q$
+\item $\neg p \to q \equiv \neg(\neg p) \lor q \equiv p \lor q$
+\item $(p \lor q) \land \neg q \equiv (p \land \neg q) \lor (q \land \neg q) \equiv (p \land \neg q) \lor \mathbb{F} \equiv p \land \neg q$
+\item $p \to (q \to r) \equiv p \to (\neg q \lor r) \equiv \neg p \lor \neg q \lor r \equiv \neg (p \land q) \lor r \equiv (p \land q) \to r$
+\item $(p \to r) \land (q \to r) \equiv (\neg p \lor r) \land (\neg q \lor r) \equiv (\neg p \land \neg q) \lor r \equiv \neg (p \lor q) \lor r \equiv (p \lor q) \to r$
+\item $p \to (p \land q) \equiv \neg p \lor (p \land q) \equiv (\neg p \lor p) \land (\neg p \lor q) = T \land (\neg p \lor q) \equiv \neg p \lor q \equiv p \to q$
+\end{enumerate}
 
 \medskip
 \textbf{10.} Kiểm tra các đáp án sau bằng bảng chân trị!
 \begin{enumerate}[label=\textbf{\alph*)}]
-\item $q \to p$ \qquad \textbf{b)} $\mathbb{F}$ \qquad \textbf{c)} $\neg p$
-
-\item[\textbf{d)}] $\neg p \land q$ \qquad \textbf{e)} $\mathbb{T}$ \qquad \textbf{f)} $q$
+\item $(p \land q) \lor \neg q \equiv (p \lor \neg q) \land (q \lor \neg q) \equiv (p \lor \neg q) \land T \equiv p \lor \neg q \equiv \neg q \lor p \equiv q \to p$
+\item $\neg (p \lor q) \land p \equiv \neg p \land \neg q \land p \equiv \neg p \land \mathbb{F} \equiv \mathbb{F}$
+\item $p \to \neg p \equiv \neg p \lor \neg p \equiv \neg p$
+\item $\neg p \land (p \lor q) \equiv (\neg p \land p) \lor (\neg p \land q) \equiv \mathbb{T} \lor (\neg p \land q) \equiv \neg p \land q$
+\item $(q \land p) \to q \equiv \neg (p \land q) \lor q \equiv \neg p \lor \neg q \lor q \equiv \neg q \lor \mathbb{T} \equiv \mathbb{T}$
+\item $(p \to q) \land (\neg p \to q) \equiv (\neg p \lor q) \land (p \lor q) \equiv q \lor (\neg p \land p) \equiv q \lor \mathbb{F} \equiv q$
 \end{enumerate}
 
 \medskip
 \textbf{11.} Khi dịch, hãy cố gắng làm cho các câu tiếng Việt mạch lạc hơn một chút mà không thêm ràng buộc nào. Ví dụ bằng cách dùng từ ``nhưng'' thay vì ``và'' trong hai ví dụ dưới đây.
 \begin{enumerate}[label=\textbf{\alph*)}]
 \item Trời không nắng hoặc trời không lạnh.
-\item Tôi sẽ không có stroopwafels cũng không có appeltaart.
+\item Tôi sẽ không ăn stroopwafels cũng không ăn appeltaart.
 \item Hôm nay là thứ Ba, nhưng đây không phải là Bỉ.
-\item Bạn đã qua kỳ thi cuối kỳ, nhưng bạn không qua môn học.
+\item Bạn đã đỗ kỳ thi cuối kỳ, nhưng bạn không qua môn học.
 \end{enumerate}
+
+\textbf{12.}
+\begin{enumerate}[label=\textbf{\alph*)}]
+\item $p \land (q \lor r) \equiv (p \land q) \lor (p \land r)$
+
+"Tôi sẽ uống cà phê và stroopwafel, hoặc tôi sẽ uống cà phê và appeltaart."
+
+\item $\neg p \land \neg q \equiv \neg (p \lor q)$
+
+"Không đúng khi nói anh ấy có tài năng hoặc có hoài bão."
+\item $p \lor p \equiv p$
+
+"Bạn có thể ăn oliebollen."
+\end{enumerate}
+
+\textbf{13.} $p$: "Tất cả quả canh đều vàng". $q$: "Kỳ lân tồn tại"
+
+Suy ra "Không phải tất cả quả chanh đều vàng" là $\neg p$
+
+Theo giả thuyết $p \land \neg p \equiv \mathbb{T}$
+
+Suy ra: $\mathbb{T} \equiv \mathbb{T} \lor q \equiv (p \land \neg p) \lor q = \mathbb{F} \lor q \equiv q$.
+
+Do đó: $q \equiv \mathbb{T}$
 
 %% ============================================================
 \section*{Lời giải 2.4}
@@ -1167,3 +1329,4 @@ Ta chứng minh bằng phản chứng. Ta giả sử rằng $g \circ f$ là toà
 \end{proof}
 
 \textbf{b)} Cho $A = \{a\}$, $B = \{b, c\}$, $C = \{d\}$, $f(a) = b$, $g(b) = d$. Mặc dù $f$ không phải toàn ánh, vì không có $x \in A$ sao cho $f(x) = c$, ta có với mọi phần tử trong $C$, cụ thể $d$, tồn tại phần tử trong $A$, cụ thể $a$, sao cho $(g \circ f)(a) = d$. Do đó $g \circ f$ là toàn ánh.
+\end{document}
