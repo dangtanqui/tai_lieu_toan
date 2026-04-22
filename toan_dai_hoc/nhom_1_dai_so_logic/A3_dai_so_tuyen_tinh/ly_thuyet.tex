@@ -161,15 +161,103 @@
 \begin{tinhchat}[title={Các loại ma trận đặc biệt}]
   \begin{itemize}
     \item \textbf{Ma trận không} $\mathbf{0}$: mọi phần tử bằng 0.
-    \item \textbf{Ma trận chuyển vị} $A^T$: $(A^T)_{ij} = a_{ji}$. Đổi hàng và cột cho nhau.
-    \item \textbf{Ma trận đối xứng}: $A^T = A$ (ma trận vuông).
-    \item \textbf{Ma trận tam giác trên}: $a_{ij} = 0$ khi $i > j$ (phần tử dưới đường chéo bằng 0).
-    \item \textbf{Ma trận tam giác dưới}: $a_{ij} = 0$ khi $i < j$ (phần tử trên đường chéo bằng 0).
-    \item \textbf{Ma trận chéo}: $a_{ij} = 0$ khi $i \ne j$ (chỉ có đường chéo chính khác 0).
-    \item \textbf{Ma trận bằng nhau}: $A = B$ khi và chỉ khi cùng cỡ và $a_{ij} = b_{ij}$ với mọi $i, j$.
+    \item \textbf{Ma trận tam giác trên}: $a_{ij} = 0$ khi $i > j$.
+    \item \textbf{Ma trận tam giác dưới}: $a_{ij} = 0$ khi $i < j$.
+    \item \textbf{Ma trận chéo}: $a_{ij} = 0$ khi $i \ne j$.
+    \item \textbf{Ma trận bằng nhau}: $A = B \Leftrightarrow$ cùng cỡ và $a_{ij} = b_{ij}$ với mọi $i, j$.
+  \end{itemize}
+  (Các ma trận liên quan đến chuyển vị -- đối xứng, phản đối xứng, Hermitian -- xem §1.2.)
+\end{tinhchat}
+
+%% ----------------------------------------------------------------
+\subsection{Ma trận chuyển vị, Hermitian}
+
+\begin{dinhnghia}
+  Cho $A = (a_{ij}) \in \mathbb{R}^{m \times n}$. \textbf{Ma trận chuyển vị} của $A$ là ma trận $A^T \in \mathbb{R}^{n \times m}$ xác định bởi:
+  \[
+    (A^T)_{ij} = a_{ji}.
+  \]
+  Nói cách khác, $A^T$ thu được bằng cách đổi hàng thành cột (và cột thành hàng) của $A$.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của chuyển vị}]
+  \begin{itemize}
+    \item $(A^T)^T = A$
+    \item $(A + B)^T = A^T + B^T$
+    \item $(\lambda A)^T = \lambda A^T$
+    \item $(AB)^T = B^T A^T$ \quad (đảo thứ tự!)
+    \item $(ABC)^T = C^T B^T A^T$
+    \item $\det(A^T) = \det(A)$ \quad (với $A$ vuông)
+    \item $\mathrm{rank}(A^T) = \mathrm{rank}(A)$
+    \item $(A^{-1})^T = (A^T)^{-1}$ \quad (với $A$ khả đảo)
   \end{itemize}
 \end{tinhchat}
 
+\begin{dinhnghia}
+  Ma trận vuông $A \in \mathbb{R}^{n \times n}$ gọi là:
+  \begin{itemize}
+    \item \textbf{Đối xứng (Symmetric):} $A^T = A$, tức $a_{ij} = a_{ji}$ với mọi $i, j$.
+    \item \textbf{Phản đối xứng (Skew-symmetric):} $A^T = -A$, tức $a_{ij} = -a_{ji}$. Hệ quả: đường chéo chính bằng 0.
+    \item \textbf{Trực giao (Orthogonal):} $A^T A = A A^T = I$, tức $A^T = A^{-1}$. Hệ quả: $\det(A) = \pm 1$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{tinhchat}
+  Mọi ma trận vuông đều phân tích được thành tổng của một ma trận đối xứng và một ma trận phản đối xứng:
+  \[
+    A = \underbrace{\frac{A + A^T}{2}}_{\text{đối xứng}} + \underbrace{\frac{A - A^T}{2}}_{\text{phản đối xứng}}.
+  \]
+\end{tinhchat}
+
+\begin{vidu}
+  $A = \begin{pmatrix}1&2\\3&4\end{pmatrix}$. Phân tích:
+  $\dfrac{A+A^T}{2} = \begin{pmatrix}1&\frac{5}{2}\\\frac{5}{2}&4\end{pmatrix}$ (đối xứng),\quad
+  $\dfrac{A-A^T}{2} = \begin{pmatrix}0&-\frac{1}{2}\\\frac{1}{2}&0\end{pmatrix}$ (phản đối xứng).
+\end{vidu}
+
+\begin{dinhnghia}
+  Với ma trận phức $A = (a_{ij}) \in \mathbb{C}^{m \times n}$, định nghĩa \textbf{liên hợp Hermitian} (Hermitian conjugate / conjugate transpose):
+  \[
+    A^* = \bar{A}^T, \qquad (A^*)_{ij} = \overline{a_{ji}},
+  \]
+  trong đó $\bar{a}$ là liên hợp phức của $a$. (Ký hiệu khác: $A^\dagger$ hoặc $A^H$.)
+
+  Ma trận vuông phức $A \in \mathbb{C}^{n \times n}$ gọi là:
+  \begin{itemize}
+    \item \textbf{Hermitian:} $A^* = A$, tức $a_{ij} = \overline{a_{ji}}$. Đường chéo chính là số thực.
+    \item \textbf{Phản Hermitian (Skew-Hermitian):} $A^* = -A$, tức $a_{ij} = -\overline{a_{ji}}$.
+    \item \textbf{Unitary (Ma trận đơn nhất):} $A^* A = A A^* = I$, tức $A^* = A^{-1}$.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Ma trận thực đối xứng là trường hợp đặc biệt của Hermitian (khi $a_{ij} \in \mathbb{R}$).
+    \item Ma trận trực giao là trường hợp đặc biệt của Unitary (khi $a_{ij} \in \mathbb{R}$).
+    \item Ma trận Hermitian có tất cả trị riêng là \emph{số thực} -- tính chất quan trọng trong ứng dụng (cơ học lượng tử, học máy).
+    \item Unitary bảo toàn tích vô hướng: $\langle Ax, Ay \rangle = \langle x, y \rangle$.
+  \end{itemize}
+\end{luuy}
+
+\begin{tinhchat}[title={Tính chất của $A^*$}]
+  \begin{itemize}
+    \item $(A^*)^* = A$
+    \item $(A + B)^* = A^* + B^*$
+    \item $(\lambda A)^* = \bar{\lambda} A^*$
+    \item $(AB)^* = B^* A^*$
+    \item $\det(A^*) = \overline{\det(A)}$
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Cho $A = \begin{pmatrix}2 & 1+i \\ 1-i & 3\end{pmatrix}$.
+  \[
+    A^* = \overline{A}^T = \begin{pmatrix}2 & 1-i \\ 1+i & 3\end{pmatrix}^T = \begin{pmatrix}2 & 1+i \\ 1-i & 3\end{pmatrix} = A.
+  \]
+  Vậy $A$ là ma trận Hermitian. Đường chéo $\{2, 3\} \subset \mathbb{R}$ -- đúng như lý thuyết.
+\end{vidu}
+
+%% ----------------------------------------------------------------
 \subsection{Các phép toán trên ma trận}
 
 \begin{dinhnghia}
@@ -208,17 +296,13 @@
 
 \begin{tinhchat}
   \begin{itemize}
-    \item $A(BC) = (AB)C$.
-    \item $A(B + C) = AB + AC$.
-    \item $(B + C)A = BA + CA$.
+    \item \textbf{Kết hợp:} $A(BC) = (AB)C$
+    \item \textbf{Phân phối:} $A(B+C) = AB+AC$;\quad $(B+C)A = BA+CA$
     \item $k(BC) = (kB)C = B(kC)$
-    \item $(A^T)^T = A$
-    \item $(AB)^T = B^T A^T$.
-    \item $(A + B)^T = A^T + B^T$
-    \item $AB$ được chưa chắc $BA$ được. Nếu ma trận vuông thì $AB$ và $BA$ được
-    \item Nói chung $AB \ne BA$.
-    \item $A \ne 0, B \ne 0$ nhưng có thể $AB = 0$
+    \item $AB$ được chưa chắc $BA$ được. Nếu cùng cỡ vuông thì cả hai đều xác định nhưng nói chung $AB \ne BA$ (không giao hoán).
+    \item $A \ne 0,\; B \ne 0$ nhưng có thể $AB = 0$ (ví dụ: ma trận suy biến).
   \end{itemize}
+  (Các tính chất chuyển vị liên quan đến tích -- $(AB)^T = B^T A^T$ -- xem §1.2.)
 \end{tinhchat}
 
 \subsection{Định thức}
@@ -289,12 +373,11 @@
 \begin{tinhchat}[title={Tính chất ma trận nghịch đảo}]
   \begin{itemize}
     \item $AA^{-1} = I = A^{-1}A$
-    \item $(A^{-1})^{-1} = A$.
-    \item $(AB)^{-1} = B^{-1} A^{-1}$ (nghịch đảo của tích = tích nghịch đảo theo thứ tự 
-    ngược).
-    \item $(A + B)^{-1} \ne A^{-1} + B^{-1}$
-    \item $(A^T)^{-1} = (A^{-1})^T$.
-    \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$.
+    \item $(A^{-1})^{-1} = A$
+    \item $(AB)^{-1} = B^{-1}A^{-1}$ \quad (đảo thứ tự)
+    \item $(A+B)^{-1} \ne A^{-1}+B^{-1}$ \quad (nói chung)
+    \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$
+    \item $(A^T)^{-1} = (A^{-1})^T$ \quad (xem §1.2)
   \end{itemize}
 \end{tinhchat}
 
@@ -310,10 +393,10 @@
 
 \begin{tinhchat}[title={Tính chất hạng}]
   \begin{itemize}
-    \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$.
-    \item $\mathrm{rank}(A) \le \min(m, n)$ với $A$ cỡ $m \times n$.
-    \item $\mathrm{rank}(AB) \le \min(\mathrm{rank}(A), \mathrm{rank}(B))$.
-    \item $A$ khả đảo $\Leftrightarrow$ $\mathrm{rank}(A) = n$ (với $A$ vuông cấp $n$).
+    \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$ \quad (xem §1.2 -- hạng cột = hạng hàng)
+    \item $\mathrm{rank}(A) \le \min(m, n)$ với $A \in \mathbb{R}^{m \times n}$
+    \item $\mathrm{rank}(AB) \le \min(\mathrm{rank}(A),\, \mathrm{rank}(B))$
+    \item $A$ khả đảo $\Leftrightarrow$ $\mathrm{rank}(A) = n$ \quad (với $A$ vuông cấp $n$)
   \end{itemize}
 \end{tinhchat}
 
@@ -962,45 +1045,240 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 %% ================================================================
 \section{Ánh xạ tuyến tính}
 
+%% ----------------------------------------------------------------
+\subsection{Định nghĩa và tính chất cơ bản}
+
 \begin{dinhnghia}
-  Ánh xạ $T: V \to W$ (giữa hai KGVT) gọi là \textbf{tuyến tính} (hay \textbf{đồng cấu}) nếu:
-  \begin{itemize}
-    \item $T(u + v) = T(u) + T(v)$ (bảo toàn phép cộng),
-    \item $T(\lambda u) = \lambda T(u)$ (bảo toàn nhân vô hướng).
-  \end{itemize}
-  Tương đương: $T(\alpha u + \beta v) = \alpha T(u) + \beta T(v)$ với mọi $\alpha, \beta \in \mathbb{R}$, $u, v \in V$.
+  Ánh xạ $T: V \to W$ (giữa hai không gian vectơ) gọi là \textbf{ánh xạ tuyến tính} (hay \textbf{đồng cấu không gian vectơ}) nếu với mọi $u, v \in V$ và $\alpha, \beta \in \mathbb{R}$:
+  \[
+    T(\alpha u + \beta v) = \alpha T(u) + \beta T(v).
+  \]
+  Tương đương: $T$ bảo toàn phép cộng ($T(u+v) = T(u)+T(v)$) và nhân vô hướng ($T(\lambda u) = \lambda T(u)$).
 \end{dinhnghia}
 
 \begin{tinhchat}
-  $T(\mathbf{0}) = \mathbf{0}$, $T(-v) = -T(v)$. Ảnh của không gian con là không gian con; nghịch ảnh của không gian con là không gian con.
+  \begin{itemize}
+    \item $T(\mathbf{0}_V) = \mathbf{0}_W$ (ánh xạ tuyến tính bao giờ cũng đưa vectơ không về vectơ không).
+    \item $T(-v) = -T(v)$.
+    \item Ảnh của không gian con là không gian con; nghịch ảnh của không gian con là không gian con.
+  \end{itemize}
 \end{tinhchat}
 
+\begin{vidu}
+  \begin{itemize}
+    \item \textbf{Chiếu lên trục $Ox$:} $T: \mathbb{R}^2 \to \mathbb{R}^2$, $T(x_1, x_2) = (x_1, 0)$ -- tuyến tính.
+    \item \textbf{Phép quay góc $\theta$:} $T\begin{pmatrix}x_1\\x_2\end{pmatrix} = \begin{pmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\end{pmatrix}\begin{pmatrix}x_1\\x_2\end{pmatrix}$ -- tuyến tính.
+    \item \textbf{Tịnh tiến:} $T(x) = x + a$ với $a \ne \mathbf{0}$ -- \emph{không} tuyến tính (vì $T(\mathbf{0}) = a \ne \mathbf{0}$).
+  \end{itemize}
+\end{vidu}
+
+%% ----------------------------------------------------------------
+\subsection{Các loại ánh xạ và đồng cấu}
+
 \begin{dinhnghia}
-  \textbf{Hạt nhân} (kernel): $\ker T = \{v \in V \mid T(v) = \mathbf{0}\} \subset V$. \textbf{Ảnh} (image): $\mathrm{Im}\,T = T(V) = \{T(v) \mid v \in V\} \subset W$. Cả hai đều là không gian con.
+  Ánh xạ $T: V \to W$ gọi là:
+  \begin{itemize}
+    \item \textbf{Đơn ánh (injective / one-to-one):} $T(u) = T(v) \Rightarrow u = v$. Tương đương: $\ker T = \{\mathbf{0}\}$.
+    \item \textbf{Toàn ánh (surjective / onto):} $\mathrm{Im}\,T = W$ (mọi phần tử trong $W$ đều có nghịch ảnh).
+    \item \textbf{Song ánh (bijective):} vừa đơn ánh vừa toàn ánh. Khi đó tồn tại $T^{-1}: W \to V$ tuyến tính.
+  \end{itemize}
 \end{dinhnghia}
 
-\begin{dinhly}[title={Định lý chiều}]
-  $\dim V = \dim(\ker T) + \dim(\mathrm{Im}\,T)$. Số $\dim(\ker T)$ gọi là \textbf{số khuyết}, $\dim(\mathrm{Im}\,T)$ gọi là \textbf{hạng} của $T$.
+\begin{dinhnghia}
+  Các loại đồng cấu đặc biệt:
+  \begin{itemize}
+    \item \textbf{Đơn cấu (monomorphism):} $T: V \to W$ tuyến tính và đơn ánh.
+    \item \textbf{Toàn cấu (epimorphism):} $T: V \to W$ tuyến tính và toàn ánh.
+    \item \textbf{Đẳng cấu (isomorphism):} $T: V \to W$ tuyến tính và song ánh.
+    \item \textbf{Nội cấu (endomorphism):} $T: V \to V$ tuyến tính (cùng miền và đối miền).
+    \item \textbf{Tự đẳng cấu (automorphism):} $T: V \to V$ tuyến tính và song ánh.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý về đẳng cấu}]
+  Hai không gian vectơ hữu hạn chiều $V$ và $W$ đẳng cấu ($V \cong W$) khi và chỉ khi $\dim V = \dim W$.
+
+  Hệ quả: $\mathbb{R}^{m \times n} \cong \mathbb{R}^{mn}$; mọi không gian $n$ chiều đều đẳng cấu với $\mathbb{R}^n$.
+\end{dinhly}
+
+%% ----------------------------------------------------------------
+\subsection{Hạt nhân và Ảnh}
+
+\begin{dinhnghia}
+  Cho ánh xạ tuyến tính $T: V \to W$:
+  \[
+    \ker T = \{v \in V \mid T(v) = \mathbf{0}_W\} \subseteq V
+    \qquad \text{(\textbf{hạt nhân} / null space)}
+  \]
+  \[
+    \mathrm{Im}\,T = \{T(v) \mid v \in V\} \subseteq W
+    \qquad \text{(\textbf{ảnh} / image / range)}
+  \]
+  Cả $\ker T$ và $\mathrm{Im}\,T$ đều là không gian con của $V$ và $W$ tương ứng.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý chiều -- Rank-Nullity}]
+  Với $T: V \to W$ tuyến tính và $\dim V = n$ hữu hạn:
+  \[
+    \underbrace{\dim(\ker T)}_{\text{số khuyết (nullity)}}
+    +
+    \underbrace{\dim(\mathrm{Im}\,T)}_{\text{hạng (rank)}}
+    = n = \dim V.
+  \]
+\end{dinhly}
+
+\begin{luuy}[title={Liên hệ với ma trận $A \in \mathbb{R}^{m \times n}$, $T(x) = Ax$}]
+  \begin{itemize}
+    \item $\mathrm{Im}(T) = \mathrm{span}[a_1, \ldots, a_n]$ = không gian cột của $A \subseteq \mathbb{R}^m$.
+    \item $\ker(T)$ = không gian nhân = nghiệm tổng quát của $Ax = 0 \subseteq \mathbb{R}^n$.
+    \item $\dim(\mathrm{Im}\,T) = \mathrm{rank}(A)$, nên $\dim(\ker T) = n - \mathrm{rank}(A)$.
+    \item $T$ đơn ánh $\Leftrightarrow$ $\ker T = \{\mathbf{0}\}$ $\Leftrightarrow$ $\mathrm{rank}(A) = n$ (các cột độc lập tuyến tính).
+    \item $T$ toàn ánh $\Leftrightarrow$ $\mathrm{rank}(A) = m$ (các hàng độc lập tuyến tính).
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}
+  Cho $T: \mathbb{R}^4 \to \mathbb{R}^2$, $T(x) = Ax$ với $A = \begin{pmatrix}1&2&-1&0\\1&0&0&1\end{pmatrix}$.
+
+  Đưa $A$ về RREF: $\begin{pmatrix}1&0&0&1\\0&1&-\frac{1}{2}&-\frac{1}{2}\end{pmatrix}$.
+
+  $\mathrm{rank}(A) = 2$, nên $\dim(\ker T) = 4 - 2 = 2$ (2 biến tự do $x_3, x_4$).
+
+  $\ker T = \left\{\lambda_1\begin{pmatrix}0\\1/2\\1\\0\end{pmatrix} + \lambda_2\begin{pmatrix}-1\\1/2\\0\\1\end{pmatrix} : \lambda_1, \lambda_2 \in \mathbb{R}\right\}$.
+
+  $\mathrm{Im}(T) = \mathbb{R}^2$ (vì $\mathrm{rank}(A) = 2 = m$, $T$ toàn ánh).
+\end{vidu}
+
+%% ----------------------------------------------------------------
+\subsection{Biểu diễn ma trận của ánh xạ tuyến tính}
+
+\begin{dinhnghia}
+  Cho $T: V \to W$ tuyến tính, cơ sở có thứ tự $\mathcal{B} = (b_1, \ldots, b_n)$ của $V$ và $\mathcal{C} = (c_1, \ldots, c_m)$ của $W$. \textbf{Ma trận biểu diễn} của $T$ theo cặp cơ sở $(\mathcal{B}, \mathcal{C})$ là ma trận $A_T \in \mathbb{R}^{m \times n}$ có cột $j$ là vector tọa độ của $T(b_j)$ trong $\mathcal{C}$:
+  \[
+    (A_T)_{\cdot j} = [T(b_j)]_{\mathcal{C}}.
+  \]
+\end{dinhnghia}
+
+\begin{congthuc}
+  Nếu $\hat{x} = [v]_{\mathcal{B}}$ là tọa độ của $v$ trong $\mathcal{B}$ thì tọa độ của $T(v)$ trong $\mathcal{C}$ là:
+  \[
+    [T(v)]_{\mathcal{C}} = A_T \cdot [v]_{\mathcal{B}}.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Xây dựng ma trận biểu diễn $A_T$}]
+  \begin{enumerate}
+    \item Tính $T(b_j)$ cho từng vectơ cơ sở $b_j \in \mathcal{B}$.
+    \item Biểu diễn $T(b_j)$ trong cơ sở $\mathcal{C}$: tìm $[T(b_j)]_{\mathcal{C}}$.
+    \item Đặt các tọa độ đó làm \emph{cột} $j$ của $A_T$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Cho $T: \mathbb{R}^2 \to \mathbb{R}^2$ là phép quay $90°$ ngược chiều kim đồng hồ. Trong cơ sở chuẩn $\mathcal{E} = (e_1, e_2)$:
+  \[
+    T(e_1) = T\!\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix}, \quad
+    T(e_2) = T\!\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}-1\\0\end{pmatrix}.
+  \]
+  Vậy $A_T = \begin{pmatrix}0&-1\\1&0\end{pmatrix}$.
+\end{vidu}
+
+\begin{luuy}
+  Khi làm việc với ma trận, cần phân biệt hai vai trò khác nhau:
+  \begin{itemize}
+    \item Ma trận là \textbf{biểu diễn của ánh xạ tuyến tính} (mỗi cột là ảnh của một vectơ cơ sở).
+    \item Ma trận là \textbf{tập hợp các vectơ cột} (dùng trong bài toán span, độc lập tuyến tính).
+  \end{itemize}
+\end{luuy}
+
+%% ----------------------------------------------------------------
+\subsection{Thay đổi cơ sở của ma trận biểu diễn}
+
+\begin{dinhly}[title={Công thức đổi ma trận biểu diễn}]
+  Cho $T: V \to W$. Gọi $A_T$ là ma trận biểu diễn của $T$ theo cặp cơ sở $(\mathcal{B}, \mathcal{C})$. Nếu ta thay sang cặp cơ sở mới $(\mathcal{B}', \mathcal{C}')$, thì ma trận biểu diễn mới là:
+  \[
+    \tilde{A}_T = T_{\mathcal{C} \to \mathcal{C}'}^{-1} \cdot A_T \cdot S_{\mathcal{B}' \to \mathcal{B}},
+  \]
+  trong đó:
+  \begin{itemize}
+    \item $S$ = ma trận chuyển cơ sở từ $\mathcal{B}'$ sang $\mathcal{B}$ trong $V$ (cột $j$ là $[b_j']_{\mathcal{B}}$).
+    \item $T$ = ma trận chuyển cơ sở từ $\mathcal{C}'$ sang $\mathcal{C}$ trong $W$ (cột $k$ là $[c_k']_{\mathcal{C}}$).
+  \end{itemize}
 \end{dinhly}
 
 \begin{dinhnghia}
-  \textbf{Ma trận của ánh xạ tuyến tính}: Cho $T: V \to W$, cơ sở $\mathcal{B}_V = \{e_1, \ldots, e_n\}$ của $V$, $\mathcal{B}_W = \{f_1, \ldots, f_m\}$ của $W$. Ma trận $A$ cỡ $m \times n$ thỏa $[T(v)]_{\mathcal{B}_W} = A [v]_{\mathcal{B}_V}$ có cột $j$ là $[T(e_j)]_{\mathcal{B}_W}$.
-\end{dinhnghia}
+  Hai ma trận $A, \tilde{A} \in \mathbb{R}^{m \times n}$ gọi là \textbf{tương đương} nếu tồn tại $S \in \mathbb{R}^{n \times n}$, $T \in \mathbb{R}^{m \times m}$ khả nghịch sao cho $\tilde{A} = T^{-1}AS$.
 
-\begin{dinhly}
-  Nếu $A$ là ma trận của $T$ trong cơ sở $\mathcal{B}_V$, $\mathcal{B}_W$ thì $\mathrm{rank}(A) = \dim(\mathrm{Im}\,T)$, $\dim(\ker T) = n - \mathrm{rank}(A)$.
-\end{dinhly}
+  Hai ma trận $A, \tilde{A} \in \mathbb{R}^{n \times n}$ gọi là \textbf{đồng dạng (similar)} nếu tồn tại $S \in \mathbb{R}^{n \times n}$ khả nghịch sao cho $\tilde{A} = S^{-1}AS$.
 
-\begin{dinhnghia}
-  $T$ \textbf{đơn cấu} (đơn ánh) $\Leftrightarrow$ $\ker T = \{\mathbf{0}\}$.
-  
-  $T$ \textbf{toàn cấu} (toàn ánh) $\Leftrightarrow$ $\mathrm{Im}\,T = W$.
-  
-  $T$ \textbf{đẳng cấu} $\Leftrightarrow$ vừa đơn cấu vừa toàn cấu (khi đó $\dim V = \dim W$).
+  \begin{itemize}
+    \item Đồng dạng $\Rightarrow$ tương đương; chiều ngược lại không đúng.
+    \item Hai ma trận biểu diễn cùng một ánh xạ tuyến tính (theo cặp cơ sở khác nhau) thì tương đương; nếu $V = W$ thì còn đồng dạng.
+  \end{itemize}
 \end{dinhnghia}
 
 %% ================================================================
-%%  CHƯƠNG 5: TRỊ RIÊNG, VECTƠ RIÊNG, DẠNG TOÀN PHƯƠNG
+%%  CHƯƠNG 5: KHÔNG GIAN AFFINE
+%% ================================================================
+
+\section{Không gian Affine}
+
+\begin{luuy}
+  Không gian affine là khái niệm mở rộng của không gian vectơ -- cho phép ``dịch chuyển khỏi gốc tọa độ''. Nội dung này thường gặp trong hình học giải tích, tối ưu hóa, và học máy (phân lớp SVM, hồi quy), ít xuất hiện trong chương trình đại số tuyến tính đại cương.
+\end{luuy}
+
+\subsection{Không gian con affine}
+
+\begin{dinhnghia}
+  Cho không gian vectơ $V$, điểm neo $x_0 \in V$ và không gian con $U \subseteq V$. Tập hợp:
+  \[
+    L = x_0 + U := \{x_0 + u : u \in U\} \subseteq V
+  \]
+  gọi là \textbf{không gian con affine} (hay \emph{đa tạp tuyến tính}) của $V$. $U$ là \textbf{không gian hướng}, $x_0$ là \textbf{điểm neo}.
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item $L$ là không gian con (vectơ) $\Leftrightarrow$ $x_0 \in U$ (tức $x_0 = \mathbf{0}$ được). Ngược lại $L$ không chứa $\mathbf{0}$.
+    \item Tập nghiệm của hệ thuần nhất $Ax = 0$ là không gian con (= $\ker A$).
+    \item Tập nghiệm của hệ không thuần nhất $Ax = b$ ($b \ne 0$) là không gian con affine: $L = x_p + \ker A$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Các ví dụ quen thuộc}]
+  Trong $\mathbb{R}^n$, không gian affine $k$ chiều ($L = x_0 + U$, $\dim U = k$) có phương trình tham số:
+  \[
+    y = x_0 + \lambda_1 b_1 + \cdots + \lambda_k b_k, \quad \lambda_i \in \mathbb{R},
+  \]
+  trong đó $(b_1, \ldots, b_k)$ là cơ sở của $U$ (các vectơ hướng).
+  \begin{itemize}
+    \item $k = 1$: \textbf{đường thẳng} qua $x_0$ theo hướng $b_1$.
+    \item $k = 2$: \textbf{mặt phẳng} qua $x_0$ theo hai hướng $b_1, b_2$.
+    \item $k = n-1$: \textbf{siêu phẳng} (hyperplane) trong $\mathbb{R}^n$.
+  \end{itemize}
+\end{vidu}
+
+\subsection{Ánh xạ affine}
+
+\begin{dinhnghia}
+  Cho ánh xạ tuyến tính $\Phi: V \to W$ và vectơ dịch chuyển $a \in W$. Ánh xạ:
+  \[
+    \varphi: V \to W, \quad x \mapsto a + \Phi(x)
+  \]
+  gọi là \textbf{ánh xạ affine}. ($a$ gọi là \emph{vectơ tịnh tiến}.)
+\end{dinhnghia}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Mọi ánh xạ affine = (ánh xạ tuyến tính) $\circ$ (phép tịnh tiến), và cặp $(\Phi, a)$ xác định duy nhất.
+    \item Hợp thành của hai ánh xạ affine cũng là affine.
+    \item Ánh xạ affine song ánh bảo toàn cấu trúc hình học: chiều, tính song song.
+    \item Mọi hệ $Ax = b$ xác định một ánh xạ affine $x \mapsto Ax - b$ (nghiệm là tập $\varphi^{-1}(\mathbf{0})$).
+  \end{itemize}
+\end{tinhchat}
+
+%% ================================================================
+%%  CHƯƠNG 6: TRỊ RIÊNG, VECTƠ RIÊNG, DẠNG TOÀN PHƯƠNG
 %% ================================================================
 \section{Trị riêng và vectơ riêng}
 
