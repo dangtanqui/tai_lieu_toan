@@ -1,0 +1,177 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+
+\geometry{a4paper, margin=2.5cm, bottom=3cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{MML -- Chương 1: Giới thiệu}}
+\fancyhead[R]{\small\textit{Tóm tắt tiếng Việt}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newtcolorbox{khainiembox}[1][]{enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Khái niệm}, #1}
+\newtcolorbox{dinhlybox}[1][]{enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Nhận xét}, #1}
+\newtcolorbox{luuybox}[1][]{enhanced, breakable,
+  colback=orange!5!white, colframe=orange!60!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{tomtatbox}[1][]{enhanced, breakable,
+  colback=violet!3!white, colframe=violet!60!black,
+  fonttitle=\bfseries, title={Tóm tắt}, #1}
+
+\title{\textbf{Chương 1: Giới thiệu và Động lực}\\[4pt]
+\large Tóm tắt từ \textit{Mathematics for Machine Learning}\\
+\normalsize Deisenroth, Faisal, Ong}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%% ============================================================
+\section{Học máy là gì?}
+
+Học máy là lĩnh vực thiết kế các thuật toán có khả năng \textbf{tự động trích xuất thông tin có giá trị từ dữ liệu}. Điểm mấu chốt là tính \emph{tự động}: học máy hướng đến các phương pháp tổng quát có thể áp dụng cho nhiều tập dữ liệu khác nhau mà không cần nhiều kiến thức chuyên ngành.
+
+\begin{khainiembox}
+Ba khái niệm cốt lõi của học máy:
+\begin{enumerate}
+  \item \textbf{Dữ liệu (Data):} Học máy dựa trên dữ liệu. Mục tiêu là trích xuất các mẫu và cấu trúc ý nghĩa từ dữ liệu.
+  \item \textbf{Mô hình (Model):} Mô hình thường mô tả quá trình sinh dữ liệu. Một mô hình tốt có thể dùng để dự đoán tình huống chưa từng gặp mà không cần thực nghiệm trực tiếp.
+  \item \textbf{Học (Learning):} Quá trình sử dụng dữ liệu sẵn có để tối ưu hóa tham số của mô hình theo một hàm mục tiêu, đánh giá mức độ hiệu quả của mô hình trên dữ liệu huấn luyện.
+\end{enumerate}
+\end{khainiembox}
+
+Theo Mitchell (1997): \emph{Một mô hình được gọi là học từ dữ liệu nếu hiệu suất của nó trên một nhiệm vụ nhất định cải thiện sau khi dữ liệu được đưa vào.}
+
+\begin{luuybox}
+Mục tiêu không chỉ là ghi nhớ dữ liệu huấn luyện, mà là xây dựng mô hình \textbf{tổng quát hóa tốt} sang dữ liệu chưa thấy.
+\end{luuybox}
+
+%% ============================================================
+\section{Tìm ngôn ngữ cho trực giác (Finding Words for Intuitions)}
+
+\subsection{Dữ liệu dưới dạng vector}
+
+Trong cuốn sách này, dữ liệu được biểu diễn dưới dạng \textbf{vector}. Có ít nhất ba cách hiểu về vector:
+\begin{itemize}
+  \item \textbf{Góc nhìn khoa học máy tính:} Vector là một mảng số.
+  \item \textbf{Góc nhìn vật lý:} Vector là một mũi tên có hướng và độ lớn.
+  \item \textbf{Góc nhìn toán học:} Vector là đối tượng tuân theo phép cộng và nhân vô hướng.
+\end{itemize}
+
+\subsection{Mô hình}
+
+Mô hình thường là phiên bản đơn giản hóa của quá trình sinh dữ liệu thực tế (ẩn), nắm bắt các khía cạnh liên quan và trích xuất các mẫu ẩn. Ví dụ trong bài toán hồi quy, mô hình mô tả một hàm ánh xạ từ đầu vào sang đầu ra là số thực.
+
+\subsection{Học -- Huấn luyện mô hình}
+
+Huấn luyện mô hình nghĩa là tối ưu tham số của mô hình theo hàm tiện ích (\emph{utility function}). Phép ẩn dụ: leo dốc để đạt đỉnh -- đỉnh tương ứng với cực đại của thước đo hiệu suất.
+
+\begin{tomtatbox}
+Ba điểm cốt lõi:
+\begin{itemize}
+  \item Biểu diễn dữ liệu dưới dạng vector.
+  \item Chọn mô hình phù hợp (theo hướng xác suất hoặc tối ưu hóa).
+  \item Học từ dữ liệu bằng tối ưu hóa số học để mô hình tổng quát hóa tốt trên dữ liệu chưa dùng huấn luyện.
+\end{itemize}
+\end{tomtatbox}
+
+%% ============================================================
+\section{Hai cách đọc sách}
+
+\begin{khainiembox}
+\textbf{Từ dưới lên (Bottom-up):} Xây dựng khái niệm từ nền tảng đến nâng cao. Ưu điểm: vững chắc về lý thuyết. Nhược điểm: người học thực hành thường thấy các khái niệm nền tảng thiếu động lực, dễ bị quên.
+
+\textbf{Từ trên xuống (Top-down):} Từ nhu cầu thực tế, khoan sâu vào các yêu cầu cơ bản. Ưu điểm: người đọc luôn biết tại sao cần học khái niệm đó. Nhược điểm: nền tảng có thể chưa vững.
+\end{khainiembox}
+
+Sách được viết theo hướng \textbf{mô-đun hóa}, tách phần toán học (Phần I) khỏi phần ứng dụng (Phần II), giúp người đọc có thể theo cả hai cách đọc. Hai phần của sách:
+
+\begin{itemize}
+  \item \textbf{Phần I -- Nền tảng toán học:} Các chương xây dựng kế tiếp nhau, nhưng có thể bỏ qua một chương và quay lại sau.
+  \item \textbf{Phần II -- Học máy:} Các chương ít phụ thuộc nhau, có thể đọc theo bất kỳ thứ tự nào.
+\end{itemize}
+
+%% ============================================================
+\section{Phần I -- Toán học}
+
+Bốn trụ cột của học máy trong sách đòi hỏi nền tảng toán học vững chắc:
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Chủ đề toán học} & \textbf{Chương} \\
+\hline
+Đại số tuyến tính (Linear Algebra) & Chương 2 \\
+Hình học giải tích (Analytic Geometry) & Chương 3 \\
+Phân tích ma trận (Matrix Decompositions) & Chương 4 \\
+Giải tích vector (Vector Calculus) & Chương 5 \\
+Xác suất và phân phối (Probability \& Distributions) & Chương 6 \\
+Tối ưu hóa liên tục (Continuous Optimization) & Chương 7 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{dinhlybox}
+\begin{itemize}
+  \item Dữ liệu số được biểu diễn là vector; bảng dữ liệu là ma trận $\Rightarrow$ cần \textbf{đại số tuyến tính}.
+  \item Đo độ tương đồng giữa hai vector $\Rightarrow$ cần \textbf{hình học giải tích}.
+  \item Các phép biến đổi ma trận hữu ích trong học máy $\Rightarrow$ cần \textbf{phân tích ma trận}.
+  \item Dữ liệu là quan sát nhiễu của tín hiệu thực $\Rightarrow$ cần \textbf{xác suất}.
+  \item Huấn luyện mô hình thường là bài toán tối ưu hóa $\Rightarrow$ cần \textbf{giải tích vector} và \textbf{tối ưu hóa}.
+\end{itemize}
+\end{dinhlybox}
+
+%% ============================================================
+\section{Phần II -- Học máy (Bốn trụ cột)}
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Trụ cột} & \textbf{Chương} \\
+\hline
+Hồi quy tuyến tính (Linear Regression) & Chương 9 \\
+Giảm chiều dữ liệu -- PCA (Dimensionality Reduction) & Chương 10 \\
+Ước lượng mật độ -- GMM (Density Estimation) & Chương 11 \\
+Phân loại -- SVM (Classification) & Chương 12 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{itemize}
+  \item \textbf{Chương 8:} Phát biểu lại ba thành phần của học máy (dữ liệu, mô hình, ước lượng tham số) theo ngôn ngữ toán học.
+  \item \textbf{Chương 9 (Hồi quy tuyến tính):} Tìm hàm ánh xạ $x \in \mathbb{R}^D \to y \in \mathbb{R}$. Thảo luận ước lượng hợp lý cực đại (MLE), ước lượng hậu nghiệm cực đại (MAP), và hồi quy Bayes.
+  \item \textbf{Chương 10 (Giảm chiều -- PCA):} Tìm biểu diễn nhỏ gọn, ít chiều hơn cho dữ liệu chiều cao. Không có nhãn.
+  \item \textbf{Chương 11 (Ước lượng mật độ -- GMM):} Tìm phân phối xác suất mô tả tập dữ liệu. Dùng mô hình hỗn hợp Gaussian và thuật toán lặp.
+  \item \textbf{Chương 12 (Phân loại -- SVM):} Nhãn $y$ là số nguyên. Thảo luận Support Vector Machine.
+\end{itemize}
+
+%% ============================================================
+\section{Bài tập và phản hồi}
+
+\begin{itemize}
+  \item \textbf{Phần I:} Bài tập làm bằng giấy và bút.
+  \item \textbf{Phần II:} Các bài hướng dẫn lập trình (Jupyter notebooks) để khám phá thuật toán.
+  \item Sách gốc có thể tải miễn phí tại: \url{https://mml-book.com}
+\end{itemize}
+
+\end{document}

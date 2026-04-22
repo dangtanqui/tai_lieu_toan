@@ -1,0 +1,479 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[most]{tcolorbox}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{booktabs}
+
+\geometry{a4paper, margin=2.5cm, bottom=3cm}
+\hypersetup{colorlinks=true, linkcolor=blue!70!black, urlcolor=blue}
+\setlist[itemize]{topsep=4pt, itemsep=2pt}
+\setlist[enumerate]{topsep=4pt, itemsep=2pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{MML -- Chương 2: Đại số tuyến tính}}
+\fancyhead[R]{\small\textit{Tóm tắt tiếng Việt}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\newtcolorbox{dinhnghia}[1][]{enhanced, breakable,
+  colback=blue!3!white, colframe=blue!60!black,
+  fonttitle=\bfseries, title={Định nghĩa}, #1}
+\newtcolorbox{dinhly}[1][]{enhanced, breakable,
+  colback=green!3!white, colframe=green!50!black,
+  fonttitle=\bfseries, title={Định lý / Tính chất}, #1}
+\newtcolorbox{vidu}[1][]{enhanced, breakable,
+  colback=violet!3!white, colframe=violet!60!black,
+  fonttitle=\bfseries, title={Ví dụ}, #1}
+\newtcolorbox{luuy}[1][]{enhanced, breakable,
+  colback=orange!5!white, colframe=orange!60!black,
+  fonttitle=\bfseries, title={Lưu ý}, #1}
+\newtcolorbox{phuongphap}[1][]{enhanced, breakable,
+  colback=gray!5!white, colframe=gray!50!black,
+  fonttitle=\bfseries, title={Phương pháp / Thuật toán}, #1}
+\newtcolorbox{tomtat}[1][]{enhanced, breakable,
+  colback=teal!3!white, colframe=teal!60!black,
+  fonttitle=\bfseries, title={Tóm tắt}, #1}
+
+\title{\textbf{Chương 2: Đại số tuyến tính}\\[4pt]
+\large Tóm tắt từ \textit{Mathematics for Machine Learning}\\
+\normalsize Deisenroth, Faisal, Ong}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+%% ============================================================
+\section{Giới thiệu}
+
+Đại số tuyến tính nghiên cứu \textbf{vector} và các quy tắc thao tác trên vector. Vector là đối tượng đặc biệt: có thể \emph{cộng với nhau} và \emph{nhân với vô hướng (scalar)} để tạo ra đối tượng cùng loại.
+
+Các ví dụ về vector:
+\begin{itemize}
+  \item \textbf{Vector hình học:} Các đoạn thẳng có hướng trong không gian 2D/3D.
+  \item \textbf{Đa thức:} Hai đa thức có thể cộng lại hoặc nhân với vô hướng, kết quả vẫn là đa thức.
+  \item \textbf{Tín hiệu âm thanh:} Dãy số, có thể cộng và nhân vô hướng.
+  \item \textbf{Phần tử của $\mathbb{R}^n$:} Bộ $n$ số thực -- đây là loại vector trọng tâm của cuốn sách.
+\end{itemize}
+
+Ý tưởng quan trọng: \textbf{tính đóng} -- tập hợp tất cả các đối tượng sinh ra từ phép cộng và nhân vô hướng từ một tập nhỏ tạo thành \emph{không gian vector}.
+
+%% ============================================================
+\section{Hệ phương trình tuyến tính (§2.1)}
+
+Hệ phương trình tuyến tính là nền tảng của đại số tuyến tính. Dạng tổng quát:
+\[
+  a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n = b_1
+\]
+\[
+  \vdots
+\]
+\[
+  a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n = b_m
+\]
+trong đó $a_{ij}, b_i \in \mathbb{R}$ là hằng số đã biết, $x_j$ là các ẩn số.
+
+Hệ phương trình này có thể viết gọn dưới dạng ma trận: $Ax = b$.
+
+\begin{luuy}
+Một hệ phương trình tuyến tính thực có thể có:
+\begin{itemize}
+  \item \textbf{Không có nghiệm} (vô nghiệm),
+  \item \textbf{Đúng một nghiệm} (nghiệm duy nhất),
+  \item \textbf{Vô số nghiệm}.
+\end{itemize}
+\end{luuy}
+
+\textbf{Ý nghĩa hình học:} Trong hệ 2 ẩn, mỗi phương trình tuyến tính biểu diễn một đường thẳng. Nghiệm của hệ là giao điểm của các đường thẳng đó. Với 3 ẩn, mỗi phương trình là một mặt phẳng.
+
+%% ============================================================
+\section{Ma trận (§2.2)}
+
+\begin{dinhnghia}
+Ma trận thực $(m, n)$ là mảng $m \times n$ phần tử $a_{ij} \in \mathbb{R}$, sắp xếp theo $m$ hàng và $n$ cột:
+\[
+  A = \begin{pmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn} \end{pmatrix}, \quad a_{ij} \in \mathbb{R}
+\]
+Ký hiệu: $A \in \mathbb{R}^{m \times n}$.
+\end{dinhnghia}
+
+\subsection{Cộng và nhân ma trận}
+
+\textbf{Cộng:} $A + B$ được tính theo từng phần tử (yêu cầu cùng kích thước).
+
+\textbf{Nhân:} Với $A \in \mathbb{R}^{m \times n}$, $B \in \mathbb{R}^{n \times k}$, tích $C = AB \in \mathbb{R}^{m \times k}$ có:
+\[
+  c_{ij} = \sum_{l=1}^{n} a_{il} b_{lj}
+\]
+
+\begin{luuy}
+\begin{itemize}
+  \item Nhân ma trận \textbf{không giao hoán}: $AB \ne BA$ nói chung.
+  \item Nhân ma trận \textbf{không phải} phép nhân theo từng phần tử (phép nhân từng phần tử gọi là tích Hadamard).
+  \item Hai ma trận chỉ nhân được khi các chiều ``lân cận'' khớp nhau: $A_{m \times n} \cdot B_{n \times k} = C_{m \times k}$.
+\end{itemize}
+\end{luuy}
+
+\begin{dinhly}
+Tính chất phép nhân ma trận:
+\begin{itemize}
+  \item \textbf{Kết hợp:} $(AB)C = A(BC)$
+  \item \textbf{Phân phối:} $(A+B)C = AC + BC$; $A(C+D) = AC + AD$
+  \item \textbf{Ma trận đơn vị:} $I_m A = A I_n = A$
+\end{itemize}
+\end{dinhly}
+
+\subsection{Ma trận nghịch đảo và chuyển vị}
+
+\begin{dinhnghia}
+\textbf{Ma trận nghịch đảo:} Với $A \in \mathbb{R}^{n \times n}$, nếu tồn tại $B$ sao cho $AB = I_n = BA$ thì $B$ gọi là nghịch đảo của $A$, ký hiệu $A^{-1}$. $A$ được gọi là khả nghịch (regular/invertible/nonsingular). Nếu không tồn tại, $A$ là suy biến (singular).
+\end{dinhnghia}
+
+\begin{dinhnghia}
+\textbf{Ma trận chuyển vị:} Với $A \in \mathbb{R}^{m \times n}$, ma trận $B \in \mathbb{R}^{n \times m}$ với $b_{ij} = a_{ji}$ gọi là chuyển vị của $A$, ký hiệu $A^\top$.
+\end{dinhnghia}
+
+\begin{dinhly}
+Các tính chất quan trọng:
+\begin{itemize}
+  \item $AA^{-1} = I = A^{-1}A$
+  \item $(AB)^{-1} = B^{-1}A^{-1}$
+  \item $(A^\top)^\top = A$
+  \item $(AB)^\top = B^\top A^\top$
+  \item $(A + B)^\top = A^\top + B^\top$
+\end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}
+\textbf{Ma trận đối xứng:} $A \in \mathbb{R}^{n \times n}$ là đối xứng nếu $A = A^\top$.
+\end{dinhnghia}
+
+%% ============================================================
+\section{Giải hệ phương trình tuyến tính (§2.3)}
+
+\subsection{Nghiệm riêng và nghiệm tổng quát}
+
+Để giải $Ax = b$, ta tìm:
+\begin{enumerate}
+  \item \textbf{Nghiệm riêng (particular solution):} Một nghiệm cụ thể thỏa $Ax = b$.
+  \item \textbf{Nghiệm thuần nhất (homogeneous solution):} Toàn bộ nghiệm của $Ax = 0$.
+  \item \textbf{Nghiệm tổng quát:} Tổng của nghiệm riêng và tất cả nghiệm thuần nhất.
+\end{enumerate}
+
+\subsection{Các phép biến đổi sơ cấp}
+
+Ba phép biến đổi giữ nguyên tập nghiệm:
+\begin{itemize}
+  \item Hoán vị hai phương trình (hai hàng).
+  \item Nhân một phương trình (hàng) với hằng số $\lambda \ne 0$.
+  \item Cộng hai phương trình (hàng) vào nhau.
+\end{itemize}
+
+\subsection{Dạng bậc thang hàng (Row-Echelon Form -- REF)}
+
+\begin{dinhnghia}
+Ma trận ở dạng \textbf{bậc thang hàng (REF)} khi:
+\begin{itemize}
+  \item Tất cả hàng gồm toàn số 0 nằm ở dưới cùng.
+  \item Phần tử khác 0 đầu tiên từ trái của mỗi hàng (gọi là \emph{phần tử chốt -- pivot}) nằm nghiêm ngặt bên phải pivot của hàng trên nó.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}
+\textbf{Dạng bậc thang hàng rút gọn (Reduced REF -- RREF):} REF thỏa thêm: mỗi pivot bằng 1 và là phần tử khác 0 duy nhất trong cột của nó.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Khử Gauss (Gaussian Elimination)}]
+Thuật toán dùng các phép biến đổi sơ cấp để đưa hệ về RREF, từ đó đọc ra nghiệm:
+\begin{enumerate}
+  \item Đưa ma trận về REF.
+  \item Tiếp tục đưa về RREF.
+  \item Các biến ứng với cột pivot gọi là \emph{biến cơ bản}; các biến còn lại là \emph{biến tự do}.
+  \item Đặt biến tự do là tham số $\lambda_i \in \mathbb{R}$, biểu diễn nghiệm tổng quát.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Tính ma trận nghịch đảo bằng khử Gauss}
+
+Để tính $A^{-1}$ với $A \in \mathbb{R}^{n \times n}$, ta đưa ma trận mở rộng $[A \mid I_n]$ về RREF:
+\[
+  [A \mid I_n] \;\xrightarrow{\text{Gauss}}\; [I_n \mid A^{-1}]
+\]
+
+%% ============================================================
+\section{Không gian vector (§2.4)}
+
+\subsection{Nhóm (Group)}
+
+\begin{dinhnghia}
+Cho tập $G$ và phép toán $\otimes : G \times G \to G$. $(G, \otimes)$ là \textbf{nhóm} nếu thỏa:
+\begin{enumerate}
+  \item \textbf{Đóng:} $\forall x, y \in G: x \otimes y \in G$
+  \item \textbf{Kết hợp:} $(x \otimes y) \otimes z = x \otimes (y \otimes z)$
+  \item \textbf{Phần tử đơn vị:} $\exists e \in G: x \otimes e = x$ và $e \otimes x = x$
+  \item \textbf{Phần tử nghịch đảo:} $\forall x \in G, \exists y \in G: x \otimes y = e$ và $y \otimes x = e$
+\end{enumerate}
+Nếu thêm $x \otimes y = y \otimes x$ với mọi $x, y$, thì $(G, \otimes)$ là \textbf{nhóm Abel (giao hoán)}.
+\end{dinhnghia}
+
+\begin{vidu}
+$(\mathbb{Z}, +)$ là nhóm Abel. $(\mathbb{R} \setminus \{0\}, \cdot)$ là nhóm Abel. $(\mathbb{R}^{n \times n}, \cdot)$ với các ma trận khả nghịch (nhóm tuyến tính tổng quát $GL(n, \mathbb{R})$) là nhóm (không giao hoán).
+\end{vidu}
+
+\subsection{Không gian vector}
+
+\begin{dinhnghia}
+\textbf{Không gian vector thực} là bộ $V = (V, +, \cdot)$ gồm tập $V$, phép cộng $+ : V \times V \to V$ và phép nhân vô hướng $\cdot : \mathbb{R} \times V \to V$, thỏa:
+\begin{itemize}
+  \item $(V, +)$ là nhóm Abel.
+  \item Phân phối: $\lambda(x + y) = \lambda x + \lambda y$; $(\lambda + \psi)x = \lambda x + \psi x$
+  \item Kết hợp (với vô hướng): $\lambda(\psi x) = (\lambda \psi)x$
+  \item Đơn vị: $1 \cdot x = x$
+\end{itemize}
+Các phần tử của $V$ gọi là \textbf{vector}; $\mathbb{R}$ là trường vô hướng.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+\textbf{Không gian con (Subspace):} Tập $U \subseteq V$ không rỗng gọi là không gian con của $V$ nếu $U$ đóng với phép cộng và nhân vô hướng, tức $U$ tự thành một không gian vector.
+\end{dinhnghia}
+
+%% ============================================================
+\section{Độc lập tuyến tính (§2.5)}
+
+\begin{dinhnghia}
+Tập hợp vector $\{x_1, \ldots, x_k\} \subset V$ gọi là \textbf{độc lập tuyến tính} nếu phương trình:
+\[
+  \lambda_1 x_1 + \lambda_2 x_2 + \cdots + \lambda_k x_k = 0
+\]
+chỉ có nghiệm duy nhất $\lambda_1 = \lambda_2 = \cdots = \lambda_k = 0$.
+Ngược lại, tập hợp gọi là \textbf{phụ thuộc tuyến tính}.
+\end{dinhnghia}
+
+\begin{dinhly}
+Tính chất:
+\begin{itemize}
+  \item Nếu một trong các vector là vector không, tập hợp phụ thuộc tuyến tính.
+  \item Nếu một vector là tổ hợp tuyến tính của các vector còn lại, tập hợp phụ thuộc tuyến tính.
+  \item $m$ tổ hợp tuyến tính của $k$ vector sẽ phụ thuộc tuyến tính nếu $m > k$.
+\end{itemize}
+\end{dinhly}
+
+\begin{phuongphap}[title={Kiểm tra độc lập tuyến tính}]
+Đặt các vector làm cột của ma trận $A$, sau đó dùng khử Gauss đưa về REF. Nếu mọi cột đều là cột pivot $\Rightarrow$ độc lập tuyến tính. Nếu có cột không phải pivot $\Rightarrow$ phụ thuộc tuyến tính.
+\end{phuongphap}
+
+%% ============================================================
+\section{Cơ sở và Hạng (§2.6)}
+
+\subsection{Tập sinh và cơ sở}
+
+\begin{dinhnghia}
+Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu mọi $v \in V$ đều biểu diễn được dưới dạng tổ hợp tuyến tính của các phần tử trong $A$, thì $A$ gọi là \textbf{tập sinh} của $V$. Bao tuyến tính (span) của $A$:
+\[
+  \mathrm{span}[A] = \left\{\sum_{i=1}^k \lambda_i x_i \;\Big|\; \lambda_i \in \mathbb{R}\right\}
+\]
+\end{dinhnghia}
+
+\begin{dinhnghia}
+\textbf{Cơ sở (Basis):} Tập sinh $A$ của $V$ gọi là \textbf{cơ sở} nếu $A$ là tập sinh tối tiểu (không có tập sinh nào nhỏ hơn), hay tương đương, $A$ là tập độc lập tuyến tính lớn nhất trong $V$.
+\end{dinhnghia}
+
+\begin{dinhly}
+Các mệnh đề tương đương:
+\begin{itemize}
+  \item $B$ là cơ sở của $V$.
+  \item $B$ là tập sinh tối tiểu.
+  \item $B$ là tập độc lập tuyến tính lớn nhất.
+  \item Mọi $x \in V$ đều biểu diễn được duy nhất qua các phần tử của $B$.
+\end{itemize}
+\end{dinhly}
+
+\begin{luuy}
+Cơ sở tắc (canonical basis) của $\mathbb{R}^n$: $\{e_1, e_2, \ldots, e_n\}$, trong đó $e_i$ là vector có 1 ở vị trí thứ $i$ và 0 ở các vị trí còn lại. Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có cùng số phần tử.
+\end{luuy}
+
+\begin{dinhnghia}
+\textbf{Số chiều (Dimension):} Số chiều $\dim(V)$ của không gian vector $V$ là số lượng vector cơ sở. Nếu $U \subseteq V$ là không gian con thì $\dim(U) \le \dim(V)$.
+\end{dinhnghia}
+
+\subsection{Hạng (Rank)}
+
+\begin{dinhnghia}
+\textbf{Hạng} của ma trận $A \in \mathbb{R}^{m \times n}$, ký hiệu $\mathrm{rk}(A)$, là số cột (hoặc hàng) độc lập tuyến tính tối đa của $A$.
+\end{dinhnghia}
+
+\begin{dinhly}
+Tính chất quan trọng của hạng:
+\begin{itemize}
+  \item $\mathrm{rk}(A) = \mathrm{rk}(A^\top)$ (hạng cột = hạng hàng).
+  \item $A \in \mathbb{R}^{n \times n}$ khả nghịch $\Leftrightarrow$ $\mathrm{rk}(A) = n$.
+  \item Hệ $Ax = b$ có nghiệm $\Leftrightarrow$ $\mathrm{rk}(A) = \mathrm{rk}([A \mid b])$.
+  \item Không gian nghiệm của $Ax = 0$ có số chiều $n - \mathrm{rk}(A)$ (gọi là không gian nhân -- kernel/null space).
+  \item Ma trận \emph{full rank} khi $\mathrm{rk}(A) = \min(m, n)$.
+\end{itemize}
+\end{dinhly}
+
+%% ============================================================
+\section{Ánh xạ tuyến tính (§2.7)}
+
+\begin{dinhnghia}
+Cho hai không gian vector $V, W$. Ánh xạ $\Phi : V \to W$ gọi là \textbf{ánh xạ tuyến tính} (hay đồng cấu không gian vector) nếu:
+\[
+  \forall x, y \in V,\; \forall \lambda, \psi \in \mathbb{R}:\quad \Phi(\lambda x + \psi y) = \lambda\Phi(x) + \psi\Phi(y)
+\]
+\end{dinhnghia}
+
+Các trường hợp đặc biệt:
+\begin{itemize}
+  \item \textbf{Đẳng cấu (Isomorphism):} $\Phi : V \to W$ tuyến tính và song ánh (bijective).
+  \item \textbf{Nội cấu (Endomorphism):} $\Phi : V \to V$ tuyến tính.
+  \item \textbf{Tự đẳng cấu (Automorphism):} $\Phi : V \to V$ tuyến tính và song ánh.
+\end{itemize}
+
+\begin{dinhly}[title={Định lý về đẳng cấu}]
+Hai không gian vector hữu hạn chiều $V$ và $W$ đẳng cấu nhau khi và chỉ khi $\dim(V) = \dim(W)$. Điều này có nghĩa là hai không gian vector cùng chiều về bản chất là ``như nhau'' -- chúng có thể biến đổi qua lại mà không mất thông tin.
+\end{dinhly}
+
+\subsection{Biểu diễn ma trận của ánh xạ tuyến tính}
+
+\begin{dinhnghia}
+Cho không gian vector $V, W$ với cơ sở có thứ tự $B = (b_1, \ldots, b_n)$ và $C = (c_1, \ldots, c_m)$. Ánh xạ tuyến tính $\Phi : V \to W$ tương ứng với \textbf{ma trận chuyển đổi} $A_\Phi \in \mathbb{R}^{m \times n}$, trong đó cột $j$ của $A_\Phi$ chứa tọa độ của $\Phi(b_j)$ theo $C$.
+\end{dinhnghia}
+
+Nếu $\hat{x}$ là vector tọa độ của $x \in V$ theo $B$ và $\hat{y}$ là vector tọa độ của $\Phi(x) \in W$ theo $C$, thì:
+\[
+  \hat{y} = A_\Phi \hat{x}
+\]
+
+\begin{luuy}
+Khi làm việc với ma trận, cần phân biệt hai vai trò:
+\begin{itemize}
+  \item Ma trận biểu diễn một \textbf{ánh xạ tuyến tính}.
+  \item Ma trận là \textbf{tập hợp các vector} (mỗi cột là một vector).
+\end{itemize}
+\end{luuy}
+
+\subsection{Thay đổi cơ sở (Basis Change)}
+
+Khi thay đổi cơ sở trong $V$ và $W$, ma trận chuyển đổi thay đổi theo:
+\[
+  \tilde{A}_\Phi = T^{-1} A_\Phi S
+\]
+trong đó $S$ là ma trận chuyển đổi tọa độ từ cơ sở mới sang cơ sở cũ trong $V$, và $T$ là ma trận tương ứng trong $W$.
+
+\begin{dinhnghia}
+\textbf{Tương đương:} $A, \tilde{A} \in \mathbb{R}^{m \times n}$ tương đương nếu $\exists$ ma trận khả nghịch $S \in \mathbb{R}^{n \times n}$, $T \in \mathbb{R}^{m \times m}$: $\tilde{A} = T^{-1}AS$.
+
+\textbf{Tương tự (Similar):} $A, \tilde{A} \in \mathbb{R}^{n \times n}$ tương tự nếu $\exists$ ma trận khả nghịch $S \in \mathbb{R}^{n \times n}$: $\tilde{A} = S^{-1}AS$.
+
+Ma trận tương tự thì luôn tương đương; điều ngược lại không nhất thiết đúng.
+\end{dinhnghia}
+
+\subsection{Ảnh và Nhân (Image \& Kernel)}
+
+\begin{dinhnghia}
+Cho ánh xạ tuyến tính $\Phi : V \to W$:
+\begin{itemize}
+  \item \textbf{Nhân (Kernel / Null Space):}
+  \[
+    \ker(\Phi) = \{v \in V : \Phi(v) = 0_W\}
+  \]
+  Tập hợp các vector trong $V$ bị ánh xạ về $0_W$.
+  \item \textbf{Ảnh (Image / Range):}
+  \[
+    \mathrm{Im}(\Phi) = \{\Phi(v) : v \in V\}
+  \]
+  Tập hợp tất cả các vector trong $W$ có thể đạt được từ $\Phi$.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}
+Tính chất:
+\begin{itemize}
+  \item $\ker(\Phi)$ luôn chứa $0_V$ (không bao giờ rỗng).
+  \item $\mathrm{Im}(\Phi) \subseteq W$ là không gian con của $W$.
+  \item $\ker(\Phi) \subseteq V$ là không gian con của $V$.
+  \item $\Phi$ đơn ánh (injective) $\Leftrightarrow$ $\ker(\Phi) = \{0\}$.
+\end{itemize}
+\end{dinhly}
+
+\begin{dinhly}[title={Định lý hạng -- nhân (Rank-Nullity Theorem)}]
+Với ánh xạ tuyến tính $\Phi : V \to W$:
+\[
+  \dim(\ker(\Phi)) + \dim(\mathrm{Im}(\Phi)) = \dim(V)
+\]
+\end{dinhly}
+
+\begin{luuy}
+Với $A \in \mathbb{R}^{m \times n}$ và ánh xạ $\Phi : \mathbb{R}^n \to \mathbb{R}^m$, $x \mapsto Ax$:
+\begin{itemize}
+  \item $\mathrm{Im}(\Phi) = \mathrm{span}[a_1, \ldots, a_n]$ (bao tuyến tính của các cột của $A$) -- còn gọi là \emph{không gian cột}.
+  \item $\ker(\Phi)$ là nghiệm tổng quát của $Ax = 0$.
+  \item $\mathrm{rk}(A) = \dim(\mathrm{Im}(\Phi))$.
+\end{itemize}
+\end{luuy}
+
+%% ============================================================
+\section{Không gian Affine (§2.8)}
+
+\begin{dinhnghia}
+Cho không gian vector $V$, $x_0 \in V$ và không gian con $U \subseteq V$. Tập hợp:
+\[
+  L = x_0 + U := \{x_0 + u : u \in U\}
+\]
+gọi là \textbf{không gian con affine} của $V$. $U$ gọi là \emph{không gian hướng}, $x_0$ gọi là \emph{điểm neo (support point)}.
+\end{dinhnghia}
+
+\begin{luuy}
+Không gian affine \textbf{không} phải không gian con (vector subspace) nếu $x_0 \notin U$, vì không chứa $0$.
+\end{luuy}
+
+Ví dụ về không gian affine trong $\mathbb{R}^n$:
+\begin{itemize}
+  \item \textbf{Đường thẳng (không gian 1 chiều):} $y = x_0 + \lambda b_1$, $\lambda \in \mathbb{R}$.
+  \item \textbf{Mặt phẳng (không gian 2 chiều):} $y = x_0 + \lambda_1 b_1 + \lambda_2 b_2$.
+  \item \textbf{Siêu phẳng (hyperplane, không gian $(n-1)$ chiều):} $y = x_0 + \sum_{i=1}^{n-1} \lambda_i b_i$.
+\end{itemize}
+
+\begin{dinhnghia}
+\textbf{Ánh xạ affine:} Với ánh xạ tuyến tính $\Phi : V \to W$ và $a \in W$, ánh xạ:
+\[
+  \varphi : V \to W,\quad x \mapsto a + \Phi(x)
+\]
+gọi là ánh xạ affine. Vector $a$ gọi là \emph{vector dịch chuyển (translation vector)}.
+\end{dinhnghia}
+
+\begin{luuy}
+Mọi ánh xạ affine đều là hợp thành của một ánh xạ tuyến tính và một phép tịnh tiến. Hợp thành của hai ánh xạ affine cũng là affine.
+\end{luuy}
+
+%% ============================================================
+\section{Tóm tắt chương}
+
+\begin{tomtat}
+\begin{itemize}
+  \item \textbf{Vector} là đối tượng có thể cộng và nhân vô hướng, tạo ra đối tượng cùng loại.
+  \item \textbf{Hệ phương trình tuyến tính} $Ax = b$ có thể giải bằng khử Gauss đưa về dạng RREF.
+  \item \textbf{Ma trận} biểu diễn ánh xạ tuyến tính hoặc tập hợp vector; có thể cộng, nhân, lấy nghịch đảo và chuyển vị.
+  \item \textbf{Không gian vector} là nơi vector ``sống''; được đặc trưng bởi các tiên đề về phép cộng và nhân vô hướng.
+  \item \textbf{Độc lập tuyến tính}: tập vector không thể biểu diễn lẫn nhau qua tổ hợp tuyến tính.
+  \item \textbf{Cơ sở}: tập sinh tối tiểu; số phần tử = số chiều không gian.
+  \item \textbf{Hạng} của ma trận = số hàng/cột độc lập tuyến tính tối đa.
+  \item \textbf{Ánh xạ tuyến tính} bảo toàn cấu trúc không gian vector; biểu diễn bằng ma trận.
+  \item \textbf{Nhân/Ảnh} của ánh xạ tuyến tính liên hệ với nhau qua định lý hạng-nhân.
+  \item \textbf{Không gian affine}: không gian vector bị dịch chuyển (không qua gốc tọa độ).
+\end{itemize}
+\end{tomtat}
+
+\end{document}

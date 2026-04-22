@@ -11,6 +11,7 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{tikz}
+\usetikzlibrary{calc}
 \usepackage{eso-pic}
 \usepackage{xcolor}
 
@@ -211,7 +212,9 @@
     \item $A(B + C) = AB + AC$.
     \item $(B + C)A = BA + CA$.
     \item $k(BC) = (kB)C = B(kC)$
+    \item $(A^T)^T = A$
     \item $(AB)^T = B^T A^T$.
+    \item $(A + B)^T = A^T + B^T$
     \item $AB$ được chưa chắc $BA$ được. Nếu ma trận vuông thì $AB$ và $BA$ được
     \item Nói chung $AB \ne BA$.
     \item $A \ne 0, B \ne 0$ nhưng có thể $AB = 0$
@@ -285,8 +288,11 @@
 
 \begin{tinhchat}[title={Tính chất ma trận nghịch đảo}]
   \begin{itemize}
+    \item $AA^{-1} = I = A^{-1}A$
     \item $(A^{-1})^{-1} = A$.
-    \item $(AB)^{-1} = B^{-1} A^{-1}$ (nghịch đảo của tích = tích nghịch đảo theo thứ tự ngược).
+    \item $(AB)^{-1} = B^{-1} A^{-1}$ (nghịch đảo của tích = tích nghịch đảo theo thứ tự 
+    ngược).
+    \item $(A + B)^{-1} \ne A^{-1} + B^{-1}$
     \item $(A^T)^{-1} = (A^{-1})^T$.
     \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$.
   \end{itemize}
@@ -345,6 +351,90 @@
   Hệ gọi là \textbf{thuần nhất} nếu $b = 0$ (tức $b_1 = \cdots = b_m = 0$). Hệ thuần nhất luôn có ít nhất nghiệm tầm thường $x = 0$.
 \end{dinhnghia}
 
+\subsection{Nghiệm riêng và nghiệm tổng quát}
+
+\begin{dinhly}[title={Cấu trúc nghiệm tổng quát}]
+  Giả sử hệ $Ax = b$ có nghiệm. Khi đó nghiệm tổng quát có dạng:
+  \[
+    x = x_p + x_h,
+  \]
+  trong đó $x_p$ là một \textbf{nghiệm riêng} (particular solution) bất kỳ của $Ax = b$, và $x_h$ là nghiệm tổng quát của hệ thuần nhất $Ax = 0$.
+  
+  Cụ thể, nếu $\mathrm{rank}(A) = r < n$ thì có $n - r$ ẩn tự do $\lambda_1, \ldots, \lambda_{n-r}$ và nghiệm tổng quát:
+  \[
+    x = x_p + \lambda_1 v_1 + \lambda_2 v_2 + \cdots + \lambda_{n-r} v_{n-r}, \quad \lambda_i \in \mathbb{R},
+  \]
+  với $\{v_1, \ldots, v_{n-r}\}$ là cơ sở của $\ker(A)$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Ba cách tìm nghiệm sau khi có RREF}]
+  Giả sử đã đưa $[A \mid b]$ về RREF. Gọi các cột pivot ứng với \emph{biến cơ bản}, các cột còn lại ứng với \emph{biến tự do} $x_{j_1}, \ldots, x_{j_k}$.
+
+  \textbf{Cách 1 -- Biến tự do làm tham số:} Đặt $x_{j_i} = \lambda_i$, biểu diễn các biến cơ bản theo $\lambda_i$, ghép thành dạng $x = x_p + \sum \lambda_i v_i$.
+
+  \textbf{Cách 2 -- Biểu diễn cột không-pivot qua cột pivot:} Mỗi cột không-pivot $c_j = \sum \alpha_i c_{p_i}$, suy ra vector $v$ có $-\alpha_i$ ở vị trí pivot, $+1$ ở vị trí $j$, còn lại là 0; đây là một vector trong $\ker(A)$.
+
+  \textbf{Cách 3 -- Mẹo $(-1)$:} Mở rộng RREF (cỡ $r \times n$) thành ma trận $n \times n$ bằng cách thêm các hàng $0 \cdots 0\, {-1}\, 0 \cdots 0$ tại các vị trí không có pivot trên đường chéo. Các cột chứa $-1$ trên đường chéo chính là các vector cơ sở của $\ker(A)$.
+\end{phuongphap}
+
+\begin{vidu}[title={Hệ không thuần nhất -- 3 cách tìm nghiệm}]
+  Cho hệ $Ax = b$ với ma trận mở rộng đã được đưa về RREF:
+  \[
+    [A \mid b] =
+    \left(\begin{array}{cccc|c}
+      1 & 0 & 8 & -4 & 42 \\
+      0 & 1 & 2 & 12 & 8
+    \end{array}\right).
+  \]
+  Cột pivot: 1 và 2 $\Rightarrow$ biến cơ bản $x_1, x_2$; biến tự do $x_3, x_4$.
+
+  \medskip
+  \textbf{Cách 1 (biến tự do làm tham số):}
+
+  Đặt $x_3 = \lambda_1,\; x_4 = \lambda_2$. Từ RREF suy ra:
+  \[
+    x_1 = 42 - 8\lambda_1 + 4\lambda_2, \qquad x_2 = 8 - 2\lambda_1 - 12\lambda_2.
+  \]
+  Nghiệm tổng quát:
+  \[
+    x = \begin{pmatrix}42\\8\\0\\0\end{pmatrix}
+      + \lambda_1\begin{pmatrix}-8\\-2\\1\\0\end{pmatrix}
+      + \lambda_2\begin{pmatrix}4\\-12\\0\\1\end{pmatrix},
+    \quad \lambda_1, \lambda_2 \in \mathbb{R}.
+  \]
+
+  \medskip
+  \textbf{Cách 2 (biểu diễn cột không-pivot):}
+
+  Nghiệm riêng: $b = 42c_1 + 8c_2 \Rightarrow x_p = (42,8,0,0)^T$.
+
+  Cột 3: $c_3 = 8c_1 + 2c_2$, tức $8c_1 + 2c_2 - c_3 = 0 \Rightarrow v_1 = (8,2,-1,0)^T$.
+
+  Cột 4: $c_4 = -4c_1 + 12c_2$, tức $-4c_1 + 12c_2 - c_4 = 0 \Rightarrow v_2 = (-4,12,0,-1)^T$.
+
+  Nghiệm tổng quát:
+  \[
+    x = \begin{pmatrix}42\\8\\0\\0\end{pmatrix}
+      + \lambda_1\begin{pmatrix}8\\2\\-1\\0\end{pmatrix}
+      + \lambda_2\begin{pmatrix}-4\\12\\0\\-1\end{pmatrix},
+    \quad \lambda_1, \lambda_2 \in \mathbb{R}.
+  \]
+
+  \medskip
+  \textbf{Cách 3 (mẹo $-1$):}
+
+  Thêm 2 hàng tại vị trí cột 3 và 4 (không có pivot trên đường chéo):
+  \[
+    \tilde{A} = \begin{pmatrix}
+      1 &  0 &  8 & -4 \\
+      0 &  1 &  2 & 12 \\
+      0 &  0 & -1 &  0 \\
+      0 &  0 &  0 & -1
+    \end{pmatrix}.
+  \]
+  Các cột chứa $-1$ trên đường chéo (cột 3 và 4) chính là $v_1, v_2$, cho cùng nghiệm tổng quát ở trên.
+\end{vidu}
+
 \subsection{Phương pháp Gauss và Gauss-Jordan}
 
 \begin{phuongphap}[title={Phương pháp Gauss}]
@@ -396,6 +486,46 @@
   \end{itemize}
 \end{dinhly}
 
+\begin{vidu}[title={Hệ thuần nhất -- tìm $\ker(A)$}]
+  Cho hệ thuần nhất $Ax = 0$ với RREF:
+  \[
+    A_{\text{rref}} =
+    \begin{pmatrix}
+      1 & 0 & 8 & -4 \\
+      0 & 1 & 2 & 12
+    \end{pmatrix}.
+  \]
+  Cột pivot: 1 và 2 $\Rightarrow$ biến tự do $x_3 = \lambda_1,\; x_4 = \lambda_2$.
+
+  Từ RREF: $x_1 = -8\lambda_1 + 4\lambda_2$, \; $x_2 = -2\lambda_1 - 12\lambda_2$.
+
+  \textbf{Cách 1 (biến tự do):}
+  \[
+    \ker(A) = \left\{ x \in \mathbb{R}^4 :
+      x = \lambda_1\begin{pmatrix}-8\\-2\\1\\0\end{pmatrix}
+        + \lambda_2\begin{pmatrix}4\\-12\\0\\1\end{pmatrix},\;
+      \lambda_1, \lambda_2 \in \mathbb{R} \right\}.
+  \]
+
+  \textbf{Cách 2 (mẹo $-1$):} Mở rộng thành ma trận $4 \times 4$:
+  \[
+    \tilde{A} = \begin{pmatrix}
+      1 &  0 &  8 & -4 \\
+      0 &  1 &  2 & 12 \\
+      0 &  0 & -1 &  0 \\
+      0 &  0 &  0 & -1
+    \end{pmatrix}.
+  \]
+  Cột 3 và 4 (chứa $-1$ trên đường chéo) cho nghiệm:
+  \[
+    \ker(A) = \left\{ x \in \mathbb{R}^4 :
+      x = \lambda_1\begin{pmatrix}8\\2\\-1\\0\end{pmatrix}
+        + \lambda_2\begin{pmatrix}-4\\12\\0\\-1\end{pmatrix},\;
+      \lambda_1, \lambda_2 \in \mathbb{R} \right\}.
+  \]
+  (Hai cách cho cùng không gian nghiệm, chỉ khác dấu của vector cơ sở.)
+\end{vidu}
+
 \subsection{Định lý Kronecker-Capelli}
 
 \begin{dinhly}[title={Định lý Kronecker-Capelli}]
@@ -406,6 +536,142 @@
     \item Nếu $\mathrm{rank}(A) < \mathrm{rank}(\overline{A})$: hệ \textbf{vô nghiệm}.
   \end{itemize}
 \end{dinhly}
+
+\subsection{Nghiệm bình phương nhỏ nhất (giả nghịch đảo Moore-Penrose)}
+
+\begin{luuy}
+  Khi hệ $Ax = b$ \textbf{không nhất quán} (vô nghiệm) hoặc $A$ không vuông/không có nghịch đảo, ta không thể tìm nghiệm chính xác. Thay vào đó, ta tìm vector $x^*$ sao cho $\|Ax - b\|^2$ nhỏ nhất (nghiệm bình phương nhỏ nhất -- \emph{least-squares solution}).
+\end{luuy}
+
+\begin{congthuc}[title={Nghiệm bình phương nhỏ nhất}]
+  Nếu $A \in \mathbb{R}^{m \times n}$ có các cột độc lập tuyến tính (tức $\mathrm{rank}(A) = n$), thì nghiệm bình phương nhỏ nhất duy nhất là:
+  \[
+    x^* = (A^T A)^{-1} A^T b.
+  \]
+  Ma trận $A^+ = (A^T A)^{-1} A^T$ gọi là \textbf{giả nghịch đảo Moore-Penrose} của $A$.
+
+  Suy ra bằng cách nhân hai vế $Ax = b$ với $A^T$:
+  \[
+    A^T A x = A^T b \;\Longrightarrow\; x^* = (A^T A)^{-1} A^T b.
+  \]
+\end{congthuc}
+
+\begin{luuy}[title=Trực giác hình học]
+Các vector dạng $Ax$ luôn nằm trong không gian cột của $A$.
+
+Nhưng $b$ có thể không nằm trong đó vô nghiệm.
+
+Ta chiếu $b$ xuống không gian cột của $A$.
+
+\[
+\begin{tikzpicture}[scale=1.2]
+
+% axis Col(A)
+\draw[->] (-0.5,0) -- (5,0);
+\node[right] at (5,0) {Col$(A)$};
+
+% origin
+\coordinate (O) at (0,0);
+
+% projection Ax*
+\coordinate (P) at (3,0);
+\node[below] at (P) {$Ax^*$};
+
+% point b (đặt thẳng đứng trên Ax*)
+\coordinate (B) at (3,2.2);
+\node[above] at (B) {$b$};
+
+% triangle
+\draw (O) -- (B);
+\draw (O) -- (P);
+
+% residual r (vuông góc)
+\draw (P) -- (B);
+\node[right] at ($(P)!0.5!(B)$) {$r$};
+
+% right angle
+\draw (P) rectangle ++(-0.25,0.25);
+
+\end{tikzpicture}
+\]
+
+$Ax^*$ = hình chiếu của $b$ lên $Col(A)$
+
+$r = b - Ax^*$ vuông góc với $Col(A)$
+
+Điều kiện vuông góc:
+
+$A^Tr = 0 \Rightarrow A^T (b - Ax^*) = 0 \Rightarrow A^Tb - A^TAx^* = 0 \Rightarrow A^TAx^* = A^Tb \Rightarrow x^* = (A^TA)^{-1}A^Tb$
+\end{luuy}
+
+\begin{luuy}
+  \begin{itemize}
+    \item $A^T A \in \mathbb{R}^{n \times n}$ là ma trận vuông; khả đảo khi và chỉ khi các cột của $A$ độc lập tuyến tính.
+    \item Nếu $A$ vuông và khả đảo thì $x^* = A^{-1}b$ (trùng với nghiệm chính xác).
+    \item Nghiệm $x^*$ có norm nhỏ nhất trong tất cả nghiệm bình phương nhỏ nhất (khi $\ker(A) \ne \{0\}$).
+  \end{itemize}
+\end{luuy}
+
+\begin{vidu}[title={Tìm nghiệm bình phương nhỏ nhất}]
+  Cho hệ $Ax = b$ với:
+  \[
+    A = \begin{pmatrix} 1 & 1 \\ 1 & 2 \\ 1 & 3 \end{pmatrix}, \quad
+    b = \begin{pmatrix} 1 \\ 2 \\ 4 \end{pmatrix}.
+  \]
+  Kiểm tra: $\mathrm{rank}(A) = 2$ (2 cột độc lập tuyến tính) nhưng hệ có 3 phương trình -- vô nghiệm chính xác.
+
+  \textbf{Bước 1.} Tính $A^T A$ và $A^T b$:
+  \[
+    A^T A = \begin{pmatrix}1&1&1\\1&2&3\end{pmatrix}
+            \begin{pmatrix}1&1\\1&2\\1&3\end{pmatrix}
+          = \begin{pmatrix} 3 & 6 \\ 6 & 14 \end{pmatrix}.
+  \]
+  \[
+    A^T b = \begin{pmatrix}1&1&1\\1&2&3\end{pmatrix}
+            \begin{pmatrix}1\\2\\4\end{pmatrix}
+          = \begin{pmatrix} 7 \\ 17 \end{pmatrix}.
+  \]
+
+  \textbf{Bước 2.} Giải hệ $(A^T A)\,x^* = A^T b$, tức:
+  \[
+    \begin{pmatrix} 3 & 6 \\ 6 & 14 \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+    = \begin{pmatrix} 7 \\ 17 \end{pmatrix}.
+  \]
+  Dùng Gauss-Jordan (hoặc công thức nghịch đảo $2\times 2$):
+  \[
+    \det(A^T A) = 3 \cdot 14 - 6 \cdot 6 = 42 - 36 = 6.
+  \]
+  \[
+    (A^T A)^{-1} = \frac{1}{6}\begin{pmatrix} 14 & -6 \\ -6 & 3 \end{pmatrix}.
+  \]
+
+  \textbf{Bước 3.} Tính $x^*$:
+  \[
+    x^* = (A^T A)^{-1} A^T b
+        = \frac{1}{6}\begin{pmatrix} 14 & -6 \\ -6 & 3 \end{pmatrix}
+          \begin{pmatrix} 7 \\ 17 \end{pmatrix}
+        = \frac{1}{6}\begin{pmatrix} 98 - 102 \\ -42 + 51 \end{pmatrix}
+        = \frac{1}{6}\begin{pmatrix} -4 \\ 9 \end{pmatrix}
+        = \begin{pmatrix} -2/3 \\ 3/2 \end{pmatrix}.
+  \]
+
+  \textbf{Kiểm tra:}
+  \[
+    Ax^* = \begin{pmatrix}1&1\\1&2\\1&3\end{pmatrix}
+           \begin{pmatrix}-2/3\\3/2\end{pmatrix}
+         = \begin{pmatrix} -2/3 + 3/2 \\ -2/3 + 3 \\ -2/3 + 9/2 \end{pmatrix}
+         = \begin{pmatrix} 5/6 \\ 7/3 \\ 23/6 \end{pmatrix}.
+  \]
+  Véc-tơ phần dư $r = Ax^* - b$:
+  \[
+    r = \begin{pmatrix}5/6 - 1 \\ 7/3 - 2 \\ 23/6 - 4\end{pmatrix}
+      = \begin{pmatrix}-1/6 \\ 1/3 \\ -1/6\end{pmatrix},
+    \qquad
+    \|r\|^2 = \frac{1}{36} + \frac{1}{9} + \frac{1}{36} = \frac{1}{6}.
+  \]
+  Không có $x$ nào khác cho $\|Ax - b\|^2 < \tfrac{1}{6}$.
+\end{vidu}
 
 %% ================================================================
 %%  CHƯƠNG 3: KHÔNG GIAN VECTƠ
