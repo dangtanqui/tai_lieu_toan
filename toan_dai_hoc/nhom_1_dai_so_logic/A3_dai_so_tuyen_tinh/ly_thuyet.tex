@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+\usepackage{booktabs}
 \usepackage{tikz}
 \usetikzlibrary{calc}
 \usepackage{eso-pic}
@@ -207,6 +208,8 @@
   \[
     A = \underbrace{\frac{A + A^T}{2}}_{\text{đối xứng}} + \underbrace{\frac{A - A^T}{2}}_{\text{phản đối xứng}}.
   \]
+
+  Nếu $A$ là 1 ma trận trực giao thì $A^T$ cũng là 1 ma trận trực giao.
 \end{tinhchat}
 
 \begin{vidu}
@@ -234,7 +237,7 @@
   \begin{itemize}
     \item Ma trận thực đối xứng là trường hợp đặc biệt của Hermitian (khi $a_{ij} \in \mathbb{R}$).
     \item Ma trận trực giao là trường hợp đặc biệt của Unitary (khi $a_{ij} \in \mathbb{R}$).
-    \item Ma trận Hermitian có tất cả trị riêng là \emph{số thực} -- tính chất quan trọng trong ứng dụng (cơ học lượng tử, học máy).
+    \item Ma trận Hermitian có tất cả trị riêng là \emph{số thực} - tính chất quan trọng trong ứng dụng (cơ học lượng tử, học máy).
     \item Unitary bảo toàn tích vô hướng: $\langle Ax, Ay \rangle = \langle x, y \rangle$.
   \end{itemize}
 \end{luuy}
@@ -305,6 +308,48 @@
   (Các tính chất chuyển vị liên quan đến tích -- $(AB)^T = B^T A^T$ -- xem §1.2.)
 \end{tinhchat}
 
+\begin{dinhnghia}
+  \textbf{Tích Hadamard} (tích theo từng phần tử, element-wise product) của hai ma trận $A, B \in \mathbb{R}^{m \times n}$ \emph{cùng cỡ}:
+  \[
+    (A \odot B)_{ij} = a_{ij} \cdot b_{ij}.
+  \]
+  Kết quả cũng là ma trận $m \times n$.
+\end{dinhnghia}
+
+\begin{luuy}
+  Tích Hadamard \textbf{khác hoàn toàn} với tích ma trận thông thường $AB$:
+  \begin{itemize}
+    \item $A \odot B$ yêu cầu $A$ và $B$ \emph{cùng cỡ}; không cần chiều phù hợp như $AB$.
+    \item $AB$ là tổ hợp tuyến tính các cột; $A \odot B$ chỉ nhân từng ô tương ứng.
+    \item Trong lập trình (NumPy, MATLAB), phép nhân mảng \texttt{A * B} thường là Hadamard, còn \texttt{A @ B} hoặc \texttt{A.dot(B)} mới là nhân ma trận.
+  \end{itemize}
+\end{luuy}
+
+\begin{tinhchat}[title={Tính chất tích Hadamard}]
+  \begin{itemize}
+    \item \textbf{Giao hoán:} $A \odot B = B \odot A$
+    \item \textbf{Kết hợp:} $(A \odot B) \odot C = A \odot (B \odot C)$
+    \item \textbf{Phân phối với cộng:} $A \odot (B + C) = A \odot B + A \odot C$
+    \item \textbf{Phần tử đơn vị:} Ma trận toàn số 1, ký hiệu $\mathbf{J}$, thỏa $A \odot \mathbf{J} = A$.
+    \item \textbf{Liên hệ với tích thông thường:} $\mathrm{tr}(A^T (B \odot C)) = \mathrm{tr}((A \odot B)^T C)$.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  \[
+    A = \begin{pmatrix}1&2\\3&4\end{pmatrix},\quad
+    B = \begin{pmatrix}5&0\\-1&2\end{pmatrix}.
+  \]
+  \[
+    A \odot B = \begin{pmatrix}1\cdot5 & 2\cdot0 \\ 3\cdot(-1) & 4\cdot2\end{pmatrix}
+             = \begin{pmatrix}5&0\\-3&8\end{pmatrix}.
+  \]
+  \[
+    AB = \begin{pmatrix}1\cdot5+2\cdot(-1) & 1\cdot0+2\cdot2 \\ 3\cdot5+4\cdot(-1) & 3\cdot0+4\cdot2\end{pmatrix}
+       = \begin{pmatrix}3&4\\11&8\end{pmatrix} \;\ne\; A \odot B.
+  \]
+\end{vidu}
+
 \subsection{Định thức}
 
 \begin{dinhnghia}
@@ -319,6 +364,8 @@
 \begin{dinhly}[title={Tính chất định thức}]
   \begin{itemize}
     \item $\det(A^T) = \det(A)$.
+    \item $\det(I) = 1$
+    \item $\det(AB) = \det(A) \det(B)$ với $A, B$ là 2 ma trận vuông cùng chiều
     \item Đổi chỗ hai dòng (hoặc hai cột) $\Rightarrow$ định thức đổi dấu.
     \item Nhân một dòng (cột) với $\lambda$ $\Rightarrow$ định thức nhân với $\lambda$.
     \item $\det(AB) = \det(A) \cdot \det(B)$.
@@ -393,16 +440,100 @@
 
 \begin{tinhchat}[title={Tính chất hạng}]
   \begin{itemize}
+    \item $\mathrm{rank}(A) = 0 \Leftrightarrow A = 0$
     \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$ \quad (xem §1.2 -- hạng cột = hạng hàng)
     \item $\mathrm{rank}(A) \le \min(m, n)$ với $A \in \mathbb{R}^{m \times n}$
     \item $\mathrm{rank}(AB) \le \min(\mathrm{rank}(A),\, \mathrm{rank}(B))$
+    \item $\mathrm{rank}(A + B) \le \mathrm{rank}(A) + \mathrm{rank}(B)$
     \item $A$ khả đảo $\Leftrightarrow$ $\mathrm{rank}(A) = n$ \quad (với $A$ vuông cấp $n$)
+    \item Bất đẳng thức Sylvester về hạng: $\mathrm{rank}(A) + \mathrm{rank}(B) - n \le \mathrm{rank}(A + B)$
   \end{itemize}
 \end{tinhchat}
 
 \begin{phuongphap}[title={Tính hạng bằng biến đổi sơ cấp}]
   Dùng biến đổi sơ cấp trên hàng (hoặc cột) đưa $A$ về dạng bậc thang. Số dòng khác 0 của ma trận bậc thang chính là $\mathrm{rank}(A)$. Các biến đổi sơ cấp không làm thay đổi hạng.
 \end{phuongphap}
+
+%% ----------------------------------------------------------------
+\subsection{Không gian cột (Range) và Không gian nhân (Null Space)}
+
+\begin{dinhnghia}
+  Cho $A \in \mathbb{R}^{m \times n}$ với các cột $a_1, \ldots, a_n \in \mathbb{R}^m$.
+
+  \textbf{Không gian cột} (Column Space / Range) của $A$:
+  \[
+    \mathrm{Col}(A) = \mathrm{span}\{a_1, \ldots, a_n\}
+    = \{Ax : x \in \mathbb{R}^n\} \subseteq \mathbb{R}^m.
+  \]
+  Đây là tập hợp tất cả các tổ hợp tuyến tính của các cột của $A$.
+
+  \textbf{Không gian nhân} (Null Space / Kernel) của $A$:
+  \[
+    \mathrm{Null}(A) = \ker(A) = \{x \in \mathbb{R}^n : Ax = 0\} \subseteq \mathbb{R}^n.
+  \]
+  Đây là tập nghiệm của hệ thuần nhất $Ax = 0$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Tính chất cơ bản}]
+  \begin{itemize}
+    \item $\mathrm{Col}(A)$ là không gian con của $\mathbb{R}^m$; $\mathrm{Null}(A)$ là không gian con của $\mathbb{R}^n$.
+    \item $\dim(\mathrm{Col}(A)) = \mathrm{rank}(A)$.
+    \item $\dim(\mathrm{Null}(A)) = n - \mathrm{rank}(A)$ \quad (gọi là \textbf{nullity} của $A$).
+    \item \textbf{Định lý hạng -- nhân:} $\dim(\mathrm{Col}(A)) + \dim(\mathrm{Null}(A)) = n$.
+    \item Hệ $Ax = b$ có nghiệm $\Leftrightarrow$ $b \in \mathrm{Col}(A)$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{dinhnghia}
+  \textbf{Không gian hàng} (Row Space) của $A$:
+  \[
+    \mathrm{Row}(A) = \mathrm{Col}(A^T) \subseteq \mathbb{R}^n.
+  \]
+  \textbf{Không gian nhân trái} (Left Null Space) của $A$:
+  \[
+    \mathrm{Null}(A^T) = \{y \in \mathbb{R}^m : A^T y = 0\} \subseteq \mathbb{R}^m.
+  \]
+\end{dinhnghia}
+
+\begin{dinhly}[title={Bốn không gian cơ bản (Định lý cơ bản của đại số tuyến tính)}]
+  Với $A \in \mathbb{R}^{m \times n}$ và $r = \mathrm{rank}(A)$, bốn không gian con cơ bản có số chiều:
+  \begin{center}
+  \begin{tabular}{lll}
+    \toprule
+    Không gian & Ký hiệu & Số chiều \\
+    \midrule
+    Không gian cột (Range)    & $\mathrm{Col}(A) \subseteq \mathbb{R}^m$      & $r$ \\
+    Không gian nhân trái      & $\mathrm{Null}(A^T) \subseteq \mathbb{R}^m$   & $m - r$ \\
+    Không gian hàng           & $\mathrm{Row}(A) \subseteq \mathbb{R}^n$      & $r$ \\
+    Không gian nhân (Kernel)  & $\mathrm{Null}(A) \subseteq \mathbb{R}^n$     & $n - r$ \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  Hơn nữa: $\mathrm{Col}(A) \perp \mathrm{Null}(A^T)$ trong $\mathbb{R}^m$, và $\mathrm{Row}(A) \perp \mathrm{Null}(A)$ trong $\mathbb{R}^n$.
+\end{dinhly}
+
+\begin{phuongphap}[title={Tìm cơ sở của Col$(A)$ và Null$(A)$}]
+  \textbf{Col$(A)$:} Dùng Gauss đưa $A$ về REF. Các cột của $A$ ứng với cột \emph{pivot} tạo thành cơ sở của $\mathrm{Col}(A)$ (lấy cột \emph{gốc} của $A$, không phải cột của REF).
+
+  \textbf{Null$(A)$:} Giải hệ $Ax = 0$ bằng Gauss-Jordan về RREF. Đặt các biến tự do là tham số $\lambda_i$, biểu diễn nghiệm tổng quát $x = \lambda_1 v_1 + \cdots + \lambda_k v_k$. Khi đó $\{v_1, \ldots, v_k\}$ là cơ sở của $\mathrm{Null}(A)$.
+\end{phuongphap}
+
+\begin{vidu}
+  Cho $A = \begin{pmatrix}1&2&3\\2&4&6\end{pmatrix}$. Đưa về RREF:
+  $\begin{pmatrix}1&2&3\\0&0&0\end{pmatrix}$.
+
+  \textbf{Col$(A)$:} $\mathrm{rank}(A) = 1$, cột pivot là cột 1.
+  $\mathrm{Col}(A) = \mathrm{span}\left\{\begin{pmatrix}1\\2\end{pmatrix}\right\} \subseteq \mathbb{R}^2$.
+
+  \textbf{Null$(A)$:} $x_1 = -2x_2 - 3x_3$; đặt $x_2 = \lambda_1$, $x_3 = \lambda_2$:
+  \[
+    \mathrm{Null}(A) = \mathrm{span}\!\left\{
+      \begin{pmatrix}-2\\1\\0\end{pmatrix},\;
+      \begin{pmatrix}-3\\0\\1\end{pmatrix}
+    \right\} \subseteq \mathbb{R}^3.
+  \]
+  Kiểm tra: $1 + 2 + 0 = 3 = \dim(\mathrm{Col}) + \dim(\mathrm{Null}) = 1 + 2$. \checkmark
+\end{vidu}
 
 %% ================================================================
 %%  CHƯƠNG 2: HỆ PHƯƠNG TRÌNH TUYẾN TÍNH
@@ -822,7 +953,7 @@ $A^Tr = 0 \Rightarrow A^T (b - Ax^*) = 0 \Rightarrow A^Tb - A^TAx^* = 0 \Rightar
 \end{dinhnghia}
 
 \begin{dinhnghia}
-Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu mọi $v \in V$ đều biểu diễn được dưới dạng tổ hợp tuyến tính của các phần tử trong $A$, thì $A$ gọi là \textbf{tập sinh} của $V$. Bao tuyến tính (span) của $A$:
+Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu mọi $v \in V$ đều biểu diễn được dưới dạng tổ hợp tuyến tính của các phần tử trong $A$, thì $A$ gọi là \textbf{tập sinh} của $V$. Bao tuyến tính (span) của $A$ (không gian sinh):
 \[
   \mathrm{span}[A] = \left\{\sum_{i=1}^k \lambda_i x_i \;\Big|\; \lambda_i \in \mathbb{R}\right\}
 \]
@@ -841,7 +972,10 @@ Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu m�
     \item Hệ chứa vectơ $\mathbf{0}$ hoặc chứa 2 vectơ bằng nhau thì phụ thuộc tuyến tính.
     \item Hệ chứa một vectơ là tổ hợp tuyến tính của các vectơ khác trong hệ thì phụ thuộc tuyến tính.
     \item Hệ gồm 2 vectơ: phụ thuộc tuyến tính $\Leftrightarrow$ hai vectơ tỉ lệ nhau (bội số của nhau).
-    \item Nếu số vectơ $k > \dim V$ thì hệ nhất định phụ thuộc tuyến tính.
+    \item Nếu $n > m$, $n$ vectơ bất kỳ trong không gian $m$ chiều tạo thành 1 hệ phụ thuộc tuyến tính
+    \item Nếu $A$ là 1 ma trận cao, tức số hàng lớn hơn số cột ($m > n$), tồn tại vectơ $b$ sao cho phương trình $Ax = b$ vô nghiệm.
+    \item Tập con khác rỗng của 1 hệ độc lập tuyến tính là 1 hệ độc lập tuyến tính
+    \item Các cột của ma trận khả nghich tạo thành 1 hệ độc lập tuyến tính
   \end{itemize}
 \end{tinhchat}
 
@@ -926,6 +1060,12 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 
   \textbf{Trực giao:} $u \perp v \Leftrightarrow \langle u, v \rangle = 0$.
 \end{dinhnghia}
+
+\begin{tinhchat}[title=Tính chất của tích Hermitian]
+$x^Hy = y^Hx \Leftrightarrow x, y$ là các số thực
+
+$x^Hx \ge 0$
+\end{tinhchat}
 
 \begin{dinhly}[title={Bất đẳng thức Cauchy-Schwarz}]
   Với mọi $u, v \in V$:
