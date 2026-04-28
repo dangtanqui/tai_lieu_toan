@@ -1,0 +1,991 @@
+\chapter{Kiến thức chuẩn bị}
+
+\setcounter{exercise}{0}
+
+\begin{exercise}Chứng minh các tính chất kết hợp, giao hoán, phân phối của các phép toán hợp và giao trên tập hợp. Chứng minh công thức đối ngẫu De Morgan cho hiệu của hợp và giao của một họ tùy ý các tập hợp.
+\end{exercise}
+
+\begin{proof}
+    Ta sử dụng các tập hợp $A, B, C$.
+
+    \textit{Tính chất kết hợp}.
+    \begin{gather*}
+        (A\cup B)\cup C = \{ x\ |\ (x\in A \text{ or } x\in B) \text{ or } x\in C \} \\
+        A\cup (B\cup C) = \{ x\ |\ x\in A \text{ or } (x\in B \text{ or } x\in C) \}
+    \end{gather*}
+
+    Toán tử $\operatorname{or}$ có tính chất kết hợp, do đó $(A\cup B)\cup C = A\cup (B\cup C)$.
+
+    \begin{gather*}
+        (A\cap B)\cap C = \{ x\ |\ (x\in A \text{ and } x\in B) \text{ and } x\in C \} \\
+        A\cap (B\cap C) = \{ x\ |\ x\in A \text{ and } (x\in B \text{ and } x\in C) \}
+    \end{gather*}
+
+    Toán tử $\operatorname{and}$ có tính chất kết hợp, do đó $(A\cap B)\cap C = A\cap (B\cap C)$.
+
+    \bigskip
+
+    \textit{Tính chất giao hoán}.
+    \begin{gather*}
+        A\cup B = \{ x\ |\ x\in A \text{ or } x\in B \} \\
+        B\cup A = \{ x\ |\ x\in B \text{ or } x\in A \}
+    \end{gather*}
+
+    Toán tử $\operatorname{or}$ có tính chất giao hoán, do đó $A\cup B = B\cup A$.
+    \begin{gather*}
+        A\cap B = \{ x\ |\ x\in A \text{ and } x\in B \} \\
+        B\cap A = \{ x\ |\ x\in B \text{ and } x\in A \}
+    \end{gather*}
+
+    Toán tử  $\operatorname{and}$ có tính chất giao hoán, do đó $A\cap B = B\cap A$.
+
+    \bigskip
+
+    \textit{Tính chất phân phối}.
+    \begin{align*}
+        A\cap (B\cup C) & = \{ x\ |\ x\in A \text{ and } (x\in B \text{ or } x\in C) \}                       \\
+                        & = \{ x\ |\ (x\in A \text{ and } x\in B) \text{ or } (x\in A \text{ and } x\in C) \} \\
+                        & \text{(do phép $\text{and}, \text{or}$ có tính chất phân phối)}                     \\
+                        & = (A\cap B)\cup (A\cap C); \\
+        A\cup (B\cap C) & = \{ x\ |\ x\in A \text{ or } (x\in B \text{ and } x\in C) \}                      \\
+                        & = \{ x\ |\ (x\in A \text{ or } x\in B) \text{ and } (x\in A \text{ or } x\in C) \} \\
+                        & \text{(do phép $\text{and}, \text{or}$ có tính chất phân phối)}                    \\
+                        & = (A\cup B)\cap (A\cup C).
+    \end{align*}
+
+    Trong chứng minh công thức De Morgan, chúng ta sẽ sử dụng họ tập hợp $A_{i}$ với $i$ thuộc tập hợp chỉ số $I$.
+    \begin{align*}
+        X\setminus\bigcup_{i\in I} A_{i} & = \{ x\ |\ \overline{\exists i\in I, x\in A_{i}} \}   \\
+                                         & = \{ x\ |\ \forall i\in I, x\not\in A_{i} \}          \\
+                                         & = \{ x\ |\ \forall i\in I, x\in (X\setminus A_{i}) \} \\
+                                         & = \bigcap_{i\in I}(X\setminus A_{i}); \\
+        X\setminus\bigcap_{i\in I} A_{i} & = \{ x\ |\ \overline{\forall i\in I, x\in A_{i}} \}   \\
+                                         & = \{ x\ |\ \exists i\in I, x\not\in A_{i} \}          \\
+                                         & = \{ x\ |\ \exists i\in I, x\in (X\setminus A_{i}) \} \\
+                                         & = \bigcup_{i\in I}(X\setminus A_{i}).
+    \end{align*}
+\end{proof}
+
+\begin{exercise}Chứng minh rằng
+    \begin{enumerate}[itemsep=0pt,label = (\alph*)]
+        \item $(A\setminus B) \cup (B\setminus A) = \varnothing \Longleftrightarrow A = B$,
+        \item $A = (A\setminus B)\cup (A\cap B)$,
+        \item $(A\setminus B) \cup (B\setminus A) = (A\cup B)\setminus (A\cap B)$,
+        \item $A\cap (B\setminus C) = (A\cap B) \setminus (A\cap C)$,
+        \item $A\cup (B\setminus A) = A\cup B$,
+        \item $A\setminus (A\setminus B) = A\cap B$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Nếu $A = B$ thì $A\setminus B = B\setminus A = \varnothing$, kéo theo $(A\setminus B)\cup (B\setminus A) = \varnothing$.
+
+              Nếu $(A\setminus B)\cup (B\setminus A) = \varnothing$ thì $A\setminus B = B\setminus A = \varnothing$, dẫn đến $A\subset B, B\subset A\Rightarrow A = B$.
+
+        \item \begin{align*}
+                  A & = \{ x \mid (x\in A \land x\in B) \lor (x\in A \land x\not\in B) \} \\
+                    & = (A\cap B) \cup (A\setminus B).
+              \end{align*}
+
+        \item Để ngắn gọn, chúng ta sử dụng kí hiệu $a(x)$ là mệnh đề $x \in A$, $b(x)$ là mệnh đề $x\in B$.
+              $$
+                  (A\setminus B)\cup (B\setminus A)=\{ x\ |\ (a(x) \land \overline{b(x)}) \lor (\overline{a(x)} \land b(x)) \}
+              $$
+              \begingroup
+              \allowdisplaybreaks
+              \begin{align*}
+                  (a(x) \land \overline{b(x)}) \lor (\overline{a(x)} \land b(x)) & = ((a(x)\land \overline{b(x)})\lor \overline{a(x)}) \land ((a(x)\land \overline{b(x)})\lor b(x)) \\
+                                                                                   & \quad ((a(x)\lor b(x))\land (b(x)\lor \overline{b(x)}))                                            \\
+                                                                                   & = (\overline{a(x)}\lor\overline{b(x)}) \land (a(x) \lor b(x))                                      \\
+                                                                                   & = \overline{a(x)\land b(x)} \land (a(x)\lor b(x))                                                 \\
+                                                                                   & = (x\in A\cup B) \land (x\not\in A\cap B)
+              \end{align*}
+              \endgroup
+
+              Vậy $(A\setminus B)\cup (B\setminus A) = (A\cup B)\setminus (A\cap B)$.
+
+        \item $a(x)$ là mệnh đề $x \in A$, $b(x)$ là mệnh đề $x\in B$, $c(x)$ là mệnh đề $x\in C$. $X = A\cup B\cup C$.
+              \begin{align*}
+                  A\cap (B\setminus C) & = \{ x\ |\ a(x) \land (b(x) \land \overline{c(x)}) \}              \\
+                                       & = \{ x\ |\ (a(x) \land b(x)) \land (a(x) \land\overline{c(x)}) \} \\
+                                       & = (A\cap B) \cap (A\setminus C)                                      \\
+                                       & = (A\cap B) \cap (A\setminus (A\cap C))                              \\
+                                       & = (A\cap B) \cap A \cap (X \setminus (A\cap C))                      \\
+                                       & = (A\cap B) \cap (X \setminus (A\cap C))                             \\
+                                       & = (A\cap B) \setminus (A\cap C).
+              \end{align*}
+        \item \begin{align*}
+                  A\cup (B\setminus A) & = \{ x\ |\ a(x) \lor (b(x) \land \overline{a(x)}) \}             \\
+                                       & = \{ x\ |\ (a(x) \lor b(x)) \land (a(x) \lor \overline{a(x)}) \} \\
+                                       & = \{ x\ |\ a(x)\lor b(x) \}                                       \\
+                                       & = A\cup B.
+              \end{align*}
+        \item \begin{align*}
+                  A\setminus (A\setminus B) & = \{ x\ |\ a(x) \land \overline{a(x)\land \overline{b(x)}} \}     \\
+                                            & = \{ x\ |\ a(x) \land (\overline{a(x)} \lor b(x)) \}               \\
+                                            & = \{ x\ |\ (a(x) \land \overline{a(x)}) \lor (a(x) \land b(x)) \} \\
+                                            & = \{ x\ |\ a(x) \land b(x) \}                                      \\
+                                            & = A\cap B.
+              \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Chứng minh rằng
+    \begin{enumerate}[itemsep=0pt,label = (\alph*)]
+        \item $(A\times B)\cap (B\times A) = \varnothing \Longleftrightarrow A\cap B = \varnothing$.
+        \item $(A\times C)\cap (B\times D) = (A\cap B)\times (C\cap D)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Giả sử $(A\times B)\cap (B\times A) \ne \varnothing$, khi đó tồn tại $(x, y)\in (A\times B)\cap (B\times A)$. Như vậy, $(x, y)\in A\times B$ và $(x, y)\in B\times A$, kéo theo $x\in A, B$ và $y\in A, B$. Do đó $x, y\in A\cap B$, tức là $A\cap B\ne\varnothing$.
+
+              Giả sử $A\cap B\ne\varnothing$, khi đó tồn tại $x\in A\cap B$, kéo theo $(x, x)\in A\times B$, $(x, x)\in B\times A$, dẫn đến $(x, x)\in (A\times B)\cap (B\times A)$, nghĩa là $(A\times B)\cap (B\times A) \ne \varnothing$.
+
+              Vậy $(A\times B)\cap (B\times A) = \varnothing \Longleftrightarrow A\cap B = \varnothing$.
+        \item \begin{align*}
+                  (x, y) \in (A\times C)\cap (B\times D) & \Longleftrightarrow ((x,y)\in A\times C) \land ((x, y)\in B\times D) \\
+                                                         & \Longleftrightarrow (x\in A \land y\in C) \land (x\in B \land y\in D) \\
+                                                         & \Longleftrightarrow (x\in A\cap B) \land (y\in C\cap D) \\
+                                                         & \Longleftrightarrow (x, y)\in (A\cap B)\times (C\cap D).
+              \end{align*}
+
+              Vậy $(A\times C)\cap (B\times D) = (A\cap B)\times (C\cap D)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Giả sử $f: X\rightarrow Y$ là một ánh xạ và $A, B\subset X$. Chứng minh rằng
+    \begin{enumerate}[itemsep=0pt,label={(\alph*)}]
+        \item $f(A\cup B) = f(A)\cup f(B)$,
+        \item $f(A\cap B) \subset f(A)\cap f(B)$,
+        \item $f(A\setminus B) \supset f(A)\setminus f(B)$.
+    \end{enumerate}
+    \par Hãy tìm các ví dụ để chứng tỏ rằng không có dấu bằng ở các mục (b) và (c).
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item \begin{align*}
+                 y\in f(A\cup B) & \Longleftrightarrow \exists x\in A\cup B: f(x) = y \\
+                                 & \Longleftrightarrow (\exists x\in A: f(x) = y) \lor (\exists x\in B: f(x) = y) \\
+                                 & \Longleftrightarrow (y\in f(A)) \lor (y\in f(B)) \\
+                                 & \Longleftrightarrow y\in f(A)\cup f(B).
+              \end{align*}
+
+              Vậy $f(A\cup B) = f(A)\cup f(B)$.
+
+        \item \begin{align*}
+                  y\in f(A\cap B) & \Longleftrightarrow \exists x\in A\cap B: f(x) = y \\
+                                  & \Longrightarrow y\in f(A)\cap f(B).
+              \end{align*}
+
+              Do đó $f(A\cap B) \subset f(A)\cap f(B)$.
+
+              \bigskip
+              Sau đây là một ví dụ cho việc dấu bằng không thể xảy ra. Xét ánh xạ
+              \begin{align*}
+                  f:\ & \mathbb{R}\rightarrow \mathbb{R} \\
+                      & x\mapsto 0
+              \end{align*}
+              
+              Chọn $A = (1, 2)$ và $B = (3, 4)$ thì $f(A\cap B) = f(\varnothing) = \varnothing$, còn $f(A)\cap f(B) = \{ 0 \}$.
+
+        \item Giả sử $y\in f(A)\setminus f(B)$, khi đó tồn tại $x\in A$ sao cho $f(x) = y$. Giả sử phản chứng rằng $x\in B$, như vậy $y = f(x)\in f(B)$, là một điều mâu thuẫn. Do đó $x\notin B$, kéo theo $x\in A\setminus B$ và $y\in f(A\setminus B)$. Vậy $f(A\setminus B)\supset f(A)\setminus f(B)$.
+
+              \bigskip
+              Sau đây là một ví dụ cho việc dấu bằng không thể xảy ra. Xét ánh xạ:
+              \begin{align*}
+                  f:\ & \mathbb{R}\rightarrow \mathbb{R} \\
+                      & x\mapsto 0
+              \end{align*}
+
+              Chọn $A = (1, 2)$ và $B = (3, 4)$ thì $f(A)\setminus f(B) = \{0\}\setminus \{0\} = \varnothing$, còn $f(A\setminus B) = \{ 0 \}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Cho ánh xạ $f: X\rightarrow Y$ và các tập con $A, B\subset Y$. Chứng minh rằng:
+    \begin{enumerate}[itemsep=0pt,label = (\alph*)]
+        \item $f^{-1}(A\cup B) = f^{-1}(A)\cup f^{-1}(B)$,
+        \item $f^{-1}(A\cap B) = f^{-1}(A)\cap f^{-1}(B)$,
+        \item $f^{-1}(A\setminus B) = f^{-1}(A)\setminus f^{-1}(B)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item
+              \begin{align*}
+                 x\in f^{-1}(A\cup B)  & \Longleftrightarrow  f(x) \in A\cup B                   \\
+                  & \Longleftrightarrow  f(x)\in A \lor f(x)\in B           \\
+                  & \Longleftrightarrow  x\in f^{-1}(A) \lor x\in f^{-1}(B) \\
+                  & \Longleftrightarrow  x\in f^{-1}(A)\cup f^{-1}(B).
+              \end{align*}
+
+              Do đó, $f^{-1}(A\cup B) = f^{-1}(A)\cup f^{-1}(B)$.
+        \item
+              \begin{align*}
+                x\in f^{-1}(A\cap B) &\Longleftrightarrow f(x) \in A\cap B                     \\
+                  &\Longleftrightarrow f(x) \in A \land f(x) \in B         \\
+                  &\Longleftrightarrow x\in f^{-1}(A) \land x\in f^{-1}(B) \\
+                  &\Longleftrightarrow x\in f^{-1}(A)\cap f^{-1}(B)
+              \end{align*}
+
+              Do đó, $f^{-1}(A\cap B) = f^{-1}(A)\cap f^{-1}(B)$.
+        \item
+              \begin{align*}
+                  x\in f^{-1}(A\setminus B) & \Longleftrightarrow f(x) \in A\setminus B                     \\
+                  & \Longleftrightarrow f(x) \in A \land f(x) \not\in B          \\
+                  & \Longleftrightarrow x\in f^{-1}(A) \land x \not\in f^{-1}(B) \\
+                  & \Longleftrightarrow x\in f^{-1}(A)\setminus f^{-1}(B)
+              \end{align*}
+
+              \par Do đó, $f^{-1}(A\setminus B) = f^{-1}(A)\setminus f^{-1}(B)$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Chứng minh hai mệnh đề về ánh xạ ở cuối $\S{2}$.
+\end{exercise}
+
+\begin{proof}\textbf{Mệnh đề 2.8.} \textit{Hợp thành của hai đơn ánh lại là một đơn ánh. Hợp thành của hai toàn ánh lại là một toàn ánh. Hợp thành của hai song ánh lại là một song ánh.}
+    \par Chọn hai ánh xạ $f, g$:
+    \begin{gather*}
+        f:\ X \rightarrow Y \\
+        g:\ Y \rightarrow Z
+    \end{gather*}
+    \par Ánh xạ hợp:
+    \[ g\circ f:\ X \rightarrow Z \]
+
+    \begin{itemize}
+        \item \textit{$f$ và $g$ là đơn ánh}
+
+              Giả sử $x_{1}, x_{2} \in X$ và $x_{1}\ne x_{2}$. Vì $f$ là đơn ánh nên $f(x_{1}) \ne f(x_{2})$. Vì $g$ là đơn ánh nên $g(f(x_{1})) \ne g(f(x_{2}))$. Theo định nghĩa về đơn ánh thì $g\circ f$ là đơn ánh.
+
+        \item \textit{$f$ và $g$ là toàn ánh}
+
+              Giả sử $z \in Z$. Vì $g$ là toàn ánh nên $\exists y\in Y$ sao cho $g(y) = z$. Vì $f$ là toàn ánh nên $\exists x\in X$ sao cho $f(x) = y$. Như vậy, $g(f(x)) = z$. Vì $z$ là bất kì nên theo định nghĩa về toàn ánh, $g\circ f$ là toàn ánh.
+        \item \textit{$f$ và $g$ là song ánh}
+
+              $f$ và $g$ vừa là đơn ánh, vừa là toàn ánh. Theo hai ý trên, $g\circ f$ vừa là đơn ánh, vừa là toàn ánh, do đó cũng là song ánh.
+    \end{itemize}
+
+    \textbf{Mệnh đề 2.9.} \textit{(i) Giả sử $f: X\rightarrow Y$ và $g: Y\rightarrow Z$ là các ánh xạ. Khi đó, nếu $g\circ f$ là một đơn ánh thì $f$ cũng vậy; nếu $g\circ f$ là một toàn ánh thì $g$ cũng vậy.}
+    
+    \textit{(ii) Ánh xạ $f: X\rightarrow Y$ là một song ánh nếu và chỉ nếu tồn tại một ánh xạ $g: Y\rightarrow X$ sao cho $g\circ f = \operatorname{id}_{X}$, $f\circ g = \operatorname{id}_{Y}$}.
+
+    \begin{enumerate}[label = (\roman*)]
+        \item
+              \begin{itemize}
+                  \item Giả sử $x_{1}, x_{2} \in X$ và $x_{1}\ne x_{2}$. Do $g\circ f$ là đơn ánh nên $g(f(x_{1})) \ne g(f(x_{2}))$. Điều này dẫn đến việc $f(x_{1}) \ne f(x_{2})$. Theo định nghĩa về đơn ánh thì $f$ cũng là đơn ánh.
+                  \item Giả sử $z\in Z$. Cho $g\circ f$ là toàn ánh nên tồn tại $x\in X$ sao cho $g(f(x)) = z$. Chọn $y = f(x)$ thì $g(y) = z$. Theo định nghĩa về toàn ánh thì $g$ cũng là toàn ánh.
+              \end{itemize}
+
+        \item \textit{Chiều thuận.} $f: X\rightarrow Y$ là song ánh.
+
+              Định nghĩa $g: Y\to X$ như sau: Với mỗi $y\in Y$, tồn tại duy nhất $x\in X$ sao cho $f(x) = y$, ta định nghĩa $g(y) = x$. Như vậy $f^{-1}(f(x)) = x$, $f(f^{-1}(y)) = y$, nghĩa là $g\circ f = \operatorname{id}_{X}$, $f\circ g = \operatorname{id}_{Y}$.
+
+              \bigskip
+              \textit{Chiều đảo.} Tồn tại ánh xạ $g: Y\rightarrow X$ sao cho $g\circ f = \operatorname{id}_{X}$ và $f\circ g = \operatorname{id}_{Y}$.
+
+              Vì $\operatorname{id}_{X}, \operatorname{id}_{Y}$ là các song ánh nên theo Mệnh đề 2.8, $f$ vừa là đơn ánh, vừa là toàn ánh, do đó là song ánh.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Xét xem ánh xạ $f: \mathbb{R}\rightarrow \mathbb{R}$ xác định bởi công thức $f(x) = x^{2} - 3x + 2$ có phải một đơn ánh hay toàn ánh hay không. Tìm $f(\mathbb{R})$, $f(0)$, $f^{-1}(0)$, $f([0,5])$, $f^{-1}([0,5])$.
+\end{exercise}
+
+\begin{proof}
+    $f(0) = f(1) = 0$, do đó $f$ không phải đơn ánh. Không tồn tại $x\in \mathbb{R}$ để $f(x) = -1$ (vì phương trình $x^{2} - 3x + 3 = 0$ vô nghiệm) nên $f$ cũng không phải toàn ánh.
+    
+    $x^{2} - 3x + 2 = \left(x - \frac{3}{2}\right){}^{2} - \frac{1}{4} \ge \frac{1}{4}$. Như vậy $f(\mathbb{R}) = \{ \frac{-1}{4} \}\cup\left(\frac{-1}{4},+\infty\right)$.
+    
+    $f(0) = 2$.
+    
+    $x^{2} - 3x + 2 = (x - 1)(x - 2)$ nên $f^{-1}(0) = \{1, 2\}$.
+    
+    $f([0, 5]) = \left[\frac{-1}{4}, 12\right]$.
+    
+    $f^{-1}([0,5]) = \left[\frac{3 - \sqrt{21}}{2}, \frac{3 + \sqrt{21}}{2}\right]$.
+\end{proof}
+
+\begin{exercise}Giả sử $A$ là một tập hợp gồm đúng $n$ phần tử. Chứng minh rằng tập hợp $\mathcal{P}(A)$ các tập con của $A$ có đúng $2^{n}$ phần tử.
+\end{exercise}
+
+\begin{proof}
+    Chúng ta đưa ra chứng minh bằng quy nạp toán học.
+
+    Nếu $n = 0$, tập hợp lũy thừa của $A$ có đúng $1 = 2^{0}$ phần tử.
+
+    Giả sử mệnh đề cần chứng minh đúng với $n\in \mathbb{Z}_{n\geq 0}$. Xét tập hợp $A$ gồm $n + 1$ phần tử. Chọn một phần tử $a_{0}$ của $A$, tập hợp $A\setminus\{ 
+a_{0} \}$ gồm $n$ phần tử. Một tập hợp con của $A$ hoặc chứa $a_{0}$, hoặc không chứa $a_{0}$. Theo giả thiết quy nạp, có $2^{n}$ tập hợp con của $A$ không chứa $a_{0}$ (vì các tập hợp con như vậy của $A$ cũng là tập hợp con của $A\setminus \{a_{0}\}$). Mặt khác, tập hợp con chứa $a_{0}$ của $A$ là hợp rời của $\{ a_{0} \}$ và một tập hợp con của $A$ không chứa $a_{0}$, do đó có đúng $2^{n}$ tập hợp con của $A$ chứa $a_{0}$. Như vậy, tập hợp $A$ có $2^{n+1}$ tập hợp con.
+
+    Theo nguyên lý quy nạp toán học, nếu $A$ gồm đúng $n$ phần tử thì tập hợp $\mathcal{P}(A)$ các tập con của $A$ có đúng $2^{n}$ phần tử.
+\end{proof}
+
+\begin{exercise}Chứng minh rằng tập hợp $\mathbb{R}^{+}$ các số thực dương có lực lượng continuum.
+\end{exercise}
+
+\begin{proof}Xét ánh xạ $f$:
+    \begin{align*}
+        f:\  & (0, 1) \to \mathbb{R}^{+} \\
+             & x\mapsto \frac{x}{1 - x}
+    \end{align*}
+    
+    $f$ có ánh xạ ngược là $g$
+    \begin{align*}
+        g:\  & \mathbb{R}^{+} \to (0, 1) \\
+             & x\mapsto \frac{x}{x + 1}
+    \end{align*}
+    
+    Như vậy, $f$ là song ánh. Do đó hai tập hợp $\mathbb{R}^{+}$, $(0, 1)$ có cùng lực lượng, tức là $\mathbb{R}^{+}$ cũng có lực lượng continuum.
+\end{proof}
+
+\begin{exercise}Cho hai số thực $a, b$ với $a < b$. Chứng minh rằng khoảng số thực $(a, b) = \{ x\in \mathbb{R}|\ a < x < b \}$ có lực lượng continuum.
+\end{exercise}
+
+\begin{proof}
+    Ánh xạ $f: (0, 1)\to (a, b)$ cho bởi biểu thức $f(x) = (1 - x)a + xb$ có ánh xạ ngược $g: (a, b)\to (0, 1)$ cho bởi biểu thức $g(x) = (x - a)/(b - a)$. Do đó $f$ là song ánh, nên $(0, 1)$ và $(a, b)$ có cùng lực lượng continuum.
+\end{proof}
+
+\begin{exercise}
+    Một số thực được gọi là một \textit{số đại số} nếu nó là nghiệm của một phương trình đa thức nào đó với các hệ số nguyên. Chứng minh rằng tập hợp các số đại số là một tập vô hạn đếm được. Từ đó suy ra rằng tập hợp các số thực không phải là số đại số là một tập vô hạn không đếm được.
+\end{exercise}
+
+\begin{proof}
+    Áp dụng hai định lý sau:
+    \begin{itemize}
+        \item Tích Descartes của hữu hạn các tập hợp đếm được là đếm được.
+        \item Hợp (không nhất thiết rời nhau) của đếm được các tập hợp đếm được là đếm được. Nói cách khác, $\bigcup_{i\in I}A_{i}$ là đếm được nếu $I$ là đếm được và mỗi $A_{i}$ đều đếm được.
+    \end{itemize}
+
+    Vì $\mathbb{Q}$ vô hạn đến được, với mỗi số nguyên dương $n$, tập hợp $P_{n}(\mathbb{Q})$ các đa thức bậc $n$ với hệ số hữu tỉ là vô hạn đếm được. Do đó, tập hợp các đa thức khác không với hệ số hữu tỉ (là tập hợp $P(\mathbb{Q}) = \bigcup_{n\in\mathbb{Z}_{\geq 0}}P_{n}(\mathbb{Q})$) là vô hạn đếm được.
+    
+    Mặt khác, mỗi đa thức trong $P(\mathbb{Q})$ khác không có số nghiệm thực không vượt quá bậc của đa thức đó. Do đó tập hợp $\bigcup_{p\in P(\mathbb{Q})} S_{p}$, trong đó $S_{p}$ là tập nghiệm của $p$, gồm nghiệm của tất cả các đa thức với hệ số hữu tỉ là đếm được, kéo theo tập hợp số đại số là đếm được.
+
+    Thêm vào đó, vì tập hợp số đại số chứa tập hợp số hữu tỉ nên tập hợp các số thực đại số là vô hạn đếm được. Tập hợp số thực là hợp rời nhau của tập hợp các số thực đại số và tập hợp các số thực không đại số, và tập hợp số thực là vô hạn không đếm được, do đó tập hợp các số thực không đại số là vô hạn không đếm được.
+\end{proof}
+
+\begin{exercise}Lập bảng cộng và bảng nhân của vành $\mathbb{Z}/n$ với $n = 12$ và $n = 15$. Dựa vào bảng, tìm các phần tử khả nghịch đối với phép nhân trong vành đó.
+\end{exercise}
+
+\begin{proof}Đối với vành $\mathbb{Z}/12$:
+
+    \par Bảng cộng
+    \\
+    % chktex-file 44
+    \begin{tabular}{c|cccccccccccc}
+        +  & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 \\
+        \hline
+        0  & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 \\
+        1  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 0  \\
+        2  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 0  & 1  \\
+        3  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 0  & 1  & 2  \\
+        4  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 0  & 1  & 2  & 3  \\
+        5  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 0  & 1  & 2  & 3  & 4  \\
+        6  & 6  & 7  & 8  & 9  & 10 & 11 & 0  & 1  & 2  & 3  & 4  & 5  \\
+        7  & 7  & 8  & 9  & 10 & 11 & 0  & 1  & 2  & 3  & 4  & 5  & 6  \\
+        8  & 8  & 9  & 10 & 11 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  \\
+        9  & 9  & 10 & 11 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  \\
+        10 & 10 & 11 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  \\
+        11 & 11 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10
+    \end{tabular}
+
+    \bigskip
+
+    \par Bảng nhân
+    \\
+    % chktex-file 44
+    \begin{tabular}{c|cccccccccccc}
+        $\cdot$ & 0 & 1  & 2  & 3 & 4 & 5  & 6 & 7  & 8 & 9 & 10 & 11 \\
+        \hline
+        0       & 0 & 0  & 0  & 0 & 0 & 0  & 0 & 0  & 0 & 0 & 0  & 0  \\
+        1       & 0 & 1  & 2  & 3 & 4 & 5  & 6 & 7  & 8 & 9 & 10 & 11 \\
+        2       & 0 & 2  & 4  & 6 & 8 & 10 & 0 & 2  & 4 & 6 & 8  & 10 \\
+        3       & 0 & 3  & 6  & 9 & 0 & 3  & 6 & 9  & 0 & 3 & 6  & 9  \\
+        4       & 0 & 4  & 8  & 0 & 4 & 8  & 0 & 4  & 8 & 0 & 4  & 8  \\
+        5       & 0 & 5  & 10 & 3 & 8 & 1  & 6 & 11 & 4 & 9 & 2  & 7  \\
+        6       & 0 & 6  & 0  & 6 & 0 & 6  & 0 & 6  & 0 & 6 & 0  & 6  \\
+        7       & 0 & 7  & 2  & 9 & 4 & 11 & 6 & 1  & 8 & 3 & 10 & 5  \\
+        8       & 0 & 8  & 4  & 0 & 8 & 4  & 0 & 8  & 4 & 0 & 8  & 4  \\
+        9       & 0 & 9  & 6  & 3 & 0 & 9  & 6 & 3  & 0 & 9 & 6  & 3  \\
+        10      & 0 & 10 & 8  & 6 & 4 & 2  & 0 & 10 & 8 & 6 & 4  & 2  \\
+        11      & 0 & 11 & 10 & 9 & 8 & 7  & 6 & 5  & 4 & 3 & 2  & 1
+    \end{tabular}
+
+    \par Các phần tử khả nghịch của $\mathbb{Z}/12$ gồm $1, 5, 7, 11$.
+
+    \bigskip
+    \bigskip
+
+    \par Đối với vành $\mathbb{Z}/15$:
+
+    \bigskip
+
+    \par Bảng cộng
+    \\
+    \begin{tabular}{c|ccccccccccccccc}
+        +  & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 \\
+        \hline
+        0  & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 \\
+        1  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  \\
+        2  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  \\
+        3  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  \\
+        4  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  \\
+        5  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  \\
+        6  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  \\
+        7  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  \\
+        8  & 8  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  \\
+        9  & 9  & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  \\
+        10 & 10 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  \\
+        11 & 11 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 \\
+        12 & 12 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 \\
+        13 & 13 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 \\
+        14 & 14 & 0  & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13
+    \end{tabular}
+    \bigskip
+
+    \par Bảng nhân
+    \\
+    \begin{tabular}{c|ccccccccccccccc}
+        $\cdot$ & 0 & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 \\
+        \hline
+        0       & 0 & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  & 0  \\
+        1       & 0 & 1  & 2  & 3  & 4  & 5  & 6  & 7  & 8  & 9  & 10 & 11 & 12 & 13 & 14 \\
+        2       & 0 & 2  & 4  & 6  & 8  & 10 & 12 & 14 & 1  & 3  & 5  & 7  & 9  & 11 & 13 \\
+        3       & 0 & 3  & 6  & 9  & 12 & 0  & 3  & 6  & 9  & 12 & 0  & 3  & 6  & 9  & 12 \\
+        4       & 0 & 4  & 8  & 12 & 1  & 5  & 9  & 13 & 2  & 6  & 10 & 14 & 3  & 7  & 11 \\
+        5       & 0 & 5  & 10 & 0  & 5  & 10 & 0  & 5  & 10 & 0  & 5  & 10 & 0  & 5  & 10 \\
+        6       & 0 & 6  & 12 & 3  & 9  & 0  & 6  & 12 & 3  & 9  & 0  & 6  & 12 & 3  & 9  \\
+        7       & 0 & 7  & 14 & 6  & 13 & 5  & 12 & 4  & 11 & 3  & 10 & 2  & 9  & 1  & 8  \\
+        8       & 0 & 8  & 1  & 9  & 2  & 10 & 3  & 11 & 4  & 12 & 5  & 13 & 6  & 14 & 7  \\
+        9       & 0 & 9  & 3  & 12 & 6  & 0  & 9  & 3  & 12 & 6  & 0  & 9  & 3  & 12 & 6  \\
+        10      & 0 & 10 & 5  & 0  & 10 & 5  & 0  & 10 & 5  & 0  & 10 & 5  & 0  & 10 & 5  \\
+        11      & 0 & 11 & 7  & 3  & 14 & 10 & 6  & 2  & 13 & 9  & 5  & 1  & 12 & 8  & 4  \\
+        12      & 0 & 12 & 9  & 6  & 3  & 0  & 12 & 9  & 6  & 3  & 0  & 12 & 9  & 6  & 3  \\
+        13      & 0 & 13 & 11 & 9  & 7  & 5  & 3  & 1  & 14 & 12 & 10 & 8  & 6  & 4  & 2  \\
+        14      & 0 & 14 & 13 & 12 & 11 & 10 & 9  & 8  & 7  & 6  & 5  & 4  & 3  & 2  & 1
+    \end{tabular}
+
+    \bigskip
+    \par Các phần tử khả nghịch của $\mathbb{Z}/15$ bao gồm $1, 2, 4, 7, 8, 11, 13, 14$.
+\end{proof}
+
+\begin{exercise}Gọi $(\mathbb{Z}/n){}^{*}$ là tập hợp các phần tử khả nghịch đối với phép nhân trong $\mathbb{Z}/n$. Chứng minh rằng:
+    \[ {(\mathbb{Z}/n)}^{*} = \{ [x] \mid \text{$x$ và $n$ nguyên tố cùng nhau} \}. \]
+\end{exercise}
+
+\begin{proof}$a$ là một số nguyên khác $0$. Phương trình $ax + ny = 1$ có nghiệm nguyên khi và chỉ khi $\operatorname{gcd}(a, n) = 1$. Do đó $ax + ny = 1$ có nghiệm nguyên khi và chỉ khi $[a]$ khả nghịch, đó cũng là điều phải chứng minh.
+\end{proof}
+
+\begin{exercise}
+    Cho $R$ là một vành có đơn vị. Gọi $R^{*}$ là tập hợp các phần tử khả nghịch đối với phép nhân trong $R$. Chứng minh rằng $R^{*}$ là một nhóm với các phép nhân của $R$.
+\end{exercise}
+
+\begin{proof}
+    $R$ là một vành, tức là phép nhân trên $R$ có tính kết hợp.
+    
+    Giả sử $x, y$ là hai phần tử khả nghịch. Khi đó, $x\cdot x^{-1} = x^{-1}\cdot x = 1$, $y\cdot y^{-1} = y^{-1}\cdot y = 1$.
+    \[
+        \begin{split}
+            (xy)\cdot (y^{-1}x^{-1}) = x(y\cdot y^{-1})x^{-1} = x\cdot x^{-1} = 1 \\
+            (y^{-1}x^{-1})\cdot (xy) = y^{-1}(x^{-1}\cdot x)y = y^{-1}\cdot y = 1
+        \end{split}
+    \]
+
+    Do đó, $xy$ khả nghịch.
+
+    Điều này dẫn đến phép nhân trên $R^{*}$ là đóng trên tập $R^{*}$.
+    
+    Phép nhân trên $R^{*}$ có tính chất kết hợp (là phép nhân trên $R$ nhưng bị hạn chế trên $R^{*}$).
+    
+    Phép nhân trên $R^{*}$ có phần tử trung lập là phần tử đơn vị trong phép nhân của $R$.
+    
+    Mỗi phần tử của $R^{*}$ đều khả nghịch, theo định nghĩa.
+    
+    Do vậy, $R^{*}$ là một nhóm đối với phép nhân của $R$.
+\end{proof}
+
+\begin{exercise}Cho $R$ là một vành có đơn vị $1\ne 0$ và các phần tử $x, y\in R$. Chứng minh rằng
+    \begin{enumerate}[label = (\alph*)]
+        \item Nếu $xy$ và $yx$ khả nghịch thì $x$ và $y$ khả nghịch.
+        \item Nếu $R$ không có ước của không và $xy$ khả nghịch thì $x$ và $y$ khả nghịch.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Trước hết, chúng ta chứng minh nhận định sau.
+
+    Trong $R$, một phần tử khả nghịch khi và chỉ khi nó khả nghịch bên trái lẫn bên phải.
+    \begin{proof}[Chứng minh bổ đề]
+        $(\Rightarrow)$ Giả sử $x\in R$ khả nghịch.
+
+        Khi đó tồn tại $y\in R$ sao cho $yx = xy = 1$, tức là $x$ khả nghịch bên trái lẫn bên phải.
+
+        $(\Leftarrow)$ $x$ khả nghịch bên trái lẫn bên phải.
+
+        Khi đó tồn tại $a\in R, b\in R$ sao cho $ax = xb = 1$. Ta có
+        $$
+            a = a1 = a(xb) = (ax)b = 1b = b
+        $$
+
+        do đó $ax = xa = 1$, nghĩa là $x$ khả nghịch.
+    \end{proof}
+
+    Quay lại bài toán.
+    
+    \begin{enumerate}[label = (\alph*)]
+        \item $xy$ và $yx$ khả nghịch nên tồn tại $a, b$ sao cho $a(xy) = (xy)a = 1\qquad b(yx) = (yx)b = 1$.
+
+              Do đó $x(ya) = (by)x = 1$ và $(ax)y = y(xb) = 1$. Theo bổ đề trên, $x$ và $y$ khả nghịch.
+        \item $xy$ khả nghịch nên tồn tại $a$ là phần tử nghịch đảo của $xy$, tức là $a(xy) = (xy)a = 1\ne 0$. Vì $R$ không có ước của không nên từ các đẳng thức này, chúng ta suy ra $a, x, y\ne 0$.
+
+              Ta có $ax\cdot yax = axy\cdot ax = 1\cdot ax = ax\cdot 1$ nên $ax\cdot (yax - 1) = 0$. $R$ không có ước của không và $a, x\ne 0$ nên $yax = 1$. Điều này kéo theo $axy = yax = 1$, tức là $y$ khả nghịch, vì $y$ khả nghịch bên trái lẫn bên phải.
+
+              Ta cũng có $yax\cdot ya = ya\cdot xya = ya = 1\cdot ya$ nên $(yax - 1)ya = 0$. $R$ không có ước của không và $a, y\ne 0$ nên $yax = 1$. Điều này dẫn tới $yax = xya = 1$, nghĩa là $x$ khả nghịch, vì $x$ khả nghịch bên trái lẫn bên phải.
+              
+              Vậy $x$ và $y$ khả nghịch.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Cho $R$ là một vành hữu hạn. Chứng minh rằng
+    \begin{enumerate}[label = (\alph*)]
+        \item Nếu $R$ không có ước của không thì nó có đơn vị và mọi phần tử khác không của $R$ đều khả nghịch.
+        \item Nếu $R$ có đơn vị thì mọi phần tử khả nghịch một phía trong $R$ đều khả nghịch.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Kí hiệu $n$ là số phần tử của $R\setminus\{0\}$. Mệnh đề hiển nhiên đúng nếu $R\setminus\{ 0 \} = \varnothing$.
+
+              Giả sử $R\setminus\{0\}\ne\varnothing$ và $a\in R\setminus\{ 0 \}$. Xét hai ánh xạ $f_{a}, g_{a}: R\to R$ cho bởi $f_{a}: x\mapsto ax$, $g_{a}: x\mapsto xa$. Vì $R$ không có ước của không nên $ax = ay$ khi và chỉ khi $x = y$, $xa = ya$ khi và chỉ khi $x = y$, do đó ánh xạ $f_{a}, g_{a}$ là đơn ánh. Mà $R$ hữu hạn, nên tập ảnh của $f_{a}, g_{a}$ là toàn bộ $R$, kéo theo $f_{a}, g_{a}$ cũng là toàn ánh, do đó $f_{a}, g_{a}$ là song ánh.
+
+              Chúng ta chứng minh các điều sau.
+              \begin{itemize}
+                  \item Với mỗi $x\in R\setminus\{0\}$, tồn tại duy nhất $a\in R\setminus\{0\}$ sao cho $ax = x$.
+
+                        $g_{x}$ là một song ánh, nên $g_{x}\vert_{R\setminus\{0\}}$ (hạn chế của $g_{x}$ lên $R\setminus\{0\}$) là đơn ánh và tập ảnh của $g_{x}\vert_{R\setminus\{0\}}$ là $R\setminus\{0\}$. Do đó tồn tại $a\in R\setminus \{0\}$ sao cho $ax = x$. Giả sử $ax = a'x = x$, khi đó $(a - a')x = 0$, kéo theo $a = a'$ vì $R$ không có ước của không. Do đó với mỗi $x\in R\setminus\{0\}$, tồn tại duy nhất $a\in R\setminus\{0\}$ sao cho $ax = x$.
+                  \item Với mỗi $x\in R\setminus\{0\}$, tồn tại duy nhất $b\in R\setminus\{0\}$ sao cho $xb = x$.
+
+                        Tương tự phần trước. $f_{x}$ là một song ánh, nên $f_{x}\vert_{R\setminus\{0\}}$ (hạn chế của $f_{x}$ lên $R\setminus\{0\}$) là đơn ánh và tập ảnh của $f_{x}\vert_{R\setminus\{0\}}$ là $R\setminus\{0\}$. Do đó tồn tại $b\in R\setminus \{0\}$ sao cho $xb = x$. Giả sử $xb = xb' = x$, khi đó $x(b - b') = 0$, kéo theo $b = b'$ vì $R$ không có ước của không. Do đó với mỗi $x\in R\setminus\{0\}$, tồn tại duy nhất $b\in R\setminus\{0\}$ sao cho $xb = x$.
+                  \item $R$ có phần tử đơn vị trái $e$ sao cho $ex = x$ với mọi $x\in R$.
+
+                        Chọn $x_{1}\in R\setminus\{0\}$. Theo phần trước, tồn tại duy nhất $a, b\in R\setminus\{0\}$ sao cho $ax_{1} = x_{1}$. Chúng ta sẽ chứng minh bằng quy nạp toán học rằng $f_{a}$ là ánh xạ đồng nhất.
+
+                        $f_{a}$ có 1 điểm cố định khác $0$ (là $x_{1}$).
+
+                        Giả sử $f_{a}$ có $i$ phần tử cố định khác $0$ là $x_{1}, \ldots, x_{i}$, với $1\leq i < n$. Vì $f_{a}$ là đơn ánh nên $f_{a}\vert_{R\setminus\{0, x_{1}, \ldots, x_{i}\}}$ cũng là đơn ánh với tập ảnh là $R\setminus\{0, x_{1}, \ldots, x_{i}\}$.
+                        
+                        Giả sử phản chứng rằng $f_{a}$ không có điểm cố định nào khác. Khi đó, theo giả sử phản chứng và $f_{a}$ là đơn ánh
+                        \begin{itemize}
+                            \item tồn tại $x_{i+1}\in R\setminus\{ 0, x_{1}, \ldots, x_{i} \}$
+                            \item với mỗi $k\in \mathbb{Z}_{\geq 0}$ và $i + k < n$, $x_{i+k+1} = f_{a}(x_{i+k})$ thì $x_{i+k+1}\in R\setminus\{ 0, x_{1}, \ldots, x_{i+k} \}$.
+                        \end{itemize}
+
+                        Vì $f_{a}$ là đơn ánh nên $f_{a}(x_{i + (n - i)})\in R\setminus\{ 0, x_{1}, \ldots, x_{n} \} = \varnothing$, là một điều vô lý. Vậy giả sử phản chứng là sai, $f_{a}$ có $i+1$ điểm cố định.
+
+                        Theo nguyên lý quy nạp toán học, $f_{a}$ có đúng $n$ điểm cố định. Do đó $f_{a}$ là ánh xạ đồng nhất.
+
+                        Vậy với mọi $x\in R$, $ax = x$.
+                    \item $R$ có phần tử đơn vị phải $f$ sao cho $xf = x$ với mọi $x\in R$.
+
+                          Tương tự phần trước.
+                    \item $R$ có phần tử đơn vị.
+
+                          Kí hiệu $e$ là phần tử đơn vị trái và $f$ là phần tử đơn vị phải. Khi đó, $e = ef = f$. Do đó, với mọi $x\in R$, $ex = x = xf = xe$, và chúng ta kết luận $R$ có phần tử đơn vị.
+                    \item Các phần tử khác $0$ của $R$ khả nghịch.
+
+                          Với mỗi $x\in R\setminus\{0\}$, $f_{x}, g_{x}$ là song ánh. Do đó $x$ khả nghịch cả hai phía, kéo theo $x$ khả nghịch.
+              \end{itemize}
+        \item Ta sẽ chứng minh nếu $ab = 1$ thì $ba = 1$.
+              
+              Xét ánh xạ $f: R\rightarrow R, x\mapsto bx$. $x = y$ thì $f(x) = f(y)$. $f(x) = f(y)$ thì $bx = by$, suy ra $abx = aby$ khi và chỉ khi $x = y$.
+              
+              Như vậy, $f$ là đơn ánh. Nhưng vì $R$ hữu hạn nên $f$ cũng là song ánh, do đó tồn tại $c$ sao cho $f(c) = 1$, tức là $bc = 1$ mà $ab = 1$ nên $a = abc = c$, tức là $c = a$. Do đó $ab = ba = 1$.
+              
+              Điều trên có nghĩa là $a, b$ khả nghịch. Vậy nếu một phần tử khả nghịch một phía trên một vành hữu hạn, có đơn vị, thì phần tử đó khả nghịch.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Chứng minh rằng tập hợp các số thực
+    \[ \mathbb{Q}(\sqrt{2}) = \{ a + b\sqrt{2}\ |\ a, b\in\mathbb{Q} \} \]
+    \par lập nên một trường với các phép toán cộng và nhân thông thường.
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\roman*)]
+        \item $(a_{1} + b_{1}\sqrt{2}) + (a_{2} + b_{2}\sqrt{2}) = (a_{1} + a_{2}) + (b_{1} + b_{2})\sqrt{2}$. Do đó, $\mathbb{Q}(\sqrt{2})$ đóng với phép cộng thông thường.
+        \item $(a_{1} + b_{1}\sqrt{2}) \cdot (a_{2} + b_{2}\sqrt{2}) = (a_{1}a_{2} + 2b_{1}b_{2}) + (a_{2}b_{1} + a_{1}b_{2})\sqrt{2}$. Do đó, $\mathbb{Q}(\sqrt{2})$ đóng với phép cộng thông thường.
+        \item Phép cộng trên $\mathbb{Q}(\sqrt{2})$ có tính kết hợp và giao hoán vì $\mathbb{Q}(\sqrt{2})\subset\mathbb{R}$.
+        \item Phép cộng trên $\mathbb{Q}(\sqrt{2})$ có phần tử trung lập.
+              \begin{gather*}
+                  (a + b\sqrt{2}) + 0 = 0 + (a + b\sqrt{2}) = a + b\sqrt{2}
+              \end{gather*}
+        \item Mọi phần tử của $\mathbb{Q}(\sqrt{2})$ đều có phần tử đối:
+              \begin{gather*}
+                  (a + b\sqrt{2}) + (-a - b\sqrt{2}) = (-a - b\sqrt{2}) + (a + b\sqrt{2}) = 0
+              \end{gather*}
+        \item Phép nhân trên $\mathbb{Q}(\sqrt{2})$ có tính kết hợp và giao hoán vì $\mathbb{Q}(\sqrt{2})\subset\mathbb{R}$ và phép nhân trên $\mathbb{Q}(\sqrt{2})$ đóng.
+        \item Phép nhân trên $\mathbb{Q}(\sqrt{2})$ có tính phân phối từ cả hai phía với phép cộng vì phép cộng và phép nhân trên $\mathbb{Q}(\sqrt{2})$ đóng và $\mathbb{Q}(\sqrt{2})\subset\mathbb{R}$.
+        \item Phép nhân trên $\mathbb{Q}(\sqrt{2})$ có phần tử đơn vị.
+              \begin{gather*}
+                  (a + b\sqrt{2})\cdot 1 = 1\cdot (a + b\sqrt{2}) = a + b\sqrt{2}
+              \end{gather*}
+        \item Các phần tử khác không của $\mathbb{Q}$ có phần tử nghịch đảo.
+              \begin{gather*}
+                  (a + b\sqrt{2})\left(\frac{a}{a^{2} - 2b^{2}} + \frac{-b}{a^{2}-2b^{2}}\sqrt{2}\right) \\
+                  =\left(\frac{a}{a^{2} - 2b^{2}} + \frac{-b}{a^{2}-2b^{2}}\sqrt{2}\right)(a + b\sqrt{2}) = 1
+              \end{gather*}
+    \end{enumerate}
+    
+    Như vậy, $\mathbb{Q}(\sqrt{2})$ lập nên một trường với hai phép toán cộng và nhân thông thường.
+\end{proof}
+
+\begin{exercise}Chứng minh rằng các trường $\mathbb{Q}(\sqrt{2})$ và $\mathbb{Q}(\sqrt{3})$ không đẳng cấu với nhau.
+\end{exercise}
+
+\begin{proof}Giả sử phản chứng rằng hai trường này đẳng cấu. Khi đó tồn tại một đẳng cấu $\phi$
+    \begin{gather*}
+        \phi: \mathbb{Q}(\sqrt{2})\rightarrow \mathbb{Q}(\sqrt{3}) \\
+        \phi(x) + \phi(y) = \phi(x + y) \\
+        \phi(x)\phi(y) = \phi(xy)
+    \end{gather*}
+    Từ điều này ta suy ra $\phi$ biến phần tử trung lập của $\mathbb{Q}(\sqrt{2})$ thành phần tử trung lập của $\mathbb{Q}(\sqrt{3})$, tức là $\varphi(0) = 0$.
+
+    $\varphi(x)\varphi(1) = \varphi(x)$ với mọi $x\in\mathbb{Q}(\sqrt{2})$ và tồn tại $x$ sao cho $\varphi(x)\ne 0$ (do $\varphi$ là đẳng cấu) nên $\varphi(1) = 1$.
+    
+    $\phi(x + 1) = \phi(x) + \phi(1) = \phi(x) + 1$ và $\phi(0) = 0$ nên bằng nguyên lý quy nạp, ta suy ra $\phi(n) = n$ với mọi số nguyên dương $n$. Tiếp tục với đẳng thức $\phi(x) + \phi(y) = \phi(x + y)$, chúng ta suy ra $\phi(n) = n$ với mọi số nguyên $n$.
+
+    Chọn lấy một số hữu tỷ $\frac{p}{q}$, trong đó $\operatorname{gcd}(p, q) = 1, q\ne 0$. Ta có $\phi\left(\frac{p}{q}\right)\phi(q) = \phi(p)$, tức là $\phi(\frac{p}{q}) = \frac{p}{q}$.
+    
+    Do đó, với mọi $x\in\mathbb{Q}$, $\phi(x) = x$. Mặt khác, $\varphi(2) = \varphi(\sqrt{2})\varphi(\sqrt{2}) = {(\varphi(\sqrt{2}))}^{2}$. Suy ra $\varphi(\sqrt{2})$ là $\sqrt{2}$ hoặc $-\sqrt{2}$. Tuy nhiên $\pm\sqrt{2}\notin \mathbb{Q}(\sqrt{3})$.
+
+    Như vậy giả sử phản chứng là sai. Hai trường $\mathbb{Q}(\sqrt{2})$ và $\mathbb{Q}(\sqrt{3})$ không đẳng cấu.
+\end{proof}
+
+\begin{exercise}Chứng minh rằng nếu số phức $z\not\in\mathbb{R}$ thì trường gồm các phần tử có dạng
+    \[ \mathbb{R}(z) = \{ a + bz\ |\ a, b\in\mathbb{R} \} \]
+    \par trùng với trường số phức $\mathbb{C}$.
+\end{exercise}
+
+\begin{proof}
+    Đặt $z = p + q\iota$ với $q\ne 0$. Ta sẽ chứng minh mọi số phức $a + b\iota$ đều biểu diễn được duy nhất dưới dạng $x + yz$.
+    \begin{align*}
+        x + yz = a + b\iota &\Longleftrightarrow x + y(p + q\iota) = a + b\iota  \\
+        &\Longleftrightarrow (x + py) + qy\iota = a + b\iota \\
+        &\Longleftrightarrow
+        \begin{cases}
+            x + py = a \\
+            qy = b
+        \end{cases}
+        \Longleftrightarrow
+        \begin{cases}
+            y = \frac{b}{q} \\
+            x = a - \frac{bp}{q}
+        \end{cases}
+    \end{align*}
+    
+    Như vậy, mọi số phức đều biểu diễn được duy nhất dưới dạng $x + yz$. Từ điều này, ta kết luận $\mathbb{R}(z) = \mathbb{C}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng các trường $\mathbb{C}$ và $\mathbb{Z}/p$, với $p$ nguyên tố, không là trường được sắp toàn phần đối với bất kỳ thứ tự nào.
+\end{exercise}
+
+\begin{proof}
+    Giả sử phản chứng rằng $\mathbb{C}$ được sắp toàn phần đối với quan hệ thứ tự $\leq$ nào đó. Chỉ xảy ra một trong các khả năng sau
+    \begin{itemize}
+        \item $0\leq 1\leq \iota$ (hoặc $0\geq 1\geq \iota$)
+
+              Từ các bất đẳng thức trên, chúng ta thu được $-1\leq 0\leq 1$ và $1\leq \iota^{2} = - 1$, kéo theo $1 = -1$, vô lý.
+        \item $0\leq \iota\leq 1$ (hoặc $0\geq \iota\geq 1$)
+
+              Từ các bất đẳng thức trên, chúng ta thu được $-1\leq 0$ và $0\leq \iota^{2} = -1$, kéo theo $0 = -1$, vô lý.
+        \item $\iota\leq 0\leq 1$ (hoặc $\iota\geq 0\geq 1$)
+
+              Từ các bất đẳng thức trên, chúng ta thu được $-1\leq 0$, $0\leq -\iota$, $0\leq (-\iota)(-\iota) = \iota^{2} = -1$, kéo theo $-1 = 0$, vô lý.
+    \end{itemize}
+
+    Do đó giả sử phản chứng là sai. Vậy $\mathbb{C}$ không là trường được sắp thứ tự với bất kỳ thứ tự nào.
+
+    \bigskip
+    Giả sử phản chứng rằng $\mathbb{Z}/p$ được sắp toàn phần đối với quan hệ thứ tự $\leq$ nào đó.
+
+    Không mất tính tổng quát, giả sử $[0]\leq [1]$. Bằng quy nạp toán học, chúng ta chứng minh được $[0]\leq [a]$ với mọi $0\leq a\leq p-1$. Do đó $[1] = [0] + [1] \leq [p-1] + [1] = [0]$. Cùng với $[0]\leq [1]$, chúng ta suy ra $[0] = [1]$. Như vậy giả sử phản chứng là sai.
+
+    Vậy $\mathbb{Z}/p$ không là trường được sắp thứ tự với bất kỳ thứ tự nào.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng ánh xạ $\phi: \mathbb{R}\rightarrow\mathbb{C}^{*}$ xác định bởi $\phi(x) = \cos x + \iota\sin x$ là một đồng cấu từ nhóm $\mathbb{R}$ với phép cộng vào nhóm $\mathbb{C}^{*}$ với phép nhân. Tìm tập giá trị của $\phi$. Đồng cấu $\phi$ có phải là một toàn cấu hay một đơn cấu không?
+\end{exercise}
+
+\begin{proof}
+    \begin{align*}
+        \phi(x)\phi(y) & = (\cos x + \iota\sin x)(\cos y + \iota\sin y)                       \\
+                       & = (\cos x\cos y - \sin x\sin y) + (\sin x\cos y + \cos x\sin y)\iota \\
+                       & = \cos (x + y) + \iota\sin(x + y)                                    \\
+                       & = \phi(x + y)
+    \end{align*}
+    \par Do đó $\phi$ là một đồng cấu từ $(\mathbb{R},+)$ vào $(\mathbb{C}^{*},\cdot)$.
+    \par Tập giá trị của $\phi$ là các số phức có module bằng 1.
+    \par $\phi$ không phải đơn cấu vì $\phi(x) = \phi(x + 2k\pi)$.
+    \par $\phi$ không phải toàn cấu vì không tồn tại $x\in\mathbb{R}$ sao cho $\phi(x) = 2$.
+\end{proof}
+
+\begin{exercise}Chứng minh rằng đối với số phức $z$:
+    \begin{align*}
+        z = \overline{z}  & \Longleftrightarrow z\in\mathbb{R}         \\
+        z = -\overline{z} & \Longleftrightarrow \text{$z$ là thuần ảo}
+    \end{align*}
+\end{exercise}
+
+\begin{proof}
+    $z = a + b\iota$ thì $\overline{z} = a - b\iota$, $a = \frac{1}{2}(z + \overline{z}), b = \frac{1}{2\iota}(z - \overline{z})$. Do đó 
+    \begin{align*}
+        z \in \mathbb{R} & \Longleftrightarrow b = 0 \Longleftrightarrow z = \overline{z},       \\
+        \text{$z$ là thuần ảo} & \Longleftrightarrow a = 0 \Longleftrightarrow z = -\overline{z}.
+    \end{align*}
+\end{proof}
+
+\begin{exercise}Khi nào thì tích hai số phức là một số thực? Khi nào thì tổng và tích hai số phức đều là số thực?
+\end{exercise}
+
+\begin{proof}
+    Đặt $z_{1} = r_{1}(\cos\phi_{1} + \iota\sin\phi_{1}), z_{2} = r_{2}(\cos\phi_{2} + \iota\sin\phi_{2})$.
+    
+    $z_{1}z_{2} = r_{1}r_{2}(\cos(\phi_{1} + \phi_{2}) + \iota\sin(\phi_{1} + \phi_{2}))$.
+    
+    $z_{1}z_{2}\in\mathbb{R}$ khi và chỉ khi $\sin(\phi_{1} + \phi_{2}) = 0\Leftrightarrow\phi_{1} + \phi_{2}\equiv 0\pmod\pi$
+    
+    Tức là $\arg(z_{1}) + \arg(z_{2}) = k\pi\quad (k\in\mathbb{Z})$.
+    
+    Vậy tích hai số phức là một số thực khi và chỉ khi tổng argument của chúng có dạng $k\pi\ (k\in\mathbb{Z})$.
+
+    \bigskip
+    $z_{1} + z_{2}, z_{1}z_{2}\in\mathbb{R}$ nên $z_{1}, z_{2}$ là nghiệm của một đa thức bậc 2, hệ số thực: $X^{2} - (z_{1} + z_{2})X + z_{1}z_{2}$.
+    
+    Theo công thức nghiệm phương trình bậc hai, $z_{1}$ và $z_{2}$ là hai số phức liên hợp.
+    
+    Ngược lại, tổng và tích của hai số phức liên hợp là các số thực.
+    
+    Vậy tổng và tích hai số phức là một số thực khi và chỉ khi chúng là hai số phức liên hợp.
+\end{proof}
+
+\begin{exercise}
+    Tính $\iota^{77}, \iota^{99}, \iota^{-57}, \iota^{n}, (1 + \iota){}^{n}$
+\end{exercise}
+
+\begin{proof}
+    \begin{align*}
+        \iota^{77} & = \iota^{4\cdot 19 + 1} = (\iota^{4}){}^{19}\cdot\iota = \iota, \\
+        \iota^{99} & = \iota^{4\cdot 24 + 3} = (\iota^{4}){}^{24}\cdot\iota^{3} = \iota^{3} = -\iota, \\
+        \iota^{-57} & = \iota^{4\cdot(-14) - 1} = (\iota^{4}){}^{-14}\cdot\iota^{-1} = \iota^{-1} = -\iota, \\
+        \iota^{n} & = \left(\cos\frac{\pi}{2} + \iota\sin\frac{\pi}{2}\right){}^{n}= \cos\frac{n\pi}{2} + \iota\sin\frac{n\pi}{2}, \\
+        (1+\iota){}^{n} & = \left(\sqrt{2}\left(\cos\frac{\pi}{4} + \iota\sin\frac{\pi}{4}\right)\right){}^{n} \\
+                        & = \sqrt{2^{n}}\left(\cos\frac{n\pi}{4} + \iota\sin\frac{n\pi}{4}\right).
+    \end{align*}
+\end{proof}
+
+\begin{exercise}Chứng minh các đẳng thức
+    \begin{align*}
+        (1+\iota){}^{8n} & = 2^{4n}                                 \\
+        (1+\iota){}^{4n} & = (-1){}^{n}2^{2n},\quad(n\in\mathbb{Z})
+    \end{align*}
+\end{exercise}
+
+\begin{proof}
+    Sử dụng đẳng thức ở bài tập trước.
+    \begin{align*}
+        (1+\iota){}^{8n} & = \sqrt{2^{8n}}\left(\cos\frac{8n\pi}{4} + \sin\frac{8n\pi}{4}\right) \\
+                         & = 2^{4n}\left(\cos 2n\pi + \iota\sin 2n\pi\right)                     \\
+                         & = 2^{4n}, \\
+        (1+\iota){}^{4n} & = \sqrt{2^{4n}}\left(\cos\frac{4n\pi}{4} + \sin\frac{4n\pi}{4}\right) \\
+                         & = 2^{2n}\left(\cos n\pi + \iota\sin n\pi\right)                       \\
+                         & = (-1){}^{n}2^{2n}.
+    \end{align*}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu $z + z^{-1} = 2\cos\phi$ trong đó $\phi\in\mathbb{R}$ thì $z^{n} + z^{-n} = 2\cos n\phi$, với mọi $n\in\mathbb{N}$.
+\end{exercise}
+
+\begin{proof}
+    Ta chứng minh bằng quy nạp toán học. Mệnh đề $z^{n} + z^{-n} = 2\cos n\phi$ đúng với $n = 1$.
+    
+    Giả sử mệnh đề đúng với $n = k$.
+    \begin{align*}
+        z^{k+1} + z^{-k-1} & = (z^{k} + z^{-k})(z + z^{-1}) - (z^{k-1} + z^{1-k}) \\
+                           & = 2\cos k\phi \cdot 2\cos\phi - 2\cos (k-1)\phi      \\
+                           & = 2\cos(k+1)\phi + 2\cos(k-1)\phi - 2\cos(k-1)\phi   \\
+                           & = 2\cos(k+1)\phi.
+    \end{align*}
+    
+    Vậy mệnh đề đúng với $n = k + 1$, do đó đúng với mọi $n\in\mathbb{N}$.
+\end{proof}
+
+\begin{exercise}Tính
+    \begin{enumerate}[label = (\alph*)]
+        \item $\dfrac{1 - 2\iota}{4 + 3\iota}$,
+        \item $\dfrac{(1 - \iota){}^{n}}{(1 - \sqrt{3}\iota){}^{n}}$,
+        \item $\dfrac{(1 + \sqrt{3}\iota){}^{n}}{(1 + \iota){}^{n + 1}}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item \begin{align*}
+                  \frac{1 - 2\iota}{4 + 3\iota} & = \frac{(1 - 2\iota)(4 - 3\iota)}{25} \\
+                                                & = \frac{-2 - 11\iota}{25}.
+              \end{align*}
+        \item \begin{align*}
+                  \frac{{(1 - \iota)}^{n}}{{(1 - \sqrt{3}\iota)}^{n}} & = \frac{\sqrt{2^{n}}{\left(\cos\dfrac{-\pi}{4} +\iota\sin\dfrac{-\pi}{4}\right)}^{n}}{2^{n}{\left(\cos\dfrac{-\pi}{3} + \iota\sin\dfrac{-\pi}{3}\right)}^{n}} \\
+                                                                      & =\frac{1}{\sqrt{2^{n}}}\left(\cos\frac{n\pi}{12}+\iota\sin\frac{n\pi}{12}\right).
+              \end{align*}
+        \item \begin{align*}
+                  \frac{{(1 + \sqrt{3}\iota)}^{n}}{{(1+\iota)}^{n+1}} & = \frac{2^{n}{\left(\cos\dfrac{\pi}{3} + \iota\sin\dfrac{\pi}{3}\right)}^{n}}{\sqrt{2^{n}}{\left(\cos\dfrac{\pi}{4} + \iota\sin\dfrac{\pi}{4}\right)}^{n+1}} \\
+                                                                      & = \sqrt{2^{n}}\left(\cos\left(\frac{n\pi}{12}-\frac{\pi}{4}\right) + \iota\sin\left(\frac{n\pi}{12} - \frac{\pi}{4}\right)\right).
+              \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    \begin{enumerate}[label = (\alph*)]
+        \item Tìm dạng lượng giác của số phức $(1 + \iota\tan\phi)/(1 - \iota\tan\phi)$,
+        \item Trên mặt phẳng phức, tìm tập hợp các điểm tương ứng với
+              \[ \{ z = (1 + \iota t)/(1 - \iota t)\ |\ t\in\mathbb{R} \} \]
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item
+              \begin{align*}
+                  \frac{1 + \iota\tan\phi}{1 - \iota\tan\phi} & = \frac{\cos\phi + \iota\sin\phi}{\cos\phi - \iota\sin\phi}       \\
+                                                              & = \frac{\cos\phi + \iota\sin\phi}{\cos(-\phi) + \iota\sin(-\phi)} \\
+                                                              & = \cos(2\phi) + \iota\sin(2\phi).
+              \end{align*}
+        \item Vì $t\in\mathbb{R}$ nên tồn tại $\phi\in\left(-\frac{\pi}{2},\frac{\pi}{2}\right)$ sao cho $\tan\phi = t$.
+              
+              Theo ý (a), $z = \cos (2\phi) + \iota(2\phi)$. Do đó, tập hợp điểm $z$ là đường tròn đơn vị, loại đi điểm $-1$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Đẳng thức sau đây có đúng không: $\sqrt[ns]{z^{s}} = \sqrt[n]{z}$, trong đó $z\in\mathbb{C}, n, s\in\mathbb{N}$?
+\end{exercise}
+
+\begin{proof}
+    Với $s = 1$, đẳng thức luôn đúng.
+    
+    Với $s > 1$, ta chỉ cần xét trường hợp $z = 1$. Căn bậc $ns$ của $1$ gồm $ns$ giá trị, trong khi đó, căn bậc $n$ của $1$ chỉ có $n$ giá trị. $ns$ giá trị trên khác nhau. Do đó khi $s > 1$ thì đẳng thức trên không đúng.
+\end{proof}
+
+\begin{exercise}
+    \begin{enumerate}[label = (\alph*)]
+        \item Tìm các căn bậc ba của $1 + \iota$, $1 - \sqrt{3}\iota$.
+        \item Tìm các căn bậc $n$ của $\iota$, $1 - \iota$, $1 + \sqrt{3}\iota$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item $1 + \iota = \sqrt{2}\left(\cos\frac{\pi}{4} + \iota\sin\frac{\pi}{4}\right)$. Các căn bậc ba của $1 + \iota$ bao gồm
+              \[
+                  \begin{cases}
+                      \sqrt[6]{2}\left(\cos\frac{\pi}{12} + \iota\sin\frac{\pi}{12}\right) \\
+                      \sqrt[6]{2}\left(\cos\frac{3\pi}{4} + \iota\sin\frac{3\pi}{4}\right) \\
+                      \sqrt[6]{2}\left(\cos\frac{17\pi}{12} + \iota\sin\frac{17\pi}{12}\right)
+                  \end{cases}.
+              \]
+              
+              $1 - \sqrt{3}\iota = 2\left(\cos\frac{-\pi}{3} + \iota\sin\frac{-\pi}{3}\right)$. Các căn bậc ba của $1 - \sqrt{3}\iota$ bao gồm
+              \[
+                  \begin{cases}
+                      \sqrt[3]{2}\left(\cos\frac{-\pi}{9} + \iota\sin\frac{-\pi}{9}\right) \\
+                      \sqrt[3]{2}\left(\cos\frac{5\pi}{9} + \iota\sin\frac{5\pi}{9}\right) \\
+                      \sqrt[3]{2}\left(\cos\frac{11\pi}{9} + \iota\sin\frac{11\pi}{9}\right)
+                  \end{cases}.
+              \]
+        \item \begin{align*}
+                  \sqrt[n]{\iota}             & = \left\{ \cos\left(\frac{\pi}{2n} + \frac{2k\pi}{n}\right) + \iota\sin\left(\frac{\pi}{2n} + \frac{2k\pi}{n}\right)\ \Big{|} \ k = \overline{0, n-1} \right\}                            \\
+                  \sqrt[n]{1-\iota}           & = \left\{ \sqrt[2n]{2}\left(\cos\left(\frac{-\pi}{4n} + \frac{2k\pi}{n}\right) + \iota\sin\left(\frac{-\pi}{4n} + \frac{2k\pi}{n}\right)\right)\ \Big{|} \ k = \overline{0, n-1} \right\} \\
+                  \sqrt[n]{1 + \sqrt{3}\iota} & = \left\{ \sqrt[n]{2}\left(\cos\left(\frac{\pi}{3n} + \frac{2k\pi}{n}\right) + \iota\sin\left(\frac{\pi}{3n} + \frac{2k\pi}{n}\right)\right)\ \Big{|}\ k = \overline{0, n-1} \right\}.
+              \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng tổng các căn bậc $n$ của một số phức bất kỳ đều bằng $0$.
+\end{exercise}
+
+\begin{proof}
+    Với số phức $z = 0$, chỉ có một căn bậc $n$ là chính số $0$.
+    
+    Xét trường hợp $z\ne 0$. $z = |z|(\cos\phi + \iota\sin\phi)$. Các căn bậc $n$ của $z$ bao gồm
+    \[
+        \sqrt[n]{|z|}\left(\cos\left(\frac{\phi}{n} + \frac{2k\pi}{n}\right) + \iota\sin\left(\frac{\phi}{n} + \frac{2k\pi}{n}\right)\right),\quad k = \overline{0, n-1}.
+    \]
+
+    Các số phức này là nghiệm của đa thức $X^{n} - z$. Theo định lý Viete, tổng các căn bậc $n$ của $z$ bằng $0$.
+\end{proof}
+
+\begin{exercise}Phân tích các đa thức sau thành nhân tử bất khả quy trong các vành $\mathbb{R}[X]$ và $\mathbb{C}[X]$:
+    \begin{enumerate}[label = (\alph*)]
+        \item $X^{3} + 3X^{2} + 5X + 3$,
+        \item $X^{3} - X^{2} - X - 2$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item
+              \begin{align*}
+                  X^{3} + 3X^{2} + 5X + 3 & = X^{3} + X^{2} + 2X^{2} + 2X + 3X + 3                  \\
+                                          & = X^{2}(X + 1) + 2X(X + 1) + 3(X + 1)                   \\
+                                          & = (X + 1)(X^{2} + 2X + 3)                               \\
+                                          & = (X + 1)(X + 1 + \sqrt{2}\iota)(X + 1 - \sqrt{2}\iota).
+              \end{align*}
+        \item
+              \begin{align*}
+                  X^{3} - X^{2} - X - 2 & = X^{3} - 2X^{2} + X^{2} - 2X + X - 2                                         \\
+                                        & = X^{2}(X - 2) + X(X - 2) + (X - 2)                                           \\
+                                        & = (X - 2)(X^{2} + X + 1)                                                      \\
+                                        & = (X - 2)\left(X - \frac{-1 - \sqrt{3}\iota}{2}\right)\left(X - \frac{-1 + \sqrt{3}\iota}{2}\right).
+              \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Chứng minh rằng đa thức $X^{3m} + X^{3n + 1} + X^{3p  + 2}$ chia hết cho đa thức $X^{2} + X + 1$, với mọi $m, n, p$ nguyên dương.
+\end{exercise}
+
+\begin{proof}
+    Đặt $j$ là nghiệm của $X^{2} + X + 1$, khi đó $j^{3} = 1$
+    $$
+        j^{3m} + j^{3n + 1} + j^{3p + 2} = 1 + j + j^{2} = 0.
+    $$
+    
+    Như vậy, nghiệm của $X^{2} + X + 1$ cũng là nghiệm của $X^{3m} + X^{3n + 1} + X^{3p + 2}$.
+    
+    Do đó $X^{3m} + X^{3n + 1} + X^{3p +2}$ chia hết cho $X^{2} + X + 1$, với mọi $m, n, p$ nguyên dương.
+\end{proof}
+
+\begin{exercise}
+    Tìm tất cả các bộ ba nguyên dương $m, n, p$ sao cho đa thức $X^{3m} - X^{3n + 1} + X^{3p + 2}$ chia hết cho đa thức $X^{2} - X + 1$.
+\end{exercise}
+
+\begin{proof}
+    Đa thức $X^{3m} - X^{3n + 1} + X^{3p + 2}$ chia hết cho đa thức $X^{2} - X + 1$ khi và chỉ khi nghiệm của $X^{2} - X + 1$ cũng là nghiệm của $X^{3m} - X^{3n + 1} + X^{3p + 2}$.
+    
+    Đặt $j$ là nghiệm của đa thức $X^{2} - X + 1$ thì $j^{3} = -1$.
+    $$
+        j^{3m} - j^{3n + 1} + j^{3p + 2} = {(-1)}^{m} - {(-1)}^{n}j + {(-1)}^{p}j^{2}.
+    $$
+    
+    Nếu $m, n, p$ cùng tính chẵn lẻ thì biểu thức trên bằng không.
+    
+    Nếu $m, n, p$ không cùng tính chẵn lẻ thì biểu thức trên khác không.
+    
+    Bộ số $m, n, p$ nguyên dương cần tìm là các số nguyên dương cùng tính chẵn lẻ.
+\end{proof}
+

@@ -1,0 +1,2200 @@
+\chapter{Ma trận và ánh xạ tuyến tính}
+
+\begin{exercise}
+    Tính tích của hai ma trận sau đây:
+    \[
+        \begin{pmatrix}
+            0 & 4 & 7 & 1 \\
+            2 & 1 & 7 & 6 \\
+            1 & 0 & 8 & 3 \\
+            0 & 1 & 9 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            -2 & 8 & -5 & 4 \\
+            7  & 8 & 5  & 5 \\
+            0  & 3 & 8  & 4 \\
+            -8 & 9 & -8 & 9
+        \end{pmatrix}
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \[
+        \begin{pmatrix}
+            20  & 62 & -68 & 57 \\
+            -45 & 99 & 3   & 95 \\
+            -26 & 59 & 35  & 63 \\
+            -41 & 89 & 29  & 95
+        \end{pmatrix}.
+    \]
+\end{proof}
+
+\par Tính các lũy thừa sau đây
+
+\begin{exercise}
+    \[
+        {\begin{pmatrix}
+            \cos\phi & -\sin\phi \\
+            \sin\phi & \cos\phi
+        \end{pmatrix}}^{n},\quad
+        {\begin{pmatrix}
+            \lambda & 1       \\
+            0       & \lambda
+        \end{pmatrix}}^{n}.
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+              \[
+                  A = \begin{pmatrix}
+                      \cos\phi & -\sin\phi \\
+                      \sin\phi & \cos\phi
+                  \end{pmatrix}
+              \]
+              
+              Ta sẽ chứng minh bằng quy nạp rằng:
+              \[
+                  A^{n} =
+                  \begin{pmatrix}
+                      \cos(n\phi) & -\sin(n\phi) \\
+                      \sin(n\phi) & \cos(n\phi)
+                  \end{pmatrix}
+                  \tag{*}
+              \]
+            
+              (*) đúng với $n = 1$, giả sử (*) cũng đúng với $n = k$.
+              \begin{align*}
+                  A^{k+1} & =
+                  \begin{pmatrix}
+                      \cos(k\phi) & -\sin(k\phi) \\
+                      \sin(k\phi) & \cos(k\phi)
+                  \end{pmatrix}
+                  \begin{pmatrix}
+                      \cos\phi & -\sin\phi \\
+                      \sin\phi & \cos\phi
+                  \end{pmatrix}                                                                   \\
+                          & =
+                  \begin{pmatrix}
+                      \cos(k\phi)\cos\phi - \sin(k\phi)\sin\phi & -\sin(k\phi)\cos\phi - \cos(k\phi)\sin\phi \\
+                      \sin(k\phi)\cos\phi + \cos(k\phi)\sin\phi & \cos(k\phi)\cos\phi - \sin(k\phi)\sin\phi
+                  \end{pmatrix} \\
+                          & =
+                  \begin{pmatrix}
+                      \cos((k+1)\phi) & -\sin((k+1)\phi) \\
+                      \sin((k+1)\phi) & \cos((k+1)\phi)
+                  \end{pmatrix}
+              \end{align*}
+              
+              Vậy (*) vẫn đúng với $n = k+1$. Theo nguyên lý quy nạp toán học, (*) đúng với mọi $n\in\mathbb{N}$.
+              \[
+                  B =
+                  \begin{pmatrix}
+                      \lambda & 1       \\
+                      0       & \lambda
+                  \end{pmatrix}
+              \]
+              
+              Ta sẽ chứng minh bằng quy nạp rằng:
+              \[
+                  B^{n} =
+                  \begin{pmatrix}
+                      \lambda^{n} & n\lambda^{n-1} \\
+                      0           & \lambda^{n}
+                  \end{pmatrix}
+                  \tag{**}
+              \]
+              
+              (**) đúng với $n=1$, giả sử (**) cũng đúng với $n = k$.
+              \begin{align*}
+                  A^{k+1} & =
+                  \begin{pmatrix}
+                      \lambda^{k} & k\lambda^{k-1} \\
+                      0           & \lambda^{k}
+                  \end{pmatrix}
+                  \begin{pmatrix}
+                      \lambda & 1       \\
+                      0       & \lambda
+                  \end{pmatrix}
+                  =
+                  \begin{pmatrix}
+                      \lambda^{k+1} & (k+1)\lambda^{k} \\
+                      0             & \lambda^{k+1}
+                  \end{pmatrix}
+              \end{align*}
+              
+              Vậy (**) vẫn đúng với $n = k+1$. Theo nguyên lý quy nạp, (**) đúng với mọi $n\in\mathbb{N}$.
+\end{proof}
+
+\begin{exercise}
+    \[
+        \begin{pmatrix}
+            a_{1}  & 0      & \cdots & 0      \\
+            0      & a_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & a_{n}
+        \end{pmatrix}^{k}
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Từ định nghĩa tích ma trận, ta có đẳng thức sau:
+    \[
+        \begin{pmatrix}
+            x_{1}  & 0      & \cdots & 0      \\
+            0      & x_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & x_{n}
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_{1}  & 0      & \cdots & 0      \\
+            0      & y_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & y_{n}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            x_{1}y_{1} & 0          & \cdots & 0          \\
+            0          & x_{2}y_{2} & \cdots & 0          \\
+            \vdots     & \vdots     & \ddots & \vdots     \\
+            0          & 0          & \cdots & x_{n}y_{n}
+        \end{pmatrix}
+    \]
+    
+    Áp dụng vào bài toán, ta được:
+    \[
+        {\begin{pmatrix}
+            a_{1}  & 0      & \cdots & 0      \\
+            0      & a_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & a_{n}
+        \end{pmatrix}}^{k}
+        =
+        \begin{pmatrix}
+            a^{k}_{1} & 0         & \cdots & 0         \\
+            0         & a^{k}_{2} & \cdots & 0         \\
+            \vdots    & \vdots    & \ddots & \vdots    \\
+            0         & 0         & \cdots & a^{k}_{n}
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Ma trận sau đây có $n$ hàng, $n$ cột.
+    \[
+        {\begin{pmatrix}
+            1      & 1      & 0      & 0      & \cdots & 0      & 0      \\
+            0      & 1      & 1      & 0      & \cdots & 0      & 0      \\
+            0      & 0      & 1      & 1      & \cdots & 0      & 0      \\
+            \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+            0      & 0      & 0      & 0      & \cdots & 1      & 1      \\
+            0      & 0      & 0      & 0      & \cdots & 0      & 1
+        \end{pmatrix}}^{n-1}
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \[
+        A =
+        \begin{pmatrix}
+            1      & 1      & 0      & 0      & \cdots & 0      & 0      \\
+            0      & 1      & 1      & 0      & \cdots & 0      & 0      \\
+            0      & 0      & 1      & 1      & \cdots & 0      & 0      \\
+            \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \\
+            0      & 0      & 0      & 0      & \cdots & 1      & 1      \\
+            0      & 0      & 0      & 0      & \cdots & 0      & 1
+        \end{pmatrix}
+    \]
+    
+    Ma trận $A$ được viết lại như sau:
+    \[
+        A =
+        \begin{pmatrix}
+            \binom{1}{0} & \binom{1}{1} & 0            & 0            & \cdots & 0            & 0            \\
+            0            & \binom{1}{0} & \binom{1}{1} & 0            & \cdots & 0            & 0            \\
+            0            & 0            & \binom{1}{0} & \binom{1}{1} & \cdots & 0            & 0            \\
+            \vdots       & \vdots       & \vdots       & \vdots       & \ddots & \vdots       & \vdots       \\
+            0            & 0            & 0            & 0            & \ddots & \binom{1}{0} & \binom{1}{1} \\
+            0            & 0            & 0            & 0            & \cdots & 0            & \binom{1}{0}
+        \end{pmatrix}
+    \]
+    
+    Sử dụng quy tắc nhân ma trận và đẳng thức Pascal, ta được:
+    \[
+        A^{2} =
+        \begin{pmatrix}
+            \binom{2}{0} & \binom{2}{1} & \binom{2}{2} & 0            & \cdots & 0            & 0            \\
+            0            & \binom{2}{0} & \binom{2}{1} & \binom{2}{2} & \cdots & 0            & 0            \\
+            0            & 0            & \binom{2}{0} & \binom{2}{1} & \cdots & 0            & 0            \\
+            \vdots       & \vdots       & \vdots       & \vdots       & \ddots & \vdots       & \vdots       \\
+            0            & 0            & 0            & 0            & \cdots & \binom{2}{0} & \binom{2}{1} \\
+            0            & 0            & 0            & 0            & \cdots & 0            & \binom{2}{0}
+        \end{pmatrix}
+    \]
+    
+    Nhân liên tiếp với $A$, đến cuối cùng ta được:
+    \[
+        A^{n-1} =
+        \begin{pmatrix}
+            \binom{n-1}{0} & \binom{n-1}{1} & \binom{n-1}{2} & \binom{n-1}{3} & \cdots & \binom{n-1}{n-2} & \binom{n-1}{n-1} \\
+            0              & \binom{n-1}{0} & \binom{n-1}{1} & \binom{n-1}{2} & \cdots & \binom{n-1}{n-3} & \binom{n-1}{n-2} \\
+            0              & 0              & \binom{n-1}{0} & \binom{n-1}{1} & \cdots & \binom{n-1}{n-4} & \binom{n-1}{n-3} \\
+            \vdots         & \vdots         & \vdots         & \vdots         & \ddots & \vdots           & \vdots           \\
+            0              & 0              & 0              & 0              & \cdots & \binom{n-1}{0}   & \binom{n-1}{1}   \\
+            0              & 0              & 0              & 0              & \cdots & 0                & \binom{n-1}{0}
+        \end{pmatrix}.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Cho hai ma trận $A$ và $B$ với các yếu tố trong $\mathbb{F}$. Chứng minh rằng nếu các tích $AB$ và $BA$ đều có nghĩa và $AB = BA$, thì $A$ và $B$ là các ma trận vuông cùng cỡ.
+\end{exercise}
+
+\begin{proof}
+    Tích $AB$ và $BA$ có nghĩa, tức là số cột của $A$ bằng số hàng của $B$ và số cột của $B$ bằng số hàng của $A$.
+    
+    Vậy nếu $A\in M(m\times n,\mathbb{F})$ thì $B\in M(n\times m, \mathbb{F})$.
+    
+    Suy ra $AB\in M(m\times m,\mathbb{F})$, $BA\in M(n\times n,\mathbb{F})$.
+    
+    Mà $AB = BA$ nên $m = n$.
+    
+    Do đó $A$ và $B$ là hai ma trận vuông cùng cỡ.
+\end{proof}
+
+\begin{exercise}
+    Ma trận tích $AB$ sẽ thay đổi thế nào nếu ta
+    \begin{enumerate}[label = (\alph*)]
+        \item đổi chỗ các hàng thứ $i$ và thứ $j$ của ma trận $A$?
+        \item cộng vào hàng thứ $i$ của $A$ tích của vô hướng $c$ với hàng thứ $j$ của $A$?
+        \item đổi chỗ các cột thứ $i$ và thứ $j$ của ma trận $B$.
+        \item cộng vào cột thứ $i$ của $B$ tích của vô hướng $c$ với cột thứ $j$ của $B$?
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \begin{enumerate}[label = (\alph*)]
+        \item Hàng thứ $i$ và thứ $j$ của ma trận tích đổi chỗ.
+        \item Hàng thứ $i$ của $AB$ được cộng thêm tích của vô hướng $c$ với hàng thứ $j$ của $AB$.
+        \item Cột thứ $i$ và thứ $j$ của ma trận tích đổi chỗ.
+        \item Cột thứ $i$ của $AB$ được cộng thêm tích của vô hướng $c$ với cột thứ $j$ của $AB$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}\label{trace-of-products}
+    \textit{Vết} của một ma trận vuông là tổng của tất cả các yếu tố nằm trên đường chéo chính của ma trận đó. Chứng minh rằng vết của $AB$ bằng vết của $BA$.
+\end{exercise}
+
+\begin{proof}
+    Tích $AB$ và $BA$ có nghĩa, vậy là số cột của $A$ bằng số hàng của $B$, số cột của $B$ bằng số hàng của $A$.
+    \par Giả sử $A\in M(m\times n, \mathbb{F})$. Khi đó, $B\in M(n\times m, \mathbb{F})$. Ta đặt
+    \[
+        A =
+        \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{m1} & a_{m2} & \cdots & a_{mn}
+        \end{pmatrix}
+        \quad
+        B =
+        \begin{pmatrix}
+            b_{11} & b_{12} & \cdots & b_{1m} \\
+            b_{21} & b_{22} & \cdots & b_{2m} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            b_{n1} & b_{n2} & \cdots & b_{nm}
+        \end{pmatrix}
+    \]
+    \par Kí hiệu $(AB){}_{ij}$ là yếu tố hàng $i$, cột $j$ của $AB$. Kí hiệu $\operatorname{tr}(X)$ là vết của ma trận $X$.
+    \[
+        \operatorname{tr}(AB) = \sum^{m}_{i=1}(AB){}_{ii} = \sum^{m}_{i=1}\sum^{n}_{j=1}a_{ij}b_{ji}.
+    \]
+    \[
+        \operatorname{tr}(BA) = \sum^{n}_{i=1}(BA){}_{ii} = \sum^{n}_{i=1}\sum^{m}_{j=1}b_{ij}a_{ji}.
+    \]
+    \par Đổi thứ tự lấy tổng, ta được:
+    \[
+        \sum^{m}_{i=1}\sum^{n}_{j=1}a_{ij}b_{ji} = \sum^{n}_{i=1}\sum^{m}_{j=1}b_{ij}a_{ji}.
+    \]
+    \par Do đó, $\operatorname{tr}(AB) = \operatorname{tr}(BA)$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu $A$ và $B$ là các ma trận vuông cùng cấp, với $AB\ne BA$, thì
+    \begin{enumerate}[label = (\alph*)]
+        \item $(A+B){}^{2}\ne A^{2} + 2AB + B^{2}$,
+        \item $(A+B)(A-B)\ne A^{2} - B^{2}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item
+              \begin{align*}
+                  (A+B){}^{2} & = (A+B)(A+B)                \\
+                              & = A^{2} + AB + BA + B^{2}   \\
+                              & \ne A^{2} + AB + AB + B^{2} \\
+                              & = A^{2} + 2AB + B^{2}
+              \end{align*}
+        \item
+              \begin{align*}
+                  (A+B)(A-B) & = A^{2} - AB + BA - B^{2}   \\
+                             & = A^{2} - B^{2} + (BA - AB) \\
+                             & \ne A^{2} - B^{2}
+              \end{align*}
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu $A$ và $B$ là các ma trận vuông với $AB = BA$ thì
+    \[
+        (A+B){}^{n} = A^{n} + nA^{n-1}B + \frac{n(n-1)}{2}A^{n-2}B^{2} + \cdots + B^{n}.
+        \tag{*}
+    \]
+\end{exercise}
+
+\begin{proof}Ta chứng minh bằng quy nạp theo $n$.
+    
+    (*) đúng với $n = 1$. Giả sử (*) đúng với $n = k$.
+    \begin{align*}
+        (A+B){}^{k}               & = \sum^{k}_{j=0}\binom{k}{j}A^{k-j}B^{j}                      \\
+        \implies (A+B){}^{k+1} & = \sum^{k}_{j=0}\binom{k}{j}A^{k+1-j}B^{j} + \sum^{k}_{j=0}\binom{k}{j}A^{k-j}B^{j+1}
+    \end{align*}
+    
+    Sử dụng đẳng thức Pascal $\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}$, ta suy ra
+    \[
+        (A+B){}^{k+1} = A^{k+1} + \sum^{k+1}_{j=1}\binom{k+1}{j}A^{k+1-j}B^{j} = \sum^{k+1}_{j=0}\binom{k+1}{j}A^{k+1-j}B^{j}.
+    \]
+    
+    Vậy (*) đúng với $n = k + 1$. Do đó (*) đúng với mọi số tự nhiên $n$.
+\end{proof}
+
+\begin{exercise}
+    Hai ma trận vuông $A$ và $B$ được gọi là \textit{giao hoán} với nhau nếu $AB = BA$. Chứng minh rằng $A$ giao hoán với mọi ma trận vuông cùng cỡ với nó nếu và chỉ nếu nó là một ma trận vô hướng, tức là $A = cE$ trong đó $c\in\mathbb{F}$ và $E$ là ma trận đơn vị cùng cỡ với $A$.
+\end{exercise}
+
+\begin{proof}
+    Vì ma trận đơn vị giao hoán với mọi ma trận vuông cùng cỡ nên mỗi ma trận vô hướng cũng giao hoán với mọi ma trận vuông cùng cỡ.
+
+    Ta sẽ chứng minh điều ngược lại: Nếu một ma trận vuông giao hoán với mọi ma trận vuông cùng cỡ thì đó là một ma trận vô hướng.
+
+    Giả sử $A = {(a_{ij})}_{n\times n}$ là một ma trận giao hoán với mọi ma trận vuông cùng cỡ. Xét các ma trận vuông $E_{k,\ell}$ cỡ $n$ sao cho $k\ne \ell$ và các yếu tố trên đường chéo chính bằng 1, yếu tố thuộc hàng $k$ cột $\ell$ bằng 1, các yếu tố còn lại bằng 0. Thực hiện phép nhân $AE_{k,\ell}, E_{k,\ell}A$, ta thu được hai ma trận với đặc điểm sau (hãy dùng một ma trận cụ thể để dễ hình dung)
+    \begin{itemize}
+        \item Cột $\ell$ của $AE_{k,\ell}$ là tổng của cột $k$ và cột $\ell$ của ma trận $A$.
+        \item Hàng $k$ của $E_{k,\ell}A$ là tổng của hàng $k$ và hàng $\ell$ của ma trận $A$.
+    \end{itemize}
+
+    Vì $A$ giao hoán với $E_{k,\ell}$ nên hai ma trận trên bằng nhau. Đồng nhất các yếu tố ở hàng $k, \ell$ và cột $k, \ell$ ở hai ma trận, ta thu được $a_{k,\ell} = a_{\ell,k} = 0$ và $a_{k,k} = a_{\ell,\ell}$.
+
+    Do đó $A$ là một ma trận vô hướng.
+\end{proof}
+
+\begin{exercise}
+    Ma trận vuông $A$ được gọi là \textit{ma trận chéo} nếu các yếu tố nằm ngoài đường chéo chính của nó đều bằng không. Chứng minh rằng ma trận vuông $A$ giao hoán với mọi ma trận chéo cùng cỡ với nó nếu và chỉ nếu chính $A$ là một ma trận chéo.
+\end{exercise}
+
+\begin{proof}
+    $(\Rightarrow)$ $A$ và $B$ là các ma trận chéo.
+    \[
+        \begin{pmatrix}
+            a_{11} & 0      & \cdots & 0      \\
+            0      & a_{22} & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \vdots & a_{nn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            b_{11} & 0      & \cdots & 0      \\
+            0      & b_{22} & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & b_{nn}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a_{11}b_{11} & 0            & \cdots & 0          \\
+            0            & a_{22}b_{22} & \cdots & 0          \\
+            \vdots       & \vdots       & \ddots & \vdots     \\
+            0            & 0            & \cdots & a_{n}b_{n}
+        \end{pmatrix}
+    \]
+    \[
+        \begin{pmatrix}
+            b_{11} & 0      & \cdots & 0      \\
+            0      & b_{22} & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \vdots & b_{nn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_{11} & 0      & \cdots & 0      \\
+            0      & a_{22} & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & a_{nn}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a_{11}b_{11} & 0            & \cdots & 0          \\
+            0            & a_{22}b_{22} & \cdots & 0          \\
+            \vdots       & \vdots       & \ddots & \vdots     \\
+            0            & 0            & \cdots & a_{n}b_{n}
+        \end{pmatrix}
+    \]
+    
+    Như vậy, $A$ giao hoán với mọi ma trận chéo cùng cỡ.
+    
+    $(\Leftarrow)$ $A$ giao hoán với mọi ma trận chéo cùng cỡ.
+    
+    $A = (a_{ij}){}_{n\times n}$. $E_{i}$ là ma trận vuông cỡ $n$ với yếu tố hàng $i$ cột $i$ bằng đơn vị và các yếu tố còn lại bằng không. $E_{i}$ là ma trận chéo.
+    \[
+        AE_{i} =
+        \begin{pmatrix}
+            0      & \cdots & a_{1i} & \cdots & 0      \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            0      & \cdots & a_{ii} & \cdots & 0      \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            0      & \cdots & a_{ni} & \cdots & 0
+        \end{pmatrix}
+    \]
+    \[
+        E_{i}A =
+        \begin{pmatrix}
+            0      & \cdots & 0      & \cdots & 0      \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            a_{i1} & \cdots & a_{ii} & \cdots & a_{in} \\
+            \vdots & \ddots & \vdots & \ddots & \vdots \\
+            0      & \cdots & 0      & \cdots & 0
+        \end{pmatrix}
+    \]
+    
+    Do $AE_{i} = E_{i}A$ nên $a_{ij} = a_{ji} = 0, \forall j\ne i$.
+    
+    Như vậy, $A$ là một ma trận chéo.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu $A$ là một ma trận chéo với các yếu tố trên đường chéo chính đôi một khác nhau, thì mọi ma trận giao hoán với $A$ cũng là một ma trận chéo.
+\end{exercise}
+
+\begin{proof}
+    \[
+        A =
+        \begin{pmatrix}
+            a_{1}  & 0      & \cdots & 0      \\
+            0      & a_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \vdots & a_{n}
+        \end{pmatrix}
+    \]
+    
+    trong đó, $a_{i}\ne a_{j},\forall i\ne j$. $B = (b_{ij}){}_{n\times n}$.
+    \[
+        AB =
+        \begin{pmatrix}
+            a_{1}b_{11} & a_{1}b_{12} & \cdots & a_{1}b_{1n} \\
+            a_{2}b_{21} & a_{2}b_{22} & \cdots & a_{2}b_{2n} \\
+            \vdots      & \vdots      & \ddots & \vdots      \\
+            a_{n}b_{n1} & a_{n}b_{n2} & \cdots & a_{n}b_{nn}
+        \end{pmatrix}
+        \qquad
+        BA =
+        \begin{pmatrix}
+            a_{1}b_{11} & a_{2}b_{12} & \cdots & a_{n}b_{1n} \\
+            a_{1}b_{21} & a_{2}b_{22} & \cdots & a_{n}b_{2n} \\
+            \vdots      & \vdots      & \ddots & \vdots      \\
+            a_{1}b_{n1} & a_{2}b_{n2} & \cdots & a_{n}b_{nn}
+        \end{pmatrix}
+    \]
+    
+    $AB = BA$ thì $a_{i}b_{ij} = a_{j}b_{ij},\forall i\ne j$. Vì $a_{i} \ne a_{j}$ nên $b_{ij} = 0,\forall i\ne j$.
+    
+    Vậy $B$ là một ma trận chéo. Tức là mọi ma trận giao hoán với $A$ cũng là ma trận chéo.
+\end{proof}
+
+\begin{exercise}
+    Gọi $D = \text{diag}(a_{1},a_{2},\ldots,a_{n})$ là ma trận chéo với các yếu tố trên đường chéo chính lần lượt bằng $a_{1}, a_{2}, \ldots, a_{n}$. Chứng minh rằng nhân $D$ với $A$ từ bên trái có nghĩa là nhân các hàng của $A$ theo thứ tự với $a_{1}, a_{2},\ldots,a_{n}$; còn nhân $D$ với $A$ từ bên phải có nghĩa là nhân với các cột của $A$ theo thứ tự với $a_{1}, a_{2}, \ldots, a_{n}$.
+\end{exercise}
+
+\begin{proof}
+    $A = (a_{ij}){}_{n\times n}$.
+    \[
+        DA =
+        \begin{pmatrix}
+            a_{1}  & 0      & \cdots & 0      \\
+            0      & a_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & a_{n}
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a_{1}a_{11} & a_{1}a_{12} & \cdots & a_{1}a_{1n} \\
+            a_{2}a_{21} & a_{2}a_{22} & \cdots & a_{2}a_{2n} \\
+            \vdots      & \vdots      & \ddots & \vdots      \\
+            a_{n}a_{n1} & a_{n}a_{n2} & \cdots & a_{n}a_{nn}
+        \end{pmatrix}
+    \]
+    \[
+        AD =
+        \begin{pmatrix}
+            a_{11} & a_{12} & \cdots & a_{1n} \\
+            a_{21} & a_{22} & \cdots & a_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            a_{n1} & a_{n2} & \cdots & a_{nn}
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_{1}  & 0      & \cdots & 0      \\
+            0      & a_{2}  & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & a_{n}
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            a_{1}a_{11} & a_{2}a_{12} & \cdots & a_{n}a_{1n} \\
+            a_{1}a_{21} & a_{2}a_{22} & \cdots & a_{n}a_{2n} \\
+            \vdots      & \vdots      & \ddots & \vdots      \\
+            a_{1}a_{n1} & a_{2}a_{n2} & \cdots & a_{n}a_{nn}
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tìm tất cả các ma trận giao hoán với ma trận sau đây:
+    \[
+        \begin{pmatrix}
+            3 & 1 & 0 \\
+            0 & 3 & 1 \\
+            0 & 0 & 3
+        \end{pmatrix}
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Đặt ma trận cần tìm là $A = {(a_{ij})}_{n\times n}$.
+    \[
+        \begin{pmatrix}
+            3 & 1 & 0 \\
+            0 & 3 & 1 \\
+            0 & 0 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23} \\
+            a_{31} & a_{32} & a_{33}
+        \end{pmatrix}=
+        \begin{pmatrix}
+            3a_{11} + a_{21} & 3a_{12} + a_{22} & 3a_{13} + a_{23} \\
+            3a_{21} + a_{31} & 3a_{22} + a_{32} & 3a_{23} + a_{33} \\
+            3a_{31}          & 3a_{32}          & 3a_{33}
+        \end{pmatrix}
+    \]
+    \[
+        \begin{pmatrix}
+            a_{11} & a_{12} & a_{13} \\
+            a_{21} & a_{22} & a_{23} \\
+            a_{31} & a_{32} & a_{33}
+        \end{pmatrix}
+        \begin{pmatrix}
+            3 & 1 & 0 \\
+            0 & 3 & 1 \\
+            0 & 0 & 3
+        \end{pmatrix}=
+        \begin{pmatrix}
+            3a_{11} & a_{11} + 3a_{12} & a_{12} + 3a_{13} \\
+            3a_{21} & a_{21} + 3a_{22} & a_{22} + 3a_{23} \\
+            3a_{31} & a_{31} + 3a_{32} & a_{32} + 3a_{33}
+        \end{pmatrix}
+    \]
+    \par Đồng nhất hệ số hai ma trận tích:
+    \[
+        \begin{cases}
+            3a_{11} + a_{21} = 3a_{11} \Leftrightarrow a_{21} = 0               \\
+            3a_{12} + a_{22} = a_{11} + 3a_{12} \Leftrightarrow a_{11} = a_{22} \\
+            3a_{13} + a_{23} = a_{12} + 3a_{13} \Leftrightarrow a_{12} = a_{23} \\
+            3a_{21} + a_{31} = 3a_{21} \Leftrightarrow a_{31} = 0               \\
+            3a_{22} + a_{32} = a_{21} + 3a_{22} \Leftrightarrow a_{21} = a_{32} \\
+            3a_{23} + a_{33} = a_{22} + 3a_{23} \Leftrightarrow a_{22} = a_{33} \\
+            3a_{32} = a_{31} + 3a_{32} \Leftrightarrow a_{31} = 0               \\
+            3a_{33} = a_{32} + 3a_{33} \Leftrightarrow a_{32} = 0
+        \end{cases}
+    \]
+    
+    Vậy các ma trận giao hoán với ma trận
+    $\begin{pmatrix}
+            3 & 1 & 0 \\
+            0 & 3 & 1 \\
+            0 & 0 & 3
+        \end{pmatrix}$
+    có dạng
+    \[
+        \begin{pmatrix}
+            a & b & c \\
+            0 & a & b \\
+            0 & 0 & a
+        \end{pmatrix}.
+    \]
+\end{proof}
+
+\begin{exercise}\label{characteristic-poly}
+    Chứng minh rằng ma trận
+    $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$ thỏa mãn phương trình
+    \[
+        X^{2} - (a+d)X + (ad-bc) = 0
+    \]
+\end{exercise}
+
+\begin{proof}
+    \[
+        A^{2} =
+        \begin{pmatrix}
+            a^{2}+bc & b(a+d)   \\
+            c(a+d)   & d^{2}+bc
+        \end{pmatrix}
+    \]
+    \begin{align*}
+        A^{2} - (a+d)A + (ad-bc) & = \begin{pmatrix}a^{2}+bc & b(a+d) \\ c(a+d) & d^{2}+bc\end{pmatrix} - (a+d)\begin{pmatrix}a & b \\ c & d\end{pmatrix} + (ad-bc)\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix} \\
+                                 & = \begin{pmatrix}a^{2}+bc - a(a+d) + (ad-bc) & b(a+d) - b(a+d) \\ c(a+d) - c(a+d) & d^{2}+bc - d(a+d) + (ad-bc)\end{pmatrix}                                               \\
+                                 & = \begin{pmatrix}0 & 0 \\ 0 & 0 \end{pmatrix} = 0.
+    \end{align*}
+\end{proof}
+
+\begin{exercise}\label{minimal-poly}
+    Chứng minh rằng đối với mỗi ma trận vuông $A$, tồn tại một đa thức khác không $f(X)$ sao cho $f(A) = 0$. Hơn nữa, mọi đa thức có tính chất đó đều là bội của một đa thức $f_{0}(X)$ như thế.
+\end{exercise}
+
+\begin{proof}
+    Giả sử $A\in M(n\times n,\mathbb{F})$.
+    
+    $M(n\times n,\mathbb{F})$ là một không gian vector với số chiều là $n^{2}$.
+    
+    Do đó hệ $(E_{n}, A, A^{2}, \ldots, A^{n^{2}})$ phụ thuộc tuyến tính, tức là tồn tại các yếu tố $a_{0}, a_{1}, a_{2}, \ldots, a_{n^{2}}$ trong trường $\mathbb{F}$, không đồng thời bằng không sao cho:
+    \[
+        a_{0} + a_{1}A + a_{2}A^{2} + \cdots + a_{n^{2}}A^{n^{2}} = 0
+    \]
+    Điều đó có nghĩa là đa thức $f(X) = a_{0} + a_{1}X + a_{2}X^{2} + \cdots + a_{n^{2}}X^{n^{2}}$ khác không và thỏa mãn $f(A) = 0$.
+    
+    Như vậy tập hợp các đa thức khác không nhận $A$ làm nghiệm là tập khác rỗng. Theo nguyên lý sắp thứ tự tốt, tập hợp này chứa đa thức có bậc nhỏ nhất. Đặt đa thức như vậy là $f_{0}(X)$.
+    
+    Giả sử đa thức $p(X)$ thỏa mãn $p(A) = 0$. Ta thực hiện phép chia cho đa thức $f_{0}(X)$.
+    \[
+        p(X) = f_{0}(X)q(X) + r(X)
+    \]
+    
+    trong đó $\deg r(X) < \deg f_{0}(X)$. $p(A) = 0\Rightarrow f_{0}(A)q(A) + r(A) = 0 \Rightarrow r(A) = 0$. Đa thức $r(X)$ có bậc bé hơn $f_{0}(X)$, do đó $r(X) = 0$. Vậy $p(X)$ là bội của $f_{0}(X)$.
+\end{proof}
+
+\begin{exercise}
+    Giả sử $n$ không chia hết cho đặc số $p$ của trường $\mathbb{F}$. Chứng minh rằng không tồn tại các ma trận $A, B\in M(n\times n, \mathbb{F})$ sao cho $AB - BA = E_{n}$.
+\end{exercise}
+
+\begin{proof}
+    Ánh xạ vết $\operatorname{tr}: M(n\times n, \mathbb{F})\rightarrow \mathbb{F}$ là một ánh xạ tuyến tính.
+    
+    Theo Bài~\ref{trace-of-products}, $\operatorname{tr}(AB - BA) = \operatorname{tr}(AB) - \operatorname{tr}(BA) = 0$.
+    
+    Mà $\operatorname{tr}(E_{n}) = n$ và $n$ không là bội của đặc số của trường $\mathbb{F}$ nên $n\ne 0$. Do đó $\operatorname{tr}(AB - BA)\ne \operatorname{tr}(E_{n})$.
+    
+    Điều đó cũng có nghĩa là $AB - BA \ne E_{n}$.
+\end{proof}
+
+\begin{exercise}
+    Giả sử $A$ là một ma trận vuông cỡ 2 và $k$ là một số nguyên $\ge 2$. Chứng minh rằng $A^{k} = 0$ nếu và chỉ nếu $A^{2} = 0$.
+\end{exercise}
+
+\begin{proof}
+    Trong chứng minh này, chúng ta dùng kết quả sau: $v$ là vector trong không gian vector $V$ trên trường $\mathbb{F}$ và $a\in \mathbb{F}$ thì $av = 0 \Longleftrightarrow a = 0 \lor v = 0$ (áp dụng cho không gian vector $M(2\times 2, \mathbb{F})$).
+    
+    Đặt $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$.
+    
+    $(\Rightarrow)$ $A^{2} = 0$ thì $A^{k} = 0$ với mọi $k\ge 2$.
+    
+    $(\Leftarrow)$ $A^{k} = 0$ với $k$ là số nguyên nào đó $\geq 2$.
+    
+    Nếu $k = 2$, ta có ngay điều phải chứng minh.
+    
+    Nếu $k > 2$. Theo Bài~\ref{characteristic-poly}
+    \[
+        A^{2} - (a+d)A + (ad - bc) = 0\tag{*}
+    \]
+
+    Xét hai trường hợp sau.
+    \begin{enumerate}[label={Trường hợp \arabic*.},itemindent=2.5cm]
+        \item $ad - bc = 0$
+
+              thì $A^{2} - (a + d)A = 0$. Nhân hai vế của (*) với $A^{k-2}$, cùng với việc $A^{k} = 0$, ta thu được $(a + d)A^{k-1} = 0$.
+
+              Nếu $a + d\ne 0$ thì $A^{k-1} = 0$. Bằng lập luận tương tự, chúng ta chứng minh được mệnh đề $A^{\ell} = 0\implies A^{\ell-1} = 0$ với mọi $\ell\geq 2$. Kết hợp với $A^{k} = 0$ ($k > 2$), ta được $A^{2} = 0$.
+
+              Nếu $a + d = 0$, thay vào đẳng thức (*), ta có ngay $A^{2} = 0$.
+        \item $ad - bc \ne 0$
+
+              $A^{k} = 0$ thì $A^{k+1} = 0$. Nhân hai vế của (*) với $A^{k-1}$, ta suy ra $(ad - bc)A^{k-1} = 0$. Vì $ad - bc\ne 0$ nên $A^{k-1} = 0$.
+
+               Bằng lập luận tương tự, chúng ta chứng minh được mệnh đề $A^{\ell} = 0\implies A^{\ell-1} = 0$. Mà $A^{k} = 0$ nên ta thu được $A^{2} = A = 0$. Thay vào (*), chúng ta thu được $ad - bc = 0$, mâu thuẫn. Vậy trường hợp này không xảy ra.
+    \end{enumerate}
+    
+    Tóm lại, trong tất cả các trường hợp, ta đều có $A^{2} = 0$.
+\end{proof}
+
+\begin{exercise}
+    Tìm tất cả các ma trận vuông $A$ cỡ 2 sao cho $A^{2} = 0$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\implies A^{2} = \begin{pmatrix}a^{2}+bc & b(a+d) \\ c(a+d) & d^{2}+bc\end{pmatrix}$.
+    \[
+        A^{2} = 0
+        \implies
+        \begin{cases}
+            a^{2}+bc = 0 \\
+            d^{2}+bc = 0 \\
+            b(a + d) = 0 \\
+            c(a + d) = 0 \\
+        \end{cases}
+    \]
+    \begin{enumerate}[label={Trường hợp \arabic*:},itemindent=2cm]
+        \item $a + d \ne 0$.
+              
+              $b(a+d) = c(a+d) = 0$ và $a+d\ne 0$ nên $b = c = 0$.
+              
+              $a^{2} + bc = d^{2} + bc = b = c = 0$ nên $a = b = c = d = 0$.
+        \item $a + d = 0$.
+              
+              Nếu $a = d = 0$ thì $bc = 0$. $A = \begin{pmatrix}0 & t \\ 0 & 0\end{pmatrix}$ hoặc $A = \begin{pmatrix}0 & 0 \\ t & 0\end{pmatrix}$.
+              
+              Nếu $a, d\ne 0$ thì $A = \begin{pmatrix}t & u \\ \frac{-t^{2}}{u} & -t\end{pmatrix}$ trong đó $t \ne 0$.
+    \end{enumerate}
+    
+    Như vậy $A$ thuộc một trong các dạng sau:
+    \[
+        \begin{pmatrix}
+            0 & t \\
+            0 & 0
+        \end{pmatrix}
+        \qquad
+        \begin{pmatrix}
+            0 & 0 \\
+            t & 0
+        \end{pmatrix}
+        \qquad
+        \begin{pmatrix}
+            t                & u  \\
+            \frac{-t^{2}}{u} & -t
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tìm tất cả các ma trận vuông $A$ cỡ 2 sao cho $A^{2} = E_{2}$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}\implies A^{2} = \begin{pmatrix}a^{2}+bc & b(a+d) \\ c(a+d) & d^{2}+bc\end{pmatrix}$.
+    \begin{enumerate}[label={Trường hợp \arabic*:},itemindent=2cm]
+        \item $a + d\ne 0$.
+              
+              Suy ra $b = c = 0$, $a^{2} = d^{2} = 1$.
+              
+              $(a,d)\in\{  (1,1), (-1,-1), (1,-1), (-1,1) \}$.
+        \item $a + d = 0$.
+              
+              $a = t, d = -t$, suy ra $bc = 1 - t^{2}$.
+              
+              Nếu $t^{2} = 1$ thì $bc = 0$.
+              
+              Nếu $t^{2} \ne 1$ thì $b = u, c = \frac{1-t^{2}}{u}$.
+    \end{enumerate}
+    
+    Như vậy $A$ thuộc một trong các dạng sau:
+    \[
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{pmatrix}
+        \quad
+        \begin{pmatrix}
+            -1 & 0  \\
+            0  & -1
+        \end{pmatrix}
+        \quad
+        \begin{pmatrix}
+            1 & 0  \\
+            t & -1
+        \end{pmatrix}
+        \quad
+        \begin{pmatrix}
+            1 & t  \\
+            0 & -1
+        \end{pmatrix}
+        \quad
+        \begin{pmatrix}
+            -1 & 0 \\
+            t  & 1
+        \end{pmatrix}
+        \quad
+        \begin{pmatrix}
+            -1 & t \\
+            0  & 1
+        \end{pmatrix}
+    \]
+    \[
+        \begin{pmatrix}
+            t                 & u  \\
+            \frac{1-t^{2}}{u} & -t
+        \end{pmatrix} \quad (t\ne\pm{1})
+    \]
+\end{proof}
+
+\begin{exercise}
+    Giải phương trình $AX = 0$, trong đó $A$ là ma trận vuông cỡ 2 đã cho còn $X$ là ma trận vuông cỡ 2 cần tìm.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    $A = \begin{pmatrix}a & b \\ c & d\end{pmatrix}$; $X = \begin{pmatrix}x_{11} & x_{12} \\ x_{21} & x_{22}\end{pmatrix}$.
+    \[
+        AX =
+        \begin{pmatrix}
+            ax_{11}+bx_{21} & ax_{12}+bx_{22} \\
+            cx_{11}+dx_{21} & cx_{12}+dx_{22}
+        \end{pmatrix}
+    \]
+    \begin{enumerate}[label = Trường hợp \arabic*:,itemindent=2cm]
+        \item $a = b = c = d = 0$.
+              
+              Mọi ma trận vuông cỡ 2 đều thỏa mãn.
+        \item $a = b = c = 0, d\ne 0$.
+              
+              $x_{21} = x_{22} = 0$.
+        \item $a = b = d = 0, c\ne 0$.
+              
+              $x_{11} = x_{12} = 0$.
+        \item $a = c = d = 0, b\ne 0$.
+              
+              $x_{21} = x_{22} = 0$.
+        \item $b = c = d = 0, a\ne 0$.
+              
+              $x_{11} = x_{12} = 0$.
+        \item $a = b = 0; c, d\ne 0$.
+              
+              $x_{11} = dp, x_{21} = -cp, x_{12} = dq, x_{22} = -cq$.
+        \item $a, b\ne 0; c = d = 0$.
+              
+              $x_{11} = bp, x_{21} = -ap, x_{12} = bq, x_{22} = -aq$.
+        \item $a = c = 0; b, d\ne 0$.
+              
+              $x_{21} = x_{22} = 0$.
+        \item $a, c\ne 0; b = d = 0$.
+              
+              $x_{11} = x_{12} = 0$.
+        \item $a = d = 0; b, c\ne 0$.
+              
+              $x_{21} = x_{22} = x_{11} = x_{12} = 0$.
+        \item $a, d\ne 0; b = c = 0$.
+              
+              $x_{11} = x_{12} = x_{21} = x_{22} = 0$.
+        \item $a = 0\vee b = 0 \vee c = 0 \vee d = 0$.
+              
+              $x_{11} = x_{12} = x_{21} = x_{22} = 0$.
+        \item $a,b,c,d\ne 0$.
+              
+              Nếu $ad - bc = 0$ thì $x_{11} = bp, x_{21} = -ap, x_{12} = bq, x_{22} = -aq$.
+              
+              Nếu $ad - bc \ne 0$ thì $x_{11} = x_{12} = x_{21} = x_{22} = 0$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Tìm ma trận nghịch đảo (nếu có) của ma trận
+    \[
+        A =
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+    \]
+\end{exercise}
+
+\begin{proof}
+    Theo Bài~\ref{characteristic-poly}:
+    \[
+        A^{2} - (a+d)A + (ad-bc) = 0
+    \]
+    \begin{enumerate}[label = Trường hợp \arabic*:,itemindent=2cm]
+        \item $ad - bc = 0$.
+              \par Giả sử $A$ khả nghịch.
+              \[
+                  A^{-1}(A^{2} - (a+d)A) = 0 \Rightarrow A = (a+d)E
+              \]
+              \par Đồng nhất hệ số của $A$ và $(a+d)E$, ta suy ra $a = b = c =d = 0$. Ma trận này không khả nghịch.
+              \par Vậy khi $ad - bc = 0$ thì $A$ không khả nghịch.
+        \item $ad - bc \ne 0$
+
+              Chọn $B = \frac{1}{ad - bc}\begin{pmatrix}d & -b \\ -c & a\end{pmatrix}$, ta được $AB = BA = E_{2}$.
+    \end{enumerate}
+    
+    Như vậy, khi $ad - bc = 0$, ma trận $A$ không khả nghịch. Khi $ad - bc \ne 0$, $A$ khả nghịch và
+    \[
+        A^{-1} = \frac{1}{ad-bc}\begin{pmatrix}d & -b \\ -c & a\end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Giả sử $V = V_{1}\oplus V_{2}$, trong đó $V_{1}$ có cơ sở $(\alpha_{1}, \ldots, \alpha_{k})$, $V_{2}$ có cơ sở $(\alpha_{k+1}, \ldots, \alpha_{n})$. Tìm ma trận của phép chiếu lên $V_{1}$ theo phương $V_{2}$ đối với cơ sở $(\alpha_{1}, \ldots, \alpha_{n})$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    $\operatorname{pr}_{V_{1}}$ là phép chiếu lên $V_{1}$ theo phương $V_{2}$.
+    \[
+        pr_{V_{1}}(\alpha_{i}) =
+        \begin{cases}
+            \alpha_{i} (i = \overline{1, k}) \\
+            0 (i = \overline{k+1,n})
+        \end{cases}
+    \]
+    
+    Vậy ma trận của $\operatorname{pr}_{V_{1}}$ đối với cơ sở $(\alpha_{1}, \ldots, \alpha_{n})$ của $V$ và cơ sở $(\alpha_{1}, \ldots, \alpha_{k})$ của $V_{1}$ là:
+    \[
+        \begin{pmatrix}
+            1      & 0      & \cdots & 0      & \cdots & 0      \\
+            0      & 1      & \cdots & 0      & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & 1      & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & 0      & \cdots & 0
+        \end{pmatrix}.
+    \]
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu $V = V_{1}\oplus V_{2}$, thì $V$ đẳng cấu với tích trực tiếp $V_{1}\times V_{2}$.
+\end{exercise}
+
+\begin{proof}
+    $v, \alpha, \beta \in V$. Giả sử
+    \[
+        v = \underbrace{v_{1}}_{\in V_{1}} + \underbrace{v_{2}}_{\in V_{2}}
+        \qquad
+        \alpha = \underbrace{\alpha_{1}}_{\in V_{1}} + \underbrace{\alpha_{2}}_{\in V_{2}}
+        \qquad
+        \beta = \underbrace{\beta_{1}}_{\in V_{1}} + \underbrace{\beta_{2}}_{\in V_{2}}
+    \]
+    
+    Ta xét ánh xạ:
+    \[
+        \begin{split}
+            \phi:\  & V_{1}\oplus V_{2} \to V_{1}\times V_{2}  \\
+                    & v = v_{1} + v_{2} \mapsto (v_{1}, v_{2})
+        \end{split}
+    \]
+    
+    Ánh xạ này là một đồng cấu tuyến tính vì:
+    \[
+        \begin{split}
+            \phi(\alpha + \beta) & = (\alpha_{1} + \beta_{1}, \alpha_{2} + \beta_{2}) = (\alpha_{1}, \alpha_{2}) + (\beta_{1}, \beta_{2}) = \phi(\alpha) + \phi(\beta) \\
+            \phi(a\alpha)        & = (a\alpha_{1}, a\alpha_{2}) = a(\alpha_{1}, \alpha_{2}) = a\phi(\alpha)
+        \end{split}
+    \]
+    
+    Ánh xạ này là đơn cấu vì nếu $\phi(\alpha) = \phi(\beta)$ khi và chỉ khi $\alpha_{1} = \beta_{1}, \alpha_{2} = \beta_{2}$, tức là $\alpha = \beta$ (theo định nghĩa tổng trực tiếp).
+    
+    Ánh xạ này là toàn cấu vì $\forall (v_{1}, v_{2})\in V_{1}\times V_{2}$ thì $\phi(v_{1} + v_{2}) = (v_{1}, v_{2})$.
+    
+    Do đó $\phi$ là đẳng cấu. Như vậy, $V = V_{1}\oplus V_{2} \cong V_{1}\times V_{2}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng tồn tại duy nhất tự đồng cấu $\mathbb{R}_{3}\to\mathbb{R}_{3}$ chuyển các vector $\alpha_{1} = (2,3,5)$, $\alpha_{2} = (0, 1, 2)$, $\alpha_{3} = (1, 0, 0)$ tương ứng thành các vector $\beta_{1} = (1, 1, 1)$, $\beta_{2} = (1, 1, -1)$, $\beta_{3} = (2, 1, 2)$. Tìm ma trận của $f$ đối với cơ sở chính tắc của không gian.
+\end{exercise}
+
+\begin{proof}
+    Xét ràng buộc tuyến tính sau:
+    \[
+        a_{1}\alpha_{1} + a_{2}\alpha_{2} + a_{3}\alpha_{3} = (0,0,0)
+    \]
+    \begin{align*}
+        \Longleftrightarrow & (2a_{1} + a_{3}, 3a_{1} + a_{2}, 5a_{1} + 2a_{3}) = (0,0,0)                                   \\
+        \Longleftrightarrow & (2a_{1} + a_{3}, 3a_{1} + a_{2}, 5a_{1} + 2a_{3} - 2a_{1} - a_{3} - 3a_{1} - a_{2}) = (0,0,0) \\
+        \Longleftrightarrow & (2a_{1} + a_{3}, 3a_{1} + a_{2}, a_{3} - a_{2}) = (0,0,0)                                     \\
+        \Longleftrightarrow & (2a_{1} + a_{3}, a_{1} + a_{2} - a_{3}, a_{3} - a_{2}) = (0,0,0)                              \\
+        \Longleftrightarrow & (2a_{1} + a_{3}, a_{1}, a_{3} - a_{2}) = (0,0,0)                                              \\
+        \Longleftrightarrow & (a_{1}, a_{2}, a_{3}) = (0,0,0)
+    \end{align*}
+    
+    Vậy hệ $(\alpha_{1}, \alpha_{2}, \alpha_{3})$ độc lập tuyến tính.
+    
+    Không gian vector $\mathbb{R}_{3}$ có số chiều là 3, do đó $(\alpha_{1}, \alpha_{2}, \alpha_{3})$ là một cơ sở của $\mathbb{R}_{3}$.
+    
+    Một ánh xạ tuyến tính được xác định duy nhất bởi tác động của nó lên một cơ sở, do đó tồn tại duy nhất tự đồng cấu $f: \mathbb{R}_{3}\to\mathbb{R}_{3}$ chuyển $\alpha_{1}\mapsto\beta_{1}$, $\alpha_{2}\mapsto\beta_{2}$, $\alpha_{3}\mapsto\beta_{3}$.
+    \[
+        \begin{cases}
+            \beta_{1} = 1\alpha_{1} + (-2)\alpha_{2} + (-1)\alpha_{3} \\
+            \beta_{2} = 3\alpha_{1} + (-8)\alpha_{2} + (-5)\alpha_{3} \\
+            \beta_{3} = 0\alpha_{1} + 1\alpha_{2} + 2\alpha_{3}
+        \end{cases}
+    \]
+    
+    Như vậy ma trận của tự đồng cấu $f$ đối với cơ sở $(\alpha_{1}, \alpha_{2}, \alpha_{3})$ là:
+    \[
+        A =
+        \begin{pmatrix}
+            1  & 3  & 0 \\
+            -2 & -8 & 1 \\
+            -1 & -5 & 2
+        \end{pmatrix}
+    \]
+    
+    Ma trận chuyển từ cơ sở $(\alpha_{1}, \alpha_{2}, \alpha_{3})$ sang cơ sở chính tắc là:
+    \[
+        C =
+        \begin{pmatrix}
+            0 & 2  & -1 \\
+            0 & -5 & 3  \\
+            1 & -4 & 2
+        \end{pmatrix}
+    \]
+    \[
+        \begin{cases}
+            f(e_{1}) = f(\alpha_{3}) = \beta_{3} = (2,1,2)                                                               \\
+            f(e_{2}) = f(2\alpha_{1} - 5\alpha_{2} - 4\alpha_{3}) = 2\beta_{1} - 5\beta_{2} - 4\beta_{3} = (-11, -7, -1) \\
+            f(e_{3}) = f(-\alpha_{1} + 3\alpha_{2} + 2\alpha_{3}) = -\beta_{1} + 3\beta_{2} + 2\beta_{3} = (6, 4, 0)
+        \end{cases}
+    \]
+    
+    Vậy ma trận của $f$ đối với cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            2 & -11 & 6 \\
+            1 & -7  & 4 \\
+            2 & -1  & 0
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tự đồng cấu $f$ của không gian vector $\mathbb{F}^{n}$ chuyển các vector độc lập tuyến tính $(\alpha_{1}, \ldots, \alpha_{n})$ tương ứng thành các vector $\beta_{1}, \ldots, \beta_{n}$. Chứng minh rằng ma trận $M(f)$ của $f$ đối với một cơ sở nào đó $(e_{1},\ldots, e_{n})$ thỏa mãn hệ thức $M(f) = BA^{-1}$, trong đó các cột của ma trận $A$ và ma trận $B$ là tọa độ tương ứng của các vector $\alpha_{1}, \ldots, \alpha_{n}$ và $\beta_{1}, \ldots, \beta_{n}$ đối với cơ sở $(e_{1}, \ldots, e_{n})$.
+\end{exercise}
+
+\begin{proof}
+    Theo định nghĩa của $M(f)$:
+    \[
+        (f(e_{1}) \ldots f(e_{n})) = (e_{1} \ldots e_{n})M(f)
+    \]
+    
+    $(\alpha_{1}, \ldots, \alpha_{n})$ độc lập tuyến tính trong không gian vector $\mathbb{F}^{n}$ nên $(\alpha_{1}, \ldots, \alpha_{n})$ là một cơ sở.
+    
+    $A$ là ma trận mà các cột lần lượt là tọa độ của các vector $\alpha_{1}, \ldots, \alpha_{n}$ đối với cơ sở $(e_{1}, \ldots, e_{n})$.
+    
+    $B$ là ma trận mà các cột lần lượt là tọa độ của các vector $\beta_{1}, \ldots, \beta_{n}$ đối với cơ sở $(e_{1}, \ldots, e_{n})$.
+    \[
+        \begin{split}
+            (\alpha_{1} \ldots \alpha_{n}) = (e_{1} \ldots e_{n})A \\
+            (\beta_{1} \ldots \beta_{n}) = (e_{1} \ldots e_{n})B
+        \end{split}
+    \]
+    \begin{align*}
+        (f(\alpha_{1})\ldots f(\alpha_{n})) & = (f(e_{1})\ldots f(e_{n}))A \\
+                                            & = (e_{1}\ldots e_{n})M(f)A
+    \end{align*}
+    
+    Bên cạnh đó:
+    \begin{align*}
+        (f(\alpha_{1})\ldots f(\alpha_{n})) & = (\beta_{1} \ldots \beta_{n}) \\
+                                            & = (e_{1} \ldots e_{n})B
+    \end{align*}
+    
+    Suy ra $B = M(f)A$. Mà $A$ là ma trận chuyển từ cơ sở $(e_{1}, \ldots, e_{n})$ sang $(\alpha_{1}, \ldots, \alpha_{n})$ nên $A$ khả nghịch. Do vậy $M(f) = M(f)AA^{-1} = BA^{-1}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng phép nhân với ma trận $\begin{pmatrix}a & b \\ c & d\end{pmatrix}$
+    \begin{enumerate}[label = (\alph*)]
+        \item từ bên trái,
+        \item từ bên phải
+    \end{enumerate}
+    
+    là các tự đồng cấu của không gian các ma trận vuông cỡ 2. Hãy tìm ma trận của tự đồng cấu đó đối với cơ sở gồm các ma trận sau đây:
+    \[
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{pmatrix},
+        \begin{pmatrix}
+            0 & 0 \\
+            0 & 1
+        \end{pmatrix}.
+    \]
+\end{exercise}
+
+\begin{proof}
+    Phép nhân ma trận có tính phân phối với phép cộng ma trận nên:
+    \[
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \left(
+        \begin{pmatrix}
+                x_{11} & x_{12} \\
+                x_{21} & x_{22}
+            \end{pmatrix}
+        +
+        \begin{pmatrix}
+                y_{11} & y_{12} \\
+                y_{21} & y_{22}
+            \end{pmatrix}
+        \right)
+        =
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_{11} & x_{12} \\
+            x_{21} & x_{22}
+        \end{pmatrix}
+        +
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            y_{11} & y_{12} \\
+            y_{21} & y_{22}
+        \end{pmatrix}
+    \]
+    
+    Bên cạnh đó, mọi ma trận đều giao hoán với ma trận vô hướng nên:
+    \begin{align*}
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            tx_{11} & tx_{12} \\
+            tx_{21} & tx_{22}
+        \end{pmatrix} & =
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            t & 0 \\
+            0 & t
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_{11} & x_{12} \\
+            x_{21} & x_{22}
+        \end{pmatrix}          \\
+                             & =
+        \begin{pmatrix}
+            t & 0 \\
+            0 & t
+        \end{pmatrix}
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_{11} & x_{12} \\
+            x_{21} & x_{22}
+        \end{pmatrix}          \\
+                             & =
+        t
+        \begin{pmatrix}
+            a & b \\
+            c & d
+        \end{pmatrix}
+        \begin{pmatrix}
+            x_{11} & x_{12} \\
+            x_{21} & x_{22}
+        \end{pmatrix}
+    \end{align*}
+    
+    Như vậy, phép nhân với một ma trận vuông cỡ 2 cho trước từ bên trái là một tự đồng cấu của không gian $M(2\times 2,\mathbb{F})$.
+    
+    Điều tương tự cũng đúng với phép nhân với một ma trận vuông cỡ 2 cho trước từ bên phải.
+    \begin{enumerate}[label = (\alph*)]
+        \item
+              \[
+                  \begin{cases}
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          1 & 0 \\
+                          0 & 0
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          a & 0 \\
+                          c & 0
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          0 & 1 \\
+                          0 & 0
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          0 & a \\
+                          0 & c
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          1 & 0
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          b & 0 \\
+                          d & 0
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          0 & 1
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          0 & b \\
+                          0 & d
+                      \end{pmatrix}
+                  \end{cases}
+              \]
+              
+              Vậy ma trận của tự đồng cấu này đối với cơ sở chính tắc của $M(2\times 2,\mathbb{F})$ là:
+              \[
+                  \begin{pmatrix}
+                      a & 0 & b & 0 \\
+                      0 & a & 0 & b \\
+                      c & 0 & d & 0 \\
+                      0 & c & 0 & d
+                  \end{pmatrix}
+              \]
+        \item
+              \[
+                  \begin{cases}
+                      \begin{pmatrix}
+                          1 & 0 \\
+                          0 & 0
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          a & b \\
+                          0 & 0
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          0 & 1 \\
+                          0 & 0
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          c & d \\
+                          0 & 0
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          1 & 0
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          a & b
+                      \end{pmatrix} \\
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          0 & 1
+                      \end{pmatrix}
+                      \begin{pmatrix}
+                          a & b \\
+                          c & d
+                      \end{pmatrix}=
+                      \begin{pmatrix}
+                          0 & 0 \\
+                          c & d
+                      \end{pmatrix}
+                  \end{cases}
+              \]
+              
+              Vậy ma trận của tự đồng cấu này đối với cơ sở chính tắc của $M(2\times 2,\mathbb{F})$ là:
+              \[
+                  \begin{pmatrix}
+                      a & c & 0 & 0 \\
+                      b & d & 0 & 0 \\
+                      0 & 0 & a & c \\
+                      0 & 0 & b & d
+                  \end{pmatrix}
+              \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng đạo hàm là một tự đồng cấu của không gian vector các đa thức hệ số thực có bậc không vượt quá $n$. Tìm ma trận của tự đồng cấu đó với các cơ sở sau đây:
+    \begin{enumerate}[label = (\alph*)]
+        \item $(1, X, \ldots, X^{n})$.
+        \item $(1, (X-c), \ldots, \frac{(X-c){}^{n}}{n!})$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \[
+        \begin{split}
+            a(X) = a_{0} + a_{1}X + \cdots + a_{n}X^{n} \\
+            b(X) = b_{0} + b_{1}X + \cdots + b_{n}X^{n}
+        \end{split}
+    \]
+    \begin{align*}
+        \frac{d}{dX}(a(X) + b(X)) & = \frac{d}{dX}\left(\sum^{n}_{k=0}(a_{k}+b_{k})x^{k}\right) \\
+                                  & = \sum^{n}_{k=1}k(a_{k}+b_{k})X^{k-1}                       \\
+                                  & = \sum^{n}_{k=1}ka_{k}X^{k-1} + \sum^{n}_{k=1}b_{k}X^{k-1}  \\
+                                  & = \frac{d}{dX}a(X) + \frac{d}{dX}b(X).
+    \end{align*}
+    \begin{align*}
+        \frac{d}{dX}(ta(X)) & = \frac{d}{dX}\sum^{n}_{k=0}ta_{k}X^{k}    \\
+                            & = t\frac{d}{dX}\sum^{n}_{k=1}ka_{k}X^{k-1} \\
+                            & = t\frac{d}{dX}a(X).
+    \end{align*}
+    
+    Bên cạnh đó
+    \[
+        \deg \frac{d}{dX}a(X) < \deg a(X).
+    \]
+    
+    Do đó đạo hàm là một tự đồng cấu của không gian $\mathbb{R}[X]{}_{n}$.
+    \begin{enumerate}[label = (\alph*)]
+        \item Ma trận của đạo hàm đối với cơ sở $(1, X, \ldots, X^{n})$ là:
+              \[
+                  \begin{pmatrix}
+                      0      & 1      & 0      & 0      & \cdots & 0      \\
+                      0      & 0      & 2      & 0      & \cdots & 0      \\
+                      0      & 0      & 0      & 3      & \cdots & 0      \\
+                      \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+                      0      & 0      & 0      & 0      & \cdots & n      \\
+                      0      & 0      & 0      & 0      & \cdots & 0
+                  \end{pmatrix}
+              \]
+        \item Ma trận của đạo hàm đối với cơ sở $(1, (X-c), \ldots, \frac{(X-c){}^{n}}{n!})$ là:
+              \[
+                  \begin{pmatrix}
+                      0      & \frac{1}{0!} & 0            & 0            & \cdots & 0                \\
+                      0      & 0            & \frac{1}{1!} & 0            & \cdots & 0                \\
+                      0      & 0            & 0            & \frac{1}{2!} & \cdots & 0                \\
+                      \vdots & \vdots       & \vdots       & \vdots       & \ddots & \vdots           \\
+                      0      & 0            & 0            & 0            & \cdots & \frac{1}{(n-1)!} \\
+                      0      & 0            & 0            & 0            & \cdots & 0
+                  \end{pmatrix}
+              \]
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Ma trận của một tự đồng cấu đối với cơ sở $(e_{1},\ldots,e_{n})$ thay đổi thế nào nếu ta đổi chỗ các vector $e_{i}$ và $e_{j}$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Đổi chỗ $f(e_{i})$, $f(e_{j})$ thì hai cột thứ $i$, $j$ của $M(f)$ đổi chỗ.
+    
+    Đổi chỗ $e_{i}$, $e_{j}$ thì hai hàng thứ $i$, $j$ đổi chỗ.
+    
+    Ma trận mới được dựng như sau
+    \begin{itemize}
+        \item Đổi chỗ cột $i$ và $j$.
+        \item Đổi chỗ hàng $i$ và $j$.
+    \end{itemize}
+    
+    nói cách khác
+    \begin{itemize}
+        \item Yếu tố hàng $i$ cột $i$ và hàng $j$ cột $i$ đổi chỗ.
+        \item Yếu tố hàng $i$ cột $j$ và hàng $j$ cột $i$ đổi chỗ.
+        \item Yếu tố hàng $i$ cột $k$ và hàng $j$ cột $k$ đổi chỗ $(k\not\in\{ i, j \})$.
+        \item Yếu tố hàng $k$ cột $i$ và hàng $k$ cột $j$ đổi chỗ $(k\not\in\{ i, j \})$.
+    \end{itemize}
+\end{proof}
+
+\begin{exercise}
+    Tự đồng cấu $f$ có ma trận
+    \[
+        A =
+        \begin{pmatrix}
+            1 & 2 & 0  & 1 \\
+            3 & 0 & -1 & 2 \\
+            2 & 5 & 3  & 1 \\
+            1 & 2 & 1  & 3
+        \end{pmatrix}
+    \]
+    
+    đối với cơ sở $(e_{1}, e_{2}, e_{3}, e_{4})$. Hãy tìm ma trận của $f$ đối với cơ sở $(e_{1}, e_{1} + e_{2}, e_{1} + e_{2} + e_{3}, e_{1} + e_{2} + e_{3} + e_{4})$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Ma trận chuyển từ cơ sở $(e_{1}, e_{2}, e_{3}, e_{4})$ sang $(e_{1}, e_{1} + e_{2}, e_{1} + e_{2} + e_{3}, e_{1} + e_{2} + e_{3} + e_{4})$ là:
+    \[
+        C =
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 \\
+            0 & 1 & 1 & 1 \\
+            0 & 0 & 1 & 1 \\
+            0 & 0 & 0 & 1
+        \end{pmatrix}
+    \]
+    \par Ma trận chuyển từ cơ sở $(e_{1}, e_{1} + e_{2}, e_{1} + e_{2} + e_{3}, e_{1} + e_{2} + e_{3} + e_{4}) = (e'_{1}, e'_{2}, e'_{3}, e'_{4})$ sang $(e_{1}, e_{2}, e_{3}, e_{4})$ là:
+    \[
+        C^{-1} =
+        \begin{pmatrix}
+            1 & -1 & 0  & 0  \\
+            0 & 1  & -1 & 0  \\
+            0 & 0  & 1  & -1 \\
+            0 & 0  & 0  & 1
+        \end{pmatrix}
+    \]
+    \begin{align*}
+        f(e_{1}) & = 1e_{1} + 3e_{2} + 2e_{3} + 1e_{4}                                         \\
+                 & = 1e'_{1} + 3(e'_{2} - e'_{1}) + 2(e'_{3} - e'_{2}) + 1(e'_{4} - e'_{3})    \\
+                 & = (-2)e'_{1} + 1e'_{2} + 1e'_{3} + 1e'_{4}                                  \\
+        f(e_{2}) & = 2e_{1} + 0e_{2} + 5e_{3} + 2e_{4}                                         \\
+                 & = 2e'_{1} + 0(e'_{2} - e'_{1}) + 5(e'_{3} - e'_{2}) + 2(e'_{4} - e'_{3})    \\
+                 & = 2e'_{1} + (-5)e'_{2} + 3e'_{3} + 2e'_{4}                                  \\
+        f(e_{3}) & = 0e_{1} + (-1)e_{2} + 3e_{3} + 1e_{4}                                      \\
+                 & = 0e'_{1} + (-1)(e'_{2} - e'_{1}) + 3(e'_{3} - e'_{2}) + 1(e'_{4} - e'_{3}) \\
+                 & = 1e'_{1} + (-4)e'_{2} + 2e'_{3} + 1e'_{4}                                  \\
+        f(e_{4}) & = 1e_{1} + 2e_{2} + 1e_{3} + 3e_{4}                                         \\
+                 & = 1e'_{1} + 2(e'_{2} - e'_{1}) + 1(e'_{3} - e'_{2}) + 3(e'_{4} - e'_{3})    \\
+                 & = (-1)e'_{1} + 1e'_{2} + (-2)e'_{3} + 3e'_{4}
+    \end{align*}
+    \begin{align*}
+        f(e'_{1}) & = f(e_{1})                                  \\
+                  & = (-2)e'_{1} + 1e'_{2} + 1e'_{3} + 1e'_{4}  \\
+        f(e'_{2}) & = f(e_{1}) + f(e_{2})                       \\
+                  & = 0e'_{1} + (-4)e'_{2} + 4e'_{3} + 2e'_{4}  \\
+        f(e'_{3}) & = f(e_{1}) + f(e_{2}) + f(e_{3})            \\
+                  & = 1e'_{1} + (-8)e'_{2} + 6e'_{3} + 4e'_{4}  \\
+        f(e'_{4}) & = f(e_{1}) + f(e_{2}) + f(e_{3}) + f(e_{4}) \\
+                  & = 0e'_{1} + (-7)e'_{2} + 4e'_{3} + 7e'_{4}
+    \end{align*}
+    
+    Vậy ma trận của tự đồng cấu $f$ đối với cơ sở $(e'_{1}, e'_{2}, e'_{3}, e'_{4})$ là:
+    \[
+        \begin{pmatrix}
+            -2 & 0  & 1  & 0  \\
+            1  & -4 & -8 & -7 \\
+            1  & 4  & 6  & 4  \\
+            1  & 2  & 4  & 7
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tự đồng cấu $\phi$ có ma trận
+    \[
+        \begin{pmatrix}
+            15 & -11 & 5 \\
+            20 & -15 & 8 \\
+            8  & -7  & 6
+        \end{pmatrix}
+    \]
+    
+    đối với cơ sở $(e_{1}, e_{2}, e_{3})$. Hãy tìm ma trận của $\phi$ đối với cơ sở gồm các vector $\epsilon_{1} = 2e_{1} + 3e_{2} + e_{3}$, $\epsilon_{2} = 3e_{1} + 4e_{2} + e_{3}$, $\epsilon_{3} = e_{1} + 2e_{2} + 2e_{3}$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \[
+        \begin{cases}
+            e_{1} & = (-6)\epsilon_{1} + 4\epsilon_{2} + 1\epsilon_{3}    \\
+            e_{2} & = 5\epsilon_{1} + (-3)\epsilon_{2} + (-1)\epsilon_{3} \\
+            e_{3} & = (-2)\epsilon_{1} + 1\epsilon_{2} + 1\epsilon_{3}
+        \end{cases}
+    \]
+    \begin{align*}
+        f(e_{1}) & = 15e_{1} + 20e_{2} + 8e_{3}                          \\
+                 & = (-6)\epsilon_{1} + 8\epsilon_{2} + 3\epsilon_{3}    \\
+        f(e_{2}) & = (-11)e_{1} + (-15)e_{2} + (-7)e_{3}                 \\
+                 & = 5\epsilon_{1} + (-6)\epsilon_{2} + (-3)\epsilon_{3} \\
+        f(e_{3}) & = 5e_{1} + 8e_{2} + 6e_{3}                            \\
+                 & = (-2)\epsilon_{1} + 2\epsilon_{2} + 3\epsilon_{3}
+    \end{align*}
+    \begin{align*}
+        f(\epsilon_{1}) & = 2f(e_{1}) + 3f(e_{2}) + f(e_{3}) \\
+                        & = \epsilon_{1}                     \\
+        f(\epsilon_{2}) & = 3f(e_{1}) + 4f(e_{2}) + f(e_{3}) \\
+                        & = 2\epsilon_{2}                    \\
+        f(\epsilon_{3}) & = f(e_{1}) + 2f(e_{2}) + 2f(e_{3}) \\
+                        & = 3\epsilon_{3}                    \\
+    \end{align*}
+    
+    Vậy ma trận của tự đồng cấu $\phi$ đối với cơ sở $(\epsilon_{1}, \epsilon_{2}, \epsilon_{3})$ là:
+    \[
+        \begin{pmatrix}
+            1 & 0 & 0 \\
+            0 & 2 & 0 \\
+            0 & 0 & 3
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Đồng cấu $\phi: \mathbb{C}_{3}\to\mathbb{C}_{3}$ có ma trận
+    \[
+        \begin{pmatrix}
+            1  & -18 & 15 \\
+            -1 & -22 & 20 \\
+            1  & -25 & 22
+        \end{pmatrix}
+    \]
+    
+    đối với cơ sở gồm các vector $\alpha_{1} = (8, -6, 7)$, $\alpha_{2} = (-16, 7, -13)$, $\alpha_{3} = (9, -3, 7)$. Tìm ma trận của $\phi$ đối với cơ sở gồm các vector
+    \[
+        \beta_{1} = (1, -2, 1),\quad\beta_{2} = (3, -1, 2),\quad\beta_{3} = (2, 1, 2).
+    \]
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \[
+        \begin{cases}
+            \beta_{1} & = 1\alpha_{1} + 1\alpha_{2} + 1\alpha_{3}          \\
+            \beta_{2} & = 1\alpha_{1} + 2\alpha_{2} + 3\alpha_{3}          \\
+            \beta_{3} & = (-3)\alpha_{1} + (-5)\alpha_{2} + (-6)\alpha_{3} \\
+        \end{cases}
+    \]
+    \[
+        \begin{cases}
+            \alpha_{1} & = 3\beta_{1} + 1\beta_{2} + 1\beta_{3}          \\
+            \alpha_{2} & = (-3)\beta_{1} + (-3)\beta_{2} + (-2)\beta_{3} \\
+            \alpha_{3} & = 1\beta_{1} + 2\beta_{2} + 1\beta_{3}
+        \end{cases}
+    \]
+    \begin{align*}
+        \phi(\alpha_{1}) & = 1\alpha_{1} + (-1)\alpha_{2} + 1\alpha_{3}          \\
+                         & = 7\beta_{1} + 6\beta_{2} + 4\beta_{3}                \\
+        \phi(\alpha_{2}) & = (-18)\alpha_{1} + (-22)\alpha_{2} + (-25)\alpha_{3} \\
+                         & = (-13)\beta_{1} + (-2)\beta_{2} + 1\beta_{3}         \\
+        \phi(\alpha_{3}) & = 15\alpha_{1} + 20\alpha_{2} + 22\alpha_{3}          \\
+                         & = 7\beta_{1} + (-1)\beta_{2} + (-3)\beta_{3}
+    \end{align*}
+    \begin{align*}
+        \phi(\beta_{1}) & = \phi(\alpha_{1}) + \phi(\alpha_{2}) + \phi(\alpha_{3})             \\
+                        & = 1\beta_{1} + 3\beta_{2} + 2\beta_{3}                               \\
+        \phi(\beta_{2}) & = \phi(\alpha_{1}) + 2\phi(\alpha_{2}) + 3\phi(\alpha_{3})           \\
+                        & = 2\beta_{1} + (-1)\beta_{2} + (-3)\beta_{3}                         \\
+        \phi(\beta_{3}) & = (-3)\phi(\alpha_{1}) + (-5)\phi(\alpha_{2}) + (-6)\phi(\alpha_{3}) \\
+                        & = 2\beta_{1} + (-2)\beta_{2} + 1\beta_{3}
+    \end{align*}
+    
+    Vậy ma trận của đồng cấu $\phi$ đối với cơ sở $(\beta_{1}, \beta_{2}, \beta_{3})$ là:
+    \[
+        \begin{pmatrix}
+            1 & 2  & 2  \\
+            3 & -1 & -2 \\
+            2 & -3 & 1
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng các ma trận của một tự đồng cấu đối với hai cơ sở của không gian là trùng nhau nếu và chỉ nếu ma trận chuyển giữa hai cơ sở đó giao hoán với ma trận của đồng cấu đã cho đối với mỗi cơ sở nói trên.
+\end{exercise}
+
+\begin{proof}
+    Gọi $A$ là ma trận của tự đồng cấu đối với cơ sở thứ nhất, $B$ là ma trận của tự đồng cấu đối với cơ sở thứ hai và $C$ là ma trận chuyển từ cơ sở thứ nhất sang cơ sở thứ hai.
+    
+    Theo định lý 2.13, $B = C^{-1}AC$.
+    
+    $(\Rightarrow)$ $AC = CA, BC = CB$.
+    
+    Suy ra $C^{-1}AC = A$. Mà $B = C^{-1}AC$ nên $A = B$.
+    
+    $(\Leftarrow)$
+    
+    $A = B$. $B = C^{-1}AC$ suy ra $CB = AC$. Mà $A = B$ nên $CA = AC$ và $CB = BC$. Điều này có nghĩa là $C$ giao hoán với cả $A$ và $B$.
+\end{proof}
+
+\begin{exercise}
+    Tự đồng cấu $\phi\in End(\mathbb{R}_{2})$ có ma trận $\begin{pmatrix}3 & 5 \\ 4 & 3\end{pmatrix}$ đối với cơ sở gồm $\alpha_{1} = (1, 2)$, $\alpha_{2} = (2, 3)$, và tự đồng cấu $\psi\in End(\mathbb{R}_{2})$ có ma trận $\begin{pmatrix}4 & 6 \\ 6 & 9 \end{pmatrix}$ đối với cơ sở gồm $\beta_{1} = (3, 1)$, $\beta_{2} = (4, 2)$. Tìm ma trận của $\phi + \psi$ đối với cơ sở $(\beta_{1}, \beta_{2})$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Ma trận chuyển từ cơ sở $(\alpha_{1}, \alpha_{2})$ sang $(\beta_{1}, \beta_{2})$ là:
+    \[
+        \begin{pmatrix}
+            -7 & -8 \\
+            5  & 6
+        \end{pmatrix}
+    \]
+    
+    Ma trận chuyển từ cơ sở $(\beta_{1}, \beta_{2})$ sang $(\alpha_{1}, \alpha_{2})$ là:
+    \[
+        \begin{pmatrix}
+            -3          & -4          \\
+            \frac{5}{2} & \frac{7}{2}
+        \end{pmatrix}
+    \]
+    
+    Ma trận của tự đồng cấu $\phi$ đối với cơ sở $(\beta_{1}, \beta_{2})$ là:
+    \[
+        \begin{pmatrix}
+            -3          & -4          \\
+            \frac{5}{2} & \frac{7}{2}
+        \end{pmatrix}
+        \begin{pmatrix}
+            3 & 5 \\
+            4 & 3
+        \end{pmatrix}
+        \begin{pmatrix}
+            -7 & -8 \\
+            5  & 6
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            40            & 38  \\
+            -\frac{71}{2} & -34
+        \end{pmatrix}
+    \]
+    
+    Vậy ma trận của tự đồng cấu $\phi + \psi$ đối với cơ sở $(\beta_{1}, \beta_{2})$ là:
+    \[
+        \begin{pmatrix}
+            40            & 38  \\
+            -\frac{71}{2} & -34
+        \end{pmatrix}
+        +
+        \begin{pmatrix}
+            4 & 6 \\
+            6 & 9
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            44            & 44  \\
+            -\frac{59}{2} & -25
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tự đồng cấu $\phi\in End(\mathbb{R}_{2})$ có ma trận $\begin{pmatrix} 2 & -1 \\ 5 & -3 \end{pmatrix}$ đối với cơ sở $\alpha_{1} = (-3, 7)$, $\alpha_{2} = (1, -2)$, và tự đồng cấu $\psi\in End(\mathbb{R}_{2})$ có ma trận $\begin{pmatrix} 1 & 3 \\ 2 & 7 \end{pmatrix}$ đối với cơ sở gồm $\beta_{1} = (6, -7)$, $\beta_{2} = (-5, 6)$. Tìm ma trận của $\phi\psi$ đối với cơ sở chính tắc của $\mathbb{R}_{2}$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    Ma trận chuyển từ cơ sở $(\alpha_{1}, \alpha_{2})$ sang cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            2 & 1 \\
+            7 & 3
+        \end{pmatrix}
+    \]
+    
+    Ma trận của tự đồng cấu $\phi$ đối với cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            -3 & 1  \\
+            7  & -2
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & -1 \\
+            5 & -3
+        \end{pmatrix}
+        \begin{pmatrix}
+            2 & 1 \\
+            7 & 3
+        \end{pmatrix}=
+        \begin{pmatrix}
+            -2 & -1 \\
+            1  & 1
+        \end{pmatrix}
+    \]
+    
+    Ma trận chuyển từ cơ sở $(\beta_{1}, \beta_{2})$ sang cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            6 & 7 \\
+            5 & 6
+        \end{pmatrix}
+    \]
+    
+    Ma trận của tự đồng cấu $\psi$ đối với cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            6  & -7 \\
+            -5 & 6
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 3 \\
+            2 & 7
+        \end{pmatrix}
+        \begin{pmatrix}
+            6 & 7 \\
+            5 & 6
+        \end{pmatrix}=
+        \begin{pmatrix}
+            -203 & -242 \\
+            177  & 211
+        \end{pmatrix}
+    \]
+    
+    Ma trận của $\phi\psi$ đối với cơ sở chính tắc là:
+    \[
+        \begin{pmatrix}
+            -2 & -1 \\
+            1  & 1
+        \end{pmatrix}
+        \begin{pmatrix}
+            -203 & -242 \\
+            177  & 211
+        \end{pmatrix}=
+        \begin{pmatrix}
+            229 & 273 \\
+            -26 & -31
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Giả sử tự đồng cấu $\phi: V\to V$ thỏa mãn hệ thức $\phi^{2} = \phi$. Chứng minh rằng $V = \text{im}(\phi)\oplus\ker(\phi)$.
+\end{exercise}
+
+\begin{proof}
+    Giả sử $v\in V$.
+    \[
+        v = (v - \phi(v)) + \phi(v)
+    \]
+    
+    Rõ ràng $\phi(v)\in\text{im}(\phi)$. Bên cạnh đó, $\phi(v - \phi(v)) = \phi(v) - \phi^{2}(v) = 0$ nên $v - \phi(v)\in\ker(\phi)$. Như vậy $V = \text{im}(\phi)+\ker(\phi)$.
+    
+    \bigskip
+    
+    Giả sử $\alpha\in\text{im}(\phi)\cap\ker(\phi)$. Vì $\alpha\in\text{im}(\phi)$ nên tồn tại $\beta\in V$ sao cho $\phi(\beta) = \alpha$. Vì $\alpha\in\ker(\phi)$ nên $\phi(\alpha) = 0$.
+    \[
+        \alpha = \phi(\beta) = \phi^{2}(\beta) = \phi(\phi(\beta)) = \phi(\alpha) = 0
+    \]
+    
+    Do đó $\text{im}(\phi)\cap\ker(\phi) = \{ 0 \}$. Vậy $V = \text{im}(\phi)\oplus\ker(\phi)$.
+\end{proof}
+
+\begin{exercise}
+    Cho các tự đồng cấu $\phi, \psi\in End(V)$.
+    \begin{enumerate}[label = (\alph*)]
+        \item Phải chăng nếu $\phi\psi = 0$ thì $\psi\phi = 0$?
+        \item Phải chăng nếu $\phi\psi = \psi\phi = 0$ thì $\phi = 0$ hoặc $\psi = 0$?
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Kí hiệu ma trận của $\phi, \psi$ đối với cùng một cơ sở của $V$ là $A, B$.
+    \begin{enumerate}[label = (\alph*)]
+        \item $\phi\psi = 0$ khi và chỉ khi $AB = 0$.
+              
+              Vì $M(n\times n,\mathbb{F})\cong End(V)$ nên $A, B$ có thể là bất cứ ma trận vuông cỡ $n$ nào. Chọn
+              \[
+                  A =
+                  \begin{pmatrix}
+                      0      & 0      & \cdots & 0      \\
+                      0      & 1      & \cdots & 0      \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      0      & 0      & \cdots & 1
+                  \end{pmatrix}\qquad
+                  B =
+                  \begin{pmatrix}
+                      1      & 1      & \cdots & 1      \\
+                      0      & 0      & \cdots & 0      \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      0      & 0      & \cdots & 0
+                  \end{pmatrix}
+              \]
+              
+              Khi đó $AB = 0$ nhưng $BA\ne 0$. Như vậy, từ $\phi\psi = 0$, không thể suy ra $\psi\phi = 0$.
+        \item Chọn $A = E_{11}$ là ma trận vuông cỡ $n$ có yếu tố hàng 1 cột 1 bằng 1, các yếu tố còn lại bằng 0. $B = E_{22}$ là ma trận vuông cỡ $n$ có yếu tố hàng 2 cột 2 bằng 1, các yếu tố còn lại bằng 0.
+              
+              Bằng quy tắc nhân ma trận, ta tính ra được $AB = 0$, $BA = 0$. Thế nhưng $A, B\ne 0$.
+              
+              Do đó, nếu $\phi\psi = \psi\phi = 0$ thì không thể suy ra $\phi = 0$ hoặc $\psi = 0$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Giả sử $\phi$ và $\psi$ là các tự đồng cấu của không gian vector hữu hạn chiều $V$. Chứng minh rằng $\phi\psi$ là một đẳng cấu nếu và chỉ nếu $\phi$ và $\psi$ là các đẳng cấu. Khi đó
+    \[
+        {(\phi\psi)}^{-1} = \psi^{-1}\psi^{-1}
+    \]
+\end{exercise}
+
+\begin{proof}
+    $(\Rightarrow)$ Nếu $\phi$ và $\psi$ là các đẳng cấu thì $\phi\psi$ cũng là đẳng cấu vì đồng cấu này có nghịch đảo là $\psi^{-1}\psi^{-1}$.
+    \[
+        \begin{split}
+            (\phi\psi)\psi^{-1}\phi^{-1} = \phi(\psi\psi^{-1})\phi^{-1} = \phi\phi^{-1} = \operatorname{id}_{V} \\
+            \psi^{-1}\phi^{-1}(\phi\psi) = \psi^{-1}(\phi^{-1}\phi)\psi = \psi^{-1}\psi = \operatorname{id}_{V}
+        \end{split}
+    \]
+    
+    $(\Leftarrow)$ $\phi\psi$ là đẳng cấu thì nó vừa là đơn cấu vừa là toàn cấu.
+    
+    Vì $\phi\psi$ là đơn cấu nên $\psi$ là đơn cấu.
+    
+    Vì $\phi\psi$ là toàn cấu nên $\phi$ là toàn cấu.
+    
+    Mà $\phi$ và $\psi$ là các tự đồng cấu của một không gian vector hữu hạn chiều nên $\phi$ và $\psi$ cũng đồng thời là đẳng cấu nếu là đơn cấu hoặc toàn cấu.
+    
+    Do đó $\phi$ và $\psi$ là các đẳng cấu.
+
+    \bigskip
+
+    Do tính duy nhất của đẳng cấu ngược, ta suy ra ${(\phi\psi)}^{-1} = \psi^{-1}\phi^{-1}$.
+\end{proof}
+
+\begin{exercise}
+    Ký hiệu vết của ma trận vuông $A$ là $\text{tr}(A)$. Chứng minh rằng ánh xạ $\text{tr}: M(n\times n, \mathbb{F}), A\mapsto \text{tr}(A)$ là một đồng cấu. Tìm một cơ sở của nhân của $\text{tr}$.
+\end{exercise}
+
+\begin{proof}
+    $A = (a_{ij}){}_{n\times n}, B = (b_{ij}){}_{n\times n}$.
+    \[
+        \begin{cases}
+            \text{tr}(A+B) = \displaystyle\sum^{n}_{i=1}(a_{ii}+b_{ii}) = \displaystyle\sum^{n}_{i=1}a_{ii} + \displaystyle\sum^{n}_{i=1}b_{ii} = \text{tr}(A) + \text{tr}(B) \\
+            \text{tr}(aA) = \displaystyle\sum^{n}_{i=1}aa_{ii} = a\displaystyle\sum^{n}_{i=1}a_{ii} = a\cdot\text{tr}(A)
+        \end{cases}
+    \]
+    
+    Như vậy, $\operatorname{tr}$ là một đồng cấu tuyến tính.
+    
+    Giả sử $C = (c_{ij}){}_{n\times n}$ là một ma trận có vết bằng không. $E_{ij}$ là ma trận vuông cỡ $n$ có yếu tố hàng $i$ cột $j$ bằng đơn vị, các yếu tố còn lại bằng không.
+    \[
+        (c_{ij}){}_{n\times n} = \text{diag}(c_{11}, \ldots, c_{nn}) + \sum_{1\le i\ne j\le n}c_{ij}E_{ij}.
+    \]
+    
+    Ma trận vuông cỡ $n$ mà thỏa mãn hai điều kiện:
+    \begin{enumerate}[label = (\roman*)]
+        \item là ma trận chéo có vết bằng không
+        \item là ma trận có các yếu tố trên đường chéo chính bằng không
+    \end{enumerate}
+    
+    là ma trận không.
+    
+    Kết hợp với đẳng thức trên, suy ra $\ker(\text{tr})$ là tổng trực tiếp của không gian các ma trận vuông cỡ $n$ có các yếu tố trên đường chéo chính bằng không và không gian các ma trận vuông chéo cỡ $n$ có vết bằng không.
+    
+    \bigskip
+    
+    $(E_{ij}){}_{i\ne j}$ là một cơ sở của không gian các ma trận vuông cỡ $n$ với các yếu tố trên đường chéo chính bằng không. Cơ sở này gồm $n(n-1)$ ma trận.
+    
+    Một cơ sở của không gian các ma trận chéo cỡ $n$ có vết bằng không là
+    \[
+        (n-1)\text{ ma trận }
+        \begin{cases}
+            \text{diag}(1, -1, 0,  0,\ldots,  0) \\
+            \text{diag}(1, 0, -1,  0,\ldots,  0) \\
+            \text{diag}(1, 0,  0, -1,\ldots,  0) \\
+            \vdots                               \\
+            \text{diag}(1, 0,  0,  0,\ldots, -1)
+        \end{cases}
+    \]
+    
+    Hợp của hai cơ sở này tạo thành một cơ sở của $\ker(\operatorname{tr})$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng vết của hai ma trận đồng dạng bằng nhau. (Từ đó người ta định nghĩa \textit{vết của một tự đồng cấu} là vết của ma trận của nó đối với cơ sở bất kỳ của không gian.)
+\end{exercise}
+
+\begin{proof}
+    $A$, $B$ là hai ma trận đồng dạng thì tồn tại ma trận $C$ khả nghịch, cùng cỡ với $A$ và $B$ sao cho $B = C^{-1}AC$.
+    \par Theo Bài~\ref{trace-of-products}:
+    \[
+        \text{tr}(B) = \text{tr}(C^{-1}AC) = \text{tr}(ACC^{-1}) = \text{tr}(A).
+    \]
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nếu tích ma trận $AB$ có nghĩa thì
+    \[
+        {(AB)}^{\top} = B^{\top}A^{\top}
+    \]
+    \par Từ đó suy ra rằng ma trận vuông $A$ khả nghịch nếu và chỉ nếu $A^{\top}$ khả nghịch, và khi đó
+    \[
+        {(A^{\top})}^{-1} = {(A^{-1})}^{\top}
+    \]
+\end{exercise}
+
+\begin{proof}
+    Đặt $A = (a_{ij}){}_{m\times n}$, $B = (b_{ij}){}_{n\times p}$.
+    \[
+        A =
+        \begin{pmatrix}
+            a_{11} & \cdots & a_{1n} \\
+            \vdots & \ddots & \vdots \\
+            a_{m1} & \cdots & a_{mn}
+        \end{pmatrix}
+        \qquad
+        B =
+        \begin{pmatrix}
+            b_{11} & \cdots & b_{1p} \\
+            \vdots & \ddots & \vdots \\
+            b_{n1} & \cdots & b_{np}
+        \end{pmatrix}
+    \]
+    
+    Suy ra $A^{\top}\in M(n\times m, \mathbb{F})$, $B^{\top}\in M(p\times n, \mathbb{F})$.
+    
+    Do đó tích $B^{\top}A^{\top}$ có nghĩa và hai ma trận $(AB){}^{\top}$, $B^{\top}A^{\top}$ đều có $p$ hàng, $m$ cột.
+    
+    Yếu tố hàng $i$, cột $j$ của ma trận $(AB){}^{\top}$ là:
+    \[
+        \sum^{n}_{k=1}a_{jk}b_{ki}
+    \]
+    
+    Yếu tố hàng $i$, cột $j$ của ma trận $B^{\top}A^{\top}$ là:
+    \[
+        \sum^{n}_{k=1}b_{ki}a_{jk}
+    \]
+    
+    Hai tổng trên bằng nhau, với mọi cặp số tự nhiên $i, j$ thỏa mãn $1\le i\le p$, $1\le j\le m$. Như vậy, $(AB){}^{\top} = B^{\top}A^{\top}$.
+    
+    \bigskip
+    
+    Nếu ma trận vuông $A$ cỡ $n$ khả nghịch thì
+    \[
+        \begin{split}
+            {(A^{-1})}^{\top}A^{\top} = {(AA^{-1})}^{\top} = E_{n}^{\top} = E_{n} \\
+            A^{\top}{(A^{-1})}^{\top} = {(A^{-1}A)}^{\top} = E_{n}^{\top} = E_{n}
+        \end{split}
+    \]
+    
+    Hai đẳng thức trên có nghĩa là $A^{\top}$ khả nghịch và ${(A^{\top})}^{-1} = {(A^{-1})}^{\top}$. Ngược lại, $A^{\top}$ khả nghịch thì $A$ khả nghịch, bởi vì ${(A^{\top})}^{\top} = A$.
+\end{proof}
+
+\begin{exercise}
+    Cho các đồng cấu $f: V\to W$ và $g: W\to Z$. Chứng minh mối liên hệ giữa các đồng cấu đối ngẫu:
+    \[
+        (gf){}^{*} = f^{*}g^{*}
+    \]
+    
+    Từ đó suy ra rằng đồng cấu $f: V\to W$ khả nghịch nếu và chỉ nếu $f^{*}: W^{*}\to V^{*}$ khả nghịch, và khi đó
+    \[
+        (f^{*}){}^{-1} = (f^{-1}){}^{*}
+    \]
+\end{exercise}
+
+\begin{proof}
+    Giả sử $\rho\in Z^{*}$. Theo định nghĩa của ánh xạ đối ngẫu:
+    \[
+        {(gf)}^{*}(\rho) = \rho gf
+    \]
+    \[
+        (f^{*}g^{*})(\rho) = f^{*}(g^{*}(\rho)) = f^{*}(\rho g) = \rho gf
+    \]
+    
+    Do đó, $(gf){}^{*}(\rho) = (f^{*}g^{*})(\rho), \forall\rho\in Z^{*}$. Suy ra $(gf){}^{*} = f^{*}g^{*}$.
+    
+    \bigskip
+    
+    Giả sử $(\alpha_{1}, \ldots, \alpha_{n})$ là một cơ sở của $V$, $(\beta_{1}, \ldots, \beta_{m})$ là một cơ sở của $W$.
+    
+    $(\alpha^{*}_{1}, \ldots, \alpha^{*}_{n})$ là cơ sở đối ngẫu của $(\alpha_{1}, \ldots, \alpha_{n})$.
+    
+    $(\beta^{*}_{1}, \ldots, \beta^{*}_{m})$ là cơ sở đối ngẫu của $(\beta_{1}, \ldots, \beta_{m})$.
+    
+    Ma trận của $f$ đối với cặp cơ sở $(\alpha_{1}, \ldots, \alpha_{n})$, $(\beta_{1}, \ldots, \beta_{m})$ là $A$  thì ma trận của $f^{*}$ đối với cặp cơ sở $(\beta^{*}_{1}, \ldots, \beta^{*}_{m})$, $(\alpha^{*}_{1}, \ldots, \alpha^{*}_{n})$ là $A^{\top}$.
+    
+    $f$ khả nghịch khi và chỉ khi $A$ là ma trận vuông và khả nghịch.
+    
+    $f^{*}$ khả nghịch khi và chỉ khi $A^{\top}$ là ma trận vuông và khả nghịch.
+    
+    Mà $A$ khả nghịch khi và chỉ khi $A^{\top}$ khả nghịch nên $f$ khả nghịch khi và chỉ khi $f^{*}$ khả nghịch.
+    
+    \bigskip
+    
+    $f$ khả nghịch thì
+    \[
+        \begin{split}
+            \text{id}_{V^{*}} = \text{id}^{*}_{V} = {(f^{-1}f)}^{*} = f^{*}(f^{-1}){}^{*} \\
+            \text{id}_{W^{*}} = \text{id}^{*}_{W} = {(ff^{-1})}^{*} = (f^{-1}){}^{*}f^{*}
+        \end{split}
+    \]
+    
+    Như vậy, ${(f^{*})}^{-1} = {(f^{-1})}^{*}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng ánh xạ $\hom(V, W)\to\hom(W^{*}, V^{*}), f\mapsto f^{*}$ là một đẳng cấu tuyến tính.
+\end{exercise}
+
+\begin{proof}
+    $(\alpha_{1}, \ldots, \alpha_{n})$ là một cơ sở của $V$; $(\beta_{1}, \ldots, \beta_{m})$ là một cơ sở của $W$.
+    
+    $(\alpha^{*}_{1}, \ldots, \alpha^{*}_{n})$ là cơ sở đối ngẫu của $V$, $(\beta^{*}_{1}, \ldots, \beta^{*}_{m})$ là cơ sở đối ngẫu của $W$.
+    
+    $A$ là ma trận của $f$ đối với cặp cơ sở trên của $V$ và $W$.
+    
+    $A^{\top}$ là ma trận của $f^{*}$ đối với cặp cơ sở trên của $W^{*}$ và $V^{*}$.
+    
+    Ánh xạ $\hom(V,W)\to M(m\times n,\mathbb{F})$, $f\mapsto A$ là đẳng cấu tuyến tính.
+    
+    Ánh xạ $\hom(W^{*},V^{*})\to M(n\times m,\mathbb{F})$, $f^{*}\mapsto A^{\top}$ là đẳng cấu tuyến tính.
+    
+    Ánh xạ $A\mapsto A^{\top}$ là đẳng cấu tuyến tính.
+    
+    Do đó ánh xạ $\hom(V,W)\to\hom(W^{*},V^{*})$, $f\mapsto f^{*}$ là đẳng cấu tuyến tính.
+\end{proof}
+
+\noindent\textbf{Định lý 4.8.} Gọi $f^{*}: W^{*}\to V^{*}$ là đồng cấu đối ngẫu của đồng cấu $f: V\to W$. Khi đó:
+\begin{enumerate}[label = (\arabic*)]
+    \item $f$ là một đơn cấu nếu và chỉ nếu $f^{*}$ là một toàn cấu.
+    \item $f$ là một toàn cấu nếu và chỉ nếu $f^{*}$ là một đơn cấu.
+    \item $f$ là một đẳng cấu nếu và chỉ nếu $f^{*}$ là một đẳng cấu.
+\end{enumerate}
+
+Nhắc lại một kết quả cần thiết.
+\begin{lemma}
+    $V$ và $W$ là các không gian vector trên trường $\mathbb{F}$.
+    
+    $(\alpha_{1}, \ldots, \alpha_{n})$ là một cơ sở của không gian vector $V$.
+    
+    $(\omega_{1}, \ldots, \omega_{n})$ là $n$ vector bất kỳ của không gian vector $W$.
+    
+    Khi đó tồn tại duy nhất một ánh xạ tuyến tính $\tau: V\to W$ sao cho $\tau(\alpha_{i}) = \omega_{i}$, $\forall i = \overline{1,n}$.
+\end{lemma}
+
+\begin{lemma}
+    $V$ là một không gian vector $n$-chiều và ${V}^{*}$ là không gian vector đối ngẫu của $V$.
+    
+    ${\nu}_{1}, \ldots {\nu}_{n}$ là một cơ sở của ${V}^{*}$.
+    
+    Chứng minh rằng tồn tại một cơ sở $\alpha_{1}, \ldots, \alpha_{n}$ của $V$ sao cho
+    \[
+        {\nu}_{i}(\alpha_{j}) = \delta_{i,j}
+    \]
+\end{lemma}
+
+\begin{proof}[Chứng minh bổ đề]
+    Suy ra từ phép đối ngẫu kép $\alpha_{i} \mapsto {\alpha}^{*}_{i} \mapsto {\alpha}^{**}_{i}$.
+\end{proof}
+
+\begin{proof}
+    $(\alpha_{1}, \ldots, \alpha_{n})$ là một cơ sở của $V$.
+    \begin{enumerate}[label = (\arabic*)]
+        \item $(\Rightarrow)$
+              
+              $\{\alpha_{1}, \ldots, \alpha_{n}\}$ độc lập tuyến tính trong $V$ và $f$ là đơn ánh nên $\{f(\alpha_{1}), \ldots, f(\alpha_{n})\}$ độc lập tuyến tính trong $W$.
+              
+              Do $\dim W = m$ nên $n\le m$. Ta bổ sung các vector $\beta_{n+1}$, \ldots, $\beta_{m}$ vào hệ các vector $f(\alpha_{1}), \ldots, f(\alpha_{n})$ để tạo thành một cơ sở của $W$.
+              
+              Chọn $\nu$ là một dạng tuyến tính trên $V$.
+              
+              Để chỉ ra $f^{*}$ là một toàn cấu, ta cần xây dựng một dạng tuyến tính $\omega\in W^{*}$ sao cho $f^{*}(\omega) = \nu$.
+              
+              Theo Bổ đề trên, tồn tại duy nhất một dạng tuyến tính $\omega\in W^{*}$ sao cho:
+              \[
+                  \begin{split}
+                      \omega(f(\alpha_{i})) = \nu(\alpha_{i})\quad\forall i = \overline{1, n}, \\
+                      \omega(\beta_{j}) = 0 \quad\forall j = \overline{n+1, m}.
+                  \end{split}
+              \]
+              
+              $\forall \alpha\in V$, ta có biểu thị tuyến tính duy nhất theo cơ sở $(\alpha_{1}, \ldots, \alpha_{n})$:
+              \[
+                  \alpha = x_{1}\cdot\alpha_{1} + \cdots + x_{n}\cdot\alpha_{n}
+              \]
+              
+              Khi đó:
+              \begin{align*}
+                  \omega(f(\alpha)) & = x_{1}\cdot\nu(\alpha_{1}) + \cdots + x_{n}\cdot\nu(\alpha_{n}) \\
+                                    & = \nu(x_{1}\cdot\alpha_{1} + \cdots + x_{n}\cdot\alpha_{n})      \\
+                                    & = \nu(\alpha)\qquad (\forall\alpha\in V).
+              \end{align*}
+              
+              tức là $\omega\circ f = \nu$.
+              
+              Mà $f^{*}(\omega) = \omega\circ f$ nên $f^{*}(\omega) = \nu$.
+              
+              Ta đã có được dạng tuyến tính $\omega\in W^{*}$ như mong muốn.
+              
+              Do đó, $f^{*}$ là một toàn cấu.
+              
+              \bigskip
+              
+              ($\Leftarrow$) Để chứng minh $f$ là đơn cấu, ta sẽ chỉ ra $\ker f = \{0\}$.
+              
+              Chọn $\nu$ là một dạng tuyến tính trên $V$ và là một đơn cấu.
+              
+              $\alpha$ là một vector \textit{bất kỳ} thuộc $\ker f$.
+              
+              Do $f^{*}: {W}^{*} \to {V}^{*}$ là một toàn cấu nên tồn tại một dạng tuyến tính $\omega \in {W}^{*}$ sao cho ${f}^{*}: \omega \mapsto \nu$.
+              
+              Theo định nghĩa của đồng cấu đối ngẫu
+              \begin{align*}
+                                   & {f}^{*}(\omega) = \omega\circ f  \\
+                  \implies\quad & \nu = \omega\circ f              \\
+                  \implies\quad & \nu (\alpha) = \omega(f(\alpha)) \\
+                  \implies\quad & \nu (\alpha) = 0.
+              \end{align*}
+              
+              Theo lựa chọn ban đầu, $\nu$ là một đơn cấu. Do đó $\alpha = 0$.
+              
+              Điều này chứng tỏ $f$ là một đơn cấu.
+        \item $(\Rightarrow)$ Chọn $\omega_{1}, \omega_{2}$ là hai dạng tuyến tính thuộc ${W}^{*}$ sao cho ${f}^{*}(\omega_{1}) = {f}^{*}(\omega_{2})$.
+              
+              Theo định nghĩa của đồng cấu đối ngẫu, $\omega_{1}\circ f = \omega_{2}\circ f$.
+              
+              $f$ là toàn cấu nên $\forall\beta\in W$, tồn tại $\alpha\in V$ sao cho $f(\alpha) = \beta$.
+              
+              Suy ra $\forall\beta\in W$, $\omega_{1}(\beta) = \omega_{1}(f(\alpha)) = \omega_{2}(f(\alpha)) = \omega_{2}(\beta)$. Điều này nghĩa là $\omega_{1} = \omega_{2}$.
+              
+              Do đó ${f}^{*}(\omega_{1}) = {f}^{*}(\omega_{2}) \rightarrow \omega_{1} = \omega_{2}$.
+              
+              Vậy ${f}^{*}$ là một đơn cấu.
+              
+              $(\Leftarrow)$ $f^{*}$ là đơn cấu nên $\dim {W}^{*} \leq \dim {V}^{*}$, kéo theo $\dim W \leq \dim V$.
+              
+              Chọn $\beta_{1}, \beta_{2}, \ldots, \beta_{m}$ làm cơ sở của $W$. ${\beta}^{*}_{1}, {\beta}^{*}_{2}, \ldots, {\beta}^{*}_{m}$ là cơ sở đối ngẫu.
+              
+              Do $f^{*}$ là một đơn cấu nên ${\alpha}^{*}_{1} = {f}^{*}({\beta}^{*}_{1}), {\alpha}^{*}_{2} = {f}^{*}({\beta}^{*}_{2}), \ldots, {\alpha}^{*}_{m} = {f}^{*}({\beta}^{*}_{m})$ độc lập tuyến tính.
+              
+              Theo bổ đề trên, tồn tại $\alpha_{i}, i = \overline{1, n}$ sao cho ${\alpha}^{*}_{i}(\alpha_{j}) = \delta_{i, j}$, tồn tại $\beta_{i}, i = \overline{1, m}$ sao cho ${\beta}^{*}_{i}(\beta_{j}) = \delta_{i, j}$.
+              
+              $\beta$ là một vector thuộc $W$. Giả sử tọa độ của $\beta$ với cơ sở $\beta_{1}, \ldots, \beta_{m}$ là $(x_{1}, \ldots, x_{m})$.
+              
+              Chọn $\alpha = x_{1}\alpha_{1} + \cdots + x_{m}\alpha_{m}$.
+              \begin{align*}
+                  \beta^{*}_{j}(f(\alpha_{i})) & = {f^{*}}(\beta^{*}_{j})(\alpha_{i}) \\
+                                               & = \alpha^{*}_{j}(\alpha_{i})         \\
+                                               & = \delta_{i,j}
+              \end{align*}
+              
+              Đặt $\beta^{*} = \sum^{m}_{i=1}x_{i}\beta^{*}_{i}$.
+              \begin{align*}
+                  \beta^{*}(f(\alpha)) & = \sum^{m}_{i=1}x_{i}\beta^{*}_{i}(f(\alpha))                                     \\
+                                       & = \sum^{m}_{i=1}x_{i}\beta^{*}_{i}\left( \sum^{m}_{j=1}x_{j}f(\alpha_{j}) \right) \\
+                                       & = \sum^{m}_{i=1}x^{2}_{i}\beta^{*}_{i}\left(f(\alpha_{i})\right)                  \\
+                                       & = \sum^{m}_{i=1}x^{2}_{i}                                                         \\
+                                       & = \beta^{*}(\beta)
+              \end{align*}
+            
+              Suy ra, $\forall\beta^{*}\in {W}^{*}$, $\beta^{*}(f(\alpha) - \beta) = 0$. Do đó, $f(\alpha) = \beta$.
+              
+              Như vậy, $\forall\beta\in W, \exists\alpha\in V: f(\alpha) = \beta$. Do đó $f$ là một toàn ánh.
+        \item $f$ là một đẳng cấu khi và chỉ khi $f$ vừa là đơn cấu, vừa là toàn cấu. Theo hai kết quả vừa chứng minh, $f^{*}$ vừa là toàn cấu, vừa là đơn cấu. Do đó $f^{*}$ là đẳng cấu.
+              
+              Ngược lại, $f^{*}$ là một đẳng cấu thì $f$ là một đẳng cấu.
+    \end{enumerate}
+\end{proof}
+

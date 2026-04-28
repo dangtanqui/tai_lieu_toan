@@ -1,0 +1,1760 @@
+\setcounter{exercise}{0}
+
+
+\chapter{Không gian vector}
+
+\begin{exercise}
+    Xét xem các tập hợp sau đây có lập thành $\mathbb{F}$--không gian vector hay không đối với các phép toán thông thường (được định nghĩa theo từng thành phần):
+    \begin{enumerate}[itemsep=0pt,topsep=0pt,label = (\alph*)]
+        \item Tập hợp tất cả các dãy $(x_{1},\ldots,x_{n})\in\mathbb{F}_{n}$ thỏa mãn điều kiện $x_{1} + \cdots + x_{n} = 0$.
+        \item Tập hợp tất cả các dãy $(x_{1},\ldots,x_{n})\in\mathbb{F}_{n}$ thỏa mãn điều kiện $x_{1} + \cdots + x_{n} = 1$.
+        \item Tập hợp tất cả các dãy $(x_{1},\ldots,x_{n})\in\mathbb{F}_{n}$ thỏa mãn điều kiện $x_{1} = x_{n} = -1$.
+        \item Tập hợp tất cả các dãy $(x_{1},\ldots,x_{n})\in\mathbb{F}_{n}$ thỏa mãn điều kiện $x_{1} = x_{3} = x_{5} = \cdots$, $x_{2} = x_{4} = x_{6} = \cdots$.
+        \item Tập hợp các ma trận vuông $(a_{ij}){}_{n\times n}$ \textit{đối xứng} cỡ $n$, nghĩa là các ma trận thỏa mãn $a_{ij} = a_{ji}$, với $1\le i, j\le n$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Đây đúng là một không gian vector với các phép toán thông thường.
+        \item Đây không phải một không gian vector với các phép toán thông thường vì phép cộng không đóng.
+        \item Đây không phải một không gian vector với các phép toán thông thường vì phép cộng không đóng.
+        \item Đây đúng là một không gian vector với các phép toán thông thường.
+        \item Đây đúng là một không gian vector với các phép toán thông thường.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Tập hợp tất cả các dãy $(x_{1},\ldots, x_{n})\in\mathbb{R}_{n}$ với tất cả các thành phần $x_{1}, \ldots, x_{n}$ đều nguyên có lập thành một $\mathbb{R}$--không gian vector hay không?
+\end{exercise}
+
+\begin{proof}
+    Không. Bởi phép nhân vector với vô hướng không đóng trong tập này.
+\end{proof}
+
+\begin{exercise}
+    Với các phép toán thông thường, $\mathbb{Q}$ có là một $\mathbb{R}$-không gian vector hay không? $\mathbb{R}$ có là một $\mathbb{C}$-không gian vector hay không?
+\end{exercise}
+
+\begin{proof}
+    $\mathbb{Q}$ không phải là một $\mathbb{R}$--không gian vector vì phép nhân một số hữu tỷ với một số thực có thể là một số vô tỷ. Ví dụ: $\sqrt{2}\cdot 1 = \sqrt{2}\not\in\mathbb{Q}$.
+    
+    $\mathbb{R}$ không phải là một $\mathbb{C}$--không gian vector vì phép nhân một số thực với một số phức có thể là một số phức mà không phải số thực. Ví dụ $\iota\cdot 1 = \iota\not\in\mathbb{R}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nhóm $\mathbb{Z}$ không đẳng cấu với nhóm cộng của bất kỳ một không gian vector trên bất kỳ trường nào.
+\end{exercise}
+
+\begin{proof}
+    Giả sử phản chứng, tồn tại một không gian vector $V$ trên trường $\mathbb{F}$ đẳng cấu với $\mathbb{Z}$.
+
+    Khi đó, tồn tại một đồng cấu $\varphi: \mathbb{Z}\rightarrow V$ sao cho:
+    \[ \varphi(x) + \varphi(y) = \varphi(x + y)\quad\forall x, y\in\mathbb{Z} \]
+    
+    và đồng cấu này là đẳng cấu nhóm.
+    
+    Một đồng cấu nhóm biến phần tử trung lập của nhóm này thành phần tử trung lập của nhóm kia, do đó $\varphi(0)$ là vector-không trên $V$. $\varphi(1)\ne\varphi(0) = 0$ vì $\varphi$ là đẳng cấu.
+    
+    $\varphi$ là đẳng cấu nên
+    \[ V = \{ \cdots, \varphi(-2), \varphi(-1), \varphi(0), \varphi(1), \varphi(2), \cdots \} \]
+    
+    Nếu $\mathbb{F}$ là một trường chỉ gồm một phần tử, với các phép toán được định nghĩa như sau:
+    \begin{align*}
+        0 + 0 = 0 \\
+        0\cdot 0 = 0
+    \end{align*}
+    
+    Mọi vector trên trường một phần tử đều là vector-không. Điều này mâu thuẫn với giả sử vì $\mathbb{Z}$ vô hạn đếm được, trong khi $V$ chỉ có đúng một phần tử.
+    
+    Do vậy, trường $\mathbb{F}$ phải có nhiều hơn một phần tử.
+    
+    Giả sử $\operatorname{char}(\mathbb{F}) = p$ với $p$ là một số nguyên tố thì
+    \[
+        \varphi(p) = \underbrace{\varphi(1) + \cdots + \varphi(1)}_{p} = \underbrace{1_{\mathbb{F}}\varphi(1) + \cdots + 1_{\mathbb{F}}\varphi(1)}_{p} = \underbrace{(1_{\mathbb{F}} + \cdots + 1_{\mathbb{F}})}_{p}\varphi(1) = 0
+    \]
+    
+    mâu thuẫn với việc $\varphi$ là song ánh. Do đó $\operatorname{char}(\mathbb{F}) = 0$.
+    
+    Với mọi số nguyên dương $n$, chúng ta có
+    \[
+        \varphi(n) = \underbrace{(1_{\mathbb{F}} + \cdots + 1_{\mathbb{F}})}_{n}\varphi(1)
+    \]
+    
+    do đó
+    \[
+        \varphi(-n) = \underbrace{((-1_{\mathbb{F}}) + \cdots + (-1_{\mathbb{F}}))}_{n}\varphi(1).
+    \]
+
+    $\mathbb{F}$ là một trường với đặc số khác không nên $1_{\mathbb{F}} + 1_{\mathbb{F}}$ khác không và có nghịch đảo, kí hiệu là $k$. Mặt khác, nghịch đảo này không có dạng $\underbrace{(1_{\mathbb{F}} + \cdots + 1_{\mathbb{F}})}_{n}$ hay $\underbrace{((-1_{\mathbb{F}}) + \cdots + (-1_{\mathbb{F}}))}_{n}$, nên $k\varphi(1)\notin \{ \varphi(n) \mid n\in\mathbb{Z} \}$. Vậy giả sử phản chứng là sai.
+
+    Do đó ta kết luận $\mathbb{Z}$ không đẳng cấu với bất cứ không gian vector nào, trên bất cứ trường nào.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng nhóm abel $A$ đối với phép cộng $+$ có thể trở thành một không gian vector trên trường $\mathbb{F}_{p}$ nếu và chỉ nếu
+    \[ px = \underbrace{x + x + \cdots + x}_{p} = 0,\quad \forall x\in A. \]
+\end{exercise}
+
+\begin{proof}
+    Một nhóm abel $A$ với phép cộng đã thỏa mãn 4 tiên đề đầu tiên của không gian vector.
+    
+    ($\Rightarrow$) $A$ là một không gian vector trên trường $\mathbb{F}_{p}$.
+    \[ \underbrace{x + x + \cdots + x}_{p} = \underbrace{1x + 1x + \cdots + 1x}_{p} = \underbrace{(1 + 1 + \cdots + 1)}_{p}x = 0x = 0 \]
+    
+    ($\Leftarrow$) $\underbrace{x + x + \cdots + x}_{p} = 0$
+    
+    Ta định nghĩa kí hiệu $nx$ với $x\in A, n\in\mathbb{Z}$ như sau:
+    \[
+        nx =
+        \begin{cases}
+            \underbrace{x + x + \cdots + x}_{n},           & n > 0 \\
+            0,                                             & n = 0 \\
+            \underbrace{(-x) + (-x) + \cdots + (-x)}_{-n}, & n < 0
+        \end{cases}
+    \]
+    
+    Cùng với điều kiện $\underbrace{x + \cdots + x}_{p} = 0$, ta suy ra $nx = (n\bmod{p})x$
+    
+    Ta kiểm tra 4 tiên đề còn lại:
+    \begin{enumerate}[label= (V\arabic*)]
+        \setcounter{enumi}{4}
+        \item $(a + b)x$
+              Nếu $a > 0, b > 0$:
+              \[ (a + b)x = \underbrace{x + x + \cdots + x}_{a+b} = \underbrace{x + \cdots + x}_{a} + \underbrace{x + \cdots + x}_{b} = ax + bx \]
+              
+              Nếu $a < 0, b < 0$:
+              \[ (a + b)x = \underbrace{(-x) + \cdots + (-x)}_{-a-b} = \underbrace{(-x) + \cdots + (-x)}_{-a} + \underbrace{(-x) + \cdots + (-x)}_{-b} = ax + bx \]
+              
+              Nếu $a = 0$ hoặc $b = 0$
+              \[ (a + b)x = ax + bx \]
+              
+              Nếu $a > 0, b < 0$ và $a + b > 0$
+              \[ (a + b)x = \underbrace{x + \cdots + x}_{a+b} = \underbrace{x + \cdots + x}_{a} + \underbrace{(-x) + \cdots + (-x)}_{-b} = ax + bx \]
+              
+              Nếu $a > 0, b < 0$ và $a + b < 0$
+              \[ (a + b)x = \underbrace{(-x) + \cdots + (-x)}_{-a-b} = \underbrace{x + \cdots + x}_{a} + \underbrace{(-x) + \cdots + (-x)}_{b} = ax + bx \]
+              
+              Nếu $a > 0, b < 0$ và $a + b = 0$
+              \[ (a + b)x = 0 = \underbrace{(x + \cdots + x)}_{a} + \underbrace{(-x) + \cdots + (-x)}_{-b} = ax + bx \]
+              
+              Trường hợp $a < 0, b > 0$ được chứng minh tương tự.
+        \item $a(x + y)$
+              
+              Nếu $a = 0$:
+              \[ a(x + y) = 0 = 0 + 0 = 0x + 0y = ax + ay \]
+              
+              Nếu $a > 0$:
+              \[ a(x + y) = \underbrace{(x+y)+\cdots+(x+y)}_{a} = \underbrace{x + \cdots + x}_{a} + \underbrace{y + \cdots + y}_{a} = ax + ay \]
+              
+              Nếu $a < 0$:
+              \[ a(x + y) = \underbrace{(-x-y)+\cdots+(-x-y)}_{-a} = \underbrace{(-x) + \cdots + (-x)}_{-a} + \underbrace{(-y) + \cdots + (-y)}_{-a} = ax + ay \]
+        \item $(ab)x$
+              
+              Nếu $a = 0$ hoặc $b = 0$:
+              \[ (ab)x = 0 = a(bx) \]
+              
+              Nếu $a > 0, b > 0$:
+              \[ (ab)x = \underbrace{x + \cdots + x}_{ab} = \underbrace{\underbrace{(x + \cdots + x)}_{b} + \cdots + \underbrace{(x + \cdots + x)}_{b}}_{a} = a(bx) \]
+              
+              Các trường hợp còn lại được quy về $a\ge 0, b\ge 0$ vì $nx = (n\bmod p)x$.
+        \item $1x = x$
+    \end{enumerate}
+    
+    Do đó $A$ là một không gian vector trên trường $\mathbb{F}_{p}$.
+\end{proof}
+
+\begin{exercise}
+    Xét xem các vector sau đây độc lập hay phụ thuộc tuyến tính trong $\mathbb{R}_{4}$:
+    \begin{enumerate}[label = (\alph*)]
+        \item $e_{1} = (-1, -2, 1, 2)$, $e_{2} = (0, -1, 2, 3)$, $e_{3} = (1, 4, 1, 2)$, $e_{4} = (-1, 0, 1, 3)$.
+        \item $\alpha_{1} = (-1, 1, 0, 1)$, $\alpha_{2} = (1, 0, 1, 1)$, $\alpha_{3} = (-3, 1, -2, -1)$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label = (\alph*)]
+        \item Xét ràng buộc tuyến tính $x_{1}e_{1} + x_{2}e_{2} + x_{3}e_{3} + x_{4}e_{4} = (0,0,0,0)$. Để tìm $x_{1}, x_{2}, x_{3}, x_{4}$, ta giải hệ phương trình thuần nhất sau:
+              \begingroup
+              \allowdisplaybreaks
+              \begin{align*}
+                                       & \begin{cases}
+                                             (-1)x_{1} + 0x_{2} + 1x_{3} + (-1)x_{4} = 0 \\
+                                             (-2)x_{1} + (-1)x_{2} + 4x_{3} + 0x_{4} = 0 \\
+                                             1x_{1} + 2x_{2} + 1x_{3} + 1x_{4} = 0       \\
+                                             2x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0
+                                         \end{cases} \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 3x_{2} + 4x_{3} + 1x_{4} = 0   \\
+                      0x_{1} + 2x_{2} + 6x_{3} + 3x_{4} = 0   \\
+                      0x_{1} + x_{2} + 0x_{3} + (-1)x_{4} = 0 \\
+                      2x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0
+                  \end{cases}                            \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 0x_{2} + 4x_{3} + 1x_{4} = 0   \\
+                      0x_{1} + 0x_{2} + 6x_{3} + 5x_{4} = 0   \\
+                      0x_{1} + x_{2} + 0x_{3} + (-1)x_{4} = 0 \\
+                      2x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0
+                  \end{cases}                            \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 0x_{2} + 12x_{3} + 3x_{4} = 0  \\
+                      0x_{1} + 0x_{2} + 12x_{3} + 10x_{4} = 0 \\
+                      0x_{1} + x_{2} + 0x_{3} + (-1)x_{4} = 0 \\
+                      2x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0
+                  \end{cases}                            \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 0x_{2} + 0x_{3} + (-7)x_{4} = 0 \\
+                      0x_{1} + 0x_{2} + 12x_{3} + 10x_{4} = 0  \\
+                      0x_{1} + x_{2} + 0x_{3} + (-1)x_{4} = 0  \\
+                      2x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0
+                  \end{cases}
+              \end{align*}
+              \endgroup
+              
+              Hệ phương trình này chỉ có nghiệm tầm thường $(x_{1}, x_{2}, x_{3}, x_{4}) = (0, 0, 0, 0)$, kéo theo ràng buộc tuyến tính tầm thường. Do đó hệ độc lập tuyến tính.
+        \item Xét ràng buộc tuyến tính $x_{1}\alpha_{1} + x_{2}\alpha_{2} + x_{3}\alpha_{3} = (0, 0, 0)$. Để tìm $x_{1}, x_{2}, x_{3}$, ta giải hệ phương trình thuần nhất sau:
+              \begingroup
+              \allowdisplaybreaks
+              \begin{align*}
+                                       & \begin{cases}
+                                             (-1)x_{1} + 1x_{2} + (-3)x_{3} = 0 \\
+                                             1x_{1} + 0x_{2} + 1x_{3} = 0       \\
+                                             0x_{1} + 1x_{2} + (-2)x_{3} = 0    \\
+                                             1x_{1} + 1x_{2} + (-1)x_{3} = 0
+                                         \end{cases} \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 2x_{2} + (-4)x_{3} = 0 \\
+                      0x_{1} + (-1)x_{2} + 2x_{3} = 0 \\
+                      0x_{1} + 1x_{2} + (-2)x_{3} = 0 \\
+                      1x_{1} + 1x_{2} + (-1)x_{3} = 0
+                  \end{cases}                           \\
+                  \Longleftrightarrow\quad &
+                  \begin{cases}
+                      0x_{1} + 1x_{2} + (-2)x_{3} = 0 \\
+                      1x_{1} + 1x_{2} + (-1)x_{3} = 0
+                  \end{cases}
+              \end{align*}
+              \endgroup
+              
+              Hệ phương trình này có nghiệm không tầm thường $(x_{1}, x_{2}, x_{3}) = (0, 2, 1)$. Do đó hệ phụ thuộc tuyến tính.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng hai hệ vector sau đây là các cơ sở của $\mathbb{C}_{3}$. Tìm ma trận chuyển từ cơ sở thứ nhất sang cơ sở thứ hai:
+    \par $e_{1} = (1, 2, 1), e_{2} = (2, 3, 3), e_{3} = (3, 7, 1)$;
+    \par $e'_{1} = (3, 1, 4), e'_{2} = (5, 2, 1), e'_{3} = (1, 1, -6)$.
+\end{exercise}
+
+\begin{proof}
+    Xét ràng buộc tuyến tính $x_{1}e_{1} + x_{2}e_{2} + x_{3}e_{3} = (0, 0, 0)$.
+    \begingroup
+    \begin{align*}
+                             & \begin{cases}
+                                   1x_{1} + 2x_{2} + 3x_{3} = 0 \\
+                                   2x_{1} + 3x_{2} + 7x_{3} = 0 \\
+                                   1x_{1} + 3x_{2} + 1x_{3} = 0
+                               \end{cases} \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            1x_{1} + 2x_{2} + 3x_{3} = 0    \\
+            0x_{1} + (-1)x_{2} + 1x_{3} = 0 \\
+            0x_{1} + 1x_{2} + (-2)x_{3} = 0
+        \end{cases}                     \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            1x_{1} + 2x_{2} + 3x_{3} = 0    \\
+            0x_{1} + (-1)x_{2} + 1x_{3} = 0 \\
+            0x_{1} + 0x_{2} + (-1)x_{3} = 0
+        \end{cases}
+    \end{align*}
+    \endgroup
+    
+    Hệ phương trình trên chỉ có nghiệm tầm thường $(x_{1}, x_{2}, x_{3}) = (0, 0, 0)$ do đó hệ $e_{1}, e_{2}, e_{3}$ độc lập tuyến tính và cực đại (vì $\dim\mathbb{C}_{3} = 3$) nên hệ này cũng là một cơ sở của $\mathbb{C}_{3}$.
+
+    \bigskip
+    Xét ràng buộc tuyến tính $x_{1}e'_{1} + x_{2}e'_{2} + x_{3}e'_{3} = (0, 0, 0)$.
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+                             & \begin{cases}
+                                   3x_{1} + 5x_{2} + 1x_{3} = 0 \\
+                                   1x_{1} + 2x_{2} + 1x_{3} = 0 \\
+                                   4x_{1} + 1x_{2} + (-6)x_{3} = 0
+                               \end{cases} \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            3x_{1} + 5x_{2} + 1x_{3} = 0 \\
+            0x_{1} + 1x_{2} + 2x_{3} = 0 \\
+            0x_{1} + (-6)x_{2} + (-8)x_{3} = 0
+        \end{cases}                     \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            3x_{1} + 5x_{2} + 1x_{3} = 0 \\
+            0x_{1} + 1x_{2} + 2x_{3} = 0 \\
+            0x_{1} + 0x_{2} + 4x_{3} = 0
+        \end{cases}
+    \end{align*}
+    \endgroup
+    
+    Hệ phương trình trên chỉ có nghiệm tầm thường $(x_{1}, x_{2}, x_{3}) = (0, 0, 0)$ do đó hệ $e_{1}, e_{2}, e_{3}$ độc lập tuyến tính và cực đại (vì $\dim\mathbb{C}_{3} = 3$) nên hệ này cũng là một cơ sở của $\mathbb{C}_{3}$.
+
+    $(e_{1}, e_{2}, e_{3})$ là một cơ sở của $\mathbb{C}_{3}$ nên vector $(a_{1}, a_{2}, a_{3})$ biểu thị tuyến tính được duy nhất theo cơ sở này.
+    
+    Bằng việc giải hệ phương trình sau:
+    \[
+        \begin{cases}
+            1x_{1} + 2x_{2} + 3x_{3} = a_{1} \\
+            2x_{1} + 3x_{2} + 7x_{3} = a_{2} \\
+            1x_{1} + 3x_{2} + 1x_{3} = a_{3}
+        \end{cases}
+    \]
+    
+    ta thu được nghiệm:
+    \[
+        (x_{1}, x_{2}, x_{3}) = (-18a_{1} + 7a_{2} + 5a_{3}, 5a_{1} - 2a_{2} - a_{3}, 3a_{1} - a_{2} - a_{3})
+    \]
+    
+    Thay số, ta biểu diễn được $(e'_{1}, e'_{2}, e'_{3})$ qua $(e_{1}, e_{2}, e_{3})$ như sau:
+    \[
+        \begin{cases}
+            e'_{1} = (-27)e_{1} + 9e_{2} + 4e_{3}   \\
+            e'_{2} = (-71)e_{1} + 20e_{2} + 12e_{3} \\
+            e'_{3} = (-41)e_{1} + 9e_{2} + 8e_{3}
+        \end{cases}
+    \]
+    
+    Như vậy, ma trận chuyển cơ sở $(e_{1}, e_{2}, e_{3}) \rightarrow (e'_{1}, e'_{2}, e'_{3})$ là:
+    \[
+        \begin{pmatrix}
+            -27 & 9  & 4  \\
+            -71 & 20 & 12 \\
+            -41 & 9  & 8
+        \end{pmatrix}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng hai hệ vector sau đây là các cơ sở của $\mathbb{C}_{4}$. Tìm mối liên hệ giữa tọa độ của cùng một vector trong hai cơ sở đó:
+    \par $e_{1} = (1, 1, 1, 1), e_{2} = (1, 2, 1, 1), e_{3} = (1, 1, 2, 1), e_{4} = (1, 3, 2, 3)$;
+    \par $e'_{1} = (1, 0, 3, 3), e'_{2} = (2, 3, 5, 4), e'_{3} = (2, 2, 5, 4), e'_{4} = (2, 3, 4, 4)$.
+\end{exercise}
+
+\begin{proof}Xét ràng buộc tuyến tính $x_{1}e_{1} + x_{2}e_{2} + x_{3}e_{3} + x_{4}e_{4} = (0,0,0,0)$.
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+                             & \begin{cases}
+                                   1x_{1} + 1x_{2} + 1x_{3} + 1x_{4} = 0 \\
+                                   1x_{1} + 2x_{2} + 1x_{3} + 3x_{4} = 0 \\
+                                   1x_{1} + 1x_{2} + 2x_{3} + 2x_{4} = 0 \\
+                                   1x_{1} + 1x_{2} + 1x_{3} + 3x_{4} = 0
+                               \end{cases} \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            1x_{1} + 1x_{2} + 1x_{3} + 1x_{4} = 0 \\
+            0x_{1} + 1x_{2} + 0x_{3} + 2x_{4} = 0 \\
+            0x_{1} + 0x_{2} + 1x_{3} + 1x_{4} = 0 \\
+            0x_{1} + 0x_{2} + 0x_{3} + 2x_{4} = 0
+        \end{cases}
+    \end{align*}
+    \endgroup
+
+    Hệ phương trình trên chỉ có nghiệm tầm thường $(x_{1}, x_{2}, x_{3}, x_{4}) = (0, 0, 0, 0)$.
+    
+    Do đó hệ vector $e_{1}, e_{2}, e_{3}, e_{4}$ độc lập tuyến tính.
+    
+    Số chiều của không gian vector $\mathbb{C}_{4}$ bằng 4 nên hệ vector $e_{1}, e_{2}, e_{3}, e_{4}$ độc lập tuyến tính cực đại, nên cũng là cơ sở của $\mathbb{C}_{4}$.
+
+    \bigskip
+    Xét ràng buộc tuyến tính $x_{1}e'_{1} + x_{2}e'_{2} + x_{3}e'_{3} + x_{4}e'_{4} = (0,0,0,0)$.
+    \begingroup
+    \allowdisplaybreaks
+    \begin{align*}
+                             & \begin{cases}
+                                   1x_{1} + 2x_{2} + 2x_{3} + 2x_{4} = 0 \\
+                                   0x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0 \\
+                                   3x_{1} + 5x_{2} + 5x_{3} + 4x_{4} = 0 \\
+                                   3x_{1} + 4x_{2} + 4x_{3} + 4x_{4} = 0
+                               \end{cases} \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            1x_{1} + 2x_{2} + 2x_{3} + 2x_{4} = 0          \\
+            0x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0          \\
+            0x_{1} + (-1)x_{2} + (-1)x_{3} + (-2)x_{4} = 0 \\
+            0x_{1} + (-2)x_{2} + (-2)x_{3} + (-2)x_{4} = 0
+        \end{cases}               \\
+        \Longleftrightarrow\quad &
+        \begin{cases}
+            1x_{1} + 2x_{2} + 2x_{3} + 2x_{4} = 0       \\
+            0x_{1} + 3x_{2} + 2x_{3} + 3x_{4} = 0       \\
+            0x_{1} + 0x_{2} + (-1)x_{3} + (-3)x_{4} = 0 \\
+            0x_{1} + 0x_{2} + 0x_{3} + 2x_{4} = 0
+        \end{cases}
+    \end{align*}
+    \endgroup
+
+    Hệ phương trình trên chỉ có nghiệm tầm thường $(x_{1}, x_{2}, x_{3}, x_{4}) = (0, 0, 0, 0)$.
+    
+    Do đó hệ vector $e'_{1}, e'_{2}, e'_{3}, e'_{4}$ độc lập tuyến tính.
+    
+    Số chiều của không gian vector $\mathbb{C}_{4}$ bằng 4 nên hệ vector $e'_{1}, e'_{2}, e'_{3}, e'_{4}$ độc lập tuyến tính cực đại, nên cũng là cơ sở của $\mathbb{C}_{4}$.
+
+    \bigskip
+    Từ việc giải các hệ phương trình tuyến tính, ta được:
+    \[
+        \begin{cases}
+            e'_{1} = 1e_{1} + (-3)e_{2} + 1e_{3} + 1e_{4} \\
+            e'_{2} = 0e_{1} + (-1)e_{2} + 2e_{3} + 1e_{4} \\
+            e'_{3} = 1e_{1} + (-2)e_{2} + 2e_{3} + 1e_{4} \\
+            e'_{4} = 1e_{1} + (-1)e_{2} + 1e_{3} + 1e_{4}
+        \end{cases}
+    \]
+    \[
+        \begin{cases}
+            e_{1} = (-1)e'_{1} + (-2)e'_{2} + 2e'_{3} + 1e'_{4} \\
+            e_{2} = (-1)e'_{1} + 0e'_{2} + 0e'_{3} + 1e'_{4}    \\
+            e_{3} = 1e'_{1} + (-1)e'_{2} + 2e'_{3} + 0e'_{4}    \\
+            e_{4} = 1e'_{1} + 2e'_{2} + (-3)e'_{3} + 1e'_{4}    \\
+        \end{cases}
+    \]
+
+    Với một vector bất kỳ $\alpha = (a_{1}, a_{2}, a_{3}, a_{4})$:
+
+    \begin{align*}
+        \alpha & = (a_{1} - a_{2} - a_{3} + a_{4})e_{1} + (a_{2} - a_{4})e_{2} + \left(\frac{1}{2}a_{1} + a_{3} - \frac{1}{2}a_{4} \right)e_{3} + \left(\frac{1}{2}a_{4} - \frac{1}{2}a_{1}\right)e_{4}                                               \\
+        \alpha & = (-2a_{1} + a_{4})e'_{1} + \left(\frac{-9}{2}a_{1} + a_{2} + a_{3} + \frac{1}{2}a_{4}\right)e_{2} + \left(\frac{9}{2}a_{1} - a_{2} - \frac{3}{2}a_{4}\right)e'_{3} + \left(\frac{3}{2}a_{1} - a_{3} + \frac{1}{2}a_{4}\right)e'_{4}.
+    \end{align*}
+\end{proof}
+
+\begin{exercise}
+    Xét xem các tập hợp hàm số thực sau đây có lập thành không gian vector đối với các phép toán thông thường hay không? Nếu có, hãy tìm số chiều của các không gian đó.
+    \begin{enumerate}[label={(\alph*)},itemsep=0pt]
+        \item Tập $\mathbb{R}[X]$ các đa thức của một ẩn $X$.
+        \item Tập $C^{\infty}(\mathbb{R})$ các hàm thực khả vi vô hạn trên $\mathbb{R}$.
+        \item Tập $C^{0}(\mathbb{R})$ các hàm thực liên tục trên $\mathbb{R}$.
+        \item Tập các hàm thực bị chặn trên $\mathbb{R}$.
+        \item Tập các hàm $f: \mathbb{R}\rightarrow\mathbb{R}$ sao cho $\sup_{x\in\mathbb{R}}|f(x)| \le 1$.
+        \item Tập các hàm $f: \mathbb{R}\rightarrow\mathbb{R}$ thỏa mãn điều kiện $f(0) = 0$.
+        \item Tập các hàm $f: \mathbb{R}\rightarrow\mathbb{R}$ thỏa mãn điều kiện $f(0) = -1$.
+        \item Tập các hàm thực đơn điệu trên $\mathbb{R}$.
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    \begin{enumerate}[label*= (\alph*),itemsep=0pt]
+        \item $\mathbb{R}[X]$ là một không gian vector trên $\mathbb{R}$.
+              
+              Xét hệ vector $(1, X, X^{2}, \ldots , X^{n})$
+              
+              Hệ này là độc lập tuyến tính vì $\displaystyle\sum^{n}_{k=0}a_{k}X^{k} = 0$ khi và chỉ khi $a_{k} = 0, \forall k\in\{0, 1, \ldots, n\}$
+              
+              Với $n$ tự nhiên, bất kỳ thì hệ $(1, X, X^{2}, \ldots, X^{n})$ độc lập tuyến tính.
+              
+              Giả sử $\mathbb{R}[X]$ hữu hạn sinh, $\dim\mathbb{R}[X] = m, m\in\mathbb{N}$.
+              
+              Mà hệ vector $(1, X, X^{2}, \ldots, X^{m})$ độc lập tuyến tính, gồm $m + 1$ phần tử. Điều này mâu thuẫn.
+              
+              Do đó $\dim\mathbb{R}[X] = \infty$.
+        \item $C^{\infty}(\mathbb{R})$ là một không gian vector trên $\mathbb{R}$.
+              
+              $C^{\infty}(\mathbb{R})\supset\mathbb{R}[X]$ nên $\dim C^{\infty}(\mathbb{R}) = \infty$.
+        \item $C^{0}(\mathbb{R})$ là một không gian vector trên $\mathbb{R}$.
+              
+              $C^{0}(\mathbb{R})\supset\mathbb{R}[X]$ nên $\dim C^{0}(\mathbb{R}) = \infty$.
+        \item Tập các hàm thực bị chặn trên $\mathbb{R}$ là một không gian vector.
+              
+              Xét dãy hàm $f_{n}(x) = \cos (nx)$. Từng hàm này đều bị chặn. Cụ thể là $\left\vert f_{n}(x)\right\vert \le 1$.
+              
+              Bằng quy nạp theo $n$, ta chứng minh được hệ $(f_{0}, f_{1}, \ldots, f_{n})$ độc lập tuyến tính.
+              
+              Như vậy không gian vector các hàm thực bị chặn trên $\mathbb{R}$ có số chiều là $\infty$.
+        \item Tập các hàm này không lập thành không gian vector. Lấy ví dụ:
+              
+              $f(x) = \cos x$, $2f(x) = 2\cos x$. Mà $\sup_{x\in\mathbb{R}}\left\vert 2\cos x\right\vert = 2$. Tức là phép nhân vector với số thực không đóng trên tập này.
+        \item Tập các hàm $f: \mathbb{R}\rightarrow\mathbb{R}$ thỏa mãn điều kiện $f(0) = 0$ tạo thành một không gian vector trên $\mathbb{R}$.
+              
+              Hệ $(X, X^{2}, \ldots, X^{n})$ độc lập tuyến tính với mọi $n\in\mathbb{N}$
+              
+              Do đó không gian vector này có số chiều là $\infty$.
+        \item Tập các hàm $f: \mathbb{R}\rightarrow\mathbb{R}$ thỏa mãn điều kiện $f(0) = -1$ không tạo thành không gian vector trên $\mathbb{R}$ vì không có phần tử trung lập với phép cộng.
+        \item Tập các hàm thực đơn điệu trên $\mathbb{R}$ không tạo thành một không gian vector trên $\mathbb{R}$.
+              
+              Ví dụ, $f(x) = x^{3}, g(x) = -3x$, hàm $f(x) + g(x) = x^{3} - 3x$ không phải hàm đơn điệu trên $\mathbb{R}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}Định nghĩa hai phép toán cộng và nhân với vô hướng trên tập hợp
+    \[ V = \{ (x, y)\in\mathbb{R}\times\mathbb{R}\mid y > 0 \} \]
+    
+    như sau:
+    \begin{align*}
+        (x, y) + (u, v) & = (x + u, yv) \\
+        a(x, y)         & = (ax, y^{a})
+    \end{align*}
+    
+    Xét xem $V$ có là một không gian vector thực đối với hai phép toán đó không. Nếu có, hãy tìm một cơ sở của không gian ấy.
+\end{exercise}
+
+\begin{proof}
+    Đầu tiên, $V$ đóng với hai phép toán đã được định nghĩa. Bây giờ ta kiểm tra 8 tiên đề không gian vector
+    \begin{enumerate}[label = (V\arabic*)]
+        \item
+              \begin{align*}
+                  ((x_{1}, y_{1}) + (x_{2}, y_{2})) + (x_{3}, y_{3}) & = (x_{1} + x_{2}, y_{1}y_{2}) + (x_{3}, y_{3})       \\
+                                                                     & = ((x_{1} + x_{2}) + x_{3}, (y_{1}y_{2})y_{3})       \\
+                                                                     & = (x_{1} + (x_{2} + x_{3}), y_{1}(y_{1}y_{3}))       \\
+                                                                     & = (x_{1}, y_{1}) + (x_{2} + x_{3}, y_{2}y_{3})       \\
+                                                                     & = (x_{1}, y_{1}) + ((x_{2}, y_{2}) + (x_{3}, y_{3}))
+              \end{align*}
+        \item Phần tử trung lập là $(0, 1)$.
+              \begin{align*}
+                  (x, y) + (0, 1) & = (x + 0, y) = (x, y) \\
+                  (0, 1) + (x, y) & = (0 + x, y) = (x, y)
+              \end{align*}
+        \item
+              \begin{align*}
+                  (x, y) + (-x, y^{-1}) & = (x + (-x), yy^{-1}) = (0, 1) \\
+                  (-x, y^{-1}) + (x, y) & = (-x + x, y^{-1}y) = (0, 1)
+              \end{align*}
+        \item
+              \begin{align*}
+                  (x_{1}, y_{1}) + (x_{2}, y_{2}) & = (x_{1} + x_{2}, y_{1}y_{2})     \\
+                                                  & = (x_{2} + x_{1}, y_{2}y_{1})     \\
+                                                  & = (x_{2}, y_{2}) + (x_{1}, y_{1})
+              \end{align*}
+        \item
+              \begin{align*}
+                  (a + b)(x, y) & = ((a + b)x, y^{a + b})     \\
+                                & = (ax + bx, y^{a}y^{b})     \\
+                                & = (ax, y^{a}) + (bx, y^{b}) \\
+                                & = a(x, y) + b(x, y)
+              \end{align*}
+        \item
+              \begin{align*}
+                  a((x_{1}, y_{1}) + (x_{2}, y_{2})) & = a(x_{1} + x_{2}, y_{1}y_{2})              \\
+                                                     & = (a(x_{1} + x_{2}), y^{a}_{1}y^{a}_{2})    \\
+                                                     & = (ax_{1} + ax_{2}, y^{a}_{1}y^{a}_{2})     \\
+                                                     & = (ax_{1}, y^{a}_{1}) + (ax_{2}, y^{a}_{2}) \\
+                                                     & = a(x_{1},y_{1}) + a(x_{2}, y_{2})
+              \end{align*}
+        \item
+              \begin{align*}
+                  a(b(x, y)) & = a(bx, y^{b})           \\
+                             & = (a(bx), (y^{b}){}^{a}) \\
+                             & = ((ab)x, y^{ab})        \\
+                             & = ab(x, y)
+              \end{align*}
+        \item
+              \begin{align*}
+                  1(x, y) & = (1x, y^{1}) = (x, y)
+              \end{align*}
+    \end{enumerate}
+    
+    Như vậy, $V$ là một không gian vector thực.
+    \begin{align*}
+        (x, y) & = (x, 1) + (0, y)             \\
+               & = (x, 1^{x}) + (0, e^{\ln y}) \\
+               & = x(1, 1) + \ln y (0, e)
+    \end{align*}
+    
+    Xét hệ vector $((1, 1), (0, e))$ và ràng buộc tuyến tính $a(1, 1) + b(0, e) = (0, 1)$
+    \begin{align*}
+        a(1, 1) + b(0, e) = (0, 1) & \Longleftrightarrow (a, 1) + (0, e^{b}) = (0, 1) \\
+        & \Longleftrightarrow (a, e^{b}) = (0, 1)          \\
+        & \Longleftrightarrow
+        \begin{cases}
+            a = 0 \\
+            e^{b} = 1
+        \end{cases} \\
+        & \Longleftrightarrow a = b = 0
+    \end{align*}
+    
+    Như vậy, $((1, 1), (0, e))$ là một hệ sinh độc lập tuyến tính của $V$, và là một cơ sở của $V$.
+\end{proof}
+
+\begin{exercise}Ma trận chuyển từ một cơ sở sang một cơ sở khác thay đổi thế nào nếu:
+    \begin{enumerate}[label = (\alph*),itemsep=0pt]
+        \item Đổi chỗ hai vector trong cơ sở thứ nhất?
+        \item Đổi chỗ hai vector trong cơ sở thứ hai?
+        \item Đổi các vector trong mỗi cơ sở theo thứ tự ngược lại?
+    \end{enumerate}
+\end{exercise}
+
+\begin{proof}
+    Lấy hai cơ sở $(\alpha_{1},\ldots, \alpha_{n})$, $(\beta_{1},\ldots,\beta_{n})$.
+    
+    Ta xét ma trận chuyển cơ sở $(c_{ij}){}_{n\times n}$ chuyển từ cơ sở thứ nhất sang cơ sở thứ hai.
+    \[
+        \beta_{j} = \sum^{n}_{i=1}c_{ij}\alpha_{i}
+    \]
+    \begin{enumerate}[label = (\alph*),itemsep=0pt]
+        \item Đổi chỗ hai vector $\alpha_{i}$ và $\alpha_{j}$ thì hai hàng thứ $i$ và $j$ trong ma trận chuyển cơ sở đổi chỗ.
+        \item Đổi chỗ hai vector $\beta_{i}$ và $\beta_{j}$ thì hai cột thứ $i$ và $j$ trong ma trận chuyển cơ sở đổi chỗ.
+        \item Phép đảo thứ tự vector là hợp thành của nhiều phép đổi chỗ hai vector. Như vậy, khi đảo các vector $\alpha_{i}$ theo thứ tự ngược lại thì thứ tự các vector hàng ngược lại. Sau khi đảo tiếp các vector $\beta_{i}$ theo thứ tự ngược lại thì thứ tự các vector cột ngược lại.
+              
+              Cụ thể hơn, $(c_{ij}){}_{n\times n} \mapsto (d_{ij}){}_{n\times n}$ thì $d_{ij} = c_{(n+1-i)(n+1-j)}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng hai hệ vector $(1, X, X^{2}, \ldots, X^{n})$ và $(1, (X - a), (X - a){}^{2}, \ldots, (X - a){}^{n})$, trong đó $a$ là một số thực, là các cơ sở của không gian $\mathbb{R}[X]{}_{n}$ các đa thức hệ số thực với bậc không vượt quá $n$. Tìm ma trận chuyển từ cơ sở thứ nhất sang cơ sở thứ hai.
+\end{exercise}
+
+\begin{proof}Lấy một đa thức có bậc không quá $n$:
+    \[ P(X) = a_{0} + a_{1}X + a_{2}X^{2} + \cdots + a_{n}X^{n} \]
+    
+    $P(X)$ biểu thị tuyến tính được theo hệ vector $(1, X, X^{2}, \ldots, X^{n})$.
+    
+    Giả sử $P(X) = b_{0} + b_{1}X + b_{2}X^{2} + \cdots + b_{n}X^{n}$.
+    
+    Đồng nhất hai đa thức, ta được $a_{i} = b_{i}, \forall i\in\{0, 1, \ldots, n\}$. Như vậy $P(X)$ biểu thị tuyến tính được theo hệ vector $(1, X, X^{2}, \ldots, X^{n})$ theo cách duy nhất. Do đó hệ này là một cơ sở và $\dim_{\mathbb{R}}\mathbb{R}[X]{}_{n} = n + 1$.
+
+    Nếu $a = 0$ thì hệ vector $(1, (X - a), (X - a){}^{2}, \ldots, (X - a){}^{n})$ trở thành hệ $(1, X, X^{2}, \ldots, X^{n})$, đây là một cơ sở.
+    
+    Do đó ta chỉ xem xét trường hợp $a\ne 0$.
+    
+    Ta xét ràng buộc tuyến tính $\displaystyle\sum^{n}_{k=0}x_{k}(X-a){}^{k} = 0$
+    
+    Khai triển ràng buộc trên bằng khai triển Newton, hệ số của hạng tử $X^{k}$ bằng:
+    \[ \sum^{n}_{i=k}x_{i}\binom{i}{i-k}(-a){}^{i-k} \]
+    
+    Từ ràng buộc tuyến tính và khai triển trên, ta đồng nhất hệ số và thu được hệ phương trình tuyến tính thuần nhất (theo thứ tự, đồng nhất các hệ số của $X^{n}, X^{n-1}, \ldots, X, 1$):
+    \[
+        \begin{cases}
+            x_{n}\dbinom{n}{0} = 0                                                                                              \\
+            x_{n}\dbinom{n}{1}(-a){}^{1} + x_{n-1}\dbinom{n-1}{0}(-a){}^{0} = 0                                                 \\
+            x_{n}\dbinom{n}{2}(-a){}^{2} + x_{n-1}\dbinom{n-1}{1}(-a){}^{1} + x_{n-2}\dbinom{n-2}{0}(-a){}^{0} = 0              \\
+            \vdots                                                                                                              \\
+            x_{n}\dbinom{n}{k}(-a){}^{k} + x_{n-1}\dbinom{n-1}{k-1}(-a){}^{k-1} + \cdots + x_{n-k}\dbinom{n-k}{0}(-a){}^{0} = 0 \\
+            \vdots                                                                                                              \\
+            x_{n}\dbinom{n}{n}(-a){}^{n} + x_{n-1}\dbinom{n-1}{n-1}(-a){}^{n-1} + \cdots + x_{0}\dbinom{0}{0}(-a){}^{0} = 0
+        \end{cases}
+    \]
+    
+    Giải phương trình trên, thay vào phương trình dưới, ta thu được nghiệm duy nhất của hệ là $(x_{n}, x_{n-1},\ldots, x_{0}) = (0,0,\ldots, 0)$.
+    
+    Như vậy $x_{n} = x_{n-1} = \cdots = x_{1} = x_{0} = 0$ nên hệ vector $(1, (X - a), {(X-a)}^{2}, \ldots, {(X-a)}^{n})$ độc lập tuyến tính.
+    
+    Không gian vector ${\mathbb{R}[X]}_{n}$ hữu hạn sinh nên $(1, (X-a), {(X-a)}^{2},\ldots, {(X-a)}^{n})$ cũng là một cơ sở của ${\mathbb{R}[X]}_{n}$.
+
+    \bigskip
+    Bằng khai triển Newton, ta thu được ma trận chuyển cơ sở từ $(1, X, X^{2}, \ldots, X^{n})$ sang $(1, (X-a), {(X-a)}^{2}, \ldots, {(X-a)}^{n})$ là:
+    \[
+        \begin{pmatrix}
+            1      & \binom{1}{1}(-a) & \binom{2}{2}(-a){}^{2} & \cdots & \binom{n}{n}(-a){}^{n}     \\
+            0      & 1                & \binom{2}{1}(-a){}^{1} & \cdots & \binom{n}{n-1}(-a){}^{n-1} \\
+            0      & 0                & 1                      & \cdots & \binom{n}{n-2}(-a){}^{n-2} \\
+            \vdots & \vdots           & \vdots                 & \ddots & \vdots                     \\
+            0      & 0                & 0                      & \cdots & 1
+        \end{pmatrix}
+    \]
+    
+    Các yếu tố của ma trận $(c_{ij}){}_{(n+1)\times(n+1)}$, trong đó, $0\le i, j \le n$ này có thể được xác định nhanh chóng như sau:
+    \[
+        \begin{cases}
+            c_{ij} = \dbinom{j}{i}(-a){}^{j - i} & ,\quad\text{if $i\le j$} \\
+            c_{ij} = 0                           & ,\quad\text{if $i > j$}
+        \end{cases}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Tìm các tọa độ của đa thức $f(X) = a_{0} + a_{1}X + \cdots + a_{n}X^{n}$ đối với hai cơ sở nói trên.
+\end{exercise}
+
+\begin{proof}Tọa độ của $f(X)$ đối với cơ sở $(1, X, \ldots, X^{n})$ là:
+    \[ (a_{0}, a_{1}, \ldots, a_{n}) \]
+    
+    Theo bài toán trên, $(1, (X - a), {(X - a)}^{2}, \ldots, {(X - a)}^{n})$ cũng là một cơ sở của không gian vector ${\mathbb{R}[X]}_{n}$.
+    
+    Từng vector trong cơ sở thứ nhất có thể biểu thị tuyến tính duy nhất theo cơ sở thứ hai.
+    \[
+        \begin{cases}
+            1     & = 1                                                                                                                      \\
+            X     & = a + (X-a)                                                                                                              \\
+            X^{2} & = a^{2} + 2a(X-a) + (X-a){}^{2}                                                                                          \\
+            X^{3} & = a^{3} + 3a^{2}(X-a) + 3a(X-a){}^{2} + (X-a){}^{3}                                                                      \\
+                  & \vdots                                                                                                                   \\
+            X^{n} & = a^{n} + \binom{n}{1}a^{n-1}(X-a) + \binom{n}{2}a^{n-2}(X-a){}^{2} + \cdots + \binom{n}{n-1}(X-a){}^{n-1} + (X-a){}^{n}
+        \end{cases}
+    \]
+    
+    Nhân hai vế của phương trình thứ $k$ với $a_{k}$, rồi cộng vế theo vế, ta thu được
+    \[
+        f(X) = \sum^{n}_{k=0}b_{k}(X-a){}^{k}
+    \]
+    
+    trong đó:
+    \[
+        b_{k} = \sum^{n-k}_{i=0}a_{i}\binom{k+i}{k}a^{i}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Cho không gian vector con $L$ của không gian $\mathbb{R}[X]$ các đa thức hệ số thực. Chứng minh rằng nếu $L$ chứa ít nhất một đa thức bậc $k$ với mọi $k = 0, 1,\ldots, n$, nhưng không chứa đa thức nào với bậc lớn hơn $n$ thì $L$ chính là không gian con ${\mathbb{R}[X]}_{n}$ tất cả các đa thức bậc không vượt quá $n$.
+\end{exercise}
+
+\begin{proof}
+    Đặt các đa thức bậc $0, 1, 2,\ldots, n$ trong $L$ lần lượt là:
+    \[
+        \begin{cases}
+            f_{0}(X) = a_{00}                                                                    \\
+            f_{1}(X) = a_{10} + a_{11}X                                                          \\
+            f_{2}(X) = a_{20} + a_{21}X + a_{22}X^{2}                                            \\
+            \vdots                                                                               \\
+            f_{k}(X) = a_{k0} + a_{k1}X + a_{k2}X^{2} + \cdots + a_{k(k-1)}X^{k-1} + a_{kk}X^{k} \\
+            \vdots                                                                               \\
+            f_{n}(X) = a_{n0} + a_{n1}X + a_{n2}X^{2} + \cdots + a_{n(n-1)}X^{n-1} + a_{nn}X^{n}
+        \end{cases}
+    \]
+    
+    trong đó, $a_{ii}\ne 0, \forall i\in\{0, 1, 2,\ldots, n\}$
+    
+    Ta sẽ chứng minh $X^{k}$ có thể biểu thị tuyến tính được theo hệ vector $(f_{0}(X), f_{1}(X), \ldots, f_{n}(X))$, với mọi $k\in\{0,1,\ldots, n\}$. Cụ thể hơn, ta chứng minh điều này bằng quy nạp.
+    \[ X^{0} = 1 = a^{-1}_{00}a_{00} = a^{-1}_{00}f_{0}(X) \]
+    
+    Giả sử điều trên đúng từ $0$ đến $k-1$, với $k-1 < n$.
+    \begin{align*}
+                         & f_{k}(X) = a_{k0} + a_{k1}X + a_{k2}X^{2} + \cdots + a_{k(k-1)}X^{k-1} + a_{kk}X^{k}      \\
+        \Rightarrow\quad & X^{k} = a^{-1}_{kk}(f_{k}(X) - a_{k0} - a_{k1}X - a_{k2}X^{2} - \cdots a_{k(k-1)}X^{k-1})
+    \end{align*}
+    
+    Theo giả thiết quy nạp, các đa thức $1, X, \ldots, X^{k-1}$ biểu thị tuyến tính được theo $f_{0}(X)$, $f_{1}(X)$, $\ldots$, $f_{n}(X)$ nên đẳng thức trên cho thấy giả thiết vẫn đúng với $k$.
+    
+    Như vậy, hệ $(1, X, \ldots, X^{n})$ biểu thị tuyến tính được theo $(f_{0}(X), f_{1}(X), \ldots, f_{n}(X))$.
+    
+    Xét một đa thức bất kỳ với bậc không quá $n$:
+    \[ f(X) = a_{0} + a_{1}X + a_{2}X^{2} + \cdots + a_{n}X^{n} \]
+    
+    Hiển nhiên $f(X)$ biểu thị tuyến tính được theo $(1, X, \ldots, X^{n})$. Quan hệ \textit{biểu thị tuyến tính} có tính bắc cầu nên $f(X)$ cũng biểu thị tuyến tính được theo $(f_{0}(X), f_{1}(X), \ldots, f_{n}(X))$.
+    
+    Do đó $\operatorname{span}(\{f_{0}(X), f_{1}(X),\ldots, f_{n}(X)\}) = \mathbb{R}[X]{}_{n}$.
+    
+    $L$ không chứa đa thức nào có bậc lớn hơn $n$, cùng với điều trên, ta kết luận $L = \mathbb{R}[X]{}_{n}$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng tập hợp các vector $(x_{1}, x_{2}, \ldots, x_{n})\in\mathbb{R}_{n}$ thỏa mãn hệ thức $x_{1} + 2x_{2} + \cdots + nx_{n} = 0$ là một không gian vector con của $\mathbb{R}_{n}$. Tìm số chiều và một cơ sở của không gian vector con đó.
+\end{exercise}
+
+\begin{proof}
+    Ta chứng minh bài toán tổng quát hơn: \textit{tập hợp $U$ các vector $(x_{1}, x_{2}, \ldots, x_{n})\in\mathbb{R}_{n}$ thỏa mãn hệ thức $\displaystyle\sum^{n}_{i=1}a_{i}x_{i} = 0$ là một không gian vector con của $\mathbb{R}_{n}$}.
+    
+    $\mathbf{x} = (x_{1}, x_{2}, \ldots, x_{n}), \mathbf{y} = (y_{1}, y_{2}, \ldots, y_{n})$.
+    
+    $\mathbf{x} + \mathbf{y} = (x_{1} + y_{1}, x_{2} + y_{2}, \ldots, x_{n} + y_{n})$.
+    
+    $\displaystyle\sum^{n}_{i=0}a_{i}(x_{i} + y_{i}) = \displaystyle\sum^{n}_{i=0}a_{i}x_{i} + \displaystyle\sum^{n}_{i=0}a_{i}y_{i} = 0 + 0 = 0$.
+    
+    $\displaystyle\sum^{n}_{i=0}a_{i}(ax_{i}) = a\displaystyle\sum^{n}_{i=0}a_{i}x_{i} = a\cdot 0 = 0$.
+    
+    Do đó $U$ là một không gian vector con của $\mathbb{R}_{n}$.
+    
+    Xét không gian con $W = \operatorname{span}(\{(a_{1},\ldots, a_{n})\})$. $\dim W = 1$.
+    
+    $\mathbf{x} = (x_{1}, \ldots, x_{n}) \in \mathbb{R}_{n}$.
+    \[
+        \underbrace{(x_{1},\ldots, x_{n})}_{\in\mathbb{R}_{n}} = \underbrace{\left(x_{1} - \frac{a_{1}\sum^{n}_{i=1} a_{i}x_{i}}{\sum^{n}_{i=1} a^{2}_{i}},\ldots, x_{n} - \frac{a_{n}\sum^{n}_{i=1}a_{i}x_{i}}{\sum^{n}_{i=1}a^{2}_{i}}\right)}_{\in U} + \underbrace{\frac{\sum^{n}_{i=1}a_{i}x_{i}}{\sum^{n}_{i=1}a^{2}_{i}}(a_{1},\ldots,a_{n})}_{\in W}
+    \]
+    
+    Do đó $\mathbb{R}_{n} = U + W$. Mà $U\cap W = \{ (0,\ldots, 0) \}$ nên $\mathbb{R}_{n} = U\oplus W$.
+    
+    Vì $\dim\mathbb{R}_{n} = \dim U + \dim W$ nên $\dim U = n - \dim W$.
+    
+    Nếu $(a_{1},\ldots, a_{n}) = (0,\ldots,0)$ thì $\dim W = 0$ nên $\dim U = n$.
+    
+    Lúc này một cơ sở của $\mathbb{R}_{n}$ là cơ sở của $U$.
+    
+    Còn nếu $(a_{1},\ldots, a_{n}) \ne (0,\ldots,0)$ thì $\dim W = 1$, kéo theo $\dim U = n - 1$.
+    
+    Không mất tính tổng quát, giả sử $a_{1}\ne 0$, xét hệ vector sau:
+    \[
+        \begin{cases}
+            (-a_{2}, a_{1}, 0, \ldots, 0) \\
+            (-a_{3}, 0, a_{1}, \ldots, 0) \\
+            \ldots                        \\
+            (-a_{n}, 0, 0, \ldots, a_{1})
+        \end{cases}
+    \]
+    
+    Xét biểu thị tuyến tính:
+    \[ b_{2}(-a_{2}, a_{1}, 0, \ldots, 0) + b_{3}(-a_{3}, 0, a_{1}, \ldots, 0) + \cdots + b_{n}(-a_{n}, 0, 0, \ldots, a_{1}) = (0,0,0,\ldots, 0) \]
+    
+    Đồng nhất các yếu tố, ta suy ra $b_{2}a_{1} = b_{3}a_{1} = \cdots = b_{n}a_{1} = 0$ nên $b_{2} = b_{3} = \cdots = b_{n}$ nên hệ vector trên độc lập tuyến tính. Số vector trong hệ này bằng $n - 1$, bằng số chiều của $U$ nên đây là một cơ sở của $U$.
+\end{proof}
+
+\begin{exercise}
+    Tìm tất cả các $\mathbb{F}_{2}$-không gian vector con một và hai chiều của $\mathbb{F}^{3}_{2}$. Giải bài toán tương tự đối với không gian $\mathbb{F}^{3}_{p}$, trong đó $p$ là một số nguyên tố.
+\end{exercise}
+
+\begin{proof}
+    Các không gian vector con một chiều của $\mathbb{F}^{3}_{2}$ là:
+    \begin{multline*}
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{0}{0}{1}
+        \right\},
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{0}{1}{0}
+        \right\},
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{1}{0}{0}
+        \right\}, \\
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{0}{1}{1}
+        \right\},
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{1}{1}{0}
+        \right\},
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{1}{0}{1}
+        \right\},
+        \left\{
+        \vectorcolumn{0}{0}{0},
+        \vectorcolumn{1}{1}{1}
+        \right\}
+    \end{multline*}
+        
+    Các không gian vector con hai chiều của $\mathbb{F}^{3}_{2}$ là:
+    \[
+        \begin{split}
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{0}{1},
+            \vectorcolumn{0}{1}{0},
+            \vectorcolumn{0}{1}{1}
+            \right\},
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{0}{1},
+            \vectorcolumn{1}{0}{0},
+            \vectorcolumn{1}{0}{1}
+            \right\},
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{1}{0},
+            \vectorcolumn{1}{0}{0},
+            \vectorcolumn{1}{1}{0}
+            \right\}, \\
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{0}{1},
+            \vectorcolumn{1}{1}{0},
+            \vectorcolumn{1}{1}{1}
+            \right\},
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{1}{0},
+            \vectorcolumn{1}{0}{1},
+            \vectorcolumn{1}{1}{1}
+            \right\},
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{1}{0}{0},
+            \vectorcolumn{0}{1}{1},
+            \vectorcolumn{1}{1}{1}
+            \right\}, \\
+            \left\{
+            \vectorcolumn{0}{0}{0},
+            \vectorcolumn{0}{1}{1},
+            \vectorcolumn{1}{1}{0},
+            \vectorcolumn{1}{0}{1}
+            \right\}
+        \end{split}
+    \]
+
+    Chưa xác định được các không gian con một và hai chiều trong trường hợp tổng quát.
+\end{proof}
+
+\begin{exercise}\label{symmetric-matrices}
+    Chứng minh rằng các ma trận vuông đối xứng cỡ $n$ với các yếu tố trong trường $\mathbb{F}$ lập thành một không gian vector con của $M(n\times n,\mathbb{F})$. Tìm số chiều và một cơ sở của $\mathbb{F}$-không gian vector con đó.
+\end{exercise}
+
+\begin{proof}
+    $P = (p_{ij}){}_{n\times n}, Q = (q_{ij}){}_{n\times n}$ là hai ma trận đối xứng.
+    
+    $P + Q = (p_{ij} + q_{ij}){}_{n\times n}$.
+    
+    Vì $p_{ij} = p_{ji}, q_{ij} = q_{ji}$ nên $p_{ij} + q_{ij} = p_{ji} + q_{ji}$, do đó $P + Q$ cũng là ma trận đối xứng.
+    
+    $aP = (ap_{ij}){}_{n\times n}$.
+    
+    Vì $p_{ij} = p_{ji}$ nên $ap_{ij} = ap_{ji}$, do đó $aP$ cũng là ma trận đối xứng.
+    
+    Như vậy tập hợp các ma trận đối xứng cỡ $n$ với các yếu tố trong trường $\mathbb{F}$ là một không gian vector con của $M(n\times n,\mathbb{F})$.
+    
+    Đặt $S_{ij}$ là ma trận vuông cỡ $n$ sao cho yếu tố hàng $i$, cột $j$ và yếu tố hàng $j$, cột $i$ bằng $1$, các yếu tố còn lại bằng $0$.
+    \[ P = \displaystyle\sum_{1\le i\le j \le n}p_{ij}S_{ij} \]
+    
+    Xét biểu thị tuyến tính $0 = \displaystyle\sum_{1\le i\le j\le n}s_{ij}S_{ij}$.
+    \[
+        \Rightarrow
+        \begin{pmatrix}
+            0      & 0      & \cdots & 0      \\
+            0      & 0      & \cdots & 0      \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0      & 0      & \cdots & 0
+        \end{pmatrix} =
+        \begin{pmatrix}
+            s_{11} & s_{12} & \cdots & s_{1n} \\
+            s_{12} & s_{22} & \cdots & s_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            s_{1n} & s_{2n} & \cdots & s_{nn}
+        \end{pmatrix}
+    \]
+    
+    Đồng nhất các yếu tố, ta suy ra $s_{ij} = 0,\forall i, j$, tức là hệ $\{S_{ij}\}{}_{1\le i \le j \le n}$ độc lập tuyến tính.
+    
+    $P$ luôn biểu thị tuyến tính được theo hệ độc lập tuyến tính $\{S_{ij}\}{}_{1\le i \le j \le n}$ nên đây chính là một cơ sở.
+    
+    Số chiều của không gian vector các ma trận vuông đối xứng cỡ $n$ là $\dfrac{n(n + 1)}{2} = \dbinom{n+1}{2}$.
+\end{proof}
+
+\begin{exercise}\label{skew-symmetric-matrices}
+    Chứng minh rằng các ma trận vuông phản đối xứng cỡ $n$ lập thành một không gian vector con của $M(n\times n,\mathbb{F})$. Tìm số chiều và một cơ sở của $\mathbb{F}$-không gian vector con đó.
+\end{exercise}
+
+\begin{proof}
+    $P = (p_{ij}){}_{n\times n}$ và $Q = (q_{ij}){}_{n\times n}$ là hai ma trận phản đối xứng.
+    
+    $P + Q = (p_{ij} + q_{ij}){}_{n\times n}$.
+    
+    Vì $p_{ij} + p_{ji} = 0$, $q_{ij} + q_{ji} = 0$ nên $(p_{ij} + q_{ij}) + (p_{ji} + q_{ji}) = 0$. Do đó $P + Q$ cũng là ma trận phản đối xứng.
+    
+    $aP = (ap_{ij}){}_{n\times n}$.
+    
+    Vì $p_{ij} + p_{ji} = 0$ nên $ap_{ij} + ap_{ji} = 0$. Do đó $aP$ cũng là ma trận phản đối xứng.
+    
+    Vậy các ma trận phản đối xứng lập thành một không gian vector con của $M(n\times n,\mathbb{F})$.
+    
+    Để tìm số chiều và cơ sở của không gian vector con này, chúng ta xét hai trường hợp sau đây
+    \begin{enumerate}[label={\textbf{Trường hợp \arabic*.}},itemindent=2cm]
+        \item $\text{Char}(\mathbb{F})\ne 2$
+              
+              $P$ là ma trận phản đối xứng nên $p_{ii} + p_{ii} = 0$. Mà đặc số của $\mathbb{F}$ khác $2$ nên $p_{ii} = 0$.
+              
+              Đặt $A_{ij}$ là ma trận vuông cỡ $n$ mà yếu tố hàng $i$, cột $j$ bằng $1$, yếu tố hàng $j$, cột $i$ bằng $-1$, các yếu tố còn lại bằng $0$.
+              \[ P = \sum_{1\le i < j \le n}p_{ij}A_{ij} \]
+              
+              Xét biểu thị tuyến tính $0 = \displaystyle\sum_{1\le i < j\le n}a_{ij}A_{ij}$
+              \[
+                  \begin{pmatrix}
+                      0      & 0      & \cdots & 0      \\
+                      0      & 0      & \cdots & 0      \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      0      & 0      & \cdots & 0
+                  \end{pmatrix} =
+                  \begin{pmatrix}
+                      0       & a_{12}  & \cdots & a_{1n} \\
+                      -a_{12} & 0       & \cdots & a_{2n} \\
+                      \vdots  & \vdots  & \ddots & \vdots \\
+                      -a_{1n} & -a_{2n} & \cdots & 0
+                  \end{pmatrix}
+              \]
+              
+              Đồng nhất hệ số, ta được $a_{ij} = 0$. Do đó hệ vector $\{ A_{ij} \}{}_{1\le i < j \le n}$ độc lập tuyến tính.
+              
+              Mọi ma trận phản đối xứng $P$ biểu thị tuyến tính được qua hệ độc lập tuyến tính $\{ A_{ij} \}{}_{1\le i < j \le n}$ nên $\{ A_{ij} \}{}_{1\le i < j \le n}$ là một cơ sở.
+              
+              Vậy số chiều của không gian vector các ma trận phản đối xứng là $\dfrac{n(n-1)}{2} = \dbinom{n}{2}$, cơ sở là hệ các vector $\{ A_{ij} \}{}_{1\le i < j \le n}$.
+        \item $\text{Char}(\mathbb{F}) = 2$
+              
+              Đặc số của $\mathbb{F}$ bằng $2$ nên $p_{ii} + p_{ii} = 0, \forall p_{ii}$.
+              
+              Đặt $A_{ij} (1\le i < j\le n)$ là ma trận vuông cỡ $n$ mà yếu tố hàng $i$, cột $j$ bằng $1$, yếu tố hàng $j$, cột $i$ bằng $-1$, các yếu tố còn lại bằng $0$. $A_{ii}$ là ma trận vuông cỡ $n$, yếu tố hàng $i$, cột $i$ bằng $1$, các yếu tố còn lại bằng $0$.
+              \[ P = \sum^{n}_{i=1}p_{ii}A_{ii} + \sum_{1\le i < j \le n}p_{ij}A_{ij} \]
+              
+              Xét biểu thị tuyến tính $0 = \sum^{n}_{i=1}a_{ii}A_{ii} + \sum_{1\le i < j \le n}a_{ij}A_{ij}$
+              \[
+                  \begin{pmatrix}
+                      0      & 0      & \cdots & 0      \\
+                      0      & 0      & \cdots & 0      \\
+                      \vdots & \vdots & \ddots & \vdots \\
+                      0      & 0      & \cdots & 0
+                  \end{pmatrix} =
+                  \begin{pmatrix}
+                      a_{11}  & a_{12}  & \cdots & a_{1n} \\
+                      -a_{12} & a_{22}  & \cdots & a_{2n} \\
+                      \vdots  & \vdots  & \ddots & \vdots \\
+                      -a_{1n} & -a_{2n} & \cdots & a_{nn}
+                  \end{pmatrix}
+              \]
+              
+              Đồng nhất hệ số, ta được $a_{ij} = 0, \forall 1\le i\le j\le n$. Do đó hệ vector $\{ A_{ij} \}{}_{1\le i \le j \le n}$ độc lập tuyến tính.
+              
+              Mọi ma trận phản đối xứng $P$ đều biểu thị tuyến tính được qua hệ độc lập tuyến tính $\{ A_{ij} \}{}_{1\le i \le j \le n}$ nên $\{ A_{ij} \}{}_{1\le i \le j\le n}$ là một cơ sở.
+              
+              Vậy số chiều của không gian vector các ma trận phản đối xứng là $\dfrac{n(n + 1)}{2} = \dbinom{n+1}{2}$.
+    \end{enumerate}
+\end{proof}
+
+\begin{exercise}
+    Giả sử $V_{1}\subset V_{2}$ là các không gian vector con của $V$. Chứng minh rằng $\dim V_{1} \le \dim V_{2}$, đẳng thức xảy ra khi và chỉ khi $V_{1} = V_{2}$. Khẳng định ``đẳng thức xảy ra khi và chỉ khi $V_{1} = V_{2}$'' có còn đúng không nếu $V_{1}$ và $V_{2}$ là các không gian vector con bất kì của $V$?
+\end{exercise}
+
+\begin{proof}
+    $V_{1}\subset V_{2}$ thì mọi hệ độc lập tuyến tính trong $V_{1}$ cũng độc lập tuyến tính trong $V_{2}$.
+
+    Như vậy, cơ sở của $V_{1}$ cũng độc lập tuyến tính trong $V_{2}$.
+    
+    Nếu cơ sở của $V_{1}$ là độc lập tuyến tính cực đại trong $V_{2}$ thì $V_{1}$ và $V_{2}$ có cùng cơ sở, do đó $V_{1} = V_{2}$ và $\dim V_{1} = \dim V_{2}$.
+    
+    Nếu cơ sở của $V_{1}$ chưa phải độc lập tuyến tính cực đại trong $V_{2}$ thì $\dim V_{1} < \dim V_{2}$.
+    
+    Lập luận trên cho thấy $\dim V_{1} \le \dim V_{2}$, đẳng thức xảy ra khi và chỉ khi $V_{1} = V_{2}$.
+    
+    Khẳng định ``đẳng thức xảy ra khi và chỉ khi $V_{1} = V_{2}$'' nói chung không đúng. Ví dụ:
+    
+    Trên trường số thực, hai không gian vector con của $\mathbb{R}_{2}$ là $\operatorname{span}(\{ (1,0) \})$ và $\operatorname{span}(\{ (0,1) \})$ đều có số chiều bằng $1$ nhưng hai không gian này lại không bằng nhau.
+\end{proof}
+
+\begin{exercise}
+    Giả sử $V_{1}, V_{2}$ là các không gian vector con của $V$. Chứng minh rằng nếu $\dim V_{1} + \dim V_{2} > \dim V$ thì $V_{1}\cap V_{2}$ chứa ít nhất một vector khác không.
+\end{exercise}
+
+\begin{proof}
+    Theo công thức Grassmann, $\dim (V_{1}\cap V_{2}) = \dim V_{1} + \dim V_{2} - \dim (V_{1} + V_{2}) > \dim V - \dim (V_{1} + V_{2})\geq 0$. 
+    
+    Do đó $V_{1}\cap V_{2}$ không phải không gian vector không, và chứa ít nhất một vector khác không.
+\end{proof}
+
+\begin{exercise}
+    Với giả thiết như bài tập trước, chứng minh rằng nếu $\dim(V_{1} + V_{2}) = \dim(V_{1}\cap V_{2}) + 1$ thì $V_{1} + V_{2}$ trùng với một trong hai không gian con đã cho, còn $V_{1}\cap V_{2}$ trùng với không gian con còn lại.
+\end{exercise}
+
+\begin{proof}
+    $V_{1}\cap V_{2}$ là không gian con của $V_{1}, V_{2}$ nên $\dim V_{1} \geq \dim(V_{1}\cap V_{2})$ và $\dim V_{2} \geq \dim(V_{1}\cap V_{2})$.
+
+    Mà $\dim V_{1} + \dim V_{2} = \dim (V_{1} + V_{2}) + \dim(V_{1}\cap V_{2}) = 1 + 2\dim (V_{1}\cap V_{2})$.
+
+    Vì $\dim V_{1}, \dim V_{2}, \dim (V_{1}\cap V_{2})$ là các số nguyên không âm nên đúng một trong hai điều sau xảy ra
+    \begin{itemize}
+        \item $\dim V_{1} = \dim (V_{1} \cap V_{2})$, $\dim V_{2} = 1 + \dim (V_{1}\cap V_{2}) = \dim(V_{1} + V_{2})$. Do đó $V_{1} = V_{1}\cap V_{2}$ (vì $V_{1}\cap V_{2}$ là không gian con của $V_{1}$) và $V_{2} = V_{1} + V_{2}$ (vì $V_{2}$ là không gian con của $V_{1} + V_{2}$).
+        \item $\dim V_{1} = 1 + \dim (V_{1}\cap V_{2}) = \dim(V_{1} + V_{2})$, $\dim V_{2} = \dim (V_{1} \cap V_{2})$. Do đó $V_{1} = V_{1} + V_{2}$ (vì $V_{1}$ là không gian con của $V_{1} + V_{2}$) và $V_{2} = V_{1}\cap V_{2}$ (vì $V_{1}\cap V_{2}$ là không gian con của $V_{2}$) .
+    \end{itemize}
+\end{proof}
+
+Tìm hạng của các hệ vector sau đây:
+
+\begin{exercise}
+    $\alpha_{1} = (1,2,0,1)$, $\alpha_{2} = (1,1,1,0)$, $\alpha_{3} = (1,0,1,0)$, $\alpha_{4} = (1,3,0,1)$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \begin{align*}
+        \begin{bmatrix}
+            \alpha_{1} \\
+            \alpha_{2} \\
+            \alpha_{3} \\
+            \alpha_{4}
+        \end{bmatrix}                          & =
+        \begin{pmatrix}
+            1 & 2 & 0 & 1 \\
+            1 & 1 & 1 & 0 \\
+            1 & 0 & 1 & 0 \\
+            1 & 3 & 0 & 1
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}              \\
+            \alpha_{2} - \alpha_{1} \\
+            \alpha_{3} - \alpha_{1} \\
+            \alpha_{4} - \alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 0 & 1  \\
+            0 & -1 & 1 & -1 \\
+            0 & -2 & 1 & -1 \\
+            0 & 1  & 0 & 0
+        \end{pmatrix}                            \\
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                            \\
+            \alpha_{2} - \alpha_{1}               \\
+            \alpha_{3} - 2\alpha_{2} + \alpha_{1} \\
+            \alpha_{4} + \alpha_{2} - 2\alpha_{1}
+        \end{bmatrix} & =
+        \begin{pmatrix}
+            1 & 2  & 0  & 1  \\
+            0 & -1 & 1  & -1 \\
+            0 & 0  & -1 & 1  \\
+            0 & 0  & 1  & -1
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                            \\
+            \alpha_{2} - \alpha_{1}               \\
+            \alpha_{3} - 2\alpha_{2} + \alpha_{1} \\
+            \alpha_{4} + \alpha_{3} -\alpha_{2} - \alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 0  & 1  \\
+            0 & -1 & 1  & -1 \\
+            0 & 0  & -1 & 1  \\
+            0 & 0  & 0  & 0
+        \end{pmatrix}
+    \end{align*}
+    \par Như vậy, $\operatorname{rank}(\alpha_{1},\alpha_{2},\alpha_{3},\alpha_{4}) = 3$.
+\end{proof}
+
+\begin{exercise}
+    $\alpha_{1} = (1,1,1,1)$, $\alpha_{2} = (1,3,1,3)$, $\alpha_{3} = (1,2,0,2)$, $\alpha_{4} = (1,2,1,2)$, $\alpha_{5} = (3,1,3,1)$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    \begin{align*}
+        \begin{bmatrix}
+            \alpha_{1} \\
+            \alpha_{2} \\
+            \alpha_{3} \\
+            \alpha_{4} \\
+            \alpha_{5}
+        \end{bmatrix}                                           & =
+        \begin{pmatrix}
+            1 & 1 & 1 & 1 \\
+            1 & 3 & 1 & 3 \\
+            1 & 2 & 0 & 2 \\
+            1 & 2 & 1 & 2 \\
+            3 & 1 & 3 & 1
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}            \\
+            \alpha_{2}-\alpha_{1} \\
+            \alpha_{3}-\alpha_{1} \\
+            \alpha_{4}-\alpha_{3} \\
+            \alpha_{5}-3\alpha_{1}+\alpha_{4}-\alpha_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1 & 1  & 1 \\
+            0 & 2 & 0  & 2 \\
+            0 & 1 & -1 & 1 \\
+            0 & 0 & 1  & 0 \\
+            0 & 0 & 0  & 0
+        \end{pmatrix}                                              \\
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                                             \\
+            \alpha_{2}-\alpha_{1}                                  \\
+            \alpha_{3}-\frac{1}{2}\alpha_{2}+\frac{1}{2}\alpha_{1} \\
+            \alpha_{4} - \alpha_{3}                                \\
+            \alpha_{5} - 3\alpha_{1} + \alpha_{4} - \alpha_{2}
+        \end{bmatrix} & =
+        \begin{pmatrix}
+            1 & 1 & 1  & 1 \\
+            0 & 2 & 0  & 2 \\
+            0 & 0 & -1 & 0 \\
+            0 & 0 & 1  & 0 \\
+            0 & 0 & 0  & 0
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                                                 \\
+            \alpha_{2}-\alpha_{1}                                      \\
+            \alpha_{3}-\frac{1}{2}\alpha_{2}+\frac{1}{2}\alpha_{1}     \\
+            \alpha_{4} - \frac{1}{2}\alpha_{2} + \frac{1}{2}\alpha_{1} \\
+            \alpha_{5} - 3\alpha_{1} + \alpha_{4} - \alpha_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1 & 1  & 1 \\
+            0 & 2 & 0  & 2 \\
+            0 & 0 & -1 & 0 \\
+            0 & 0 & 0  & 0 \\
+            0 & 0 & 0  & 0
+        \end{pmatrix}
+    \end{align*}
+    
+    Như vậy, $\operatorname{rank}(\alpha_{1},\alpha_{2},\alpha_{3},\alpha_{4},\alpha_{5}) = 3$.
+\end{proof}
+
+\par Tìm một cơ sở của tổng và một cơ sở của giao của các không gian vector con sinh bởi các hệ vector $\alpha_{1},\ldots,\alpha_{k}$ và $\beta_{1},\ldots,\beta_{\ell}$ sau đây:
+
+\begin{exercise}
+    $\alpha_{1} = (1,2,1), \alpha_{2} = (1,1,-1), \alpha_{3} = (1,3,3)$,
+    
+    $\beta_{1} = (2,3,-1), \beta_{2} = (1,2,2), \beta_{3} = (1,1,-3)$.
+\end{exercise}
+
+\begin{proof}[Lời giải]$A = \operatorname{span}(\alpha_{1},\alpha_{2},\alpha_{3})$, $B = \operatorname{span}(\beta_{1},\beta_{2},\beta_{3})$.
+    \[
+        \begin{bmatrix}
+            \alpha_{1} \\
+            \alpha_{2} \\
+            \alpha_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2 & 1  \\
+            1 & 1 & -1 \\
+            1 & 3 & 3
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}            \\
+            \alpha_{2}-\alpha_{1} \\
+            \alpha_{3}+\alpha_{2}-2\alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  \\
+            0 & -1 & -2 \\
+            0 & 0  & 0
+        \end{pmatrix}
+    \]
+    \[
+        \begin{bmatrix}
+            \beta_{1} \\
+            \beta_{2} \\
+            \beta_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            2 & 3 & -1 \\
+            1 & 2 & 2  \\
+            1 & 1 & -3
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \beta_{1}            \\
+            2\beta_{2}-\beta_{1} \\
+            \beta_{3}+\beta_{2}-\beta_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            2 & 3 & -1 \\
+            0 & 1 & 5  \\
+            0 & 0 & 0
+        \end{pmatrix}
+    \]
+    
+    Suy ra $\operatorname{rank}(\alpha_{1},\alpha_{2},\alpha_{3}) = \operatorname{rank}(\beta_{1},\beta_{2},\beta_{3}) = 2$.
+    
+    Một cơ sở của $\operatorname{span}(\alpha_{1},\alpha_{2},\alpha_{3})$ là $(1,2,1), (0,-1,-2)$.
+    
+    Một cơ sở của $\operatorname{span}(\beta_{1},\beta_{2},\beta_{3})$ là $(2,3,-1), (0,1,5)$.
+    
+    Tương tự phương pháp tính hạng của hệ vector, ta tính được
+    \[ \operatorname{rank}((2,3,-1),(1,2,1),(0,1,5),(0,-1,-2)) = 3. \]
+    
+    Vậy $\dim (A + B) = 3 = \dim\mathbb{C}_{3}$ nên một cơ sở của $A + B$ là $(1,0,0), (0,1,0), (0,0,1)$.
+    
+    Ta tìm $A\cap B$. Một vector thuộc $A\cap B$ biểu thị tuyến tính được theo $\alpha_{1}, \alpha_{2}, \alpha_{3}$ và $\beta_{1}, \beta_{2}, \beta_{3}$. Xét ràng buộc sau
+    \[ a_{1}(1,2,1) + a_{2}(0,-1,-2) = b_{1}(2,3,-1) + b_{2}(0,1,5) \]
+    
+    Giải ra ta được
+    \[
+        \begin{cases}
+            a_{1} = 3a_{2}                              \\
+            b_{1} = \frac{1}{2}a_{1} = \frac{3}{2}a_{2} \\
+            b_{2} = \frac{1}{2}a_{1} - a_{2} = \frac{1}{2}a_{2}
+        \end{cases}
+    \]
+    
+    Vậy $A\cap B = \operatorname{span}(3(1,2,1) + (0,-1,-2)) = \operatorname{span}(3,5,1)$. Cơ sở của $A\cap B$ là $(3,5,1)$.
+\end{proof}
+
+\begin{exercise}
+    $\alpha_{1} = (1,2,1,-2), \alpha_{2} = (2,3,1,0), \alpha_{3} = (1,2,2,-3)$,
+    
+    $\beta_{1} = (1,1,1,1), \beta_{2} = (1,0,1,-1), \beta_{3} = (1,3,0,-4)$.
+\end{exercise}
+
+\begin{proof}[Lời giải]
+    $A = \operatorname{span}(\alpha_{1},\alpha_{2},\alpha_{3})$, $B = \operatorname{span}(\beta_{1},\beta_{2},\beta_{3})$.
+    \begin{align*}
+        \begin{bmatrix}
+            \alpha_{1} \\
+            \alpha_{2} \\
+            \alpha_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2 & 1 & -2 \\
+            2 & 3 & 1 & 0  \\
+            1 & 2 & 2 & -3
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}               \\
+            \alpha_{2} - 2\alpha_{1} \\
+            \alpha_{3} - \alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2 \\
+            0 & -1 & -1 & 4  \\
+            0 & 0  & 1  & -1
+        \end{pmatrix}
+    \end{align*}
+    
+    Do đó $\operatorname{rank}(\alpha_{1}, \alpha_{2}, \alpha_{3}) = 3$.
+    \begin{align*}
+        \begin{bmatrix}
+            \beta_{1} \\
+            \beta_{2} \\
+            \beta_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1 & 1 & 1  \\
+            1 & 0 & 1 & -1 \\
+            1 & 3 & 0 & -4
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \beta_{1}             \\
+            \beta_{2} - \beta_{1} \\
+            \beta_{3} + 2\beta_{2} - 3\beta_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1  & 1  & 1  \\
+            0 & -1 & 0  & -2 \\
+            0 & 0  & -1 & -9
+        \end{pmatrix}
+    \end{align*}
+    
+    Do đó $\operatorname{rank}(\beta_{1}, \beta_{2}, \beta_{3}) = 3$.
+    
+    $(\alpha_{1}, \alpha_{2}, \alpha_{3})$ là một cơ sở của $A$. $(\beta_{1}, \beta_{2}, \beta_{3})$ là một cơ sở của $B$.
+    \begin{align*}
+                        & \begin{bmatrix}
+                              \alpha_{1} \\
+                              \beta_{1}  \\
+                              \alpha_{2} \\
+                              \beta_{2}  \\
+                              \alpha_{3} \\
+                              \beta_{3}
+                          \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2 & 1 & -2 \\
+            1 & 1 & 1 & 1  \\
+            2 & 3 & 1 & 0  \\
+            1 & 0 & 1 & -1 \\
+            1 & 2 & 2 & -3 \\
+            1 & 3 & 0 & -4
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}               \\
+            \beta_{1}                \\
+            \alpha_{2} - 2\alpha_{1} \\
+            \beta_{2} - \beta_{1}    \\
+            \alpha_{3} - \alpha_{1}  \\
+            \beta_{3} + 2\beta_{2} - 3\beta_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2 \\
+            1 & 1  & 1  & 1  \\
+            0 & -1 & -1 & 4  \\
+            0 & -1 & 0  & -2 \\
+            0 & 0  & 1  & -1 \\
+            0 & 0  & -1 & -9
+        \end{pmatrix}                 \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}                                       \\
+            \beta_{1} - \alpha_{1}                           \\
+            \alpha_{2} - 2\alpha_{1}                         \\
+            \beta_{2} - \beta_{1} - \alpha_{2} + 2\alpha_{1} \\
+            \alpha_{3} - \alpha_{1}                          \\
+            \beta_{3} + 2\beta_{2} - 3\beta_{1} - \alpha_{3} + \alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2  \\
+            0 & -1 & 0  & 3   \\
+            0 & -1 & -1 & 4   \\
+            0 & 0  & 1  & -6  \\
+            0 & 0  & 1  & -1  \\
+            0 & 0  & 0  & -10
+        \end{pmatrix}                \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}                                                    \\
+            \beta_{1} - \alpha_{1}                                        \\
+            \alpha_{2} - \beta_{1} - \alpha_{1}                           \\
+            \beta_{2} - \beta_{1} - \alpha_{2} + 2\alpha_{1}              \\
+            \alpha_{3} + \alpha_{2} - 3\alpha_{1} + \beta_{1} - \beta_{2} \\
+            \beta_{3} + 2\beta_{2} - 3\beta_{1} - \alpha_{3} + \alpha_{1}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2  \\
+            0 & -1 & 0  & 3   \\
+            0 & 0  & -1 & 1   \\
+            0 & 0  & 1  & -6  \\
+            0 & 0  & 0  & 5   \\
+            0 & 0  & 0  & -10
+        \end{pmatrix}                \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}                                                    \\
+            \beta_{1} - \alpha_{1}                                        \\
+            \alpha_{2} - \beta_{1} - \alpha_{1}                           \\
+            \beta_{2} - 2\beta_{1} + \alpha_{1}                           \\
+            \alpha_{3} + \alpha_{2} - 3\alpha_{1} + \beta_{1} - \beta_{2} \\
+            \beta_{3} - \beta_{1} + \alpha_{3} + \alpha_{1} + 2\alpha_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2 \\
+            0 & -1 & 0  & 3  \\
+            0 & 0  & -1 & 1  \\
+            0 & 0  & 0  & -5 \\
+            0 & 0  & 0  & 5  \\
+            0 & 0  & 0  & 0
+        \end{pmatrix}                 \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}                                        \\
+            \beta_{1} - \alpha_{1}                            \\
+            \alpha_{2} - \beta_{1} - \alpha_{1}               \\
+            \beta_{2} - 2\beta_{1} + \alpha_{1}               \\
+            \alpha_{3} + \alpha_{2} - 2\alpha_{1} - \beta_{1} \\
+            \beta_{3} - \beta_{1} + \alpha_{3} + \alpha_{1} + 2\alpha_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 2  & 1  & -2 \\
+            0 & -1 & 0  & 3  \\
+            0 & 0  & -1 & 1  \\
+            0 & 0  & 0  & -5 \\
+            0 & 0  & 0  & 0  \\
+            0 & 0  & 0  & 0
+        \end{pmatrix}
+    \end{align*}
+    
+    Do đó $\operatorname{rank}(\alpha_{1},\alpha_{2},\alpha_{3},\beta_{1},\beta_{2},\beta_{3}) = 4$.
+    
+    Vậy số chiều của $A + B$ là $4$ và một cơ sở của $A + B$ là:
+    \[ (1, 2, 1, -2), (0, -1, 0, 3), (0, 0, -1, 1), (0, 0, 0, -5) \]
+    
+    Ta tìm $A\cap B$. Một vector thuộc $A\cap B$ biểu thị tuyến tính được theo $\alpha_{1}, \alpha_{2}, \alpha_{3}$ và $\beta_{1}, \beta_{2}, \beta_{3}$. Xét ràng buộc sau
+    \[ a_{1}\underbrace{(1,2,1,-2)}_{\alpha'_{1}} + a_{2}\underbrace{(0,-1,-1,4)}_{\alpha'_{2}} + a_{3}\underbrace{(0,0,1,-1)}_{\alpha'_{3}} = b_{1}\underbrace{(1,1,1,1)}_{\beta'_{1}} + b_{2}\underbrace{(0,-1,0,-2)}_{\beta'_{2}} + b_{3}\underbrace{(0,0,-1,-9)}_{\beta'_{3}} \]
+    
+    Giải ra ta được
+    \begin{align*}
+         & \begin{cases}
+               a_{1} = b_{1}                         \\
+               2a_{1} - a_{2} = b_{1} - b_{2}        \\
+               a_{1} - a_{2} + a_{3} = b_{1} - b_{3} \\
+               -2a_{1} + 4a_{2} - a_{3} = b_{1} - 2b_{2} - 9b_{3}
+           \end{cases}
+        \Longleftrightarrow
+        \begin{cases}
+            a_{1} = b_{1}                 \\
+            a_{2} = b_{1} + b_{2}         \\
+            a_{3} = b_{1} + b_{2} - b_{3} \\
+            a_{3} = b_{1} + 6b_{2} + 9b_{3}
+        \end{cases}
+        \Longleftrightarrow
+        \begin{cases}
+            a_{1} = b_{1}                 \\
+            a_{2} = b_{1} + b_{2}         \\
+            a_{3} = b_{1} + b_{2} - b_{3} \\
+            b_{1} + b_{2} - b_{3} = b_{1} + 6b_{2} + 9b_{3}
+        \end{cases}       \\
+         & \Longleftrightarrow\begin{cases}
+                                  a_{1} = b_{1}                 \\
+                                  a_{2} = b_{1} + b_{2}         \\
+                                  a_{3} = b_{1} + b_{2} - b_{3} \\
+                                  b_{2} + 2b_{3} = 0
+                              \end{cases}
+        \Longleftrightarrow
+        \begin{cases}
+            a_{1} = b_{1}                    \\
+            a_{2} = b_{1} + b_{2}            \\
+            a_{3} = b_{1} + \frac{3}{2}b_{2} \\
+            b_{2} + 3b_{3} = 0
+        \end{cases}
+    \end{align*}
+    
+    Như vậy,
+    \begin{align*}
+        b_{1}\beta'_{1} + b_{2}\beta'_{2} + b_{3}\beta'_{3}
+         & = b_{1}\beta'_{1} - 3b_{3}\beta'_{2} + b_{3}\beta'_{3} \\
+         & = b_{1}\beta'_{1} + b_{3}(-3\beta'_{2} + \beta'_{3})
+    \end{align*}
+    
+    Một cơ sở của $A\cap B$ là $\beta'_{1} = (1,1,1,1), -3\beta'_{2} + \beta'_{3} = (0, 3, -1, -3)$.
+\end{proof}
+
+\begin{exercise}
+    $\alpha_{1} = (1,1,0,0), \alpha_{2} = (0,1,1,0), \alpha_{3} = (0,0,1,1)$,
+    
+    $\beta_{1} = (1,0,1,0), \beta_{2} = (0,2,1,1), \beta_{3} = (1,2,1,2)$.
+\end{exercise}
+
+\begin{proof}[Lời giải]$A = \operatorname{span}(\alpha_{1},\alpha_{2},\alpha_{3})$, $B = \operatorname{span}(\beta_{1},\beta_{2},\beta_{3})$.
+    
+    Hệ $\alpha_{1}, \alpha_{2}, \alpha_{3}$ độc lập tuyến tính nên $\operatorname{rank}(\alpha_{1}, \alpha_{2}, \alpha_{3}) = 3$.
+    \begin{align*}
+        \begin{bmatrix}
+            \beta_{1} \\
+            \beta_{2} \\
+            \beta_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 0 & 1 & 0 \\
+            0 & 2 & 1 & 1 \\
+            1 & 2 & 1 & 2 \\
+        \end{pmatrix}
+        \Longleftarrow
+        \begin{bmatrix}
+            \beta_{1} \\
+            \beta_{2} \\
+            \beta_{3} - \beta_{1} - \beta_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 0 & 1  & 0 \\
+            0 & 2 & 1  & 1 \\
+            0 & 0 & -1 & 1
+        \end{pmatrix}
+    \end{align*}
+    
+    Như vậy, hệ $\beta_{1}, \beta_{2}, \beta_{3}$ độc lập tuyến tính nên $\operatorname{rank}(\beta_{1}, \beta_{2}, \beta_{3}) = 3$.
+    \begin{align*}
+                        & \begin{bmatrix}
+                              \alpha_{1} \\
+                              \beta_{1}  \\
+                              \alpha_{2} \\
+                              \beta_{1}  \\
+                              \alpha_{3} \\
+                              \beta_{3}
+                          \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1 & 0 & 0 \\
+            1 & 0 & 1 & 0 \\
+            0 & 1 & 1 & 0 \\
+            0 & 2 & 1 & 1 \\
+            0 & 0 & 1 & 1 \\
+            1 & 2 & 1 & 2
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1} \\
+            \beta_{1}  \\
+            \alpha_{2} \\
+            \beta_{2}  \\
+            \alpha_{3} \\
+            \beta_{3} - \beta_{1} - \beta_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1 & 0  & 0 \\
+            1 & 0 & 1  & 0 \\
+            0 & 1 & 1  & 0 \\
+            0 & 2 & 1  & 1 \\
+            0 & 0 & 1  & 1 \\
+            0 & 0 & -1 & 1
+        \end{pmatrix}                   \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}              \\
+            \beta_{1} - \alpha_{1}  \\
+            \alpha_{2}              \\
+            \beta_{2} - 2\alpha_{2} \\
+            \alpha_{3}              \\
+            \beta_{3} + \alpha_{3} - \beta_{1} - \beta_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1  & 0  & 0 \\
+            0 & -1 & 1  & 0 \\
+            0 & 1  & 1  & 0 \\
+            0 & 0  & -1 & 1 \\
+            0 & 0  & 1  & 1 \\
+            0 & 0  & 0  & 2
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                           \\
+            \beta_{1} - \alpha_{1}               \\
+            \alpha_{2} - \alpha_{1} + \beta_{1}  \\
+            \beta_{2} - 2\alpha_{2}              \\
+            \alpha_{3} + \beta_{2} - 2\alpha_{2} \\
+            \beta_{3} + \alpha_{3} - \beta_{1} - \beta_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1  & 0  & 0 \\
+            0 & -1 & 1  & 0 \\
+            0 & 0  & 2  & 0 \\
+            0 & 0  & -1 & 1 \\
+            0 & 0  & 0  & 2 \\
+            0 & 0  & 0  & 2
+        \end{pmatrix}                  \\
+        \Longrightarrow &
+        \begin{bmatrix}
+            \alpha_{1}                                        \\
+            \beta_{1} - \alpha_{1}                            \\
+            \alpha_{2} - \alpha_{1} + \beta_{1}               \\
+            2\beta_{2} - 3\alpha_{2} - \alpha_{1} + \beta_{1} \\
+            \alpha_{3} + \beta_{2} - 2\alpha_{2}              \\
+            \beta_{3} + \alpha_{3} - \beta_{1} - \beta_{2}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1  & 0 & 0 \\
+            0 & -1 & 1 & 0 \\
+            0 & 0  & 2 & 0 \\
+            0 & 0  & 0 & 2 \\
+            0 & 0  & 0 & 2 \\
+            0 & 0  & 0 & 2
+        \end{pmatrix}
+        \Longrightarrow
+        \begin{bmatrix}
+            \alpha_{1}                                                   \\
+            \beta_{1} - \alpha_{1}                                       \\
+            \alpha_{2} - \alpha_{1} + \beta_{1}                          \\
+            2\beta_{2} - 3\alpha_{2} - \alpha_{1} + \beta_{1}            \\
+            \alpha_{1} + \alpha_{2} + \alpha_{3} - \beta_{1} - \beta_{2} \\
+            2\alpha_{2} - \beta_{1} - 2\beta_{2} + \beta_{3}
+        \end{bmatrix}=
+        \begin{pmatrix}
+            1 & 1  & 0 & 0 \\
+            0 & -1 & 1 & 0 \\
+            0 & 0  & 2 & 0 \\
+            0 & 0  & 0 & 2 \\
+            0 & 0  & 0 & 0 \\
+            0 & 0  & 0 & 0
+        \end{pmatrix}
+    \end{align*}
+    
+    Một cơ sở của $A + B$ là $(1,1,0,0), (0,-1,1,0), (0,0,2,0), (0,0,0,2)$.
+    
+    Một vector của $A\cap B$ biểu thị tuyến tính được theo $\alpha_{1}, \alpha_{2}, \alpha_{3}$ và $\beta_{1}, \beta_{2}, \beta_{3}$. Xét ràng buộc tuyến tính sau
+    \[ a_{1}(1,1,0,0) + a_{2}(0,1,1,0) + a_{3}(0,0,1,1) = b_{1}(1,0,1,0) + b_{2}(0,2,1,1) + b_{3}(0,0,-1,1) \]
+    
+    Giải ra ta được
+    \[
+        \begin{cases}
+            a_{1} = b_{1}                         \\
+            a_{1} + a_{2} = 2b_{2}                \\
+            a_{2} + a_{3} = b_{1} + b_{2} - b_{3} \\
+            a_{3} = b_{2} + b_{3}
+        \end{cases}
+        \Longrightarrow
+        \begin{cases}
+            a_{1} = b_{1}          \\
+            a_{2} = 2b_{2} - b_{1} \\
+            a_{3} = b_{2} + b_{3}  \\
+            a_{3} = 2b_{1} - b_{2} - b_{3}
+        \end{cases}
+        \Longrightarrow
+        b_{1} - b_{2} - b_{3} = 0
+    \]
+    \[
+        \Rightarrow b_{1}(1,0,1,0) + b_{2}(0,2,1,1) + b_{3}(0,0,-1,1) = b_{2}(1,2,2,1) + b_{3}(1,0,0,1)
+    \]
+    
+    Một cơ sở của $A\cap B$ là $(1,2,2,1), (1,0,0,1)$.
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng với mọi không gian vector con $V_{1}$ của $V$, tồn tại một không gian vector con $V_{2}$ của $V$ sao cho $V = V_{1}\oplus V_{2}$. Không gian $V_{2}$ có xác định duy nhất không?
+\end{exercise}
+
+\begin{proof}
+    Giả sử $\alpha_{1}, \ldots, \alpha_{n}$ là một cơ sở của $V_{1}$.
+    
+    Nếu $V_{1} = V$ thì ta chọn $V_{2} = \{ 0 \}$. Như vậy, $V = V \oplus V_{2} = V_{1}\oplus V_{2}$.
+    
+    Nếu $V_{1}\subsetneq V$, ta có thể bổ sung vào hệ vector trên đến khi hệ độc lập tuyến tính cực đại.
+    
+    Các vector được bổ sung vào hệ là $\beta_{1}, \ldots, \beta_{m}$.
+    
+    Chọn $V_{2} = \operatorname{span}(\beta_{1}, \ldots, \beta_{m})$ thì $V = V_{1} \oplus V_{2}$.
+    
+    Trong trường hợp $V_{1} = V$ hoặc $V_{1} = \{ 0 \}$ thì $V_{2}$ là duy nhất.
+    
+    Còn nếu $V_{1}\subsetneq V$ thì $V_{2}$ không duy nhất. Chẳng hạn ta chọn:
+    \[
+        \begin{sqcases}
+            V_{2} = \operatorname{span}(\beta_{1}, \ldots, \beta_{m}) \\
+            V_{2} = \operatorname{span}(\beta_{1} + \alpha_{1}, \beta_{2}, \ldots, \beta_{m})
+        \end{sqcases}
+    \]
+\end{proof}
+
+\begin{exercise}
+    Chứng minh rằng không gian $\mathbb{C}_{n}$ là tổng trực tiếp của không gian vector con $U$ xác định bởi phương trình $x_{1} + \cdots + x_{n} = 0$ và không gian vector con $V$ xác định bởi phương trình $x_{1} = \cdots = x_{n}$. Tìm hình chiếu của các vector có cơ sở chính tắc của $\mathbb{C}_{n}$ lên $U$ theo phương $V$ và lên $V$ theo phương $U$.
+\end{exercise}
+
+\begin{proof}
+    $(z_{1}, \ldots, z_{n})$ là một vector của $\mathbb{C}_{n}$.
+    \[
+        (z_{1}, \ldots, z_{n}) = \underbrace{\left(z_{1} - \frac{1}{n}\sum^{n}_{k=1}z_{k}, \ldots, z_{n} - \frac{1}{n}\sum^{n}_{k=1}z_{k}\right)}_{\in U} + \frac{1}{n}\sum^{n}_{k=1}z_{k}\underbrace{(1,\ldots, 1)}_{\in V}
+    \]
+    
+    Mà $U\cap V = \{ (0,\ldots, 0) \}$ nên $\mathbb{C}_{n} = U\oplus V$.
+    \[ \operatorname{pr}_{U}((z_{1}, \ldots, z_{n})) = \left(z_{1} - \frac{1}{n}\sum^{n}_{k=1}z_{k}, \ldots, z_{n} - \frac{1}{n}\sum^{n}_{k=1}z_{k}\right) \]
+    \[ \operatorname{pr}_{V}((z_{1}, \ldots, z_{n})) = \left(\frac{1}{n}\sum^{n}_{k=1}z_{k}, \ldots, \frac{1}{n}\sum^{n}_{k=1}z_{k}\right) \]
+\end{proof}
+
+\begin{exercise}
+    Cho $\mathbb{F}$ là một trường có đặc số khác $2$. Chứng minh rằng không gian $M(n\times n, \mathbb{F})$ các ma trận vuông cỡ $n$ là tổng trực tiếp của không gian $S(n)$ gồm các ma trận đối xứng và không gian $A(n)$ gồm các ma trận phản đối xứng. Tìm hình chiếu của ma trận $C\in M(n\times n, \mathbb{F})$ lên $S(n)$ theo phương $A(n)$ và lên $A(n)$ theo phương $S(n)$.
+\end{exercise}
+
+\begin{proof}
+    Theo bài tập~\ref{symmetric-matrices} và~\ref{skew-symmetric-matrices}, $\dim S(n) = \frac{n(n+1)}{2}$, $\dim A(n) = \frac{n(n-1)}{2}$.
+    \[ \dim S(n) + \dim A(n) = n^{2} = \dim M(n\times n,\mathbb{F}) \]
+    
+    Xét ma trận $D = (d_{ij}){}_{n\times n} \in S(n)\cap A(n)$.
+    
+    Vì $D$ đối xứng và phản đối xứng nên
+    \[
+        \begin{cases}
+            d_{ii} = 0      \\
+            d_{ij} = d_{ji} \\
+            d_{ij} = - d_{ji}
+        \end{cases}
+        \Longrightarrow
+        \begin{cases}
+            d_{ii} = 0 \\
+            d_{ij} = 0
+        \end{cases}
+    \]
+    
+    Do đó, $S(n) \cap A(n) = \{{(0)}_{n\times n}\}$. Như vậy, $M(n\times n,\mathbb{F}) = S(n)\oplus A(n)$.
+    
+    Xét ma trận vuông $n$ hàng $n$ cột $P = {(p_{ij})}_{n\times n}$.
+    \begin{gather*}
+        \begin{pmatrix}
+            p_{11} & p_{12} & \cdots & p_{1n} \\
+            p_{21} & p_{22} & \cdots & p_{2n} \\
+            \vdots & \vdots & \ddots & \vdots \\
+            p_{n1} & p_{n2} & \cdots & p_{nn}
+        \end{pmatrix} \\
+        =
+        \underbrace{
+            \begin{pmatrix}
+                p_{11}                       & \frac{1}{2}(p_{12} + p_{21}) & \cdots & \frac{1}{2}(p_{1n} + p_{n1}) \\
+                \frac{1}{2}(p_{21} + p_{12}) & p_{22}                       & \cdots & \frac{1}{2}(p_{2n} + p_{n2}) \\
+                \vdots                       & \vdots                       & \ddots & \vdots                       \\
+                \frac{1}{2}(p_{n1} + p_{1n}) & \frac{1}{2}(p_{n2} + p_{2n}) & \cdots & p_{nn}
+            \end{pmatrix}
+        }_{\operatorname{pr}_{S(n)}}+
+        \underbrace{
+            \begin{pmatrix}
+                0                            & \frac{1}{2}(p_{12} - p_{21}) & \cdots & \frac{1}{2}(p_{1n} - p_{n1}) \\
+                \frac{1}{2}(p_{21} - p_{12}) & 0                            & \cdots & \frac{1}{2}(p_{2n} - p_{n2}) \\
+                \vdots                       & \vdots                       & \ddots & \vdots                       \\
+                \frac{1}{2}(p_{n1} - p_{1n}) & \frac{1}{2}(p_{n2} - p_{2n}) & \cdots & 0
+            \end{pmatrix}
+        }_{\operatorname{pr}_{A(n)}}
+    \end{gather*}
+\end{proof}
+
+\begin{exercise}
+    Gọi ${\mathbb{F}[X]}_{n}$ là $\mathbb{F}$-không gian vector các đa thức với hệ số $\mathbb{F}$ có bậc $\le n$. Tìm không gian thương ${\mathbb{F}[X]}_{n}/{\mathbb{F}[X]}_{m}$ và số chiều của nó khi $m < n$.
+\end{exercise}
+
+\begin{proof}
+    $1, X, \ldots, X^{n}$ là một cơ sở của ${\mathbb{F}[X]}_{n}$. Do đó, $\dim {\mathbb{F}[X]}_{n} = n + 1$.
+    
+    $1, X, \ldots, X^{m}$ là một cơ sở của ${\mathbb{F}[X]}_{m}$.
+    \[ f(X)\sim g(X) \Longleftrightarrow f(X) - g(X) \in {\mathbb{F}[X]}_{m} \]
+    
+    Do đó, không gian thương ${\mathbb{F}[X]}_{n}/{\mathbb{F}[X]}_{m}$ là
+    \[ \{ {[a_{m+1}X^{m+1} + \cdots + a_{n}X^{n}]}_{\sim} \mid a_{m+2}, \ldots, a_{n}\in\mathbb{F} \} \]
+    
+    $\dim{\mathbb{F}[X]}_{n}/{\mathbb{F}[X]}_{m} = (n + 1) - (m + 1) = n - m$.
+\end{proof}
+

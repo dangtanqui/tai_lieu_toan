@@ -1049,22 +1049,63 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   \]
 \end{congthuc}
 
-\begin{dinhnghia}
-  \textbf{Chuẩn} (norm) sinh bởi tích vô hướng:
-  \[
-    \|v\| = \sqrt{\langle v, v \rangle}.
-  \]
-  Trên $\mathbb{R}^n$: $\|v\| = \sqrt{v_1^2 + \cdots + v_n^2}$ (độ dài Euclid).
-
-  \textbf{Khoảng cách} giữa hai vectơ: $d(u, v) = \|u - v\|$.
-
-  \textbf{Trực giao:} $u \perp v \Leftrightarrow \langle u, v \rangle = 0$.
+\begin{dinhnghia}[title={Chuẩn (Norm)}]
+  Hàm $\|\cdot\|: V \to \mathbb{R}$ gọi là \textbf{chuẩn} trên không gian vectơ $V$ nếu với mọi $x, y \in V$ và vô hướng $\alpha$:
+  \begin{enumerate}
+    \item $\|x\| \ge 0$;\quad $\|x\| = 0 \Leftrightarrow x = \mathbf{0}$.
+    \item $\|\alpha x\| = |\alpha|\,\|x\|$.
+    \item $\|x + y\| \le \|x\| + \|y\|$ \quad (bất đẳng thức tam giác).
+  \end{enumerate}
+  Không gian vectơ trang bị chuẩn gọi là \textbf{không gian chuẩn hóa}. Chuẩn sinh bởi tích vô hướng: $\|v\| = \sqrt{\langle v, v \rangle}$.
 \end{dinhnghia}
 
-\begin{tinhchat}[title=Tính chất của tích Hermitian]
-$x^Hy = y^Hx \Leftrightarrow x, y$ là các số thực
+\begin{congthuc}[title={Các chuẩn thông dụng trên $\mathbb{R}^n$}]
+  Với $v = (v_1, \ldots, v_n)^T \in \mathbb{R}^n$:
+  \begin{itemize}
+    \item \textbf{Chuẩn Euclid ($l_2$):} $\|v\|_2 = \sqrt{v_1^2 + \cdots + v_n^2} = \sqrt{v^T v}$.
+    \item \textbf{Chuẩn Manhattan ($l_1$):} $\|v\|_1 = |v_1| + \cdots + |v_n|$.
+    \item \textbf{Chuẩn Chebyshev ($l_\infty$):} $\|v\|_\infty = \max_i |v_i|$.
+    \item \textbf{Chuẩn $l_p$ (tổng quát):} $\|v\|_p = \bigl(|v_1|^p + \cdots + |v_n|^p\bigr)^{1/p}$, $p \ge 1$.
+  \end{itemize}
+\end{congthuc}
 
-$x^Hx \ge 0$
+\begin{congthuc}[title={Chuẩn Frobenius của ma trận}]
+  Với $A \in \mathbb{R}^{m \times n}$:
+  \[
+    \|A\|_F = \sqrt{\sum_{i=1}^m \sum_{j=1}^n a_{ij}^2} = \sqrt{\mathrm{tr}(A^T A)}.
+  \]
+  Đây là chuẩn sinh bởi tích vô hướng $\langle A, B \rangle = \mathrm{tr}(A^T B)$ trên không gian ma trận.
+\end{congthuc}
+
+\begin{dinhnghia}[title={Khoảng cách và trực giao}]
+  Trong không gian tích vô hướng $(V, \langle\cdot,\cdot\rangle)$:
+  \begin{itemize}
+    \item \textbf{Khoảng cách:} $d(u, v) = \|u - v\|$.
+    \item \textbf{Trực giao:} $u \perp v \Leftrightarrow \langle u, v \rangle = 0$.
+    \item \textbf{Góc:} $\cos\theta = \dfrac{\langle u, v \rangle}{\|u\|\,\|v\|}$ (từ Cauchy-Schwarz, $\theta \in [0,\pi]$).
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{vidu}
+  Cho $v = (3, -4)^T \in \mathbb{R}^2$:
+  \[
+    \|v\|_2 = \sqrt{9+16} = 5, \quad
+    \|v\|_1 = 3+4 = 7, \quad
+    \|v\|_\infty = 4.
+  \]
+  Cho $u = (1, 0)^T$: $\langle u, v \rangle = 3$, $\cos\theta = \tfrac{3}{1 \cdot 5} = 0{,}6$, $\theta \approx 53{,}1°$.
+
+  Chuẩn Frobenius của $A = \begin{pmatrix}1&2\\3&4\end{pmatrix}$:
+  $\|A\|_F = \sqrt{1+4+9+16} = \sqrt{30}$.
+\end{vidu}
+
+\begin{tinhchat}[title={Tích vô hướng Hermitian trên $\mathbb{C}^n$}]
+  Tích vô hướng Hermitian: $\langle x, y \rangle = x^H y = \bar{x}^T y$.
+  \begin{itemize}
+    \item $\langle x, y \rangle = \overline{\langle y, x \rangle}$ (liên hợp đối xứng -- khác với trường hợp thực).
+    \item $\langle x, x \rangle = x^H x = \sum_i |x_i|^2 \ge 0$; bằng $0 \Leftrightarrow x = \mathbf{0}$.
+    \item Chuẩn Hermitian: $\|x\| = \sqrt{x^H x}$.
+  \end{itemize}
 \end{tinhchat}
 
 \begin{dinhly}[title={Bất đẳng thức Cauchy-Schwarz}]
@@ -1423,16 +1464,64 @@ $x^Hx \ge 0$
 \section{Trị riêng và vectơ riêng}
 
 \begin{dinhnghia}
-  Số $\lambda \in \mathbb{R}$ (hoặc $\mathbb{C}$) gọi là \textbf{trị riêng} của ma trận vuông $A$ nếu tồn tại vectơ $x \ne \mathbf{0}$ sao cho $Ax = \lambda x$. Vectơ $x$ gọi là \textbf{vectơ riêng} ứng với $\lambda$.
+  Số $\lambda \in \mathbb{R}$ (hoặc $\mathbb{C}$) gọi là \textbf{trị riêng} của ma trận vuông $A$ nếu tồn tại vectơ $x \ne \mathbf{0}$ sao cho $Ax = \lambda x$. 
+  
+  Vectơ $x$ gọi là \textbf{vectơ riêng} ứng với $\lambda$.
 \end{dinhnghia}
 
 \begin{congthuc}[title={Phương trình đặc trưng}]
-  $\lambda$ là trị riêng của $A$ khi và chỉ khi $\det(A - \lambda I) = 0$. Đa thức $p_A(\lambda) = \det(A - \lambda I)$ gọi là \textbf{đa thức đặc trưng}. Các trị riêng là nghiệm của $p_A(\lambda) = 0$.
+  $\lambda$ là trị riêng của $A$ khi và chỉ khi $\det(A - \lambda I) = 0$. 
+  
+  Đa thức $p_A(t) = \det(A - tI)$ gọi là \textbf{đa thức đặc trưng}. Các trị riêng là nghiệm của $p_A(\lambda) = 0$.
+
+  Tập hợp tất cả các trị riêng của 1 ma trận vuông gọi là \textbf{phổ} của ma trận đó.
 \end{congthuc}
 
 \begin{dinhnghia}
-  \textbf{Không gian riêng} ứng với $\lambda$: $E_\lambda = \ker(A - \lambda I) = \{x \mid Ax = \lambda x\}$. Số chiều $\dim E_\lambda$ gọi là \textbf{bội hình học} của $\lambda$; bội của $\lambda$ trong đa thức đặc trưng gọi là \textbf{bội đại số}.
+  \textbf{Không gian riêng} ứng với $\lambda$: $E_\lambda(A) = \ker(A - \lambda I) = \{x \mid Ax = \lambda x\}$. 
+  
+  Số chiều $\dim E_\lambda$ gọi là \textbf{bội hình học} của $\lambda$; bội của $\lambda$ trong đa thức đặc trưng gọi là \textbf{bội đại số}.
 \end{dinhnghia}
+
+\begin{vidu}[title={Tìm trị riêng và vectơ riêng}]
+  Cho $A = \begin{pmatrix}3 & 1 \\ 0 & 2\end{pmatrix}$.
+
+  \textbf{Bước 1 -- Phương trình đặc trưng:}
+  \[
+    \det(A - \lambda I) = \det\begin{pmatrix}3-\lambda & 1 \\ 0 & 2-\lambda\end{pmatrix}
+    = (3-\lambda)(2-\lambda) = 0.
+  \]
+  Trị riêng: $\lambda_1 = 2$, $\lambda_2 = 3$.
+
+  \textbf{Bước 2 -- Vectơ riêng:}
+
+  $\lambda_1 = 2$: Giải $(A - 2I)x = 0$:
+  $\begin{pmatrix}1&1\\0&0\end{pmatrix}x = 0 \Rightarrow x_1 = -x_2$.
+  Vectơ riêng: $x = t\begin{pmatrix}-1\\1\end{pmatrix}$, $t \ne 0$. Cơ sở $E_2 = \left\{\begin{pmatrix}-1\\1\end{pmatrix}\right\}$.
+
+  $\lambda_2 = 3$: Giải $(A - 3I)x = 0$:
+  $\begin{pmatrix}0&1\\0&-1\end{pmatrix}x = 0 \Rightarrow x_2 = 0$.
+  Vectơ riêng: $x = t\begin{pmatrix}1\\0\end{pmatrix}$. Cơ sở $E_3 = \left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}$.
+
+  \textbf{Kiểm tra:}
+  $\det(A) = 6 = 2 \cdot 3 = \lambda_1\lambda_2$. \checkmark \quad
+  $\mathrm{tr}(A) = 5 = 2 + 3 = \lambda_1 + \lambda_2$. \checkmark
+\end{vidu}
+
+\begin{tinhchat}[title={Tính chất trị riêng và vectơ riêng}]
+  Cho $A \in \mathbb{C}^{n \times n}$ với các trị riêng $\lambda_1, \ldots, \lambda_n$ (kể cả bội đại số).
+  \begin{itemize}
+    \item $E_\lambda(A)$ là không gian con của $\mathbb{C}^n$ (đóng với cộng và nhân vô hướng).
+    \item Mọi ma trận vuông bậc $n$ trên $\mathbb{C}$ có đúng $n$ trị riêng kể cả bội đại số.
+    \item $\det(A) = \lambda_1 \cdot \lambda_2 \cdots \lambda_n$ \quad (tích các trị riêng).
+    \item $\mathrm{tr}(A) = \lambda_1 + \lambda_2 + \cdots + \lambda_n$ \quad (tổng các trị riêng = tổng phần tử đường chéo).
+    \item Nếu $A, B$ vuông cùng bậc thì $p_{AB}(t) = p_{BA}(t)$ (các trị riêng của $AB$ và $BA$ bằng nhau).
+    \item Mọi trị riêng của ma trận Hermitian ($A^* = A$) đều là số thực.
+    \item Các vectơ riêng ứng với các trị riêng \emph{khác nhau} là độc lập tuyến tính.
+    \item Nếu $A$ khả đảo và $(\lambda, x)$ là cặp trị riêng -- vectơ riêng, thì $A^{-1}$ có cặp $\bigl(\tfrac{1}{\lambda},\, x\bigr)$.
+    \item $A^k$ có cặp $(\lambda^k, x)$ với mọi số nguyên $k$.
+  \end{itemize}
+\end{tinhchat}
 
 \subsection{Chéo hóa}
 
@@ -1447,10 +1536,114 @@ $x^Hx \ge 0$
 \begin{phuongphap}[title={Cách chéo hóa}]
   \begin{enumerate}
     \item Giải $\det(A - \lambda I) = 0$ tìm các trị riêng $\lambda_1, \ldots, \lambda_k$.
-    \item Với mỗi $\lambda_i$, giải $(A - \lambda_i I)x = 0$ tìm cơ sở của $E_{\lambda_i}$.
+    \item Với mỗi $\lambda_i$, giải $(A - \lambda_i I)x = 0$ tìm cơ sở của $E_{\lambda_i}$(A).
     \item Nếu tổng số vectơ tìm được $= n$: đặt $P$ là ma trận có cột là các vectơ riêng (theo thứ tự trị riêng); $D = P^{-1}AP$ là ma trận chéo.
   \end{enumerate}
 \end{phuongphap}
+
+\begin{vidu}[title={Chéo hóa ma trận}]
+  Tiếp theo ví dụ trên: $A = \begin{pmatrix}3&1\\0&2\end{pmatrix}$, hai trị riêng $\lambda_1=2$, $\lambda_2=3$ khác nhau $\Rightarrow$ chéo hóa được.
+
+  Đặt cột của $P$ theo thứ tự $\lambda_1, \lambda_2$:
+  \[
+    P = \begin{pmatrix}-1&1\\1&0\end{pmatrix}, \quad
+    D = \begin{pmatrix}2&0\\0&3\end{pmatrix}.
+  \]
+  \textbf{Kiểm tra:} $P^{-1} = \dfrac{1}{-1}\begin{pmatrix}0&-1\\-1&-1\end{pmatrix} = \begin{pmatrix}0&1\\1&1\end{pmatrix}$.
+  \[
+    P^{-1}AP = \begin{pmatrix}0&1\\1&1\end{pmatrix}\begin{pmatrix}3&1\\0&2\end{pmatrix}\begin{pmatrix}-1&1\\1&0\end{pmatrix}
+    = \begin{pmatrix}2&0\\0&3\end{pmatrix} = D. \;\checkmark
+  \]
+  \textbf{Ứng dụng tính $A^{10}$:}
+  \[
+    A^{10} = PD^{10}P^{-1} = \begin{pmatrix}-1&1\\1&0\end{pmatrix}
+    \begin{pmatrix}2^{10}&0\\0&3^{10}\end{pmatrix}
+    \begin{pmatrix}0&1\\1&1\end{pmatrix}.
+  \]
+  (Thay vì nhân $A$ đủ 10 lần.)
+\end{vidu}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Chéo hóa chỉ áp dụng cho ma trận \emph{vuông} (không có trị riêng / vectơ riêng cho ma trận không vuông).
+    \item Không phải ma trận vuông nào cũng chéo hóa được (ví dụ: $\begin{pmatrix}0&1\\0&0\end{pmatrix}$ không chéo hóa được).
+    \item Nếu $A = PDP^{-1}$ thì $A^k = PD^kP^{-1}$ -- rất tiện tính lũy thừa cao.
+    \item Nếu $A$ khả đảo và chéo hóa được: $A^{-1} = PD^{-1}P^{-1}$ (với $D^{-1}$ là ma trận chéo nghịch đảo từng phần tử).
+    \item Ma trận đối xứng thực ($A^T = A$) \emph{luôn} chéo hóa được bởi ma trận trực giao $P$ (Chéo hóa trực giao -- Spectral Theorem).
+  \end{itemize}
+\end{luuy}
+
+\subsection{Vết của ma trận}
+
+\begin{dinhnghia}
+  \textbf{Vết} (trace) của ma trận vuông $A \in \mathbb{R}^{n \times n}$:
+  \[
+    \mathrm{tr}(A) = \sum_{i=1}^n a_{ii} = a_{11} + a_{22} + \cdots + a_{nn}.
+  \]
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất vết}]
+  \begin{itemize}
+    \item $\mathrm{tr}(A + B) = \mathrm{tr}(A) + \mathrm{tr}(B)$.
+    \item $\mathrm{tr}(\alpha A) = \alpha\,\mathrm{tr}(A)$.
+    \item $\mathrm{tr}(AB) = \mathrm{tr}(BA)$ \quad (dù $AB \ne BA$).
+    \item $\mathrm{tr}(ABC) = \mathrm{tr}(BCA) = \mathrm{tr}(CAB)$ \quad (tính chất chu kỳ).
+    \item $\mathrm{tr}(A^T) = \mathrm{tr}(A)$.
+    \item $\mathrm{tr}(A) = \sum_{i=1}^n \lambda_i$ (tổng các trị riêng).
+    \item $\mathrm{tr}(A^T A) = \|A\|_F^2 = \sum_{i,j} a_{ij}^2$ \quad (bình phương chuẩn Frobenius).
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  $A = \begin{pmatrix}1&2\\3&4\end{pmatrix}$, $B = \begin{pmatrix}0&1\\1&0\end{pmatrix}$.
+
+  $\mathrm{tr}(A) = 1+4 = 5$;\quad
+  $AB = \begin{pmatrix}2&1\\4&3\end{pmatrix}$, $BA = \begin{pmatrix}3&4\\1&2\end{pmatrix}$.
+
+  $\mathrm{tr}(AB) = 2+3 = 5 = \mathrm{tr}(BA)$. \checkmark
+\end{vidu}
+
+\subsection{Ma trận xác định dương và xác định âm}
+
+\begin{dinhnghia}[title={Xác định dấu của ma trận đối xứng}]
+  Ma trận đối xứng $A \in \mathbb{R}^{n \times n}$ ($A^T = A$) gọi là:
+  \begin{itemize}
+    \item \textbf{Xác định dương} (positive definite, PD): $x^T A x > 0$ với mọi $x \ne \mathbf{0}$.
+    \item \textbf{Nửa xác định dương} (PSD): $x^T A x \ge 0$ với mọi $x$, tồn tại $x \ne \mathbf{0}$ cho $= 0$.
+    \item \textbf{Xác định âm} (negative definite, ND): $x^T A x < 0$ với mọi $x \ne \mathbf{0}$.
+    \item \textbf{Nửa xác định âm} (NSD): $x^T A x \le 0$ với mọi $x$.
+    \item \textbf{Không xác định}: nhận cả giá trị dương lẫn âm.
+  \end{itemize}
+\end{dinhnghia}
+
+\begin{dinhly}[title={Điều kiện tương đương (ma trận đối xứng)}]
+  Với $A$ đối xứng:
+  \begin{itemize}
+    \item $A$ xác định dương $\Leftrightarrow$ mọi trị riêng $> 0$ $\Leftrightarrow$ mọi định thức góc (leading minor) $\Delta_k > 0$.
+    \item $A$ nửa xác định dương $\Leftrightarrow$ mọi trị riêng $\ge 0$.
+    \item $A$ xác định âm $\Leftrightarrow$ mọi trị riêng $< 0$ $\Leftrightarrow$ $-A$ xác định dương.
+    \item $A$ xác định dương $\Leftrightarrow$ tồn tại $B$ khả đảo sao cho $A = B^T B$ (Cholesky).
+  \end{itemize}
+\end{dinhly}
+
+\begin{tinhchat}
+  \begin{itemize}
+    \item Nếu $A$ xác định dương thì $A$ khả đảo và $A^{-1}$ cũng xác định dương.
+    \item $A^T A$ và $AA^T$ luôn nửa xác định dương với mọi $A$.
+    \item Nếu $A, B$ xác định dương và $\alpha, \beta > 0$ thì $\alpha A + \beta B$ xác định dương.
+  \end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+  Kiểm tra $A = \begin{pmatrix}2&1\\1&3\end{pmatrix}$ có xác định dương không.
+
+  \textbf{Cách 1 (định thức góc):}
+  $\Delta_1 = 2 > 0$;\quad $\Delta_2 = \det(A) = 6-1 = 5 > 0$. Vậy $A$ xác định dương. \checkmark
+
+  \textbf{Cách 2 (trị riêng):}
+  $p_A(\lambda) = (2-\lambda)(3-\lambda)-1 = \lambda^2 - 5\lambda + 5 = 0 \Rightarrow \lambda = \tfrac{5 \pm \sqrt{5}}{2}$.
+  Cả hai nghiệm $\approx 3{,}62$ và $1{,}38$ đều $> 0$. \checkmark
+\end{vidu}
 
 \subsection{Dạng toàn phương}
 
@@ -1479,5 +1672,25 @@ $x^Hx \ge 0$
 \begin{phuongphap}[title={Tiêu chuẩn Sylvester}]
   Ma trận đối xứng $A$ xác định dương khi và chỉ khi tất cả các định thức con chính (góc trên-trái) đều dương: $\Delta_1 > 0$, $\Delta_2 > 0$, $\ldots$, $\Delta_n > 0$.
 \end{phuongphap}
+
+\begin{vidu}[title={Đưa dạng toàn phương về dạng chính tắc}]
+  Cho dạng toàn phương $Q(x_1, x_2) = 2x_1^2 + 2x_1 x_2 + 2x_2^2$.
+
+  \textbf{Bước 1 - Ma trận:}
+  \[
+    A = \begin{pmatrix}2 & 1 \\ 1 & 2\end{pmatrix} \quad (A^T = A).
+  \]
+
+  \textbf{Bước 2 - Trị riêng:}
+  $\det(A - \lambda I) = (2-\lambda)^2 - 1 = 0 \Rightarrow \lambda_1 = 1,\; \lambda_2 = 3$.
+
+  \textbf{Bước 3 - Dạng chính tắc:}
+  $Q = \lambda_1 y_1^2 + \lambda_2 y_2^2 = y_1^2 + 3y_2^2$ (sau đổi biến trực giao $x = Py$).
+
+  \textbf{Kết luận:} $\lambda_1 = 1 > 0$, $\lambda_2 = 3 > 0$ $\Rightarrow$ $Q$ \textbf{xác định dương}.
+  Chỉ số quán tính: $(p, q) = (2, 0)$.
+
+  \textbf{Kiểm tra Sylvester:} $\Delta_1 = 2 > 0$;\; $\Delta_2 = \det(A) = 4-1 = 3 > 0$. \checkmark
+\end{vidu}
 
 \end{document}
