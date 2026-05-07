@@ -167,11 +167,10 @@
     \item \textbf{Ma trận chéo}: $a_{ij} = 0$ khi $i \ne j$.
     \item \textbf{Ma trận bằng nhau}: $A = B \Leftrightarrow$ cùng cỡ và $a_{ij} = b_{ij}$ với mọi $i, j$.
   \end{itemize}
-  (Các ma trận liên quan đến chuyển vị -- đối xứng, phản đối xứng, Hermitian -- xem §1.2.)
 \end{tinhchat}
 
 %% ----------------------------------------------------------------
-\subsection{Ma trận chuyển vị, Hermitian}
+\subsection{Ma trận chuyển vị}
 
 \begin{dinhnghia}
   Cho $A = (a_{ij}) \in \mathbb{R}^{m \times n}$. \textbf{Ma trận chuyển vị} của $A$ là ma trận $A^T \in \mathbb{R}^{n \times m}$ xác định bởi:
@@ -197,9 +196,9 @@
 \begin{dinhnghia}
   Ma trận vuông $A \in \mathbb{R}^{n \times n}$ gọi là:
   \begin{itemize}
-    \item \textbf{Đối xứng (Symmetric):} $A^T = A$, tức $a_{ij} = a_{ji}$ với mọi $i, j$.
-    \item \textbf{Phản đối xứng (Skew-symmetric):} $A^T = -A$, tức $a_{ij} = -a_{ji}$. Hệ quả: đường chéo chính bằng 0.
-    \item \textbf{Trực giao (Orthogonal):} $A^T A = A A^T = I$, tức $A^T = A^{-1}$. Hệ quả: $\det(A) = \pm 1$.
+    \item \textbf{Đối xứng:} $A^T = A$, tức $a_{ij} = a_{ji}$ với mọi $i, j$.
+    \item \textbf{Phản đối xứng:} $A^T = -A$, tức $a_{ij} = -a_{ji}$. Hệ quả: đường chéo chính bằng 0.
+    \item \textbf{Trực giao:} $A^T A = A A^T = I$, tức $A^T = A^{-1}$. Hệ quả: $\det(A) = \pm 1$.
   \end{itemize}
 \end{dinhnghia}
 
@@ -214,12 +213,17 @@
 
 \begin{vidu}
   $A = \begin{pmatrix}1&2\\3&4\end{pmatrix}$. Phân tích:
-  $\dfrac{A+A^T}{2} = \begin{pmatrix}1&\frac{5}{2}\\\frac{5}{2}&4\end{pmatrix}$ (đối xứng),\quad
+  
+  $\dfrac{A+A^T}{2} = \begin{pmatrix}1&\frac{5}{2}\\\frac{5}{2}&4\end{pmatrix}$ (đối xứng)
+  
   $\dfrac{A-A^T}{2} = \begin{pmatrix}0&-\frac{1}{2}\\\frac{1}{2}&0\end{pmatrix}$ (phản đối xứng).
 \end{vidu}
 
+%% ----------------------------------------------------------------
+\subsection{Ma trận Hermitian}
+
 \begin{dinhnghia}
-  Với ma trận phức $A = (a_{ij}) \in \mathbb{C}^{m \times n}$, định nghĩa \textbf{liên hợp Hermitian} (Hermitian conjugate / conjugate transpose):
+  Với ma trận phức $A = (a_{ij}) \in \mathbb{C}^{m \times n}$, định nghĩa \textbf{liên hợp Hermitian}:
   \[
     A^* = \bar{A}^T, \qquad (A^*)_{ij} = \overline{a_{ji}},
   \]
@@ -228,17 +232,17 @@
   Ma trận vuông phức $A \in \mathbb{C}^{n \times n}$ gọi là:
   \begin{itemize}
     \item \textbf{Hermitian:} $A^* = A$, tức $a_{ij} = \overline{a_{ji}}$. Đường chéo chính là số thực.
-    \item \textbf{Phản Hermitian (Skew-Hermitian):} $A^* = -A$, tức $a_{ij} = -\overline{a_{ji}}$.
-    \item \textbf{Unitary (Ma trận đơn nhất):} $A^* A = A A^* = I$, tức $A^* = A^{-1}$.
+    \item \textbf{Phản Hermitian:} $A^* = -A$, tức $a_{ij} = -\overline{a_{ji}}$.
+    \item \textbf{Ma trận đơn nhất:} $A^* A = A A^* = I$, tức $A^* = A^{-1}$.
   \end{itemize}
 \end{dinhnghia}
 
 \begin{luuy}
   \begin{itemize}
     \item Ma trận thực đối xứng là trường hợp đặc biệt của Hermitian (khi $a_{ij} \in \mathbb{R}$).
-    \item Ma trận trực giao là trường hợp đặc biệt của Unitary (khi $a_{ij} \in \mathbb{R}$).
+    \item Ma trận trực giao là trường hợp đặc biệt của Ma trận đơn nhất (khi $a_{ij} \in \mathbb{R}$).
     \item Ma trận Hermitian có tất cả trị riêng là \emph{số thực} - tính chất quan trọng trong ứng dụng (cơ học lượng tử, học máy).
-    \item Unitary bảo toàn tích vô hướng: $\langle Ax, Ay \rangle = \langle x, y \rangle$.
+    \item Ma trận đơn nhất bảo toàn tích vô hướng: $\langle Ax, Ay \rangle = \langle x, y \rangle$.
   \end{itemize}
 \end{luuy}
 
@@ -257,7 +261,9 @@
   \[
     A^* = \overline{A}^T = \begin{pmatrix}2 & 1-i \\ 1+i & 3\end{pmatrix}^T = \begin{pmatrix}2 & 1+i \\ 1-i & 3\end{pmatrix} = A.
   \]
-  Vậy $A$ là ma trận Hermitian. Đường chéo $\{2, 3\} \subset \mathbb{R}$ -- đúng như lý thuyết.
+  Đường chéo $\{2, 3\} \subset \mathbb{R}$.
+  
+  Vậy $A$ là ma trận Hermitian.
 \end{vidu}
 
 %% ----------------------------------------------------------------
@@ -305,11 +311,10 @@
     \item $AB$ được chưa chắc $BA$ được. Nếu cùng cỡ vuông thì cả hai đều xác định nhưng nói chung $AB \ne BA$ (không giao hoán).
     \item $A \ne 0,\; B \ne 0$ nhưng có thể $AB = 0$ (ví dụ: ma trận suy biến).
   \end{itemize}
-  (Các tính chất chuyển vị liên quan đến tích -- $(AB)^T = B^T A^T$ -- xem §1.2.)
 \end{tinhchat}
 
 \begin{dinhnghia}
-  \textbf{Tích Hadamard} (tích theo từng phần tử, element-wise product) của hai ma trận $A, B \in \mathbb{R}^{m \times n}$ \emph{cùng cỡ}:
+  \textbf{Tích Hadamard} (tích theo từng phần tử) của hai ma trận $A, B \in \mathbb{R}^{m \times n}$ \emph{cùng cỡ}:
   \[
     (A \odot B)_{ij} = a_{ij} \cdot b_{ij}.
   \]
@@ -321,7 +326,6 @@
   \begin{itemize}
     \item $A \odot B$ yêu cầu $A$ và $B$ \emph{cùng cỡ}; không cần chiều phù hợp như $AB$.
     \item $AB$ là tổ hợp tuyến tính các cột; $A \odot B$ chỉ nhân từng ô tương ứng.
-    \item Trong lập trình (NumPy, MATLAB), phép nhân mảng \texttt{A * B} thường là Hadamard, còn \texttt{A @ B} hoặc \texttt{A.dot(B)} mới là nhân ma trận.
   \end{itemize}
 \end{luuy}
 
@@ -391,17 +395,32 @@
   \end{enumerate}
 \end{phuongphap}
 
+\begin{luuy}[title={Quy tắc Sarrus}]
+  Định thức cấp 3:
+  \[
+    \begin{vmatrix}
+      a & b & c \\
+      d & e & f \\
+      g & h & i
+    \end{vmatrix} = aei + bfg + cdh - ceg - bdi - afh.
+  \]
+\end{luuy}
+
 \subsection{Ma trận nghịch đảo}
 
 \begin{dinhnghia}
   \begin{itemize}
-    \item \textbf{Ma trận đơn vị} $I_n$: ma trận vuông cấp $n$, đường chéo chính bằng 1, còn lại bằng 0. Ký hiệu $(I_n)_{ij} = \delta_{ij}$ (Kronecker delta).
+    \item \textbf{Ma trận đơn vị} $I_n$: ma trận vuông cấp $n$, đường chéo chính bằng 1, còn lại bằng 0.
     \item $I \cdot A = A \cdot I = A$ với mọi ma trận vuông $A$ cùng cấp.
   \end{itemize}
 \end{dinhnghia}
 
 \begin{dinhnghia}
-  Ma trận vuông $A$ gọi là \textbf{khả đảo} (khả nghịch) nếu tồn tại ma trận $B$ sao cho $AB = BA = I$. Khi đó $B$ gọi là \textbf{ma trận nghịch đảo} của $A$, ký hiệu $A^{-1}$. Ma trận nghịch đảo nếu tồn tại thì duy nhất.
+  Ma trận vuông $A$ gọi là \textbf{khả đảo} (khả nghịch) nếu tồn tại ma trận $B$ sao cho $AB = BA = I$.
+  
+  Khi đó $B$ gọi là \textbf{ma trận nghịch đảo} của $A$, ký hiệu $A^{-1}$.
+  
+  Ma trận nghịch đảo nếu tồn tại thì duy nhất.
 \end{dinhnghia}
 
 \begin{dinhly}[title={Điều kiện khả đảo}]
@@ -424,7 +443,7 @@
     \item $(AB)^{-1} = B^{-1}A^{-1}$ \quad (đảo thứ tự)
     \item $(A+B)^{-1} \ne A^{-1}+B^{-1}$ \quad (nói chung)
     \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$
-    \item $(A^T)^{-1} = (A^{-1})^T$ \quad (xem §1.2)
+    \item $(A^T)^{-1} = (A^{-1})^T$
   \end{itemize}
 \end{tinhchat}
 
@@ -435,13 +454,15 @@
 \subsection{Hạng của ma trận}
 
 \begin{dinhnghia}
-  \textbf{Hạng} của ma trận $A$, ký hiệu $\mathrm{rank}(A)$ hoặc $r(A)$, là cấp cao nhất của định thức con khác 0 của $A$. Nói cách khác: $\mathrm{rank}(A)$ = số dòng (hoặc cột) độc lập tuyến tính tối đa.
+  \textbf{Hạng} của ma trận $A$, ký hiệu $\mathrm{rank}(A)$ hoặc $r(A)$, là cấp cao nhất của định thức con khác 0 của $A$. 
+  
+  Nói cách khác: $\mathrm{rank}(A)$ = số dòng (hoặc cột) độc lập tuyến tính tối đa.
 \end{dinhnghia}
 
 \begin{tinhchat}[title={Tính chất hạng}]
   \begin{itemize}
     \item $\mathrm{rank}(A) = 0 \Leftrightarrow A = 0$
-    \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$ \quad (xem §1.2 -- hạng cột = hạng hàng)
+    \item $\mathrm{rank}(A) = \mathrm{rank}(A^T)$
     \item $\mathrm{rank}(A) \le \min(m, n)$ với $A \in \mathbb{R}^{m \times n}$
     \item $\mathrm{rank}(AB) \le \min(\mathrm{rank}(A),\, \mathrm{rank}(B))$
     \item $\mathrm{rank}(A + B) \le \mathrm{rank}(A) + \mathrm{rank}(B)$
@@ -572,7 +593,7 @@
   \[
     x = x_p + x_h,
   \]
-  trong đó $x_p$ là một \textbf{nghiệm riêng} (particular solution) bất kỳ của $Ax = b$, và $x_h$ là nghiệm tổng quát của hệ thuần nhất $Ax = 0$.
+  trong đó $x_p$ là một \textbf{nghiệm riêng} bất kỳ của $Ax = b$, và $x_h$ là nghiệm tổng quát của hệ thuần nhất $Ax = 0$.
   
   Cụ thể, nếu $\mathrm{rank}(A) = r < n$ thì có $n - r$ ẩn tự do $\lambda_1, \ldots, \lambda_{n-r}$ và nghiệm tổng quát:
   \[
@@ -687,7 +708,13 @@
 \end{dinhly}
 
 \begin{vidu}
-  Hệ $\begin{cases} 2x_1 + x_2 = 5 \\ x_1 + 3x_2 = 6 \end{cases}$. $\det(A) = 5$, $\det(A_1) = 9$, $\det(A_2) = 7$. Vậy $x_1 = 9/5$, $x_2 = 7/5$.
+  Hệ $\begin{cases} 2x_1 + x_2 = 5 \\ x_1 + 3x_2 = 6 \end{cases}$
+  
+  $\det(A) = 5 \ne 0$ nên thoả mãn hệ Cramer.
+  
+  $\det(A_1) = 9$, $\det(A_2) = 7$.
+  
+  Vậy $x_1 = 9/5$, $x_2 = 7/5$.
 \end{vidu}
 
 \subsection{Hệ thuần nhất}
@@ -695,8 +722,7 @@
 \begin{dinhly}[title={Hệ thuần nhất $Ax = 0$}]
   \begin{itemize}
     \item Luôn có nghiệm $x = 0$ (nghiệm tầm thường).
-    \item Có nghiệm không tầm thường khi và chỉ khi $\mathrm{rank}(A) < n$ (tức $A$ có $n$ cột phụ thuộc tuyến tính).
-    \item Khi $\det(A) = 0$: hệ có vô số nghiệm; không gian nghiệm có số chiều $n - \mathrm{rank}(A)$.
+    \item Có nghiệm không tầm thường khi và chỉ khi $\mathrm{rank}(A) < n$ (tức $A$ có $n$ cột phụ thuộc tuyến tính) hoặc $\det(A) = 0$. Khi đó hệ có vô số nghiệm; không gian nghiệm có số chiều $n - \mathrm{rank}(A)$.
   \end{itemize}
 \end{dinhly}
 
