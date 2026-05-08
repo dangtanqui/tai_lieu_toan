@@ -185,7 +185,7 @@
     \item $(A^T)^T = A$
     \item $(A + B)^T = A^T + B^T$
     \item $(\lambda A)^T = \lambda A^T$
-    \item $(AB)^T = B^T A^T$ \quad (đảo thứ tự!)
+    \item $(AB)^T = B^T A^T$
     \item $(ABC)^T = C^T B^T A^T$
     \item $\det(A^T) = \det(A)$ \quad (với $A$ vuông)
     \item $\mathrm{rank}(A^T) = \mathrm{rank}(A)$
@@ -309,7 +309,7 @@
     \item \textbf{Phân phối:} $A(B+C) = AB+AC$;\quad $(B+C)A = BA+CA$
     \item $k(BC) = (kB)C = B(kC)$
     \item $AB$ được chưa chắc $BA$ được. Nếu cùng cỡ vuông thì cả hai đều xác định nhưng nói chung $AB \ne BA$ (không giao hoán).
-    \item $A \ne 0,\; B \ne 0$ nhưng có thể $AB = 0$ (ví dụ: ma trận suy biến).
+    \item $A \ne 0,\; B \ne 0$ nhưng có thể $AB = 0$.
   \end{itemize}
 \end{tinhchat}
 
@@ -440,8 +440,8 @@
   \begin{itemize}
     \item $AA^{-1} = I = A^{-1}A$
     \item $(A^{-1})^{-1} = A$
-    \item $(AB)^{-1} = B^{-1}A^{-1}$ \quad (đảo thứ tự)
-    \item $(A+B)^{-1} \ne A^{-1}+B^{-1}$ \quad (nói chung)
+    \item $(AB)^{-1} = B^{-1}A^{-1}$
+    \item Nói chung $(A+B)^{-1} \ne A^{-1}+B^{-1}$
     \item $\det(A^{-1}) = \dfrac{1}{\det(A)}$
     \item $(A^T)^{-1} = (A^{-1})^T$
   \end{itemize}
@@ -472,7 +472,11 @@
 \end{tinhchat}
 
 \begin{phuongphap}[title={Tính hạng bằng biến đổi sơ cấp}]
-  Dùng biến đổi sơ cấp trên hàng (hoặc cột) đưa $A$ về dạng bậc thang. Số dòng khác 0 của ma trận bậc thang chính là $\mathrm{rank}(A)$. Các biến đổi sơ cấp không làm thay đổi hạng.
+  Dùng biến đổi sơ cấp trên hàng (hoặc cột) đưa $A$ về dạng bậc thang.
+  
+  Số dòng khác 0 của ma trận bậc thang chính là $\mathrm{rank}(A)$.
+  
+  Các biến đổi sơ cấp không làm thay đổi hạng.
 \end{phuongphap}
 
 %% ----------------------------------------------------------------
@@ -499,8 +503,8 @@
   \begin{itemize}
     \item $\mathrm{Col}(A)$ là không gian con của $\mathbb{R}^m$; $\mathrm{Null}(A)$ là không gian con của $\mathbb{R}^n$.
     \item $\dim(\mathrm{Col}(A)) = \mathrm{rank}(A)$.
-    \item $\dim(\mathrm{Null}(A)) = n - \mathrm{rank}(A)$ \quad (gọi là \textbf{nullity} của $A$).
-    \item \textbf{Định lý hạng -- nhân:} $\dim(\mathrm{Col}(A)) + \dim(\mathrm{Null}(A)) = n$.
+    \item $\dim(\mathrm{Null}(A)) = n - \mathrm{rank}(A)$.
+    \item \textbf{Định lý hạng - nhân:} $\dim(\mathrm{Col}(A)) + \dim(\mathrm{Null}(A)) = n$.
     \item Hệ $Ax = b$ có nghiệm $\Leftrightarrow$ $b \in \mathrm{Col}(A)$.
   \end{itemize}
 \end{dinhly}
@@ -516,7 +520,7 @@
   \]
 \end{dinhnghia}
 
-\begin{dinhly}[title={Bốn không gian cơ bản (Định lý cơ bản của đại số tuyến tính)}]
+\begin{dinhly}[title={Bốn không gian cơ bản}]
   Với $A \in \mathbb{R}^{m \times n}$ và $r = \mathrm{rank}(A)$, bốn không gian con cơ bản có số chiều:
   \begin{center}
   \begin{tabular}{lll}
@@ -780,7 +784,7 @@
 \subsection{Nghiệm bình phương nhỏ nhất (giả nghịch đảo Moore-Penrose)}
 
 \begin{luuy}
-  Khi hệ $Ax = b$ \textbf{không nhất quán} (vô nghiệm) hoặc $A$ không vuông/không có nghịch đảo, ta không thể tìm nghiệm chính xác. Thay vào đó, ta tìm vector $x^*$ sao cho $\|Ax - b\|^2$ nhỏ nhất (nghiệm bình phương nhỏ nhất -- \emph{least-squares solution}).
+  Khi hệ $Ax = b$ \textbf{không nhất quán} (vô nghiệm) hoặc $A$ không vuông/không có nghịch đảo, ta không thể tìm nghiệm chính xác. Thay vào đó, ta tìm vector $x^*$ sao cho $\|Ax - b\|^2$ nhỏ nhất (nghiệm bình phương nhỏ nhất).
 \end{luuy}
 
 \begin{congthuc}[title={Nghiệm bình phương nhỏ nhất}]
@@ -985,6 +989,13 @@ Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu m�
 \]
 \end{dinhnghia}
 
+\begin{vidu}
+Trong $\mathbb{R}^3$ không gian sinh $A$ của 2 vectơ $u = (-1, 2, 0.5), v = (1, 3, 0.1)$ là mặt phẳng đi qua gốc tạo độ sau:
++\begin{center}
+    \includegraphics[width=0.5\linewidth]{dai_hoc//nhom_1_dai_so_logic/khong_gian_sinh.png}
+\end{center}
+\end{vidu}
+
 \subsection{Độc lập tuyến tính, phụ thuộc tuyến tính}
 
 \begin{dinhnghia}
@@ -1006,7 +1017,11 @@ Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu m�
 \end{tinhchat}
 
 \begin{phuongphap}[title={Kiểm tra độc lập tuyến tính}]
-Đặt các vector làm cột của ma trận $A$, sau đó dùng khử Gauss đưa về REF. Nếu mọi cột đều là cột pivot $\Rightarrow$ độc lập tuyến tính. Nếu có cột không phải pivot $\Rightarrow$ phụ thuộc tuyến tính.
+Đặt các vector làm cột của ma trận $A$, sau đó dùng khử Gauss đưa về REF.
+\begin{itemize}
+    \item Nếu mọi cột đều là cột pivot $\Rightarrow$ độc lập tuyến tính.
+    \item Nếu có cột không phải pivot $\Rightarrow$ phụ thuộc tuyến tính.
+\end{itemize}
 \end{phuongphap}
 
 \begin{dinhnghia}
@@ -1034,7 +1049,7 @@ Cho không gian vector $V$ và $A = \{x_1, \ldots, x_k\} \subseteq V$. Nếu m�
 \end{dinhly}
 
 \begin{luuy}
-Cơ sở tắc (canonical basis) của $\mathbb{R}^n$: $\{e_1, e_2, \ldots, e_n\}$, trong đó $e_i$ là vector có 1 ở vị trí thứ $i$ và 0 ở các vị trí còn lại. 
+Cơ sở chính tắc của $\mathbb{R}^n$: $\{e_1, e_2, \ldots, e_n\}$, trong đó $e_i$ là vector có 1 ở vị trí thứ $i$ và 0 ở các vị trí còn lại. 
 
 Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có cùng số phần tử.
 \end{luuy}
@@ -1042,19 +1057,6 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhnghia}
   \textbf{Tọa độ} của $v$ trong cơ sở $\mathcal{B}$: $[v]_{\mathcal{B}} = (x_1, \ldots, x_n)^T$ với $v = x_1 e_1 + \cdots + x_n e_n$.
 \end{dinhnghia}
-
-\subsection{Hạng ma trận (định nghĩa và tính chất khác)}
-
-\begin{dinhnghia}
-\textbf{Hạng} của ma trận $A \in \mathbb{R}^{m \times n}$, ký hiệu $\mathrm{rank}(A)$, là số cột (hoặc hàng) độc lập tuyến tính tối đa của $A$.
-\end{dinhnghia}
-
-\begin{dinhly}
-\begin{itemize}
-  \item Hệ $Ax = b$ có nghiệm $\Leftrightarrow$ $\mathrm{rank}(A) = \mathrm{rank}([A \mid b])$.
-  \item Không gian nghiệm của $Ax = 0$ có số chiều $n - \mathrm{rank}(A)$ (gọi là không gian nhân -- kernel/null space).
-\end{itemize}
-\end{dinhly}
 
 \subsection{Tích vô hướng và không gian có tích vô hướng}
 
@@ -1151,7 +1153,7 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   Hệ vectơ $\{v_1, \ldots, v_k\}$ gọi là:
   \begin{itemize}
     \item \textbf{Trực giao} nếu $\langle v_i, v_j \rangle = 0$ với mọi $i \ne j$.
-    \item \textbf{Trực chuẩn} (orthonormal) nếu trực giao và $\|v_i\| = 1$ với mọi $i$.
+    \item \textbf{Trực chuẩn} nếu trực giao và $\|v_i\| = 1$ với mọi $i$.
   \end{itemize}
   Hệ trực giao gồm các vectơ khác $\mathbf{0}$ luôn độc lập tuyến tính.
 \end{dinhnghia}
@@ -1210,7 +1212,7 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \end{dinhnghia}
 
 \begin{congthuc}[title={Công thức đổi tọa độ}]
-  Nếu $[v]_{\mathcal{B}}$ là tọa độ của $v$ trong $\mathcal{B}$, thì tọa độ trong $\mathcal{B}'$ là:
+  Nếu $[v]_{\mathcal{B}}$ là tọa độ của $v$ trong $\mathcal{B}$, thì tọa độ của $v$ trong $\mathcal{B}'$ là:
   \[
     [v]_{\mathcal{B}'} = P^{-1}[v]_{\mathcal{B}}.
   \]
@@ -1278,6 +1280,17 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
     \item \textbf{Tịnh tiến:} $T(x) = x + a$ với $a \ne \mathbf{0}$ -- \emph{không} tuyến tính (vì $T(\mathbf{0}) = a \ne \mathbf{0}$).
   \end{itemize}
 \end{vidu}
+\begin{vidu}
+  Cho $f: \mathbb{R}^3 \to \mathbb{R}^2, (x, y, z) \to (2x + y, x + 3z)$.
+
+  Xét $u = (x_1, y_1, z_1), v = (x_2, y_2, z_2)$
+  \[
+    f(u) = (2x_1 + y_1, x_1 + 3z_1), f(v) = (2x_2 + y_2, x_2 + 3z_2)
+  \]
+   $f(\alpha u + \beta v) = f(\alpha x_1 + \beta x_2, \alpha y_1 + \beta y_2, \alpha z_1 + \beta z_2) = (2\alpha x_1 + 2\beta x_2 + \alpha y_1 + \beta y_2, \alpha x_1 + \beta x_2 + 3\alpha x_1 + 3\beta z_2) = \alpha (2x_1 + y_1, x_1 + 3z_1) + \beta (2x_2 + y_2, x_2 + 3z_2) = \alpha u + \beta v$
+
+  Vậy $f$ là ánh xạ tuyến tính.
+\end{vidu}
 
 %% ----------------------------------------------------------------
 \subsection{Các loại ánh xạ và đồng cấu}
@@ -1285,27 +1298,31 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhnghia}
   Ánh xạ $T: V \to W$ gọi là:
   \begin{itemize}
-    \item \textbf{Đơn ánh (injective / one-to-one):} $T(u) = T(v) \Rightarrow u = v$. Tương đương: $\ker T = \{\mathbf{0}\}$.
-    \item \textbf{Toàn ánh (surjective / onto):} $\mathrm{Im}\,T = W$ (mọi phần tử trong $W$ đều có nghịch ảnh).
-    \item \textbf{Song ánh (bijective):} vừa đơn ánh vừa toàn ánh. Khi đó tồn tại $T^{-1}: W \to V$ tuyến tính.
+    \item \textbf{Đơn ánh:} $T(u) = T(v) \Rightarrow u = v$. Tương đương: $\ker T = \{\mathbf{0}\}$.
+    \item \textbf{Toàn ánh:} $\mathrm{Im}\,T = W$ (mọi phần tử trong $W$ đều có nghịch ảnh). Tương đương: $\dim(\mathrm{Im}\,T) = \dim(W) \Leftrightarrow \dim(V) = \dim(\mathrm{Ker}\,T) + \dim(W)$
+    \item \textbf{Song ánh:} vừa đơn ánh vừa toàn ánh. Khi đó tồn tại $T^{-1}: W \to V$ tuyến tính.
   \end{itemize}
 \end{dinhnghia}
 
 \begin{dinhnghia}
   Các loại đồng cấu đặc biệt:
   \begin{itemize}
-    \item \textbf{Đơn cấu (monomorphism):} $T: V \to W$ tuyến tính và đơn ánh.
-    \item \textbf{Toàn cấu (epimorphism):} $T: V \to W$ tuyến tính và toàn ánh.
-    \item \textbf{Đẳng cấu (isomorphism):} $T: V \to W$ tuyến tính và song ánh.
-    \item \textbf{Nội cấu (endomorphism):} $T: V \to V$ tuyến tính (cùng miền và đối miền).
-    \item \textbf{Tự đẳng cấu (automorphism):} $T: V \to V$ tuyến tính và song ánh.
+    \item \textbf{Đơn cấu:} $T: V \to W$ tuyến tính và đơn ánh.
+    \item \textbf{Toàn cấu:} $T: V \to W$ tuyến tính và toàn ánh.
+    \item \textbf{Đẳng cấu:} $T: V \to W$ tuyến tính và song ánh.
+    \item \textbf{Nội cấu:} $T: V \to V$ tuyến tính (cùng miền và đối miền).
+    \item \textbf{Tự đẳng cấu:} $T: V \to V$ tuyến tính và song ánh.
   \end{itemize}
 \end{dinhnghia}
 
 \begin{dinhly}[title={Định lý về đẳng cấu}]
   Hai không gian vectơ hữu hạn chiều $V$ và $W$ đẳng cấu ($V \cong W$) khi và chỉ khi $\dim V = \dim W$.
 
-  Hệ quả: $\mathbb{R}^{m \times n} \cong \mathbb{R}^{mn}$; mọi không gian $n$ chiều đều đẳng cấu với $\mathbb{R}^n$.
+  Hệ quả:
+  \begin{itemize}
+      \item $\mathbb{R}^{m \times n} \cong \mathbb{R}^{m \times n}$.
+      \item Mọi không gian $n$ chiều đều đẳng cấu với $\mathbb{R}^n$.
+  \end{itemize}
 \end{dinhly}
 
 %% ----------------------------------------------------------------
@@ -1315,21 +1332,19 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   Cho ánh xạ tuyến tính $T: V \to W$:
   \[
     \ker T = \{v \in V \mid T(v) = \mathbf{0}_W\} \subseteq V
-    \qquad \text{(\textbf{hạt nhân} / null space)}
   \]
   \[
     \mathrm{Im}\,T = \{T(v) \mid v \in V\} \subseteq W
-    \qquad \text{(\textbf{ảnh} / image / range)}
   \]
   Cả $\ker T$ và $\mathrm{Im}\,T$ đều là không gian con của $V$ và $W$ tương ứng.
 \end{dinhnghia}
 
-\begin{dinhly}[title={Định lý chiều -- Rank-Nullity}]
+\begin{dinhly}[title={Định lý chiều}]
   Với $T: V \to W$ tuyến tính và $\dim V = n$ hữu hạn:
   \[
-    \underbrace{\dim(\ker T)}_{\text{số khuyết (nullity)}}
+    \underbrace{\dim(\ker T)}_{\text{số khuyết}}
     +
-    \underbrace{\dim(\mathrm{Im}\,T)}_{\text{hạng (rank)}}
+    \underbrace{\dim(\mathrm{Im}\,T)}_{\text{hạng}}
     = n = \dim V.
   \]
 \end{dinhly}
@@ -1356,6 +1371,13 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   $\mathrm{Im}(T) = \mathbb{R}^2$ (vì $\mathrm{rank}(A) = 2 = m$, $T$ toàn ánh).
 \end{vidu}
 
+\begin{luuy}[title={Ý nghĩa}]
+  \begin{itemize}
+    \item Ý nghĩa của $\mathrm{Ker}(f)$: Cho biết mức độ mất mát thông tin của phép biến đổi. Nếu $\mathrm{Ker}$ chỉ chứa vector không (tức là \(\mathrm{Ker}(f) = \{0\}\)), phép biến đổi này bảo toàn thông tin hoàn toàn.
+    \item Ý nghĩa của $\mathrm{Im}(f)$: Cho biết không gian đích thực tế mà phép biến đổi bao phủ. Nó giúp bạn xác định được tập hợp các kết quả có thể xảy ra trong không gian \(W\).
+  \end{itemize}
+\end{luuy}
+
 %% ----------------------------------------------------------------
 \subsection{Biểu diễn ma trận của ánh xạ tuyến tính}
 
@@ -1366,13 +1388,6 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   \]
 \end{dinhnghia}
 
-\begin{congthuc}
-  Nếu $\hat{x} = [v]_{\mathcal{B}}$ là tọa độ của $v$ trong $\mathcal{B}$ thì tọa độ của $T(v)$ trong $\mathcal{C}$ là:
-  \[
-    [T(v)]_{\mathcal{C}} = A_T \cdot [v]_{\mathcal{B}}.
-  \]
-\end{congthuc}
-
 \begin{phuongphap}[title={Xây dựng ma trận biểu diễn $A_T$}]
   \begin{enumerate}
     \item Tính $T(b_j)$ cho từng vectơ cơ sở $b_j \in \mathcal{B}$.
@@ -1382,19 +1397,46 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \end{phuongphap}
 
 \begin{vidu}
-  Cho $T: \mathbb{R}^2 \to \mathbb{R}^2$ là phép quay $90°$ ngược chiều kim đồng hồ. Trong cơ sở chuẩn $\mathcal{E} = (e_1, e_2)$:
+  Cho $T: \mathbb{R}^2 \to \mathbb{R}^2$ là phép quay $90^\circ$ ngược chiều kim đồng hồ. Trong cơ sở chuẩn $\mathcal{E} = (e_1, e_2)$:
   \[
-    T(e_1) = T\!\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix}, \quad
-    T(e_2) = T\!\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}-1\\0\end{pmatrix}.
+    T(e_1) = T\!\begin{pmatrix}1\\0\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix} = 0 e_1 + 1e_2, \quad
+    T(e_2) = T\!\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}-1\\0\end{pmatrix} = -1e_1 + 0e_2.
   \]
   Vậy $A_T = \begin{pmatrix}0&-1\\1&0\end{pmatrix}$.
 \end{vidu}
 
-\begin{luuy}
-  Khi làm việc với ma trận, cần phân biệt hai vai trò khác nhau:
+\begin{congthuc}[title=Tìm toạ độ $T(v)$ trong $\mathcal{C}$]
+  Nếu $[v]_{\mathcal{B}}$ là tọa độ của $v$ trong $\mathcal{B}$ thì tọa độ của $T(v)$ trong $\mathcal{C}$ là:
+  \[
+    [T(v)]_{\mathcal{C}} = A_T \cdot [v]_{\mathcal{B}}.
+  \]
+\end{congthuc}
+\begin{vidu}
+  Cho $f: \mathbb{R}^3 \to \mathbb{R}^2, (x, y, z) \to (2x + y, x + 3z)$. Với $u = (1, 2, 3)$ tìm toạ độ của $f(u)$ trong $\mathcal{F}$.
+  
+  Cơ sở chuẩn của $\mathbb{R}^3$ là $\mathcal{E} = (e_1, e_2, e_3)$, cơ sở chuẩn của $\mathbb{R}^2$ là $\mathcal{F} = (f_1, f_2)$.
+  \[
+    f(e_1) = (2, 1) = 2f_1 + f_2
+  \]
+  \[
+    f(e_2) = (1, 0) = 1f_1 + 0f_2
+  \]
+  \[
+    f(e_3) = (0, 3) = 0f_1 + 3f_2
+  \]
+  Do đó: $A_f = \begin{pmatrix}2 & 1 & 0\\1 & 0 & 3\end{pmatrix}$
+
+  Ta có: $u = 1e_1 + 2e_2 + 3e_3$
+  
+  Toạ độ $u$ trong $\mathcal{E}$ là $\begin{pmatrix}1\\2\\3\end{pmatrix}$
+
+  Toạ độ $f(u)$ trong $\mathcal{F}$ là: $\begin{pmatrix}2 & 1 & 0\\1 & 0 & 3\end{pmatrix}\begin{pmatrix}1\\2\\3\end{pmatrix} =\begin{pmatrix}4\\10\end{pmatrix}$
+\end{vidu}
+
+\begin{luuy}[title={Ý nghĩa}]
   \begin{itemize}
-    \item Ma trận là \textbf{biểu diễn của ánh xạ tuyến tính} (mỗi cột là ảnh của một vectơ cơ sở).
-    \item Ma trận là \textbf{tập hợp các vectơ cột} (dùng trong bài toán span, độc lập tuyến tính).
+    \item Giúp biến các thao tác hình học hoặc biến đổi đại số phức tạp thành phép nhân ma trận đơn giản.
+    \item Ma trận thể hiện chính xác cách không gian bị kéo giãn, xoay, hoặc thu nhỏ dưới tác động của phép biến đổi.
   \end{itemize}
 \end{luuy}
 
@@ -1404,7 +1446,7 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhly}[title={Công thức đổi ma trận biểu diễn}]
   Cho $T: V \to W$. Gọi $A_T$ là ma trận biểu diễn của $T$ theo cặp cơ sở $(\mathcal{B}, \mathcal{C})$. Nếu ta thay sang cặp cơ sở mới $(\mathcal{B}', \mathcal{C}')$, thì ma trận biểu diễn mới là:
   \[
-    \tilde{A}_T = T_{\mathcal{C} \to \mathcal{C}'}^{-1} \cdot A_T \cdot S_{\mathcal{B}' \to \mathcal{B}},
+    \tilde{A}_T = T_{\mathcal{C} \to \mathcal{C}'}^{-1} \cdot A_T \cdot S_{\mathcal{B}' \to \mathcal{B}}
   \]
   trong đó:
   \begin{itemize}
@@ -1413,16 +1455,84 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
   \end{itemize}
 \end{dinhly}
 
+\begin{luuy}
+  Trong bài toán: $T: V \to V$ là \emph{tự đồng cấu} trên cùng một không gian, và ta có ma trận $[T]_{\mathcal{B}}$ trong cơ sở $\mathcal{B}$, muốn tìm $[T]_{\mathcal{E}}$ trong cơ sở chuẩn $\mathcal{E}$ (hoặc ngược lại).
+  Đây là trường hợp $V = W$, $\mathcal{B} = \mathcal{B}'$, $\mathcal{C} = \mathcal{C}'$, nên $S = T = P$ và công thức trên trở thành công thức \emph{đồng dạng}.
+  \[
+    \tilde{A}_T = P^{-1} \cdot A_T \cdot P
+  \]
+\end{luuy}
+
+\begin{congthuc}[title={Chuyển ma trận biểu diễn qua lại giữa hai cơ sở}]
+  Cho $T: V \to V$ và hai cơ sở $\mathcal{E}$ (chuẩn) và $\mathcal{B} = (b_1, \ldots, b_n)$. Đặt:
+  \[
+    T_E^B = \bigl[b_1 \mid b_2 \mid \cdots \mid b_n\bigr]
+    \quad\text{(cột $j$ là tọa độ của $b_j$ trong $\mathcal{E}$)},
+    \qquad
+    T_B^E = \bigl(T_E^B\bigr)^{-1}.
+  \]
+  Khi đó:
+  \[
+    \boxed{[v]_E = T_E^B\,[v]_B\,T_B^E}
+    \qquad\Longleftrightarrow\qquad
+    \boxed{[v]_B = T_B^E\,[v]_E\,T_E^B}.
+  \]
+\end{congthuc}
+
+\begin{phuongphap}[title={Tìm $[v]_{\mathcal{E}}$ khi biết $[v]_{\mathcal{B}}$}]
+  \begin{enumerate}
+    \item Lập $T_E^B$: xếp các vectơ cơ sở của $\mathcal{B}$ (viết trong tọa độ chuẩn) làm \emph{cột}.
+    \item Tính $T_B^E = (T_E^B)^{-1}$.
+    \item Tính $[v]_E = T_E^B \cdot [v]_B \cdot T_B^E$.
+  \end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}
+  Cho $u, v: \mathbb{R}^2 \to \mathbb{R}^2$. Biết ma trận của $v$ trong cơ sở $\mathcal{B} = \{(2,1),\,(1,1)\}$ là $[v]_{\mathcal{B}} = \begin{pmatrix}1&2\\1&-1\end{pmatrix}$. Tìm $[v]_{\mathcal{E}}$.
+
+  \medskip
+  \textbf{Bước 1 - Lập $T_E^B$ và $T_B^E$:}
+  \[
+    T_E^B = \begin{pmatrix}2&1\\1&1\end{pmatrix}, \qquad
+    \det(T_E^B) = 2-1 = 1, \qquad
+    T_B^E = \begin{pmatrix}1&-1\\-1&2\end{pmatrix}.
+  \]
+
+  \textbf{Bước 2 - Chuyển $[v]_{\mathcal{B}}$ sang $[v]_{\mathcal{E}}$:}
+  \[
+    [v]_E = T_E^B\,[v]_B\,T_B^E
+    = \begin{pmatrix}2&1\\1&1\end{pmatrix}
+      \begin{pmatrix}1&2\\1&-1\end{pmatrix}
+      \begin{pmatrix}1&-1\\-1&2\end{pmatrix}.
+  \]
+  Tính từng bước:
+  \[
+    \begin{pmatrix}2&1\\1&1\end{pmatrix}\begin{pmatrix}1&2\\1&-1\end{pmatrix}
+    = \begin{pmatrix}3&3\\2&1\end{pmatrix},
+  \]
+  \[
+    \begin{pmatrix}3&3\\2&1\end{pmatrix}\begin{pmatrix}1&-1\\-1&2\end{pmatrix}
+    = \begin{pmatrix}0&3\\1&0\end{pmatrix}.
+  \]
+  Vậy $[v]_{\mathcal{E}} = \begin{pmatrix}0&3\\1&0\end{pmatrix}$.
+\end{vidu}
+
 \begin{dinhnghia}
   Hai ma trận $A, \tilde{A} \in \mathbb{R}^{m \times n}$ gọi là \textbf{tương đương} nếu tồn tại $S \in \mathbb{R}^{n \times n}$, $T \in \mathbb{R}^{m \times m}$ khả nghịch sao cho $\tilde{A} = T^{-1}AS$.
 
-  Hai ma trận $A, \tilde{A} \in \mathbb{R}^{n \times n}$ gọi là \textbf{đồng dạng (similar)} nếu tồn tại $S \in \mathbb{R}^{n \times n}$ khả nghịch sao cho $\tilde{A} = S^{-1}AS$.
+  Hai ma trận $A, \tilde{A} \in \mathbb{R}^{n \times n}$ gọi là \textbf{đồng dạng} nếu tồn tại $S \in \mathbb{R}^{n \times n}$ khả nghịch sao cho $\tilde{A} = S^{-1}AS$.
 
   \begin{itemize}
     \item Đồng dạng $\Rightarrow$ tương đương; chiều ngược lại không đúng.
     \item Hai ma trận biểu diễn cùng một ánh xạ tuyến tính (theo cặp cơ sở khác nhau) thì tương đương; nếu $V = W$ thì còn đồng dạng.
   \end{itemize}
 \end{dinhnghia}
+
+\begin{luuy}[title={Ý nghĩa}]
+  \begin{itemize}
+    \item Trong một số cơ sở đặc biệt (được gọi là cơ sở vectơ riêng), ma trận biểu diễn một phép biến đổi phức tạp sẽ trở thành một ma trận đường chéo (ma trận chéo hoá).
+  \end{itemize}
+\end{luuy}
 
 %% ================================================================
 %%  CHƯƠNG 5: KHÔNG GIAN AFFINE
@@ -1490,15 +1600,17 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \section{Trị riêng và vectơ riêng}
 
 \begin{dinhnghia}
-  Số $\lambda \in \mathbb{R}$ (hoặc $\mathbb{C}$) gọi là \textbf{trị riêng} của ma trận vuông $A$ nếu tồn tại vectơ $x \ne \mathbf{0}$ sao cho $Ax = \lambda x$. 
+  Số $\lambda \in \mathbb{R}$ (hoặc $\mathbb{C}$) gọi là \textbf{giá trị riêng} của ma trận vuông $A$ (cỡ $n \times n$ nếu tồn tại vectơ $x \ne \mathbf{0}$ ($x \in \mathbb{R}^n$) sao cho $Ax = \lambda x \Leftrightarrow (A - \lambda I)x = 0$. 
   
   Vectơ $x$ gọi là \textbf{vectơ riêng} ứng với $\lambda$.
 \end{dinhnghia}
 
 \begin{congthuc}[title={Phương trình đặc trưng}]
-  $\lambda$ là trị riêng của $A$ khi và chỉ khi $\det(A - \lambda I) = 0$. 
+  Đa thức $p_A(t) = \det(A - tI)$ gọi là \textbf{đa thức đặc trưng} (bậc $n$).
   
-  Đa thức $p_A(t) = \det(A - tI)$ gọi là \textbf{đa thức đặc trưng}. Các trị riêng là nghiệm của $p_A(\lambda) = 0$.
+  Các trị riêng là nghiệm của $p_A(\lambda) = 0 \Leftrightarrow det(A - \lambda I) = 0$.
+
+  Vectơ riêng $x_i$ của trị riêng $\lambda_i$ là nghiệm của $(A - \lambda_i I)x_i = 0$
 
   Tập hợp tất cả các trị riêng của 1 ma trận vuông gọi là \textbf{phổ} của ma trận đó.
 \end{congthuc}
@@ -1506,33 +1618,10 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhnghia}
   \textbf{Không gian riêng} ứng với $\lambda$: $E_\lambda(A) = \ker(A - \lambda I) = \{x \mid Ax = \lambda x\}$. 
   
-  Số chiều $\dim E_\lambda$ gọi là \textbf{bội hình học} của $\lambda$; bội của $\lambda$ trong đa thức đặc trưng gọi là \textbf{bội đại số}.
+  Số chiều $\dim E_\lambda$ gọi là \textbf{bội hình học} của $\lambda$.
+  
+  Bội của $\lambda$ trong đa thức đặc trưng gọi là \textbf{bội đại số}.
 \end{dinhnghia}
-
-\begin{vidu}[title={Tìm trị riêng và vectơ riêng}]
-  Cho $A = \begin{pmatrix}3 & 1 \\ 0 & 2\end{pmatrix}$.
-
-  \textbf{Bước 1 -- Phương trình đặc trưng:}
-  \[
-    \det(A - \lambda I) = \det\begin{pmatrix}3-\lambda & 1 \\ 0 & 2-\lambda\end{pmatrix}
-    = (3-\lambda)(2-\lambda) = 0.
-  \]
-  Trị riêng: $\lambda_1 = 2$, $\lambda_2 = 3$.
-
-  \textbf{Bước 2 -- Vectơ riêng:}
-
-  $\lambda_1 = 2$: Giải $(A - 2I)x = 0$:
-  $\begin{pmatrix}1&1\\0&0\end{pmatrix}x = 0 \Rightarrow x_1 = -x_2$.
-  Vectơ riêng: $x = t\begin{pmatrix}-1\\1\end{pmatrix}$, $t \ne 0$. Cơ sở $E_2 = \left\{\begin{pmatrix}-1\\1\end{pmatrix}\right\}$.
-
-  $\lambda_2 = 3$: Giải $(A - 3I)x = 0$:
-  $\begin{pmatrix}0&1\\0&-1\end{pmatrix}x = 0 \Rightarrow x_2 = 0$.
-  Vectơ riêng: $x = t\begin{pmatrix}1\\0\end{pmatrix}$. Cơ sở $E_3 = \left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}$.
-
-  \textbf{Kiểm tra:}
-  $\det(A) = 6 = 2 \cdot 3 = \lambda_1\lambda_2$. \checkmark \quad
-  $\mathrm{tr}(A) = 5 = 2 + 3 = \lambda_1 + \lambda_2$. \checkmark
-\end{vidu}
 
 \begin{tinhchat}[title={Tính chất trị riêng và vectơ riêng}]
   Cho $A \in \mathbb{C}^{n \times n}$ với các trị riêng $\lambda_1, \ldots, \lambda_n$ (kể cả bội đại số).
@@ -1546,13 +1635,52 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
     \item Các vectơ riêng ứng với các trị riêng \emph{khác nhau} là độc lập tuyến tính.
     \item Nếu $A$ khả đảo và $(\lambda, x)$ là cặp trị riêng -- vectơ riêng, thì $A^{-1}$ có cặp $\bigl(\tfrac{1}{\lambda},\, x\bigr)$.
     \item $A^k$ có cặp $(\lambda^k, x)$ với mọi số nguyên $k$.
+    \item $A$ đối xứng thì trị riêng luôn là các số thực (không phức). Các vectơ riêng tương ứng với các trị riêng khác nhau thì trực giao với nhau.
+    \item Vectơ riêng $x$ được gọi là chuẩn hoá nếu $||x||_2 = 1$. Khi đó: $x^TAx = \lambda x^Tx = \lambda$.
   \end{itemize}
 \end{tinhchat}
+
+\begin{vidu}[title={Tìm trị riêng và vectơ riêng}]
+  Cho $A = \begin{pmatrix}3 & 1 \\ 0 & 2\end{pmatrix}$.
+
+  \textbf{Bước 1 - Phương trình đặc trưng:}
+  \[
+    \det(A - \lambda I) = \det\begin{pmatrix}3-\lambda & 1 \\ 0 & 2-\lambda\end{pmatrix}
+    = (3-\lambda)(2-\lambda) = 0.
+  \]
+  Trị riêng: $\lambda_1 = 2$, $\lambda_2 = 3$.
+
+  \textbf{Bước 2 - Vectơ riêng:}
+
+  $\lambda_1 = 2$: Giải $(A - 2I)x = 0$:
+  $\begin{pmatrix}1&1\\0&0\end{pmatrix}\begin{pmatrix}x_1\\x_2\end{pmatrix} = 0 \Rightarrow x_1 = -x_2$.
+  Vectơ riêng: $x = t\begin{pmatrix}-1\\1\end{pmatrix}$, $t \ne 0$. Cơ sở $E_2 = \left\{\begin{pmatrix}-1\\1\end{pmatrix}\right\}$.
+
+  $\lambda_2 = 3$: Giải $(A - 3I)x = 0$:
+  $\begin{pmatrix}0&1\\0&-1\end{pmatrix}\begin{pmatrix}x_1\\x_2\end{pmatrix} = 0 \Rightarrow x_2 = 0$.
+  Vectơ riêng: $x = t\begin{pmatrix}1\\0\end{pmatrix}$. Cơ sở $E_3 = \left\{\begin{pmatrix}1\\0\end{pmatrix}\right\}$.
+
+  \textbf{Kiểm tra:}
+  $\det(A) = 6 = 2 \cdot 3 = \lambda_1\lambda_2$. \checkmark \quad
+  $\mathrm{tr}(A) = 5 = 2 + 3 = \lambda_1 + \lambda_2$. \checkmark
+\end{vidu}
+
+\begin{luuy}[title=Ý nghĩa]
+Phục vụ đắc lực cho việc \textbf{chéo hóa ma trận}, giúp việc tính lũy thừa của một ma trận lớn (ví dụ: \(A^{100}\)) trở nên cực kỳ dễ dàng.
+
+Về mặt hình học, khi một phép biến đổi tuyến tính (đại diện bởi một ma trận) tác động lên không gian, hầu hết các vectơ đều bị thay đổi cả hướng lẫn độ dài. Trị riêng và vectơ riêng cho biết những "trục" đặc biệt:
+\begin{itemize}
+    \item \textbf{Vectơ riêng}: Là các \textbf{hướng cố định} không bị thay đổi phương khi biến đổi. Chúng chỉ có thể bị kéo giãn ra hoặc nén lại. Tức xác định một phương mà dọc theo đó ma trận $A$ hoạt động tương tự như phép nhân vô hướng.
+    \item \textbf{Trị riêng}: Là hệ số cho biết \textbf{mức độ bị kéo giãn hay nén lại} của vectơ riêng tương ứng (lượng co giãn).
+\end{itemize}
+\end{luuy}
 
 \subsection{Chéo hóa}
 
 \begin{dinhnghia}
-  Ma trận $A$ \textbf{chéo hóa được} nếu tồn tại ma trận khả nghịch $P$ sao cho $P^{-1}AP = D$ là ma trận chéo. Khi đó các cột của $P$ là các vectơ riêng, các phần tử trên đường chéo của $D$ là các trị riêng tương ứng.
+  Ma trận $A$ \textbf{chéo hóa được} nếu tồn tại ma trận khả nghịch $P$ sao cho $P^{-1}AP = D$ là ma trận chéo ($P$ là ma trận làm chéo hoá).
+  
+  Khi đó các cột của $P$ là các vectơ riêng, các phần tử trên đường chéo của $D$ là các trị riêng tương ứng.
 \end{dinhnghia}
 
 \begin{dinhly}[title={Điều kiện chéo hóa được}]
@@ -1595,7 +1723,7 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
     \item Không phải ma trận vuông nào cũng chéo hóa được (ví dụ: $\begin{pmatrix}0&1\\0&0\end{pmatrix}$ không chéo hóa được).
     \item Nếu $A = PDP^{-1}$ thì $A^k = PD^kP^{-1}$ -- rất tiện tính lũy thừa cao.
     \item Nếu $A$ khả đảo và chéo hóa được: $A^{-1} = PD^{-1}P^{-1}$ (với $D^{-1}$ là ma trận chéo nghịch đảo từng phần tử).
-    \item Ma trận đối xứng thực ($A^T = A$) \emph{luôn} chéo hóa được bởi ma trận trực giao $P$ (Chéo hóa trực giao -- Spectral Theorem).
+    \item Ma trận đối xứng thực ($A^T = A$) \emph{luôn} chéo hóa được bởi ma trận trực giao $P$ (Chéo hóa trực giao).
   \end{itemize}
 \end{luuy}
 
@@ -1634,10 +1762,10 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhnghia}[title={Xác định dấu của ma trận đối xứng}]
   Ma trận đối xứng $A \in \mathbb{R}^{n \times n}$ ($A^T = A$) gọi là:
   \begin{itemize}
-    \item \textbf{Xác định dương} (positive definite, PD): $x^T A x > 0$ với mọi $x \ne \mathbf{0}$.
-    \item \textbf{Nửa xác định dương} (PSD): $x^T A x \ge 0$ với mọi $x$, tồn tại $x \ne \mathbf{0}$ cho $= 0$.
-    \item \textbf{Xác định âm} (negative definite, ND): $x^T A x < 0$ với mọi $x \ne \mathbf{0}$.
-    \item \textbf{Nửa xác định âm} (NSD): $x^T A x \le 0$ với mọi $x$.
+    \item \textbf{Xác định dương}: $x^T A x > 0$ với mọi $x \ne \mathbf{0}$.
+    \item \textbf{Nửa xác định dương}: $x^T A x \ge 0$ với mọi $x$, tồn tại $x \ne \mathbf{0}$ cho $= 0$.
+    \item \textbf{Xác định âm}: $x^T A x < 0$ với mọi $x \ne \mathbf{0}$.
+    \item \textbf{Nửa xác định âm}: $x^T A x \le 0$ với mọi $x$.
     \item \textbf{Không xác định}: nhận cả giá trị dương lẫn âm.
   \end{itemize}
 \end{dinhnghia}
@@ -1645,7 +1773,7 @@ Mỗi không gian vector có nhiều cơ sở khác nhau, nhưng tất cả có 
 \begin{dinhly}[title={Điều kiện tương đương (ma trận đối xứng)}]
   Với $A$ đối xứng:
   \begin{itemize}
-    \item $A$ xác định dương $\Leftrightarrow$ mọi trị riêng $> 0$ $\Leftrightarrow$ mọi định thức góc (leading minor) $\Delta_k > 0$.
+    \item $A$ xác định dương $\Leftrightarrow$ mọi trị riêng $> 0$ $\Leftrightarrow$ mọi định thức góc $\Delta_k > 0$.
     \item $A$ nửa xác định dương $\Leftrightarrow$ mọi trị riêng $\ge 0$.
     \item $A$ xác định âm $\Leftrightarrow$ mọi trị riêng $< 0$ $\Leftrightarrow$ $-A$ xác định dương.
     \item $A$ xác định dương $\Leftrightarrow$ tồn tại $B$ khả đảo sao cho $A = B^T B$ (Cholesky).
