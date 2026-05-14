@@ -227,8 +227,8 @@ Ta sẽ đi theo một câu chuyện duy nhất, mỗi chương xây trên chư�
   \item[\textbf{VII.}] \textbf{Ánh xạ tuyến tính} là phép biến đổi giữa các không gian vectơ; mọi ánh xạ tuyến tính giữa không gian hữu hạn chiều đều biểu diễn được bằng ma trận.
   \item[\textbf{VIII.}] Đo độ dài, góc, vuông góc cần \textbf{tích vô hướng}. Từ đó suy ra bình phương nhỏ nhất -- bài toán cơ bản của thống kê.
   \item[\textbf{IX.}] \textbf{Trị riêng - vectơ riêng - chéo hóa}: tìm những hướng đặc biệt mà ma trận chỉ co giãn (không xoay).
-  \item[\textbf{X.}] \textbf{Dạng toàn phương}: hàm bậc hai nhiều biến -- nền tảng của tối ưu hóa.
-  \item[\textbf{XI.}] Nâng cao: \textbf{Hermitian} (số phức), \textbf{Không gian Affine} (mở rộng "lệch gốc"), giả nghịch đảo.
+  \item[\textbf{X.}] \textbf{Dạng toàn phương} và ma trận xác định dấu; \textbf{Cholesky} cho ma trận xác định dương.
+  \item[\textbf{XI.}] Nâng cao: \textbf{Hermitian} (số phức), \textbf{Không gian Affine}, \textbf{SVD} và xấp xỉ hạng (nối với học máy).
 \end{enumerate}
 
 Mỗi mục là một \emph{viên gạch}; bạn không thể bỏ viên ở giữa.
@@ -382,21 +382,21 @@ Cho $\mathbf{v}_1 = (1,0)^T$, $\mathbf{v}_2 = (2,0)^T$. Hỏi $\mathbf{w} = (1, 
 Mọi tổ hợp $a\mathbf{v}_1 + b\mathbf{v}_2 = (a+2b, 0)^T$ luôn có thành phần thứ hai bằng 0. Mà $\mathbf{w}$ có thành phần thứ hai bằng 1, nên \emph{không thể} biểu diễn. Trực giác hình học: $\mathbf{v}_1, \mathbf{v}_2$ đều "nằm trên trục hoành", không thể trộn ra vectơ "thoát khỏi trục hoành".
 \end{phanvidu}
 
-\subsection{Không gian sinh (Span)}
+\subsection{Không gian sinh}
 
 \begin{dongco}
 Khi cho một bộ vectơ $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$, ta tự hỏi: "Trộn các vectơ này (với mọi hệ số) thì sinh ra được bao nhiêu vectơ?" Tập hợp tất cả các tổ hợp tuyến tính đó gọi là \emph{không gian sinh} hay \emph{span}. Đây là cách đầu tiên ta tạo ra một "không gian con" của $\mathbb{R}^n$.
 \end{dongco}
 
 \begin{dinhnghia}
-  \textbf{Không gian sinh} (span, hay \emph{bao tuyến tính}) của tập $A = \{\mathbf{v}_1, \ldots, \mathbf{v}_k\} \subset \mathbb{R}^n$ là tập tất cả tổ hợp tuyến tính của các vectơ trong $A$:
+  \textbf{Không gian sinh} (hay \emph{bao tuyến tính}) của tập $A = \{\mathbf{v}_1, \ldots, \mathbf{v}_k\} \subset \mathbb{R}^n$ là tập tất cả tổ hợp tuyến tính của các vectơ trong $A$:
   \[
     \mathrm{span}\,A = \left\{ \lambda_1 \mathbf{v}_1 + \cdots + \lambda_k \mathbf{v}_k \;\big|\; \lambda_1, \ldots, \lambda_k \in \mathbb{R} \right\}.
   \]
   Nếu $\mathrm{span}\,A = V$, ta nói $A$ là một \textbf{tập sinh} của $V$.
 \end{dinhnghia}
 
-\begin{ynghia}[title={Hình học của span trong $\mathbb{R}^3$}]
+\begin{ynghia}[title={Hình học của không gian sinh trong $\mathbb{R}^3$}]
 \begin{itemize}
   \item $\mathrm{span}\{\mathbf{0}\} = \{\mathbf{0}\}$: chỉ một điểm.
   \item $\mathrm{span}\{\mathbf{v}\}$ với $\mathbf{v} \ne \mathbf{0}$: \emph{đường thẳng} qua gốc theo hướng $\mathbf{v}$.
@@ -458,7 +458,7 @@ Cho $\mathbf{u} = (-1, 2, 0{,}5)^T$, $\mathbf{v} = (1, 3, 0{,}1)^T$ trong $\math
 Mọi điểm trên mặt phẳng đó đều biểu diễn được dưới dạng $\lambda_1\mathbf{u} + \lambda_2\mathbf{v}$.
 \end{vidu}
 
-\begin{tinhchat}[title={Tính chất của Span}]
+\begin{tinhchat}[title={Tính chất của Không gian sinh}]
 \begin{itemize}
   \item $\mathrm{span}\,A$ luôn chứa $\mathbf{0}$ (lấy mọi hệ số bằng 0).
   \item $\mathrm{span}\,A$ \emph{đóng} với cộng và nhân vô hướng: tổng của hai phần tử trong $\mathrm{span}\,A$ vẫn ở trong $\mathrm{span}\,A$.
@@ -534,7 +534,7 @@ Xét $\mathbf{v}_1 = (1,0,0)$, $\mathbf{v}_2 = (1,1,0)$, $\mathbf{v}_3 = (1,1,1)
 \]
 Từ thành phần 3: $\lambda_3 = 0$. Từ thành phần 2: $\lambda_2 = 0$. Từ thành phần 1: $\lambda_1 = 0$. Vậy ĐLTT.
 
-\textbf{Kiểm tra bằng cách khác (preview Phần II):} Đặt 3 vectơ làm cột của ma trận, định thức $= 1 \ne 0 \Rightarrow$ ĐLTT.
+\textbf{Kiểm tra bằng cách khác (xem Phần II):} Đặt 3 vectơ làm cột của ma trận, định thức $= 1 \ne 0 \Rightarrow$ ĐLTT.
 \end{vidu}
 
 \begin{vidu}[title={Bốn vectơ trong $\mathbb{R}^3$ -- bắt buộc PTTT}]
@@ -556,7 +556,7 @@ Cho bất kỳ 4 vectơ $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3, \mathbf{v}_4$
 Xếp các vectơ thành \emph{cột} của một ma trận $A$. Khi đó: $\lambda_1\mathbf{v}_1 + \cdots + \lambda_k\mathbf{v}_k = \mathbf{0} \Leftrightarrow A\boldsymbol{\lambda} = \mathbf{0}$.
 \begin{itemize}
   \item Dùng khử Gauss đưa $A$ về dạng bậc thang (REF).
-  \item Nếu \emph{mọi cột đều có pivot} $\Rightarrow$ chỉ có nghiệm tầm thường $\Rightarrow$ ĐLTT.
+  \item Nếu \emph{mọi cột đều có pivot (cột trụ)} $\Rightarrow$ chỉ có nghiệm tầm thường $\Rightarrow$ ĐLTT.
   \item Nếu \emph{có cột không có pivot} $\Rightarrow$ có biến tự do $\Rightarrow$ nghiệm không tầm thường $\Rightarrow$ PTTT.
 \end{itemize}
 (Phương pháp này sẽ rõ hơn sau Phần III.)
@@ -565,7 +565,7 @@ Xếp các vectơ thành \emph{cột} của một ma trận $A$. Khi đó: $\lam
 \subsection{Cơ sở và số chiều của $\mathbb{R}^n$}
 
 \begin{dongco}
-Ta đã có hai mặt: \emph{Span} (sinh đủ một không gian) và \emph{ĐLTT} (không có vectơ dư). Một bộ vectơ vừa đủ -- không thiếu, không thừa -- để mô tả không gian gọi là \textbf{cơ sở}. Tựa như "tọa độ Đề-các" $(x, y, z)$ cần đúng 3 trục, không hơn không kém để chỉ vị trí trong $\mathbb{R}^3$.
+Ta đã có hai mặt: \emph{Không gian sinh} (sinh đủ một không gian) và \emph{ĐLTT} (không có vectơ dư). Một bộ vectơ vừa đủ -- không thiếu, không thừa -- để mô tả không gian gọi là \textbf{cơ sở}. Tựa như "tọa độ Đề-các" $(x, y, z)$ cần đúng 3 trục, không hơn không kém để chỉ vị trí trong $\mathbb{R}^3$.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -614,7 +614,7 @@ Tọa độ của $(5,3)^T$ trong cơ sở $\mathcal{B}$ là $(4, 1)^T$, khác v
 \begin{enumerate}
   \item \textbf{Vectơ} = mũi tên = danh sách số. Hai phép cơ bản: cộng và nhân vô hướng.
   \item \textbf{Tổ hợp tuyến tính} là cách "trộn" các vectơ với hệ số.
-  \item \textbf{Span} là tập tất cả tổ hợp tuyến tính có thể trộn được (đường thẳng / mặt phẳng / không gian con).
+  \item \textbf{Không gian sinh} là tập tất cả tổ hợp tuyến tính có thể trộn được (đường thẳng / mặt phẳng / không gian con).
   \item \textbf{ĐLTT} = không có vectơ dư; \textbf{Cơ sở} = vừa đủ (ĐLTT \emph{và} sinh); \textbf{Số chiều} = số phần tử của một cơ sở.
 \end{enumerate}
 
@@ -659,18 +659,18 @@ Cuối Phần I ta thấy: mọi câu hỏi về vectơ (biểu diễn, ĐLTT, s
 Cùng một ma trận $A \in \mathbb{R}^{m\times n}$ có thể đọc theo \emph{ba} cách, mỗi cách hữu ích trong tình huống khác nhau:
 
 \medskip
-\textbf{1. Bảng số (data view).} Ma trận chỉ là cách tổ chức dữ liệu: $A_{ij}$ là dữ liệu hàng $i$ cột $j$.
+\textbf{1. Bảng số.} Ma trận chỉ là cách tổ chức dữ liệu: $A_{ij}$ là dữ liệu hàng $i$ cột $j$.
 \emph{Ví dụ:} Bảng điểm 30 sinh viên × 5 môn là một ma trận $30 \times 5$.
 
 \medskip
-\textbf{2. Tập hợp $n$ vectơ cột (column view).} Viết
+\textbf{2. Tập hợp $n$ vectơ cột.} Viết
 \[
   A = \bigl[\, \mathbf{a}_1 \mid \mathbf{a}_2 \mid \cdots \mid \mathbf{a}_n \,\bigr], \quad \mathbf{a}_j \in \mathbb{R}^m.
 \]
 Đây là góc nhìn để hiểu phép nhân $A\mathbf{x}$ là tổ hợp tuyến tính của các cột $\mathbf{a}_j$.
 
 \medskip
-\textbf{3. Ánh xạ tuyến tính (function view).} $A$ đại diện cho hàm số $T_A: \mathbb{R}^n \to \mathbb{R}^m$, $T_A(\mathbf{x}) = A\mathbf{x}$. Đây là góc nhìn để hiểu phép nhân ma trận = \emph{hợp} các phép biến đổi (sẽ thấy ở Phần VII).
+\textbf{3. Ánh xạ tuyến tính.} $A$ đại diện cho hàm số $T_A: \mathbb{R}^n \to \mathbb{R}^m$, $T_A(\mathbf{x}) = A\mathbf{x}$. Đây là góc nhìn để hiểu phép nhân ma trận = \emph{hợp} các phép biến đổi (sẽ thấy ở Phần VII).
 
 \medskip
 \textbf{Lời khuyên:} Luôn nhớ ba góc nhìn này. Khi gặp một câu hỏi, thử ngẫm theo cả ba — thường có một góc làm bài rõ ngay.
@@ -1640,13 +1640,13 @@ $S_0 = \ker A$ -- \textbf{không gian nhân}.
 \emph{Mọi KGC của $\mathbb{R}^3$ đều là một trong bốn dạng trên}: $\{\mathbf{0}\}$, đường qua $O$, mặt phẳng qua $O$, hoặc $\mathbb{R}^3$.
 \end{vidu}
 
-\subsection{Tổ hợp tuyến tính, span, ĐLTT, cơ sở -- phiên bản trừu tượng}
+\subsection{Tổ hợp tuyến tính, không gian sinh, ĐLTT, cơ sở -- phiên bản trừu tượng}
 
 \begin{dinhnghia}
   Trong KGVT $V$:
   \begin{itemize}
     \item \textbf{Tổ hợp tuyến tính} của $\mathbf{v}_1, \ldots, \mathbf{v}_k \in V$: vectơ dạng $\sum \lambda_i \mathbf{v}_i$.
-    \item \textbf{Span} $\mathrm{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ = tập tất cả tổ hợp tuyến tính. Đây luôn là KGC của $V$.
+    \item \textbf{Không gian sinh} $\mathrm{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ = tập tất cả tổ hợp tuyến tính. Đây luôn là KGC của $V$.
     \item \textbf{Tập sinh:} $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ \emph{sinh} $V$ nếu $\mathrm{span} = V$.
     \item \textbf{ĐLTT / PTTT:} như $\mathbb{R}^n$: $\sum \lambda_i \mathbf{v}_i = \mathbf{0} \Rightarrow \forall i, \lambda_i = 0$ (ĐLTT) hay tồn tại $\lambda_i \ne 0$ (PTTT).
   \end{itemize}
@@ -1997,7 +1997,7 @@ Hàm số có rất nhiều loại: bậc nhất, bậc hai, lượng giác, mũ
 \end{dongco}
 
 \begin{dinhnghia}
-  Cho hai KGVT $V, W$ trên $\mathbb{R}$. Một ánh xạ $T: V \to W$ gọi là \textbf{ánh xạ tuyến tính} (linear map / linear transformation) nếu với mọi $\mathbf{u}, \mathbf{v} \in V$ và $\alpha, \beta \in \mathbb{R}$:
+  Cho hai KGVT $V, W$ trên $\mathbb{R}$. Một ánh xạ $T: V \to W$ gọi là \textbf{ánh xạ tuyến tính} nếu với mọi $\mathbf{u}, \mathbf{v} \in V$ và $\alpha, \beta \in \mathbb{R}$:
   \[
     T(\alpha \mathbf{u} + \beta \mathbf{v}) = \alpha T(\mathbf{u}) + \beta T(\mathbf{v}).
   \]
@@ -2379,6 +2379,30 @@ $A = \begin{pmatrix}1 & 2\\ 3 & 4\end{pmatrix}$. $\|A\|_F = \sqrt{1+4+9+16} = \s
 \end{tikzpicture}
 \end{center}
 
+\subsection{Độ dài và khoảng cách}
+
+\begin{dinhnghia}
+Trong không gian chuẩn $(V, \|\cdot\|)$, \textbf{độ dài} (độ lớn) của vectơ $\mathbf{v}$ là $\|\mathbf{v}\|$. \textbf{Khoảng cách} giữa hai điểm $\mathbf{u}, \mathbf{v} \in V$ là
+\[
+  d(\mathbf{u}, \mathbf{v}) := \|\mathbf{u} - \mathbf{v}\|.
+\]
+Khi chuẩn sinh bởi tích vô hướng Euclid trên $\mathbb{R}^n$, đây chính là \textbf{khoảng cách Euclid} quen thuộc trong hình học giải tích.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Metric sinh bởi chuẩn}]
+Với mọi $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$:
+\begin{itemize}
+  \item $d(\mathbf{u}, \mathbf{v}) \ge 0$; $d(\mathbf{u}, \mathbf{v}) = 0 \Leftrightarrow \mathbf{u} = \mathbf{v}$.
+  \item $d(\mathbf{u}, \mathbf{v}) = d(\mathbf{v}, \mathbf{u})$.
+  \item $d(\mathbf{u}, \mathbf{w}) \le d(\mathbf{u}, \mathbf{v}) + d(\mathbf{v}, \mathbf{w})$ (bất đẳng thức tam giác cho khoảng cách).
+  \item $\bigl|\|\mathbf{u}\| - \|\mathbf{v}\|\bigr| \le \|\mathbf{u} - \mathbf{v}\|$ (hệ quả nghịch đảo tam giác).
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}
+$\mathbf{u} = (1, 2)^T$, $\mathbf{v} = (4, -1)^T$ trong $\mathbb{R}^2$ với chuẩn Euclid: $\mathbf{u} - \mathbf{v} = (-3, 3)^T$, $d(\mathbf{u}, \mathbf{v}) = \sqrt{18} = 3\sqrt{2}$.
+\end{vidu}
+
 \subsection{Bất đẳng thức Cauchy-Schwarz và góc}
 
 \begin{dinhly}[title={Bất đẳng thức Cauchy-Schwarz}]
@@ -2399,10 +2423,6 @@ Hệ quả của Cauchy-Schwarz: tỉ số $\langle \mathbf{u}, \mathbf{v}\rangl
 \begin{vidu}
 $\mathbf{u} = (1, 0)^T$, $\mathbf{v} = (3, -4)^T$. $\langle \mathbf{u}, \mathbf{v}\rangle = 3$, $\|\mathbf{u}\| = 1$, $\|\mathbf{v}\| = 5$. $\cos\theta = 3/5 = 0{,}6$. $\theta \approx 53{,}1^\circ$.
 \end{vidu}
-
-\begin{dinhnghia}[title={Khoảng cách}]
-$d(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|$.
-\end{dinhnghia}
 
 \subsection{Trực giao, hệ trực giao và trực chuẩn}
 
@@ -2431,6 +2451,51 @@ $d(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|$.
 Hệ $\{(1, 2, -1)^T, (3, 0, 3)^T\}$ trực giao vì $1\cdot 3 + 2\cdot 0 + (-1)\cdot 3 = 0$.
 
 Chuẩn hoá: $\mathbf{e}_1 = (1, 2, -1)^T/\sqrt{6}$, $\mathbf{e}_2 = (3, 0, 3)^T/(3\sqrt{2}) = (1, 0, 1)^T/\sqrt{2}$. Đây là hệ trực chuẩn.
+\end{vidu}
+
+\subsection{Phần bù trực giao}
+
+\begin{dongco}
+Cho không gian con $W \subseteq V$ (trong thực hành thường $V = \mathbb{R}^n$). Ta muốn mô tả chính xác tập các vectơ \emph{vuông góc với mọi phần tử của $W$} -- đó là \textbf{phần bù trực giao} $W^\perp$. Khái niệm này nối Gram--Schmidt, hình chiếu và phân tách $\mathbb{R}^n = W \oplus W^\perp$.
+\end{dongco}
+
+\begin{dinhnghia}
+Cho $W$ là không gian con của không gian tích vô hướng $V$. \textbf{Phần bù trực giao} của $W$ là
+\[
+  W^\perp := \{\mathbf{v} \in V : \langle \mathbf{v}, \mathbf{w}\rangle = 0 \text{ với mọi } \mathbf{w} \in W\}.
+\]
+\end{dinhnghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item $W^\perp$ là không gian con của $V$; $W \cap W^\perp = \{\mathbf{0}\}$.
+  \item Nếu $\dim V = n$ hữu hạn thì $\dim W + \dim W^\perp = n$.
+  \item $(W^\perp)^\perp = W$ (trong không gian hữu hạn chiều).
+  \item Mọi $\mathbf{v} \in V$ viết \emph{duy nhất} thành $\mathbf{v} = \mathbf{w} + \mathbf{u}$ với $\mathbf{w} \in W$, $\mathbf{u} \in W^\perp$; khi đó $\mathbf{w} = \mathrm{proj}_W \mathbf{v}$ (mục hình chiếu sau).
+  \item Với ma trận $A \in \mathbb{R}^{m \times n}$: $\mathrm{Null}(A) = (\mathrm{Row}(A))^\perp$ và $\mathrm{Null}(A^T) = (\mathrm{Col}(A))^\perp$ trong $\mathbb{R}^n$ và $\mathbb{R}^m$ (khớp Phần VI).
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Tích vô hướng trên không gian hàm ($L^2$)}
+
+\begin{dongco}
+Trong xử lý tín hiệu, điều khiển, học máy, ta xem \emph{tín hiệu} là hàm $f(t)$ trên một khoảng thời gian. So sánh hai tín hiệu cần một tích vô hướng ``tích phân''.
+\end{dongco}
+
+\begin{dinhnghia}[title={Tích vô hướng chuẩn trên $C[a,b]$}]
+Ký hiệu $C[a,b]$ là tập các hàm liên tục $f: [a, b] \to \mathbb{R}$. Đặt
+\[
+  \langle f, g \rangle := \int_a^b f(t)\, g(t)\, dt,\qquad \|f\|_2 := \sqrt{\langle f, f\rangle} = \left(\int_a^b f(t)^2\, dt\right)^{1/2}.
+\]
+Đây là tích vô hướng và chuẩn \textbf{$L^2$} trên đoạn $[a,b]$ (sau khi hoàn tất môn Giải tích, có thể mở rộng sang tích phân Lebesgue và không gian $L^2$ đầy đủ).
+\end{dinhnghia}
+
+\begin{luuy}
+Hàm ``một điểm'' khác $\mathbf{0}$ có thể có $\|f\|_2 = 0$ nếu chỉ xét tích phân Riemann trên lớp rộng hơn; trong lý thuyết đo đạc người ta nhận đẳng thức \emph{hầu khắp nơi}. Ở mức ĐSTT năm nhất, ví dụ với $f, g$ liên tục là đủ an toàn.
+\end{luuy}
+
+\begin{vidu}
+Trên $[-\pi, \pi]$: $\langle \sin t, \cos t\rangle = \int_{-\pi}^{\pi} \sin t \cos t\, dt = 0$, nên $\sin$ và $\cos$ trực giao trong tích vô hướng trên.
 \end{vidu}
 
 \subsection{Quá trình Gram-Schmidt}
@@ -2471,6 +2536,30 @@ Hệ $\mathbf{v}_1 = (1, 1, 0)^T, \mathbf{v}_2 = (1, 0, 1)^T, \mathbf{v}_3 = (0,
 \]
 Kiểm tra trực giao: $\langle \mathbf{u}_1, \mathbf{u}_2\rangle = 1/2 - 1/2 + 0 = 0$. $\langle \mathbf{u}_1, \mathbf{u}_3\rangle = -2/3 + 2/3 + 0 = 0$. $\langle \mathbf{u}_2, \mathbf{u}_3\rangle = -1/3 - 1/3 + 2/3 = 0$. $\checkmark$
 \end{vidu}
+
+\subsection{Ma trận quay và nhóm $\mathrm{O}(n)$, $\mathrm{SO}(n)$}
+
+\begin{dongco}
+``Phép quay'' trong hình học giải tích gắn với ma trận \emph{trực giao đặc biệt}: định thức $+1$ bảo toàn định hướng.
+\end{dongco}
+
+\begin{dinhnghia}
+Ma trận vuông thực $Q \in \mathbb{R}^{n \times n}$ gọi là \textbf{trực giao} nếu $Q^T Q = I$ (tương đương $Q^T = Q^{-1}$). Tập các ma trận trực giao ký hiệu $\mathrm{O}(n)$ (\textbf{nhóm trực giao}).
+
+Nếu thêm $\det Q = 1$, ta được nhóm con $\mathrm{SO}(n)$ (\textbf{nhóm quay đặc biệt}). Nếu $\det Q = -1$, phép biến đổi đảo chiều (ví dụ phản xạ gương kết hợp quay).
+\end{dinhnghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item $Q$ trực giao $\Rightarrow \|Q\mathbf{x}\|_2 = \|\mathbf{x}\|_2$ và $\langle Q\mathbf{u}, Q\mathbf{v}\rangle = \langle \mathbf{u}, \mathbf{v}\rangle$ (bảo toàn độ dài và góc Euclid).
+  \item Trong $\mathbb{R}^2$, mọi phần tử của $\mathrm{SO}(2)$ có dạng $R_\theta = \begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$.
+  \item Trong $\mathbb{R}^3$, mọi phần tử của $\mathrm{SO}(3)$ là phép quay quanh một trục đơn vị $\mathbf{k}$ một góc $\theta$; có thể viết công thức trục--góc -- thường để môn Đồ họa / Robot học sâu hơn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}
+Tích của hai ma trận trong $\mathrm{SO}(n)$ vẫn thuộc $\mathrm{SO}(n)$; nghịch đảo cũng vậy. Đó là lý do gọi là \emph{nhóm}.
+\end{luuy}
 
 \subsection{Hình chiếu trực giao lên không gian con}
 
@@ -2554,14 +2643,15 @@ Cho dữ liệu thực nghiệm $(t_i, y_i)$, $i = 1, \ldots, m$. Muốn tìm đ
 \[
   A = \begin{pmatrix}1 & t_1\\ 1 & t_2\\ \vdots & \vdots\\ 1 & t_m\end{pmatrix},\quad \mathbf{x} = \begin{pmatrix}a\\ b\end{pmatrix},\quad \mathbf{b} = \begin{pmatrix}y_1\\ \vdots\\ y_m\end{pmatrix}.
 \]
-Hệ $A\mathbf{x} = \mathbf{b}$ vô nghiệm (vì các điểm không cùng thẳng hàng), nhưng $\mathbf{x}^* = (A^T A)^{-1} A^T \mathbf{b}$ cho $(a, b)$ \emph{tối ưu nhất} -- đường thẳng có tổng bình phương sai số nhỏ nhất. Đây chính là \textbf{Least Squares}.
+Hệ $A\mathbf{x} = \mathbf{b}$ vô nghiệm (vì các điểm không cùng thẳng hàng), nhưng $\mathbf{x}^* = (A^T A)^{-1} A^T \mathbf{b}$ cho $(a, b)$ \emph{tối ưu nhất} -- đường thẳng có tổng bình phương sai số nhỏ nhất. Đây chính là \textbf{Bình phương nhỏ nhất}.
 \end{ungdung}
 
 \begin{tongket}[title={Tổng kết Phần VIII}]
 \begin{enumerate}
-  \item Tích vô hướng = 3 tiên đề (đối xứng, tuyến tính, xác định dương). Sinh ra chuẩn, khoảng cách, góc.
+  \item Tích vô hướng = 3 tiên đề (đối xứng, tuyến tính, xác định dương). Sinh ra chuẩn, độ dài, khoảng cách $d(\mathbf{u},\mathbf{v}) = \|\mathbf{u}-\mathbf{v}\|$, góc.
   \item Cauchy-Schwarz: $|\langle u, v\rangle| \le \|u\|\|v\|$. Cho phép định nghĩa $\cos\theta$.
-  \item Trực giao = tích vô hướng = 0. Trực chuẩn = trực giao + chuẩn 1.
+  \item Trực giao = tích vô hướng = 0. Trực chuẩn = trực giao + chuẩn 1. Phần bù $W^\perp$; tích vô hướng $L^2$ trên $C[a,b]$ (mở rộng hàm).
+  \item Nhóm quay $\mathrm{SO}(n)$: ma trận trực giao, $\det = 1$, bảo toàn độ dài và góc.
   \item Gram-Schmidt: từ cơ sở bất kỳ xây cơ sở trực giao.
   \item Hình chiếu trực giao = điểm gần nhất. Công thức $P = A(A^T A)^{-1} A^T$.
   \item Bình phương nhỏ nhất: $\mathbf{x}^* = (A^T A)^{-1} A^T \mathbf{b}$. Nền tảng của hồi quy thống kê.
@@ -2583,7 +2673,7 @@ Hệ $A\mathbf{x} = \mathbf{b}$ vô nghiệm (vì các điểm không cùng th�
 Khi $A$ tác động lên vectơ $\mathbf{x}$, kết quả $A\mathbf{x}$ thường \emph{xoay} hướng so với $\mathbf{x}$. Nhưng đôi khi tồn tại những \emph{hướng đặc biệt} mà $A$ chỉ \emph{kéo dài hoặc nén} chứ không xoay -- $A\mathbf{x}$ song song với $\mathbf{x}$. Những hướng này gọi là \textbf{vectơ riêng}, hệ số nhân gọi là \textbf{trị riêng}. Đây là khái niệm trung tâm của ĐSTT có nhiều ứng dụng:
 \begin{itemize}
   \item \textbf{Chéo hoá ma trận}: viết $A = PDP^{-1}$ với $D$ chéo, làm tính $A^k$ trở nên dễ.
-  \item \textbf{PCA} (Principal Component Analysis): nén dữ liệu nhiều chiều.
+  \item \textbf{PCA} (Principal Component Analysis - Phân tích thành phần chính): nén dữ liệu nhiều chiều.
   \item \textbf{Google PageRank}: vectơ riêng xác định độ quan trọng trang web.
   \item \textbf{Cơ học lượng tử}: trị riêng = mức năng lượng.
   \item \textbf{Phân tích dao động}: trị riêng = tần số riêng.
@@ -2591,11 +2681,11 @@ Khi $A$ tác động lên vectơ $\mathbf{x}$, kết quả $A\mathbf{x}$ thườ
 \end{dongco}
 
 \begin{dinhnghia}
-  Cho ma trận vuông $A \in \mathbb{R}^{n\times n}$ (hoặc $\mathbb{C}^{n\times n}$). Một số $\lambda$ gọi là \textbf{trị riêng} (eigenvalue) của $A$ nếu tồn tại vectơ \emph{khác $\mathbf{0}$} $\mathbf{x}$ sao cho:
+  Cho ma trận vuông $A \in \mathbb{R}^{n\times n}$ (hoặc $\mathbb{C}^{n\times n}$). Một số $\lambda$ gọi là \textbf{trị riêng} của $A$ nếu tồn tại vectơ \emph{khác $\mathbf{0}$} $\mathbf{x}$ sao cho:
   \[
     A\mathbf{x} = \lambda \mathbf{x} \;\Longleftrightarrow\; (A - \lambda I)\mathbf{x} = \mathbf{0}.
   \]
-  Vectơ $\mathbf{x} \ne \mathbf{0}$ thoả phương trình trên gọi là \textbf{vectơ riêng} (eigenvector) ứng với $\lambda$.
+  Vectơ $\mathbf{x} \ne \mathbf{0}$ thoả phương trình trên gọi là \textbf{vectơ riêng} ứng với $\lambda$.
 \end{dinhnghia}
 
 \begin{ynghia}[title={Hình học}]
@@ -2857,11 +2947,11 @@ Kiểm tra: $\mathbf{x}^T A \mathbf{x} = (x_1, x_2)\begin{pmatrix}3 x_1 + 2 x_2\
 \begin{dinhnghia}
   Dạng toàn phương $Q$ (hay ma trận đối xứng $A$) gọi là:
   \begin{itemize}
-    \item \textbf{Xác định dương} (positive definite): $Q(\mathbf{x}) > 0$ với mọi $\mathbf{x} \ne \mathbf{0}$.
-    \item \textbf{Nửa xác định dương} (positive semidefinite): $Q(\mathbf{x}) \ge 0$ với mọi $\mathbf{x}$.
-    \item \textbf{Xác định âm} (negative definite): $Q(\mathbf{x}) < 0$ với mọi $\mathbf{x} \ne \mathbf{0}$.
+    \item \textbf{Xác định dương}: $Q(\mathbf{x}) > 0$ với mọi $\mathbf{x} \ne \mathbf{0}$.
+    \item \textbf{Nửa xác định dương}: $Q(\mathbf{x}) \ge 0$ với mọi $\mathbf{x}$.
+    \item \textbf{Xác định âm}: $Q(\mathbf{x}) < 0$ với mọi $\mathbf{x} \ne \mathbf{0}$.
     \item \textbf{Nửa xác định âm}: $Q(\mathbf{x}) \le 0$.
-    \item \textbf{Không xác định} (indefinite): nhận cả giá trị dương và âm.
+    \item \textbf{Không xác định}: nhận cả giá trị dương và âm.
   \end{itemize}
 \end{dinhnghia}
 
@@ -2914,7 +3004,7 @@ $A = \begin{pmatrix}2 & 1\\ 1 & 3\end{pmatrix}$ đối xứng.
 \begin{vidu}[title={Không xác định}]
 $A = \begin{pmatrix}1 & 0\\ 0 & -1\end{pmatrix}$. $Q(x_1, x_2) = x_1^2 - x_2^2$. Với $(1,0)$: $Q = 1 > 0$. Với $(0, 1)$: $Q = -1 < 0$. Không xác định.
 
-Hình ảnh: đồ thị $z = x_1^2 - x_2^2$ là \emph{yên ngựa} (saddle).
+Hình ảnh: đồ thị $z = x_1^2 - x_2^2$ là \emph{yên ngựa}.
 \end{vidu}
 
 \begin{tinhchat}
@@ -2922,15 +3012,80 @@ Hình ảnh: đồ thị $z = x_1^2 - x_2^2$ là \emph{yên ngựa} (saddle).
   \item $A$ xác định dương $\Rightarrow$ khả nghịch (vì $\det A = \prod \lambda_i > 0$), $A^{-1}$ cũng xác định dương.
   \item $A^T A$ luôn nửa xác định dương với mọi $A$. Xác định dương $\Leftrightarrow A$ có cột ĐLTT.
   \item Tổng/tổ hợp dương: $A, B$ xác định dương, $\alpha, \beta > 0 \Rightarrow \alpha A + \beta B$ xác định dương.
-  \item $A$ xác định dương $\Leftrightarrow$ tồn tại $B$ khả nghịch sao cho $A = B^T B$ (phân tích Cholesky).
+  \item $A$ xác định dương $\Leftrightarrow$ tồn tại $B$ khả nghịch sao cho $A = B^T B$ (mục \emph{Phân rã Cholesky} ngay sau đây).
 \end{itemize}
 \end{tinhchat}
+
+\subsection{Phân rã Cholesky}
+
+\begin{dongco}
+Với ma trận đối xứng \textbf{xác định dương} $A$, hệ $A\mathbf{x} = \mathbf{b}$ có thể giải bằng khử Gauss, nhưng trong tính toán khoa học người ta thích phân tích $A$ thành tích hai ma trận tam giác để giải hai hệ tam giác (thay vì một hệ đầy). Đó là \textbf{Cholesky}.
+\end{dongco}
+
+\begin{dinhly}[title={Phân rã Cholesky}]
+Nếu $A \in \mathbb{R}^{n \times n}$ đối xứng và xác định dương thì tồn tại duy nhất ma trận tam giác \emph{dưới} $L$ với các phần tử đường chéo \emph{dương} sao cho:
+\[
+  A = L L^T.
+\]
+(Quy ước này chọn nhánh ``tam giác dưới''; một số sách viết $A = R^T R$ với $R$ tam giác trên.)
+\end{dinhly}
+
+\begin{phuongphap}[title={Thuật toán (tóm tắt)}]
+Ký hiệu $\ell_{ij}$ là phần tử của $L$. Với $i = 1, \ldots, n$:
+\[
+  \ell_{ii} = \sqrt{a_{ii} - \sum_{k=1}^{i-1} \ell_{ik}^2},\qquad
+  \ell_{ij} = \frac{1}{\ell_{jj}}\left(a_{ij} - \sum_{k=1}^{j-1} \ell_{ik}\ell_{jk}\right)\quad (j < i).
+\]
+Nếu trong quá trình có căn bậc hai của số âm hoặc chia cho số gần 0, ma trận không xác định dương (thực tế số học: gần suy biến).
+\end{phuongphap}
+
+\begin{vidu}[title={Cholesky cấp $2 \times 2$}]
+$A = \begin{pmatrix}4 & 2\\ 2 & 3\end{pmatrix}$. Đặt $L = \begin{pmatrix}\ell_{11} & 0\\ \ell_{21} & \ell_{22}\end{pmatrix}$.
+
+So sánh $LL^T$: $\ell_{11}^2 = 4 \Rightarrow \ell_{11} = 2$. $\ell_{11}\ell_{21} = 2 \Rightarrow \ell_{21} = 1$. $\ell_{21}^2 + \ell_{22}^2 = 3 \Rightarrow \ell_{22} = \sqrt{2}$.
+
+Vậy $L = \begin{pmatrix}2 & 0\\ 1 & \sqrt{2}\end{pmatrix}$ và $A = LL^T$. Giải $A\mathbf{x} = \mathbf{b}$: đặt $L\mathbf{y} = \mathbf{b}$ rồi $L^T \mathbf{x} = \mathbf{y}$ (thế tiến, thế lùi).
+\end{vidu}
+
+\begin{ungdung}
+Giải nhiều hệ $A\mathbf{x}_i = \mathbf{b}_i$ với cùng $A$ xác định dương: chỉ cần phân tích Cholesky \emph{một lần}, mỗi vế phải hai lượt thế. Ma trận hiệp phương sai mẫu (ước lượng) thường nửa xác định dương; khi xác định dương, Cholesky ổn định hơn LU cho ma trận đối xứng.
+\end{ungdung}
 
 \subsection{Đưa dạng toàn phương về dạng chính tắc}
 
 \begin{dongco}
 Dạng toàn phương "đẹp nhất" là dạng \emph{chính tắc} -- chỉ có bình phương của các biến (không có tích chéo). Cụ thể $Q(\mathbf{y}) = c_1 y_1^2 + \cdots + c_n y_n^2$. Câu hỏi: \emph{mọi} dạng toàn phương đều có thể đưa về dạng này bằng cách đổi biến (= đổi cơ sở)?
 \end{dongco}
+
+\begin{phuongphap}[title={Phương pháp Lagrange (nhóm bình phương liên tiếp)}]
+Ý tưởng: lần lượt \emph{gom} mọi số hạng chứa $x_1$ thành một bình phương hoàn chỉnh, rồi làm tương tự với $x_2, x_3, \ldots$ Mỗi bước là một phép đổi biến tuyến tính khả nghịch; tổng hợp lại được $\mathbf{x} = S\mathbf{y}$ với $\det S \ne 0$ và
+\[
+  Q(\mathbf{x}) = d_1 y_1^2 + d_2 y_2^2 + \cdots + d_n y_n^2.
+\]
+\textbf{Trường hợp $a_{11} \ne 0$.} Viết
+\[
+  Q = a_{11} x_1^2 + 2x_1 \sum_{j=2}^n a_{1j} x_j + R(x_2, \ldots, x_n)
+  = a_{11}\Bigl(x_1 + \sum_{j=2}^n \tfrac{a_{1j}}{a_{11}} x_j\Bigr)^2 + Q_1(x_2, \ldots, x_n),
+\]
+trong đó $Q_1$ không còn $x_1$. Áp dụng lại quy trình cho $Q_1$.
+
+\textbf{Trường hợp $a_{11} = 0$ nhưng có $a_{1j} \ne 0$ ($j > 1$).} Trước hết đổi biến khả nghịch để xuất hiện hệ số bình phương khác không (ví dụ hoán đổi $x_1 \leftrightarrow x_j$, hoặc $u_1 = x_1 + x_j$, $u_j = x_1 - x_j$, các biến khác giữ nguyên), rồi quay lại bước nhóm bình phương.
+
+\textbf{Khi đã có dạng chính tắc} $\sum d_i y_i^2$: đếm số $d_i > 0$ và $d_i < 0$ để biết chỉ số quán tính $(p, q)$ (sẽ khớp luật Sylvester). Lưu ý: các $d_i$ \emph{không} nhất thiết bằng trị riêng của ma trận $A$; chỉ phương pháp trực giao $\mathbf{x} = Q\mathbf{y}$ với $Q$ trực giao mới cho $d_i = \lambda_i$.
+\end{phuongphap}
+
+\begin{vidu}[title={Lagrange cho $Q(x_1, x_2) = 2x_1^2 + 2x_1 x_2 + 2x_2^2$}]
+\[
+  Q = 2\bigl(x_1^2 + x_1 x_2\bigr) + 2x_2^2
+  = 2\Bigl(x_1 + \tfrac{x_2}{2}\Bigr)^2 - 2\cdot\tfrac{x_2^2}{4} + 2x_2^2
+  = 2\Bigl(x_1 + \tfrac{x_2}{2}\Bigr)^2 + \tfrac{3}{2} x_2^2.
+\]
+Đặt $y_1 = x_1 + \frac{x_2}{2}$, $y_2 = x_2$ (ánh xạ $(x_1, x_2) \mapsto (y_1, y_2)$ khả nghịch, $\det = 1$). Hai hệ số dương $\Rightarrow$ $Q$ xác định dương; $(p, q) = (2, 0)$ giống ví dụ trị riêng (ở đó $Q = z_1^2 + 3z_2^2$ với đổi biến \emph{trực giao} khác).
+\end{vidu}
+
+\begin{luuy}[title={Bài tập: nên biết thêm những gì?}]
+Ngoài Lagrange và đổi biến trực giao (trị riêng), khi làm bài dạng toàn phương thường gặp: \textbf{(i)} biến đổi \emph{hợp đồng} trên ma trận của dạng toàn phương ($A \mapsto P^T A P$, tương ứng các phép biến đổi sơ cấp ``đối xứng'' trên hàng và cột); \textbf{(ii)} phân tích thành tổng bình phương trực tiếp nếu nhìn ra được; \textbf{(iii)} dùng tiêu chuẩn Sylvester hoặc trị riêng để \emph{kết luận dấu} mà không cần viết hết đổi biến. Phương pháp Jacobi (dựa trên dãy định thức con đặc biệt) đôi khi gặp ở sách nâng cao --- gần với tiêu chuẩn Sylvester đã học.
+\end{luuy}
 
 \begin{dinhly}[title={Đưa về dạng chính tắc trực giao}]
 Mọi dạng toàn phương $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ với $A$ đối xứng đều có thể đưa về dạng:
@@ -2990,8 +3145,9 @@ Kiểm tra: $y_1^2 + 3 y_2^2 = \frac{(x_1 - x_2)^2}{2} + \frac{3(x_1 + x_2)^2}{2
   \item Dạng toàn phương $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ với $A$ đối xứng. Hàm bậc hai nhiều biến.
   \item Phân loại theo dấu: xác định dương, xác định âm, nửa xác định, không xác định.
   \item Tiêu chuẩn trị riêng (luôn áp dụng được) và tiêu chuẩn Sylvester (định thức góc) -- kiểm tra dấu nhanh.
-  \item Đưa về dạng chính tắc $\sum \lambda_i y_i^2$ qua đổi biến trực giao.
+  \item Đưa về dạng chính tắc: \textbf{Lagrange} (nhóm bình phương, đổi biến bất kỳ khả nghịch) và \textbf{trực giao} ($\mathbf{x} = Q\mathbf{y}$, $d_i = \lambda_i$).
   \item Luật quán tính Sylvester: $(p, q)$ là bất biến.
+  \item Phân rã Cholesky $A = LL^T$ cho ma trận đối xứng xác định dương: giải hệ bằng hai lượt thế tam giác.
   \item Ứng dụng: phân loại điểm tới hạn (Hessian), phương trình ellipse/hyperbol, vật lý dao động.
 \end{enumerate}
 
@@ -3012,7 +3168,7 @@ Khi làm việc trên trường số phức $\mathbb{C}$ (cần thiết trong c�
 \end{dongco}
 
 \begin{dinhnghia}
-  Với $A = (a_{ij}) \in \mathbb{C}^{m\times n}$, \textbf{liên hợp Hermitian} (Hermitian conjugate / adjoint) là ma trận $A^* \in \mathbb{C}^{n\times m}$ với:
+  Với $A = (a_{ij}) \in \mathbb{C}^{m\times n}$, \textbf{liên hợp Hermitian} là ma trận $A^* \in \mathbb{C}^{n\times m}$ với:
   \[
     (A^*)_{ij} = \overline{a_{ji}}.
   \]
@@ -3022,8 +3178,8 @@ Khi làm việc trên trường số phức $\mathbb{C}$ (cần thiết trong c�
   \begin{itemize}
     \item \textbf{Hermitian:} $A^* = A$. (Đường chéo chính là số thực.)
     \item \textbf{Phản Hermitian:} $A^* = -A$.
-    \item \textbf{Đơn nhất (Unitary):} $A^* A = A A^* = I$. Tức $A^* = A^{-1}$.
-    \item \textbf{Bình thường (Normal):} $A^* A = A A^*$. (Hermitian, phản Hermitian, đơn nhất đều là bình thường.)
+    \item \textbf{Đơn nhất:} $A^* A = A A^* = I$. Tức $A^* = A^{-1}$.
+    \item \textbf{Bình thường:} $A^* A = A A^*$. (Hermitian, phản Hermitian, đơn nhất đều là bình thường.)
   \end{itemize}
 \end{dinhnghia}
 
@@ -3133,7 +3289,7 @@ với $(\mathbf{b}_1, \ldots, \mathbf{b}_k)$ cơ sở của $U$.
 \begin{itemize}
   \item $k = 1$: \emph{đường thẳng} qua $\mathbf{x}_0$ hướng $\mathbf{b}_1$.
   \item $k = 2$: \emph{mặt phẳng} qua $\mathbf{x}_0$ căng hai hướng.
-  \item $k = n-1$: \emph{siêu phẳng} (hyperplane). Trong $\mathbb{R}^3$: mặt phẳng; trong $\mathbb{R}^{100}$: không gian 99 chiều.
+  \item $k = n-1$: \emph{siêu phẳng}. Trong $\mathbb{R}^3$: mặt phẳng; trong $\mathbb{R}^{100}$: không gian 99 chiều.
 \end{itemize}
 \end{vidu}
 
@@ -3153,36 +3309,60 @@ với $(\mathbf{b}_1, \ldots, \mathbf{b}_k)$ cơ sở của $U$.
 \end{itemize}
 \end{tinhchat}
 
-\subsection{Phân rã giá trị kỳ dị (SVD) -- giới thiệu sơ lược}
+\subsection{Phân rã giá trị kỳ dị (SVD) và xấp xỉ ma trận}
 
 \begin{dongco}
-Chéo hoá $A = PDP^{-1}$ chỉ áp dụng cho ma trận vuông \emph{và} chéo hoá được. Trong thực tế nhiều ma trận không vuông hoặc không chéo hoá. \textbf{Phân rã giá trị kỳ dị (Singular Value Decomposition, SVD)} áp dụng cho \emph{mọi} ma trận, là công cụ mạnh nhất trong xử lý số liệu.
+Chéo hoá $A = PDP^{-1}$ chỉ áp dụng cho ma trận vuông \emph{và} chéo hoá được. Trong thực tế nhiều ma trận không vuông hoặc không chéo hoá. \textbf{Phân rã giá trị kỳ dị (Singular Value Decomposition, SVD)} áp dụng cho \emph{mọi} ma trận thực.
 \end{dongco}
 
-\begin{dinhly}[title={Phân rã SVD}]
+\begin{dinhly}[title={Phân rã SVD (dạng đầy đủ)}]
 Mọi ma trận $A \in \mathbb{R}^{m\times n}$ đều phân tích được:
 \[
   A = U \Sigma V^T,
 \]
 trong đó:
 \begin{itemize}
-  \item $U \in \mathbb{R}^{m\times m}$ trực giao (cột = vectơ riêng trực chuẩn của $AA^T$).
-  \item $V \in \mathbb{R}^{n\times n}$ trực giao (cột = vectơ riêng trực chuẩn của $A^T A$).
-  \item $\Sigma \in \mathbb{R}^{m\times n}$ là ma trận "đường chéo" với các giá trị kỳ dị $\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r > 0$ (với $r = \mathrm{rank}(A)$) trên đường chéo, $\sigma_i = \sqrt{\lambda_i(A^T A)}$.
+  \item $U \in \mathbb{R}^{m\times m}$ trực giao (cột trái = vectơ riêng trực chuẩn của $AA^T$).
+  \item $V \in \mathbb{R}^{n\times n}$ trực giao (cột phải = vectơ riêng trực chuẩn của $A^T A$).
+  \item $\Sigma \in \mathbb{R}^{m\times n}$ là ma trận chữ nhật với các số không ngoài đường chéo chính; trên đó có các \textbf{giá trị kỳ dị} $\sigma_1 \ge \sigma_2 \ge \cdots \ge \sigma_r > 0$ với $r = \mathrm{rank}(A)$, và $\sigma_i = \sqrt{\lambda_i(A^T A)}$ ($\lambda_i$ là trị riêng dương của $A^T A$).
 \end{itemize}
 \end{dinhly}
 
+\begin{congthuc}[title={Dạng mỏng}]
+Đặt $U_r \in \mathbb{R}^{m \times r}$, $V_r \in \mathbb{R}^{n \times r}$ gồm $r$ cột đầu của $U, V$ tương ứng với các $\sigma_i > 0$, và $\Sigma_r = \mathrm{diag}(\sigma_1, \ldots, \sigma_r)$. Khi đó
+\[
+  A = U_r \Sigma_r V_r^T = \sum_{i=1}^r \sigma_i\, \mathbf{u}_i \mathbf{v}_i^T,
+\]
+trong đó $\mathbf{u}_i, \mathbf{v}_i$ là các cột của $U_r, V_r$. Đây là \textbf{khai triển tổng các ma trận hạng $1$}.
+\end{congthuc}
+
+\begin{dinhly}[title={Eckart--Young--Mirsky (trường hợp Frobenius)}]
+Cho số nguyên $k$ với $0 \le k \le r$. Xét ma trận hạng không quá $k$:
+\[
+  A_k := \sum_{i=1}^k \sigma_i\, \mathbf{u}_i \mathbf{v}_i^T.
+\]
+Khi đó $A_k$ là ma trận hạng $\le k$ \textbf{gần $A$ nhất} theo chuẩn Frobenius:
+\[
+  \|A - A_k\|_F = \min_{\substack{B \in \mathbb{R}^{m \times n}\\ \mathrm{rank}(B) \le k}} \|A - B\|_F,
+\]
+và sai số là $\|A - A_k\|_F^2 = \sigma_{k+1}^2 + \cdots + \sigma_r^2$.
+\end{dinhly}
+
+\begin{luuy}
+Một phát biểu mạnh hơn (Mirsky): cùng $A_k$ tối ưu cho mọi chuẩn đơn thể sinh bởi các giá trị kỳ dị. Chứng minh đầy đủ thường để môn ma trận nâng cao; ở đây ta dùng định lý như ``công thức nén dữ liệu tối ưu''.
+\end{luuy}
+
 \begin{ungdung}
 \begin{itemize}
-  \item \textbf{Nén ảnh:} giữ $k$ giá trị kỳ dị lớn nhất, bỏ phần còn lại.
-  \item \textbf{PCA:} các vectơ riêng của ma trận hiệp phương sai.
-  \item \textbf{Giải hệ vô nghiệm chính xác:} giả nghịch đảo Moore-Penrose $A^+ = V \Sigma^+ U^T$.
-  \item \textbf{Latent Semantic Analysis} (xử lý ngôn ngữ tự nhiên).
+  \item \textbf{Nén và xấp xỉ ma trận:} lưu chỉ $(m+n+1)k$ tham số cho xấp xỉ hạng $k$ thay vì $mn$ phần tử.
+  \item \textbf{PCA:} các cột của $V_r$ (hoặc của ma trận dữ liệu đã chuẩn hoá) cho các hướng phương sai lớn nhất.
+  \item \textbf{Giả nghịch đảo Moore--Penrose:} với $\Sigma^+$ đặt $1/\sigma_i$ trên đường chéo (và $0$ ở chỗ thiếu), $A^+ = V \Sigma^+ U^T$ (dạng đầy đủ; trong thực hành dùng dạng mỏng).
+  \item \textbf{Ma trận gần hạng thấp, LSA, mô hình khuyến nghị} và ma trận thưa trong học máy.
 \end{itemize}
 \end{ungdung}
 
 \begin{luuy}
-SVD vượt khỏi phạm vi giáo trình ĐSTT cấp đại học cơ bản, nhưng nó là kỹ thuật then chốt trong khoa học dữ liệu hiện đại. Khuyến nghị tự học sau khi nắm chắc chéo hoá và bình phương nhỏ nhất.
+SVD vẫn vượt quá chương trình ĐSTT tối thiểu, nhưng là cầu nối tự nhiên sau chéo hoá, $A^T A$, và bình phương nhỏ nhất. Nên tự học thuật toán Golub--Reinsch ổn định số trên máy tính sau khi nắm lý thuyết.
 \end{luuy}
 
 \begin{tongket}[title={Tổng kết Phần XI}]
@@ -3191,7 +3371,7 @@ SVD vượt khỏi phạm vi giáo trình ĐSTT cấp đại học cơ bản, nh
   \item Tích chéo trong $\mathbb{R}^3$: tính diện tích, thể tích, vectơ pháp tuyến.
   \item Không gian con affine = KGC vectơ + dịch chuyển. Tập nghiệm $A\mathbf{x} = \mathbf{b}$ là KGC affine.
   \item Ánh xạ affine = ánh xạ tuyến tính + tịnh tiến.
-  \item SVD: phân rã \emph{vạn năng} cho mọi ma trận, công cụ then chốt trong khoa học dữ liệu.
+  \item SVD: dạng đầy đủ và dạng mỏng; xấp xỉ hạng $k$ tối ưu Frobenius (Eckart--Young); liên hệ PCA và giả nghịch đảo.
 \end{enumerate}
 \end{tongket}
 

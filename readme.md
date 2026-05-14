@@ -20,3 +20,25 @@ https://thuviendien.blogspot.com/
 https://www.vms.org.vn/category/thong-tin-toan-hoc-1
 
 https://diendantoanhoc.org/topic/125987-t%E1%BB%95ng-h%E1%BB%A3p-s%C3%A1ch-to%C3%A1n-cao-c%E1%BA%A5p-dai-cuong-d%C3%A0nh-cho-sinh-vi%C3%AAn-%C4%91h/
+
+Lệnh terminal để sau này tự sinh PDF
+Mở terminal tại thư mục chứa ly_thuyet.tex, rồi:
+
+PowerShell (Windows):
+
+Set-Location "d:\DangTanQui\Toan\tai_lieu_toan\cursor\toan_dai_hoc\nhom_1_dai_so_logic\A3_dai_so_tuyen_tinh"
+pdflatex -interaction=nonstopmode ly_thuyet.tex
+
+Chạy hai lần nếu bạn chỉnh nhiều \section/\subsection và muốn mục lục (\tableofcontents) cập nhật đúng:
+
+pdflatex -interaction=nonstopmode ly_thuyet.tex; pdflatex -interaction=nonstopmode ly_thuyet.tex
+
+Một lệnh gọn (nếu đã cd vào đúng thư mục):
+
+pdflatex -interaction=nonstopmode ly_thuyet.tex
+
+Nếu cài latexmk (MiKTeX thường có), tự gọi đủ số lần và dọn file phụ:
+
+latexmk -pdf -interaction=nonstopmode ly_thuyet.tex
+
+File PDF tạo ra cùng thư mục: ly_thuyet.pdf.
