@@ -227,7 +227,7 @@ Ta sẽ đi theo một câu chuyện duy nhất, mỗi chương xây trên chư�
   \item[\textbf{VII.}] \textbf{Ánh xạ tuyến tính} là phép biến đổi giữa các không gian vectơ; mọi ánh xạ tuyến tính giữa không gian hữu hạn chiều đều biểu diễn được bằng ma trận.
   \item[\textbf{VIII.}] Đo độ dài, góc, vuông góc cần \textbf{tích vô hướng}. Từ đó suy ra bình phương nhỏ nhất -- bài toán cơ bản của thống kê.
   \item[\textbf{IX.}] \textbf{Trị riêng - vectơ riêng - chéo hóa}: tìm những hướng đặc biệt mà ma trận chỉ co giãn (không xoay).
-  \item[\textbf{X.}] \textbf{Dạng toàn phương} và ma trận xác định dấu; \textbf{Cholesky} cho ma trận xác định dương.
+  \item[\textbf{X.}] \textbf{Dạng toàn phương}, \textbf{đường bậc hai} và \textbf{mặt bậc hai}; ma trận xác định dấu; \textbf{Cholesky} cho ma trận xác định dương.
   \item[\textbf{XI.}] Nâng cao: \textbf{Hermitian} (số phức), \textbf{Không gian Affine}, \textbf{SVD} và xấp xỉ hạng (nối với học máy).
 \end{enumerate}
 
@@ -3140,6 +3140,121 @@ Kiểm tra: $y_1^2 + 3 y_2^2 = \frac{(x_1 - x_2)^2}{2} + \frac{3(x_1 + x_2)^2}{2
   Tích vô hướng là một dạng song tuyến tính đối xứng xác định dương. Dạng toàn phương $Q(\mathbf{x}) = B(\mathbf{x}, \mathbf{x})$ là "đường chéo" của một dạng song tuyến tính đối xứng.
 \end{dinhnghia}
 
+\subsection{Đường bậc hai trong mặt phẳng $\mathbb{R}^2$}
+
+\begin{dongco}
+Phương trình bậc hai theo $x, y$ mô tả \emph{ellipse}, \emph{hyperbol}, \emph{parabol} và các trường hợp suy biến. Đây là ứng dụng trực tiếp của \textbf{dạng toàn phương} (phần bậc hai) cộng phần tuyến tính và hằng số. Trong hình học giải tích và đồ họa, ta cần biết \emph{phân loại} và \emph{đưa về dạng chuẩn} (xoay trục, dịch gốc).
+\end{dongco}
+
+\begin{dinhnghia}
+  Một \textbf{đường bậc hai} (đường conic) trong mặt phẳng $Oxy$ là tập điểm $(x,y)$ thoả phương trình bậc hai tổng quát:
+  \[
+    a x^2 + 2h xy + b y^2 + 2g x + 2f y + c = 0,
+  \]
+  với $a, b, c, f, g, h \in \mathbb{R}$ và $(a, h, b)$ không đồng thời bằng $0$.
+
+  \textbf{Phần bậc hai} (đồng nhất bậc hai) viết dạng ma trận đối xứng:
+  \[
+    Q(x,y) := a x^2 + 2h xy + b y^2 = \begin{pmatrix}x & y\end{pmatrix}
+    \underbrace{\begin{pmatrix}a & h\\ h & b\end{pmatrix}}_{=: A}
+    \begin{pmatrix}x\\ y\end{pmatrix}.
+  \]
+  Phần tuyến tính là $\ell(x,y) = 2gx + 2fy$; hằng số là $c$.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Liên hệ với trị riêng và quay trục}]
+Nếu $h \ne 0$, trục của conic \emph{nghiêng} so với trục $Ox, Oy$. Đặt $\mathbf{v} = (x,y)^T$. Ma trận $A$ đối xứng nên tồn tại ma trận trực giao $Q$ sao cho $Q^T A Q = \mathrm{diag}(\lambda_1, \lambda_2)$. Đổi biến $\begin{pmatrix}x'\\ y'\end{pmatrix} = Q^T \begin{pmatrix}x\\ y\end{pmatrix}$ (phép quay trục toạ độ) đưa phần bậc hai về dạng \emph{không có tích chéo}: $\lambda_1 x'^2 + \lambda_2 y'^2$. Sau đó hoàn thiện bình phương (hoặc dịch gốc) để đọc loại conic --- đúng tinh thần chéo hoá ở Phần IX.
+\end{ynghia}
+
+\begin{congthuc}[title={Bất biến và phân loại (trường hợp không suy biến mạnh)}]
+Đặt $\Delta = \det(A) = ab - h^2$ (định thức của ma trận phần bậc hai).
+
+\medskip
+\textbf{(i) Trường hợp không có phần tuyến tính và hằng số đặc biệt} (ví dụ phương trình đồng nhất $ax^2 + 2hxy + by^2 = 1$): nếu $\Delta > 0$ và cùng dấu với vế phải $\Rightarrow$ \textbf{ellipse} (tròn nếu $\lambda_1 = \lambda_2$); nếu $\Delta < 0$ $\Rightarrow$ \textbf{hyperbol}; nếu $\Delta = 0$ $\Rightarrow$ \textbf{parabol} hoặc hai đường thẳng song song / trùng / ảo (suy biến).
+
+\medskip
+\textbf{(ii) Phương trình tổng quát} có thêm $g, f, c$: người ta dùng các \textbf{bất biến} cổ điển (ký hiệu thường gặp trong sách Việt Nam là $\delta, \Delta_{\text{toàn}}$) để phân loại đầy đủ hơn. Ý tưởng: sau khi quay trục để bỏ $xy$, còn lại phương trình dạng $A' x'^2 + B' y'^2 + \cdots = 0$; kết hợp với phép dịch gốc (hoàn thiện bình phương) để đưa về một trong các dạng chuẩn dưới đây.
+\end{congthuc}
+
+\begin{tinhchat}[title={Các dạng chuẩn (sau khi đã quay và dịch trục)}]
+\begin{itemize}
+  \item \textbf{Ellipse:} $\dfrac{x^2}{\alpha^2} + \dfrac{y^2}{\beta^2} = 1$ \quad ($\alpha, \beta > 0$, $\alpha \ne \beta$).
+  \item \textbf{Hyperbol:} $\dfrac{x^2}{\alpha^2} - \dfrac{y^2}{\beta^2} = 1$ hoặc dấu âm ở $x^2$.
+  \item \textbf{Parabol:} $y^2 = 2px$ hoặc $x^2 = 2py$ \quad ($p \ne 0$).
+  \item \textbf{Đường tròn:} trường hợp đặc biệt của ellipse khi $\alpha = \beta$ và không có số hạng $xy$ trong hệ toạ độ đã chuẩn hoá.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Nhận dạng conic qua trị riêng}]
+$x^2 + 2xy + y^2 = 1$. Ma trận $A = \begin{pmatrix}1 & 1\\ 1 & 1\end{pmatrix}$, $\det(A) = 0$ $\Rightarrow$ loại parabol / suy biến. Trị riêng: $\lambda_1 = 2$, $\lambda_2 = 0$. Trong hệ trục riêng, phần bậc hai trở thành $2 u^2 = 1$ (một biến bậc hai, một biến "tự do") --- đường \emph{hai đường thẳng song song} $u = \pm 1/\sqrt{2}$ trong toạ độ mới; đây là trường hợp suy biến của họ conic.
+\end{vidu}
+
+\begin{luuy}
+Trong đồ họa máy tính và CAD, \textbf{đường bậc hai} còn được biểu diễn dạng tham số hữu tỉ (NURBS bậc 2) hoặc ma trận đồng nhất bậc hai --- cùng một đối tượng hình học, nhiều cách tính toán.
+\end{luuy}
+
+\subsection{Mặt bậc hai trong không gian $\mathbb{R}^3$}
+
+\begin{dongco}
+Mặt bậc hai là tập điểm $(x,y,z)$ thoả một phương trình bậc hai tổng quát. Chúng xuất hiện trong vật lý (mặt đẳng thế, bề mặt quán tính), đồ họa 3D, và là bước tự nhiên sau đường bậc hai: ma trận đối xứng $3 \times 3$ thay cho $2 \times 2$.
+\end{dongco}
+
+\begin{dinhnghia}
+  Một \textbf{mặt bậc hai} trong $\mathbb{R}^3$ là tập nghiệm của phương trình:
+  \[
+    a x^2 + b y^2 + c z^2 + 2f yz + 2g zx + 2h xy + 2p x + 2q y + 2r z + d = 0,
+  \]
+  với các hệ số thực và ít nhất một hệ số bậc hai khác $0$.
+
+  Phần bậc hai viết dạng ma trận đối xứng:
+  \[
+    \begin{pmatrix}x & y & z\end{pmatrix}
+    \underbrace{\begin{pmatrix}
+      a & h & g\\
+      h & b & f\\
+      g & f & c
+    \end{pmatrix}}_{=: B}
+    \begin{pmatrix}x\\ y\\ z\end{pmatrix}
+    + 2p x + 2q y + 2r z + d = 0,
+  \]
+  trong đó $h$ là nửa hệ số của $xy$, v.v. (cùng quy ước như đường bậc hai).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Phân loại và chéo hoá}]
+Ma trận $B$ đối xứng $\Rightarrow$ tồn tại $Q$ trực giao để $Q^T B Q = \mathrm{diag}(\lambda_1, \lambda_2, \lambda_3)$. Trong hệ trục mới, phần bậc hai là $\lambda_1 x'^2 + \lambda_2 y'^2 + \lambda_3 z'^2$ (không có tích chéo). Kết hợp phần tuyến tính và dịch gốc, ta đưa về các \textbf{dạng chuẩn} cổ điển. Dấu của $\lambda_i$ và số lượng $\lambda_i$ bằng $0$ quyết định loại mặt (ellipsoid, hyperboloid một/two nón, paraboloid, mặt trụ, v.v.).
+\end{ynghia}
+
+\begin{tinhchat}[title={Một số dạng chuẩn thường gặp}]
+\begin{itemize}
+  \item \textbf{Ellipsoid:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$ \quad ($a,b,c > 0$).
+  \item \textbf{Hyperboloid một tầng:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1$.
+  \item \textbf{Hyperboloid hai tầng:} $\dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1$.
+  \item \textbf{Paraboloid elliptic:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = z$.
+  \item \textbf{Paraboloid hyperbolic} (yên ngựa): $\dfrac{x^2}{a^2} - \dfrac{y^2}{b^2} = z$.
+  \item \textbf{Nón:} $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 0$ (trừ đỉnh).
+  \item \textbf{Mặt trụ bậc hai:} ví dụ $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$ (không chứa $z$ trong phần bậc hai) --- đường conic ``kéo'' theo một hướng.
+\end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Quy trình nhận dạng mặt bậc hai (ôn tập ĐSTT)}]
+\begin{enumerate}
+  \item Viết ma trận $B$ của phần bậc hai (đối xứng).
+  \item Tìm trị riêng $\lambda_1, \lambda_2, \lambda_3$ và ma trận trực giao $Q$; đổi biến $\mathbf{x}' = Q^T \mathbf{x}$.
+  \item Trong toạ độ mới, hoàn thiện bình phương đối với $x', y', z'$ nếu còn phần tuyến tính; dịch gốc để đưa về dạng chuẩn.
+  \item Đọc loại mặt từ dấu của các hệ số và số hạng còn lại.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}[title={Mặt bậc hai đơn giản}]
+$x^2 + y^2 - z^2 = 1$: $\lambda_1 = \lambda_2 = 1 > 0$, $\lambda_3 = -1$ $\Rightarrow$ \textbf{hyperboloid một tầng} (dạng quay nếu $x^2 + y^2$ đối xứng quanh $Oz$).
+
+$x^2 + y^2 = z$: hai trị riêng dương của phần bậc hai theo $x,y$, biến $z$ bậc một $\Rightarrow$ \textbf{paraboloid elliptic}.
+\end{vidu}
+
+\begin{luuy}
+Chi tiết đầy đủ mọi trường hợp suy biến (mặt thống nhất, cặp mặt phẳng, v.v.) thường nằm trong môn \emph{hình học giải tích} hoặc \emph{giải tích nhiều biến}. Ở đây ta nhấn mạnh \textbf{góc nhìn ma trận}: đường/mặt bậc hai = phương trình bậc hai + ma trận đối xứng + (tùy chọn) quay trục bằng trị riêng.
+\end{luuy}
+
 \begin{tongket}[title={Tổng kết Phần X}]
 \begin{enumerate}
   \item Dạng toàn phương $Q(\mathbf{x}) = \mathbf{x}^T A \mathbf{x}$ với $A$ đối xứng. Hàm bậc hai nhiều biến.
@@ -3148,7 +3263,9 @@ Kiểm tra: $y_1^2 + 3 y_2^2 = \frac{(x_1 - x_2)^2}{2} + \frac{3(x_1 + x_2)^2}{2
   \item Đưa về dạng chính tắc: \textbf{Lagrange} (nhóm bình phương, đổi biến bất kỳ khả nghịch) và \textbf{trực giao} ($\mathbf{x} = Q\mathbf{y}$, $d_i = \lambda_i$).
   \item Luật quán tính Sylvester: $(p, q)$ là bất biến.
   \item Phân rã Cholesky $A = LL^T$ cho ma trận đối xứng xác định dương: giải hệ bằng hai lượt thế tam giác.
-  \item Ứng dụng: phân loại điểm tới hạn (Hessian), phương trình ellipse/hyperbol, vật lý dao động.
+  \item \textbf{Đường bậc hai} trong $\mathbb{R}^2$: phương trình bậc hai, ma trận phần bậc hai $2\times 2$, $\Delta = ab - h^2$, quay trục bằng trị riêng; ellipse / hyperbol / parabol và suy biến.
+  \item \textbf{Mặt bậc hai} trong $\mathbb{R}^3$: ma trận đối xứng $3\times 3$, chéo hoá trực giao, các dạng chuẩn (ellipsoid, hyperboloid, paraboloid, nón, trụ).
+  \item Ứng dụng: phân loại điểm tới hạn (Hessian), hình học giải tích, đồ họa, vật lý dao động.
 \end{enumerate}
 
 \textbf{Câu hỏi mở đầu Phần XI:} Ta đã làm việc trên $\mathbb{R}$ và $\mathbb{R}^n$. Còn các bài toán phức (kỹ thuật, lượng tử)? Ma trận có hệ số phức cần khái niệm \emph{Hermitian} thay cho đối xứng. Và bài toán "hệ phương trình lệch gốc" $A\mathbf{x} = \mathbf{b}$ với $\mathbf{b} \ne \mathbf{0}$ dẫn đến \emph{không gian affine}.

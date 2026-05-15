@@ -21,6 +21,8 @@ https://www.vms.org.vn/category/thong-tin-toan-hoc-1
 
 https://diendantoanhoc.org/topic/125987-t%E1%BB%95ng-h%E1%BB%A3p-s%C3%A1ch-to%C3%A1n-cao-c%E1%BA%A5p-dai-cuong-d%C3%A0nh-cho-sinh-vi%C3%AAn-%C4%91h/
 
+# Trên Windows
+
 Lệnh terminal để sau này tự sinh PDF
 Mở terminal tại thư mục chứa ly_thuyet.tex, rồi:
 
@@ -42,3 +44,50 @@ Nếu cài latexmk (MiKTeX thường có), tự gọi đủ số lần và dọn
 latexmk -pdf -interaction=nonstopmode ly_thuyet.tex
 
 File PDF tạo ra cùng thư mục: ly_thuyet.pdf.
+
+# Trên Ubuntu
+
+## Cài gói LaTeX (một lần)
+
+Cần `pdflatex` (và gói tiếng Việt `vntex` nếu dùng `\usepackage[vietnamese]{babel}`). Cách gọn:
+
+```bash
+sudo apt update
+sudo apt install -y texlive-latex-extra texlive-lang-other texlive-fonts-recommended
+```
+
+Nếu thiếu font/gói, có thể cài bộ đầy đủ hơn (nặng, vài GB):
+
+```bash
+sudo apt install -y texlive-full
+```
+
+## Sinh PDF (mỗi lần chỉnh `ly_thuyet.tex`)
+
+Mở terminal, `cd` vào thư mục chứa `ly_thuyet.tex` (đường dẫn trên máy bạn có thể khác, ví dụ):
+
+```bash
+cd ~/Desktop/personal/tai_lieu_toan/toan_dai_hoc/nhom_1_dai_so_logic/A3_dai_so_tuyen_tinh
+pdflatex -interaction=nonstopmode ly_thuyet.tex
+```
+
+**Mục lục** (`\tableofcontents`) cập nhật đúng sau khi thêm/sửa `\section`/`\subsection`: chạy **hai lần** liên tiếp:
+
+```bash
+pdflatex -interaction=nonstopmode ly_thuyet.tex && pdflatex -interaction=nonstopmode ly_thuyet.tex
+```
+
+## Một lệnh gọn (đã `cd` đúng thư mục)
+
+```bash
+pdflatex -interaction=nonstopmode ly_thuyet.tex
+```
+
+## latexmk (tự chạy đủ số lần, tiện khi sửa nhiều)
+
+```bash
+sudo apt install -y latexmk
+latexmk -pdf -interaction=nonstopmode ly_thuyet.tex
+```
+
+File PDF: `ly_thuyet.pdf` trong cùng thư mục với `ly_thuyet.tex`.
