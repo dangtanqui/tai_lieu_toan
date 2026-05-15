@@ -490,7 +490,7 @@ Quan sát: $\mathrm{span}\{(1,0),(2,0),(3,0)\}$ chính là $\mathrm{span}\{(1,0)
 \begin{ynghia}[title={Tại sao định nghĩa lại có dạng "= 0"?}]
 Nếu có hệ số $\lambda_i \ne 0$ thoả $\sum \lambda_j \mathbf{v}_j = \mathbf{0}$, ta giải ra:
 \[
-  \mathbf{v}_i = -\frac{1}{\lambda_i}\sum_{j\ne i} \lambda_j \mathbf{v}_j.
+  \mathbf{v}_i = -\dfrac{1}{\lambda_i}\sum_{j\ne i} \lambda_j \mathbf{v}_j.
 \]
 Vậy $\mathbf{v}_i$ \emph{là tổ hợp tuyến tính của các vectơ còn lại} -- nó "dư". Đó là ý nghĩa thật của PTTT: \emph{có vectơ dư}. Ngược lại, ĐLTT nghĩa là \emph{không có vectơ nào dư}: mỗi vectơ đóng góp một "hướng mới" mà các vectơ kia không sinh ra được.
 \end{ynghia}
@@ -875,11 +875,11 @@ $A \odot B = B \odot A$ (giao hoán), kết hợp, phân phối với cộng. Ph
 \begin{vidu}[title={Phân tích thành đối xứng + phản đối xứng}]
 Mọi ma trận vuông đều viết được:
 \[
-  A = \underbrace{\frac{A + A^T}{2}}_{\text{đối xứng}} + \underbrace{\frac{A - A^T}{2}}_{\text{phản đối xứng}}.
+  A = \underbrace{\dfrac{A + A^T}{2}}_{\text{đối xứng}} + \underbrace{\dfrac{A - A^T}{2}}_{\text{phản đối xứng}}.
 \]
 Với $A = \begin{pmatrix}1 & 2\\ 3 & 4\end{pmatrix}$:
 \[
-  \frac{A+A^T}{2} = \begin{pmatrix}1 & 5/2\\ 5/2 & 4\end{pmatrix},\qquad \frac{A-A^T}{2} = \begin{pmatrix}0 & -1/2\\ 1/2 & 0\end{pmatrix}.
+  \dfrac{A+A^T}{2} = \begin{pmatrix}1 & 5/2\\ 5/2 & 4\end{pmatrix},\qquad \dfrac{A-A^T}{2} = \begin{pmatrix}0 & -1/2\\ 1/2 & 0\end{pmatrix}.
 \]
 \end{vidu}
 
@@ -1025,7 +1025,7 @@ Pivot đánh khung. Trong RREF thứ ba, cột 2 và 4 không có pivot -- ứng
 \begin{phuongphap}[title={Khử Gauss (đưa về REF)}]
 \begin{enumerate}
   \item Tìm cột đầu tiên có phần tử khác 0. Nếu cần, đổi hàng để đưa phần tử đó lên đỉnh -- nó là pivot.
-  \item Dùng pivot khử (làm về 0) tất cả các phần tử \emph{dưới} pivot trong cùng cột: cộng $-\frac{a_{ij}}{a_{\text{piv}}}$ lần hàng pivot vào hàng $i$.
+  \item Dùng pivot khử (làm về 0) tất cả các phần tử \emph{dưới} pivot trong cùng cột: cộng $-\dfrac{a_{ij}}{a_{\text{piv}}}$ lần hàng pivot vào hàng $i$.
   \item Bỏ qua hàng pivot, lặp lại từ bước 1 với "ma trận con" còn lại (dịch xuống và sang phải một cấp).
 \end{enumerate}
 Khi xong, ta được REF. Để giải hệ, dùng \emph{thay thế ngược} từ hàng cuối lên.
@@ -1216,7 +1216,7 @@ Cột 3 và 4 (ứng với $-1$ trên đường chéo) là $\mathbf{v}_1 = (8,2,
 \begin{dinhly}[title={Quy tắc Cramer}]
 Cho hệ $A\mathbf{x} = \mathbf{b}$ vuông cấp $n$ với $\det(A) \ne 0$. Khi đó hệ có nghiệm duy nhất:
 \[
-  x_j = \frac{\det(A_j)}{\det(A)},\quad j = 1, \ldots, n,
+  x_j = \dfrac{\det(A_j)}{\det(A)},\quad j = 1, \ldots, n,
 \]
 trong đó $A_j$ là ma trận thu được bằng cách thay cột $j$ của $A$ bởi $\mathbf{b}$.
 \end{dinhly}
@@ -1486,11 +1486,11 @@ Phải nhớ: \textbf{tất cả các phát biểu trên là \emph{cùng một t
 \begin{congthuc}[title={Công thức nghịch đảo qua phụ đại số}]
 Gọi $C_{ij} = (-1)^{i+j} M_{ij}$ là cofactor của $a_{ij}$. \textbf{Ma trận phụ hợp} $\mathrm{adj}(A)$ có phần tử $(i,j)$ bằng $C_{ji}$ (chú ý chuyển vị). Khi đó:
 \[
-  A^{-1} = \frac{1}{\det(A)}\, \mathrm{adj}(A).
+  A^{-1} = \dfrac{1}{\det(A)}\, \mathrm{adj}(A).
 \]
 \textbf{Trường hợp $2\times 2$ -- nhớ thuộc lòng:}
 \[
-  A = \begin{pmatrix}a & b\\ c & d\end{pmatrix},\, \det A = ad - bc \ne 0 \;\Longrightarrow\; A^{-1} = \frac{1}{ad - bc}\begin{pmatrix}d & -b\\ -c & a\end{pmatrix}.
+  A = \begin{pmatrix}a & b\\ c & d\end{pmatrix},\, \det A = ad - bc \ne 0 \;\Longrightarrow\; A^{-1} = \dfrac{1}{ad - bc}\begin{pmatrix}d & -b\\ -c & a\end{pmatrix}.
 \]
 \end{congthuc}
 
@@ -1531,7 +1531,7 @@ Vậy $A^{-1} = \begin{pmatrix}3 & -1\\ -5 & 2\end{pmatrix}$. \emph{Kiểm tra:}
   \item $(AB)^{-1} = B^{-1}A^{-1}$ \quad (đảo thứ tự).
   \item $(A^k)^{-1} = (A^{-1})^k$.
   \item $(A^T)^{-1} = (A^{-1})^T$.
-  \item $(\lambda A)^{-1} = \frac{1}{\lambda} A^{-1}$ với $\lambda \ne 0$.
+  \item $(\lambda A)^{-1} = \dfrac{1}{\lambda} A^{-1}$ với $\lambda \ne 0$.
   \item $\det(A^{-1}) = 1/\det(A)$.
   \item Nói chung $(A + B)^{-1} \ne A^{-1} + B^{-1}$.
 \end{itemize}
@@ -1776,7 +1776,7 @@ $\mathcal{E}$ = cơ sở chuẩn, $\mathcal{B}' = \{(2,1)^T, (1,3)^T\}$. Tìm $P
 
 Vì $B = I$, $P = B' = \begin{pmatrix}2 & 1\\1 & 3\end{pmatrix}$. $\det P = 5$, $P^{-1} = \tfrac{1}{5}\begin{pmatrix}3 & -1\\-1 & 2\end{pmatrix}$.
 \[
-  [v]_{\mathcal{B}'} = P^{-1} v = \frac{1}{5}\begin{pmatrix}3\cdot 7 - 1\cdot 5\\ -1\cdot 7 + 2\cdot 5\end{pmatrix} = \frac{1}{5}\begin{pmatrix}16\\ 3\end{pmatrix} = \begin{pmatrix}16/5\\ 3/5\end{pmatrix}.
+  [v]_{\mathcal{B}'} = P^{-1} v = \dfrac{1}{5}\begin{pmatrix}3\cdot 7 - 1\cdot 5\\ -1\cdot 7 + 2\cdot 5\end{pmatrix} = \dfrac{1}{5}\begin{pmatrix}16\\ 3\end{pmatrix} = \begin{pmatrix}16/5\\ 3/5\end{pmatrix}.
 \]
 Kiểm tra: $\tfrac{16}{5}(2,1) + \tfrac{3}{5}(1,3) = \tfrac{1}{5}(35, 25) = (7, 5)$. $\checkmark$
 \end{vidu}
@@ -2416,7 +2416,7 @@ Dấu bằng xảy ra $\Leftrightarrow \mathbf{u}, \mathbf{v}$ tỉ lệ nhau (c
 \begin{congthuc}[title={Góc giữa hai vectơ}]
 Hệ quả của Cauchy-Schwarz: tỉ số $\langle \mathbf{u}, \mathbf{v}\rangle / (\|\mathbf{u}\|\|\mathbf{v}\|) \in [-1, 1]$, nên có thể định nghĩa:
 \[
-  \cos\theta = \frac{\langle \mathbf{u}, \mathbf{v}\rangle}{\|\mathbf{u}\|\,\|\mathbf{v}\|},\quad \theta \in [0, \pi].
+  \cos\theta = \dfrac{\langle \mathbf{u}, \mathbf{v}\rangle}{\|\mathbf{u}\|\,\|\mathbf{v}\|},\quad \theta \in [0, \pi].
 \]
 \end{congthuc}
 
@@ -2508,10 +2508,10 @@ Cho cơ sở $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$ bất kỳ. Có thể "xâ
 Cho hệ ĐLTT $\{\mathbf{v}_1, \ldots, \mathbf{v}_n\}$. Đặt:
 \begin{align*}
   \mathbf{u}_1 &= \mathbf{v}_1, \\
-  \mathbf{u}_2 &= \mathbf{v}_2 - \frac{\langle \mathbf{v}_2, \mathbf{u}_1\rangle}{\langle \mathbf{u}_1, \mathbf{u}_1\rangle}\, \mathbf{u}_1, \\
-  \mathbf{u}_3 &= \mathbf{v}_3 - \frac{\langle \mathbf{v}_3, \mathbf{u}_1\rangle}{\langle \mathbf{u}_1, \mathbf{u}_1\rangle}\, \mathbf{u}_1 - \frac{\langle \mathbf{v}_3, \mathbf{u}_2\rangle}{\langle \mathbf{u}_2, \mathbf{u}_2\rangle}\, \mathbf{u}_2, \\
+  \mathbf{u}_2 &= \mathbf{v}_2 - \dfrac{\langle \mathbf{v}_2, \mathbf{u}_1\rangle}{\langle \mathbf{u}_1, \mathbf{u}_1\rangle}\, \mathbf{u}_1, \\
+  \mathbf{u}_3 &= \mathbf{v}_3 - \dfrac{\langle \mathbf{v}_3, \mathbf{u}_1\rangle}{\langle \mathbf{u}_1, \mathbf{u}_1\rangle}\, \mathbf{u}_1 - \dfrac{\langle \mathbf{v}_3, \mathbf{u}_2\rangle}{\langle \mathbf{u}_2, \mathbf{u}_2\rangle}\, \mathbf{u}_2, \\
   &\vdots \\
-  \mathbf{u}_k &= \mathbf{v}_k - \sum_{j=1}^{k-1} \frac{\langle \mathbf{v}_k, \mathbf{u}_j\rangle}{\langle \mathbf{u}_j, \mathbf{u}_j\rangle}\, \mathbf{u}_j.
+  \mathbf{u}_k &= \mathbf{v}_k - \sum_{j=1}^{k-1} \dfrac{\langle \mathbf{v}_k, \mathbf{u}_j\rangle}{\langle \mathbf{u}_j, \mathbf{u}_j\rangle}\, \mathbf{u}_j.
 \end{align*}
 Thu được hệ trực giao $\{\mathbf{u}_1, \ldots, \mathbf{u}_n\}$ sinh cùng không gian như hệ ban đầu. Chuẩn hoá ($\mathbf{e}_i = \mathbf{u}_i / \|\mathbf{u}_i\|$) để được cơ sở trực chuẩn.
 \end{phuongphap}
@@ -2526,10 +2526,10 @@ Hệ $\mathbf{v}_1 = (1, 1, 0)^T, \mathbf{v}_2 = (1, 0, 1)^T, \mathbf{v}_3 = (0,
   \mathbf{u}_1 = (1, 1, 0)^T,\quad \|\mathbf{u}_1\|^2 = 2.
 \]
 \[
-  \mathbf{u}_2 = (1, 0, 1) - \frac{1}{2}(1, 1, 0) = (1/2, -1/2, 1)^T,\quad \|\mathbf{u}_2\|^2 = 3/2.
+  \mathbf{u}_2 = (1, 0, 1) - \dfrac{1}{2}(1, 1, 0) = (1/2, -1/2, 1)^T,\quad \|\mathbf{u}_2\|^2 = 3/2.
 \]
 \[
-  \mathbf{u}_3 = (0, 1, 1) - \frac{1}{2}(1, 1, 0) - \frac{1/2}{3/2}(1/2, -1/2, 1)^T
+  \mathbf{u}_3 = (0, 1, 1) - \dfrac{1}{2}(1, 1, 0) - \dfrac{1/2}{3/2}(1/2, -1/2, 1)^T
 \]
 \[
   = (0,1,1) - (1/2, 1/2, 0) - (1/6, -1/6, 1/3) = (-2/3, 2/3, 2/3)^T.
@@ -2577,7 +2577,7 @@ Cho $W$ là KGC hữu hạn chiều của không gian tích vô hướng $V$, $\
 \begin{congthuc}[title={Công thức hình chiếu}]
 Nếu $\{\mathbf{u}_1, \ldots, \mathbf{u}_k\}$ là cơ sở \emph{trực giao} của $W$:
 \[
-  \mathrm{proj}_W \mathbf{b} = \sum_{i=1}^k \frac{\langle \mathbf{b}, \mathbf{u}_i\rangle}{\langle \mathbf{u}_i, \mathbf{u}_i\rangle}\, \mathbf{u}_i.
+  \mathrm{proj}_W \mathbf{b} = \sum_{i=1}^k \dfrac{\langle \mathbf{b}, \mathbf{u}_i\rangle}{\langle \mathbf{u}_i, \mathbf{u}_i\rangle}\, \mathbf{u}_i.
 \]
 Nếu $A = [\mathbf{a}_1 | \cdots | \mathbf{a}_k]$ là ma trận có cột là cơ sở \emph{bất kỳ} của $W$ và các cột ĐLTT:
 \[
@@ -2820,7 +2820,7 @@ Hai trị riêng khác nhau $\Rightarrow$ chéo hoá được. Đặt:
 \[
   P = \begin{pmatrix}-1 & 1\\ 1 & 0\end{pmatrix},\quad D = \begin{pmatrix}2 & 0\\ 0 & 3\end{pmatrix}.
 \]
-$P^{-1} = \frac{1}{\det P}\begin{pmatrix}0 & -1\\ -1 & -1\end{pmatrix} = \begin{pmatrix}0 & 1\\ 1 & 1\end{pmatrix}$ (vì $\det P = -1$).
+$P^{-1} = \dfrac{1}{\det P}\begin{pmatrix}0 & -1\\ -1 & -1\end{pmatrix} = \begin{pmatrix}0 & 1\\ 1 & 1\end{pmatrix}$ (vì $\det P = -1$).
 
 \textbf{Kiểm tra:}
 \[
@@ -2908,7 +2908,7 @@ $AB = \begin{pmatrix}2 & 1\\ 4 & 3\end{pmatrix}$, $BA = \begin{pmatrix}3 & 4\\ 1
 Một số ví dụ:
 \begin{itemize}
   \item Khoảng cách bình phương: $d^2 = x_1^2 + x_2^2 + x_3^2$.
-  \item Năng lượng động học: $E = \frac{1}{2}(v_1^2 + v_2^2)$.
+  \item Năng lượng động học: $E = \dfrac{1}{2}(v_1^2 + v_2^2)$.
   \item Phương trình ellipse: $3x_1^2 + 2x_1 x_2 + 4x_2^2 = 1$.
   \item Trong tối ưu hoá, xấp xỉ Taylor cấp 2 của hàm nhiều biến gần điểm tới hạn.
 \end{itemize}
@@ -2922,15 +2922,15 @@ Tất cả đều là \textbf{hàm bậc hai thuần} theo $\mathbf{x}$ -- gọi
   \]
   với $A \in \mathbb{R}^{n\times n}$. Có thể \emph{luôn giả sử $A$ đối xứng} ($A^T = A$), vì:
   \[
-    \mathbf{x}^T A \mathbf{x} = \mathbf{x}^T \left(\frac{A + A^T}{2}\right) \mathbf{x},
+    \mathbf{x}^T A \mathbf{x} = \mathbf{x}^T \left(\dfrac{A + A^T}{2}\right) \mathbf{x},
   \]
-  và $\frac{A+A^T}{2}$ là đối xứng. Khi đó $A$ gọi là \textbf{ma trận của dạng toàn phương}.
+  và $\dfrac{A+A^T}{2}$ là đối xứng. Khi đó $A$ gọi là \textbf{ma trận của dạng toàn phương}.
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Đọc ma trận $A$ từ biểu thức $Q(\mathbf{x})$}]
 \begin{itemize}
   \item Hệ số của $x_i^2$ đặt vào vị trí $a_{ii}$.
-  \item Hệ số của $x_i x_j$ ($i \ne j$) là \emph{tổng} $a_{ij} + a_{ji} = 2 a_{ij}$, nên $a_{ij} = a_{ji} = \frac{1}{2}\cdot$ hệ số.
+  \item Hệ số của $x_i x_j$ ($i \ne j$) là \emph{tổng} $a_{ij} + a_{ji} = 2 a_{ij}$, nên $a_{ij} = a_{ji} = \dfrac{1}{2}\cdot$ hệ số.
 \end{itemize}
 \end{phuongphap}
 
@@ -3034,7 +3034,7 @@ Nếu $A \in \mathbb{R}^{n \times n}$ đối xứng và xác định dương th�
 Ký hiệu $\ell_{ij}$ là phần tử của $L$. Với $i = 1, \ldots, n$:
 \[
   \ell_{ii} = \sqrt{a_{ii} - \sum_{k=1}^{i-1} \ell_{ik}^2},\qquad
-  \ell_{ij} = \frac{1}{\ell_{jj}}\left(a_{ij} - \sum_{k=1}^{j-1} \ell_{ik}\ell_{jk}\right)\quad (j < i).
+  \ell_{ij} = \dfrac{1}{\ell_{jj}}\left(a_{ij} - \sum_{k=1}^{j-1} \ell_{ik}\ell_{jk}\right)\quad (j < i).
 \]
 Nếu trong quá trình có căn bậc hai của số âm hoặc chia cho số gần 0, ma trận không xác định dương (thực tế số học: gần suy biến).
 \end{phuongphap}
@@ -3080,7 +3080,7 @@ trong đó $Q_1$ không còn $x_1$. Áp dụng lại quy trình cho $Q_1$.
   = 2\Bigl(x_1 + \tfrac{x_2}{2}\Bigr)^2 - 2\cdot\tfrac{x_2^2}{4} + 2x_2^2
   = 2\Bigl(x_1 + \tfrac{x_2}{2}\Bigr)^2 + \tfrac{3}{2} x_2^2.
 \]
-Đặt $y_1 = x_1 + \frac{x_2}{2}$, $y_2 = x_2$ (ánh xạ $(x_1, x_2) \mapsto (y_1, y_2)$ khả nghịch, $\det = 1$). Hai hệ số dương $\Rightarrow$ $Q$ xác định dương; $(p, q) = (2, 0)$ giống ví dụ trị riêng (ở đó $Q = z_1^2 + 3z_2^2$ với đổi biến \emph{trực giao} khác).
+Đặt $y_1 = x_1 + \dfrac{x_2}{2}$, $y_2 = x_2$ (ánh xạ $(x_1, x_2) \mapsto (y_1, y_2)$ khả nghịch, $\det = 1$). Hai hệ số dương $\Rightarrow$ $Q$ xác định dương; $(p, q) = (2, 0)$ giống ví dụ trị riêng (ở đó $Q = z_1^2 + 3z_2^2$ với đổi biến \emph{trực giao} khác).
 \end{vidu}
 
 \begin{luuy}[title={Bài tập: nên biết thêm những gì?}]
@@ -3124,10 +3124,10 @@ Vectơ riêng:
 \end{itemize}
 $Q = (\mathbf{v}_1 | \mathbf{v}_2)$. Đặt $\mathbf{y} = Q^T \mathbf{x}$: $y_1 = \tfrac{x_1 - x_2}{\sqrt{2}}$, $y_2 = \tfrac{x_1 + x_2}{\sqrt{2}}$.
 
-Kiểm tra: $y_1^2 + 3 y_2^2 = \frac{(x_1 - x_2)^2}{2} + \frac{3(x_1 + x_2)^2}{2} = \frac{1}{2}(x_1^2 - 2x_1 x_2 + x_2^2 + 3 x_1^2 + 6 x_1 x_2 + 3 x_2^2) = 2x_1^2 + 2 x_1 x_2 + 2x_2^2 = Q$. $\checkmark$
+Kiểm tra: $y_1^2 + 3 y_2^2 = \dfrac{(x_1 - x_2)^2}{2} + \dfrac{3(x_1 + x_2)^2}{2} = \dfrac{1}{2}(x_1^2 - 2x_1 x_2 + x_2^2 + 3 x_1^2 + 6 x_1 x_2 + 3 x_2^2) = 2x_1^2 + 2 x_1 x_2 + 2x_2^2 = Q$. $\checkmark$
 \end{vidu}
 
-\subsection{Dạng song tuyến tính (tham khảo)}
+\subsection{Dạng song tuyến tính}
 
 \begin{dinhnghia}
   Ánh xạ $B: V \times V \to \mathbb{R}$ gọi là \textbf{dạng song tuyến tính} nếu:
@@ -3139,6 +3139,12 @@ Kiểm tra: $y_1^2 + 3 y_2^2 = \frac{(x_1 - x_2)^2}{2} + \frac{3(x_1 + x_2)^2}{2
 
   Tích vô hướng là một dạng song tuyến tính đối xứng xác định dương. Dạng toàn phương $Q(\mathbf{x}) = B(\mathbf{x}, \mathbf{x})$ là "đường chéo" của một dạng song tuyến tính đối xứng.
 \end{dinhnghia}
+
+\begin{vidu}[title={Đưa dạng toàn phương về dạng song tuyến tính}]
+Cho ma trận A = $\begin{pmatrix}2 & 1\\ 1 & 2\end{pmatrix}$ là ma trận dạng toàn phương $w$ trong cơ sở trực chuẩn.
+
+Ta có dạng song tuyến tính tương ứng là: $B(x, y) = x^T A y = 2x_1 y_1 + x_1 y_2 + x_2 y_1 + 2x_2 y_2$.
+\end{vidu}
 
 \subsection{Đường bậc hai trong mặt phẳng $\mathbb{R}^2$}
 
@@ -3370,7 +3376,7 @@ với $\alpha$ là góc giữa $\mathbf{u}$ và $\mathbf{v}$.
 \begin{ungdung}
 \begin{itemize}
   \item \textbf{Diện tích hình bình hành} căng bởi $\mathbf{u}, \mathbf{v}$: $S = \|\mathbf{u} \times \mathbf{v}\|$.
-  \item \textbf{Diện tích tam giác}: $S = \frac{1}{2}\|\mathbf{u} \times \mathbf{v}\|$.
+  \item \textbf{Diện tích tam giác}: $S = \dfrac{1}{2}\|\mathbf{u} \times \mathbf{v}\|$.
   \item \textbf{Thể tích khối song song} căng bởi $\mathbf{u}, \mathbf{v}, \mathbf{w}$: $V = |\mathbf{u} \cdot (\mathbf{v} \times \mathbf{w})| = |\det[\mathbf{u}|\mathbf{v}|\mathbf{w}]|$.
 \end{itemize}
 \end{ungdung}
