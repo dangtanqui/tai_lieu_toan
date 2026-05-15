@@ -244,7 +244,11 @@ Mỗi mục là một \emph{viên gạch}; bạn không thể bỏ viên ở gi�
 \subsection{Vectơ là gì? Hai góc nhìn}
 
 \begin{dongco}
-Trong vật lý, "vận tốc 30 km/h hướng đông bắc" là một đại lượng có \emph{độ lớn và hướng}: ta vẽ một mũi tên. Trong tin học, "khách hàng A mua 3 ổ bánh, 2 cốc trà, 1 cuốn sách" là một \emph{danh sách số} $(3, 2, 1)$. Hai thứ đó nhìn rất khác nhau, nhưng chúng cộng và nhân vô hướng theo cùng quy tắc. Ta gọi chúng bằng cùng một tên: \textbf{vectơ}.
+Trong vật lý, "vận tốc 30 km/h hướng đông bắc" là một đại lượng có \emph{độ lớn và hướng}: ta vẽ một mũi tên.
+
+Trong tin học, "khách hàng A mua 3 ổ bánh, 2 cốc trà, 1 cuốn sách" là một \emph{danh sách số} $(3, 2, 1)$.
+
+Hai thứ đó nhìn rất khác nhau, nhưng chúng cộng và nhân vô hướng theo cùng quy tắc. Ta gọi chúng bằng cùng một tên: \textbf{vectơ}.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -283,7 +287,7 @@ Hai cách nhìn này hoàn toàn tương đương. Khi nói về cộng vectơ v
   \item Trong $\mathbb{R}^2$: $(1, 0)^T$, $(0, 1)^T$, $(-2, 5)^T$.
   \item Trong $\mathbb{R}^3$: $(1, 1, 1)^T$ là vectơ "đường chéo chính" của khối lập phương đơn vị.
   \item Trong $\mathbb{R}^{784}$: ảnh chữ số viết tay $28 \times 28$ pixel chính là một vectơ 784 chiều (mỗi thành phần là độ sáng một pixel). Đây là dữ liệu đầu vào của mạng nơ-ron nhận dạng chữ số MNIST.
-  \item Trong $\mathbb{R}^4$: hồ sơ một sinh viên $(20, 7.5, 60, 1)$ = (tuổi, GPA, cân nặng, đã có bằng lái xe = 1).
+  \item Trong $\mathbb{R}^4$: hồ sơ một sinh viên $(20, 7.5, 60, 1)$ = (tuổi, GPA, cân nặng, đã có bằng lái xe).
 \end{itemize}
 \end{vidu}
 
@@ -343,7 +347,11 @@ Tám tính chất này sẽ là \emph{định nghĩa} của không gian vectơ t
 \subsection{Tổ hợp tuyến tính: khái niệm cốt lõi}
 
 \begin{dongco}
-Trên màn hình máy tính, mỗi pixel có một màu được tạo từ ba màu cơ bản đỏ (R), xanh lá (G), xanh dương (B). Màu trắng = $1 \cdot R + 1 \cdot G + 1 \cdot B$; màu vàng = $1 \cdot R + 1 \cdot G + 0 \cdot B$; màu xám 50\% = $0{,}5 R + 0{,}5 G + 0{,}5 B$. Tất cả các màu hiển thị được đều là một \textbf{tổ hợp tuyến tính} của ba vectơ $R, G, B$. Khái niệm này -- "trộn các vectơ với hệ số " -- là khái niệm \textbf{quan trọng nhất} của cả môn học.
+Trên màn hình máy tính, mỗi pixel có một màu được tạo từ ba màu cơ bản đỏ (R), xanh lá (G), xanh dương (B).
+
+Màu trắng = $1 \cdot R + 1 \cdot G + 1 \cdot B$; màu vàng = $1 \cdot R + 1 \cdot G + 0 \cdot B$; màu xám 50\% = $0{,}5 R + 0{,}5 G + 0{,}5 B$.
+
+Tất cả các màu hiển thị được đều là một \textbf{tổ hợp tuyến tính} của ba vectơ $R, G, B$. Khái niệm này ("trộn các vectơ với hệ số ") là khái niệm \textbf{quan trọng nhất} của cả môn học.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -356,36 +364,44 @@ Trên màn hình máy tính, mỗi pixel có một màu được tạo từ ba m
   Ta cũng nói: $\mathbf{w}$ \emph{biểu diễn được} qua $\mathbf{v}_1, \ldots, \mathbf{v}_k$.
 \end{dinhnghia}
 
-\begin{vidu}[title={Ví dụ dễ -- Trộn hai vectơ}]
+\begin{vidu}[title={Trộn hai vectơ}]
 Cho $\mathbf{v}_1 = (1,0)^T$, $\mathbf{v}_2 = (0,1)^T$. Khi đó:
 \[
   3\mathbf{v}_1 + 4\mathbf{v}_2 = 3\begin{pmatrix}1\\0\end{pmatrix} + 4\begin{pmatrix}0\\1\end{pmatrix} = \begin{pmatrix}3\\4\end{pmatrix}.
 \]
-Nói cách khác: mọi vectơ $(a, b)^T \in \mathbb{R}^2$ đều là tổ hợp tuyến tính $a\mathbf{v}_1 + b\mathbf{v}_2$. Đây là lý do $\{\mathbf{v}_1, \mathbf{v}_2\}$ được gọi là \emph{cơ sở chính tắc} của $\mathbb{R}^2$.
+Nói cách khác: mọi vectơ $(a, b)^T \in \mathbb{R}^2$ đều là tổ hợp tuyến tính $a\mathbf{v}_1 + b\mathbf{v}_2$.
+
+Đây là lý do $\{\mathbf{v}_1, \mathbf{v}_2\}$ được gọi là \emph{cơ sở chính tắc} của $\mathbb{R}^2$. (sẽ nói sau)
 \end{vidu}
 
-\begin{vidu}[title={Ví dụ vừa -- Biểu diễn qua vectơ chéo}]
+\begin{vidu}[title={Biểu diễn qua vectơ chéo}]
 Cho $\mathbf{u} = (1,1)^T$, $\mathbf{v} = (1,-1)^T$. Hỏi $\mathbf{w} = (5, 3)^T$ có biểu diễn được qua $\mathbf{u}, \mathbf{v}$ không?
 
 \emph{Giải:} Đặt $\mathbf{w} = a\mathbf{u} + b\mathbf{v} = (a+b, a-b)^T$. So sánh:
 \[
-  \begin{cases} a + b = 5 \\ a - b = 3 \end{cases} \;\Longrightarrow\; a = 4,\; b = 1.
+  \begin{cases} a + b = 5 \\ a - b = 3 \end{cases} \;\Longrightarrow\; \begin{cases} a = 4 \\ b = 1 \end{cases}.
 \]
 Vậy $\mathbf{w} = 4\mathbf{u} + \mathbf{v}$. Kiểm tra: $4(1,1) + (1,-1) = (5,3)$. $\checkmark$
 
-\emph{Bình luận sư phạm:} Mọi câu hỏi "biểu diễn được không?" cuối cùng đều quy về \emph{giải hệ phương trình tuyến tính}. Đây là cây cầu nối Phần I và Phần III.
+\emph{Nhận xét:} Mọi câu hỏi "biểu diễn được không?" cuối cùng đều quy về \emph{giải hệ phương trình tuyến tính}. Đây là cây cầu nối Phần I và Phần III.
 \end{vidu}
 
 \begin{phanvidu}[title={Khi nào KHÔNG biểu diễn được?}]
 Cho $\mathbf{v}_1 = (1,0)^T$, $\mathbf{v}_2 = (2,0)^T$. Hỏi $\mathbf{w} = (1, 1)^T$ có biểu diễn được không?
 
-Mọi tổ hợp $a\mathbf{v}_1 + b\mathbf{v}_2 = (a+2b, 0)^T$ luôn có thành phần thứ hai bằng 0. Mà $\mathbf{w}$ có thành phần thứ hai bằng 1, nên \emph{không thể} biểu diễn. Trực giác hình học: $\mathbf{v}_1, \mathbf{v}_2$ đều "nằm trên trục hoành", không thể trộn ra vectơ "thoát khỏi trục hoành".
+Mọi tổ hợp $a\mathbf{v}_1 + b\mathbf{v}_2 = (a+2b, 0)^T$ luôn có thành phần thứ hai bằng 0.
+
+Mà $\mathbf{w}$ có thành phần thứ hai bằng 1, nên \emph{không thể} biểu diễn.
+
+Trực giác hình học: $\mathbf{v}_1, \mathbf{v}_2$ đều "nằm trên trục hoành", không thể trộn ra vectơ "thoát khỏi trục hoành".
 \end{phanvidu}
 
 \subsection{Không gian sinh}
 
 \begin{dongco}
-Khi cho một bộ vectơ $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$, ta tự hỏi: "Trộn các vectơ này (với mọi hệ số) thì sinh ra được bao nhiêu vectơ?" Tập hợp tất cả các tổ hợp tuyến tính đó gọi là \emph{không gian sinh} hay \emph{span}. Đây là cách đầu tiên ta tạo ra một "không gian con" của $\mathbb{R}^n$.
+Khi cho một bộ vectơ $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$, ta tự hỏi: "Trộn các vectơ này (với mọi hệ số) thì sinh ra được bao nhiêu vectơ?"
+
+Tập hợp tất cả các tổ hợp tuyến tính đó gọi là \emph{không gian sinh} hay \emph{span}. Đây là cách đầu tiên ta tạo ra một "không gian con" của $\mathbb{R}^n$.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -430,7 +446,11 @@ Khi cho một bộ vectơ $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$, ta tự hỏ
 \end{center}
 
 \begin{vidu}[title={Span trong $\mathbb{R}^3$ -- mặt phẳng đi qua gốc}]
-Cho $\mathbf{u} = (-1, 2, 0{,}5)^T$, $\mathbf{v} = (1, 3, 0{,}1)^T$ trong $\mathbb{R}^3$. Vì $\mathbf{u}, \mathbf{v}$ không cùng phương (kiểm tra: tỷ số $-1/1, 2/3, 0{,}5/0{,}1$ khác nhau), $\mathrm{span}\{\mathbf{u}, \mathbf{v}\}$ là \emph{mặt phẳng đi qua gốc} chứa hai vectơ này.
+Cho $\mathbf{u} = (-1, 2, 0{,}5)^T$, $\mathbf{v} = (1, 3, 0{,}1)^T$ trong $\mathbb{R}^3$.
+
+Vì $\mathbf{u}, \mathbf{v}$ không cùng phương (kiểm tra: tỷ số $-1/1, 2/3, 0{,}5/0{,}1$ khác nhau)
+
+$\mathrm{span}\{\mathbf{u}, \mathbf{v}\}$ là \emph{mặt phẳng đi qua gốc} chứa hai vectơ này.
 
 \medskip
 \begin{center}
@@ -465,7 +485,7 @@ Mọi điểm trên mặt phẳng đó đều biểu diễn được dưới d�
   \item Thêm vectơ \emph{vào} $A$ thì $\mathrm{span}$ không nhỏ đi: $\mathrm{span}\,A \subseteq \mathrm{span}(A \cup \{\mathbf{w}\})$.
   \item Nếu $\mathbf{w} \in \mathrm{span}\,A$ thì thêm $\mathbf{w}$ vào $A$ \emph{không} làm span lớn hơn: $\mathrm{span}\,A = \mathrm{span}(A \cup \{\mathbf{w}\})$.
 \end{itemize}
-Đây chính là gợi ý cho khái niệm "vectơ dư" -- dẫn đến độc lập tuyến tính.
+Đây chính là gợi ý cho khái niệm "vectơ dư" dẫn đến độc lập tuyến tính.
 \end{tinhchat}
 
 \subsection{Độc lập tuyến tính và phụ thuộc tuyến tính}
@@ -487,7 +507,7 @@ Quan sát: $\mathrm{span}\{(1,0),(2,0),(3,0)\}$ chính là $\mathrm{span}\{(1,0)
   \end{itemize}
 \end{dinhnghia}
 
-\begin{ynghia}[title={Tại sao định nghĩa lại có dạng "= 0"?}]
+\begin{ynghia}[title={Tại sao định nghĩa lại có dạng bằng "0"?}]
 Nếu có hệ số $\lambda_i \ne 0$ thoả $\sum \lambda_j \mathbf{v}_j = \mathbf{0}$, ta giải ra:
 \[
   \mathbf{v}_i = -\dfrac{1}{\lambda_i}\sum_{j\ne i} \lambda_j \mathbf{v}_j.
@@ -565,7 +585,9 @@ Xếp các vectơ thành \emph{cột} của một ma trận $A$. Khi đó: $\lam
 \subsection{Cơ sở và số chiều của $\mathbb{R}^n$}
 
 \begin{dongco}
-Ta đã có hai mặt: \emph{Không gian sinh} (sinh đủ một không gian) và \emph{ĐLTT} (không có vectơ dư). Một bộ vectơ vừa đủ -- không thiếu, không thừa -- để mô tả không gian gọi là \textbf{cơ sở}. Tựa như "tọa độ Đề-các" $(x, y, z)$ cần đúng 3 trục, không hơn không kém để chỉ vị trí trong $\mathbb{R}^3$.
+Ta đã có hai mặt: \emph{Không gian sinh} (sinh đủ một không gian) và \emph{ĐLTT} (không có vectơ dư). Một bộ vectơ vừa đủ -- không thiếu, không thừa -- để mô tả không gian gọi là \textbf{cơ sở}.
+
+Tựa như "tọa độ Đề-các" $(x, y, z)$ cần đúng 3 trục, không hơn không kém để chỉ vị trí trong $\mathbb{R}^3$.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -891,6 +913,68 @@ $R_\theta = \begin{pmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta\e
 Vậy mọi ma trận quay đều trực giao. Hệ quả: phép quay bảo toàn độ dài và góc.
 \end{vidu}
 
+\subsection{Đa thức ma trận}
+
+\begin{dongco}
+Với số thực, ta thay biến $t$ bằng một số và tính $p(2) = a_0 + 2a_1 + \cdots$. Khi $A$ là ma trận vuông, ta có thể thay $t$ bằng \emph{chính ma trận $A$} và cộng các lũy thừa ma trận. Đây là công cụ hữu ích trong lý thuyết ma trận (định lý Cayley--Hamilton: mọi ma trận vuông thỏa đa thức đặc trưng của chính nó) và trong tính toán (xấp xỉ hàm ma trận bằng chuỗi Taylor).
+\end{dongco}
+
+\begin{dinhnghia}
+  Cho đa thức (hệ số thực)
+  \[
+    p(t) = a_0 + a_1 t + a_2 t^2 + \cdots + a_k t^k = \sum_{i=0}^{k} a_i t^i.
+  \]
+  Với ma trận vuông $A \in \mathbb{R}^{n\times n}$, \textbf{giá trị của đa thức tại $A$} (ký hiệu $p(A)$) là ma trận:
+  \[
+    p(A) = a_0 I + a_1 A + a_2 A^2 + \cdots + a_k A^k = \sum_{i=0}^{k} a_i A^i,
+  \]
+  với quy ước $A^0 = I_n$, $A^1 = A$. Mỗi $A^i$ là phép nhân ma trận lặp $i$ lần; $a_i A^i$ là nhân vô hướng ma trận.
+\end{dinhnghia}
+
+\begin{ynghia}
+Ta \emph{không} thay $t$ bằng $A$ rồi nhân từng hạng tử $a_i t^i$ như số --- phải tính đúng $A^i$ rồi nhân hệ số. Ví dụ $t^2$ tại $A$ là $A^2$, không phải bình phương từng phần tử của $A$.
+\end{ynghia}
+
+\begin{tinhchat}
+\begin{itemize}
+  \item Nếu $A$ và $B$ giao hoán ($AB = BA$) và $p, q$ là hai đa thức thì $p(A)q(A) = (pq)(A)$ (nhân đa thức rồi thế $A$).
+  \item Nói chung $p(A)q(A) \ne (pq)(A)$ khi $AB \ne BA$.
+  \item Nếu $A = PDP^{-1}$ (chéo hoá) thì $p(A) = P\,p(D)\,P^{-1}$ với $p(D) = \mathrm{diag}(p(\lambda_1), \ldots, p(\lambda_n))$.
+  \item $\det(p(A)) = p(\lambda_1)\cdots p(\lambda_n) = p(\lambda_1)\cdots p(\lambda_n)$ khi $\lambda_i$ là trị riêng của $A$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Tính $p(A)$ khi $p(t) = 5 - 4t + t^3$}]
+Cho
+\[
+  A = \begin{pmatrix}1 & 2\\ 4 & -3\end{pmatrix},\qquad
+  p(t) = 5 - 4t + t^3.
+\]
+Tính lũy thừa:
+\[
+  A^2 = \begin{pmatrix}1 & 2\\ 4 & -3\end{pmatrix}
+        \begin{pmatrix}1 & 2\\ 4 & -3\end{pmatrix}
+      = \begin{pmatrix}9 & -4\\ -8 & 17\end{pmatrix},
+\]
+\[
+  A^3 = A^2 A = \begin{pmatrix}9 & -4\\ -8 & 17\end{pmatrix}
+              \begin{pmatrix}1 & 2\\ 4 & -3\end{pmatrix}
+            = \begin{pmatrix}-7 & 30\\ 60 & -67\end{pmatrix}.
+\]
+Khi đó
+\[
+  p(A) = 5I - 4A + A^3
+  = \begin{pmatrix}5 & 0\\ 0 & 5\end{pmatrix}
+  - \begin{pmatrix}4 & 8\\ 16 & -12\end{pmatrix}
+  + \begin{pmatrix}-7 & 30\\ 60 & -67\end{pmatrix}
+  = \begin{pmatrix}-6 & 22\\ 44 & -50\end{pmatrix}.
+\]
+\end{vidu}
+
+\begin{luuy}
+Đa thức ma trận chỉ xác định với ma trận \emph{vuông}. Với $A \in \mathbb{R}^{m\times n}$, $m \ne n$, không định nghĩa $A^k$ cho mọi $k$ theo cách trên.
+\end{luuy}
+
 \begin{tongket}[title={Tổng kết Phần II}]
 \begin{enumerate}
   \item Ma trận = bảng số, đồng thời = tập vectơ cột, đồng thời = ánh xạ tuyến tính.
@@ -899,6 +983,7 @@ Vậy mọi ma trận quay đều trực giao. Hệ quả: phép quay bảo toà
   \item $AB \ne BA$ nói chung. Chú ý thứ tự khi biến đổi.
   \item Chuyển vị $A^T$ đổi hàng thành cột; $(AB)^T = B^T A^T$ (đảo thứ tự).
   \item Các loại ma trận: đường chéo, tam giác, đơn vị, đối xứng, phản đối xứng, trực giao -- mỗi loại có vai trò riêng.
+  \item \textbf{Đa thức ma trận:} $p(A) = \sum a_i A^i$, $A^0 = I$. Tiện khi đã chéo hoá: $p(A) = P\,p(D)\,P^{-1}$.
 \end{enumerate}
 
 \textbf{Câu hỏi mở đầu Phần III:} Bây giờ ta có ngôn ngữ ma trận, ta sẽ "đóng gói" mọi hệ phương trình tuyến tính vào dạng $A\mathbf{x} = \mathbf{b}$ và xây dựng một thuật toán giải duy nhất cho mọi trường hợp: khử Gauss.
@@ -1725,7 +1810,7 @@ $C[a,b]$ & -- & $\infty$ \\
 \end{ynghia}
 
 \begin{phuongphap}[title={Tìm tọa độ của $\mathbf{v}$ trong cơ sở $\mathcal{B}$}]
-Trong $\mathbb{R}^n$: đặt $B = [\mathbf{e}_1 \mid \cdots \mid \mathbf{e}_n]$ (các cột là vectơ cơ sở, biểu diễn trong cơ sở chuẩn). Khi đó:
+Trong $\mathbb{R}^n$: đặt $B = [\mathbf{e}_1 \mid \cdots \mid \mathbf{e}_n]$ (các cột là vectơ cơ sở, biểu diễn trong cơ sở chính tắc). Khi đó:
 \[
   B \cdot [\mathbf{v}]_{\mathcal{B}} = \mathbf{v} \;\Longrightarrow\; [\mathbf{v}]_{\mathcal{B}} = B^{-1} \mathbf{v}.
 \]
@@ -1742,10 +1827,62 @@ Giải $x_1(1,1) + x_2(1,-1) = (3,1)$: $x_1 + x_2 = 3$, $x_1 - x_2 = 1 \Rightarr
 Kiểm tra: $2(1,1) + 1(1,-1) = (3,1) = \mathbf{v}$. $\checkmark$
 \end{vidu}
 
+\subsection{Ma trận của một hệ vectơ và ma trận cơ sở}
+
+\begin{dongco}
+Khi làm việc với nhiều vectơ cùng lúc (kiểm tra độc lập tuyến tính, tìm cơ sở, đổi toạ độ), ta gom chúng thành \textbf{một ma trận} thay vì liệt kê rời. Đây là cách nối trực tiếp giữa ``hệ vectơ'' và ``ma trận'' đã học ở Phần II.
+\end{dongco}
+
+\begin{dinhnghia}[title={Ma trận của một hệ vectơ}]
+  Cho các vectơ $\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_k \in \mathbb{R}^n$ (biểu diễn trong cơ sở chính tắc, dạng cột). \textbf{Ma trận của hệ vectơ} (hay ma trận có các cột là các vectơ đã cho) là:
+  \[
+    V = \bigl[\, \mathbf{v}_1 \;\big|\; \mathbf{v}_2 \;\big|\; \cdots \;\big|\; \mathbf{v}_k \,\bigr] \in \mathbb{R}^{n \times k}.
+  \]
+  Cột thứ $j$ chính là $\mathbf{v}_j$. Hàng thứ $i$ của $V$ gồm các thành phần thứ $i$ của từng vectơ.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ý nghĩa}]
+\begin{itemize}
+  \item $\mathrm{span}\{\mathbf{v}_1, \ldots, \mathbf{v}_k\} = \mathrm{Col}(V)$ --- không gian cột của $V$.
+  \item Hệ $\{\mathbf{v}_1, \ldots, \mathbf{v}_k\}$ ĐLTT $\Leftrightarrow$ các cột của $V$ ĐLTT $\Leftrightarrow$ $\mathrm{rank}(V) = k$.
+  \item Mọi $\mathbf{w} \in \mathrm{span}\{\mathbf{v}_j\}$ $\Leftrightarrow$ tồn tại $\mathbf{x} \in \mathbb{R}^k$ sao cho $V\mathbf{x} = \mathbf{w}$ (bài toán ``biểu diễn được không?'').
+\end{itemize}
+\end{ynghia}
+
+\begin{dinhnghia}[title={Ma trận cơ sở}]
+  Cho cơ sở có thứ tự $\mathcal{B} = (\mathbf{e}_1, \ldots, \mathbf{e}_n)$ của $\mathbb{R}^n$, các vectơ cơ sở viết dưới dạng cột trong cơ sở chính tắc. \textbf{Ma trận cơ sở} của $\mathcal{B}$ là:
+  \[
+    B = \bigl[\, \mathbf{e}_1 \;\big|\; \mathbf{e}_2 \;\big|\; \cdots \;\big|\; \mathbf{e}_n \,\bigr] \in \mathbb{R}^{n \times n}.
+  \]
+  Khi đó với mọi $\mathbf{v} \in \mathbb{R}^n$:
+  \[
+    \mathbf{v} = B\,[\mathbf{v}]_{\mathcal{B}}
+    \quad\Longleftrightarrow\quad
+    [\mathbf{v}]_{\mathcal{B}} = B^{-1}\mathbf{v}.
+  \]
+  (Công thức thứ hai đúng khi và chỉ khi $B$ khả nghịch, tức $\mathcal{B}$ là cơ sở.)
+\end{dinhnghia}
+
+\begin{luuy}[title={Phân biệt ký hiệu}]
+\begin{itemize}
+  \item $V \in \mathbb{R}^{n \times k}$: $k$ vectơ, ma trận \emph{chữ nhật} (thường $k \le n$ hoặc $k > n$ đều được).
+  \item $B \in \mathbb{R}^{n \times n}$: $n$ vectơ cơ sở, ma trận \emph{vuông} khả nghịch.
+  \item Cột của ma trận toạ độ $[\mathbf{v}]_{\mathcal{B}}$ đôi khi cũng ký hiệu $A$ hoặc $\mathbf{x}$ trong sách; trong tài liệu này ta dùng $[\mathbf{v}]_{\mathcal{B}}$ để tránh nhầm với ma trận hệ số $A$ của hệ phương trình.
+\end{itemize}
+\end{luuy}
+
+\begin{vidu}[title={Ma trận của hệ vectơ}]
+$\mathbf{v}_1 = (1, 2, 0)^T$, $\mathbf{v}_2 = (0, 1, 1)^T$, $\mathbf{v}_3 = (2, 3, 1)^T$. Ma trận của hệ:
+\[
+  V = \begin{pmatrix}1 & 0 & 2\\ 2 & 1 & 3\\ 0 & 1 & 1\end{pmatrix}.
+\]
+$\mathrm{rank}(V) = 2 < 3$ $\Rightarrow$ ba vectơ PTTT (cột 3 = cột 1 + cột 2).
+\end{vidu}
+
 \subsection{Bài toán đổi cơ sở}
 
 \begin{dongco}
-Cùng một vectơ $\mathbf{v}$ có hai tọa độ: $(3, 1)^T$ trong cơ sở chuẩn, $(2, 1)^T$ trong cơ sở $\mathcal{B}$ ở ví dụ trên. Có thể chuyển qua lại giữa hai cách viết bằng phép nhân ma trận. Ma trận đó gọi là \emph{ma trận chuyển cơ sở}.
+Cùng một vectơ $\mathbf{v}$ có hai tọa độ: $(3, 1)^T$ trong cơ sở chính tắc, $(2, 1)^T$ trong cơ sở $\mathcal{B}$ ở ví dụ trên. Có thể chuyển qua lại giữa hai cách viết bằng phép nhân ma trận. Ma trận đó gọi là \emph{ma trận chuyển cơ sở}.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -1763,16 +1900,16 @@ Cùng một vectơ $\mathbf{v}$ có hai tọa độ: $(3, 1)^T$ trong cơ sở c
 \end{congthuc}
 
 \begin{phuongphap}[title={Tính ma trận chuyển cơ sở}]
-Khi cả $\mathcal{B}$ và $\mathcal{B}'$ đều cho ở dạng vectơ trong cơ sở chuẩn của $\mathbb{R}^n$:
+Khi cả $\mathcal{B}$ và $\mathcal{B}'$ đều cho ở dạng vectơ trong cơ sở chính tắc của $\mathbb{R}^n$:
 \begin{enumerate}
-  \item Đặt $B = [\mathbf{e}_1 | \cdots | \mathbf{e}_n]$, $B' = [\mathbf{e}_1' | \cdots | \mathbf{e}_n']$ (cả hai biểu diễn trong cơ sở chuẩn).
-  \item Khi đó $P = B^{-1} B'$.
+  \item Đặt $B = [\mathbf{e}_1 | \cdots | \mathbf{e}_n]$, $B' = [\mathbf{e}_1' | \cdots | \mathbf{e}_n']$ (cả hai biểu diễn trong cơ sở chính tắc).
+  \item Vì $B[v]_B = B'[v]_{B'} \Rightarrow [v]_{B} = B^{-1}B'[v]_{B'}$ Khi đó $P = B^{-1} B'$.
   \item Cách thực hành: Gauss-Jordan trên $[B | B']$ sẽ cho $[I | P]$.
 \end{enumerate}
 \end{phuongphap}
 
 \begin{vidu}
-$\mathcal{E}$ = cơ sở chuẩn, $\mathcal{B}' = \{(2,1)^T, (1,3)^T\}$. Tìm $P$ và toạ độ $[v]_{\mathcal{B}'}$ với $v = (7,5)^T$.
+$\mathcal{E}$ = cơ sở chính tắc, $\mathcal{B}' = \{(2,1)^T, (1,3)^T\}$. Tìm $P$ và toạ độ $[v]_{\mathcal{B}'}$ với $v = (7,5)^T$.
 
 Vì $B = I$, $P = B' = \begin{pmatrix}2 & 1\\1 & 3\end{pmatrix}$. $\det P = 5$, $P^{-1} = \dfrac{1}{5}\begin{pmatrix}3 & -1\\-1 & 2\end{pmatrix}$.
 \[
@@ -1781,13 +1918,62 @@ Vì $B = I$, $P = B' = \begin{pmatrix}2 & 1\\1 & 3\end{pmatrix}$. $\det P = 5$, 
 Kiểm tra: $\dfrac{16}{5}(2,1) + \dfrac{3}{5}(1,3) = \dfrac{1}{5}(35, 25) = (7, 5)$. $\checkmark$
 \end{vidu}
 
+\begin{vidu}[title={Đổi cơ sở khi \emph{cả hai} cơ sở đều không phải chính tắc}]
+Trong $\mathbb{R}^2$, đặt:
+\[
+  \mathcal{B} = \{(1, 1)^T,\, (1, -1)^T\},\qquad
+  \mathcal{B}' = \{(2, 0)^T,\, (1, 1)^T\},\qquad
+  \mathbf{[v]_{\mathcal{B}'}} = (1, 1)^T.
+\]
+Ma trận cơ sở (cột là vectơ cơ sở, viết trong cơ sở chính tắc):
+\[
+  B = \begin{pmatrix}1 & 1\\ 1 & -1\end{pmatrix},\qquad
+  B' = \begin{pmatrix}2 & 1\\ 0 & 1\end{pmatrix}.
+\]
+
+\textbf{Bước 1 -- Ma trận chuyển $P$} (cột $j$ là $[\mathbf{e}_j']_{\mathcal{B}}$):
+\begin{itemize}
+  \item $(2, 0)^T = 1\cdot(1,1) + 1\cdot(1,-1)$ $\Rightarrow$ $[\mathbf{e}_1']_{\mathcal{B}} = (1, 1)^T$.
+  \item $(1, 1)^T = 1\cdot(1,1) + 0\cdot(1,-1)$ $\Rightarrow$ $[\mathbf{e}_2']_{\mathcal{B}} = (1, 0)^T$.
+\end{itemize}
+Vậy $P = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$.
+
+Kiểm tra bằng công thức $P = B^{-1}B'$:
+$B^{-1} = \dfrac{1}{2}\begin{pmatrix}1 & 1\\ 1 & -1\end{pmatrix}$ $\Rightarrow$
+$P = \dfrac{1}{2}\begin{pmatrix}1 & 1\\ 1 & -1\end{pmatrix}\begin{pmatrix}2 & 1\\ 0 & 1\end{pmatrix}
+= \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}$. $\checkmark$
+
+\textbf{Bước 2 -- Toạ độ của $\mathbf{[v]_{\mathcal{B}}}$:}
+\[
+  [\mathbf{v}]_{\mathcal{B}}
+  = P\,[\mathbf{v}]_{\mathcal{B}'}
+  = \begin{pmatrix}1 & 1\\ 1 & 0\end{pmatrix}\begin{pmatrix}1\\ 1\end{pmatrix}
+  = \begin{pmatrix}2\\ 1\end{pmatrix}.
+\]
+\end{vidu}
+
+\begin{congthuc}[title={Liên hệ ma trận toạ độ trong hai cơ sở}]
+Ghi $A = [\mathbf{v}]_{\mathcal{B}}$ và $A' = [\mathbf{v}]_{\mathcal{B}'}$ (hai cột $n \times 1$ trong $\mathbb{R}^n$). Với $P$ là ma trận chuyển cơ sở từ $\mathcal{B}$ sang $\mathcal{B}'$ (định nghĩa ở trên):
+\[
+  A = P A',\qquad A' = P^{-1} A.
+\]
+\textbf{Cách nhớ:} $P$ ``kéo'' toạ độ từ cơ sở mới $\mathcal{B}'$ về cơ sở cũ $\mathcal{B}$: nhân $P$ vào toạ độ trong $\mathcal{B}'$ để được toạ độ trong $\mathcal{B}$.
+
+\emph{Quan hệ ma trận cơ sở:} nếu $B$, $B'$ là ma trận cơ sở tương ứng (cột là vectơ cơ sở trong cơ sở chính tắc) thì $B\,A = B'\,A'$ vì cả hai đều bằng $\mathbf{v}$, và $P = B^{-1}B'$.
+\end{congthuc}
+
+\begin{luuy}
+Công thức $A = PA'$ chỉ áp dụng cho \textbf{toạ độ vectơ} (cột $n \times 1$). Với \textbf{ma trận biểu diễn ánh xạ tuyến tính} $T$ trong hai cơ sở, quan hệ là $[T]_{\mathcal{B}} = P\,[T]_{\mathcal{B}'}\,P^{-1}$ (tương tự đổi cơ sở ma trận, Phần VII).
+\end{luuy}
+
 \begin{tongket}[title={Tổng kết Phần V}]
 \begin{enumerate}
   \item KGVT trừu tượng = tập có cộng và nhân vô hướng thoả 8 tiên đề. Đa thức, ma trận, hàm số đều là KGVT.
   \item Không gian con = tập con đóng với cộng + nhân vô hướng (luôn chứa $\mathbf{0}$).
   \item Cơ sở = tập ĐLTT + sinh. Số chiều là số phần tử của cơ sở (không phụ thuộc cơ sở).
   \item Tọa độ là cách biểu diễn vectơ qua một cơ sở cố định. Cùng vectơ -- cơ sở khác $\Rightarrow$ tọa độ khác.
-  \item Ma trận chuyển cơ sở $P$ liên kết hai cách viết toạ độ.
+  \item Ma trận của hệ vectơ $V = [\mathbf{v}_1 | \cdots | \mathbf{v}_k]$; ma trận cơ sở $B$ với $\mathbf{v} = B[\mathbf{v}]_{\mathcal{B}}$.
+  \item Ma trận chuyển cơ sở $P$: $[\mathbf{v}]_{\mathcal{B}} = P[\mathbf{v}]_{\mathcal{B}'}$, $P = B^{-1}B'$ khi cả hai cơ sở cho trong cơ sở chính tắc.
 \end{enumerate}
 
 \textbf{Câu hỏi mở đầu Phần VI:} Mỗi ma trận $A$ sinh ra 4 không gian con quan trọng: $\mathrm{Col}, \mathrm{Row}, \mathrm{Null}, \mathrm{Null}(A^T)$. Chúng có liên hệ chặt chẽ qua "định lý hạng-nhân" và "trực giao".
@@ -1834,7 +2020,7 @@ Mỗi ma trận $A \in \mathbb{R}^{m\times n}$ "sinh" ra \emph{bốn không gian
 \begin{itemize}
   \item $\mathrm{Col}(A)$ = tập \emph{tất cả} các $\mathbf{b}$ làm cho $A\mathbf{x} = \mathbf{b}$ \emph{có nghiệm}.
   \item $\mathrm{Null}(A)$ = tập nghiệm của hệ \emph{thuần nhất} $A\mathbf{x} = \mathbf{0}$.
-  \item $\mathrm{Row}(A)$ = không gian các "tổ hợp tuyến tính của hệ phương trình" -- ít trực quan hơn, dùng nhiều khi nghiên cứu phụ thuộc giữa các phương trình.
+  \item $\mathrm{Row}(A)$ = không gian các "tổ hợp tuyến tính của hệ phương trình" ít trực quan hơn, dùng nhiều khi nghiên cứu phụ thuộc giữa các phương trình.
   \item $\mathrm{Null}(A^T)$ = các tổ hợp tuyến tính của \emph{hàng} cho ra vectơ 0; mỗi phần tử là một "hệ thức dư thừa" giữa các hàng.
 \end{itemize}
 \end{ynghia}
@@ -1993,7 +2179,7 @@ Ma trận $A \in \mathbb{R}^{m\times n}$, $r = \mathrm{rank}(A)$. Khi đó:
 \subsection{Định nghĩa và ví dụ cơ bản}
 
 \begin{dongco}
-Hàm số có rất nhiều loại: bậc nhất, bậc hai, lượng giác, mũ... Trong tất cả, lớp hàm \emph{tôn trọng cấu trúc tuyến tính} (cộng và nhân vô hướng) là quan trọng nhất, vì chúng đại diện cho \emph{các phép biến đổi không gian} có thể "đóng gói" bằng ma trận. Mọi phép quay, đối xứng, chiếu, phóng to, làm méo (linear) -- đều là ánh xạ tuyến tính.
+Hàm số có rất nhiều loại: bậc nhất, bậc hai, lượng giác, mũ... Trong tất cả, lớp hàm \emph{tôn trọng cấu trúc tuyến tính} (cộng và nhân vô hướng) là quan trọng nhất, vì chúng đại diện cho \emph{các phép biến đổi không gian} có thể "đóng gói" bằng ma trận. Mọi phép quay, đối xứng, chiếu, phóng to, làm méo -- đều là ánh xạ tuyến tính.
 \end{dongco}
 
 \begin{dinhnghia}
@@ -2076,6 +2262,112 @@ Hai KGVT hữu hạn chiều $V, W$ đẳng cấu ($V \cong W$) khi và chỉ kh
 
 \textbf{Ví dụ:} $P_2(\mathbb{R}) \cong \mathbb{R}^3$ qua phép tương ứng $a + bx + cx^2 \leftrightarrow (a, b, c)^T$.
 \end{dinhly}
+
+\subsection{Các phép toán trên tập ánh xạ tuyến tính}
+
+\begin{dongco}
+Ta đã biết tập đa thức, tập ma trận đều là KGVT vì có thể \emph{cộng} và \emph{nhân vô hướng}. Tập các ánh xạ tuyến tính $V \to W$ cũng vậy: cộng hai ánh xạ ``theo từng điểm'', nhân một ánh xạ với số thực. Khi $W = V$, ta còn \emph{nhân hai ánh xạ} (hợp thành) và thậm chí thế ánh xạ vào đa thức --- giống đa thức ma trận ở Phần IV.
+\end{dongco}
+
+\begin{dinhnghia}[title={Không gian $\mathrm{Hom}(V,W)$} (homomorphism: đồng cấu)]
+  Ký hiệu $\mathrm{Hom}(V,W)$ (hay $\mathcal{L}(V,W)$) là tập \emph{tất cả} ánh xạ tuyến tính $V \to W$. Với $f, g \in \mathrm{Hom}(V,W)$ và $\lambda \in \mathbb{R}$, định nghĩa:
+  \begin{itemize}
+    \item \textbf{Cộng:} $(f + g)(\mathbf{v}) = f(\mathbf{v}) + g(\mathbf{v})$ với mọi $\mathbf{v} \in V$.
+    \item \textbf{Nhân vô hướng:} $(\lambda f)(\mathbf{v}) = \lambda\, f(\mathbf{v})$ với mọi $\mathbf{v} \in V$.
+  \end{itemize}
+  Khi $\dim V = n$, $\dim W = m$ thì $\mathrm{Hom}(V,W)$ là KGVT \textbf{hữu hạn chiều $mn$} (sau này: ma trận $m \times n$ là một cơ sở ``ẩn'' của không gian này).
+\end{dinhnghia}
+
+\begin{tinhchat}
+$(f+g)$ và $(\lambda f)$ vẫn là ánh xạ tuyến tính vì
+\[
+  (f+g)(\alpha\mathbf{u}+\beta\mathbf{v})
+  = f(\alpha\mathbf{u}+\beta\mathbf{v}) + g(\alpha\mathbf{u}+\beta\mathbf{v})
+  = \alpha f(\mathbf{u})+\beta f(\mathbf{v}) + \alpha g(\mathbf{u})+\beta g(\mathbf{v})
+\]
+\[
+  = \alpha(f+g)(\mathbf{u})+\beta(f+g)(\mathbf{v}),
+\]
+và tương tự cho $\lambda f$.
+
+Vậy $\mathrm{Hom}(V,W)$ đúng là KGVT (vectơ không là ánh xạ đưa mọi $\mathbf{v}$ về $\mathbf{0}_W$).
+\end{tinhchat}
+
+\begin{vidu}[title={Cộng và nhân vô hướng trên $\mathrm{Hom}(\mathbb{R}^3, \mathbb{R}^2)$}]
+Đặt $f, g: \mathbb{R}^3 \to \mathbb{R}^2$:
+\[
+  f(x, y, z) = (3x - 5y + 2z,\; 4x + y - 6z),\qquad
+  g(x, y, z) = (2x + 6y - 7z,\; x - 5z).
+\]
+Ánh xạ $3f - 2g$ được tính \emph{từng tọa độ đầu ra}:
+\begin{align*}
+  (3f - 2g)(x, y, z)
+  &= 3(3x - 5y + 2z,\; 4x + y - 6z) - 2(2x + 6y - 7z,\; x - 5z)\\
+  &= (9x - 15y + 6z,\; 12x + 3y - 18z) - (4x + 12y - 14z,\; 2x - 10z)\\
+  &= \boxed{(5x - 27y + 20z,\; 10x + 3y - 8z)}.
+\end{align*}
+Ta vẫn có thể kiểm tra tuyến tính bằng định nghĩa; ở đây $3f - 2g$ tuyến tính vì là tổ hợp tuyến tính của $f$ và $g$.
+\end{vidu}
+
+\begin{dinhnghia}[title={Không gian $\mathrm{End}(V)$ và đa thức trên ánh xạ}]
+  Khi $W = V$, viết $\mathrm{End}(V) = \mathrm{Hom}(V,V)$ --- tập các \textbf{nội cấu} (endomorphism) của $V$.
+  \begin{itemize}
+    \item $\mathrm{End}(V)$ là KGVT (cộng và nhân vô hơng như trên).
+    \item Có thêm phép \textbf{nhân (hợp thành)}: $(g \circ f)(\mathbf{v}) = g(f(\mathbf{v}))$. Ký hiệu $f^2 = f \circ f$, $f^k = \underbrace{f \circ \cdots \circ f}_{k \text{ lần}}$, quy ước $f^0 = \mathrm{Id}_V$.
+    \item Với đa thức $p(t) = a_0 + a_1 t + \cdots + a_n t^n$, định nghĩa \textbf{đa thức trên ánh xạ}:
+    \[
+      p(f) = a_0 \mathrm{Id}_V + a_1 f + a_2 f^2 + \cdots + a_n f^n \in \mathrm{End}(V).
+    \]
+  \end{itemize}
+  Mỗi $p(f)$ vẫn là ánh xạ tuyến tính (tổ hợp tuyến tính của các $f^k$).
+\end{dinhnghia}
+
+\begin{ynghia}
+Đa thức trên ánh xạ $f$ là phiên bản ``hàm số'' của đa thức ma trận $p(A)$ (Phần IV): khi chọn cơ sở và ma trận $[f]_{\mathcal{B}}$, ta có $[p(f)]_{\mathcal{B}} = p([f]_{\mathcal{B}})$. Điều này nối Cayley--Hamilton (ma trận thỏa đa thức đặc trưng) với lý thuyết ánh xạ.
+\end{ynghia}
+
+\begin{vidu}[title={Tính $f^2$ và $p(f)$ với $p(t) = 50 - 9t + 2t^2$}]
+Cho $f: \mathbb{R}^2 \to \mathbb{R}^2$, $f(x, y) = (3x - 5y,\; 4x + y)$.
+
+\textbf{Bước 1 -- Lũy thừa $f^2 = f \circ f$:} đặt $(u, v) = f(x,y) = (3x - 5y,\; 4x + y)$. Khi đó
+\[
+  f^2(x,y) = f(u,v) = \bigl(3u - 5v,\; 4u + v\bigr)
+  = \bigl(3(3x-5y) - 5(4x+y),\; 4(3x-5y) + (4x+y)\bigr)
+\]
+\[
+  = \boxed{(-11x - 20y,\; 16x - 19y)}.
+\]
+
+\textbf{Bước 2 -- Đa thức $p(f) = 50\,\mathrm{Id} - 9f + 2f^2$:}
+\begin{align*}
+  p(f)(x,y)
+  &= 50(x,y) - 9(3x-5y,\; 4x+y) + 2(-11x-20y,\; 16x-19y)\\
+  &= (50x,\; 50y) + (-27x+45y,\; -36x-9y) + (-22x-40y,\; 32x-38y)\\
+  &= \boxed{(x + 5y,\; -4x + 3y)}.
+\end{align*}
+
+\textbf{Kiểm tra bằng ma trận} (cơ sở chính tắc): $[f] = \begin{pmatrix}3 & -5\\ 4 & 1\end{pmatrix}$,
+\[
+  [f]^2 = \begin{pmatrix}-11 & -20\\ 16 & -19\end{pmatrix},\quad
+  p([f]) = 50I - 9[f] + 2[f]^2 = \begin{pmatrix}1 & 5\\ -4 & 3\end{pmatrix},
+\]
+nên $p(f)(x,y) = (x + 5y,\; -4x + 3y)$ khớp với nhân ma trận $\begin{pmatrix}1 & 5\\ -4 & 3\end{pmatrix}\begin{pmatrix}x\\ y\end{pmatrix}$.
+\end{vidu}
+
+\begin{luuy}[title={Phân biệt ba phép toán trên $\mathrm{End}(V)$}]
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Phép toán & Ký hiệu & Ý nghĩa \\
+\midrule
+Cộng & $(f+g)(\mathbf{v})$ & Cộng \emph{kết quả} tại từng $\mathbf{v}$ \\
+Nhân vô hướng & $(\lambda f)(\mathbf{v})$ & Nhân \emph{ảnh} $f(\mathbf{v})$ với $\lambda$ \\
+Hợp thành & $(g \circ f)(\mathbf{v}) = g(f(\mathbf{v}))$ & Áp dụng $f$ rồi $g$; \textbf{không} giao hoán nói chung \\
+\bottomrule
+\end{tabular}
+\end{center}
+Đa thức $p(f)$ dùng \emph{cộng} và \emph{hợp thành} ($f^k$), không nhầm với $(p \cdot f)$ nếu $p$ là hàm số thực.
+\end{luuy}
 
 \subsection{Hạt nhân và Ảnh}
 
@@ -2231,7 +2523,7 @@ Khi $T: V \to V$ là một \emph{nội cấu} và ta dùng cùng cơ sở cho c�
 \end{luuy}
 
 \begin{vidu}[title={Đổi ma trận biểu diễn}]
-$T: \mathbb{R}^2 \to \mathbb{R}^2$. Trong cơ sở chuẩn $\mathcal{E}$, $T(\mathbf{x}) = A\mathbf{x}$ với $A = \begin{pmatrix}3 & 1\\ 0 & 2\end{pmatrix}$.
+$T: \mathbb{R}^2 \to \mathbb{R}^2$. Trong cơ sở chính tắc $\mathcal{E}$, $T(\mathbf{x}) = A\mathbf{x}$ với $A = \begin{pmatrix}3 & 1\\ 0 & 2\end{pmatrix}$.
 
 Đổi sang cơ sở $\mathcal{B}' = ((1,0)^T, (1,1)^T)$. Ta có $P = \begin{pmatrix}1&1\\0&1\end{pmatrix}$, $P^{-1} = \begin{pmatrix}1&-1\\0&1\end{pmatrix}$.
 \[
@@ -2272,7 +2564,7 @@ Vì ta được tự do chọn cơ sở, ta có thể tìm \emph{cơ sở đặc
   \item Định lý chiều: $\dim\ker T + \dim\mathrm{Im}\,T = \dim V$.
   \item Sau khi chọn cặp cơ sở, ánh xạ tuyến tính = nhân ma trận: $[T(\mathbf{v})]_{\mathcal{C}} = A_T [\mathbf{v}]_{\mathcal{B}}$.
   \item Đổi cơ sở $\Rightarrow$ ma trận biểu diễn thay đổi theo $\widetilde{A} = Q^{-1} A P$ (hoặc $P^{-1}AP$ khi $V = W$).
-  \item Hai ma trận đồng dạng = "cùng một ánh xạ tuyến tính" -- chia sẻ $\det, \mathrm{tr}$, trị riêng.
+  \item Hai ma trận đồng dạng = "cùng một ánh xạ tuyến tính" chia sẻ $\det, \mathrm{tr}$, trị riêng.
 \end{enumerate}
 
 \textbf{Câu hỏi mở đầu Phần VIII:} Cho đến giờ ta chưa biết đo "độ dài" hay "góc" giữa các vectơ. Để đo, ta cần khái niệm \textbf{tích vô hướng}, từ đó suy ra chuẩn, khoảng cách, trực giao, và một loạt ứng dụng (bình phương nhỏ nhất, Gram-Schmidt).
