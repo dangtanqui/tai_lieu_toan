@@ -1,303 +1,908 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[vietnamese]{babel}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{xcolor}
-\geometry{a4paper, margin=2cm, bottom=2.5cm}
-\hypersetup{colorlinks=true, linkcolor=blue!70!black}
-\setlist[itemize]{topsep=4pt, itemsep=2pt}
-\setlist[enumerate]{topsep=4pt, itemsep=2pt}
-\AddToShipoutPictureFG{%
-  \AtPageCenter{%
-    \begin{tikzpicture}[remember picture, overlay]
-      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
-    \end{tikzpicture}%
-  }%
-}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small\textit{XÁC SUẤT 1}}
-\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
-\fancyfoot[C]{\thepage}
-\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
-\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
-\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
-\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
-\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
-\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
-\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
-\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
-\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+% --- Metadata (per course) ---
+\def\courseshortheader{XÁC SUẤT}
+\def\coverbookline{XÁC SUẤT}
+\def\covermaintitle{Xác suất}
+\def\coversubtitle{Giáo án lý thuyết - Biến cố, Biến ngẫu nhiên, phân phối, CLT}
+
+\input{../_template/preamble.tex}
 
 \begin{document}
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture, overlay]
-  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
-  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
-    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {XÁC SUẤT 1};
-  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
-    at ([xshift=3cm, yshift=-9cm]current page.north west) {Biến cố, xác suất, biến ngẫu nhiên, phân phối, CLT};
-  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
-  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
-  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
-\end{tikzpicture}
+
+\input{../_template/trang_bia.tex}
 \newpage
 \tableofcontents
 \newpage
-%% ================================================================
-%%  CHƯƠNG 1: BIẾN CỐ VÀ XÁC SUẤT
-%% ================================================================
-\section{Biến cố và xác suất}
 
-\begin{dinhnghia}[title={Không gian mẫu và biến cố}]
+\input{../_template/loi_noi_dau.tex}
+
+\section*{Tại sao học xác suất?}
+
+\begin{dongco}[title={Động cơ học -- Ba tình huống quen thuộc}]
+\textbf{Câu chuyện 1 -- Dự báo mưa.} App báo ``mưa 70\%'' chiều nay: không phải ``chắc chắn mưa'', cũng không phải ``đoán bừa''. Ta cần một \emph{số} trong $[0,1]$ để so sánh các kịch bản và ra quyết định (mang ô hay không). Đó là ý nghĩa của $P(A)$.
+
+\medskip
+\textbf{Câu chuyện 2 -- Xét nghiệm y tế.} Bệnh hiếm, test rất ``nhạy'' nhưng vẫn có người \textbf{dương tính giả}. Bác sĩ và bệnh nhân hay hiểu nhầm: ``dương tính'' $\not=$ ``chắc chắn mắc bệnh''. Công thức Bayes cho ta \emph{đảo ngược} xác suất: từ ``test dương'' suy ra ``thật sự mắc bệnh'' - cần cả tỷ lệ mắc bệnh trong dân số (tiên nghiệm).
+
+\medskip
+\textbf{Câu chuyện 3 -- Game và công bằng.} Tung đồng xu 10 lần, có người thắng 9 lần liên tiếp và bảo ``xu lệch''. Liệu xu có gian? Hay chỉ là \emph{biến động ngẫu nhiên}? Khi $n$ lớn, tần suất thắng ổn định quanh $1/2$ (luật số lớn) - nhưng với $n$ nhỏ, kết quả ``lệch'' vẫn bình thường.
+
+\medskip
+Ba câu chuyện trên cùng một ngôn ngữ: $\Omega$, sự kiện, $P(\cdot)$, có điều kiện, kỳ vọng. Phần I của tài liệu xây nền đó; các phần sau gán \emph{số} cho kết quả (biến ngẫu nhiên) và mô tả ``trung bình dài hạn''.
+\end{dongco}
+
+\newpage
+
+\section{Sự kiện ngẫu nhiên và phép tính xác suất}
+
+\begin{dongco}[title={Động cơ học -- Liệt kê hết mọi khả năng}]
+Nói ``tung xu có thể sấp hoặc ngửa'' thì ai cũng hiểu. Nhưng ``rút 3 lá bài từ bộ 52'' - có bao nhiêu kết cục \emph{khác nhau}?
+
+``Hẹn gặp trong khoảng 7h--8h, ai đến trước chờ 10 phút'' - kết cục là \emph{cặp thời gian} $(x,y)$, không phải một con số.
+
+Trước khi tính $P(A)$, ta phải thống nhất: \textbf{không gian mẫu $\Omega$} là tập \emph{tất cả} kết cục có thể, không bỏ sót, không trùng lặp. Sự kiện $A$ chỉ là tập con của $\Omega$ - giống như lọc kết quả: ``mặt chẵn'' = $\{2,4,6\}$ trên xúc xắc.
+\end{dongco}
+
+\subsection{Phép thử và sự kiện}
+
+\begin{dinhnghia}[title={Phép thử ngẫu nhiên và không gian mẫu}]
+  \textbf{Phép thử ngẫu nhiên} (phép thử): Một phép thử có thể dẫn đến các \emph{kết cục} khác nhau dù được lặp lại trong điều kiện giống nhau.
+
+  \textbf{Không gian mẫu} $\Omega$: tập tất cả kết cục có thể của 1 phép thử. Có thể liệt kê, biểu diễn bằng biểu thức, hoặc sơ đồ cây.
+\end{dinhnghia}
+
+\begin{vidu}[title={Không gian mẫu}]
+\begin{itemize}
+  \item Một đồng xu: $\Omega = \{H, T\}$ ($H$ = sấp, $T$ = ngửa), $|\Omega| = 2$.
+  \item Ba đồng xu (có thứ tự): $\Omega = \{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT\}$, $|\Omega| = 8$.
+  \item Xúc xắc: $\Omega = \{1,2,3,4,5,6\}$, $|\Omega| = 6$.
+  \item Đo độ dày đầu nối trong khoảng [10, 11] mm: $\Omega = \{x \in \mathbb{R} : 10 \le x \le 11\}$ (mm).
+  \item Thời gian cuộc gọi ``dài hơn 5 phút'': $\Omega = \{x \mid x \ge 0\}$.
+\end{itemize}
+\end{vidu}
+
+\begin{dinhnghia}[title={Sự kiện (biến cố)}]\textbf{Sự kiện} $A$ là tập con $A \subset \Omega$.
   \begin{itemize}
-    \item \textbf{Phép thử ngẫu nhiên}: thí nghiệm có kết quả không dự đoán trước.
-    \item \textbf{Không gian mẫu} $\Omega$: tập tất cả kết quả có thể.
-    \item \textbf{Biến cố} $A \subset \Omega$: tập con của không gian mẫu.
-    \item Biến cố chắc chắn $\Omega$, biến cố không thể $\varnothing$.
-    \item $\bar{A} = \Omega \setminus A$ (biến cố đối); $A \cup B$, $A \cap B$, $A \setminus B$.
+    \item \textbf{Sự kiện sơ cấp:} $\{\omega\}$ - chỉ một kết cục.
+    \item \textbf{Sự kiện chắc chắn:} $\Omega$. \textbf{Không thể:} $\varnothing$.
+    \item \textbf{Kéo theo:} $A \subset B$ nghĩa là $A$ xảy ra thì $B$ xảy ra; $A = B$ $\Leftrightarrow$ $A \subset B$ và $B \subset A$.
   \end{itemize}
 \end{dinhnghia}
 
-\begin{dinhnghia}[title={Hệ tiên đề Kolmogorov}]
-  \textbf{Xác suất} là hàm $P: \mathcal{F} \to [0, 1]$ (với $\mathcal{F}$ là $\sigma$-đại số trên $\Omega$) thỏa:
-  \begin{enumerate}
-    \item $P(\Omega) = 1$.
-    \item \textbf{$\sigma$-cộng tính:} Nếu $A_1, A_2, \ldots$ đôi một xung khắc thì $P\!\left(\bigcup_{n=1}^{\infty} A_n\right) = \sum_{n=1}^{\infty} P(A_n)$.
-  \end{enumerate}
-  Bộ ba $(\Omega, \mathcal{F}, P)$ gọi là \textbf{không gian xác suất}.
+\begin{vidu}[title={Sự kiện trên xúc xắc}]
+Gieo xúc xắc, $E_i$ = ``mặt $i$ chấm'', $i = 1,\ldots, 6$. $\Omega = \{E_1,\ldots,E_6\}$.
+\begin{itemize}
+  \item $A = \{E_2, E_4, E_6\}$: mặt chẵn.
+  \item $B = \{E_4, E_5, E_6\}$: số chấm $> 3$.
+  \item $E_2 \subset A$.
+  \item Các $E_i$ \textbf{xung khắc từng đôi}; $\{E_1,\ldots,E_6\}$ là \textbf{hệ đầy đủ}.
+\end{itemize}
+\end{vidu}
+
+\subsubsection{Phép toán trên sự kiện}
+
+\begin{dinhnghia}
+  \begin{itemize}
+    \item \textbf{Hợp} $A \cup B$: ít nhất một trong hai xảy ra.
+    \item \textbf{Giao} $A \cap B$ (viết $AB$): cả hai cùng xảy ra.
+    \item \textbf{Hiệu} $A \setminus B = A \cap \bar{B}$: $A$ xảy ra, $B$ không.
+    \item \textbf{Đối / phần bù} $\bar{A} = \Omega \setminus A$.
+    \item \textbf{Xung khắc:} $A \cap B = \varnothing$.
+    \item \textbf{Hệ đầy đủ} $\{B_1,\ldots,B_n\}$: đôi một xung khắc và $\bigcup B_i = \Omega$.
+    \item \textbf{Hệ xung khắc từng đôi} $\{A_1,\ldots,A_n\}$: $A_i \cap A_j = \varnothing$ với $i \neq j$.
+  \end{itemize}
 \end{dinhnghia}
 
-\begin{tinhchat}
-  \begin{itemize}
-    \item $P(\varnothing) = 0$, \;$P(\bar{A}) = 1 - P(A)$.
-    \item $A \subset B \Rightarrow P(A) \le P(B)$.
-    \item $P(A \cup B) = P(A) + P(B) - P(A \cap B)$.
-    \item \textbf{Công thức bao -- loại:} $P\!\left(\bigcup_{i=1}^{n} A_i\right) = \sum_i P(A_i) - \sum_{i<j} P(A_i \cap A_j) + \cdots$
-    \item \textbf{Liên tục:} $A_n \uparrow A \Rightarrow P(A_n) \to P(A)$; \;$A_n \downarrow A \Rightarrow P(A_n) \to P(A)$.
-  \end{itemize}
+\begin{vidu}[title={Hợp và giao - mạch điện}]
+Ba bóng $i = 1,2,3$, $A_i$ = ``bóng $i$ cháy'', $A$ = ``mạch mất điện''.
+\begin{itemize}
+  \item \textbf{Mắc nối tiếp:} mất điện khi \emph{ít nhất một} bóng cháy $\Rightarrow$ $A = A_1 \cup A_2 \cup A_3$.
+  \item \textbf{Mắc song song:} mất điện khi \emph{cả ba} cháy $\Rightarrow$ $A = A_1 \cap A_2 \cap A_3$.
+\end{itemize}
+\end{vidu}
+
+\begin{tinhchat}[title={Đại số tập hợp}]
+\begin{itemize}
+  \item Giao hoán: $A \cup B = B \cup A$, $A \cap B = B \cap A$.
+  \item Kết hợp: $A \cup (B \cup C) = (A \cup B) \cup C$, $A \cap (B \cap C) = (A \cap B) \cap C$.
+  \item Phân phối: $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$, $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$.
+  \item De Morgan: $\overline{A \cup B} = \bar{A} \cap \bar{B}$, $\overline{A \cap B} = \bar{A} \cup \bar{B}$.
+  \item $A \cup A = A$, $A \cap A = A$.
+  \item $A \cup \varnothing = A$, $A \cap \varnothing = \varnothing$.
+  \item $A \cup \Omega = \Omega$, $A \cap \Omega = A$.
+  \item $A \cup \bar{A} = \Omega$, $A \cap \bar{A} = \varnothing$.
+  \item $\bar{\Omega} = \varnothing$, $\bar{\varnothing} = \Omega$.
+  \item $\bar{\bar{A}} = A$.
+\end{itemize}
 \end{tinhchat}
 
-\begin{congthuc}[title={Xác suất cổ điển}]
-  Nếu $\Omega$ hữu hạn, các kết quả đồng khả năng:
-  \[
-    P(A) = \frac{|A|}{|\Omega|} = \frac{\text{số kết quả thuận lợi}}{\text{tổng số kết quả}}.
-  \]
+\begin{vidu}[title={Hệ đầy đủ - ba phân xưởng}]
+Chọn ngẫu nhiên một sản phẩm; $C_i$ = ``do phân xưởng $i$ sản xuất'', $i = 1,2,3$. Hệ $\{C_1, C_2, C_3\}$ đầy đủ (mỗi sản phẩm thuộc đúng một phân xưởng).
+\end{vidu}
+
+\subsection{Phương pháp đếm}
+
+\begin{dongco}[title={Động cơ học -- Mật khẩu và vé số}]
+\textbf{Mật khẩu 4 chữ số} (mỗi vị trí chọn $0$--$9$): có $10^4 = 10\,000$ mật khẩu - quy tắc \textbf{nhân} (giai đoạn 1 chọn hàng nghìn, giai đoạn 2 chọn hàng trăm, \ldots).
+
+\textbf{Chọn 3 người làm đội trưởng trong lớp 40 SV} (không trùng vai): $40 \times 39 \times 38$ cách - có \textbf{thứ tự}, không lặp ($A_{40}^3$). Nếu chỉ cần ``bộ ba người'' không phân vai: chia $3!$ vì đếm trùng - ra $C_{40}^3$.
+
+Hai bài toán tưởng giống nhau nhưng đếm khác nhau vì \emph{``có quan tâm thứ tự hay không?''}. Phần này cho bộ công cụ đếm để sau đó viết $P(A) = |A|/|\Omega|$ mà không sót, không đếm đôi.
+\end{dongco}
+
+\begin{phuongphap}[title={Quy tắc 1 và 2}]
+\textbf{Cộng:} Nếu một công việc có $k$ phương án khác nhau để thực hiện, phương án $i$ có $n_i$ cách thực hiện xong công việc và không có một cách thực hiện nào ở phương án này lại trùng với một cách thực hiện ở phương án khác. $\Rightarrow$ tổng $n_1 + n_2 + \cdots + n_k$ cách.
+
+\textbf{Nhân:} Giả sử một công việc nào đó được chia thành $k$ giai đoạn. Có $n_i$ cách thực hiện giai đoạn thứ $i$ thì $\Rightarrow$ $n_1 \times n_2 \times \cdots \times n_k$ cách.
+\end{phuongphap}
+
+\begin{vidu}[title={Đi từ A đến C}]
+Giả sử để đi từ A đến C có thể đi qua B, trong đó có 2 đường khác nhau đi trực tiếp từ A đến C, có 3 đường khác nhau để đi từ A đến B và có 2 đường khác nhau để đi từ B đến C. Hỏi có bao nhiêu cách đi từ A đến C?
+
+Tổng: $2 + 6 = 8$ cách.
+\end{vidu}
+
+\begin{congthuc}[title={Chỉnh hợp, chỉnh hợp lặp, hoán vị, tổ hợp}]
+\begin{center}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{lll}
+\toprule
+Khái niệm & Số cách & Ghi chú \\
+\midrule
+Chỉnh hợp chập $k$ & $A_n^k = \dfrac{n!}{(n-k)!}$ & Có thứ tự, không lặp \\
+Chỉnh hợp lặp chập $k$ & $\bar{A}_n^k = n^k$ & Có thứ tự, cho lặp \\
+Hoán vị & $P_n = n!$ & $A_n^n$ \\
+Hoán vị có lặp & $\dfrac{n!}{n_1! n_2! \cdots n_k!}$ & $n = n_1 + \cdots + n_k$ \\
+Tổ hợp chập $k$ & $C_n^k = \dfrac{n!}{k!(n-k)!}$ & Không thứ tự \\
+\bottomrule
+\end{tabular}
+\end{center}
+$C_n^k = A_n^k / k!$.
 \end{congthuc}
 
-\subsection{Xác suất có điều kiện}
+\begin{vidu}[title={Ví dụ đếm}]
+\begin{itemize}
+  \item Một bảng mạch in có tám vị trí khác nhau, mỗi vị trí có thể đặt được một thành phần của mạch. Nếu bốn thành phần khác nhau được đặt trên bảng mạch thì có thể có bao nhiêu kiểu dáng khác nhau?: $A_8^4 = 8 \cdot 7 \cdot 6 \cdot 5 = 1680$ kiểu dáng.
+  \item Từ năm chữ số $1, 2, 3, 4, 5$ lập được bao nhiêu số có ba chữ số?: $\bar{A}_5^3 = 125$ (lặp); nếu khác nhau: $A_5^3 = 60$.
+  \item Một sản phẩm được dán nhãn bằng cách in năm dòng dày, ba dòng trung bình và hai dòng mỏng. Nếu mỗi thứ tự của mười dòng đại diện cho một nhãn khác nhau, thì có thể tạo ra bao nhiêu nhãn khác nhau bằng cách sử dụng phương pháp này?: $\dfrac{10!}{5!\,3!\,2!} = 2520$.
+  \item Một lô hàng chứa 60 sản phẩm, trong đó có 5 sản phẩm bị lỗi. Lấy ngẫu nhiên từ lô hàng ra 6 sản phẩm. Có bao nhiêu cách khác nhau để lấy được đúng 2 sản phẩm bị lỗi?: $C_5^2 C_{55}^4$ cách.
+  \item Có 6 người khách được xếp vào 6 ghế quanh một bàn tròn có 6 chỗ.
+  \begin{itemize}
+    \item Nếu các ghế ngồi đã được đánh số từ 1 đến 6 thì có bao nhiêu cách sắp xếp?: $P_6 = 6! = 720$ cách xếp.
+    \item Nếu các ghế ngồi không được đánh số thứ tự thì sẽ có bao nhiêu cách? $P_5 = 5! = 120$ cách xếp.
+  \end{itemize}
+\end{itemize}
+\end{vidu}
 
-\begin{dinhnghia}
-  $P(A|B) = \dfrac{P(A \cap B)}{P(B)}$ \;($P(B) > 0$).
+\subsection{Xác suất của một sự kiện}
+
+\begin{dongco}
+Ta đã biết liệt kê $\Omega$ và sự kiện $A$. Bước tiếp: gán cho mỗi sự kiện một \textbf{con số} $P(A) \in [0,1]$ để so sánh ``dễ xảy ra'' hơn hay kém hơn.
+
+Tung đồng xu \emph{công bằng}: mỗi mặt $1/2$. Xúc xắc lỗi (mặt 6 nặng hơn): các mặt \emph{không} còn đồng khả năng - khi đó không dùng $|A|/|\Omega|$ đơn giản, mà cần \emph{mô hình} hoặc \emph{tần suất} từ nhiều lần lặp. Ba quan điểm dưới (cổ điển, hình học, thống kê) là ba cách ``chọn'' con số $P(A)$ phù hợp với bối cảnh.
+\end{dongco}
+
+\begin{dinhnghia}[title={Khái niệm xác suất}]
+Tiến hành phép thử, $A \subset \Omega$. \textbf{Xác suất} $P(A) \in [0,1]$ đo mức ``chắc chắn'' $A$ xảy ra. $P(\Omega) = 1$, $P(\varnothing) = 0$.
 \end{dinhnghia}
 
-\begin{congthuc}[title={Công thức nhân}]
-  $P(A_1 \cap \cdots \cap A_n) = P(A_1)\,P(A_2|A_1)\,P(A_3|A_1 \cap A_2)\cdots$
-\end{congthuc}
+\subsubsection{Quan điểm cổ điển}
+\begin{dinhnghia}[title=Kết cục đồng khả năng]
+Các kết cục của một phép thử được gọi là đồng khả năng nếu khả năng xảy ra của chúng là như nhau.
 
-\begin{dinhly}[title={Công thức xác suất toàn phần}]
-  Nếu $B_1, B_2, \ldots, B_n$ là hệ đầy đủ ($\bigsqcup B_i = \Omega$, $P(B_i) > 0$):
+Chẳng hạn, trong một phép thử có n kết cục có thể xảy ra, các kết cục này là đồng khả năng nếu khả năng xảy ra của mỗi kết cục đều là $1/n$.
+\end{dinhnghia}
+
+\begin{dinhnghia}
+  Giả sử trong một phép thử có n kết cục đồng khả năng, trong đó, có m kết cục thuận lợi cho sự xuất hiện của sự kiện A. Khi đó:
   \[
-    P(A) = \sum_{i=1}^{n} P(A|B_i)\,P(B_i).
+    P(A) = \frac{\text{số kết cục thuận lợi cho } A}{\text{tổng số kết cục đồng khả năng}}
+    = \frac{|A|}{|\Omega|} = \frac{m}{n}.
   \]
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Tính chất của xác suất}]
+\begin{itemize}
+  \item $0 \le P(A) \le 1$.
+  \item $P(\Omega) = 1$.
+  \item $P(\varnothing) = 0$.
+  \item $A \subset B \Rightarrow P(A) \le P(B)$.
+  \item $P(\bar{A}) = 1 - P(A)$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Gọi điện quên 2 số cuối}]
+Nhớ hai số cuối \emph{khác nhau}, chọn ngẫu nhiên: $|\Omega| = A_{10}^2 = 90$, chỉ $1$ cách đúng $\Rightarrow P(A) = 1/90$.
+\end{vidu}
+
+\begin{vidu}[title={Rút 2 lá bài}]
+52 lá, rút 2 lá không hoàn lại: $|\Omega| = C_{52}^2 = 1326$.
+\begin{itemize}
+  \item Cả hai J: $P(A) = C_4^2 / 1326 = 6/1326 = 1/221$.
+  \item Một J một K: $P(B) = C_4^1 C_4^1 / 1326 = 16/1326 = 8/663$.
+\end{itemize}
+\end{vidu}
+
+\subsubsection{Quan điểm hình học}
+
+\begin{dongco}
+  Định nghĩa xác suất theo quan điểm cổ điển có ưu điểm là dễ vận dụng, tuy nhiên, định nghĩa này chỉ áp dụng được với các phép thử ngẫu nhiên có hữu hạn kết cục đồng khả năng. Trong trường hợp có vô hạn kết cục đồng khả năng ta sử dụng định nghĩa xác suất theo quan điểm hình học.
+\end{dongco}
+
+\begin{dinhnghia}
+Giả sử một phép thử có vô hạn kết cục đồng khả năng và các kết cục này được biểu thị bởi một miền hình học $G$ (có độ đo hữu hạn và khác $0$), còn các kết cục thuận lợi cho sự kiện $A$ được biểu thị bởi miền con $H$ của $G$, với $H \subset G$. Khi đó:
+  \[
+    P(A) = \frac{\mu(H)}{\mu(G)}
+  \]
+  ($\mu$ = độ dài / diện tích / thể tích).
+\end{dinhnghia}
+
+\begin{vidu}[title={Hẹn gặp 7h-8h, chờ 10 phút}]
+Hai người bạn hẹn gặp nhau ở một địa điểm trong khoảng thời gian từ 7h00 đến 8h00. Mỗi người có thể đến điểm hẹn một cách ngẫu nhiên tại một thời điểm trong khoảng thời gian nói trên và họ quy ước rằng ai đến mà không thấy người kia thì chỉ đợi trong vòng 10 phút. Tính xác suất để hai người gặp nhau.
+
+$(x,y)$ = thời điểm hai người đến (phút, $0 \le x,y \le 60$). $G$ = hình vuông cạnh $60$. Gặp nhau khi $|x - y| \le 10$ (dải quanh đường chéo).
+\[
+  P(E) = \dfrac{60^2 - 50^2}{60^2} = \dfrac{11}{36} \approx 0{,}306.
+\]
+\end{vidu}
+
+\subsubsection{Quan điểm thống kê}
+
+\begin{dongco}
+Cổ điển và hình học đều cần \textbf{đồng khả năng} - trong thực tế thường khó kiểm tra; khi đó dùng quan điểm thống kê hoặc mô hình xác suất chung.
+\end{dongco}
+
+\begin{dinhnghia}
+Giả sử trong một điều kiện nào đó ta có thể lặp lại $n$ lần một phép thử và thấy có $x$ lần xuất hiện sự kiện $A$. Khi đó, $x$ được gọi là tần số và tỷ số $x/n$ gọi là tần suất xuất hiện sự kiện $A$, ký hiệu là $f_n(A)$. Như vậy:
+\[
+f_n(A) = \dfrac{x}{n}
+\]
+Khi số phép thử tăng lên vô hạn, tần suất xuất hiện sự kiện $A$ tiến dần đến một số xác định $p$ nào đó. Số $p$ đó được gọi là xác suất của sự kiện $A$ (theo quan điểm thống kê).
+\[
+P(A) = \lim_{n \to \infty} f_n(A) = p
+\]
+\end{dinhnghia}
+
+\begin{vidu}[title={Tung đồng xu}]
+Để xác định tần suất xuất hiện mặt sấp khi tung một đồng xu nhiều lần, người ta ghi lại kết quả sau:
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+Người thí nghiệm & Số lần tung (n) & Số lần xuất hiện mặt sấp (x) & Tần suất (fn) \\
+\hline
+Buffon & 4040 & 2048 & 0,5069 \\
+Pearson & 12000 & 6019 & 0,5016 \\
+Pearson & 24000 & 12012 & 0,5005 \\
+\end{tabular}
+\end{center}
+Ta thấy rằng khi số lần tung đồng xu càng lớn, tần suất xuất hiện mặt sấp càng gần với xác suất xuất hiện mặt sấp là $0.5$.
+\end{vidu}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Định nghĩa xác suất theo quan điểm thống kê khắc phục được một nhược điểm của định nghĩa xác suất theo quan điểm cổ điển là không dùng đến khái niệm đồng khả năng.
+    \item Định nghĩa xác suất theo quan điểm thống kê không giúp ta tính được chính xác xác suất của một sự kiện mà chỉ tìm được giá trị gần đúng; đồng thời số phép thử phải đủ lớn và chỉ dùng được cho các phép thử có thể lặp lại nhiều lần một cách độc lập trong các điều kiện giống nhau.
+  \end{itemize}
+\end{luuy}
+
+\subsection{Công thức cộng và nhân xác suất}
+
+\begin{dongco}
+\textbf{``Hoặc'' và ``và'' trên sự kiện.} Lớp 100 SV: 40 giỏi ngoại ngữ, 30 giỏi toán, 20 giỏi \emph{cả hai}. Chọn ngẫu nhiên 1 người - xác suất giỏi \emph{ít nhất một môn} là bao nhiêu?
+
+Nếu cộng thô $40\% + 30\% = 70\%$ thì \textbf{sai}, vì 20\% bị tính hai lần. Công thức cộng $P(N \cup T) = P(N) + P(T) - P(N \cap T)$ chính là cách \emph{trừ phần giao bị đếm trùng}.
+
+\medskip
+\textbf{``Biết rằng'' thay đổi xác suất.} Rút bài: xác suất rút được J là $4/52$. Nhưng nếu \emph{biết} lá vừa rút là đen, chỉ còn 26 lá đen trong đó có 2 J $\Rightarrow$ $P(J \mid \text{đen}) = 2/26$. Công thức nhân và xác suất có điều kiện mô tả chính xác kiểu suy luận ``cập nhật tin'' này.
+\end{dongco}
+
+\begin{dinhly}[title={Công thức cộng}]
+\[
+  P(A \cup B) = P(A) + P(B) - P(A \cap B).
+\]
+Nếu $A$ và $B$ xung khắc thì $A \cap B = \varnothing$: $P(A \cup B) = P(A) + P(B)$.
+
+\[
+  P(\bigcup_{i=1}^{n} A_i) = \sum_{i=1}^{n} P(A_i) - \sum_{1 \le i < j \le n} P(A_iA_j) + \cdots + (-1)^{n-1} P(A_1A_2 \cdots A_n).
+\]
+
+Nếu $A_1, \ldots, A_n$ đôi một xung khắc thì: $P(\bigcup A_i) = \sum P(A_i)$.
 \end{dinhly}
 
-\begin{dinhly}[title={Công thức Bayes}]
-  \[
-    P(B_k|A) = \frac{P(A|B_k)\,P(B_k)}{\sum_{i=1}^{n} P(A|B_i)\,P(B_i)}.
-  \]
-\end{dinhly}
+\begin{vidu}[title={Lớp 100 sinh viên}]
+Một lớp có 100 sinh viên, trong đó có 40 sinh viên giỏi ngoại ngữ, 30 sinh viên giỏi toán, 20 sinh viên vừa giỏi ngoại ngữ, vừa giỏi toán. Chọn ngẫu nhiên một sinh viên trong lớp. Tìm xác suất để sinh viên đó giỏi ít nhất một trong hai môn trên:
+
+Gọi $N$ là sự kiện “sinh viên đó giỏi ngoại ngữ”; $T$ là sự kiện “sinh viên đó giỏi toán”.
+\[
+  P(N \cup T) = P(N) + P(T) - P(N \cap T) = \frac{40}{100} + \frac{30}{100} - \frac{20}{100} = \frac{50}{100} = 0{,}5
+\]
+\end{vidu}
+\begin{dinhnghia}[title={Xác suất có điều kiện}]
+Giả sử trong một phép thử có sự kiện B với P(B) > 0. Khi đó, xác suất có điều kiện của sự kiện A nào đó,
+biết rằng sự kiện B đã xảy ra là:
+\[
+  \displaystyle P(A \mid B) = \frac{P(A \cap B)}{P(B)}
+\]
+
+Tương tự: $P(B \mid A) = \frac{P(A \cap B)}{P(A)}$.
+\end{dinhnghia}
+\begin{vidu}[title={Rút bài -- biết quân đen}]
+Từ một bộ bài tú lơ khơ gồm 52 quân bài đã được trộn kỹ rút ngẫu nhiên ra một quân bài. Biết rằng quân bài được rút ra là quân màu đen, tính xác suất đó là quân J.
+
+Gọi $A$ là sự kiện “rút được quân J” và $B$ là sự kiện “rút được quân màu đen”.
+
+$P(A \mid B) = \dfrac{2}{26} = \dfrac{1}{13}$.
+
+Hoặc $P(A \mid B) = \dfrac{P(AB)}{P(B)} = \dfrac{2/52}{26/52} = \dfrac{1}{13}$.
+\end{vidu}
 
 \begin{dinhnghia}[title={Độc lập}]
-  $A, B$ \textbf{độc lập} nếu $P(A \cap B) = P(A)\,P(B)$.
+$A$, $B$ \textbf{độc lập} nếu sự kiện này xuất hiện hay không xuất hiện không làm ảnh hưởng tới khả năng xuất hiện của sự kiện kia, nghĩa là $P(A \mid B) = P(A \mid \bar{B}) = P(A)$ và $P(B \mid A) = P(B \mid \bar{A}) = P(B)$.
 
-  $A_1, \ldots, A_n$ \textbf{độc lập toàn phần} nếu với mọi tập con $I \subset \{1, \ldots, n\}$:
-  $P\!\left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} P(A_i)$.
+Các sự kiện $A_1, A_2, \ldots, A_n$ được gọi là \textbf{độc lập từng đôi} với nhau nếu mỗi cặp hai trong $n$ sự kiện đó độc lập với nhau.
+
+Các sự kiện $A_1, A_2, \ldots, A_n$ được gọi là \textbf{độc lập tổng thể} nếu mỗi sự kiện trong chúng độc lập với tích của một số $s$ bất kỳ sự kiện trong các sự kiện còn lại, $1 \le s \le n - 1$.
 \end{dinhnghia}
 
-%% ================================================================
-%%  CHƯƠNG 2: BIẾN NGẪU NHIÊN
-%% ================================================================
-\section{Biến ngẫu nhiên}
+\begin{phanvidu}[title={Không độc lập tổng thể}]
+Gieo đồng thời hai đồng xu cân đối đồng chất lên mặt phẳng cứng. Gọi $A_1$ là sự kiện “ít nhất một đồng xu
+xuất hiện mặt sấp”, $A_2$ là sự kiện “ít nhất một đồng xu xuất hiện mặt ngửa”, $A_3$ là sự kiện “có ba đồng xu
+xuất hiện mặt ngửa”. $A_1, A_2, A_3$ có độc lập tổng thể không?
+
+$P(A_1 A_2 A_3) = P(A_1)P(A_2)P(A_3) = 0$ nhưng $P(A_1 A_2) = 1/2 \ne 9/16 = P(A_1)P(A_2)$
+
+Đó đó \textbf{không} độc lập tổng thể.
+\end{phanvidu}
+
+\begin{dinhly}[title={Công thức nhân}]
+$P(AB) = P(A)\,P(B \mid A) = P(B)\,P(A \mid B)$.
+
+Nếu A và B độc lập thì $P(AB) = P(A)P(B)$.
+
+$P(A_1 A_2 \cdots A_n) = P(A_1)\,P(A_2 \mid A_1)\cdots P(A_n \mid A_1 \cdots A_{n-1})$.
+
+Nếu $A_1, A_2, \ldots, A_n$ độc lập tổng thể thì $P(A_1 A_2 \cdots A_n) = P(A_1)\,P(A_2)\cdots P(A_n)$.
+\end{dinhly}
+
+\begin{vidu}[title={Ba xạ thủ}]
+Ba xạ thủ cùng bắn súng vào một bia độc lập nhau. Xác suất bắn trúng bia của xạ thủ thứ nhất, thứ hai, thứ ba tương ứng là 0,7, 0,8 và 0,9. Tính xác suất để:
+\begin{itemize}
+  \item Có duy nhất một xạ thủ bắn trúng bia;
+  \item Có đúng hai xạ thủ bắn trúng bia;
+  \item Có ít nhất một xạ thủ bắn trúng bia;
+  \item Xạ thủ thứ nhất bắn trúng bia biết rằng có hai xạ thủ bắn trúng bia
+\end{itemize}
+
+Giải:
+
+\begin{itemize}
+  \item Có duy nhất một xạ thủ bắn trúng bia:
+    $P(A) = P(A_1 \bar{A_2} \bar{A_3}) + P(\bar{A_1} A_2 \bar{A_3}) + P(\bar{A_1} \bar{A_2} A_3) = 0{,}7 \cdot 0{,}2 \cdot 0{,}1 + 0{,}3 \cdot 0{,}8 \cdot 0{,}1 + 0{,}3 \cdot 0{,}2 \cdot 0{,}9 = 0{,}096$
+  \item Có đúng hai xạ thủ bắn trúng bia:
+    $P(B) = P(A_1 A_2 \bar{A_3}) + P(A_1 \bar{A_2} A_3) + P(\bar{A_1} A_2 A_3) = 0{,}7 \cdot 0{,}8 \cdot 0{,}1 + 0{,}7 \cdot 0{,}2 \cdot 0{,}9 + 0{,}3 \cdot 0{,}8 \cdot 0{,}9 = 0{,}398$
+  \item Có ít nhất một xạ thủ bắn trúng bia:
+    $P(C) = P(A_1 \cup A_2 \cup A_3) = P(A_1) + P(A_2) + P(A_3) - P(A_1 A_2) - P(A_1 A_3) - P(A_2 A_3) + P(A_1 A_2 A_3) = 0{,}7 + 0{,}8 + 0{,}9 - 0{,}7 \cdot 0{,}8 - 0{,}7 \cdot 0{,}9 - 0{,}8 \cdot 0{,}9 + 0{,}7 \cdot 0{,}8 \cdot 0{,}9 = 0{,}994$
+
+    Hoặc: $P(C) = 1 - P(\bar{A_1} \bar{A_2} \bar{A_3}) = 1 - 0{,}3 \cdot 0{,}2 \cdot 0{,}1 = 0{,}994$
+
+    Hoặc: $P(C) = P(A) + P(B) + P(A_1 A_2 A_3) = 0{,}096 + 0{,}398 + 0{,}7 \cdot 0{,}8 \cdot 0{,}9 = 0{,}994$
+  \item Xạ thủ thứ nhất bắn trúng bia biết rằng có hai xạ thủ bắn trúng bia:
+    $P(A_1 \mid B) = \dfrac{P(A_1 B)}{P(B)} = \dfrac{P(A_1 A_2 \bar{A_3}) + P(A_1 \bar{A_2} A_3)}{P(B)} = \dfrac{0{,}7 \cdot 0{,}8 \cdot 0{,}1 + 0{,}7 \cdot 0{,}2 \cdot 0{,}9}{0{,}398} = 0{,}46$
+\end{itemize}
+\end{vidu}
+
+\subsubsection{Dãy Bernoulli và công thức Bernoulli}
 
 \begin{dinhnghia}
-  \textbf{Biến ngẫu nhiên} (BNN) $X: \Omega \to \mathbb{R}$ là hàm đo được: $\{X \le x\} \in \mathcal{F}$ $\forall x$.
+  \textbf{Dãy $n$ phép thử Bernoulli:} $n$ lần độc lập, mỗi lần chỉ ``thành công'' / ``thất bại'', xác suất thành công $p$ không đổi.
 \end{dinhnghia}
 
-\begin{dinhnghia}[title={Hàm phân phối (CDF)}]
-  $F_X(x) = P(X \le x)$, $x \in \mathbb{R}$.
+\begin{dinhly}[title={Công thức Bernoulli}]
+Xác suất đúng $k$ lần thành công trong $n$ lần:
+\[
+  P_n(k) = C_n^k\, p^k (1-p)^{n-k}, \qquad k = 0, 1, \ldots, n.
+\]
+\end{dinhly}
+
+\begin{vidu}[title={Bắn cung}]
+$p = 0{,}8$, $n = 4$, trúng đúng $3$ lần: $P_4(3) = C_4^3 (0{,}8)^3 (0{,}2) = 0{,}4096$.
+\end{vidu}
+
+\subsection{Xác suất toàn phần và công thức Bayes}
+
+\begin{dongco}[title={Động cơ học -- Sản phẩm đến từ phân xưởng nào?}]
+Lô hàng gồm hàng từ ba phân xưởng với tỷ lệ khác nhau; mỗi phân xưởng có tỷ lệ sản phẩm loại 1 khác nhau. Bạn \emph{nhìn thấy} một sản phẩm loại 1 - hỏi: nó \textbf{khả năng cao} đến từ phân xưởng nào?
+
+Đây là bài toán \emph{ngược}: đã biết kết quả quan sát ($A$), muốn suy đoán \emph{nguyên nhân} ($B_k$).
+
+Với xét nghiệm y tế: ``dương tính'' không đồng nghĩa ``chắc chắn bệnh'' nếu bệnh hiếm.
+\end{dongco}
+
+\begin{dinhly}[title={Xác suất toàn phần}]
+$\{B_1, \ldots, B_n\}$ hệ đầy đủ, $P(B_i) > 0$. Với mọi sự kiện $A$:
+\[
+  P(A) = \sum_{i=1}^{n} P(AB_i) = \sum_{i=1}^{n} P(B_i)\,P(A \mid B_i).
+\]
+\end{dinhly}
+
+\begin{vidu}[title={Ba phân xưởng}]
+Lô hàng: 20\% PX1, 50\% PX2, 30\% PX3. Tỷ lệ sản phẩm loại 1: $0{,}7$, $0{,}8$, $0{,}6$. $B_i$ = ``lấy từ PX$i$'', $A$ = ``loại 1'':
+\[
+  P(A) = 0{,}2 \cdot 0{,}7 + 0{,}5 \cdot 0{,}8 + 0{,}3 \cdot 0{,}6 = 0{,}72.
+\]
+\end{vidu}
+
+\begin{dinhly}[title={Công thức Bayes}]
+\[
+  P(B_k \mid A) = \frac{P(B_k)\,P(A \mid B_k)}{P(A)} = \frac{P(B_k)\,P(A \mid B_k)}{\displaystyle\sum_{i=1}^{n} P(B_i)\,P(A \mid B_i)}.
+\]
+\end{dinhly}
+
+\begin{vidu}[title={Sản phẩm loại 1 do PX nào?}]
+Với $P(A) = 0{,}72$ như trên:
+\[
+  P(B_1 \mid A) = \frac{0{,}2 \cdot 0{,}7}{0{,}72} \approx 0{,}194,\quad
+  P(B_2 \mid A) \approx \frac{0{,}4}{0{,}72} \approx 0{,}556,\quad
+  P(B_3 \mid A) = 0{,}25.
+\]
+Khả năng cao nhất: \textbf{phân xưởng II} ($P(B_2 \mid A)$ lớn nhất).
+\end{vidu}
+
+\begin{ungdung}[title={Bayes trong chẩn đoán}]
+Bệnh hiếm $P(B) = 0{,}01$, test nhạy $P(+ \mid B) = 0{,}99$, đặc hiệu $P(- \mid \bar{B}) = 0{,}95$. Người \textbf{dương tính} thật sự mắc bệnh:
+\[
+  P(B \mid +) = \frac{0{,}99 \cdot 0{,}01}{0{,}99 \cdot 0{,}01 + 0{,}05 \cdot 0{,}99} \approx 0{,}17.
+\]
+Dương tính không đồng nghĩa chắc chắn mắc bệnh.
+\end{ungdung}
+
+\begin{luuy}
+Muốn dùng toàn phần / Bayes phải chọn \textbf{hệ đầy đủ thích hợp}; sự kiện cần tính $P(B_k \mid A)$ phải là một $B_k$ trong hệ đó.
+\end{luuy}
+
+\begin{tongket}[title={Tổng kết Phần I}]
+\begin{enumerate}
+  \item $\Omega$, sự kiện, $\cup,\cap,\bar{\ },\setminus$, hệ đầy đủ, De Morgan.
+  \item Đếm: $n_1 + \cdots + n_k$; $n_1 \cdots n_k$; $A_n^k$, $C_n^k$, $n!$, hoán vị lặp.
+  \item $P(A)$: cổ điển $|A|/|\Omega|$; hình học $\mu(H)/\mu(G)$; tần suất $f_n(A)$.
+  \item Cộng, có điều kiện, nhân, độc lập; Bernoulli $C_n^k p^k(1-p)^{n-k}$.
+  \item Toàn phần $\sum P(B_i)P(A \mid B_i)$; Bayes; tiên nghiệm / hậu nghiệm.
+\end{enumerate}
+
+\end{tongket}
+
+%% ================================================================
+%%  PHẦN II--IV
+%% ================================================================
+
+\section{Biến ngẫu nhiên và luật phân phối}
+
+\begin{dongco}
+Trong thực tế ta thường gán số: điểm thi, chiều cao, số lỗi trên dây chuyền, thời gian chờ cuộc gọi.
+
+Một hàm $X(\omega)$ từ $\Omega$ vào $\mathbb{R}$ gọi là \textbf{biến ngẫu nhiên}. Thay vì hỏi ``kết cục nào'', ta hỏi ``$X$ bằng bao nhiêu, với xác suất bao nhiêu?'' - toàn bộ thông tin gom vào \textbf{phân phối} ($p_X$, $F_X$, hoặc $f_X$).
+
+\textbf{Điểm thi trắc nghiệm.} 100 câu, mỗi câu đúng/sai - số câu đúng $X$ chỉ nhận $0,1,\ldots,100$ (rời rạc). \textbf{Chiều cao} sinh viên trong lớp: có thể là $162{,}3$ cm, $175{,}8$ cm\ldots (liên tục trên khoảng).
+
+Cùng là ``đại lượng ngẫu nhiên'', nhưng cách mô tả khác nhau: bảng $P(X=k)$ cho rời rạc, hàm mật độ cho liên tục. Phần này xây bộ ngôn ngữ đó trước khi đi vào các mô hình cụ thể (nhị thức, Poisson, chuẩn\ldots).
+\end{dongco}
+
+\subsection{Khái niệm và phân loại biến ngẫu nhiên}
+
+\begin{dinhnghia}
+  Cho phép thử với không gian mẫu $\Omega$. \textbf{Biến ngẫu nhiên (BNN)} là một hàm số của các kết cục $X: \Omega \to \mathbb{R}$, $\omega \mapsto X(\omega)$.
   \begin{itemize}
-    \item Không giảm, liên tục phải.
-    \item $\lim_{x \to -\infty} F(x) = 0$, \;$\lim_{x \to +\infty} F(x) = 1$.
-    \item $P(a < X \le b) = F(b) - F(a)$.
+    \item $S_X = \{X(\omega) : \omega \in \Omega\}$: tập giá trị.
+    \item \textbf{Rời rạc:} $S_X$ hữu hạn hoặc vô hạn đếm được.
+    \item \textbf{Liên tục:} $S_X$ vô hạn không đếm được
+    \item \textbf{Hỗn hợp:} $S_X$ vừa rời rạc vừa liên tục (lược bỏ).
+  \end{itemize}
+  Sự kiện $(X = x_i)$ tạo hệ đầy đủ khi $X$ chỉ nhận $x_1,\ldots,x_n$ trên một phép thử.
+\end{dinhnghia}
+
+\begin{vidu}[title={Số mặt ngửa khi tung xu 2 lần}]
+$\Omega = \{SS, SN, NS, NN\}$. $X$ = số lần ngửa $\Rightarrow$ $S_X = \{0,1,2\}$:
+$SS \mapsto 0$; $SN, NS \mapsto 1$; $NN \mapsto 2$.
+\end{vidu}
+
+\subsubsection{Hàm của một biến ngẫu nhiên}
+
+\begin{dinhnghia}
+Cho $X$ là một biến ngẫu nhiên và $g(x)$ là một hàm số thực. Đặt $Y = g(X)$. Biến ngẫu nhiên $g(X)$ như vậy được gọi là hàm của biến ngẫu nhiên $X$.
+
+Nếu $X$ là biến ngẫu nhiên rời rạc thì $g(X)$ cũng là biến ngẫu nhiên rời rạc.
+
+Nếu $X$ là biến ngẫu nhiên liên tục và $g(x)$ là một hàm liên tục thì $g(X)$ là biến ngẫu nhiên liên tục.
+\end{dinhnghia}
+
+\begin{vidu}[title={Hàm của biến ngẫu nhiên}]
+Một công ty điện thoại tính cước phí cho một bản fax như sau: 10 nghìn đồng cho trang thứ nhất, 9 nghìn đồng cho trang thứ hai, ..., 6 nghìn đồng cho trang thứ năm. Những bản fax từ 6 đến 10 trang có phí là 50 nghìn đồng. Công ty điện thoại này không nhận những bản fax dài quá 10 trang. Gọi $X$ là số trang trong một bản fax và $Y$ là chi phí phải trả cho một bản fax. Khi đó, $X$ là biến ngẫu nhiên rời rạc và $S_X = \{1, 2, ..., 10\}$ và $Y$ là một hàm của $X$ được xác định bởi
+  $Y = g(X) = \begin{cases} 10.5X - 0.5X^2, & 1 \le X \le 5 \\ 50, & 6 \le X \le 10 \end{cases}$
+\end{vidu}
+
+\subsection{Phân phối xác suất của biến ngẫu nhiên}
+
+\begin{dongco}
+Phần I cho $P(A)$ với $A$ là tập con $\Omega$. Với BNN, ta quan tâm sự kiện dạng $(X = k)$, $(X \le x)$, $(a < X \le b)$.
+
+\textbf{Hàm xác suất} $p_X(k)$ (rời rạc) hoặc \textbf{hàm phân phối} $F_X(x) = P(X \le x)$ (mọi loại) là ``bản đồ'' đầy đủ: biết $F_X$ là biết mọi xác suất dạng khoảng. Với liên tục, $f_X$ là đạo hàm của $F_X$ - giống ``mật độ'' trên trục số: vùng cao thì $X$ hay rơi vào đó hơn.
+\end{dongco}
+
+\subsubsection{Hàm xác suất (rời rạc)}
+
+\begin{dinhnghia}
+  BNN rời rạc $X$ nhận $x_1, x_2, \ldots$. \textbf{Hàm xác suất} $p_X(x)$:
+  \begin{itemize}
+    \item $p_X(x_i) \ge 0$;
+    \item $\sum_i p_X(x_i) = 1$;
+    \item $p_X(x_i) = P(X = x_i)$.
   \end{itemize}
 \end{dinhnghia}
 
-\subsection{BNN rời rạc}
+\begin{vidu}[title={Số bít lỗi trong 4 bít}]
+Một bít được truyền qua đường truyền kỹ thuật số có thể bị lỗi. Xác suất để một bít được truyền đi bị lỗi là $0.1$. Giả sử rằng các lần truyền là độc lập nhau. Gọi $X$ là số bít bị lỗi trong bốn bít được truyền đi. Khi đó, $X$ là biến ngẫu nhiên rời rạc và $S_X = \{0, 1, 2, 3, 4\}$. Áp dụng công thức Bernoulli
+\[
+\begin{array}{c|ccccc}
+k & 0 & 1 & 2 & 3 & 4 \\
+\hline
+P(X=k) & 0.6561 & 0.2916 & 0.0486 & 0.0036 & 0.0001
+\end{array}
+\]
+\end{vidu}
+
+\subsubsection{Hàm phân phối}
 
 \begin{dinhnghia}
-  $X$ \textbf{rời rạc} nếu nhận đếm được giá trị $x_1, x_2, \ldots$ Bảng phân phối: $p_i = P(X = x_i)$, $\sum p_i = 1$.
+Hàm phân phối xác suất của biến ngẫu nhiên $X$, ký hiệu là $F_X(x)$, được định nghĩa như sau: $F_X(x) = P(X \le x)$, $x \in \mathbb{R}$.
 \end{dinhnghia}
 
-\begin{congthuc}[title={Các phân phối rời rạc quan trọng}]
-  \begin{itemize}
-    \item \textbf{Bernoulli}$(p)$: $P(X = 1) = p$, $P(X = 0) = 1 - p$.
-    \item \textbf{Nhị thức} $B(n, p)$: $P(X = k) = \binom{n}{k}p^k(1-p)^{n-k}$, $E[X] = np$, $\text{Var}(X) = np(1-p)$.
-    \item \textbf{Poisson}$(\lambda)$: $P(X = k) = e^{-\lambda}\dfrac{\lambda^k}{k!}$, $E[X] = \text{Var}(X) = \lambda$.
-    \item \textbf{Hình học}$(p)$: $P(X = k) = (1-p)^{k-1}p$, $E[X] = 1/p$.
-    \item \textbf{Siêu hình học}: $P(X = k) = \dfrac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}$.
-    \item \textbf{Nhị thức âm} $NB(r, p)$: $P(X = k) = \binom{k-1}{r-1}p^r(1-p)^{k-r}$.
-  \end{itemize}
-\end{congthuc}
+\begin{tinhchat}[title={Tính chất của hàm phân phối}]
+\begin{itemize}
+  \item $0 \le F_X(x) \le 1$ với mọi $x \in \mathbb{R}$.
+  \item $F_X(x)$ không giảm.
+  \item $P(a < X \le b) = P(a \le X < b) = P(a \le X \le b) = P(a < X < b) = F_X(b) - F_X(a)$.
+  \item $\lim_{x \to -\infty} F_X(x) = 0$, $\lim_{x \to +\infty} F_X(x) = 1$.
+\end{itemize}
+\end{tinhchat}
 
-\subsection{BNN liên tục}
+\begin{vidu}[title={Hàm phân phối của biến ngẫu nhiên}]
+  Cho $X$ là biến ngẫu nhiên rời rạc với bảng phân phối xác suất:
+  \begin{center}
+    \begin{tabular}{c|cccc}
+      $x$ & $0$ & $1$ & $2$ & $3$ \\
+      \hline
+      $P(X=x)$ & $0.2$ & $0.3$ & $0.4$ & $0.1$ \\
+    \end{tabular}
+  \end{center}
+  Tìm hàm phân phối xác suất của $X$.
+
+  \begin{align*}
+    F_X(x) = \begin{cases}
+      0, & x < 0 \\
+      0.2, & 0 \le x < 1 \\
+      0.2 + 0.3 = 0.5, & 1 \le x < 2 \\
+      0.2 + 0.3 + 0.4 = 0.9, & 2 \le x < 3 \\
+      1, & x \ge 3
+    \end{cases}
+  \end{align*}
+\end{vidu}
+
+\subsubsection{Hàm mật độ}
 
 \begin{dinhnghia}
-  $X$ \textbf{liên tục} nếu $\exists$ hàm mật độ $f_X(x) \ge 0$:
+  BNN \textbf{liên tục} nếu $\exists f_X(x) \ge 0$:
   \[
     F_X(x) = \int_{-\infty}^{x} f_X(t)\,dt, \qquad \int_{-\infty}^{+\infty} f_X(x)\,dx = 1.
   \]
+  Khi đó $P(a < X < b) = \int_a^b f_X(x)\,dx$.
 \end{dinhnghia}
 
-\begin{congthuc}[title={Các phân phối liên tục quan trọng}]
-  \begin{itemize}
-    \item \textbf{Đều} $U(a, b)$: $f(x) = \dfrac{1}{b-a}$ trên $[a, b]$. $E[X] = \dfrac{a+b}{2}$, $\text{Var}(X) = \dfrac{(b-a)^2}{12}$.
-    \item \textbf{Chuẩn} $\mathcal{N}(\mu, \sigma^2)$: $f(x) = \dfrac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}$.
-    \item \textbf{Chuẩn tắc} $\mathcal{N}(0, 1)$: $\Phi(x) = \displaystyle\int_{-\infty}^{x}\frac{1}{\sqrt{2\pi}}e^{-t^2/2}\,dt$.
-    \item \textbf{Mũ} $\text{Exp}(\lambda)$: $f(x) = \lambda e^{-\lambda x}$ ($x \ge 0$). $E[X] = 1/\lambda$. Tính không nhớ.
-    \item \textbf{Gamma} $\Gamma(\alpha, \beta)$: $f(x) = \dfrac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ ($x > 0$).
-    \item \textbf{Beta} $\text{Beta}(\alpha, \beta)$: $f(x) = \dfrac{x^{\alpha-1}(1-x)^{\beta-1}}{B(\alpha,\beta)}$ trên $(0, 1)$.
-    \item \textbf{Chi-bình phương} $\chi^2(n)$: tổng bình phương $n$ BNN $\mathcal{N}(0,1)$ độc lập.
-    \item \textbf{Student} $t(n)$: $T = Z/\sqrt{V/n}$, $Z \sim \mathcal{N}(0,1)$, $V \sim \chi^2(n)$ độc lập.
-    \item \textbf{Fisher} $F(m, n)$: $F = (U/m)/(V/n)$, $U \sim \chi^2(m)$, $V \sim \chi^2(n)$.
-  \end{itemize}
-\end{congthuc}
+\subsubsection{Phân phối của $Y = g(X)$}
 
-%% ================================================================
-%%  CHƯƠNG 3: KỲ VỌNG, PHƯƠNG SAI, MOMENT
-%% ================================================================
-\section{Kỳ vọng, phương sai, moment}
+\begin{phuongphap}
+  \textbf{Rời rạc:} từ bảng $p_X$ suy ra $p_Y(y) = \sum_{x:\, g(x)=y} p_X(x)$ (gộp các $x$ cho cùng $y$).
 
-\begin{dinhnghia}[title={Kỳ vọng (mean)}]
+  \textbf{Liên tục:} (1) $F_Y(y) = P(g(X) < y)$; (2) $f_Y(y) = F_Y'(y)$ nếu $F_Y$ khả vi.
+
+  Nếu $g$ đơn điệu, khả vi: $f_Y(y) = f_X\!\bigl(g^{-1}(y)\bigr)\,\bigl|\frac{d}{dy}g^{-1}(y)\bigr|$.
+\end{phuongphap}
+
+\begin{vidu}[title={$Y = 5Z + 2$}]
+$Z$ rời rạc với $P(Z=1)=0{,}2$, $P(Z=2)=0{,}3$, $P(Z=4)=0{,}15$, $P(Z=3)=p$. Từ $\sum p_i = 1$ suy ra $p = 0{,}35$.
+
+$Y = 5Z + 2$ nhận $7, 12, 17, 22$ với xác suất giữ nguyên như $Z$ tương ứng (phép biến đổi một--một).
+\end{vidu}
+
+\subsection{Kỳ vọng, phương sai, mốt, trung vị}
+
+\begin{dongco}
+Bảng phân phối liệt kê \emph{mọi} khả năng - đôi khi dài và khó nuốt. Hai số tóm tắt hữu ích nhất:
+
+\textbf{Kỳ vọng $E(X)$:} ``trung bình có trọng số''. Ví dụ: trò chơi nhận $+10$ triệu với xác suất $0{,}01$, mất $1$ triệu với $0{,}99$ $\Rightarrow$ $E = 0{,}01 \times 10 - 0{,}99 \times 1 = -0{,}89$ triệu (về lâu dài thua). Nhà cái thiết kế game sao cho $E$ có lợi cho họ.
+
+\textbf{Phương sai $\mathrm{Var}(X)$:} ``độ lan'' quanh $E(X)$. Hai phân phối cùng kỳ vọng nhưng một tập trung, một phân tán rộng - rủi ro khác nhau dù ``trung bình'' giống nhau.
+\end{dongco}
+
+\begin{dinhnghia}[title={Kỳ vọng $E(X)$}]
   \begin{itemize}
-    \item Rời rạc: $E[X] = \sum_i x_i\,p_i$.
-    \item Liên tục: $E[X] = \displaystyle\int_{-\infty}^{+\infty} x\,f(x)\,dx$.
-    \item Tổng quát: $E[g(X)] = \int g(x)\,dF(x)$.
+    \item Rời rạc (hữu hạn giá trị): $E(X) = \sum_i x_i p_i$.
+    \item Liên tục: $E(X) = \displaystyle\int_{-\infty}^{+\infty} x f_X(x)\,dx$ (nếu hội tụ).
+    \item $E[g(X)]$: thay $x$ bằng $g(x)$ trong công thức trên.
   \end{itemize}
 \end{dinhnghia}
+
+\begin{vidu}
+Với bảng ví dụ trên: $E(X) = 0 \cdot 0{,}6561 + 1 \cdot 0{,}2916 + 2 \cdot 0{,}0486 + 3 \cdot 0{,}0036 + 4 \cdot 0{,}0001 = 0{,}4 = np$.
+\end{vidu}
 
 \begin{tinhchat}[title={Tính chất kỳ vọng}]
-  \begin{itemize}
-    \item Tuyến tính: $E[\alpha X + \beta Y] = \alpha E[X] + \beta E[Y]$ (luôn đúng).
-    \item $X \ge 0$ a.s. $\Rightarrow$ $E[X] \ge 0$.
-    \item $X, Y$ độc lập $\Rightarrow$ $E[XY] = E[X]\,E[Y]$.
-  \end{itemize}
+  $E(aX + b) = aE(X) + b$; nếu $X,Y$ độc lập thì $E(XY) = E(X)E(Y)$.
 \end{tinhchat}
 
-\begin{dinhnghia}[title={Phương sai (variance)}]
-  $\text{Var}(X) = E\bigl[(X - E[X])^2\bigr] = E[X^2] - (E[X])^2$.
-
-  \textbf{Độ lệch chuẩn:} $\sigma_X = \sqrt{\text{Var}(X)}$.
+\begin{dinhnghia}[title={Phương sai và độ lệch chuẩn}]
+  $\mathrm{Var}(X) = E\bigl[(X - E(X))^2\bigr] = E(X^2) - [E(X)]^2$; $\sigma_X = \sqrt{\mathrm{Var}(X)}$.
 \end{dinhnghia}
 
 \begin{tinhchat}
-  \begin{itemize}
-    \item $\text{Var}(aX + b) = a^2 \text{Var}(X)$.
-    \item $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)$.
-    \item Độc lập $\Rightarrow$ $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$.
-  \end{itemize}
+  $\mathrm{Var}(aX + b) = a^2 \mathrm{Var}(X)$; $\mathrm{Var}(X + Y) = \mathrm{Var}(X) + \mathrm{Var}(Y) + 2\mathrm{Cov}(X,Y)$ (Cov xét ở Phần III).
 \end{tinhchat}
 
-\begin{dinhnghia}[title={Hiệp phương sai và hệ số tương quan}]
-  $\text{Cov}(X, Y) = E[(X - EX)(Y - EY)] = E[XY] - EX \cdot EY$.
-
-  $\rho_{XY} = \dfrac{\text{Cov}(X, Y)}{\sigma_X \sigma_Y}$, \;$|\rho| \le 1$. $\rho = 0$: không tương quan. Độc lập $\Rightarrow \rho = 0$ (ngược lại không đúng nói chung).
+\begin{dinhnghia}[title={Mốt và trung vị}]
+  \textbf{Mốt:} giá trị xuất hiện với xác suất (hoặc mật độ) lớn nhất.
+  \textbf{Trung vị} $x_{0{,}5}$: $P(X \le x_{0{,}5}) \ge 1/2$ và $P(X \ge x_{0{,}5}) \ge 1/2$.
 \end{dinhnghia}
 
-\begin{dinhnghia}[title={Moment và hàm sinh moment}]
-  \begin{itemize}
-    \item \textbf{Moment bậc $k$:} $\mu_k = E[X^k]$. \textbf{Moment trung tâm:} $\mu'_k = E[(X - EX)^k]$.
-    \item \textbf{Hàm sinh moment:} $M_X(t) = E[e^{tX}]$. Nếu tồn tại: $E[X^k] = M_X^{(k)}(0)$.
-    \item $M_X$ xác định duy nhất phân phối (trong lân cận $t = 0$).
-  \end{itemize}
+\subsection{Một số phân phối xác suất thông dụng}
+
+\begin{dongco}
+Không có một công thức ``vạn năng''. Mỗi mô hình mô tả một \emph{kiểu} ngẫu nhiên:
+\begin{itemize}
+  \item \textbf{Nhị thức:} đếm số lần \emph{thành công} trong $n$ lần thử độc lập (bắn cung, bít lỗi).
+  \item \textbf{Poisson:} đếm sự kiện \emph{hiếm} trong khoảng thời gian (cuộc gọi đến tổng đài, lỗi trên km dây).
+  \item \textbf{Chuẩn:} sai số đo, chiều cao tập thể, và (khi $n$ lớn) xấp xỉ nhị thức.
+\end{itemize}
+Chọn đúng mô hình $\Leftrightarrow$ chọn đúng câu hỏi thực tế. Bảng dưới là ``từ điển'' thường gặp; môn thống kê (X2) sẽ dùng $\chi^2$, Student, Fisher để suy luận từ mẫu.
+\end{dongco}
+
+\begin{congthuc}[title={Bảng tóm tắt}]
+\small
+\begin{center}
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{llll}
+\toprule
+Tên & Ký hiệu & $P(X=k)$ hoặc $f(x)$ & $E(X)$, $\mathrm{Var}(X)$ \\
+\midrule
+Đều rời rạc & $U\{x_1,\ldots,x_n\}$ & $1/n$ & $\bar{x}$, $\mathrm{Var}$ theo bảng \\
+Bernoulli & $\mathrm{Bern}(p)$ & $P(1)=p$ & $p$, $p(1-p)$ \\
+Nhị thức & $B(n,p)$ & $\binom{n}{k}p^k(1-p)^{n-k}$ & $np$, $np(1-p)$ \\
+Poisson & $\mathrm{Poi}(\lambda)$ & $e^{-\lambda}\lambda^k/k!$ & $\lambda$, $\lambda$ \\
+Đều liên tục & $U(a,b)$ & $1/(b-a)$ & $(a+b)/2$, $(b-a)^2/12$ \\
+Mũ & $\mathrm{Exp}(\lambda)$ & $\lambda e^{-\lambda x}$, $x\ge 0$ & $1/\lambda$, $1/\lambda^2$ \\
+Chuẩn & $\mathcal{N}(\mu,\sigma^2)$ & công thức Gauss & $\mu$, $\sigma^2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\normalsize
+Còn có $\chi^2(n)$, $t(n)$, $F(m,n)$ - dùng trong suy luận thống kê (môn X2).
+\end{congthuc}
+
+\subsubsection{Phân phối đều rời rạc và Bernoulli--nhị thức}
+
+\begin{dinhnghia}
+  \textbf{Đều} $U\{x_1,\ldots,x_n\}$: $P(X = x_i) = 1/n$.
+
+  \textbf{Bernoulli}$(p)$: một phép thử, $P(X=1)=p$, $P(X=0)=1-p$.
+
+  \textbf{Nhị thức} $B(n,p)$: $n$ phép thử Bernoulli độc lập, $X$ = số lần thành công;
+  $P(X=k) = \binom{n}{k}p^k(1-p)^{n-k}$.
 \end{dinhnghia}
 
+\begin{vidu}[title={Chữ số đầu số sê-ri}]
+$X \in \{0,\ldots,9\}$ đều nhau: $p_X(x) = 0{,}1$ với $x = 0,\ldots,9$.
+\end{vidu}
+
+\subsubsection{Poisson và liên tục cơ bản}
+
+\begin{dinhnghia}
+  \textbf{Poisson}$(\lambda)$: $P(X=k) = e^{-\lambda}\lambda^k/k!$, $k=0,1,2,\ldots$ mô hình số sự kiện hiếm trong khoảng thời gian/ không gian.
+
+  \textbf{Đều} $U(a,b)$, \textbf{mũ} $\mathrm{Exp}(\lambda)$ (tính \emph{không nhớ}), \textbf{chuẩn} $\mathcal{N}(\mu,\sigma^2)$:
+  \[
+    f_{\mathcal{N}}(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\!\left(-\frac{(x-\mu)^2}{2\sigma^2}\right).
+  \]
+  Chuẩn tắc $Z \sim \mathcal{N}(0,1)$: $\Phi(z) = P(Z \le z)$.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Định lý Moivre--Laplace}]
+$X \sim B(n,p)$. Nếu $np \ge 5$ và $n(1-p) \ge 5$, xấp xỉ $X \approx \mathcal{N}(np,\, np(1-p))$.
+
+\textbf{Hiệu chỉnh liên tục:}
+\[
+  P(X = k) \approx \Phi\!\left(\frac{k + 0{,}5 - np}{\sqrt{np(1-p)}}\right) - \Phi\!\left(\frac{k - 0{,}5 - np}{\sqrt{np(1-p)}}\right).
+\]
+\end{dinhly}
+
+\begin{ynghia}
+Quy tắc $3\sigma$ cho $X \sim \mathcal{N}(\mu,\sigma^2)$: $P(\mu - \sigma < X < \mu + \sigma) \approx 0{,}68$; với $2\sigma$: $\approx 0{,}95$; với $3\sigma$: $\approx 0{,}997$.
+\end{ynghia}
+
+\begin{tongket}[title={Tổng kết Phần II}]
+BNN $X(\omega)$; mô tả bằng $p_X$, $F_X$, $f_X$; $E$, $\mathrm{Var}$, $\sigma$; nhận biết $B(n,p)$, Poisson, chuẩn; xấp xỉ nhị thức bằng chuẩn khi $n$ lớn.
+\end{tongket}
+
 %% ================================================================
-%%  CHƯƠNG 4: VECTƠ NGẪU NHIÊN
-%% ================================================================
-\section{Vectơ ngẫu nhiên}
+\section{Biến ngẫu nhiên nhiều chiều}
+
+\begin{dongco}[title={Động cơ học -- Chiều cao và cân nặng}]
+Một BNN $X$ (chiều cao) cho biết ``cao hay thấp''. Nhưng hai người cùng $170$ cm có thể nặng $55$ kg hoặc $85$ kg - \textbf{một số không đủ}.
+
+Ta cần $(X,Y)$ \emph{đồng thời}: bảng $p_{ij} = P(X=x_i, Y=y_j)$ hoặc mật độ $f_{X,Y}(x,y)$. Từ đó:
+\begin{itemize}
+  \item \textbf{Biên:} chỉ quan tâm $X$ (bỏ qua $Y$) - cộng theo $y$.
+  \item \textbf{Có điều kiện:} đã biết $X = 170$, phân phối của $Y$ thay đổi thế nào?
+  \item \textbf{Độc lập:} biết $X$ \emph{không} giúp đoán $Y$ hơn - $f_{X,Y} = f_X f_Y$.
+\end{itemize}
+Đây là nền cho hồi quy, tương quan, và mọi mô hình ``nhiều biến'' sau này.
+\end{dongco}
+
+\subsection{Khái niệm BNN nhiều chiều}
+
+\begin{dinhnghia}
+  \textbf{BNN $n$ chiều} $(X_1, \ldots, X_n)$: các $X_i$ xác định trên cùng một phép thử.
+  \textbf{Hai chiều} $(X,Y)$ là trường hợp trung tâm của giáo trình.
+\end{dinhnghia}
+
+\begin{vidu}[title={Sản phẩm đúc}]
+$(X,Y,Z)$: chiều rộng, dài, cao. Có thể xét $(X,Y)$ nếu bỏ qua chiều cao.
+\end{vidu}
+
+\subsection{Phân phối đồng thời, biên, có điều kiện}
 
 \begin{dinhnghia}[title={Phân phối đồng thời}]
-  $(X, Y)$: CDF đồng thời $F(x, y) = P(X \le x, Y \le y)$.
+  \textbf{Rời rạc:} $p_{ij} = P(X = x_i, Y = y_j)$, $\sum_{i,j} p_{ij} = 1$ (bảng hai chiều).
 
-  Rời rạc: $p_{ij} = P(X = x_i, Y = y_j)$. Liên tục: $f_{X,Y}(x, y)$ sao cho $F(x,y) = \int\!\!\int f\,du\,dv$.
+  \textbf{Liên tục:} $f_{X,Y}(x,y) \ge 0$, $\iint f_{X,Y} = 1$; $F_{X,Y}(x,y) = P(X \le x, Y \le y)$.
 \end{dinhnghia}
 
-\begin{dinhnghia}[title={Phân phối biên và phân phối có điều kiện}]
+\begin{dinhnghia}[title={Phân phối biên và có điều kiện}]
+  \[
+    p_{i\cdot} = \sum_j p_{ij} = P(X = x_i), \qquad
+    f_X(x) = \int f_{X,Y}(x,y)\,dy.
+  \]
+  \[
+    P(Y = y_j \mid X = x_i) = \frac{p_{ij}}{p_{i\cdot}}, \qquad
+    f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)} \quad (f_X(x) > 0).
+  \]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Độc lập}]
+  $X$, $Y$ \textbf{độc lập} $\Leftrightarrow$ $p_{ij} = p_{i\cdot}\, p_{\cdot j}$ (rời rạc) hoặc $f_{X,Y}(x,y) = f_X(x) f_Y(y)$ (liên tục).
+
+  \textbf{Độc lập từng đôi} $\not\Rightarrow$ \textbf{độc lập tổng thể}.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Kỳ vọng của hàm hai BNN}]
+  $E[g(X,Y)] = \sum_{i,j} g(x_i,y_j) p_{ij}$ \; (rời rạc); tương tự tích phân kép nếu liên tục.
+\end{congthuc}
+
+\begin{vidu}[title={Tung xu 3 lần: $X$ = sấp, $Y$ = ngửa}]
+$X + Y = 3$. Với mỗi cặp $(x,y)$ thỏa $x+y \le 3$, $x,y \ge 0$:
+\[
+  P(X=x, Y=y) = \frac{\binom{5}{x}\binom{4}{y}\binom{3}{3-x-y}}{\binom{12}{3}}.
+\]
+Bảng đồng thời (một phần):
+
+\small
+\begin{center}
+\begin{tabular}{c|cccc}
+$X \backslash Y$ & 0 & 1 & 2 & 3 \\
+\hline
+0 & $1/220$ & $3/55$ & $9/110$ & $1/55$ \\
+1 & $3/44$ & $3/11$ & $3/22$ & $0$ \\
+2 & $3/22$ & $2/11$ & $0$ & $0$ \\
+3 & $1/22$ & $0$ & $0$ & $0$ \\
+\end{tabular}
+\end{center}
+\normalsize
+
+$P(X+Y \le 1) = P(0,0)+P(0,1)+P(1,0) = \dfrac{1}{220}+\dfrac{3}{55}+\dfrac{3}{44} = \dfrac{7}{55}$.
+\end{vidu}
+
+\subsection{Hiệp phương sai và hệ số tương quan}
+
+\begin{dinhnghia}
+  $\mathrm{Cov}(X,Y) = E\bigl[(X - EX)(Y - EY)\bigr] = E(XY) - EX \cdot EY$.
+
+  \textbf{Hệ số tương quan:} $\rho_{XY} = \dfrac{\mathrm{Cov}(X,Y)}{\sigma_X \sigma_Y}$, $|\rho| \le 1$.
   \begin{itemize}
-    \item \textbf{Biên:} $f_X(x) = \displaystyle\int_{-\infty}^{+\infty} f_{X,Y}(x, y)\,dy$.
-    \item \textbf{Có điều kiện:} $f_{Y|X}(y|x) = \dfrac{f_{X,Y}(x, y)}{f_X(x)}$ \;($f_X(x) > 0$).
-    \item $X, Y$ \textbf{độc lập} $\Leftrightarrow$ $f_{X,Y}(x,y) = f_X(x)\,f_Y(y)$.
+    \item $\mathrm{Cov} > 0$: $Y$ có xu hướng tăng khi $X$ tăng.
+    \item $\mathrm{Cov} < 0$: xu hướng ngược.
+    \item $\mathrm{Var}(X) = \mathrm{Cov}(X,X)$.
   \end{itemize}
 \end{dinhnghia}
 
-\begin{congthuc}[title={Phân phối chuẩn nhiều chiều}]
-  $\mathbf{X} = (X_1, \ldots, X_n)^T \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
-  \[
-    f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}|\boldsymbol{\Sigma}|^{1/2}}\exp\!\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T \boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right).
-  \]
-\end{congthuc}
+\begin{luuy}
+Độc lập $\Rightarrow$ $\mathrm{Cov}(X,Y) = 0$ (không tương quan tuyến tính). Ngược lại \emph{không} đúng nói chung (ví dụ $Y = X^2$).
+\end{luuy}
 
-\begin{congthuc}[title={Hàm của biến ngẫu nhiên}]
-  Nếu $Y = g(X)$, $g$ đơn điệu và khả vi: $f_Y(y) = f_X\!\bigl(g^{-1}(y)\bigr)\,\left|\dfrac{d}{dy}g^{-1}(y)\right|$.
-
-  Tổng quát (Jacobian): $\mathbf{Y} = \mathbf{g}(\mathbf{X})$: $f_{\mathbf{Y}}(\mathbf{y}) = f_{\mathbf{X}}\!\bigl(\mathbf{g}^{-1}(\mathbf{y})\bigr)\,|J^{-1}|$.
-\end{congthuc}
+\begin{tongket}[title={Tổng kết Phần III}]
+Đồng thời $\to$ biên $\to$ có điều kiện; độc lập; $\mathrm{Cov}$, $\rho$.
+\end{tongket}
 
 %% ================================================================
-%%  CHƯƠNG 5: CÁC BẤT ĐẲNG THỨC VÀ ĐỊNH LÝ GIỚI HẠN
-%% ================================================================
-\section{Các bất đẳng thức và định lý giới hạn}
+\section{Luật số lớn}
+
+\begin{dongco}[title={Động cơ học -- Thăm dò ý kiến và đo lường}]
+\textbf{Thăm dò 1000 cử tri} trong tổng số hàng triệu: tỷ lệ ủng hộ $52\% \pm$ sai số. Tại sao ta \emph{tin} con số này hơn hỏi đúng 3 người bạn?
+
+\textbf{Gieo xu 10\,000 lần:} tần suất sấp gần $0{,}5$; gieo 10 lần mà ra 9 sấp vẫn có thể xảy ra - không chứng minh xu gian.
+
+\textbf{Đo điện trở 50 lần:} mỗi lần có sai số ngẫu nhiên; lấy trung bình $\bar{X}_{50}$ ổn định hơn một lần đo.
+
+Ba hiện tượng cùng một ý: \textbf{trung bình mẫu} (hoặc tần suất) \emph{hội tụ} tới giá trị ``thật'' khi $n \to \infty$ - nhưng cần nói rõ \emph{theo xác suất} (LSL) và dùng bất đẳng thức Chebyshev để ước lượng ``sai bao nhiêu với $n$ quan sát''.
+\end{dongco}
+
+\subsection{Hội tụ theo xác suất}
+
+\begin{ynghia}
+Dãy $Z_n$ \textbf{hội tụ theo xác suất} tới $c$ nếu $P(|Z_n - c| < \varepsilon) \to 1$ với mọi $\varepsilon > 0$ (ký hiệu $Z_n \xrightarrow{P} c$).
+\end{ynghia}
+
+\subsection{Bất đẳng thức Markov và Chebyshev}
 
 \begin{dinhly}[title={Bất đẳng thức Markov}]
-  Nếu $X \ge 0$ thì $P(X \ge a) \le \dfrac{E[X]}{a}$, $\forall a > 0$.
+Nếu $Y \ge 0$ và $E(Y)$ hữu hạn thì với $a > 0$: $P(Y \ge a) \le \dfrac{E(Y)}{a}$.
 \end{dinhly}
 
 \begin{dinhly}[title={Bất đẳng thức Chebyshev}]
-  $P(|X - EX| \ge \varepsilon) \le \dfrac{\text{Var}(X)}{\varepsilon^2}$.
+$E(X) = \mu$, $\mathrm{Var}(X) = \sigma^2 < \infty$. Với $\varepsilon > 0$:
+\[
+  P(|X - \mu| \ge \varepsilon) \le \frac{\sigma^2}{\varepsilon^2}
+  \quad\Leftrightarrow\quad
+  P(|X - \mu| < \varepsilon) \ge 1 - \frac{\sigma^2}{\varepsilon^2}.
+\]
+Đặt $\varepsilon = k\sigma$: $P(\mu - k\sigma < X < \mu + k\sigma) \ge 1 - 1/k^2$ (với $k=2$: $\ge 3/4$; $k=3$: $\ge 8/9$).
 \end{dinhly}
 
-\begin{dinhly}[title={Luật số lớn yếu (Khinchin)}]
-  Cho $X_1, X_2, \ldots$ iid với $E[X_i] = \mu$. Đặt $\bar{X}_n = \frac{1}{n}\sum_{i=1}^{n}X_i$. Thì:
-  \[
-    \bar{X}_n \xrightarrow{P} \mu \qquad (n \to \infty).
-  \]
+\begin{vidu}[title={Chebyshev khi chưa biết phân phối}]
+$EX = 8$, $\mathrm{Var}(X) = 9$, $\sigma = 3$.
+\begin{itemize}
+  \item $P(-4 < X < 20) = P(8 - 4\cdot 3 < X < 8 + 4\cdot 3) \ge 1 - 1/16 = 15/16$.
+  \item $P(|X - 8| \ge 6) = P(|X - 8| \ge 2\sigma) \le 1/4$.
+\end{itemize}
+\end{vidu}
+
+\subsection{Luật số lớn}
+
+\begin{dinhly}[title={Luật số lớn Chebyshev}]
+$X_1, X_2, \ldots$ độc lập, $EX_i$ hữu hạn, $\mathrm{Var}(X_i) \le C$. Với $\varepsilon > 0$:
+\[
+  \lim_{n \to \infty} P\!\left(\left|\frac{1}{n}\sum_{i=1}^n X_i - \frac{1}{n}\sum_{i=1}^n EX_i\right| < \varepsilon\right) = 1.
+\]
+Nếu cùng $EX_i = \mu$: $\displaystyle\frac{1}{n}\sum_{i=1}^n X_i \xrightarrow{P} \mu$.
 \end{dinhly}
 
-\begin{dinhly}[title={Luật số lớn mạnh (Kolmogorov)}]
-  Dưới điều kiện trên: $\bar{X}_n \xrightarrow{\text{a.s.}} \mu$.
+\begin{dinhly}[title={Luật số lớn Bernoulli}]
+$n$ phép thử Bernoulli, $P(A) = p$, $x$ = số lần $A$ xảy ra:
+\[
+  \frac{x}{n} \xrightarrow{P} p \quad (n \to \infty).
+\]
+Cơ sở lý thuyết cho định nghĩa xác suất thống kê ở Phần I: ``khi $n \to \infty$ thì $x/n \to p$''.
 \end{dinhly}
 
-\begin{dinhly}[title={Định lý giới hạn trung tâm (CLT)}]
-  Cho $X_1, X_2, \ldots$ iid, $E[X_i] = \mu$, $\text{Var}(X_i) = \sigma^2 < \infty$. Thì:
-  \[
-    \frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} = \frac{S_n - n\mu}{\sigma\sqrt{n}} \xrightarrow{d} \mathcal{N}(0, 1).
-  \]
-  Xấp xỉ: $\bar{X}_n \approx \mathcal{N}\!\left(\mu, \dfrac{\sigma^2}{n}\right)$ khi $n$ lớn.
-\end{dinhly}
+\begin{vidu}[title={Phỏng vấn cử tri}]
+$X_i \sim \mathrm{Bern}(p)$, $K_n = \frac{1}{n}\sum X_i$. Chebyshev:
+$P(|K_n - p| < \varepsilon) \ge 1 - \dfrac{p(1-p)}{n\varepsilon^2} \ge 1 - \dfrac{1}{4n\varepsilon^2}$.
 
-\begin{luuy}
-  CLT giải thích tại sao phân phối chuẩn xuất hiện khắp nơi: tổng nhiều yếu tố ngẫu nhiên nhỏ, độc lập sẽ xấp xỉ phân phối chuẩn.
-\end{luuy}
+Ví dụ: $\varepsilon = 0.1$, $n = 100$ $\Rightarrow$ sai số $> 0.1$ với xác suất $\le 0.25$. Muốn tin cậy $95\%$, $\varepsilon = 0.01$ cần $n$ đủ lớn (giải từ bất đẳng thức).
+\end{vidu}
+
+\begin{tongket}[title={Tổng kết}]
+\begin{enumerate}
+  \item Markov, Chebyshev: giới hạn xác suất lệch khỏi kỳ vọng.
+  \item LSL: trung bình mẫu hội tụ tới $EX$ (Chebyshev) hoặc $p$ (Bernoulli).
+  \item Xấp xỉ nhị thức $\to$ chuẩn (Moivre--Laplace) là bước đệm trước CLT đầy đủ trong thống kê.
+\end{enumerate}
+\end{tongket}
 
 \end{document}
