@@ -1,0 +1,687 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 1
+SỰ KIỆN NGẪU NHIÊN VÀ PHÉP TÍNH XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng 201.BIS–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+1/24
+
+SAMI.HUST – 2023
+
+1 / 24
+
+1.3. XÁC SUẤT CỦA MỘT SỰ KIỆN
+
+1
+
+1.3.1 Khái niệm xác suất
+
+2
+
+1.3.2 Định xác suất theo quan điểm cổ điển
+
+3
+
+1.3.3 Định nghĩa xác suất theo quan điểm hình học
+
+4
+
+1.3.4 Định nghĩa xác suất theo quan điểm thống kê
+
+5
+
+Bài tập Mục 1.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+2/24
+
+SAMI.HUST – 2023
+
+2 / 24
+
+Khái niệm xác suất
+
+Khái niệm 4
+Tiến hành một phép thử và gọi A là một sự kiện nào đó liên quan đến phép thử. Xác suất của sự kiện A là
+một số nằm giữa 0 và 1, số này đo lường khả năng xuất hiện của sự kiện A.
+Ký hiệu xác suất của sự kiện A là P (A).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+3/24
+
+SAMI.HUST – 2023
+
+3 / 24
+
+1.3. XÁC SUẤT CỦA MỘT SỰ KIỆN
+
+1
+
+1.3.1 Khái niệm xác suất
+
+2
+
+1.3.2 Định xác suất theo quan điểm cổ điển
+
+3
+
+1.3.3 Định nghĩa xác suất theo quan điểm hình học
+
+4
+
+1.3.4 Định nghĩa xác suất theo quan điểm thống kê
+
+5
+
+Bài tập Mục 1.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+4/24
+
+SAMI.HUST – 2023
+
+4 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+
+Khái niệm 5
+Các kết cục của một phép thử được gọi là đồng khả năng nếu khả năng xảy ra của chúng là như nhau.
+- Chẳng hạn, trong một phép thử có n kết cục có thể xảy ra, các kết cục này là đồng khả năng nếu khả năng
+xảy ra của mỗi kết cục đều là 1/n.
+Định nghĩa 14
+Giả sử trong một phép thử có n kết cục đồng khả năng, trong đó, có m kết cục thuận lợi cho sự xuất hiện
+của sự kiện A. Khi đó,
+P (A) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+số kết cục thuận lợi cho A
+m
+=
+.
+n
+tổng số kết cục đồng khả năng có thể có
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+(8)
+
+5/24
+
+SAMI.HUST – 2023
+
+5 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+
+Tính chất 2
+(a) Nếu A là một sự kiện bất kỳ thì 0 ≤ P (A) ≤ 1.
+(a) P (S) = 1.
+(b) P (∅) = 0.
+(c) Nếu A ⊂ B thì P (A) ≤ P (B).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+6/24
+
+SAMI.HUST – 2023
+
+6 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+
+Ví dụ 19
+Một người khi gọi điện thoại quên mất 2 số cuối cùng của số điện thoại cần gọi mà chỉ nhớ được rằng chúng
+khác nhau. Tìm xác suất để người đó chọn ngẫu nhiên một số để gọi thì được đúng số cần gọi.
+Giải. Gọi A là sự kiện “người đó chọn được đúng số cần gọi”.
+Số kết cục đồng khả năng có thể có là n = A210 = 90.
+Số kết cục thuận lợi cho sự kiện A là m = 1.
+Vậy P (A) =
+
+m
+n
+
+=
+
+1
+.
+90
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+7/24
+
+SAMI.HUST – 2023
+
+7 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+
+Ví dụ 20
+Từ bộ bài tú lơ khơ gồm 52 quân bài đã trộn kỹ rút ngẫu nhiên ra hai quân bài. Tính xác suất xảy ra các sự
+kiện sau:
+(a) Hai quân bài rút ra đều là J.
+(b) Trong hai quân bài rút ra có một quân J, một quân K.
+2
+Giải. Số kết cục đồng khả năng có thể có là n = C52
+= 1326.
+Gọi A là sự kiện “hai quân rút ra đều là J”; B là sự kiện “trong hai quân rút ra có một cây J, một cây K”.
+
+(a) Số kết cục thuận lợi cho sự kiện A là mA = C42 = 6, suy ra P (A) =
+
+mA
+n
+
+=
+
+6
+1326
+
+=
+
+1
+.
+221
+
+(b) Số kết cục thuận lợi cho sự kiện B là mB = C41 × C41 = 16, suy ra P (B) =
+
+mB
+n
+
+=
+
+8
+.
+663
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+8/24
+
+SAMI.HUST – 2023
+
+8 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+Ví dụ 21
+Ba nữ nhân viên phục vụ A, B và C thay nhau rửa đĩa chén và giả sử ba người này đều “khéo léo” như nhau.
+Trong một tháng có 4 chiếc chén khác nhau bị vỡ. Tìm xác suất để:
+(a) Chị A đánh vỡ 3 chén và chị B đánh vỡ 1 chén;
+(b) Một trong ba người đánh vỡ 3 chén;
+(c) Một trong ba người đánh vỡ cả 4 chén.
+Giải. Số kết cục đồng khả năng có thể có là n = 34 .
+(a) Số kết cục thuận lợi cho sự kiện D “chị A đánh vỡ 3 chén và chị B đánh vỡ 1 chén” là mD = C43 × 1 = 4,
+4
+≈ 0, 0494.
+suy ra P (D) = 81
+(b) Số kết cục thuận lợi cho sự kiện E “một trong 3 người đánh vỡ 3 chén” là mE = C31 × C43 × 2 = 24, nên
+P (E) = 24
+≈ 0, 2963.
+81
+(c) Số kết cục thuận lợi cho sự kiện F “một trong 3 người đánh vỡ 4 chén” là mF = C31 × C44 = 3. Vậy
+3
+≈ 0, 037.
+P (F ) = 81
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+9/24
+
+SAMI.HUST – 2023
+
+9 / 24
+
+Định nghĩa xác suất theo quan điểm cổ điển
+
+- Định nghĩa xác suất theo quan điểm cổ điển có ưu điểm là dễ vận dụng, tuy nhiên, định nghĩa này chỉ áp
+dụng được với các phép thử ngẫu nhiên có hữu hạn kết cục đồng khả năng. Trong trường hợp có vô hạn kết
+cục đồng khả năng ta sử dụng định nghĩa xác suất theo quan điểm hình học.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+10/24
+
+SAMI.HUST – 2023
+
+10 / 24
+
+1.3. XÁC SUẤT CỦA MỘT SỰ KIỆN
+
+1
+
+1.3.1 Khái niệm xác suất
+
+2
+
+1.3.2 Định xác suất theo quan điểm cổ điển
+
+3
+
+1.3.3 Định nghĩa xác suất theo quan điểm hình học
+
+4
+
+1.3.4 Định nghĩa xác suất theo quan điểm thống kê
+
+5
+
+Bài tập Mục 1.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+11/24
+
+SAMI.HUST – 2023
+
+11 / 24
+
+Định nghĩa xác suất theo quan điểm hình học
+
+Định nghĩa 15
+Giả sử một phép thử có vô hạn kết cục đồng khả năng và các kết cục này được biểu thị bởi một miền hình
+học G (có độ đo hữu hạn và khác 0), còn các kết cục thuận lợi cho sự kiện A được biểu thị bởi miền con H
+của G. Khi đó,
+độ đo của H
+.
+(9)
+P (A) =
+độ đo của G
+- Tùy theo G là đoạn thẳng, miền phẳng hay khối không gian mà độ đo được hiểu là độ dài, diện tích hay thể
+tích.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+12/24
+
+SAMI.HUST – 2023
+
+12 / 24
+
+Định nghĩa xác suất theo quan điểm hình học
+Ví dụ 22
+Hai người bạn hẹn gặp nhau ở một địa điểm trong khoảng thời gian từ 7h00 đến 8h00. Mỗi người có thể đến
+điểm hẹn một cách ngẫu nhiên tại một thời điểm trong khoảng thời gian nói trên và họ quy ước rằng ai đến
+mà không thấy người kia thì chỉ đợi trong vòng 10 phút. Tính xác suất để hai người gặp nhau.
+Giải. Gọi x và y lần lượt là thời điểm đến điểm hẹn của hai người, 0 ≤ x, y ≤ 60.
+y
+60 C
+
+Q
+O
+
+M
+
+P
+
+B
+N
+
+A
+60 x
+
+Hình 7: Minh họa cho Ví dụ 22
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+13/24
+
+SAMI.HUST – 2023
+
+13 / 24
+
+Định nghĩa xác suất theo quan điểm hình học
+
+Mỗi cặp thời điểm đến (x, y) của hai người là một điểm của miền
+G = {(x, y) ∈ R2 | 0 ≤ x ≤ 60; 0 ≤ y ≤ 60}
+
+(hình vuông OABC).
+
+Gọi E là sự kiện “hai người gặp nhau”, khi đó, E được biểu diễn bởi
+H = {(x, y) ∈ G | |x − y| ≤ 10}
+
+(đa giác OM N BP Q).
+
+Sử dụng định nghĩa xác suất theo quan điểm hình học,
+P (E) =
+
+diện tích (OM N BP Q)
+diện tích H
+602 − 502
+11
+=
+=
+=
+≈ 0, 3056.
+602
+36
+diện tích G
+diện tích (OABC)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+14/24
+
+SAMI.HUST – 2023
+
+14 / 24
+
+Định nghĩa xác suất theo quan điểm hình học
+
+- Định nghĩa xác suất theo quan điểm cổ điển và định nghĩa xác suất theo quan điểm hình học chỉ áp dụng được
+với các phép thử ngẫu nhiên có kết cục đồng khả năng xảy ra. Trong nhiều bài toán thực tế, việc tính hết các kết
+cục của một phép thử không dễ dàng, bên cạnh đó điều kiện các kết cục đồng khả năng thường khó thỏa mãn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+15/24
+
+SAMI.HUST – 2023
+
+15 / 24
+
+1.3. XÁC SUẤT CỦA MỘT SỰ KIỆN
+
+1
+
+1.3.1 Khái niệm xác suất
+
+2
+
+1.3.2 Định xác suất theo quan điểm cổ điển
+
+3
+
+1.3.3 Định nghĩa xác suất theo quan điểm hình học
+
+4
+
+1.3.4 Định nghĩa xác suất theo quan điểm thống kê
+
+5
+
+Bài tập Mục 1.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+16/24
+
+SAMI.HUST – 2023
+
+16 / 24
+
+Định nghĩa xác suất theo quan điểm thống kê
+Định nghĩa 16
+Giả sử trong một điều kiện nào đó ta có thể lặp lại n lần một phép thử và thấy có x lần xuất hiện sự kiện A.
+Khi đó, x được gọi là tần số và tỷ số x/n gọi là tần suất xuất hiện sự kiện A, ký hiệu là fn (A).
+Như vậy,
+fn (A) =
+
+x
+.
+n
+
+(10)
+
+Ví dụ 23
+Để xác định tần suất xuất hiện mặt sấp khi tung một đồng xu nhiều lần, người ta ghi lại kết quả sau:
+Người thí nghiệm
+Buffon
+Pearson
+Pearson
+
+Số lần tung (n)
+4040
+12000
+24000
+
+Số lần xuất hiện mặt sấp (x)
+2048
+6019
+12012
+
+Tần suất (fn )
+0,5069
+0,5016
+0,5005
+
+Ta thấy rằng khi số lần tung đồng xu càng lớn, tần suất xuất hiện mặt sấp càng gần với xác suất xuất hiện
+mặt sấp là 0,5 (tính bằng Định nghĩa xác suất theo quan điểm cổ điển).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+17/24
+
+SAMI.HUST – 2023
+
+17 / 24
+
+Định nghĩa xác suất theo quan điểm thống kê
+
+Định nghĩa 17
+Khi số phép thử tăng lên vô hạn, tần suất xuất hiện sự kiện A tiến dần đến một số xác định p nào đó. Số p
+đó được gọi là xác suất của sự kiện A (theo quan điểm thống kê).
+- Theo Định nghĩa 17,
+P (A) := lim fn (A).
+n→∞
+
+Trong thực tế, nếu n đủ lớn ta có thể lấy
+P (A) ≈ fn (A).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+18/24
+
+SAMI.HUST – 2023
+
+18 / 24
+
+Định nghĩa xác suất theo quan điểm thống kê
+
+Ví dụ 24
+Bằng định nghĩa xác suất theo quan điểm thống kê, người ta đã tìm được xác suất để sinh con trai trong
+mỗi lần sinh là p = 0, 518, con số này hầu như không thay đổi theo thời gian, địa phương và chủng tộc.
+Nhà toán học Laplace trong 10 năm liền theo dõi ở thành phố Petersburg, London và Berlin thấy tỷ số
+đó là 22/43. Ông cũng đã theo dõi 40 năm liền ở Paris thấy tỷ số đó là 25/49.
+Nhà toán học Crema theo dõi ở Sweden năm 1935 cũng thấy tỷ số đó là 0,518.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+19/24
+
+SAMI.HUST – 2023
+
+19 / 24
+
+Định nghĩa xác suất theo quan điểm thống kê
+
+Định nghĩa xác suất theo quan điểm thống kê khắc phục được một nhược điểm của định nghĩa xác suất
+theo quan điểm cổ điển là không dùng đến khái niệm đồng khả năng.
+Định nghĩa xác suất theo quan điểm thống kê không giúp ta tính được chính xác xác suất của một sự kiện
+mà chỉ tìm được giá trị gần đúng; đồng thời số phép thử phải đủ lớn và chỉ dùng được cho các phép thử có
+thể lặp lại nhiều lần một cách độc lập trong các điều kiện giống nhau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+20/24
+
+SAMI.HUST – 2023
+
+20 / 24
+
+1.3. XÁC SUẤT CỦA MỘT SỰ KIỆN
+
+1
+
+1.3.1 Khái niệm xác suất
+
+2
+
+1.3.2 Định xác suất theo quan điểm cổ điển
+
+3
+
+1.3.3 Định nghĩa xác suất theo quan điểm hình học
+
+4
+
+1.3.4 Định nghĩa xác suất theo quan điểm thống kê
+
+5
+
+Bài tập Mục 1.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+21/24
+
+SAMI.HUST – 2023
+
+21 / 24
+
+Bài tập
+
+Bài 11
+Từ một bộ bài tú lơ khơ gồm 52 quân bài đã được trộn kỹ rút ngẫu nhiên ra ba quân bài. Tính xác suất để:
+(a) Ba quân bài được rút ra đều là J.
+(b) Trong ba quân bài được rút ra có một cây K, một cây Q, một cây J.
+(c) Ba quân bài được rút ra là đồng chất.
+Bài 12
+Một đường dây điện thoại ngầm nối một tổng đài với một trạm dài 1 kilômét bị đứt ngẫu nhiên tại một
+điểm. Tính xác suất để điểm đứt cách tổng đài không quá 100 mét.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+22/24
+
+SAMI.HUST – 2023
+
+22 / 24
+
+Bài tập
+Bài 13
+Số liệu trên thế giới về số người bị nhiễm cúm Virus Corona (COVID-19) cập nhật lúc 17h30 ngày
+25/7/2020 như sau: Số người mắc là 15 968 357; số người tử vong là 643 384. Dưới đây là số liệu của 6 nước
+có số người bị nhiễm COVID-19 cao nhất tại thời điểm đó:
+Quốc gia
+Mỹ
+Bra-xin
+Ấn Độ
+Nga
+Nam Phi
+Mê-hi-cô
+
+Số người nhiễm
+4 248 492
+2 348 200
+1 339
+806
+421
+378
+
+Số người tử vong
+148 492
+85 385
+
+176
+720
+996
+285
+
+31
+13
+6
+42
+
+425
+192
+343
+645
+
+(a) Xác suất người bị chết do nhiễm bệnh COVID-19 là bao nhiêu?
+(b) Người dân đang ở nước nào có xác suất chết do nhiễm bệnh COVID-19 là cao nhất/thấp nhất trong 6
+nước được xét?
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+23/24
+
+SAMI.HUST – 2023
+
+23 / 24
+
+Bài tập
+
+Bài 14
+Trong một thành phố có 5 khách sạn. Có 3 khách du lịch đến thành phố đó, mỗi người chọn ngẫu nhiên một
+khách sạn để nghỉ. Tìm xác suất để:
+(a) Mỗi người khách ở một khách sạn khác nhau.
+(b) Có đúng hai người khách ở cùng một khách sạn.
+Bài 15
+Cho đoạn thẳng AB có độ dài 10 centimét. Lấy một điểm C bất kỳ trên đoạn thẳng đó. Tính xác suất để
+chênh lệch độ dài giữa hai đoạn thẳng AC và CB không vượt quá 4 centimét.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.3
+
+24/24
+
+SAMI.HUST – 2023
+
+24 / 24
+
+

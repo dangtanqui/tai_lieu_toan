@@ -1,0 +1,1296 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 2
+BIẾN NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+1/39
+
+SAMI.HUST – 2023
+
+1 / 39
+
+2.3. KỲ VỌNG, PHƯƠNG SAI CỦA BIẾN NGẪU NHIÊN
+1
+
+2.3.1 Kỳ
+2.3.1.1
+2.3.1.2
+2.3.1.3
+
+vọng
+Kỳ vọng của một biến ngẫu nhiên
+Kỳ vọng của hàm của một biến ngẫu nhiên
+Tính chất của kỳ vọng
+
+2
+
+2.3.2 Phương sai. Độ lệch chuẩn
+2.3.2.1 Phương sai của biến ngẫu nhiên
+2.3.2.2 Phương sai của hàm của một biến ngẫu nhiên
+2.3.2.3 Tính chất của phương sai
+2.3.2.4 Độ lệch chuẩn
+
+3
+
+2.3.3 Mốt. Trung vị
+2.3.3.1 Mốt
+2.3.3.2 Trung vị
+
+4
+
+Bài tập Mục 2.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+2/39
+
+SAMI.HUST – 2023
+
+2 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+Định nghĩa 5
+Kỳ vọng của biến ngẫu nhiên X, ký hiệu là E(X) (hoặc µX hoặc đơn giản là µ), được định nghĩa như sau:
+(a) Nếu X là biến ngẫu nhiên rời rạc chỉ nhận hữu hạn các giá trị khác nhau với bảng phân phối xác suất
+(1) thì
+n
+X
+E(X) =
+xi p i .
+(8)
+i=1
+
+(b) Nếu X là biến ngẫu nhiên rời rạc nhận một số đếm được các giá trị khác nhau với bảng phân phối xác
+suất (2) thì
+∞
+X
+E(X) =
+xn p n
+(9)
+n=1
+
+nếu chuỗi vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+3/39
+
+SAMI.HUST – 2023
+
+3 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+
+Định nghĩa 5 (tiếp theo)
+(c) Nếu X là biến ngẫu nhiên liên tục có hàm mật độ xác suất fX (x) thì
++∞
+Z
+xfX (x)dx
+E(X) =
+
+(10)
+
+−∞
+
+nếu tích phân vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+4/39
+
+SAMI.HUST – 2023
+
+4 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+Ví dụ 18
+(a) Trong Ví dụ 5, X là biến ngẫu nhiên chỉ số bít bị lỗi trong 4 bít được truyền đi, theo (8), kỳ vọng của
+biến ngẫu nhiên X là
+E(X) = (0 × 0, 6561) + (1 × 0, 2916) + (2 × 0, 0486) + (3 × 0, 0036) + (4 × 0, 0001) = 0, 4.
+(b) Trong Ví dụ 9, X là biến ngẫu nhiên chỉ số sản phẩm được sản xuất giữa hai lần điều chỉnh, theo (9),
+kỳ vọng của biến ngẫu nhiên X là
+E(X) = 0, 001 ×
+
+∞
+X
+
+n × (0, 999)n−1 = 1000.
+
+n=1
+
+(c) Trong Ví dụ 14, X là biến ngẫu nhiên chỉ cường độ dòng điện đo được trên một sợi dây đồng mỏng,
+theo (10), kỳ vọng của biến ngẫu nhiên X là
+Z20
+E(X) =
+
+Z20
+xfX (x)dx =
+
+0
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+0, 05xdx = 10.
+0
+5/39
+
+SAMI.HUST – 2023
+
+5 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+
+Kỳ vọng của một biến ngẫu nhiên rời rạc có hữu hạn phần tử là một số xác định, còn với biến ngẫu nhiên
+rời rạc có vô hạn đếm được phần tử hay biến ngẫu nhiên liên tục thì chưa chắc đã có kỳ vọng.
+Kỳ vọng của một biến ngẫu nhiên rời rạc X là trung bình có trọng số của các giá trị có thể có của X, với
+trọng số bằng xác suất.
+Trong Ví dụ 18(a), mặc dù X không nhận giá trị là 0,4 nhưng trung bình có trọng số của các giá trị có thể
+có là 0,4.
+Khái niệm kỳ vọng được áp dụng rộng rãi trong nhiều lĩnh vực, ví dụ trong kinh doanh và quản lý, kỳ vọng
+được ứng dụng dưới dạng lợi nhuận kỳ vọng hay doanh số kỳ vọng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+6/39
+
+SAMI.HUST – 2023
+
+6 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+
+Ví dụ 19
+Xét trò chơi trả lời hai câu hỏi A và B, người chơi có quyền chọn câu hỏi nào để trả lời đầu tiên. Câu hỏi A
+được trả lời đúng với xác suất 0,8 và khi đó người chơi sẽ được thưởng 100 USD, câu hỏi B được trả lời đúng
+với xác suất 0,6 và người chơi được thưởng 200 USD. Nếu không trả lời đúng lần thứ nhất sẽ không được trả
+lời lần tiếp theo. Vậy người chơi nên chọn câu hỏi nào trả lời đầu tiên để tiền thưởng trung bình nhận được
+cao hơn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+7/39
+
+SAMI.HUST – 2023
+
+7 / 39
+
+Kỳ vọng của một biến ngẫu nhiên
+Giải.
+Gọi X là “số tiền thưởng nhận được khi người chơi chọn câu hỏi A trả lời đầu tiên”. Bảng phân phối xác
+suất của X là
+X
+P (X = xi )
+
+0
+0, 2
+
+100
+0, 32
+
+300
+0, 48
+
+và E(X) = 0 × 0, 2 + 100 × 0, 32 + 300 × 0, 48 = 176 USD.
+Gọi Y là “số tiền thưởng nhận được khi người chơi chọn câu hỏi B trả lời đầu tiên”. Bảng phân phối xác
+suất của Y là
+Y
+P (Y = yi )
+
+0
+0, 4
+
+200
+0, 12
+
+300
+0, 48
+
+và E(Y ) = 0 × 0, 4 + 200 × 0, 12 + 300 × 0, 48 = 168 USD.
+Vậy nên chọn câu hỏi A trả lời đầu tiên để có khả năng nhận thưởng cao hơn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+8/39
+
+SAMI.HUST – 2023
+
+8 / 39
+
+Kỳ vọng của hàm của một biến ngẫu nhiên
+Định lý 2
+Cho X là một biến ngẫu nhiên và g(.) là hàm một biến thực.
+(a) Nếu X là biến ngẫu nhiên rời rạc nhận một số hữu hạn giá trị khác nhau với bảng phân phối xác suất
+(1), thì
+E[g(X)] =
+
+n
+X
+
+(11)
+
+g(xi )pi .
+
+i=1
+
+(b) Nếu X là biến ngẫu nhiên rời rạc nhận một số đếm được giá trị với bảng phân phối xác suất (2), thì
+E[g(X)] =
+
+∞
+X
+
+(12)
+
+g(xi )pi ,
+
+i=1
+
+nếu chuỗi vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+9/39
+
+SAMI.HUST – 2023
+
+9 / 39
+
+Kỳ vọng của hàm của một biến ngẫu nhiên
+
+Định lý 2 (tiếp theo)
+(c) Nếu X là biến ngẫu nhiên liên tục có hàm mật độ xác suất fX (x) và g là hàm số liên tục, thì
+E[g(X)] =
+
++∞
+Z
+g(x)fX (x)dx,
+
+(13)
+
+−∞
+
+nếu tích phân vế phải hội tụ.
+- Khi cần tìm E[g(X)] đối với biến ngẫu nhiên liên tục, thì việc tính E[g(X)] trực tiếp bằng cách sử dụng Định
+lý 2 sẽ dễ dàng hơn việc tìm hàm mật độ của biến ngẫu nhiên Y = g(X) rồi sau đó sử dụng định nghĩa của kỳ
+vọng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+10/39
+
+SAMI.HUST – 2023
+
+10 / 39
+
+Kỳ vọng của hàm của một biến ngẫu nhiên
+
+Ví dụ 20
+(a) Trong Ví dụ 5, X là số bít bị lỗi trong bốn bít được truyền đi, theo (11), kỳ vọng của bình phương số
+bít bị lỗi là
+E(X 2 ) = 02 × 0, 6561 + 12 × 0, 2916 + 22 × 0, 0486 + 32 × 0, 0036 + 42 × 0, 0001 = 0, 52.
+(b) Trong Ví dụ 14, X là cường độ dòng điện được đo bằng miliamp, theo (13), giá trị kỳ vọng của cường
+độ dòng điện bình phương là
+E(X 2 ) =
+
+Z20
+
+x2 fX (x)dx =
+
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+Z20
+
+0, 05x2 dx = 133, 3333.
+
+0
+
+11/39
+
+SAMI.HUST – 2023
+
+11 / 39
+
+Kỳ vọng của hàm của một biến ngẫu nhiên
+
+Ví dụ 21
+Sử dụng Định lý 2, tính kỳ vọng của biến ngẫu nhiên g(X) = 6X + 2 với X là biến ngẫu nhiên trong Ví dụ 7.
+Giải. Sử dụng (11) và kết quả của Ví dụ 7,
+115
+75
+25
++ (6 × 1 + 2) ×
++ (6 × 2 + 2) ×
+203
+203
+406
+1
+2030
++ (6 × 3 + 2) ×
+=
+= 5.
+406
+406
+
+E[g(X)] = E(6X + 2) = (6 × 0 + 2) ×
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+12/39
+
+SAMI.HUST – 2023
+
+12 / 39
+
+Tính chất của kỳ vọng
+Tính chất 3 (Tính chất tuyến tính)
+Nếu a và b là các hằng số thì
+E(aX + b) = aE(X) + b.
+Hệ quả 1
+Nếu c là một hằng số thì
+(a) E(c) = c.
+(b) E(cX) = cE(X).
+Tính chất 4 (Tính chất cộng tính)
+Cho X là một biến ngẫu nhiên, h(x) và g(x) là các hàm nhận giá trị thực. Khi đó,
+E[g(X) ± h(X)] = E[g(X)] ± E[h(X)].
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+(14)
+13/39
+
+SAMI.HUST – 2023
+
+13 / 39
+
+Tính chất của kỳ vọng
+
+Ví dụ 22
+Sử dụng Tính chất 3, tính kỳ vọng của biến ngẫu nhiên g(X) = 6X + 2 với X là biến ngẫu nhiên trong Ví
+dụ 8.
+Giải. Sử dụng (8),
+E(X) = 0 ×
+
+115
+75
+25
+1
++1×
++2×
++3×
+= 0, 5.
+203
+203
+406
+406
+
+Sử dụng Tính chất 3,
+E(6X + 2) = 6E(X) + 2 = 6 × 0, 5 + 2 = 5.
+Kết quả này tương tự như kết quả đã tính trong Ví dụ 21.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+14/39
+
+SAMI.HUST – 2023
+
+14 / 39
+
+2.3. KỲ VỌNG, PHƯƠNG SAI CỦA BIẾN NGẪU NHIÊN
+1
+
+2.3.1 Kỳ
+2.3.1.1
+2.3.1.2
+2.3.1.3
+
+vọng
+Kỳ vọng của một biến ngẫu nhiên
+Kỳ vọng của hàm của một biến ngẫu nhiên
+Tính chất của kỳ vọng
+
+2
+
+2.3.2 Phương sai. Độ lệch chuẩn
+2.3.2.1 Phương sai của biến ngẫu nhiên
+2.3.2.2 Phương sai của hàm của một biến ngẫu nhiên
+2.3.2.3 Tính chất của phương sai
+2.3.2.4 Độ lệch chuẩn
+
+3
+
+2.3.3 Mốt. Trung vị
+2.3.3.1 Mốt
+2.3.3.2 Trung vị
+
+4
+
+Bài tập Mục 2.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+15/39
+
+SAMI.HUST – 2023
+
+15 / 39
+
+Phương sai của biến ngẫu nhiên
+Kỳ vọng của một biến ngẫu nhiên X phản ánh giá trị trung tâm của phân phối xác suất của biến ngẫu nhiên.
+Tuy nhiên, kỳ vọng không đưa ra một mô tả đầy đủ về hình dạng của phân phối. Trong Hình 8, ta có biểu
+đồ của hai phân phối xác suất rời rạc có cùng kỳ vọng, µ = 2, nhưng khác nhau đáng kể về độ phân tán
+của các quan sát của chúng so với giá trị trung bình. Cụ thể, phân phối ở hình (b) phân tán xung quanh giá
+trị trung bình mạnh hơn so với phân phối ở hình (a). Do đó, cần xác định mức độ phân tán của các giá trị
+của biến ngẫu nhiên xung quanh giá trị trung bình của nó.
+
+Hình 8: Phân phối rời rạc với kỳ vọng bằng nhau nhưng độ phân tán khác nhau
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+16/39
+
+SAMI.HUST – 2023
+
+16 / 39
+
+Phương sai của biến ngẫu nhiên
+
+Định nghĩa 6
+Cho X là một biến ngẫu nhiên có kỳ vọng là E(X). Phương sai của biến ngẫu nhiên X, ký hiệu là V (X)
+2
+hoặc σX
+, hoặc đơn giản là σ 2 , được định nghĩa như sau:
+V (X) = E[X − E(X)]2 .
+
+(15)
+
+-Vì X − E(X) là một hàm của biến ngẫu nhiên X, nên từ Định nghĩa 6 và Định lý 2 ta nhận được các công
+thức sau đây:
+(a) Nếu X là biến ngẫu nhiên rời rạc nhận một số hữu hạn các giá trị khác nhau với bảng phân phối xác
+suất (1), thì
+n
+X
+
+2
+V (X) =
+xi − E(X) pi .
+(16)
+i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+17/39
+
+SAMI.HUST – 2023
+
+17 / 39
+
+Phương sai của biến ngẫu nhiên
+
+(b) Nếu X là biến ngẫu nhiên rời rạc nhận một số đếm được giá trị với bảng phân phối xác suất (2), thì
+V (X) =
+
+∞
+X
+
+2
+xn − E(X) pn
+
+(17)
+
+n=1
+
+nếu chuỗi vế phải hội tụ.
+(c) Nếu X là biến ngẫu nhiên liên tục có hàm mật độ xác suất fX (x), x ∈ R, thì
+V (X) =
+
++∞
+Z
+
+
+2
+x − E(X) fX (x)dx
+
+(18)
+
+−∞
+
+nếu tích phân vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+18/39
+
+SAMI.HUST – 2023
+
+18 / 39
+
+Phương sai của biến ngẫu nhiên
+Định lý 3
+V (X) = E(X 2 ) − [E(X)]2 .
+
+(19)
+
+Hệ quả 2
+(a) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác suất (1), thì
+V (X) =
+
+n
+X
+
+x2i pi −
+
+i=1
+
+n
+X
+
+xi pi
+
+2
+
+(20)
+
+.
+
+i=1
+
+(b) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác suất (2), thì
+V (X) =
+
+∞
+X
+
+x2n pn −
+
+n=1
+
+∞
+X
+
+xn pn
+
+2
+
+(21)
+
+n=1
+
+nếu các chuỗi vế phải hội tụ.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+19/39
+
+SAMI.HUST – 2023
+
+19 / 39
+
+Phương sai của biến ngẫu nhiên
+Hệ quả 2 (tiếp theo)
+(c) Nếu X là biến ngẫu nhiên liên tục có hàm mật độ xác suất fX (x), x ∈ R thì
++∞
+Z
+V (X) =
+x2 fX (x)dx −
+−∞
+
+!2
++∞
+Z
+xfX (x)dx
+
+(22)
+
+−∞
+
+nếu các tích phân vế phải hội tụ.
+Phương sai của mọi biến ngẫu nhiên luôn không âm.
+Phương sai càng lớn thì độ phân tán các giá trị của biến ngẫu nhiên xung quanh giá trị trung bình của nó
+càng lớn.
+Khi phương sai bằng 0 thì biến ngẫu nhiên nhận giá trị hằng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+20/39
+
+SAMI.HUST – 2023
+
+20 / 39
+
+Phương sai của biến ngẫu nhiên
+
+Ví dụ 23
+(a) Tính phương sai của biến ngẫu nhiên X chỉ số bít bị lỗi trong 4 bít được truyền đi trong Ví dụ 5.
+Theo (16), sử dụng kết quả của Ví dụ 18(a), phương sai của biến ngẫu nhiên X là
+V (X) =
+
+5
+X
+(xi − 0, 4)2 pi = 0, 36.
+i=1
+
+Nếu sử dụng (20) và kết quả của các Ví dụ 18(a), 20(a) thì
+V (X) = E(X 2 ) − [E(X)]2 = 0, 52 − (0, 4)2 = 0, 36.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+21/39
+
+SAMI.HUST – 2023
+
+21 / 39
+
+Phương sai của biến ngẫu nhiên
+
+Ví dụ 23 (tiếp theo)
+(b) Tính kỳ vọng của biến ngẫu nhiên X chỉ số đo cường độ dòng điện trong Ví dụ 14.
+Theo (18) và sử dụng kết quả của Ví dụ 18(b), phương sai của biến ngẫu nhiên X là
+Z20
+Z20
+2
+V (X) = (x − 10) fX (x)dx = 0, 05(x − 10)2 dx = 33, 3333.
+0
+
+0
+
+Nếu sử dụng (22) và kết quả của các Ví dụ 18(b), 20(b),
+V (X) = E(X 2 ) − [E(X)]2 = 133, 3333 − (10)2 = 33, 3333.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+22/39
+
+SAMI.HUST – 2023
+
+22 / 39
+
+Phương sai của biến ngẫu nhiên
+Phương sai của biến ngẫu nhiên chính là trung bình (có trọng số) của bình phương các độ lệch giữa các giá
+trị có thể có của nó so với giá trị trung bình. Nó phản ánh mức độ phân tán của các giá trị của biến ngẫu
+nhiên xung quanh giá trị trung tâm của nó là kỳ vọng.
+Trong kỹ thuật phương sai đặc trưng cho mức độ phân tán của các chi tiết gia công hay sai số của thiết bị.
+Trong quản lý và kinh doanh thì phương sai đặc trưng cho mức độ rủi ro của các quyết định và thay cho
+“phương sai” người ta thường dùng thuật ngữ “độ biến động”. Như vậy, phương sai càng nhỏ thì chi tiết máy
+có độ chính xác càng cao, phương án đầu tư có độ rủi ro càng thấp.
+Ví dụ 24
+Cho XA , XB lần lượt là biến ngẫu nhiên chỉ số lượng ô tô được sử dụng cho mục đích kinh doanh chính thức
+trong mỗi ngày làm việc của công ty A và B. Phân phối xác suất của XA và XB (Hình 8) tương ứng là
+XA
+P (XA )
+
+1
+0,3
+
+2
+0,4
+
+3
+0,3
+
+XB
+P (XB )
+
+0
+0,2
+
+1
+0,1
+
+2
+0,3
+
+3
+0,3
+
+4
+0,1
+
+Cho nhận xét về phương sai của XA và XB .
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+23/39
+
+SAMI.HUST – 2023
+
+23 / 39
+
+Phương sai của biến ngẫu nhiên
+Giải.
+Từ số liệu phân phối xác suất của các biến ngẫu nhiên XA và XB ta tính được
+E(XA ) = 1 × 0, 3 + 2 × 0, 4 + 3 × 0, 3 = 2, 0,
+E(XB ) = 0 × 0, 2 + 1 × 0, 4 + 2 × 0, 3 + 3 × 0, 3 + 4 × 0, 1 = 2, 0
+và
+V (XA ) = (1 − 2)2 × 0, 3 + (2 − 2)2 × 0, 4 + (3 − 2)2 × 0, 3 = 0, 6,
+V (XB ) = (0 − 2)2 × 0, 2 + (1 − 2)2 × 0, 1 + (2 − 2)2 × 0, 3
++ (3 − 2)2 × 0, 3 + (4 − 2)2 × 0, 1 = 1, 6.
+Suy ra V (XA ) = 0, 6 < 1, 6 = V (XB ).
+Các phương sai này thể hiện mức độ phân tán của các giá trị của biến ngẫu nhiên XA và XB xung quanh
+giá trị trung bình của chúng E(XA ) = E(XB ) = 2, 0 (Hình 8(a) và Hình 8(b)).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+24/39
+
+SAMI.HUST – 2023
+
+24 / 39
+
+Phương sai của biến ngẫu nhiên
+Ví dụ 25
+Theo thống kê việc một người Mỹ 25 tuổi sẽ sống thêm trên một năm có xác suất là 0,992, còn xác suất để
+người đó chết trong vòng một năm tới là 0,008. Một chương trình bảo hiểm đề nghị người đó bảo hiểm sinh
+mạng cho một năm với số tiền chi trả 1000 USD, còn tiền đóng là 10 USD. Hỏi lợi nhuận trung bình của
+công ty bảo hiểm nhận được và phương sai của lợi nhuận là bao nhiêu? Cho nhận xét?
+Giải.
+Gọi X là lợi nhuận của công ty bảo hiểm nhận được, X là biến ngẫu nhiên rời rạc và SX = {−990, 10}.
+Bảng phân phối xác suất của X là
+X
+P (X = xi )
+
+−990
+0,008
+
+10
+0,992
+
+Suy ra
+E(X) = −990 × 0, 008 + 10 × 0, 992 = 2 USD.
+Ta thấy lợi nhuận trung bình bằng 2 USD (một số dương) vì vậy công ty bảo hiểm có thể làm ăn có lãi.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+25/39
+
+SAMI.HUST – 2023
+
+25 / 39
+
+Phương sai của biến ngẫu nhiên
+
+Vì
+E(X 2 ) = (−990)2 × 0, 008 + (10)2 × 0, 992 = 7940.
+Suy ra
+V (X) = E(X 2 ) − [E(X)]2 = 7940 − 4 = 7936.
+Điều này nói lên rằng mặc dù kinh doanh bảo hiểm có lãi nhưng rủi ro khá lớn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+26/39
+
+SAMI.HUST – 2023
+
+26 / 39
+
+Phương sai của hàm của một biến ngẫu nhiên
+Định lý 4
+Cho X là một biến ngẫu nhiên và g(.) là hàm số một biến thực.
+(a) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác suất (1), thì
+V [g(X)] =
+
+n
+X
+
+
+g(xi ) − E[g(X)]
+
+2
+
+(23)
+
+pi .
+
+i=1
+
+(b) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác suất (2), thì
+V [g(X)] =
+
+∞
+X
+
+
+g(xi ) − E[g(X)]
+
+2
+
+(24)
+
+pi
+
+i=1
+
+nếu chuỗi vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+27/39
+
+SAMI.HUST – 2023
+
+27 / 39
+
+Phương sai của hàm của một biến ngẫu nhiên
+
+Định lý 4 (tiếp theo)
+(c) Nếu X là biến ngẫu nhiên liên tục có hàm mật độ xác suất fX (x), x ∈ R và g là hàm số liên tục, thì
+V [g(X)] =
+
++∞
+Z
+
+
+g(x) − E[g(X)]
+
+2
+
+(25)
+
+fX (x)dx
+
+−∞
+
+nếu tích phân vế phải hội tụ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+28/39
+
+SAMI.HUST – 2023
+
+28 / 39
+
+Tính chất của phương sai
+
+Tính chất 5
+Nếu a và b là các hằng số thì
+V (aX + b) = a2 V (X).
+Hệ quả 3
+Nếu c là một hằng số thì
+(a) V (cX) = c2 V (X).
+(b) V (c) = 0.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+29/39
+
+SAMI.HUST – 2023
+
+29 / 39
+
+Độ lệch chuẩn
+
+Định nghĩa 7
+Độ lệch chuẩn (standard deviation) của biến ngẫu nhiên X, ký hiệu là σX , được định nghĩa như sau:
+p
+σX = V (X).
+(26)
+- Khi cần đánh giá mức độ phân tán của biến ngẫu nhiên theo đơn vị đo của nó người ta dùng độ lệch chuẩn vì
+độ lệch chuẩn có cùng đơn vị đo với đơn vị đo của biến ngẫu nhiên.
+Ví dụ 26
+Theo (26),
+(a) Độ lệch chuẩn của biến ngẫu nhiên X trong Ví dụ 5 là σX =
+
+√
+
+(b) Độ lệch chuẩn của biến ngẫu nhiên X trong Ví dụ 14 là σX =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+0, 36 = 0, 6.
+√
+33, 3333 ≈ 5, 7735.
+
+30/39
+
+SAMI.HUST – 2023
+
+30 / 39
+
+2.3. KỲ VỌNG, PHƯƠNG SAI CỦA BIẾN NGẪU NHIÊN
+1
+
+2.3.1 Kỳ
+2.3.1.1
+2.3.1.2
+2.3.1.3
+
+vọng
+Kỳ vọng của một biến ngẫu nhiên
+Kỳ vọng của hàm của một biến ngẫu nhiên
+Tính chất của kỳ vọng
+
+2
+
+2.3.2 Phương sai. Độ lệch chuẩn
+2.3.2.1 Phương sai của biến ngẫu nhiên
+2.3.2.2 Phương sai của hàm của một biến ngẫu nhiên
+2.3.2.3 Tính chất của phương sai
+2.3.2.4 Độ lệch chuẩn
+
+3
+
+2.3.3 Mốt. Trung vị
+2.3.3.1 Mốt
+2.3.3.2 Trung vị
+
+4
+
+Bài tập Mục 2.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+31/39
+
+SAMI.HUST – 2023
+
+31 / 39
+
+Mốt
+Định nghĩa 8
+(a) Mốt là giá trị của biến ngẫu nhiên X, ký hiệu là mod(X), mà tại đó hàm mật độ xác suất fX (x) đạt
+cực đại (địa phương).
+(b) Nếu X là biến ngẫu nhiên rời rạc, thì mod(X) là giá trị tại đó xác suất để X = mod(X) là lớn nhất.
+Ví dụ 27
+Cho phân phối xác suất của X là
+X
+P (X = xi )
+
+−1
+1/6
+
+0
+2/3
+
+1
+1/6
+
+Ta có, mod(X) = 0.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+32/39
+
+SAMI.HUST – 2023
+
+32 / 39
+
+Trung vị
+
+Định nghĩa 9
+Trung vị của biến ngẫu nhiên X là giá trị của biến ngẫu nhiên X, ký hiệu là med(X), mà tại đó
+FX (x) = 1/2, nghĩa là
+1
+FX (med(X)) = .
+2
+
+(27)
+
+Định nghĩa 10
+Phân vị mức α là giá trị của biến ngẫu nhiên X, ký hiệu là xα , sao cho
+(28)
+
+FX (xα ) = α.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+33/39
+
+SAMI.HUST – 2023
+
+33 / 39
+
+Trung vị
+Ví dụ 28
+Cho hàm mật độ xác suất của biến ngẫu nhiên liên tục X
+
+ 3 x(2 − x),
+fX (x) = 4
+0,
+
+0 ≤ x ≤ 2,
+nếu trái lại.
+
+Tìm mod(X) và med(X).
+Giải.
+Hàm phân phối xác suất của X là
+
+0,
+
+
+ 
+3
+FX (x) = 3 x2 − x ,
+
+3
+
+4
+1,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+x ≤ 0,
+0 < x ≤ 2,
+x > 2.
+
+34/39
+
+SAMI.HUST – 2023
+
+34 / 39
+
+Trung vị
+
+med(X) là nghiệm của phương trình FX (x) =
+
+1
+. Hay x3 − 3x2 + 2 = 0 với 0 < x ≤ 2. Suy ra med(X) = 1.
+2
+
+Hàm mật độ xác suất fX (x) có
+
+
+0,
+
+3
+0
+fX (x) =
+(1 − x),
+
+2
+
+
+0,
+
+x ≤ 0,
+0 < x < 2,
+nếu trái lại,
+
+đổi dấu từ dương sang âm khi đi qua x = 1, do đó đạt cực đại tại điểm này, nên mod(X) = 1.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+35/39
+
+SAMI.HUST – 2023
+
+35 / 39
+
+2.3. KỲ VỌNG, PHƯƠNG SAI CỦA BIẾN NGẪU NHIÊN
+1
+
+2.3.1 Kỳ
+2.3.1.1
+2.3.1.2
+2.3.1.3
+
+vọng
+Kỳ vọng của một biến ngẫu nhiên
+Kỳ vọng của hàm của một biến ngẫu nhiên
+Tính chất của kỳ vọng
+
+2
+
+2.3.2 Phương sai. Độ lệch chuẩn
+2.3.2.1 Phương sai của biến ngẫu nhiên
+2.3.2.2 Phương sai của hàm của một biến ngẫu nhiên
+2.3.2.3 Tính chất của phương sai
+2.3.2.4 Độ lệch chuẩn
+
+3
+
+2.3.3 Mốt. Trung vị
+2.3.3.1 Mốt
+2.3.3.2 Trung vị
+
+4
+
+Bài tập Mục 2.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+36/39
+
+SAMI.HUST – 2023
+
+36 / 39
+
+Bài tập
+
+Bài 14
+Cho biến ngẫu nhiên rời rạc X có bảng phân phối xác suất
+X
+P (X = xi )
+
+0
+0,41
+
+1
+0,37
+
+2
+k
+
+3
+0,05
+
+4
+0,01
+
+(a) Xác định k.
+(b) Tính E(X), V (X) và σX .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+37/39
+
+SAMI.HUST – 2023
+
+37 / 39
+
+Bài tập
+
+Bài 15
+Ký hiệu X là số máy tính cần mua mỗi năm để thay thế máy tính cũ bị hỏng của một công ty. Bảng phân
+phối xác suất của X được xác định như sau:
+X
+P (X = xi )
+
+0
+0,1
+
+1
+0,3
+
+2
+0,4
+
+3
+0,2
+
+Giả sử chi phí mua một chiếc máy tính là 1200 đô la và công ty được nhận số tiền chiết khấu là 50X 2 đô la.
+Xác định số tiền trung bình công ty bỏ ra để mua máy tính mỗi năm.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+38/39
+
+SAMI.HUST – 2023
+
+38 / 39
+
+Bài tập
+Bài 16
+Thời gian nằm viện sau phẫu thuật (ngày) của bệnh nhân tại một bệnh viện là biến ngẫu nhiên liên tục X
+có hàm mật độ xác suất
+(
+32
+x > 4,
+3,
+fX (x) = (x+4)
+0,
+x ≤ 4.
+Tính thời gian nằm viện trung bình của bệnh nhân sau phẫu thuật tại bệnh viện đó.
+Bài 17
+Hàm mật độ xác suất của biến ngẫu nhiên liên tục X xác định bởi:
+(
+A + Bx2 , x ∈ [0; 1],
+fX (x) =
+0,
+x∈
+/ [0; 1].
+Tìm A và B biết rằng E(X) = 1/4.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.3
+
+39/39
+
+SAMI.HUST – 2023
+
+39 / 39
+
+

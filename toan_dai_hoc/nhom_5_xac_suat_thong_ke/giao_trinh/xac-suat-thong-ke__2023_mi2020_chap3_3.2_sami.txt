@@ -1,0 +1,3062 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 3
+BIẾN NGẪU NHIÊN NHIỀU CHIỀU
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+1/77
+
+SAMI.HUST – 2023
+
+1 / 77
+
+3.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+3.2.1 Phân phối xác suất đồng thời
+3.2.1.1 Bảng phân phối xác suất đồng thời
+3.2.1.2 Hàm phân phối xác suất đồng thời
+3.2.1.3 Hàm mật độ xác suất đồng thời
+3.2.1.4 Phân phối xác suất của hàm của hai biến ngẫu nhiên
+3.2.1.5 Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+2
+
+3.2.2 Phân phối biên
+3.2.2.1 Bảng phân phối xác suất biên
+3.2.2.2 Hàm phân phối xác suất biên
+3.2.2.3. Hàm mật độ xác suất biên
+
+3
+
+3.2.3 Phân phối xác suất có điều kiện
+3.2.3.1 Bảng phân phối xác suất có điều kiện
+3.2.3.2 Hàm mật độ xác suất có điều kiện
+3.2.4.3 Kỳ vọng có điều kiện
+
+4
+
+3.2.4 Biến ngẫu nhiên độc lập
+
+5
+
+Bài tập Mục 3.2
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+2/77
+
+SAMI.HUST – 2023
+
+2 / 77
+
+Bảng phân phối xác suất đồng thời
+Ví dụ 4
+Trong Ví dụ 3, cặp giá trị (x, y) có thể có của (X, Y ) là (0; 0), (0; 1), (0; 2), (0; 3), (1; 0), (1; 1), (1; 2), (2; 0),
+(2; 1) và (3; 0). Bằng cách tính xác suất tại từng điểm P (X = x, Y = y) với x = 0; 1; 2; 3 và y = 0; 1; 2; 3 và
+x + y ≤ 3,
+P (X = x, Y = y) =
+
+(C5x )(C4y )(C33−x−y )
+,
+3
+C12
+
+ta xác định được phân phối xác suất đồng thời của hai biến ngẫu nhiên X và Y như trong bảng dưới đây.
+Y
+X HH
+H
+0
+1
+2
+3
+
+HH
+
+0
+
+1
+
+2
+
+3
+
+1/220
+3/44
+3/22
+1/22
+
+3/55
+3/11
+2/11
+0
+
+9/110
+3/22
+0
+0
+
+1/55
+0
+0
+0
+
+Bảng 1: Bảng phân phối xác suất đồng thời của hai biến ngẫu nhiên rời rạc trong Ví dụ 3
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+3/77
+
+SAMI.HUST – 2023
+
+3 / 77
+
+Bảng phân phối xác suất đồng thời
+
+Định nghĩa 1
+Hàm xác suất đồng thời của hai biến ngẫu nhiên rời rạc X và Y , ký hiệu là pX,Y (x, y), là hàm thỏa mãn
+(a) pX,Y (x, y) ≥ 0 với mọi (x, y) ∈ R2 .
+P
+P
+(b)
+x∈SX
+y∈SY pX,Y (x, y) = 1.
+(c) pX,Y (x, y) = P (X = x, Y = y).
+- Miền giá trị của biến ngẫu nhiên hai chiều rời rạc (X, Y ) là
+
+SX,Y = (x, y) ∈ R2 | pX,Y (x, y) > 0 .
+- Hàm xác suất đồng thời pX,Y (x, y) của X và Y được giả thiết là bằng 0 tại mọi (x, y) ∈
+/ SX,Y .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+4/77
+
+SAMI.HUST – 2023
+
+4 / 77
+
+Bảng phân phối xác suất đồng thời
+
+Định lý 1
+Với mọi A ⊂ SX,Y ,
+P [(X, Y ) ⊂ A] =
+
+XX
+(x,y)∈A
+
+(1)
+
+pX,Y (x, y).
+
+Ví dụ 5
+Trong Ví dụ 4, nếu A = {(x, y) ∈ R2 | x + y ≤ 1}, thì
+P [(X, Y ) ⊂ A] = pX,Y (0, 0) + pX,Y (0, 1) + pX,Y (1, 0) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+1
+3
+3
+7
++
++
+=
+.
+220
+55
+44
+55
+
+5/77
+
+SAMI.HUST – 2023
+
+5 / 77
+
+Bảng phân phối xác suất đồng thời
+Định nghĩa 2
+Bảng phân phối xác suất đồng thời của hai biến ngẫu nhiên rời rạc X và Y có dạng
+
+HH Y
+X HH
+H
+x1
+..
+.
+xi
+..
+.
+xm
+
+y1
+
+...
+
+yj
+
+...
+
+yn
+
+pX,Y (x1 , y1 )
+..
+.
+pX,Y (xi , y1 )
+..
+.
+pX,Y (xm , y1 )
+
+...
+..
+.
+...
+..
+.
+...
+
+pX,Y (x1 , yj )
+..
+.
+pX,Y (xi , yj )
+..
+.
+pX,Y (xm , y2 )
+
+...
+..
+.
+...
+..
+.
+...
+
+pX,Y (x1 , yn )
+..
+.
+pX,Y (xi , yn )
+..
+.
+pX,Y (xm , yn )
+
+Bảng 2: Bảng phân phối xác suất đồng thời của hai biến ngẫu nhiên rời rạc X và Y
+trong đó, xi , i = 1, . . . , m, yj , j = 1, . . . , n, là các giá trị có thể có của các biến thành phần X và Y tương
+ứng. Bảng này có thể ra vô hạn nếu m, n nhận giá trị ∞.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+6/77
+
+SAMI.HUST – 2023
+
+6 / 77
+
+Hàm phân phối xác suất đồng thời
+Định nghĩa 3
+Hàm hai biến FX,Y (x, y) xác định bởi
+FX,Y (x, y) = P (X < x, Y < y),
+
+x, y ∈ R
+
+(2)
+
+được gọi là hàm phân phối xác suất đồng thời của hai biến ngẫu nhiên X và Y .
+- Từ (2) và Định nghĩa 2, hàm phân phối xác suất đồng thời của hai biến ngẫu nhiên rời rạc X và Y được xác
+định bởi
+X X
+FX,Y (x, y) =
+pX,Y (xi , yj ).
+(3)
+xi <x yj <y
+
+Ví dụ 6
+Từ số liệu của Ví dụ 4 và (3),
+FX,Y (2; 2) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+4
+3
+3
+11
++
++
++
+=
+.
+220
+55
+44
+11
+55
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+7/77
+
+SAMI.HUST – 2023
+
+7 / 77
+
+Hàm phân phối xác suất đồng thời
+
+Tính chất 1
+(a) 0 ≤ FX,Y (x, y) ≤ 1 với mọi x, y.
+(b) Nếu x < x1 , y < y1 thì FX,Y (x, y) ≤ FXY (x1 , y1 ).
+(c) limx→∞ FX,Y (x, y) = limy→∞ FX,Y (x, y) = 0; limx→∞,y→∞ FX,Y (x, y) = 1.
+(d) Với x1 < x2 , y1 < y2 ta luôn có
+P (x1 ≤ X < x2 , y1 ≤ Y < y2 ) = FX,Y (x2 , y2 ) − FX,Y (x2 , y1 ) − FX,Y (x1 , y2 ) + FX,Y (x1 , y1 ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+8/77
+
+SAMI.HUST – 2023
+
+(4)
+
+8 / 77
+
+Hàm mật độ xác suất đồng thời
+
+Định nghĩa 4
+Giả sử FX,Y (x, y) là hàm phân phối xác suất đồng thời của hai biến ngẫu nhiên liên tục X và Y . Khi đó,
+hàm mật độ xác suất đồng thời của hai biến ngẫu nhiên này là hàm hai biến fX,Y (x, y) thỏa mãn:
+Zx Zy
+FX,Y (x, y) =
+
+(5)
+
+fX,Y (u, v)dudv.
+−∞ −∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+9/77
+
+SAMI.HUST – 2023
+
+9 / 77
+
+Hàm mật độ xác suất đồng thời
+
+Cho trước FX,Y (x, y), Định nghĩa 4 suy ra fX,Y (x, y) là đạo hàm của hàm FX,Y (x, y), nếu đạo hàm này tồn tại.
+Định lý 2
+
+fX,Y (x, y) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+∂ 2 FX,Y (x, y)
+.
+∂x∂y
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(6)
+
+10/77
+
+SAMI.HUST – 2023
+
+10 / 77
+
+Hàm mật độ xác suất đồng thời
+- Với biến ngẫu nhiên hai chiều liên tục (X, Y ), thì
+SX,Y = {(x, y) ∈ R2 | fX,Y (x, y) > 0}.
+Tính chất 2
+(a) fX,Y (x, y) ≥ 0 với mọi x, y.
+(b)
+
++∞ Z
++∞
+Z
+fX,Y (x, y)dxdy = 1.
+−∞ −∞
+
+(c) Với A ⊂ SX,Y ,
+ZZ
+P [(X, Y ) ⊂ A] =
+
+(7)
+
+fX,Y (x, y)dxdy.
+A
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+11/77
+
+SAMI.HUST – 2023
+
+11 / 77
+
+Hàm mật độ xác suất đồng thời
+
+Ví dụ 7
+Biến ngẫu nhiên hai chiều liên tục (X, Y ) có hàm mật độ xác suất là
+(
+k,
+0 ≤ x ≤ 6, 0 ≤ y ≤ 3,
+fX,Y (x, y) =
+0,
+nếu trái lại.
+(a) Tìm hằng số k.
+(b) Cho A = {(x, y) ∈ R2 | 2 ≤ x < 4; 2 ≤ y < 3}, tính P [(X, Y ) ⊂ A].
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+12/77
+
+SAMI.HUST – 2023
+
+12 / 77
+
+Hàm mật độ xác suất đồng thời
+Giải. Miền A được minh họa trong Hình 1.
+
+y
+A
+
+3
+2
+
+0
+
+2
+
+4
+
+6
+
+x
+
+Hình 1: Miền A trong Ví dụ 7
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+13/77
+
+SAMI.HUST – 2023
+
+13 / 77
+
+Hàm mật độ xác suất đồng thời
+
+(a) Sử dụng Tính chất 2(a),(b), ta có k ≥ 0 và
+1=
+
++∞ Z
++∞
+Z
+Z6
+Z3
+fX,Y (x, y)dxdy = dx kdy = 18k.
+−∞ −∞
+
+0
+
+0
+
+Suy ra, k = 1/18.
+(b) Sử dụng Tính chất 2(c),
+Z4
+P [(X, Y ) ∈ A] = P (2 ≤ X < 4; 2 ≤ Y < 3) =
+2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Z3
+dx
+
+1
+1
+dy = .
+18
+9
+
+2
+
+14/77
+
+SAMI.HUST – 2023
+
+14 / 77
+
+Phân phối xác suất của hàm của hai biến ngẫu nhiên
+
+Xét biến ngẫu nhiên W := g(X, Y ), trong đó, X và Y là các biến ngẫu nhiên đã biết luật phân phối và g(x, y) là
+một hàm hai biến nhận giá trị thực. Ta phân tích phân phối xác suất của W trong một số trường hợp đơn giản.
+Định lý 3
+
+Với A = (x, y) ∈ R2 | g(x, y) < w ,
+FW (w) = P [(X, Y ) ⊂ A].
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(8)
+
+15/77
+
+SAMI.HUST – 2023
+
+15 / 77
+
+Phân phối xác suất của hàm của hai biến ngẫu nhiên
+Ví dụ 8
+Cho X và Y là hai biến ngẫu nhiên trong Ví dụ 7. Tìm hàm phân phối xác suất của biến ngẫu nhiên
+W = max(X, Y ).
+Giải. Ta có
+ZZ
+FW (w) = P (W < w) = P [max(X, Y ) < w] = P (X < w, Y < w) =
+
+1
+dxdy,
+18
+
+D
+2
+
+trong đó, D = {(x, y) ∈ R | (x < w, y < w)}.
+Nếu w ≤ 0, FW (w) = 0.
+Z
+Nếu 0 < w ≤ 3, FW (w) =
+
+w
+
+Z
+dx
+
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+w
+
+0
+
+1
+dy
+18
+
+=
+
+w2
+.
+18
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+16/77
+
+SAMI.HUST – 2023
+
+16 / 77
+
+Phân phối xác suất của hàm của hai biến ngẫu nhiên
+Z
+Nếu 3 < w ≤ 6, FW (w) =
+
+w
+
+Z
+dx
+
+0
+
+0
+
+3
+1
+dy
+18
+
+=
+
+w
+.
+6
+
+Nếu w > 6, FW (w) = 1.
+Vậy
+
+FW (w) =
+
+
+0
+
+
+
+ w2
+
+nếu
+nếu
+nếu
+nếu
+
+18
+
+w
+
+
+
+6
+1
+
+w ≤ 0,
+0 < w ≤ 3,
+3 < w ≤ 6,
+w > 6.
+
+- Trong trường hợp biến ngẫu nhiên W liên tục, để tìm hàm mật độ xác suất fW (w), ta sử dụng tính chất
+fW (w) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+dFW (w)
+.
+dw
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(9)
+
+17/77
+
+SAMI.HUST – 2023
+
+17 / 77
+
+Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+Định lý 4
+Cho W = g(X, Y ) là một hàm của hai biến ngẫu nhiên X và Y . Khi đó,
+X X
+E(W ) = E[g(X, Y )] =
+g(x, y)pX,Y (x, y)
+
+(10)
+
+x∈SX y∈SY
+
+nếu X và Y là các biến ngẫu nhiên rời rạc có hàm xác suất đồng thời pX,Y (x, y) và
+E(W ) = E[g(X, Y )] =
+
++∞ Z
++∞
+Z
+g(x, y)fX,Y (x, y)dxdy
+
+(11)
+
+−∞ −∞
+
+nếu X và Y là các biến ngẫu nhiên liên tục có hàm mật độ xác suất đồng thời fX,Y (x, y).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+18/77
+
+SAMI.HUST – 2023
+
+18 / 77
+
+Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+Ví dụ 9
+Cho X và Y là hai biến ngẫu nhiên trong Ví dụ 7. Tìm kỳ vọng của biến ngẫu nhiên W = XY .
+Giải. Sử dụng kết quả của Ví dụ 7 và (11),
+E(W ) =
+
+Z6  Z3
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+xy
+
+1 
+dy dx =
+18
+
+0
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Z6
+
+1
+36
+xdx =
+= 4, 5.
+4
+8
+
+0
+
+19/77
+
+SAMI.HUST – 2023
+
+19 / 77
+
+Kỳ vọng của hàm của hai biến ngẫu nhiên
+Định lý 5
+Cho h(X, Y ) và g(X, Y ) là các hàm của hai biến ngẫu nhiên X và Y . Khi đó,
+E[g(X, Y ) ± h(X, Y )] = E[g(X, Y )] ± E[h(X, Y )].
+Hệ quả 1
+(a) Nếu g(X, Y ) = g(X) và h(X, Y ) = h(Y ) thì ta nhận được
+E[g(X) ± h(Y )] = E[g(X)] ± E[h(Y )].
+(b) Nếu g(X, Y ) = X và h(X, Y ) = Y thì
+E(X ± Y ) = E(X) ± E(Y ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+20/77
+
+SAMI.HUST – 2023
+
+20 / 77
+
+3.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+3.2.1 Phân phối xác suất đồng thời
+3.2.1.1 Bảng phân phối xác suất đồng thời
+3.2.1.2 Hàm phân phối xác suất đồng thời
+3.2.1.3 Hàm mật độ xác suất đồng thời
+3.2.1.4 Phân phối xác suất của hàm của hai biến ngẫu nhiên
+3.2.1.5 Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+2
+
+3.2.2 Phân phối biên
+3.2.2.1 Bảng phân phối xác suất biên
+3.2.2.2 Hàm phân phối xác suất biên
+3.2.2.3. Hàm mật độ xác suất biên
+
+3
+
+3.2.3 Phân phối xác suất có điều kiện
+3.2.3.1 Bảng phân phối xác suất có điều kiện
+3.2.3.2 Hàm mật độ xác suất có điều kiện
+3.2.4.3 Kỳ vọng có điều kiện
+
+4
+
+3.2.4 Biến ngẫu nhiên độc lập
+
+5
+
+Bài tập Mục 3.2
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+21/77
+
+SAMI.HUST – 2023
+
+21 / 77
+
+Bảng phân phối xác suất biên
+
+Định lý 6
+Nếu hai biến ngẫu nhiên rời rạc X và Y có hàm xác suất đồng thời là pX,Y (x, y), thì các hàm xác suất biên
+được xác định bởi
+X
+X
+pX (x) =
+pX,Y (x, y) và pY (y) =
+pX,Y (x, y).
+(12)
+y∈SY
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+x∈SX
+
+22/77
+
+SAMI.HUST – 2023
+
+22 / 77
+
+Bảng phân phối xác suất biên
+
+Định lý 7
+Nếu hai biến ngẫu nhiên rời rạc X và Y có bảng phân phối xác suất đồng thời như trong Định nghĩa 2 thì
+bảng phân phối xác suất của X là
+X
+P (X = xi )
+
+x1
+P (X = x1 )
+
+x2
+P (X = x2 )
+
+...
+...
+
+xm
+P (X = xm )
+
+y1
+P (Y = y1 )
+
+y2
+P (Y = y2 )
+
+...
+...
+
+yn
+P (Y = yn )
+
+và bảng phân phối xác suất của Y là
+Y
+P (Y = yj )
+trong đó, P (X = xi ) =
+
+Pn
+
+j=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+pX,Y (xi , yj ), i = 1, . . . , m và P (Y = yj ) =
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Pm
+
+i=1
+
+pX,Y (xi , yj ), j = 1, . . . , n.
+
+23/77
+
+SAMI.HUST – 2023
+
+23 / 77
+
+Bảng phân phối xác suất biên
+- Từ các hàm xác suất biên hay bảng phân phối xác suất biên, ta có thể dễ dàng xác định các tham số đặc trưng
+của các biến ngẫu nhiên thành phần X và Y .
+Ví dụ 10
+Trong Ví dụ 4,
+Bảng phân phối xác suất biên của X là
+X
+P (X = xi )
+
+0
+7/44
+
+1
+21/44
+
+2
+7/22
+
+0
+14/55
+
+1
+28/55
+
+2
+12/55
+
+3
+1/22
+
+Bảng phân phối xác suất biên của Y là
+Y
+P (Y = yj )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+3
+1/55
+
+24/77
+
+SAMI.HUST – 2023
+
+24 / 77
+
+Bảng phân phối xác suất biên
+
+Ví dụ 10 (tiếp theo)
+Kỳ vọng của X là
+E(X) = (0)(7/44) + (1)(21/44) + (2)(7/22) + (3)(1/22) = 1, 25.
+Phương sai của X là
+V (X) = (0)2 (7/44) + (1)2 (21/44) + (2)2 (7/22) + (3)2 (1/22) − (1, 25)2 ≈ 0, 59659.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+25/77
+
+SAMI.HUST – 2023
+
+25 / 77
+
+Hàm phân phối xác suất biên
+
+Từ định nghĩa hàm phân phối,
+FX (x) = P (X < x) = P (X < x, Y < ∞) = lim FX,Y (x, y) = FX,Y (x, ∞).
+y→∞
+
+Từ đó, hàm phân phối xác suất biên của X và Y là
+FX (x) = FX,Y (x, ∞)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(13)
+
+FY (y) = FX,Y (∞, y).
+
+26/77
+
+SAMI.HUST – 2023
+
+26 / 77
+
+Hàm mật độ xác suất biên
+- Từ Tính chất 2(c) ta có thể viết
+FX (x) = P (X < x) = P (X < x, Y < ∞) =
+
++∞
+Zx  Z
+
+fX,Y (u, y)dy du.
+−∞
+
+Z
+
+−∞
+
++∞
+
+Từ đây suy ra fX (x) =
+
+fX,Y (x, y)dy. Tương tự ta cũng có fY (y).
+−∞
+
+Định lý 8
+Nếu X và Y là hai biến ngẫu nhiên liên tục có hàm mật độ xác suất đồng thời fX,Y (x, y) thì hàm mật độ
+xác suất của các biến ngẫu nhiên thành phần X và Y được xác định bởi
++∞
+Z
+fX (x) =
+fX,Y (x, y)dy
+
+và
+
+−∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
++∞
+Z
+fY (y) =
+fX,Y (x, y)dx.
+
+(14)
+
+−∞
+
+27/77
+
+SAMI.HUST – 2023
+
+27 / 77
+
+Hàm mật độ xác suất biên
+
+Ví dụ 11
+Cho biến ngẫu nhiên hai chiều liên tục (X, Y ) có hàm mật độ xác suất là
+(
+kx, nếu 0 < y < x < 1,
+fX,Y (x, y) =
+0,
+nếu trái lại.
+(a) Tìm hằng số k.
+(b) Tìm các hàm mật độ xác suất biên fX (x) và fY (y).
+(c) Tính kỳ vọng và phương sai của biến ngẫu nhiên X.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+28/77
+
+SAMI.HUST – 2023
+
+28 / 77
+
+Hàm mật độ xác suất biên
+
+Giải. Ký hiệu D = (x, y) ∈ R2 | 0 < x < 1; 0 < y < x (xem Hình 2).
+y
+1
+
+y=x
+
+O
+
+x
+1
+
+Hình 2: Miền D của Ví dụ 11
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+29/77
+
+SAMI.HUST – 2023
+
+29 / 77
+
+Hàm mật độ xác suất biên
+(a) Theo Tính chất 2(a), k ≥ 0 và theo Tính chất 2(b),
+1=
+
++∞ Z
++∞
+ZZ
+Z1
+Zx
+Z1
+Z
+k
+kxdxdy = dx kxdy = k x2 dx = .
+fX,Y (x, y)dxdy =
+3
+−∞ −∞
+
+D
+
+0
+
+(
+Suy ra k = 3 và hàm mật độ xác suất đồng thời fX,Y (x, y) =
+
+0
+
+0
+
+3x,
+0,
+
+nếu (x, y) ∈ D,
+nếu trái lại.
+
+(b) Tìm các hàm mật độ biên từ (14),
+Zx
+
++∞
+
+Z
+ 3xdy,
+fX (x) =
+fX,Y (x, y)dy =
+
+0
+
+
+−∞
+0,
+ 1
+Z
+
++∞
+
+Z
+ 3xdx,
+fY (y) =
+fX,Y (x, y)dx =
+
+y
+
+
+−∞
+0,
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+0 < x < 1,
+
+(
+=
+
+3x2 ,
+0,
+
+0 < x < 1,
+trái lại,
+
+trái lại,
+0 < y < 1,
+trái lại,
+
+
+ 3 − 3 y2 ,
+= 2
+2
+ 0,
+
+0 < y < 1,
+trái lại.
+
+30/77
+
+SAMI.HUST – 2023
+
+30 / 77
+
+Hàm mật độ xác suất biên
+
+(c) Kỳ vọng và phương sai của biến ngẫu nhiên X được xác định như sau
+Z1
+E(X) =
+
+x × 3x2 dx =
+
+3
+,
+4
+
+0
+
+V (X) = E(X 2 ) − (E(X))2 =
+
+Z1
+
+x2 × 3x2 dx −
+
+ 3 2
+4
+
+=
+
+3
+.
+80
+
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+31/77
+
+SAMI.HUST – 2023
+
+31 / 77
+
+3.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+3.2.1 Phân phối xác suất đồng thời
+3.2.1.1 Bảng phân phối xác suất đồng thời
+3.2.1.2 Hàm phân phối xác suất đồng thời
+3.2.1.3 Hàm mật độ xác suất đồng thời
+3.2.1.4 Phân phối xác suất của hàm của hai biến ngẫu nhiên
+3.2.1.5 Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+2
+
+3.2.2 Phân phối biên
+3.2.2.1 Bảng phân phối xác suất biên
+3.2.2.2 Hàm phân phối xác suất biên
+3.2.2.3. Hàm mật độ xác suất biên
+
+3
+
+3.2.3 Phân phối xác suất có điều kiện
+3.2.3.1 Bảng phân phối xác suất có điều kiện
+3.2.3.2 Hàm mật độ xác suất có điều kiện
+3.2.4.3 Kỳ vọng có điều kiện
+
+4
+
+3.2.4 Biến ngẫu nhiên độc lập
+
+5
+
+Bài tập Mục 3.2
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+32/77
+
+SAMI.HUST – 2023
+
+32 / 77
+
+Phân phối xác suất có điều kiện
+
+- Trong mục này, ta xét phân phối xác suất có điều kiện với điều kiện là một biến ngẫu nhiên. Nội dung bao
+gồm:
+Bảng phân phối xác suất có điều kiện
+Hàm mật độ xác suất có điều kiện
+Từ đó, xây dựng các công thức tính kỳ vọng có điều kiện của biến ngẫu nhiên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+33/77
+
+SAMI.HUST – 2023
+
+33 / 77
+
+Bảng phân phối xác suất có điều kiện
+Định nghĩa 5
+Cho hai biến ngẫu nhiên rời rạc X, Y và y là một số thực sao cho pY (y) > 0. Hàm xác suất có điều kiện của
+X với điều kiện Y = y được ký hiệu và xác định bởi
+(15)
+
+pX|Y =y (x) = pX|y (x) = P (X = x|Y = y).
+- Từ định nghĩa xác suất có điều kiện ta có
+pX|Y =y (x) =
+
+pX,Y (x, y)
+.
+pY (y)
+
+(16)
+
+Định lý 9
+Cho X và Y có hàm xác suất đồng thời pX,Y (x, y), x và y là các số thực sao cho pX (x) > 0 và pY (y) > 0.
+Khi đó,
+(17)
+
+pX,Y (x, y) = pX|Y =y (x)pY (y) = pY |X=x (y)pX (x).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+34/77
+
+SAMI.HUST – 2023
+
+34 / 77
+
+Bảng phân phối xác suất có điều kiện
+
+Từ Định nghĩa 2 ta suy ra
+Bảng phân phối xác suất có điều kiện của X với điều kiện Y = yj
+X|Y = yj
+P
+
+x1
+P (X = x1 |Y = yj )
+
+x2
+P (X = x2 |Y = yj )
+
+...
+...
+
+xm
+P (X = xm |Y = yj )
+
+...
+...
+
+yn
+P (Y = yn |X = xi )
+
+Bảng phân phối xác suất có điều kiện của Y với điều kiện X = xi
+Y |X = xi
+P
+
+y1
+P (Y = y1 |X = xi )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+y2
+P (Y = y2 |X = xi )
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+35/77
+
+SAMI.HUST – 2023
+
+35 / 77
+
+Bảng phân phối xác suất có điều kiện
+Ví dụ 12
+Từ kết quả phân tích các số liệu thống kê trong tháng về doanh số bán hàng (X) và chi phí cho quảng cáo
+(Y ) (đơn vị triệu đồng) của một công ty, thu được bảng phân phối xác suất đồng thời như sau:
+
+HH X
+100
+Y HH
+H
+1
+1, 5
+2
+
+0, 15
+0, 05
+0, 01
+
+200
+
+300
+
+0, 1
+0, 2
+0, 05
+
+0, 14
+0, 15
+0, 15
+
+Bảng phân phối xác suất có điều kiện của X với điều kiện Y = 1, 5 và của Y với điều kiện X = 300 lần lượt
+là
+X|Y = 1, 5
+P
+
+100
+0,125
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+200
+0,5
+
+300
+0,375
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Y |X = 300
+P
+
+1
+
+1,5
+
+2
+
+14
+44
+
+15
+44
+
+15
+44
+
+36/77
+
+SAMI.HUST – 2023
+
+36 / 77
+
+Hàm mật độ xác suất có điều kiện
+
+Định nghĩa 6
+Cho hai biến ngẫu nhiên liên tục X và Y có hàm mật độ xác suất đồng thời fX,Y (x, y). Hàm mật độ xác
+suất có điều kiện của X với điều kiện Y = y được ký hiệu và xác định bởi
+fX|Y =y (x) = fX|y (x) =
+
+fX,Y (x, y)
+fY (y)
+
+với
+
+(18)
+
+fY (y) > 0.
+
+Tương tự, hàm mật độ xác suất có điều kiện của Y với điều kiện X = x là
+fY |X=x (y) = fY |x (y) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+fX,Y (x, y)
+fX (x)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+với
+
+(19)
+
+fX (x) > 0.
+
+37/77
+
+SAMI.HUST – 2023
+
+37 / 77
+
+Hàm mật độ xác suất có điều kiện
+
+- Các hàm mật độ có điều kiện cũng thỏa mãn các tính chất của một hàm mật độ thông thường, chẳng hạn,
+fY |x (y) ≥ 0.
+Z +∞
+fY |x (y)dy = 1.
+−∞
+
+Z
+P (Y ∈ B|X = x) =
+
+fY |x (y)dy với mọi B ⊂ SY .
+B
+
+- Từ (18) và (19) ta có thể xác định được hàm mật độ đồng thời fX,Y (x, y) bởi
+(20)
+
+fX,Y (x, y) = fY (y)fX|y (x) = fX (x)fY |x (y).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+38/77
+
+SAMI.HUST – 2023
+
+38 / 77
+
+Hàm mật độ xác suất có điều kiện
+
+Ví dụ 13
+Cho biến ngẫu nhiên hai chiều (X, Y ) có hàm mật độ xác suất là
+
+ 1 , nếu 0 < y < x < 1,
+fX,Y (x, y) = x
+0,
+nếu trái lại.
+(a) Tìm các hàm mật độ xác suất biên fX (x) và fY (y).
+(b) Tìm các hàm mật độ xác suất có điều kiện fX|y (x) và fY |x (y).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+39/77
+
+SAMI.HUST – 2023
+
+39 / 77
+
+Hàm mật độ xác suất có điều kiện
+
+Giải.
+(a) Các hàm mật độ xác suất biên là:
+Zx
+
++∞
+
+Z
+ 1 dy,
+x
+fX,Y (x, y)dy =
+fX (x) =
+
+0
+
+
+−∞
+0,
+ 1
+Z
+
++∞
+
+Z
+ 1 dx,
+x
+fX,Y (x, y)dx =
+fY (y) =
+
+y
+
+
+−∞
+0,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+0 < x < 1,
+
+(
+1,
+=
+0,
+
+0 < x < 1,
+trái lại.
+
+trái lại,
+0 < y < 1,
+
+(
+=
+
+− ln y,
+0,
+
+0 < y < 1,
+trái lại.
+
+trái lại,
+
+40/77
+
+SAMI.HUST – 2023
+
+40 / 77
+
+Hàm mật độ xác suất có điều kiện
+
+(b) Các hàm mật độ xác suất có điều kiện là:
+1
+, 0 < y < x < 1,
+fX,Y (x, y)
+x ln y
+=
+
+fY (y)
+0,
+trái lại.
+
+1
+ , 0 < y < x < 1,
+fX,Y (x, y)
+= x
+fY |x (y) =
+0, trái lại.
+fX (x)
+fX|y (x) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+
+−
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+41/77
+
+SAMI.HUST – 2023
+
+41 / 77
+
+Kỳ vọng có điều kiện
+Định lý 10
+Cho W = g(X, Y ) là một hàm của hai biến ngẫu nhiên X và Y . Khi đó, kỳ vọng có điều kiện của
+W = g(X, Y ) với điều kiện Y = y là
+X
+E(W |y) = E[g(X, Y )|Y = y] =
+g(x, y)pX|Y =y (x)
+
+(21)
+
+x∈SX
+
+nếu X và Y là các biến ngẫu nhiên rời rạc và
++∞
+Z
+E(W |y) = E[g(X, Y )|Y = y] =
+g(x, y)fX|y (x)dx
+
+(22)
+
+−∞
+
+nếu X và Y là các biến ngẫu nhiên liên tục.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+42/77
+
+SAMI.HUST – 2023
+
+42 / 77
+
+Kỳ vọng có điều kiện
+
+- Kỳ vọng có điều kiện của X với điều kiện Y = y là một trường hợp đặc biệt của Định lý 10:
+X
+E(X|Y = y) =
+xPX|y (x) nếu X rời rạc
+
+(23)
+
+x∈SX
+
+và
+E(X|Y = y) =
+
++∞
+Z
+xfX|y (x)dx
+
+nếu X liên tục.
+
+(24)
+
+−∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+43/77
+
+SAMI.HUST – 2023
+
+43 / 77
+
+Kỳ vọng có điều kiện
+Ví dụ 14
+Với số liệu của Ví dụ 12,
+(a) Nếu chi phí cho quảng cáo 1,5 triệu đồng thì doanh số trung bình là bao nhiêu?
+(b) Nếu muốn doanh số là 300 triệu đồng thì trung bình phải chi phí cho quảng cáo bao nhiêu?
+Giải. Sử dụng kết quả của Ví dụ 12
+(a) Nếu chỉ chi phí cho quảng cáo là 1,5 triệu đồng thì doanh số trung bình là
+E(X|Y = 1, 5) = 100 × 0, 125 + 200 × 0, 5 + 300 × 0, 375 = 225
+
+(triệu đồng).
+
+(b) Nếu muốn doanh số là 300 triệu đồng thì trung bình phải chi phí cho quảng cáo là
+E(Y |X = 300) = 1 ×
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+14
+15
+15
++ 1, 5 ×
++2×
+' 1, 5136
+44
+44
+44
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(triệu đồng).
+
+44/77
+
+SAMI.HUST – 2023
+
+44 / 77
+
+Kỳ vọng có điều kiện
+
+Định nghĩa 7
+Kỳ vọng có điều kiện của X với điều kiện Y , E(X|Y ), là một hàm của biến ngẫu nhiên Y sao cho nếu Y = y
+thì E(X|Y ) = E(X|Y = y).
+Ví dụ 15
+Giả sử hàm mật độ xác suất có điều kiện của biến ngẫu nhiên X với điều kiện Y = y có dạng
+(
+1
+,
+y < x < 1,
+fX|Y =y (x) = 1−y
+0,
+nếu trái lại.
+Tìm kỳ vọng có điều kiện E(X|Y = y) và E(X|Y ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+45/77
+
+SAMI.HUST – 2023
+
+45 / 77
+
+Kỳ vọng có điều kiện
+
+Giải. Ta có
+E(X|Y = y) =
+
++∞
+Z
+Z1
+xfX|y (x)dx =
+−∞
+
+Từ E(X|Y = y) =
+
+1+y
+2
+
+1
+x2
+xdx =
+1−y
+2(1 − y)
+
+x=1
+
+=
+x=y
+
+1+y
+.
+2
+
+y
+
+suy ra
+E(X|Y ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1+Y
+.
+2
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+46/77
+
+SAMI.HUST – 2023
+
+46 / 77
+
+3.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+3.2.1 Phân phối xác suất đồng thời
+3.2.1.1 Bảng phân phối xác suất đồng thời
+3.2.1.2 Hàm phân phối xác suất đồng thời
+3.2.1.3 Hàm mật độ xác suất đồng thời
+3.2.1.4 Phân phối xác suất của hàm của hai biến ngẫu nhiên
+3.2.1.5 Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+2
+
+3.2.2 Phân phối biên
+3.2.2.1 Bảng phân phối xác suất biên
+3.2.2.2 Hàm phân phối xác suất biên
+3.2.2.3. Hàm mật độ xác suất biên
+
+3
+
+3.2.3 Phân phối xác suất có điều kiện
+3.2.3.1 Bảng phân phối xác suất có điều kiện
+3.2.3.2 Hàm mật độ xác suất có điều kiện
+3.2.4.3 Kỳ vọng có điều kiện
+
+4
+
+3.2.4 Biến ngẫu nhiên độc lập
+
+5
+
+Bài tập Mục 3.2
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+47/77
+
+SAMI.HUST – 2023
+
+47 / 77
+
+Biến ngẫu nhiên độc lập
+
+Trong một số phép thử ngẫu nhiên, thông tin về các giá trị của X không thay đổi bất kỳ xác suất nào liên
+quan đến các giá trị của Y . Trong trường hợp đó ta nói X và Y độc lập với nhau.
+Một số dấu hiệu nhận biết tính độc lập của hai biến ngẫu nhiên X và Y dựa trên tính chất của hàm xác
+suất/bảng phân phối xác suất đồng thời, hàm phân phối xác suất đồng thời, hàm mật độ xác suất đồng thời
+như trong Định nghĩa 8 dưới đây.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+48/77
+
+SAMI.HUST – 2023
+
+48 / 77
+
+Biến ngẫu nhiên độc lập
+
+Định nghĩa 8
+Hai biến ngẫu nhiên X và Y được gọi là độc lập với nhau nếu với mọi x, y,
+(a) pX,Y (x, y) = pX (x)pY (y), nếu X và Y rời rạc;
+(b) fX,Y (x, y) = fX (x)fY (y), nếu X và Y liên tục;
+(c) FX,Y (x, y) = FX (x)FY (y).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+49/77
+
+SAMI.HUST – 2023
+
+49 / 77
+
+Biến ngẫu nhiên độc lập
+
+Ví dụ 16
+Hai biến ngẫu nhiên X và Y trong Ví dụ 11 có độc lập không?
+Giải. Từ kết quả của Ví dụ 11, fX,Y (x, y) 6= fX (x)fY (y), nên X và Y không độc lập.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+50/77
+
+SAMI.HUST – 2023
+
+50 / 77
+
+Biến ngẫu nhiên độc lập
+
+Ví dụ 17
+Sử dụng biến ngẫu nhiên hai chiều, tính xác suất để hai người gặp được nhau trong (Ví dụ ở Chương 1)
+(2)
+
+(2)
+Hai người bạn hẹn gặp nhau ở công viên trong khoảng thời gian từ 17h00 đến 18h00. Họ quy ước nếu người
+nào đến trước thì sẽ đợi người kia trong vòng 10 phút, sau 10 phút đợi nếu không gặp sẽ về. Thời điểm đến của
+hai người là ngẫu nhiên và độc lập với nhau trong khoảng thời gian trên. Tính xác suất hai người gặp được nhau.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+51/77
+
+SAMI.HUST – 2023
+
+51 / 77
+
+Biến ngẫu nhiên độc lập
+
+Giải. Quy gốc thời gian về lúc 17h00. Gọi X và Y lần lượt là biến ngẫu nhiên chỉ thời điểm đến của hai người
+trong khoảng thời gian từ phút thứ 0 đến phút thứ 60. X và Y là các biến ngẫu nhiên liên tục có phân phối đều
+trên [0; 60]. Do X và Y độc lập nên chúng có hàm mật độ xác suất đồng thời
+
+ 1 , (x, y) ∈ [0, 60]2 ,
+fX,Y (x, y) = fX (x)fY (y) = 3600
+ 0,
+ngược lại.
+Đặt W = |X − Y |. Khi đó, xác suất hai người gặp được nhau là
+P (W < 10) = P (|X − Y | < 10) = P ((X, Y ) ∈ D) ,
+trong đó D là giao của miền |x − y| < 10 và hình vuông [0; 60]2 (xem Hình 3).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+52/77
+
+SAMI.HUST – 2023
+
+52 / 77
+
+Biến ngẫu nhiên độc lập
+y
+60
+y = x + 10
+
+y = x − 10
+10
+O
+
+x
+10
+
+60
+
+Hình 3: Miền D của Ví dụ 17
+Suy ra
+x−10
+Z
+
+Z60
+P (W < 10) = 1 − 2
+
+dx
+10
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+2500
+11
+1
+dy = 1 −
+=
+.
+3600
+3600
+36
+
+0
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+53/77
+
+SAMI.HUST – 2023
+
+53 / 77
+
+Biến ngẫu nhiên độc lập
+Định lý 11
+Với hai biến ngẫu nhiên X và Y , nếu một trong các tính chất sau là đúng thì các tính chất còn lại cũng
+đúng và X và Y độc lập với nhau.
+1
+
+Nếu X và Y rời rạc
+
+(a) pX,Y (x, y) = pX (x)pY (y) với mọi x và y.
+(b) pX|Y =y (x) = pX (x) với mọi x và y với pY (y) > 0.
+(c) pY |X=x (y) = pY (y) với mọi x và y với pX (x) > 0.
+(d) P (X ⊂ A, Y ⊂ B) = P (X ⊂ A)P (Y ⊂ B) với mọi A ⊂ SX và B ⊂ SY .
+2
+
+Nếu X và Y liên tục
+
+(a) fX,Y (x, y) = fX (x)fY (y) với mọi x và y.
+(b) fX|Y =y (x) = fX (x) với mọi x và y với fY (y) > 0.
+(c) fY |X=x (y) = fY (y) với mọi x và y với fX (x) > 0.
+(d) P (X ⊂ A, Y ⊂ B) = P (X ⊂ A)P (Y ⊂ B) với mọi A ⊂ SX và B ⊂ SY .
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+54/77
+
+SAMI.HUST – 2023
+
+54 / 77
+
+Biến ngẫu nhiên độc lập
+Ví dụ 18
+Gọi biến ngẫu nhiên X và Y lần lượt là chiều dài và chiều rộng của một chi tiết máy được gia công. Giả sử
+X và Y là các biến ngẫu nhiên độc lập và giả sử X tuân theo luật phân phối chuẩn với trung bình 10,5
+milimét và phương sai 0,0025 (milimét)2 , Y tuân theo luật phân phối chuẩn với trung bình 3,2 milimét và
+phương sai 0,0036 (milimét)2 . Tính xác suất để 10, 4 < X < 10, 6 và 3, 15 < Y < 3, 25.
+Giải. Vì X và Y độc lập nên
+P (10, 4 < X < 10, 6, 3, 15 < Y < 3, 25) = P (10, 4 < X < 10, 6)P (3, 15 < Y < 3, 25)
+h  10, 6 − 10, 5 
+ 10, 4 − 10, 5 ih  3, 25 − 3, 2 
+ 3, 15 − 3, 2 i
+= Φ √
+−Φ √
+Φ √
+−Φ √
+0, 0025
+0, 0025
+0, 0036
+0, 0036
+
+
+
+= Φ(2) − Φ(−2) Φ(0, 83) − Φ(−0, 83) = (2 × 0, 97725 − 1)(2 × 0, 79673 − 1)
+≈ 0, 5665
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+55/77
+
+SAMI.HUST – 2023
+
+55 / 77
+
+Biến ngẫu nhiên độc lập
+
+Tính chất 3
+Với hai biến ngẫu nhiên độc lập X và Y ta có
+(a) E[g(X)h(Y )] = E[g(X)]E[h(Y )].
+(b) E(XY ) = E(X)E(Y ).
+(c) E(X|y) = E(X) với mọi y ∈ SY .
+(d) E(Y |x) = E(Y ) với mọi x ∈ SX .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+56/77
+
+SAMI.HUST – 2023
+
+56 / 77
+
+3.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+3.2.1 Phân phối xác suất đồng thời
+3.2.1.1 Bảng phân phối xác suất đồng thời
+3.2.1.2 Hàm phân phối xác suất đồng thời
+3.2.1.3 Hàm mật độ xác suất đồng thời
+3.2.1.4 Phân phối xác suất của hàm của hai biến ngẫu nhiên
+3.2.1.5 Kỳ vọng của hàm của hai biến ngẫu nhiên
+
+2
+
+3.2.2 Phân phối biên
+3.2.2.1 Bảng phân phối xác suất biên
+3.2.2.2 Hàm phân phối xác suất biên
+3.2.2.3. Hàm mật độ xác suất biên
+
+3
+
+3.2.3 Phân phối xác suất có điều kiện
+3.2.3.1 Bảng phân phối xác suất có điều kiện
+3.2.3.2 Hàm mật độ xác suất có điều kiện
+3.2.4.3 Kỳ vọng có điều kiện
+
+4
+
+3.2.4 Biến ngẫu nhiên độc lập
+
+5
+
+Bài tập Mục 3.2
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+57/77
+
+SAMI.HUST – 2023
+
+57 / 77
+
+Bài tập
+Bài 1
+Tính chất nào sau đây của hàm xác suất đồng thời của hai biến ngẫu nhiên (X, Y ) là SAI:
+P
+
+P
+
+A. pX,Y (x, y) ≥ 0
+
+C.
+
+B. pX,Y (x, y) ≤ 1
+
+D. pX,Y (x, y) = P (X = x, Y = y)
+
+x∈SX
+
+y∈SY
+
+pX,Y (x, y) = ∞
+
+Bài 2
+Tính chất nào sau đây của hàm phân phối xác suất đồng thời của biến ngẫu nhiên hai chiều (X, Y ) là SAI:
+A. FX,Y (x, y) ≥ 0
+
+D. FX,Y (x, y) = P (X < x, Y < y)
+
+B. FX,Y (x, y) ≤ 1
+
+E. FX,∞ (x, y) = FX (x)
+
+C. FX,Y (x, 0) = 0
+
+F. FX,Y (x, y) = P (X ≤ x, Y ≤ y)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+58/77
+
+SAMI.HUST – 2023
+
+58 / 77
+
+Bài tập
+
+Bài 3
+Công thức nào tính P (a ≤ X < b, c ≤ Y < d) dựa vào hàm phân phối xác suất đồng thời của biến ngẫu
+nhiên hai chiều (X, Y ) là ĐÚNG:
+A. FX,Y (b, d) − FX,Y (b, c) − FX,Y (a, d) + FX,Y (a, c)
+B. FX,Y (b, d) − FX,Y (b, c) + FX,Y (a, d) + FX,Y (a, c)
+C. FX,Y (b, d) + FX,Y (b, c) − FX,Y (a, d) + FX,Y (a, c)
+D. FX,Y (b, d) + FX,Y (b, c) + FX,Y (a, d) − FX,Y (a, c)
+C. FX,Y (b, d) − FX,Y (b, c) − FX,Y (a, c) + FX,Y (a, d)
+D. FX,Y (b, d) − FX,Y (a, c) − FX,Y (a, d) + FX,Y (b, c)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+59/77
+
+SAMI.HUST – 2023
+
+59 / 77
+
+Bài tập
+
+Bài 4
+Cho biến ngẫu nhiên hai chiều (X, Y ) có hàm xác suất đồng thời xác định như sau:
+(
+cx, x = 1, 2; y = 1, 2, 3,
+pX,Y (x, y) =
+0,
+trái lại.
+Miền giá trị SX,Y của (X, Y ) và hằng số c là:
+A. SX,Y = {(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)} và c = 1/9
+B. SX,Y = {(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3)} và c = 2/9
+C. SX,Y = {(1, 1), (1, 2), (1, 3), (2, 2), (2, 3)} và c = 1/12
+D. SX,Y = {(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 3)} và c = 1/6
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+60/77
+
+SAMI.HUST – 2023
+
+60 / 77
+
+Bài tập
+Bài 5
+Cho biến ngẫu nhiên hai chiều (X, Y ) có bảng phân phối xác suất đồng thời xác định như sau:
+
+HH Y
+X HH
+H
+1
+2
+3
+
+1
+
+2
+
+3
+
+3/36
+12/36
+6/36
+
+6/36
+8/36
+0
+
+1/36
+0
+0
+
+Xác suất P (X ≤ 1, 5, Y ≥ 0, 5) là:
+A. 9/36
+
+C. 10/36
+
+E. 15/36
+
+B. 22/36
+
+D. 7/36
+
+F. 12/36
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+61/77
+
+SAMI.HUST – 2023
+
+61 / 77
+
+Bài tập
+
+Bài 6
+Trong 3 lần tung một đồng xu cân đối đồng chất, gọi X biến ngẫu nhiên chỉ số lần đồng xu xuất hiện mặt
+ngửa, Y là biến ngẫu nhiên nhận giá trị 0 nếu không lần nào đồng xu xuất hiện mặt ngửa, còn lại nhận giá
+trị 1. Khi đó pX,Y (2; 1) bằng:
+A. 3/8
+
+C. 2/8
+
+E. 1/8
+
+B. 4/8
+
+D. 5/8
+
+F. 6/8
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+62/77
+
+SAMI.HUST – 2023
+
+62 / 77
+
+Bài tập
+Bài 7
+Cho biến ngẫu nhiên hai chiều (X, Y ) có bảng phân phối xác suất đồng thời là:
+
+HH X
+Y HH
+H
+1
+2
+
+1
+
+2
+
+3
+
+1/9
+2/9
+
+1/9
+2/9
+
+1/9
+2/9
+
+Bảng phân phối xác suất biên của X là:
+A.
+
+X
+P
+
+1
+1/9
+
+2
+1/9
+
+3
+1/9
+
+D.
+
+X
+P
+
+1
+1/3
+
+2
+1/3
+
+B.
+
+X
+P
+
+1
+2/9
+
+2
+2/9
+
+3
+2/9
+
+E.
+
+X
+P
+
+1
+1/3
+
+2
+1/3
+
+C.
+
+X
+P
+
+1
+1/3
+
+2
+2/3
+
+F.
+
+X
+P
+
+1
+2/3
+
+2
+1/3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+63/77
+
+3
+1/3
+
+SAMI.HUST – 2023
+
+63 / 77
+
+Bài tập
+Bài 8
+Một đồng xu không đồng chất với xác suất xuất hiện mặt ngửa là 0,4. Người ta tiến hành tung đồng xu này
+hai lần. Gọi X là số lần mặt ngửa xuất hiện trong lần tung đầu tiên, Y là số lần xuất hiện mặt ngửa trong
+cả hai lần tung đồng xu. Bảng phân phối xác suất đồng thời của (X, Y ) là:
+
+A.
+
+HH Y
+X HH
+H
+
+B.
+
+HH Y
+X HH
+H
+
+0
+1
+
+0
+1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+0
+
+1
+
+0,36
+0,12
+
+0,24
+0,12
+
+0
+0,16
+
+0
+
+1
+
+2
+
+0,2
+0,16
+
+0,24
+0,24
+
+0
+0,16
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Y
+0
+X HH
+H
+0 0,3
+1
+0
+
+HH
+
+2
+C.
+
+D.
+
+HH Y
+X HH
+H
+0
+1
+
+1
+
+2
+
+0,24
+0,3
+
+0
+0,16
+
+0
+
+1
+
+2
+
+0,36
+0
+
+0,24
+0,24
+
+0
+0,16
+
+64/77
+
+SAMI.HUST – 2023
+
+64 / 77
+
+Bài tập
+Bài 9
+Từ một lọ kẹo có 4 kẹo vị cam, 2 kẹo vị táo và 3 kẹo vị ổi, lấy ngẫu nhiên 2 chiếc kẹo. Gọi X là số kẹo vị cam
+và Y là là số kẹo vị táo trong 2 chiếc được lấy ra. Bảng phân phối xác suất đồng thời của (X, Y ) là:
+
+A.
+
+B.
+
+HH X
+Y HH
+H
+0
+1
+2
+
+HH Y
+X HH
+H
+0
+1
+2
+
+0
+
+1
+
+2
+
+3/36
+12/36
+6/36
+
+6/36
+8/36
+0
+
+1/36
+0
+0
+
+0
+
+1
+
+2
+
+3/36
+8/36
+6/36
+
+6/36
+12/36
+0
+
+1/36
+0
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+Y
+0
+X HH
+H
+0
+3/36
+1 12/36
+2
+6/36
+
+HH
+C.
+
+Y
+0
+X HH
+H
+0
+9/36
+1 12/36
+2
+6/36
+
+HH
+D.
+
+65/77
+
+1
+
+2
+
+6/36
+8/36
+0
+
+1/36
+0
+0
+
+1
+
+2
+
+3/36
+8/36
+0
+
+1/36
+0
+0
+
+SAMI.HUST – 2023
+
+65 / 77
+
+Bài tập
+
+Bài 10
+Cho biến ngẫu nhiên X và Y có bảng phân phối xác suất đồng thời như sau:
+
+H
+H Y
+X HH
+H
+1
+2
+
+1
+
+2
+
+3
+
+0,12
+0,28
+
+k
+0,35
+
+0,03
+0,07
+
+(a) Tìm tham số k.
+(b) Tìm hàm xác suất biên của X và Y .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+66/77
+
+SAMI.HUST – 2023
+
+66 / 77
+
+Bài tập
+
+Bài 11
+Cho biến ngẫu nhiên hai chiều (X, Y ) có hàm xác suất đồng thời là:
+(
+1/9x, x = 1, 2; y = 1, 2, 3,
+pX,Y (x, y) =
+0,
+trái lại.
+Tìm hàm xác suất của Z = X + Y .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+67/77
+
+SAMI.HUST – 2023
+
+67 / 77
+
+Bài tập
+Bài 12
+Một siêu thị có hai quầy thanh toán, tỷ lệ thời gian bận phục vụ của quầy thứ nhất và thứ hai lần lượt là X
+và Y . Biến ngẫu nhiên hai chiều (X, Y ) có hàm mật độ xác suất đồng thời là:
+(
+x + y, 0 ≤ x, y ≤ 1,
+fX,Y (x, y) =
+0,
+trái lại.
+Tìm P (X ≤ 1/3, Y ≥ 1/2).
+Bài 13
+Một xạ thủ bắn vào bia tròn có bán kính 5 và tâm (0, 0). Giả sử rằng hai biến ngẫu nhiên X và Y có phân
+phối đều. Hàm mật độ xác suất đồng thời của (X, Y ) là:
+
+ 1 , 0 ≤ x2 + y 2 ≤ 25,
+fX,Y (x, y) = 25π
+0,
+trái lại.
+Tìm xác suất P (4 ≤ X 2 + Y 2 < 9).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+68/77
+
+SAMI.HUST – 2023
+
+68 / 77
+
+Bài tập
+Bài 14
+Giả sử thời gian hoạt động (năm) của chi tiết máy thứ nhất và thứ hai là biến ngẫu nhiên hai chiều (X, Y )
+có hàm mật độ xác suất đồng thời:
+(
+3e−3x−y , x ≥ 0, y ≥ 0,
+fX,Y (x, y) =
+0,
+trái lại.
+Tìm hàm mật độ xác suất của thời gian hoạt động cho từng chi tiết máy.
+Bài 15
+Từ một kho hàng được ba hãng cung cấp gồm 3 thiết bị của hãng A, 5 thiết bị của hãng B, 4 thiết bị của
+hãng C, lấy ngẫu nhiên ra 3 thiết bị. Gọi X và Y lần lượt là số thiết bị của hãng B và hãng C trong 3 thiết
+bị được lấy ra. Lập bảng phân phối xác suất đồng thời cho biến ngẫu nhiên hai chiều (X, Y ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+69/77
+
+SAMI.HUST – 2023
+
+69 / 77
+
+Bài tập
+Bài 16
+Cho X, Y là các biến ngẫu nhiên độc lập, có phân phối Poisson với tham số λX = 1 và λY = 2. Tính xác
+suất của các sự kiện sau:
+(a) Số nhỏ nhất trong các số X, Y không nhỏ hơn 1.
+(b) Số nhỏ nhất trong các số X, Y bằng 1.
+Bài 17
+Giả sử rằng thời gian hoạt động theo đơn vị năm của hai chi tiết máy thứ nhất và thứ hai là biến ngẫu nhiên
+hai chiều (X, Y ) có hàm mật độ xác suất đồng thời:
+(
+fX,Y (x, y) =
+
+3e−3x−y ,
+0,
+
+x ≥ 0, y ≥ 0;
+trái lại.
+
+Tìm xác suất để chi tiết máy thứ nhất hoạt động ít hơn 2 năm và thời gian hoạt động chi tiết thứ hai ít hơn
+1 năm.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+70/77
+
+SAMI.HUST – 2023
+
+70 / 77
+
+Bài tập
+Bài 18
+Giả sử rằng thời gian hoạt động theo đơn vị năm của hai chi tiết máy thứ nhất và thứ hai là biến ngẫu nhiên
+hai chiều (X, Y ) có hàm mật độ xác suất đồng thời:
+(
+3e−3x−y , x ≥ 0, y ≥ 0;
+fX,Y (x, y) =
+0,
+trái lại.
+Tìm hàm phân phối xác suất đồng thời FX,Y (x, y) cho thời gian hoạt động của hai chi tiết máy.
+Bài 19
+Một mạch điện gồm hai thiết bị mắc song song. Thời gian hoạt động của hai thiết bị là biến ngẫu nhiên
+X, Y độc lập có phân phối mũ với tham số λX = λY = λ > 0.
+(
+(
+λe−λx , x ≥ 0,
+λe−λy , y ≥ 0,
+fX (x) =
+fY (y) =
+0,
+trái lại.
+0,
+trái lại.
+Tìm hàm mật độ của Z = X + Y là thời gian hoạt động của mạch điện.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+71/77
+
+SAMI.HUST – 2023
+
+71 / 77
+
+Bài tập
+
+Bài 20
+Cho biến ngẫu nhiên hai chiều (X, Y ). Tính chất nào của phân phối xác suất có điều kiện FX|Y =y (x) sau
+đây là SAI:
+A. FX,Y (x, y) = FX|Y =y (x)FY (y)
+
+C. FX|Y =y (∞) = 1
+
+B. FX|Y =y (x) ≥ 0
+
+D. P (X < x|Y = y) = FX|Y =y (x)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+72/77
+
+SAMI.HUST – 2023
+
+72 / 77
+
+Bài tập
+
+Bài 21
+Cho biến ngẫu nhiên hai chiều (X, Y ) có hàm phân phối xác suất đồng thời là FX,Y (x, y) và hai hàm phân
+phối xác suất biên là FX (x), FY (y). X và Y được gọi là độc lập nếu và chỉ nếu:
+A.
+
+FX,Y (x, y) = FX (x)FY (y)
+
+D.
+
+FX,Y (x, y) 6= FX (x)FY (y)
+
+B.
+
+FX,Y (x, y) 6= FX (x) + FY (y)
+
+E.
+
+FX,Y (x, y) = FX (x)/FY (y)
+
+C.
+
+FX,Y (x, y) = FX (x) + FY (y)
+
+F.
+
+FX,Y (x, y) 6= FX (x)/FY (y)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+73/77
+
+SAMI.HUST – 2023
+
+73 / 77
+
+Bài tập
+Bài 22
+Một đồng xu không đồng chất với xác suất xuất hiện mặt ngửa là 0,4. Người ta tiến hành tung đồng xu này
+hai lần. Gọi X là số lần mặt ngửa xuất hiện trong lần tung đầu tiên, Y là số lần xuất hiện mặt ngửa trong
+cả hai lần tung đồng xu. Bảng phân phối xác suất đồng thời của (X, Y ) là:
+
+HH Y
+X HH
+H
+0
+1
+
+0
+
+1
+
+2
+
+0,36
+0
+
+0,24
+0,24
+
+0
+0,16
+
+Khi đó,
+(
+
+1/5,
+0,
+
+x = 0, 1,
+trái lại.
+
+(
+
+1/4,
+0,
+
+x = 0, 1,
+trái lại.
+
+A. pX|Y =1 (x) =
+
+B. pX|Y =1 (x) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(
+1/3,
+C. pX|Y =1 (x) =
+0,
+(
+1/2,
+D. pX|Y =1 (x) =
+0,
+74/77
+
+x = 0, 1,
+trái lại.
+x = 0, 1,
+trái lại.
+
+SAMI.HUST – 2023
+
+74 / 77
+
+Bài tập
+
+Bài 23
+Một siêu thị có hai quầy thanh toán, tỷ lệ thời gian bận phục vụ của quầy thứ nhất và thứ hai là X, Y . Biến
+ngẫu nhiên hai chiều (X, Y ) có hàm mật độ xác suất đồng thời là:
+(
+(x + y), 0 ≤ x, y ≤ 1,
+fX,Y (x, y) =
+0,
+trái lại.
+P (X < 1/2|Y > 1/3) là:
+A.
+
+11/28
+
+C.
+
+7/9
+
+B.
+
+11/36
+
+D.
+
+1/4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+75/77
+
+SAMI.HUST – 2023
+
+75 / 77
+
+Bài tập
+Bài 24
+Cho biến ngẫu nhiên hai chiều (X, Y ) có hàm mật độ xác suất đồng thời là:
+(
+6(1 − y), 0 ≤ x ≤ y ≤ 1,
+f (x, y) =
+0,
+trái lại.
+Khi đó,
+(
+6y − 6y 2 , 0 < x ≤ y < 1,
+A. fX|Y =y (x) =
+0,
+trái lại.
+(
+y, 0 < x ≤ y < 1,
+B. fX|Y =y (x) =
+0, trái lại.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+(
+C. fX|Y =y (x) =
+
+0,
+(
+
+D. fX|Y =y (x) =
+
+1
+,
+6y−6y 2
+
+1
+,
+y
+
+0,
+
+0 < x ≤ y < 1,
+trái lại.
+
+0 < x ≤ y < 1,
+trái lại.
+
+76/77
+
+SAMI.HUST – 2023
+
+76 / 77
+
+Bài tập
+
+Bài 25
+Cho biến ngẫu nhiên hai chiều (X, Y ) có bảng phân phối xác suất đồng thời là:
+X
+0
+Y HH
+H
+1 2/9
+2 1/9
+
+HH
+
+1
+
+2
+
+1/9
+2/9
+
+0
+3/9
+
+E(X|Y = 1) là:
+A. 8/9
+
+C. 1
+
+E. 2/3
+
+B. 1/9
+
+D. 0
+
+F. 1/3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.2
+
+77/77
+
+SAMI.HUST – 2023
+
+77 / 77
+
+

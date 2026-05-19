@@ -1,0 +1,2985 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 4
+THỐNG KÊ VÀ ƯỚC LƯỢNG THAM SỐ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+1/88
+
+SAMI.HUST – 2023
+
+1 / 88
+
+4.3. KHOẢNG TIN CẬY
+1
+
+4.3.1 Khái niệm
+
+2
+
+4.3.2 Khoảng tin cậy cho kỳ vọng
+4.3.2.1 Trường hợp phương sai V (X) = σ 2 đã biết
+4.3.2.2 Trường hợp mẫu kích thước lớn
+4.3.2.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+3
+
+4.3.2 Khoảng tin cậy cho phương sai
+4.3.2.1 Khoảng tin cậy hai phía
+4.3.2.2 Khoảng tin cậy một phía
+
+4
+
+4.3.3 Khoảng tin cậy cho tỷ lệ
+4.3.3.1 Xấp xỉ phân phối chuẩn cho tỷ lệ
+4.3.3.2 Khoảng tin cậy cho tỷ lệ
+
+5
+
+Bài tập Mục 4.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+2/88
+
+SAMI.HUST – 2023
+
+2 / 88
+
+Khái niệm
+Xét một biến ngẫu nhiên X với θ là một tham số chưa biết của X (θ có thể là kỳ vọng, phương sai hoặc tỷ
+lệ. . . ). Từ biến ngẫu nhiên này ta lập mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ). Khi đó, nếu định
+nghĩa được hai thống kê
+b i = gi (X1 , X2 , . . . , Xn ), i = 1, 2,
+Θ
+sao cho, với một số γ lớn gần 1 cho trước, γ có thể là 0,95; 0,99; 0,995 . . . , ta thu được hệ thức
+b1 ≤ θ ≤ Θ
+b 2 ) = γ,
+P (Θ
+thì, ta đã xây dựng được một ước lượng khoảng cho tham số θ và
+b 1; Θ
+b 2 ) được gọi là khoảng tin cậy cho tham số θ.
+Khoảng ngẫu nhiên (Θ
+γ được gọi là độ tin cậy của ước lượng khoảng.
+b2 − Θ
+b 1 được gọi là độ dài của khoảng tin cậy.
+Θ
+Thực hiện một phép thử đối với mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) ta thu được mẫu cụ thể
+b 1 và Θ
+b 2 , ký hiệu là θb1 và θb2 . Như vậy, có thể nhận định
+Wx = (x1 , x2 , . . . , xn ), từ đó, tính được các giá trị của Θ
+tham số θ nằm trong khoảng (θb1 , θb2 ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+3/88
+
+SAMI.HUST – 2023
+
+3 / 88
+
+Khái niệm
+b 1 và Θ
+b 2 phụ thuộc vào mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) nên chúng là các biến ngẫu
+Các cận Θ
+nhiên.
+Đôi khi ta chỉ quan tâm đến giá trị lớn nhất hay giá trị nhỏ nhất của tham số. Ví dụ, xét hai kết luận sau:
+“Với xác suất 95% thì chiều cao trung bình của người Việt Nam nhỏ hơn 168 centimét”.
+“Với xác suất 95%, chiều cao trung bình của sinh viên Đại học Bách khoa Hà Nội lớn hơn 165 centimét”.
+Ở kết luận thứ nhất, với độ tin cậy 95% thì chiều cao trung bình của người Việt Nam nằm trong khoảng
+(0; 168) và ta chỉ quan tâm đến giá trị lớn nhất. Ở kết luận thứ hai, với độ tin cậy 95% thì chiều cao trung
+bình của sinh viên Đại học Bách khoa Hà Nội thuộc khoảng (165; +∞) và ta chỉ quan tâm đến giá trị nhỏ
+nhất. Các khoảng tin cậy dạng này được gọi là khoảng tin cậy một phía.
+Khoảng tin cậy mà chỉ quan tâm đến cận trên được gọi là khoảng tin cậy trái.
+Khoảng tin cậy mà chỉ quan tâm tới cận dưới được gọi là khoảng tin cậy phải.
+Khoảng tin cậy mà ta quan tâm tới cả hai cận (trên và dưới) được gọi là khoảng tin cậy hai phía.
+Trong trường hợp các cận trên, cận dưới đối xứng qua ước lượng điểm của tham số thì ta có khoảng tin cậy
+đối xứng.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+4/88
+
+SAMI.HUST – 2023
+
+4 / 88
+
+4.3. KHOẢNG TIN CẬY
+1
+
+4.3.1 Khái niệm
+
+2
+
+4.3.2 Khoảng tin cậy cho kỳ vọng
+4.3.2.1 Trường hợp phương sai V (X) = σ 2 đã biết
+4.3.2.2 Trường hợp mẫu kích thước lớn
+4.3.2.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+3
+
+4.3.2 Khoảng tin cậy cho phương sai
+4.3.2.1 Khoảng tin cậy hai phía
+4.3.2.2 Khoảng tin cậy một phía
+
+4
+
+4.3.3 Khoảng tin cậy cho tỷ lệ
+4.3.3.1 Xấp xỉ phân phối chuẩn cho tỷ lệ
+4.3.3.2 Khoảng tin cậy cho tỷ lệ
+
+5
+
+Bài tập Mục 4.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+5/88
+
+SAMI.HUST – 2023
+
+5 / 88
+
+Bài toán
+
+Bài toán 1
+Giả sử biến ngẫu nhiên X ∼ N (µ; σ 2 ) với kỳ vọng E(X) = µ chưa biết cần ước lượng. Từ biến ngẫu nhiên
+X, lập mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n và xét bài toán tìm khoảng tin cậy cho µ dựa
+trên các quan sát Wx = (x1 , x2 , . . . , xn ).
+- Ta xét các trường hợp sau đây
+Phương sai V (X) = σ 2 đã biết.
+Mẫu kích thước lớn.
+Phương sai V (X) = σ 2 chưa biết.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+6/88
+
+SAMI.HUST – 2023
+
+6 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+Vì X ∼ N (µ; σ 2 ), nên
+Z=
+
+X −µ
+√ ∼ N (0; 1).
+σ/ n
+
+(38)
+
+Ký hiệu zα/2 là giá trị tới hạn mức α/2 sao cho diện tích miền giới hạn bởi đường cong chuẩn, trục hoành
+và bên phải zα/2 là α/2. Khi đó,
+
+
+P − zα/2 ≤ Z ≤ zα/2 = 1 − α
+
+hay
+
+
+
+X −µ
+√ ≤ zα/2 = 1 − α
+P − zα/2 ≤
+σ/ n
+
+(xem Hình 7).
+Suy ra,
+
+σ
+σ 
+P X − zα/2 √ ≤ µ ≤ X + zα/2 √
+= 1 − α.
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(39)
+
+7/88
+
+SAMI.HUST – 2023
+
+7 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+
+N (0; 1)
+1−α
+
+α/2
+
+α/2
+
+−zα/2
+
+0
+
+zα/2
+
+z
+
+Hình 7: P (−zα/2 ≤ Z ≤ zα/2 ) = 1 − α
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+8/88
+
+SAMI.HUST – 2023
+
+8 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+
+Định lý 8
+Nếu X là kỳ vọng mẫu của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n lấy từ biến ngẫu nhiên
+X ∼ N (µ; σ 2 ) với σ 2 đã biết, thì khoảng tin cậy đối xứng cho µ với độ tin cậy 1 − α được cho bởi
+σ
+σ
+X − zα/2 √ ≤ µ ≤ X + zα/2 √ ,
+n
+n
+
+(40)
+
+ở đây, zα/2 là giá trị tới hạn mức α/2 của phân phối chuẩn được xác định từ hệ thức Φ(zα/2 ) = 1 − α/2.
+Khi có mẫu cụ thể WX = (x1 , x2 , . . . , xn ), ta tính được giá trị cụ thể x của X và nhận được khoảng tin cậy
+đối xứng cho µ là
+σ
+σ
+x − zα/2 √ ≤ µ ≤ x + zα/2 √ .
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(41)
+
+9/88
+
+SAMI.HUST – 2023
+
+9 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+Ví dụ 25
+Trọng lượng (gam) của một loại sản phẩm là biến ngẫu nhiên X có phân phối chuẩn với độ lệch tiêu chuẩn
+là 6 gam. Cân thử 36 sản phẩm loại này ta thu được kết quả sau:
+177
+
+165
+
+152
+
+174
+
+159
+
+166
+
+160
+
+152
+
+162
+
+175
+
+158
+
+169
+
+166
+
+162
+
+181
+
+168
+
+170
+
+150
+
+173
+
+164
+
+167
+
+177
+
+167
+
+175
+
+165
+
+182
+
+166
+
+158
+
+166
+
+170
+
+168
+
+165
+
+160
+
+160
+
+169
+
+166
+
+(a) Với độ tin cậy 1 − α = 95%, hãy tìm khoảng tin cậy đối xứng cho trọng lượng trung bình của loại sản
+phẩm nói trên.
+(b) Nếu yêu cầu độ tin cậy là 99% thì kết quả thế nào?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+10/88
+
+SAMI.HUST – 2023
+
+10 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+Giải.
+(a) Đây là bài toán ước lượng bằng khoảng tin cậy đối xứng cho kỳ vọng E(X) = µ của biến ngẫu nhiên gốc
+X ∼ N (µ; σ 2 ) với σ = 6.
+Với độ tin cậy 1 − α = 0, 95, Φ(zα/2 ) = Φ(z0,025 ) = 0, 975. Suy ra z0,025 = 1, 96.
+Từ số liệu đã cho, kích thước mẫu n = 36, trung bình mẫu x = 166, 22 (gam), áp dụng (41), suy ra khoảng
+tin cậy đối xứng cho trọng lượng trung bình của sản phẩm với độ tin cậy 95% là
+6
+6
+166, 22 − 1, 96 × √ ≤ µ ≤ 166, 22 + 1, 96 × √
+36
+36
+hay
+164, 26 ≤ µ ≤ 168, 18.
+Như vậy, dựa trên dữ liệu mẫu, trọng lượng trung bình của loại sản phẩm nói trên từ 164,26 gam đến
+168,18 gam.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+11/88
+
+SAMI.HUST – 2023
+
+11 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai đã biết
+(b) Nếu yêu cầu độ tin cậy 1 − α = 99%, zα/2 = z0,005 = 2, 58.
+Khoảng tin cậy cho trọng lượng trung bình của sản phẩm với độ tin cậy 99% là
+6
+6
+166, 22 − 2, 58 × √ ≤ µ ≤ 166, 22 + 2, 58 × √
+36
+36
+hay
+163, 64 ≤ µ ≤ 168, 80.
+Trên cùng một mẫu dữ liệu, nếu độ tin cậy càng lớn thì độ dài của khoảng tin cậy càng lớn.
+Không thể viết P (164, 26 ≤ µ ≤ 168, 18) = 0, 95 vì độ tin cậy gắn với khoảng tin cậy ngẫu nhiên chứ
+không gắn với mẫu cụ thể. Hơn nữa vì µ là một hằng số nên nó chỉ có thể thuộc hoặc không thuộc khoảng
+(164,26; 168,18) nên (164, 26 ≤ µ ≤ 168, 18) không phải là sự kiện ngẫu nhiên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+12/88
+
+SAMI.HUST – 2023
+
+12 / 88
+
+Sai số của ước lượng. Kích thước mẫu
+
+b = g(X1 , X2 , . . . , Xn ) là một hàm ước lượng điểm cho θ dựa
+Giả sử θ là một tham số của tổng thể và Θ
+trên mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n.
+b có sai số ε với độ tin cậy 1 − α nếu
+Cho trước số ε > 0 và 1 − α ∈ (0; 1), ta nói rằng Θ
+
+
+b ≤ ε ≥ 1 − α.
+P θ−Θ
+
+(42)
+
+Nếu kích thước mẫu n càng lớn thì sai số càng nhỏ. Tuy nhiên kích thước mẫu càng lớn thì nhà nghiên cứu
+càng tốn nhiều thời gian, tiền bạc và công sức cho việc thu thập dữ liệu.
+Bài toán đặt ra là cần chọn kích thước mẫu tối thiểu là bao nhiêu để đủ đạt được sai số mong muốn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+13/88
+
+SAMI.HUST – 2023
+
+13 / 88
+
+Sai số của ước lượng. Kích thước mẫu
+Giả sử với độ tin cậy 1 − α cho trước, ta muốn có ước lượng cho giá trị trung bình µ với sai số không quá ε.
+Nếu X ∼ N (µ; σ 2 ) với σ 2 đã biết thì
+
+σ 
+P X − µ ≤ zα/2 √
+= 1 − α.
+(43)
+n
+Do đó nếu n thỏa mãn zα/2 √σn ≤ ε hay tương đương với
+n≥
+thì
+
+σ 2 (zα/2 )2
+ε2
+
+(44)
+
+
+
+
+σ 
+= 1 − α.
+P |X − µ| ≤ ε ≥ P |X − µ| ≤ zα/2 √
+n
+
+Ta sẽ chọn kích thước mẫu n là số nguyên dương bé nhất thỏa mãn điều kiện (44) thì sẽ đạt được sai số
+mong muốn với độ tin cậy 1 − α.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+14/88
+
+SAMI.HUST – 2023
+
+14 / 88
+
+Sai số của ước lượng. Kích thước mẫu
+
+-
+
+√
+Độ dài khoảng tin cậy đối xứng trong (41) là 2zα/2 σ/ n. Như vậy, nếu sử dụng x để ước lượng µ, thì sai
+√
+số |x − µ| nhỏ hơn hoặc bằng ε = zα/2 σ/ n với độ tin cậy (1 − α).
+Với phương sai σ 2 đã biết không đổi và độ tin cậy 1 − α không đổi thì giá trị zα/2 không đổi, do đó sai số
+của ước lượng chỉ phụ thuộc vào kích thước mẫu n.
+
+Ví dụ 26
+Trong Ví dụ 25(a), sai số của ước lượng là
+6
+ε = 1, 96 × √ = 1, 96.
+36
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+15/88
+
+SAMI.HUST – 2023
+
+15 / 88
+
+Sai số của ước lượng. Kích thước mẫu
+
+Ví dụ 27
+Cần một kích thước mẫu là bao nhiêu nếu muốn ước lượng khoảng tin cậy cho µ trong Ví dụ 25 với độ tin
+cậy 95% và sai số của ước lượng là 1?
+Giải.
+Ta có ε = 1, σ = 6, zα/2 = 1, 96. Từ (44),
+n≥
+
+62 (1, 96)2
+= 138, 2976.
+12
+
+Nghĩa là ta phải cân ít nhất 139 sản phẩm. Tuy nhiên, vì ta đã cân 36 sản phẩm, nên thực tế cần cân bổ
+sung thêm 133 sản phẩm nữa.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+16/88
+
+SAMI.HUST – 2023
+
+16 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai đã biết
+
+Ta có
+P
+
+X − µ
+
+√ ≤ zα = 1 − α
+σ/ n
+
+hay
+
+
+σ 
+= 1 − α.
+P µ > X − zα √
+n
+
+Tương tự,
+P
+
+X − µ
+
+√ > −zα = 1 − α
+σ/ n
+
+hay
+
+
+σ 
+P µ < X + zα √
+= 1 − α.
+n
+
+Từ đó ta có công thức xác định khoảng tin cậy một phía cho kỳ vọng E(X) = µ như sau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+17/88
+
+SAMI.HUST – 2023
+
+17 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai đã biết
+Định lý 9
+Giả sử X là trung bình mẫu của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n lấy từ tổng thể phân
+phối chuẩn với phương sai là σ 2 . Khi đó,
+Khoảng tin cậy trái cho µ với độ tin cậy (1 − α) là
+σ
+−∞ < µ ≤ X + zα √ .
+n
+
+(45)
+
+Khoảng tin cậy phải cho µ với độ tin cậy (1 − α) là
+σ
+X − zα √ ≤ µ < +∞,
+n
+
+(46)
+
+ở đây, zα là giá trị tới hạn mức α của phân phối chuẩn được xác định từ hệ thức Φ(zα ) = 1 − α.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+18/88
+
+SAMI.HUST – 2023
+
+18 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai đã biết
+
+Định lý 9 (tiếp theo)
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ), ta tính được giá trị cụ thể x của X và nhận được khoảng tin cậy
+một phía cho µ ứng với mẫu này.
+Khoảng tin cậy trái cho µ là
+σ
+−∞ < µ ≤ x + zα √ .
+n
+
+(47)
+
+σ
+x − zα √ ≤ µ < +∞.
+n
+
+(48)
+
+Khoảng tin cậy phải cho µ là
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+19/88
+
+SAMI.HUST – 2023
+
+19 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai đã biết
+Ví dụ 28
+Với số liệu trong Ví dụ 25, với độ tin cậy 99% hãy tính cận trên của khoảng tin cậy phải dựa vào số liệu đã
+cho.
+Giải.
+Đây là bài toán ước lượng khoảng cho kỳ vọng của tổng thể phân phối chuẩn, phương sai đã biết bằng
+khoảng tin cậy một phía (khoảng tin cậy phải).
+Với độ tin cậy 1 − α = 99% suy ra Φ(zα ) = Φ(z0,01 ) = 0, 99. Suy ra z0,01 = 2, 33 (xem Hình 8).
+Giá trị bé nhất cho trọng lượng trung bình là
+σ
+6
+x − zα √ = 166, 22 − 2, 33 √ = 163, 89.
+n
+36
+Như vậy, với độ tin cậy 99%, ta tính được cận trên của khoảng tin cậy phải là 163,89 gam.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+20/88
+
+SAMI.HUST – 2023
+
+20 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai đã biết
+
+α = 0, 01
+
+0
+
+2, 33
+
+z
+
+Hình 8: Giá trị zα với độ tin cậy 99%
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+21/88
+
+SAMI.HUST – 2023
+
+21 / 88
+
+Trường hợp mẫu kích thước lớn
+
+Ta sẽ xem xét khoảng tin cậy cho E(X) = µ trong trường hợp không cần giả thiết phân phối chuẩn của biến
+ngẫu nhiên gốc X.
+Giả sử mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n được thành lập từ biến ngẫu nhiên gốc X
+của tổng thể có kỳ vọng µ và phương sai σ 2 chưa biết.
+Nếu kích thước mẫu n lớn, thì theo Định lý giới hạn trung tâm,
+Z=
+
+X −µ
+√ xấp xỉ phân phối chuẩn tắc N (0; 1).
+σ/ n
+
+Do đó ta có thể sử dụng kết quả phần trên để xây dựng khoảng tin cậy cho µ. Tuy nhiên, vì σ chưa biết, khi
+n đủ lớn ta có thể thay σ bởi độ lệch tiêu chuẩn hiệu chỉnh S mà ít làm ảnh hưởng đến phân phối của Z.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+22/88
+
+SAMI.HUST – 2023
+
+22 / 88
+
+Khoảng tin cậy đối xứng cho µ với mẫu kích thước n lớn
+Định lý 10
+Khi n đủ lớn thì
+Z=
+
+X −µ
+√ xấp xỉ phân phối chuẩn tắc N (0; 1).
+S/ n
+
+(49)
+
+Khi đó,
+S
+S
+X − zα/2 √ ≤ µ ≤ X + zα/2 √
+n
+n
+
+(50)
+
+là khoảng tin cậy mẫu lớn cho µ với độ tin cậy 1 − α.
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) ta tính được các giá trị cụ thể x của X và s của S và xác định
+được khoảng tin cậy đối xứng cho µ là
+s
+s
+x − zα/2 √ ≤ µ ≤ x + zα/2 √ .
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(51)
+
+23/88
+
+SAMI.HUST – 2023
+
+23 / 88
+
+Khoảng tin cậy đối xứng cho µ với mẫu kích thước n lớn
+
+- Nói chung kích thước mẫu n nên ít nhất là 40 để sử dụng kết quả này một cách đáng tin cậy. Định lý giới hạn
+trung tâm thường áp dụng cho n ≥ 30, nhưng kích thước mẫu lớn hơn được khuyến nghị ở đây vì việc thay thế σ
+bằng S dẫn đến sự thay đổi trong kết quả của Z ở (49).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+24/88
+
+SAMI.HUST – 2023
+
+24 / 88
+
+Khoảng tin cậy đối xứng cho µ với mẫu kích thước n lớn
+
+Ví dụ 29
+Để ước lượng trọng lượng trung bình của một loại sản phẩm do một máy sản xuất, người ta cân thử ngẫu
+nhiên 100 sản phẩm loại này và thu được kết quả sau:
+Trọng lượng (gam)
+Số sản phẩm
+
+40 − 42
+7
+
+42 − 44
+13
+
+44 − 46
+25
+
+46 − 48
+35
+
+48 − 50
+15
+
+50 − 52
+5
+
+Hãy ước lượng trọng lượng trung bình của loại sản phẩm nói trên bằng khoảng tin cậy đối xứng với độ tin
+cậy 95%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+25/88
+
+SAMI.HUST – 2023
+
+25 / 88
+
+Khoảng tin cậy đối xứng cho µ với mẫu kích thước n lớn
+Giải. Gọi X là trọng lượng của loại sản phẩm trên, trọng lượng trung bình của sản phẩm là E(X) = µ chưa biết,
+cần ước lượng. Đây là bài toán ước lượng khoảng của kỳ vọng của biến ngẫu nhiên chưa biết phân phối xác suất
+và phương sai chưa biết, kích thước mẫu n = 100 đủ lớn. Sử dụng Định lý 49 như sau:
+Chọn thống kê Z =
+
+X −µ
+√ . Vì n = 100 đủ lớn, nên Z xấp xỉ N (0; 1).
+S/ n
+
+Áp dụng khoảng tin cậy đối xứng (49) cho µ, với zα/2 = z0,025 = 1, 96, x = 46, 06 và s = 2, 48 ta nhận
+được
+2, 48
+2, 48
+≤ µ ≤ 46, 06 + 1, 96 × √
+46, 06 − 1, 96 × √
+100
+100
+hay
+45, 573 ≤ µ ≤ 46, 546.
+Với độ tin cậy 95%, trọng lượng trung bình của loại sản phẩm trên là từ 45,573 gam đến 46,546 gam.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+26/88
+
+SAMI.HUST – 2023
+
+26 / 88
+
+Khoảng tin cậy một phía cho µ với mẫu kích thước n lớn
+
+- Với các lập luận như đã trình bày ở trên, khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ), ta tính được x và s và
+nhận được các khoảng tin cậy trái và phải cho µ lần lượt là:
+s
+−∞ < µ ≤ x + zα √
+n
+
+(52)
+
+s
+x − zα √ ≤ µ < +∞.
+n
+
+(53)
+
+và
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+27/88
+
+SAMI.HUST – 2023
+
+27 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai chưa biết
+
+Từ X lập một mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n. Như đã biết,
+T =
+
+X −µ
+√ ∼ t(n − 1).
+S/ n
+
+Tương tự cách làm với trường hợp σ đã biết, thay σ bởi S và phân phối chuẩn bởi phân phối Student, ta có
+(xem Hình 9),
+P (−tα/2;n−1 ≤ T ≤ tα/2;n−1 ) = 1 − α,
+hay
+
+
+X −µ
+√ ≤ tα/2;n−1 = 1 − α.
+P − tα/2;n−1 ≤
+S/ n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+28/88
+
+SAMI.HUST – 2023
+
+28 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai chưa biết
+
+t(n − 1)
+1−α
+
+α/2
+
+α/2
+
+−tα/2;n−1
+
+0
+
+tα/2;n−1
+
+t
+
+Hình 9: P (−tα/2;n−1 ≤ T ≤ tα/2;n−1 ) = 1 − α
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+29/88
+
+SAMI.HUST – 2023
+
+29 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai chưa biết
+
+Từ đó,
+
+S
+S 
+= 1 − α.
+P X − tα/2;n−1 √ ≤ µ ≤ X + tα/2;n−1 √
+n
+n
+
+(54)
+
+Khi có mẫu cụ thể kích thước n, ta tính được x và s và từ đó tìm được khoảng tin cậy cho µ với độ tin cậy
+1 − α.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+30/88
+
+SAMI.HUST – 2023
+
+30 / 88
+
+Khoảng tin cậy đối xứng cho kỳ vọng, phương sai chưa biết
+Định lý 11
+Nếu X và S là trung bình mẫu và độ lệch chuẩn hiệu chỉnh mẫu của một mẫu ngẫu nhiên kích thước n,
+WX = (X1 , X2 , . . . , Xn ), được chọn từ biến ngẫu nhiên X có phân phối chuẩn với phương sai σ 2 chưa biết,
+thì khoảng tin cậy đối xứng cho µ với độ tin cậy 1 − α là
+S
+S
+X − tα/2;n−1 √ ≤ µ ≤ X + tα/2;n−1 √ ,
+n
+n
+
+(55)
+
+ở đây, tα/2;n−1 là giá trị tới hạn mức α/2 của phân phối Student với n − 1 bậc tự do.
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) kích thước n, ta tính được x của X và s của S và xác định được
+khoảng tin cậy đối xứng cho µ là
+s
+s
+x − tα/2;n−1 √ ≤ µ ≤ x + tα/2;n−1 √ .
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(56)
+
+31/88
+
+SAMI.HUST – 2023
+
+31 / 88
+
+Chọn kích thước mẫu
+Tương tự như mục trước, ta có
+
+S 
+= 1 − α.
+P |X − µ| ≤ tα/2;n−1 √
+n
+Do đó, nếu n thỏa mãn
+
+s
+tα/2;n−1 √ ≤ ε
+n
+
+hay tương đương với
+n≥
+thì ta sẽ có
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+s2 (tα/2;n−1 )2
+ε2
+
+(57)
+
+
+
+P |X − µ| ≤ ε ≥ 1 − α.
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+32/88
+
+SAMI.HUST – 2023
+
+32 / 88
+
+Chọn kích thước mẫu
+
+Ta không thể tìm n thỏa mãn (57) vì cả s và tα/2;n−1 đều phụ thuộc vào n.
+Tuy nhiên, khi số bậc tự do lớn thì tα/2;n−1 và zα/2 gần như nhau, vì vậy ta có thể chọn n thỏa mãn
+n≥
+
+s2 (zα/2 )2
+.
+ε2
+
+(58)
+
+Như vậy, nếu tìm được ước lượng cho s thì ta sẽ tìm được n từ bất đẳng thức này.
+Người ta thường lấy một mẫu sơ bộ kích thước n đủ lớn (n ≥ 30) để tính s rồi sau đó tìm n từ bất đẳng
+thức (58).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+33/88
+
+SAMI.HUST – 2023
+
+33 / 88
+
+Chọn kích thước mẫu
+
+Ví dụ 30
+Ta muốn xây dựng một ước lượng với độ tin cậy 95% và sai số 2 dặm cho vận tốc trung bình của ô tô trên
+đường cao tốc. Một mẫu điều tra sơ bộ với cỡ mẫu n = 50 cho ta s = 9 dặm. Hỏi cần lấy mẫu cỡ tối thiểu là
+bao nhiêu để đạt được sai số và độ tin cậy đã đặt ra.
+Giải.
+Ta có ε = 2, s = 9, 1 − α = 95% nên zα/2 = 1, 96. Từ bất đẳng thức (58) ta có
+n≥
+
+s2 (zα/2 )2
+92 (1, 96)2
+=
+= 77, 79.
+2
+ε
+22
+
+Nghĩa là ta phải lấy cỡ mẫu ít nhất là 78. Tuy nhiên vì ta đã có mẫu sơ bộ với cỡ 50, nên thực ra ta chỉ cần
+bổ sung thêm 28 quan sát nữa.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+34/88
+
+SAMI.HUST – 2023
+
+34 / 88
+
+Chọn kích thước mẫu
+
+Việc lấy mẫu sơ bộ để tìm s là hợp lý vì ta biết rằng s hội tụ đến σ khi n → ∞, do đó khi n lớn thì các
+giá trị của s khá “ổn định” và “gần” σ.
+Trong ví dụ trên, phương sai của tổng thể dữ liệu được ước lượng thông qua độ phân tán của mẫu sơ
+bộ. Ta cũng có thể ước lượng phương sai của tổng thể dữ liệu theo những cách khác.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+35/88
+
+SAMI.HUST – 2023
+
+35 / 88
+
+Chọn kích thước mẫu
+Ví dụ 31
+Ta muốn ước lượng số năm đi học của những người trưởng thành trong một vùng với độ tin cậy 95% và sai
+số không quá một năm thì cần lấy mẫu tối thiểu là bao nhiêu?
+Giải.
+Ta có ε = 1, 1 − α = 95% nên zα/2 = 1, 96.
+Để ước lượng phương sai của tổng thể dữ liệu, ta nhận thấy rằng số năm học dao động từ 0 đến 18. Nếu
+phân phối của số năm đi học là phân phối chuẩn thì hầu hết các giá trị quan sát sẽ thuộc khoảng
+(µ − 3σ; µ + 3σ). Khoảng này có độ dài 6σ do đó ta dùng ước lượng 6σ = 18 hay σ = 3. Từ đó ta tìm được
+n≥
+
+32 (1, 96)2
+= 34, 5744
+12
+
+Ta cũng có thể đoán rằng số năm học không thể quá 24 và do đó độ lệch tiêu chuẩn σ không thể quá 4 để
+có ước lượng thô về σ từ đó tìm n.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+36/88
+
+SAMI.HUST – 2023
+
+36 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai chưa biết
+
+Bằng cách xây dựng tương tự như trên, khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) kích thước n, ta tính được giá
+trị cụ thể x của X và s của S và xây dựng được các khoảng tin cậy một phía cho µ.
+Khoảng tin cậy trái cho µ là
+s
+−∞ < µ ≤ x + tα;n−1 √ ;
+n
+
+(59)
+
+s
+x − tα;n−1 √ ≤ µ < +∞,
+n
+
+(60)
+
+Khoảng tin cậy phải cho µ là
+
+trong đó, tα;n−1 là giá trị tới hạn mức α của phân phối Student với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+37/88
+
+SAMI.HUST – 2023
+
+37 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai chưa biết
+
+Ví dụ 32
+Để kiểm tra sự chính xác của hệ thống đóng gói tự động các bao gạo khi xuất khẩu tại một nhà máy, người
+ta đã chọn ngẫu nhiên 16 bao và tính được trọng lượng trung bình là 49,75 kg và độ lệch tiêu chuẩn hiệu
+chỉnh mẫu là 0,5 kg. Giả thiết rằng trọng lượng của những bao gạo có phân phối chuẩn. Với độ tin cậy 95%
+có thể khẳng định trọng lượng trung bình của bao gạo cao nhất là bao nhiêu? Dựa trên kết quả thu được có
+thể khẳng định về trung bình các bao gạo đã bị đóng thiếu hay không nếu biết rằng trọng lượng chuẩn mỗi
+bao là 50 kg.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+38/88
+
+SAMI.HUST – 2023
+
+38 / 88
+
+Khoảng tin cậy một phía cho kỳ vọng, phương sai chưa biết
+Giải. Gọi X là trọng lượng các bao gạo được đóng gói tự động, X ∼ N (µ; σ 2 ) với σ 2 chưa biết. Đây là bài toán
+ước lượng bằng khoảng tin cậy một phía cho kỳ vọng E(X) = µ của của biến ngẫu nhiên có phân phối chuẩn,
+phương sai chưa biết, mẫu kích thước n = 16 < 30.
+Với độ tin cậy 95% suy ra tα;n−1 = t0,05;15 = 1, 75.
+Áp dụng (59), khoảng tin cậy cần tìm là
+0, 5
+0 < µ ≤ 49, 75 + 1, 75 × √
+16
+hay
+0 < µ ≤ 49, 97.
+Với độ tin cậy 95% giá trị lớn nhất cho trọng lượng trung bình của các bao gạo là 49,97 kg. Ta có thể
+khẳng định về trung bình các bao gạo đã bị đóng thiếu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+39/88
+
+SAMI.HUST – 2023
+
+39 / 88
+
+4.3. KHOẢNG TIN CẬY
+1
+
+4.3.1 Khái niệm
+
+2
+
+4.3.2 Khoảng tin cậy cho kỳ vọng
+4.3.2.1 Trường hợp phương sai V (X) = σ 2 đã biết
+4.3.2.2 Trường hợp mẫu kích thước lớn
+4.3.2.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+3
+
+4.3.2 Khoảng tin cậy cho phương sai
+4.3.2.1 Khoảng tin cậy hai phía
+4.3.2.2 Khoảng tin cậy một phía
+
+4
+
+4.3.3 Khoảng tin cậy cho tỷ lệ
+4.3.3.1 Xấp xỉ phân phối chuẩn cho tỷ lệ
+4.3.3.2 Khoảng tin cậy cho tỷ lệ
+
+5
+
+Bài tập Mục 4.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+40/88
+
+SAMI.HUST – 2023
+
+40 / 88
+
+Khoảng tin cậy cho phương sai
+
+Bài toán 2
+Giả sử biến ngẫu nhiên X ∼ N (µ; σ 2 ) với phương sai V (X) = σ 2 chưa biết. Lập một mẫu ngẫu nhiên
+WX = (X1 , X2 , . . . , Xn ) kích thước n. Bài toán đặt ra là hãy tìm khoảng tin cậy cho phương sai σ 2 dựa trên
+số liệu quan sát Wx = (x1 , x2 , . . . , xn ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+41/88
+
+SAMI.HUST – 2023
+
+41 / 88
+
+Khoảng tin cậy hai phía
+Theo Định lý 22 (Chương 2), thống kê
+χ2 =
+
+(n − 1)S 2
+∼ χ2 (n − 1).
+σ2
+
+Đại lượng này gọi là đại lượng xoay, nó giúp ta có thể tra cứu các giá trị tới hạn từ bảng phân phối Khi-bình
+phương.
+Khi đó, ta có thể viết (xem Hình 10)
+P (χ21−α/2;n−1 ≤ χ2 ≤ χ2α/2;n−1 ) = 1 − α.
+Hay
+
+
+(n − 1)S 2
+≤ χ2α/2;n−1 = 1 − α.
+P χ21−α/2;n−1 ≤
+2
+σ
+Từ đây suy ra
+P
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+ (n − 1)S 2
+χ2α/2;,n−1
+
+≤ σ2 ≤
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(n − 1)S 2 
+= 1 − α.
+χ21−α/2;n−1
+
+(61)
+
+42/88
+
+SAMI.HUST – 2023
+
+42 / 88
+
+Khoảng tin cậy hai phía
+
+1−α
+α/2
+
+0
+
+χ2
+1−α/2;n−1
+
+α/2
+χ2
+α/2;n−1
+
+χ2
+
+Hình 10: P (χ21−α/2;n−1 ≤ χ2 ≤ χ2α/2;n−1 ) = 1 − α
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+43/88
+
+SAMI.HUST – 2023
+
+43 / 88
+
+Khoảng tin cậy hai phía
+Định lý 12
+Nếu S 2 là phương sai hiệu chỉnh mẫu của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n chọn từ biến
+ngẫu nhiên X phân phối chuẩn với phương sai σ 2 chưa biết, thì khoảng tin cậy cho σ 2 với độ tin cậy 1 − α là
+(n − 1)S 2
+(n − 1)S 2
+≤ σ2 ≤ 2
+,
+2
+χα/2;n−1
+χ1−α/2;n−1
+
+(62)
+
+ở đây, χ2α/2;n−1 và χ21−α/2;n−1 là các giá trị tới hạn mức α/2 và 1 − α/2 tương ứng của phân phối Khi-bình
+phương với n − 1 bậc tự do.
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) kích thước n, ta tính được giá trị s2 của S 2 và xác định được
+khoảng tin cậy hai phía cho phương sai là
+(n − 1)s2
+(n − 1)s2
+≤ σ2 ≤ 2
+.
+2
+χα/2;n−1
+χ1−α/2;n−1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+(63)
+
+44/88
+
+SAMI.HUST – 2023
+
+44 / 88
+
+Khoảng tin cậy hai phía
+
+Ví dụ 33
+Trọng lượng của một loại sản phẩm tuân theo luật phân phối chuẩn. Cân thử trọng lượng của 10 sản phẩm
+ta được kết quả tương ứng (gam)
+46, 4; 46, 1; 45, 8; 47, 0; 46, 1; 45, 9; 45, 8; 46, 9; 45, 2; 46, 0
+Với độ tin cậy 95% hãy tìm khoảng tin cậy cho phương sai của trọng lượng sản phẩm.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+45/88
+
+SAMI.HUST – 2023
+
+45 / 88
+
+Khoảng tin cậy hai phía
+Giải. Gọi X là trọng lượng sản phẩm, X ∼ N (µ; σ 2 ). Phương sai của trọng lượng sản phẩm là V (X) = σ 2 chưa
+biết, cần ước lượng. Đây là bài toán ước lượng khoảng của phương sai của biến ngẫu nhiên phân phối chuẩn.
+Với α = 0, 05 và số bậc tự do n − 1 = 9 ta nhận được χ2α/2;n−1 = χ20,025;9 = 19, 023 và
+χ21−α/2;n−1 = χ20,975;9 = 2, 7.
+Từ dữ liệu bài ra, tính
+s2 =
+
+n
+
+P
+
+P 2
+x2i −
+xi
+10 × 21273, 12 − (461, 2)2
+=
+= 0, 2862.
+n(n − 1)
+10 × 9
+
+Do đó, khoảng tin cậy cho σ 2 với độ tin cậy 95% là
+9 × 0, 2862
+9 × 0, 2862
+≤ σ2 ≤
+19, 023
+2, 7
+hay
+0, 1354 ≤ σ 2 ≤ 0, 9540.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+46/88
+
+SAMI.HUST – 2023
+
+46 / 88
+
+Khoảng tin cậy một phía
+Tương tự như trên, khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) kích thước n, ta tính được giá trị s2 của S 2 và xác
+định được khoảng tin cậy một phía cho phương sai.
+Khoảng tin cậy trái cho phương sai là
+0 < σ2 ≤
+
+(n − 1)s2
+χ2α;n−1
+
+(64)
+
+Khoảng tin cậy phải cho phương sai là
+(n − 1)s2
+≤ σ 2 < +∞,
+χ21−α;n−1
+
+(65)
+
+ở đây χ2α;n−1 và χ21−α;n−1 là các giá trị tới hạn mức α và 1 − α tương ứng của phân phối Khi-bình
+phương với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+47/88
+
+SAMI.HUST – 2023
+
+47 / 88
+
+Khoảng tin cậy cho độ lệch chuẩn
+
+- Lấy căn bậc hai các cận trong các khoảng tin cậy cho phương sai ta sẽ thu được các khoảng tin cậy cho
+các độ lệch chuẩn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+48/88
+
+SAMI.HUST – 2023
+
+48 / 88
+
+4.3. KHOẢNG TIN CẬY
+1
+
+4.3.1 Khái niệm
+
+2
+
+4.3.2 Khoảng tin cậy cho kỳ vọng
+4.3.2.1 Trường hợp phương sai V (X) = σ 2 đã biết
+4.3.2.2 Trường hợp mẫu kích thước lớn
+4.3.2.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+3
+
+4.3.2 Khoảng tin cậy cho phương sai
+4.3.2.1 Khoảng tin cậy hai phía
+4.3.2.2 Khoảng tin cậy một phía
+
+4
+
+4.3.3 Khoảng tin cậy cho tỷ lệ
+4.3.3.1 Xấp xỉ phân phối chuẩn cho tỷ lệ
+4.3.3.2 Khoảng tin cậy cho tỷ lệ
+
+5
+
+Bài tập Mục 4.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+49/88
+
+SAMI.HUST – 2023
+
+49 / 88
+
+Bài toán
+
+Bài toán 3
+Ta xét một tổng thể mà mỗi cá thể có hoặc không có dấu hiệu A nào đó. Gọi p là tỷ lệ cá thể có dấu hiệu A
+trong tổng thể, thông thường p chưa biết. Dựa trên một mẫu được chọn ngẫu nhiên, hãy tìm khoảng tin cậy
+cho p với độ tin cậy 1 − α cho trước.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+50/88
+
+SAMI.HUST – 2023
+
+50 / 88
+
+Xấp xỉ phân phối chuẩn cho tỷ lệ
+
+Xây dựng một mẫu ngẫu nhiên kích thước n từ một tổng thể kích thước lớn (có thể là vô hạn) và gọi X
+(≤ n) là số cá thể có dấu hiệu A trong n cá thể được chọn. Khi đó, Pb = X/n là một ước lượng điểm cho p.
+Nếu p không quá gần 0 hoặc 1 thì ta có thể xây dựng ước lượng khoảng cho p dựa trên phân phối mẫu của
+Pb.
+Chú ý rằng n và p là các tham số của phân phối nhị thức và Pb là thống kê xấp xỉ phân phối chuẩn với
+E(Pb) = p và V (Pb) = p(1 − p)/n nếu n đủ lớn. Thông thường, để áp dụng được xấp xỉ này, ta yêu cầu np
+và n(1 − p) lớn hơn hoặc bằng 5.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+51/88
+
+SAMI.HUST – 2023
+
+51 / 88
+
+Xấp xỉ phân phối chuẩn cho tỷ lệ
+
+Định lý 13
+Nếu n đủ lớn thì phân phối của thống kê
+X − np
+Pb − p
+Z= p
+= q
+p(1−p)
+np(1 − p)
+
+(66)
+
+n
+
+xấp xỉ phân phối chuẩn tắc N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+52/88
+
+SAMI.HUST – 2023
+
+52 / 88
+
+Khoảng tin cậy đối xứng
+Để xây dựng khoảng tin cậy cho tỷ lệ p, từ Định lý 13,
+
+
+P zα/2 ≤ Z ≤ zα/2 ≈ 1 − α.
+Do đó
+
+Pb − p
+P zα/2 ≤ q
+
+p(1−p)
+n
+
+
+≤ zα/2 ≈ 1 − α,
+
+hay
+
+
+r
+
+P Pb − zα/2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+p(1 − p)
+≤ p ≤ Pb + zα/2
+n
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+r
+
+p(1 − p) 
+≈ 1 − α.
+n
+
+53/88
+
+(67)
+
+SAMI.HUST – 2023
+
+53 / 88
+
+Khoảng tin cậy đối xứng
+
+Đại lượng
+
+p
+
+p(1 − p)/n trong công thức (67) được gọi là sai số tiêu chuẩn của hàm ước lượng điểm Pb.
+
+Ta thấy cận trên và cận dưới của khoảng tin cậy trong công thức (67) chứa tham số p chưa biết. Tuy nhiên,
+ta có thể dùng Pb để thay thế cho p và nhận được
+s
+s
+
+b(1 − Pb)
+P
+Pb(1 − Pb) 
+≈ 1 − α.
+(68)
+P Pb − zα/2
+≤ p ≤ Pb + zα/2
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+54/88
+
+SAMI.HUST – 2023
+
+54 / 88
+
+Khoảng tin cậy đối xứng
+Định lý 14
+Nếu Pb là tỷ lệ các quan sát trong một mẫu ngẫu nhiên kích thước n, thì xấp xỉ khoảng tin cậy cho tỷ lệ p
+của tổng thể với độ tin cậy 1 − α là
+s
+s
+b(1 − Pb)
+P
+Pb(1 − Pb)
+Pb − zα/2
+≤ p ≤ Pb + zα/2
+,
+(69)
+n
+n
+ở đây, zα/2 là giá trị tới hạn mức α/2 của phân phối chuẩn.
+Khi có mẫu cụ thể, ta tính được giá trị cụ thể pb của Pb và nhận được khoảng tin cậy đối xứng của tỷ lệ p:
+r
+r
+pb(1 − pb)
+pb(1 − pb)
+pb − zα/2
+≤ p ≤ pb + zα/2
+.
+(70)
+n
+n
+- Vì p chưa biết nên ta không kiểm tra được điều kiện np ≥ 5 và n(1 − p) ≥ 5. Trong thực hành ta dùng các
+điều kiện nb
+p ≥ 5 và n(1 − pb) ≥ 5.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+55/88
+
+SAMI.HUST – 2023
+
+55 / 88
+
+Khoảng tin cậy đối xứng
+
+Ví dụ 34
+Điều tra nhu cầu tiêu dùng loại hàng A trong 100 hộ gia đình ở khu dân cư B thấy 60 hộ gia đình có nhu
+cầu loại hàng trên. Với độ tin cậy 1 − α = 95% hãy tìm khoảng tin cậy đối xứng của tỷ lệ hộ gia đình có nhu
+cầu loại hàng đó. Giải thích kết quả thu được.
+Giải. Gọi p là tỷ lệ hộ gia đình ở khu dân cư B có nhu cầu mặt hàng A. Kiểm tra điều kiện
+nb
+p = 100 × 0, 6 = 60 > 5 và n(1 − pb) = 100 × 0, 4 = 40 > 5. Đây là bài toán ước lượng khoảng cho tỷ lệ trường
+hợp mẫu kích thước n đủ lớn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+56/88
+
+SAMI.HUST – 2023
+
+56 / 88
+
+Khoảng tin cậy đối xứng
+
+Áp dụng khoảng tin cậy đối xứng (70), trong đó zα/2 = z0,025 = 1, 96.
+Với n = 100, x = 60, pb = x/n = 0, 6, suy ra khoảng tin cậy cần tìm là
+r
+r
+0, 6 × 0, 4
+0, 6 × 0, 4
+0, 6 − 1, 96
+≤ p ≤ 0, 6 − 1, 96
+100
+100
+hay
+0, 504 ≤ p ≤ 0, 696.
+Vậy tỷ lệ hộ gia đình ở khu dân cư B có nhu cầu loại hàng A là từ 50,4% đến 69,6% với độ tin cậy 95%.
+Vì mọi giá trị trong khoảng tin cậy này đều nhỏ hơn 70% nên ta cũng có thể khẳng định rằng có ít hơn 70% hộ
+gia đình có nhu cầu mặt hàng A.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+57/88
+
+SAMI.HUST – 2023
+
+57 / 88
+
+Chọn kích thước mẫu
+Ta có
+
+P |Pb − p| ≤ zα/2
+
+r
+
+p(1 − p) 
+= 1 − α.
+n
+
+(71)
+
+Do đó, nếu n thỏa mãn
+zα/2
+
+p
+p(1 − p)
+√
+≤ε
+n
+
+n≥
+
+(zα/2 )2 p(1 − p)
+ε2
+
+hay tương đương với
+
+thì
+
+(72)
+
+
+
+P |Pb − p| ≤ ε ≥ 1 − α.
+
+Như vậy ta cần lấy n là số nguyên dương nhỏ nhất thỏa mãn (72).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+58/88
+
+SAMI.HUST – 2023
+
+58 / 88
+
+Chọn kích thước mẫu
+Tuy nhiên, vì giá trị của p chưa biết, nên vế phải của (72) chưa xác định. Có hai cách để khắc phục tình
+trạng này.
+
+(a) Cách thứ nhất là lấy một mẫu sơ bộ kích thước k để thu được tần suất pbk và lấy pbk làm ước
+lượng ban đầu cho p. Khi đó bất đẳng thức (72) trở thành
+n≥
+
+(zα/2 )2 pbk (1 − pbk )
+ε2
+
+(73)
+
+với điều kiện
+kb
+pk ≥ 5
+
+và
+
+k(1 − pbk ) ≥ 5.
+
+(74)
+
+Ta sẽ lấy n là số nguyên dương nhỏ nhất thỏa mãn (73) và (74).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+59/88
+
+SAMI.HUST – 2023
+
+59 / 88
+
+Chọn kích thước mẫu
+
+(b) Cách thứ hai, sử dụng bất đẳng thức Cauchy p(1 − p) ≤ 14 ta nhận được
+r
+u1−α/2
+p(1 − p)
+zα/2
+≤ √ .
+n
+2 n
+Nếu ta chọn n thỏa mãn điều kiện
+n≥
+
+(u1−α/2 )2
+4ε2
+
+(75)
+
+thì n thỏa mãn điều kiện (72). Vậy ta sẽ lấy n là số nguyên dương nhỏ nhất thỏa mãn (75).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+60/88
+
+SAMI.HUST – 2023
+
+60 / 88
+
+Chọn kích thước mẫu
+Ví dụ 35
+Một kỹ sư muốn ước lượng tỷ lệ sản phẩm loại A của một nhà máy với độ tin cậy 90% và sai số không quá
+0,02. Hỏi kỹ sư đó phải lấy một mẫu kích thước n bằng bao nhiêu?
+Giải.
+Nếu làm theo cách thứ nhất, trước hết người kỹ sư lấy một mẫu kích thước n = 1000 sản phẩm kiểm tra
+thấy có 640 sản phẩm loại A. Khoảng tin cậy của tỷ lệ sản phẩm loại A của nhà máy dựa trên mẫu điều tra
+này theo (70) là
+r
+r
+
+0, 64(1 − 0, 64)
+0, 64(1 − 0, 64) 
+0, 64 − 1, 645
+≤ p ≤ 0, 64 + 1, 645
+1000
+1000
+hay
+(0, 64 − 0, 25 ≤ p ≤ 0, 64 + 0, 25).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+61/88
+
+SAMI.HUST – 2023
+
+61 / 88
+
+Chọn kích thước mẫu
+
+Sai số của ước lượng là 0,25 lớn hơn 0,02. Vậy cần lấy mẫu có kích thước lớn hơn nữa. Kích thước mẫu n
+phải thỏa mãn (73), tức là
+(1, 645)2 (0, 64)(0, 36)
+n≥
+= 1558, 67.
+(0, 02)2
+Vậy n = 1559.
+Nếu sử dụng cách thứ hai thì phải chọn n thỏa mãn (75), tức là
+n≥
+
+(1, 645)2
+= 1691, 266.
+(4)(0, 02)2
+
+Do đó n = 1692.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+62/88
+
+SAMI.HUST – 2023
+
+62 / 88
+
+Chọn kích thước mẫu
+
+Ví dụ 36
+Một cuộc thăm dò dư luận tại thành phố A được tiến hành để hỏi xem có nên thực hiện một dự án quan
+trọng với kinh phí lớn trong thành phố hay không. Tỷ lệ người ủng hộ việc thực hiện dự án trên mẫu thăm
+dò cho ta ước lượng tỷ lệ người ủng hộ việc thực hiện dự án trên toàn bộ số dân của thành phố. Nếu ước
+lượng tỷ lệ này với độ tin cậy 95% và sai số không quá 0,03 thì phải lấy kích thước mẫu bao nhiêu?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+63/88
+
+SAMI.HUST – 2023
+
+63 / 88
+
+Chọn kích thước mẫu
+
+Giải.
+Nếu sử dụng cách thứ hai, ta phải chọn n thỏa mãn (75) hay
+n≥
+
+(1, 96)2
+= 1067, 111.
+(4)(0, 03)2
+
+Do đó n = 1068.
+Điều thú vị nhất trong tính toán trên là kích thước mẫu tối thiểu n chỉ phụ thuộc vào độ chính xác và độ
+tin cậy mà ta mong muốn, chứ không phụ thuộc vào tổng số dân trên thành phố.
+Nếu hỏi ý kiến 1068 người, thì ta đạt được độ tin cậy là 95% và độ chính xác 0,03 mà không phụ thuộc vào
+tổng số dân trên thành phố là 5 triệu, là 50 triệu hay 500 triệu!
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+64/88
+
+SAMI.HUST – 2023
+
+64 / 88
+
+Chọn kích thước mẫu
+
+Cái khó khăn ở đây là không phải thu thập ý kiến của càng nhiều người càng tốt. Vấn đề lớn là phải
+đảm bảo đây là mẫu ngẫu nhiên.
+Nếu p khá gần 0,5 thì sự khác nhau giữa số n tìm được theo hai cách sẽ không nhiều lắm. Nhưng nếu p
+khá gần 0 hoặc 1 thì sự khác biệt sẽ rất lớn. Do đó, nếu cảm thấy tỷ lệ p rất bé hoặc rất lớn thì nên
+dùng cách thứ nhất.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+65/88
+
+SAMI.HUST – 2023
+
+65 / 88
+
+Khoảng tin cậy một phía
+
+Bằng cách xây dựng tương tự như trên, khi có mẫu cụ thể, ta tính được giá trị cụ thể pb của Pb và xác định được
+khoảng tin cậy một phía cho tỷ lệ p.
+Khoảng tin cậy trái cho tỷ lệ p là
+r
+
+pb(1 − pb)
+.
+n
+
+(76)
+
+pb(1 − pb)
+≤ p < 1.
+n
+
+(77)
+
+0 < p ≤ pb + zα
+Khoảng tin cậy phải cho tỷ lệ p là
+r
+pb − zα
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+66/88
+
+SAMI.HUST – 2023
+
+66 / 88
+
+4.3. KHOẢNG TIN CẬY
+1
+
+4.3.1 Khái niệm
+
+2
+
+4.3.2 Khoảng tin cậy cho kỳ vọng
+4.3.2.1 Trường hợp phương sai V (X) = σ 2 đã biết
+4.3.2.2 Trường hợp mẫu kích thước lớn
+4.3.2.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+3
+
+4.3.2 Khoảng tin cậy cho phương sai
+4.3.2.1 Khoảng tin cậy hai phía
+4.3.2.2 Khoảng tin cậy một phía
+
+4
+
+4.3.3 Khoảng tin cậy cho tỷ lệ
+4.3.3.1 Xấp xỉ phân phối chuẩn cho tỷ lệ
+4.3.3.2 Khoảng tin cậy cho tỷ lệ
+
+5
+
+Bài tập Mục 4.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+67/88
+
+SAMI.HUST – 2023
+
+67 / 88
+
+Bài tập Mục 4.3
+Bài 28
+Công thức khoảng ước lượng đối xứng với độ tin cậy 1 − α cho kỳ vọng của biến ngẫu nhiên X ∼ N (µ; σ 2 )
+khi σ 2 đã biết là:
+A. [x̄ − zα/2 √σn ; x̄ + zα/2 √σn ]
+
+C. [x̄ − tα/2 √σn ; +∞)
+
+B. (−∞; x̄ + zα/2 √σn ]
+
+D. (−∞; +∞)
+
+Bài 29
+Công thức khoảng ước lượng đối xứng với độ tin cậy 1 − α cho kỳ vọng của biến ngẫu nhiên X ∼ N (µ; σ 2 )
+khi σ 2 chưa biết là:
+A. [x̄ − tα/2;n−1 √sn ; x̄ + tα/2;n−1 √sn ]
+
+C. [x̄ − zα/2;n−1 √sn ; +∞)
+
+B. (−∞; x̄ + tα/2;n−1 √sn ]
+
+D. (−∞; +∞)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+68/88
+
+SAMI.HUST – 2023
+
+68 / 88
+
+Bài 30
+Công thức khoảng ước lượng đối xứng với độ tin cậy 1 − α cho phương sai của biến ngẫu nhiên
+X ∼ N (µ; σ 2 ) khi µ chưa biết là:
+A.
+
+ (n−1)S 2
+
+B.
+
+
+
+χ2
+α/2;n
+
+;
+
+(n−1)S 2 
+χ2
+1−α/2;n
+
+
+2
+(n−1)S 2
+; χ2(n−1)S
+χ2
+α/2;n−1
+1−α/2;n−1
+
+C.
+
+
+
+2
+nS 2
+; χ2 nS
+χ2
+α/2;n−1
+1−α/2;n−1
+
+D.
+
+
+
+− ∞;
+
+
+
+(n−1)S 2 
+χ2
+1−α/2;n−1
+
+Bài 31
+Công thức khoảng ước lượng đối xứng với độ tin cậy 1 − α cho tỷ lệ là:
+√
+√
+p
+b(1−b
+p)
+p
+b(1−b
+p)
+A. [x̄ − tα/2;n−1 √sn ; x̄ + tα/2;n−1 √sn ]
+C. [b
+p − zα/2 √n ; pb + zα/2 √n ]
+√
+√
+B. [x̄ − zα/2 √σn ; x̄ + zα/2 √σn ]
+p
+b(1+b
+p)
+p
+b(1+b
+p)
+D. [b
+p − zα/2 √n ; pb + zα/2 √n ]
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+69/88
+
+SAMI.HUST – 2023
+
+69 / 88
+
+Bài 32
+Công thức ước lượng giá trị tối thiểu với độ tin cậy 1 − α cho kỳ vọng của biến ngẫu nhiên X ∼ N (µ; σ 2 )
+khi σ 2 chưa biết là:
+A. [x̄ − tα;n−1 √sn ; +∞)
+
+C. (−∞; x̄ − tα;n−1 √sn ]
+
+B. [x̄ + tα;n−1 √sn ; +∞)
+
+D. (−∞; x̄ + tα;n−1 √sn ]
+
+Bài 33
+Công thức ước lượng giá trị tối đa với độ tin cậy 1 − α cho giá trị tỷ lệ p là:
+√
+√
+p
+b(1−b
+p)
+p
+b(1−b
+p)
+A. [b
+p − zα √n ; +∞)
+C. (−∞; pb − zα √n ]
+√
+√
+p
+b(1−b
+p)
+p
+b(1−b
+p)
+B. [b
+p + zα √n ; +∞)
+D. (−∞; pb + zα √n ]
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+70/88
+
+SAMI.HUST – 2023
+
+70 / 88
+
+Bài 34
+Tuổi thọ của một loại bóng đèn do một dây chuyền công nghệ sản xuất ra có độ lệch chuẩn là 305 giờ. Người
+ta lấy ngẫu nhiên ra 45 bóng đèn loại này thấy tuổi thọ trung bình là 2150 giờ. Với độ tin cậy 95% hãy ước
+lượng tuổi thọ trung bình của loại bóng đèn nói trên.
+Bài 35
+Một kỹ sư cho biết trọng lượng tạp chất trong một sản phẩm tuân theo luật phân phối chuẩn với độ lệch
+chuẩn bằng 3,8 gam. Một mẫu ngẫu nhiên gồm 9 sản phẩm được tiến hành kiểm tra và thấy lượng tạp chất
+như sau (đơn vị tính là gam):
+18,2
+
+13,7
+
+15,9
+
+17,4
+
+21,8
+
+16,6
+
+12,3
+
+18,8
+
+16,2
+
+(a) Tìm khoảng tin cậy cho trọng lượng trung bình tạp chất của sản phẩm với độ tin cậy 99%.
+(b) Không cần tính toán, nếu độ tin cậy 95% thì khoảng ước lượng trung bình sẽ rộng hơn, hẹp hơn hay
+bằng như trong ý (a)?
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+71/88
+
+SAMI.HUST – 2023
+
+71 / 88
+
+Bài 36
+Giả sử chiều dài của một chi tiết sản phẩm là biến ngẫu nhiên tuân theo luật phân phối chuẩn với độ lệch
+chuẩn là 0,2m. Người ta sản xuất thử nghiệm 35 sản phẩm loại này và tính được chiều dài trung bình là 25m.
+Với độ tin cậy 95% hãy ước lượng khoảng cho chiều dài trung bình của chi tiết sản phẩm đang được thử
+nghiệm.
+Bài 37
+Để xác định trọng lượng trung bình của các bao gạo được đóng gói bằng máy tự động, người ta chọn ngẫu
+nhiên ra 20 bao gạo và thấy trung bình mẫu là 49,2kg và độ lệch chuẩn mẫu hiệu chỉnh là 1,8kg. Biết rằng
+trọng lượng các bao gạo xấp xỉ phân phối chuẩn. Hãy tìm khoảng tin cậy cho trọng lượng trung bình của
+một bao gạo với độ tin cậy 99%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+72/88
+
+SAMI.HUST – 2023
+
+72 / 88
+
+Bài 38
+Thời gian đợi phục vụ tại một cửa hàng ăn nhanh là biến ngẫu nhiên xấp xỉ phân phối chuẩn. Người ta khảo
+sát 16 người thì thấy thời gian đợi trung bình là 4 phút và độ lệch chuẩn mẫu hiệu chỉnh là 1,8 phút. Với độ
+tin cậy 99% hãy tìm khoảng tin cậy cho thời gian chờ đợi trung bình của một khách hàng tại cửa hàng ăn
+nhanh này.
+Bài 39
+Một mẫu ngẫu nhiên gồm 16 thùng hàng được chọn ra từ tất cả các thùng hàng được sản xuất bởi nhà máy
+trong một tháng. Trọng lượng của 16 thùng hàng lần lượt như sau (đơn vị tính là kg):
+18,6
+19,7
+
+18,4
+20,1
+
+19,2
+20,2
+
+19,8
+20,1
+
+19,4
+18,6
+
+19,5
+18,4
+
+18,9
+19,2
+
+19,4
+19,8
+
+Tìm khoảng tin cậy cho trọng lượng trung bình tổng thể của tất cả các thùng hàng của nhà máy với độ tin
+cậy 95%, biết rằng trọng lượng thùng hàng được chọn ngẫu nhiên là biến ngẫu nhiên tuân theo luật phân
+phối chuẩn.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+73/88
+
+SAMI.HUST – 2023
+
+73 / 88
+
+Bài 40
+Để định mức thời gian gia công một chi tiết máy, người ta theo dõi ngẫu nhiên quá trình gia công 35 chi tiết
+máy và thu được số liệu:
+Thời gian (phút)
+Số chi tiết máy
+
+16-17
+3
+
+17-18
+4
+
+18-19
+10
+
+19-20
+9
+
+20-21
+5
+
+21-22
+4
+
+Giả sử thời gian gia công chi tiết máy là biến ngẫu nhiên tuân theo luật phân phối chuẩn. Với độ tin cậy
+95% hãy ước lượng khoảng tin cậy cho thời gian gia công trung bình một chi tiết máy nói trên.
+Bài 41
+Đo áp lực X (tính bằng kg/cm2 ) của 18 thùng chứa ta được bảng kết quả sau:
+Áp lực (kg/cm2 )
+Số thùng
+
+19,6
+1
+
+19,5
+2
+
+19,9
+2
+
+20,0
+4
+
+19,8
+2
+
+20,5
+3
+
+21,0
+2
+
+18,5
+1
+
+19,7
+1
+
+Với độ tin cậy 99% hãy tìm khoảng ước lượng đối xứng của áp lực trung bình của các thùng trên. Biết rằng
+áp lực là biến ngẫu nhiên tuân theo luật phân phối chuẩn.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+74/88
+
+SAMI.HUST – 2023
+
+74 / 88
+
+Bài 42
+Một bài báo trong Nuclear Engineering International (tháng 2 năm 1988, trang 33) mô tả một số đặc điểm
+của các thanh nhiên liệu được sử dụng trong một lò phản ứng hạt nhân của một công ty điện lực ở Na Uy.
+Người ta đo tỷ lệ làm giàu của 12 thanh và có được dữ liệu sau:
+2,94
+
+3,00
+
+2,90
+
+2,90
+
+2,75
+
+2,95
+
+2,75
+
+3,00
+
+2,95
+
+2,82
+
+2,81
+
+3,05
+
+Giả sử tỷ lệ làm giàu của các thanh nhiên liệu tuân theo luật phân phối chuẩn. Hãy ước lượng khoảng cho tỷ
+lệ làm giàu trung bình của các thanh nhiên liệu với độ tin cậy 95%.
+Bài 43
+Người ta chọn ngẫu nhiên ra 49 sinh viên của một trường đại học và thấy chiều cao trung bình mẫu là
+163cm và độ lệch chuẩn mẫu hiệu chỉnh là 12cm. Hãy tìm khoảng ước lượng với độ tin cậy 99% cho chiều cao
+trung bình của sinh viên của trường đó.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+75/88
+
+SAMI.HUST – 2023
+
+75 / 88
+
+Bài 44
+Một trường đại học tiến hành một nghiên cứu xem trung bình một sinh viên tiêu hết bao nhiêu tiền điện
+thoại trong một tháng. Họ điều tra 60 sinh viên và cho thấy số tiền trung bình mẫu là 95 nghìn và độ lệch
+chuẩn mẫu hiệu chỉnh là 36 nghìn. Hãy ước lượng khoảng với độ tin cậy 95% cho số tiền điện thoại trung
+bình trong một tháng của mỗi sinh viên.
+Bài 45
+Người ta điều tra 35 người nghiện thuốc lá được chọn ngẫu nhiên từ số lượng người nghiện hút thuốc lá của
+một thành phố thấy số điếu thuốc hút trong 5 ngày của họ là:
+31
+48
+34
+
+37
+62
+57
+
+48
+74
+95
+
+40
+76
+49
+
+59
+79
+59
+
+97
+85
+63
+
+98
+83
+48
+
+87
+81
+79
+
+80
+93
+50
+
+68
+82
+55
+
+64
+85
+63
+
+45
+79
+
+Hãy tìm khoảng ước lượng cho số điếu thuốc hút trung bình trong 5 ngày của những người nghiện thuốc lá
+của thành phố đó với độ tin cậy 99%.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+76/88
+
+SAMI.HUST – 2023
+
+76 / 88
+
+Bài 46
+Để điều tra tiền điện phải trả trong một tháng của một hộ dân cư ở phường A, người ta kiểm tra ngẫu nhiên
+200 hộ gia đình ở phường này và được kết quả sau:
+
+Số tiền (nghìn đồng)
+Số hộ gia đình
+
+[80,180)
+14
+
+[180,280)
+25
+
+[280,380)
+43
+
+[380,480)
+46
+
+[480,580)
+39
+
+[580,680)
+23
+
+[680,780
+10
+
+Ước lượng khoảng cho số tiền trung bình một hộ dân phải trả ở phường đó với độ tin cậy 95%.
+Bài 47
+Để ước lượng số lượng xăng hao phí trên một tuyến đường của một hãng xe khách, người ta tiến hành chạy
+thử nghiệm 55 lần liên tiếp trên tuyến đường này và có được số liệu:
+Lượng xăng hao phí
+Tần số
+
+10,5-11
+5
+
+11-11,5
+12
+
+11,5-12
+15
+
+12-12,5
+13
+
+12,5-13
+6
+
+Hãy ước lượng lượng xăng hao phí trung bình cho một xe với độ tin cậy 95%.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+77/88
+
+13-13,5
+4
+SAMI.HUST – 2023
+
+77 / 88
+
+Bài 48
+Để xác định giá trung bình đối với một loại hàng hóa trên thị trường, người ta điều tra ngẫu nhiên tại 100
+cửa hàng thu được số liệu sau:
+Giá (nghìn đồng)
+Số cửa hàng
+
+83
+5
+
+85
+8
+
+87
+13
+
+89
+14
+
+91
+30
+
+93
+11
+
+95
+8
+
+97
+6
+
+99
+4
+
+101
+1
+
+Với độ tin cậy 95% hãy ước lượng giá trung bình của loại hàng đó tại thời điểm đang xét. Biết rằng giá hàng
+hóa là biến ngẫu nhiên tuân theo luật phân phối chuẩn.
+Bài 49
+Để ước lượng cho tỷ lệ những cây bạch đàn có chiều cao đạt chuẩn phục vụ cho việc khai thác ở một nông
+trường lâm nghiệp, người ta tiến hành đo ngẫu nhiên chiều cao của 135 cây và thấy có 36 cây cao từ 7,5 m
+trở lên. Hãy ước lượng khoảng cho tỷ lệ các cây bạch đàn có chiều cao trên 7,5 m với độ tin cậy 95%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+78/88
+
+SAMI.HUST – 2023
+
+78 / 88
+
+Bài 50
+Để ước lượng số cá có trong hồ người ta bắt từ hồ lên 100 con đánh dấu rồi thả lại vào hồ. Sau đó người ta
+bắt lên 300 con thì thấy có 32 con bị đánh dấu. Hãy ước lượng khoảng cho số cá có trong hồ với độ tin cậy
+99%.
+Bài 51
+Để điều tra thị phần xe máy, người ta chọn ngẫu nhiên ra 450 người mua xe máy trong một tháng ở các địa
+bàn ở một thành phố thì có 275 người mua xe Honda. Tìm khoảng tin cậy cho tỷ lệ người mua xe Honda với
+độ tin cậy 95%.
+Bài 52
+Kiểm tra ngẫu nhiên 400 sản phẩm do một hệ thống máy mới sản xuất thì thấy có 387 chính phẩm. Hãy ước
+lượng tỷ lệ chính phẩm tối thiểu của hệ thống máy mới với độ tin cậy 95%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+79/88
+
+SAMI.HUST – 2023
+
+79 / 88
+
+Bài 53
+Mở thử 200 hộp của kho đồ hộp thấy có 10 hộp bị biến chất. Với độ tin cậy 95% hãy ước lượng tỷ lệ hộp bị
+biến chất tối đa của kho.
+Bài 54
+Cần phải lập một mẫu ngẫu nhiên với kích thước là bao nhiêu để tỷ lệ phế phẩm của mẫu là 0,2 và độ dài
+khoảng tin cậy đối xứng là 0,05 và độ tin cậy của ước lượng là 95%.
+Bài 55
+Làm cách nào để ước lượng số thú hiếm trong một khu rừng với độ tin cậy 95%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+80/88
+
+SAMI.HUST – 2023
+
+80 / 88
+
+Bài 56
+Để nghiên cứu về thời gian xem ti vi của một thanh niên từ 18 đến 35 tuổi trong vòng một tuần, người ta
+tiến hành khảo sát trên 40 người và cho ta bảng số liệu sau:
+39
+23
+15
+
+02
+24
+14
+
+43
+43
+08
+
+35
+11
+11
+
+15
+15
+29
+
+54
+17
+12
+
+23
+15
+13
+
+21
+19
+25
+
+25
+06
+15
+
+07
+43
+28
+
+24
+35
+24
+
+33
+25
+06
+
+17
+37
+16
+
+7
+
+Hãy tìm khoảng ước lượng cho thời gian xem ti vi trung bình của thanh niên trong độ tuổi trên trong vòng
+một tuần với độ tin cậy 99%.
+Bài 57
+Thử nghiệm 560 bóng đèn điện tử do một nhà máy sản xuất thì thấy 10 bóng có lỗi kỹ thuật. Hãy tìm ước
+lượng cho tỷ lệ bóng có lỗi kỹ thuật tối đa với độ tin cậy 95%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+81/88
+
+SAMI.HUST – 2023
+
+81 / 88
+
+Bài 58
+Một kỹ sư nghiên cứu về cường độ nén của bê tông đang được thử nghiệm. Anh ta tiến hành kiểm tra 12
+mẫu vật và có được các dữ liệu sau đây:
+2216
+
+2234
+
+2225
+
+2301
+
+2278
+
+2255
+
+2249
+
+2204
+
+2286
+
+2263
+
+2275
+
+2295
+
+Giả sử cường độ nén của bê tông đang thử nghiệm tuân theo luật phân phối chuẩn.
+(a) Hãy ước lượng khoảng với độ tin cậy 95% cho cường độ nén trung bình của bê tông đang được thử
+nghiệm.
+(b) Hãy ước lượng khoảng tin cậy phải cho cường độ nén trung bình của bê tông đang được thử nghiệm với
+độ tin cậy 99%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+82/88
+
+SAMI.HUST – 2023
+
+82 / 88
+
+Bài 59
+Nghiên cứu về năng suất của loại hoa màu A, người ta kiểm tra năng suất của 64 điểm trồng loại hoa màu
+này thu được bảng số liệu
+Năng suất (tạ/ha)
+Số điểm
+
+40–45
+2
+
+45–50
+5
+
+50–55
+15
+
+55-60
+30
+
+60–65
+8
+
+65–70
+4
+
+(a) Hãy ước lượng năng suất trung bình của loại hoa màu A với độ tin cậy 95%; Nếu muốn sai số của ước
+lượng giảm đi 2 lần thì cần kiểm tra bao nhiêu điểm để đảm bảo yêu cầu nêu trên?
+(b) Biết rằng trên toàn miền Bắc có 10.000 điểm trồng loại hoa màu A. Hãy cho biết có khoảng bao nhiêu
+điểm đạt năng suất trên 60 tạ/ha? Hãy kết luận với độ tin cậy 99%.
+(c) Hãy cho biết tỷ lệ những điểm có năng suất trên 60 tạ/ha của loại hoa màu A tối thiểu là bao nhiêu?
+Hãy kết luận với độ tin cậy 95%?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+83/88
+
+SAMI.HUST – 2023
+
+83 / 88
+
+Bài 60
+Trọng lượng những viên gạch trong một quá trình sản xuất gạch được giả sử là tuân theo luật phân phối
+chuẩn. Một mẫu ngẫu nhiên gồm 25 viên gạch vừa sản xuất ra trong ngày có trọng lượng trung bình 2,45 kg
+và độ lệch chuẩn mẫu hiệu chỉnh là 0,15 kg.
+(a) Tìm khoảng tin cậy của trọng lượng trung bình của tất cả các viên gạch trong ngày với độ tin cậy 99%.
+(b) Không cần tính toán, với độ tin cậy 95% thì khoảng tin cậy trung bình sẽ rộng hơn, hẹp hơn hay bằng
+với kết quả ý (a)?
+(c) Một mẫu ngẫu nhiên gồm 20 viên gạch sẽ được chọn ra trong ngày mai. Không cần tính toán, với độ
+tin cậy 99% thì khoảng tin cậy cho trọng lượng trung bình của tất cả các viên gạch sản xuất ra trong
+ngày mai sẽ rộng hơn, hẹp hơn hay bằng như trong ý (a)?
+(d) Sự thật rằng, độ lệch chuẩn mẫu của các viên gạch sản xuất trong ngày mai là 0,10kg. Không cần tính
+toán, với độ tin cậy 99% thì khoảng tin cậy cho trọng lượng trung bình của tất cả các viên gạch sản
+xuất ra trong ngày mai sẽ rộng hơn, hẹp hơn hay bằng như trong ý (a)?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+84/88
+
+SAMI.HUST – 2023
+
+84 / 88
+
+Bài 61
+Một trường đại học lớn đang quan tâm về lượng thời gian sinh viên tự nghiên cứu mỗi tuần. Người ta tiến
+hành khảo sát một mẫu ngẫu nhiên gồm 16 sinh viên, dữ liệu cho thấy thời gian nghiên cứu trung bình của
+một sinh viên là 15,26 giờ/tuần và độ lệch chuẩn hiệu chỉnh là 6,43 giờ. Giả sử thời gian nghiên cứu của sinh
+viên của trường đại học trên là tuân theo luật phân phối chuẩn.
+(a) Tìm khoảng tin cậy cho lượng thời gian tự nghiên cứu trung bình mỗi tuần cho tất cả sinh viên trường
+đại học này với độ tin cậy 95%.
+(b) Không cần tính toán, khoảng tin cậy của trung bình tổng thể khi ước lượng sẽ rộng hơn hay hẹp hơn
+với ba điều kiện sau:
+b1. Mẫu gồm 30 sinh viên được chọn ra, với tất cả các điều kiện khác giống như ý (a)?
+b2. Độ lệch chuẩn mẫu là 4,15 giờ, tất cả các điều kiện khác giống như ý (a)?
+b3. Độ tin cậy 99%, tất cả các điều kiện khác giống như ý (a)?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+85/88
+
+SAMI.HUST – 2023
+
+85 / 88
+
+Bài 62
+Xét mẫu bộ dữ liệu gồm 60 quan sát sau:
+1.14, 1.11, 1.19, 1.00, 2.10, 1.07, 1.10, 1.24, 1.21, 1.08, 2.05, 1.19, 1.01, 1.36, 1.61, 1.22, 1.68, 1.40, 1.52, 1.41,
+1.72, 1.38, 1.94, 2.02, 2.10, 1.13, 1.07, 1.30, 1.22, 1.50, 1.17, 1.24, 1.01, 1.11, 1.95, 1.14, 1.33, 1.81, 1.36, 1.25,
+5.19, 1.02, 2.71, 1.87, 1.24, 1.20, 1.02, 3.06, 1.22, 1.20, 1.71, 1.25, 1.10, 1.43, 2.29, 1.31, 1.72, 1.85, 1.37, 1.09
+Từ phân bố của dữ liệu, ta có thể mô hình hoá phân bố của tổng thể với hàm mật độ xác suất như sau:
+(
+(θ + 1)x−θ−2 nếu x ≥ 1
+f (x; θ) =
+0
+nếu x < 1
+trong đó θ > 0 là tham số của mô hình.
+(a) Hãy tính giá trị kỳ vọng của phân phối trên.
+(b) Hãy tính ước lượng mô men của tham số θ.
+(c) Hãy tính ước lượng hợp lý cực đại của tham số θ.
+(d) Khi kích thước mẫu n đủ lớn thì thống kê Z =
+
+X̄−µ
+√
+S/ n
+
+có phân phối xấp xỉ chuẩn tắc. Áp dụng định lý
+
+giới hạn này, hãy xây dựng công thức khoảng ước lượng cho tham số θ với độ tin cậy 90%.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+86/88
+
+SAMI.HUST – 2023
+
+86 / 88
+
+Bài 63
+Xét bộ dữ liệu sau về số khách hàng vào một cửa hàng trong 1 giờ sau một chiến dịch marketing (bao gồm
+100 quan sát):
+20, 8, 19, 13, 18, 13, 8, 13, 19, 23, 18, 11, 16, 17, 13, 16, 19, 12, 11, 18, 13, 19, 16, 10, 15, 19, 17, 20, 15, 16,
+16, 13, 19, 19, 5, 13, 11, 13, 14, 17, 10, 16, 12, 11, 18, 13, 16, 13, 11, 9, 14, 8, 16, 12, 20, 20, 13, 10, 16, 13, 19,
+10, 7, 12, 20, 12, 14, 17, 19, 19, 20, 16, 15, 12, 14, 9, 10, 9, 13, 15, 18, 15, 21, 11, 16, 16, 19, 19, 14, 11, 13, 15,
+9, 13, 17, 19, 18, 16, 18, 12.
+Giả sử số khách hàng vào cửa hàng trong 1 giờ có phân bố Poisson với tham số λ > 0. Hãy xây dựng 2 công
+thức khoảng ước lượng cho tham số λ với độ tin cậy 90% (trong trường hợp kích thước mẫu đủ lớn) bằng
+cách áp dụng hai định lý giới hạn sau:
+(a) Thống kê Z =
+
+X̄−µ
+√
+σ/ n
+
+có phân phối xấp xỉ chuẩn tắc.
+
+(b) Thống kê Z =
+
+X̄−µ
+√
+S/ n
+
+có phân phối xấp xỉ chuẩn tắc.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+87/88
+
+SAMI.HUST – 2023
+
+87 / 88
+
+Bài 64
+Thời gian (X) một loại hạt phóng xạ phân rã có thể mô hình hoá bởi phân bố mũ với tham số λ > 0. Xét bộ
+dữ liệu sau về thời gian loại hạt phóng xạ trên phân rã (bao gồm 100 quan sát):
+28, 1.5, 0.9, 5.6, 3.8, 3.4, 3.7, 4.3, 0.1, 14.7, 4.4, 7, 1.8, 11.9, 5.4, 3.7, 4.1, 1.6, 2.1, 5.6, 4.4, 0.9, 2.7, 15.2, 0.8,
+1, 1.6, 0.1, 7.7, 11, 1.4, 6.8, 7.4, 2, 1.6, 6.9, 9.6, 0.5, 0.4, 11.5, 0.6, 3.8, 1, 1.9, 2.1, 9.6, 4.6, 8.4, 3.2, 5.4, 13.5,
+0.9, 0.7, 5.4, 3.8, 0.2, 2.4, 1.5, 7.8, 0.3, 12.6, 1.1, 10.1, 8, 10.8, 2.4, 5, 2.4, 1, 3.6, 0.2, 1.8, 0.1, 4.4, 4.9, 1, 6.4,
+26.5, 6.8, 0.2, 10.2, 2, 3.1, 0.7, 6.8, 0.1, 1.6, 3.3, 5.9, 0.6, 3.9, 1.4, 2.9, 9.2, 12.4, 11.1, 0.2, 0.6, 4.8, 3.2
+Hãy xây dựng 2 công thức khoảng ước lượng cho tham số λ với độ tin cậy 90% (trong trường hợp kích thước
+mẫu đủ lớn) bằng cách áp dụng hai định lý giới hạn sau:
+(a) Thống kê Z =
+
+X̄−µ
+√
+σ/ n
+
+có phân phối xấp xỉ chuẩn tắc.
+
+(b) Thống kê Z =
+
+X̄−µ
+√
+S/ n
+
+có phân phối xấp xỉ chuẩn tắc.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.3
+
+88/88
+
+SAMI.HUST – 2023
+
+88 / 88
+
+

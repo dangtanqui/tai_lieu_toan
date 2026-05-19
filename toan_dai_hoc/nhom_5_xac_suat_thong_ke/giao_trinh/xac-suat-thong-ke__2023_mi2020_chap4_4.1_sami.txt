@@ -1,0 +1,2160 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 4
+THỐNG KÊ VÀ ƯỚC LƯỢNG THAM SỐ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+1/71
+
+SAMI.HUST – 2023
+
+1 / 71
+
+GIỚI THIỆU CHƯƠNG 4
+
+Chương này trình bày về bài toán ước lượng tham số của tổng thể. Nội dung bao gồm:
+Mẫu ngẫu nhiên, thống kê và phân phối mẫu.
+Ước lượng điểm cho tham số, một số tiêu chuẩn lựa chọn hàm ước lượng.
+Khoảng tin cậy cho kỳ vọng, phương sai, tỷ lệ; xác định kích thước mẫu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+2/71
+
+SAMI.HUST – 2023
+
+2 / 71
+
+4.1. MẪU NGẪU NHIÊN VÀ PHÂN PHỐI MẪU
+1
+
+4.1.1 Tổng thể và mẫu
+4.1.1.1. Tổng thể và mẫu
+4.1.1.2 Biểu diễn dữ liệu
+4.1.1.3 Các đặc trưng mẫu
+
+2
+
+4.1.2 Mẫu ngẫu nhiên
+4.1.2.1 Khái niệm mẫu ngẫu nhiên
+4.1.2.2 Một số thống kê thông dụng
+
+3
+
+4.1.3 Phân phối mẫu
+4.1.3.1 Phân phối mẫu của trung bình mẫu và Định lý giới hạn trung tâm
+4.1.3.2 Phân phối mẫu của một số thống kê khác
+
+4
+
+Bài tập Mục 4.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+3/71
+
+SAMI.HUST – 2023
+
+3 / 71
+
+Tổng thể
+
+Khái niệm 1
+Khi nghiên cứu các vấn đề tự nhiên, kinh tế, xã hội và nhiều lĩnh vực khác thường dẫn đến khảo sát một hay
+nhiều dấu hiệu (định tính hoặc định lượng) trên nhiều phần tử. Tập hợp tất cả các phần tử này gọi là tổng
+thể hay đám đông.
+Số phần tử trong tổng thể có thể là hữu hạn hoặc vô hạn.
+Cần chú ý rằng ta không nghiên cứu trực tiếp các phần tử của tổng thể mà chỉ nghiên cứu dấu hiệu nào đó
+của nó.
+Ký hiệu N là số phần tử của tổng thể; X là dấu hiệu cần nghiên cứu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+4/71
+
+SAMI.HUST – 2023
+
+4 / 71
+
+Tổng thể
+
+Ví dụ 1
+(a) Muốn điều tra thu nhập bình quân của các hộ gia đình ở Hà Nội thì
+Tổng thể cần nghiên cứu là toàn bộ các hộ gia đình ở Hà Nội;
+Dấu hiệu nghiên cứu là thu nhập của từng hộ gia đình (dấu hiệu định lượng).
+(b) Một doanh nghiệp muốn nghiên cứu các khách hàng của mình. Tổng thể là toàn bộ các khách hàng của
+doanh nghiệp.
+Dấu hiệu định tính có thể là mức độ hài lòng của khách hàng đối với sản phẩm hoặc dịch vụ của doanh
+nghiệp;
+Dấu hiệu định lượng là số lượng sản phẩm mà khách hàng mua của doanh nghiệp.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+5/71
+
+SAMI.HUST – 2023
+
+5 / 71
+
+Tổng thể
+
+Ví dụ 2
+Một nhà máy sản xuất 5.000.000 sản phẩm. Ta muốn đánh giá tỷ lệ phế phẩm trong các sản phẩm của nhà
+máy.
+Tổng thể cần nghiên cứu là 5.000.000 sản phẩm của nhà máy.
+Dấu hiệu nghiên cứu là một sản phẩm có phải là phế phẩm hay không.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+6/71
+
+SAMI.HUST – 2023
+
+6 / 71
+
+Tổng thể
+
+- Một số lý do không thể khảo sát toàn bộ tổng thể
+Do quy mô của tổng thể cần nghiên cứu quá lớn nên việc nghiên cứu toàn bộ sẽ đòi hỏi nhiều kinh phí
+và thời gian.
+Trong nhiều trường hợp không thể biết được toàn bộ các phần tử của tổng thể cần nghiên cứu.
+Có thể trong quá trình điều tra sẽ phá hủy đối tượng nghiên cứu. . .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+7/71
+
+SAMI.HUST – 2023
+
+7 / 71
+
+Tập mẫu
+
+Thay vì khảo sát tổng thể, ta chỉ cần chọn ra một tập nhỏ để khảo sát và đưa ra quyết định. Việc chọn ra
+từ tổng thể một tập hợp con nào đó được gọi là phép lấy mẫu.
+Tập hợp con được chọn được gọi là tập mẫu.
+Số phần tử trong tập mẫu được gọi là kích thước mẫu hoặc cỡ mẫu, ký hiệu là n.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+8/71
+
+SAMI.HUST – 2023
+
+8 / 71
+
+Tập mẫu
+Ví dụ 3
+Với số liệu trong Ví dụ 2, ta không có đủ thời gian và tiền bạc để xem xét toàn bộ 5.000.000 sản phẩm.
+Ta chọn ra một mẫu gồm 500 sản phẩm để kiểm tra và phát hiện có 20 sản phẩm mắc lỗi.
+Tỷ lệ phế phẩm trong mẫu kiểm tra này là 20/500 = 0, 04 = 4%. Từ đó, ta nhận định tỷ lệ phế phẩm
+của nhà máy này khoảng 4%.
+Ví dụ 4
+Ta muốn đánh giá số giờ trong một ngày mà một kỹ sư các ngành kỹ thuật sử dụng điện thoại. Vì số kỹ sư
+các ngành kỹ thuật rất lớn, nên ta không thể điều tra trên tất cả các kỹ sư được.
+Ta chọn ngẫu nhiên một mẫu gồm n = 50 kỹ sư để khảo sát và tìm được số giờ trung bình dùng điện
+thoại của 50 kỹ sư này, chẳng hạn, là 2,7 giờ.
+Con số 2,7 giờ cho ta một thông tin về việc sử dụng điện thoại của các kỹ sư các ngành kỹ thuật.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+9/71
+
+SAMI.HUST – 2023
+
+9 / 71
+
+Một số kỹ thuật chọn mẫu cơ bản
+
+Ví dụ 5
+Để điều tra mức thu nhập trung bình của sinh viên tốt nghiệp đại học mới ra trường, nếu mẫu được chọn
+trong số các sinh viên tốt nghiệp ngành Công nghệ thông tin thì rõ ràng mức lương trung bình trong mẫu
+không phản ánh trung thực mức lương trung bình của sinh viên mới ra trường nói chung.
+- Vấn đề chọn mẫu
+Các kết luận suy diễn từ mẫu có đáng tin cậy chỉ đạt được nếu mẫu được chọn phản ánh trung thực, thực
+sự đại diện cho tổng thể. Do đó, vấn đề chọn mẫu là một vấn đề rất quan trọng của thống kê.
+Các kỹ thuật chọn mẫu đúng đắn sẽ giúp ta đảm bảo được tính đại diện trung thực cho tổng thể.
+Để trả lời cho câu hỏi “làm sao chọn được tập mẫu có tính chất tương tự như tổng thể để các kết luận của
+tập mẫu có thể dùng cho tổng thể” ta sử dụng một trong những cách chọn mẫu sau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+10/71
+
+SAMI.HUST – 2023
+
+10 / 71
+
+Một số kỹ thuật chọn mẫu cơ bản
+
+Lấy mẫu ngẫu nhiên: mỗi cá thể của tổng thể được chọn một cách độc lập với xác suất như nhau.
+Lấy mẫu theo khối: Tổng thể được chia làm M khối. Chọn ngẫu nhiên ra m khối trong M khối đó. Tập hợp
+tất cả các cá thể của m khối được chọn sẽ được lập thành một mẫu để khảo sát.
+Lấy mẫu phân tầng: Chia tổng thể ra một số tầng, sao cho các phần tử trong mỗi tầng khác nhau càng ít
+càng tốt. Mỗi tầng được coi là một tổng thể con. Trong mỗi tầng ta sẽ thực hiện việc lấy mẫu ngẫu nhiên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+11/71
+
+SAMI.HUST – 2023
+
+11 / 71
+
+Một số kỹ thuật chọn mẫu cơ bản
+Ví dụ 6
+Một doanh nghiệp có 20.000 kỹ sư được tuyển chọn từ các hệ đào tạo khác nhau, trong đó có 10.000 học đại
+học chính quy, 2.000 học hệ liên thông, 2.000 học văn bằng hai, 5.000 học tại chức và 1.000 học sau đại học.
+Để tiến hành khảo sát về mức độ hài lòng của doanh nghiệp đối với chất lượng công việc của các kỹ sư,
+người ta chọn ngẫu nhiên 1.000 kỹ sư tham gia khảo sát. Bảng dưới đây trình bày một ví dụ về việc chọn
+mẫu theo tầng, ở đó mỗi hệ đào tạo được xem là một tầng.
+Hệ đào tạo
+
+Số kỹ sư
+
+Tỷ lệ %
+
+Số kỹ sư được chọn
+
+Đại học chính quy
+Đại học liên thông
+Đại học văn bằng hai
+Đại học tại chức
+Sau đại học
+
+10.000
+2.000
+2.000
+2.000
+1.000
+
+50
+10
+10
+10
+5
+
+500
+200
+200
+200
+50
+
+Tổng
+
+20.000
+
+100
+
+1.000
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+12/71
+
+SAMI.HUST – 2023
+
+12 / 71
+
+Biểu diễn dữ liệu
+
+- Tại sao cần biểu diễn dữ liệu?
+Trong thống kê, sau khi thu thập dữ liệu, bước tiếp theo là biểu diễn, mô tả và tổng kết dữ liệu.
+Việc biểu diễn dữ liệu sẽ giúp trực quan hóa; dễ dàng hơn trong việc trích xuất thông tin quan trọng so với
+việc sử dụng tập dữ liệu thô ban đầu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+13/71
+
+SAMI.HUST – 2023
+
+13 / 71
+
+Bảng dữ liệu
+Từ tổng thể, xét một mẫu có kích thước n. Ta có thể biểu diễn mẫu theo một số cách sau.
+1. Dạng liệt kê: các số liệu thu được được ghi lại thành dãy x1 , x2 , . . . , xn .
+2. Dạng rút gọn: khi trong mẫu có nhiều giá trị trùng nhau, ta có thể sử dụng bảng tần số hoặc bảng tần suất:
+Dạng tần số (n1 + n2 + . . . + nk = n)
+Giá trị
+Tần số
+
+x1
+n1
+
+x2
+n2
+
+...
+...
+
+xk
+nk
+
+(1)
+
+Dạng tần suất (fk = nk /n)
+Giá trị
+Tần suất
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+x1
+f1
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+x2
+f2
+
+...
+...
+
+xk
+fk
+
+(2)
+
+14/71
+
+SAMI.HUST – 2023
+
+14 / 71
+
+Bảng dữ liệu
+3. Dạng khoảng: dữ liệu thu được nhận các giá trị khác nhau nhưng lại khá gần nhau trong khoảng (a, b). Ta
+chia đều khoảng (a, b) thành k miền con bởi các điểm chia a0 = a < a1 < a2 < · · · < ak−1 < ak = b.
+Dạng tần số (n1 + n2 + . . . + nk = n)
+Giá trị
+Tần số
+
+(a0 , a1 ]
+n1
+
+(a1 , a2 ]
+n2
+
+...
+...
+
+(ak−1 , ak ]
+nk
+
+(3)
+
+Dạng tần suất (fk = nk /n)
+Giá trị
+Tần suất
+
+(a0 , a1 ]
+f1
+
+(a1 , a2 ]
+f2
+
+...
+...
+
+(ak−1 , ak ]
+fk
+
+(4)
+
+Trong tính toán, ta thường lấy giá trị chính giữa của mỗi khoảng làm giá trị đại diện, xi = 12 (ai−1 + ai ).
+Khi đó, bảng (3) và (4) có thể đưa về dạng (1) và (2).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+15/71
+
+SAMI.HUST – 2023
+
+15 / 71
+
+Biểu đồ
+
+Một câu ngạn ngữ Trung Hoa “Một hình ảnh có tác dụng bằng một nghìn lời nói”. Để có được một hình ảnh rõ
+ràng và dễ nhớ về mẫu các giá trị của biến ngẫu nhiên X, ta dùng các đồ thị và các biểu đồ để thể hiện chúng.
+1. Biểu đồ hình cột: là biểu đồ nhằm biểu diễn cho dữ liệu được phân nhóm (thường dùng cho dữ liệu định
+tính) như các tháng trong năm, các nhóm tuổi. . . Các nhóm được biểu diễn xuất hiện theo trục hoành, trục
+tung là chiều cao của các hình chữ nhật tỷ lệ với giá trị được biểu diễn. Mục tiêu của việc dùng biểu đồ hình
+cột là đưa ra so sánh giữa các nhóm.
+2. Biểu đồ hình quạt: cũng được dùng để biểu diễn dữ liệu được phân nhóm, nhưng các nhóm được biểu diễn
+bằng các hình quạt trong hình tròn. Số lượng hoặc tỷ lệ của mỗi hạng mục (mỗi nhóm) tỷ lệ với diện tích
+hình quạt biểu diễn nó. Biểu đồ này thường dùng để phân tích hoặc so sánh ở mức độ tổng thể.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+16/71
+
+SAMI.HUST – 2023
+
+16 / 71
+
+Biểu đồ
+
+3. Biểu đồ tần suất: thường được dùng để biểu thị tần số hay tần suất xuất hiện của các giá trị trong mỗi
+khoảng.
+Nếu độ rộng các khoảng bằng nhau, thì chiều cao của hình chữ nhật dựng trên mỗi khoảng chính là tần số
+hay tần suất tương ứng của khoảng.
+Nếu độ rộng các khoảng không bằng nhau, chiều cao của hình chữ nhật dựng trên mỗi khoảng được tính
+toán sao cho diện tích mỗi hình chữ nhật tỷ lệ với tần số hoặc tần suất của khoảng đó.
+4. Đa giác tần số, tần suất: dùng khi dữ liệu là liên tục và khoảng dữ liệu rất rộng. Tại mỗi giá trị của dữ liệu
+xi và tần số ni ta chấm một điểm có tọa độ (xi , ni ). Nối các điểm này với nhau ta được đa giác tần số.
+Nếu muốn có đa giác tần suất ta thay ni bằng fi = ni /n.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+17/71
+
+SAMI.HUST – 2023
+
+17 / 71
+
+Biểu đồ
+Ví dụ 7
+Khảo sát 400 khách hàng đánh giá, xếp hạng một loại sản phẩm trên thị trường, ta nhận được bảng dữ liệu
+sau:
+Xếp hạng
+Số khách hàng
+
+A
+35
+
+B
+260
+
+C
+93
+
+D
+12
+
+Tổng số khách hàng được khảo sát n = 400.
+35 người xếp hạng A chiếm 8,75%;
+260 người xếp hạng B chiếm 65%;
+93 người xếp hạng C chiếm 23,25%;
+12 người xếp loại D chiếm 3%.
+Biểu đồ hình cột cho tập dữ liệu này biểu diễn ở Hình 1 (bên trái).
+Biểu đồ hình quạt cho tập dữ liệu này biểu diễn ở Hình 1 (bên phải).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+18/71
+
+SAMI.HUST – 2023
+
+18 / 71
+
+Biểu đồ
+
+Hình 1: Biểu đồ hình cột và hình quạt cho dữ liệu trong Ví dụ 7
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+19/71
+
+SAMI.HUST – 2023
+
+19 / 71
+
+Biểu đồ
+Ví dụ 8
+Khảo sát số lần đến một cửa hàng của 25 khách hàng trong một tuần ta được bảng số liệu:
+6
+
+7
+
+1
+
+5
+
+6
+
+4
+
+6
+
+4
+
+6
+
+8
+
+6
+
+5
+
+6
+
+3
+
+4
+
+5
+
+5
+
+5
+
+7
+
+6
+
+3
+
+5
+
+7
+
+5
+
+5
+
+Biến đo lường "số lần đến cửa hàng trong một tuần" là biến ngẫu nhiên rời rạc chỉ nhận giá trị nguyên.
+Bảng dưới đây cho thấy các lớp, tần số và tần suất tương ứng:
+Số lượt đến chuỗi cửa hàng
+
+Tần số
+
+Tần suất
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+1
+0
+2
+3
+8
+7
+3
+1
+
+0,04
+0,00
+0,08
+0,12
+0,32
+0,28
+0,12
+0,04
+
+Biểu đồ tần suất tương đối được thể hiện trong Hình 2.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+20/71
+
+SAMI.HUST – 2023
+
+20 / 71
+
+Biểu đồ
+
+Hình 2: Biểu đồ tần suất cho dữ liệu trong Ví dụ 8
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+21/71
+
+SAMI.HUST – 2023
+
+21 / 71
+
+Trung bình mẫu
+
+Định nghĩa 1
+Trung bình mẫu là trung bình cộng các giá trị mà ta quan sát được. Nếu ta có mẫu kích thước n về biến
+ngẫu nhiên X, thì trung bình mẫu, ký hiệu là x, được xác định như sau.
+Nếu mẫu cho dưới dạng liệt kê x1 , x2 , . . . , xn kích thước n, thì
+n
+1X
+xi .
+n i=1
+
+(5)
+
+k
+1X
+ni xi .
+n i=1
+
+(6)
+
+x=
+Nếu mẫu cho ở dạng rút gọn (1), thì
+x=
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+22/71
+
+SAMI.HUST – 2023
+
+22 / 71
+
+Trung vị mẫu
+- Giá trị trung bình mẫu thường được dùng để đo vị trí trung tâm của mẫu. Tuy nhiên, trong một số trường hợp,
+việc dùng đặc trưng này sẽ không còn chính xác. Trong bộ dữ liệu xuất hiện các giá trị bất thường, người ta
+thường dùng giá trị trung vị thay cho giá trị trung bình.
+Định nghĩa 2
+Trung vị (median) mẫu, ký hiệu là x
+e, là một số thỏa mãn số các giá trị của mẫu bé hơn hay bằng x
+e bằng số
+các giá trị của mẫu lớn hơn hay bằng x
+e.
+- Với một mẫu kích thước n cho ở dạng liệt kê, ta sắp xếp các giá trị theo thứ tự tăng dần x1 ≤ x2 ≤ · · · ≤ xn .
+Khi đó,
+(
+x(n+1)/2 ,
+nếu n lẻ,
+x
+e= 1
+(7)
+(x
++
+x
+),
+nếu n chẵn.
+n/2
+n/2+1
+2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+23/71
+
+SAMI.HUST – 2023
+
+23 / 71
+
+Mốt
+
+Định nghĩa 3
+Mốt là giá trị trong mẫu xuất hiện với tần số lớn nhất.
+Đa phần các tập dữ liệu có một mốt. Một số tập dữ liệu có hai mốt.
+Mốt có thể dùng làm số đo vị trí trung tâm của nhiều loại dữ liệu khác nhau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+24/71
+
+SAMI.HUST – 2023
+
+24 / 71
+
+Mốt
+Ví dụ 9
+Bảng sau đây cho biết hoạt động được ưu tiên của 9 sinh viên được chọn ngẫu nhiên
+Sinh viên
+
+Hoạt động
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+Tình nguyện
+Học lập trình
+Học tiếng Anh
+Tình nguyện
+Tình nguyện
+Học tiếng Pháp
+Học võ
+Học vẽ
+Tình nguyện
+
+Mốt của các hoạt động của sinh viên là Tình nguyện với tần số là 4.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+25/71
+
+SAMI.HUST – 2023
+
+25 / 71
+
+Phương sai và độ lệch chuẩn mẫu
+- Trong thống kê, số đặc trưng thông dụng để đo mức độ phân tán của số liệu là phương sai mẫu.
+Định nghĩa 4
+Phương sai mẫu, ký hiệu là se2 , là trung bình của bình phương độ lệch giữa các giá trị mẫu với trung bình
+mẫu.
+Nếu mẫu cho dưới dạng liệt kê, thì
+n
+1X
+(xi − x)2 .
+n i=1
+
+(8)
+
+k
+1X
+ni (xi − x)2 .
+n i=1
+
+(9)
+
+se2 =
+Nếu mẫu cho ở dạng rút gọn (1), thì
+se2 =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+26/71
+
+SAMI.HUST – 2023
+
+26 / 71
+
+Phương sai và độ lệch chuẩn mẫu
+Định nghĩa 4 (tiếp theo)
+Dạng tương đương của các công thức (8) và (9) lần lượt là
+n
+n
+1 X 2  1 X 2
+xi −
+xi ,
+n i=1
+n i=1
+
+(10)
+
+k
+k
+1 X
+2
+1X
+ni x2i −
+ni xi .
+n i=1
+n i=1
+
+(11)
+
+se2 =
+và
+se2 =
+
+Định nghĩa 5
+Độ lệch chuẩn mẫu, ký hiệu là se, là căn bậc hai số học của phương sai mẫu,
+√
+se = se2 .
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+(12)
+
+27/71
+
+SAMI.HUST – 2023
+
+27 / 71
+
+Ví dụ
+
+Ví dụ 10
+Kiểm tra số lỗi trên sản phẩm đúc do một nhà máy sản xuất ta thu được dữ liệu sau đây:
+Số lỗi ở mỗi sản phẩm
+Số sản phẩm kiểm tra
+
+0
+8
+
+1
+20
+
+2
+12
+
+3
+40
+
+4
+30
+
+5
+25
+
+6
+15
+
+Hãy tính trung bình mẫu, phương sai mẫu và độ lệch chuẩn mẫu của mẫu trên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+28/71
+
+SAMI.HUST – 2023
+
+28 / 71
+
+Ví dụ
+Giải.
+Áp dụng công thức (6), trung bình mẫu là
+x=
+
+n
+499
+1X
+ni xi =
+≈ 3, 3267.
+n i=1
+150
+
+Áp dụng công thức (8), phương sai mẫu là
+se2 =
+
+n
+n
+1 X
+2
+2073  499 2
+1X
+ni x2i −
+ni xi =
+−
+≈ 2, 7533.
+n i=1
+n i=1
+150
+150
+
+Độ lệch chuẩn mẫu là
+se =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+p
+
+2, 7533 ≈ 1, 6593.
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+29/71
+
+SAMI.HUST – 2023
+
+29 / 71
+
+4.1. MẪU NGẪU NHIÊN VÀ PHÂN PHỐI MẪU
+1
+
+4.1.1 Tổng thể và mẫu
+4.1.1.1. Tổng thể và mẫu
+4.1.1.2 Biểu diễn dữ liệu
+4.1.1.3 Các đặc trưng mẫu
+
+2
+
+4.1.2 Mẫu ngẫu nhiên
+4.1.2.1 Khái niệm mẫu ngẫu nhiên
+4.1.2.2 Một số thống kê thông dụng
+
+3
+
+4.1.3 Phân phối mẫu
+4.1.3.1 Phân phối mẫu của trung bình mẫu và Định lý giới hạn trung tâm
+4.1.3.2 Phân phối mẫu của một số thống kê khác
+
+4
+
+Bài tập Mục 4.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+30/71
+
+SAMI.HUST – 2023
+
+30 / 71
+
+Phân phối của tổng thể
+
+Giả sử ta cần nghiên cứu dấu hiệu X nào đó của tổng thể. Ta có thể mô hình hóa X bởi một biến ngẫu
+nhiên, ký hiệu là X, bằng cách coi X là giá trị của dấu hiệu X trên các phần tử của tổng thể.
+Phân phối xác suất của X được gọi là phân phối xác suất của tổng thể.
+Giá trị µ = E(X) và σ 2 = V (X) được gọi là kỳ vọng và phương sai của tổng thể.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+31/71
+
+SAMI.HUST – 2023
+
+31 / 71
+
+Mẫu ngẫu nhiên
+Định nghĩa 6
+Xét biến ngẫu nhiên X từ tổng thể có phân phối xác suất FX (x). Bộ (X1 , . . . , Xn ) được gọi là một mẫu
+ngẫu nhiên có kích thước n, ký hiệu là WX = (X1 , X2 , . . . , Xn ), nếu X1 , . . . , Xn là các biến ngẫu nhiên độc
+lập và có cùng phân phối xác suất FX (x).
+Trong định nghĩa trên, ta có thể coi Xi là biến ngẫu nhiên chỉ giá trị của X trên phần tử thứ i trong mẫu.
+Do X1 , . . . , Xn là các biến ngẫu nhiên độc lập có cùng phân phối xác suất lên hàm phân phối xác suất
+đồng thời của chúng là:
+FX1 ,X2 ,...,Xn (x1 , x2 , . . . , xn ) = FX1 (x1 )FX2 (x2 ) . . . FXn (xn ).
+Các giá trị số x1 , x2 , . . . , xn được gọi là một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) của mẫu ngẫu nhiên
+WX = (X1 , X2 , . . . , Xn ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+32/71
+
+SAMI.HUST – 2023
+
+32 / 71
+
+Mẫu ngẫu nhiên
+
+Ví dụ 11
+Giả sử tuổi thọ X (giờ) của loại pin A là biến ngẫu nhiên có phân phối chuẩn N (µ; σ 2 ). Chọn ngẫu
+nhiên n = 10 quả pin loại này và gọi Xi là tuổi thọ của quả pin thứ i, i = 1, 2, . . . , 10. Khi đó,
+X1 , . . . , X10 là độc lập và có cùng phân phối chuẩn N (µ; σ 2 ). Tức là, ta có một mẫu ngẫu nhiên
+WX = (X1 , . . . , X10 ) kích thước n = 10.
+Nếu ghi lại tuổi thọ của mỗi quả pin, ta thu được một mẫu cụ thể, chẳng hạn như sau:
+Wx = (1000; 1001; 1002; 1003; 1004; 1005; 1006; 1007; 1008; 1009).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+33/71
+
+SAMI.HUST – 2023
+
+33 / 71
+
+Thống kê
+Trong thống kê toán học, việc tổng hợp thông tin từ mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) thường dẫn đến
+việc xác định một hàm nào đó của các biến ngẫu nhiên X1 , X2 , . . . , Xn . Một hàm như thế được gọi là một thống
+kê.
+Định nghĩa 7
+Thống kê là một hàm của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ), ký hiệu là
+(13)
+
+b = g(X1 , X2 , . . . , Xn ).
+Θ
+-
+
+b là một hàm của các biến ngẫu nhiên X1 , X2 , . . . , Xn nên nó cũng là một biến ngẫu nhiên.
+Thống kê Θ
+b ký hiệu là
+Nếu mẫu ngẫu nhiên có giá trị Wx = (x1 , x2 , . . . , x2 ), thì ta tính được giá trị cụ thể của Θ,
+b
+b
+θ = g(x1 , x2 , . . . , xn ) và gọi là giá trị quan sát của thống kê Θ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+34/71
+
+SAMI.HUST – 2023
+
+34 / 71
+
+Trung bình mẫu ngẫu nhiên
+Cho mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ).
+Trung bình mẫu ngẫu nhiên là một thống kê, ký hiệu là X, được định nghĩa bởi
+X=
+
+n
+1X
+Xi .
+n i=1
+
+(14)
+
+Nếu biến ngẫu nhiên X có E(X) = µ và V (X) = σ 2 thì thống kê X có kỳ vọng và phương sai được xác
+định bởi:
+1
+µX = (µ + · · · + µ) = µ
+n
+và
+1
+σ2
+2
+σX
+= 2 (σ 2 + · · · + σ 2 ) =
+.
+n
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+35/71
+
+SAMI.HUST – 2023
+
+35 / 71
+
+Trung bình mẫu ngẫu nhiên
+
+Phương sai V (X) của X nhỏ hơn phương sai V (X) của X là n lần, nghĩa là các giá trị có thể có của X ổn
+định quanh kỳ vọng µ hơn các giá trị có thể có của X.
+Nếu một giá trị của mẫu ngẫu nhiên WX là Wx = (x1 , x2 , . . . , xn ) thì thống kê X nhận giá trị là trung
+bình mẫu
+n
+1X
+x=
+xi .
+n i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+36/71
+
+SAMI.HUST – 2023
+
+36 / 71
+
+Phương sai mẫu ngẫu nhiên
+Phương sai mẫu ngẫu nhiên là một thống kê, ký hiệu là Se2 , được định nghĩa bởi
+n
+1X
+Se2 =
+(Xi − X)2 .
+n i=1
+
+(15)
+
+Giá trị của Se2 khi cho một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ), ký hiệu là se2 , là phương sai mẫu
+se2 =
+
+n
+1X
+(xi − x)2 .
+n i=1
+
+Từ (15), ta tính được
+E(Se2 ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+n−1 2
+σ
+n
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+với
+
+σ 2 = V (X).
+
+(16)
+
+37/71
+
+SAMI.HUST – 2023
+
+37 / 71
+
+Phương sai mẫu ngẫu nhiên hiệu chỉnh
+e2
+Để kỳ vọng của phương sai mẫu ngẫu nhiên
+ S trùng với phương sai của biến ngẫu nhiên gốc X ta cần một
+n e2
+sự hiệu chỉnh. Từ (16) suy ra E n−1
+S = σ2 .
+Đặt
+S2 =
+
+n
+2
+n e2
+1 X
+S =
+Xi − X
+n−1
+n − 1 i=1
+
+(17)
+
+thì E(S 2 ) = σ 2 và ta gọi S 2 là phương sai mẫu ngẫu nhiên đã hiệu chỉnh, hay phương sai mẫu ngẫu nhiên
+hiệu chỉnh.
+Giá trị của S 2 khi cho một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) là
+s2 =
+
+n
+1 X
+(xi − x)2
+n − 1 i=1
+
+(18)
+
+và gọi là phương sai mẫu đã hiệu chỉnh, hay phương sai mẫu hiệu chỉnh.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+38/71
+
+SAMI.HUST – 2023
+
+38 / 71
+
+Phương sai mẫu ngẫu nhiên hiệu chỉnh
+Ví dụ 12
+So sánh giá thành của một loại sản phẩm tại 4 siêu thị được chọn ngẫu nhiên ở thành phố Hà Nội cho thấy
+các mức tăng so với tháng trước là 12, 15, 17 và 20 nghìn đồng cho một kilôgam. Tìm phương sai mẫu hiệu
+chỉnh của mẫu giá tăng này.
+Giải.
+Tính trung bình mẫu
+x=
+
+1
+(12 + 15 + 17 + 20) = 16 nghìn đồng.
+4
+
+Áp dụng công thức (18), phương sai mẫu hiệu chỉnh là
+s2 =
+=
+
+4
+
+1X
+1
+(xi − 16)2 = (12 − 16)2 + (15 − 16)2 + (17 − 16)2 + (20 − 16)2
+3 i=1
+3
+
+34
+.
+3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+39/71
+
+SAMI.HUST – 2023
+
+39 / 71
+
+Độ lệch chuẩn mẫu ngẫu nhiên
+
+Độ lệch chuẩn mẫu ngẫu nhiên ký hiệu là Se và được xác định bởi
+v
+u
+n
+p
+u1 X
+Se = Se2 = t
+(Xi − X)2 .
+n i=1
+
+(19)
+
+Độ lệch chuẩn mẫu ngẫu nhiên hiệu chỉnh ký hiệu là S và được xác định bởi
+v
+u
+n
+√
+u 1 X
+S = S2 = t
+(Xi − X)2 .
+n − 1 i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+(20)
+
+40/71
+
+SAMI.HUST – 2023
+
+40 / 71
+
+Độ lệch chuẩn mẫu ngẫu nhiên
+
+Giá trị của Se và S khi cho một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) lần lượt là
+v
+u
+n
+√
+u1 X
+2
+se = se = t
+(xi − x)2
+n i=1
+
+(21)
+
+và
+v
+u
+√
+u
+s = s2 = t
+
+n
+1 X
+(xi − x)2
+n − 1 i=1
+
+(22)
+
+và được gọi là độ lệch chuẩn mẫu và độ lệch chuẩn mẫu hiệu chỉnh tương ứng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+41/71
+
+SAMI.HUST – 2023
+
+41 / 71
+
+Sử dụng máy tính để tính các đặc trưng mẫu
+
+- Ta có thể sử dụng máy tính bỏ túi, chẳng hạn máy CASIO FX570VN PLUS, để tính x và s theo các bước sau.
+1
+
+Bước 1: Chuyển đổi máy tính về chương trình thống kê MODE → 3 → AC
+
+2
+
+Bước 2: Bật chức năng cột tần số/tần suất SHIFT → MODE → Mũi tên đi xuống → 4(STAT) →
+1(ON)
+
+3
+
+Bước 3: Bật chế độ màn hình để nhập dữ liệu, Nhập số liệu SHIFT → 1 → 1(TYPE) → 1(1-VAR)
+Chú ý nhập xong số liệu thì bấm AC để thoát.
+
+4
+
+Bước 4: Xem kết quả:
+I
+I
+
+Trung bình mẫu x: SHIFT → 1 → 4(VAR) → 2
+Độ lệch tiêu chuẩn mẫu hiệu chỉnh s: SHIFT → 1 → 4 → 4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+42/71
+
+SAMI.HUST – 2023
+
+42 / 71
+
+Tần suất mẫu ngẫu nhiên
+
+Ký hiệu p là tỷ lệ cá thể trong tổng thể mang một dấu hiệu A định tính nào đó.
+Ta có thể mô hình hóa sự kiện một cá thể có hoặc không có dấu hiệu A bởi một biến ngẫu nhiên X được
+định nghĩa như sau:
+X = 0 nếu cá thể không có dấu hiệu A;
+X = 1 nếu có thể có dấu hiệu A.
+Khi đó X ∼ B(p), tức X là biến ngẫu nhiên có phân phối Bernoulli với tham số p.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+43/71
+
+SAMI.HUST – 2023
+
+43 / 71
+
+Tần suất mẫu ngẫu nhiên
+Định nghĩa 8
+Từ tổng thể, P
+lấy một mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ). Số cá thể có dấu hiệu A trong
+mẫu là X = n
+i=1 Xi . Tần suất mẫu ngẫu nhiên là một thống kê được ký hiệu và xác định bởi
+X
+Pb = .
+n
+
+(23)
+
+Dễ thấy,
+E(Pb) = p
+
+và
+
+V (Pb) =
+
+p(1 − p)
+.
+n
+
+(24)
+
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ), giá trị quan sát của Pb là
+pb =
+
+x
+,
+n
+
+(25)
+
+ở đây, x là số cá thể có dấu hiệu A trong mẫu.
+pb được gọi là tần suất mẫu.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+44/71
+
+SAMI.HUST – 2023
+
+44 / 71
+
+Tần suất mẫu ngẫu nhiên
+
+Ví dụ 13
+Phỏng vấn ngẫu nhiên 1600 cử tri thấy 960 người ủng hộ cho ứng cử viên A. Khi đó, tỷ lệ cử tri ủng hộ cho
+ứng cử viên A trong mẫu này là
+x
+960
+pb = =
+= 0, 6.
+n
+1600
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+45/71
+
+SAMI.HUST – 2023
+
+45 / 71
+
+4.1. MẪU NGẪU NHIÊN VÀ PHÂN PHỐI MẪU
+1
+
+4.1.1 Tổng thể và mẫu
+4.1.1.1. Tổng thể và mẫu
+4.1.1.2 Biểu diễn dữ liệu
+4.1.1.3 Các đặc trưng mẫu
+
+2
+
+4.1.2 Mẫu ngẫu nhiên
+4.1.2.1 Khái niệm mẫu ngẫu nhiên
+4.1.2.2 Một số thống kê thông dụng
+
+3
+
+4.1.3 Phân phối mẫu
+4.1.3.1 Phân phối mẫu của trung bình mẫu và Định lý giới hạn trung tâm
+4.1.3.2 Phân phối mẫu của một số thống kê khác
+
+4
+
+Bài tập Mục 4.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+46/71
+
+SAMI.HUST – 2023
+
+46 / 71
+
+Phân phối mẫu
+
+b là một biến ngẫu nhiên nên nó có phân phối xác suất.
+- Vì thống kê Θ
+Định nghĩa 9
+Phân phối xác suất của một thống kê được gọi là phân phối mẫu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+47/71
+
+SAMI.HUST – 2023
+
+47 / 71
+
+Phân phối mẫu của X
+
+- Phân phối xác suất của X là một phân phối mẫu và được gọi là phân phối của trung bình mẫu ngẫu nhiên.
+Định lý 1
+Nếu biến ngẫu nhiên X có phân phối chuẩn N (µ; σ 2 ) thì trung bình mẫu X của mẫu ngẫu nhiên
+WX = (X1 , X2 , . . . , Xn ) có phân phối chuẩn N (µ; σ 2 /n).
+Ví dụ 14
+Giả sử điện trở X (Ω) do một công ty sản xuất là biến ngẫu nhiên có phân phối chuẩn với trung bình 100 Ω
+và độ lệch chuẩn là 8 Ω. Tính xác suất để một mẫu ngẫu nhiên gồm 16 điện trở sẽ có điện trở trung bình
+nhỏ hơn 95 Ω.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+48/71
+
+SAMI.HUST – 2023
+
+48 / 71
+
+Phân phối mẫu của X
+Giải.
+Theo Định lý 1 thì X có phân phối chuẩn (Hình 3) với µX = 100 và σX =
+Do đó,
+
+q
+
+64
+16
+
+= 2.
+
+ 95 − 100 
+= Φ(−2, 5) = 1 − Φ(2, 5) ≈ 1 − 0, 99379 = 0, 00621.
+P (X < 95) = Φ
+2
+
+σX = 2
+
+95
+
+100
+
+x
+
+Hình 3: Phân phối của X trong Ví dụ 14
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+49/71
+
+SAMI.HUST – 2023
+
+49 / 71
+
+Định lý giới hạn trung tâm
+
+Định lý 2
+Nếu mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ), được xây dựng từ biến ngẫu nhiên X có kỳ
+vọng E(X) = µ và phương sai V (X) = σ 2 hữu hạn và X là trung bình của mẫu ngẫu nhiên, thì giới hạn
+(theo nghĩa phân phối) của phân phối xác suất của
+Z=
+
+X −µ
+√
+σ/ n
+
+(26)
+
+khi n → ∞, là phân phối chuẩn tắc.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+50/71
+
+SAMI.HUST – 2023
+
+50 / 71
+
+Định lý giới hạn trung tâm
+Sự chính xác của xấp xỉ chuẩn của X phụ thuộc vào kích thước mẫu n.
+Trong thực hành, nếu n ≥ 30, thống kê Z trong (26) sẽ xấp xỉ phân phối chuẩn tắc N (0; 1).
+
+Hình 4: Phân phối của số chấm trung bình khi tung 1, 2, 3 hoặc 5 con xúc sắc
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+51/71
+
+SAMI.HUST – 2023
+
+51 / 71
+
+Định lý giới hạn trung tâm
+Ví dụ 15
+Cho X là biến ngẫu nhiên liên tục có phân phối đều trên đoạn [2; 4]. Tìm phân phối xác suất của trung bình
+mẫu của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) với kích thước n = 40 được xây dựng từ biến ngẫu nhiên
+X.
+Giải.
+Kỳ vọng và phương sai của X lần lượt là
+µX =
+
+2+4
+=3
+2
+
+và
+
+2
+σX
+=
+
+(4 − 2)2
+1
+= .
+12
+3
+
+Theo Định lý 2, X có phân phối xấp xỉ phân phối chuẩn với
+µX = 3
+
+và
+
+2
+σX
+=
+
+2
+σX
+1
+1
+=
+=
+.
+n
+3 × 40
+120
+
+Phân phối xác suất của X và phân phối mẫu của X cho trong Hình 5.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+52/71
+
+SAMI.HUST – 2023
+
+52 / 71
+
+Định lý giới hạn trung tâm
+
+2
+
+4
+
+x
+
+2
+
+3
+
+4
+
+x
+
+Hình 5: Phân phối của X và X trong Ví dụ 15
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+53/71
+
+SAMI.HUST – 2023
+
+53 / 71
+
+Phân phối mẫu của X 1 − X 2
+Giả sử X1 và X2 là hai biến ngẫu nhiên tương ứng với hai tổng thể khác nhau và X1 và X2 có phân phối
+chuẩn N (µ1 ; σ12 ) và N (µ2 ; σ22 ).
+Xét hai mẫu ngẫu nhiên độc lập WX1 = (X11 , X12 , . . . , X1n1 ) và WX2 = (X21 , X22 , . . . , X2n2 ) kích thước
+n1 và n2 tương ứng. Khi đó, X 1 − X 2 là biến ngẫu nhiên có phân phối chuẩn với kỳ vọng và phương sai là
+µX 1 −X 2 = µX 1 − µX 2 = µ1 − µ2
+
+(27)
+
+và
+2
+2
+2
+= σX
++ σX
+=
+σX
+1 −X 2
+1
+2
+
+σ12
+σ2
++ 2.
+n1
+n2
+
+(28)
+
+- Nếu X1 và X2 không có phân phối chuẩn và nếu n1 ≥ 30 và n2 ≥ 30 thì ta có thể sử dụng Định lý giới hạn
+trung tâm, X 1 và X 2 có phân phối xấp xỉ phân phối chuẩn. Khi đó, X 1 − X 2 là biến ngẫu nhiên có phân phối
+xấp xỉ phân phối chuẩn với kỳ vọng và phương sai được xác định bởi các công thức (27) và (28).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+54/71
+
+SAMI.HUST – 2023
+
+54 / 71
+
+Phân phối mẫu của X 1 − X 2
+
+Định lý 3
+Giả sử hai mẫu ngẫu nhiên độc lập WX1 = (X11 , X12 , . . . , X1n1 ) và WX2 = (X21 , X22 , . . . , X2n2 ) được xây
+dựng từ hai biến ngẫu nhiên X1 và X2 độc lập có kỳ vọng E(X1 ) = µ1 , E(X2 ) = µ2 và phương sai
+V (X1 ) = σ12 , V (X2 ) = σ22 . Khi đó, phân phối xác suất của
+Z=
+
+(X 1 − X 2 ) − (µ1 − µ2 )
+q 2
+σ1
+σ2
++ n22
+n1
+
+(29)
+
+xấp xỉ phân phối chuẩn tắc, nếu các điều kiện của Định lý giới hạn trung tâm được thỏa mãn.
+Ngoài ra, nếu X1 và X2 có phân phối chuẩn N (µ1 ; σ12 ) và N (µ2 ; σ22 ) thì thống kê Z trong (29) có phân phối
+chuẩn tắc N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+55/71
+
+SAMI.HUST – 2023
+
+55 / 71
+
+Phân phối Khi-bình phương với phương sai mẫu hiệu chỉnh
+
+Định lý 4
+Nếu S 2 là phương sai hiệu chỉnh của mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ), được thành lập
+từ biến ngẫu nhiên X có phân phối chuẩn N (µ; σ 2 ), thì thống kê
+n
+
+χ2 =
+
+X (Xi − X)2
+(n − 1)S 2
+=
+σ2
+σ2
+i=1
+
+(30)
+
+có phân phối Khi-bình phương với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+56/71
+
+SAMI.HUST – 2023
+
+56 / 71
+
+Phân phối Student với thống kê mẫu
+
+Định lý 5
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên X
+có phân phối chuẩn với kỳ vọng E(X) = µ và phương sai V (X) = σ 2 chưa biết. Khi đó, thống kê
+T =
+
+X −µ
+√
+S/ n
+
+(31)
+
+có phân phối Student với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+57/71
+
+SAMI.HUST – 2023
+
+57 / 71
+
+Phân phối Fisher với hai phương sai mẫu hiệu chỉnh
+
+Giả sử hai mẫu ngẫu nhiên kích thước n1 và n2 được chọn từ hai tổng thể có phân phối chuẩn với phương sai σ12
+và σ22 . Từ Định lý 4,
+(n1 − 1)S12
+(n2 − 1)S22
+χ21 =
+và χ22 =
+2
+σ1
+σ22
+là các biến ngẫu nhiên có phân phối Khi-bình phương với số bậc tự do tương ứng là n1 − 1 và n2 − 1. Hơn nữa, vì
+các mẫu được chọn ngẫu nhiên, nên chúng độc lập. Do đó, sử dụng Định lý 22 (Chương 2) với χ21 = U và
+χ22 = V ta nhận được kết quả dưới đây.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+58/71
+
+SAMI.HUST – 2023
+
+58 / 71
+
+Phân phối Fisher với hai phương sai hiệu chỉnh mẫu
+
+Định lý 6
+Nếu S12 và S22 là hai phương sai hiệu chỉnh của hai mẫu ngẫu nhiên độc lập được chọn từ hai tổng thể có
+phân phối chuẩn với phương sai σ12 và σ22 tương ứng, thì
+F =
+
+S12 /σ12
+σ2 S 2
+= 22 12
+S22 /σ22
+σ1 S 2
+
+có phân phối Fisher với ν1 = n1 − 1 và ν2 = n2 − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+59/71
+
+SAMI.HUST – 2023
+
+59 / 71
+
+4.1. MẪU NGẪU NHIÊN VÀ PHÂN PHỐI MẪU
+1
+
+4.1.1 Tổng thể và mẫu
+4.1.1.1. Tổng thể và mẫu
+4.1.1.2 Biểu diễn dữ liệu
+4.1.1.3 Các đặc trưng mẫu
+
+2
+
+4.1.2 Mẫu ngẫu nhiên
+4.1.2.1 Khái niệm mẫu ngẫu nhiên
+4.1.2.2 Một số thống kê thông dụng
+
+3
+
+4.1.3 Phân phối mẫu
+4.1.3.1 Phân phối mẫu của trung bình mẫu và Định lý giới hạn trung tâm
+4.1.3.2 Phân phối mẫu của một số thống kê khác
+
+4
+
+Bài tập Mục 4.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+60/71
+
+SAMI.HUST – 2023
+
+60 / 71
+
+Bài tập
+
+Bài 1
+Một hãng sản xuất chip máy tính quảng cáo rằng dưới 5% sản phẩm của họ bị lỗi. Kiểm tra ngẫu nhiên 1000
+con chip do hãng sản xuất thì phát hiện thấy 3, 5% số chip bị lỗi. Hãy cho biết:
+(a) Tổng thể muốn nghiên cứu là gì?
+(b) Mẫu thu thập được là gì?
+(c) Tham số quan tâm trong nghiên cứu này là gì?
+(d) Giá trị thống kê trong nghiên cứu là gì?
+(e) Giá trị 5% chỉ tham số hay thống kê?
+(f) Giá trị 3, 5% chỉ tham số hay thống kê?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+61/71
+
+SAMI.HUST – 2023
+
+61 / 71
+
+Bài tập
+
+Bài 2
+Bảng dữ liệu sau đây liệt kê tỷ lệ phần trăm nam giới và nữ giới trong năm nhóm tuổi không có bảo hiểm y
+tế tại Hoa Kỳ vào tháng 9 năm 2008.
+Nhóm tuổi
+Dưới 18
+18-24
+25-34
+35-44
+45-64
+
+Nam
+8,5
+32,3
+30,4
+21,3
+13,5
+
+Nữ
+8,5
+24,9
+21,4
+17,1
+13,0
+
+Hãy sử dụng kỹ thuật biểu đồ hình cột và biểu đồ hình quạt để trình bày những số liệu này.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+62/71
+
+SAMI.HUST – 2023
+
+62 / 71
+
+Bài tập
+
+Bài 3
+Quan sát thời gian khô (đơn vị: giờ) của 15 mẫu sơn Latex, chúng ta thu được số liệu như sau:
+3, 4; 2, 5; 4, 8; 2, 9; 3, 6; 2, 8; 3, 3; 5, 6; 3, 7; 2, 8; 4, 4; 4, 0; 5, 2; 3, 0; 4, 8
+
+(a) Hãy biểu diễn tập dữ liệu trên dưới dạng bảng tần số với 4 khoảng trong đó cận trái của khoảng đầu
+tiên là 2.
+(b) Hãy vẽ biểu đồ tổ chức đồ cho tập dữ liệu trên dựa trên cách biểu diễn ở ý (a).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+63/71
+
+SAMI.HUST – 2023
+
+63 / 71
+
+Bài tập
+
+Bài 4
+Quan sát thời gian khô (đơn vị: giờ) của 15 mẫu sơn Latex, chúng ta thu được số liệu như sau:
+3, 4; 2, 5; 4, 8; 2, 9; 3, 6; 2, 8; 3, 3; 5, 6; 3, 7; 2, 8; 4, 4; 4, 0; 5, 2; 3, 0; 4, 8
+
+(a) Hãy tính các đặc trưng mẫu đo trung tâm của dữ liệu: trung bình mẫu, trung vị mẫu.
+(b) Hãy tính các đặc trưng mẫu đo độ phân tán của dữ liệu: phương sai mẫu và độ lệch chuẩn mẫu hiệu
+chỉnh.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+64/71
+
+SAMI.HUST – 2023
+
+64 / 71
+
+Bài tập
+
+Bài 5
+Theo dõi thời gian gia công 34 chi tiết máy ta thu được số liệu như sau:
+Thời gian (phút)
+Số chi tiết máy
+
+16-17
+3
+
+17-18
+4
+
+18-19
+10
+
+19-20
+9
+
+20-21
+5
+
+21-22
+3
+
+(a) Hãy tính các độ đo trung tâm của dữ liệu: trung bình mẫu, trung vị mẫu.
+(b) Hãy tính các độ đo mức độ phân tán của dữ liệu: phương sai mẫu và độ lệch chuẩn mẫu hiệu chỉnh.
+(c) Hãy vẽ biểu đồ tổ chức đồ cho tập dữ liệu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+65/71
+
+SAMI.HUST – 2023
+
+65 / 71
+
+Bài tập
+
+Bài 6
+Đo áp lực X (tính bằng kg/cm2 ) của 18 thùng chứa ta được bảng kết quả sau:
+Áp lực (kg/cm2 )
+Số thùng
+
+19,6
+1
+
+19,5
+2
+
+19,9
+2
+
+20,0
+4
+
+19,8
+2
+
+20,5
+3
+
+21,0
+2
+
+18,5
+1
+
+19,7
+1
+
+(a) Hãy tính các độ đo trung tâm của dữ liệu: trung bình mẫu, trung vị mẫu.
+(b) Hãy tính các độ đo mức độ phân tán của dữ liệu: phương sai mẫu và độ lệch chuẩn mẫu hiệu chỉnh.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+66/71
+
+SAMI.HUST – 2023
+
+66 / 71
+
+Bài tập
+Bài 7
+Giả sử chiều dài của một chi tiết máy là biến ngẫu nhiên có phân phối chuẩn với trung bình là 25 centimét
+độ lệch chuẩn là 0,2 centimét. Đo chiều dài của 10 chi tiết máy.
+(a) Hãy tìm phân phối xác suất của chiều dài trung bình của 10 chi tiết máy được đo.
+(b) Tính xác suất để chiều dài trung bình của 10 chi tiết máy được đo lớn hơn 25,06 centimét.
+Bài 8
+Giả sử tuổi thọ (đơn vị: năm) của một loại thiết bị là biến ngẫu nhiên có phân phối mũ với tham số λ = 0, 2.
+Quan sát tuổi thọ của 50 thiết bị.
+(a) Hãy tìm phân phối xác suất xấp xỉ của tuổi thọ trung bình của 50 thiết bị được quan sát.
+(b) Tính xác suất để tuổi thọ trung bình của 50 thiết bị được quan sát nhỏ hơn 4,9 năm.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+67/71
+
+SAMI.HUST – 2023
+
+67 / 71
+
+Bài tập
+
+Bài 9
+Giả sử tỷ lệ khách hàng yêu thích sản phẩm của một công ty công nghệ là 55%. Phỏng vấn 100 khách hàng,
+gọi X là số khách hàng trả lời yêu thích sản phẩm của công ty.
+(a) Hãy tìm phân phối xác suất của X.
+(b) Hãy tìm phân phối xác suất xấp xỉ của tỷ lệ khách hàng yêu thích sản phẩm của công ty trong 100
+người được phỏng vấn.
+(c) Tính xác suất để tỷ lệ khách hàng yêu thích sản phẩm của công ty trong 100 người được phỏng vấn lớn
+hơn 50%
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+68/71
+
+SAMI.HUST – 2023
+
+68 / 71
+
+Bài tập
+
+Bài 10
+Giả sử tỷ lệ thiết bị bị lỗi trong dây chuyển công nghệ cũ là 1% và trong dây chuyền công nghệ mới là 0, 5%.
+Quan sát ngẫu nhiên 100 thiết bị được sản xuất theo dây chuyền công nghệ cũ và 120 thiết bị được sản xuất
+theo dây chuyền công nghệ mới.
+(a) Hãy tìm phân phối xác suất xấp xỉ của hiệu 2 tỷ lệ thiết bị bị lỗi trong 2 mẫu trên.
+(b) Tính xác suất để tỷ lệ thiết bị bị lỗi trong mẫu sản xuất theo công nghệ cũ cao hơn trong mẫu sản
+xuất theo công nghệ mới.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+69/71
+
+SAMI.HUST – 2023
+
+69 / 71
+
+Bài tập
+
+Bài 11
+Giả sử thu nhập (X) của sinh viên tốt nghiệp Ngành Công nghệ thông tin (CNTT), Đại học Bách khoa Hà
+Nội (HUST) trung bình là 15000 USD/năm và độ lệch chuẩn là 1500 USD; còn thu nhập (Y ) của sinh viên
+tốt nghiệp Ngành CNTT Đại học Quốc gia Hà Nội (VNU) trung bình là 13000 USD/năm và độ lệch chuẩn
+là 1200 USD.
+(a) Giả sử X và Y có phân phối chuẩn. Quan sát thu nhập của 10 sinh viên tốt nghiệp Ngành CNTT của
+HUST và 12 sinh viên Ngành CNTT của VNU. Hãy tính xác suất để thu nhập trung bình của 10 sinh
+viên HUST cao hơn 12 sinh viên VNU ít nhất 1500 USD.
+(b) Giả sử không biết X và Y có phân phối gì. Quan sát thu nhập của 50 sinh viên tốt nghiệp Ngành
+CNTT của HUST và 60 sinh viên của VNU. Hãy tính xác suất để thu nhập trung bình của 50 sinh
+viên của HUST cao hơn 60 sinh viên của VNU ít nhất 1500 USD.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+70/71
+
+SAMI.HUST – 2023
+
+70 / 71
+
+Bài tập
+
+Bài 12
+(a) Giả sử T có phân phối Student với 12 bậc tự do. Hãy tìm các hằng số a, b sao cho P (T > a) = 0, 025 và
+P (−1, 78 < T < b) = 0, 9.
+(b) Giả sử T có phân phối Fisher với 10 và 12 bậc tự do. Hãy tìm các hằng số a, b sao cho
+P (F > a) = 0, 025 và P (−1, 78 < F < b) = 0, 9.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.1
+
+71/71
+
+SAMI.HUST – 2023
+
+71 / 71
+
+

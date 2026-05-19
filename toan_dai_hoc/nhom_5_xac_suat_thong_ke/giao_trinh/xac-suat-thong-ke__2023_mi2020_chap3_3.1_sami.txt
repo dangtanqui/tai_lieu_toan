@@ -1,0 +1,172 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 3
+BIẾN NGẪU NHIÊN NHIỀU CHIỀU
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST–2023
+
+(1)
+
+Phòng BIS.201-D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+1/8
+
+SAMI.HUST–2023
+
+1/8
+
+GIỚI THIỆU CHƯƠNG 3
+
+Chương này giới thiệu về biến ngẫu nhiên nhiều chiều, nhưng chủ yếu tập trung vào biến ngẫu nhiên hai chiều.
+Nội dung chính bao gồm:
+Khái niệm và phân loại biến ngẫu nhiên nhiều chiều.
+Phân phối xác suất của biến ngẫu nhiên hai chiều (phân phối đồng thời, phân phối biên, phân phối có điều
+kiện).
+Biến ngẫu nhiên độc lập.
+Hiệp phương sai và hệ số tương quan.
+Luật số lớn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+2/8
+
+SAMI.HUST–2023
+
+2/8
+
+3.1. KHÁI NIỆM BIẾN NGẪU NHIÊN NHIỀU CHIỀU
+
+1
+
+3.1.1 Biến ngẫu nhiên nhiều chiều
+3.1.1.1 Khái niệm và ví dụ
+3.1.1.2 Biến ngẫu nhiên rời rạc. Biến ngẫu nhiên liên tục
+
+2
+
+3.1.2 Hàm của hai biến ngẫu nhiên
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+3/8
+
+SAMI.HUST–2023
+
+3/8
+
+Khái niệm và ví dụ
+Trong nhiều bài toán thực tế ta thường phải xét đồng thời nhiều biến ngẫu nhiên X1 , X2 , . . . , Xn có quan hệ với
+nhau.
+Khái niệm 1
+Một biến ngẫu nhiên n chiều là một bộ có thứ tự gồm n biến ngẫu nhiên (X1 , X2 , . . . , Xn ) với các thành
+phần X1 , X2 , . . . , Xn là các biến ngẫu nhiên xác định trong cùng một phép thử.
+Ví dụ 1
+Xem xét một sản phẩm đúc do một máy sản xuất và gọi X, Y, Z lần lượt là các biến ngẫu nhiên chỉ chiều
+rộng, chiều dài và chiều cao của sản phẩm (đơn vị tính là milimét).
+(a) (X, Y, Z) là biến ngẫu nhiên ba chiều mô tả kích thước của sản phẩm.
+(b) Nếu chỉ quan tâm đến chiều rộng và chiều dài của sản phẩm ta có biến ngẫu nhiên hai chiều (X, Y ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+4/8
+
+SAMI.HUST–2023
+
+4/8
+
+Biến ngẫu nhiên rời rạc. Biến ngẫu nhiên liên tục
+
+Khái niệm 2
+Biến ngẫu nhiên n chiều (X1 , X2 , . . . , Xn ) được gọi là liên tục hay rời rạc nếu tất cả các biến ngẫu nhiên
+thành phần X1 , X2 , . . . , Xn là liên tục hay rời rạc.
+- Trong chương này, ta chủ yếu xét biến ngẫu nhiên hai chiều (X, Y ), trong đó X là biến ngẫu nhiên thành phần
+thứ nhất và Y là biến ngẫu nhiên thành phần thứ hai. Hầu hết các kết quả có thể mở rộng dễ dàng cho biến
+ngẫu nhiên n chiều (X1 , X2 , . . . , Xn ). Ta không xét trường hợp biến ngẫu nhiên hai chiều trong đó có một biến
+rời rạc và một biến liên tục (còn gọi là biến ngẫu nhiên hỗn hợp).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+5/8
+
+SAMI.HUST–2023
+
+5/8
+
+Biến ngẫu nhiên rời rạc. Biến ngẫu nhiên liên tục
+
+Ví dụ 2
+Biến ngẫu nhiên ba chiều (X, Y, Z) trong Ví dụ 1 là biến ngẫu nhiên liên tục.
+Ví dụ 3
+Từ một lô hàng gồm 5 sản phẩm loại I, 4 sản phẩm loại II và 3 sản phẩm loại III, ta lấy ngẫu nhiên ra 3 sản
+phẩm. Gọi X và Y lần lượt là số sản phẩm loại I và loại II có trong 3 sản phẩm được lấy ra. Khi đó (X, Y )
+là biến ngẫu nhiên hai chiều rời rạc.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+6/8
+
+SAMI.HUST–2023
+
+6/8
+
+3.1. KHÁI NIỆM BIẾN NGẪU NHIÊN NHIỀU CHIỀU
+
+1
+
+3.1.1 Biến ngẫu nhiên nhiều chiều
+3.1.1.1 Khái niệm và ví dụ
+3.1.1.2 Biến ngẫu nhiên rời rạc. Biến ngẫu nhiên liên tục
+
+2
+
+3.1.2 Hàm của hai biến ngẫu nhiên
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+7/8
+
+SAMI.HUST–2023
+
+7/8
+
+Hàm của hai biến ngẫu nhiên
+
+Khái niệm 3
+Cho hai biến ngẫu nhiên X và Y và hàm hai biến g(x, y) nhận giá trị thực. Định nghĩa W := g(X, Y ) là một
+phép cho tương ứng mỗi cặp giá trị (x, y) của (X, Y ) với duy nhất một giá trị w = g(x, y) của W . Biến W
+được gọi là hàm của hai biến ngẫu nhiên X và Y . Chẳng hạn, W = X + Y , W = XY.
+Nếu X và Y là hai biến ngẫu nhiên rời rạc thì W cũng là biến ngẫu nhiên rời rạc.
+Nếu X và Y là hai biến ngẫu nhiên liên tục và g(., .) là một hàm liên tục thì W là một biến ngẫu nhiên liên
+tục.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.1
+
+8/8
+
+SAMI.HUST–2023
+
+8/8
+
+

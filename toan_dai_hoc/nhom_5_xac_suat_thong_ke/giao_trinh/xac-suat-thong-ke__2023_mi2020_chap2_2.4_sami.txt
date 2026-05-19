@@ -1,0 +1,3368 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 2
+BIẾN NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+1/104
+
+SAMI.HUST – 2023
+
+1 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+2/104
+
+SAMI.HUST – 2023
+
+2 / 104
+
+Định nghĩa phân phối đều rời rạc
+
+Định nghĩa 11
+Biến ngẫu nhiên rời rạc X được gọi là có phân phối đều với tham số n nếu mỗi giá trị trong n giá trị có thể
+có của nó, x1 , x2 , . . . , xn , có xác suất bằng nhau,
+P (X = xi ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+,
+n
+
+∀i = 1, 2, . . . , n.
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+3/104
+
+SAMI.HUST – 2023
+
+3 / 104
+
+Ví dụ
+Ví dụ 29
+Chữ số đầu tiên của số sê-ri của một sản phẩm là một trong các chữ số từ 0 đến 9. Lấy ngẫu nhiên một sản
+phẩm từ lô hàng chứa nhiều sản phẩm và gọi X là chữ số đầu tiên của số sê-ri của sản phẩm được lấy ra.
+Khi đó, X có phân phối đều với tham số n = 10.
+Hàm xác suất của X là
+
+(
+pX (x) =
+
+0, 1,
+0,
+
+x = 0, 1, . . . , 9,
+nếu trái lại.
+
+Bảng phân phối xác suất của X là
+X
+P (X = xi )
+
+0
+0,1
+
+1
+0,1
+
+2
+0,1
+
+3
+0,1
+
+4
+0,1
+
+5
+0,1
+
+6
+0,1
+
+7
+0,1
+
+8
+0,1
+
+9
+0,1
+
+Đồ thị phân phối xác suất của X được cho trong Hình 9.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+4/104
+
+SAMI.HUST – 2023
+
+4 / 104
+
+Ví dụ
+
+pX (x)
+
+0.2
+0.1
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+x
+
+Hình 9: Hàm xác suất của biến ngẫu nhiên có phân phối đều trong Ví dụ 29
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+5/104
+
+SAMI.HUST – 2023
+
+5 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 5
+Giả sử X là một biến ngẫu nhiên có phân phối đều rời rạc nhận các giá trị nguyên liên tiếp
+a, a + 1, a + 2, . . . , b, (a < b). Khi đó, kỳ vọng và phương sai của X là
+E(X) =
+
+a+b
+2
+
+và
+
+V (X) =
+
+(b − a + 1)2 − 1
+.
+12
+
+(29)
+
+Ví dụ 30
+Hệ thống liên lạc bằng giọng nói của một doanh nghiệp có 48 đường truyền. Quan sát hệ thống tại một thời
+điểm cụ thể và gọi X là “số đường truyền đang được sử dụng tại thời điểm quan sát”. Giả sử X là một biến
+ngẫu nhiên có phân phối đều, tìm E(X) và V (X).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+6/104
+
+SAMI.HUST – 2023
+
+6 / 104
+
+Kỳ vọng và phương sai
+
+Giải. X nhận các giá trị từ 0 đến 48. Khi đó, theo (29),
+E(X) =
+
+48 + 0
+= 24;
+2
+
+V (X) =
+
+(48 − 0 + 1)2 − 1
+= 200.
+12
+
+p
+Suy ra σX = V (X) = 14, 1421. Ta thấy số đường truyền trung bình được sử dụng là 24 nhưng độ phân tán,
+được đo bằng σX , là lớn. Vì vậy, tại nhiều thời điểm, sẽ có nhiều hơn hoặc ít hơn 24 đường truyền được sử dụng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+7/104
+
+SAMI.HUST – 2023
+
+7 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+8/104
+
+SAMI.HUST – 2023
+
+8 / 104
+
+Định nghĩa phân phối Bernoulli
+
+Định nghĩa 12
+Biến ngẫu nhiên rời rạc X được gọi là có phân phối Bernoulli với tham số p, ký hiệu là X ∼ B(p), nếu X chỉ
+nhận hai giá trị 0 và 1 và hàm xác suất của X là
+(
+1 − p, x = 0,
+pX (x) =
+(30)
+p,
+x = 1,
+với p ∈ (0; 1).
+- Xét một phép thử Bernoulli với xác suất xuất hiện sự kiện A trong phép thử này là p(A) = p ∈ (0; 1). Gọi X là
+số lần xuất hiện A trong phép thử Bernoulli này, thì X là biến ngẫu nhiên rời rạc có phân phối Bernoulli tham số
+p.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+9/104
+
+SAMI.HUST – 2023
+
+9 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 6
+Nếu X là biến ngẫu nhiên có phân phối Bernoulli tham số p thì
+E(X) = p
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+V (X) = p(1 − p).
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+(31)
+
+10/104 SAMI.HUST – 2023
+
+10 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+11/104 SAMI.HUST – 2023
+
+11 / 104
+
+Định nghĩa phân phối nhị thức
+
+Định nghĩa 13
+Biến ngẫu nhiên rời rạc X được gọi là có phân phối nhị thức với tham số n và p, ký hiệu là X ∼ B(n; p), nếu
+X nhận hữu hạn giá trị 0, 1, . . . , n với hàm xác suất
+pX (x) = Cnx px (1 − p)n−x , x = 0, 1, . . . , n,
+
+(32)
+
+với p ∈ (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+12/104 SAMI.HUST – 2023
+
+12 / 104
+
+Định nghĩa phân phối nhị thức
+
+Phân phối nhị thức xuất phát từ tên thực tế của khai triển nhị thức (p + q)n có n + 1 số hạng:
+(p + q)n = Cn0 p0 q n + Cn1 p1 q n−1 + · · · + Cnn pn q 0 .
+Nếu p + q = 1, tức là q = 1 − p, thì
+
+Pn
+
+k=0
+
+Cnk pk q n−k = 1, đây là điều kiện cần thiết của phân phối nhị thức.
+
+Trong n phép thử Bernoulli, nếu X là biến ngẫu nhiên đếm số lần xuất hiện sự kiện A với
+P (A) = p ∈ (0; 1) không đổi, thì X ∼ B(n; p).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+13/104 SAMI.HUST – 2023
+
+13 / 104
+
+Định nghĩa phân phối nhị thức
+pX (x)
+0.2
+
+0.1
+
+x
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+Hình 10: Phân phối nhị thức với n = 20 và p = 0, 5
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+14/104 SAMI.HUST – 2023
+
+14 / 104
+
+Định nghĩa phân phối nhị thức
+pX (x)
+0.3
+
+0.2
+
+0.1
+
+x
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+16
+
+18
+
+20
+
+Hình 11: Phân phối nhị thức với n = 20 và p = 0, 1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+15/104 SAMI.HUST – 2023
+
+15 / 104
+
+Ví dụ
+Ví dụ 31
+Một lô hàng có số lượng lớn sản phẩm với tỷ lệ sản phẩm A trong đó là 50%. Từ lô hàng, chọn ngẫu nhiên
+20 sản phẩm để kiểm tra. Gọi X là số sản phẩm A có trong 20 sản phẩm được lấy ra.
+(a) X có phân phối gì?
+(b) Tính xác suất có đúng 5 sản phẩm A trong 20 sản phẩm được lấy ra.
+Giải. Có thể xem việc kiểm tra chất lượng mỗi sản phẩm là thực hiện một phép thử Bernoulli với xác suất xuất
+hiện A trong mỗi phép thử là 0,5 không đổi. Kiểm tra 20 sản phẩm là thực hiện 20 phép thử Bernoulli.
+(a) X là biến ngẫu nhiên đếm số lần xuất hiện A trong 20 phép thử Bernoulli, nên X ∼ B(n; p) với n = 20 và
+p = 0, 5 (Hình 10).
+(b) Áp dụng công thức Bernoulli,
+5
+P (X = 5) = C20
+× (0, 5)5 × (1 − 0, 5)15 ≈ 0, 0148.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+16/104 SAMI.HUST – 2023
+
+16 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 7
+Nếu X là biến ngẫu nhiên có phân phối nhị thức với tham số n và p thì
+(a) Kỳ vọng và phương sai của X là
+E(X) = np
+
+và
+
+V (X) = np(1 − p).
+
+(33)
+
+(b) mod(X) là giá trị của X thỏa mãn
+(n + 1)p − 1 ≤ mod(X) ≤ (n + 1)p.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+(34)
+
+17/104 SAMI.HUST – 2023
+
+17 / 104
+
+Kỳ vọng và phương sai
+Ví dụ 32
+Biến ngẫu nhiên X trong Ví dụ 5 là biến ngẫu nhiên có phân phối nhị thức với tham số n = 4 và
+p = 0, 1.
+Áp dụng (33),
+E(X) = np = 4 × 0, 1 = 0, 4
+
+và
+
+V (X) = np(1 − p) = 4 × 0, 1 × 0, 9 = 0, 36.
+
+Những kết quả này trùng với những kết quả thu được từ việc tính toán trực tiếp trong Ví dụ 18(a) và
+23(a).
+Ví dụ 33
+Trong Ví dụ 31, X là biến ngẫu nhiên có phân phối nhị thức với n = 20 và p = 0, 5.
+Vì (n + 1)p − 1 = 9, 5 và (n + 1)p = 10, 5 nên mod(X) = 10.
+Số sản phẩm A có nhiều khả năng nhất là 10 trong số 20 sản phẩm được lấy ra.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+18/104 SAMI.HUST – 2023
+
+18 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+19/104 SAMI.HUST – 2023
+
+19 / 104
+
+Định nghĩa phân phối Poisson
+
+Định nghĩa 14
+Biến ngẫu nhiên rời rạc X được gọi là có phân phối Poisson với tham số λ > 0, ký hiệu là X ∼ P(λ), nếu
+hàm xác suất của X có dạng
+pX (x) =
+
+e−λ λx
+, x = 0, 1, 2, . . .
+x!
+
+(35)
+
+với e = 2, 71828 . . .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+20/104 SAMI.HUST – 2023
+
+20 / 104
+
+Định nghĩa phân phối Poisson
+
+Tổng các xác suất trong (35) bằng một vì
+∞
+∞
+X
+X
+e−λ λx
+λx
+= e−λ
+= e−λ eλ = 1,
+x!
+x!
+x=0
+x=0
+
+ở đây ta sử dụng khai triển Taylor của hàm eλ =
+
+P∞
+
+x=0
+
+λx /x!.
+
+Trong thực tế với một số giả thiết thích hợp thì các biến ngẫu nhiên là các quá trình đếm sau: số cuộc gọi
+đến một tổng đài; số khách hàng đến một điểm phục vụ; số xe cộ qua một ngã tư; số tai nạn (xe cộ); số
+các sự cố xảy ra ở một địa điểm . . . trong một khoảng thời gian xác định nào đó sẽ có phân phối Poisson với
+tham số λ, trong đó λ là giá trị trung bình diễn ra trong khoảng thời gian này.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+21/104 SAMI.HUST – 2023
+
+21 / 104
+
+Định nghĩa phân phối Poisson
+0.20
+P(5)
+
+PX (x)
+
+0.15
+
+0.10
+
+0.05
+
+0.00
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+x
+
+Hình 12: Phân phối Poisson với λ = 5
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+22/104 SAMI.HUST – 2023
+
+22 / 104
+
+Định nghĩa phân phối Poisson
+0.40
+P(1)
+
+PX (x)
+
+0.30
+
+0.20
+
+0.10
+
+0.00
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+
+12
+
+14
+
+x
+
+Hình 13: Phân phối Poisson với λ = 1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+23/104 SAMI.HUST – 2023
+
+23 / 104
+
+Ví dụ
+
+Ví dụ 34
+Ở một tổng đài bưu điện, các cuộc điện thoại gọi đến xuất hiện ngẫu nhiên, độc lập với nhau với tốc độ
+trung bình 2 cuộc gọi trong một phút. Tìm xác suất để
+(a) Có đúng 6 cuộc điện thoại trong vòng 2,5 phút.
+(b) Không có cuộc điện thoại nào trong khoảng thời gian 30 giây.
+(c) Có ít nhất 1 cuộc điện thoại trong khoảng thời gian 10 giây.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+24/104 SAMI.HUST – 2023
+
+24 / 104
+
+Ví dụ
+Giải.
+(a) Gọi X là “số cuộc điện thoại xuất hiện trong vòng 2,5 phút”. Khi đó, X ∼ P(λ) với λ = 5. Phân phối xác
+suất của X xác định bởi (35) cho trong Hình 12 và
+P (X = 6) = e−5
+
+56
+≈ 0, 1462.
+6!
+
+(b) Gọi Y là “số cuộc điện thoại xuất hiện trong vòng 30 giây”. Khi đó, Y ∼ P(λ) với λ = 1. Phân phối xác
+suất của Y xác định bởi (35) cho trong Hình 13 và
+P (Y = 0) = e−1
+
+λ0
+≈ 0, 3679.
+0!
+
+(c) Gọi Z là “số cuộc điện thoại xuất hiện trong vòng 10 giây”. Khi đó, Z ∼ P(λ) với λ = 1/3 và
+P (Z ≥ 1) = 1 − P (Z = 0) = 1 − e− /3 ≈ 0, 2835.
+1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+25/104 SAMI.HUST – 2023
+
+25 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 8
+Nếu X là biến ngẫu nhiên có phân phối Poisson tham số λ thì
+E(X) = λ
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+(36)
+
+V (X) = λ.
+
+26/104 SAMI.HUST – 2023
+
+26 / 104
+
+Xấp xỉ phân phối nhị thức bằng phân phối Poisson
+
+- Cho X là biến ngẫu nhiên có phân phối nhị thức với tham số n và p. Nếu n → ∞, p → 0 và np → λ (λ là
+một hằng số) thì
+B(n; p) → P(λ).
+- Trong thực tế, nếu n đủ lớn và p đủ nhỏ thỏa mãn np < 7 thì ta có thể xấp xỉ phân phối nhị thức B(n; p)
+bằng phân phối Poisson P(λ) với λ = np và
+Pn (k) = Cnk pk (1 − p)n−k ≈
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+(np)k −np
+e
+.
+k!
+
+(37)
+
+27/104 SAMI.HUST – 2023
+
+27 / 104
+
+Xấp xỉ phân phối nhị thức bằng phân phối Poisson
+Ví dụ 35
+Giả sử một công ty bảo hiểm nhân thọ bảo hiểm cho cuộc sống của 5000 người đàn ông ở độ tuổi 42. Nghiên
+cứu của các chuyên gia tính toán cho thấy xác suất để một người đàn ông 42 tuổi sẽ chết trong một năm (xác
+định) là 0,001. Hãy tìm xác suất mà công ty sẽ phải trả bảo hiểm cho 4 người trong một năm (xác định).
+Giải.
+Gọi X là số người chết trong một năm (xác định), X ∼ B(n; p) với n = 5000 và p = 0, 001. Khi đó, áp
+dụng công thức Bernoulli,
+4
+P (X = 4) = P5000 (4) = C5000
+(0, 001)4 (1−0, 001)5000−4 =
+
+5000!
+(0, 001)4 (0, 999)4996 = 0, 17552002723.
+4!4996!
+
+Vì n = 5000 đủ lớn và λ = np = (5000)(0, 001) = 5 < 7 nên xác suất trên có thể được xấp xỉ bằng công
+thức (37) và
+(625)(0, 006738)
+54 −5
+P (X = 4) ≈
+e =
+= 0, 175.
+4!
+24
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+28/104 SAMI.HUST – 2023
+
+28 / 104
+
+Xấp xỉ phân phối nhị thức bằng phân phối Poisson
+0.20
+B(5000; 0, 001)
+P(5)
+
+PX (x)
+
+0.15
+
+0.10
+
+0.05
+
+0.00
+
+0
+
+2
+
+4
+
+6
+
+8
+
+10
+x
+
+12
+
+14
+
+16
+
+18
+
+20
+
+Hình 14: Xấp xỉ phân phối nhị thức B(5000; 0, 001) bằng phân phối Poisson P(5)
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+29/104 SAMI.HUST – 2023
+
+29 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+30/104 SAMI.HUST – 2023
+
+30 / 104
+
+Định nghĩa phân phối đều liên tục
+
+Định nghĩa 15
+Biến ngẫu nhiên liên tục X được gọi là có phân phối đều trên [a; b] (a < b), ký hiệu là X ∼ U ([a; b]), nếu X
+có hàm mật độ xác suất là
+
+ 1 ,
+x ∈ [a; b],
+fX (x) = b − a
+(38)
+0,
+x∈
+/ [a; b].
+Nhận xét 1
+Từ Định nghĩa 15 và tính chất của hàm mật độ xác suất suy ra nếu X ∼ U([a; b]) và nếu α, β ∈ [a, b], thì
+P (α < X < β) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+β−α
+.
+b−a
+
+(39)
+
+31/104 SAMI.HUST – 2023
+
+31 / 104
+
+Định nghĩa phân phối đều liên tục
+fX (x)
+
+1
+b−a
+
+0
+
+a
+
+b
+
+x
+
+Hình 15: Hàm mật độ xác suất của biến ngẫu nhiên có phân phối đều trên đoạn [a; b]
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+32/104 SAMI.HUST – 2023
+
+32 / 104
+
+Ví dụ
+
+Ví dụ 36
+Tại một trạm xe buýt, chuyến xe đầu tiên khởi hành lúc 7 giờ sáng và cứ sau 15 phút lại có một xe xuất bến.
+Giả sử một hành khách đến trạm ngẫu nhiên trong khoảng thời gian từ 7 giờ đến 7 giờ 30. Tìm xác suất để
+hành khách này chờ
+(a) Ít hơn 5 phút.
+(b) Ít nhất 12 phút.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+33/104 SAMI.HUST – 2023
+
+33 / 104
+
+Ví dụ
+
+Giải. Quy 7 giờ về 0 và 7 giờ 30 về 30 (phút). Gọi X là thời điểm khách đến trạm từ 7 giờ đến 7 giờ 30,
+X ∼ U [0; 30].
+(a) Hành khách chờ ít hơn 5 phút nếu đến trạm giữa 7 giờ 10 và 7 giờ 15 hoặc giữa 7 giờ 25 và 7 giờ 30. Do đó
+xác suất cần tìm là:
+P (10 < X ≤ 15) + P (25 < X ≤ 30) =
+
+15 − 10
+30 − 25
+1
++
+= .
+30 − 0
+30 − 0
+3
+
+(b) Hành khách chờ ít nhất 12 phút nếu đến trạm giữa 7 giờ và 7 giờ 03 hoặc giữa 7 giờ 15 và 7 giờ 18. Xác
+suất cần tìm là:
+18 − 15
+3−0
++
+= 0, 2.
+P (0 < X ≤ 3) + P (15 < X ≤ 18) =
+30 − 0
+30 − 0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+34/104 SAMI.HUST – 2023
+
+34 / 104
+
+Kỳ vọng và phương sai
+Định lý 9
+Cho X là biến ngẫu nhiên có phân phối đều trên [a; b]. Khi đó,
+(a) Hàm phân phối xác suất của X là
+
+FX (x) =
+
+(b) Kỳ vọng E(X) =
+
+
+
+0,
+
+x − a
+
+b−a
+
+
+1,
+
+x ≤ a,
+a < x ≤ b,
+
+,
+
+(40)
+
+x > b.
+
+a+b
+.
+2
+
+(c) Phương sai V (X) =
+
+(b − a)2
+và độ lệch chuẩn σX =
+12
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+r
+
+(b − a)2
+.
+12
+
+35/104 SAMI.HUST – 2023
+
+35 / 104
+
+b. Kỳ vọng và phương sai
+
+FX (x)
+1
+
+0
+
+a
+
+b
+
+x
+
+Hình 16: Hàm phân phối xác suất của biến ngẫu nhiên có phân phối đều trên đoạn [a; b]
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+36/104 SAMI.HUST – 2023
+
+36 / 104
+
+Kỳ vọng và phương sai
+
+Ví dụ 37
+Biến ngẫu nhiên X trong Ví dụ 15 có phân phối đều trên đoạn [0; 20], do đó
+E(X) =
+
+0 + 20
+= 10 (mA)
+2
+
+và
+
+V (X) =
+
+(20 − 0)2
+= 33, 3333 (mA2 ).
+12
+
+Kết quả này trùng với kết quả tính trực tiếp trong Ví dụ 18(c) và 23(b).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+37/104 SAMI.HUST – 2023
+
+37 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+38/104 SAMI.HUST – 2023
+
+38 / 104
+
+Định nghĩa phân phối mũ
+
+Định nghĩa 16
+Biến ngẫu nhiên X được gọi là có phân phối mũ với tham số λ > 0, ký hiệu là X ∼ Exp(λ), nếu hàm mật độ
+xác suất của nó có dạng
+(
+λe−λx , x ≥ 0,
+fX (x) =
+(41)
+0,
+x < 0.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+39/104 SAMI.HUST – 2023
+
+39 / 104
+
+Định nghĩa phân phối mũ
+λ = 0, 1
+λ = 0, 5
+λ=3
+
+3.0
+
+fX (x)
+
+2.0
+
+1.0
+
+0.0
+0
+
+0.5
+
+1
+
+1.5
+x
+
+2
+
+2.5
+
+3
+
+Hình 17: Hàm mật độ của biến ngẫu nhiên tuân có phân phối mũ với tham số khác nhau
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+40/104 SAMI.HUST – 2023
+
+40 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 10
+Cho X là biến ngẫu nhiên có phân phối mũ với tham số λ > 0. Khi đó,
+(
+1 − e−λx ,
+x ≥ 0,
+(a) FX (x) =
+0,
+x < 0.
+(b) E(X) = 1/λ.
+(c) V (X) = 1/λ2 .
+- Từ Định lý 10(a) suy ra P (X > x) = 1 − P (X ≤ x) = 1 − P (X < x) = 1 − FX (x). Do đó, nếu X ∼ Exp(λ)
+thì
+P (X > x) = e−λx ,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+x ≥ 0.
+
+(42)
+
+41/104 SAMI.HUST – 2023
+
+41 / 104
+
+Ví dụ
+
+Ví dụ 38
+Biến ngẫu nhiên T có phân phối mũ với tham số λ > 0 có hàm phân phối xác suất là
+(
+1 − e−t/3 ,
+t ≥ 0,
+FT (t) =
+0,
+t < 0.
+(a) Tìm hàm mật độ xác suất của T .
+(b) Tính P (2 ≤ T ≤ 4).
+(c) Tính kỳ vọng, phương sai, độ lệch chuẩn của T .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+42/104 SAMI.HUST – 2023
+
+42 / 104
+
+Ví dụ
+Giải.
+(a) Ta có
+
+ 1 e−t/3 ,
+dFT (t)
+fT (t) =
+= 3
+0,
+dt
+
+t ≥ 0,
+t < 0.
+
+Theo Định nghĩa 16, T ∼ Exp(λ) với λ = 1/3.
+(b) Sử dụng tính chất của hàm phân phối,
+P (2 ≤ T ≤ 4) = FT (4) − FT (2) = e−2/3 − e−4/3 ≈ 0, 250.
+(c) Sử dụng Định lý 10(b),(c) ta nhận được
+E(T ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+= 3,
+1/3
+
+V (T ) =
+
+1
+=9
+(1/3)2
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+và
+
+σT =
+
+√
+
+9 = 3.
+
+43/104 SAMI.HUST – 2023
+
+43 / 104
+
+Ví dụ
+
+Ví dụ 39
+Giả sử tuổi thọ (năm) của một mạch điện tử trong máy tính là một biến ngẫu nhiên có phân phối mũ với kỳ
+vọng là 6,25 năm. Thời gian bảo hành của mạch điện tử này là 5 năm. Hỏi có bao nhiêu phần trăm mạch
+điện tử bán ra phải thay thế trong thời gian bảo hành.
+1
+1
+=
+= 0, 16. Do
+E(X)
+6, 25
+
+Giải. Gọi X là tuổi thọ của mạch điện tử trong máy tính, khi đó X ∼ Exp(λ) với λ =
+đó,
+P (X ≤ 5) = 1 − e−5λ = 1 − e−0,8 ' 0, 5506.
+Vậy có khoảng 55,06% mạch điện tử bán ra phải thay thế trong thời gian bảo hành.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+44/104 SAMI.HUST – 2023
+
+44 / 104
+
+Tính chất không nhớ
+Ví dụ 40
+Một động cơ có thời gian làm việc (giờ) liên tục cho đến khi có hỏng hóc đầu tiên được giả thiết là biến ngẫu
+nhiên có phân phối mũ với tham số λ = 0, 001.
+(a) Tính xác suất để động cơ này làm việc liên tục không hỏng hóc được ít nhất 900 giờ.
+(b) Được biết động cơ này đã làm việc liên tục không hỏng hóc được ít nhất 300 giờ, xác suất để động cơ
+còn làm việc liên tục không hỏng hóc được ít nhất 1200 giờ là bao nhiêu?
+Giải. Gọi X là thời gian làm việc của động cơ, X ∼ Exp(λ) với λ = 0, 001.
+(a) Sử dụng (42), P (X > 900) = e−0,001×900 = e−0,9 ≈ 0, 4066.
+(b) Áp dụng công thức xác suất điều kiện và (42),
+
+P (X > 1200)
+P (X > 1200)|(X > 300) =
+= e−0,001×(1200−300) ≈ 0, 4066.
+P (X > 300)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+45/104 SAMI.HUST – 2023
+
+45 / 104
+
+Tính chất không nhớ
+
+- Ví dụ 40 minh họa “tính chất không nhớ” (Lack of Memory Property) của một biến ngẫu nhiên có phân phối
+mũ.
+Tính chất 6
+Với một biến ngẫu nhiên X có phối mũ tham số λ > 0,
+(43)
+
+P (X > s + t|X > t) = P (X > s).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+46/104 SAMI.HUST – 2023
+
+46 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+47/104 SAMI.HUST – 2023
+
+47 / 104
+
+Định nghĩa phân phối chuẩn
+
+Định nghĩa 17
+Biến ngẫu nhiên liên tục X được gọi là có phân phối chuẩn với tham số µ và σ 2 , ký hiệu là X ∼ N (µ; σ 2 ),
+nếu hàm mật độ xác suất của X có dạng
+−
+1
+fX (x) = √ e
+σ 2π
+
+(x − µ)2
+2σ 2
+
+(44)
+
+ở đây, tham số µ là số thực tùy ý còn σ > 0.
+-Đồ thị của hàm mật độ xác suất fX (x) của biến ngẫu nhiên có phân phối chuẩn, được gọi là đường cong
+chuẩn, có dạng hình chuông (Hình 18).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+48/104 SAMI.HUST – 2023
+
+48 / 104
+
+Định nghĩa phân phối chuẩn
+
+Hình 18: Đường cong chuẩn
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+49/104 SAMI.HUST – 2023
+
+49 / 104
+
+Định nghĩa phân phối chuẩn
+
+Phân phối chuẩn được Gauss tìm ra năm 1809 nên nó còn được gọi là phân phối Gauss.
+Trong thực tế, với một số điều kiện thích hợp, nhiều biến ngẫu nhiên có phân phối chuẩn hoặc tiệm cận
+chuẩn. Chẳng hạn, trọng lượng, chiều cao của một nhóm người nào đó; điểm thi của thí sinh; năng suất cây
+trồng . . . .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+50/104 SAMI.HUST – 2023
+
+50 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 11
+Nếu X là biến ngẫu nhiên có phân phối chuẩn với các tham số µ và σ 2 , thì
+E(X) = µ,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+V (X) = σ 2
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+và
+
+(45)
+
+σX = σ.
+
+51/104 SAMI.HUST – 2023
+
+51 / 104
+
+Kỳ vọng và phương sai
+- Hình 19 mô tả hai đường cong chuẩn có cùng độ lệch chuẩn nhưng kỳ vọng khác nhau. Hai đường cong giống
+hệt nhau về hình dáng nhưng được tập trung tại các vị trí khác nhau dọc theo trục hoành.
+
+Hình 19: Đường cong chuẩn với µ1 < µ2 và σ1 = σ2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+52/104 SAMI.HUST – 2023
+
+52 / 104
+
+Kỳ vọng và phương sai
+- Hình 20 mô tả hai đường cong chuẩn có cùng kỳ vọng nhưng độ lệch chuẩn khác nhau.
+
+Hình 20: Đường cong chuẩn với µ1 = µ2 và σ1 < σ2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+53/104 SAMI.HUST – 2023
+
+53 / 104
+
+Kỳ vọng và phương sai
+- Hình 21 mô tả hai đường cong chuẩn có kỳ vọng và độ lệch chuẩn khác nhau.
+
+Hình 21: Đường cong chuẩn với µ1 < µ2 và σ1 < σ2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+54/104 SAMI.HUST – 2023
+
+54 / 104
+
+Kỳ vọng và phương sai
+
+Định lý 12
+Nếu X là biến ngẫu nhiên có phân phối chuẩn với tham số µ và σ 2 thì Y = αX + β là biến ngẫu nhiên có
+phân phối chuẩn N (αµ + β; α2 σ 2 ), với α và β là các số thực tùy ý.
+- Định lý 12 phát biểu rằng bất kỳ phép biến đổi tuyến tính nào của một biến ngẫu nhiên có phân phối
+chuẩn sẽ tạo ra một biến ngẫu nhiên có phân phối chuẩn khác.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+55/104 SAMI.HUST – 2023
+
+55 / 104
+
+Phân phối chuẩn tắc
+- Chuẩn hóa một biến ngẫu hiên phân phối chuẩn
+Giả sử X ∼ N (µ; σ 2 ). Đặt
+Z=
+
+X −µ
+σ
+
+(46)
+
+thì theo Định lý 12, Z là biến ngẫu nhiên có phân phối chuẩn với E(Z) = 0 và V (Z) = 1. Biến ngẫu nhiên
+Z này được gọi là biến ngẫu nhiên có phân phối chuẩn tắc.
+Phép biến đổi (46) được gọi là phép chuẩn tắc hóa một biến ngẫu nhiên X ∼ N (µ; σ 2 ).
+Định nghĩa 18
+Biến ngẫu nhiên Z có phân phối chuẩn N (0; 1) được gọi là biến ngẫu nhiên có phân phối chuẩn tắc.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+56/104 SAMI.HUST – 2023
+
+56 / 104
+
+Phân phối chuẩn tắc
+
+Định nghĩa 19
+Hàm mật độ xác suất của biến ngẫu nhiên Z có phân phối chuẩn tắc N (0; 1) là
+2
+1
+ϕ(z) = √ e−z /2 , ∀z ∈ R.
+2π
+
+(47)
+
+Hàm ϕ(z) trong (47) là hàm Gauss với các giá trị được tính sẵn trong Bảng giá trị hàm Gauss.
+Đồ thị hàm ϕ(z) cho trong Hình 22.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+57/104 SAMI.HUST – 2023
+
+57 / 104
+
+Phân phối chuẩn tắc
+
+Hình 22: Hàm mật độ xác suất của biến ngẫu nhiên có phân phối chuẩn tắc N (0; 1)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+58/104 SAMI.HUST – 2023
+
+58 / 104
+
+Phân phối chuẩn tắc
+Định nghĩa 20
+Hàm phân phối xác suất của biến ngẫu nhiên Z có phân phối chuẩn tắc là
+1
+Φ(z) = P (Z < z) = √
+2π
+
+Zz
+
+2
+
+e−u
+
+/2
+
+du ∀z ∈ R.
+
+(48)
+
+−∞
+
+Hình 23: Φ(z) = P (Z < z)
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+59/104 SAMI.HUST – 2023
+
+59 / 104
+
+Phân phối chuẩn tắc
+Giá trị của Φ(z) được tính sẵn trong bảng giá trị hàm Φ(z) với z ≥ 0.
+Đối với các giá trị âm của z ta sử dụng tính chất (49) của hàm Φ(z).
+Định lý 13
+Φ(−z) = 1 − Φ(z).
+
+(49)
+
+Hình 24: Tính chất đối xứng của hàm mật độ xác suất của biến ngẫu nhiên phân phối chuẩn tắc
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+60/104 SAMI.HUST – 2023
+
+60 / 104
+
+Phân phối chuẩn tắc
+
+Ví dụ 41
+Sử dụng bảng phân vị chuẩn, ta nhận được
+Φ(2, 0) = 0, 97725;
+Φ(2, 02) = 0, 97831;
+Φ(−2, 0) = 1 − Φ(2, 0) = 1 − 0, 97725 = 0, 02275.
+(2)
+
+(2)
+
+Trích bảng phân vị chuẩn Φ(z) = P (Z < z) = √1
+
+2π
+
+Z z
+
+2
+e−u /2 du
+
+−∞
+
+x
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+1,0
+2,0
+
+84134
+97725
+
+84375
+97778
+
+84614
+97831
+
+84850
+97882
+
+85083
+97932
+
+85314
+97982
+
+85543
+98030
+
+85769
+98077
+
+85993
+98124
+
+86214
+98169
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+61/104 SAMI.HUST – 2023
+
+61 / 104
+
+Phân phối chuẩn tắc
+
+Định lý 14
+Nếu X là biến ngẫu nhiên có phân phối chuẩn N (µ; σ 2 ) và Z = (X − µ)/σ thì Z có phân phối chuẩn tắc
+N (0; 1) và
+x − µ
+,
+(50)
+FX (x) = Φ
+σ
+trong đó, FX (.) là hàm phân phối xác suất của biến ngẫu nhiên X và Φ(.) là hàm phân phối xác suất của
+biến ngẫu nhiên Z.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+62/104 SAMI.HUST – 2023
+
+62 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+Cho X ∼ N (µ; σ 2 ) và α, β ∈ R.
+Sử dụng tính chất của hàm phân phối xác suất và (50) ta nhận được
+α − µ
+β − µ
+−Φ
+.
+P (α < X < β) = FX (β) − FX (α) = Φ
+σ
+σ
+Định lý 15
+Nếu X là biến ngẫu nhiên có phân phối chuẩn với các tham số µ và σ 2 thì
+β − µ
+α − µ
+P (α < X < β) = Φ
+−Φ
+, α, β ∈ R,
+σ
+σ
+
+(51)
+
+trong đó, Φ(.) là hàm phân phối chuẩn tắc được định nghĩa trong (48).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+63/104 SAMI.HUST – 2023
+
+63 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+
+Hệ quả 4
+Nếu X ∼ N (µ; σ 2 ) thì
+β − µ
+(a) P (X < β) = Φ
+.
+σ
+α − µ
+.
+(b) P (X > α) = 1 − Φ
+σ
+
+(c) P (|X − µ| < ε) = 2Φ ε/σ − 1.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+64/104 SAMI.HUST – 2023
+
+64 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+Ví dụ 42
+Giả sử phép đo cường độ dòng điện trên một sợi dây đồng là biến ngẫu nhiên có phân phối chuẩn với giá trị
+trung bình là 10 miliampe và phương sai là 4 (miliampe)2 . Tính xác suất để nhận được kết quả của phép đo
+này vượt quá 13 miliampe.
+Giải. Gọi X là phép đo cường độ dòng điện, X ∼ N (µ; σ 2 ) với µ = 10 và σ = 2. Sử dụng Hệ quả 4(b),
+ 13 − 10 
+= 1 − Φ(1, 5) = 1 − 0, 93319 = 0, 06681.
+P (X > 13) = 1 − Φ
+2
+(3)
+
+(3)
+
+Trích bảng phân vị chuẩn Φ(z) = P (Z < z) = √1
+
+2π
+
+Z z
+
+2
+e−u /2 du
+
+−∞
+
+x
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+1,5
+1,6
+
+93319
+94520
+
+93448
+94630
+
+93574
+94738
+
+93699
+94845
+
+93822
+94950
+
+93943
+95053
+
+94062
+95154
+
+94179
+95254
+
+94295
+95352
+
+94408
+95449
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+65/104 SAMI.HUST – 2023
+
+65 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+
+Ví dụ 43
+Lãi suất (%) đầu tư vào một dự án trong năm 2022 được giả thiết là biến ngẫu nhiên có phân phối chuẩn.
+Theo đánh giá của ủy ban đầu tư thì với xác suất 0,15866 cho lãi suất lớn hơn 20% và với xác suất 0,02275
+cho lãi suất lớn hơn 25%. Vậy khả năng đầu tư mà không bị lỗ là bao nhiêu?
+Giải.
+Gọi X là lãi suất (%) của dự án trong năm 2022, X ∼ N (µ; σ 2 ).
+Theo đầu bài và Hệ quả 4(b),
+ 20 − µ 
+P (X > 20) = 1 − Φ
+= 0, 15866
+σ
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+ 25 − µ 
+P (X > 25) = 1 − Φ
+= 0, 02275.
+σ
+
+66/104 SAMI.HUST – 2023
+
+66 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+Hay
+Φ
+Từ bảng phân vị chuẩn,
+
+ 20 − µ 
+σ
+
+20−µ
+σ
+
+= 1 và
+
+và
+
+= 0, 84134
+25−µ
+σ
+
+ 25 − µ 
+Φ
+= 0, 97725.
+σ
+
+= 2. Suy ra µ = 15, σ = 5.
+
+Vậy khả năng đầu tư không bị lỗ là
+P (X ≥ 0) = 1 − Φ(
+
+0 − 15
+) = Φ(3) = 0, 99865.
+3
+
+(4)
+
+(4)
+
+Trích bảng phân vị chuẩn Φ(z) = P (Z < z) = √1
+
+2π
+
+Z z
+
+2
+e−u /2 du
+
+−∞
+
+x
+
+0
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+1,0
+2,0
+3,0
+
+84134
+97725
+0,99865
+
+84375
+97778
+3,1
+
+84614
+97831
+99903
+
+84850
+97882
+3,2
+
+85083
+97932
+99931
+
+85314
+97982
+3,3
+
+85543
+98030
+99952
+
+85769
+98077
+3,4
+
+85993
+98124
+99966
+
+86214
+98169
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+67/104 SAMI.HUST – 2023
+
+67 / 104
+
+P (α < X < β) với X ∼ N (µ; σ 2 )
+
+Nhận xét 2
+Từ Hệ quả 4(c) suy ra một số kết quả hữu ích liên quan đến biến ngẫu nhiên X có phân phối chuẩn N (µ; σ 2 )
+được tóm tắt dưới đây.
+P (µ − σ < X < µ + σ) = 0, 68268,
+P (µ − 2σ < X < µ + 2σ) = 0, 9545,
+P (µ − 3σ < X < µ + 3σ) = 0, 9973.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+68/104 SAMI.HUST – 2023
+
+68 / 104
+
+Xấp xỉ phân phối nhị thức bởi phân phối chuẩn
+
+Định lý 16 (Định lý Moivre–Laplace)
+Giả sử X là biến ngẫu nhiên có phân phối nhị thức với tham số n và p. Nếu np ≥ 5 và n(1 − p) ≥ 5 thì X có
+phân phối xấp xỉ phân phối chuẩn với tham số µ = np và σ 2 = np(1 − p).
+Phân phối chuẩn với kỳ vọng µ = np và phương sai σ 2 = np(1 − p) không chỉ xấp xỉ khá tốt cho phân phối
+nhị thức khi n khá lớn và xác suất p không quá gần 0 hoặc 1 mà còn cung cấp một xấp xỉ khá tốt cho phân
+phối nhị thức ngay cả khi n nhỏ và p gần 1/2.
+Cho biến ngẫu nhiên X ∼ B(n; p). Để minh họa việc xấp xỉ phân phối chuẩn cho phân phối nhị thức, ta vẽ
+phân phối nhị thức với n = 15, p = 0, 4 và vẽ đường cong chuẩn có cùng kỳ vọng µ = np = 15 × 0, 4 = 6
+và cùng phương sai σ 2 = np(1 − p) = 15 × 0, 4 × 0, 6 = 3, 6 với X (Hình 25).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+69/104 SAMI.HUST – 2023
+
+69 / 104
+
+Xấp xỉ phân phối nhị thức bởi phân phối chuẩn
+
+•
+•
+
+•
+
+•
+
+•
+
+•
+•
+0
+
+•
+
+•
+•
+
+•
+2
+
+4
+
+6
+
+8
+
+10
+
+•
+
+•
+12
+
+•
+
+•
+14
+
+•
+
+x
+
+Hình 25: Xấp xỉ phân phối chuẩn cho phân phối nhị thức B(15; 0, 4)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+70/104 SAMI.HUST – 2023
+
+70 / 104
+
+Xấp xỉ phân phối nhị thức bởi phân phối chuẩn
+Định lý 17 (Xấp xỉ phân phối nhị thức bằng phân phối chuẩn)
+Cho X là biến ngẫu nhiên có phân phối nhị thức với tham số n và p. Phân phối xác suất của X được xấp xỉ
+bởi phân phối chuẩn với µ = np và σ 2 = np(1 − p) và
+ k − 0, 5 − µ 
+ k + 0, 5 − µ 
+−Φ
+,
+(52)
+P (X = k) = P (k ≤ X ≤ k) ≈ Φ
+σ
+σ
+
+P (k1 ≤ X ≤ k2 ) ≈ Φ
+
+ k + 0, 5 − µ 
+ k − 0, 5 − µ 
+2
+1
+−Φ
+.
+σ
+σ
+
+(53)
+
+Vì ta xấp xỉ một phân phối rời rạc bằng một phân phối liên tục, nên cần một sự hiệu chỉnh để giảm sai số.
+Việc thêm +0, 5 và −0, 5 chính là yếu tố hiệu chỉnh và gọi là hiệu chỉnh liên tục.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+71/104 SAMI.HUST – 2023
+
+71 / 104
+
+Xấp xỉ phân phối nhị thức bởi phân phối chuẩn
+Ví dụ 44
+Sử dụng phân phối chuẩn xấp xỉ xác suất P (8 ≤ X ≤ 10) cho biến ngẫu nhiên X ∼ B(n; p) với n = 25 và
+p = 0, 5. So sánh với công thức tính chính xác.
+Giải.
+Vì X ∼ B(n; p) với n = 25 và p = 0, 5 nên
+8
+9
+10 
+P (8 ≤ X ≤ 10) = C25
+× (0, 5)25 ≈ 0, 190535.
++ C25
++ C25
+
+p
+Sử dụng công thức xấp xỉ (53) với µ = np = 12, 5 và σ = np(1 − p) = 2, 5 ta nhận được
+ 10 + 0, 5 − 12, 5 
+ 8 − 0, 5 − 12, 5 
+−Φ
+P (8 ≤ X ≤ 10) ≈ Φ
+2, 5
+2, 5
+= Φ(−0.8) − Φ(−2) = Φ(2) − Φ(0, 8) = 0, 97725 − 0, 78814 = 0, 18911.
+Giá trị xấp xỉ 0,18911 và giá trị chính xác 0,190535 là khá gần nhau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+72/104 SAMI.HUST – 2023
+
+72 / 104
+
+e. Xấp xỉ phân phối nhị thức bởi phân phối chuẩn
+Ví dụ 45
+Kiểm tra chất lượng 1000 sản phẩm trong một lô hàng có tỷ lệ chính phẩm là 0,95. Tìm xác suất để trong
+1000 sản phẩm đó có từ 940 đến 960 chính phẩm.
+Giải.
+Gọi X là biến ngẫu nhiên chỉ số chính phẩm trong 1000 sản phẩm được kiểm tra, X ∼ B(n; p) với
+n = 1000 và p = 0, 95.
+Vì np = 950 và n(1 − p) = 50 khá lớn, nên ta có thể xấp xỉ phân phối nhị thức B(n; p) bởi phân phối
+chuẩn N (µ; σ 2 ) với µ = np = 950, σ 2 = np(1 − p) = 47, 5 và
+ 960 + 0, 5 − 950 
+ 940 − 0, 5 − 950 
+√
+√
+P (940 ≤ X ≤ 960) ≈ Φ
+−Φ
+47, 5
+47, 5
+= Φ(1, 52) − Φ(−1, 52) = 2Φ(1, 52) − 1 = 2 × 0, 93574 − 1 = 0, 87148.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+73/104 SAMI.HUST – 2023
+
+73 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+74/104 SAMI.HUST – 2023
+
+74 / 104
+
+Định nghĩa phân phối Khi-bình phương
+Định nghĩa 21
+Biến ngẫu nhiên liên tục X được gọi là có phân phối Khi-bình phương với ν bậc tự do, ký hiệu là X ∼ χ2 (ν),
+nếu hàm mật độ xác suất của nó có dạng:
+(
+1
+x(ν/2)−1 e−x/2 , x > 0,
+ν/2
+fX (x) = 2 Γ(ν/2)
+(54)
+0,
+x ≤ 0,
+ở đây, Γ(.) là hàm Gamma được định nghĩa bởi Γ : (0; ∞) → R,
++∞
+Z
+Γ(x) =
+tx−1 e−t dt.
+
+(55)
+
+0
+
+- Đồ thị của phân phối Khi-bình phương bị lệch sang phải. Tuy nhiên, khi số bậc tự do ν tăng lên, phân phối này
+trở nên đối xứng hơn. Khi ν → ∞, dạng giới hạn của phân phối Khi-bình phương là phân phối chuẩn (Hình 26).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+75/104 SAMI.HUST – 2023
+
+75 / 104
+
+Định nghĩa phân phối Khi-bình phương
+
+ν=1
+ν = 2.5
+ν=5
+
+x
+
+0
+
+Hình 26: Hàm mật độ xác suất của phân phối Khi-bình phương với số bậc tự do khác nhau
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+76/104 SAMI.HUST – 2023
+
+76 / 104
+
+Kỳ vọng, phương sai
+
+Định lý 18
+Nếu X là biến ngẫu nhiên có phân phối Khi-bình phương với ν bậc tự do, thì
+E(X) = ν
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+V (X) = 2ν.
+
+77/104 SAMI.HUST – 2023
+
+77 / 104
+
+Giá trị tới hạn phân phối Khi-bình phương
+
+Giá trị tới hạn χ2α;ν
+Ký hiệu χ2α;ν chỉ giá trị của biến ngẫu nhiên X ∼ χ2 (ν) sao cho xác suất X vượt quá giá trị này là α.
+Nghĩa là,
+Z∞
+P (X > χ2α;ν ) =
+fX (x)dx = α với fX (x) xác định bởi (54).
+χ2
+α,ν
+
+Xác suất này là miền bóng mờ trong Hình 27.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+78/104 SAMI.HUST – 2023
+
+78 / 104
+
+Giá trị tới hạn phân phối Khi-bình phương
+
+χ2 (ν)
+
+α
+0
+
+χ2α;ν
+
+x
+
+Hình 27: P (X > χ2α;ν ) = α
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+79/104 SAMI.HUST – 2023
+
+79 / 104
+
+Giá trị tới hạn phân phối Khi-bình phương
+Giá trị χ2α;ν được tính sẵn trong Bảng giá trị tới hạn phân phối Khi-bình phương.
+Chẳng hạn, giá trị với 9 bậc tự do có xác suất ở bên phải bằng 0, 025 là χ20,025;9 = 19, 023, tức là
+P (X > χ20,025;9 ) = P (X > 19, 023) = 0, 025.
+Ngược lại, ta có χ20,975;9 = 2, 700 (Hình 28).
+(5)
+
+(5)
+
+Trích Bảng giá trị tới hạn phân phối Khi-bình phương
+
+XX
+α
+X
+Bậc tự doXX
+X
+9
+10
+11
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+0, 995
+
+0, 990
+
+0, 975
+
+0, 95
+
+0, 050
+
+0, 025
+
+0, 010
+
+0,005
+
+1,735
+2,156
+2,603
+
+2,088
+2,558
+3,053
+
+2,700
+3,247
+3,816
+
+3,325
+3,940
+4,575
+
+16,919
+18,307
+19,675
+
+19,023
+20,483
+21,920
+
+21,666
+23,209
+24,725
+
+23,590
+25,188
+26,758
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+80/104 SAMI.HUST – 2023
+
+80 / 104
+
+Giá trị tới hạn phân phối Khi-bình phương
+
+χ2 (ν)
+
+0, 025
+
+0, 025
+
+χ2
+0,975;9 = 2, 7
+
+χ2
+0,025;9 = 19, 023
+
+x
+
+Hình 28: χ20,025;9 = 19, 023 và χ20,975;9 = 2, 700
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+81/104 SAMI.HUST – 2023
+
+81 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+82/104 SAMI.HUST – 2023
+
+82 / 104
+
+Định nghĩa phân phối Student
+
+Định nghĩa 22
+Biến ngẫu nhiên liên tục T được gọi là có phân phối Student (hay phân phối t) với ν bậc tự do, ký hiệu là
+T ∼ t(ν), nếu hàm mật độ xác suất của T có dạng
+!− ν+1  ν+1 
+2
+2
+Γ 2
+t
+  , −∞ < t < +∞,
+fT (t) = 1 +
+(56)
+√
+ν
+νπΓ ν2
+ở đây, Γ(x) là hàm Gamma định nghĩa bởi (55).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+83/104 SAMI.HUST – 2023
+
+83 / 104
+
+Định nghĩa phân phối Student
+ν=1
+ν=3
+ν = 100
+
+0
+
+Hình 29: Hàm mật độ xác suất của phân phối Student với số bậc tự do khác nhau
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+84/104 SAMI.HUST – 2023
+
+84 / 104
+
+Định nghĩa phân phối Student
+Phân phối Student có cùng dạng và tính đối xứng như phân phối chuẩn nhưng nó phản ánh tính biến đổi
+của phân phối sâu sắc hơn.
+Khi số bậc tự do ν tăng lên thì phân phối Student tiến nhanh về phân phối chuẩn. Trong thực hành, khi
+ν ≥ 30 ta có thể dùng phân phối chuẩn thay thế cho phân phối Student.
+Định lý 19
+Cho Z là biến ngẫu nhiên có phân phối chuẩn tắc và V là biến ngẫu nhiên có phân phối Khi-bình phương
+với ν bậc tự do. Nếu Z và V là hai biến ngẫu nhiên độc lập thì thống kê
+Z
+T = q
+
+(57)
+
+V
+n
+
+có phân phối Student với ν bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+85/104 SAMI.HUST – 2023
+
+85 / 104
+
+Kỳ vọng, phương sai
+
+Định lý 20
+Nếu X là biến ngẫu nhiên phân phối Student với ν bậc tự do, thì
+E(X) = 0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+V (X) =
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+ν
+ν−2
+
+với
+
+ν > 2.
+
+86/104 SAMI.HUST – 2023
+
+86 / 104
+
+Giá trị tới hạn phân phối Student
+Giá trị tới hạn tα;ν
+Ký hiệu tα;ν chỉ giá trị của biến ngẫu nhiên T ∼ t(ν) sao cho xác suất T vượt quá giá trị này là α. Nghĩa là,
+P (T > tα;ν ) = α.
+Giá trị tα;ν được tính sẵn trong Bảng giá trị tới hạn phân phối Student.
+Chẳng hạn, giá trị với 10 bậc tự do có xác suất ở bên phải bằng 0, 05 là t0,05;10 = 1, 812, tức là
+P (T > t0,05;10 ) = P (T > 1, 812) = 0, 05.
+Vì tính đối xứng nên t0,95;10 = −t0,05;10 = −1, 812.
+(6)
+
+(6)
+
+Trích Bảng giá trị tới hạn phân phối Student
+
+XXX
+
+α
+
+Bậc tự do
+
+XXX
+
+9
+10
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+0, 10
+
+0, 05
+
+0, 025
+
+0, 01
+
+0, 005
+
+0, 0025
+
+0, 001
+
+0, 0005
+
+1,383
+1,372
+
+1,833
+1,812
+
+2,262
+2,228
+
+2,821
+2,764
+
+3,250
+3,169
+
+3,690
+3,581
+
+4,297
+4,144
+
+4,781
+4,587
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+87/104 SAMI.HUST – 2023
+
+87 / 104
+
+Giá trị tới hạn phân phối Student
+
+t(ν)
+
+α
+0
+
+tα;ν
+
+t
+
+Hình 30: P (T > tα;ν ) = α
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+88/104 SAMI.HUST – 2023
+
+88 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+89/104 SAMI.HUST – 2023
+
+89 / 104
+
+Định nghĩa phân phối Fisher
+
+Định nghĩa 23
+Biến ngẫu nhiên liên tục X được gọi là có phân phối Fisher (hay phân phối F ) với ν1 và ν2 bậc tự do, ký
+hiệu là X ∼ F (ν1 ; ν2 ), nếu hàm mật độ xác suất của nó có dạng
+(
+Γ[(ν1 +ν2 )/2](ν1 /ν2 )ν1 /2
+xν1 /2−1
+, x > 0,
+Γ(ν1 /2)Γ(ν2 /2)
+(1+ν1 x/ν2 )(ν1 +ν2 )/2
+(58)
+fX (x) =
+0,
+x ≤ 0,
+ở đây Γ(.) là hàm Gamma được định nghĩa bởi (55).
+- Hàm mật độ xác suất (58) không chỉ phụ thuộc vào hai tham số ν1 và ν2 mà còn phụ thuộc vào thứ tự xuất
+hiện của chúng. Hình 31 biểu thị một số phân phối Fisher cơ bản.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+90/104 SAMI.HUST – 2023
+
+90 / 104
+
+Định nghĩa phân phối Fisher
+
+Hình 31: Một số phân phối Fisher cơ bản
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+91/104 SAMI.HUST – 2023
+
+91 / 104
+
+Định nghĩa phân phối Fisher
+
+Định lý 21
+Cho U và V là hai biến ngẫu nhiên độc lập có phân phối Khi-bình phương với ν1 và ν2 bậc tự do tương ứng.
+Khi đó, biến ngẫu nhiên
+F =
+
+U/ν1
+,
+V /ν2
+
+(59)
+
+có phân phối Fisher với ν1 và ν2 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+92/104 SAMI.HUST – 2023
+
+92 / 104
+
+Kỳ vọng, phương sai
+
+Định lý 22
+Nếu X là biến ngẫu nhiên có phân phối Fisher với ν1 và ν2 bậc tự do, thì
+E(X) =
+
+ν1
+, ν1 > 2
+ν1 − 2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+và
+
+V (X) =
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+2ν22 (ν1 + ν22 − 2)
+, ν2 > 4.
+ν1 (ν2 − 2)2 (ν2 − 4)
+
+93/104 SAMI.HUST – 2023
+
+(60)
+
+93 / 104
+
+Giá trị tới hạn phân phối Fisher
+Ký hiệu Fα;ν1 ;ν2 là giá trị tới hạn phân phối Fisher ứng với bậc tự do ν1 và ν2 mà ở đó ta tìm được diện tích của
+miền phẳng được giới hạn bởi đường cong fX (x), trục hoành và bên phải của Fα;ν1 ;ν2 bằng α. Ta minh họa điều
+này bằng hình bóng mờ trong Hình 32.
+
+Hình 32: Giá trị tới hạn fα;ν1 ;ν2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+94/104 SAMI.HUST – 2023
+
+94 / 104
+
+Giá trị tới hạn phân phối Fisher
+
+Giá trị Fα;ν1 ;ν2 với α = 0, 05 và α = 0, 01 và với các tổ hợp khác nhau của bậc tự do ν1 và ν2 được tính
+sẵn trong Bảng giá trị tới hạn phân phối Fisher.
+Chẳng hạn, giá trị ở bậc tự do ν1 = 6 và ν2 = 10 cho diện tích 0,05 ở bên phải là F0,05;6;10 = 3, 22.
+Định lý dưới đây giúp ta tìm được F0,95;ν1 ;ν2 và F0,99;ν1 ;ν2 .
+(7)
+
+(7)
+
+Trích Bảng giá trị tới hạn phân phối Fisher với α = 0, 05
+
+PP ν1
+ν2 PP
+P
+9
+10
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+7
+
+8
+
+9
+
+5,12
+4,96
+
+4,26
+4,10
+
+3,86
+3,71
+
+3,63
+3,48
+
+3,48
+3,33
+
+3,37
+3,22
+
+3,29
+3,14
+
+3,23
+3,07
+
+3,18
+3,02
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+95/104 SAMI.HUST – 2023
+
+95 / 104
+
+Giá trị tới hạn phân phối Fisher
+Định lý 23
+Ta có
+F1−α;ν1 ;ν2 =
+
+1
+.
+Fα;ν2 ;ν1
+
+(61)
+
+Ví dụ 46
+F0,95;6;10 =
+
+1
+1
+= 0, 2463.
+=
+F0,05;10;6
+4, 06
+
+(8)
+(8)
+
+Trích Bảng giá trị tới hạn phân phối Fisher với α = 0, 05
+
+PP ν1
+ν 2 PP
+P
+5
+6
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+10
+
+12
+
+15
+
+20
+
+24
+
+30
+
+40
+
+60
+
+120
+
+∞
+
+4,74
+4,06
+
+4,68
+4,00
+
+4,62
+3,94
+
+4,56
+3,87
+
+4,53
+3,84
+
+4,50
+3,81
+
+4,46
+3,77
+
+4,43
+3,74
+
+4,40
+3,70
+
+4,36
+3,67
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+96/104 SAMI.HUST – 2023
+
+96 / 104
+
+2.4. MỘT SỐ PHÂN PHỐI XÁC SUẤT THÔNG DỤNG
+1
+
+2.4.1 Phân phối đều rời rạc
+
+2
+
+2.4.2 Phân phối Bernoulli
+
+3
+
+2.4.3 Phân phối nhị thức
+
+4
+
+2.4.4 Phân phối Poisson
+
+5
+
+2.4.5 Phân phối đều liên tục
+
+6
+
+2.4.6 Phân phối mũ
+
+7
+
+2.4.7 Phân phối chuẩn
+
+8
+
+2.4.8 Phân phối Khi-bình phương
+
+9
+
+2.4.9 Phân phối Student
+
+10 2.4.10 Phân phối Fisher
+11 Bài tập Mục 2.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+97/104 SAMI.HUST – 2023
+
+97 / 104
+
+Bài tập
+Bài 18
+Cho X là biến ngẫu nhiên có phân phối nhị thức X ∼ B(n; p). Khẳng định nào sau đây là ĐÚNG?
+A. E(X) = np(1 − p).
+B. V (X) = np.
+C. mod(X) = [np + 1 − p].
+p
+np(1 − p).
+
+D. σ(X) =
+Bài 19
+
+Tỷ lệ sản phẩm lỗi trong một dây chuyền sản xuất là 0,03. Chọn ra 500 sản phẩm do dây chuyền này sản xuất
+để kiểm tra và ký hiệu X là số sản phẩm đạt yêu cầu trong 500 sản phẩm đó. Khẳng định nào sau đây SAI?
+A. X ∼ B(500; 0, 03).
+B. X ∼ B(500; 0, 97).
+C. E(X) = 485.
+D. V (X) = 14, 55.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+98/104 SAMI.HUST – 2023
+
+98 / 104
+
+Bài tập
+
+Bài 20
+Tỷ lệ người có nhóm máu O tại một địa phương là 0,3. Hỏi phải chọn ít nhất bao nhiêu người để với xác
+suất không nhỏ hơn 0,95 có thể tin rằng có ít nhất một người có nhóm máu O?
+Bài 21
+Giả sử số khách hàng đến mua hàng tại một siêu thị là biến ngẫu nhiên có phân phối Poisson. Biết rằng
+trung bình mỗi giờ có 300 khách hàng đến mua hàng tại siêu thị này.
+(a) Tính xác suất để có đúng 2 khách hàng đến mua hàng tại siêu thị đó trong một phút.
+(b) Tính xác suất để có đúng 5 khách hàng đến mua hàng tại siêu thị đó trong ba phút.
+(c) Tính xác suất để trong 3 phút liên tiếp mỗi phút có ít nhất một khách hàng đến mua hàng tại siêu thị.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+99/104 SAMI.HUST – 2023
+
+99 / 104
+
+Bài tập
+
+Bài 22
+Giả sử số cuộc gọi bảo hành một loại sản phẩm gia dụng đến trung tâm bảo hành là biến ngẫu nhiên có
+phân phối Poisson. Kinh nghiệm thấy rằng trung bình cứ mỗi giờ lại có 20 cuộc gọi đến trung tâm bảo hành.
+Trong một ngày làm việc, nếu như trong 5 phút đầu tiên khi trung tâm bắt đầu nhận cuộc gọi không có
+cuộc gọi nào đến thì xác suất để có cuộc gọi trong 5 phút tiếp theo là bao nhiêu?
+Bài 23
+Một thiết bị điện tử bao gồm 3000 bóng bán dẫn hoạt động độc lập với nhau. Nhà sản xuất tuyên bố rằng
+khả năng để mỗi bóng bị hỏng là 0,0003. Thiết bị điện tử sẽ chỉ hoạt động khi không có bóng nào bị hỏng.
+Tính xác suất để thiết bị điện tử đó ngừng hoạt động.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+100/104SAMI.HUST – 2023
+
+100 / 104
+
+Bài tập
+
+Bài 24
+Một thiết bị điện tử bao gồm 10000 bóng bán dẫn hoạt động độc lấp với nhau, trong đó có 1000 bóng loại I,
+3000 bóng loại II và 6000 bóng loại III. Xác xuất để bóng loại I, loại II và loại III bị hỏng lần lượt là 0,0005;
+0,0003 và 0,0001. Thiết bị điện tử sẽ ngừng hoạt động nếu có ít nhất một bóng bị hỏng. Tính xác suất để
+thiết bị điện tử ngừng hoạt động.
+Bài 25
+Cho biến ngẫu nhiên X có phân phối đều trên [0; 1]. Tính xác suất để trong 10 lần quan sát thấy có 8 lần X
+nhận giá trị trong khoảng (0, 2; 0, 8).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+101/104SAMI.HUST – 2023
+
+101 / 104
+
+Bài tập
+Bài 26
+Tuyến xe bus Hà Nội – Hưng Yên khởi hành từ bến xe Giáp Bát lúc 6h sáng và cứ 30 phút lại có một chuyến
+xuất bến. Một khách hàng đến bến xe trong khoảng thời gian từ 7 giờ đến 8 giờ. Tính xác suất để người đó
+phải chờ trên 15 phút.
+Bài 27
+Ký hiệu X (kg) là trọng lượng của một bao bột mì được đóng gói từ một dây chuyền tự động. Giả sử X là
+biến ngẫu nhiên có phân phối chuẩn, X ∼ N (15; 0, 22 ).
+(a) Tính tỷ lệ các bao bột mì có trọng lượng sai lệch so với trọng lượng tiêu chuẩn 15 kg không quá 400 g.
+(b) Chọn ngẫu nhiên một bao bột từ dây chuyền sản xuất đó. Tính xác suất để bao được chọn có trọng
+lượng trên 15,4 kg.
+(c) Khi chọn ra 100 bao thì số bao có khả năng nhất có trọng lượng sai lệch so với trọng lượng tiêu chuẩn
+15 kg không quá 400 g là bao nhiêu?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+102/104SAMI.HUST – 2023
+
+102 / 104
+
+Bài tập
+
+Bài 28
+Tính xác suất để trong 1000 sản phẩm có không quá 16 sản phẩm bị lỗi, biết tỷ lệ sản phẩm lỗi trong dây
+chuyển sản xuất đó là 0,03.
+Bài 29
+Trọng lượng tịnh của một loại sữa hộp là 1 kg với sai số cho phép là 0,05 kg. Nếu hộp sữa có trọng lượng
+dưới 0,95 kg thì được coi là không đạt tiêu chuẩn. Trong một dây chuyền sản xuất, người ta ước lượng rằng
+tỷ lệ hộp sữa không đạt yêu cầu về trọng lượng là 0,03. Kiểm tra ngẫu nhiên trọng lượng của 1000 hộp sữa.
+Tính xác suất để có trên 950 hộp đạt tiêu chuẩn về trọng lượng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+103/104SAMI.HUST – 2023
+
+103 / 104
+
+Bài tập
+
+Bài 30
+Biết rằng tuổi thọ X (giờ) của một loại đèn compact là biến ngẫu nhiên có phân phối mũ với tham số
+λ = 0, 0005.
+(a) Tuổi thọ trung bình của loại bóng đèn trên là bao nhiêu?
+(b) Tính xác suất để bóng đèn có thể chiếu sáng được ít nhất 1000 giờ.
+(c) Nếu biết bóng đèn đã chiếu sáng được 500 giờ thì xác suất để bóng đèn chiếu sáng thêm 500 giờ nữa là
+bao nhiêu?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.4
+
+104/104SAMI.HUST – 2023
+
+104 / 104
+
+

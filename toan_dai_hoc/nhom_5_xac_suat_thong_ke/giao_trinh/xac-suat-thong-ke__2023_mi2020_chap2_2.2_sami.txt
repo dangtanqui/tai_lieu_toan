@@ -1,0 +1,1742 @@
+Chương 2
+BIẾN NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+1/47
+
+SAMI.HUST – 2023
+
+1 / 47
+
+2.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+2.2.1 Bảng phân phối xác suất
+2.2.1.1 Hàm xác suất
+2.2.1.2 Bảng phân phối xác suất
+
+2
+
+2.2.2 Hàm phân phối xác suất
+2.2.2.1 Định nghĩa
+2.2.2.2 Tính chất
+
+3
+
+2.2.3 Hàm mật độ xác suất
+2.2.3.1 Định nghĩa
+2.2.3.2 Tính chất
+
+4
+
+2.2.4 Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+5
+
+Bài tập Mục 2.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+2/47
+
+SAMI.HUST – 2023
+
+2 / 47
+
+Hàm xác suất
+Định nghĩa 1
+Với biến ngẫu nhiên rời rạc X nhận các giá trị x1 , x2 , . . . , hàm xác suất là hàm pX (x) thỏa mãn
+(a) pX (xi ) ≥ 0 với mọi i = 1, 2, . . . ;
+P
+i pX (xi ) = 1;
+
+(b)
+
+(c) pX (xi ) = P (X = xi ) với (X = xi ) là sự kiện “X nhận giá trị xi ”, i = 1, 2, . . . .
+Ví dụ 5
+Một bít được truyền qua đường truyền kỹ thuật số có thể bị lỗi. Xác suất để một bít được truyền đi bị lỗi là
+0,1. Giả sử rằng các lần truyền là độc lập nhau. Gọi X là số bít bị lỗi trong bốn bít được truyền đi. Khi đó,
+X là biến ngẫu nhiên rời rạc và SX = {0, 1, 2, 3, 4}. Áp dụng công thức Bernoulli,
+P (X = 0) = (C40 )(0, 1)0 (0, 9)4 = 0, 6561;
+
+P (X = 1) = (C41 )(0, 1)1 (0, 9)3 = 0, 2916;
+
+P (X = 2) = (C42 )(0, 1)2 (0, 9)2 = 0, 0486;
+
+P (X = 3) = (C43 )(0, 1)3 (0, 9)1 = 0, 0036;
+
+P (X = 4) =
+
+(C44 )(0, 1)4 (0, 9)0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+= 0, 0001.
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+3/47
+
+SAMI.HUST – 2023
+
+3 / 47
+
+Hàm xác suất
+
+Ví dụ 5 (tiếp theo)
+Suy ra, hàm xác suất của X là
+
+0, 6561
+
+
+
+
+
+0, 2916
+
+
+
+0, 0486
+pX (x) =
+0, 0036
+
+
+
+
+
+0, 0001
+
+
+
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+khi x = 0,
+khi x = 1,
+khi x = 2,
+khi x = 3,
+khi x = 4,
+trong các trường hợp còn lại.
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+4/47
+
+SAMI.HUST – 2023
+
+4 / 47
+
+Hàm xác suất
+pX (x)
+0, 6561
+
+0, 0296
+
+0, 0486
+0
+
+1
+
+2
+
+0, 0036
+
+0, 0001
+
+3
+
+4
+
+x
+
+Hình 1: Phân phối xác suất của số bít bị lỗi trong Ví dụ 5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+5/47
+
+SAMI.HUST – 2023
+
+5 / 47
+
+Bảng phân phối xác suất
+Định nghĩa 2
+(a) Giả sử X là một biến ngẫu nhiên rời rạc nhận một số hữu hạn giá trị x1 , . . . , xn (sắp xếp theo thứ tự
+tăng dần). Bảng phân phối xác suất của biến ngẫu nhiên X có dạng:
+X
+P (X = xi )
+
+x1
+p1
+
+x2
+p2
+
+...
+...
+
+xn
+pn
+
+(1)
+
+trong đó, pi = pX (xi ), i = 1, . . . , n.
+(b) Nếu X là biến ngẫu nhiên rời rạc nhận một số vô hạn đếm được giá trị thì bảng phân phối xác suất
+của biến ngẫu nhiên X là:
+X
+P (X = xi )
+
+x1
+p1
+
+x2
+p2
+
+...
+...
+
+xn
+pn
+
+...
+...
+
+(2)
+
+trong đó, {x1 , x2 , . . . , xn . . . } là tập các giá trị của X được sắp xếp theo thứ tự tăng dần và
+pn = pX (xn ), n = 1, 2 . . . .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+6/47
+
+SAMI.HUST – 2023
+
+6 / 47
+
+Bảng phân phối xác suất
+
+- Trong (1),
+
+Pn
+
+i=1
+
+pi = 1 và trong (2),
+
+P∞
+
+n=1
+
+pn = 1.
+
+Ví dụ 6
+Trong Ví dụ 5, bảng phân phối xác suất của X chỉ số bít bị lỗi trong 4 bít được truyền đi là
+X
+P (X = xi )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+0
+0,6561
+
+1
+0,2916
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+2
+0,0486
+
+3
+0,0036
+
+4
+0,0001
+
+7/47
+
+SAMI.HUST – 2023
+
+7 / 47
+
+Bảng phân phối xác suất
+Ví dụ 7
+Một lô hàng gồm 30 chiếc máy tính xách tay cùng loại được giao cho một cửa hàng bán lẻ, trong đó có 5
+chiếc bị lỗi. Một doanh nghiệp chọn mua ngẫu nhiên 3 máy tính từ lô hàng này, hãy tìm phân phối xác suất
+của số máy bị lỗi.
+Giải. Gọi X là “số máy bị lỗi trong 3 máy được chọn”, X là biến ngẫu nhiên rời rạc và SX = {0, 1, 2, 3}. Tính
+P (X = 0) =
+
+3
+C50 C25
+115
+=
+,
+3
+C30
+203
+
+P (X = 1) =
+
+2
+C51 C25
+75
+=
+,
+3
+C30
+203
+
+P (X = 2) =
+
+1
+C52 C25
+25
+,
+=
+3
+C30
+406
+
+P (X = 3) =
+
+0
+C53 C25
+1
+.
+=
+3
+C30
+406
+
+Vậy bảng phân phối xác suất của X là
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+X
+P (X = xi )
+
+0
+115/203
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+1
+75/203
+
+2
+25/406
+
+3
+1/406
+
+8/47
+
+SAMI.HUST – 2023
+
+8 / 47
+
+Bảng phân phối xác suất
+
+Ví dụ 8
+Với Ví dụ 4, giả sử tất cả các bản fax chỉ gồm 1, 2, 3 hoặc 4 trang với xác suất như nhau. Tìm bảng phân
+phối xác suất của biến ngẫu nhiên Y chỉ chi phí cho một bản fax.
+Giải. Theo Ví dụ 4, Y là một biến ngẫu nhiên rời rạc với SY = {10, 19, 27, 34} và
+P (Y = 10) = P (X = 1) = 0, 25;
+
+P (Y = 19) = P (X = 2) = 0, 25,
+
+P (Y = 27) = P (X = 3) = 0, 25;
+
+P (Y = 34) = P (X = 4) = 0, 25.
+
+Do đó, bảng phân phối xác suất của Y là
+Y
+P (Y = yi )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+10
+0,25
+
+19
+0,25
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+27
+0,25
+
+34
+0,25
+
+9/47
+
+SAMI.HUST – 2023
+
+9 / 47
+
+Bảng phân phối xác suất
+Ví dụ 9
+Một dây chuyền tự động khi hoạt động bình thường có thể sản xuất ra phế phẩm với xác suất p = 0, 001 và
+được điều chỉnh ngay lập tức khi phát hiện có phế phẩm. Lập bảng phân phối xác suất của số sản phẩm
+được sản xuất giữa hai lần điều chỉnh.
+Giải. Gọi X là “số sản phẩm được sản xuất giữa hai lần điều chỉnh”. Khi đó X là biến ngẫu nhiên rời rạc và
+SX = {1, 2, 3, 4, . . . }. Tính
+P (X = 2) = 0, 999 × 0, 001, . . .
+
+P (X = 1) = 0, 001;
+
+n−1
+
+P (X = n) = (0, 999)
+
+× 0, 001 . . .
+
+Vậy bảng phân phối xác suất của X là
+X
+P (X = xi )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+0, 001
+
+2
+0, 999 × 0, 001
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+...
+...
+
+n
+(0, 999)n−1 × 0, 001
+
+10/47
+
+...
+...
+
+SAMI.HUST – 2023
+
+10 / 47
+
+2.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+2.2.1 Bảng phân phối xác suất
+2.2.1.1 Hàm xác suất
+2.2.1.2 Bảng phân phối xác suất
+
+2
+
+2.2.2 Hàm phân phối xác suất
+2.2.2.1 Định nghĩa
+2.2.2.2 Tính chất
+
+3
+
+2.2.3 Hàm mật độ xác suất
+2.2.3.1 Định nghĩa
+2.2.3.2 Tính chất
+
+4
+
+2.2.4 Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+5
+
+Bài tập Mục 2.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+11/47
+
+SAMI.HUST – 2023
+
+11 / 47
+
+Định nghĩa hàm phân phối xác suất
+Định nghĩa 3
+Hàm phân phối xác suất của biến ngẫu nhiên X, ký hiệu là FX (x), được định nghĩa như sau:
+FX (x) = P (X < x),
+
+x ∈ R.
+
+(3)
+
+(a) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác suất (1) thì hàm phân phối là:
+
+
+0,
+x ≤ x1 ,
+
+
+
+
+
+p
+,
+x1 < x ≤ x2 ,
+1
+
+FX (x) = p1 + p2 ,
+x2 < x ≤ x3 ,
+
+
+
+...
+
+
+
+
+1,
+x > xn .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+12/47
+
+SAMI.HUST – 2023
+
+(4)
+
+12 / 47
+
+Định nghĩa hàm phân phối xác suất
+
+Định nghĩa 3 (tiếp theo)
+(b) Nếu X là biến ngẫu nhiên rời rạc có bảng phân phối xác
+
+0,
+
+
+
+
+
+
+p1 ,
+
+p + p ,
+1
+2
+FX (x) =
+
+.
+.
+.
+
+
+Pn
+
+
+
+
+i=1 pi ,
+
+
+...
+
+suất (2) thì hàm phân phối là:
+x ≤ x1 ,
+x1 < x ≤ x2 ,
+x2 < x ≤ x3 ,
+
+(5)
+
+xn < x ≤ xn+1 ,
+
+(c) Nếu X là biến ngẫu nhiên liên tục thì FX (x) là hàm liên tục.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+13/47
+
+SAMI.HUST – 2023
+
+13 / 47
+
+Định nghĩa hàm phân phối xác suất
+- Đồ thị của hàm phân phối xác suất của biến ngẫu nhiên rời rạc có dạng bậc thang (Hình 2).
+FX (x)
+1
+
+p1 + p2
+p1
+
+O
+
+x1
+
+x2
+
+x3 . . . xn
+
+x
+
+Hình 2: Đồ thị của hàm phân phối xác suất (4)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+14/47
+
+SAMI.HUST – 2023
+
+14 / 47
+
+Định nghĩa hàm phân phối xác suất
+
+Ví dụ 10
+Tìm hàm phân phối xác suất của biến ngẫu nhiên X trong Ví dụ 7.
+Giải. Từ bảng phân phối xác suất ở Ví dụ 7, sử dụng (4) suy ra
+
+
+
+
+0,
+x ≤ 0,
+0,
+
+
+
+
+
+
+115
+115
+
+
+
+
+,
+0
+<
+x
+≤
+1,
+ 203
+ 203 ,
+115
+75
+190
+FX (x) = 203 + 203 ,
+1 < x ≤ 2, =
+,
+203
+
+
+
+
+115
+75
+25
+405
+
+
++ 203 + 406 ,
+2 < x ≤ 3,
+,
+
+
+203
+406
+
+
+
+
+ 115
+
+75
+25
+1
++
++
++
+,
+x
+>
+3.
+1,
+203
+203
+406
+406
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+x ≤ 0,
+0 < x ≤ 1,
+1 < x ≤ 2,
+2 < x ≤ 3,
+x > 3.
+
+15/47
+
+SAMI.HUST – 2023
+
+15 / 47
+
+Định nghĩa hàm phân phối xác suất
+
+- Ví dụ 10 cho thấy hàm phân phối xác suất của biến ngẫu nhiên rời rạc X còn có dạng
+X
+FX (x) = P (X < x) =
+pk với mọi x ∈ R.
+xk <x
+
+Do đó, FX (x) trong (4) và (5) còn được gọi là hàm phân phối tích lũy.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+16/47
+
+SAMI.HUST – 2023
+
+16 / 47
+
+Tính chất của hàm phân phối
+
+Tính chất 1
+(a) 0 ≤ FX (x) ≤ 1 với mọi x ∈ R.
+(b) FX (x) là hàm không giảm, nghĩa là với mọi x1 , x2 ∈ R, x1 < x2 thì FX (x1 ) ≤ FX (x2 ).
+Nếu X là biến ngẫu nhiên rời rạc thì FX (x) là hàm gián đoạn với số điểm gián đoạn là số các giá trị có
+thể có của biến ngẫu nhiên và liên tục bên trái tại những điểm gián đoạn đó.
+(c) P (a ≤ X < b) = FX (b) − FX (a).
+Nếu X là biến ngẫu nhiên liên tục thì P (X = a) = 0 và
+P (a ≤ X < b) = P (a ≤ X ≤ b) = P (a < X ≤ b) = P (a < X < b) = FX (b) − FX (a).
+(d) limx→−∞ FX (x) = 0, limx→+∞ FX (x) = 1.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+17/47
+
+SAMI.HUST – 2023
+
+17 / 47
+
+Tính chất của hàm phân phối
+
+Ví dụ 11
+Gọi X là đường kính của lỗ được khoan trên một sản phẩm kim loại. Kích thước tiêu chuẩn của đường kính
+được đặt ra là 12,5 milimét. Các tác động ngẫu nhiên trong quá trình khoan dẫn đến đường kính luôn lớn hơn
+quy định. Dữ liệu lịch sử cho thấy phân phối của X có thể được mô hình hóa bằng hàm phân phối xác suất
+(
+0,
+x ≤ 12, 5,
+FX (x) =
+1 − e−20(x+k) , x > 12, 5.
+(a) Xác định hằng số k.
+(b) Nếu một sản phẩm có đường kính lớn hơn 12,6 milimét sẽ bị loại bỏ thì tỷ lệ sản phẩm bị loại bỏ là
+bao nhiêu?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+18/47
+
+SAMI.HUST – 2023
+
+18 / 47
+
+Tính chất của hàm phân phối
+Giải.
+(a) Sử dụng Tính chất 1(b), vì FX (x) liên tục nên
+lim
+
+x→12,5−
+
+FX (x) =
+
+lim
+
+x→12,5+
+
+FX (x), hay e−20(12,5+k) = e0 .
+
+Suy ra k = −12, 5.
+Thử lại, với k = −12, 5, hàm FX (x) thỏa mãn tất cả các tính chất của hàm phân phối.
+Vậy,
+(
+0,
+FX (x) =
+1 − e−20(x−12,5) ,
+
+x ≤ 12, 5,
+x > 12, 5.
+
+Hình 3 mô tả đồ thị của FX (x).
+(b) Sử dụng Tính chất 1(c),
+P (X > 12, 6) = 1 − FX (12, 6) = 1 − (1 − e−20(12,6−12,5) ) ≈ 0, 1353.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+19/47
+
+SAMI.HUST – 2023
+
+19 / 47
+
+Tính chất của hàm phân phối
+
+FX (x)
+1
+
+O
+
+12, 5
+
+x
+
+Hình 3: Đồ thị hàm phân phối xác suất của Ví dụ 11
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+20/47
+
+SAMI.HUST – 2023
+
+20 / 47
+
+Tính chất của hàm phân phối
+
+Ví dụ 12
+Cho biến ngẫu nhiên liên tục X có hàm phân phối xác suất là
+
+
+x ≤ 0,
+0,
+FX (x) = A + 3x2 − Bx3 , 0 < x ≤ 1,
+
+
+1,
+x > 1.
+(a) Hãy xác định A và B.
+(b) Tính xác suất để trong kết quả của phép thử, X nhận giá trị trong khoảng (0, 5; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+21/47
+
+SAMI.HUST – 2023
+
+21 / 47
+
+Tính chất của hàm phân phối
+Giải.
+(a) Theo Tính chất 1(b), hàm FX (x) là hàm liên tục nên
+
+ lim FX (x) = lim FX (x) = FX (0),
+x→0−
+
+x→0+
+
+ lim FX (x) = lim FX (x) = FX (1).
+x→1−
+
+(
+Từ đây ta nhận được
+
+A = 0,
+A + 3 − B = 1.
+
+x→1+
+
+(
+Hay
+
+A = 0,
+B = 2.
+
+Thử lại, ta thấy với A = 2 và B = 0, hàm FX (x) thỏa mãn tất cả các tính chất hàm phân phối xác suất
+của biến ngẫu nhiên liên tục X.
+Vậy
+
+
+0,
+FX (x) = 3x2 − 2x3 ,
+
+
+1,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+x ≤ 0,
+0 < x ≤ 1,
+x > 1.
+
+22/47
+
+SAMI.HUST – 2023
+
+22 / 47
+
+Tính chất của hàm phân phối
+(b) Sử dụng Tính chất 1(c),
+P (0, 5 < X < 1) = FX (1) − FX (0, 5)
+
+ 
+
+= 3 × (1)2 − 2 × (1)3 − 3 × (0, 5)2 − 2 × (0, 5)3 = 0, 5.
+
+FX (x)
+1
+
+O
+
+1
+
+x
+
+Hình 4: Đồ thị hàm phân phối xác suất của Ví dụ 12
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+23/47
+
+SAMI.HUST – 2023
+
+23 / 47
+
+Tính chất của hàm phân phối
+
+Ví dụ 13 (Hàm phân phối Cauchy)
+Hàm phân phối xác suất của biến ngẫu nhiên liên tục X có dạng
+FX (x) = A + B arctan x,
+
+−∞ < x < +∞.
+
+(a) Tìm A và B.
+(b) Tìm xác suất để khi quan sát biến ngẫu nhiên X ba lần độc lập nhau thấy có hai lần X nhận giá trị
+trong khoảng (−1; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+24/47
+
+SAMI.HUST – 2023
+
+24 / 47
+
+Tính chất của hàm phân phối
+Giải.
+(a) Sử dụng Tính chất 1(d),
+
+ lim FX (x) = lim (A + B arctan x) = 0,
+x→−∞
+
+x→−∞
+
+ lim FX (x) = lim (A + B arctan x) = 1,
+x→+∞
+
+x→+∞
+
+(
+
+A + B × − π2 = 0,
+
+hay
+A + B × π2 = 1.
+
+Suy ra A = 1/2, B = 1/π.
+Thử lại, với A = 1/2, B = 1/π, hàm FX (x) thỏa mãn tất cả các tính chất của hàm phân phối xác suất của
+biến ngẫu nhiên liên tục X.
+Vậy
+FX (x) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1
+1
++ arctan x,
+2
+π
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+−∞ < x < +∞.
+
+25/47
+
+SAMI.HUST – 2023
+
+25 / 47
+
+Tính chất của hàm phân phối
+
+(b) Sử dụng Tính chất 1(c),
+P (−1 < X < 1) = FX (1) − FX (−1)
+1
+ 1
+
+1
+1
+1
+=
++ arctan(1) −
++ arctan(−1) = .
+2
+π
+2
+π
+2
+Từ giả thiết, ta có dãy phép thử Bernoulli với n = 3, p = P (−1 < X < 1) = 1/2. Áp dụng công thức
+Bernoulli, xác suất cần tìm là
+ 1 2  1 1
+3
+P3 (2) = C32 p2 (1 − p)1 = 3 ×
+×
+= .
+2
+2
+8
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+26/47
+
+SAMI.HUST – 2023
+
+26 / 47
+
+2.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+2.2.1 Bảng phân phối xác suất
+2.2.1.1 Hàm xác suất
+2.2.1.2 Bảng phân phối xác suất
+
+2
+
+2.2.2 Hàm phân phối xác suất
+2.2.2.1 Định nghĩa
+2.2.2.2 Tính chất
+
+3
+
+2.2.3 Hàm mật độ xác suất
+2.2.3.1 Định nghĩa
+2.2.3.2 Tính chất
+
+4
+
+2.2.4 Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+5
+
+Bài tập Mục 2.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+27/47
+
+SAMI.HUST – 2023
+
+27 / 47
+
+Định nghĩa hàm mật độ xác suất
+Định nghĩa 4
+Giả sử X là một biến ngẫu nhiên liên tục có hàm phân phối xác suất FX (x), x ∈ R. Nếu tồn tại hàm fX (x)
+sao cho
+Zx
+FX (x) =
+fX (t)dt, x ∈ R
+(6)
+−∞
+
+thì fX (x) được gọi là hàm mật độ xác suất của biến ngẫu nhiên liên tục X.
+Định lý 1
+Hàm mật độ xác suất của biến ngẫu nhiên liên tục X là đạo hàm bậc nhất của hàm phân phối xác suất của
+biến ngẫu nhiên đó,
+0
+fX (x) = FX
+(x), x ∈ R.
+(7)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+28/47
+
+SAMI.HUST – 2023
+
+28 / 47
+
+Tính chất của hàm mật độ
+
+Tính chất 2
+(a) fX (x) ≥ 0 với mọi x ∈ R.
+Z b
+(b) P (a < X < b) =
+fX (x)dx.
+a
+
+Z
+
++∞
+
+(c)
+
+fX (x)dx = 1.
+−∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+29/47
+
+SAMI.HUST – 2023
+
+29 / 47
+
+Tính chất của hàm mật độ
+
+P (a < X < b)
+
+a
+
+x
+
+b
+
+Hình 5: P (a < X < b) là diện tích miền tô màu dưới đường cong y = fX (x)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+30/47
+
+SAMI.HUST – 2023
+
+30 / 47
+
+Tính chất của hàm mật độ
+Ví dụ 14
+Gọi biến ngẫu nhiên liên tục X là cường độ dòng điện đo được trong một sợi dây đồng mỏng tính bằng
+miliampe (mA). Giả sử X nhận giá trị trong đoạn [0; 20 mA] và hàm mật độ xác suất của X là
+(
+0,
+x∈
+/ [0; 20],
+fX (x) =
+0, 05, x ∈ [0; 20].
+Xác suất để phép đo đo được cường độ dòng điện nhỏ hơn 10 miliampe là bao nhiêu?
+Giải. Áp dụng Tính chất 2(b),
+Z10
+P (X < 10) =
+
+Z10
+fX (x)dx =
+
+0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+0, 05dx = 0, 5.
+0
+
+31/47
+
+SAMI.HUST – 2023
+
+31 / 47
+
+Tính chất của hàm mật độ
+
+fX (x)
+
+0, 05
+
+0
+
+10
+
+20
+
+x
+
+Hình 6: Hàm mật độ và xác suất trong Ví dụ 14
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+32/47
+
+SAMI.HUST – 2023
+
+32 / 47
+
+Tính chất của hàm mật độ
+
+Ví dụ 15
+Với dữ liệu trong Ví dụ 11,
+(a) Tìm hàm mật độ xác suất fX (x) của biến ngẫu nhiên X chỉ đường kính của lỗ được khoan trên sản
+phẩm kim loại.
+(b) Sử dụng Tính chất 2(b) tính P (X > 12, 6).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+33/47
+
+SAMI.HUST – 2023
+
+33 / 47
+
+Tính chất của hàm mật độ
+Giải.
+(a) Theo (7), hàm mật độ xác suất của biến ngẫu nhiên X là
+(
+0,
+0
+fX (x) = FX
+(x) =
+20e−20(x−12,5) ,
+
+x ≤ 12, 5,
+x > 12, 5.
+
+(b) Theo Tính chất 2(b),
++∞
++∞
+Z
+Z
+P (X > 12, 6) =
+fX (x)dx =
+20e−20(x−12,5) dx = 0, 1353.
+12,6
+
+12,6
+
+Kết quả này trùng với kết quả tính trong Ví dụ 11(b).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+34/47
+
+SAMI.HUST – 2023
+
+34 / 47
+
+Tính chất của hàm mật độ
+
+Hình 7: Hàm mật độ và xác suất trong Ví dụ 15
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+35/47
+
+SAMI.HUST – 2023
+
+35 / 47
+
+Tính chất của hàm mật độ
+Ví dụ 16 (Hàm mật độ Laplace)
+Biến ngẫu nhiên liên tục X có hàm mật độ xác suất là
+fX (x) = ke−|x| ,
+
+−∞ < x < ∞.
+
+(a) Xác định k.
+(b) Tìm hàm phân phối xác suất của biến ngẫu nhiên X.
+Giải.
+(a) Sử dụng Tính chất 2(a),(b),
+ −|x|
+≥ 0, ∀x,
+
+ke
+
++∞
++∞
+Z
+Z
+−|x|
+
+1
+=
+ke
+dx
+=
+2
+ke−x dx.
+
+
+−∞
+
+Từ đây suy ra k =
+
+0
+
+1/2.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+36/47
+
+SAMI.HUST – 2023
+
+36 / 47
+
+Tính chất của hàm mật độ
+
+(b) Ta tìm hàm phân phối xác suất của X theo (6).
+Zx
+1 u
+e du = 12 ex .
+Nếu x ≤ 0, FX (x) =
+2
+−∞
+
+Z0
+Nếu x > 0, FX (x) =
+−∞
+
+1 u
+e du
+2
+
+Zx
++
+
+1 −u
+e du
+2
+
+=
+
+1
+2
+
++ − 12 e−x +
+
+1
+2
+
+
+
+= 1 − 12 e−x .
+
+0
+
+Vậy,
+(
+FX (x) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+1 x
+e ,
+2
+1 − 12 e−x ,
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+nếu x ≤ 0,
+nếu x > 0.
+
+37/47
+
+SAMI.HUST – 2023
+
+37 / 47
+
+2.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+2.2.1 Bảng phân phối xác suất
+2.2.1.1 Hàm xác suất
+2.2.1.2 Bảng phân phối xác suất
+
+2
+
+2.2.2 Hàm phân phối xác suất
+2.2.2.1 Định nghĩa
+2.2.2.2 Tính chất
+
+3
+
+2.2.3 Hàm mật độ xác suất
+2.2.3.1 Định nghĩa
+2.2.3.2 Tính chất
+
+4
+
+2.2.4 Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+5
+
+Bài tập Mục 2.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+38/47
+
+SAMI.HUST – 2023
+
+38 / 47
+
+Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+Cho X là một biến ngẫu nhiên và Y = g(X), trong đó, g(.) là một hàm số thực cho trước.
+Bảng phân phối xác suất: Nếu X là biến ngẫu nhiên rời rạc, hàm xác suất hay bảng phân phối xác suất của
+Y = g(X) được xác định trực tiếp từ biến ngẫu nhiên X ban đầu.
+Hàm mật độ xác suất: Nếu X là biến ngẫu nhiên liên tục và g(.) là hàm số liên tục, để tìm hàm mật độ xác
+suất fY (y) từ Y = g(X) và hàm mật độ xác suất của X ta sẽ thực hiện theo quy trình hai bước:
+1 Tìm FY (y) = P (Y < y) = P (g(X) < y).
+2 Tìm fY (y) =
+
+dFY (y)
+.
+dy
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+39/47
+
+SAMI.HUST – 2023
+
+39 / 47
+
+Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+Ví dụ 17
+Trong Ví dụ 14, đặt Y = 100X. Tìm hàm mật độ xác suất fY (y) của Y .
+Giải.
+Để tìm hàm mật độ xác suất fY (y), trước hết ta tìm hàm phân phối FX (x).
+Từ Ví dụ 14, suy ra
+
+
+0,
+FX (x) = 0, 05x,
+
+
+1,
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+x ≤ 0,
+0 < x ≤ 20,
+x > 20.
+
+40/47
+
+SAMI.HUST – 2023
+
+40 / 47
+
+Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+Sử dụng kết quả này để tìm hàm phân phối FY (y) = P (Y < y) = P (100X < y), hay
+
+
+y/100 ≤ 0,
+0,
+
+
+
+
+y
+y
+FY (y) = P X <
+= FX
+= 0,05y
+, 0 < y/100 ≤ 20,
+100
+
+100
+100
+
+1,
+y/100 > 20.
+Từ đây suy ra
+dFY (y)
+fY (y) =
+=
+dy
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+(
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+0,05
+,
+100
+
+0,
+
+0 < y ≤ 2000,
+trái lại.
+
+41/47
+
+SAMI.HUST – 2023
+
+41 / 47
+
+2.2. PHÂN PHỐI XÁC SUẤT CỦA BIẾN NGẪU NHIÊN
+1
+
+2.2.1 Bảng phân phối xác suất
+2.2.1.1 Hàm xác suất
+2.2.1.2 Bảng phân phối xác suất
+
+2
+
+2.2.2 Hàm phân phối xác suất
+2.2.2.1 Định nghĩa
+2.2.2.2 Tính chất
+
+3
+
+2.2.3 Hàm mật độ xác suất
+2.2.3.1 Định nghĩa
+2.2.3.2 Tính chất
+
+4
+
+2.2.4 Phân phối xác suất của hàm của một biến ngẫu nhiên
+
+5
+
+Bài tập Mục 2.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+42/47
+
+SAMI.HUST – 2023
+
+42 / 47
+
+Bài tập
+
+Bài 6
+Cho Z là biến ngẫu nhiên có bảng phân phối xác suất:
+Z
+P (Z = zi )
+
+1
+0,2
+
+2
+0,3
+
+3
+p
+
+4
+0,15
+
+(a) Tìm p.
+(b) Tính P (Z ≥ 2).
+(c) Lập bảng phân phối xác suất của biến ngẫu nhiên Y = 5Z + 2.
+(d) Tìm hàm phân phối xác suất của Y .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+43/47
+
+SAMI.HUST – 2023
+
+43 / 47
+
+Bài tập
+Bài 7
+Từ một kiện hàng có 15 sản phẩm loại I và 10 sản phẩm loại II, lấy ngẫu nhiên ra ba sản phẩm và ký hiệu
+X là số sản phẩm loại I lấy được. Lập bảng phân phối xác suất và tìm hàm phân phối xác suất của X.
+Bài 8
+Ký hiệu X (gam) là biến ngẫu nhiên chỉ trọng lượng tiêu chuẩn của một chiếc điện thoại thông minh do một
+hãng sản xuất. Biết rằng phân phối xác suất của X có dạng
+(
+0,
+x ≤ 200,
+FX (x) =
+1 − e−0,15(x−k) , x > 200.
+Một chiếc điện thoại có trọng lượng trên 220 gam sẽ được coi là không đạt tiêu chuẩn về mặt khối lượng.
+Tính xác suất để một chiếc điện thoại cùng loại mới được sản xuất là đạt tiêu chuẩn về mặt khối lượng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+44/47
+
+SAMI.HUST – 2023
+
+44 / 47
+
+Bài tập
+
+Bài 9
+Cho biến ngẫu nhiên liên tục X có hàm phân phối xác suất
+
+
+x ≤ −2,
+0,
+x
+1
+FX (x) = 2 + k arcsin 2 , −2 ≤ x ≤ 2,
+
+
+1,
+x > 2.
+(a) Tìm P (−1 < X < 1).
+(b) Tìm xác suất để khi quan sát X năm lần một cách độc lập thì có ít nhất một lần X nhận giá trị trong
+khoảng (−1; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+45/47
+
+SAMI.HUST – 2023
+
+45 / 47
+
+Bài tập
+Bài 10
+Xác định giá trị tham số k để hàm số
+(
+A sin 5x,
+f (x) =
+0,
+
+x ∈ (0, π5 ),
+x∈
+/ (0, π5 )
+
+là một hàm mật độ xác suất.
+Bài 11
+Tuổi thọ Y (năm) của một loại động vật hoang dã là biến ngẫu nhiên có hàm mật độ xác suất
+(
+0,
+y∈
+/ [0; 16],
+fY (y) =
+kx2 (16 − x), y ∈ [0; 16].
+Tính xác suất để một cá thể thuộc loại động vật hoang dã này có tuổi thọ dưới 8 tuổi.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+46/47
+
+SAMI.HUST – 2023
+
+46 / 47
+
+Bài tập
+Bài 12
+Tuổi thọ X (năm) của động cơ máy giặt do một công ty sản xuất là biến ngẫu nhiên liên tục có hàm mật độ
+xác suất là
+(
+0,
+x < 10,
+fX (x) = 200
+,
+x
+≥ 10.
+3
+x
+Biết rằng chính sách bảo hành hiện tại cho động cơ máy giặt là 10 năm. Công ty muốn chạy một chương
+trình quảng cáo bằng cách tăng thời gian bảo hành, nhưng lại đặt chỉ tiêu tỷ lệ sản phẩm cần bảo hành là
+không quá 10%. Hỏi công ty nên khuyến mại thêm thời gian bảo hành nhiều nhất là bao nhiêu tháng?
+Bài 13
+Cho biến ngẫu nhiên liên tục X có dạng hàm mật độ xác suất
+(
+0,
+x∈
+/ [0; 3],
+fX (x) =
+2
+kx , x ∈ [0; 3].
+Tìm hàm mật độ xác suất của biến ngẫu nhiên Y với Y = 5X + 3.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.2
+
+47/47
+
+SAMI.HUST – 2023
+
+47 / 47
+
+

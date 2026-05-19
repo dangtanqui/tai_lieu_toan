@@ -1,0 +1,725 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 5
+KIỂM ĐỊNH GIẢ THUYẾT THỐNG KÊ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201-D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+1/27
+
+SAMI.HUST – 2023
+
+1 / 27
+
+GIỚI THIỆU CHƯƠNG 5
+
+Chương này nghiên cứu bài toán kiểm định giả thuyết thống kê. Nội dung chủ yếu là kiểm định giả thuyết về
+tham số của tổng thể.
+Kiểm định giả thuyết về kỳ vọng, phương sai của biến ngẫu nhiên có phân phối chuẩn.
+Kiểm định giả thuyết về tỷ lệ của tổng thể trường hợp mẫu kích thước lớn.
+So sánh hai kỳ vọng, hai phương sai của các biến ngẫu nhiên phân phối chuẩn.
+So sánh tỷ lệ của hai mẫu kích thước lớn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+2/27
+
+SAMI.HUST – 2023
+
+2 / 27
+
+5.1. GIẢ THUYẾT THỐNG KÊ VÀ QUY TẮC KIỂM ĐỊNH
+1
+
+5.1.1 Giả thuyết thống kê
+5.1.1.1 Giả thuyết thống kê
+5.1.1.2 Giả thuyết không, đối thuyết
+5.1.1.3 Bài toán kiểm định giả thuyết thống kê
+
+2
+
+5.1.2 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+5.1.2.1 Cơ sở lập luận
+5.1.2.2 Các bước tiến hành
+5.1.2.3 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+3
+
+5.1.3 Sai lầm loại I. Sai lầm loại II
+5.1.3.1 Sai lầm loại I
+5.1.3.2 Sai lầm loại II
+5.1.3.3 Hiệu lực của kiểm định
+5.1.3.3 Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+4
+
+5.1.4 Các bước giải bài toán kiểm định giả thuyết thống kê
+
+5
+
+Bài tập Mục 5.1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+3/27
+
+SAMI.HUST – 2023
+
+3 / 27
+
+Giả thuyết thống kê
+
+Thông thường ta nghiên cứu biến ngẫu nhiên trong trường hợp thông tin không đầy đủ, thể hiện ở nhiều mặt.
+Chẳng hạn,
+Chưa biết chính xác tham số θ, hoặc phân phối xác xuất của biến ngẫu nhiên X, nhưng có cơ sở nào đó để
+nêu lên giả thuyết, chẳng hạn θ = θ0 (θ0 đã biết), hoặc X có phân phối chuẩn.
+Khi nghiên cứu hai hay nhiều biến ngẫu nhiên, một trong những vấn đề cần quan tâm nhất là
+- Các biến ngẫu nhiên này độc lập với nhau hay có sự phụ thuộc tương quan?
+- Các tham số của chúng có bằng nhau hay không?
+Những câu hỏi này thường chưa được trả lời khẳng định mà mới chỉ nêu lên như một giả thuyết.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+4/27
+
+SAMI.HUST – 2023
+
+4 / 27
+
+Giả thuyết thống kê
+
+Định nghĩa 1
+Bất kỳ giả thuyết nào nói về tham số, dạng phân phối xác suất hay tính độc lập của các biến ngẫu nhiên,
+đều được gọi là giả thuyết thống kê.
+- Trong khuôn khổ của chương trình, ta chỉ đề cập đến giả thuyết về tham số của biến ngẫu nhiên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+5/27
+
+SAMI.HUST – 2023
+
+5 / 27
+
+Giả thuyết không, đối thuyết
+
+Giả sử cần nghiên cứu tham số θ của biến ngẫu nhiên X và có cơ sở nào đó để nêu lên giả thuyết θ = θ0 .
+Giả thuyết này ký hiệu là H0 , còn gọi là giả thuyết không.
+Mệnh đề đối lập hay trái ngược với giả thuyết H0 ký hiệu là H1 , được gọi là đối thuyết. Dạng tổng quát
+nhất của H1 là θ =
+6 θ0 . Trong nhiều trường hợp đối thuyết được phát biểu cụ thể là H1 : θ > θ0 hoặc
+H1 : θ < θ0 .
+- Giả thuyết không và đối thuyết thường được phát biểu thành cặp
+Kiểm định hai phía: H0 : θ = θ0 , H1 : θ 6= θ0 .
+Kiểm định một phía phải: H0 : θ = θ0 , H1 : θ > θ0 .
+Kiểm định một phía trái: H0 : θ = θ0 , H1 : θ < θ0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+6/27
+
+SAMI.HUST – 2023
+
+6 / 27
+
+Bài toán kiểm định giả thuyết thống kê
+
+Bài toán kiểm định giả thuyết thống kê là bài toán mà ở đó ta có cặp giả thuyết thống kê {H0 ; H1 }, ta cần
+khẳng định dữ liệu mà ta quan sát được ủng hộ giả thuyết nào.
+Nếu dữ liệu ủng hộ giả thuyết H0 thì kết luận là “Chấp nhận H0 ” hay “Chưa có cơ sở để bác bỏ giả thuyết
+H0 ”.
+Nếu dữ liệu ủng hộ đối thuyết H1 thì kết luận là “Bác bỏ giả thuyết H0 ”.
+Định nghĩa 2
+Một quy tắc hay một thủ tục quyết định dẫn tới việc bác bỏ hay chấp nhận giả thuyết đã nêu gọi là một
+kiểm định thống kê.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+7/27
+
+SAMI.HUST – 2023
+
+7 / 27
+
+Bài toán kiểm định giả thuyết thống kê
+Ví dụ 1
+Giả sử số tiền chi trả (triệu đồng) cho khách hàng của một hãng bảo hiểm là một biến ngẫu nhiên có phân
+phối chuẩn với số tiền chi trả trung bình là 50 triệu đồng và độ lệch tiêu chuẩn là 2,5 triệu đồng. Ta muốn
+biết liệu số tiền chi trả trung bình có phải là 50 triệu đồng hay không, thì giả thuyết không và đối thuyết là
+H0 : µ = 50
+
+và
+
+H1 : µ 6= 50,
+
+ở đây, µ là số tiền chi trả trung bình cho khách hàng. Nếu bác bỏ giả thuyết H0 thì ta kết luận “số tiền chi
+trả trung bình cho khách hàng khác 50 triệu đồng.”
+Ví dụ 2
+Một quá trình sản xuất tạo ra 3% sản phẩm lỗi. Ta muốn quan tâm liệu một điều chỉnh trên máy có làm
+giảm tỷ lệ sản phẩm lỗi của quá trình sản xuất hay không, thì giả thuyết không và đối thuyết là
+H0 : p = 0, 03
+
+và
+
+H1 : p < 0, 03,
+
+ở đây, p là tỷ lệ sản phẩm lỗi của quá trình sản xuất. Nếu bác bỏ giả thuyết H0 thì ta kết luận “việc điều
+chỉnh trên máy tạo ra ít hơn 3% sản phẩm lỗi.”
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+8/27
+
+SAMI.HUST – 2023
+
+8 / 27
+
+Bài toán kiểm định giả thuyết thống kê
+
+Ví dụ 3
+Để đánh giá tuổi thọ của một loại pin, người ta lấy ra một mẫu kích thước n = 50 quả pin để kiểm tra tuổi
+thọ, thấy tuổi thọ trung bình của những quả pin này là 4, 05 giờ. Giả sử tuổi thọ của pin là biến ngẫu nhiên
+xấp xỉ phân phối chuẩn với độ lệch chuẩn σ = 0, 2 giờ. Ta muốn biết liệu có đủ bằng chứng để chứng tỏ tuổi
+thọ trung bình của pin là nhiều hơn 4 giờ hay không, thì giả thuyết không và đối thuyết là
+H0 : µ = 4
+
+và
+
+H1 : µ > 4,
+
+ở đây, µ là tuổi thọ trung bình của pin. Nếu bác bỏ giả thuyết H0 thì ta kết luận “tuổi thọ của pin là nhiều
+hơn 4 giờ.”
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+9/27
+
+SAMI.HUST – 2023
+
+9 / 27
+
+5.1. GIẢ THUYẾT THỐNG KÊ VÀ QUY TẮC KIỂM ĐỊNH
+1
+
+5.1.1 Giả thuyết thống kê
+5.1.1.1 Giả thuyết thống kê
+5.1.1.2 Giả thuyết không, đối thuyết
+5.1.1.3 Bài toán kiểm định giả thuyết thống kê
+
+2
+
+5.1.2 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+5.1.2.1 Cơ sở lập luận
+5.1.2.2 Các bước tiến hành
+5.1.2.3 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+3
+
+5.1.3 Sai lầm loại I. Sai lầm loại II
+5.1.3.1 Sai lầm loại I
+5.1.3.2 Sai lầm loại II
+5.1.3.3 Hiệu lực của kiểm định
+5.1.3.3 Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+4
+
+5.1.4 Các bước giải bài toán kiểm định giả thuyết thống kê
+
+5
+
+Bài tập Mục 5.1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+10/27
+
+SAMI.HUST – 2023
+
+10 / 27
+
+Cơ sở lập luận
+Câu hỏi đặt ra là “Bác bỏ hay chấp nhận giả thuyết H0 bằng cách nào?” Ta sử dụng nguyên lý và phương pháp
+phản chứng sau.
+Nguyên lý xác suất nhỏ: “Nếu một sự kiện có xác suất rất nhỏ, thì trong một lần thực hiện phép thử, sự
+kiện đó coi như không xảy ra”.
+Phương pháp phản chứng: “Để bác bỏ A ta giả sử A đúng, nếu A đúng dẫn đến một điều vô lý thì bác bỏ
+A”.
+Cơ sở lập luận
+Giả sử giả thuyết H0 là đúng. Trên cơ sở đó ta xây dựng một sự kiện A, sao cho, xác suất xuất hiện A bằng α bé
+đến mức có thể sử dụng nguyên lý xác suất nhỏ, tức là, có thể coi A không xảy ra trong phép thử về sự kiện này.
+Thực hiện một phép thử đối với sự kiện A:
+Nếu A xảy ra thì bác bỏ giả thuyết H0 .
+Nếu A không xảy ra thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+11/27
+
+SAMI.HUST – 2023
+
+11 / 27
+
+Các bước tiến hành
+Giả sử cần kiểm định cặp giả thuyết {H0 ; H1 } phát biểu về tham số θ tương ứng với một biến ngẫu nhiên X.
+1. Từ biến ngẫu nhiên X, lập mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n và chọn thống kê U phụ
+thuộc vào tham số θ,
+(1)
+
+U (X, θ) = g(X1 , X2 , . . . , Xn ; θ)
+sao cho, nếu giả thuyết H0 là đúng thì phân phối xác suất của U hoàn toàn xác định.
+
+2. Với một giá trị thực α bé gần 0 cho trước, dựa vào phân phối xác suất của thống kê U , ta tìm miền Wα
+sao cho
+P (U ∈ Wα |H0 ) = α.
+
+(2)
+
+Vì α rất nhỏ, nên theo nguyên lý xác suất nhỏ, có thể coi U không nhận giá trị trong miền Wα đối với một
+lần thực hiện phép thử.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+12/27
+
+SAMI.HUST – 2023
+
+12 / 27
+
+Các bước tiến hành
+
+3. Thực hiện một phép thử đối với mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) ta thu được mẫu cụ thể
+Wx = (x1 , x2 , . . . , xn ) và tính được giá trị cụ thể của U trong (1), gọi là giá trị quan sát của U , ký hiệu là
+u hay uqs .
+4. Xét xem giá trị quan sát u có thuộc miền Wα hay không để kết luận.
+Nếu u ∈ Wα thì bác bỏ giả thuyết H0 thừa nhận H1 .
+Nếu u ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+13/27
+
+SAMI.HUST – 2023
+
+13 / 27
+
+Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+Thống kê U xác định trong (1) được gọi là tiêu chuẩn kiểm định.
+Xác suất α được gọi là mức ý nghĩa của kiểm định (thông thường yêu cầu α ≤ 0, 05).
+Miền Wα được gọi là miền bác bỏ giả thuyết H0 với mức ý nghĩa α.
+- Cùng mức ý nghĩa α đối với một tiêu chuẩn kiểm định U có thể có vô số miền bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+14/27
+
+SAMI.HUST – 2023
+
+14 / 27
+
+Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+Ví dụ 4
+Với Ví dụ 1, giả sử ta quan sát số tiền chi trả cho n = 10 khách hàng. Giá trị trung bình x của mẫu là một
+ước lượng điểm của trung bình tổng thể µ. Một giá trị trung bình mẫu x rất gần với giá trị của µ = 50 triệu
+đồng sẽ không mâu thuẫn với giả thuyết H0 rằng giá trị trung bình thực sự là 50 triệu đồng. Nếu một giá trị
+trung bình mẫu x có khác biệt đáng kể so với 50 triệu đồng là minh chứng ủng hộ đối thuyết H1 . Giả sử,
+48, 5 ≤ x ≤ 51, 5 thì chấp nhận giả thuyết H0 và x < 48, 5 hoặc x > 51, 5 thì bác bỏ giả thuyết H0 , điều này
+được minh họa trong Hình 1.
+
+Chấp nhận H0
+
+Bác bỏ H0
+µ = 48, 5
+
+µ = 50
+
+Bác bỏ H0
+µ = 51, 5
+
+x
+
+Hình 1: Miền bác bỏ giả thuyết H0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+15/27
+
+SAMI.HUST – 2023
+
+15 / 27
+
+5.1. GIẢ THUYẾT THỐNG KÊ VÀ QUY TẮC KIỂM ĐỊNH
+1
+
+5.1.1 Giả thuyết thống kê
+5.1.1.1 Giả thuyết thống kê
+5.1.1.2 Giả thuyết không, đối thuyết
+5.1.1.3 Bài toán kiểm định giả thuyết thống kê
+
+2
+
+5.1.2 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+5.1.2.1 Cơ sở lập luận
+5.1.2.2 Các bước tiến hành
+5.1.2.3 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+3
+
+5.1.3 Sai lầm loại I. Sai lầm loại II
+5.1.3.1 Sai lầm loại I
+5.1.3.2 Sai lầm loại II
+5.1.3.3 Hiệu lực của kiểm định
+5.1.3.3 Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+4
+
+5.1.4 Các bước giải bài toán kiểm định giả thuyết thống kê
+
+5
+
+Bài tập Mục 5.1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+16/27
+
+SAMI.HUST – 2023
+
+16 / 27
+
+Sai lầm loại I
+
+Định nghĩa 3
+Sai lầm loại I là sai lầm mà ta bác bỏ giả thuyết H0 trong khi H0 đúng. Xác suất mắc sai lầm loại I chính
+bằng α,
+P (U ∈ Wα |H0 ) = α.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+(3)
+
+17/27
+
+SAMI.HUST – 2023
+
+17 / 27
+
+Sai lầm loại II
+
+Định nghĩa 4
+Sai lầm loại II là sai lầm mà ta thừa nhận H0 trong khi H0 sai, hay giá trị quan sát u không thuộc miền bác
+bỏ Wα trong khi H1 đúng. Xác suất mắc sai lầm loại II là
+β = P (U ∈
+/ Wα |H1 ) = 1 − P (U ∈ Wα |H1 ).
+
+(4)
+
+- Để tính toán xác suất mắc sai lầm loại II ta phải có đối thuyết cụ thể.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+18/27
+
+SAMI.HUST – 2023
+
+18 / 27
+
+Hiệu lực của kiểm định
+
+- Từ (4), suy ra, xác suất bác bỏ giả thuyết H0 nếu nó sai là
+P (U ∈ Wα |H1 ) = 1 − β.
+Xác suất này gọi là hiệu lực của kiểm định, nó chính là xác suất “không mắc sai lầm loại II”.
+Ta thường so sánh các bài kiểm định giả thuyết thống kê bằng cách so sánh các hiệu lực của chúng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+19/27
+
+SAMI.HUST – 2023
+
+19 / 27
+
+Các tình huống có thể xảy ra
+
+- Các tình huống có thể xảy ra khi kiểm định cặp giả thuyết thống kê {H0 ; H1 }
+
+```
+```
+Thực tế
+```
+```
+Quyết định
+Bác bỏ H0
+
+Không bác bỏ H0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H0 đúng
+
+H0 sai
+
+Sai lầm loại I
+Xác suất bằng α
+Quyết định đúng
+Xác suất bằng 1 − α
+
+Quyết định đúng
+Xác suất bằng 1 − β
+Sai lầm loại II
+Xác suất bằng β
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+20/27
+
+SAMI.HUST – 2023
+
+20 / 27
+
+Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+Khi kiểm định giả thuyết thống kê dẫn tới việc chấp nhận H0 thì xác suất mắc sai lầm loại II ta không biết
+và có thể khá lớn. Do đó, việc chấp nhận H0 là một quyết định dè dặt. Nói khác đi, khi chấp nhận H0 ta
+không nên hiểu H0 đúng mà chỉ nên hiểu rằng với các chứng cứ và số liệu đã có chưa đủ để bác bỏ H0 , cần
+phải nghiên cứu tiếp.
+Nếu kết luận bác bỏ H0 thì hoặc kết luận đó là đúng hoặc ta mắc sai lầm loại I với xác suất nhỏ. Do đó kết
+luận này là kết luận đáng tin cậy.
+Một kiểm định thống kê lý tưởng là kiểm định làm cực tiểu cả hai sai lầm. Tuy nhiên, điều đó là không thực
+hiện được.
+Người ta tìm cách cố định sai lầm loại I và cực tiểu sai lầm loại II.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+21/27
+
+SAMI.HUST – 2023
+
+21 / 27
+
+Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+Khi kiểm định giả thuyết thống kê, nếu mức ý nghĩa α đã chọn, kích thước mẫu n đã xác định, vấn đề còn
+lại là trong vô số miền bác bỏ, ta chọn miền Wα sao cho xác suất mắc sai lầm loại II là nhỏ nhất hay hiệu
+lực của kiểm định lớn nhất:
+P (U ∈ Wα |H0 ) = α
+
+và
+
+P (U ∈ Wα |H1 ) = 1 − β → max .
+
+(5)
+
+Trong thực hành, quy tắc được xây dựng ở các mục tiếp theo có miền bác bỏ thỏa mãn tính chất trên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+22/27
+
+SAMI.HUST – 2023
+
+22 / 27
+
+5.1. GIẢ THUYẾT THỐNG KÊ VÀ QUY TẮC KIỂM ĐỊNH
+1
+
+5.1.1 Giả thuyết thống kê
+5.1.1.1 Giả thuyết thống kê
+5.1.1.2 Giả thuyết không, đối thuyết
+5.1.1.3 Bài toán kiểm định giả thuyết thống kê
+
+2
+
+5.1.2 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+5.1.2.1 Cơ sở lập luận
+5.1.2.2 Các bước tiến hành
+5.1.2.3 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+3
+
+5.1.3 Sai lầm loại I. Sai lầm loại II
+5.1.3.1 Sai lầm loại I
+5.1.3.2 Sai lầm loại II
+5.1.3.3 Hiệu lực của kiểm định
+5.1.3.3 Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+4
+
+5.1.4 Các bước giải bài toán kiểm định giả thuyết thống kê
+
+5
+
+Bài tập Mục 5.1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+23/27
+
+SAMI.HUST – 2023
+
+23 / 27
+
+Các bước giải bài toán kiểm định giả thuyết thống kê
+
+1
+
+Xác định cặp giả thuyết cần kiểm định {H0 ; H1 }.
+
+2
+
+Chọn tiêu chuẩn kiểm định và xác định phân phối xác suất của thống kê này nếu giả thuyết H0 là đúng.
+
+3
+
+Với mức ý nghĩa α cho trước và dựa vào phân phối xác suất của thống kê đã xét ở trên, xây dựng miền bác
+bỏ giả thuyết H0 .
+
+4
+
+Tính giá trị quan sát của tiêu chuẩn kiểm định từ mẫu quan sát được.
+
+5
+
+Kết luận bác bỏ H0 hay chưa có cơ sở để bác bỏ H0 và báo cáo điều đó trong bối cảnh của bài toán.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+24/27
+
+SAMI.HUST – 2023
+
+24 / 27
+
+5.1. GIẢ THUYẾT THỐNG KÊ VÀ QUY TẮC KIỂM ĐỊNH
+1
+
+5.1.1 Giả thuyết thống kê
+5.1.1.1 Giả thuyết thống kê
+5.1.1.2 Giả thuyết không, đối thuyết
+5.1.1.3 Bài toán kiểm định giả thuyết thống kê
+
+2
+
+5.1.2 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+5.1.2.1 Cơ sở lập luận
+5.1.2.2 Các bước tiến hành
+5.1.2.3 Tiêu chuẩn kiểm định. Mức ý nghĩa. Miền bác bỏ
+
+3
+
+5.1.3 Sai lầm loại I. Sai lầm loại II
+5.1.3.1 Sai lầm loại I
+5.1.3.2 Sai lầm loại II
+5.1.3.3 Hiệu lực của kiểm định
+5.1.3.3 Lựa chọn miền bác bỏ giả thuyết H0 để β bé nhất
+
+4
+
+5.1.4 Các bước giải bài toán kiểm định giả thuyết thống kê
+
+5
+
+Bài tập Mục 5.1
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+25/27
+
+SAMI.HUST – 2023
+
+25 / 27
+
+Bài tập
+
+Bài 1
+Chọn mệnh đề đúng trong các mệnh đề sau:
+A. Sai lầm loại I là bác bỏ giả thuyết H0 nhưng trên thực tế H0 đúng.
+B. Sai lầm loại I là chấp nhận giả thuyết H0 nhưng trên thực tế H0 sai.
+C. Sai lầm loại II là bác bỏ giả thuyết H0 nhưng trên thực tế H0 đúng.
+D. Sai lầm loại II là chấp nhận giả thuyết H0 nhưng trên thực tế H0 sai.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+26/27
+
+SAMI.HUST – 2023
+
+26 / 27
+
+Bài tập
+
+Bài 2
+Cho X là biến ngẫu nhiên có phân phối chuẩn với giá trị trung bình µ chưa biết và độ lệch tiêu chuẩn σ đã
+biết. Xét bài toán kiểm định giả thuyết: H0 : µ = 3; H1 : µ = 5. Với mức ý nghĩa α = 0, 01, anh/chị hãy cho
+biết kết luận nào sau đây là đúng:
+A. Khi xác suất sai lầm loại I giảm thì xác suất sai lầm loại II tăng.
+B. Khi xác suất sai lầm loại I tăng thì xác suất sai lầm loại II tăng.
+C. Khi xác suất sai lầm loại I giảm thì xác suất sai lầm loại II không đổi.
+D. Khi xác suất sai lầm loại I giảm thì xác suất sai lầm loại II giảm.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.1
+
+27/27
+
+SAMI.HUST – 2023
+
+27 / 27
+
+

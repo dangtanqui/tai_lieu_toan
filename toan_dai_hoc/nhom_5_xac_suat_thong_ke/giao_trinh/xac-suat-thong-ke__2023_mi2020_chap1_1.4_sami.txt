@@ -1,0 +1,921 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 1
+SỰ KIỆN NGẪU NHIÊN VÀ PHÉP TÍNH XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Văn phòng: 201.BIS–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+1/29
+
+SAMI.HUST – 2023
+
+1 / 29
+
+1.4. CÔNG THỨC CỘNG VÀ NHÂN XÁC SUẤT
+1
+
+1.4.1 Công thức cộng xác suất
+
+2
+
+1.4.2 Xác suất có điều kiện
+
+3
+
+1.4.3 Công thức nhân xác suất
+1.4.3.1 Sự kiện độc lập
+1.4.3.2 Công thức nhân xác suất
+
+4
+
+1.4.4 Công thức Bernoulli
+1.4.4.1 Dãy phép thử Bernoulli
+1.4.4.2 Công thức Bernoulli
+
+5
+
+Bài tập Mục 1.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+2/29
+
+SAMI.HUST – 2023
+
+2 / 29
+
+Công thức cộng xác suất
+
+Định lý 1
+(a) Nếu A và B là hai sự kiện bất kỳ, thì
+P (A + B) = P (A) + P (B) − P (AB).
+
+(11)
+
+(b) Nếu A và B là hai sự kiện xung khắc, thì
+(12)
+
+P (A + B) = P (A) + P (B).
+(c) Nếu A, B và C là ba sự kiện bất kỳ, thì
+P (A + B + C) = P (A) + P (B) + P (C) − P (AB) − P (AC) − P (BC) + P (ABC).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+3/29
+
+SAMI.HUST – 2023
+
+(13)
+
+3 / 29
+
+Công thức cộng xác suất
+
+Định lý 1 (tiếp theo)
+(d) Nếu A1 , A2 , . . . , An là n sự kiện bất kỳ (n ≥ 2), thì
+P
+
+n
+X
+
+n
+ X
+Ai =
+P (Ai ) −
+
+i=1
+
+X
+
+i=1
+
+1≤i<j≤n
+n−1
+
++ (−1)
+
+X
+
+P (Ai Aj ) +
+
+P (Ai Aj Ak ) − . . .
+(14)
+
+1≤i<j<k≤n
+
+P (A1 A2 . . . An ).
+
+(e) Nếu các sự kiện A1 , A2 , . . . , An xung khắc từng đôi, thì
+P
+
+n
+X
+
+n
+ X
+Ai =
+P (Ai ).
+
+i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+(15)
+
+i=1
+
+4/29
+
+SAMI.HUST – 2023
+
+4 / 29
+
+Công thức cộng xác suất
+
+Hệ quả 2
+(a) Nếu A1 , A2 , . . . , An là một hệ đầy đủ các sự kiện thì
+
+n
+P
+
+P (Ai ) = 1.
+
+i=1
+
+(b) P (A) = 1 − P (A).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+5/29
+
+SAMI.HUST – 2023
+
+5 / 29
+
+Công thức cộng xác suất
+
+Ví dụ 25
+Một lớp có 100 sinh viên, trong đó có 40 sinh viên giỏi ngoại ngữ, 30 sinh viên giỏi toán, 20 sinh viên vừa
+giỏi ngoại ngữ, vừa giỏi toán. Chọn ngẫu nhiên một sinh viên trong lớp. Tìm xác suất để sinh viên đó giỏi ít
+nhất một trong hai môn trên.
+Giải. Gọi N là sự kiện “sinh viên đó giỏi ngoại ngữ”; T là sự kiện “sinh viên đó giỏi toán xác suất”. Sử dụng công
+thức cộng (11), xác suất để sinh viên đó giỏi ít nhất một trong hai môn toán và ngoại ngữ là
+P (T + N ) = P (T ) + P (N ) − P (T N ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+30
+40
+20
+50
++
+−
+=
+= 0, 5.
+100
+100
+100
+100
+
+6/29
+
+SAMI.HUST – 2023
+
+6 / 29
+
+1.4. CÔNG THỨC CỘNG VÀ NHÂN XÁC SUẤT
+1
+
+1.4.1 Công thức cộng xác suất
+
+2
+
+1.4.2 Xác suất có điều kiện
+
+3
+
+1.4.3 Công thức nhân xác suất
+1.4.3.1 Sự kiện độc lập
+1.4.3.2 Công thức nhân xác suất
+
+4
+
+1.4.4 Công thức Bernoulli
+1.4.4.1 Dãy phép thử Bernoulli
+1.4.4.2 Công thức Bernoulli
+
+5
+
+Bài tập Mục 1.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+7/29
+
+SAMI.HUST – 2023
+
+7 / 29
+
+Xác suất có điều kiện
+Định nghĩa 18
+Giả sử trong một phép thử có sự kiện B với P (B) > 0. Khi đó, xác suất có điều kiện của sự kiện A nào đó,
+biết rằng sự kiện B đã xảy ra được ký hiệu và định nghĩa là
+P (A|B) =
+
+P (AB)
+.
+P (B)
+
+(16)
+
+Tương tự,
+P (B|A) =
+
+P (AB)
+,
+P (A)
+
+(17)
+
+P (A) > 0.
+
+Xác suất có điều kiện có mọi tính chất của một xác suất bình thường, chẳng hạn P (A|B) ≥ 0,
+P (B|B) = 1.
+Ta có thể tính xác suất điều kiện bằng cách áp dụng các công thức (16) hoặc (17) hoặc tính trực tiếp.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+8/29
+
+SAMI.HUST – 2023
+
+8 / 29
+
+Xác suất có điều kiện
+
+Ví dụ 26
+Từ một bộ bài tú lơ khơ gồm 52 quân bài đã được trộn kỹ rút ngẫu nhiên ra một quân bài. Biết rằng quân
+bài được rút ra là quân màu đen, tính xác suất đó là quân J.
+Giải. Gọi A là sự kiện “rút được quân J” và B là sự kiện “rút được quân màu đen”.
+Cách 1: Xác suất cần tìm là
+P (A|B) =
+
+1
+2
+=
+.
+26
+13
+
+Cách 2: Sử dụng công thức (16),
+P (A|B) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+P (AB)
+2/52
+1
+=
+=
+.
+P (B)
+26/52
+13
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+9/29
+
+SAMI.HUST – 2023
+
+9 / 29
+
+1.4. CÔNG THỨC CỘNG VÀ NHÂN XÁC SUẤT
+1
+
+1.4.1 Công thức cộng xác suất
+
+2
+
+1.4.2 Xác suất có điều kiện
+
+3
+
+1.4.3 Công thức nhân xác suất
+1.4.3.1 Sự kiện độc lập
+1.4.3.2 Công thức nhân xác suất
+
+4
+
+1.4.4 Công thức Bernoulli
+1.4.4.1 Dãy phép thử Bernoulli
+1.4.4.2 Công thức Bernoulli
+
+5
+
+Bài tập Mục 1.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+10/29
+
+SAMI.HUST – 2023
+
+10 / 29
+
+Sự kiện độc lập
+Định nghĩa 19
+(a) Hai sự kiện A và B được gọi là độc lập với nhau nếu sự kiện này xuất hiện hay không không làm ảnh
+hướng tới khả năng xuất hiện của sự kiện kia, nghĩa là
+P (A|B) = P (A|B) = P (A),
+
+P (B|A) = P (B|A) = P (B).
+
+(b) Các sự kiện A1 , A2 , . . . , An được gọi là độc lập từng đôi với nhau nếu mỗi cặp hai trong n sự kiện đó
+độc lập với nhau.
+(c) Các sự kiện A1 , A2 , . . . , An được gọi là độc lập tổng thể nếu mỗi sự kiện trong chúng độc lập với tích
+của một số s bất kỳ sự kiện trong các sự kiện còn lại, 1 ≤ s ≤ n − 1.
+Nếu A và B độc lập thì các cặp A và B; A và B; A và B cũng độc lập.
+Thông thường tính độc lập của các sự kiện được suy ra từ ý nghĩa thực tế.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+11/29
+
+SAMI.HUST – 2023
+
+11 / 29
+
+Sự kiện độc lập
+
+Ví dụ 27
+Tung hai con xúc xắc cân đối đồng chất, gọi A là sự kiện “con thứ nhất xuất hiện mặt 2 chấm”, B là sự kiện
+“con thứ hai xuất hiện mặt chấm chẵn”, thì A và B là độc lập.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+12/29
+
+SAMI.HUST – 2023
+
+12 / 29
+
+Công thức nhân xác suất
+Định lý 2
+(a) Nếu A và B là hai sự kiện bất kỳ, thì
+(18)
+
+P (AB) = P (A)P (B|A) = P (B)P (A|B).
+(b) Nếu A và B là hai sự kiện độc lập, thì
+
+(19)
+
+P (AB) = P (A)P (B).
+(c) Nếu A1 , A2 , . . . , An là n sự kiện bất kỳ (n ≥ 2), thì
+P (A1 A2 . . . An ) = P (A1 )P (A2 |A1 )P (A3 |A1 A2 ) . . . P (An |A1 A2 . . . An−1 ).
+
+(20)
+
+(d) Nếu các sự kiện A1 , A2 , . . . , An độc lập trong tổng thể, thì
+(21)
+
+P (A1 A2 . . . An ) = P (A1 )P (A2 ) . . . P (An ).
+
+- Công thức nhân (19) cung cấp cho ta một phương pháp khác để kiểm tra tính độc lập của hai sự kiện ngẫu
+nhiên.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+13/29
+
+SAMI.HUST – 2023
+
+13 / 29
+
+Công thức nhân xác suất
+
+Ví dụ 28
+Gieo đồng thời hai đồng xu cân đối đồng chất lên mặt phẳng cứng. Gọi A1 là sự kiện “ít nhất một đồng xu
+xuất hiện mặt sấp”, A2 là sự kiện “ít nhất một đồng xu xuất hiện mặt ngửa”, A3 là sự kiện “có ba đồng xu
+xuất hiện mặt ngửa”. A1 , A2 , A3 có độc lập tổng thể không?
+Giải. Mặc dù
+P (A1 A2 A3 ) = 0 = P (A1 )P (A2 )P (A3 ),
+nhưng P (A1 A2 ) =
+
+1
+,
+2
+
+trong khi P (A1 )P (A2 ) =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+3
+4
+
+×
+
+3
+4
+
+=
+
+9
+.
+16
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+Do đó, A1 , A2 , A3 không độc lập tổng thể.
+
+14/29
+
+SAMI.HUST – 2023
+
+14 / 29
+
+Công thức nhân xác suất
+Ví dụ 29
+Một tổ có 15 sinh viên trong đó có 5 sinh viên học giỏi môn Xác suất thống kê. Chia tổ này thành 5 nhóm,
+mỗi nhóm 3 người. Tính xác suất để nhóm nào cũng có một sinh viên học giỏi môn Xác suất thống kê.
+Giải. Gọi A là sự kiện “nhóm nào cũng có một sinh viên học giỏi môn Xác suất thống kê“; Ai là sự kiện “nhóm i
+có một sinh viên học giỏi môn Xác suất thống kê”, i = 1, . . . , 5. Khi đó, A = A1 A2 A3 A4 A5 . Sử dụng công thức
+nhân (20), P (A) = P (A1 )P (A2 |A1 )P (A3 |A1 A2 )P (A4 |A1 A2 A3 )P (A5 |A1 A2 A3 A4 ), trong đó,
+P (A1 ) =
+
+2
+C51 × C10
+45
+=
+;
+3
+C15
+91
+
+P (A4 |A1 A2 A3 ) =
+Vậy P (A) =
+
+P (A2 |A1 ) =
+
+C21 × C42
+3
+= ;
+C63
+5
+
+C41 × C82
+28
+=
+;
+3
+C12
+55
+
+P (A5 |A1 A2 A3 A4 ) =
+
+P (A3 |A1 A2 ) =
+
+C31 × C62
+15
+=
+;
+C93
+28
+
+C11 × C22
+= 1.
+C33
+
+81
+≈ 0, 0809.
+1001
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+15/29
+
+SAMI.HUST – 2023
+
+15 / 29
+
+Công thức nhân xác suất
+
+Ví dụ 30
+Ba xạ thủ cùng bắn súng vào một bia độc lập nhau. Xác suất bắn trúng bia của xạ thủ thứ nhất, thứ hai,
+thứ ba tương ứng là 0,7, 0,8 và 0,9. Tính xác suất để:
+(a) Có duy nhất một xạ thủ bắn trúng bia;
+(b) Có đúng hai xạ thủ bắn trúng bia;
+(c) Có ít nhất một xạ thủ bắn trúng bia;
+(d) Xạ thủ thứ nhất bắn trúng bia biết rằng có hai xạ thủ bắn trúng bia.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+16/29
+
+SAMI.HUST – 2023
+
+16 / 29
+
+Công thức nhân xác suất
+Giải. Gọi Ai là sự kiện “xạ thủ thứ i bắn trúng bia”, i = 1, 2, 3.
+(a) Gọi A là sự kiện “có duy nhất một xạ thủ bắn trúng bia”. Khi đó,
+A = A1 A2 A3 + A1 A2 A3 + A1 A2 A3 .
+Sử dụng công thức cộng (15) và công thức nhân (21) trong trường hợp các sự kiện xung khắc và độc lập
+suy ra
+P (A) = P (A1 )P (A2 )P (A3 ) + P (A1 )P (A2 )P (A3 ) + P (A1 )P (A2 )P (A3 )
+= 0, 7 × 0, 2 × 0, 1 + 0, 3 × 0, 8 × 0, 1 + 0, 3 × 0, 2 × 0, 9 = 0, 092.
+(b) Gọi B là sự kiện “có đúng hai xạ thủ bắn trúng bia”. Khi đó,
+B = A1 A2 A3 + A1 A2 A3 + A1 A2 A3 .
+Làm tương tự ý (a), P (B) = 0, 398.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+17/29
+
+SAMI.HUST – 2023
+
+17 / 29
+
+Công thức nhân xác suất
+(c) Gọi C là sự kiện “có ít nhất một xạ thủ bắn trúng bia”.
+Cách 1: C = A1 + A2 + A3 ,
+P (C) = P (A1 ) + P (A2 ) + P (A3 ) − P (A1 A2 ) − P (A1 A3 ) − P (A2 A3 ) + P (A1 A2 A3 )
+= 0, 994;
+Cách 2: C = A1 A2 A3 ,
+P (C) = P (A1 )P (A2 )P (A3 ) = 0, 006,
+
+P (C) = 1 − P (C) = 1 − 0, 006 = 0, 994;
+
+Cách 3: C = A + B + A1 A2 A3 , P (C) = P (A) + P (B) + P (A1 A2 A3 ) = 0, 994.
+(d) P (A1 |B) =
+
+P (A1 B)
+P (A1 A2 A3 + A1 A2 A3 )
+0, 182
+=
+=
+≈ 0, 46.
+P (B)
+P (B)
+0, 398
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+18/29
+
+SAMI.HUST – 2023
+
+18 / 29
+
+1.4. CÔNG THỨC CỘNG VÀ NHÂN XÁC SUẤT
+1
+
+1.4.1 Công thức cộng xác suất
+
+2
+
+1.4.2 Xác suất có điều kiện
+
+3
+
+1.4.3 Công thức nhân xác suất
+1.4.3.1 Sự kiện độc lập
+1.4.3.2 Công thức nhân xác suất
+
+4
+
+1.4.4 Công thức Bernoulli
+1.4.4.1 Dãy phép thử Bernoulli
+1.4.4.2 Công thức Bernoulli
+
+5
+
+Bài tập Mục 1.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+19/29
+
+SAMI.HUST – 2023
+
+19 / 29
+
+Dãy phép thử Bernoulli
+
+Định nghĩa 20
+Dãy n phép thử C1 , C2 , . . . , Cn được gọi là độc lập với nhau nếu mỗi sự kiện trong từng phép thử độc lập với
+mọi sự kiện tương ứng của các phép thử khác.
+Định nghĩa 21
+Dãy n phép thử C1 , C2 , . . . , Cn được gọi là dãy phép thử Bernoulli nếu thỏa mãn các điều kiện sau đây:
+1
+
+Dãy này độc lập;
+
+2
+
+Trong mỗi phép thử Cj ta quan tâm đến hai sự kiện A và A, j = 1, 2, . . . , n.
+
+3
+
+Xác suất của sự kiện A, P (A), không thay đổi trong mọi phép thử và ký hiệu là P (A) = p.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+20/29
+
+SAMI.HUST – 2023
+
+20 / 29
+
+Công thức Bernoulli
+
+Định lý 3
+Trong dãy n phép thử Bernoulli:
+(a) Xác suất để sự kiện A xuất hiện đúng k lần, ký hiệu là Pn (k), được xác định bởi
+Pn (k) = Cnk pk (1 − p)n−k ,
+
+(22)
+
+k = 0, 1, . . . , n.
+
+(b) Xác suất để sự kiện A xuất hiện từ k1 đến k2 lần, ký hiệu là Pn (k1 , k2 ), được xác định bởi
+Pn (k1 , k2 ) =
+
+k2
+X
+k=k1
+
+Pn (k) =
+
+k2
+X
+
+Cnk pk (1 − p)n−k ,
+
+0 ≤ k1 < k2 ≤ n.
+
+(23)
+
+k=k1
+
+- Trong dãy phép thử Bernoulli, việc sử dụng công thức (22) hay (23) sẽ đơn giản hơn rất nhiều so với việc dùng
+các công thức nhân xác suất và cộng xác suất. Do đó, chúng có ý nghĩa thực tiễn rất lớn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+21/29
+
+SAMI.HUST – 2023
+
+21 / 29
+
+Công thức Bernoulli
+Ví dụ 31
+Trong một phân xưởng có 5 máy hoạt động độc lập. Giả sử trong mỗi ca làm việc, xác suất để mỗi máy bị
+hỏng là 0,1.
+(a) Tìm xác suất để trong một ca đó có đúng 2 máy hỏng.
+(b) Biết rằng trong một ca có đúng 2 máy hỏng, tính xác suất để máy thứ nhất không hỏng.
+Giải.
+(a) Coi sự hoạt động của mỗi máy là một phép thử. Ta có 5 phép thử độc lập; trong mỗi phép thử chỉ có 2
+trường hợp: hoặc máy hỏng, hoặc máy không hỏng; xác suất hỏng của mỗi máy đều bằng 0,1. Ta có dãy
+phép thử Bernoulli với n = 5, p = 0, 1. Áp dụng công thức Bernoulli (22) với k = 2, xác suất cần tìm là
+P5 (2) = C52 × (0, 1)2 × (0, 9)3 = 0, 0729.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+22/29
+
+SAMI.HUST – 2023
+
+22 / 29
+
+Công thức Bernoulli
+
+- Nếu sử dụng công thức cộng và nhân xác suất với A là sự kiện “trong ca đó có đúng 2 máy hỏng”, Ai là sự
+kiện “máy i bị hỏng trong ca”, i = 1, 2, . . . , 5, ta sẽ tính xác suất của A trên cơ sở phân tích:
+A = A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 +
++ A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 +
++ A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5 + A1 A2 A3 A4 A5
+và sử dụng tính xung khắc, tính độc lập của các sự kiện. Rõ ràng việc sử dụng công thức (22) cho ví dụ này đơn
+giản hơn rất nhiều.
+(b) P (A1 |A) =
+
+P (A1 )P (A|A1 )
+0, 9 × C42 × (0, 1)2 × (0, 9)2
+0, 04374
+=
+=
+= 0, 6.
+P (A)
+0, 0729
+0, 0729
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+23/29
+
+SAMI.HUST – 2023
+
+23 / 29
+
+1.4. CÔNG THỨC CỘNG VÀ NHÂN XÁC SUẤT
+1
+
+1.4.1 Công thức cộng xác suất
+
+2
+
+1.4.2 Xác suất có điều kiện
+
+3
+
+1.4.3 Công thức nhân xác suất
+1.4.3.1 Sự kiện độc lập
+1.4.3.2 Công thức nhân xác suất
+
+4
+
+1.4.4 Công thức Bernoulli
+1.4.4.1 Dãy phép thử Bernoulli
+1.4.4.2 Công thức Bernoulli
+
+5
+
+Bài tập Mục 1.4
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+24/29
+
+SAMI.HUST – 2023
+
+24 / 29
+
+Bài tập
+Bài 16
+Trong một phép thử cho hai sự kiện A và B thỏa mãn P (A) = 0, 5; P (B) = 0, 4 và P (AB) = 0, 4. Khi đó,
+P (B|A) bằng:
+A 0,4
+B 0,36
+C 0,48
+D 0,32
+Bài 17
+Trong một phép thử cho hai sự kiện A và B thỏa mãn P (A) = P (B) = 1/2 và P (AB) = 1/8. Hãy tính:
+(a) P (AB).
+(b) P (AB).
+(c) P (A + B).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+25/29
+
+SAMI.HUST – 2023
+
+25 / 29
+
+Bài tập
+Bài 18
+Trong cùng một phép thử cho A và B là các sự kiện thỏa mãn P (A) = 1/4 và P (B) = 1/2. Tính xác suất để
+A không xảy ra nhưng B xảy ra trong các trường hợp sau và vẽ sơ đồ Venn tương ứng:
+(a) A và B xung khắc.
+(b) A suy ra B.
+(c) P (AB) = 1/8.
+Bài 19
+Trên một bảng quảng cáo, người ta mắc hai hệ thống bóng đèn độc lập. Hệ thống I gồm bốn bóng mắc nối
+tiếp, hệ thống II gồm ba bóng mắc song song. Khả năng bị hỏng của mỗi bóng trong 18 giờ thắp sáng liên
+tục là 0,1. Việc hỏng của mỗi bóng của mỗi hệ thống được xem như độc lập. Tính xác suất để trong 18 giờ
+thắp sáng liên tục:
+(a) Cả hai hệ thống đều bị hỏng.
+(b) Chỉ có một hệ thống bị hỏng.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+26/29
+
+SAMI.HUST – 2023
+
+26 / 29
+
+Bài tập
+
+Bài 20
+Một cửa hàng sách ước lượng rằng: trong tổng số các khách hàng đến cửa hàng có 30% khách cần hỏi nhân
+viên bán hàng, 20% khách mua sách và 15% khách thực hiện cả hai điều trên. Gặp ngẫu nhiên một khách
+trong nhà sách, tính xác suất để người này:
+(a) Không thực hiện cả hai điều trên.
+(b) Không mua sách, biết rằng người này đã hỏi nhân viên bán hàng.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+27/29
+
+SAMI.HUST – 2023
+
+27 / 29
+
+Bài tập
+Bài 21
+Để thành lập đội tuyển quốc gia về một môn học, người ta tổ chức một cuộc thi tuyển gồm 3 vòng. Vòng
+thứ nhất lấy 80% thí sinh; vòng thứ hai lấy 70% thí sinh đã qua vòng thứ nhất và vòng thứ ba lấy 45% thí
+sinh đã qua vòng thứ hai. Để vào được đội tuyển, thí sinh phải vượt qua được cả 3 vòng thi. Tính xác suất
+để một thí sinh bất kỳ:
+(a) Được vào đội tuyển.
+(b) Bị loại ở vòng thứ ba.
+(c) Bị loại ở vòng thứ hai, biết rằng thí sinh này bị loại.
+Bài 22
+Một nhân viên bán hàng mỗi ngày đi chào hàng ở 10 nơi với xác suất bán được hàng ở mỗi nơi là 0,2. Tìm
+xác suất để:
+(a) Người đó bán được hàng ở 2 nơi.
+(b) Người đó bán được hàng ở ít nhất một nơi.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+28/29
+
+SAMI.HUST – 2023
+
+28 / 29
+
+Bài tập
+Bài 23
+Một bài thi trắc nghiệm gồm 12 câu hỏi, mỗi câu hỏi cho 5 phương án trả lời, trong đó chỉ có một phương án
+đúng. Giả sử một câu trả lời đúng được cộng 4 điểm và mỗi câu trả lời sai bị trừ đi 1 điểm. Một học sinh
+kém làm bài bằng cách chọn ngẫu nhiên phương án trả lời. Tìm xác suất để:
+(a) Học sinh đó được 13 điểm.
+(b) Học sinh đó bị điểm âm.
+Bài 24
+Hai vận động viên bóng bàn A và B đấu một trận gồm tối đa 5 ván (giả thiết không có kết quả hòa sau mỗi
+ván và trận đấu sẽ dừng nếu một người nào đó thắng trước 3 ván). Xác suất để A thắng được ở mỗi ván đều
+là 0,7.
+(a) Tính các xác suất để A thắng sau x ván (x = 3, 4, 5).
+(b) Tính xác suất để trận đấu kết thúc sau 5 ván.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.4
+
+29/29
+
+SAMI.HUST – 2023
+
+29 / 29
+
+

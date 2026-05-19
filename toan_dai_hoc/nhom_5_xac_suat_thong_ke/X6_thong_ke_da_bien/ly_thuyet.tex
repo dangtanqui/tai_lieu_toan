@@ -1,63 +1,35 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[vietnamese]{babel}
-\usepackage{amsmath,amssymb,amsthm}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage[most]{tcolorbox}
-\usepackage{hyperref}
-\usepackage{fancyhdr}
-\usepackage{tikz}
-\usepackage{eso-pic}
-\usepackage{xcolor}
-\geometry{a4paper, margin=2cm, bottom=2.5cm}
-\hypersetup{colorlinks=true, linkcolor=blue!70!black}
-\setlist[itemize]{topsep=4pt, itemsep=2pt}
-\setlist[enumerate]{topsep=4pt, itemsep=2pt}
-\AddToShipoutPictureFG{%
-  \AtPageCenter{%
-    \begin{tikzpicture}[remember picture, overlay]
-      \node[rotate=45, scale=1, opacity=0.06]{\fontsize{60}{72}\selectfont\bfseries\sffamily Đặng Tấn Quí};
-    \end{tikzpicture}%
-  }%
-}
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\small\textit{THỐNG KÊ ĐA BIẾN}}
-\fancyhead[R]{\small\textit{Đặng Tấn Quí}}
-\fancyfoot[C]{\thepage}
-\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}
-\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\thepage}\fancyfoot[L]{\footnotesize\textcopyright\ Đặng Tấn Quí}\fancyfoot[R]{\footnotesize SĐT: 0377\,122\,210}\renewcommand{\headrulewidth}{0pt}\renewcommand{\footrulewidth}{0.4pt}}
-\newtcolorbox{dinhnghia}[1][]{enhanced, breakable, colback=blue!3!white, colframe=blue!60!black, fonttitle=\bfseries, title={Định nghĩa}, #1}
-\newtcolorbox{dinhly}[1][]{enhanced, breakable, colback=green!3!white, colframe=green!50!black, fonttitle=\bfseries, title={Định lý}, #1}
-\newtcolorbox{tinhchat}[1][]{enhanced, breakable, colback=yellow!5!white, colframe=orange!50!black, fonttitle=\bfseries, title={Tính chất}, #1}
-\newtcolorbox{phuongphap}[1][]{enhanced, breakable, colback=gray!5!white, colframe=gray!50!black, fonttitle=\bfseries, title={Phương pháp}, #1}
-\newtcolorbox{luuy}[1][]{enhanced, breakable, colback=red!3!white, colframe=red!50!black, fonttitle=\bfseries, title={Lưu ý}, #1}
-\newtcolorbox{congthuc}[1][]{enhanced, breakable, colback=cyan!3!white, colframe=cyan!50!black, fonttitle=\bfseries, title={Công thức}, #1}
-\newtcolorbox{vidu}[1][]{enhanced, breakable, colback=violet!3!white, colframe=violet!50!black, fonttitle=\bfseries, title={Ví dụ}, #1}
+
+% --- Metadata (per course) ---
+\def\courseshortheader{THỐNG KÊ ĐA BIẾN}
+\def\coverbookline{NHÓM 5 --- XÁC SUẤT VÀ THỐNG KÊ}
+\def\covermaintitle{Thống kê đa biến}
+\def\coversubtitle{Giáo án lý thuyết --- PCA, nhân tố, phân biệt, phân cụm}
+
+\input{../_template/preamble.tex}
 
 \begin{document}
-\thispagestyle{empty}
-\begin{tikzpicture}[remember picture, overlay]
-  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
-  \node[anchor=west, white, font=\fontsize{26}{32}\bfseries\selectfont]
-    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {THỐNG KÊ ĐA BIẾN};
-  \node[anchor=west, white, font=\fontsize{18}{24}\selectfont]
-    at ([xshift=3cm, yshift=-9cm]current page.north west) {PCA, phân tích nhân tố, phân biệt, phân cụm};
-  \node[anchor=west, white, font=\Large\bfseries] at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
-  \node[anchor=west, yellow!80!white, font=\fontsize{22}{28}\bfseries\selectfont] at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
-  \node[anchor=south east, white, font=\Large\bfseries] at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
-\end{tikzpicture}
+
+\input{../_template/trang_bia.tex}
 \newpage
 \tableofcontents
 \newpage
-%% ================================================================
-%%  CHƯƠNG 1: PHÂN PHỐI CHUẨN NHIỀU CHIỀU
-%% ================================================================
+
+\input{../_template/loi_noi_dau.tex}
+
+\section{Mở đầu}
+
+\begin{dongco}[title={Động cơ --- Mở đầu}]
+Dữ liệu thường có nhiều biến cùng lúc. Thống kê đa biến tìm cấu trúc ẩn (thành phần chính, nhân tố), phân nhóm (cụm), hoặc phân loại (phân biệt).
+\end{dongco}
+
+\newpage
+
 \section{Phân phối chuẩn nhiều chiều}
+
+\begin{dongco}[title={Động cơ --- Phân phối chuẩn nhiều chiều}]
+Nền xác suất cho vectơ ngẫu nhiên và ma trận hiệp phương sai.
+\end{dongco}
 
 \begin{dinhnghia}
   $\mathbf{X} = (X_1, \ldots, X_p)^T \sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$:
@@ -90,7 +62,20 @@
 %% ================================================================
 %%  CHƯƠNG 2: PHÂN TÍCH THÀNH PHẦN CHÍNH (PCA)
 %% ================================================================
+
+\begin{tongket}[title={Tổng kết: Phân phối chuẩn nhiều chiều}]
+\begin{enumerate}
+  \item Nắm lại các \textbf{định nghĩa} và \textbf{công thức} cốt lõi trong mục ``Phân phối chuẩn nhiều chiều''.
+  \item Tự làm lại ít nhất một ví dụ (nếu có) hoặc áp dụng công thức vào một tình huống số.
+  \item Ghi chú điều kiện áp dụng (giả thiết độc lập, phân phối chuẩn, $n$ đủ lớn, v.v.).
+\end{enumerate}
+\end{tongket}
+
 \section{Phân tích thành phần chính (PCA)}
+
+\begin{dongco}[title={Động cơ --- Phân tích thành phần chính (PCA)}]
+Giảm chiều nhưng giữ tối đa phương sai --- trực quan hóa và tiền xử lý.
+\end{dongco}
 
 \begin{dinhnghia}
   PCA tìm các tổ hợp tuyến tính $Y_k = \mathbf{a}_k^T \mathbf{X}$ sao cho $\text{Var}(Y_k)$ lớn nhất, các $Y_k$ không tương quan.
@@ -115,7 +100,20 @@
 %% ================================================================
 %%  CHƯƠNG 3: PHÂN TÍCH NHÂN TỐ (FA)
 %% ================================================================
+
+\begin{tongket}[title={Tổng kết: Phân tích thành phần chính (PCA)}]
+\begin{enumerate}
+  \item Nắm lại các \textbf{định nghĩa} và \textbf{công thức} cốt lõi trong mục ``Phân tích thành phần chính (PCA)''.
+  \item Tự làm lại ít nhất một ví dụ (nếu có) hoặc áp dụng công thức vào một tình huống số.
+  \item Ghi chú điều kiện áp dụng (giả thiết độc lập, phân phối chuẩn, $n$ đủ lớn, v.v.).
+\end{enumerate}
+\end{tongket}
+
 \section{Phân tích nhân tố (Factor Analysis)}
+
+\begin{dongco}[title={Động cơ --- Phân tích nhân tố (Factor Analysis)}]
+Mô hình hóa biến quan sát bằng ít nhân tố tiềm ẩn.
+\end{dongco}
 
 \begin{dinhnghia}
   Mô hình: $\mathbf{X} - \boldsymbol{\mu} = \mathbf{L}\mathbf{F} + \boldsymbol{\varepsilon}$, với $\mathbf{F}$ ($m$ nhân tố chung), $\boldsymbol{\varepsilon}$ (nhiễu riêng), $\mathbf{L}$ (ma trận tải $p \times m$).
@@ -134,7 +132,20 @@
 %% ================================================================
 %%  CHƯƠNG 4: PHÂN TÍCH PHÂN BIỆT VÀ PHÂN CỤM
 %% ================================================================
+
+\begin{tongket}[title={Tổng kết: Phân tích nhân tố (Factor Analysis)}]
+\begin{enumerate}
+  \item Nắm lại các \textbf{định nghĩa} và \textbf{công thức} cốt lõi trong mục ``Phân tích nhân tố (Factor Analysis)''.
+  \item Tự làm lại ít nhất một ví dụ (nếu có) hoặc áp dụng công thức vào một tình huống số.
+  \item Ghi chú điều kiện áp dụng (giả thiết độc lập, phân phối chuẩn, $n$ đủ lớn, v.v.).
+\end{enumerate}
+\end{tongket}
+
 \section{Phân tích phân biệt và phân cụm}
+
+\begin{dongco}[title={Động cơ --- Phân tích phân biệt và phân cụm}]
+Hai hướng: có nhãn (phân loại) vs không nhãn (gom cụm).
+\end{dongco}
 
 \subsection{Phân tích phân biệt (Discriminant Analysis)}
 
@@ -177,5 +188,15 @@
     \item Gap statistic.
   \end{itemize}
 \end{phuongphap}
+
+\begin{tongket}[title={Tổng kết: Phân tích phân biệt và phân cụm}]
+\begin{enumerate}
+  \item Nắm lại các \textbf{định nghĩa} và \textbf{công thức} cốt lõi trong mục ``Phân tích phân biệt và phân cụm''.
+  \item Tự làm lại ít nhất một ví dụ (nếu có) hoặc áp dụng công thức vào một tình huống số.
+  \item Ghi chú điều kiện áp dụng (giả thiết độc lập, phân phối chuẩn, $n$ đủ lớn, v.v.).
+\end{enumerate}
+\end{tongket}
+
+
 
 \end{document}

@@ -1,0 +1,1432 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 4
+THỐNG KÊ VÀ ƯỚC LƯỢNG THAM SỐ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+1/47
+
+SAMI.HUST – 2023
+
+1 / 47
+
+4.2. Ước lượng điểm
+1
+
+4.2.1 Khái niệm ước lượng điểm
+4.2.1.1 Khái niệm
+4.2.1.2 Một số ước lượng điểm thông dụng
+
+2
+
+4.2.2 Một số tiêu chuẩn lựa chọn hàm ước lượng
+4.2.2.1 Ước lượng không chệch
+4.2.2.2 Phương sai của ước lượng
+4.2.2.3 Sai số tiêu chuẩn của ước lượng
+4.2.2.4 Sai số bình phương trung bình của ước lượng
+
+3
+
+4.2.3 Một số phương pháp ước lượng điểm
+4.2.3.1 Phương pháp mô men
+4.2.3.2 Phương pháp hợp lý cực đại
+
+4
+
+Bài tập Mục 4.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+2/47
+
+SAMI.HUST – 2023
+
+2 / 47
+
+Khái niệm ước lượng điểm
+
+Giả sử cần ước lượng tham số θ của biến ngẫu nhiên X. Từ X ta lập một mẫu ngẫu nhiên kích thước n,
+WX = (X1 , X2 , . . . , Xn ).
+b = g(X1 , X2 , . . . , Xn ), viết gọn là Θ
+b và gọi là hàm ước lượng điểm
+Ước lượng điểm của θ là một thống kê Θ
+cho θ.
+Tiến hành lập mẫu cụ thể Wx = (x1 , x2 , . . . , xn ). Giá trị cụ thể θb = g(x1 , x2 , . . . , xn ) được gọi là một giá
+trị ước lượng điểm của θ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+3/47
+
+SAMI.HUST – 2023
+
+3 / 47
+
+Khái niệm ước lượng điểm
+
+Ví dụ 16
+(a) Giả sử X là biến ngẫu nhiên có phân phối chuẩn với kỳ vọng E(X) = µ chưa biết.
+Kỳ vọng mẫu ngẫu nhiên X là một hàm ước lượng điểm cho µ.
+Sau khi lựa chọn mẫu cụ thể, thì giá trị trung bình mẫu x sẽ là một ước lượng điểm của µ.
+Chẳng hạn, lấy ngẫu nhiên một mẫu kích thước n = 10 và nhận được bộ dữ liệu x1 = 13, 8, x2 = 10, 4,
+x3 = 9, 7, x4 = 12, 6, x5 = 14, 1, x6 = 10, 8, x7 = 15, 1, x8 = 9, 5, x9 = 13, 1, x10 = 11, 3, thì một ước
+lượng điểm của µ là
+x=
+
+13, 8 + 10, 4 + 9, 7 + 12, 6 + 14, 1 + 10, 8 + 15, 1 + 9, 5 + 13, 1 + 11, 3
+= 12, 04.
+10
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+4/47
+
+SAMI.HUST – 2023
+
+4 / 47
+
+Khái niệm ước lượng điểm
+
+Ví dụ 16 (tiếp theo)
+(b) Nếu phương sai V (X) = σ 2 chưa biết thì phương sai mẫu ngẫu nhiên hiệu chỉnh S 2 là một hàm ước
+lượng điểm cho phương sai σ 2 và giá trị s2 tính được từ dữ liệu mẫu là một ước lượng điểm của σ 2 .
+Trong ví dụ trên,
+s2 =
+
+1
+(13, 8 − 12, 04)2 + (10, 4 − 12, 04)2 + (9, 7 − 12, 04)2 + (12, 6 − 12, 04)2 + (14, 1 − 12, 04)2
+9
+
++ (10, 8 − 12, 04)2 + (15, 1 − 12, 04)2 + (9, 5 − 12, 04)2 + (13, 1 − 12, 04)2 + (11, 3 − 12, 04)2
+
+≈ 4, 8783
+là một ước lượng điểm của σ 2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+5/47
+
+SAMI.HUST – 2023
+
+5 / 47
+
+Một số ước lượng điểm thông dụng
+
+- Ta thường cần các ước lượng điểm cho các tham số sau đây:
+Kỳ vọng µ của tổng thể.
+Phương sai σ 2 của tổng thể; độ lệch chuẩn σ của tổng thể.
+Tỷ lệ p của các phần tử có tính chất A trong tổng thể.
+Sự khác nhau giữa hai kỳ vọng của hai tổng thể µ1 − µ2 .
+Sự khác nhau về tỷ lệ của các phần tử có dấu hiệu A của hai tổng thể p1 − p2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+6/47
+
+SAMI.HUST – 2023
+
+6 / 47
+
+Một số ước lượng điểm thông dụng
+
+- Các ước lượng điểm hợp lý của các tham số:
+Đối với µ, một ước lượng điểm là µ
+b = x.
+Đối với σ 2 , một ước lượng điểm là σ
+b2 = s2 .
+Đối với tỷ lệ p, một ước lượng điểm là tần suất mẫu pb = x/n, trong đó x là số phần tử có dấu hiệu A trong
+mẫu kích thước n.
+Đối với µ1 − µ2 , một ước lượng điểm là µ
+b1 − µ
+b2 = x − y, sự khác nhau giữa hai trung bình mẫu của hai
+mẫu ngẫu nhiên độc lập.
+Đối với p1 − p2 , một ước lượng điểm là pb1 − pb2 , sự khác nhau giữa hai tần suất mẫu được tính toán từ hai
+mẫu ngẫu nhiên độc lập.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+7/47
+
+SAMI.HUST – 2023
+
+7 / 47
+
+4.2. Ước lượng điểm
+1
+
+4.2.1 Khái niệm ước lượng điểm
+4.2.1.1 Khái niệm
+4.2.1.2 Một số ước lượng điểm thông dụng
+
+2
+
+4.2.2 Một số tiêu chuẩn lựa chọn hàm ước lượng
+4.2.2.1 Ước lượng không chệch
+4.2.2.2 Phương sai của ước lượng
+4.2.2.3 Sai số tiêu chuẩn của ước lượng
+4.2.2.4 Sai số bình phương trung bình của ước lượng
+
+3
+
+4.2.3 Một số phương pháp ước lượng điểm
+4.2.3.1 Phương pháp mô men
+4.2.3.2 Phương pháp hợp lý cực đại
+
+4
+
+Bài tập Mục 4.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+8/47
+
+SAMI.HUST – 2023
+
+8 / 47
+
+Một số tiêu chuẩn lựa chọn hàm ước lượng
+- Có thể có một số lựa chọn hàm ước lượng điểm khác nhau cho một tham số.
+Ví dụ 17
+Với dữ liệu trong Ví dụ 16, ta có thể chọn
+giá trị trung bình mẫu
+x = 12, 04,
+giá trị trung vị mẫu
+x
+e=
+
+x5 + x6
+11, 3 + 12, 6
+=
+= 11, 95,
+2
+2
+
+giá trị trung bình mẫu sau khi đã bỏ đi giá trị nhỏ nhất và lớn nhất
+x−(max + min) =
+
+9, 7 + 10, 4 + 10, 8 + 11, 3 + 12, 6 + 13, 1 + 13, 8 + 14, 1
+= 11, 975
+8
+
+làm ước lượng điểm cho µ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+9/47
+
+SAMI.HUST – 2023
+
+9 / 47
+
+Một số tiêu chuẩn lựa chọn hàm ước lượng
+
+- Tại sao phải lựa chọn hàm ước lượng?
+b = g(X1 , X2 , . . . , Xn ) là một biến ngẫu nhiên. Như vậy, ta đã lấy
+Chú ý rằng θ là một số chưa biết, còn Θ
+một biến ngẫu nhiên để xấp xỉ cho một số.
+Câu hỏi đặt ra là:
+1. Ước lượng đưa ra có “tốt” không?
+2. “Ước lượng tốt” được hiểu theo nghĩa nào?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+10/47
+
+SAMI.HUST – 2023
+
+10 / 47
+
+Ước lượng không chệch
+
+b cho θ được gọi là ước lượng không chệch của θ nếu
+Ước lượng Θ
+(32)
+
+b = θ.
+E(Θ)
+b 6= θ, thì
+Nếu ước lượng là có chệch, nghĩa là E(Θ)
+b −θ
+E(Θ)
+
+(33)
+
+b
+được gọi là độ chệch của ước lượng Θ.
+- Có thể có nhiều ước lượng không chệch cho một tham số của tổng thể.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+11/47
+
+SAMI.HUST – 2023
+
+11 / 47
+
+Ước lượng không chệch cho µ
+
+Giả sử biến ngẫu nhiên gốc X có E(X) = µ chưa biết, µ được xem là kỳ vọng của tổng thể.
+Từ X ta lập mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ).
+P
+Chọn X = n1 n
+i=1 Xi là hàm ước lượng điểm cho kỳ vọng µ.
+Vì E(X) = µ, nên X là một ước lượng không chệch cho µ.
+P
+Khi có một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) thì x = n1 n
+i=1 xi là một ước lượng điểm không chệch của
+µ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+12/47
+
+SAMI.HUST – 2023
+
+12 / 47
+
+Ước lượng không chệch cho µ
+
+Ví dụ 18
+Với dữ liệu trong Ví dụ 16, thì
+trung bình mẫu
+x = 12, 04,
+trung vị mẫu
+x
+e = 11, 95,
+trung bình mẫu sau khi đã bỏ đi giá trị nhỏ nhất và lớn nhất
+x−(max + min) = 11, 975
+đều là các ước lượng không chệch cho µ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+13/47
+
+SAMI.HUST – 2023
+
+13 / 47
+
+Ước lượng không chệch cho σ 2
+
+Giả sử biến ngẫu nhiên X có V (X) = σ 2 chưa biết, σ 2 được xem là phương sai của tổng thể.
+Lập mẫu ngẫu nhiên kích thước n, WX = (X1 , X2 , . . . , Xn ). Xuất phát từ công thức tính phương sai,
+thống kê
+n
+2
+1X
+Se2 =
+Xi − X
+n i=1
+được xem xét để dùng làm hàm ước lượng điểm cho σ 2 .
+Tuy nhiên
+E(Se2 ) =
+
+n−1 2
+σ 6= σ 2 ,
+n
+
+nên Se2 là một hàm ước lượng điểm có chệch cho σ 2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+14/47
+
+SAMI.HUST – 2023
+
+14 / 47
+
+Ước lượng không chệch cho σ 2
+Để thu được ước lượng không chệch cho σ 2 ta sử dụng phương sai mẫu ngẫu nhiên hiệu chỉnh
+S2 =
+
+n
+2
+1 X
+n e2
+S ,
+Xi − X =
+n − 1 i=1
+n−1
+
+vì
+E(S 2 ) = E
+
+
+
+n e2 
+S = σ2 .
+n−1
+
+Khi có mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) ta tính được giá trị
+s2 =
+
+n
+2
+1 X
+xi − x ,
+n − 1 i=1
+
+đây là một ước lượng điểm không chệch của σ 2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+15/47
+
+SAMI.HUST – 2023
+
+15 / 47
+
+Ước lượng không chệch cho σ 2
+
+Ví dụ 19
+Với dữ liệu trong Ví dụ 16, thì một ước lượng điểm không chệch cho σ 2 là
+s2 =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+n
+2
+1 X
+xi − x ≈ 4, 8783.
+n − 1 i=1
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+16/47
+
+SAMI.HUST – 2023
+
+16 / 47
+
+Ước lượng không chệch cho p
+
+Gọi p là tỷ lệ các phần tử có dấu hiệu A trong tổng thể, p chưa biết. Ta thực hiện n quan sát độc lập và gọi
+X là số cá thể có dấu hiệu A trong mẫu quan sát. Khi đó, tần suất mẫu ngẫu nhiên
+X
+Pb =
+n
+là một hàm ước lượng điểm cho p.
+Vì E(Pb) = p, nên Pb là hàm ước lượng không chệch của p.
+Khi có mẫu cụ thể, ta tính được giá trị cụ thể của Pb, ký hiệu là pb, đây là một ước lượng điểm không chệch
+cho p.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+17/47
+
+SAMI.HUST – 2023
+
+17 / 47
+
+Nhận xét về ước lượng không chệch
+
+b − θ = 0. Tính chất này có nghĩa là
+Khi một ước lượng là không chệch thì “độ chệch” bằng 0, nghĩa là E(Θ)
+b
+ước lượng Θ không có sai số hệ thống mà chỉ có sai số ngẫu nhiên.
+b = θ của ước lượng không chệch có nghĩa là trung bình các giá trị của Θ
+b bằng θ. Tuy nhiên,
+Điều kiện E(Θ)
+b đều trùng khít với θ mà từng giá trị của Θ
+b có thể sai lệch rất lớn so với
+không có nghĩa là mọi giá trị của Θ
+θ.
+- Chọn hàm ước lượng nào? Ta cần tìm ước lượng không chệch sao cho độ sai lệch trung bình bình
+phương là bé nhất.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+18/47
+
+SAMI.HUST – 2023
+
+18 / 47
+
+Phương sai của ước lượng
+
+Ví dụ 18 cho thấy, ước lượng không chệch cho θ là không duy nhất. Vấn đề đặt ra là, trong số các ước
+lượng không chệch này ta nên chọn ước lượng nào?
+b 1 và Θ
+b 2 là các hàm ước lượng không chệch cho θ, tức là E(Θ
+b 1 ) = θ và E(Θ
+b 2 ) = θ. Tuy nhiên
+Giả sử Θ
+phương sai của chúng lại có thể khác nhau (xem Hình 6).
+b 1 nhỏ hơn phương sai của Θ
+b 2 nên Θ
+b 1 có khả năng là một ước lượng gần với giá trị θ
+Vì phương sai của Θ
+hơn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+19/47
+
+SAMI.HUST – 2023
+
+19 / 47
+
+Phương sai của ước lượng
+
+b1
+Phân phối mẫu của Θ
+
+b2
+Phân phối mẫu của Θ
+θ
+
+x
+
+b 1 và Θ
+b2
+Hình 6: Phân phối mẫu của hai ước lượng không chệch Θ
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+20/47
+
+SAMI.HUST – 2023
+
+20 / 47
+
+Phương sai của ước lượng
+
+Định lý 7
+Nếu WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên X có
+phân phối chuẩn N (µ; σ 2 ), thì trung bình mẫu X là hàm ước lượng không chệch có phương sai bé nhất cho µ.
+- Khi không biết có tồn tại phương sai bé nhất của các hàm ước lượng không chệch hay không, để chọn ước
+lượng tốt ta sẽ so sánh độ lệch tiêu chuẩn hay phương sai của các hàm ước lượng. Ước lượng không chệch có độ
+lệch tiêu chuẩn hay phương sai nhỏ hơn sẽ “tốt hơn”.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+21/47
+
+SAMI.HUST – 2023
+
+21 / 47
+
+Ước lượng hiệu quả
+
+- Một nguyên tắc hợp lý của ước lượng điểm là lựa chọn ước lượng điểm có phương sai nhỏ nhất.
+Định nghĩa 10
+b được gọi là ước lượng hiệu quả cho tham số θ nếu nó là hàm ước lượng không chệch cho θ và phương
+Hàm Θ
+sai của nó nhỏ hơn bất kỳ phương sai của một hàm ước lượng không chệch nào khác cho θ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+22/47
+
+SAMI.HUST – 2023
+
+22 / 47
+
+Sai số tiêu chuẩn của ước lượng
+b ký hiệu là σ b , được gọi là sai số tiêu chuẩn.
+Độ lệch chuẩn của ước lượng điểm Θ,
+Θ
+Ước lượng điểm của sai số tiêu chuẩn được ký hiệu là σ
+bΘ
+b.
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu
+nhiên X
+
+có phân phối chuẩn N (µ; σ 2 ). Khi đó, phân phối mẫu của X là phân phối chuẩn N µ; σ 2 /n , sai số tiêu
+chuẩn của X là
+σ
+σX = √ .
+(34)
+n
+Nếu σ chưa biết, ta thay độ lệch chuẩn hiệu chỉnh mẫu S vào phương trình trên, thì sai số tiêu chuẩn ước
+lượng của X là
+S
+σ
+bX = √ .
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+(35)
+
+23/47
+
+SAMI.HUST – 2023
+
+23 / 47
+
+Sai số tiêu chuẩn của ước lượng
+Ví dụ 20
+Với dữ liệu của Ví dụ 16,
+Một ước lượng điểm không chệch cho µ là trung bình mẫu x = 12, 04.
+√
+Sai số tiêu chuẩn của trung bình mẫu là σx = σ/ n, trong đó n = 10 là kích thước mẫu. Ước lượng
+điểm cho sai số tiêu chuẩn của trung bình mẫu là
+4, 8783
+s
+≈ 1, 5427.
+σ
+bx = √ = √
+n
+10
+x1 + x2
+Nếu ta dùng µ
+b=
+là một ước lượng điểm không chệch khác cho µ thì sai số tiêu chuẩn là
+2
+√
+σµb = σ/ 2 và ước lượng điểm cho sai số tiêu chuẩn này là
+s
+4, 8783
+σ
+bµb = √ = √
+≈ 3, 4495.
+2
+2
+Rõ ràng ước lượng µ
+b không hiệu quả bằng ước lượng x.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+24/47
+
+SAMI.HUST – 2023
+
+24 / 47
+
+Sai số bình phương trung bình của ước lượng
+Đôi khi cần sử dụng độ chệch của ước lượng. Trong những trường hợp như vậy, sai số bình phương trung
+b được định nghĩa là
+bình của ước lượng là quan trọng. Sai số bình phương trung bình của hàm ước lượng Θ
+b và θ.
+kỳ vọng của bình phương độ lệch giữa Θ
+b − θ được gọi là sai số (nó là một biến ngẫu nhiên) còn giá trị trung bình của sai số
+Đại lượng Θ
+b
+b − θ được gọi là độ chệch. Ta mong muốn tìm được ước lượng sao cho sai số bình phương
+E(Θ − θ) = E(Θ)
+trung bình
+b = E(Θ
+b − θ)2
+M SE(Θ)
+
+(36)
+
+nhỏ nhất có thể.
+Tuy nhiên, trong nhiều trường hợp tìm ước lượng thỏa mãn điều kiện này khá khó. Lưu ý rằng
+b − θ)2 = [E(Θ)
+b − θ]2 + V (Θ)
+b = (Độ chệch)2 + V (Θ).
+b
+E(Θ
+Vì vậy ta thường chỉ tìm ước lượng tốt nhất trong các ước lượng không chệch tức là ước lượng có phương
+b nhỏ nhất trong các ước lượng không chệch.
+sai V (Θ)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+25/47
+
+SAMI.HUST – 2023
+
+25 / 47
+
+4.2. Ước lượng điểm
+1
+
+4.2.1 Khái niệm ước lượng điểm
+4.2.1.1 Khái niệm
+4.2.1.2 Một số ước lượng điểm thông dụng
+
+2
+
+4.2.2 Một số tiêu chuẩn lựa chọn hàm ước lượng
+4.2.2.1 Ước lượng không chệch
+4.2.2.2 Phương sai của ước lượng
+4.2.2.3 Sai số tiêu chuẩn của ước lượng
+4.2.2.4 Sai số bình phương trung bình của ước lượng
+
+3
+
+4.2.3 Một số phương pháp ước lượng điểm
+4.2.3.1 Phương pháp mô men
+4.2.3.2 Phương pháp hợp lý cực đại
+
+4
+
+Bài tập Mục 4.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+26/47
+
+SAMI.HUST – 2023
+
+26 / 47
+
+Phương pháp mô men
+
+Giả sử WX = (X1 , X2 , . . . , Xn ) là mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên X có phân
+phối xác suất FX (x).
+Mô men lý thuyết bậc k (hay mô men phân phối) là E(X k ), k = 1, 2, . . . .
+P
+k
+Tương ứng mô men mẫu bậc k là n1 n
+i=1 Xi , k = 1, 2, . . .
+- Ý tưởng của phương pháp
+Ý tưởng chung của phương pháp mô men là cân bằng các mô men lý thuyết, được xác định dựa trên giá trị
+kỳ vọng với mô men mẫu tương ứng.
+Mô men lý thuyết là hàm của các tham số chưa biết. Giải hệ phương trình này tìm các ước lượng của tham
+số chưa biết.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+27/47
+
+SAMI.HUST – 2023
+
+27 / 47
+
+Phương pháp mô men
+
+Định nghĩa 11
+Giả sử WX = (X1 , X2 , . . . , Xn ) là mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên X có
+phân phối FX (x; θ1 , θ2 , . . . , θm ), trong đó các tham số θ1 , θ2 , . . . , θm chưa biết. Khi đó, ước lượng mô men
+b 1, Θ
+b 2, . . . , Θ
+b m được xác định bằng cách cân bằng m mô men lý thuyết bậc k với m mô men mẫu bậc k,
+Θ
+k = 1, 2, . . . , m.
+Ví dụ 21
+Mô men lý thuyết bậc nhất là E(X) = µ và mô men mẫu bậc nhất là
+ước lượng mô men cho µ là
+µ
+bMoL = X.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+1
+n
+
+Pn
+
+i=1
+
+Xi = X. Do đó, ta tìm được
+
+28/47
+
+SAMI.HUST – 2023
+
+28 / 47
+
+Ước lượng mô men phân phối mũ
+
+Giả sử WX = (X1 , X2 , . . . , Xn ) là mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên gốc X có
+phân phối mũ với tham số λ chưa biết, cần ước lượng.
+Để tìm ước lượng mô men cho tham số λ ta cân bằng E(X) với X, tức là
+1
+= X.
+λ
+Do đó, ước lượng mô men cho λ là
+bMoL = 1 .
+λ
+X
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+29/47
+
+SAMI.HUST – 2023
+
+29 / 47
+
+Ước lượng mô men phân phối mũ
+
+Ví dụ 22
+Giả sử tuổi thọ (tháng) của một thiết bị điện tử là biến ngẫu nhiên có phân phối mũ. Lấy ngẫu nhiên 10 đơn
+vị thiết bị điện tử và kiểm tra, thấy tuổi thọ (tính bằng tháng) như sau
+11, 96; 5, 03; 67, 40; 16, 07; 31, 50; 7, 73; 11, 10; 22, 38; 20, 10; 23, 20.
+Vì
+x=
+
+11, 96 + 5, 03 + 67, 40 + 16, 07 + 31, 50 + 7, 73 + 11, 10 + 22, 38 + 20, 10 + 23, 20
+= 21, 747 (tháng)
+10
+
+nên ước lượng mô men của λ là
+1
+bMoL = 1 =
+λ
+≈ 0, 0460.
+x
+21, 747
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+30/47
+
+SAMI.HUST – 2023
+
+30 / 47
+
+Ước lượng mô men phân phối chuẩn
+Giả sử WX = (X1 , X2 , . . . , Xn ) là mẫu ngẫu nhiên kích thước n được xây dựng từ biến ngẫu nhiên gốc X có
+phân phối chuẩn N (µ; σ 2 ) với các tham số µ và σ 2 chưa biết, cần ước lượng.
+ĐểPtìm ước lượng mô men cho tham số µ và σ 2 ta cân bằng E(X) = µ và E(X 2 ) = µ2 + σ 2 với X và
+n
+2
+1
+i=1 Xi tương ứng
+n
+n
+1X 2
+µ = X; µ2 + σ 2 =
+Xi .
+n i=1
+Giải các phương trình này ta nhận được các ước lượng mô men cho µ và σ 2 là
+µ
+bMoL = X;
+
+2
+σ
+bMoL
+=
+
+n
+n
+n
+2
+1 X 2  1 X 2
+1X
+Xi −
+Xi =
+Xi − X .
+n i=1
+n i=1
+n i=1
+
+- Ước lượng mô men cho σ 2 không phải là ước lượng không chệch.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+31/47
+
+SAMI.HUST – 2023
+
+31 / 47
+
+Phương pháp hợp lý cực đại
+Một trong những phương pháp tốt nhất để tìm ước lượng điểm cho một tham số là phương pháp hợp lý cực
+đại. Kỹ thuật này được phát triển vào những năm 1920 bởi nhà thống kê nổi tiếng người Anh, R.A. Fisher.
+Như tên của phương pháp, ước lượng điểm sẽ là giá trị của tham số làm tối đa hóa hàm hợp lý.
+Hàm hợp lý
+Giả sử ta đã biết phân phối xác suất của biến ngẫu nhiên gốc X, chẳng hạn, hàm mật độ xác suất fX (x; θ)
+(có thể hiểu fX (x, θ) là công thức xác suất nếu X rời rạc).
+Lập một mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) kích thước n. Hàm của đối số θ
+
+L x1 , x2 , . . . , xn , θ = fX (x1 , θ)fX (x2 , θ) . . . fX (xn , θ)
+
+(37)
+
+gọi là hàm số hợp lý của tham số θ.
+Giá trị của hàm hợp lý chính là xác suất hay mật độ xác suất tại điểm (x1 , x2 , . . . , xn ). Giá trị
+θb = g(x1 , x2 , . . . , xn ) được gọi là ước lượng hợp lý cực đại của θ nếu ứng với giá trị này của θ hàm hợp lý
+đạt cực đại.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+32/47
+
+SAMI.HUST – 2023
+
+32 / 47
+
+Phương pháp hợp lý cực đại
+
+Các bước tiến hành
+Do hàm L và hàm ln L đạt cực đại tại cùng một giá trị của θ nên ta có thể tìm giá trị của θ để ln L đạt cực đại
+theo các bước sau.
+
+2
+
+Tìm đạo hàm bậc nhất của hàm ln L theo θ.
+d ln L
+Lập phương trình
+= 0. Phương trình này gọi là phương trình hợp lý. Giả sử nó có nghiệm
+dθ
+θ := θb = g(x1 , x2 , . . . , xn ).
+
+3
+
+Tìm đạo hàm bậc hai
+
+1
+
+d2 ln L
+. Nếu tại điểm θ = θb đạo hàm bậc hai âm thì tại điểm này hàm ln L đạt cực
+dθ2
+đại. Khi đó, θb = g(x1 , x2 , . . . , xn ) là ước lượng điểm hợp lý cực đại cần tìm.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+33/47
+
+SAMI.HUST – 2023
+
+33 / 47
+
+Ước lượng hợp lý cực đại phân phối Bernoulli
+Ví dụ 23
+Giả sử X là biến ngẫu nhiên có phân phối Bernoulli với P (X = x) = px (1 − p)1−x , x = 0, 1 và p là tham số
+cần ước lượng. Hàm hợp lý của một mẫu Wx = (x1 , x2 , . . . , xn ) kích thước n là
+L(p) := L(x1 , x2 , . . . , xn , p) = px1 (1 − p)1−x1 px2 (1 − p)1−x2 . . . pxn (1 − p)1−xn
+xi
+1−xi
+= Πn
+=p
+i=1 p (1 − p)
+
+Pn
+
+i=1
+
+xi
+
+Pn
+
+xi
+
+1
+n
+
+Pn
+
+(1 − p)n−
+
+i=1
+
+.
+
+Nếu pb làm cực hàm L(p) thì nó cũng làm cực đại hàm ln L(p) với
+ln L(p) =
+
+n
+X
+
+n
+
+
+
+X
+xi ln p + n −
+xi ln(1 − p).
+
+i=1
+
+Giải phương trình
+2
+
+d ln L
+1 Pn
+dp2
+p= n
+i=1 xi
+
+d ln L(p)
+dp
+
+=
+
+Pn
+
+i=1
+
+p
+
+xi
+
+−
+
+i=1
+
+P
+n− n
+i=1 xi
+1−p
+
+= 0 ta nhận được nghiệm p := pb =
+
+i=1
+
+xi . Vì
+
+< 0, nên hàm ước lượng hợp lý cực đại của p là
+n
+1X
+PbMLE =
+Xi .
+n i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+34/47
+
+SAMI.HUST – 2023
+
+34 / 47
+
+Ước lượng hợp lý cực đại phân phối chuẩn
+
+Ví dụ 24
+Hàm ước lượng hợp lý cực đại của các tham số µ và σ của biến ngẫu nhiên có luật phân phối chuẩn N (µ; σ 2 )
+là
+n
+1X
+2
+µ
+bMLE = X và σ
+bMLE
+=
+(Xi − X)2 .
+n i=1
+(Phần chứng minh xem như là bài tập).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+35/47
+
+SAMI.HUST – 2023
+
+35 / 47
+
+4.2. Ước lượng điểm
+1
+
+4.2.1 Khái niệm ước lượng điểm
+4.2.1.1 Khái niệm
+4.2.1.2 Một số ước lượng điểm thông dụng
+
+2
+
+4.2.2 Một số tiêu chuẩn lựa chọn hàm ước lượng
+4.2.2.1 Ước lượng không chệch
+4.2.2.2 Phương sai của ước lượng
+4.2.2.3 Sai số tiêu chuẩn của ước lượng
+4.2.2.4 Sai số bình phương trung bình của ước lượng
+
+3
+
+4.2.3 Một số phương pháp ước lượng điểm
+4.2.3.1 Phương pháp mô men
+4.2.3.2 Phương pháp hợp lý cực đại
+
+4
+
+Bài tập Mục 4.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+36/47
+
+SAMI.HUST – 2023
+
+36 / 47
+
+Bài tập
+Bài 13
+Cho tổng thể có trung bình là 1065 và độ lệch chuẩn là 500. Nếu rút ra một mẫu ngẫu nhiên có kích thước
+n = 100 từ tổng thể đó thì kỳ vọng của trung bình mẫu ngẫu nhiên bằng bao nhiêu?
+A. 100
+
+C. 500
+
+B. 1065
+
+D. 500/100
+
+Bài 14
+Cho tổng thể có trung bình là 1065 và độ lệch chuẩn là 500. Nếu rút ra một mẫu ngẫu nhiên có kích thước
+n = 100 từ tổng thể đó thì phương sai của trung bình mẫu ngẫu nhiên bằng bao nhiêu?
+A. 1000
+
+C. 500
+
+B. 1065
+
+D. 5002 /100
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+37/47
+
+SAMI.HUST – 2023
+
+37 / 47
+
+Bài tập
+Bài 15
+Để xác định số người chơi chứng khoán ở thành phố X, người ta điều tra 1250 người, thấy có 20 người chơi
+chứng khoán. Hãy ước lượng số lượng người chơi chứng khoán ở thành phố X biết thành phố có 2 triệu dân.
+A. 32000
+
+C. 22000
+
+B. 30000
+
+D. 25000
+
+Bài 16
+Để xác định số cá thể A trong một quần thể, người ta bắt ngẫu nhiên 100 cá thể A và đánh dấu rồi thả lại
+về quần thể. Sau một thời gian người ta bắt ngẫu nhiên 500 cá thể A thấy có 20 cá thể bị đánh dấu. Hãy
+ước lượng số lượng cá thể A trong quần thể.
+A. 2000
+
+C. 2200
+
+B. 3000
+
+D. 2500
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+38/47
+
+SAMI.HUST – 2023
+
+38 / 47
+
+Bài tập
+
+Bài 17
+Kiểm tra lượng tạp chất trong 9 sản phẩm được ta thu được mẫu như sau (đơn vị tính là gam):
+18,2
+
+13,7
+
+15,9
+
+17,4
+
+21,8
+
+16,6
+
+12,3
+
+18,8
+
+16,2
+
+(a) Ước lượng điểm cho trọng lượng trung bình của tạp chất trong sản phẩm là bao nhiêu?
+(b) Hãy tìm ước lượng điểm không chệch cho phương sai của trọng lượng của tạp chất trong sản phẩm.
+(c) Hãy tìm ước lượng điểm cho sai số tiêu chuẩn của trung bình mẫu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+39/47
+
+SAMI.HUST – 2023
+
+39 / 47
+
+Bài tập
+
+Bài 18
+Điều tra doanh thu (triệu/tháng) của một chuỗi cửa hàng bán lẻ, người ta thu được bảng kết quả như sau
+Doanh thu
+Số cửa hàng
+
+6-10
+6
+
+10-14
+9
+
+14-18
+9
+
+(a) Ước lượng điểm cho doanh thu trung bình của chuỗi cửa hàng trên là bao nhiêu?
+(b) Hãy tìm ước lượng điểm cho mức độ không đồng đều về doanh thu (độ lệch chuẩn) của các cửa hàng.
+(c) Hãy tìm ước lượng điểm cho sai số tiêu chuẩn của trung bình mẫu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+40/47
+
+SAMI.HUST – 2023
+
+40 / 47
+
+Bài tập
+
+Bài 19
+Xác suất để một mạng điện gặp sự cố trong một ngày là p. Quan sát mạng điện đó trong n ngày (n lớn), gọi
+X là số ngày mạng điện đó gặp sự cố trong n ngày quan sát.
+(a) Giải thích tại sao có thể sử dụng
+
+X
+n
+
+để ước lượng cho p?
+
+(b) Trình bày cách tính xấp xỉ xác suất sự sai khác giữa
+và  = 0, 01.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+X
+n
+
+và p nhỏ hơn ? Áp dụng cho n = 365, p = 0, 1
+
+41/47
+
+SAMI.HUST – 2023
+
+41 / 47
+
+Bài tập
+
+Bài 20
+(a) Hãy chứng minh trung bình mẫu ngẫu nhiên X là ước lượng không chệch của trung bình tổng thể µ.
+(b) Hãy chứng minh tần suất mẫu ngẫu nhiên Pb là ước lượng không chệch của tỷ lệ trong tổng thể p.
+P
+2
+(c) Hãy chứng minh phương sai mẫu ngẫu nhiên S̃ 2 = n1 n
+i=1 (Xi − X) là ước lượng chệch của phương
+2
+sai tổng thể σ .
+Bài 21
+b của tham số θ có thể được biểu diễn như
+Hãy chứng minh sai số bình phương trung bình của ước lượng Θ
+sau:
+b = E[(Θ
+b − θ)2 ] = (độ lệch)2 + V (Θ)
+b
+M SE(Θ)
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+42/47
+
+SAMI.HUST – 2023
+
+42 / 47
+
+Bài tập
+Bài 22
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n lấy từ tổng thể có phân phối Bernoulli
+với tham số p ∈ (0; 1).
+(a) Hãy tìm ước lượng mô men của tham số p.
+(b) Hãy tìm ước lượng hợp lý cực đại của tham số p.
+(c) Ước lượng mô men và ước lượng hợp lý cực đại của p ở trên có chệch hay không? Tại sao?
+Bài 23
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n lấy từ tổng thể có phân phối Poisson
+với tham số λ > 0.
+(a) Hãy tìm ước lượng mô men của tham số λ > 0.
+(b) Hãy tìm ước lượng hợp lý cực đại của tham số λ > 0.
+(c) Ước lượng mô men và ước lượng hợp lý cực đại của λ > 0 ở trên có chệch hay không? Tại sao?
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+43/47
+
+SAMI.HUST – 2023
+
+43 / 47
+
+Bài 24
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n lấy từ tổng thể có phân phối chuẩn với
+tham số µ và σ 2 .
+(a) Hãy tìm ước lượng mô men của các tham số µ và σ 2 .
+(b) Hãy tìm ước lượng hợp lý cực đại của các tham số µ và σ 2 .
+(c) Ước lượng mô men và ước lượng hợp lý cực đại của µ và σ 2 ở trên có chệch hay không? Tại sao?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+44/47
+
+SAMI.HUST – 2023
+
+44 / 47
+
+Bài tập
+
+Bài 25
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n lấy từ tổng thể có hàm mật độ xác suất
+với tham số λ > 0 như sau:
+(
+x
+1 −λ
+e , nếu x ≥ 0,
+f (x; λ) = λ
+0,
+nếu x < 0.
+(a) Hãy tìm ước lượng mô men của tham số λ.
+(b) Hãy tìm ước lượng hợp lý cực đại của tham số λ.
+(c) Ước lượng mô men và ước lượng hợp lý cực đại của λ ở trên có chệch hay không? Tại sao?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+45/47
+
+SAMI.HUST – 2023
+
+45 / 47
+
+Bài tập
+
+Bài 26
+Giả sử X là một biến ngẫu nhiên rời rạc có bảng phân phối xác suất như sau:
+X
+P (X = x)
+
+0
+2θ/3
+
+1
+θ/3
+
+2
+2(1 − θ)/3
+
+3
+(1 − θ)/3
+
+Xét một mẫu được lấy từ tổng thể X như sau: (3, 0, 2, 1, 3, 2, 1, 0, 2, 1).
+(a) Hãy tìm ước lượng mô men của tham số θ.
+(b) Hãy tìm ước lượng hợp lý cực đại của tham số θ.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+46/47
+
+SAMI.HUST – 2023
+
+46 / 47
+
+Bài tập
+
+Bài 27
+Giả sử WX = (X1 , X2 , . . . , Xn ) là một mẫu ngẫu nhiên kích thước n lấy từ tổng thể X có hàm mật độ xác
+suất như sau:
+ |x| 
+1
+f (x; σ) =
+exp −
+.
+2σ
+σ
+(a) Hãy tìm ước lượng hợp lý cực đại của tham số σ.
+(b) Ước lượng ước lượng hợp lý cực đại của σ ở trên có chệch hay không? Tại sao?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 4 – MỤC 4.2
+
+47/47
+
+SAMI.HUST – 2023
+
+47 / 47
+
+

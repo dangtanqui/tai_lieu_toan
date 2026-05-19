@@ -1,0 +1,465 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 1
+SỰ KIỆN NGẪU NHIÊN VÀ PHÉP TÍNH XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng 201.BIS–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+1/15
+
+SAMI.HUST – 2023
+
+1 / 15
+
+1.5. CÔNG THỨC XÁC SUẤT ĐẦY ĐỦ. CÔNG THỨC BAYES
+
+1
+
+1.5.1 Công thức xác suất đầy đủ
+
+2
+
+1.5.2 Công thức Bayes
+
+3
+
+Bài tập Mục 1.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+2/15
+
+SAMI.HUST – 2023
+
+2 / 15
+
+Công thức xác suất đầy đủ
+Cho {B1 , B2 , . . . , Bn } là một hệ đầy đủ các sự kiện và A là một sự kiện nào đó. Khi đó,
+A = AS = A(B1 + B2 + · · · + Bn ) = AB1 + AB2 + · · · + ABn .
+Vì các ABi , i = 1, 2, . . . , n, xung khắc từng đôi, nên
+P (A) = P (AB1 ) + P (AB2 ) + · · · + P (ABn ) =
+
+n
+X
+
+P (ABi ).
+
+i=1
+
+Sử dụng công thức nhân xác suất P (ABi ) = P (Bi )P (A|Bi ) ta nhận được công thức dưới đây.
+Định lý 4
+Giả sử các sự kiện B1 , B2 , . . . , Bn lập thành một hệ đầy đủ và A là một sự kiện nào đó. Khi đó,
+P (A) =
+
+n
+X
+
+(24)
+
+P (Bi )P (A|Bi ).
+
+i=1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+3/15
+
+SAMI.HUST – 2023
+
+3 / 15
+
+Công thức xác suất đầy đủ
+
+Công thức (24) được gọi là công thức xác suất đầy đủ (hay công thức xác suất toàn phần).
+Công thức (24) cho phép ta tính xác suất P (A) với A là một sự kiện bất kỳ của phép thử nếu biết các xác
+suất P (Bi ) của hệ đầy đủ {B1 , B2 , . . . , Bn } và P (A|Bi ), i = 1, 2, . . . , n.
+Ví dụ 32
+Một nhà máy có ba phân xưởng sản xuất ra cùng một loại sản phẩm. Xác suất để phân xưởng I, phân xưởng
+II và phân xưởng III sản xuất được sản phẩm loại một lần lượt là 0,7, 0,8 và 0,6. Từ một lô hàng gồm 20%
+sản phẩm của phân xưởng I, 50% sản phẩm của phân xưởng II và 30% sản phẩm của phân xưởng III người
+ta lấy ra một sản phẩm để kiểm tra. Tính xác suất để sản phẩm được kiểm tra là loại một.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+4/15
+
+SAMI.HUST – 2023
+
+4 / 15
+
+Công thức xác suất đầy đủ
+
+Giải.
+Gọi A là sự kiện “sản phẩm được kiểm tra là loại một”; B1 , B2 , B3 lần lượt là sự kiện “sản phẩm được kiểm
+tra do phân xưởng I, II và III sản xuất”.
+Hệ {B1 , B2 , B3 } tạo thành một hệ đầy đủ với P (B1 ) = 0, 2, P (B2 ) = 0, 5 và P (B3 ) = 0, 3.
+Áp dụng công thức xác suất đầy đủ (24) với P (A|B1 ) = 0, 7, P (A|B2 ) = 0, 8 và P (A|B3 ) = 0, 6 ta nhận
+được
+P (A) = P (B1 )P (A|B1 ) + P (B2 )P (A|B2 ) + P (B3 )P (A|B3 )
+= 0, 2 × 0, 7 + 0, 5 × 0, 8 + 0, 3 × 0, 6 = 0, 72 = 72%.
+Ý nghĩa của xác suất này là tỷ lệ sản phẩm loại một của nhà máy.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+5/15
+
+SAMI.HUST – 2023
+
+5 / 15
+
+1.5. CÔNG THỨC XÁC SUẤT ĐẦY ĐỦ. CÔNG THỨC BAYES
+
+1
+
+1.5.1 Công thức xác suất đầy đủ
+
+2
+
+1.5.2 Công thức Bayes
+
+3
+
+Bài tập Mục 1.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+6/15
+
+SAMI.HUST – 2023
+
+6 / 15
+
+Công thức Bayes
+Cho {B1 , B2 , . . . , Bn } là một hệ đầy đủ các sự kiện và A là một sự kiện nào đó. Giả sử A đã xảy ra. Sử dụng
+định nghĩa xác suất điều kiện và công thức nhân xác suất,
+P (Bk |A) =
+
+P (ABk )
+P (Bk )P (A|Bk )
+=
+,
+P (A)
+P (A)
+
+k = 1, 2, . . . , n,
+
+trong đó P (A) được xác định bởi công thức xác suất đầy đủ (24).
+Định lý 5
+Giả sử một phép thử có một hệ đầy đủ {B1 , B2 , . . . , Bn } và A là một sự kiện nào đó. Khi đó, các xác suất
+P (Bk |A) được xác định bởi:
+P (Bk )P (A|Bk )
+P (Bk |A) = Pn
+,
+i=1 P (Bi )P (A|Bi )
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+(25)
+
+k = 1, 2, . . . , n.
+
+7/15
+
+SAMI.HUST – 2023
+
+7 / 15
+
+Công thức Bayes
+Các xác suất P (Bi ), i = 1, 2, . . . , n đã được xác định từ trước, thường được gọi là xác suất tiên nghiệm.
+Các xác suất P (Bi |A), i = 1, 2, . . . , n được xác định sau khi đã có kết quả thí nghiệm nào đó thể hiện qua
+sự xuất hiện của A, thường gọi là xác suất hậu nghiệm. Như vậy, công thức Bayes cho phép đánh giá lại xác
+suất xảy ra các sự kiện Bi sau khi đã có thêm thông tin về A.
+Muốn dùng công thức xác suất đầy đủ (24) hoặc công thức Bayes (25) nhất định phải xác định được một
+hệ đầy đủ thích hợp.
+Nếu (24) cho ta xác suất không có điều kiện thì (25) cho phép tính xác suất có điều kiện, trong đó sự kiện
+Bi cần tính xác suất phải là một thành viên của nhóm đầy đủ đang xét. Từ đó thấy rằng việc dùng công
+thức Bayes để tính xác suất có điều kiện đã gợi ý cho ta cách chọn nhóm đầy đủ sao cho sự kiện quan tâm
+phải là thành viên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+8/15
+
+SAMI.HUST – 2023
+
+8 / 15
+
+Công thức Bayes
+Ví dụ 33
+Trong Ví dụ 32, nếu sản phẩm được kiểm tra là loại một, thì sản phẩm này có khả năng do phân xưởng nào
+sản xuất?
+Giải. Áp dụng công thức Bayes (25) và sử dụng kết quả của Ví dụ 32, ta tính
+P (B1 )P (A|B1 )
+0, 2 × 0, 7
+P (B1 |A) = P3
+≈ 0, 1944.
+=
+0, 72
+i=1 P (Bi )P (A|Bi )
+P (B2 )P (A|B2 )
+0, 5 × 0, 8
+P (B2 |A) = P3
+=
+≈ 0, 5556.
+0, 72
+P
+(B
+)P
+(A|B
+)
+i
+i
+i=1
+P (B3 )P (A|B3 )
+0, 3 × 0, 6
+=
+P (B3 |A) = P3
+= 0, 25.
+0, 72
+i=1 P (Bi )P (A|Bi )
+Chú ý rằng P (B1 |A) + P (B2 |A) + P (B3 |A) = 1, vì sản phẩm loại một đó có thể do phân xưởng I, II hoặc III sản
+xuất. Do P (B2 |A) là lớn nhất, nên khả năng sản phẩm loại một được kiểm tra do phân xưởng II sản xuất.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+9/15
+
+SAMI.HUST – 2023
+
+9 / 15
+
+Công thức Bayes
+
+Ví dụ 34
+Có hai lô sản phẩm: lô I có 7 chính phẩm 3 phế phẩm; lô II có 6 chính phẩm 2 phế phẩm. Lấy ngẫu nhiên 2
+sản phẩm từ lô I bỏ sang lô II, sau đó từ lô II lấy ngẫu nhiên ra 2 sản phẩm.
+(a) Tính xác suất để 2 sản phẩm lấy ra sau cùng là chính phẩm.
+(b) Giả sử 2 sản phẩm lấy ra sau cùng là chính phẩm. Hãy tính xác suất để 2 chính phẩm này là của lô I.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+10/15
+
+SAMI.HUST – 2023
+
+10 / 15
+
+Công thức Bayes
+Giải.
+(a) Gọi A là sự kiện “hai sản phẩm lấy ra sau cùng là chính phẩm”; Bi là sự kiện “trong 2 sản phẩm lấy từ lô I
+bỏ sang lô II có i chính phẩm”, i = 0, 1, 2. Khi đó B0 , B1 , B2 tạo thành một hệ đầy đủ với
+P (B0 ) =
+
+C32
+1
+7
+7
+C1 × C1
+C2
+=
+; P (B1 ) = 7 2 3 =
+; P (B2 ) = 27 =
+.
+2
+C10
+15
+C10
+15
+C10
+15
+
+Tính
+P (A|B0 ) =
+
+C62
+C72
+C82
+15
+21
+28
+;
+P
+(A|B
+)
+=
+;
+P
+(A|B
+)
+=
+.
+=
+=
+=
+1
+2
+2
+2
+2
+C10
+45
+C10
+45
+C10
+45
+
+Áp dụng công thức xác suất đầy đủ (24)
+P (A) = P (B0 )P (A|B0 ) + P (B1 )P (A|B1 ) + P (B2 )P (A|B2 )
+1
+15
+7
+21
+7
+28
+358
+=
+×
++
+×
++
+×
+=
+≈ 0, 5304.
+15
+45
+15
+45
+15
+45
+675
+(b) Ta không thể chọn nhóm đầy đủ như trong ý (a), vì sự kiện cần tính xác suất không là thành viên của nhóm
+này. Việc chọn nhóm đầy đủ thích hợp xem như là bài tập.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+11/15
+
+SAMI.HUST – 2023
+
+11 / 15
+
+1.5. CÔNG THỨC XÁC SUẤT ĐẦY ĐỦ. CÔNG THỨC BAYES
+
+1
+
+1.5.1 Công thức xác suất đầy đủ
+
+2
+
+1.5.2 Công thức Bayes
+
+3
+
+Bài tập Mục 1.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+12/15
+
+SAMI.HUST – 2023
+
+12 / 15
+
+Bài tập
+Bài 25
+Cho A, B, C và D là bốn sự kiện tạo thành một hệ đầy đủ. Giả sử P (A + B) = 0, 5; P (B + C + D) = 0, 8.
+Giá trị P (B) bằng:
+A. 0, 3
+B. 0, 2
+C. 0, 4
+D. 0, 5
+Bài 26
+Tỷ lệ người nghiện thuốc lá ở một vùng là 30%. Biết rằng tỷ lệ người bị viêm họng trong số những người
+nghiện thuốc là 60%, còn tỷ lệ người bị viêm họng trong số những người không nghiện là 40%.
+(a) Lấy ngẫu nhiên một người thấy người ấy bị viêm họng. Tính xác suất người đó nghiện thuốc lá.
+(b) Nếu người đó không bị viêm họng, tính xác suất người đó nghiện thuốc lá.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+13/15
+
+SAMI.HUST – 2023
+
+13 / 15
+
+Bài tập
+Bài 27
+Một trạm phát sóng chỉ phát hai loại tín hiệu A và B với xác suất tương ứng là 0,84 và 0,16. Do có nhiễu
+trên đường truyền nên 1/6 tín hiệu A bị méo và được thu như là tín hiệu B, còn 1/8 tín hiệu B bị méo thành
+tín hiệu A.
+(a) Tìm xác suất thu được tín hiệu A.
+(b) Giả sử thu được tín hiệu A, tìm xác suất để thu được đúng tín hiệu lúc phát.
+Bài 28
+Có ba hộp sản phẩm, mỗi hộp có 10 sản phẩm trong đó số sản phẩm loại I trong ba hộp tương ứng là 5, 6 và
+9. Lấy ngẫu nhiên từ mỗi hộp ra một sản phẩm để trưng bày. Khách hàng đến lấy ngẫu nhiên một trong ba
+sản phẩm trên để mua.
+(a) Tính xác suất khách hàng lấy được sản phẩm loại I.
+(b) Biết rằng khách hàng lấy được sản phẩm loại I, tính xác suất sản phẩm đó của hộp thứ nhất.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+14/15
+
+SAMI.HUST – 2023
+
+14 / 15
+
+Bài tập
+
+Bài 29
+Một người có ba chỗ ưa thích như nhau để câu cá. Xác suất để câu được cá ở mỗi chỗ tương ứng là 0,6; 0,7
+và 0,8. Biết rằng đến một chỗ người đó thả câu 3 lần và chỉ câu được một con cá. Tính xác suất để cá câu
+được ở chỗ thứ nhất.
+Bài 30
+Ba người thợ cùng may một loại áo với xác suất may được sản phẩm chất lượng cao tương ứng là 0,9; 0,9 và
+0,8. Biết một người khi may 8 áo thì có 6 sản phẩm chất lượng cao. Tìm xác suất để người đó may 8 áo nữa
+thì có 6 áo chất lượng cao.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.5
+
+15/15
+
+SAMI.HUST – 2023
+
+15 / 15
+
+

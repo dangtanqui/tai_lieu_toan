@@ -1,0 +1,1614 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 5
+KIỂM ĐỊNH GIẢ THUYẾT THỐNG KÊ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201-D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+1/47
+
+SAMI.HUST – 2023
+
+1 / 47
+
+5.2. KIỂM ĐỊNH GIẢ THUYẾT VỀ THAM SỐ CỦA TỔNG THỂ
+1
+
+5.2.1 Kiểm định giả thuyết về kỳ vọng
+5.2.1.1 Trường hợp phương sai V (X) = σ 2 đã biết
+5.2.1.2 Trường hợp mẫu kích thước lớn
+5.2.1.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+2
+
+5.2.2 Kiểm định giả thuyết về phương sai
+5.2.2.1 Bài toán
+5.2.2.2 Phân phối mẫu
+5.2.2.3 Các bước tiến hành
+
+3
+
+5.2.3 Kiểm định giả thuyết về tỷ lệ
+5.2.3.1 Bài toán
+5.2.3.2 Phân phối mẫu
+5.2.3.3 Các bước tiến hành
+
+4
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+
+5
+
+Bài tập Mục 5.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+2/47
+
+SAMI.HUST – 2023
+
+2 / 47
+
+Bài toán
+
+Bài toán 1
+Cho biến ngẫu nhiên gốc X ∼ N (µ; σ 2 ) với kỳ vọng E(X) = µ chưa biết nhưng có cơ sở để nêu lên giả thuyết
+H0 : µ = µ0 với µ0 là số đã biết.
+Hãy kiểm định giả thuyết về kỳ vọng ở một trong ba dạng của cặp giả thuyết sau:
+1
+
+H0 : µ = µ0 ; H1 : µ 6= µ0
+
+2
+
+H0 : µ = µ0 ; H1 : µ > µ0
+
+3
+
+H0 : µ = µ0 ; H1 : µ < µ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+3/47
+
+SAMI.HUST – 2023
+
+3 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+Phân phối mẫu
+Từ biến ngẫu nhiên gốc X, ta xây dựng một mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n. Khi
+đó, X ∼ N (µ; σ 2 /n) và
+X −µ
+√ ∼ N (0; 1).
+Z=
+σ/ n
+Nếu giả thuyết H0 : µ = µ0 là đúng thì E(X) = µ0 và
+Z0 =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+X − µ0
+√ ∼ N (0; 1).
+σ/ n
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+4/47
+
+SAMI.HUST – 2023
+
+4 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định
+Z0 =
+
+X − µ0
+√ .
+σ/ n
+
+(6)
+
+Nếu giả thuyết H0 : µ = µ0 là đúng thì Z0 ∼ N (0; 1).
+3. Xây dựng miền bác bỏ giả thuyết H0 phụ thuộc vào đối thuyết H1 .
+Kiểm định hai phía H0 : µ = µ0 , H1 : µ 6= µ0 . Vì Z0 ∼ N (0; 1), nên với mức ý nghĩa α cho trước, giả
+thuyết H0 bị bác bỏ nếu, xem Hình 2(a),
+
+
+P |Z0 | > zα/2 (µ = µ0 ) = α,
+ở đây, zα/2 là giá trị tới hạn của phân phối chuẩn tắc mức α/2. Do đó, miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −zα/2 ) ∪ (zα/2 ; +∞).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+5/47
+
+SAMI.HUST – 2023
+
+5 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+Các bước tiến hành (tiếp theo)
+Kiểm định một phía phải H0 : µ = µ0 , H1 : µ > µ0 . Với mức ý nghĩa α cho trước, ta tìm giá trị tới hạn của
+phân phối chuẩn tắc zα mức α sao cho, xem Hình 2(b),
+
+
+P Z0 > zα (µ = µ0 ) = α
+và xác định được miền bác bỏ giả thuyết H0 là
+Wα = (zα ; +∞).
+Kiểm định một phía trái H0 : µ = µ0 , H1 : µ < µ0 . Với mức ý nghĩa α cho trước, ta tìm giá trị tới hạn của
+phân phối chuẩn tắc zα mức α sao cho, xem Hình 2(c),
+
+
+P Z0 < −zα (µ = µ0 ) = α
+và xác định được miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −zα ).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+6/47
+
+SAMI.HUST – 2023
+
+6 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+N (0; 1)
+
+α/2
+
+−zα/2
+
+N (0; 1)
+
+α/2
+
+0
+(a)
+
+zα/2
+
+x
+
+0
+(b)
+
+α
+zα
+
+N (0; 1)
+
+x
+
+α
+−zα
+
+0
+(c)
+
+x
+
+Hình 2: Phân phối của Z0 khi H0 : µ = µ0 là đúng và miền bác bỏ giả thuyết H0 ứng với (a)
+H1 : µ 6= µ0 , (b) H1 : µ > µ0 , (c) H1 : µ < µ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+7/47
+
+SAMI.HUST – 2023
+
+7 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+- Tóm lại, miền bác bỏ giả thuyết H0 được xác định như sau:
+H0
+µ = µ0
+µ = µ0
+µ = µ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+µ 6= µ0
+µ > µ0
+µ < µ0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+8/47
+
+SAMI.HUST – 2023
+
+8 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+Các bước tiến hành (tiếp theo)
+4. Lập mẫu cụ thể Wx = (x1 , x2 , . . . , xn ), tính giá trị quan sát của tiêu chuẩn kiểm định:
+z0 =
+
+x − µ0
+√ .
+σ/ n
+
+(7)
+
+5. Kiểm tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+9/47
+
+SAMI.HUST – 2023
+
+9 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+Ví dụ 5
+Một hãng bảo hiểm thông báo rằng số tiền trung bình hãng chi trả cho khách hàng bị tai nạn ô tô là 17 triệu
+đồng. Để kiểm tra lại, người ta điều tra ngẫu nhiên hồ sơ chi trả của 25 khách hàng thì thấy số tiền trung
+bình chi trả là 17,8 triệu đồng. Giả sử số tiền chi trả là biến ngẫu nhiên có phân phối chuẩn với độ lệch
+chuẩn là 5,2 triệu đồng. Hãy kiểm định lại thông báo của hãng bảo hiểm trên với mức ý nghĩa 5%.
+Giải. Gọi X (triệu đồng) là số tiền hãng bảo hiểm chi trả cho khách hàng, X ∼ N (µ; σ 2 ) với σ = 5, 2 triệu đồng.
+Số tiền trung bình hãng chi trả cho khách hàng là E(X) = µ triệu đồng chưa biết. Đây là bài toán kiểm định giả
+thuyết cho kỳ vọng của biến ngẫu nhiên có phân phối chuẩn trong trường hợp đã biết phương sai.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+10/47
+
+SAMI.HUST – 2023
+
+10 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+Cặp giả thuyết cần kiểm định là H0 : µ = µ0 , H1 : µ 6= µ0 với µ0 = 17.
+Chọn tiêu chuẩn kiểm định
+Z0 =
+
+X − µ0
+√ .
+σ/ n
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼ N (0; 1).
+Với α = 0, 05, zα/2 = z0,025 = 1, 96. Miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −1, 96) ∪ (1, 96; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 25, x = 17, 8 và σ = 5, 2,
+z0 =
+
+x − µ0
+17, 8 − 17
+√ =
+√
+' 0, 7692.
+σ/ n
+5, 2/ 25
+
+Vì z0 = 0, 7692 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 . Do đó, chưa có cơ sở để bác bỏ thông
+báo của hãng bảo hiểm với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+11/47
+
+SAMI.HUST – 2023
+
+11 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+
+Ví dụ 6
+Nếu máy móc hoạt động bình thường thì trọng lượng sản phẩm là biến ngẫu nhiên có phân phối chuẩn với
+trọng lượng trung bình là 100 gam, độ lệch chuẩn là 2 gam. Qua một thời gian sản xuất người ta nghi ngờ
+trọng lượng sản phẩm có xu hướng tăng lên, cân thử 100 sản phẩm thì trọng lượng trung bình của chúng là
+100,4 gam. Với mức ý nghĩa α = 5% hãy kết luận về điều nghi ngờ trên.
+Giải. Gọi X (gam) là trọng lượng sản phẩm, X ∼ N (µ; σ 2 ) với σ = 2 gam. Đây là bài toán kiểm định giả thuyết
+cho kỳ vọng E(X) = µ của biến ngẫu nhiên có phân phối chuẩn trong trường hợp đã biết phương sai.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+12/47
+
+SAMI.HUST – 2023
+
+12 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai đã biết
+Cặp giả thuyết cần kiểm đinh là H0 : µ = µ0 , H1 : µ > µ0 với µ0 = 100.
+Chọn tiêu chuẩn kiểm định
+Z0 =
+
+X − µ0
+√ .
+σ/ n
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼ N (0; 1).
+Với α = 0, 05, zα = z0,05 = 1, 645. Miền bác bỏ giả thuyết H0 là
+Wα = (1, 645; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 100, x = 100, 4 và σ = 2,
+z0 =
+
+100, 4 − 100
+x − µ0
+√ =
+√
+= 2.
+σ/ n
+2/ 100
+
+Vì z0 = 2 ∈ Wα nên bác bỏ giả thuyết H0 . Tức là điều nghi ngờ nói trên là có cơ sở với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+13/47
+
+SAMI.HUST – 2023
+
+13 / 47
+
+Kiểm định giả thuyết về kỳ vọng, mẫu kích thước lớn
+
+Trong nhiều tình huống thực tế, phương sai σ 2 của tổng thể không biết, thêm nữa, ta không chắc chắn
+rằng tổng thể có được mô hình hóa bởi biến ngẫu nhiên có phân phối chuẩn hay không. Trong trường hợp
+này, khi kích thước mẫu n đủ lớn, ta vẫn dùng tiêu chuẩn kiểm định như mục trên, trong đó, độ lệch chuẩn
+σ được thay bằng độ lệch chuẩn hiệu chỉnh mẫu S.
+Trong thực hành cho phép vận dụng với n ≥ 30.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+14/47
+
+SAMI.HUST – 2023
+
+14 / 47
+
+Kiểm định giả thuyết về kỳ vọng, mẫu kích thước lớn
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định:
+Z0 =
+
+X − µ0
+√ .
+S/ n
+
+(8)
+
+Nếu n đủ lớn và nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+3. Xây dựng miền bác bỏ giả thuyết H0 phụ thuộc vào thuyết đối H1 .
+H0
+µ = µ0
+µ = µ0
+µ = µ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+µ 6= µ0
+µ > µ0
+µ < µ0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+15/47
+
+SAMI.HUST – 2023
+
+15 / 47
+
+Kiểm định giả thuyết về kỳ vọng, mẫu kích thước lớn
+
+Các bước tiến hành (tiếp theo)
+4. Lập mẫu cụ thể Wx = (x1 , . . . , xn ), tính giá trị quan sát của tiêu chuẩn kiểm định:
+z0 =
+
+x − µ0
+√ .
+s/ n
+
+(9)
+
+5. Kieemr tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+16/47
+
+SAMI.HUST – 2023
+
+16 / 47
+
+Kiểm định giả thuyết về kỳ vọng, mẫu kích thước lớn
+
+Ví dụ 7
+Một công ty có một hệ thống máy tính có thể xử lý 1500 hóa đơn trong một giờ. Công ty mới nhập một hệ
+thống máy tính mới. Hệ thống này khi chạy kiểm tra trong 40 giờ cho thấy số hóa đơn được xử lý trung bình
+trong một giờ là 1580 hóa đơn với độ lệch chuẩn mẫu hiệu chỉnh là 215 hóa đơn. Với mức ý nghĩa 5% hãy
+nhận định xem hệ thống mới có tốt hơn hệ thống cũ hay không?
+Giải. Gọi X là số hóa đơn mà hệ thống máy tính mới xử lý được trong vòng một giờ, E(X) = µ là số hóa đơn
+trung bình mà hệ thống máy tính mới xử lý được trong một giờ. Đây là bài toán kiểm định giả thuyết cho kỳ vọng
+µ của biến ngẫu nhiên gốc X chưa biết phân phối xác suất, trường hợp mẫu kích thước n = 40 > 30.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+17/47
+
+SAMI.HUST – 2023
+
+17 / 47
+
+Kiểm định giả thuyết về kỳ vọng, mẫu kích thước lớn
+Cặp giả thuyết cần kiểm định là H0 : µ = µ0 , H1 : µ > µ0 với µ0 = 1500.
+Chọn tiêu chuẩn kiểm định:
+Z0 =
+
+X − µ0
+√ .
+S/ n
+
+Vì n = 40 > 30, nên nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+Với α = 0, 05, zα = z0,05 = 1, 645. Miền bác bỏ giả thuyết H0 là
+Wα = (1, 645; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 40, x = 1580 và s = 215,
+z0 =
+
+x − µ0
+1580 − 1500
+√ =
+√
+' 2, 3533.
+s/ n
+215/ 40
+
+Vì z0 = 2, 3533 ∈ Wα nên bác bỏ giả thuyết H0 . Nghĩa là, với số liệu này có thể coi hệ thống máy mới tốt
+hơn hệ thống máy cũ với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+18/47
+
+SAMI.HUST – 2023
+
+18 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+
+Phân phối mẫu
+Mục này xem xét bài toán kiểm định giả thuyết về kỳ vọng của biến ngẫu nhiên gốc X ∼ N (µ; σ 2 ) với σ 2
+chưa biết.
+Tương tự như trên, cơ sở lý thuyết quan trọng của quy trình kiểm định này là nếu X là kỳ vọng mẫu và S
+là độ lệch chuẩn hiệu chỉnh mẫu của mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n được chọn từ
+biến ngẫu nhiên gốc X, thì thống kê
+T =
+
+X −µ
+√
+S/ n
+
+(10)
+
+có phân phối Student với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+19/47
+
+SAMI.HUST – 2023
+
+19 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định:
+T0 =
+
+X − µ0
+√ .
+S/ n
+
+(11)
+
+Nếu giả thuyết H0 : µ = µ0 là đúng thì T0 ∼ t(n − 1).
+3. Miền bác bỏ giả thuyết H0 được xây dựng phụ thuộc vào thuyết đối H1 , xem Hình 3,
+H0
+µ = µ0
+µ = µ0
+µ = µ0
+
+H1
+µ 6= µ0
+µ > µ0
+µ < µ0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+
+
+− ∞; −tα/2;n−1 ∪ tα/2;n−1 ; +∞
+
+tα;n−1 ; +∞
+
+− ∞; −tα;n−1
+
+trong đó, tα/2;n−1 và tα;n−1 là các giá trị tới hạn của phân phối Student mức α/2 và α tương ứng với
+n − 1 bậc tự do.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+20/47
+
+SAMI.HUST – 2023
+
+20 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+
+t(n − 1)
+
+α/2
+
+−tα/2;n−1
+
+t(n − 1)
+
+α/2
+
+0
+(a)
+
+tα/2;n−1
+
+x
+
+0
+(b)
+
+α
+tα;n−1
+
+t(n − 1)
+
+x
+
+α
+−tα;n−1
+
+0
+(c)
+
+x
+
+Hình 3: Phân phối xác suất của T0 khi H0 : µ = µ0 là đúng và miền bác bỏ giả thuyết H0 ứng với (a)
+H1 : µ 6= µ0 , (b) H1 : µ > µ0 , (c) H1 : µ < µ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+21/47
+
+SAMI.HUST – 2023
+
+21 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+
+Các bước tiến hành (tiếp theo)
+4. Lập mẫu cụ thể Wx = (x1 , x2 , . . . , xn ) và tính giá trị quan sát của tiêu chuẩn kiểm định:
+t0 =
+
+x − µ0
+√ .
+s/ n
+
+(12)
+
+5. Kiểm tra xem t0 có thuộc Wα hay không để kết luận.
+Nếu t0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu t0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+22/47
+
+SAMI.HUST – 2023
+
+22 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+
+Ví dụ 8
+Một công ty sản xuất hạt giống tuyên bố rằng một loại giống mới của họ có năng suất trung bình là 21,5
+tạ/ha. Gieo thử hạt giống mới này tại 16 vườn thí nghiệm và thu được kết quả (đơn vị tính là tạ/ha):
+19, 2; 18, 7; 22, 4; 20, 3; 16, 8; 25, 1; 17, 0; 15, 8; 21, 0; 18, 6; 23, 7; 24, 1; 23, 4; 19, 8; 21, 7; 18, 9.
+Dựa vào kết quả này hãy xác nhận xem quảng cáo của công ty có đúng không với mức ý nghĩa α = 0, 05.
+Biết rằng năng suất giống cây trồng là một biến ngẫu nhiên có phân phối chuẩn.
+Giải. Gọi X (tạ/ha) là năng suất giống cây trồng, X ∼ N (µ; σ 2 ). Đây là bài toán kiểm định giả thuyết về kỳ
+vọng E(X) = µ của biến ngẫu nhiên có phân phối chuẩn trong trường hợp phương sai chưa biết, kích thước mẫu
+n = 16 < 30.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+23/47
+
+SAMI.HUST – 2023
+
+23 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+Cặp giả thuyết cần kiểm định là H0 : µ = µ0 , H1 : µ 6= µ0 với µ0 = 21, 5.
+Chọn tiêu chuẩn kiểm định:
+T0 =
+
+X − µ0
+√ .
+S/ n
+
+Nếu giả thuyết H0 là đúng thì T0 ∼ t(n − 1).
+Với α = 0, 05, tα/2;n−1 = t0,025;15 = 2, 131. Miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −2, 131) ∪ (2, 131; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 16; x = 20, 406 và s = 3, 038
+t0 =
+
+x − µ0
+20, 406 − 21, 5
+√ =
+√
+= −1, 4404.
+s/ n
+3, 038/ 16
+
+Vì t0 = −1, 4404 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 . Nghĩa là, với số liệu này có thể chấp
+nhận lời quảng cáo của công ty với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+24/47
+
+SAMI.HUST – 2023
+
+24 / 47
+
+Kiểm định giả thuyết về kỳ vọng, phương sai chưa biết
+
+- Trong thực hành, khi n ≥ 30, thì thống kê T trong (10) có phân phối xấp xỉ phân phối chuẩn tắc N (0; 1). Do
+đó, nếu n < 30 ta áp dụng tiêu chuẩn kiểm định (11), nếu n ≥ 30 ta sử dụng tiêu chuẩn kiểm định (8).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+25/47
+
+SAMI.HUST – 2023
+
+25 / 47
+
+5.2. KIỂM ĐỊNH GIẢ THUYẾT VỀ THAM SỐ CỦA TỔNG THỂ
+1
+
+5.2.1 Kiểm định giả thuyết về kỳ vọng
+5.2.1.1 Trường hợp phương sai V (X) = σ 2 đã biết
+5.2.1.2 Trường hợp mẫu kích thước lớn
+5.2.1.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+2
+
+5.2.2 Kiểm định giả thuyết về phương sai
+5.2.2.1 Bài toán
+5.2.2.2 Phân phối mẫu
+5.2.2.3 Các bước tiến hành
+
+3
+
+5.2.3 Kiểm định giả thuyết về tỷ lệ
+5.2.3.1 Bài toán
+5.2.3.2 Phân phối mẫu
+5.2.3.3 Các bước tiến hành
+
+4
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+
+5
+
+Bài tập Mục 5.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+26/47
+
+SAMI.HUST – 2023
+
+26 / 47
+
+Bài toán
+
+Bài toán 2
+Cho biến ngẫu nhiên gốc X ∼ N (µ; σ 2 ) với V (X) = σ 2 chưa biết, nhưng có cơ sở để nêu lên giả thuyết
+H0 : σ 2 = σ02 trong đó σ02 đã biết.
+Hãy kiểm định giả thuyết về phương sai σ 2 ở một trong ba dạng của cặp giả thuyết
+1
+
+H0 : σ 2 = σ02 ; H1 : σ 2 6= σ02
+
+2
+
+H0 : σ 2 = σ02 ; H1 : σ 2 > σ02
+
+3
+
+H0 : σ 2 = σ02 ; H1 : σ 2 < σ02
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+27/47
+
+SAMI.HUST – 2023
+
+27 / 47
+
+Phân phối mẫu
+
+Phân phối khi-bình phương
+Từ biến ngẫu nhiên gốc X, lập mẫu ngẫu nhiên WX = (X1 , X2 , . . . , Xn ) kích thước n.
+Với S 2 là phương sai hiệu chỉnh mẫu của mẫu ngẫu nhiên này, thì thống kê
+χ2 =
+
+(n − 1)S 2
+σ2
+
+có phân phối khi-bình phương với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+28/47
+
+SAMI.HUST – 2023
+
+28 / 47
+
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định
+χ20 =
+
+(n − 1)S 2
+.
+σ02
+
+(13)
+
+Nếu giả thuyết H0 : σ 2 = σ02 là đúng, thì χ20 ∼ χ2 (n − 1).
+3. Xây dựng miền bác bỏ giả thuyết H0 phụ thuộc vào đối thuyết H1 , xem Hình 4,
+H0
+σ = σ02
+
+H1
+σ 6= σ02
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(0; χ21−α/2;n−1 ) ∪ (χ2α/2;n−1 ; +∞)
+
+σ 2 = σ02
+σ 2 = σ02
+
+σ 2 > σ02
+σ 2 < σ02
+
+(χ2α;n−1 ; +∞)
+(0; χ21−α;n−1 )
+
+2
+
+2
+
+trong đó, χ2α/2;n−1 , χ21−α/2;n−1 , χ21−α;n−1 và χ2α;n−1 là các giá trị tới hạn của phân phối khi-bình phương
+mức α/2, 1 − α/2, 1 − α và α tương ứng với n − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+29/47
+
+SAMI.HUST – 2023
+
+29 / 47
+
+Các bước tiến hành
+
+fχ2 (x)
+
+fχ2 (x)
+χ2 (n − 1)
+
+fχ2 (x)
+2
+
+χ (n − 1)
+
+χ2 (n − 1)
+
+α
+α/2
+
+0
+
+χ2
+1−α/2;n−1
+
+α/2
+
+(a)
+
+χ2
+α/2;n−1
+
+x
+
+0
+
+(b)
+
+χ2
+α;n−1
+
+α
+
+x
+
+0
+
+χ2
+1−α;n−1
+
+(c)
+
+x
+
+Hình 4: Minh họa phân phối xác suất cho kiểm định giả thuyết H0 : σ = σ0 với miền bác bỏ giả thuyết
+H0 ứng với (a) H1 : σ 6= σ0 , (b) H1 : σ > σ0 , (c) H1 : σ < σ0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+30/47
+
+SAMI.HUST – 2023
+
+30 / 47
+
+Các bước tiến hành
+
+4. Lập mẫu cụ thể (x1 , . . . , xn ), tính giá trị quan sát của tiêu chuẩn kiểm định:
+χ20 =
+
+(n − 1)s2
+.
+σ02
+
+(14)
+
+5. Kiểm tra xem χ20 có thuộc Wα hay không để kết luận.
+Nếu χ20 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu χ20 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+31/47
+
+SAMI.HUST – 2023
+
+31 / 47
+
+Ví dụ
+
+Ví dụ 9
+Để kiểm tra chất lượng của một loại sản phẩm, người kỹ sư đo đường kính của 12 sản phẩm của một dây
+chuyền sản xuất tính được độ lệch chuẩn hiệu chỉnh mẫu là s = 0, 3. Biết rằng, nếu độ biến động của các sản
+phẩm lớn hơn 0,2 thì dây chuyền sản xuất phải dừng lại để điều chỉnh. Với mức ý nghĩa 5% người kỹ sư có
+quyết định cho dừng dây chuyền sản xuất để điều chỉnh không? Giả thiết rằng đường kính của các sản phẩm
+là biến ngẫu nhiên có phân phối chuẩn.
+Giải. Gọi X là đường kính của loại sản phẩm nói trên, X ∼ N (µ; σ 2 ). Đây là bài toán kiểm định giả thuyết về
+phương sai của biến ngẫu nhiên có phân phối chuẩn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+32/47
+
+SAMI.HUST – 2023
+
+32 / 47
+
+Ví dụ
+Cặp giả thuyết cần kiểm định là H0 : σ 2 = σ02 , H1 : σ 2 > σ02 với σ02 = (0, 2)2 = 0, 04.
+Chọn tiêu chuẩn kiểm định
+χ20 =
+
+(n − 1)S 2
+.
+σ02
+
+Nếu giả thuyết H0 là đúng thì χ20 ∼ χ2 (n − 1).
+Với α = 0, 05, χ2α;n−1 = χ20,05;11 = 19, 68. Miền bác bỏ giả thuyết H0 là
+Wα = (19, 68; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 12 và s = 0, 3,
+χ20 =
+
+(n − 1)s2
+11 × (0, 3)2
+=
+= 24, 75.
+σ02
+0, 04
+
+Vì χ20 = 24, 75 ∈ Wα nên bác bỏ giả thuyết H0 , chấp nhận H1 . Tức là dây chuyền cần điều chỉnh vì độ
+biến động đã lớn hơn mức cho phép.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+33/47
+
+SAMI.HUST – 2023
+
+33 / 47
+
+5.2. KIỂM ĐỊNH GIẢ THUYẾT VỀ THAM SỐ CỦA TỔNG THỂ
+1
+
+5.2.1 Kiểm định giả thuyết về kỳ vọng
+5.2.1.1 Trường hợp phương sai V (X) = σ 2 đã biết
+5.2.1.2 Trường hợp mẫu kích thước lớn
+5.2.1.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+2
+
+5.2.2 Kiểm định giả thuyết về phương sai
+5.2.2.1 Bài toán
+5.2.2.2 Phân phối mẫu
+5.2.2.3 Các bước tiến hành
+
+3
+
+5.2.3 Kiểm định giả thuyết về tỷ lệ
+5.2.3.1 Bài toán
+5.2.3.2 Phân phối mẫu
+5.2.3.3 Các bước tiến hành
+
+4
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+
+5
+
+Bài tập Mục 5.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+34/47
+
+SAMI.HUST – 2023
+
+34 / 47
+
+Bài toán
+
+Bài toán 3
+Giả sử ta quan tâm đến một dấu hiệu A nào đó mà mỗi cá thể của tổng thể có thể có dấu hiệu này hoặc
+không. Gọi p là tỷ lệ cá thể có dấu hiệu A của tổng thể. Giả sử p chưa biết, nhưng có cơ sở để nêu lên giả
+thuyết
+H0 : p = p0 với p0 là một tỷ lệ được giả định.
+Hãy kiểm định giả thuyết về tỷ lệ p ở một trong ba dạng của cặp giả thuyết sau
+1
+
+H0 : p = p0 ; H1 : p 6= p0
+
+2
+
+H0 : p = p0 ; H1 : p > p0
+
+3
+
+H0 : p = p0 ; H1 : p < p0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+35/47
+
+SAMI.HUST – 2023
+
+35 / 47
+
+Phân phối mẫu
+
+Giả sử một mẫu ngẫu nhiên có kích thước n được lấy từ một tổng thể có kích thước lớn (có thể là vô hạn)
+và giả sử X (≤ n) là số cá thể có dấu hiệu A trong mẫu này. Khi đó, Pb = X/n là một ước lượng điểm
+không chệch của p.
+Phân phối mẫu của Pb xấp xỉ phân phối chuẩn với kỳ vọng p và phương sai p(1 − p)/n, nếu p không quá
+gần 0 hoặc 1 và nếu n tương đối lớn.
+Để áp dụng xấp xỉ này, yêu cầu np ≥ 5 và n(1 − p) ≥ 5.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+36/47
+
+SAMI.HUST – 2023
+
+36 / 47
+
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định
+Z0 = p
+
+Pb − p0
+.
+p0 (1 − p0 )/n
+
+(15)
+
+Nếu giả thuyết H0 : p = p0 là đúng và n đủ lớn thì Z0 ∼xx N (0; 1). Trong thực hành áp dụng với np0 ≥ 5
+và n(1 − p0 ) ≥ 5.
+3. Xây dựng miền bác bỏ giả thuyết H0 phụ thuộc vào đối thuyết H1 .
+H0
+p = p0
+p = p0
+p = p0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+p 6= p0
+p > p0
+p < p0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+37/47
+
+SAMI.HUST – 2023
+
+37 / 47
+
+Các bước tiến hành
+
+4. Lập mẫu cụ thể, tính giá trị quan sát của tiêu chuẩn kiểm định:
+pb − p0
+z0 = p
+.
+p0 (1 − p0 )/n
+
+(16)
+
+5. Kiểm tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+38/47
+
+SAMI.HUST – 2023
+
+38 / 47
+
+Các bước tiến hành
+
+- Một tiêu chuẩn kiểm định khác tương đương với (15) được xây dựng như sau. Nếu giả thuyết H0 : p = p0 là
+đúng thì X ∼xx N (np0 ; np0 (1 − p0 )). Khi đó, thống kê
+X − np0
+Z0 = p
+np0 (1 − p0 )
+
+(17)
+
+xấp xỉ phân phối chuẩn tắc N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+39/47
+
+SAMI.HUST – 2023
+
+39 / 47
+
+Ví dụ
+
+Ví dụ 10
+Một công ty A sản xuất bánh kẹo tuyên bố rằng 1/2 số trẻ em thích ăn bánh kẹo của công ty. Trong một
+mẫu gồm 100 trẻ em được hỏi, có 47 em tỏ ra thích ăn bánh kẹo của công ty. Với mức ý nghĩa 5%, số liệu
+trên có chứng tỏ là tuyên bố của công ty là đúng hay không?
+Giải. Gọi p là tỷ lệ trẻ em thích bánh kẹo của công ty. Đây là bài toán kiểm định giả thuyết về tỷ lệ của tổng thể
+với kích thước mẫu n = 100 đủ lớn. Kiểm tra điều kiện np0 = 100 × 0, 5 > 5 và n(1 − p0 ) = 100 × (1 − 0, 5) > 5.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+40/47
+
+SAMI.HUST – 2023
+
+40 / 47
+
+Ví dụ
+Cặp giả thuyết cần kiểm định là H0 : p = p0 , H1 : p 6= p0 với p0 = 0, 5.
+Chọn tiêu chuẩn kiểm định
+Z0 = p
+
+Pb − p0
+.
+p0 (1 − p0 )/n
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+Với α = 0, 05, zα/2 = z0,025 = 1, 96. Miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −1, 96) ∪ (1, 96; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n = 100, x = 47,
+47/100 − 0, 5
+pb − p0
+z0 = p
+= p
+= −0, 6.
+p0 (1 − p0 )/n
+0, 5 × 0, 5/100
+Vì z0 = −0, 6 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 . Như vậy, tuyên bố của công ty là có cơ sở
+với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+41/47
+
+SAMI.HUST – 2023
+
+41 / 47
+
+5.2. KIỂM ĐỊNH GIẢ THUYẾT VỀ THAM SỐ CỦA TỔNG THỂ
+1
+
+5.2.1 Kiểm định giả thuyết về kỳ vọng
+5.2.1.1 Trường hợp phương sai V (X) = σ 2 đã biết
+5.2.1.2 Trường hợp mẫu kích thước lớn
+5.2.1.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+2
+
+5.2.2 Kiểm định giả thuyết về phương sai
+5.2.2.1 Bài toán
+5.2.2.2 Phân phối mẫu
+5.2.2.3 Các bước tiến hành
+
+3
+
+5.2.3 Kiểm định giả thuyết về tỷ lệ
+5.2.3.1 Bài toán
+5.2.3.2 Phân phối mẫu
+5.2.3.3 Các bước tiến hành
+
+4
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+
+5
+
+Bài tập Mục 5.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+42/47
+
+SAMI.HUST – 2023
+
+42 / 47
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+Trường hợp
+σ
+
+2
+
+đã biết
+
+σ 2 chưa biết
+
+Tiêu chuẩn kiểm định
+
+H0
+
+X − µ0
+Z0 =
+√
+σ/ n
+
+µ = µ0
+
+T0 =
+
+X − µ0
+√
+S/ n
+
+µ = µ0
+
+n < 30
+σ 2 chưa biết
+
+Z0 =
+
+Z0 = p
+
+n(1 − p0 ) ≥ 5
+µ chưa biết
+
+Miền bác bỏ Wα
+
+µ 6= µ0
+
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+
+µ > µ0
+µ < µ0
+
+(zα ; +∞)
+(−∞; −zα )
+
+µ 6= µ0
+µ > µ0
+µ < µ0
+
+X − µ0
+√
+S/ n
+
+µ = µ0
+
+n ≥ 30
+
+np0 ≥ 5
+
+H1
+
+χ2
+0 =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+b − p0
+P
+p0 (1 − p0 )/n
+(n − 1)S 2
+2
+σ0
+
+µ 6= µ0
+
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+
+µ > µ0
+µ < µ0
+
+(zα ; +∞)
+(−∞; −zα )
+
+p = p0
+
+2
+σ 2 = σ0
+
+
+
+− ∞; −tα/2;n−1 ∪ tα/2;n−1 ; +∞
+
+tα;n−1 ; +∞ 
+− ∞; −tα;n−1
+
+p 6= p0
+
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+
+p > p0
+p < p0
+
+(zα ; +∞)
+(−∞; −zα )
+
+2
+σ 2 6= σ0
+
+2
+(0; χ2
+1−α/2;n−1 ) ∪ (χα/2;n−1 ; +∞)
+
+2
+
+σ >
+σ2 <
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+2
+σ0
+2
+σ0
+
+(χ2
+α;n−1 ; +∞)
+(0; χ2
+1−α;n−1 )
+
+43/47
+
+SAMI.HUST – 2023
+
+43 / 47
+
+5.2. KIỂM ĐỊNH GIẢ THUYẾT VỀ THAM SỐ CỦA TỔNG THỂ
+1
+
+5.2.1 Kiểm định giả thuyết về kỳ vọng
+5.2.1.1 Trường hợp phương sai V (X) = σ 2 đã biết
+5.2.1.2 Trường hợp mẫu kích thước lớn
+5.2.1.3 Trường hợp phương sai V (X) = σ 2 chưa biết
+
+2
+
+5.2.2 Kiểm định giả thuyết về phương sai
+5.2.2.1 Bài toán
+5.2.2.2 Phân phối mẫu
+5.2.2.3 Các bước tiến hành
+
+3
+
+5.2.3 Kiểm định giả thuyết về tỷ lệ
+5.2.3.1 Bài toán
+5.2.3.2 Phân phối mẫu
+5.2.3.3 Các bước tiến hành
+
+4
+
+Tóm tắt bài toán kiểm định về tham số của một tổng thể
+
+5
+
+Bài tập Mục 5.2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+44/47
+
+SAMI.HUST – 2023
+
+44 / 47
+
+Bài tập
+Bài 3
+Một công ty sản xuất bóng đèn cho biết tuổi thọ trung bình của loại bóng đèn là 800 giờ và độ lệch tiêu
+chuẩn là 40 giờ. Hãy kiểm định giả thuyết µ = 800 và đối thuyết µ 6= 800, nếu kiểm tra ngẫu nhiên mẫu 30
+bóng đèn thu được tuổi thọ trung bình là 788 giờ, với mức ý nghĩa 5%. Giả sử tuổi thọ của loại bóng đèn
+trên là biến ngẫu nhiên có phân phối chuẩn N (µ; σ 2 ).
+Bài 4
+Một dây chuyền đóng gói mỳ chính tự động với quy định trọng lượng mỗi gói là 250 gam. Kiểm tra ngẫu
+nhiên 25 gói được đóng bằng máy tự động trên thì thu được số liệu như sau:
+Trọng lượng (gam)
+Số gói
+
+240,7
+3
+
+240,9
+7
+
+250,1
+8
+
+250,3
+5
+
+250,5
+2
+
+Giả sử trọng lượng của các gói mỳ chính có phân phối chuẩn. Với mức ý nghĩa 5%, hỏi trọng lượng trung
+bình của các gói mỳ chính được đóng gói tự động giống như yêu cầu hay không?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+45/47
+
+SAMI.HUST – 2023
+
+45 / 47
+
+Bài tập
+Bài 5
+Doanh số bán hàng của một siêu thị là biến ngẫu nhiên X (tỷ VNĐ/ngày). Điều tra về doanh số bán hàng
+của siêu thị này trong 50 ngày thu được bảng số liệu sau:
+Doanh số
+Số ngày
+
+[8;10)
+5
+
+[10;12)
+12
+
+[12;14)
+21
+
+[14;16)
+8
+
+[16;18]
+4
+
+Với mức ý nghĩa 5%, cần kiểm tra xem doanh số bán hàng trung bình một ngày của siêu thị có hơn 12 tỷ
+VNĐ hay không?
+Bài 6
+Tại công ty xăng dầu, quá trình nạp nhớt vào bình chỉ chấp nhận độ lệch chuẩn tối đa 10 ml. Để kiểm tra
+máy nạp M, người ta lấy ra 20 bình để kiểm tra. Kết quả cho thấy độ lệch chuẩn là 12 ml. Với độ tin cậy là
+95%, độ biến động của máy M có đạt yêu cầu của công ty hay không?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+46/47
+
+SAMI.HUST – 2023
+
+46 / 47
+
+Bài tập
+
+Bài 7
+Trọng lượng của một loại trái cây từ 253 gam trở lên được xếp là trái cây loại I. Kiểm tra ngẫu nhiên 100
+trái và thu được kết quả sau:
+Trọng lượng (gam)
+Số trái
+
+245
+8
+
+247
+12
+
+248
+20
+
+250
+32
+
+252
+16
+
+253
+8
+
+254
+4
+
+Có ý kiến cho rằng tỷ lệ trái cây loại I là 15%. Với mức ý nghĩa 5%, có thể kết luận như thế nào về ý kiến
+nêu trên?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.2
+
+47/47
+
+SAMI.HUST – 2023
+
+47 / 47
+
+

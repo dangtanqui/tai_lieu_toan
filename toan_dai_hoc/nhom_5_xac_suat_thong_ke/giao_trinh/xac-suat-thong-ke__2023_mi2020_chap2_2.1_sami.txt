@@ -1,0 +1,342 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 2
+BIẾN NGẪU NHIÊN VÀ LUẬT PHÂN PHỐI XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng 201.BIS–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+1/15
+
+SAMI.HUST – 2023
+
+1 / 15
+
+GIỚI THIỆU CHƯƠNG 2
+
+Chương này nghiên cứu về biến ngẫu nhiên. Nội dung bao gồm:
+Khái niệm và phân loại biến ngẫu nhiên.
+Phân tích phân phối xác suất của biến ngẫu nhiên thông qua hàm xác suất hoặc bảng phân phối, hàm phân
+phối, hàm mật độ xác suất.
+Trình bày một số giá trị đặc trưng của biến ngẫu nhiên như kỳ vọng, phương sai, độ lệch chuẩn, mốt, trung
+vị.
+Giới thiệu một số phân phối rời rạc thông dụng: phân phối đều, phân phối Bernoulli, phân phối nhị thức,
+phân phối Poisson; và một số phân phối liên tục thông dụng: phân phối đều, phân phối mũ, phân phối
+chuẩn, phân phối Student, phân phối khi-bình phương, phân phối Fisher.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+2/15
+
+SAMI.HUST – 2023
+
+2 / 15
+
+2.1. BIẾN NGẪU NHIÊN
+
+1
+
+2.1.1 Khái niệm và phân loại biến ngẫu nhiên
+
+2
+
+2.1.2 Hàm của một biến ngẫu nhiên
+
+3
+
+Bài tập Mục 2.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+3/15
+
+SAMI.HUST – 2023
+
+3 / 15
+
+Khái niệm và phân loại biến ngẫu nhiên
+
+Khái niệm 1
+Giả sử ta có một phép thử với không gian mẫu là S. Một biến ngẫu nhiên là một hàm số của các kết cục
+X : S → R cho tương ứng ω ∈ S với X(ω) ∈ R.
+- Ký hiệu SX là tập các giá trị của X.
+Nếu SX là tập hữu hạn hoặc vô hạn đếm được thì X là biến ngẫu nhiên rời rạc.
+Nếu SX là tập vô hạn không đếm được thì X là biến ngẫu nhiên liên tục.
+- Trong khuôn khổ của chương trình ta chỉ nghiên cứu hai loại biến ngẫu nhiên hoặc là biến ngẫu nhiên rời rạc
+hoặc là biến ngẫu nhiên liên tục và không nghiên cứu biến ngẫu nhiên vừa rời rạc vừa liên tục (còn gọi là biến
+ngẫu nhiên hỗn hợp).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+4/15
+
+SAMI.HUST – 2023
+
+4 / 15
+
+Khái niệm và phân loại biến ngẫu nhiên
+
+X được gọi là biến ngẫu nhiên vì trước khi tiến hành phép thử ngẫu nhiên ta chưa có thể nói một cách
+chắn chắc nó sẽ nhận một giá trị bằng bao nhiêu. Nói cách khác, việc biến ngẫu nhiên X nhận một giá trị
+nào đó (X = x1 ), (X = x2 ), . . . , (X = xn ) về thực chất là các sự kiện.
+Nếu biến ngẫu nhiên X chỉ nhận các giá trị x1 , x2 , . . . , xn trong một phép thử thì (X = x1 ), (X = x2 ),
+. . . , (X = xn ) tạo nên một hệ đầy đủ các sự kiện.
+Khái niệm biến ngẫu nhiên xác định như trên được gọi là biến ngẫu nhiên một chiều và SX ⊂ R.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+5/15
+
+SAMI.HUST – 2023
+
+5 / 15
+
+Khái niệm và phân loại biến ngẫu nhiên
+
+Ví dụ 1
+Tung một đồng xu cân đối đồng chất hai lần. Không gian mẫu là S = {SS, SN, N S, N N }. Gọi X là số lần
+xuất hiện mặt ngửa trong tổng số hai lần tung. Khi đó, X là một hàm từ S vào SX = {0, 1, 2} cho ương ứng
+SS với 0;
+SN với 1;
+N S với 1;
+N N với 2.
+X là biến ngẫu nhiên rời rạc, SX là tập hữu hạn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+6/15
+
+SAMI.HUST – 2023
+
+6 / 15
+
+Khái niệm và phân loại biến ngẫu nhiên
+
+Ví dụ 2
+Tung một đồng xu cân đối đồng chất cho đến khi xuất hiện mặt ngửa thì dừng lại. Không gian mẫu là
+S = {N, SN, SSN, SSSN, . . . }. Gọi Y là số lần tung. Khi đó, SY = {1, 2, 3, . . . } và Y là một hàm từ S vào
+SY cho tương ứng
+N với 1;
+SN với 2;
+SSN với 3;
+SSSN với 4;
+....
+Y là biến ngẫu nhiên rời rạc, SY là tập vô hạn đếm được phần tử.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+7/15
+
+SAMI.HUST – 2023
+
+7 / 15
+
+Khái niệm và phân loại biến ngẫu nhiên
+
+Ví dụ 3
+Một xạ thủ bắn một viên đạn vào bia có tâm là O(0; 0), bán kính 20 centimét và giả sử viên đạn trúng bia.
+Không gian mẫu là S = {(x, y) ∈ R2 | x2 + y 2 ≤ 202 }. Gọi Z là khoảng cách từ tâm p
+bia tới điểm bia trúng
+đạn, thì SZ = [0; 20 (cm)] và Z là hàm số từ S vào SZ cho tương ứng (x, y) ∈ S với x2 + y 2 ∈ SZ .
+Z là biến ngẫu nhiên liên tục;
+SZ là tập hợp vô hạn không đếm được.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+8/15
+
+SAMI.HUST – 2023
+
+8 / 15
+
+2.1. BIẾN NGẪU NHIÊN
+
+1
+
+2.1.1 Khái niệm và phân loại biến ngẫu nhiên
+
+2
+
+2.1.2 Hàm của một biến ngẫu nhiên
+
+3
+
+Bài tập Mục 2.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+9/15
+
+SAMI.HUST – 2023
+
+9 / 15
+
+Hàm của một biến ngẫu nhiên
+
+Khái niệm 2
+Cho X là một biến ngẫu nhiên và g(x) là một hàm số thực. Đặt Y = g(X) := g(x)
+g(X) như vậy được gọi là hàm của biến ngẫu nhiên X.
+
+x=X
+
+. Biến ngẫu nhiên
+
+Nếu X là biến ngẫu nhiên rời rạc thì g(X) cũng là biến ngẫu nhiên rời rạc.
+Nếu X là biến ngẫu nhiên liên tục và g(.) là một hàm liên tục thì g(X) là biến ngẫu nhiên liên tục.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+10/15
+
+SAMI.HUST – 2023
+
+10 / 15
+
+Hàm của một biến ngẫu nhiên
+
+Ví dụ 4
+Một công ty điện thoại tính cước phí cho một bản fax như sau: 10 nghìn đồng cho trang thứ nhất, 9 nghìn
+đồng cho trang thứ hai, . . . , 6 nghìn đồng cho trang thứ năm. Những bản fax từ 6 đến 10 trang có phí là 50
+nghìn đồng. Công ty điện thoại này không nhận những bản fax dài quá 10 trang. Gọi X là số trang trong
+một bản fax và Y là chi phí phải trả cho một bản fax. Khi đó, X là biến ngẫu nhiên rời rạc và
+SX = {1, 2, . . . , 10} và Y là một hàm của X được xác định bởi
+(
+10, 5X − 0, 5X 2 ,
+1 ≤ X ≤ 5,
+Y := g(X) =
+50,
+6 ≤ X ≤ 10.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+11/15
+
+SAMI.HUST – 2023
+
+11 / 15
+
+2.1. BIẾN NGẪU NHIÊN
+
+1
+
+2.1.1 Khái niệm và phân loại biến ngẫu nhiên
+
+2
+
+2.1.2 Hàm của một biến ngẫu nhiên
+
+3
+
+Bài tập Mục 2.1
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+12/15
+
+SAMI.HUST – 2023
+
+12 / 15
+
+Bài tập
+Bài 1
+Ký hiệu X là số khách hàng đến một siêu thị trong một ngày. Khẳng định nào sau đây là ĐÚNG?
+A. X là một hằng số.
+B. X là một biến ngẫu nhiên rời rạc nhận hữu hạn giá trị.
+C. X là một biến ngẫu nhiên rời rạc có thể nhận vô hạn giá trị.
+D. X là một biến ngẫu nhiên liên tục.
+Bài 2
+Ký hiệu Y (gam) là trọng lượng của một loại sản phẩm đúc có trọng lượng tối đa là 500 gam. Khi đó, miền
+giá trị của Y là:
+A. SY = {1; 2; . . . ; 10}.
+B. SY = (0; 500].
+C. SY = (−∞; +∞).
+D. SY = {0; 1; . . . ; 500}.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+13/15
+
+SAMI.HUST – 2023
+
+13 / 15
+
+Bài tập
+Bài 3
+Ký hiệu Z là tổng số chấm xuất hiện khi gieo đồng thời ba con xúc xắc.
+(a) Tìm miền giá trị của Z.
+(b) Tính xác suất của các sự kiện: (Z = 25), (Z = 3), (Z = 5).
+Bài 4
+Biết rằng giá vé thuê xe máy tại một cửa hàng cho thuê xe máy là 50000 VNĐ cho năm giờ đầu tiên và
+20000 VNĐ cho mỗi giờ tiếp theo. Thời gian thuê được tính làm tròn tăng lên, tức là khách hàng chỉ cần quá
+một giây cũng được tính thêm một giờ. Ký hiệu X (giờ) là thời gian thực tế một khách hàng thuê xe và Y là
+số tiền khách hàng phải trả.
+(a) Tìm mối liên hệ giữa X và Y .
+(b) Tìm miền giá trị của X và Y .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+14/15
+
+SAMI.HUST – 2023
+
+14 / 15
+
+Bài tập
+
+Bài 5
+Kiểm tra một lô hàng gồm 6 mạch điện tử được giao cho khách hàng. Sau mỗi kiểm tra, mạch có thể được
+chấp nhận hoặc bị từ chối nếu không đảm bảo được tiêu chuẩn cho phép. Ký hiệu R là doanh thu thuần
+(khoản tiền thu được từ việc bán hàng hóa dịch vụ sau khi đã khấu trừ các loại thuế, các loại giảm giá. . . )
+của lô hàng, biết rằng mỗi mạch được chấp nhận có doanh thu thuần là 5 đô la và −7 đô la cho mỗi mạch bị
+từ chối (điều này là do đối với mỗi mạch bị hỏng xuất xưởng, công ty sẽ phải trả 7 đô la để giải quyết khiếu
+nại của khách hàng và cung cấp mạch thay thế tốt). Gọi N là số mạch điện trong lô hàng được chấp nhận.
+(a) Tìm miền giá trị của N .
+(b) Viết hàm biểu diễn mối quan hệ giữa R và N .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 2 – MỤC 2.1
+
+15/15
+
+SAMI.HUST – 2023
+
+15 / 15
+
+

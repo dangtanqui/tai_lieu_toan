@@ -1,0 +1,515 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 3
+BIẾN NGẪU NHIÊN NHIỀU CHIỀU
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201-D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+1/17
+
+SAMI.HUST – 2023
+
+1 / 17
+
+3.4. LUẬT SỐ LỚN
+
+1
+
+Ví dụ
+
+2
+
+3.4.1 Sự hội tụ của dãy các biến ngẫu nhiên
+
+3
+
+3.4.2 Luật số lớn Chebyshev
+
+4
+
+3.4.3 Luật số lớn Bernoulli
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+2/17
+
+SAMI.HUST – 2023
+
+2 / 17
+
+Ví dụ
+
+Ví dụ 23
+(a) Gieo n lần một đồng xu cân đối đồng chất. Gọi x là số lần xuất hiện mặt sấp trong n lần gieo. Khi đó,
+tỷ số x/n được gọi là tần suất xuất hiện mặt sấp. Người ta thấy rằng nếu số lần gieo càng lớn thì x/n
+càng gần tới 1/2 (xem Chương 1).
+(b) Lặp lại n lần đo độc lập biến ngẫu nhiên X trong cùng một điều kiện như nhau, kết quả của các lần đo
+n
+gần với số E(X) (xem
+là x1 , x2 , . . . , xn . Thực nghiệm cho thấy rằng trung bình số học x1 +x2 +···+x
+n
+Chương 2).
+- Câu hỏi đặt ra:
+1
+
+“Với điều kiện nào thì x/n hội tụ về xác suất p = P (A)?”
+
+2
+
+“Với điều kiện nào thì
+
+x1 +x2 +···+xn
+n
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+hội tụ về E(X)?”
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+3/17
+
+SAMI.HUST – 2023
+
+3 / 17
+
+3.4. LUẬT SỐ LỚN
+
+1
+
+Ví dụ
+
+2
+
+3.4.1 Sự hội tụ của dãy các biến ngẫu nhiên
+
+3
+
+3.4.2 Luật số lớn Chebyshev
+
+4
+
+3.4.3 Luật số lớn Bernoulli
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+4/17
+
+SAMI.HUST – 2023
+
+4 / 17
+
+Hội tụ theo xác suất
+
+Định nghĩa 12
+Xét dãy biến ngẫu nhiên {Xn }∞
+n=1 và biến ngẫu nhiên X trong cùng một phép thử. Dãy các biến ngẫu nhiên
+{Xn }∞
+n=1 được gọi là hội tụ theo xác suất về biến ngẫu nhiên X khi n → ∞ nếu với mọi ε > 0,
+lim P (|Xn − X| > ε) = 0.
+
+(31)
+
+n→∞
+
+- Nếu dãy các biến ngẫu nhiên {Xn }∞
+n=1 hội tụ theo xác suất về biến ngẫu nhiên X thì với n đủ lớn, thực tế
+gần như chắc chắn ta có thể coi rằng Xn không khác mấy so với X.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+5/17
+
+SAMI.HUST – 2023
+
+5 / 17
+
+Hội tụ theo phân phối
+
+Định nghĩa 13
+Dãy các biến ngẫu nhiên {Xn }∞
+n=1 được gọi là hội tụ theo phân phối về biến ngẫu nhiên X khi n → ∞ nếu
+dãy các hàm phân phối xác suất {FXn (x)}∞
+n=1 hội tụ về hàm phân phối FX (x) khi n → ∞. Tức là
+(32)
+
+lim FXn (x) = FX (x).
+
+n→∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+6/17
+
+SAMI.HUST – 2023
+
+6 / 17
+
+3.4. LUẬT SỐ LỚN
+
+1
+
+Ví dụ
+
+2
+
+3.4.1 Sự hội tụ của dãy các biến ngẫu nhiên
+
+3
+
+3.4.2 Luật số lớn Chebyshev
+
+4
+
+3.4.3 Luật số lớn Bernoulli
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+7/17
+
+SAMI.HUST – 2023
+
+7 / 17
+
+Bất đẳng thức Chebyshev
+Định lý 15 (Bất đẳng thức Markov)
+Cho Y là biến ngẫu nhiên không âm có kỳ vọng hữu hạn. Khi đó, với ε > 0 tùy ý cho trước, ta có
+P (Y ≥ ) ≤
+
+E(Y 2 )
+.
+2
+
+(33)
+
+Định lý 16 (Bất đẳng thức Chebyshev)
+Cho X là biến ngẫu nhiên có kỳ vọng E(X) = µ và phương sai V (X) = σ 2 hữu hạn. Khi đó, với ε > 0 tùy ý
+cho trước, ta có
+P (|X − µ| ≥ ε) ≤
+
+σ2
+ε2
+
+(34)
+
+hay tương đương
+P (|X − µ| < ε) ≥ 1 −
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+σ2
+.
+ε2
+
+(35)
+
+8/17
+
+SAMI.HUST – 2023
+
+8 / 17
+
+Bất đẳng thức Chebyshev
+
+1
+
+Nếu đặt ε = kσ với k là một số thực dương tùy ý thì bất đẳng thức (35) có dạng
+P (µ − kσ < X < µ + kσ) ≥ 1 −
+
+2
+
+1
+.
+k2
+
+(36)
+
+Bất đẳng thức Chebyshev đưa ra một ước lượng quan trọng về xác suất mà một biến ngẫu nhiên nhận giá
+trị sai lệch so với giá trị trung bình không quá k lần độ lệch chuẩn, với bất kỳ số thực dương k nào.
+Chẳng hạn, k = 2, Định lý 16 nói rằng xác suất để biến ngẫu nhiên X nằm trong khoảng (µ − 2σ; µ + 2σ)
+là không nhỏ hơn 3/4. Tương tự, định lý cũng nói rằng ít nhất 8/9 các quan sát của bất kỳ phân phối nào
+nằm trong khoảng (µ − 3σ; µ + 3σ).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+9/17
+
+SAMI.HUST – 2023
+
+9 / 17
+
+Bất đẳng thức Chebyshev
+
+Ví dụ 24
+Cho biến ngẫu nhiên X có kỳ vọng µ = 8, phương sai σ 2 = 9 và không biết phân phối xác suất. Đánh giá
+các xác suất sau:
+(a) P (−4 < X < 20).
+(b) P (|X − 8| ≥ 6).
+Giải. Áp dụng bất đẳng thức Chebysshev (36),
+(a) P (−4 < X < 20) = P (8 − (4)(3) < X < 8 + (4)(3)) ≥
+
+15
+.
+16
+
+(b) P (|X − 8| ≥ 6) = 1 − P (|X − 8| < 6) = 1 − P (8 − (2)(3) < X < 8 + (2)(3)) ≥ 14 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+10/17
+
+SAMI.HUST – 2023
+
+10 / 17
+
+Bất đẳng thức Chebyshev
+
+Bất đẳng thức Chebyshev phù hợp với bất kỳ phân phối nào của các quan sát và vì lý do này, kết quả
+thường yếu.
+Giá trị được đưa ra bởi bất đẳng thức chỉ là một giới hạn dưới. Chẳng hạn, ta biết rằng xác suất để một
+biến ngẫu nhiên X nhận giá trị trong khoảng (µ − 2σ; µ + 2σ) là không nhỏ hơn 3/4, nhưng không biết giá
+trị thực sự của nó có thể lớn hơn bao nhiêu.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+11/17
+
+SAMI.HUST – 2023
+
+11 / 17
+
+Luật số lớn Chebyshev
+Định lý 17
+Nếu dãy các biến ngẫu nhiên X1 , X2 , . . . , Xn , . . . độc lập, có kỳ vọng hữu hạn và phương sai bị chặn đều
+(nghĩa là, V (Xi ) ≤ C, ∀i = 1, 2, . . . , C là hằng số dương), thì với ε > 0 tùy ý cho trước ta có:
+lim P
+
+n→+∞
+
+n
+n
+
+ 1X
+1X
+Xi −
+E(Xi ) <  = 1.
+n i=1
+n i=1
+
+(37)
+
+Hệ quả 3
+Nếu dãy các biến ngẫu nhiên X1 , X2 , . . . , Xn , . . . độc lập, có cùng kỳ vọng hữu hạn (E(Xi ) = µ,
+i = 1, 2, . . . ) và phương sai bị chặn đều, thì với ε > 0 tùy ý cho trước ta có:
+lim P
+
+n→+∞
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+n
+ 1X
+
+Xi − µ < ε = 1.
+n i=1
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+(38)
+
+12/17
+
+SAMI.HUST – 2023
+
+12 / 17
+
+Luật số lớn Chebyshev
+
+Định lý Chebyshev chứng tỏ rằng trung bình số học của các biến ngẫu nhiên độc lập hội tụ theo xác suất về
+trung bình số học của kỳ vọng tương ứng của nó.
+Như vậy, mặc dù từng biến ngẫu nhiên độc lập có thể nhận giá trị khác nhiều so với kỳ vọng của chúng,
+song trung bình số học của một số lớn các biến ngẫu nhiên lại nhận giá trị gần bằng trung bình số học các
+kỳ vọng của chúng. Điều đó cho phép dự đoán giá trị trung bình số học của các biến ngẫu nhiên.
+Chẳng hạn, gieo một con xúc xắc cân đối đồng chất. Gọi X là số chấm xuất hiện ở mặt trên con xúc xắc
+thì E(X) = 3, 5. Một nhà thống kê đã gieo một con xúc xắc cân đối đồng chất một triệu lần và ghi lại số
+chấm xuất hiện ở mặt trên con xúc xắc. Số chấm trung bình của một triệu lần gieo được tìm thấy là
+x1 + x2 + · · · + x106
+≈ 3, 500867.
+106
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+13/17
+
+SAMI.HUST – 2023
+
+13 / 17
+
+3.4. LUẬT SỐ LỚN
+
+1
+
+Ví dụ
+
+2
+
+3.4.1 Sự hội tụ của dãy các biến ngẫu nhiên
+
+3
+
+3.4.2 Luật số lớn Chebyshev
+
+4
+
+3.4.3 Luật số lớn Bernoulli
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+14/17
+
+SAMI.HUST – 2023
+
+14 / 17
+
+Luật số lớn Bernoulli
+
+- Áp dụng luật số lớn Chebyshev với trường hợp Xi ∼ B(p), với Xi là biến ngẫu nhiên chỉ số lần xuất hiện A ở
+phép thử thứ i, i = 1, 2, . . . , n, ta có luật số lớn Bernoulli.
+Định lý 18
+Giả sử ta có n phép thử Bernoulli với P (A) = p và x là số lần xuất hiện A trong n phép thử đó. Khi đó, với
+ε > 0 tùy ý cho trước, ta có
+ x
+
+(39)
+lim P
+− p < ε = 1.
+n→+∞
+n
+- Định lý Bernoulli chỉ ra rằng tần suất xuất hiện của sự kiện A trong n phép thử độc lập sẽ hội tụ theo xác suất
+về xác suất của sự kiện đó khi số lần thử tăng lên vô hạn. Chính vì vậy định lý Bernoulli là cơ sở lý thuyết của
+định nghĩa thống kê về xác suất ở Chương 1 “khi n → +∞ thì nx → p”.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+15/17
+
+SAMI.HUST – 2023
+
+15 / 17
+
+Luật số lớn Bernoulli
+Ví dụ 25
+Giả sử p là tỷ lệ cử tri sẽ bầu cho ứng cử viên A. Để ước lượng trước tỷ lệ này người ta phỏng vấn ngẫu
+nhiên n cử tri. Có thể coi kết quả bầu của cử tri thứ i là biến ngẫu nhiên Xi có phân phối Bernoulli
+tham số p.
+Ta có E(Xi ) = p và phương sai V (Xi ) = p(1 − p). Đặt Kn =
+Chebyshev ta có
+P (|Kn − p| ≥ ε) ≤
+
+p(1 − p)
+1
+≤
+nε2
+4nε2
+
+hay
+
+X1 +X2 +···+Xn
+,
+n
+
+áp dụng bất đẳng thức
+
+P (|Kn − p| < ε) ≥ 1 −
+
+1
+.
+4nε2
+
+1
+= 0, 25. Nói cách khác,
+4 × 100 × (0, 1)2
+nếu phỏng vấn 100 cử tri và lấy kết quả này để ước lượng cho tỷ lệ cử tri sẽ bỏ phiếu cho ứng cử viên A
+thì sai số vượt quá 0,1 có xác suất không vượt quá 0,25.
+Chẳng hạn, nếu ε = 0, 1 và n = 100 thì P (|K100 − p| ≥ 0, 1) ≤
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+16/17
+
+SAMI.HUST – 2023
+
+16 / 17
+
+Luật số lớn Bernoulli
+Ví dụ 25 (tiếp theo)
+Nếu muốn ước lượng tin cậy hơn (chẳng hạn xác suất lớn hơn 95%) và chính xác hơn (với sai số 0,01)
+1
+.
+thì P (|Kn − p| < 0, 01) ≥ 1 −
+4n(0, 01)2
+Vậy số cử tri phải phỏng vấn thỏa mãn
+1−
+
+1
+≥ 0, 95
+4n(0, 01)2
+
+suy ra
+
+n ≥ 50000.
+
+Như vậy để ước lượng với độ tin cậy cao và độ chính xác cao thì cần phải lấy mẫu với số lượng lớn. Tuy
+nhiên, ở đây ta chỉ dựa vào bất đẳng thức Chebyshev để giải quyết bài toán.
+Trong phần thống kê ta sẽ nghiên cứu về bài toán ước lượng này và bằng phương pháp khác ta sẽ chỉ
+ra số cử tri phải phỏng vấn nhỏ hơn kết quả trên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 3 – MỤC 3.4
+
+17/17
+
+SAMI.HUST – 2023
+
+17 / 17
+
+

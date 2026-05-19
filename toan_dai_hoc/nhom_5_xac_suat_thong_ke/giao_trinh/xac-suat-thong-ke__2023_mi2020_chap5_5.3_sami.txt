@@ -1,0 +1,1742 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 5
+KIỂM ĐỊNH GIẢ THUYẾT THỐNG KÊ
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng BIS.201–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+1/50
+
+SAMI.HUST – 2023
+
+1 / 50
+
+5.3. SO SÁNH
+1
+
+5.3.1 So sánh hai kỳ vọng
+5.3.1.1 Trường hợp hai phương sai σ12 , σ22 đã biết
+5.3.1.2 Trường hợp hai mẫu kích thước lớn
+5.3.1.3 Trường hợp hai phương sai σ12 , σ22 chưa biết
+5.3.1.4 So sánh cặp
+
+2
+
+5.3.2 So sánh hai phương sai
+5.3.2.1 Bài toán
+5.3.2.2 Phân phối mẫu
+5.3.2.3 Các bước tiến hành
+
+3
+
+5.3.3 So sánh hai tỷ lệ
+5.3.3.1 Bài toán
+5.3.3.2 Phân phối mẫu
+5.3.3.3 Các bước tiến hành
+
+4
+
+Bài tập Mục 5.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+2/50
+
+SAMI.HUST – 2023
+
+2 / 50
+
+Bài toán
+
+Bài toán 4
+Giả sử X1 và X2 là hai biến ngẫu nhiên gốc cùng mô tả về một đặc trưng thống kê và được xét trên hai tổng
+thể và giả sử Xi ∼ N (µi ; σi2 ), trong đó, E(Xi ) = µi , i = 1, 2 chưa biết. Từ X1 và X2 , xây dựng hai mẫu
+ngẫu nhiên tương ứng WX1 = (X11 , X12 , . . . , X1n1 ) kích thước n1 và WX2 = (X21 , X22 , . . . , X2n2 ) kích
+thước n2 . Bài toán đặt ra là cần so sánh hai kỳ vọng µ1 với µ2 dựa trên các mẫu quan sát
+Wx1 = (x11 , x12 , . . . , x1n1 ) và Wx2 = (x21 , x22 , . . . , x2n2 ).
+- Các cặp giả thuyết
+Ta cần kiểm định giả thuyết so sánh hai kỳ vọng ở một trong ba dạng của cặp giả thuyết sau (∆0 là số đã biết):
+1
+
+H0 : µ1 − µ2 = ∆0 ; H1 : µ1 − µ2 6= ∆0
+
+2
+
+H0 : µ1 − µ2 = ∆0 ; H1 : µ1 − µ2 > ∆0
+
+3
+
+H0 : µ1 − µ2 = ∆0 ; H1 : µ1 − µ2 < ∆0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+3/50
+
+SAMI.HUST – 2023
+
+3 / 50
+
+So sánh hai kỳ vọng, hai phương sai đã biết
+
+Phân phối mẫu
+Giả sử hai biến ngẫu nhiên gốc X1 và X2 là độc lập.
+P 1
+Pn2
+1
+Với X 1 = n11 n
+i=1 X1i và X 2 = n2
+j=1 X2j , thì
+Z=
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+(X 1 − X 2 ) − (µ1 − µ2 )
+q 2
+∼ N (0; 1).
+2
+σ1
+σ2
++
+n1
+n2
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+(18)
+
+4/50
+
+SAMI.HUST – 2023
+
+4 / 50
+
+So sánh hai kỳ vọng, hai phương sai đã biết
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định
+Z0 =
+
+(X 1 − X 2 ) − ∆0
+q 2
+.
+σ1
+σ2
++ n22
+n1
+
+(19)
+
+Nếu giả thuyết H0 : µ1 − µ2 = ∆0 là đúng, thì Z0 ∼ N (0; 1).
+3. Miền bác bỏ giả thuyết H0 được xác định phụ thuộc vào đối thuyết H1 .
+H0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+µ1 − µ2 6= ∆0
+µ1 − µ2 > ∆0
+µ1 − µ2 < ∆0
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+5/50
+
+SAMI.HUST – 2023
+
+5 / 50
+
+So sánh hai kỳ vọng, hai phương sai đã biết
+
+Các bước tiến hành (tiếp theo)
+4. Từ hai mẫu cụ thể Wx1 = (x11 , x12 , . . . , x1n1 ) và Wx2 = (x21 , x22 , . . . , x2n2 ), tính giá trị quan sát của
+tiêu chuẩn kiểm định
+z0 =
+
+(x1 − x2 ) − ∆0
+r 2
+.
+σ1
+σ2
++ 2
+n1
+n2
+
+(20)
+
+5. Kiểm tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+6/50
+
+SAMI.HUST – 2023
+
+6 / 50
+
+So sánh hai kỳ vọng, hai phương sai đã biết
+
+Ví dụ 11
+Một nhà phát triển sản phẩm quan tâm đến việc giảm thời gian khô của sơn lót. Hai công thức của sơn được
+thử nghiệm. Công thức I là công thức tiêu chuẩn và Công thức II có thành phần làm khô mới nên hy vọng sẽ
+làm giảm thời gian làm khô. Từ kinh nghiệm cho thấy thời gian làm khô của sơn lót có luật phân phối chuẩn
+với độ lệch chuẩn là 8 phút và nó không bị ảnh hưởng khi bổ sung thành phần làm khô mới. Mười mẫu vật
+được sơn theo Công thức I và 10 mẫu khác được sơn theo Công thức II theo thứ tự ngẫu nhiên cho kết quả
+thời gian khô trung bình của hai mẫu lần lượt là x1 = 121 phút và x2 = 112 phút. Nhà phát triển sản phẩm
+có thể rút ra kết luận gì về hiệu quả của thành phần mới với mức ý nghĩa α = 0, 05?
+Giải. Gọi X1 (phút), X2 (phút) lần lượt là các biến ngẫu nhiên chỉ thời gian làm khô của sơn sản xuất theo Công
+thức I và II, X1 và X2 độc lập và Xi ∼ N (µi ; σi2 ), i = 1, 2 với σ1 = σ2 = 8. Đây là bài toán so sánh hai kỳ vọng
+của hai biến ngẫu nhiên có phân phối chuẩn trong trường hợp hai phương sai đã biết và ∆0 = 0.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+7/50
+
+SAMI.HUST – 2023
+
+7 / 50
+
+So sánh hai kỳ vọng, hai phương sai đã biết
+Cặp giả thuyết cần kiểm định H0 : µ1 = µ2 , H1 : µ1 > µ2 .
+Chọn tiêu chuẩn kiểm định
+Z0 =
+
+(X 1 − X 2 ) − 0
+q 2
+.
+2
+σ1
+σ2
++
+n1
+n2
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼ N (0; 1).
+Với α = 0, 05, zα = z0,05 = 1, 645. Miền bác bỏ giả thuyết H0 là
+Wα = (1, 645; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n1 = n2 = 10, x1 = 121, x2 = 112 và σ1 = σ2 = 8,
+z0 =
+
+(x1 − x2 ) − 0
+121 − 112
+q 2
+' 2, 5156.
+= q
+2
+σ1
+σ2
+82
+82
++
++
+10
+10
+n1
+n2
+
+Vì z0 = 2, 5156 ∈ Wα nên có cơ sở bác bỏ giả thuyết H0 . Như vậy, với dữ liệu thực nghiệm đã cho, việc
+thêm thành phần làm khô mới đã làm giảm thời gian làm khô của loại sơn lót này với mức ý nghĩa 5%.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+8/50
+
+SAMI.HUST – 2023
+
+8 / 50
+
+So sánh hai kỳ vọng, hai mẫu kích thước lớn
+
+Phân phối mẫu
+Nếu n1 ≥ 30 và n2 ≥ 30 thì thống kê
+Z=
+
+(X 1 − X 2 ) − (µ1 − µ2 )
+q 2
+S1
+S2
++ n22
+n1
+
+có phân phối xấp xỉ phân phối chuẩn tắc N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+9/50
+
+SAMI.HUST – 2023
+
+9 / 50
+
+So sánh hai kỳ vọng, hai mẫu kích thước lớn
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định:
+Z0 =
+
+(X 1 − X 2 ) − ∆0
+q 2
+.
+S1
+S2
++ n22
+n1
+
+(21)
+
+Nếu giả thuyết H0 : µ1 − µ2 = ∆0 là đúng và nếu n1 ≥ 30 và n2 ≥ 30 thì thống kê Z0 trong (21) có phân
+phối xấp xỉ phân phối chuẩn tắc N (0; 1).
+3. Miền bác bỏ giả thuyết H0 được xác định cho ba trường hợp như sau.
+H0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+µ1 − µ2 6= ∆0
+µ1 − µ2 > ∆0
+µ1 − µ2 < ∆0
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+10/50
+
+SAMI.HUST – 2023
+
+10 / 50
+
+So sánh hai kỳ vọng, hai mẫu kích thước lớn
+
+Các bước tiến hành (tiếp theo)
+4. Từ hai mẫu cụ thể Wx1 = (x11 , x12 , . . . , x1n1 ) và Wx2 = (x21 , x22 , . . . , x2n2 ), tính giá trị quan sát của
+tiêu chuẩn kiểm định
+z0 =
+
+(x1 − x2 ) − ∆0
+r 2
+.
+s1
+s2
++ 2
+n1
+n2
+
+(22)
+
+5. Kiểm tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+11/50
+
+SAMI.HUST – 2023
+
+11 / 50
+
+So sánh hai kỳ vọng, hai mẫu kích thước lớn
+
+Ví dụ 12
+Hai máy tự động dùng để cắt những thanh kim loại do cùng một kỹ thuật viên phụ trách và căn chỉnh. Từ
+mỗi máy lấy ra 31 thanh kim loại để kiểm tra và thu được kết quả sau:
+Máy I: Trung bình mẫu là 12 cm, độ lệch chuẩn hiệu chỉnh mẫu là 1,2 cm.
+Máy II: Trung bình mẫu là 12,3 cm, độ lệch chuẩn hiệu chỉnh mẫu là 1,4 cm.
+Với mức ý nghĩa α = 0, 01 có thể cho rằng chiều dài của các thanh kim loại do Máy I và II sản xuất là như
+nhau hay không?
+Giải. Gọi X1 (cm), X2 (cm) lần lượt là chiều dài các thanh kim loại do Máy I và II sản xuất, X1 và X2 là độc
+lập. Đây là bài toán so sánh hai kỳ vọng của hai biến ngẫu nhiên trường hợp mẫu kích thước n1 = n2 = 31 > 30,
+∆0 = 0.
+Cặp giả thuyết cần kiểm định là H0 : µ1 = µ2 , H1 : µ1 6= µ2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+12/50
+
+SAMI.HUST – 2023
+
+12 / 50
+
+So sánh hai kỳ vọng, hai mẫu kích thước lớn
+Chọn tiêu chuẩn kiểm định
+(X 1 − X 2 )
+Z0 = r 2
+.
+S22
+S1
++
+n1
+n2
+Vì n1 = n2 = 31 > 30 và nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+Với α = 0, 01, zα/2 = z0,005 = 2, 576. Miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −2, 576) ∪ (2, 576; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n1 = n2 = 31, x1 = 12, s1 = 1, 2, x2 = 12, 3 và
+s2 = 1, 4:
+(x1 − x2 ) − 0
+12 − 12, 3
+z0 = r 2
+= r
+= −0, 9059.
+1, 44
+1, 96
+s1
+s22
++
++
+31
+31
+n1
+n2
+Vì z0 = −0, 9059 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 . Có thể xem chiều dài các thanh kim
+loại do hai nhà máy sản xuất là như nhau với mức ý nghĩa 1%.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+13/50
+
+SAMI.HUST – 2023
+
+13 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+- Giả thiết
+Ta xét bài toán kiểm định giả thuyết hai mẫu về kỳ vọng trong trường hợp có giả thiết dưới đây.
+(H) Hai biến ngẫu nhiên gốc có phân phối chuẩn với phương sai chưa biết nhưng được giả thiết là chúng bằng
+nhau, tức là σ12 = σ22 = σ 2 .
+Phân phối mẫu
+Với giả thiết (H) thì
+V (X 1 − X 2 ) =
+
+ 1
+σ2
+1 
+σ2
+.
++
+= σ2
++
+n1
+n2
+n1
+n2
+
+Một ước lượng gộp của σ 2 được định nghĩa là
+Sp2 =
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+(n1 − 1)S12 + (n2 − 1)S22
+.
+n1 + n2 − 2
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+(23)
+
+14/50
+
+SAMI.HUST – 2023
+
+14 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+Phân phối mẫu (tiếp theo)
+Thống kê
+Z=
+
+(X 1 − X 2 ) − (µ1 − µ2 )
+q
+σ n11 + n12
+
+có phân phối chuẩn tắc N (0; 1).
+Do σ chưa biết, nên ta thay σ bởi Sp và với giả thiết (H) thì thống kê
+T =
+
+(X 1 − X 2 ) − (µ1 − µ2 )
+q
+Sp n11 + n12
+
+(24)
+
+có phân phối Student với n1 + n2 − 2 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+15/50
+
+SAMI.HUST – 2023
+
+15 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định:
+T0 =
+
+X 1 − X 2 − ∆0
+r
+.
+1
+1
+Sp
++
+n1
+n2
+
+(25)
+
+Nếu giả thuyết H0 : µ1 − µ2 = ∆0 là đúng và nếu giả thiết (H) được thỏa mãn thì T0 ∼ t(n1 + n2 − 2).
+3. Miền bác bỏ giả thuyết H0 được xác định phụ thuộc vào đối thuyết H1 .
+H0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+µ1 − µ2 = ∆ 0
+
+H1
+µ1 − µ2 6= ∆0
+µ1 − µ2 > ∆0
+µ1 − µ2 < ∆0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −tα/2;n1 +n2 −2 ) ∪ (tα/2;n1 +n2 −2 ; +∞)
+(tα;n1 +n2 −2 ; +∞)
+(−∞; −tα;n1 +n2 −2 )
+
+trong đó, tα/2;n1 +n2 −2 và tα;n1 +n2 −2 là các giá trị tới hạn của phân phối Student mức α/2 và α tương
+ứng với n1 + n2 − 2 bậc tự do.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+16/50
+
+SAMI.HUST – 2023
+
+16 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+Các bước tiến hành (tiếp theo)
+4. Từ hai mẫu cụ thể Wx1 = (x11 , x12 , . . . , x1n1 ) và Wx2 = (x21 , x22 , . . . , x2n2 ), tính giá trị quan sát của
+tiêu chuẩn kiểm định
+t0 =
+
+x1 − x2 − ∆0
+r
+,
+1
+1
+sp
++
+n1
+n2
+
+(26)
+
+ở đây, sp là ước lượng cho độ lệch chuẩn chung σ và
+s
+(n1 − 1)s21 + (n2 − 1)s22
+sp =
+.
+n1 + n2 − 2
+5. Kiểm tra xem t0 có thuộc Wα hay không để kết luận:
+Nếu t0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu t0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+17/50
+
+SAMI.HUST – 2023
+
+17 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+
+Ví dụ 13
+Hai chất xúc tác đang được phân tích để xác định xem chúng ảnh hưởng như thế nào đến năng suất trung
+bình của một quá trình sản xuất sản phẩm trong một nhà máy. Chất xúc tác I hiện đang được sử dụng.
+Chất xúc tác II được chấp nhận vì nó rẻ hơn, miễn là nó không làm thay đổi năng suất trung bình của quá
+trình sản xuất sản phẩm. Kết quả thử nghiệm trong nhà máy được cho như sau.
+Năng suất khi dùng chất xúc tác I: 91,50; 94,18; 92,18; 95,39; 91,79; 89,07; 94,72; 89,21
+Năng suất khi dùng chất xúc tác II: 89,19; 90,95; 90,46; 93,21; 97,19; 97,04; 91,07; 92,75
+Có sự khác biệt nào giữa năng suất trung bình của quá trình sản xuất sản phẩm khi sử dụng hai loại chất
+xúc tác này không? Sử dụng mức ý nghĩa α = 0, 05 và giả sử năng suất của quá trình sản xuất có phân phối
+chuẩn với các phương sai bằng nhau.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+18/50
+
+SAMI.HUST – 2023
+
+18 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+Giải. Gọi X1 , X2 tương ứng là năng suất của quá trình sản xuất sản phẩm khi dùng chất xúc tác I và II. Theo
+đầu bài, X1 và X2 độc lập và Xi ∼ N (µi ; σi2 ), i = 1, 2. Đây là bài toán so sánh hai kỳ vọng µ1 và µ2 của hai
+biến ngẫu nhiên có phân phối chuẩn trong trường hợp phương sai σ12 và σ22 chưa biết, nhưng được giả thiết là
+bằng nhau. Ta muốn biết liệu µ1 − µ2 = 0 hay không.
+Cặp giả thuyết cần kiểm định H0 : µ1 = µ2 , H1 : µ1 6= µ2 .
+Chọn tiêu chuẩn kiểm định
+T0 =
+
+(n1 − 1)S12 + (n2 − 1)S22
+X1 − X2
+r
+, Sp2 =
+.
+n1 + n2 − 2
+1
+1
+Sp
++
+n1
+n2
+
+Nếu giả thuyết H0 : µ1 = µ2 là đúng thì T0 ∼ t(n1 + n2 − 2).
+Với α = 5%, tα/2;n1 +n2 −2 = t0,025;14 = 2, 145 suy ra miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −2, 145) ∪ (2, 145; +∞).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+19/50
+
+SAMI.HUST – 2023
+
+19 / 50
+
+So sánh hai kỳ vọng, hai phương sai chưa biết
+
+Tính giá trị quan sát của tiêu chuẩn kiểm định với n1 = n2 = 8, x1 = 92, 255, x2 = 92, 733, s1 = 2, 385 và
+s2 = 2, 983:
+7 × (2, 39)2 + 7 × (2, 98)2
+s2p =
+= 7, 293
+8+8−2
+và
+t0 =
+
+x1 − x2
+92, 255 − 92, 733
+r
+q
+= −0, 354.
+= √
+1
+1
+7, 30 18 + 18
+sp
++
+n1
+n2
+
+Vì t0 = −0, 354 ∈
+/ Wα nên chưa có cơ sở để bác bỏ H0 , nghĩa là chưa có đủ bằng chứng để khẳng định sử
+dụng chất xúc tác II cho năng suất trung bình khác với việc sử dụng chất xúc tác I.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+20/50
+
+SAMI.HUST – 2023
+
+20 / 50
+
+So sánh cặp
+
+Nếu hai biến ngẫu nhiên gốc X1 và X2 cùng xét về một đặc trưng thống kê và cùng được quan sát trên
+một tổng thể xác định và được giả thiết là Xi ∼ N (µi ; σi2 ), i = 1, 2.
+Quan sát đồng thời về cặp hai biến ngẫu nhiên gốc (X
+ 1 , X2 ) ta có một mẫu ngẫu nhiên kích thước n là
+W(X1 ,X2 ) = (X11 , X21 ), (X12 , X22 ), . . . , (X1n , X2n ) . Khi đó, bài toán kiểm định giả thuyết hai mẫu so
+sánh hai kỳ vọng của hai biến ngẫu nhiên gốc X1 và X2 cùng được xác định trên một tổng thể có thể được
+chuyển về bài toán kiểm định giả thuyết một mẫu về kỳ vọng đối với biến ngẫu nhiên gốc
+Z = X1 − X2 .
+2
+Thật vậy, từ giả thiết suy ra Z ∼ N (µZ ; σZ
+) với
+
+µZ = E(X1 − X2 ) = E(X1 ) − E(X2 ) = µ1 − µ2 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+21/50
+
+SAMI.HUST – 2023
+
+21 / 50
+
+So sánh cặp
+
+Do đó, từ cặp giả thuyết hai mẫu so sánh hai kỳ vọng ban đầu
+(
+H0 : µ1 − µ2 = ∆0 ,
+H1 : µ1 − µ2 6= ∆0 hoặc µ1 − µ2 > ∆0 hoặc µ1 − µ2 < ∆0
+ta chuyển về cặp giả thuyết một mẫu về kỳ vọng của biến ngẫu nhiên Z tương ứng
+(
+H0 : µZ = ∆0 ,
+H1 : µZ 6= ∆0 hoặc µZ > ∆0 hoặc µZ < ∆0
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+22/50
+
+SAMI.HUST – 2023
+
+22 / 50
+
+So sánh cặp
+Tiêu chuẩn kiểm định và miền bác bỏ
+Tiêu chuẩn kiểm định
+T0 =
+
+Z − ∆0
+√ ∼ t(n − 1).
+SZ / n
+
+(27)
+
+Miền bác bỏ giả thuyết H0 :
+H0
+µZ = ∆ 0
+µZ = ∆ 0
+µZ = ∆ 0
+
+H1
+µZ =
+6 ∆0
+µZ > ∆0
+µZ < ∆0
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −tα/2;n−1 ) ∪ (tα/2;n−1 ; +∞)
+(tα;n−1 ; +∞)
+(−∞; −tα;n−1 )
+
+Với mẫu cụ thể Wx1 ,x2 = {(x11 , x21 ), (x12 , x22 ), . . . , (x1n , x2n )}, từ zi = x1i − x2i , i = 1, 2, . . . , n ta nhận
+được mẫu mới Wz = (z1 , z2 , . . . , zn ). Từ đó, tính được giá trị quan sát của tiêu chuẩn kiểm định.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+23/50
+
+SAMI.HUST – 2023
+
+23 / 50
+
+So sánh cặp
+
+Ví dụ 14
+Để khảo sát tác dụng tăng sản lượng hoa màu A của việc bón thêm một loại phân đạm B ta so sánh năng
+suất hoa màu A trung bình trên một héc-ta khi bón phân B với năng suất hoa màu A trung bình trên một
+héc-ta khi không bón phân B. Gọi µ1 là năng suất hoa màu A trung bình trên một héc-ta khi bón phân B,
+µ2 là năng suất hoa màu A trung bình trên một héc-ta khi không bón phân B. Khi đó ta có bài toán kiểm
+định giả thuyết H0 : µ1 = µ2 với đối thuyết H1 : µ1 > µ2 . Để giải quyết bài toán này, ta sẽ bố trí thí nghiệm
+theo hai cách.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+24/50
+
+SAMI.HUST – 2023
+
+24 / 50
+
+So sánh cặp
+Ví dụ 14 (tiếp theo)
+1
+
+Cách 1. Chọn n thửa ruộng thí nghiệm diện tích 1 héc-ta, trồng hoa màu A bón phân B và n mảnh đất thí
+nghiệm diện tích 1 héc-ta, trồng hoa màu A không bón phân B. Ngoài việc bón phân, tất cả các yếu tố
+canh tác khác đều như nhau. Cuối vụ ta thu được sản lượng của n thửa ruộng có bón phân là
+Wx1 = (x11 , x12 , . . . , x1n ) và sản lượng của n thửa ruộng không bón phân là Wx2 = (x21 , x22 , . . . , x2n ).
+Ta sử dụng phương pháp so sánh hai kỳ vọng với hai mẫu độc lập. Chú ý rằng nếu n1 < 30 và n2 < 30 thì
+ta cần thêm điều kiện là giả thiết (H) thỏa mãn.
+
+2
+
+Cách 2. Chọn n thửa ruộng thí nghiệm diện tích 2 héc-ta, chia mỗi thửa làm 2 mảnh, mỗi mảnh diện tích 1
+héc-ta. Một mảnh bón phân B và một mảnh không bón phân B. Cuối vụ thu hoạch ta có sản lượng của hai
+nửa tương ứng là Wx1 = (x11 , x12 , . . . , x1n ) và Wx2 = (x21 , x22 , . . . , x2n ). Khi đó, ta sẽ sử dụng phương
+pháp so sánh từng cặp. Cách này có ưu điểm hơn cách 1 ở chỗ: không cần đến giả thiết (H), Ngoài ra, nó
+sẽ cho kết quả chính xác hơn vì đã loại bỏ được các nhân tố ngoại lai ảnh hưởng tới giá trị trung bình. Điều
+kiện canh tác trên mảnh không bón phân và có bón phân gần như đồng nhất, chỉ khác nhau ở việc có bón
+phân B hay không.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+25/50
+
+SAMI.HUST – 2023
+
+25 / 50
+
+So sánh cặp
+
+Ví dụ 15
+Để so sánh hai chế độ chăm bón cho một loại cây trồng A, trên 8 mảnh ruộng người ta chia mỗi mảnh thành
+hai nửa: nửa thứ nhất áp dụng phương pháp chăm bón I, nửa thứ hai theo phương pháp chăm bón II. Sau
+khi thu hoạch ta được số liệu về năng suất loại cây trồng A như sau:
+Mảnh
+Năng suất nửa thứ nhất
+Năng suất nửa thứ hai
+
+1
+5
+15
+
+2
+20
+22
+
+3
+16
+14
+
+4
+22
+25
+
+5
+24
+29
+
+6
+14
+16
+
+7
+18
+20
+
+8
+20
+24
+
+Đánh giá xem hai chế độ chăm bón có giống nhau không với mức ý nghĩa 1%. Biết rằng năng suất loại cây
+trồng A có phân phối chuẩn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+26/50
+
+SAMI.HUST – 2023
+
+26 / 50
+
+So sánh cặp
+Giải. Gọi X1 , X2 lần lượt là năng suất loại cây trồng A ở nửa thứ nhất, thứ hai (sử dụng hai phương pháp chăm
+bón tương ứng). Ta có X1 và X2 có phân phối chuẩn N (µ1 ; σ12 ), N (µ2 ; σ22 ). Đây là bài toán so sánh hai kỳ vọng
+của hai biến ngẫu nhiên có phân phối chuẩn cho ở dạng cặp. Sử dụng phương pháp so sánh từng cặp. Thiết lập
+biến ngẫu nhiên Z = X1 − X2 , ký hiệu E(Z) = µZ .
+Giả thuyết H0 : µZ = µ1 − µ2 = 0, đối thuyết H1 : µZ = µ1 − µ2 6= 0.
+Chọn tiêu chuẩn kiểm định
+T0 =
+
+Z −0
+√ .
+SZ / n
+
+Nếu giả thuyết H0 : µZ = 0 là đúng thì T0 ∼ t(7).
+Với α = 0, 01, t0,005;7 = 3, 499, suy ra miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −3, 499) ∪ (3, 499; +∞).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+27/50
+
+SAMI.HUST – 2023
+
+27 / 50
+
+So sánh cặp
+
+Lập hiệu zi = xi − yi , i = 1, 2, . . . , 8.
+Mảnh
+zi
+
+1
+−10
+
+2
+−2
+
+3
+2
+
+4
+−3
+
+5
+−5
+
+6
+−2
+
+7
+−2
+
+8
+−4
+
+Tính được z = −3, 25, sz = 3, 412, suy ra giá trị quan sát của tiêu chuẩn kiểm định
+t0 =
+
+z−0
+−3, 25 √
+√ =
+8 ' −2, 694.
+3, 412
+sz / n
+
+Vì t0 = −2, 694 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 , hay có thể xem hai phương pháp chăm
+bón cho kết quả như nhau với mức ý nghĩa 1%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+28/50
+
+SAMI.HUST – 2023
+
+28 / 50
+
+5.3. SO SÁNH
+1
+
+5.3.1 So sánh hai kỳ vọng
+5.3.1.1 Trường hợp hai phương sai σ12 , σ22 đã biết
+5.3.1.2 Trường hợp hai mẫu kích thước lớn
+5.3.1.3 Trường hợp hai phương sai σ12 , σ22 chưa biết
+5.3.1.4 So sánh cặp
+
+2
+
+5.3.2 So sánh hai phương sai
+5.3.2.1 Bài toán
+5.3.2.2 Phân phối mẫu
+5.3.2.3 Các bước tiến hành
+
+3
+
+5.3.3 So sánh hai tỷ lệ
+5.3.3.1 Bài toán
+5.3.3.2 Phân phối mẫu
+5.3.3.3 Các bước tiến hành
+
+4
+
+Bài tập Mục 5.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+29/50
+
+SAMI.HUST – 2023
+
+29 / 50
+
+Bài toán
+
+Bài toán 5
+Cho hai tổng thể với hai biến ngẫu nhiên gốc Xi ∼ N (µi ; σi2 ), i = 1, 2, trong đó V (Xi ) = σi2 , i = 1, 2 chưa
+biết. Hãy so sánh hai phương sai này.
+- Cặp giả thuyết
+Tùy theo yêu cầu của bài toán kiểm định, các cặp giả thuyết cần kiểm định là
+1
+
+H0 : σ12 = σ22 ; H1 : σ12 6= σ22
+
+2
+
+H0 : σ12 = σ22 ; H1 : σ12 > σ22
+
+3
+
+H0 : σ12 = σ22 ; H1 : σ12 < σ22
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+30/50
+
+SAMI.HUST – 2023
+
+30 / 50
+
+Phân phối mẫu
+
+Phân phối Fisher
+Từ hai biến ngẫu nhiên gốc, ta lập hai mẫu ngẫu nhiên độc lập WX1 = (X11 , X12 , . . . , X1n1 ) kích thước n1
+và WX2 = (X21 , X22 , . . . , X2n2 ) kích thước n2 . Khi đó, thống kê
+F =
+
+S12 /σ12
+S22 /σ22
+
+có phân phối Fisher với n1 − 1 và n2 − 1 bậc tự do.
+Nếu giả thuyết H0 : σ12 = σ22 là đúng thì F0 = S12 /S22 có phân phối Fisher với n1 − 1 và n2 − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+31/50
+
+SAMI.HUST – 2023
+
+31 / 50
+
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định
+F0 =
+
+S12
+∼ F (n1 − 1; n2 − 1).
+S22
+
+(28)
+
+3. Miền bác bỏ giả thuyết H0 phụ thuộc vào đối thuyết H1 .
+H0
+σ12 = σ22
+σ12 = σ22
+σ12 = σ22
+
+H1
+σ12 =
+6 σ22
+2
+σ1 > σ22
+σ12 < σ22
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(0; F1−α/2;n1 −1;n2 −1 ) ∪ (Fα/2;n1 −1;n2 −1 ; +∞)
+(Fα;n1 −1;n2 −1 ; +∞)
+(0; F1−α;n1 −1;n2 −1 )
+
+trong đó, Fα/2;n1 −1;n2 −1 , F1−α/2;n1 −1;n2 −1 , Fα;n1 −1;n2 −1 và F1−α;n1 −1;n2 −1 là các giá trị tới hạn của
+phân phối Fisher mức α/2, 1 − α/2, α và 1 − α tương ứng vớ n1 − 1 và n2 − 1 bậc tự do.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+32/50
+
+SAMI.HUST – 2023
+
+32 / 50
+
+Các bước tiến hành
+
+4. Từ các mẫu cụ thể Wx1 = (x11 , x12 , . . . , x1n1 ) và Wx2 = (x21 , x22 , . . . , x2n2 ) ta tính giá trị quan sát của
+tiêu chuẩn kiểm định
+s2
+f0 = 12 .
+s2
+5. Kiểm tra xem f0 có thuộc Wα hay không để kết luận.
+Nếu f0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu f0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+33/50
+
+SAMI.HUST – 2023
+
+33 / 50
+
+Các bước tiến hành
+
+Ví dụ 16
+Thử nghiệm hai mẫu đạn của hai công ty khác nhau, người ta đo tốc độ xuất phát của đạn X1 , X2 khi súng
+phát hỏa. Số liệu thử nghiệm của mẫu thứ nhất là n1 = 10, x1 = 1210, s21 = 2500 và của mẫu thứ hai là
+n2 = 10, x2 = 1175, s22 = 3600. Với mức ý nghĩa 5% có thể kết luận gì về chất lượng của hai mẫu đạn trên?
+Biết rằng tốc độ xuất phát của đạn của hai công ty là các biến ngẫu nhiên có phân phối chuẩn.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+34/50
+
+SAMI.HUST – 2023
+
+34 / 50
+
+Các bước tiến hành
+
+Giải. Đây là bài toán so sánh hai giá trị trung bình của hai tổng thể phân phối chuẩn trường hợp hai phương sai
+V (X1 ) = σ12 và V (X2 ) = σ22 chưa biết, mẫu cỡ n1 = 10 và n2 = 10 nhỏ hơn 30.
+Trước hết ta kiểm tra xem X1 và X2 có cùng phương sai hay không. Tức là kiểm tra cặp giả thuyết
+H0 : σ12 = σ22 , đối thuyết H1 : σ12 < σ22 .
+Tra bảng giá trị tới hạn phân phối Fisher, ta được F0,025;9;9 = 4, 03, suy ra miền bác bỏ giả thuyết H0 là
+Wα = (4, 03; +∞).
+s2
+3600
+Vì f0 = 22 =
+' 1, 41 ∈
+/ Wα nên giả thuyết về hai phương sai của X1 và X2 bằng nhau chấp nhận
+s1
+2500
+được.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+35/50
+
+SAMI.HUST – 2023
+
+35 / 50
+
+Các bước tiến hành
+Bây giờ ta kiểm định giả thuyết H0 : µ1 = µ2 với thuyết đối H1 : µ1 6= µ2 với giả thiết (H) được thỏa mãn.
+Sử dụng tiêu chuẩn kiểm định (25) với giả thuyết H0 đúng.
+Với α = 0, 05, t0,025;18 = 2, 101 suy ra miền bác bỏ giả thuyết H0 là
+Wα = (−∞; −2, 101) ∪ (2, 101; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định
+t0 = r
+
+1210 − 1175
+' 1, 42.
+9 × 2500 + 9 × 3600  1
+1
++
+10 + 10 − 2
+10
+10
+
+Vì t0 ∈
+/ Wα nên chấp nhận giả thuyết H0 , nghĩa là chất lượng của hai mẫu đạn là giống nhau với mức ý
+nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+36/50
+
+SAMI.HUST – 2023
+
+36 / 50
+
+5.3. SO SÁNH
+1
+
+5.3.1 So sánh hai kỳ vọng
+5.3.1.1 Trường hợp hai phương sai σ12 , σ22 đã biết
+5.3.1.2 Trường hợp hai mẫu kích thước lớn
+5.3.1.3 Trường hợp hai phương sai σ12 , σ22 chưa biết
+5.3.1.4 So sánh cặp
+
+2
+
+5.3.2 So sánh hai phương sai
+5.3.2.1 Bài toán
+5.3.2.2 Phân phối mẫu
+5.3.2.3 Các bước tiến hành
+
+3
+
+5.3.3 So sánh hai tỷ lệ
+5.3.3.1 Bài toán
+5.3.3.2 Phân phối mẫu
+5.3.3.3 Các bước tiến hành
+
+4
+
+Bài tập Mục 5.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+37/50
+
+SAMI.HUST – 2023
+
+37 / 50
+
+Bài toán
+
+Bài toán 6
+Xét hai tổng thể X và Y và một dấu hiệu A nào đó, trong đó, mỗi cá thể của tổng thể đó có thể có hay
+không có dấu hiệu này. Gọi p1 và p2 tương ứng là tỷ lệ các cá thể có dấu hiệu A của tổng thể thứ nhất và
+tổng thể thứ hai. Hai tỷ lệ này chưa biết. Bài toán đặt ra là hãy so sánh p1 với p2 .
+- Cặp giả thuyết
+Các cặp giả thuyết cần kiểm định cho bài toán này như sau.
+1
+
+H0 : p1 = p2 ; H1 : p1 6= p2
+
+2
+
+H0 : p1 = p2 ; H1 : p1 > p2
+
+3
+
+H0 : p1 = p2 ; H1 : p1 < p2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+38/50
+
+SAMI.HUST – 2023
+
+38 / 50
+
+Phân phối mẫu
+Từ hai tổng thể, lập hai mẫu ngẫu nhiên độc lập kích thước n1 và n2 và gọi X1 , X2 lần lượt là số cá thể có
+dấu hiệu A trong mẫu thứ nhất và thứ hai.
+Giả sử xấp xỉ chuẩn cho phân phối nhị thức được áp dụng cho mỗi tổng thể. Khi đó, các ước lượng điểm
+Pb1 = X1 /n1 và Pb2 = X2 /n2 có phân phối xấp xỉ phân phối chuẩn N (p1 ; p1 (1 − p1 )/n1 ) và
+N (p2 ; p2 (1 − p2 )/n2 ). Suy ra Pb1 − Pb2 xấp xỉ phân phối chuẩn với kỳ vọng
+µPb1 −Pb2 = p1 − p2
+và phương sai
+σP2b1 −Pb2 =
+
+p2 (1 − p2 )
+p1 (1 − p1 )
++
+.
+n1
+n2
+
+Khi đó, thống kê
+(Pb1 − Pb2 ) − (p1 − p2 )
+Z= q
+p1 (1−p1 )
+2)
++ p2 (1−p
+n1
+n2
+xấp xỉ phân phối chuẩn tắc N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+39/50
+
+SAMI.HUST – 2023
+
+39 / 50
+
+Phân phối mẫu
+
+Nếu giả thuyết H0 : p1 = p2 là đúng và giả sử p1 = p2 = p thì
+(Pb1 − Pb2 ) − 0
+Z= q
+
+p(1 − p) n11 + n12
+xấp xỉ phân phối chuẩn tắc N (0; 1).
+Một ước lượng điểm của tham số tổng hợp p là
+X1 + X2
+Pb =
+.
+n1 + n2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+40/50
+
+SAMI.HUST – 2023
+
+40 / 50
+
+Các bước tiến hành
+1. Xác định dạng cụ thể của cặp giả thuyết cần kiểm định {H0 ; H1 }.
+2. Chọn tiêu chuẩn kiểm định:
+(Pb1 − Pb2 )
+Z0 = r
+Pb(1 − Pb) n11 +
+
+(29)
+1
+n2
+
+
+
+Nếu giả thuyết H0 : p1 = p2 đúng và nếu n1 pb1 ≥ 5, n1 (1 − pb1 ) ≥ 5, n2 pb2 ≥ 5 và n2 (1 − pb2 ) ≥ 5 thì
+Z0 ∼xx N (0; 1).
+3. Miền bác bỏ giả thuyết H0 được xác định phụ thuộc vào đối thuyết H1
+H0
+p1 = p2
+p1 = p2
+p1 = p2
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+H1
+p1 =
+6 p2
+p1 > p 2
+p1 < p 2
+
+Miền bác bỏ giả thuyết H0 (Wα )
+(−∞; −zα/2 ) ∪ (zα/2 ; +∞)
+(zα ; +∞)
+(−∞; −zα )
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+41/50
+
+SAMI.HUST – 2023
+
+41 / 50
+
+Các bước tiến hành
+
+4. Từ mẫu cụ thể, ta tính giá trị quan sát của tiêu chuẩn kiểm định:
+pb1 − pb2
+z0 = r
+
+pb(1 − pb) n11 +
+với pb1 =
+
+(30)
+1
+n2
+
+
+
+x2
+x1 + x2
+x1
+, pb2 =
+, pb =
+.
+n1
+n2
+n1 + n2
+
+5. Kiểm tra xem z0 có thuộc Wα hay không để kết luận.
+Nếu z0 ∈ Wα thì bác bỏ giả thuyết H0 .
+Nếu z0 ∈
+/ Wα thì chưa có cơ sở để bác bỏ giả thuyết H0 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+42/50
+
+SAMI.HUST – 2023
+
+42 / 50
+
+Các bước tiến hành
+Ví dụ 17
+Từ kho đồ hộp thứ nhất lấy ngẫu nhiên 1000 hộp kiểm tra thấy có 20 hộp bị hỏng. Từ kho đồ hộp thứ hai
+lấy ngẫu nhiên 900 hộp kiểm tra thấy 30 hộp bị hỏng. Hỏi chất lượng bảo quản của hai kho có thực sự giống
+nhau hay không với mức ý nghĩa 5%.
+Giải. Gọi p1 , p2 lần lượt là tỷ lệ hộp hỏng ở kho đồ hộp thứ nhất và thứ hai. Đây là bài toán so sánh hai tỷ lệ.
+Kiểm tra điều kiện n1 pb1 = 20 > 5, n1 (1 − pb1 ) = 980 > 5, n2 pb2 = 30 > 5 và n2 (1 − pb2 ) = 870 > 5.
+Cặp giả thuyết cần kiểm định H0 : p1 = p2 , H1 : p1 6= p2 .
+Chọn tiêu chuẩn kiểm định
+Pb1 − Pb2
+Z0 = r
+
+Pb(1 − Pb) n11 +
+
+1
+n2
+
+.
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+43/50
+
+SAMI.HUST – 2023
+
+43 / 50
+
+Các bước tiến hành
+Với α = 0, 05, zα/2 = z0,025 = 1, 96. Miền bác bỏ giả thuyết H0 là Wα = (−∞; −1, 96) ∪ (1, 96; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với
+x1
+20
+1
+x2
+30
+1
+=
+=
+; pb2 =
+=
+=
+;
+n1
+1000
+50
+n2
+900
+30
+20 + 30
+1
+x1 + x2
+=
+=
+.
+pb =
+n1 + n2
+1000 + 900
+38
+pb1 =
+
+Suy ra
+1/50 − 1/30
+z0 = r
+' −1, 8129.
+ 1
+1 
+1/38 × (1 − 1/38)
++
+1000
+900
+Vì z0 = −1, 8129 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 , nghĩa là có thể xem chất lượng bảo
+quản của hai kho hàng là như nhau với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+44/50
+
+SAMI.HUST – 2023
+
+44 / 50
+
+Các bước tiến hành
+Ví dụ 18
+Một bệnh viện điều trị loại bệnh A theo hai phương pháp. Sau một thời gian thấy kết quả như sau:
+Trong 102 bệnh nhân điều trị phương pháp I có 82 bệnh nhân khỏi bệnh.
+Trong 98 bệnh nhân điều trị phương pháp II có 69 bệnh nhân khỏi bệnh.
+Hỏi có phải phương pháp I điều trị tốt hơn phương pháp II hai hay không với mức ý nghĩa 5%.
+Giải. Gọi p1 , p2 lần lượt là tỷ lệ bệnh nhân khỏi bệnh khi điều trị bệnh A bằng phương pháp I và II. Đây là bài
+toán so sánh hai tỷ lệ. Kiểm tra điều kiện n1 pb1 = 82 > 5, n1 (1 − pb1 ) = 20 > 5, n2 pb2 = 69 > 5 và
+n2 (1 − pb2 ) = 29 > 5.
+Giả thuyết H0 : p1 = p2 , đối thuyết H1 : p1 > p2 .
+Tiêu chuẩn kiểm định
+Pb1 − Pb2
+Z0 = r
+
+Pb(1 − Pb) n11 +
+
+1
+n2
+
+.
+
+Nếu giả thuyết H0 là đúng thì Z0 ∼xx N (0; 1).
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+45/50
+
+SAMI.HUST – 2023
+
+45 / 50
+
+Các bước tiến hành
+Với α = 0, 05, zα = z0,05 = 1, 645. Miền bác bỏ giả thuyết H0 là
+Wα = (1, 645; +∞).
+Tính giá trị quan sát của tiêu chuẩn kiểm định với
+x1
+82
+41
+x2
+69
+=
+=
+; pb2 =
+=
+;
+n1
+102
+51
+n2
+98
+82 + 69
+151
+x1 + x2
+pb =
+=
+=
+.
+n1 + n2
+102 + 98
+200
+pb1 =
+
+Suy ra
+z0 = r
+
+41/51 − 69/98
+
+' 1, 6411.
+ 1
+1
+151/200 × (1 − 151/200)
++
+102
+98
+
+Vì z0 = 1, 6411 ∈
+/ Wα nên chưa có cơ sở để bác bỏ giả thuyết H0 , nghĩa là chưa thể xem phương pháp I
+điều trị tốt hơn phương pháp II với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+46/50
+
+SAMI.HUST – 2023
+
+46 / 50
+
+5.3. SO SÁNH
+1
+
+5.3.1 So sánh hai kỳ vọng
+5.3.1.1 Trường hợp hai phương sai σ12 , σ22 đã biết
+5.3.1.2 Trường hợp hai mẫu kích thước lớn
+5.3.1.3 Trường hợp hai phương sai σ12 , σ22 chưa biết
+5.3.1.4 So sánh cặp
+
+2
+
+5.3.2 So sánh hai phương sai
+5.3.2.1 Bài toán
+5.3.2.2 Phân phối mẫu
+5.3.2.3 Các bước tiến hành
+
+3
+
+5.3.3 So sánh hai tỷ lệ
+5.3.3.1 Bài toán
+5.3.3.2 Phân phối mẫu
+5.3.3.3 Các bước tiến hành
+
+4
+
+Bài tập Mục 5.3
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+47/50
+
+SAMI.HUST – 2023
+
+47 / 50
+
+Bài tập
+Bài 8
+Người ta muốn so sánh tuổi thọ của một loại pin (trong điều kiện sử dụng liên tục) được sản xuất bởi hai
+công nghệ khác nhau. Biết rằng độ lệch chuẩn tuổi thọ của pin được sản xuất từ công nghệ thứ nhất và công
+nghệ thứ hai tương ứng là 120 giờ và 125 giờ. Ứng với mỗi công nghệ, người ta thử nghiệm 50 pin, thu được
+tuổi thọ trung bình tương ứng là 264 giờ và 245 giờ. Với mức ý nghĩa 5%, tuổi thọ trung bình của các pin
+được sản xuất từ hai công nghệ trên có khác nhau không?
+Bài 9
+Trong một cuộc thi về khả năng tính toán ở một trường học với số lượng lớn học sinh, một mẫu gồm 50 học
+sinh nữ có điểm số trung bình là 64 và độ lệch chuẩn là 4; một mẫu gồm 50 học sinh nam có điểm số trung
+bình là 60 và độ lệch chuẩn là 2. Có thể cho rằng khả năng tính toán của học sinh nữ trong trường này tốt
+hơn học sinh nam không, kết luận với mức ý nghĩa 5%.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+48/50
+
+SAMI.HUST – 2023
+
+48 / 50
+
+Bài tập
+
+Bài 10
+Sản lượng sữa của mỗi giống bò sữa là biến ngẫu nhiên có phân phối chuẩn. Theo dõi sản lượng sữa
+(kg/con/ngày) của hai giống bò sữa được kết quả như sau:
+Sản lượng sữa A (X kg)
+Số con
+
+[8-9)
+1
+
+Sản lượng sữa B (Y kg)
+Số con
+
+[9-10)
+4
+[8-9)
+3
+
+[10-11)
+7
+
+[9-10)
+3
+
+[11-12)
+9
+
+[10-11)
+5
+
+[12-13)
+6
+
+[11-12)
+4
+
+[13-14)
+3
+
+[12-13)
+3
+
+[14-15)
+2
+
+[13-14)
+2
+
+Giả thiết rằng hai biến ngẫu nhiên X và Y có phương sai là như nhau. Với mức ý nghĩa α = 0, 05, có thể coi
+sản lượng sữa trung bình của hai giống bò là như nhau không?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+49/50
+
+SAMI.HUST – 2023
+
+49 / 50
+
+Bài tập
+
+Bài 11
+Hai loại trái cây có năng suất trung bình xấp xỉ nhau nhưng mức độ phân tán về năng suất có thể khác
+nhau. Để kiểm tra điều đó, người ta tiến hành lấy hai mẫu của hai loại trái cây thu được kết quả như sau:
+Loại A: n1 = 41; s21 = 11, 41.
+Loại B: n2 = 30; s21 = 6, 52.
+Biết rằng năng suất của hai loại trái cây là các biến ngẫu nhiên có phân phối chuẩn, với mức ý nghĩa 5% có
+thể kết luận mức độ phân tán về năng suất của hai loại trái cây khác nhau hay không?
+Bài 12
+Có ý kiến cho rằng tỷ lệ phế phẩm do máy thứ I sản xuất ít hơn tỷ lệ này do máy thứ II sản xuất. Người ta
+kiểm tra 100 sản phẩm do máy I sản xuất thì thấy có 8 phế phẩm, kiểm tra 200 sản phẩm do máy II sản
+xuất thì thấy có 12 phế phẩm. Với mức ý nghĩa 5%, hãy kết luận về ý kiến trên.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 5 – MỤC 5.3
+
+50/50
+
+SAMI.HUST – 2023
+
+50 / 50
+
+

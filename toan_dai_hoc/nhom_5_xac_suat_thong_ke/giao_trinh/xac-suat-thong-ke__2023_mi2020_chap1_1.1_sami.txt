@@ -1,0 +1,769 @@
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+School of Applied Mathematics and Informatics
+
+Chương 1
+SỰ KIỆN NGẪU NHIÊN VÀ PHÉP TÍNH XÁC SUẤT
+BỘ MÔN TOÁN ỨNG DỤNG(1)
+VIỆN TOÁN ỨNG DỤNG VÀ TIN HỌC
+ĐẠI HỌC BÁCH KHOA HÀ NỘI
+
+SAMI.HUST – 2023
+
+(1)
+
+Phòng 201.BIS–D3.5
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+1/31
+
+SAMI.HUST – 2023
+
+1 / 31
+
+GIỚI THIỆU CHƯƠNG 1
+
+Chương này tập trung phân tích về sự kiện ngẫu nhiên và phép tính xác suất. Nội dung bao gồm:
+Giới thiệu về không gian mẫu, sự kiện và mối quan hệ giữa các sự kiện.
+Trình bày một số phương pháp đếm các phần tử của sự kiện và không gian mẫu.
+Trình bày khái niệm về xác suất và một số định nghĩa xác suất (theo quan điểm cổ điển, hình học, thống kê).
+Phân tích một số công thức tính xác suất (công thức cộng, xác suất có điều kiện, công thức nhân, công
+thức Bernoulli, công thức xác suất đầy đủ, công thức Bayes).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+2/31
+
+SAMI.HUST – 2023
+
+2 / 31
+
+1.1. PHÉP THỬ VÀ SỰ KIỆN
+
+1
+
+1.1.1 Phép thử ngẫu nhiên và không gian mẫu
+1.1.1.1 Phép thử ngẫu nhiên
+1.1.1.2 Không gian mẫu
+
+2
+
+1.1.2 Sự
+1.1.2.1
+1.1.2.2
+1.1.2.3
+
+3
+
+Bài tập Mục 1.1
+
+kiện
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+Sự kiện chắc chắn. Sự kiện không thể có
+Quan hệ giữa các sự kiện
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+3/31
+
+SAMI.HUST – 2023
+
+3 / 31
+
+Phép thử ngẫu nhiên
+
+Khái niệm 1
+Một phép thử có thể dẫn đến các kết cục khác nhau, mặc dù nó được lặp lại như nhau theo cùng một cách ở
+mọi thời điểm, được gọi là một phép thử ngẫu nhiên.
+Ký hiệu phép thử ngẫu nhiên là C và gọi tắt là phép thử.
+Ví dụ 1
+Dưới đây là một số ví dụ về phép thử C.
+(a) Gieo một đồng xu trên mặt phẳng cứng và quan sát xem nó xuất hiện mặt sấp hay ngửa.
+(b) Gieo một đồng xu trên mặt phẳng cứng ba lần và quan sát dãy mặt sấp, ngửa xuất hiện.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+4/31
+
+SAMI.HUST – 2023
+
+4 / 31
+
+Không gian mẫu
+Định nghĩa 1
+Tập hợp tất cả các kết cục có thể có của một phép thử được gọi là không gian mẫu của phép thử đó.
+Ký hiệu không gian mẫu là S.
+- Không gian mẫu có thể được biểu diễn dưới dạng liệt kê.
+Ví dụ 2
+(a) Không gian mẫu trong Ví dụ 1(a) là
+S = {H, T },
+ở đây, H là kết cục “xuất hiện mặt sấp” và T là kết cục “xuất hiện mặt ngửa”.
+(b) Không gian mẫu trong Ví dụ 1(b) là
+S = {HHH, HHT, HT H, T HH, T T H, T HT, HT T, T T T }.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+5/31
+
+SAMI.HUST – 2023
+
+5 / 31
+
+Không gian mẫu
+
+- Không gian mẫu có thể được biểu diễn dưới dạng một biểu thức toán học.
+Ví dụ 3
+Xét một phép thử chọn đầu nối của một sản phẩm rồi đo độ dày của nó. Các giá trị có thể có của độ dày
+phụ thuộc vào độ phân giải của dụng cụ đo và chúng cũng phụ thuộc vào giới hạn trên và giới hạn dưới của
+độ dày. Tuy nhiên, ta có thể xác định không gian mẫu của độ đo này là các số thực dương,
+S = {x ∈ R | x > 0}
+
+hay
+
+S = R+ .
+
+Nếu biết độ dày của các đầu nối được hạn chế từ 10 milimét đến 11 milimét thì không gian mẫu trong
+trường hợp này là
+S = {x ∈ R | 10 ≤ x ≤ 11}.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+6/31
+
+SAMI.HUST – 2023
+
+6 / 31
+
+Không gian mẫu
+- Không gian mẫu có thể được mô tả bằng đồ thị với sơ đồ cây.
+Ví dụ 4
+Mỗi tin nhắn được phát đi có thể đến nơi nhận đúng giờ (Đ) hoặc muộn giờ (M) so với thiết kế. Có hai tin
+nhắn được phát đi liên tiếp, các kết cục có thể xảy ra được hiển thị bằng bốn nhánh trong sơ đồ cây (Hình 1).
+(1)
+Đ
+
+M
+
+(2)
+Đ
+
+M
+
+Đ
+
+M
+
+Hình 1: Sơ đồ cây
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+7/31
+
+SAMI.HUST – 2023
+
+7 / 31
+
+1.1. PHÉP THỬ VÀ SỰ KIỆN
+
+1
+
+1.1.1 Phép thử ngẫu nhiên và không gian mẫu
+1.1.1.1 Phép thử ngẫu nhiên
+1.1.1.2 Không gian mẫu
+
+2
+
+1.1.2 Sự
+1.1.2.1
+1.1.2.2
+1.1.2.3
+
+3
+
+Bài tập Mục 1.1
+
+kiện
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+Sự kiện chắc chắn. Sự kiện không thể có
+Quan hệ giữa các sự kiện
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+8/31
+
+SAMI.HUST – 2023
+
+8 / 31
+
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+
+Khái niệm 2
+(a) Một sự kiện ngẫu nhiên là một tập hợp các kết cục của một phép thử. Ta cũng có thể định nghĩa một
+sự kiện ngẫu nhiên là một tập hợp con của một không gian mẫu.
+Ký hiệu sự kiện ngẫu nhiên là A, B, C hoặc A1 , A2 . . . và gọi tắt là sự kiện.
+(b) Sự kiện sơ cấp là sự kiện chỉ chứa duy nhất một kết cục của một phép thử.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+9/31
+
+SAMI.HUST – 2023
+
+9 / 31
+
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+
+Ví dụ 5
+Gieo một con xúc xắc và quan sát số chấm xuất hiện trên mặt của nó. Ký hiệu Ei , i = 1, . . . , 6, chỉ kết cục
+xuất hiện i chấm trên mặt con xúc xắc.
+(a) Không gian mẫu là S = {E1 , E2 , E3 , E4 , E5 , E6 }.
+(b) Mỗi tập hợp con của S là một sự kiện. Chẳng hạn,
+E1 là sự kiện “xuất hiện mặt một chấm”.
+A = {E2 , E4 , E6 } là sự kiện “xuất hiện mặt chấm chẵn”.
+B = {E4 , E5 , E6 } là sự kiện “xuất hiện mặt có số chấm lớn hơn 3”.
+C = {E1 , E4 } là sự kiện “xuất hiện mặt có số chấm là bình phương của một số tự nhiên”.
+(c) Các sự kiện sơ cấp bao gồm E1 , E2 , E3 , E4 , E5 và E6 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+10/31
+
+SAMI.HUST – 2023
+
+10 / 31
+
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+
+Ví dụ 6
+Quan sát một người gọi điện thoại và ta quan tâm đến thời gian của cuộc gọi đó. Ký hiệu x là thời gian
+quan sát được, không gian mẫu là
+S = {x | x ≥ 0}.
+Sự kiện A “cuộc gọi kéo dài hơn 5 phút” là
+A = {x | x > 5}.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+11/31
+
+SAMI.HUST – 2023
+
+11 / 31
+
+Sự kiện chắc chắn. Sự kiện không thể có
+
+Khái niệm 3
+(a) Sự kiện chắc chắn là sự kiện nhất định sẽ xuất hiện khi thực hiện một phép thử. Sự kiện chắc chắn
+tương ứng với toàn bộ tập S.
+(b) Sự kiện không thể có là sự kiện nhất định không xuất hiện khi thực hiện một phép thử. Sự kiện không
+thể có tương ứng với tập con ∅ của S.
+Ví dụ 7
+Gieo một con xúc xắc.
+(a) Sự kiện “xuất hiện mặt có số chấm ≤ 6 và ≥ 1” là sự kiện chắc chắn.
+(b) Sự kiện “xuất hiện mặt 7 chấm” là sự kiện không thể có.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+12/31
+
+SAMI.HUST – 2023
+
+12 / 31
+
+Quan hệ kéo theo
+Định nghĩa 2
+Sự kiện A được gọi là kéo theo sự kiện B, ký hiệu A ⊂ B, nếu khi A xảy ra thì B xảy ra.
+Nếu A ⊂ B và B ⊂ A thì ta nói hai sự kiện A và B trùng nhau, viết là A = B.
+S
+
+A
+
+B
+
+Hình 2: Sơ đồ Venn của A ⊂ B
+Ví dụ 8
+Trong Ví dụ 5, E2 là sự kiện “xuất hiện mặt 2 chấm”, A là sự kiện xuất hiện mặt chấm chẵn, thì E2 ⊂ A.
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+13/31
+
+SAMI.HUST – 2023
+
+13 / 31
+
+Hợp các sự kiện. Giao các sự kiện
+
+Định nghĩa 3
+Sự kiện A được gọi là hợp của các sự kiện A1 , A2 , . . . , An nếu A xảy ra khi và chỉ khi ít nhất một trong các
+sự kiện Ai xảy ra, i = 1, 2, . . . , n và viết là:
+A = A1 ∪ A2 ∪ · · · ∪ An .
+Để tiện cho việc trình bày, ta sẽ viết
+A = A1 + A2 + · · · + An .
+- Mọi sự kiện ngẫu nhiên đều có thể biểu diễn dưới dạng hợp của một số sự kiện sơ cấp nào đó. Sự kiện chắc
+chắn là hợp của mọi sự kiện sơ cấp có thể có.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+14/31
+
+SAMI.HUST – 2023
+
+14 / 31
+
+Hợp các sự kiện. Giao các sự kiện
+Định nghĩa 4
+Sự kiện B được gọi là giao của các sự kiện A1 , A2 , . . . , An nếu B xảy ra khi và chỉ khi tất cả các sự kiện Ai
+xảy ra, i = 1, 2, . . . , n và viết là:
+B = A1 ∩ A2 ∩ · · · ∩ An .
+Để tiện cho trình bày, ta sẽ viết
+B = A1 A2 . . . An .
+S
+
+A
+
+B
+
+S
+
+A
+
+B
+
+Hình 3: Sơ đồ Venn của A ∪ B và A ∩ B
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+15/31
+
+SAMI.HUST – 2023
+
+15 / 31
+
+Hợp các sự kiện. Giao các sự kiện
+
+Ví dụ 9
+(a) Một mạng điện gồm ba bóng đèn mắc nối tiếp. Gọi Ai là sự kiện “bóng đèn thứ i bị cháy”, i = 1, 2, 3.
+Gọi A là sự kiện “mạng mất điện”. Ta thấy rằng mạng bị mất điện khi ít nhất một trong ba bóng bị
+cháy. Do đó,
+A = A1 ∪ A2 ∪ A3 .
+(b) Nếu ba bóng đèn mắc song song, thì mạng bị mất điện khi cả ba bóng bị cháy. Do đó,
+A = A1 ∩ A2 ∩ A3 .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+16/31
+
+SAMI.HUST – 2023
+
+16 / 31
+
+Sự kiện xung khắc. Sự kiện đối lập
+
+Định nghĩa 5
+(a) Hai sự kiện A và B được gọi xung khắc với nhau nếu chúng không thể đồng thời xảy ra trong cùng một
+phép thử.
+(b) Hệ n sự kiện {A1 , A2 , . . . , An } được gọi là xung khắc từng đôi nếu hai sự kiện bất kỳ của hệ xung khắc
+với nhau.
+Nếu A và B xung khắc thì A ∩ B = ∅.
+Nếu hệ {A1 , A2 , . . . , An } xung khắc từng đôi thì Ai ∩ Aj = ∅ với mọi i 6= j, i, j = 1, 2, . . . , n.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+17/31
+
+SAMI.HUST – 2023
+
+17 / 31
+
+Sự kiện xung khắc. Sự kiện đối lập
+Định nghĩa 6
+Sự kiện không xảy ra sự kiện A được gọi là sự kiện đối lập của A, ký hiệu là A.
+- Hai sự kiện A và A thỏa mãn tính chất: A ∪ A = S và A ∩ A = ∅.
+S
+
+A
+
+B
+
+S
+
+A
+
+A
+
+Hình 4: Sơ đồ Venn của sự kiện xung khắc và sự kiện đối lập
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+18/31
+
+SAMI.HUST – 2023
+
+18 / 31
+
+Sự kiện xung khắc. Sự kiện đối lập
+
+Ví dụ 10
+Trong Ví dụ 5,
+(a) Gọi Ei là sự kiện xuất hiện mặt i chấm, i = 1, 2, . . . , 6, thì
+E1 và E2 xung khắc nhau.
+Hệ {E1 , E2 , E3 , E4 , E5 , E6 } xung khắc từng đôi.
+(b) Gọi A là sự kiện xuất hiện mặt chấm chẵn, thì sự kiện đối lập của A là A = {E1 , E3 , E5 }.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+19/31
+
+SAMI.HUST – 2023
+
+19 / 31
+
+Hiệu hai sự kiện
+Định nghĩa 7
+Hiệu của hai sự kiện A và B, ký hiệu là A − B, là sự kiện xảy ra khi và chỉ khi A xảy ra nhưng B không xảy
+ra.
+Trường hợp hay sử dụng sự kiện hiệu là A = S − A và A = S − A.
+Ta thường biến đổi hiệu hai sự kiện thành sự kiện giao như sau: A − B = A ∩ B.
+S
+
+A
+
+B
+
+Hình 5: Sơ đồ Venn của hiệu hai sự kiện
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+20/31
+
+SAMI.HUST – 2023
+
+20 / 31
+
+Hệ đầy đủ các sự kiện
+
+Định nghĩa 8
+Hệ n sự kiện {A1 , A2 , . . . , An } được gọi là hệ đầy đủ các sự kiện nếu nhất định phải xảy ra một và chỉ một
+trong các sự kiện Ai , i = 1, 2, . . . , n, sau phép thử.
+Hệ {A1 , A2 , . . . , An } là hệ đầy đủ các sự kiện nếu
+(
+Ai ∩ Aj = ∅, i 6= j,
+A1 ∪ A2 ∪ · · · ∪ An = S.
+
+Đối với một sự kiện A thì ta có hệ đầy đủ A, A .
+
+Đối với hai sự kiện A và B, một hệ đầy đủ là A ∩ B, A ∩ B, A ∩ B, A ∩ B .
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+21/31
+
+SAMI.HUST – 2023
+
+21 / 31
+
+Hệ đầy đủ các sự kiện
+S
+A3
+A2
+A4
+
+A1
+
+A5
+
+...
+
+Hình 6: Sơ đồ Venn của hệ đầy đủ các sự kiện
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+22/31
+
+SAMI.HUST – 2023
+
+22 / 31
+
+Hệ đầy đủ các sự kiện
+
+Ví dụ 11
+Trong Ví dụ 5, gọi Ei là sự kiện xuất hiện mặt i chấm, i = 1, 2, . . . , 6 và A là sự kiện xuất hiện mặt chấm
+chẵn, thì
+Hệ {E1 , E2 , E3 , E4 , E5 , E6 } là một hệ đầy đủ các sự kiện.
+Hệ {A, A} là một hệ đầy đủ các sự kiện.
+Ví dụ 12
+Một nhà máy có ba phân xưởng sản xuất ra cùng một loại sản phẩm. Giả sử rằng mỗi sản phẩm của nhà
+máy chỉ do một trong ba phân xưởng này sản xuất. Chọn ngẫu nhiên một sản phẩm của nhà máy và gọi Ci
+là sự kiện “sản phẩm được chọn do phân xưởng i sản xuất”, i = 1, 2, 3. Khi đó, hệ {C1 , C2 , C3 } là một hệ đầy
+đủ các sự kiện.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+23/31
+
+SAMI.HUST – 2023
+
+23 / 31
+
+Tính chất của hợp và giao các sự kiện
+
+Tính chất 1
+(a) Tính chất giao hoán: A ∪ B = B ∪ A, A ∩ B = B ∩ A.
+(b) Tính chất kết hợp: A ∪ B ∪ C = (A ∪ B) ∪ C = A ∪ (B ∪ C), A ∩ B ∩ C = (A ∩ B) ∩ C = A ∩ (B ∩ C).
+(c) Tính chất phân phối của phép hợp và phép giao: A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C).
+Đặc biệt A ∪ A = A và A ∩ A = A.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+24/31
+
+SAMI.HUST – 2023
+
+24 / 31
+
+Tính chất của hợp và giao các sự kiện
+
+Hệ quả 1
+1.
+
+A ∩ ∅ = ∅.
+
+7.
+
+S = ∅.
+
+2.
+
+A ∪ ∅ = A.
+
+8.
+
+∅ = S.
+
+3.
+
+A ∪ S = S.
+
+9.
+
+(A) = A.
+
+4.
+
+A ∩ S = A.
+
+10.
+
+(A ∩ B) = A ∪ B.
+
+5.
+
+A ∩ A = ∅.
+
+11.
+
+(A ∪ B) = A ∩ B.
+
+6.
+
+A ∪ A = S.
+
+12.
+
+A = A ∩ (B ∪ B) = (A ∩ B) ∪ (A ∩ B).
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+25/31
+
+SAMI.HUST – 2023
+
+25 / 31
+
+1.1. PHÉP THỬ VÀ SỰ KIỆN
+
+1
+
+1.1.1 Phép thử ngẫu nhiên và không gian mẫu
+1.1.1.1 Phép thử ngẫu nhiên
+1.1.1.2 Không gian mẫu
+
+2
+
+1.1.2 Sự
+1.1.2.1
+1.1.2.2
+1.1.2.3
+
+3
+
+Bài tập Mục 1.1
+
+kiện
+Sự kiện ngẫu nhiên. Sự kiện sơ cấp
+Sự kiện chắc chắn. Sự kiện không thể có
+Quan hệ giữa các sự kiện
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+26/31
+
+SAMI.HUST – 2023
+
+26 / 31
+
+Bài tập
+
+Bài 1
+Một hộp có 8 viên bi, trong đó, có 6 viên bi xanh và 2 viên bi đỏ. Lấy ngẫu nhiên từ hộp ra 3 viên bi và xem
+màu. Gọi:
+A là sự kiện “lấy được 3 viên bi xanh”;
+B là sự kiện “lấy được 3 viên bi màu đỏ”;
+C là sự kiện “lấy được 3 viên bi”.
+Sự kiện nào là (a) Sự kiện chắc chắn; (b) Sự kiện không thể có; (c) Sự kiện ngẫu nhiên?
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+27/31
+
+SAMI.HUST – 2023
+
+27 / 31
+
+Bài tập
+Bài 2
+Có ba sinh viên A, B và C cùng thi môn Xác suất thống kê. Gọi A, B và C lần lượt là sự kiện “sinh viên A,
+B và C thi qua môn Xác suất thống kê”.
+(a) Gọi A2 là sự kiện “có đúng hai sinh viên thi qua môn Xác suất thống kê”. Sự kiện A2 B là:
+A. Sinh viên B thi không qua môn
+B. Chỉ có sinh viên B thi qua môn
+C. Có hai sinh viên thi qua môn
+D. Chỉ có sinh viên B thi không qua môn
+(b) Gọi H là sự kiện “Có đúng một sinh viên thi không qua môn”. Kết quả nào dưới đây là ĐÚNG:
+A. ABC = H
+B. C = H
+C. ABC ⊂ H
+D. BC ⊂ H
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+28/31
+
+SAMI.HUST – 2023
+
+28 / 31
+
+Bài tập
+
+Bài 3
+Có ba sinh viên học môn Xác suất thống kê. Gọi A1 , A2 và A3 lần lượt là sự kiện “sinh viên thứ nhất, thứ
+hai và thứ ba đạt điểm tổng kết môn học là A”. Hãy biểu diễn các sự kiện sau theo A1 , A2 , A3 :
+(a) A: “sinh viên thứ nhất có điểm tổng kết không phải loại A”.
+(b) B: “cả ba sinh viên có điểm tổng kết loại A”.
+(c) C: “có ít nhất một trong ba sinh viên có điểm tổng kết loại A”.
+(d) D: “có duy nhất một trong ba sinh viên có điểm tổng kết loại A”.
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+29/31
+
+SAMI.HUST – 2023
+
+29 / 31
+
+Bài tập
+
+Bài 4
+Cho A, B và C là các sự kiện của cùng một phép thử. Biểu thức nào sau đây là SAI:
+A. AB + C = A B + A C − A B C
+B. ABC = (A + B + C)
+C. (A + B)(A + B) = A B + A B
+D. A + B + C = A B C
+E. A(B + C) = ABC + ABC + ABC
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+30/31
+
+SAMI.HUST – 2023
+
+30 / 31
+
+Bài tập
+
+Bài 5
+Cho A, B và C là các sự kiện của cùng một phép thử. Biểu thức nào sau đây là SAI:
+A. (A + B)(A + B) ⊂ A + B
+B. ABC ⊂ (A + B)C
+C. ABC ⊂ (AB + C)
+D. A(B + C) ⊂ A
+E. A + B C ⊂ A + B + C
+F. AB + BC ⊂ B
+
+Viện Toán ứng dụng và Tin học (HUST)
+
+MI2020-CHƯƠNG 1 – MỤC 1.1
+
+31/31
+
+SAMI.HUST – 2023
+
+31 / 31
+
+

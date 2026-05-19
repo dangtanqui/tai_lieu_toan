@@ -1,0 +1,28 @@
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \fill[blue!80!black] (current page.south west) rectangle (current page.north east);
+  \fill[blue!60!cyan, opacity=0.8]
+    (current page.south west) -- (current page.north west) --
+    ([xshift=-3cm]current page.north east) -- (current page.south east) -- cycle;
+  \foreach \r/\o in {6/0.05, 4.5/0.08, 3/0.12} {
+    \fill[white, opacity=\o] ([xshift=2cm, yshift=-2cm]current page.north east) circle (\r cm);
+  }
+  \draw[white, line width=2pt] ([yshift=-5cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \draw[white, line width=2pt] ([yshift=-16cm]current page.north west) ++(2cm,0) -- ++(17cm,0);
+  \node[anchor=west, white, font=\fontsize{28}{34}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-7.5cm]current page.north west) {\coverbookline};
+  \node[anchor=west, white, font=\fontsize{20}{26}\selectfont]
+    at ([xshift=3cm, yshift=-9cm]current page.north west) {\covermaintitle};
+  \node[anchor=west, white, font=\fontsize{16}{22}\selectfont]
+    at ([xshift=3cm, yshift=-10.2cm]current page.north west) {\coversubtitle};
+  \node[anchor=west, white, font=\Large\bfseries]
+    at ([xshift=3cm, yshift=-13cm]current page.north west) {Biên soạn:};
+  \node[anchor=west, yellow!80!white, font=\fontsize{24}{30}\bfseries\selectfont]
+    at ([xshift=3cm, yshift=-14.5cm]current page.north west) {ĐẶNG TẤN QUÍ};
+  \node[anchor=west, white!90, font=\large]
+    at ([xshift=3cm, yshift=-18cm]current page.north west) {SĐT: 0377\,122\,210};
+  \node[anchor=south, white!80, font=\small]
+    at ([yshift=1.5cm]current page.south) {Tài liệu có bản quyền --- Cấm sao chép khi chưa được sự đồng ý của tác giả};
+  \node[anchor=south east, white, font=\Large\bfseries]
+    at ([xshift=-2cm, yshift=3cm]current page.south east) {\the\year};
+\end{tikzpicture}
