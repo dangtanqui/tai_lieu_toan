@@ -1,0 +1,3 @@
+Jupyter Notebook tool: https://jupyter.org/
+Jupyter Notebook extension in VS Code: https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter
+Google Colab: https://colab.research.google.com/

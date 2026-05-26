@@ -1,0 +1,95 @@
+[**Logistic regression**](https://developers.google.com/machine-learning/glossary#logistic_regression)
+models are trained using the same process as
+[**linear regression**](https://developers.google.com/machine-learning/crash-course/linear-regression)
+models, with two key distinctions:
+
+- Logistic regression models use [**Log Loss**](https://developers.google.com/machine-learning/glossary#Log_Loss) as the loss function instead of [**squared loss**](https://developers.google.com/machine-learning/glossary#l2-loss).
+- Applying [regularization](https://developers.google.com/machine-learning/crash-course/overfitting/regularization) is critical to prevent [**overfitting**](https://developers.google.com/machine-learning/glossary#overfitting).
+
+The following sections discuss these two considerations in more depth.
+
+## Log Loss
+
+In the [Linear regression module](https://developers.google.com/machine-learning/crash-course/linear-regression),
+you used [**squared loss**](https://developers.google.com/machine-learning/glossary#l2-loss) (also called
+L~2~ loss) as the
+[**loss function**](https://developers.google.com/machine-learning/glossary#loss-function).
+Squared loss works well for a linear
+model where the rate of change of the output values is constant. For example,
+given the linear model $y' = b + 3x_1$, each time you increment the input
+value $x_1$ by 1, the output value $y'$ increases by 3.
+
+However, the rate of change of a logistic regression model is *not* constant.
+As you saw in [Calculating a probability](https://developers.google.com/machine-learning/crash-course/logistic-regression/sigmoid-function), the
+[**sigmoid**](https://developers.google.com/machine-learning/glossary#sigmoid-function) curve is s-shaped
+rather than linear. When the log-odds ($z$) value is closer to 0, small
+increases in $z$ result in much larger changes to $y$ than when $z$ is a large
+positive or negative number. The following table shows the sigmoid function's
+output for input values from 5 to 10, as well as the corresponding precision
+required to capture the differences in the results.
+
+| input | logistic output | required digits of precision |
+|---|---|---|
+| 5 | 0.993 | 3 |
+| 6 | 0.997 | 3 |
+| 7 | 0.999 | 3 |
+| 8 | 0.9997 | 4 |
+| 9 | 0.9999 | 4 |
+| 10 | 0.99998 | 5 |
+
+If you used squared loss to calculate errors for the sigmoid function, as the
+output got closer and closer to `0` and `1`, you would need more memory to
+preserve the precision needed to track these values.
+
+Instead, the loss function for logistic regression is
+[**Log Loss**](https://developers.google.com/machine-learning/glossary#Log_Loss). The
+Log Loss equation returns the logarithm of the magnitude of the change, rather
+than just the distance from data to prediction. Log Loss is calculated as
+follows:
+
+$\\text{Log Loss} = -\\frac{1}{N}\\sum_{i=1}\^{N} \[y_i\\log(y_i') + (1 - y_i)\\log(1 - y_i')\]$
+
+<br />
+
+where:
+
+- \\(N\\) is the number of labeled examples in the dataset
+- \\(i\\) is the index of an example in the dataset (e.g., \\((x_3, y_3)\\) is the third example in the dataset)
+- \\(y_i\\) is the label for the \\(i\\)th example. Since this is logistic regression, \\(y_i\\) must either be 0 or 1.
+- \\(y_i'\\) is your model's prediction for the \\(i\\)th example (somewhere between 0 and 1), given the set of features in \\(x_i\\).
+
+#### Click the icon to learn more about Log Loss.
+
+This form of the Log Loss function calculates the mean Log Loss across all
+points in the dataset. Using mean Log Loss (as opposed to total Log Loss) is
+desirable in practice, because it enables us to decouple tuning of the batch
+size and the learning rate.
+
+## Regularization in logistic regression
+
+[**Regularization**](https://developers.google.com/machine-learning/glossary#regularization), a mechanism for
+penalizing model complexity during training, is extremely important in logistic
+regression modeling. Without regularization, the asymptotic nature of logistic
+regression would keep driving loss towards 0 in cases where the model has a
+large number of features. Consequently, most logistic regression models use one
+of the following two strategies to decrease model complexity:
+
+- [L~2~ regularization](https://developers.google.com/machine-learning/crash-course/overfitting/regularization)
+- [Early stopping](https://developers.google.com/machine-learning/crash-course/overfitting/regularization#early_stopping_an_alternative_to_complexity-based_regularization): Limiting the number of training steps to halt training while loss is still decreasing.
+
+> [!NOTE]
+> **Note:** You'll learn more about regularization in the [Datasets, Generalization, and Overfitting](https://developers.google.com/machine-learning/crash-course/overfitting) module of the course.
+
+> [!IMPORTANT]
+> **Key terms:**
+>
+> - [Gradient descent](https://developers.google.com/machine-learning/glossary#gradient-descent)
+> - [Linear regression](https://developers.google.com/machine-learning/glossary#linear_regression)
+> - [Log Loss](https://developers.google.com/machine-learning/glossary#Log_Loss)
+> - [Logistic regression](https://developers.google.com/machine-learning/glossary#logistic_regression)
+> - [Loss function](https://developers.google.com/machine-learning/glossary#loss-function)
+> - [Overfitting](https://developers.google.com/machine-learning/glossary#overfitting)
+> - [Regularization](https://developers.google.com/machine-learning/glossary#regularization)
+> - [Squared loss](https://developers.google.com/machine-learning/glossary#l2-loss)
+
+[Help Center](https://support.google.com/machinelearningeducation)

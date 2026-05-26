@@ -1,0 +1,581 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY --- GIỚI THIỆU}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Giới thiệu học máy}
+\def\coversubtitle{Lý thuyết --- Khái niệm nền, học có giám sát, kiểm tra hiểu biết}
+
+\input{../_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{listings}
+\usepackage{float}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!8},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+\graphicspath{{images/intro-to-ml/}}
+
+\newcommand{\mlimg}[2][0.88]{\begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}}
+
+\begin{document}
+
+\input{../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Cách đọc tài liệu}]
+Biên soạn và dịch từ khóa \emph{Introduction to Machine Learning} của Google Developers\footnote{\url{https://developers.google.com/machine-learning/intro-to-ml}}.
+\end{ynghia}
+
+\begin{phuongphap}[title={Bản đồ các ô trong tài liệu}]
+\begin{itemize}
+  \item \textsf{\color{teal!60!black}Động cơ học} --- câu hỏi thực tế trước khi định nghĩa.
+  \item \textsf{\color{blue!60!black}Định nghĩa} --- khái niệm chính thống, có liên kết \href{https://developers.google.com/machine-learning/glossary}{ML Glossary}.
+  \item \textsf{\color{purple!50!black}Ý nghĩa \& Trực giác} --- giải thích ``đang nói gì''.
+  \item \textsf{\color{orange!50!black}Tính chất} --- quy tắc, phân loại, điểm cần nhớ.
+  \item \textsf{\color{gray!50!black}Phương pháp} --- quy trình, các bước làm.
+  \item \textsf{\color{cyan!50!black}Công thức} --- biểu thức / mối quan hệ toán tắt.
+  \item \textsf{\color{violet!50!black}Ví dụ} --- tình huống cụ thể.
+  \item \textsf{\color{red!40!black}Phản ví dụ} --- hiểu nhầm thường gặp.
+  \item \textsf{\color{olive!60!black}Ứng dụng thực tế} --- sản phẩm, ngành.
+  \item \textsf{\color{red!50!black}Lưu ý} --- cạm bẫy, kiểm tra hiểu biết.
+  \item \textsf{\color{blue!70!black}Tổng kết chương} --- thuật ngữ và bước tiếp theo.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ungdung}[title={Tài liệu tham khảo mở rộng}]
+\href{https://developers.google.com/machine-learning/crash-course}{Machine Learning Crash Course} \textbullet\
+\href{https://developers.google.com/machine-learning/problem-framing}{Problem Framing} \textbullet\
+\href{https://pair.withgoogle.com/guidebook/}{People + AI Guidebook}.
+\end{ungdung}
+
+\newpage
+
+%==============================================================================
+\section{Học máy là gì?}
+%==============================================================================
+
+\begin{dongco}[title={Động cơ học --- Tại sao cần học máy?}]
+Dịch máy, xe tự lái, gợi ý nhạc, tự hoàn thành câu, tóm tắt báo, sinh ảnh chưa từng có: đều cần \textbf{học máy} (ML). ML là cách mới để \emph{giải bài toán}, \emph{trả lời câu hỏi phức tạp} và \emph{tạo nội dung} từ dữ liệu --- thay vì lập trình từng quy tắc bằng tay cho mọi trường hợp.
+\end{dongco}
+
+\begin{ungdung}
+\begin{itemize}
+  \item Dự báo thời tiết, thời gian di chuyển, gợi ý bài hát.
+  \item Tự động hoàn thành, tóm tắt văn bản, sinh ảnh/âm thanh/video.
+\end{itemize}
+\end{ungdung}
+
+\begin{dinhnghia}[title={Học máy (mức cơ bản)}]
+ML là quá trình
+\href{https://developers.google.com/machine-learning/glossary\#training}{\textbf{huấn luyện}} (training) một phần mềm ---
+\href{https://developers.google.com/machine-learning/glossary\#model}{\textbf{mô hình}} (model) ---
+để đưa ra
+\href{https://developers.google.com/machine-learning/glossary\#prediction}{\textbf{dự đoán}} (prediction) hữu ích hoặc \textbf{sinh nội dung} từ dữ liệu.
+\end{dinhnghia}
+
+\begin{ynghia}
+\textbf{Mô hình} giống ``công thức ẩn'' học từ dữ liệu: không ai viết sẵn từng quy tắc ``nếu độ ẩm $> 80\%$ thì mưa'', mà máy \emph{tự} tìm quan hệ giữa độ ẩm, áp suất,\ldots\ và lượng mưa sau khi xem hàng nghìn mẫu có nhãn.
+\end{ynghia}
+
+\begin{phuongphap}[title={Hai cách giải bài toán dự báo mưa}]
+\textbf{Cách truyền thống:} Mô phỏng khí quyển + bề mặt Trái Đất, giải phương trình động lực học chất lỏng --- chính xác về lý thuyật nhưng cực khó triển khai.
+
+\textbf{Cách ML:} Cho mô hình nhiều dữ liệu thời tiết; mô hình học quan hệ toán giữa mẫu thời tiết và lượng mưa; đưa thời tiết hiện tại $\Rightarrow$ dự đoán mưa.
+
+\medskip
+Video: \url{https://www.youtube.com/watch?v=RdC7KZ6OFPA}
+\end{phuongphap}
+
+\begin{phanvidu}[title={``Mô hình''}]
+\begin{itemize}
+  \item \textbf{Không} phải phần cứng máy tính.
+  \item \textbf{Không} phải mô hình thu nhỏ vật lý (mô hình tàu thủy, mô hình nhà).
+  \item \textbf{Phải là:} quan hệ toán học (tập số/tham số) suy ra từ dữ liệu để dự đoán.
+\end{itemize}
+\end{phanvidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết}]
+Trong ML, ``mô hình'' là gì?
+
+\medskip
+Quan hệ toán học học từ dữ liệu, dùng để dự đoán hoặc sinh nội dung.
+\end{luuy}
+
+%==============================================================================
+\section{Các loại hệ thống học máy}
+%==============================================================================
+
+\begin{dongco}[title={Động cơ học --- Cần phân loại hệ thống ML}]
+Cùng là ``học từ dữ liệu'', nhưng bài toán khác nhau: có sẵn đáp án (dự đoán giá nhà), không có đáp án (gom nhóm khách hàng), học qua thử--sai (robot), hay \emph{tạo} nội dung mới (ảnh từ mô tả). Chọn sai loại $\Rightarrow$ sai cách chuẩn bị dữ liệu và đánh giá.
+\end{dongco}
+
+\begin{tinhchat}[title={Bốn nhóm hệ thống ML}]
+\begin{enumerate}
+  \item \textbf{Học có giám sát} --- dữ liệu có nhãn/đáp án đúng.
+  \item \textbf{Học không giám sát} --- tìm cấu trúc, cụm, mẫu; không có nhãn cho mục tiêu.
+  \item \textbf{Học tăng cường} --- học qua phần thưởng/hình phạt trong môi trường.
+  \item \textbf{AI tạo sinh} --- tạo văn bản, ảnh, âm thanh, video từ đầu vào người dùng.
+\end{enumerate}
+Một hệ thống có thể kết hợp nhiều nhóm (ví dụ tạo sinh: huấn luyện không giám sát rồi tinh chỉnh có giám sát).
+\end{tinhchat}
+
+\subsection{Học có giám sát}
+
+\begin{dinhnghia}[title={Học có giám sát (supervised learning)}]
+\href{https://developers.google.com/machine-learning/glossary\#supervised-machine-learning}{Học có giám sát}: huấn luyện trên dữ liệu có \textbf{đáp án đúng}, tìm mối liên hệ trong dữ liệu dẫn tới đáp án đó. ``Giám sát'' = con người cung cấp kết quả đúng đã biết.
+\end{dinhnghia}
+
+\begin{ynghia}
+Giống học sinh ôn đề cũ \textbf{có đáp án}: sau đủ đề, làm đề mới tốt hơn. Khác không giám sát: đề \textbf{không} có đáp án, chỉ nhóm câu giống nhau.
+\end{ynghia}
+
+\begin{tinhchat}[title={Hai nhánh chính của có giám sát}]
+\begin{itemize}
+  \item \textbf{Hồi quy} --- đầu ra là \textbf{số} (giá nhà, lượng mưa, thời gian đi).
+  \item \textbf{Phân loại} --- đầu ra là \textbf{lớp} / xác suất thuộc lớp (spam, có mèo, loại thời tiết).
+\end{itemize}
+\end{tinhchat}
+
+\subsubsection{Hồi quy}
+
+\begin{dinhnghia}[title={Mô hình hồi quy}]
+\href{https://developers.google.com/machine-learning/glossary\#regression-model}{Mô hình hồi quy} dự đoán một \textbf{giá trị số liên tục} (hoặc số rời có ý nghĩa thứ tự), ví dụ lượng mưa tính bằng mm.
+\end{dinhnghia}
+
+\begin{ungdung}[title={Ví dụ hồi quy}]
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.8cm} X >{\raggedright\arraybackslash}p{3.2cm}@{}}
+\toprule
+\textbf{Tình huống} & \textbf{Đầu vào} & \textbf{Dự đoán số} \\
+\midrule
+Giá nhà &
+Diện tích, mã ZIP, phòng ngủ/tắm, lãi suất, thuế, số nhà bán khu vực\ldots &
+Giá căn \\
+Thời gian đi &
+Lịch sử giao thông, khoảng cách, thời tiết &
+Phút/giây đến nơi \\
+\bottomrule
+\end{tabularx}
+\end{ungdung}
+
+\subsubsection{Phân loại}
+
+\begin{dinhnghia}[title={Mô hình phân loại}]
+\href{https://developers.google.com/machine-learning/glossary\#classification-model}{Mô hình phân loại} dự đoán \textbf{khả năng} thuộc một \textbf{lớp} (category), không phải một số tùy ý.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Nhị phân và đa lớp}]
+\begin{itemize}
+  \item \textbf{Nhị phân:} hai lớp --- \texttt{mưa} / \texttt{không mưa}, \texttt{spam} / \texttt{không spam}.
+  \item \textbf{Đa lớp:} $\geq 3$ lớp --- \texttt{mưa}, \texttt{mưa đá}, \texttt{tuyết}, \texttt{mưa phùn}.
+\end{itemize}
+\end{tinhchat}
+
+\begin{ungdung}
+Lọc email spam; nhận diện mèo trong ảnh; phân loại loại thời tiết. Video: \url{https://www.youtube.com/watch?v=NNue6rkDrws}
+\end{ungdung}
+
+\begin{phanvidu}[title={Nhầm hồi quy với phân loại}]
+Dự đoán \textbf{kWh/năm} là \textbf{hồi quy} (số), không phải phân loại. Phân loại dùng khi cần \textbf{lớp} (spam/không spam), không phải khi nhãn là số đo liên tục trừ khi ta \emph{chủ động} chia khoảng thành lớp (cao/trung bình/thấp).
+\end{phanvidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết}]
+Dự đoán tiêu thụ điện tòa nhà (kWh) $\Rightarrow$ \textbf{hồi quy}.
+\end{luuy}
+
+\subsection{Học không giám sát}
+
+\begin{dinhnghia}[title={Học không giám sát}]
+\href{https://developers.google.com/machine-learning/glossary\#unsupervised-machine-learning}{Học không giám sát} tìm \textbf{mẫu có ý nghĩa} trong dữ liệu \textbf{không có nhãn} cho mục tiêu. Kỹ thuật phổ biến:
+\href{https://developers.google.com/machine-learning/glossary\#clustering}{\textbf{phân cụm}} (clustering) --- gom điểm tương tự thành \textbf{cụm}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Quy trình phân cụm (trực giác)}]
+\begin{enumerate}
+  \item Đưa dữ liệu (không cần nhãn mục tiêu).
+  \item Thuật toán đo ``gần nhau'' (khoảng cách, độ tương tự).
+  \item Gom thành cụm; \textbf{người} đặt tên cụm sau (mùa, loại khách hàng\ldots).
+\end{enumerate}
+\end{phuongphap}
+
+\mlimg{clustering-02.png}
+\begin{center}\small\textbf{Hình 1.} Phân cụm điểm tương tự.\end{center}
+
+\mlimg{clustering-04.png}
+\begin{center}\small\textbf{Hình 2.} Cụm có ranh giới tự nhiên.\end{center}
+
+\begin{ynghia}[title={Phân cụm khác phân loại}]
+\textbf{Phân loại:} bạn định nghĩa trước lớp (\texttt{mèo}, \texttt{chó}). \textbf{Phân cụm:} thuật toán tìm nhóm; bạn \emph{đoán} nhãn sau (ví dụ cụm nhiệt độ thấp = ``mùa đông'').
+\end{ynghia}
+
+\mlimg{clustering-01.png}
+\begin{center}\small\textbf{Hình 3.} Cụm mẫu thời tiết.\end{center}
+
+\mlimg{clustering-03.png}
+\begin{center}\small\textbf{Hình 4.} Cụm được gán nhãn tuyết, mưa phùn, mưa, không mưa.\end{center}
+
+\begin{phanvidu}
+\textbf{Sai:} ``Có giám sát thường dùng phân cụm.'' --- Phân cụm là \textbf{không giám sát}.
+
+\textbf{Sai:} ``Không giám sát tự biết nghĩa cụm.'' --- Máy chỉ gom nhóm; \textbf{người} đặt tên dựa trên hiểu biết miền.
+\end{phanvidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{itemize}
+  \item Có giám sát: có đáp án đúng trong dữ liệu.
+  \item Không giám sát: không có đáp án; tìm nhóm/mẫu.
+\end{itemize}
+\end{luuy}
+
+\subsection{Học tăng cường}
+
+\begin{dinhnghia}[title={Học tăng cường (RL)}]
+\href{https://developers.google.com/machine-learning/glossary\#reinforcement-learning-rl}{Học tăng cường}: tác nhân thực hiện \textbf{hành động} trong \textbf{môi trường}, nhận
+\href{https://developers.google.com/machine-learning/glossary\#reward}{\textbf{phần thưởng}} hoặc \textbf{hình phạt}, học
+\href{https://developers.google.com/machine-learning/glossary\#policy}{\textbf{chính sách}} (policy) tối đa hóa phần thưởng tích lũy.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Mục tiêu RL (ý tưởng)}]
+Tìm chính sách $\pi$ sao cho tổng phần thưởng kỳ vọng lớn:
+\[
+  \pi^\ast \approx \arg\max_{\pi}\; \mathbb{E}\Big[\sum_t \gamma^t\, r_t\Big],
+\]
+với $r_t$ phần thưởng bước $t$, $\gamma \in (0,1]$ hệ số chiết khấu (chi tiết ở khóa RL chuyên sâu).
+\end{congthuc}
+
+\begin{ungdung}
+Huấn luyện robot di chuyển; \href{https://deepmind.com/research/case-studies/alphago-the-story-so-far}{AlphaGo} chơi cờ vây; game, điều khiển tài nguyên.
+\end{ungdung}
+
+\subsection{AI tạo sinh}
+
+\begin{dinhnghia}[title={AI tạo sinh (generative AI)}]
+\href{https://developers.google.com/machine-learning/glossary\#generative-ai}{AI tạo sinh}: lớp mô hình \textbf{tạo nội dung} từ đầu vào người dùng --- văn bản, ảnh, nhạc, video; hoặc kết hợp (ảnh + chữ $\to$ video).
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Ký hiệu kiểu đầu vào $\to$ đầu ra}]
+text-to-text, text-to-image, text-to-video, text-to-code, text-to-speech, image-and-text-to-image,\ldots
+\end{tinhchat}
+
+\begin{table}[H]
+\centering
+\caption{Bảng ví dụ mô hình tạo sinh (rút gọn)}
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.4cm} >{\raggedright\arraybackslash}p{4.2cm} X@{}}
+\toprule
+\textbf{Mô hình} & \textbf{Đầu vào} & \textbf{Đầu ra} \\
+\midrule
+Text-to-text & Ai sáng lập đua Le Mans? & Giải thích lịch sử (Bard). \\
+Text-to-image & Bạch tuộc ngoài hành tinh đọc báo qua cổng. & Ảnh (Imagen). \\
+Text-to-code & Vòng lặp Python in số nguyên tố. & Mã (Bard). \\
+Image-to-text & Ảnh hồng hạc & Mô tả văn bản. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{vidu}[title={Text-to-video (Phenaki)}]
+\textbf{Đầu vào:} ``Gấu bông bơi ở biển San Francisco\ldots''
+\mlimg[0.5]{teddy_bear.png}
+Nguồn: \href{https://phenaki.video/}{Phenaki}.
+\end{vidu}
+
+\begin{vidu}[title={Text-to-code (Bard)}]
+\begin{lstlisting}[language=Python]
+for number in numbers:
+    is_prime = True
+    for i in range(2, number):
+        if number % i == 0:
+            is_prime = False
+            break
+    if is_prime:
+        print(number)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Image-to-text}]
+\mlimg[0.35]{flamingo.png}
+``Đây là hồng hạc, sống ở vùng Caribbean.''
+\end{vidu}
+
+\begin{ynghia}[title={Mô hình tạo sinh học như thế nào?}]
+Học \textbf{mẫu} trong dữ liệu để tạo dữ liệu \textbf{mới tương tự} --- như diễn viên bắt chước phong cách, họa sĩ học trường phái, ban cover học nhóm nhạc. Thường: huấn luyện \textbf{không giám sát} ban đầu, sau đó tinh chỉnh \textbf{có giám sát} hoặc \textbf{tăng cường}.
+\end{ynghia}
+
+\begin{ungdung}[title={AI tạo sinh trong thương mại điện tử}]
+Tự xóa nền ảnh sản phẩm; nâng chất lượng ảnh độ phân giải thấp --- use case đang phát triển nhanh.
+\end{ungdung}
+
+\begin{dinhly}[title={Nguyên lý chung của ML (tóm tắt phần 2)}]
+\begin{enumerate}
+  \item \textbf{Có giám sát} cần nhãn; phù hợp dự đoán khi biết ``đáp án'' cần học.
+  \item \textbf{Không giám sát} khám phá cấu trúc; nhãn cụm do người gán sau.
+  \item \textbf{Tăng cường} học hành vi qua phần thưởng.
+  \item \textbf{tạo sinh} tạo nội dung mới từ mẫu đã học.
+\end{enumerate}
+\end{dinhly}
+
+\begin{tongket}[title={Thuật ngữ --- Các loại hệ thống ML}]
+\href{https://developers.google.com/machine-learning/glossary\#classification-model}{classification model} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#clustering}{clustering} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#model}{model} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#policy}{policy} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#prediction}{prediction} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#regression-model}{regression model} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#reinforcement-learning-rl}{reinforcement learning} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#reward}{reward} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#supervised-machine-learning}{supervised learning} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#training}{training} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#unsupervised-machine-learning}{unsupervised learning}.
+\end{tongket}
+
+\newpage
+
+%==============================================================================
+\section{Học có giám sát --- Khái niệm nền}
+%==============================================================================
+
+\begin{dongco}[title={Động cơ học --- Vì sao cần năm khái niệm?}]
+Lọc spam hay dự báo mưa đều cùng ``khung'': có \textbf{dữ liệu có nhãn}, xây \textbf{mô hình}, \textbf{huấn luyện}, \textbf{đánh giá}, rồi \textbf{suy luận} trên dữ liệu mới. Thiếu một bước (ví dụ đánh giá kém mà triển khai) $\Rightarrow$ sản phẩm sai trong thực tế.
+\end{dongco}
+
+\begin{phuongphap}[title={Vòng đời mô hình có giám sát}]
+\begin{center}
+\textbf{Dữ liệu} $\longrightarrow$ \textbf{Mô hình} $\longrightarrow$ \textbf{Huấn luyện} $\longrightarrow$ \textbf{Đánh giá} $\longrightarrow$ \textbf{Suy luận}
+\end{center}
+Có thể lặp Huấn luyện $\leftrightarrow$ Đánh giá nhiều lần trước khi suy luận trong sản phẩm.
+\end{phuongphap}
+
+\subsection{Dữ liệu}
+
+\begin{dinhnghia}[title={Tập dữ liệu, mẫu, đặc trưng, nhãn}]
+\textbf{Tập dữ liệu} (dataset): tập dữ liệu liên quan (ảnh mèo, giá nhà, thời tiết).
+
+\textbf{Mẫu} (\href{https://developers.google.com/machine-learning/glossary\#example}{example}): một đơn vị --- như một dòng bảng.
+
+\textbf{Đặc trưng} (\href{https://developers.google.com/machine-learning/glossary\#feature}{feature}): giá trị đầu vào mô hình dùng để dự đoán.
+
+\textbf{Nhãn} (\href{https://developers.google.com/machine-learning/glossary\#label}{label}): ``đáp án'' cần dự đoán.
+
+\textbf{Mẫu có nhãn} (\href{https://developers.google.com/machine-learning/glossary\#labeled-example}{labeled example}): có cả đặc trưng và nhãn.
+\end{dinhnghia}
+
+\begin{vidu}[title={Mô hình dự báo mưa}]
+Đặc trưng: vĩ độ, kinh độ, nhiệt độ, độ ẩm, mây, gió, áp suất. Nhãn: \emph{lượng mưa}.
+\end{vidu}
+
+\begin{tinhchat}[title={Mẫu có nhãn và không nhãn}]
+\begin{itemize}
+  \item \textbf{Có nhãn:} dùng khi \textbf{huấn luyện} và \textbf{đánh giá} (so sánh dự đoán với nhãn thật).
+  \item \textbf{Không nhãn:} dùng khi \textbf{suy luận} trên dữ liệu mới --- mô hình tự dự đoán nhãn.
+\end{itemize}
+\end{tinhchat}
+
+\paragraph{Hai mẫu có nhãn.}
+\mlimg{labeled_example.png}
+
+\paragraph{Hai mẫu không nhãn.}
+\mlimg{unlabeled_example.png}
+
+\begin{tinhchat}[title={Kích thước và đa dạng tập dữ liệu}]
+\textbf{Kích thước:} số mẫu. \textbf{Đa dạng:} phạm vi tình huống (mùa, khu vực, loại nhà\ldots). Tập lý tưởng: \textbf{lớn và đa dạng}.
+\end{tinhchat}
+
+\begin{phanvidu}[title={Tập lớn nhưng không đa dạng}]
+100 năm dữ liệu \textbf{chỉ tháng 7} $\Rightarrow$ dự báo mưa tháng 1 kém dù ``nhiều dữ liệu''.
+\end{phanvidu}
+
+\begin{phanvidu}[title={Tập đa dạng nhưng quá nhỏ}]
+Vài năm, đủ 12 tháng, nhưng ít năm $\Rightarrow$ thiếu biến thiên dài hạn; dự đoán thiếu tin cậy.
+\end{phanvidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Tập dữ liệu lý tưởng}]
+\textbf{Đáp án:} kích thước \textbf{lớn} và đa dạng \textbf{cao}. Tránh: lớn/thấp đa dạng; nhỏ/cao đa dạng; nhỏ/thấp đa dạng.
+\end{luuy}
+
+\begin{luuy}[title={Nhiều đặc trưng không luôn tốt hơn}]
+Hàng trăm đặc trưng (ảnh vệ tinh, mây\ldots) có thể giúp, nhưng đặc trưng \textbf{không nhân quả} với nhãn (ví dụ màu xe với giá) có thể \textbf{không} cải thiện dự đoán.
+\end{luuy}
+
+\subsection{Mô hình}
+
+\begin{dinhnghia}[title={Mô hình trong học có giám sát}]
+Tập hợp số (tham số) định nghĩa quan hệ toán từ \emph{mẫu đặc trưng} tới \emph{giá trị nhãn}. Quan hệ được \textbf{học} qua huấn luyện, không gán tay đầy đủ.
+\end{dinhnghia}
+
+\begin{ynghia}
+Có thể hình dung mô hình như hàm $f$: nhãn $\approx f(\text{đặc trưng}_1, \ldots, \text{đặc trưng}_n)$; các hệ số trong $f$ được chỉnh khi huấn luyện.
+\end{ynghia}
+
+\subsection{Huấn luyện}
+
+\begin{dinhnghia}[title={Huấn luyện (training)}]
+Cho mô hình tập \textbf{mẫu có nhãn}; mô hình dự đoán, so với nhãn thật, cập nhật nghiệm để dự đoán tốt hơn trung bình trên tập.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Mất mát (loss) --- ý tưởng}]
+Chênh lệch giữa dự đoán $\hat{y}$ và nhãn thật $y$:
+\[
+  \text{loss} = L(\hat{y}, y).
+\]
+Huấn luyện $\Leftrightarrow$ giảm loss trung bình trên các mẫu (cập nhật tham số mô hình).
+\end{congthuc}
+
+\begin{vidu}[title={Một bước cập nhật}]
+Dự đoán \texttt{1{,}15} inch mưa, thực tế \texttt{0{,}75} inch $\Rightarrow$ chỉnh mô hình để lần sau gần \texttt{0{,}75} hơn.
+\end{vidu}
+
+\begin{phuongphap}[title={Ba bước huấn luyện (theo Google ML)}]
+\begin{enumerate}
+  \item Một mẫu có nhãn $\to$ dự đoán.
+  \mlimg[0.72]{training-a-model-01.png}
+  \begin{center}\small\textbf{Hình 5.} Dự đoán từ mẫu có nhãn.\end{center}
+
+  \item So sánh với nhãn thật $\to$ cập nhật.
+  \mlimg[0.72]{training-a-model-02.png}
+  \begin{center}\small\textbf{Hình 6.} Cập nhật dự đoán.\end{center}
+
+  \item Lặp cho mọi mẫu (có thể nhiều \textbf{epoch}).
+  \mlimg[0.72]{training-a-model-03.png}
+  \begin{center}\small\textbf{Hình 7.} Cập nhật trên cả tập.\end{center}
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Chọn đặc trưng khi huấn luyện}]
+Thử thêm/bỏ đặc trưng (ví dụ \texttt{time\_of\_day} trong dữ liệu thời tiết) và xem đánh giá có cải thiện --- không phải đặc trưng nào cũng có \textbf{sức dự đoán}.
+\end{luuy}
+
+\subsection{Đánh giá}
+
+\begin{phuongphap}[title={Đánh giá mô hình đã huấn luyện}]
+\begin{enumerate}
+  \item Dùng tập có nhãn (thường \textbf{tách} khỏi tập huấn luyện).
+  \item Chỉ đưa \textbf{đặc trưng} cho mô hình.
+  \item So sánh dự đoán với nhãn thật.
+  \item Nếu chưa đạt $\Rightarrow$ huấn luyện lại / đổi đặc trưng / thu thập thêm dữ liệu.
+\end{enumerate}
+\end{phuongphap}
+
+\mlimg[0.8]{evaluating-a-model.png}
+\begin{center}\small\textbf{Hình 8.} So dự đoán với giá trị thực.\end{center}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Vì sao phải huấn luyện?}]
+Mô hình phải \textbf{học} quan hệ đặc trưng--nhãn từ dữ liệu; không ``biết sẵn'' khi mới khởi tạo.
+\end{luuy}
+
+\subsection{Suy luận}
+
+\begin{dinhnghia}[title={Suy luận (inference)}]
+\href{https://developers.google.com/machine-learning/glossary\#inference}{Suy luận}: dùng mô hình đã huấn luyện và đánh giá đủ tốt để dự đoán trên mẫu \textbf{không có nhãn} (chỉ có đặc trưng) --- ví dụ thời tiết hiện tại $\to$ lượng mưa dự kiến.
+\end{dinhnghia}
+
+\begin{dinhly}[title={Chuỗi logic có giám sát}]
+Huấn luyện chỉ trên mẫu \textbf{có nhãn} $\Rightarrow$ đánh giá trên mẫu có nhãn (ẩn nhãn với mô hình) $\Rightarrow$ suy luận trên mẫu \textbf{không nhãn} trong vận hành thực tế.
+\end{dinhly}
+
+\begin{tongket}[title={Thuật ngữ --- Học có giám sát}]
+\href{https://developers.google.com/machine-learning/glossary\#example}{example} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#feature}{feature} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#inference}{inference} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#labeled-example}{labeled example} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#label}{label} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#loss}{loss} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#prediction}{prediction} \textbullet\
+\href{https://developers.google.com/machine-learning/glossary\#training}{training}.
+\end{tongket}
+
+\newpage
+
+%==============================================================================
+\section{Kiểm tra hiểu biết tổng hợp}
+%==============================================================================
+
+\begin{dongco}[title={Động cơ học --- Luyện chọn mô hình và đặc trưng}]
+Biết định nghĩa chưa đủ: cần nhìn bảng dữ liệu và hỏi --- nhãn là số hay lớp? Có nhãn trong tập không? Đặc trưng nào thực sự liên quan giá/nhãn?
+\end{dongco}
+
+\subsection{Sức mạnh dự đoán}
+
+\begin{ynghia}[title={Predictive power}]
+Không phải mọi cột trong bảng đều giúp dự đoán nhãn. Chỉ vài đặc trưng mang phần lớn thông tin (ví dụ hãng xe, năm, số dặm với giá).
+\end{ynghia}
+
+\mlimg{predictive_power.png}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Dự đoán giá xe}]
+\textbf{Tốt nhất:} \texttt{make\_model}, \texttt{year}, \texttt{miles}.
+
+\textbf{Yếu:} \texttt{color}, \texttt{height}; \texttt{gearbox}; \texttt{tire\_size}, \texttt{wheel\_base}.
+\end{luuy}
+
+\subsection{Có giám sát và không giám sát}
+
+\begin{vidu}[title={Người dùng website mua sắm}]
+\mlimg[0.95]{supervised-unsupervised.png}
+
+Muốn \textbf{phân loại kiểu người dùng} (chưa có nhãn) $\Rightarrow$ \textbf{không giám sát} (phân cụm), sau đó đặt tên: ``săn giảm giá'', ``deal hunter'', ``surfer'', ``loyal'', ``wanderer''.
+\end{vidu}
+
+\begin{phanvidu}[title={Sai: dùng có giám sát khi không có nhãn}]
+Tập không có cột ``loại người dùng'' $\Rightarrow$ không thể huấn luyện có giám sát để ``dự đoán lớp người dùng'' trừ khi tự tạo nhãn (gán nhãn tay).
+\end{phanvidu}
+
+\begin{vidu}[title={Tiêu thụ điện hộ gia đình}]
+\mlimg[0.95]{supervised.png}
+
+Dự đoán \textbf{kWh/năm} $\Rightarrow$ \textbf{có giám sát}; nhãn = \texttt{kilowatt hours used per year}; đặc trưng = diện tích, vị trí, năm xây.
+\end{vidu}
+
+\begin{vidu}[title={Giá vé máy bay}]
+\mlimg[0.95]{flight-table.png}
+
+\textbf{Hồi quy} (giá vé là số). Có thể \textbf{phân loại} ``cao/trung bình/thấp'' nếu chuyển số thành lớp theo ngưỡng (sau khi tính trung bình tuyến).
+\end{vidu}
+
+\begin{tinhchat}[title={Hồi quy vs phân loại cho giá vé}]
+\begin{itemize}
+  \item Hồi quy: đầu ra số (USD).
+  \item Phân loại đa lớp: có thể 3 lớp \texttt{cao}, \texttt{trung bình}, \texttt{thấp} --- cần tiền xử lý nhãn.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Huấn luyện và đánh giá}
+
+\begin{phuongphap}[title={Khi dự đoán lệch nhiều --- hai hướng hiệu quả}]
+\begin{enumerate}
+  \item Huấn luyện lại với \textbf{ít đặc trưng hơn} nhưng có sức dự đoán mạnh.
+  \item Huấn luyện lại trên tập \textbf{lớn hơn, đa dạng hơn}.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{phanvidu}
+\textbf{Sai:} ``Không sửa được mô hình dự đoán tệ.'' --- Có thể: thêm dữ liệu, đổi đặc trưng, nhiều vòng huấn luyện.
+
+\textbf{Sai:} ``Đổi sang không giám sát sẽ cải thiện dự đoán có nhãn.'' --- Không giải quyết bài toán dự đoán nhãn đã biết trong huấn luyện.
+\end{phanvidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Cải thiện mô hình}]
+Chọn \textbf{hai} đáp án tốt: (1) huấn luyện lại với đặc trưng mạnh; (2) tập lớn/đa dạng hơn. Không chọn: ``không sửa được''; ``đổi sang không giám sát''.
+\end{luuy}
+
+\begin{tongket}[title={Bước tiếp theo trong hành trình ML}]
+\begin{itemize}
+  \item \href{https://developers.google.com/machine-learning/crash-course}{Machine Learning Crash Course} --- thực hành sâu.
+  \item \href{https://developers.google.com/machine-learning/problem-framing}{Problem Framing} --- đặt khung bài toán, tránh lỗi.
+  \item \href{https://pair.withgoogle.com/guidebook/}{People + AI Guidebook} --- thiết kế AI lấy con người làm trung tâm.
+\end{itemize}
+\end{tongket}
+
+\end{document}
