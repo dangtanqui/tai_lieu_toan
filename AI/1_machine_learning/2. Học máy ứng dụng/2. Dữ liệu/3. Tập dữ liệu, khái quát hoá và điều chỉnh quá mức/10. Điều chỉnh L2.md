@@ -1,0 +1,124 @@
+[**L~2~ regularization**](https://developers.google.com/machine-learning/glossary#l2-regularization)
+is a popular regularization metric, which uses the following formula:
+$$L_2\\text{ regularization } = {w_1\^2 + w_2\^2 + ... + w_n\^2}$$
+
+For example, the following table shows the calculation of L~2~
+regularization for a model with six weights:
+
+|   | Value | Squared value |
+|---|---|---|
+| w~1~ | 0.2 | 0.04 |
+| w~2~ | -0.5 | 0.25 |
+| w~3~ | 5.0 | 25.0 |
+| w~4~ | -1.2 | 1.44 |
+| w~5~ | 0.3 | 0.09 |
+| w~6~ | -0.1 | 0.01 |
+|   |   | **26.83** = total |
+
+Notice that weights close to zero don't affect L~2~ regularization
+much, but large weights can have a huge impact. For example, in the
+preceding calculation:
+
+- A single weight (w~3~) contributes about 93% of the total complexity.
+- The other five weights collectively contribute only about 7% of the total complexity.
+
+L~2~ regularization encourages weights *toward* 0, but never pushes
+weights all the way to zero.
+
+### Exercises: Check your understanding
+
+If you use L~2~ regularization while training a model, what will typically happen to the overall complexity of the model? The overall complexity of the system will probably drop. Since L~2~ regularization encourages weights towards 0, the overall complexity will probably drop. The overall complexity of the model will probably stay constant. This is very unlikely. The overall complexity of the model will probably increase. This is unlikely. Remember that L~2~ regularization encourages weights towards 0. If you use L~2~ regularization while training a model, some features will be removed from the model. True Although L~2~ regularization may make some weights very small, it will never push any weights all the way to zero. Consequently, all features will still contribute something to the model. False L~2~ regularization never pushes weights all the way to zero.
+
+## Regularization rate (lambda)
+
+As noted, training attempts to minimize some combination of loss and complexity:
+$$\\text{minimize(loss} + \\text{ complexity)}$$
+
+Model developers tune the overall impact of complexity on model training
+by multiplying its value by a scalar called the
+[**regularization rate**](https://developers.google.com/machine-learning/glossary#regularization-rate).
+The Greek character lambda typically symbolizes the regularization rate.
+
+That is, model developers aim to do the following:
+$$\\text{minimize(loss} + \\lambda \\text{ complexity)}$$
+
+A high regularization rate:
+
+- Strengthens the influence of regularization, thereby reducing the chances of overfitting.
+- Tends to produce a histogram of model weights having the following characteristics:
+  - a normal distribution
+  - a mean weight of 0.
+
+A low regularization rate:
+
+- Lowers the influence of regularization, thereby increasing the chances of overfitting.
+- Tends to produce a histogram of model weights with a flat distribution.
+
+For example, the histogram of model weights for a high regularization rate
+might look as shown in Figure 18.
+![Figure 18. Histogram of a model's weights with a mean of zero and
+a normal distribution.](https://developers.google.com/static/machine-learning/crash-course/images/HighLambda.svg) **Figure 18.** Weight histogram for a high regularization rate. Mean is zero. Normal distribution.
+
+In contrast, a low regularization rate tends to yield a flatter histogram, as
+shown in Figure 19.
+![Figure 19. Histogram of a model's weights with a mean of zero that
+is somewhere between a flat distribution and a normal
+distribution.](https://developers.google.com/static/machine-learning/crash-course/images/LowLambda.svg) **Figure 19.** Weight histogram for a low regularization rate. Mean may or may not be zero.
+
+> [!NOTE]
+> **Note:** Setting the regularization rate to zero removes regularization completely. In this case, training focuses exclusively on minimizing loss, which poses the highest possible overfitting risk.
+
+### Picking the regularization rate
+
+The ideal regularization rate produces a model that generalizes well to
+new, previously unseen data.
+Unfortunately, that ideal value is data-dependent,
+so you must do some
+
+tuning.
+
+
+### Early stopping: an alternative to complexity-based regularization
+
+[**Early stopping**](https://developers.google.com/machine-learning/glossary#early-stopping) is a
+regularization method that doesn't involve a calculation of complexity.
+Instead, early stopping simply means ending training before the model
+fully converges. For example, you end training when the loss curve
+for the validation set starts to increase (slope becomes positive).
+
+Although early stopping usually increases training loss, it can decrease
+test loss.
+
+Early stopping is a quick, but rarely optimal, form of regularization.
+The resulting model is very unlikely to be as good as a model trained
+thoroughly on the ideal regularization rate.
+
+### Finding equilibrium between learning rate and regularization rate
+
+[**Learning rate**](https://developers.google.com/machine-learning/glossary#learning-rate) and
+regularization rate tend to move weights in opposite
+directions. A high learning rate often pulls weights *away from* zero;
+a high regularization rate pushes weights *towards* zero.
+
+If the regularization rate is high with respect to the learning rate,
+the weak weights tend to produce a model that makes poor predictions.
+Conversely, if the learning rate is high with respect to the regularization
+rate, the strong weights tend to produce an overfit model.
+
+Your goal is to find the equilibrium between learning rate and
+regularization rate. This can be challenging. Worst of all, once you find
+that elusive balance, you may have to ultimately change the learning rate.
+And, when you change the learning rate, you'll again have to find the ideal
+regularization rate.
+
+> [!IMPORTANT]
+> **Key terms:**
+>
+> - [Early stopping](https://developers.google.com/machine-learning/glossary#early-stopping)
+> - [L~1~ regularization](https://developers.google.com/machine-learning/glossary#L1_regularization)
+> - [L~2~ regularization](https://developers.google.com/machine-learning/glossary#L2_regularization)
+> - [Learning rate](https://developers.google.com/machine-learning/glossary#learning-rate)
+> - [Regularization](https://developers.google.com/machine-learning/glossary#regularization)
+> - [Regularization rate](https://developers.google.com/machine-learning/glossary#regularization-rate)
+
+[Help Center](https://support.google.com/machinelearningeducation)

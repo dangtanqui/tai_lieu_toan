@@ -1,0 +1,270 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- ĐIỀU KIỆN TIÊN QUYẾT}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Điều kiện tiên quyết và bài tập chuẩn bị}
+\def\coversubtitle{Lý thuyết --- ML: Bài tập chuẩn bị và Điều kiện tiên quyết}
+
+\input{../../_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+
+\newcommand{\mlccurl}[1]{\url{#1}}
+
+\begin{document}
+
+\input{../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch từ \emph{Prerequisites and prework} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/prereqs-and-prework}}.
+\end{ynghia}
+
+\begin{luuy}[title={Mục tiêu của tài liệu này}]
+Trước khi học các module trong phần \textbf{Học máy ứng dụng}, nên đọc và kiểm tra nhanh:
+\begin{itemize}
+  \item Bạn đã có nền tảng phù hợp để theo ML chưa?
+  \item Bạn cần làm \textbf{bài tập chuẩn bị} nào (Intro to ML, NumPy, pandas)?
+  \item Bạn có đáp ứng các \textbf{điều kiện tiên quyết} về toán, lập trình, terminal?
+\end{itemize}
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{ML có phù hợp với bạn không?}
+%==============================================================================
+
+\begin{dongco}[title={Chọn lộ trình phù hợp}]
+ML có thể phù hợp theo nhiều mức nền tảng khác nhau. Phần này giúp bạn chọn cách học: học toàn bộ theo thứ tự, chọn module quan tâm, hoặc chuyển sang khóa nâng cao.
+\end{dongco}
+
+\begin{phuongphap}[title={Các trường hợp thường gặp (theo ML)}]
+\begin{enumerate}
+  \item \textbf{Ít hoặc không có nền tảng ML:} nên học theo thứ tự toàn bộ nội dung.
+
+  Bắt đầu: \mlccurl{https://developers.google.com/machine-learning/crash-course/linear-regression}
+
+  \item \textbf{Có nền tảng ML nhưng muốn cập nhật và hệ thống lại:} ML là tài liệu ôn tập tốt. Bạn có thể học tuần tự hoặc chọn module quan tâm.
+
+  Bắt đầu: \mlccurl{https://developers.google.com/machine-learning/crash-course/linear-regression}
+
+  \item \textbf{Có kinh nghiệm thực tế:} ML vẫn hữu ích như phần nền tảng, nhưng bạn có thể muốn xem các khóa nâng cao hơn cho công cụ và kỹ thuật theo lĩnh vực.
+
+  Khóa nâng cao: \mlccurl{https://developers.google.com/machine-learning/advanced-courses}
+
+  \item \textbf{Bạn đang tìm tutorial dùng API ML như Keras:} ML có bài tập dùng NumPy/pandas/Keras, nhưng trọng tâm là \textbf{khái niệm}, không đi sâu API. Nếu muốn học Keras chuyên sâu, xem:
+
+  \mlccurl{https://keras.io/guides/}
+\end{enumerate}
+\end{phuongphap}
+
+\newpage
+
+%==============================================================================
+\section{Bài tập chuẩn bị}
+%==============================================================================
+
+\begin{dongco}[title={Chuẩn bị đúng giúp học nhanh}]
+ML có các bài tập lập trình chạy trực tiếp trong trình duyệt. Nếu bạn đã nắm các khái niệm nền tảng (Intro to ML) và công cụ (NumPy, pandas), bạn sẽ theo bài nhanh hơn và ít bị kẹt bởi cú pháp.
+\end{dongco}
+
+\begin{phuongphap}[title={Những việc nên làm trước khi học ML}]
+\begin{enumerate}
+  \item Nếu bạn mới học ML: học khóa \textbf{Introduction to Machine Learning}:
+
+  \mlccurl{https://developers.google.com/machine-learning/intro-to-ml}
+
+  \item Nếu bạn mới dùng \textbf{NumPy}: làm bài Colab \textbf{NumPy Ultraquick Tutorial}:
+
+  \mlccurl{https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/numpy_ultraquick_tutorial.ipynb?utm_source=mlcc&utm_campaign=colab-external&utm_medium=referral&utm_content=mlcc-prework&hl=en}
+
+  \item Nếu bạn mới dùng \textbf{pandas}: làm bài Colab \textbf{pandas UltraQuick Tutorial}:
+
+  \mlccurl{https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/pandas_dataframe_ultraquick_tutorial.ipynb?utm_source=mlcc&utm_campaign=colab-external&utm_medium=referral&utm_content=mlcc-prework&hl=en}
+\end{enumerate}
+\end{phuongphap}
+
+\begin{ynghia}[title={Colaboratory (Colab)}]
+Các bài tập lập trình chạy trực tiếp trên trình duyệt (không cần cài đặt) thông qua nền tảng \textbf{Colaboratory}:
+\mlccurl{https://colab.research.google.com}
+
+Colab hỗ trợ hầu hết trình duyệt phổ biến và được kiểm thử kỹ nhất trên bản desktop của Chrome và Firefox.
+\end{ynghia}
+
+\newpage
+
+%==============================================================================
+\section{Điều kiện tiên quyết}
+%==============================================================================
+
+\begin{dongco}[title={Không cần biết ML trước, nhưng cần nền tảng}]
+ML không yêu cầu kiến thức ML trước đó. Tuy nhiên, để hiểu khái niệm và hoàn thành bài tập, bạn nên đáp ứng một số nền tảng về toán, lập trình và thao tác terminal.
+\end{dongco}
+
+\begin{dinhnghia}[title={Yêu cầu nền tảng tối thiểu}]
+\begin{itemize}
+  \item Biết về biến, phương trình tuyến tính, đồ thị hàm số, histogram và giá trị trung bình.
+  \item Lập trình tốt. Lý tưởng là có kinh nghiệm Python (bài tập dùng Python). Nếu bạn là lập trình viên có kinh nghiệm nhưng chưa biết Python, thường vẫn có thể làm bài tập.
+\end{itemize}
+\end{dinhnghia}
+
+%------------------------------------------------------------------------------
+\subsection{Đại số}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Các chủ đề đại số cần nắm}]
+\begin{itemize}
+  \item Biến, hệ số và hàm số:
+  \begin{itemize}
+    \item \mlccurl{https://www.khanacademy.org/math/algebra/x2f8bb11595b61c86:foundation-algebra/x2f8bb11595b61c86:intro-variables/v/what-is-a-variable}
+    \item \mlccurl{https://www.khanacademy.org/math/cc-sixth-grade-math/cc-6th-equivalent-exp/cc-6th-parts-of-expressions/v/expression-terms-factors-and-coefficients}
+    \item \mlccurl{https://www.khanacademy.org/math/algebra-home/alg-functions}
+  \end{itemize}
+
+  \item Phương trình tuyến tính, ví dụ \(y = b + w_1x_1 + w_2x_2\):
+  \mlccurl{https://wikipedia.org/wiki/Linear_equation}
+
+  \item Logarit và phương trình logarit, ví dụ \(y = \ln(1 + e^{z})\):
+  \mlccurl{https://wikipedia.org/wiki/Logarithm}
+
+  \item Hàm sigmoid:
+  \mlccurl{https://wikipedia.org/wiki/Sigmoid_function}
+\end{itemize}
+\end{phuongphap}
+
+%------------------------------------------------------------------------------
+\subsection{Đại số tuyến tính}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Các chủ đề đại số tuyến tính cần nắm}]
+\begin{itemize}
+  \item Tensor và hạng của tensor:
+  \mlccurl{https://www.tensorflow.org/guide/tensor}
+  \item Nhân ma trận:
+  \mlccurl{https://wikipedia.org/wiki/Matrix_multiplication}
+\end{itemize}
+\end{phuongphap}
+
+%------------------------------------------------------------------------------
+\subsection{Lượng giác}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Một khái niệm liên quan hàm kích hoạt}]
+\begin{itemize}
+  \item \(\tanh\):
+  \mlccurl{https://reference.wolfram.com/language/ref/Tanh.html}
+\end{itemize}
+\end{phuongphap}
+
+%------------------------------------------------------------------------------
+\subsection{Thống kê}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Các chủ đề thống kê cần nắm}]
+\begin{itemize}
+  \item Giá trị trung bình, trung vị, outliers và độ lệch chuẩn:
+  \begin{itemize}
+    \item \mlccurl{https://www.khanacademy.org/math/probability/data-distributions-a1/summarizing-center-distributions/v/mean-median-and-mode}
+    \item \mlccurl{https://wikipedia.org/wiki/Standard_deviation}
+  \end{itemize}
+
+  \item Đọc histogram:
+  \mlccurl{https://wikipedia.org/wiki/Histogram}
+\end{itemize}
+\end{phuongphap}
+
+%------------------------------------------------------------------------------
+\subsection{Giải tích}
+%------------------------------------------------------------------------------
+
+\begin{luuy}[title={Giải tích (cho chủ đề nâng cao)}]
+\begin{itemize}
+  \item Khái niệm đạo hàm (không cần tự tính đạo hàm):
+  \mlccurl{https://wikipedia.org/wiki/Derivative}
+  \item Gradient (độ dốc):
+  \mlccurl{https://www.khanacademy.org/math/multivariable-calculus/multivariable-derivatives/gradient-and-directional-derivatives/v/gradient}
+  \item Đạo hàm riêng:
+  \mlccurl{https://wikipedia.org/wiki/Partial_derivative}
+  \item Quy tắc chuỗi (để hiểu đầy đủ backpropagation):
+  \mlccurl{https://wikipedia.org/wiki/Chain_rule}
+\end{itemize}
+\end{luuy}
+
+%------------------------------------------------------------------------------
+\subsection{Lập trình Python}
+%------------------------------------------------------------------------------
+
+\begin{dongco}[title={Bài tập dùng Python}]
+Phần lớn bài tập lập trình trong ML dùng Python. Nắm Python cơ bản giúp bạn tập trung vào ý tưởng ML thay vì bị kẹt bởi cú pháp.
+\end{dongco}
+
+\begin{phuongphap}[title={Python cơ bản cần nắm}]
+Các nội dung sau có trong \mlccurl{https://docs.python.org/3/tutorial/}:
+\begin{itemize}
+  \item Định nghĩa và gọi hàm; tham số vị trí và tham số từ khóa:
+  \mlccurl{https://docs.python.org/3/tutorial/controlflow.html\#defining-functions}
+  và \mlccurl{https://docs.python.org/3/tutorial/controlflow.html\#keyword-arguments}
+
+  \item Dictionary, list, set (tạo, truy cập, lặp):
+  \mlccurl{https://docs.python.org/3/tutorial/datastructures.html\#dictionaries},
+  \mlccurl{https://docs.python.org/3/tutorial/introduction.html\#lists},
+  \mlccurl{https://docs.python.org/3/tutorial/datastructures.html\#sets}
+
+  \item Vòng lặp \texttt{for} (kể cả nhiều biến lặp):
+  \mlccurl{https://docs.python.org/3/tutorial/controlflow.html\#for-statements}
+
+  \item Khối điều kiện \texttt{if/else} và biểu thức điều kiện:
+  \mlccurl{https://docs.python.org/3/tutorial/controlflow.html\#if-statements}
+  và \mlccurl{https://docs.python.org/2.5/whatsnew/pep-308.html}
+
+  \item Định dạng chuỗi:
+  \mlccurl{https://docs.python.org/3/tutorial/inputoutput.html\#old-string-formatting}
+
+  \item Biến, gán, kiểu dữ liệu cơ bản (\texttt{int}, \texttt{float}, \texttt{bool}, \texttt{str}):
+  \mlccurl{https://docs.python.org/3/tutorial/introduction.html\#using-python-as-a-calculator}
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Một khái niệm Python nâng cao dùng trong vài bài tập}]
+List comprehension:
+\mlccurl{https://docs.python.org/3/tutorial/datastructures.html\#list-comprehensions}
+\end{luuy}
+
+%------------------------------------------------------------------------------
+\subsection{Terminal Bash và Cloud Console}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Thao tác dòng lệnh}]
+Để chạy bài tập trên máy cá nhân hoặc cloud console, bạn nên thoải mái với command line. Tham khảo:
+\begin{itemize}
+  \item Bash Reference Manual:
+  \mlccurl{https://tiswww.case.edu/php/chet/bash/bashref.html}
+  \item Bash Cheatsheet:
+  \mlccurl{https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh}
+  \item Learn Shell:
+  \mlccurl{http://www.learnshell.org/}
+\end{itemize}
+\end{phuongphap}
+
+\begin{tongket}[title={Tổng kết chương}]
+\begin{itemize}
+  \item Làm \textbf{bài tập chuẩn bị}: Intro to ML, NumPy, pandas (Colab).
+  \item Đảm bảo nền tảng: đại số, thống kê, lập trình Python; giải tích là tùy chọn.
+  \item Nắm thao tác terminal nếu chạy bài tập ngoài trình duyệt.
+\end{itemize}
+\end{tongket}
+
+\end{document}
+

@@ -74,6 +74,99 @@
 \end{phuongphap}
 
 %% ================================================================
+\section{Toán nền cho học máy}
+% (Bổ sung cho điều kiện tiên quyết ML: tensor, sigmoid, softplus)
+
+\subsection{Tensor và hạng (rank)}
+
+\begin{luuy}[title={Liên hệ đại số tuyến tính}]
+  Phép \textbf{nhân ma trận}, vectơ cột và ma trận hệ số đã có trong môn Đại số tuyến tính (A3).
+  Phần dưới chỉ đặt lại \emph{tên gọi} thường dùng trong NumPy, TensorFlow và các khóa ML.
+\end{luuy}
+
+\begin{dinhnghia}[title={Tensor}]
+  Trong tính toán học máy, \textbf{tensor} là mảng số đa chiều (thường kiểu \texttt{float32} hoặc \texttt{float64}).
+  \textbf{Hạng} (rank, hay số chiều) của tensor là số chỉ số cần để truy cập một phần tử.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Hạng tensor và ví dụ}]
+  \begin{center}
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{lll}
+    \hline
+    Hạng & Tên quen thuộc & Ví dụ kích thước \\
+    \hline
+    0 & Số vô hướng (scalar) & $5{,}2$ \\
+    1 & Vectơ & $(n,)$ hoặc $(n,1)$ \\
+    2 & Ma trận & $(m,n)$ \\
+    3 & Mảng 3 chiều & $(d_1,d_2,d_3)$, ví dụ ảnh RGB $(H,W,3)$ \\
+    $k$ & Tensor $k$-chiều & lô mini-batch ảnh $(N,H,W,C)$ \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{congthuc}
+
+\begin{tinhchat}[title={Quy ước trong code}]
+  \begin{itemize}
+    \item NumPy: \verb|A @ B| là nhân ma trận; \verb|A * B| là nhân từng phần tử (Hadamard).
+    \item Một \textbf{mẫu} (một điểm dữ liệu) thường là vectơ hàng $\mathbf{x} \in \mathbb{R}^p$ hoặc cột $\mathbf{x} \in \mathbb{R}^{p \times 1}$.
+    \item Một \textbf{lô} (batch) gồm $n$ mẫu thường xếp thành ma trận $\mathbf{X} \in \mathbb{R}^{n \times p}$: mỗi \emph{hàng} là một mẫu.
+  \end{itemize}
+\end{tinhchat}
+
+\subsection{Hàm sigmoid, tanh và softplus}
+
+\begin{dinhnghia}[title={Hàm sigmoid (logistic)}]
+  Với $z \in \mathbb{R}$:
+  \[
+    \sigma(z) = \frac{1}{1 + e^{-z}} = \frac{e^z}{1 + e^z}.
+  \]
+  Tập giá trị: $(0,1)$. Dùng để ánh xạ tổ hợp tuyến tính sang \textbf{xác suất} (hồi quy logistic, đầu ra lớp nhị phân).
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm sigmoid (chain rule)}]
+  \[
+    \sigma'(z) = \sigma(z)\bigl(1 - \sigma(z)\bigr).
+  \]
+  Công thức này là lý do backpropagation qua lớp sigmoid chỉ cần lưu $\sigma(z)$ tại lớp đó.
+\end{congthuc}
+
+\begin{dinhnghia}[title={Hàm tanh (hyperbolic tangent)}]
+  \[
+    \tanh(z) = \frac{e^z - e^{-z}}{e^z + e^{-z}} = 2\sigma(2z) - 1.
+  \]
+  Tập giá trị: $(-1,1)$. Thường dùng ở \textbf{lớp ẩn} mạng nơ-ron cổ điển (thay vì sigmoid) vì đầu ra zero-centered.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm tanh}]
+  \[
+    \tanh'(z) = 1 - \tanh^2(z).
+  \]
+\end{congthuc}
+
+\begin{dinhnghia}[title={Hàm softplus}]
+  \[
+    \mathrm{softplus}(z) = \ln(1 + e^{z}).
+  \]
+  Xấp xỉ $\max(0,z)$ nhưng \textbf{khả vi} mọi nơi; dùng trong một số mô hình xác suất và biến thể của ReLU (ví dụ Smooth ReLU).
+  Khi $z$ lớn: $\mathrm{softplus}(z) \approx z$; khi $z$ nhỏ: $\mathrm{softplus}(z) \approx 0$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Đạo hàm softplus}]
+  \[
+    \frac{d}{dz}\mathrm{softplus}(z) = \sigma(z).
+  \]
+  Nghĩa là đạo hàm của softplus chính là sigmoid --- liên kết trực tiếp hai hàm trên.
+\end{congthuc}
+
+\begin{luuy}[title={ReLU và softmax (tóm tắt)}]
+  \textbf{ReLU}: $\mathrm{ReLU}(z) = \max(0,z)$ --- lớp ẩn phổ biến nhất hiện nay; đạo hàm $0$ hoặc $1$ (không khả vi tại $0$).
+  \textbf{Softmax} trên vectơ $\mathbf{z} = (z_1,\ldots,z_K)$:
+  $\mathrm{softmax}(z_j) = e^{z_j} / \sum_{k=1}^K e^{z_k}$ --- đầu ra phân loại \textbf{đa lớp} (tổng xác suất bằng 1).
+  Chi tiết mạng nơ-ron: xem mục \ref{sec:mang-no-ron} bên dưới.
+\end{luuy}
+
+%% ================================================================
 \section{Hồi quy}
 
 \begin{dinhnghia}[title={Hồi quy tuyến tính}]
@@ -92,7 +185,8 @@
 \section{Phân loại}
 
 \begin{dinhnghia}[title={Hồi quy logistic}]
-  $P(y=1|\mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x} + b)$, $\sigma(z) = 1/(1+e^{-z})$. Loss: cross-entropy.
+  $P(y=1|\mathbf{x}) = \sigma(\mathbf{w}^T\mathbf{x} + b)$ với $\sigma$ là hàm sigmoid (mục \emph{Toán nền cho học máy}).
+  Loss: cross-entropy.
 \end{dinhnghia}
 
 \begin{dinhnghia}[title={k-NN (k Nearest Neighbors)}]
@@ -119,9 +213,12 @@
 
 %% ================================================================
 \section{Mạng nơ-ron}
+\label{sec:mang-no-ron}
 
 \begin{dinhnghia}[title={Perceptron nhiều lớp (MLP)}]
-  $\mathbf{a}^{(l)} = \sigma(\mathbf{W}^{(l)}\mathbf{a}^{(l-1)} + \mathbf{b}^{(l)})$. Hàm kích hoạt: ReLU, sigmoid, tanh, softmax.
+  $\mathbf{a}^{(l)} = g^{(l)}\!\bigl(\mathbf{W}^{(l)}\mathbf{a}^{(l-1)} + \mathbf{b}^{(l)}\bigr)$,
+  với $g^{(l)}$ là hàm kích hoạt từng phần tử (ReLU, sigmoid, tanh, \ldots).
+  Định nghĩa $\sigma$, $\tanh$, softplus: mục \emph{Toán nền cho học máy} phía trên.
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Backpropagation}]

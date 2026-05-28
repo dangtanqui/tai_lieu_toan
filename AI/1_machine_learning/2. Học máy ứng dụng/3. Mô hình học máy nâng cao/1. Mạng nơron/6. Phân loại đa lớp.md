@@ -1,0 +1,180 @@
+# Neural networks: Multi-class classification
+
+Earlier, you encountered
+[**binary classification**](https://developers.google.com/machine-learning/glossary#binary-classification)
+models that could pick between one of *two* possible choices, such as whether:
+
+- A given email is spam or not spam.
+- A given tumor is malignant or benign.
+
+In this section, we'll investigate
+[**multi-class classification**](https://developers.google.com/machine-learning/glossary#multi-class)
+models, which can pick from *multiple* possibilities. For example:
+
+- Is this dog a beagle, a basset hound, or a bloodhound?
+- Is this flower a Siberian Iris, Dutch Iris, Blue Flag Iris, or Dwarf Bearded Iris?
+- Is that plane a Boeing 747, Airbus 320, Boeing 777, or Embraer 190?
+- Is this an image of an apple, bear, candy, dog, or egg?
+
+Some real-world multi-class problems entail choosing from *millions*
+of separate classes. For example, consider a multi-class classification
+model that can identify the image of just about anything.
+
+This section details the two main variants of multi-class classification:
+
+- [**one-vs.-all**](https://developers.google.com/machine-learning/glossary#one-vs.-all)
+- **one-vs.-one** , which is usually known as [**softmax**](https://developers.google.com/machine-learning/glossary#softmax)
+
+## One versus all
+
+*One-vs.-all* provides a way to use binary classification
+for a series of yes or no predictions across multiple possible labels.
+
+Given a classification problem with N possible solutions, a one-vs.-all
+solution consists of N separate binary classifiers---one binary
+classifier for each possible outcome. During training, the model runs
+through a sequence of binary classifiers, training each to answer a separate
+classification question.
+
+For example, given a picture of a piece of fruit, four
+different recognizers might be trained, each answering a different yes/no
+question:
+
+1. Is this image an apple?
+2. Is this image an orange?
+3. Is this image a banana?
+4. Is this image a grape?
+
+The following image illustrates how this works in practice.
+![Figure 7. An image of a pear being passed as input into 4 different
+binary classifier models. The first model predicts 'apple' or 'not
+apple', and its prediction is 'not apple'. The second model predicts
+'orange' or 'not orange', and its prediction is 'not orange'. The
+third model predicts 'pear' or 'not pear', and its prediction is
+'pear'. The fourth model predicts 'grape' or 'not grape', and its
+prediction is 'not grape'.](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/one_vs_all_binary_classifiers.png) **Figure 7. An image of a pear being passed as input to four different
+binary classifiers. The first, second, and fourth models (predicting
+whether or not the image is an apple, orange, or grape, respectively)
+predict the negative class. The third model (predicting whether or not
+the image is a pear) predicts the positive class.**
+
+> [!NOTE]
+> For more on how binary classifiers make predictions (setting a classification threshold to convert numerical model output into a positive or negative label), see the [Classification](https://developers.google.com/machine-learning/crash-course/classification) module.
+
+This approach is fairly reasonable when the total number of classes
+is small, but becomes increasingly inefficient as the number of classes
+rises.
+
+We can create a significantly more efficient one-vs.-all model
+with a deep neural network in which each output node represents a different
+class. The following image illustrates this approach.
+![Figure 8. A neural network with the following architecture: input layer with
+1 node, hidden layer with 3 nodes, hidden layer with 4 nodes,
+output layer with 4 nodes. The input node is fed an image of a pear.
+A sigmoid activation function is applied to the output layer. Each
+output node represents the probability that the image is a specified
+fruit. Output node 1 represents 'Is apple?' and has a value of 0.34.
+Output node 2 represents 'Is orange?' and has a value of 0.18.
+Output node 3 represents 'Is pear?' and has a value of 0.84.
+Output node 4 represents 'Is grape?' and has a value of 0.07.](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/one_vs_all_neural_net.png) **Figure 8. The same one-vs.-all classification tasks accomplished using a
+neural net model. A sigmoid activation function is applied to the output
+layer, and each output value represents the probability that the input
+image is a specified fruit. This model predicts that there is a 84%
+chance that the image is a pear, and a 7% chance that the image is a
+grape.**
+
+## One versus one (softmax)
+
+You may have noticed that the probability values in the output layer of Figure 8
+don't sum to 1.0 (or 100%). (In fact, they sum to 1.43.) In a one-vs.-all
+approach, the probability of each binary set of outcomes is determined
+independently of all the other sets. That is, we're determining the probability
+of "apple" versus "not apple" without considering the likelihood of our other
+fruit options: "orange", "pear", or "grape."
+
+But what if we want to predict the probabilities of each fruit
+relative to each other? In this case, instead of predicting "apple" versus "not
+apple", we want to predict "apple" versus "orange" versus "pear" versus "grape".
+This type of multi-class classification is called *one-vs.-one classification*.
+
+We can implement a one-vs.-one classification using the same type of neural
+network architecture used for one-vs.-all classification, with one key change.
+We need to apply a different transform to the output layer.
+
+For one-vs.-all, we applied the sigmoid activation function to each output
+node independently, which resulted in an output value between 0 and 1 for each
+node, but did not guarantee that these values summed to exactly 1.
+
+For one-vs.-one, we can instead apply a function called *softmax*, which
+assigns decimal probabilities to each class in a multi-class problem such that
+all probabilities add up to 1.0. This additional constraint
+helps training converge more quickly than it otherwise would.
+
+#### Click the plus icon to see the softmax equation.
+
+The softmax equation is as follows:
+$$p(y = j\|\\textbf{x}) = \\frac{e\^{(\\textbf{w}_j\^{T}\\textbf{x} + b_j)}}{\\sum_{k\\in K} {e\^{(\\textbf{w}_k\^{T}\\textbf{x} + b_k)}} }$$
+
+Note that this formula basically extends the formula for logistic
+regression into multiple classes.
+
+The following image re-implements our one-vs.-all multi-class classification
+task as a one-vs.-one task. Note that in order to perform softmax, the hidden
+layer directly preceding the output layer (called the softmax layer) must have
+the same number of nodes as the output layer.
+![Figure 9. A neural network with the following architecture: input
+layer with 1 node, hidden layer with 3 nodes, hidden layer with 4 nodes,
+output layer with 4 nodes. The input node is fed an image of a pear.
+A softmax activation function is applied to the output layer. Each
+output node represents the probability that the image is a specified
+fruit. Output node 1 represents 'Is apple?' and has a value of 0.19.
+Output node 2 represents 'Is orange?' and has a value of 0.12.
+Output node 3 represents 'Is pear?' and has a value of 0.63.
+Output node 4 represents 'Is grape?' and has a value of 0.06.](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/one_vs_one_neural_net.png) **Figure 9. Neural net implementation of one-vs.-one classification, using
+a softmax layer. Each output value represents the probability that the
+input image is the specified fruit and not any of the other three fruits
+(all probabilities sum to 1.0). This model predicts that there is a 63%
+chance that the image is a pear.**
+
+### Softmax options
+
+Consider the following variants of softmax:
+
+- **Full softmax** is the softmax we've been discussing; that is,
+  softmax calculates a probability for every possible class.
+
+- **Candidate sampling** means that softmax calculates a probability
+  for all the positive labels but only for a random sample of
+  negative labels. For example, if we are interested in determining
+  whether an input image is a beagle or a bloodhound, we don't have to
+  provide probabilities for every non-doggy example.
+
+Full softmax is fairly cheap when the number of classes is small
+but becomes prohibitively expensive when the number of classes climbs.
+Candidate sampling can improve efficiency in problems having a large
+number of classes.
+
+### One label versus many labels
+
+Softmax assumes that each example is a member of exactly one class.
+Some examples, however, can simultaneously be a member of multiple classes.
+For such examples:
+
+- You may not use softmax.
+- You must rely on multiple logistic regressions.
+
+For example, the one-vs.-one model in Figure 9 above assumes that each input
+image will depict exactly one type of fruit: an apple, an orange, a pear, or
+a grape. However, if an input image might contain multiple types of fruit---a
+bowl of both apples and oranges---you'll have to use multiple logistic
+regressions instead.
+
+> [!IMPORTANT]
+> **Key terms:**
+>
+> - [Binary classification](https://developers.google.com/machine-learning/glossary#binary-classification)
+> - [Multi class classification](https://developers.google.com/machine-learning/glossary#multi-class-classification)
+> - [One-vs.-all classification](https://developers.google.com/machine-learning/glossary#one-vs.-all)
+> - [softmax (one-vs.-one classification)](https://developers.google.com/machine-learning/glossary#softmax)
+
+[Help Center](https://support.google.com/machinelearningeducation)

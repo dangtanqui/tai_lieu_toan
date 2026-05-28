@@ -1,0 +1,405 @@
+\documentclass[12pt,a4paper]{article}
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- DỮ LIỆU DANH MỤC}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Dữ liệu dạng danh mục}
+\def\coversubtitle{Lý thuyết --- One-hot, OOV, hashing, feature crosses}
+
+\input{../../../_template/preamble.tex}
+\usepackage{tabularx,array,float,amsmath,booktabs}
+\graphicspath{{images/categorical/}}
+\newcommand{\mlimg}[2][0.88]{\begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}}
+
+\begin{document}
+\input{../../../_template/trang_bia.tex}
+\newpage\tableofcontents\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch đầy đủ từ \emph{Categorical Data} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/categorical-data}}, tương ứng năm phần trong thư mục này. Mục tiêu là giữ đầy đủ ý, ví dụ, bảng và bài tập, tránh tóm tắt quá mức.
+\end{ynghia}
+
+\begin{luuy}[title={Thời lượng ước tính}]
+Khoảng \textbf{50 phút} theo MLCC.
+\end{luuy}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{itemize}
+  \item Phân biệt dữ liệu danh mục với dữ liệu số.
+  \item Biểu diễn dữ liệu danh mục bằng \textbf{one-hot vectors}.
+  \item Nhận biết các vấn đề thường gặp của dữ liệu danh mục.
+  \item Tạo \textbf{feature crosses} (tính năng kết hợp).
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Điều kiện tiên quyết}]
+Giả định bạn đã học:
+\begin{itemize}
+  \item \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to Machine Learning}
+  \item \href{https://developers.google.com/machine-learning/crash-course/numerical-data}{Working with numerical data}
+\end{itemize}
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Giới thiệu --- Dữ liệu danh mục và mã hóa (encoding)}
+%==============================================================================
+
+\begin{dinhnghia}[title={Dữ liệu danh mục (categorical data)}]
+\href{https://developers.google.com/machine-learning/glossary\#categorical-data}{Dữ liệu danh mục} có \textbf{một tập hữu hạn} các giá trị có thể có. Ví dụ:
+\begin{itemize}
+  \item Các loài động vật trong vườn quốc gia
+  \item Tên các con đường trong một thành phố
+  \item Email có phải spam hay không
+  \item Màu sơn ngoại thất của nhà
+  \item Các số đã được \textbf{bucket} (đã học ở dữ liệu số)
+\end{itemize}
+\end{dinhnghia}
+
+\subsection{Số cũng có thể là dữ liệu danh mục}
+
+\begin{ynghia}
+\href{https://developers.google.com/machine-learning/glossary\#numerical-data}{Dữ liệu số} ``đúng nghĩa'' thường có thể nhân/chia theo nghĩa toán học. Ví dụ, mô hình dự đoán giá nhà theo diện tích: mọi thứ khác như nhau, nhà 200 m\textsuperscript{2} thường xấp xỉ gấp đôi nhà 100 m\textsuperscript{2}.
+\end{ynghia}
+
+\begin{luuy}
+Nhiều khi bạn nên coi một feature có giá trị nguyên là \textbf{danh mục} thay vì số. Ví dụ mã bưu điện là số nguyên; nếu coi là số, bạn đang yêu cầu mô hình tìm quan hệ số học giữa các mã: xem 20004 ``gấp đôi'' 10002. Nếu coi là danh mục, mô hình sẽ học trọng số cho \textbf{từng mã} riêng.
+\end{luuy}
+
+\subsection{Mã hóa (encoding)}
+
+\begin{dinhnghia}[title={Encoding}]
+\textbf{Encoding} là chuyển dữ liệu danh mục (hoặc dữ liệu khác) thành \textbf{vectơ số} để mô hình học. Cần vì mô hình chỉ huấn luyện trên \textbf{giá trị dấu phẩy động}; không thể train trực tiếp trên chuỗi như \texttt{"dog"} hay \texttt{"maple"}. Phần này trình bày các cách mã hóa dữ liệu danh mục.
+\end{dinhnghia}
+
+%==============================================================================
+\section{Từ vựng (vocabulary) và mã hóa one-hot}
+%==============================================================================
+
+\begin{dinhnghia}[title={Chiều (dimension)}]
+\textbf{Dimension} đồng nghĩa với số phần tử trong \href{https://developers.google.com/machine-learning/glossary\#feature-vector}{feature vector}.
+\end{dinhnghia}
+
+\begin{vidu}[title={Một số feature danh mục ít chiều}]
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Feature} & \textbf{Số danh mục} & \textbf{Ví dụ} \\
+\midrule
+\texttt{snowed\_today} & 2 & True, False \\
+\texttt{skill\_level} & 3 & Beginner, Practitioner, Expert \\
+\texttt{season} & 4 & Winter, Spring, Summer, Autumn \\
+\texttt{day\_of\_week} & 7 & Monday, Tuesday, Wednesday \\
+\texttt{planet} & 8 & Mercury, Venus, Earth \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{vidu}
+
+\subsection{Vocabulary}
+
+\begin{ynghia}
+Khi feature danh mục có ít giá trị có thể có, ta có thể mã hóa bằng \textbf{vocabulary}: mô hình coi mỗi giá trị danh mục như một \textbf{feature riêng}. Khi huấn luyện, mô hình học trọng số khác nhau cho từng danh mục.
+\end{ynghia}
+
+\begin{vidu}[title={Feature \texttt{car\_color}}]
+Giả sử dự đoán giá xe, trong đó có feature danh mục \texttt{car\_color}. Có thể xe màu đỏ đắt hơn xe màu xanh. Vì số màu ngoại thất hữu hạn, \texttt{car\_color} là feature ít chiều. Hình sau gợi ý các giá trị trong vocabulary:
+\end{vidu}
+
+\mlimg{categorical-netview.png}
+\begin{center}\small\textbf{Hình 1.} Mỗi màu là một feature riêng trong feature vector.\end{center}
+
+\subsection{Gán số chỉ mục (index numbers)}
+
+\begin{luuy}
+Mô hình ML chỉ thao tác được trên số (float). Vì vậy bạn phải đổi mỗi chuỗi thành một số nguyên chỉ mục duy nhất:
+\end{luuy}
+
+\begin{ynghia}
+Tuy nhiên, nếu giữ nguyên các chỉ mục như số liên tục và đưa thẳng vào mô hình, mô hình sẽ hiểu sai: có thể coi ``purple'' lớn gấp 6 lần ``orange''. Ta cần bước tiếp theo: \textbf{one-hot}.
+\end{ynghia}
+
+\subsection{One-hot encoding}
+
+\begin{dinhnghia}[title={One-hot encoding}]
+Trong one-hot:
+\begin{itemize}
+  \item Mỗi danh mục được biểu diễn bởi một vectơ \(N\) phần tử, \(N\) là số danh mục.
+  \item Đúng \textbf{một} phần tử bằng 1{,}0; các phần tử còn lại bằng 0{,}0.
+\end{itemize}
+Chính one-hot vector (không phải chuỗi hay index) mới được đưa vào feature vector; mô hình học trọng số riêng cho từng phần tử.
+\end{dinhnghia}
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}l*{8}{>{\centering\arraybackslash}X}@{}}
+\toprule
+\textbf{Giá trị} & \textbf{Red} & \textbf{Orange} & \textbf{Blue} & \textbf{Yellow} & \textbf{Green} & \textbf{Black} & \textbf{Purple} & \textbf{Brown} \\
+\midrule
+``Red''    & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+``Orange'' & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+``Blue''   & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+``Yellow'' & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+``Green''  & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+``Black''  & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+``Purple'' & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+``Brown''  & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\begin{luuy}
+Trong one-hot ``chuẩn'', chỉ một phần tử bằng 1. Một biến thể gọi là \textbf{multi-hot} cho phép nhiều phần tử bằng 1.
+\end{luuy}
+
+\mlimg[0.9]{vocabulary-index-sparse-feature.png}
+\begin{center}\small\textbf{Hình 3.} Chuỗi \(\to\) index \(\to\) one-hot feature vector.\end{center}
+
+\subsection{Sparse representation}
+
+\begin{dinhnghia}[title={Sparse feature và sparse representation}]
+Feature mà phần lớn giá trị là 0 (hoặc rỗng) gọi là \href{https://developers.google.com/machine-learning/glossary\#sparse-feature}{\textbf{sparse feature}}. \href{https://developers.google.com/machine-learning/glossary\#sparse-representation}{Sparse representation} là lưu \textbf{vị trí} của các phần tử khác 0 trong vectơ sparse.
+\end{dinhnghia}
+
+\begin{vidu}
+One-hot của ``Blue'': \([0,0,1,0,0,0,0,0]\). Nếu đếm từ 0 thì số 1 ở vị trí 2, nên sparse representation là \textbf{2}. Cách này tốn ít bộ nhớ hơn rất nhiều, nhưng lưu ý: mô hình phải \textbf{train trên one-hot vector}, không phải trên sparse representation.
+\end{vidu}
+
+\begin{luuy}
+Với multi-hot, sparse representation lưu tất cả vị trí khác 0. Ví dụ xe vừa ``Blue'' vừa ``Black'' thì sparse representation là \texttt{2, 5}.
+\end{luuy}
+
+\subsection{Outliers trong dữ liệu danh mục (OOV bucket)}
+
+\begin{ynghia}
+Dữ liệu danh mục cũng có outlier. Ví dụ \texttt{car\_color} ngoài các màu phổ biến còn có màu hiếm như ``Mauve'' hoặc ``Avocado''. Thay vì dành riêng một danh mục cho từng màu hiếm, ta có thể gom chúng vào một danh mục ``bắt hết'' gọi là \textbf{out-of-vocabulary (OOV)}. Hệ thống sẽ học một trọng số chung cho OOV bucket.
+\end{ynghia}
+
+\subsection{Danh mục nhiều chiều (high-dimensional) và embeddings/hashing}
+
+\begin{vidu}[title={Một số feature danh mục rất nhiều giá trị}]
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Feature} & \textbf{Số danh mục} & \textbf{Ví dụ} \\
+\midrule
+\texttt{words\_in\_english} & \(\sim\)500{,}000 & ``happy'', ``walking'' \\
+\texttt{US\_postal\_codes} & \(\sim\)42{,}000 & ``02114'', ``90301'' \\
+\texttt{last\_names\_in\_Germany} & \(\sim\)850{,}000 & ``Schmidt'', ``Schneider'' \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{vidu}
+
+\begin{luuy}
+Khi số danh mục lớn, one-hot thường là lựa chọn tệ. \textbf{Embeddings} (xem module Embeddings) thường tốt hơn vì giảm số chiều, giúp:
+\begin{itemize}
+  \item Train nhanh hơn
+  \item Suy luận nhanh hơn (latency thấp hơn)
+\end{itemize}
+\end{luuy}
+
+\begin{dinhnghia}[title={Hashing (hashing trick)}]
+\href{https://developers.google.com/machine-learning/glossary\#hashing}{Hashing} là cách giảm số chiều ít phổ biến hơn. Tóm tắt quy trình:
+\begin{enumerate}
+  \item Chọn số bin \(N\) nhỏ hơn tổng số danh mục (ví dụ \(N=100\)).
+  \item Chọn hàm băm (và miền giá trị băm).
+  \item Băm từng danh mục thành số nguyên (ví dụ 89237).
+  \item Lấy chỉ mục \(= \text{hash} \bmod N\) (89237 \% 100 = 37).
+  \item Tạo one-hot trên \(N\) bin theo chỉ mục mới.
+\end{enumerate}
+\end{dinhnghia}
+
+\begin{luuy}[title={Bài tập: mô hình có thể train trực tiếp trên chuỗi?}]
+Khẳng định: ``Mô hình ML có thể train trực tiếp trên giá trị chuỗi thô như \texttt{Red}, \texttt{Black} mà không cần đổi sang vectơ số.''
+
+\textbf{Đáp án: Sai.} Trong huấn luyện, mô hình chỉ thao tác được trên số thực; chuỗi không phải là số thực. Phải chuyển chuỗi sang vectơ số trước khi train.
+\end{luuy}
+
+%==============================================================================
+\section{Các vấn đề thường gặp với dữ liệu danh mục}
+%==============================================================================
+
+\begin{ynghia}
+Dữ liệu số thường do thiết bị khoa học hoặc đo tự động ghi lại. Dữ liệu danh mục, ngược lại, thường do con người phân loại hoặc do mô hình ML phân loại. Ai quyết định danh mục/nhãn và cách quyết định ảnh hưởng đến độ tin cậy của dữ liệu.
+\end{ynghia}
+
+\subsection{Người gán nhãn (human raters): gold labels}
+
+\begin{dinhnghia}[title={Gold labels}]
+Dữ liệu do người gán nhãn thủ công thường gọi là \textbf{gold labels} và thường được ưa chuộng hơn dữ liệu gán nhãn bằng máy vì chất lượng tương đối tốt hơn.
+\end{dinhnghia}
+
+\begin{luuy}
+Tuy vậy, không phải cứ người gán nhãn là dữ liệu sẽ tốt. Lỗi, thiên kiến, thậm chí ác ý có thể được đưa vào khi thu thập hoặc khi làm sạch/tiền xử lý. Cần kiểm tra trước khi train.
+\end{luuy}
+
+\begin{dinhnghia}[title={Inter-rater agreement}]
+Hai người có thể gán nhãn khác nhau cho cùng một ví dụ. Mức độ khác nhau giữa các người gán nhãn gọi là \href{https://developers.google.com/machine-learning/glossary\#inter-rater-agreement}{\textbf{inter-rater agreement}}. Bạn có thể dùng nhiều người gán nhãn cho mỗi ví dụ và đo inter-rater agreement để ước lượng độ biến thiên.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Một số thước đo inter-rater agreement}]
+\begin{itemize}
+  \item Cohen's kappa và các biến thể
+  \item Intra-class correlation (ICC)
+  \item Krippendorff's alpha
+\end{itemize}
+Tài liệu tham khảo: Hallgren 2012 (Cohen's kappa, ICC) và Krippendorff 2011 (alpha).
+\end{tinhchat}
+
+\subsection{Máy gán nhãn (machine raters): silver labels}
+
+\begin{dinhnghia}[title={Silver labels}]
+Dữ liệu gán nhãn tự động bằng một hoặc nhiều mô hình phân loại thường gọi là \textbf{silver labels}. Chất lượng có thể dao động rất lớn.
+\end{dinhnghia}
+
+\begin{luuy}
+Cần kiểm tra không chỉ độ chính xác mà cả thiên kiến và những vi phạm ``thường thức''/ý định. Ví dụ mô hình thị giác nhầm ảnh \textbf{chihuahua} thành \textbf{muffin} và ngược lại; hoặc mô hình cảm xúc cho từ trung tính điểm -0{,}25 (trong khi 0{,}0 là trung tính) \(\Rightarrow\) thiên kiến âm. Bộ lọc độc hại quá nhạy có thể gắn cờ sai nhiều câu trung tính. Hãy đánh giá chất lượng và thiên kiến của nhãn máy trước khi train.
+\end{luuy}
+
+\subsection{High dimensionality}
+
+\begin{ynghia}
+Dữ liệu danh mục có xu hướng tạo feature vector \textbf{rất nhiều chiều}. Nhiều chiều làm tăng chi phí huấn luyện và khiến việc học khó hơn, nên thường cần giảm số chiều trước khi train. Với ngôn ngữ tự nhiên, cách chính là chuyển sang \textbf{embedding vectors} (xem module Embeddings).
+\end{ynghia}
+
+%==============================================================================
+\section{Tính năng kết hợp (feature crosses)}
+%==============================================================================
+
+\begin{dinhnghia}[title={Feature cross}]
+\href{https://developers.google.com/machine-learning/glossary\#feature-cross}{Feature crosses} được tạo bằng cách lấy \textbf{tích Descartes} của hai hoặc nhiều feature danh mục (hoặc đã bucket). Tương tự \href{https://developers.google.com/machine-learning/crash-course/numerical-data/polynomial-transforms}{polynomial transforms} ở dữ liệu số, feature crosses giúp mô hình tuyến tính xử lý phi tuyến và mã hóa \textbf{tương tác} giữa feature.
+\end{dinhnghia}
+
+\begin{vidu}[title={Bộ dữ liệu lá cây}]
+Hai feature danh mục:
+\begin{itemize}
+  \item \texttt{edges}: \texttt{smooth}, \texttt{toothed}, \texttt{lobed}
+  \item \texttt{arrangement}: \texttt{opposite}, \texttt{alternate}
+\end{itemize}
+Giả sử one-hot theo thứ tự cột trên, lá có \texttt{smooth} và \texttt{opposite} được biểu diễn là \(\{(1,0,0),(1,0)\}\).
+\end{vidu}
+
+\begin{ynghia}[title={Tích Descartes}]
+Feature cross của hai feature trên tạo tập danh mục:
+\[
+\{\texttt{Smooth\_Opposite},\texttt{Smooth\_Alternate},\texttt{Toothed\_Opposite},\texttt{Toothed\_Alternate},\texttt{Lobed\_Opposite},\texttt{Lobed\_Alternate}\}
+\]
+Mỗi phần tử là tích các phần tử gốc, ví dụ:
+\(\texttt{Smooth\_Opposite}=\texttt{edges[0]}\cdot\texttt{arrangement[0]}\), \(\texttt{Lobed\_Alternate}=\texttt{edges[2]}\cdot\texttt{arrangement[1]}\), v.v.
+Nếu lá có \texttt{lobed} và \texttt{alternate} thì vectơ feature-cross là \(\{0,0,0,0,0,1\}\).
+\end{ynghia}
+
+\begin{luuy}
+Dữ liệu này có thể dùng để phân loại lá theo loài cây vì các đặc điểm đó ổn định trong cùng loài.
+\end{luuy}
+
+\begin{ynghia}[title={So sánh nhanh với polynomial transforms}]
+Cả hai đều tạo \textbf{synthetic feature} để mô hình tuyến tính học phi tuyến. Polynomial transforms thường kết hợp dữ liệu số; feature crosses kết hợp dữ liệu danh mục.
+\end{ynghia}
+
+\subsection{Khi nào dùng feature crosses}
+
+\begin{luuy}
+Kiến thức miền (domain knowledge) thường gợi ý cách kết hợp hữu ích. Nếu không có, khó chọn feature cross thủ công. Có thể dùng \href{https://developers.google.com/machine-learning/crash-course/neural-networks}{neural networks} để tự tìm tổ hợp hữu ích khi huấn luyện (nhưng tốn tính toán).
+\end{luuy}
+
+\begin{luuy}[title={Cẩn thận: cross làm bùng nổ chiều và càng sparse}]
+Cross hai sparse feature tạo feature mới còn sparse hơn. Nếu A là sparse 100 chiều và B là sparse 200 chiều, cross A và B tạo sparse 20{,}000 chiều.
+\end{luuy}
+
+%==============================================================================
+\section{Bài tập (Playground) --- Feature crosses}
+%==============================================================================
+
+\begin{ynghia}
+Playground là ứng dụng tương tác cho phép thay đổi feature, siêu tham số và quan sát ảnh hưởng lên mô hình. Trang này có hai bài tập.
+\end{ynghia}
+
+\subsection{Bài tập 1: Feature cross cơ bản (XOR)}
+
+\begin{phuongphap}[title={Giao diện cần chú ý}]
+Dưới mục FEATURES có ba feature: \(x_1\), \(x_2\), và \(x_1x_2\). Dưới mục OUTPUT là một hình vuông với chấm cam/xanh: tưởng tượng rừng vuông, chấm cam là cây bệnh, chấm xanh là cây khỏe. Giữa FEATURES và OUTPUT có ba đường đứt nối feature \(\to\) output; độ dày biểu diễn trọng số. Ban đầu các đường rất mờ vì trọng số khởi tạo 0.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Task 1}]
+Khám phá Playground:
+\begin{enumerate}
+  \item Bấm vào đường mờ nối \(x_1\) với output (hiện popup).
+  \item Nhập trọng số \texttt{1.0}.
+  \item Nhấn Enter.
+\end{enumerate}
+Quan sát:
+\begin{itemize}
+  \item Đường đứt của \(x_1\) dày hơn (trọng số 0 \(\to\) 1.0).
+  \item Nền cam/xanh xuất hiện: nền cam là dự đoán nơi cây bệnh; nền xanh là dự đoán nơi cây khỏe.
+  \item Mô hình rất tệ; khoảng một nửa dự đoán sai.
+  \item Vì trọng số \(x_1=1\) và các feature khác 0, mô hình khớp đúng theo \(x_1\).
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Task 2}]
+Thay đổi trọng số của một hoặc cả ba feature để nền màu dự đoán đúng cây bệnh/cây khỏe.
+
+\textbf{Lời giải gợi ý}: đặt \(w_1=0\), \(w_2=0\), và trọng số của \(x_1x_2\) là \textbf{một số dương bất kỳ}.
+\end{phuongphap}
+
+\begin{luuy}
+Thử nhập giá trị \textbf{âm} cho feature cross thì điều gì xảy ra?
+\end{luuy}
+
+\subsection{Bài tập 2: Feature cross ``phức tạp'' hơn (Circle)}
+
+\begin{phuongphap}[title={Task 1}]
+Chạy mô hình và quan sát:
+\begin{enumerate}
+  \item Bấm Run/Pause (tam giác trắng trong vòng tròn đen) để train; quan sát Epochs tăng.
+  \item Train ít nhất 300 epoch rồi Pause.
+  \item Mô hình dự đoán tốt không? (chấm xanh nằm trong nền xanh, chấm cam trong nền cam?)
+  \item Xem Test loss (dưới OUTPUT): gần 1.0 hay gần 0?
+  \item Reset bằng nút mũi tên cong.
+\end{enumerate}
+\textbf{Lời giải}: mô hình rất tệ; nhiều chấm cam nằm trong nền xanh; Test loss rất cao.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Task 2}]
+Tạo mô hình tốt hơn:
+\begin{enumerate}
+  \item Chọn/bỏ chọn kết hợp bất kỳ trong 5 feature.
+  \item Điều chỉnh learning rate.
+  \item Train ít nhất 500 epoch.
+  \item Quan sát Test loss: có đạt \(<0.2\) không?
+\end{enumerate}
+\textbf{Lời giải gợi ý}:
+\begin{itemize}
+  \item Chọn hai polynomial transforms (\(x_1^2\) và \(x_2^2\)), bỏ chọn ba feature còn lại.
+  \item Giảm learning rate xuống \texttt{0.001} hoặc thấp hơn.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ungdung}[title={Tìm hiểu thêm}]
+\href{https://playground.tensorflow.org}{playground.tensorflow.org}
+\end{ungdung}
+
+%==============================================================================
+\section{Kết luận}
+%==============================================================================
+
+\begin{tongket}
+\begin{itemize}
+  \item Dữ liệu danh mục cần \textbf{encoding} trước khi train vì mô hình chỉ nhận float.
+  \item Với ít danh mục: vocabulary + one-hot; chú ý sparse, OOV bucket.
+  \item Với nhiều danh mục: thường dùng \textbf{embeddings} hoặc \textbf{hashing} để giảm số chiều.
+  \item Dữ liệu nhãn do người/máy có thể sai hoặc lệch: cần đánh giá chất lượng nhãn, đo inter-rater agreement.
+  \item Feature crosses giúp mô hình tuyến tính học tương tác/phi tuyến, nhưng dễ bùng nổ chiều.
+\end{itemize}
+Tiếp theo: \href{https://developers.google.com/machine-learning/crash-course/overfitting}{\textbf{Datasets, generalization, and overfitting}}.
+\end{tongket}
+
+\end{document}

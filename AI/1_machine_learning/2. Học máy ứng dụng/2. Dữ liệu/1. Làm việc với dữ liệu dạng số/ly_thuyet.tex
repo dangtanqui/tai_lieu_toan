@@ -1,0 +1,597 @@
+\documentclass[12pt,a4paper]{article}
+
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- DỮ LIỆU SỐ}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Dữ liệu dạng số}
+\def\coversubtitle{Lý thuyết --- Feature vector, chuẩn hóa, binning, scrubbing}
+
+\input{../../../_template/preamble.tex}
+\usepackage{tabularx,array,float,amsmath,booktabs}
+\graphicspath{{images/numerical/}}
+\newcommand{\mlimg}[2][0.88]{\begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}}
+
+\begin{document}
+\input{../../../_template/trang_bia.tex}
+\newpage\tableofcontents\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch từ \emph{Numerical Data} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/numerical-data}}.
+\end{ynghia}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{itemize}
+  \item Hiểu \textbf{feature vector} (vectơ đặc trưng).
+  \item Khám phá đặc trưng tiềm năng bằng trực quan và thống kê.
+  \item Nhận diện \textbf{outlier} (giá trị ngoại lai).
+  \item Nắm bốn kỹ thuật chuẩn hóa dữ liệu số phổ biến.
+  \item Hiểu \textbf{binning} (bucketing) và chiến lược chia bin.
+  \item Biết đặc tính của đặc trưng số liên tục tốt.
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Điều kiện tiên quyết}]
+Cần nắm khái niệm từ \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to Machine Learning}.
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Dữ liệu số (numerical data)}
+%==============================================================================
+
+\begin{dongco}
+Người làm ML thường dành \textbf{nhiều thời gian hơn} cho đánh giá, làm sạch và biến đổi dữ liệu so với xây mô hình.
+\end{dongco}
+
+\begin{dinhnghia}[title={Dữ liệu số}]
+\href{https://developers.google.com/machine-learning/glossary\#numerical-data}{Dữ liệu số} là số nguyên hoặc dấu phẩy động \textbf{có hành vi như số}: cộng được, đếm được, có thứ tự, v.v.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ dữ liệu số}]
+\begin{itemize}
+  \item Nhiệt độ
+  \item Cân nặng
+  \item Số hươu trú đông trong khu bảo tồn
+\end{itemize}
+\end{vidu}
+
+\begin{phanvidu}[title={Mã bưu điện Mỹ không phải dữ liệu số}]
+Mã ZIP Mỹ dù 5 hoặc 9 chữ số nhưng \textbf{không} hành xử như số: 40004 (Nelson County, Kentucky) \textbf{không} phải ``gấp đôi'' 20002 (Washington, D.C.). Chúng biểu diễn \textbf{vùng địa lý} --- là \textbf{dữ liệu danh mục}.
+\end{phanvidu}
+
+%==============================================================================
+\section{Cách mô hình nhập dữ liệu bằng vectơ đặc trưng}
+%==============================================================================
+
+\begin{ynghia}
+Cho đến giờ có thể bạn tưởng mô hình đọc \textbf{trực tiếp} từng dòng bảng; thực tế mô hình nhận dữ liệu \textbf{khác}.
+\end{ynghia}
+
+\begin{vidu}[title={Dataset 5 cột, chỉ 2 cột là feature}]
+Giả sử bảng có 5 cột nhưng chỉ \texttt{b} và \texttt{d} đưa vào mô hình. Khi xử lý dòng 3, mô hình \textbf{không} chỉ lấy hai ô 3b và 3d như sau:
+\end{vidu}
+
+\mlimg[0.85]{dataset_directly_to_model.png}
+\begin{center}\small\textbf{Hình 1.} Mô hình lấy ví dụ trực tiếp từ dataset? --- \textbf{Không đúng.}\end{center}
+
+\begin{dinhnghia}[title={Feature vector}]
+Mô hình thực sự nhận một mảng số thực (\texttt{float}) gọi là \href{https://developers.google.com/machine-learning/glossary\#feature-vector}{\textbf{feature vector}} (vectơ đặc trưng) --- các giá trị float tạo thành \textbf{một ví dụ}.
+\end{dinhnghia}
+
+\mlimg[0.85]{dataset_to_feature_vector_to_model.png}
+\begin{center}\small\textbf{Hình 2.} Feature vector là trung gian giữa dataset và mô hình --- gần đúng hơn, nhưng chưa đủ thực tế.\end{center}
+
+\begin{luuy}
+Feature vector \textbf{hiếm khi} dùng giá trị thô của dataset. Bạn phải xử lý giá trị thành biểu diễn mô hình học tốt hơn:
+\end{luuy}
+
+\mlimg[0.85]{dataset_to_feature_vector_to_model_scaled.png}
+\begin{center}\small\textbf{Hình 3.} Feature vector thực tế (ví dụ 0{,}13 và 0{,}47) sau biến đổi.\end{center}
+
+\begin{ynghia}[title={Giá trị đã biến đổi thường tốt hơn giá trị thô}]
+Dùng giá trị \textbf{gốc} trong dataset để huấn luyện có tốt hơn giá trị \textbf{đã sửa}? --- \textbf{Không.} Bạn phải chọn cách biểu diễn giá trị thô thành giá trị huấn luyện trong feature vector. Quá trình này là \href{https://developers.google.com/machine-learning/glossary\#feature-engineering}{\textbf{feature engineering}} (kỹ thuật đặc trưng) --- phần then chốt của ML.
+\end{ynghia}
+
+\begin{tinhchat}[title={Kỹ thuật feature engineering phổ biến nhất}]
+\begin{itemize}
+  \item \href{https://developers.google.com/machine-learning/glossary\#normalization}{\textbf{Normalization}} (chuẩn hóa): đưa giá trị số về cùng một miền quy mô.
+  \item \href{https://developers.google.com/machine-learning/glossary\#binning}{\textbf{Binning}} / \href{https://developers.google.com/machine-learning/glossary\#bucketing}{bucketing}: gom giá trị số vào các khoảng (bin).
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}
+Mọi phần tử feature vector phải là \texttt{float}. Nhiều đặc trưng tự nhiên là chuỗi hoặc không phải số; phần lớn feature engineering là biểu diễn giá trị \textbf{không phải số} thành số.
+\end{luuy}
+
+%==============================================================================
+\section{Các bước đầu tiên}
+%==============================================================================
+
+\begin{phuongphap}[title={Trước khi tạo feature vector}]
+Nên nghiên cứu dữ liệu số theo \textbf{hai hướng}:
+\begin{enumerate}
+  \item \textbf{Trực quan hóa} (biểu đồ, histogram).
+  \item \textbf{Thống kê} (mean, median, độ lệch chuẩn, phân vị).
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Trực quan hóa dữ liệu}
+
+\begin{ynghia}
+Đồ thị giúp phát hiện bất thường hoặc mẫu ẩn. Nên xem dữ liệu dạng scatter plot hoặc histogram \textbf{ngay đầu pipeline} và \textbf{suốt} các bước biến đổi --- trực quan giúp liên tục kiểm tra giả định.
+\end{ynghia}
+
+\begin{luuy}
+Khuyến nghị dùng pandas
+\end{luuy}
+
+\subsection{Đánh giá thống kê}
+
+\begin{ynghia}
+Ngoài trực quan, nên tính thống kê cơ bản cho đặc trưng và nhãn tiềm năng:
+\begin{itemize}
+  \item Trung bình (mean) và trung vị (median)
+  \item Độ lệch chuẩn (standard deviation)
+  \item Các phân vị: 0\%, 25\%, 50\%, 75\%, 100\%. Phân vị 0\% = min; 100\% = max; 50\% = median.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Tìm outlier}
+
+\begin{dinhnghia}[title={Outlier}]
+\href{https://developers.google.com/machine-learning/glossary\#outliers}{Outlier} là giá trị \textbf{xa} hầu hết giá trị khác trong một feature hoặc nhãn. Outlier thường gây hại khi huấn luyện.
+\end{dinhnghia}
+
+\begin{luuy}
+Khi khoảng (0\% $\to$ 25\%) khác \textbf{đáng kể} so với (75\% $\to$ 100\%), dataset có thể chứa outlier. \textbf{Đừng} chỉ dựa vào thống kê cơ bản --- bất thường có thể ẩn trong dữ liệu ``cân bằng'' nhìn qua.
+\end{luuy}
+
+\begin{phuongphap}[title={Ba loại outlier và cách xử lý}]
+\begin{enumerate}
+  \item \textbf{Do lỗi} (thêm số 0, cảm biến hỏng\ldots): thường \textbf{xóa} ví dụ chứa outlier lỗi.
+  \item \textbf{Hợp lệ, không phải lỗi} --- mô hình cuối cùng có cần dự đoán tốt trên outlier đó không?
+  \begin{itemize}
+    \item \textbf{Có}: giữ trong tập huấn luyện; outlier feature đôi khi trùng outlier nhãn và \textbf{giúp} dự đoán. Cẩn thận outlier cực đoan vẫn có thể hại mô hình.
+    \item \textbf{Không}: xóa outlier hoặc dùng kỹ thuật mạnh hơn như \href{https://developers.google.com/machine-learning/glossary\#clipping}{\textbf{clipping}}.
+  \end{itemize}
+\end{enumerate}
+\end{phuongphap}
+
+%==============================================================================
+\section{Chuẩn hóa (normalization)}
+%==============================================================================
+
+\begin{dongco}
+Sau khi xem dữ liệu bằng thống kê và trực quan, biến đổi sao cho mô hình huấn luyện hiệu quả hơn. Mục tiêu \href{https://developers.google.com/machine-learning/glossary\#normalization}{chuẩn hóa}: đưa các feature về \textbf{cùng quy mô} tương đối.
+\end{dongco}
+
+\begin{vidu}[title={Hai feature quy mô rất khác nhau}]
+\begin{itemize}
+  \item Feature \texttt{X}: từ 154 đến 24\,917\,482.
+  \item Feature \texttt{Y}: từ 5 đến 22.
+\end{itemize}
+Chuẩn hóa có thể đưa \texttt{X} và \texttt{Y} về cùng miền, ví dụ 0 đến 1.
+\end{vidu}
+
+\begin{tinhchat}[title={Lợi ích chuẩn hóa}]
+\begin{itemize}
+  \item Mô hình \textbf{hội tụ nhanh hơn}: feature khác miền khiến gradient descent ``nảy''; optimizer như \href{https://developers.google.com/machine-learning/glossary\#adagrad}{Adagrad} hoặc Adam giảm bớt vấn đề bằng learning rate thích ứng.
+  \item \textbf{Dự đoán tốt hơn} khi miền feature chênh lệch.
+  \item Tránh \href{https://developers.google.com/machine-learning/glossary\#NaN_trap}{\textbf{NaN trap}}: giá trị vượt giới hạn float $\Rightarrow$ \texttt{NaN}, lan sang phần khác của mô hình.
+  \item Mô hình học \textbf{trọng số phù hợp} cho từng feature thay vì chú ý quá mức feature miền rộng.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}
+Nên chuẩn hóa feature số có miền \textbf{khác hẳn nhau} (tuổi vs thu nhập) hoặc \textbf{một} feature phủ miền rất rộng (dân số thành phố).
+\end{luuy}
+
+\begin{luuy}[title={Cảnh báo quan trọng}]
+Nếu chuẩn hóa khi \textbf{train}, khi \textbf{suy luận (inference)} phải chuẩn hóa feature đó \textbf{theo cùng quy tắc} (cùng min/max, cùng $\mu$, $\sigma$\ldots).
+\end{luuy}
+
+\begin{vidu}[title={Feature miền hẹp nhưng chênh 10 lần}]
+\begin{itemize}
+  \item Feature \texttt{A}: từ $-0{,}5$ đến $+0{,}5$.
+  \item Feature \texttt{B}: từ $-5{,}0$ đến $+5{,}0$ (rộng gấp 10 lần \texttt{A}).
+\end{itemize}
+Lúc bắt đầu train, mô hình coi \texttt{B} quan trọng gấp 10; train lâu hơn; mô hình có thể kém tối ưu. Vẫn nên chuẩn hóa \texttt{A} và \texttt{B} về cùng quy mô (ví dụ $-1$ đến $+1$).
+\end{vidu}
+
+\begin{vidu}[title={Feature miền chênh cực lớn}]
+\begin{itemize}
+  \item \texttt{C}: $-1$ đến $+1$.
+  \item \texttt{D}: $+5000$ đến $+1\,000\,000\,000$.
+\end{itemize}
+Không chuẩn hóa $\Rightarrow$ mô hình kém, train rất lâu hoặc \textbf{không hội tụ}.
+\end{vidu}
+
+\subsection{Linear scaling (chuẩn hóa tuyến tính)}
+
+\begin{dinhnghia}
+\href{https://developers.google.com/machine-learning/glossary\#scaling}{Linear scaling} (thường gọi \textbf{scaling}) đưa float từ miền tự nhiên về miền chuẩn --- thường 0--1 hoặc $-1$--$+1$.
+\end{dinhnghia}
+
+\begin{congthuc}[title={Công thức scale về 0--1}]
+\[
+  x' = \frac{x - x_{\min}}{x_{\max} - x_{\min}}
+\]
+với $x'$ giá trị đã scale, $x$ giá trị gốc, $x_{\min}$/$x_{\max}$ min/max của feature trong dataset.
+\end{congthuc}
+
+\begin{vidu}[title={Feature \texttt{quantity}, miền 100--900, giá trị 300}]
+$x=300$, $x_{\min}=100$, $x_{\max}=900$:
+\[
+  x' = \frac{300-100}{900-100} = \frac{200}{800} = 0{,}25.
+\]
+\end{vidu}
+
+\begin{tinhchat}[title={Khi nào dùng linear scaling?}]
+Tốt khi \textbf{tất cả} điều kiện sau đúng:
+\begin{itemize}
+  \item Biên dưới/trên dữ liệu ít đổi theo thời gian.
+  \item Ít hoặc không có outlier cực đoan.
+  \item Phân bố gần \textbf{đều} trên miền (histogram gần đều).
+\end{itemize}
+Ví dụ \texttt{age}: biên $\approx$ 0--100; outlier hiếm ($\approx$ 0{,}3\% $>$ 100); nhiều tuổi đều có đủ mẫu trong dataset lớn.
+\end{tinhchat}
+
+\begin{luuy}
+Hầu hết feature thực tế \textbf{không} đủ điều kiện linear scaling; \textbf{Z-score} thường là lựa chọn tốt hơn.
+\end{luuy}
+
+\begin{phanvidu}[title={Bài tập: \texttt{net\_worth} có nên linear scaling?}]
+\textbf{Đáp án: Không.} Nhiều outlier; phân bố không đều --- phần lớn người bị ``ép'' vào dải hẹp trong miền tổng thể.
+\end{phanvidu}
+
+\subsection{Z-score scaling}
+
+\begin{dinhnghia}
+\textbf{Z-score} = số độ lệch chuẩn so với mean. Ví dụ: +2{,}0 nghĩa là lớn hơn mean 2 độ lệch chuẩn; $-1{,}5$ là nhỏ hơn 1{,}5 độ lệch chuẩn.
+\end{dinhnghia}
+
+\mlimg[0.85]{z-scaling_classic.png}
+\begin{center}\small\textbf{Hình 4.} Phân bố chuẩn gốc (trái, mean $\approx$ 200, $\sigma \approx$ 30) vs Z-score (phải, mean 0, $\sigma$ 1).\end{center}
+
+Z-score cũng phù hợp phân bố \textbf{gần} chuẩn nhưng không hoàn hảo:
+
+\mlimg[0.85]{z-scaling-non-classic-normal-distribution.png}
+\begin{center}\small\textbf{Hình 5.} Dữ liệu thô (0--29\,000) vs Z-score ($-1$ đến $\approx +4{,}8$).\end{center}
+
+\begin{congthuc}[title={Công thức Z-score}]
+\[
+  x' = \frac{x - \mu}{\sigma}
+\]
+($\mu$ mean, $\sigma$ độ lệch chuẩn.)
+\end{congthuc}
+
+\begin{vidu}
+Mean $=100$, $\sigma=20$, $x=130$: $Z = (130-100)/20 = 1{,}5$.
+\end{vidu}
+
+\begin{tinhchat}[title={Phân bố chuẩn cổ điển và Z-score hiếm}]
+Trong phân bố chuẩn cổ điển: $\ge 68{,}27\%$ có Z $\in [-1,+1]$; $\ge 95{,}45\%$ $\in [-2,+2]$; $\ge 99{,}73\%$ $\in [-3,+3]$; $\ge 99{,}994\%$ $\in [-4,+4]$. Điểm $|Z|>4$ hiếm nhưng dataset cực lớn vẫn có thể có hàng chục nghìn ví dụ --- ``outlier'' không có định nghĩa cứng.
+\end{tinhchat}
+
+\begin{ynghia}
+Z-score tốt khi dữ liệu theo phân bố chuẩn hoặc \textbf{gần} chuẩn. Một số feature chuẩn trong phần lớn miền nhưng vài ví dụ cách mean hàng trăm $\sigma$ (\texttt{net\_worth}) --- kết hợp Z-score với \textbf{clipping}.
+\end{ynghia}
+
+\begin{phanvidu}[title={Bài tập: \texttt{height} (10 triệu phụ nữ trưởng thành)}]
+\textbf{Đáp án: Có.} Gần phân bố chuẩn; 10 triệu mẫu $\Rightarrow$ đủ outlier để mô hình học mẫu Z rất cao/thấp.
+\end{phanvidu}
+
+\subsection{Log scaling}
+
+\begin{dinhnghia}
+Log scaling tính logarit giá trị thô; thực hành thường dùng \textbf{ln} (log tự nhiên).
+\end{dinhnghia}
+
+\begin{congthuc}
+\[
+  x' = \ln(x)
+\]
+Ví dụ: $x=54{,}598 \Rightarrow x' \approx 4{,}0$.
+\end{congthuc}
+
+\begin{ynghia}[title={Phân bố lũy thừa (power law)}]
+Nói nôm na: $X$ nhỏ $\Rightarrow$ $Y$ rất lớn; $X$ tăng thì $Y$ giảm nhanh; $X$ lớn $\Rightarrow$ $Y$ rất nhỏ.
+
+\textbf{Đánh giá phim:} vài phim có rất nhiều rating; đa số có rất ít.
+
+\textbf{Bán sách:} đa số bán vài trăm bản; một số vài nghìn; vài bestseller $>1$ triệu. Mô hình tuyến tính trên giá trị thô phải tìm ``sức mạnh'' bìa sách triệu bản gấp 10\,000 lần sách 100 bản --- khó. Sau log: $\ln(100)\approx 4{,}6$, $\ln(10^6)\approx 13{,}8$ --- chỉ gấp $\approx 3$ lần, hợp lý hơn cho mô hình tuyến tính.
+\end{ynghia}
+
+\mlimg[0.85]{norm-log-scaling-movie-ratings.png}
+\begin{center}\small\textbf{Hình 6.} Phân bố thô (đầu dày, đuôi dài) vs sau log (phân bố đều hơn).\end{center}
+
+\subsection{Clipping}
+
+\begin{dinhnghia}
+\href{https://developers.google.com/machine-learning/glossary\#clipping}{Clipping} \textbf{giới hạn} ảnh hưởng outlier cực đoan: thường \textbf{cap} giá trị outlier ở ngưỡng tối đa. Nghe lạ nhưng rất hiệu quả.
+\end{dinhnghia}
+
+\begin{vidu}[title={Feature \texttt{roomsPerPerson}}]
+Số phòng chia số người ở mỗi nhà. Hơn 99\% giá trị gần phân bố chuẩn (mean $\approx 1{,}8$, $\sigma \approx 0{,}7$) nhưng có outlier, một số cực đoan:
+\end{vidu}
+
+\mlimg[0.7]{PreClipping.png}
+\begin{center}\small\textbf{Hình 7.} Phần lớn 0--4, đuôi dài đến 17 phòng/người.\end{center}
+
+Nếu \textbf{clip} tối đa \texttt{roomsPerPerson} ở 4{,}0:
+
+\mlimg[0.7]{Clipping.png}
+\begin{center}\small\textbf{Hình 8.} Mọi giá trị trong [0, 4]; đỉnh lạ tại 4{,}0 do mọi giá trị $>4$ thành 4 --- vẫn hữu ích hơn dữ liệu gốc.\end{center}
+
+\begin{ynghia}
+Clip ở 4{,}0 \textbf{không} có nghĩa bỏ qua mọi giá trị $>4$; nghĩa là chúng \textbf{đều thành} 4{,}0. Khi train mô hình, có thể clip tùy ý. Có thể clip \textbf{sau} Z-score: ví dụ clip $|Z|>3$ về $\pm 3$. Clip cẩn thận --- một số outlier thực sự quan trọng.
+\end{ynghia}
+
+\subsection{Bảng tóm tắt kỹ thuật chuẩn hóa}
+
+\begin{luuy}
+Kỹ thuật tốt nhất là kỹ thuật \textbf{chạy tốt trên phân bố feature của bạn} --- hãy thử ý tưởng mới nếu hợp lý.
+\end{luuy}
+
+\begin{congthuc}
+\begin{tabular}{@{}p{2.8cm}p{4.2cm}p{6.5cm}@{}}
+\textbf{Kỹ thuật} & \textbf{Công thức} & \textbf{Khi dùng} \\
+\midrule
+Linear scaling &
+$\displaystyle x' = \frac{x-x_{\min}}{x_{\max}-x_{\min}}$ &
+Phân bố \textbf{đều} trên miền (dạng phẳng). \\
+Z-score &
+$\displaystyle x' = \frac{x-\mu}{\sigma}$ &
+Phân bố gần \textbf{chuông} (đỉnh gần mean). \\
+Log scaling &
+$x' = \ln(x)$ &
+Đuôi \textbf{dày}, lệch mạnh (power law). \\
+Clipping &
+Nếu $x>\max$ thì $x'=\max$; tương tự với min &
+Outlier \textbf{cực đoan}. \\
+\end{tabular}
+\end{congthuc}
+
+\begin{phanvidu}[title={Bài tập: histogram 0--200\,000, đỉnh quanh 100\,000}]
+\mlimg[0.75]{representing_numerical_data_test_your_knowledge_normalization.png}
+\textbf{Đáp án: Z-score scaling.} Điểm gần phân bố chuẩn $\Rightarrow$ Z-score đưa về khoảng $\approx -3$ đến $+3$.
+\end{phanvidu}
+
+\begin{phanvidu}[title={Bài tập: nhiệt độ trung tâm dữ liệu 15--30\,°C}]
+Hầu hết 15--30. Ngoại lệ: vài ngày cực nóng 31--45 (hợp lệ); mỗi điểm thứ 1000 ghi nhầm \texttt{1000}.
+
+\textbf{Đáp án hợp lý:} Clip 31--45 (nếu ít mẫu nhiệt độ cao, model inference sẽ dự đoán giống nhau cho 35 và 45). \textbf{Xóa} các điểm \texttt{1000} (lỗi, không nên clip). Không nên xóa 31--45 hoặc clip 1000.
+\end{phanvidu}
+
+%==============================================================================
+\section{Binning (kết hợp / bucketing)}
+%==============================================================================
+
+\begin{dinhnghia}[title={Binning}]
+\href{https://developers.google.com/machine-learning/glossary\#binning}{Binning} (\href{https://developers.google.com/machine-learning/glossary\#bucketing}{bucketing}) là \href{https://developers.google.com/machine-learning/glossary\#feature-engineering}{feature engineering} gom các \textbf{khoảng con} số thành \textbf{bin}. Nhiều trường hợp biến số thành \textbf{danh mục}.
+\end{dinhnghia}
+
+\begin{vidu}[title={Feature \texttt{X}, min 15, max 425 $\to$ 5 bin}]
+\begin{itemize}
+  \item Bin 1: 15--34 \quad Bin 2: 35--117 \quad Bin 3: 118--279
+  \item Bin 4: 280--392 \quad Bin 5: 393--425
+\end{itemize}
+Giá trị 17 và 29 đều ở Bin 1 --- mô hình phản ứng \textbf{giống nhau} với cả hai.
+\end{vidu}
+
+\begin{congthuc}
+\begin{tabular}{ccc}
+\textbf{Số bin} & \textbf{Miền} & \textbf{Feature vector (one-hot)} \\
+\midrule
+1 & 15--34 & $[1,0,0,0,0]$ \\
+2 & 35--117 & $[0,1,0,0,0]$ \\
+3 & 118--279 & $[0,0,1,0,0]$ \\
+4 & 280--392 & $[0,0,0,1,0]$ \\
+5 & 393--425 & $[0,0,0,0,1]$ \\
+\end{tabular}
+\end{congthuc}
+
+Một cột \texttt{X} trong dataset sau binning được mô hình coi như \textbf{năm} feature; học \textbf{trọng số riêng} mỗi bin.
+
+\begin{tinhchat}[title={Khi binning tốt hơn scaling hoặc clipping}]
+\begin{itemize}
+  \item Quan hệ \textbf{tuyến tính yếu hoặc không có} giữa feature và \href{https://developers.google.com/machine-learning/glossary\#label}{nhãn}.
+  \item Giá trị feature \textbf{cụm} (clumpy) hơn là tăng tuyến tính.
+\end{itemize}
+37 và 115 có thể cùng bin --- hợp lý khi dữ liệu ``cục'' hơn là đường thẳng.
+\end{tinhchat}
+
+\subsection{Ví dụ: số khách hàng vs nhiệt độ}
+
+Mô hình dự đoán số người mua sắm theo nhiệt độ ngoài trời:
+
+\mlimg{binning_temperature_vs_shoppers.png}
+\begin{center}\small\textbf{Hình 9.} 45 điểm tự nhiên thành ba cụm.\end{center}
+
+Số khách cao nhất khi nhiệt độ \textbf{dễ chịu}. Nhiệt độ 35{,}0 trong feature vector (một số duy nhất) khiến hồi quy tuyến tính coi 35{,}0 ảnh hưởng gấp 5 lần 7{,}0 --- trong khi đồ thị \textbf{không} tuyến tính.
+
+Ba bin gợi ý:
+\begin{itemize}
+  \item Bin 1: 4--11 \quad Bin 2: 12--26 \quad Bin 3: 27--36
+\end{itemize}
+
+\mlimg[0.9]{binning_temperature_vs_shoppers_divided_into_3_bins.png}
+\begin{center}\small\textbf{Hình 10.} Cùng scatter với đường chia bin.\end{center}
+
+Mô hình học trọng số \textbf{riêng} mỗi bin.
+
+\begin{luuy}[title={Không nên quá nhiều bin}]
+\begin{itemize}
+  \item Mỗi bin cần \textbf{đủ ví dụ} để học liên hệ bin--nhãn. Ba bin $\ge 10$ điểm/bin có thể đủ; 33 bin (mỗi nhiệt độ một bin) thì không bin nào đủ dữ liệu.
+  \item 33 bin = 33 feature nhiệt độ --- thường nên \textbf{giảm} số feature.
+\end{itemize}
+\end{luuy}
+
+\subsection{Bài tập: giá nhà theo vĩ độ (Freedonia)}
+
+\mlimg[0.85]{MedianHouseValueByLatitude.png}
+\begin{center}\small\textbf{Hình 11.} Giá trung vị mỗi 0{,}2° vĩ độ; hai cụm rõ (41{,}0--41{,}8 và 42{,}6--43{,}4), phần còn lại gần ngẫu nhiên.\end{center}
+
+Quan hệ \textbf{phi tuyến} --- float vĩ độ khó giúp dự đoán. Bucket có giúp?
+
+\begin{phanvidu}[title={Chiến lược bucket tốt nhất?}]
+\textbf{Đáp án: Không bucket.} Phần lớn đồ thị ngẫu nhiên --- bucket khó có trọng số dự đoán ổn. Bốn bucket (41{,}0--41{,}8, 42{,}0--42{,}6, \ldots) --- bin 2 và 4 ít ví dụ. Mỗi 0{,}2° một bucket chỉ hữu ích nếu đủ mẫu mỗi vĩ độ.
+\end{phanvidu}
+
+\subsection{Quantile bucketing (bin theo phân vị)}
+
+\textbf{Quantile bucketing} đặt biên sao cho \textbf{số ví dụ mỗi bin gần bằng nhau}, thường che outlier.
+
+\mlimg[0.85]{NeedsQuantileBucketing.png}
+\begin{center}\small\textbf{Hình 13.} Mười bucket \textbf{bằng nhau} 10\,000 USD: 0--10k có hàng chục xe; 50--60k chỉ 5 xe --- không đủ học bucket cao.\end{center}
+
+\mlimg[0.85]{QuantileBucketing.png}
+\begin{center}\small\textbf{Hình 14.} Quantile: mỗi bucket $\approx$ cùng số xe; một số bucket hẹp, một số rất rộng.\end{center}
+
+\begin{luuy}
+Bucket \textbf{khoảng đều} phù hợp nhiều phân bố. Với dữ liệu \textbf{lệch} (skewed): thử \textbf{quantile} --- khoảng đều cho nhiều không gian cho đuôi dài, nén ``thân'' vào một bin; quantile cho nhiều không gian cho thân, nén đuôi.
+\end{luuy}
+
+%==============================================================================
+\section{Scrubbing (tua / làm sạch)}
+%==============================================================================
+
+\begin{ynghia}[title={Ẩn dụ táo}]
+Cây táo có quả ngon và quả sâu. Siêu thị chỉ bán táo đẹp --- giữa vườn và kệ có người loại táo hỏng hoặc phủ sáp táo cứu được. Kỹ sư ML cũng dành rất nhiều thời gian loại ví dụ xấu và ``đánh bóng'' ví dụ còn cứu được. Vài ``táo hỏng'' có thể hỏng cả dataset lớn.
+\end{ynghia}
+
+\begin{congthuc}
+\begin{tabular}{@{}p{3.5cm}p{8.5cm}@{}}
+\textbf{Loại vấn đề} & \textbf{Ví dụ} \\
+\midrule
+Giá trị thiếu & Điều tra viên không ghi tuổi cư dân. \\
+Trùng lặp & Server upload cùng log hai lần. \\
+Ngoài miền & Gõ thừa một chữ số. \\
+Nhãn sai & Ảnh sồi bị gán nhãn phong. \\
+\end{tabular}
+\end{congthuc}
+
+Có thể viết chương trình/script phát hiện:
+\begin{itemize}
+  \item Giá trị thiếu
+  \item Ví dụ trùng
+  \item Feature ngoài miền cho phép
+\end{itemize}
+
+\mlimg[0.85]{ScrubDuplicateValues.png}
+\begin{center}\small\textbf{Hình 15.} Sáu giá trị đầu lặp lại; tám giá trị sau không.\end{center}
+
+Nhiệt độ feature phải trong [10, 30]°C nhưng cảm biến phơi nắng tạo outlier --- script phải bắt giá trị $<10$ hoặc $>30$:
+
+\mlimg[0.85]{ScrubOutofRangeValues.png}
+\begin{center}\small\textbf{Hình 16.} 19 giá trị trong miền, một giá trị ngoài miền.\end{center}
+
+Khi nhãn do \textbf{nhiều người} gán, nên thống kê xem mỗi người có bộ nhãn \textbf{tương đương} không (người chấm khắt hơn, tiêu chí khác\ldots).
+
+Sau khi phát hiện, thường \textbf{sửa} bằng xóa ví dụ hoặc \textbf{impute} (điền giá trị). Chi tiết: module \href{https://developers.google.com/machine-learning/crash-course/overfitting/data-characteristics}{Đặc điểm dữ liệu} trong phần overfitting.
+
+%==============================================================================
+\section{Tính chất của đặc trưng số tốt}
+%==============================================================================
+
+Đơn vị này đã nói cách ánh xạ dữ liệu thô sang \href{https://developers.google.com/machine-learning/glossary\#feature-vector}{feature vector}. \href{https://developers.google.com/machine-learning/glossary\#feature}{Feature} số tốt có các đặc tính sau.
+
+\subsection{Tên rõ ràng}
+
+Mỗi feature phải có \textbf{nghĩa rõ}, dễ hiểu với mọi người trong dự án.
+
+\begin{luuy}[title={Không nên}]
+\texttt{house\_age: 851472000} --- khó hiểu.
+\end{luuy}
+
+\begin{luuy}[title={Nên}]
+\texttt{house\_age\_years: 27} --- rõ ràng.
+\end{luuy}
+
+\begin{luuy}
+Đồng nghiệp sẽ phản đối tên feature/nhãn khó hiểu; \textbf{mô hình không quan tâm} (nếu bạn chuẩn hóa đúng).
+\end{luuy}
+
+\subsection{Kiểm tra / thử trước khi train}
+
+\href{https://developers.google.com/machine-learning/glossary\#outliers}{Outlier} đủ quan trọng để nhắc lần cuối. Đôi khi \textbf{dữ liệu xấu} (không phải kỹ thuật xấu) gây giá trị lạ:
+
+\begin{itemize}
+  \item Không nên: \texttt{user\_age\_in\_years: 224}
+  \item Nên: \texttt{user\_age\_in\_years: 24} --- có thể do nguồn không kiểm tra.
+\end{itemize}
+
+\textbf{Hãy kiểm tra dữ liệu!}
+
+\subsection{Hợp lý (sensible) --- tránh ``magic value''}
+
+\textbf{Magic value} là giá trị đặc biệt cắt đứt tính liên tục của feature. Ví dụ \texttt{watch\_time\_in\_seconds} từ 0--30 nhưng \texttt{-1} = ``không đo'':
+
+\begin{itemize}
+  \item Không nên: \texttt{watch\_time\_in\_seconds: -1} --- mô hình phải đoán ``xem phim ngược thời gian''.
+  \item Nên: tách feature Boolean \texttt{is\_watch\_time\_in\_seconds\_defined}; ví dụ \texttt{4.82, True} hoặc \texttt{0, False}.
+\end{itemize}
+
+Với \href{https://developers.google.com/machine-learning/glossary\#discrete_feature}{feature rời rạc} như \texttt{product\_category} thuộc tập hữu hạn, khi thiếu giá trị thêm \textbf{giá trị mới} trong tập, ví dụ \texttt{\{0: electronics, 1: books, 2: clothing, 3: missing\_category\}} --- mô hình học trọng số riêng cho ``thiếu''.
+
+%==============================================================================
+\section{Biến đổi đa thức (polynomial transforms)}
+%==============================================================================
+
+Khi có \textbf{kiến thức miền} cho rằng một biến liên quan bình, lập, hoặc lũy thừa của biến khác, có thể tạo \href{https://developers.google.com/machine-learning/glossary\#synthetic_feature}{\textbf{synthetic feature}} từ feature số có sẵn.
+
+\mlimg[0.8]{ft_cross2.png}
+\begin{center}\small\textbf{Hình 17.} Hai lớp không tách được bằng đường thẳng.\end{center}
+
+\mlimg[0.75]{ft_cross1.png}
+\begin{center}\small\textbf{Hình 18.} Đường cong $y = x^2$ tách hai lớp.\end{center}
+
+Mô hình tuyến tính một feature $x_1$:
+\[
+  y = b + w_1 x_1
+\]
+Thêm feature thì thêm $w_2 x_2$, $w_3 x_3$\ldots \href{https://developers.google.com/machine-learning/glossary\#gradient_descent}{Gradient descent} tìm \href{https://developers.google.com/machine-learning/glossary\#weight}{trọng số} $w_i$ tối thiểu mất mát. Dữ liệu trên không tách được bằng đường thẳng --- làm sao?
+
+Định nghĩa $x_2 = x_1^2$ (biến đổi đa thức, xử lý như feature bình thường):
+\[
+  y = b + w_1 x_1 + w_2 x_2
+\]
+Vẫn là \href{https://developers.google.com/machine-learning/glossary\#linear_regression}{hồi quy tuyến tính}; gradient descent như cũ --- nhưng ranh giới có dạng $y = b + w_1 x + w_2 x^2$.
+
+Thường nhân feature với chính nó (lũy thừa). Trong vật lý nhiều quan hệ có bình phương: gia tốc trọng trường, suy giảm ánh sáng/âm thanh, năng lượng thế đàn hồi.
+
+\begin{luuy}
+Nếu biến đổi làm đổi \textbf{quy mô} feature, nên thử \textbf{chuẩn hóa sau} biến đổi (xem mục Chuẩn hóa).
+\end{luuy}
+
+\begin{ynghia}[title={Liên quan dữ liệu danh mục}]
+\href{https://developers.google.com/machine-learning/glossary\#feature_cross}{Feature cross} trên dữ liệu danh mục thường tổng hợp \textbf{hai feature khác nhau} --- xem module categorical.
+\end{ynghia}
+
+%==============================================================================
+\section{Kết luận}
+%==============================================================================
+
+\begin{dongco}
+Sức khỏe mô hình ML do \textbf{dữ liệu} quyết định. Dữ liệu tốt $\Rightarrow$ mô hình phát triển; dữ liệu rác $\Rightarrow$ dự đoán vô giá trị.
+\end{dongco}
+
+\begin{phuongphap}[title={Thực hành tốt với dữ liệu số}]
+\begin{itemize}
+  \item Mô hình tương tác với \textbf{feature vector}, không phải bảng \href{https://developers.google.com/machine-learning/glossary\#dataset}{dataset} thô.
+  \item \textbf{Chuẩn hóa} hầu hết feature số.
+  \item Chiến lược chuẩn hóa đầu không hiệu quả $\Rightarrow$ thử cách khác.
+  \item \textbf{Binning} đôi khi tốt hơn chuẩn hóa.
+  \item Viết \textbf{test xác minh} theo kỳ vọng nghiệp vụ: vĩ độ $|\text{lat}| \le 90$; nếu chỉ Florida thì lat $\in [24, 31]$.
+  \item Scatter plot, histogram --- tìm bất thường.
+  \item Thống kê trên \textbf{cả dataset} và \textbf{tập con} --- thống kê gộp đôi khi che lỗi ở phần nhỏ.
+  \item \textbf{Ghi chép} mọi biến đổi dữ liệu.
+\end{itemize}
+\end{phuongphap}
+
+\end{document}

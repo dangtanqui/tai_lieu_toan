@@ -1,0 +1,88 @@
+# Neural networks
+
+> [!NOTE]
+> **Estimated module length:** 75 minutes
+
+> [!NOTE]
+> **Learning objectives**
+>
+> - Explain the motivation for building neural networks, and the use cases they address.
+> - Define and explain the function of the key components of a deep neural network architecture:
+>   - **[Nodes](https://developers.google.com/machine-learning/glossary#node-neural-network)**
+>   - **[Hidden layers](https://developers.google.com/machine-learning/glossary#hidden_layer)**
+>   - **[Activation functions](https://developers.google.com/machine-learning/glossary#activation_function)**
+> - Develop intuition around how neural network predictions are made, by stepping through the inference process.
+> - Build a high-level intuition of how neural networks are trained, using the backpropagation algorithm.
+> - Explain how neural networks can be used to perform two types of multi-class classification: one-vs.-all and one-vs.-one.
+
+> [!CAUTION]
+> **Prerequisites:**
+>
+> This module assumes you are familiar with the concepts covered in the
+> following modules:
+>
+> - [Introduction to Machine Learning](https://developers.google.com/machine-learning/intro-to-ml)
+> - [Linear regression](https://developers.google.com/machine-learning/crash-course/linear-regression)
+> - [Logistic regression](https://developers.google.com/machine-learning/crash-course/logistic-regression)
+> - [Classification](https://developers.google.com/machine-learning/crash-course/classification)
+> - [Working with numerical data](https://developers.google.com/machine-learning/crash-course/numerical-data)
+> - [Working with categorical data](https://developers.google.com/machine-learning/crash-course/categorical-data)
+> - [Datasets, generalization, and overfitting](https://developers.google.com/machine-learning/crash-course/overfitting)
+
+You may recall from the
+[Feature cross exercises](https://developers.google.com/machine-learning/crash-course/categorical-data/feature-cross-exercises)
+in the [Categorical data module](https://developers.google.com/machine-learning/crash-course/categorical-data),
+that the following classification problem is nonlinear:
+![Figure 1. Cartesian coordinate plane, divided into four
+quadrants, each filled with random dots in a shape resembling a
+square. The dots in the top-right and bottom-leftquadrants are blue,
+and the dots in the top-left and bottom-right quadrants are orange.](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/nonlinear_simple.png) **Figure 1.** Nonlinear classification problem. A linear function cannot cleanly separate all the blue dots from the orange dots.
+
+"Nonlinear" means that you can't accurately predict a label with a
+model of the form \\(b + w_1x_1 + w_2x_2\\). In other words, the
+"decision surface" is not a line.
+
+However, if we perform a feature cross on our features $x_1$ and $x_2$, we can
+then represent the nonlinear relationship between the two features using a
+[**linear model**](https://developers.google.com/machine-learning/glossary#linear-model):
+$b + w_1x_1 + w_2x_2 + w_3x_3$ where $x_3$ is the feature cross between
+$x_1$ and $x_2$:
+![Figure 2. The same Cartesian coordinate plane of blue and orange
+dots as in Figure 1. However, this time a white hyperbolic curve is
+plotted atop the grid, which separates the blue dots in the top-right
+and bottom-left quadrants (now shaded with a blue background) from
+the orange dots in the top-left and bottom right quadrants (now
+shaded with an orange background).](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/nonlinear_simple_feature_cross.png) **Figure 2.** By adding the feature cross *x*~1~*x*~2~, the linear model can learn a hyperbolic shape that separates the blue dots from the orange dots.
+
+Now consider the following dataset:
+![Figure 3. Cartesian coordinate plane, divided into four quadrants.
+A circular cluster of blue dots is centered at the origin of the
+graph, and is surrounded by a ring of orange dots.](https://developers.google.com/static/machine-learning/crash-course/neural-networks/images/nonlinear_complex.png) **Figure 3.** A more difficult nonlinear classification problem.
+
+You may also recall from the [Feature cross exercises](https://developers.google.com/machine-learning/crash-course/categorical-data/feature-cross-exercises)
+that determining the correct feature crosses to fit a linear model to this data
+took a bit more effort and experimentation.
+
+But what if you didn't have to do all that experimentation yourself?
+[**Neural networks**](https://developers.google.com/machine-learning/glossary#neural_network) are a family
+of model architectures designed to find
+[**nonlinear**](https://developers.google.com/machine-learning/glossary#nonlinear)
+patterns in data. During training of a neural network, the
+[**model**](https://developers.google.com/machine-learning/glossary#model) automatically
+learns the optimal feature crosses to perform on the input data to minimize
+loss.
+
+In the following sections, we'll take a closer look at how neural networks work.
+
+> [!IMPORTANT]
+> **Key terms:**
+>
+> - [Activation function](https://developers.google.com/machine-learning/glossary#activation_function)
+> - [Hidden layer](https://developers.google.com/machine-learning/glossary#hidden_layer)
+> - [Linear model](https://developers.google.com/machine-learning/glossary#linear-model)
+> - [Model](https://developers.google.com/machine-learning/glossary#model)
+> - [Neural network](https://developers.google.com/machine-learning/glossary#neural_network)
+> - [Nodes](https://developers.google.com/machine-learning/glossary#node-neural-network)
+> - [Nonlinear](https://developers.google.com/machine-learning/glossary#nonlinear)
+
+[Help Center](https://support.google.com/machinelearningeducation)

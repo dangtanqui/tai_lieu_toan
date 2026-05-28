@@ -1,0 +1,367 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- PHÂN LOẠI}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Phân loại}
+\def\coversubtitle{Lý thuyết --- Ngưỡng, metric, ROC/AUC, đa lớp}
+
+\input{../../../_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+
+\graphicspath{{images/classification/}}
+
+\newcommand{\mlimg}[2][0.88]{%
+  \def\mlimgfile{images/classification/#2}%
+  \IfFileExists{\mlimgfile}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy \expandafter\path\expandafter{\mlimgfile}. Chạy \path{download_mlcc_images.sh} trong \path{_template/}.%
+    \end{luuy}%
+  }%
+}
+\newcommand{\clfimg}[2][0.46\linewidth]{%
+  \def\mlimgfile{images/classification/#2}%
+  \IfFileExists{\mlimgfile}{%
+    \includegraphics[width=#1]{#2}%
+  }{%
+    \fbox{\begin{minipage}[c][2.2cm][c]{#1}\centering\footnotesize Thiếu hình\end{minipage}}%
+  }%
+}
+
+\begin{document}
+
+\input{../../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch từ \emph{Classification} (Google ML Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/classification}}.
+\end{ynghia}
+
+\begin{luuy}[title={Điều kiện tiên quyết}]
+Cần nắm \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to ML}, \href{https://developers.google.com/machine-learning/crash-course/linear-regression}{Linear regression} và \href{https://developers.google.com/machine-learning/crash-course/logistic-regression}{\textbf{Logistic regression}}.
+\end{luuy}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{itemize}
+  \item Xác định ngưỡng phù hợp cho phân loại nhị phân.
+  \item Tính và chọn metric đánh giá mô hình.
+  \item Đọc và diễn giải ROC và AUC.
+\end{itemize}
+\end{phuongphap}
+
+\newpage
+
+%==============================================================================
+\section{Giới thiệu phân loại}
+%==============================================================================
+
+\begin{dongco}[title={Từ 75\% spam sang lớp ``spam''}]
+Logistic cho $P(\text{spam})=0{,}75$. Ứng dụng lọc thư cần \textbf{lớp} spam/không spam --- đó là \textbf{phân loại}.
+\end{dongco}
+
+\begin{dinhnghia}[title={Phân loại}]
+\href{https://developers.google.com/machine-learning/glossary\#classification-model}{Phân loại (classification)}: dự đoán mẫu thuộc \href{https://developers.google.com/machine-learning/glossary\#class}{lớp} nào.
+\begin{itemize}
+  \item \textbf{Nhị phân:} hai lớp.
+  \item \textbf{Đa lớp:} hơn hai lớp (giới thiệu cuối module).
+\end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Luồng module}]
+Xác suất (logistic) $\xrightarrow{\text{ngưỡng}}$ lớp $\xrightarrow{\text{ma trận nhầm lẫn}}$ metric $\xrightarrow{\text{mọi ngưỡng}}$ ROC/AUC.
+\end{phuongphap}
+
+\newpage
+
+%==============================================================================
+\section{Ngưỡng và ma trận nhầm lẫn}
+%==============================================================================
+
+\begin{dongco}[title={Từ 0,75 sang thư mục spam}]
+Mô hình spam cho xác suất 0--1. Triển khai cần chuyển \texttt{0.75} thành ``spam'' hoặc ``không spam'' bằng \textbf{ngưỡng}.
+\end{dongco}
+
+\begin{dinhnghia}[title={Ngưỡng phân loại}]
+\href{https://developers.google.com/machine-learning/glossary\#classification-threshold}{Ngưỡng} $t$: $y' \geq t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#positive_class}{lớp dương} (spam); $y' < t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#negative_class}{lớp âm}. Keras: $y'=t$ xếp vào \textbf{âm}.
+\end{dinhnghia}
+
+\begin{vidu}[title={0,51 vs 0,99 với ngưỡng khác nhau}]
+Email A: $y'=0{,}99$; email B: $y'=0{,}51$. Ngưỡng $0{,}5$: cả hai là spam. Ngưỡng $0{,}95$: chỉ A là spam.
+\end{vidu}
+
+\begin{luuy}[title={0,5 không luôn tối ưu}]
+Tránh mặc định 0,5 khi: lớp mất cân bằng (0,01\% spam); chi phí FP/FN không đối xứng; sai lọc thư hợp lệ đắt hơn để spam lọt.
+\end{luuy}
+
+\subsection{Ma trận nhầm lẫn}
+
+\begin{dinhnghia}[title={Confusion matrix}]
+Điểm dự đoán $\neq$ \href{https://developers.google.com/machine-learning/glossary\#ground_truth}{ground truth}. Bốn ô (cột = thực tế, hàng = dự đoán):
+\end{dinhnghia}
+
+\begin{congthuc}[title={Ma trận nhầm lẫn (spam)}]
+\begin{tabularx}{\textwidth}{@{}l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X@{}}
+ & \textbf{Thực tế dương} & \textbf{Thực tế âm} \\
+\midrule
+\textbf{Dự đoán dương} &
+\textbf{TP} --- spam đúng vào thư rác &
+\textbf{FP} --- thư hợp lệ vào spam \\
+\textbf{Dự đoán âm} &
+\textbf{FN} --- spam lọt hộp thư &
+\textbf{TN} --- thư hợp lệ đúng hộp thư \\
+\end{tabularx}
+\end{congthuc}
+
+\begin{tinhchat}[title={Tổng theo hàng và cột}]
+\begin{itemize}
+  \item \textbf{Hàng:} mọi dự đoán dương ($TP+FP$), mọi dự đoán âm ($FN+TN$).
+  \item \textbf{Cột:} mọi thực tế dương ($TP+FN$), mọi thực tế âm ($FP+TN$).
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Dữ liệu mất cân bằng}]
+Tổng thực tế dương không gần bằng tổng âm $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#class_imbalanced_data_set}{mất cân bằng lớp}. Ví dụ: hàng nghìn ảnh mây, loại volutus chỉ vài ảnh.
+\end{vidu}
+
+\subsection{Ảnh hưởng của ngưỡng}
+
+\begin{ungdung}[title={Video ngưỡng}]
+\url{https://www.youtube.com/watch?v=QM0sYbEQSkM}
+\end{ungdung}
+
+\begin{luuy}[title={Widget MLCC (Separated / Unseparated / Imbalanced)}]
+Kéo ngưỡng từ 0,1 $\rightarrow$ 0,9 để quan sát TP, FP, FN, TN thay đổi.
+\end{luuy}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Ngưỡng}]
+\textbf{Câu 1.} Site hợp lệ bị gán malware $\Rightarrow$ \textbf{FP} (âm bị gán dương).
+
+\medskip
+\textbf{Câu 2.} Tăng ngưỡng $\Rightarrow$ \textbf{cả TP và FP giảm} (ít gán dương; ví dụ ngưỡng 0,9999).
+
+\medskip
+\textbf{Câu 3.} Tăng ngưỡng $\Rightarrow$ \textbf{TN tăng, FN giảm} (theo đáp án MLCC; thử trên widget).
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Accuracy, recall, precision và metric liên quan}
+%==============================================================================
+
+\begin{dongco}[title={Một con số không đủ}]
+Metric phụ thuộc chi phí sai, mất cân bằng lớp và \textbf{ngưỡng} đang dùng (mỗi metric tính tại một ngưỡng cố định).
+\end{dongco}
+
+\begin{congthuc}[title={Các công thức chính}]
+\[
+  \text{Accuracy}=\frac{TP+TN}{TP+TN+FP+FN},\quad
+  \text{Recall}=\frac{TP}{TP+FN},\quad
+  \text{FPR}=\frac{FP}{FP+TN}
+\]
+\[
+  \text{Precision}=\frac{TP}{TP+FP},\quad
+  F_1=\frac{2\cdot\text{precision}\cdot\text{recall}}{\text{precision}+\text{recall}}=\frac{2TP}{2TP+FP+FN}
+\]
+\end{congthuc}
+
+\begin{ynghia}[title={Diễn giải (ví dụ spam)}]
+\begin{itemize}
+  \item \textbf{Accuracy:} tỷ lệ email phân loại đúng.
+  \item \textbf{Recall (TPR):} trong spam thật, bắt được bao nhiêu? (\emph{probability of detection})
+  \item \textbf{FPR:} tỷ lệ thư hợp lệ bị gán nhầm spam.
+  \item \textbf{Precision:} trong email gán spam, bao nhiêu đúng là spam?
+\end{itemize}
+\end{ynghia}
+
+\begin{phanvidu}[title={Accuracy trên tập mất cân bằng}]
+99\% nhãn âm: mô hình luôn dự đoán âm $\Rightarrow$ accuracy 99\% nhưng \textbf{vô dụng}.
+\end{phanvidu}
+
+\begin{tinhchat}[title={Precision vs recall}]
+Tăng ngưỡng $\Rightarrow$ thường precision $\uparrow$, recall $\downarrow$ (đánh đổi nghịch).
+\end{tinhchat}
+
+\begin{luuy}[title={NaN}]
+$TP=FP=0$ $\Rightarrow$ precision không xác định. Mô hình không bao giờ dự đoán dương có thể cho NaN.
+\end{luuy}
+
+\begin{congthuc}[title={Gợi ý chọn metric}]
+\begin{tabularx}{\textwidth}{@{}l X@{}}
+\textbf{Metric} & \textbf{Khi nào ưu tiên} \\
+\midrule
+Accuracy & Tập cân bằng; chỉ dùng kèm metric khác. \\
+Recall & FN đắt (bỏ sót bệnh, spam lọt). \\
+FPR & FP đắt (báo động giả). \\
+Precision & Cần dự đoán dương chính xác. \\
+$F_1$ & Cân bằng precision/recall; tập mất cân bằng. \\
+\end{tabularx}
+\end{congthuc}
+
+\begin{vidu}[title={Tính recall và precision}]
+$TP=5$, $TN=6$, $FP=3$, $FN=2$: Recall $=5/7\approx 0{,}714$; Precision $=5/8=0{,}625$.
+
+\medskip
+$TP=3$, $FP=2$, $FN=1$: Precision $=3/5=0{,}6$.
+\end{vidu}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Metric}]
+\textbf{Câu 1.} $TP=5$, $FN=2$ $\Rightarrow$ Recall $=5/7$ (không chia cho tổng mọi phân loại đúng).
+
+\medskip
+\textbf{Câu 2.} $TP=3$, $FP=2$ $\Rightarrow$ Precision $=3/5$ (chia cho mọi dự đoán dương).
+
+\medskip
+\textbf{Câu 3.} Bẫy côn trùng xâm lấn: FN đắt, FP rẻ $\Rightarrow$ tối đa \textbf{Recall}.
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{ROC và AUC}
+%==============================================================================
+
+\begin{dongco}[title={Đánh giá mọi ngưỡng}]
+Accuracy/recall tại \textbf{một} ngưỡng. ROC quét ngưỡng --- so sánh mô hình toàn cục.
+\end{dongco}
+
+\begin{dinhnghia}[title={Đường cong ROC}]
+Với mỗi ngưỡng: tính TPR (recall) và FPR; vẽ TPR ($y$) theo FPR ($x$). Điểm $(0,1)$: hoàn hảo (FPR=0, TPR=1).
+\end{dinhnghia}
+
+\mlimg[0.55]{auc_1-0.png}
+\begin{center}\small\textbf{Hình 1.} ROC mô hình hoàn hảo (AUC = 1).\end{center}
+
+\begin{dinhnghia}[title={AUC}]
+\href{https://developers.google.com/machine-learning/glossary\#AUC}{AUC}: xác suất mô hình xếp ngẫu nhiên một mẫu dương \textbf{cao hơn} một mẫu âm (không phụ thuộc ngưỡng).
+\end{dinhnghia}
+
+\mlimg[0.72]{no_slider_data.png}
+\begin{center}\small\textbf{Hình 2.} AUC = $P$(vuông bên phải hình tròn).\end{center}
+
+\mlimg[0.55]{auc_0-5.png}
+\begin{center}\small\textbf{Hình 3.} Đoán ngẫu nhiên: đường chéo, AUC = 0,5.\end{center}
+
+\begin{ynghia}[title={Precision-Recall curve (tùy chọn)}]
+Tập mất cân bằng nặng: PRC (precision vs recall) đôi khi so sánh tốt hơn ROC.
+\end{ynghia}
+
+\mlimg[0.65]{prauc.png}
+\begin{center}\small\textbf{Hình 4.} Ví dụ đường precision-recall.\end{center}
+
+\begin{figure}[H]
+\centering
+\clfimg{auc_0-65.png}\hfill
+\clfimg{auc_0-93.png}
+\begin{center}\small\textbf{Hình 5.} AUC = 0,65 (trái) vs 0,93 (phải).\end{center}
+\end{figure}
+
+\mlimg[0.72]{auc_abc.png}
+\begin{center}\small\textbf{Hình 6.} Điểm A, B, C --- chọn ngưỡng theo chi phí FP/FN.\end{center}
+
+\begin{phuongphap}[title={Chọn điểm trên ROC}]
+\begin{itemize}
+  \item \textbf{A:} FP đắt $\Rightarrow$ FPR thấp, chấp nhận TPR thấp hơn.
+  \item \textbf{C:} FN đắt $\Rightarrow$ tối đa TPR.
+  \item \textbf{B:} chi phí tương đương $\Rightarrow$ cân bằng.
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={AUC nhỏ hơn 0,5}]
+Tệ hơn ngẫu nhiên --- có thể \textbf{đảo nhãn} 0$\leftrightarrow$1 mà không cần huấn luyện lại.
+\end{luuy}
+
+\begin{figure}[H]
+\centering
+\clfimg[0.22\linewidth]{auc_0-77.png}
+\clfimg[0.22\linewidth]{auc_0-508.png}
+\clfimg[0.22\linewidth]{auc_0-623.png}
+\clfimg[0.22\linewidth]{auc_0-31.png}
+\begin{center}\small\textbf{Hình 7.} So sánh AUC: 0,77 tốt nhất; 0,31 tệ hơn ngẫu nhiên.\end{center}
+\end{figure}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- ROC}]
+\textbf{Câu 1.} AUC cao nhất: \path{auc_0-77.png} ($\approx 0{,}77$).
+
+\medskip
+\textbf{Câu 2.} Tệ hơn ngẫu nhiên: \path{auc_0-32.png} (AUC nhỏ hơn 0,5).
+
+\medskip
+\textbf{Câu 3.} Cải thiện không huấn luyện lại: \textbf{đảo nhãn dự đoán}.
+
+\medskip
+\textbf{Câu 4.} Thư quan trọng không được vào spam $\Rightarrow$ \textbf{điểm A} (FPR thấp).
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Độ lệch dự đoán (prediction bias)}
+%==============================================================================
+
+\begin{dongco}[title={Kiểm tra nhanh sau huấn luyện}]
+Trung bình xác suất dự đoán có khớp tỷ lệ nhãn thật? Lệch sớm $\Rightarrow$ lỗi dữ liệu, pipeline hoặc chuẩn hóa quá mạnh.
+\end{dongco}
+
+\begin{congthuc}[title={Prediction bias}]
+\[
+  \text{bias} = \bar{y}' - \bar{y}
+\]
+$\bar{y}$: trung bình nhãn ground truth; $\bar{y}'$: trung bình dự đoán. Ví dụ: 5\% spam $\Rightarrow$ kỳ vọng $\bar{y}' \approx 0{,}05$. Mô hình luôn ``50\% spam'' $\Rightarrow$ lệch nghiêm trọng.
+\end{congthuc}
+
+\begin{tinhchat}[title={Nguyên nhân có thể}]
+\begin{itemize}
+  \item Dữ liệu / lấy mẫu thiên lệch.
+  \item Regularization quá mạnh.
+  \item Lỗi pipeline huấn luyện.
+  \item Đặc trưng không đủ cho tác vụ.
+\end{itemize}
+\end{tinhchat}
+
+\newpage
+
+%==============================================================================
+\section{Phân loại đa lớp}
+%==============================================================================
+
+\begin{dongco}[title={Hơn hai lớp}]
+Nhận dạng chữ số 0--9; phân loại nhiều loài --- không chỉ spam/không spam.
+\end{dongco}
+
+\begin{phuongphap}[title={One-vs-rest}]
+Mỗi mẫu một lớp: chia thành nhiều bài toán nhị phân. Ba lớp A, B, C:
+\begin{enumerate}
+  \item (A+B) vs C.
+  \item Trong (A+B): A vs B.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}[title={Chữ số viết tay}]
+Ảnh một chữ số $\Rightarrow$ dự đoán 0--9.
+\end{vidu}
+
+\begin{luuy}[title={Đa nhãn}]
+Một mẫu thuộc \textbf{nhiều lớp cùng lúc} $\Rightarrow$ \textbf{đa nhãn} (multi-label), khác đa lớp. Chi tiết: \href{https://developers.google.com/machine-learning/crash-course/neural-networks/multi-class}{Multi-class neural networks}.
+\end{luuy}
+
+\begin{tongket}[title={Tổng kết chương --- Phân loại}]
+\begin{itemize}
+  \item Xác suất + \textbf{ngưỡng} $\to$ lớp; \textbf{confusion matrix} $\to$ metric.
+  \item Chọn metric theo chi phí FN/FP; \textbf{ROC/AUC} cho mọi ngưỡng.
+  \item Kiểm tra \textbf{prediction bias}; đa lớp = one-vs-rest hoặc mô hình chuyên sâu.
+\end{itemize}
+\end{tongket}
+
+\end{document}

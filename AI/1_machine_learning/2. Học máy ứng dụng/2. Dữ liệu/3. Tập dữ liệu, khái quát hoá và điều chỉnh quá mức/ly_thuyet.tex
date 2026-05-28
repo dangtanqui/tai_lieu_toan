@@ -1,0 +1,464 @@
+\documentclass[12pt,a4paper]{article}
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- DATASET \& OVERFITTING}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Tập dữ liệu, khái quát hóa và điều chỉnh quá mức}
+\def\coversubtitle{Lý thuyết --- Chất lượng dữ liệu, chia tập, L2, loss curves}
+
+\input{../../../_template/preamble.tex}
+\usepackage{tabularx,array,float,amsmath,booktabs}
+\graphicspath{{images/overfitting/}}
+\newcommand{\mlimg}[2][0.88]{\begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}}
+\newcommand{\mlimgmaybe}[2][0.88]{%
+  \IfFileExists{#2}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy file \texttt{#2} trong thư mục \texttt{images/overfitting/}.%
+    \end{luuy}%
+  }%
+}
+
+\begin{document}
+\input{../../../_template/trang_bia.tex}
+\newpage\tableofcontents\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch đầy đủ từ \emph{Datasets, Generalization, and Overfitting} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/overfitting}}, tương ứng \textbf{11 phần} (file \texttt{1}--\texttt{11}) trong thư mục. Mục tiêu là giữ nội dung cốt lõi, các câu hỏi trắc nghiệm ``check your intuition/understanding'' và các gợi ý đáp án, tránh tóm tắt quá mức.
+\end{ynghia}
+
+\begin{luuy}[title={Thời lượng ước tính}]
+Khoảng \textbf{105 phút} theo MLCC.
+\end{luuy}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{itemize}
+  \item Nhận diện bốn đặc điểm của dữ liệu và dataset.
+  \item Nêu ít nhất bốn nguyên nhân khiến dữ liệu kém tin cậy.
+  \item Biết khi nào nên xóa dữ liệu thiếu và khi nào nên impute.
+  \item Phân biệt nhãn trực tiếp và nhãn proxy/được suy ra.
+  \item Nêu hai cách cải thiện chất lượng nhãn do con người gán.
+  \item Giải thích vì sao cần chia dataset thành train/validation/test và một lỗi thường gặp khi chia tập.
+  \item Giải thích overfitting và ít nhất ba nguyên nhân.
+  \item Giải thích regularization, đặc biệt L2 (lambda) và early stopping.
+  \item Đọc các dạng loss curve: hội tụ, lỗi học, và dấu hiệu overfitting.
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Điều kiện tiên quyết}]
+Giả định bạn đã học:
+\begin{itemize}
+  \item \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to Machine Learning}
+  \item \href{https://developers.google.com/machine-learning/crash-course/linear-regression}{Linear regression}
+  \item \href{https://developers.google.com/machine-learning/crash-course/numerical-data}{Working with numerical data}
+  \item \href{https://developers.google.com/machine-learning/crash-course/categorical-data}{Working with categorical data}
+\end{itemize}
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Giới thiệu}
+%==============================================================================
+
+\begin{dongco}[title={Câu hỏi dẫn dắt: cải thiện thứ gì có tác động nhất?}]
+Nếu buộc phải ưu tiên cải thiện \textbf{một} thứ trong dự án ML, cái nào tác động nhất?
+\begin{itemize}
+  \item \textbf{Cải thiện chất lượng dataset.} (Dữ liệu ``ăn'' tất cả: chất lượng và quy mô dataset quan trọng hơn nhiều so với thuật toán ``hào nhoáng''.)
+  \item Dùng một hàm mất mát ``thông minh'' hơn. (Có thể giúp train nhanh hơn, nhưng vẫn đứng sau chất lượng dữ liệu.)
+\end{itemize}
+\end{dongco}
+
+\begin{luuy}[title={Câu hỏi dẫn dắt thứ hai: thời gian làm dữ liệu}]\nTrong dự án ML, bạn thường dành bao nhiêu thời gian cho chuẩn bị và biến đổi dữ liệu?\n\begin{itemize}\n  \item \textbf{Hơn một nửa thời gian.} (Đúng: đa số thời gian là dựng dataset và feature engineering.)\n  \item Ít hơn một nửa. (Thực tế, thường khoảng \textbf{80\%} thời gian của dự án ML nằm ở dựng dataset và biến đổi dữ liệu.)\n\end{itemize}\n\end{luuy}
+
+\begin{ynghia}
+Trong module này, ta học đặc điểm của dataset ML và cách chuẩn bị dữ liệu để đạt kết quả chất lượng cao khi huấn luyện và đánh giá mô hình.
+\end{ynghia}
+
+%==============================================================================
+\section{Đặc điểm dữ liệu (Data characteristics)}
+%==============================================================================
+
+\begin{dinhnghia}[title={Dataset và example}]
+\href{https://developers.google.com/machine-learning/glossary\#dataset}{Dataset} là tập các \href{https://developers.google.com/machine-learning/glossary\#example}{example}. Nhiều dataset lưu dạng bảng (CSV, spreadsheet, bảng DB): mỗi hàng là một example, mỗi cột là feature hoặc label tiềm năng. Tuy nhiên dataset cũng có thể xuất phát từ log, protocol buffers, v.v.
+\end{dinhnghia}
+
+\begin{dongco}\nMô hình ML chỉ tốt bằng dữ liệu mà nó được train. Phần này xem các đặc điểm quan trọng của dữ liệu.\n\end{dongco}
+
+\subsection{Các loại dữ liệu}
+
+Dataset có thể chứa nhiều kiểu dữ liệu, ví dụ:
+\begin{itemize}
+  \item Dữ liệu số (xem module Numerical Data)
+  \item Dữ liệu danh mục (xem module Categorical Data)
+  \item Ngôn ngữ tự nhiên (từ, câu, cả tài liệu)
+  \item Đa phương tiện (ảnh, video, âm thanh)
+  \item Output từ hệ thống ML khác
+  \item \href{https://developers.google.com/machine-learning/glossary\#embedding-vector}{Embedding vectors} (xem unit sau)
+\end{itemize}
+
+\subsection{Số lượng dữ liệu}
+
+\begin{tinhchat}[title={Quy tắc ngón tay cái}]\nRoughly: nên có số example ít nhất lớn hơn số tham số trainable \textbf{1--2 bậc độ lớn} (10x đến 100x). Thực tế, mô hình tốt thường cần nhiều hơn thế.\n\end{tinhchat}
+
+\begin{luuy}
+Mô hình train trên dataset lớn với ít feature thường vượt mô hình train trên dataset nhỏ với nhiều feature. Google từng thành công lớn với mô hình đơn giản trên dataset lớn.\n\nTuy vậy, lượng dữ liệu cần thiết phụ thuộc bài toán: có bài chỉ cần vài chục ví dụ; có bài cả nghìn tỷ cũng chưa đủ.\n\nNgoài ra, nếu bạn đang \textbf{thích nghi} một mô hình đã train trên rất nhiều dữ liệu cùng schema (transfer/adaptation), dataset nhỏ vẫn có thể cho kết quả tốt.
+\end{luuy}
+
+\subsection{Chất lượng và độ tin cậy (quality \& reliability)}
+
+\begin{dinhnghia}[title={Định nghĩa thực dụng về chất lượng}]\nTrong khóa này, \textbf{dataset chất lượng cao} là dataset giúp mô hình đạt mục tiêu; dataset chất lượng thấp là dataset cản trở mô hình đạt mục tiêu.\n\end{dinhnghia}
+
+\begin{dinhnghia}[title={Reliability}]\n\textbf{Reliability} là mức độ bạn có thể \textbf{tin} dữ liệu. Mô hình train trên dữ liệu tin cậy có khả năng dự đoán hữu ích hơn.\n\end{dinhnghia}
+
+\begin{phuongphap}[title={Đo reliability: cần tự hỏi}]\n\begin{itemize}\n  \item Lỗi nhãn phổ biến đến đâu? (Nếu nhãn do người gán, họ sai bao nhiêu lần?)\n  \item Feature có nhiễu không? (Giá trị feature có lỗi đo đạc; không thể loại sạch mọi nhiễu; GPS dao động nhẹ là bình thường.)\n  \item Dữ liệu đã lọc đúng cho bài toán chưa? Ví dụ: nên gồm truy vấn từ bot không? (Spam detection: có thể nên; tối ưu search cho người: không.)\n\end{itemize}\n\end{phuongphap}
+
+\begin{tinhchat}[title={Nguyên nhân phổ biến làm dữ liệu kém tin cậy}]\n\begin{itemize}\n  \item Thiếu giá trị (omitted values)\n  \item Ví dụ trùng lặp (duplicate examples)\n  \item Giá trị feature lỗi (gõ thừa số, nhiệt kế phơi nắng)\n  \item Nhãn sai (gán nhầm ảnh cây sồi thành cây phong)\n  \item Một đoạn dữ liệu xấu (một ngày mạng chập chờn làm feature sai hàng loạt)\n\end{itemize}\nKhuyến nghị dùng tự động hóa để gắn cờ dữ liệu không tin cậy: unit tests dựa trên data schema để phát hiện giá trị vượt miền.\n\end{tinhchat}
+
+\begin{luuy}\nDataset đủ lớn/đa dạng gần như chắc chắn có \href{https://developers.google.com/machine-learning/glossary\#outliers}{outliers} vượt schema hoặc dải unit test. Xử lý outlier là phần quan trọng (xem module Numerical Data).\n\end{luuy}
+
+\subsection{Example đầy đủ và không đầy đủ}
+
+\begin{dinhnghia}[title={Complete vs incomplete}]\nExample \textbf{đầy đủ} có đủ giá trị cho mọi feature. Thực tế, nhiều example \textbf{không đầy đủ} (thiếu ít nhất một feature).\n\end{dinhnghia}
+
+\mlimgmaybe[0.8]{complete_example.png}
+\begin{center}\small\textbf{Hình 1.} Một example đầy đủ (đủ 5 feature).\end{center}
+
+\mlimgmaybe[0.8]{incomplete_example.png}
+\begin{center}\small\textbf{Hình 2.} Một example thiếu một feature.\end{center}
+
+\begin{luuy}\nKhông nên train trên example thiếu. Hãy sửa bằng một trong hai cách:\n\begin{itemize}\n  \item Xóa các example thiếu.\n  \item \href{https://developers.google.com/machine-learning/glossary\#value-imputation}{Impute} (điền) giá trị thiếu bằng ước lượng hợp lý.\n\end{itemize}\n\end{luuy}
+
+\mlimgmaybe[0.85]{delete_incomplete_examples.png}
+\begin{center}\small\textbf{Hình 3.} Xóa các example không đầy đủ.\end{center}
+
+\mlimgmaybe[0.85]{impute_missing_values.png}
+\begin{center}\small\textbf{Hình 4.} Impute để biến example thiếu thành đầy đủ.\end{center}
+
+\begin{phuongphap}[title={Khi nào xóa? khi nào impute?}]\nNếu dataset có đủ example đầy đủ để train mô hình hữu ích, cân nhắc xóa các example thiếu. Nếu chỉ một feature bị thiếu nhiều và feature đó có thể không giúp nhiều, cân nhắc bỏ feature đó khỏi input rồi so sánh chất lượng.\n\nNếu không đủ example đầy đủ, cân nhắc impute.\n\nXóa example vô dụng thì ổn, nhưng xóa example quan trọng là nguy hiểm. Nếu khó quyết, hãy dựng hai dataset: một cái xóa, một cái impute, rồi xem cái nào train tốt hơn.\n\end{phuongphap}
+
+\begin{ynghia}[title={Lưu ý về imputation}]\nThuật toán impute có thể thông minh, nhưng giá trị impute hiếm khi tốt bằng giá trị thật. Dataset tốt nên cho mô hình biết giá trị nào là impute bằng cách thêm cột Boolean, ví dụ \\texttt{temperature\\_is\\_imputed}. Khi đó mô hình có thể học cách ``tin'' ít hơn vào ví dụ có impute.\n\nImpute là tạo dữ liệu \textbf{có lý do}, không phải ngẫu nhiên/lừa dối. Impute tốt có thể giúp; impute tệ có thể hại.\n\nMột cách impute thường dùng là mean/median. Nếu bạn dùng Z-score, giá trị impute thường là 0 (vì 0 thường là mean Z-score).\n\end{ynghia}
+
+\begin{luuy}[title={Bài tập: nhiệt độ thiếu 11:00}]\n\textbf{Cảnh báo:} dataset đã sort có thể giúp impute, nhưng \textbf{không} nên train trên dataset đã sort. Sau khi impute, hãy shuffle.\n\nBảng theo thời gian:\n\begin{center}\n\small\n\begin{tabular}{@{}ll@{}}\n\toprule\n\textbf{Timestamp} & \textbf{Temperature} \\\\\n\midrule\nJune 8, 2023 09:00 & 12 \\\\\nJune 8, 2023 10:00 & 18 \\\\\nJune 8, 2023 11:00 & missing \\\\\nJune 8, 2023 12:00 & 24 \\\\\nJune 8, 2023 13:00 & 38 \\\\\n\bottomrule\n\end{tabular}\n\end{center}\n\nGiá trị nào hợp lý để impute?\n\begin{itemize}\n  \item \textbf{23: Có thể.} 23 là mean của các giá trị lân cận (12, 18, 24, 38). Tuy nhiên cần xem toàn dataset để chắc nó không là outlier vào 11:00 các ngày khác.\n  \item 31: Ít khả năng; nhìn đoạn dữ liệu này thì 31 quá cao, nhưng cần nhiều ví dụ hơn để chắc.\n  \item 51: Rất ít khả năng; lớn hơn mọi giá trị hiển thị.\n\end{itemize}\n\end{luuy}
+
+%==============================================================================
+\section{Nhãn (Labels)}
+%==============================================================================
+
+\begin{dinhnghia}[title={Nhãn trực tiếp và nhãn proxy}]\nHai loại nhãn:\n\begin{itemize}\n  \item \textbf{Direct labels}: nhãn trùng đúng thứ mô hình cần dự đoán (cột đó có sẵn trong dataset). Ví dụ cột \\texttt{bicycle owner} là direct label cho bài toán dự đoán có sở hữu xe đạp hay không.\n  \item \textbf{Proxy labels}: nhãn gần giống nhưng không trùng hoàn toàn với mục tiêu. Ví dụ người đăng ký tạp chí xe đạp có thể (nhưng không chắc) sở hữu xe đạp.\n\end{itemize}\nDirect label thường tốt hơn proxy. Nếu có direct label thì nên dùng. Nhưng đôi khi direct label không tồn tại.\n\nProxy label luôn là thỏa hiệp: xấp xỉ không hoàn hảo. Proxy chỉ hữu ích nếu mối liên hệ giữa proxy và mục tiêu đủ mạnh.\n\end{dinhnghia}
+
+\begin{luuy}\nNhớ rằng mọi label cuối cùng đều phải được biểu diễn dưới dạng số thực (tương tự feature vector), vì ML rốt cuộc là các phép toán. Đôi khi direct label có nhưng khó biểu diễn float; khi đó dùng proxy.\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: gửi coupon cho chủ xe đạp}]\nMục tiêu: dự đoán ai sở hữu xe đạp. Dataset không có cột \\texttt{bike owner} nhưng có cột \\texttt{recently bought a bicycle}. Đây là proxy tốt hay kém?\n\n\textbf{Đáp án: Proxy tương đối tốt.} Người mua xe đạp thường sở hữu xe đạp, nhưng vẫn không hoàn hảo (mua làm quà, v.v.).\n\end{luuy}
+
+\subsection{Dữ liệu do con người tạo (human-generated)}
+
+\begin{ynghia}\nMột số dữ liệu được tạo bởi con người: người xem thông tin và cung cấp giá trị (thường là nhãn). Ví dụ nhà khí tượng nhìn ảnh mây để nhận dạng loại mây.\n\nMột số dữ liệu được tạo tự động (software, có thể là mô hình ML khác) gán nhãn.\n\end{ynghia}
+
+\begin{tinhchat}[title={Ưu và nhược của nhãn do con người}]\n\textbf{Ưu điểm}:\n\begin{itemize}\n  \item Con người làm được nhiều nhiệm vụ mà mô hình ML dù tinh vi vẫn khó.\n  \item Buộc chủ dataset phải xây tiêu chí rõ ràng và nhất quán.\n\end{itemize}\n\textbf{Nhược điểm}:\n\begin{itemize}\n  \item Tốn chi phí trả người gán nhãn.\n  \item Con người có thể sai, nên cần nhiều người đánh giá cùng dữ liệu.\n\end{itemize}\n\end{tinhchat}
+
+\begin{phuongphap}[title={Cần suy nghĩ để quyết định nhu cầu}]\n\begin{itemize}\n  \item Rater cần kỹ năng gì? (biết ngôn ngữ cụ thể? cần nhà ngôn ngữ học?)\n  \item Cần bao nhiêu mẫu đã gán nhãn và cần nhanh thế nào?\n  \item Ngân sách?\n\end{itemize}\n\end{phuongphap}
+
+\begin{luuy}[title={Luôn double-check người gán nhãn}]\nHãy tự gán nhãn khoảng 1000 ví dụ và so sánh với rater khác. Nếu có sai khác, đừng mặc định bạn đúng (nhất là khi có yếu tố đánh giá chủ quan). Nếu rater mắc lỗi, bổ sung hướng dẫn và thử lại.\n\end{luuy}
+
+\begin{ynghia}\nNhìn dữ liệu bằng tay là bài tập tốt dù bạn lấy dữ liệu bằng cách nào. Andrej Karpathy từng làm điều này với ImageNet và viết lại trải nghiệm.\n\nMô hình có thể train trên hỗn hợp nhãn tự động và nhãn người, nhưng với đa số mô hình, thêm một bộ nhãn người (dễ lỗi thời) thường không đáng với độ phức tạp bảo trì. Tuy nhiên, đôi khi nhãn người có thông tin bổ sung mà nhãn tự động không có.\n\end{ynghia}
+
+%==============================================================================
+\section{Tập dữ liệu mất cân bằng lớp (Class-imbalanced datasets)}
+%==============================================================================
+
+\begin{ynghia}\nPhần này trả lời:\n\begin{itemize}\n  \item Balanced vs imbalanced khác nhau thế nào?\n  \item Vì sao train imbalanced khó?\n  \item Làm sao vượt qua?\n\end{itemize}\n\end{ynghia}
+
+\subsection{Balanced vs imbalanced}
+
+\begin{dinhnghia}[title={Balanced / Imbalanced}]\nXét nhãn danh mục chỉ có positive/negative. Dataset \textbf{cân bằng} khi số positive và negative xấp xỉ nhau. Dataset \textbf{mất cân bằng} khi một nhãn phổ biến hơn hẳn.\n\nTrong dataset imbalanced:\n\begin{itemize}\n  \item Nhãn phổ biến gọi là \href{https://developers.google.com/machine-learning/glossary\#majority_class}{\textbf{majority class}}\n  \item Nhãn hiếm gọi là \href{https://developers.google.com/machine-learning/glossary\#minority_class}{\textbf{minority class}}\n\end{itemize}\nNgoài đời, imbalanced phổ biến hơn balanced: gian lận thẻ <0{,}1\%, virus hiếm <0{,}01\%.\n\end{dinhnghia}
+
+\subsection{Vì sao train imbalanced nghiêm trọng khó?}
+
+\begin{ynghia}\nHuấn luyện cần batch có đủ ví dụ của cả hai lớp. Với imbalanced nhẹ, batch nhỏ vẫn có đủ. Với imbalanced nặng, có thể không đủ ví dụ minority để train.\n\end{ynghia}
+
+\mlimgmaybe[0.75]{FloralDataset200Sunflowers2Roses.png}
+\begin{center}\small\textbf{Hình 6.} Dataset lệch mạnh: 200 sunflower, 2 rose.\end{center}
+
+\begin{luuy}\nNếu batch size = 20, đa số batch không có minority. Batch size = 100 thì trung bình 1 minority/batch, vẫn không đủ. Batch lớn hơn cũng vẫn lệch.\n\nLưu ý: \href{https://developers.google.com/machine-learning/glossary\#accuracy}{Accuracy} thường là metric tệ cho dataset imbalanced.\n\end{luuy}
+
+\subsection{Train dataset imbalanced: downsampling + upweighting}
+
+\begin{ynghia}\nTrong training, mô hình cần học hai thứ:\n\begin{itemize}\n  \item Mỗi lớp ``trông như thế nào'' (liên hệ feature \(\to\) class)\n  \item Mỗi lớp phổ biến ra sao (phân phối class)\n\end{itemize}\nTraining chuẩn trộn lẫn hai mục tiêu này. Kỹ thuật \textbf{downsampling + upweighting majority class} tách chúng ra để mô hình đạt cả hai.\n\end{ynghia}
+
+\begin{phuongphap}[title={Bước 1: Downsample majority class}]\n\href{https://developers.google.com/machine-learning/glossary\#downsampling}{Downsampling} là train trên tỉ lệ nhỏ bất thường của majority class: bỏ nhiều ví dụ majority để dataset ``cân bằng hơn'' một cách nhân tạo. Điều này tăng xác suất mỗi batch có đủ minority để train hiệu quả.\n\nVí dụ, dataset 99\% majority và 1\% minority. Downsample majority theo hệ số 25 tạo train set cân bằng hơn (80\% majority, 20\% minority):\n\end{phuongphap}
+
+\mlimgmaybe[0.75]{FloralDatasetDownsampling.png}
+\begin{center}\small\textbf{Hình 7.} Downsampling majority theo hệ số 25.\end{center}
+
+\begin{phuongphap}[title={Bước 2: Upweight lớp đã downsample}]\nDownsampling tạo \href{https://developers.google.com/machine-learning/glossary\#prediction-bias}{prediction bias} vì mô hình thấy ``thế giới giả'' cân bằng hơn thực tế. Để sửa, hãy \textbf{upweight} majority class bằng đúng hệ số downsample: nếu downsample 25 lần thì khi dự đoán sai majority, nhân loss lên 25 (coi như 25 lỗi).\n\end{phuongphap}
+
+\mlimgmaybe[0.75]{FloralDatasetUpweighting.png}
+\begin{center}\small\textbf{Hình 8.} Upweight majority theo hệ số 25.\end{center}
+
+\begin{luuy}\nDownsample/upweight bao nhiêu? Hãy thử như hyperparameter.\n\nLợi ích:\n\begin{itemize}\n  \item Mô hình vừa học được liên hệ feature--label, vừa ``biết'' phân phối class thật.\n  \item Hội tụ nhanh hơn vì minority xuất hiện thường hơn.\n\end{itemize}\n\end{luuy}
+
+%==============================================================================
+\section{Chia tập dữ liệu ban đầu (Dividing the original dataset)}
+%==============================================================================
+
+\begin{ynghia}\nCũng như dự án phần mềm cần test, mô hình ML cũng cần được kiểm thử trên dữ liệu khác với dữ liệu huấn luyện.\n\end{ynghia}
+
+\subsection{Training set, validation set, test set}
+
+\begin{luuy}\nBạn nên kiểm thử mô hình trên một tập ví dụ \textbf{khác} tập train. Cách truyền thống: chia dataset gốc.\n\end{luuy}
+
+\begin{dinhnghia}[title={Chia 2 tập: train/test (ý tưởng ổn nhưng chưa tối ưu)}]\nBạn có thể nghĩ chia thành:\n\begin{itemize}\n  \item \href{https://developers.google.com/machine-learning/glossary\#training-set}{Training set} để train.\n  \item \href{https://developers.google.com/machine-learning/glossary\#test-set}{Test set} để đánh giá.\n\end{itemize}\nTrong MLCC, hình minh họa thường là khoảng 80\% train, 20\% test.\n\end{dinhnghia}
+
+\begin{luuy}[title={Bài tập: nhiều vòng tối ưu dựa trên test set có vấn đề gì?}]\nNếu bạn lặp nhiều vòng: train trên train set, đánh giá trên test set, rồi dùng kết quả test để chỉnh hyperparameter/feature set; điều gì sai?\n\n\textbf{Đáp án:} làm như vậy khiến mô hình dần \textbf{khớp theo đặc thù} của test set (giống ``dạy theo đề''), làm giảm khả năng tổng quát ra dữ liệu thực.\n\end{luuy}
+
+\begin{ynghia}\nChia 2 tập là ý tưởng ổn, nhưng tốt hơn là chia 3 tập: thêm validation set.\n\end{ynghia}
+
+\mlimgmaybe[0.85]{PartitionThreeSets.png}
+\begin{center}\small\textbf{Hình 9.} Chia 70\% train, 15\% validation, 15\% test (ví dụ điển hình).\end{center}
+
+\begin{dinhnghia}[title={Vai trò của validation}]\nDùng \href{https://developers.google.com/machine-learning/glossary\#validation-set}{validation set} để đánh giá trong quá trình phát triển và điều chỉnh mô hình. Khi dùng validation nhiều lần và thấy mô hình ổn, hãy dùng test set để \textbf{xác nhận cuối}.\n\end{dinhnghia}
+
+\begin{luuy}[title={Lưu ý về transform}]\nKhi bạn transform một feature trong training set, bạn phải áp dụng \textbf{y hệt} transform đó cho validation set, test set và dữ liệu thực.\n\end{luuy}
+
+\begin{ynghia}\nNgay cả với quy trình đúng, test/validation cũng có thể ``mòn'' vì dùng lặp lại: càng dùng một tập dữ liệu để ra quyết định, càng kém tự tin mô hình sẽ tốt trên dữ liệu mới. Cách xử lý: thu thập thêm dữ liệu để ``làm mới'' test/validation.\n\end{ynghia}
+
+\begin{luuy}[title={Bài tập: test loss thấp bất thường, có thể sai gì?}]\nBạn đã shuffle và chia train/val/test, nhưng test loss thấp đến mức nghi ngờ. Có thể sai gì?\n\n\textbf{Đáp án:} test set có nhiều ví dụ trùng với training set. Dataset có thể có ví dụ dư thừa; nên xóa trùng khỏi test set trước khi test.\n\end{luuy}
+
+\subsection{Vấn đề bổ sung của test set}
+
+\begin{luuy}\nSau khi chia, hãy xóa mọi ví dụ trong validation/test mà bị trùng với training: test công bằng phải là trên ví dụ \textbf{mới}, không phải bản sao.\n\end{luuy}
+
+\begin{vidu}[title={Ví dụ spam email}]\nBạn chia 80-20 train/test, train xong đạt 99\% precision cả train và test. Hóa ra nhiều ví dụ trong test trùng với train vì bạn không scrub duplicate entries trước khi chia. Bạn đã vô tình train trên một phần test.\n\end{vidu}
+
+\begin{tinhchat}[title={Một test/validation set tốt}]\n\begin{itemize}\n  \item Đủ lớn để kết quả có ý nghĩa thống kê.\n  \item Đại diện cho dataset nói chung (không khác tính chất với train).\n  \item Đại diện cho dữ liệu thực mà mô hình sẽ gặp.\n  \item Không có ví dụ trùng với training set.\n\end{itemize}\n\end{tinhchat}
+
+\begin{luuy}[title={Bài tập: phát biểu đúng}]\n\begin{itemize}\n  \item \textbf{Mỗi ví dụ dùng để test là một ví dụ không được dùng để train.} (Đúng: chia train/val/test là trò chơi zero-sum với tổng số ví dụ cố định.)\n  \item ``Test set phải lớn hơn validation set.'' (Không nhất thiết; thường gần bằng.)\n  \item ``Test set phải lớn hơn cả training set.'' (Sai.)\n\end{itemize}\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: test tốt nhưng ra production tệ}]\nTest đủ lớn và loss thấp, nhưng mô hình ra thực tế kém. Làm gì?\n\n\textbf{Đáp án:} xác định dataset khác dữ liệu thực ở đâu. Dataset chỉ là ``ảnh chụp'' của đời thực; \href{https://developers.google.com/machine-learning/glossary\#ground-truth}{ground truth} đổi theo thời gian. Có thể cần thu thập lại và retrain/retest.\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: test set cần bao nhiêu ví dụ?}]\n\textbf{Đáp án:} đủ để kiểm thử có ý nghĩa thống kê. Con số cụ thể phải thử nghiệm theo bài toán, không có phần trăm cố định.\n\end{luuy}
+
+%==============================================================================
+\section{Chuyển đổi dữ liệu (Transforming data)}
+%==============================================================================
+
+\begin{dongco}\nMô hình ML chỉ train trên float, nhưng nhiều feature không phải float, nên phải biến đổi feature về biểu diễn float.\n\end{dongco}
+
+\begin{vidu}[title={Tên đường}]\nGiả sử \\texttt{street names} là feature dạng chuỗi như ``Broadway''. Mô hình không thể train trên chuỗi, nên phải biến đổi thành số thực (xem module Categorical Data).\n\end{vidu}
+
+\begin{luuy}\nNgay cả feature float cũng thường nên transform (\\href{https://developers.google.com/machine-learning/glossary\#normalization}{normalization}) để đưa về miền thuận lợi cho huấn luyện (xem module Numerical Data).\n\end{luuy}
+
+\subsection{Sample khi dữ liệu quá nhiều}
+
+\begin{ynghia}\nNếu dataset có quá nhiều example, bạn phải chọn một \textbf{tập con} để train. Khi có thể, hãy chọn tập con liên quan nhất tới dự đoán.\n\end{ynghia}
+
+\subsection{Lọc PII}
+
+\begin{luuy}\nDataset tốt nên bỏ ví dụ chứa thông tin định danh cá nhân (PII) để bảo vệ quyền riêng tư; nhưng việc lọc này có thể ảnh hưởng mô hình. (Xem module Safety \& Privacy sau.)\n\end{luuy}
+
+%==============================================================================
+\section{Tổng quát hóa (Generalization)}
+%==============================================================================
+
+\begin{ynghia}\nXem video về một vấn đề phổ biến khi train trên training dataset:\n\begin{center}\n\url{https://www.youtube.com/watch?v=TyT8i8YIcwI}\n\end{center}\n\end{ynghia}
+
+%==============================================================================
+\section{Quá trình điều chỉnh quá mức (Overfitting)}
+%==============================================================================
+
+\begin{ynghia}
+\textbf{Overfitting} nghĩa là mô hình khớp (ghi nhớ) tập huấn luyện quá sát đến mức dự đoán kém trên dữ liệu mới. Overfitting rất phổ biến trong ML.
+\end{ynghia}
+
+\subsection{Ví dụ: rừng cây khỏe / cây bệnh}
+
+Hình dưới: kim cương xanh = cây khỏe, vòng tròn cam = cây bệnh (tập huấn luyện).
+\mlimgmaybe{TreesTrainingSet.png}
+\begin{center}\small\textbf{Hình 11.} Vị trí cây khỏe/cây bệnh trong tập huấn luyện.\end{center}
+
+Bạn có thể vẽ đường cong/hình bầu dục để tách hai loại. Một đường phân chia phức tạp có thể phân loại gần như mọi điểm trên train:
+\mlimgmaybe[0.85]{TreesTrainingSetComplexModel.png}
+\begin{center}\small\textbf{Hình 12.} Mô hình phức tạp trên tập huấn luyện.\end{center}
+
+Nhưng trên tập kiểm tra (dữ liệu mới), mô hình đó lại sai nhiều:
+\mlimgmaybe[0.85]{TreesTestSetComplexModel.png}
+\begin{center}\small\textbf{Hình 13.} Cùng mô hình phức tạp trên tập kiểm tra --- kém.\end{center}
+
+\subsection{Underfit, fit và overfit}
+
+\begin{center}
+\small
+\begin{tabular}{@{}ll@{}}
+\toprule
+\textbf{Tình huống} & \textbf{Mô tả} \\
+\midrule
+Overfit & Tốt trên train, kém trên dữ liệu mới \\
+Underfit & Kém cả trên train \\
+Fit tốt & Tốt trên train và khái quát tốt \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\mlimgmaybe[0.75]{underfit_fit_overfit.png}
+\begin{center}\small\textbf{Hình 14.} Underfit, fit, overfit.\end{center}
+
+\begin{dinhnghia}[title={Tổng quát hóa}]\n\href{https://developers.google.com/machine-learning/glossary\#generalization}{Generalization} là đối lập với overfitting: mô hình dự đoán tốt trên dữ liệu mới. Đây là mục tiêu.\n\end{dinhnghia}
+
+\subsection{Phát hiện overfitting}
+
+\begin{ynghia}\nHai công cụ chính:\n\begin{itemize}\n  \item \textbf{Loss curve}: loss theo số bước huấn luyện.\n  \item \textbf{Generalization curve}: đặt loss train và loss validation lên cùng đồ thị.\n\end{itemize}\n\end{ynghia}
+
+\mlimgmaybe[0.8]{RegularizationTwoLossFunctions.png}
+\begin{center}\small\textbf{Hình 15.} Hai đường loss tách nhau --- gợi ý overfitting.\end{center}
+
+\begin{luuy}\nBan đầu hai đường gần nhau; sau đó tách: loss train giảm/ổn định, loss validation tăng \(\Rightarrow\) overfitting. Mô hình fit tốt: hai đường có hình dạng tương tự.\n\end{luuy}
+
+\subsection{Nguyên nhân overfitting}
+
+\begin{tinhchat}\nOverfitting thường do một hoặc cả hai:\n\begin{enumerate}\n  \item Tập huấn luyện không đại diện cho dữ liệu thực (hoặc cho validation/test).\n  \item Mô hình quá phức tạp so với bài toán.\n\end{enumerate}\n\end{tinhchat}
+
+\subsection{Điều kiện tổng quát hóa (điều kiện dataset)}
+
+\begin{phuongphap}[title={Ba điều kiện thường nhắc}]\n\begin{itemize}\n  \item \textbf{IID} (independently and identically distributed): các mẫu độc lập và cùng phân phối.\n  \item \textbf{Stationary}: phân phối không đổi mạnh theo thời gian.\n  \item Train/validation/test và dữ liệu thực \textbf{cùng phân phối}.\n\end{itemize}\n\end{phuongphap}
+
+\begin{luuy}[title={Check your understanding}]\n\begin{itemize}\n  \item Muốn train/val/test giống nhau thống kê? \(\to\) \\textbf{shuffle kỹ} trước khi chia; dữ liệu sắp theo thời gian có thể làm phân phối khác nhau.\n  \item Dự đoán độ hot TV 3 năm tới, train trên 10 năm qua, hàng trăm triệu mẫu? \(\to\) có vấn đề vì thị hiếu \\textbf{không stationary}.\n  \item Dự đoán thời gian đi bộ 1 dặm theo thời tiết trong thành phố 4 mùa? \(\to\) có thể, nếu chia tập sao cho \\textbf{mỗi mùa đều xuất hiện} trong train/val/test.\n\end{itemize}\n\end{luuy}
+
+\begin{vidu}[title={Bài tập thử thách: vé tàu và feedback loop}]\nMô hình gợi ý ngày mua vé tối ưu; loss thấp trên val/test nhưng đôi khi rất tệ ngoài đời. Lý do có thể là \\href{https://developers.google.com/machine-learning/glossary\\#feedback-loop}{\\textbf{feedback loop}}: gợi ý làm hành vi người dùng đổi, công ty đổi giá, dữ liệu thực thay đổi \(\Rightarrow\) mô hình lỗi thời.\n\end{vidu}
+
+%==============================================================================
+\section{Độ phức tạp của mô hình (Model complexity) và Regularization}
+%==============================================================================
+
+\mlimgmaybe[0.85]{TreesTestSetComplexModel.png}
+\begin{center}\small\textbf{Hình 16.} Mô hình phức tạp gây nhiều lỗi trên test set.\end{center}
+
+\begin{ynghia}\nNếu thay bằng mô hình đơn giản hơn (đường thẳng) thì sao?\n\end{ynghia}
+
+\mlimgmaybe[0.85]{TreesTestSetSimpleModel.png}
+\begin{center}\small\textbf{Hình 17.} Mô hình đơn giản (đường thẳng) tổng quát tốt hơn.\end{center}
+
+\begin{ynghia}[title={Occam's Razor}]\nƯu tiên đơn giản đã có từ rất lâu; William of Occam hệ thống hóa thành ``lưỡi dao Occam''. Nguyên lý này là nền tảng của nhiều khoa học, gồm ML.\n\end{ynghia}
+
+\begin{luuy}\nMô hình phức tạp thường tốt hơn trên training set; nhưng mô hình đơn giản thường tốt hơn trên test set (quan trọng hơn).\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: Occam-friendly hơn?}]\nCông thức vật lý với 3 biến hay 12 biến hợp Occam hơn?\n\n\textbf{Đáp án: 3 biến.} (Những công thức nổi tiếng như \(F=ma\), \(E=mc^2\) đều chỉ có 3 biến.)\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: chọn bao nhiêu feature lúc bắt đầu?}]\nBạn bắt đầu dự án ML mới, sắp chọn feature đầu tiên: chọn bao nhiêu?\n\n\textbf{Đáp án:} chọn \textbf{1--3 feature} có vẻ dự đoán mạnh. Bắt đầu nhỏ giúp xác nhận pipeline hoạt động, dựng baseline nhanh và tránh \\textbf{curse of dimensionality} (tăng chiều làm không gian phình nhanh khiến dữ liệu trở nên thưa, khó học).\n\end{luuy}
+
+\subsection{Regularization}
+
+\begin{dinhnghia}[title={Regularization}]\nMô hình cần đồng thời đạt hai mục tiêu mâu thuẫn: (1) khớp dữ liệu tốt; (2) khớp đơn giản nhất có thể. Một cách giữ mô hình đơn giản là phạt mô hình phức tạp trong lúc train --- đó là \\textbf{regularization}.\n\end{dinhnghia}
+
+\begin{vidu}[title={Ẩn dụ cái còi báo ồn}]\nTưởng tượng mỗi sinh viên có một cái còi làm thầy khó chịu. Mỗi khi bài giảng quá phức tạp, sinh viên bấm còi khiến thầy buộc phải đơn giản hóa. Dần dần, còi ``huấn luyện'' thầy giảng đủ đơn giản để hiểu, dù có thể kém chi tiết.\n\end{vidu}
+
+\subsection{Loss và complexity}
+
+\begin{ynghia}\nNếu chỉ tối ưu \(\min(\text{loss})\), mô hình dễ overfit. Tối ưu tốt hơn là \(\min(\text{loss} + \text{complexity})\).\n\nLoss và complexity thường nghịch biến: complexity tăng thì loss giảm, và ngược lại. Ta cần điểm cân bằng sao cho dự đoán tốt cả trên train lẫn dữ liệu thực.\n\end{ynghia}
+
+\subsection{Complexity đo bằng gì?}
+
+\begin{luuy}[title={Bài tập: complexity metric hợp lý?}]\nÝ nào hợp lý để đo complexity?\n\begin{itemize}\n  \item Complexity là hàm của trọng số (weights). \textbf{Có} (L1 regularization).\n  \item Complexity là hàm của bình phương trọng số. \textbf{Có} (L2 regularization).\n  \item Complexity là hàm của các bias. \textbf{Không} (bias không đo complexity).\n\end{itemize}\n\end{luuy}
+
+%==============================================================================
+\section{Điều chỉnh L2 (L\texorpdfstring{$_2$}{2} regularization) và lambda}
+%==============================================================================
+
+\begin{dinhnghia}[title={Công thức L2 regularization}]\n\[\n  L_2 = w_1^2 + w_2^2 + \\cdots + w_n^2.\n\]\n\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ tính L2 với 6 trọng số}]\n\begin{center}\n\small\n\begin{tabular}{@{}lrr@{}}\n\toprule\n & \textbf{Giá trị} & \textbf{Bình phương} \\\\\n\midrule\n$w_1$ & 0.2 & 0.04 \\\\\n$w_2$ & -0.5 & 0.25 \\\\\n$w_3$ & 5.0 & 25.0 \\\\\n$w_4$ & -1.2 & 1.44 \\\\\n$w_5$ & 0.3 & 0.09 \\\\\n$w_6$ & -0.1 & 0.01 \\\\\n\midrule\n &  & \textbf{26.83} \\\\\n\bottomrule\n\end{tabular}\n\end{center}\nNhận xét: trọng số gần 0 đóng góp ít; trọng số lớn có thể chiếm phần lớn complexity. Trong ví dụ, một mình $w_3$ đóng góp khoảng 93\% tổng.\n\end{vidu}
+
+\begin{luuy}\nL2 khuyến khích trọng số tiến về 0 nhưng không đẩy hẳn về 0.\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: dùng L2 thì complexity thay đổi thế nào?}]\n\textbf{Đáp án:} complexity tổng thể thường giảm vì L2 kéo weights về 0.\n\end{luuy}
+
+\begin{luuy}[title={Bài tập: L2 có loại bỏ feature không?}]\n\textbf{Đáp án: Không.} Dù có thể làm một số weight rất nhỏ, L2 không đẩy weight nào về đúng 0, nên mọi feature vẫn đóng góp một chút.\n\end{luuy}
+
+\subsection{Regularization rate (lambda)}
+
+\begin{ynghia}\nTraining tối ưu \(\min(\text{loss} + \\lambda\\cdot \text{complexity})\). \\(\lambda\\) là \href{https://developers.google.com/machine-learning/glossary\#regularization-rate}{regularization rate}.\n\end{ynghia}
+
+\begin{tinhchat}[title={Lambda cao vs thấp}]\nLambda cao:\n\begin{itemize}\n  \item Tăng ảnh hưởng regularization, giảm nguy cơ overfit.\n  \item Histogram weights thường gần phân bố chuẩn, mean 0.\n\end{itemize}\nLambda thấp:\n\begin{itemize}\n  \item Giảm regularization, tăng nguy cơ overfit.\n  \item Histogram weights ``phẳng'' hơn.\n\end{itemize}\n\end{tinhchat}
+
+\mlimgmaybe[0.8]{HighLambda.png}
+\begin{center}\small\textbf{Hình 18.} Histogram weights khi lambda cao (mean 0, gần chuẩn).\end{center}
+
+\mlimgmaybe[0.8]{LowLambda.png}
+\begin{center}\small\textbf{Hình 19.} Histogram weights khi lambda thấp (phẳng hơn).\end{center}
+
+\begin{luuy}\nĐặt lambda = 0 là bỏ regularization hoàn toàn; training chỉ tối thiểu loss \(\Rightarrow\) rủi ro overfit cao nhất.\n\end{luuy}
+
+\subsection{Chọn lambda}
+
+\begin{ynghia}\nLambda ``lý tưởng'' phụ thuộc dữ liệu, nên phải tuning.\n\end{ynghia}
+
+\subsection{Early stopping: lựa chọn thay thế}
+
+\begin{dinhnghia}[title={Early stopping}]\n\href{https://developers.google.com/machine-learning/glossary\#early-stopping}{Early stopping} là regularization không cần đo complexity: dừng train trước khi hội tụ hoàn toàn, ví dụ dừng khi loss validation bắt đầu tăng (độ dốc dương). Thường tăng training loss nhưng có thể giảm test loss.\n\end{dinhnghia}
+
+\begin{luuy}\nEarly stopping nhanh nhưng hiếm khi tối ưu; mô hình thường không tốt bằng mô hình được train kỹ với lambda lý tưởng.\n\end{luuy}
+
+\subsection{Cân bằng learning rate và regularization rate}
+
+\begin{ynghia}\nLearning rate và regularization rate thường kéo weights theo hai hướng ngược nhau: learning rate cao kéo weights \textbf{ra xa} 0; regularization rate cao đẩy weights \textbf{về} 0.\n\nNếu regularization quá cao so với learning rate: weights yếu \(\Rightarrow\) dự đoán kém. Nếu learning rate quá cao so với regularization: weights mạnh \(\Rightarrow\) overfit.\n\nMục tiêu: tìm điểm cân bằng; nhưng khi đổi learning rate bạn có thể phải tìm lại lambda tối ưu.\n\end{ynghia}
+
+%==============================================================================
+\section{Diễn giải đường cong tổn thất (Interpreting loss curves)}
+%==============================================================================
+
+\begin{ynghia}\nML sẽ dễ hơn nhiều nếu lần đầu train loss curve luôn như ``lý tưởng''.\n\end{ynghia}
+
+\mlimgmaybe[0.85]{metric-curve-ideal.png}
+\begin{center}\small\textbf{Hình 20.} Loss lý tưởng: giảm nhanh rồi phẳng dần tới minimum.\end{center}
+
+\begin{luuy}\nThực tế loss curve thường khó đọc. Dưới đây là các bài tập dựa trên trực giác.\n\end{luuy}
+
+\subsection{Bài tập 1: loss dao động (oscillating)}
+
+\mlimgmaybe[0.85]{metric-curve-ex03.png}
+\begin{center}\small\textbf{Hình 21.} Loss dao động, không phẳng.\end{center}
+
+\begin{luuy}[title={Bạn có thể làm 3 việc gì để cải thiện?}]\n\begin{itemize}\n  \item Kiểm dữ liệu theo data schema để phát hiện ví dụ xấu và loại bỏ. (Thực hành tốt cho mọi mô hình.)\n  \item Giảm learning rate. (Thường hữu ích khi debug train.)\n  \item Giảm training set xuống một tập nhỏ, đáng tin để mô hình hội tụ; sau đó thêm dần ví dụ để tìm ví dụ nào gây dao động. (Nghe ``giả'' nhưng thực sự là kỹ thuật tốt.)\n\end{itemize}\nKhông nên kỳ vọng tăng số ví dụ hoặc tăng learning rate sẽ sửa dạng curve này.\n\end{luuy}
+
+\subsection{Bài tập 2: loss nhảy vọt (sharp jump)}
+
+\mlimgmaybe[0.85]{metric-curve-ex02.png}
+\begin{center}\small\textbf{Hình 22.} Loss giảm rồi đột ngột tăng.\end{center}
+
+\begin{luuy}[title={Hai nguyên nhân khả dĩ?}]\n\begin{itemize}\n  \item Input có NaN (ví dụ do chia cho 0). (Phổ biến hơn bạn tưởng.)\n  \item Input có một burst outliers (do shuffle batch kém làm một batch chứa rất nhiều outlier).\n\end{itemize}\nLearning rate quá thấp không gây hình dạng này; regularization quá cao có thể làm khó hội tụ nhưng không giải thích jump như vậy.\n\end{luuy}
+
+\subsection{Bài tập 3: validation loss tăng còn training loss giảm}
+
+\mlimgmaybe[0.85]{metric-curve-ex01.png}
+\begin{center}\small\textbf{Hình 23.} Train loss hội tụ nhưng validation loss tăng sau một thời điểm.\end{center}
+
+\begin{luuy}[title={Nguyên nhân tốt nhất?}]\n\textbf{Đáp án: mô hình đang overfit training set.} Cách xử lý:\n\begin{itemize}\n  \item Làm mô hình đơn giản hơn (giảm số feature).\n  \item Tăng regularization rate.\n  \item Đảm bảo training set và test/validation set tương đương thống kê.\n\end{itemize}\n\end{luuy}
+
+\subsection{Bài tập 4: loss bị kẹt / dạng sóng chữ nhật}
+
+\mlimgmaybe[0.85]{metric-curve-ex05.png}
+\begin{center}\small\textbf{Hình 24.} Loss tạo pattern như sóng chữ nhật.\end{center}
+
+\begin{luuy}[title={Giải thích khả dĩ nhất?}]\n\textbf{Đáp án: training set không được shuffle tốt.} Ví dụ: 100 ảnh chó rồi 100 ảnh mèo làm loss dao động; cần shuffle đủ. Regularization quá cao hoặc quá nhiều feature ít khả năng gây pattern này.\n\end{luuy}
+
+%==============================================================================
+\section{Tổng kết}
+%==============================================================================
+
+\begin{tongket}[title={Tổng kết chương}]
+\begin{itemize}
+  \item Dữ liệu quyết định sức khỏe mô hình: ưu tiên chất lượng dataset.
+  \item Hiểu reliability: thiếu giá trị, trùng lặp, feature lỗi, nhãn sai, đoạn dữ liệu xấu.
+  \item Xử lý missing: xóa hoặc impute; nếu impute, nên thêm cờ cho biết giá trị bị impute.
+  \item Chia train/validation/test đúng cách; tránh ``teaching to the test''; loại bỏ trùng train--test.
+  \item Overfitting: phát hiện qua generalization curve; nguyên nhân chính: dataset không đại diện hoặc mô hình quá phức tạp.
+  \item Regularization: tối ưu \(\text{loss}+\text{complexity}\); L2 với lambda; early stopping; cân bằng learning rate và lambda.
+  \item Loss curves: dao động, nhảy vọt, tách train/val, pattern do shuffle kém.
+\end{itemize}
+\end{tongket}
+
+\end{document}

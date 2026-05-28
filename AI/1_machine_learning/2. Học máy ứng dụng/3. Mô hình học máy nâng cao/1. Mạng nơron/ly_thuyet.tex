@@ -1,0 +1,315 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY NÂNG CAO --- MẠNG NƠRON}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Mạng nơron}
+\def\coversubtitle{Lý thuyết --- Kiến trúc, hàm kích hoạt, lan truyền ngược, đa lớp}
+
+\input{../../_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+
+\graphicspath{{images/neural-networks/}}
+
+\newcommand{\nnimg}[2][0.88]{%%
+  \def\nnfile{images/neural-networks/#2}%%
+  \IfFileExists{\nnfile}{%%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%%
+  }{%%
+    \begin{luuy}[title={Thiếu hình minh họa}]%%
+      Không tìm thấy \path{\nnfile}. Nếu cần, tải PNG tương ứng từ MLCC.%%
+    \end{luuy}%%
+  }%%
+}
+
+\begin{document}
+
+\input{../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn và cách đọc}]
+Tài liệu biên soạn và dịch từ \emph{Neural networks} (Google Machine Learning Crash Course).
+\end{ynghia}
+
+\begin{luuy}[title={Điều kiện tiên quyết}]
+\begin{itemize}
+  \item Introduction to ML, Linear regression, Logistic regression, Classification.
+  \item Numerical data, Categorical data.
+  \item Datasets, Generalization, and Overfitting.
+\end{itemize}
+\end{luuy}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{itemize}
+  \item Hiểu động cơ dùng mạng nơron cho bài toán phi tuyến.
+  \item Nắm khái niệm nút, lớp ẩn, hàm kích hoạt.
+  \item Nắm trực giác suy luận (inference) trong mạng nơron nhiều lớp.
+  \item Nắm ý tưởng lan truyền ngược, vấn đề gradient mất/ nổ, dropout.
+  \item Hiểu phân loại đa lớp kiểu one-vs-all và softmax (one-vs-one).
+\end{itemize}
+\end{phuongphap}
+
+\newpage
+
+%==============================================================================
+\section{Giới thiệu mạng nơron}
+%==============================================================================
+
+\begin{dongco}[title={Bài toán phi tuyến}]
+Trong module dữ liệu danh mục, bạn đã thấy bài toán phân loại phi tuyến: điểm xanh/da cam nằm xen kẽ theo hình vòng tròn hoặc hình chữ thập; đường thẳng không thể chia chúng sạch sẽ.
+\end{dongco}
+
+\begin{vidu}[title={Feature cross cho bài toán đơn giản}]
+Với bài toán ``chữ thập'' đơn giản, thêm feature cross $x_1x_2$ cho phép mô hình tuyến tính học đường cong siêu bậc tách hai lớp.
+\end{vidu}
+
+\begin{vidu}[title={Bài toán vòng tròn khó hơn}]
+Với tập dữ liệu ``vòng tròn trong vòng tròn'', việc đoán trước feature cross phù hợp trở nên khó và tốn công thử nghiệm.
+\end{vidu}
+
+\begin{dinhnghia}[title={Mạng nơron}]
+\href{https://developers.google.com/machine-learning/glossary\#neural_network}{Mạng nơron} là họ kiến trúc mô hình được thiết kế để học \href{https://developers.google.com/machine-learning/glossary\#nonlinear}{mối quan hệ phi tuyến} trong dữ liệu, bằng cách xếp chồng nhiều tầng phép biến đổi tuyến tính + phi tuyến.
+\end{dinhnghia}
+
+\begin{tongket}
+Các phần sau lần lượt trình bày: (1) nút và lớp ẩn, (2) hàm kích hoạt, (3) lan truyền ngược và regularization, (4) bài tập tương tác, (5) phân loại đa lớp.
+\end{tongket}
+
+%==============================================================================
+\section{Nút và lớp ẩn}
+%==============================================================================
+
+\begin{dinhnghia}[title={Mô hình tuyến tính dạng mạng}]
+Mô hình tuyến tính quen thuộc $y' = b + w_1x_1 + w_2x_2 + w_3x_3$ có thể vẽ thành ``mạng'' với 3 nút đầu vào (xanh) và 1 nút đầu ra (xanh lá): mỗi cạnh mang một trọng số $w_i$, cộng thêm bias $b$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Bài tập 1 (tương tác trong MLCC)}]
+Widget cho phép thay đổi các $x_i$, $w_i$, $b$ và xem lại cách tính $y'$ (hàm Linear chỉ trả về đầu vào). Việc chỉnh tham số không làm thay đổi việc mô hình vẫn là \textbf{tuyến tính} theo $x_i$.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Lớp ẩn và nơron}]
+\begin{itemize}
+  \item \href{https://developers.google.com/machine-learning/glossary\#input-layer}{Lớp đầu vào}: chứa các đặc trưng $x_i$.
+  \item \href{https://developers.google.com/machine-learning/glossary\#hidden_layer}{Lớp ẩn}: lớp nằm giữa đầu vào và đầu ra; mỗi nút gọi là \href{https://developers.google.com/machine-learning/glossary\#neuron}{nơron}.
+  \item Giá trị từng nơron ẩn: tổng có trọng số của đầu vào từ lớp trước + bias riêng, giống hệt mô hình tuyến tính.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{ynghia}[title={Thêm lớp ẩn có giúp phi tuyến?}]
+Nếu mọi phép biến đổi giữa các lớp đều \textbf{tuyến tính} (nhân + cộng), thì xếp chồng nhiều lớp vẫn chỉ là \textbf{một phép tuyến tính tương đương}. Do đó, chỉ thêm lớp ẩn mà không thêm phi tuyến thì mô hình vẫn không học được phi tuyến.
+\end{ynghia}
+
+\begin{luuy}[title={Kiểm tra hiểu biết --- Số tham số}]
+Ví dụ mạng 3 đầu vào, 1 lớp ẩn 4 nơron, 1 đầu ra:
+\begin{itemize}
+  \item 4 nơron ẩn: mỗi nơron có 3 trọng số + 1 bias $\Rightarrow 16$ tham số.
+  \item 1 nơron đầu ra: 4 trọng số (mỗi nơron ẩn một trọng số) + 1 bias $\Rightarrow 5$ tham số.
+  \item Tổng cộng: 21 tham số.
+\end{itemize}
+Mặc dù nhiều lớp và tham số hơn, mọi phép tính vẫn tuyến tính $\Rightarrow$ chưa học được phi tuyến.
+\end{luuy}
+
+%==============================================================================
+\section{Hàm kích hoạt}
+%==============================================================================
+
+\begin{dongco}[title={Làm sao đưa phi tuyến vào mạng?}]
+Ghép tuyến tính sau tuyến tính vẫn tuyến tính. Cần chèn \textbf{phép biến đổi phi tuyến} giữa các lớp để mạng học quan hệ phức tạp.
+\end{dongco}
+
+\begin{vidu}[title={So sánh với logistic regression}]
+Trong hồi quy logistic, ta đưa đầu ra tuyến tính $z$ qua hàm sigmoid để được xác suất $y'$. Tương tự, trong mạng nơron, ta đưa tổng có trọng số qua \href{https://developers.google.com/machine-learning/glossary\#activation_function}{\textbf{hàm kích hoạt}} trước khi chuyển sang lớp kế tiếp.
+\end{vidu}
+
+\begin{dinhnghia}[title={Hàm kích hoạt}]
+Hàm kích hoạt $\sigma$ là hàm phi tuyến áp dụng lên đầu ra tuyến tính của mỗi nơron:
+\[
+  \text{nơron}(\boldsymbol x) = \sigma(\boldsymbol w \cdot \boldsymbol x + b)
+\]
+Xếp chồng nhiều lớp với hàm kích hoạt $\Rightarrow$ mô hình hóa được quan hệ phi tuyến phức tạp.
+\end{dinhnghia}
+
+\subsection{Ba hàm kích hoạt phổ biến}
+
+\begin{congthuc}[title={Sigmoid}]
+\[
+  \sigma(x) = \frac{1}{1 + e^{-x}}
+\]
+Đầu ra trong $(0,1)$. Hay dùng ở đầu ra cho xác suất.
+\end{congthuc}
+
+\begin{congthuc}[title={tanh}]
+\[
+  \sigma(x) = \tanh(x)
+\]
+Đầu ra trong $(-1,1)$. Hình chữ S giống sigmoid nhưng dốc hơn.
+\end{congthuc}
+
+\begin{congthuc}[title={ReLU}]
+\[
+  \sigma(x) = \max(0,x)
+\]
+Đưa mọi giá trị âm về 0, giữ nguyên giá trị dương.
+\end{congthuc}
+
+\begin{tinhchat}[title={So sánh sigmoid, tanh, ReLU}]
+\begin{itemize}
+  \item Sigmoid, tanh trơn, nhưng dễ gặp \href{https://developers.google.com/machine-learning/glossary\#vanishing-gradient-problem}{vanishing gradient} khi $|x|$ lớn.
+  \item ReLU đơn giản, rẻ tính toán, thường giúp giảm vấn đề gradient mất.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Tóm tắt kiến trúc mạng nơron}]
+Một mạng nơron điển hình gồm:
+\begin{itemize}
+  \item Nhiều lớp nơron (input, ẩn, output).
+  \item Trọng số + bias giữa các lớp.
+  \item Hàm kích hoạt áp dụng trên mỗi nơron (có thể khác nhau giữa các lớp, nhưng thường cùng loại trong một lớp).
+\end{itemize}
+\end{luuy}
+
+%==============================================================================
+\section{Huấn luyện bằng lan truyền ngược}
+%==============================================================================
+
+\begin{dinhnghia}[title={Backpropagation}]
+\href{https://developers.google.com/machine-learning/glossary\#backpropagation}{Lan truyền ngược} là thuật toán chuẩn để tính gradient trong mạng nơron nhiều lớp, giúp áp dụng gradient descent cho toàn mạng.
+\end{dinhnghia}
+
+\begin{ungdung}[title={Video trực quan}]
+\url{https://www.youtube.com/watch?v=ovCyBmlrZGg}
+\end{ungdung}
+
+\subsection{Một số hiện tượng khi huấn luyện}
+
+\begin{tinhchat}[title={Vanishing gradient}]
+\begin{itemize}
+  \item Ở các lớp dưới (gần đầu vào), gradient có thể rất nhỏ do là tích của nhiều số nhỏ.
+  \item Khi gradient gần 0, lớp đó học rất chậm hoặc không học được.
+  \item Hàm kích hoạt như ReLU giúp giảm bớt hiện tượng này.
+\end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Exploding gradient}]
+\begin{itemize}
+  \item Nếu trọng số lớn, gradient ở lớp dưới là tích của nhiều số lớn $\Rightarrow$ \textbf{gradient nổ}.
+  \item Có thể làm việc học không hội tụ.
+  \item Khắc phục: batch normalization, giảm learning rate.
+\end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Dead ReLU units}]
+\begin{itemize}
+  \item Khi tổng có trọng số vào ReLU $<0$, đầu ra = 0 và gradient qua nút đó = 0.
+  \item Nút có thể ``chết'' (luôn ra 0) nếu không còn gradient để cập nhật.
+  \item Khắc phục: giảm learning rate; dùng biến thể ReLU (LeakyReLU, v.v.).
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Dropout regularization}
+
+\begin{dinhnghia}[title={Dropout}]
+\href{https://developers.google.com/machine-learning/glossary\#dropout_regularization}{Dropout} là kỹ thuật regularization trong đó một tỉ lệ nút được ``tắt'' (output=0) ngẫu nhiên trong một bước cập nhật.
+\begin{itemize}
+  \item Tỉ lệ 0,0: không dropout.
+  \item Tỉ lệ 1,0: tắt hết, không học được gì.
+  \item Thực tế: giá trị trung gian (ví dụ 0,2--0,5).
+\end{itemize}
+\end{dinhnghia}
+
+%==============================================================================
+\section{Bài tập tương tác}
+%==============================================================================
+
+\begin{phuongphap}[title={Khám phá mạng nơron bằng widget}]
+MLCC cung cấp widget cho phép:
+\begin{itemize}
+  \item Thay đổi số lớp ẩn, số nơron, learning rate, hàm kích hoạt.
+  \item Quan sát giá trị từng nơron và loss train/test khi huấn luyện.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ynghia}[title={Các bài tập chính}]
+\begin{itemize}
+  \item Ảnh hưởng của giá trị đầu vào và trọng số tới output khi dùng ReLU.
+  \item Ảnh hưởng của thêm lớp ẩn, thêm nơron vào mạng.
+  \item Bài toán ``vòng tròn trong vòng tròn'': cấu hình mạng để loss train/test < 0,2.
+\end{itemize}
+\end{ynghia}
+
+\begin{luuy}[title={Một cấu hình mẫu cho bài toán phi tuyến}]
+Một cấu hình đạt loss < 0,2 trên train/test:
+\begin{itemize}
+  \item 1 lớp ẩn với 3 nơron.
+  \item Learning rate 0,01.
+  \item Hàm kích hoạt ReLU.
+\end{itemize}
+\end{luuy}
+
+%==============================================================================
+\section{Phân loại đa lớp với mạng nơron}
+%==============================================================================
+
+\begin{dinhnghia}[title={Bài toán đa lớp}]
+\href{https://developers.google.com/machine-learning/glossary\#multi-class}{Phân loại đa lớp}: mỗi ví dụ thuộc một trong nhiều lớp (ví dụ loại hoa, loại máy bay, loại quả).
+\end{dinhnghia}
+
+\subsection{One-vs-all}
+
+\begin{phuongphap}[title={Nhiều bộ phân loại nhị phân}]
+\begin{itemize}
+  \item Với $N$ lớp, huấn luyện $N$ bộ phân loại nhị phân ``lớp i vs không phải lớp i''.
+  \item Ví dụ: ảnh quả: ``apple vs not-apple'', ``orange vs not-orange'', v.v.
+\end{itemize}
+\end{phuongphap}
+
+\begin{vidu}[title={One-vs-all với mạng nơron}]
+Mạng nơron nhiều lớp có thể thực hiện one-vs-all bằng cách có \textbf{một nút đầu ra cho mỗi lớp}, áp dụng sigmoid độc lập trên từng nút. Mỗi nút cho xác suất ``là lớp i'' so với ``không phải i''.
+\end{vidu}
+
+\subsection{Softmax (one-vs-one)}
+
+\begin{dongco}[title={Vấn đề tổng xác suất}]
+Trong one-vs-all, các xác suất đầu ra không nhất thiết tổng bằng 1. Khi cần xác suất tương đối giữa các lớp (ví dụ ``apple vs orange vs pear vs grape''), dùng \textbf{softmax}.
+\end{dongco}
+
+\begin{dinhnghia}[title={Softmax}]
+Với véc-tơ điểm $z_j = \boldsymbol w_j^T\boldsymbol x + b_j$ cho mỗi lớp $j$ trong tập lớp $K$:
+\[
+  p(y=j\mid\boldsymbol x) = \frac{e^{z_j}}{\sum_{k\in K} e^{z_k}}
+\]
+Mọi xác suất $p(y=j\mid\boldsymbol x)$ đều trong $(0,1)$ và \textbf{tổng bằng 1}.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Biến thể softmax}]
+\begin{itemize}
+  \item \textbf{Full softmax}: tính xác suất cho mọi lớp --- phù hợp khi số lớp nhỏ/vừa.
+  \item \textbf{Candidate sampling}: tính xác suất cho mọi nhãn dương và một mẫu con nhãn âm --- hiệu quả hơn khi số lớp rất lớn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Giới hạn của softmax}]
+Softmax giả định \textbf{mỗi ví dụ thuộc đúng một lớp}. Nếu ví dụ có thể thuộc nhiều lớp cùng lúc (đa nhãn), cần dùng \textbf{nhiều hồi quy logistic nhị phân} thay vì softmax.
+\end{luuy}
+
+\begin{tongket}[title={Tổng kết chương --- Mạng nơron}]
+\begin{itemize}
+  \item Mạng nơron = nhiều lớp tuyến tính + hàm kích hoạt phi tuyến.
+  \item Lan truyền ngược cho phép lan truyền gradient qua nhiều lớp; cần chú ý gradient mất/nổ, dead ReLU, dropout.
+  \item Softmax mở rộng logistic cho phân loại đa lớp, softmax layer cho output tổng xác suất = 1.
+\end{itemize}
+\end{tongket}
+
+\end{document}
+
