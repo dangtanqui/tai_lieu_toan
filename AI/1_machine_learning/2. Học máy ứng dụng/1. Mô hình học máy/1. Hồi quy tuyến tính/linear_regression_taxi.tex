@@ -1,0 +1,662 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- HỒI QUY TUYẾN TÍNH (COLAB)}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Linear Regression (Taxi Fare)}
+\def\coversubtitle{Bài tập Colab --- Dự đoán giá cước taxi (dịch tiếng Việt)}
+
+\input{../../../_template/preamble.tex}
+
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\newcommand{\mlccurl}[1]{\url{#1}}
+
+\begin{document}
+
+\input{../../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu dịch từ notebook Colab \textit{Linear Regression} (ML Crash Course, 2023):
+\mlccurl{https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/linear_regression_taxi.ipynb}.
+\end{ynghia}
+
+\begin{dongco}[title={Mục tiêu bài tập}]
+Bạn sẽ dùng một dataset thật để huấn luyện mô hình dự đoán \textbf{giá cước} của một chuyến taxi ở Chicago (Illinois, Hoa Kỳ).
+\end{dongco}
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+Sau khi làm xong, bạn có thể:
+\begin{itemize}
+  \item Đọc file \texttt{.csv} vào pandas DataFrame.
+  \item Khám phá dataset bằng các thư viện trực quan hóa.
+  \item Thử nhiều lựa chọn đặc trưng (features) để xây mô hình hồi quy tuyến tính.
+  \item Tinh chỉnh siêu tham số (hyperparameters) của mô hình.
+  \item So sánh các lần chạy qua RMSE và loss curve.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ynghia}[title={Mô tả dataset}]
+Dataset cho bài tập:
+\mlccurl{https://download.mlcc.google.com/mledu-datasets/chicago_taxi_train.csv}
+là một phần con của bộ dữ liệu \textit{City of Chicago Taxi Trips}:
+\mlccurl{https://data.cityofchicago.org/Transportation/Taxi-Trips/wrvz-psew}.
+Dữ liệu tập trung vào một giai đoạn 2 ngày trong tháng 5/2022.
+\end{ynghia}
+
+\newpage
+
+%==============================================================================
+\section{Phần 1 --- Chuẩn bị}
+%==============================================================================
+
+\subsection{Nạp các module cần thiết}
+
+\begin{dongco}[title={Vì sao cần nhiều thư viện?}]
+Bài tập sử dụng nhiều thư viện Python để thao tác dữ liệu, huấn luyện mô hình, và trực quan hóa.
+\end{dongco}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+\begin{enumerate}
+  \item Chạy cell \textbf{Install required libraries}.
+  \item Chạy cell \textbf{Load dependencies}.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Install required libraries
+
+!pip install google-ml-edu==0.1.3 \
+  keras~=3.8.0 \
+  matplotlib~=3.10.0 \
+  numpy~=2.0.0 \
+  pandas~=2.2.0 \
+  tensorflow~=2.18.0
+
+print('\n\nAll requirements successfully installed.')
+\end{lstlisting}
+
+\begin{lstlisting}
+#@title Code - Load dependencies
+
+# data
+import numpy as np
+import pandas as pd
+
+# machine learning
+import keras
+import ml_edu.experiment
+import ml_edu.results
+
+# data visualization
+import plotly.express as px
+\end{lstlisting}
+
+\subsection{Nạp dataset}
+
+\begin{phuongphap}[title={Đọc CSV vào DataFrame}]
+Cell sau sẽ nạp dataset và tạo một pandas DataFrame.
+Bạn có thể coi DataFrame giống như một bảng tính (spreadsheet) có hàng và cột:
+hàng là các mẫu dữ liệu, cột là các thuộc tính của mỗi mẫu.
+\end{phuongphap}
+
+\begin{lstlisting}
+# @title
+chicago_taxi_dataset = pd.read_csv("https://download.mlcc.google.com/mledu-datasets/chicago_taxi_train.csv")
+\end{lstlisting}
+
+\subsection{Chọn cột cần dùng}
+
+\begin{phuongphap}[title={Giữ lại một số cột}]
+Cell sau chỉ giữ lại một số cột cần thiết trong dataset.
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - Read dataset
+
+# Updates dataframe to use specific columns.
+training_df = chicago_taxi_dataset.loc[:, ('TRIP_MILES', 'TRIP_SECONDS', 'FARE', 'COMPANY', 'PAYMENT_TYPE', 'TIP_RATE')]
+
+print('Read dataset completed successfully.')
+print('Total number of rows: {0}\n\n'.format(len(training_df.index)))
+training_df.head(200)
+\end{lstlisting}
+
+\newpage
+
+%==============================================================================
+\section{Phần 2 --- Khám phá dataset}
+%==============================================================================
+
+\subsection{Xem thống kê mô tả}
+
+\begin{dongco}[title={Vì sao phải ``hiểu dữ liệu'' trước?}]
+Trong hầu hết dự án ML, một phần rất lớn là hiểu dữ liệu:
+phạm vi giá trị, outlier, phân phối, biến phân loại, thiếu dữ liệu, \ldots
+\end{dongco}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+\begin{enumerate}
+  \item Chạy cell \textbf{View dataset statistics}.
+  \item Nhìn bảng và trả lời:
+  \begin{itemize}
+    \item Giá cước tối đa là bao nhiêu?
+    \item Quãng đường trung bình cho mọi chuyến là bao nhiêu?
+    \item Có bao nhiêu hãng taxi trong dataset?
+    \item Loại thanh toán phổ biến nhất là gì?
+    \item Có cột nào bị thiếu dữ liệu không?
+  \end{itemize}
+  \item Chạy cell \textbf{View answers\ldots} để kiểm tra.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Vì sao có NaN trong bảng \texttt{describe}?}]
+Khi làm dữ liệu trong Python, bạn có thể thấy \texttt{NaN} (not a number) nếu một phép tính không thể thực hiện hoặc dữ liệu bị thiếu.
+Trong dataset taxi, \texttt{PAYMENT\_TYPE} và \texttt{COMPANY} là biến phân loại (không phải số), nên các thống kê như mean/max không có nghĩa và được hiển thị là \texttt{NaN}.
+\end{luuy}
+
+\begin{lstlisting}
+#@title Code - View dataset statistics
+
+print('Total number of rows: {0}\n\n'.format(len(training_df.index)))
+training_df.describe(include='all')
+\end{lstlisting}
+
+\begin{lstlisting}
+#@title Double-click or run to view answers about dataset statistics
+
+answer = '''
+What is the maximum fare? 				              Answer: $159.25
+What is the mean distance across all trips? 		Answer: 8.2895 miles
+How many cab companies are in the dataset? 		  Answer: 31
+What is the most frequent payment type? 		    Answer: Credit Card
+Are any features missing data? 				          Answer: No
+'''
+
+# What is the maximum fare?
+max_fare = training_df['FARE'].max()
+print("What is the maximum fare? 				Answer: ${fare:.2f}".format(fare = max_fare))
+
+# What is the mean distance across all trips?
+mean_distance = training_df['TRIP_MILES'].mean()
+print("What is the mean distance across all trips? 		Answer: {mean:.4f} miles".format(mean = mean_distance))
+
+# How many cab companies are in the dataset?
+num_unique_companies =  training_df['COMPANY'].nunique()
+print("How many cab companies are in the dataset? 		Answer: {number}".format(number = num_unique_companies))
+
+# What is the most frequent payment type?
+most_freq_payment_type = training_df['PAYMENT_TYPE'].value_counts().idxmax()
+print("What is the most frequent payment type? 		Answer: {type}".format(type = most_freq_payment_type))
+
+# Are any features missing data?
+missing_values = training_df.isnull().sum().sum()
+print("Are any features missing data? 				Answer:", "No" if missing_values == 0 else "Yes")
+\end{lstlisting}
+
+\subsection{Ma trận tương quan (correlation matrix)}
+
+\begin{dongco}[title={Chọn feature nên dựa vào tương quan}]
+Một bước quan trọng là xem feature nào tương quan tốt với \textbf{nhãn} (\texttt{FARE}).
+Thông thường giá cước liên quan đến quãng đường và thời lượng chuyến đi.
+Ma trận tương quan giúp bạn định lượng điều này.
+\end{dongco}
+
+\begin{ynghia}[title={Ý nghĩa giá trị tương quan}]
+\begin{itemize}
+  \item \(1.0\): tương quan dương hoàn hảo (một tăng thì cái kia tăng).
+  \item \(-1.0\): tương quan âm hoàn hảo (một tăng thì cái kia giảm).
+  \item \(0.0\): không tương quan tuyến tính đáng kể.
+\end{itemize}
+Nhìn chung, \(|\text{corr}|\) càng lớn thì sức dự đoán càng tốt.
+\end{ynghia}
+
+\begin{phuongphap}[title={Hướng dẫn kiểm tra hiểu}]
+Chạy cell sau và trả lời:
+\begin{itemize}
+  \item Feature nào tương quan mạnh nhất với \texttt{FARE}?
+  \item Feature nào tương quan yếu nhất với \texttt{FARE}?
+\end{itemize}
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - View correlation matrix
+training_df.corr(numeric_only = True)
+\end{lstlisting}
+
+\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
+\end{luuy}
+
+\begin{lstlisting}
+#@title Double-click to view answers about the correlation matrix
+
+answer = '''
+The feature with the strongest correlation to the FARE is TRIP_MILES.
+As you might expect, TRIP_MILES looks like a good feature to start with to train
+the model. Also, notice that the feature TRIP_SECONDS has a strong correlation
+with fare too.
+'''
+print(answer)
+
+answer = '''The feature with the weakest correlation to the FARE is TIP_RATE.'''
+print(answer)
+\end{lstlisting}
+
+\subsection{Trực quan hóa quan hệ bằng pair plot}
+
+\begin{phuongphap}[title={Pair plot / scatter matrix}]
+Chạy cell sau để xem scatter matrix giữa các cột quan trọng.
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - View pairplot
+px.scatter_matrix(training_df, dimensions=["FARE", "TRIP_MILES", "TRIP_SECONDS"])
+\end{lstlisting}
+
+\newpage
+
+%==============================================================================
+\section{Phần 3 --- Huấn luyện mô hình}
+%==============================================================================
+
+\subsection{Định nghĩa các hàm tạo và huấn luyện mô hình}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+Chạy cell \textbf{Define ML functions}. Nếu muốn hiểu sâu, hãy mở rộng cell để đọc code.
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - Define ML functions
+
+def create_model(
+    settings: ml_edu.experiment.ExperimentSettings,
+    metrics: list[keras.metrics.Metric],
+) -> keras.Model:
+  """Create and compile a simple linear regression model."""
+  inputs = {name: keras.Input(shape=(1,), name=name) for name in settings.input_features}
+  concatenated_inputs = keras.layers.Concatenate()(list(inputs.values()))
+  outputs = keras.layers.Dense(units=1)(concatenated_inputs)
+  model = keras.Model(inputs=inputs, outputs=outputs)
+
+  model.compile(optimizer=keras.optimizers.RMSprop(learning_rate=settings.learning_rate),
+                loss="mean_squared_error",
+                metrics=metrics)
+
+  return model
+
+
+def train_model(
+    experiment_name: str,
+    model: keras.Model,
+    dataset: pd.DataFrame,
+    label_name: str,
+    settings: ml_edu.experiment.ExperimentSettings,
+) -> ml_edu.experiment.Experiment:
+  """Train the model by feeding it data."""
+
+  features = {name: dataset[name].values for name in settings.input_features}
+  label = dataset[label_name].values
+  history = model.fit(x=features,
+                      y=label,
+                      batch_size=settings.batch_size,
+                      epochs=settings.number_epochs)
+
+  return ml_edu.experiment.Experiment(
+      name=experiment_name,
+      settings=settings,
+      model=model,
+      epochs=history.epoch,
+      metrics_history=pd.DataFrame(history.history),
+  )
+
+print("SUCCESS: defining linear regression functions complete.")
+\end{lstlisting}
+
+\subsection{Huấn luyện mô hình với một feature}
+
+\begin{dongco}[title={Bắt đầu từ feature tương quan mạnh nhất}]
+Ta bắt đầu với \texttt{TRIP\_MILES} vì nó tương quan mạnh nhất với nhãn \texttt{FARE}.
+\end{dongco}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+\begin{enumerate}
+  \item Chạy cell \textbf{Experiment 1}.
+  \item Quan sát đường loss/RMSE và đồ thị dự đoán.
+  \item Trả lời:
+  \begin{itemize}
+    \item Mất bao nhiêu epoch để mô hình hội tụ?
+    \item Mô hình khớp dữ liệu mẫu tốt đến đâu?
+  \end{itemize}
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={RMSE có đơn vị giống nhãn}]
+Trong huấn luyện, bạn sẽ thấy RMSE. Đơn vị RMSE giống đơn vị nhãn (\$).
+RMSE giúp ước lượng dự đoán sai lệch trung bình bao nhiêu đô la so với giá quan sát.
+\end{luuy}
+
+\begin{lstlisting}
+#@title Code - Experiment 1
+
+settings_1 = ml_edu.experiment.ExperimentSettings(
+    learning_rate = 0.001,
+    number_epochs = 20,
+    batch_size = 50,
+    input_features = ['TRIP_MILES']
+)
+
+metrics = [keras.metrics.RootMeanSquaredError(name='rmse')]
+
+model_1 = create_model(settings_1, metrics)
+
+experiment_1 = train_model('one_feature', model_1, training_df, 'FARE', settings_1)
+
+ml_edu.results.plot_experiment_metrics(experiment_1, ['rmse'])
+ml_edu.results.plot_model_predictions(experiment_1, training_df, 'FARE')
+\end{lstlisting}
+
+\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
+\end{luuy}
+
+\begin{lstlisting}
+#@title Double-click to view answers for training model with one feature
+
+answer = """
+Use the loss curve to see where the loss begins to level off during training.
+
+With this set of hyperparameters:
+
+  learning_rate = 0.001
+  epochs = 20
+  batch_size = 50
+
+it takes about 5 epochs for the training run to converge to the final model.
+"""
+print(answer)
+
+answer = '''
+It appears from the model plot that the model fits the sample data fairly well.
+'''
+print(answer)
+\end{lstlisting}
+
+\subsection{Thử nghiệm siêu tham số}
+
+\begin{dongco}[title={Vì sao phải chạy nhiều experiment?}]
+Trong ML, thường phải thử nhiều cấu hình siêu tham số để tìm bộ tốt nhất.
+Hãy thay đổi từng siêu tham số và quan sát loss curve và đồ thị mô hình.
+\end{dongco}
+
+\begin{phuongphap}[title={Các thử nghiệm gợi ý}]
+\begin{itemize}
+  \item \textbf{Experiment 1:} tăng learning rate lên \texttt{1.0} (giữ batch size \texttt{50}).
+  \item \textbf{Experiment 2:} giảm learning rate xuống \texttt{0.0001} (giữ batch size \texttt{50}).
+  \item \textbf{Experiment 3:} tăng batch size lên \texttt{500} (giữ learning rate \texttt{0.001}).
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+Sửa các siêu tham số trong cell \textbf{Experiment 2}, chạy, rồi quan sát khác biệt. Lặp lại cho từng thử nghiệm.
+Trả lời:
+\begin{itemize}
+  \item Tăng learning rate ảnh hưởng thế nào?
+  \item Giảm learning rate ảnh hưởng thế nào?
+  \item Thay batch size ảnh hưởng kết quả không?
+\end{itemize}
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - Experiment 2
+
+# The following variables are the hyperparameters.
+# TODO - Adjust these hyperparameters to see how they impact a training run.
+settings_2 = ml_edu.experiment.ExperimentSettings(
+    learning_rate = 0.001,
+    number_epochs = 20,
+    batch_size = 50,
+    input_features = ['TRIP_MILES']
+)
+
+metrics = [keras.metrics.RootMeanSquaredError(name='rmse')]
+
+model_2 = create_model(settings_2, metrics)
+
+experiment_2 = train_model('one_feature_hyper', model_2, training_df, 'FARE', settings_2)
+
+ml_edu.results.plot_experiment_metrics(experiment_2, ['rmse'])
+ml_edu.results.plot_model_predictions(experiment_2, training_df, 'FARE')
+\end{lstlisting}
+
+\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
+\end{luuy}
+
+\begin{lstlisting}
+#@title Double-click to view answers for hyperparameter experiments
+
+answer = """
+When the learning rate is too high, the loss curve bounces around and does not
+appear to be moving towards convergence with each iteration. Also, notice that
+the predicted model does not fit the data very well. With a learning rate that
+is too high, it is unlikely that you will be able to train a model with good
+results.
+"""
+print(answer)
+
+answer = '''
+When the learning rate is too small, it may take longer for the loss curve to
+converge. With a small learning rate the loss curve decreases slowly, but does
+not show a dramatic drop or leveling off. With a small learning rate you could
+increase the number of epochs so that your model will eventually converge, but
+it will take longer.
+'''
+print(answer)
+
+answer = '''
+Increasing the batch size makes each epoch run faster, but as with the smaller
+learning rate, the model does not converge with just 20 epochs. If you have
+time, try increasing the number of epochs and eventually you should see the
+model converge.
+'''
+print(answer)
+\end{lstlisting}
+
+\subsection{Huấn luyện mô hình với hai feature}
+
+\begin{dongco}[title={Thêm feature có giúp tốt hơn không?}]
+Mô hình dùng \texttt{TRIP\_MILES} có sức dự đoán khá tốt, nhưng ta thử thêm feature thứ hai để cải thiện.
+Dataset không có \texttt{TRIP\_MINUTES} sẵn, nhưng có thể suy ra từ \texttt{TRIP\_SECONDS}.
+\end{dongco}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+\begin{enumerate}
+  \item Xem code trong cell \textbf{Experiment 3}.
+  \item Chạy cell và so sánh RMSE với mô hình một feature.
+  \item Trả lời:
+  \begin{itemize}
+    \item Mô hình 2 feature có tốt hơn không?
+    \item Dùng \texttt{TRIP\_SECONDS} thay \texttt{TRIP\_MINUTES} có khác không?
+    \item Mô hình có gần công thức tính giá thật không?
+  \end{itemize}
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Vì sao có đồ thị 3D?}]
+Scatter plot giữa (2 feature, 1 nhãn) là đồ thị 3D:
+hai feature trên trục \(x,y\), nhãn trên trục \(z\).
+Điểm dữ liệu là các vòng tròn, còn mô hình là một mặt phẳng.
+Nếu mô hình tốt, đa số điểm sẽ nằm gần mặt phẳng đó.
+\end{luuy}
+
+\begin{lstlisting}
+#@title Code - Experiment 3
+
+settings_3 = ml_edu.experiment.ExperimentSettings(
+    learning_rate = 0.001,
+    number_epochs = 20,
+    batch_size = 50,
+    input_features = ['TRIP_MILES', 'TRIP_MINUTES']
+)
+
+training_df['TRIP_MINUTES'] = training_df['TRIP_SECONDS']/60
+
+metrics = [keras.metrics.RootMeanSquaredError(name='rmse')]
+
+model_3 = create_model(settings_3, metrics)
+
+experiment_3 = train_model('two_features', model_3, training_df, 'FARE', settings_3)
+
+ml_edu.results.plot_experiment_metrics(experiment_3, ['rmse'])
+ml_edu.results.plot_model_predictions(experiment_3, training_df, 'FARE')
+\end{lstlisting}
+
+\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
+\end{luuy}
+
+\begin{lstlisting}
+#@title Double-click to view answers for training with two features
+
+answer = '''
+To answer this question for your specific training runs, compare the RMSE for
+each model. For example, if the RMSE for the model trained with one feature was
+3.7457 and the RMSE for the model with two features is 3.4787, that means that
+on average the model with two features makes predictions that are about $0.27
+closer to the observed fare.
+
+'''
+print(answer)
+
+answer = '''
+When training a model with more than one feature, it is important that all
+numeric values are roughly on the same scale. In this case, TRIP_SECONDS and
+TRIP_MILES do not meet this criteria. The mean value for TRIP_MILES is 8.3 and
+the mean for TRIP_SECONDS is 1,320; that is two orders of magnitude difference.
+In contrast, the mean for TRIP_MINUTES is 22, which is more similar to the scale
+of TRIP_MILES (8.3) than TRIP_SECONDS (1,320). Of course, this is not the
+only way to scale values before training, but you will learn about that in
+another module.
+'''
+print(answer)
+
+answer = '''
+In reality, Chicago taxi cabs use a documented formula to determine cab fares.
+For a single passenger paying cash, the fare is calculated like this:
+
+FARE = 2.25 * TRIP_MILES + 0.12 * TRIP_MINUTES + 3.25
+
+Typically with machine learning problems you would not know the 'correct'
+formula, but in this case you can use this knowledge to evaluate your model.
+Take a look at your model output (the weights and bias) and determine how
+well it matches the ground truth fare calculation. You should find that the
+model is roughly close to this formula.
+'''
+print(answer)
+\end{lstlisting}
+
+\subsection{So sánh các experiment}
+
+\begin{lstlisting}
+ml_edu.results.compare_experiment([experiment_1, experiment_3], ['rmse'], training_df, training_df['FARE'].values)
+\end{lstlisting}
+
+\newpage
+
+%==============================================================================
+\section{Phần 4 --- Kiểm tra mô hình (validation)}
+%==============================================================================
+
+\subsection{Dùng mô hình để dự đoán}
+
+\begin{phuongphap}[title={Hướng dẫn}]
+\begin{enumerate}
+  \item Chạy cell \textbf{Define functions to make predictions}.
+  \item Chạy cell \textbf{Make predictions}.
+  \item Xem bảng dự đoán và trả lời: dự đoán gần nhãn thật đến mức nào?
+\end{enumerate}
+\end{phuongphap}
+
+\begin{lstlisting}
+#@title Code - Define functions to make predictions
+def format_currency(x):
+  return "${:.2f}".format(x)
+
+def build_batch(df, batch_size):
+  batch = df.sample(n=batch_size).copy()
+  batch.set_index(np.arange(batch_size), inplace=True)
+  return batch
+
+def predict_fare(model, df, features, label, batch_size=50):
+  batch = build_batch(df, batch_size)
+  predicted_values = model.predict_on_batch(x={name: batch[name].values for name in features})
+
+  data = {"PREDICTED_FARE": [], "OBSERVED_FARE": [], "L1_LOSS": [],
+          features[0]: [], features[1]: []}
+  for i in range(batch_size):
+    predicted = predicted_values[i][0]
+    observed = batch.at[i, label]
+    data["PREDICTED_FARE"].append(format_currency(predicted))
+    data["OBSERVED_FARE"].append(format_currency(observed))
+    data["L1_LOSS"].append(format_currency(abs(observed - predicted)))
+    data[features[0]].append(batch.at[i, features[0]])
+    data[features[1]].append("{:.2f}".format(batch.at[i, features[1]]))
+
+  output_df = pd.DataFrame(data)
+  return output_df
+
+def show_predictions(output):
+  header = "-" * 80
+  banner = header + "\n" + "|" + "PREDICTIONS".center(78) + "|" + "\n" + header
+  print(banner)
+  print(output)
+  return
+\end{lstlisting}
+
+\begin{lstlisting}
+#@title Code - Make predictions
+
+output = predict_fare(experiment_3.model, training_df, experiment_3.settings.input_features, 'FARE')
+show_predictions(output)
+\end{lstlisting}
+
+\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
+\end{luuy}
+
+\begin{lstlisting}
+#@title Double-click to view answers for validate model
+
+answer = '''
+Based on a random sampling of examples, the model seems to do pretty well
+predicting the fare for a taxi ride. Most of the predicted values do not vary
+significantly from the observed value. You should be able to see this by looking
+at the column L1_LOSS = |observed - predicted|.
+'''
+print(answer)
+\end{lstlisting}
+
+\end{document}
+

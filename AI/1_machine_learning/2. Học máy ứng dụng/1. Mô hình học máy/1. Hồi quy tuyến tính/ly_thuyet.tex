@@ -202,15 +202,16 @@ $\sqrt{\text{MSE}}$ \\
 Khi xử lý nhiều mẫu, nên \textbf{lấy trung bình} (MAE, MSE, RMSE) thay vì chỉ cộng tổng $L_1$/$L_2$ thuần.
 \end{luuy}
 
-\begin{vidu}[title={Tính $L_2$ loss cho một điểm}]
-  Mô hình MPG: $y' = 34 + (-4{,}6)\, x_1$
+\begin{vidu}[title={Vi dụ: Tính $L_2$ loss cho một điểm}]
+Mô hình MPG: $y' = 34 + (-4{,}6)\, x_1$
+
 Xe 2{,}370 pound ($x_1 = 2{,}37$ nghìn pound): dự đoán $y' \approx 23{,}1$ MPG, thực tế $y = 24$ MPG.
 \[
   L_2 = (24 - 23{,}1)^2 = 0{,}81
 \]
 \end{vidu}
 
-\begin{ynghia}[title={Outlier trong dữ liệu và trong dự đoán}]
+\begin{ynghia}[title={Ngoại lệ (outlier) trong dữ liệu và trong dự đoán}]
 \textbf{Outlier dữ liệu:} xe 8{,}000 pound hoặc 100 MPG --- ngoài khoảng thường (2--5 nghìn pound, 8--50 MPG).
 
 \textbf{Outlier dự đoán:} xe 3{,}000 pound, 40 MPG có thể hợp lý trong dữ liệu nhưng mô hình dự đoán $\sim$20 MPG --- lệch lớn so với thực tế.
@@ -240,7 +241,7 @@ Thực tế còn phụ thuộc \textbf{bài toán kinh doanh}: loại sai lệch
 \mlimg[0.8]{model-mae.png}
 \begin{center}\small\textbf{Hình 10.} Huấn luyện với MAE --- đường xa outlier, gần đám đông hơn.\end{center}
 
-\begin{tinhchat}[title={So sánh trực quan Hình 9 và 10}]
+\begin{tinhchat}[title={So sánh trực quan}]
 \begin{itemize}
   \item \textbf{MSE:} mô hình gần outlier, xa phần lớn điểm còn lại.
   \item \textbf{MAE:} mô hình xa outlier, gần phần lớn điểm.
@@ -254,7 +255,7 @@ Thực tế còn phụ thuộc \textbf{bài toán kinh doanh}: loại sai lệch
 
 \small\textbf{Hình 11.} Trái \hspace{2cm} \textbf{Hình 12.} Phải
 \end{center}
-\textbf{Đồ thị bên phải (Hình 12)} có MSE cao hơn ($\approx 0{,}8$ vs $\approx 0{,}4$): nhiều điểm trên đường nhưng hai điểm lệch \textbf{gấp đôi} khoảng cách; bình phương làm loss tăng mạnh ($2^2 = 4$ lần so với lệch 1).
+\textbf{Đồ thị bên phải} có MSE cao hơn ($\approx 0{,}8$ vs $\approx 0{,}4$): nhiều điểm trên đường nhưng hai điểm lệch \textbf{gấp đôi} khoảng cách; bình phương làm loss tăng mạnh ($2^2 = 4$ lần so với lệch 1).
 \end{luuy}
 
 \begin{phanvidu}
@@ -273,9 +274,10 @@ MSE = 0 trên mọi điểm $\Rightarrow$ khớp hoàn hảo --- thường là \
   \item Điều chỉnh Weight và Bias để tìm đường thẳng \textbf{minimize MSE}.
   \item Ghi MSE thấp nhất và cặp $(w, b)$ tương ứng.
 \end{enumerate}
+Link bài tập: https://developers.google.com/machine-learning/crash-course/linear-regression/parameters-exercise
 \end{phuongphap}
 
-\begin{vidu}[title={Đáp án tham khảo (Google)}]
+\begin{vidu}[title={Đáp án}]
 MSE tối thiểu $\approx 3{,}37$ với $w = -0{,}12$, $b = 16{,}96$.
 \end{vidu}
 
@@ -283,7 +285,9 @@ MSE tối thiểu $\approx 3{,}37$ với $w = -0{,}12$, $b = 16{,}96$.
 \begin{center}\small\textbf{Hình 13.} Đường tối ưu cho bài tập tham số.\end{center}
 
 \begin{ynghia}
-Bài tập củng cố: \textbf{tham số} ($w$, $b$) quyết định độ nghiêng và vị trí đường; \textbf{MSE} đo tổng bình phương sai số --- gradient descent sau này tự làm việc này.
+\textbf{Tham số} ($w$, $b$) quyết định độ nghiêng và vị trí đường;
+
+\textbf{MSE} đo tổng bình phương sai số --- gradient descent tự làm việc này.
 \end{ynghia}
 
 \newpage
@@ -343,16 +347,16 @@ Với $M$ mẫu, dự đoán $f_{w,b}(x) = wx + b$, nhãn thật $y$:
 \begin{phuongphap}[title={Khởi tạo $w=0$, $b=0$ và tính MSE}]
 \begin{enumerate}
   \item MSE = $\dfrac{1}{7}\displaystyle\sum_{i=1}^{7}\bigl(0 - y^{(i)}\bigr)^2 \approx 303{,}71$ (dự đoán 0 cho mọi mẫu).
-  \item Đạo hàm theo $w$: độ dốc tiếp tuyến $\approx -119{,}7$; theo $b$: $\approx -34{,}3$.
+  \item Đạo hàm theo $w$: độ dốc tiếp tuyến $\dfrac{\partial}{\partial w}\text{MSE} \approx -119{,}7$; theo $b$: $\dfrac{\partial}{\partial b}\text{MSE} \approx -34{,}3$.
   \item Bước nhỏ $\eta = 0{,}01$ (learning rate):
   \[
-    w_{\text{mới}} = 0 - 0{,}01 \times (-119{,}7) \approx 1{,}2,\quad
-    b_{\text{mới}} = 0 - 0{,}01 \times (-34{,}3) \approx 0{,}34
+    w_{\text{mới}} = w_{\text{cũ}} - \eta x \dfrac{\partial}{\partial w}\text{MSE} = 0 - 0{,}01 \times (-119{,}7) \approx 1{,}2,\quad
+    b_{\text{mới}} = b_{\text{cũ}} - \eta x \dfrac{\partial}{\partial b}\text{MSE} = 0 - 0{,}01 \times (-34{,}3) \approx 0{,}34
   \]
 \end{enumerate}
 \end{phuongphap}
 
-\begin{congthuc}[title={Đạo hàm MSE (trực giác)}]
+\begin{congthuc}[title={Đạo hàm MSE}]
 \[
   \dfrac{\partial}{\partial w}\text{MSE}
   = \dfrac{1}{M}\displaystyle\sum_{i=1}^{M} 2\bigl(f_{w,b}(x^{(i)}) - y^{(i)}\bigr)\, x^{(i)}
@@ -368,7 +372,6 @@ Gradient âm $\Rightarrow$ tăng $w$, $b$ để giảm mất mát (với khởi 
 \centering
 \caption{MSE giảm qua các vòng lặp (ví dụ minh họa)}
 \begin{tabular}{cccc}
-\toprule
 \textbf{Vòng} & \textbf{Weight} & \textbf{Bias} & \textbf{MSE} \\
 \midrule
 1 & 0 & 0 & 303.71 \\
@@ -377,7 +380,6 @@ Gradient âm $\Rightarrow$ tăng $w$, $b$ để giảm mất mát (với khởi 
 4 & 2.66 & 0.78 & 68.70 \\
 5 & 3.09 & 0.91 & 51.13 \\
 6 & 3.40 & 1.01 & 42.17 \\
-\bottomrule
 \end{tabular}
 \end{table}
 
@@ -455,9 +457,9 @@ MSE = 0 nghĩa là khớp \textbf{mọi} điểm --- thường là \textbf{overf
 \subsection{Tốc độ học (learning rate)}
 
 \begin{dinhnghia}[title={Tốc độ học}]
-  Tốc độ học xác định mức độ thay đổi cần thực hiện đối với các trọng số và độ lệch trong mỗi bước của quy trình hạ độ dốc. 
+  Tốc độ học xác định mức độ thay đổi cần thực hiện đối với các trọng số và độ lệch trong mỗi bước của quy trình hạ độ dốc, ảnh hưởng đến tốc độ hội tụ của mô hình. Nếu tốc độ học quá thấp, mô hình có thể mất nhiều thời gian để hội tụ. Tuy nhiên, nếu tốc độ học tập quá cao, mô hình sẽ không bao giờ hội tụ, mà thay vào đó sẽ dao động xung quanh các trọng số và độ lệch giúp giảm thiểu tổn thất. Mục tiêu là chọn tốc độ học tập không quá cao cũng không quá thấp để mô hình hội tụ nhanh chóng.
   
-  Hệ số $\eta$ nhân với gradient để quyết định \textbf{độ lớn bước} cập nhật $w$, $b$ mỗi vòng.
+  Hệ số $\eta$ nhân với gradient để quyết định \textbf{độ lớn bước} cập nhật $w$, $b$ mỗi vòng. Sự khác biệt giữa các tham số mô hình cũ và các tham số mô hình mới tỷ lệ thuận với độ dốc của hàm tổn thất. Ví dụ: nếu độ dốc lớn, mô hình sẽ thực hiện một bước lớn. Nếu nhỏ, hãy thực hiện một bước nhỏ.
   
   Trong ví dụ GD trước, ``bước nhỏ'' $0{,}01$ chính là learning rate.
 \end{dinhnghia}
@@ -517,7 +519,7 @@ Số \href{https://developers.google.com/machine-learning/glossary\#example}{m�
 \begin{center}\small\textbf{Hình 28.} Mini-batch --- ít nhiễu hơn gần hội tụ.\end{center}
 
 \begin{ynghia}[title={Nhiễu không luôn xấu}]
-Một mức nhiễu có thể giúp \href{https://developers.google.com/machine-learning/glossary\#generalization}{tổng quát hóa} tốt hơn.
+Một mức nhiễu có thể giúp \href{https://developers.google.com/machine-learning/glossary\#generalization}{tổng quát hóa} tốt hơn và tìm ra các trọng số và độ lệch tối ưu trong một \href{https://developers.google.com/machine-learning/glossary?hl=vi#neural-network}{mạng nơ-ron}.
 \end{ynghia}
 
 \subsection{Epoch}
@@ -533,8 +535,8 @@ Một \href{https://developers.google.com/machine-learning/glossary\#epoch}{epoc
 \begin{tabularx}{\textwidth}{@{}l X@{}}
 \textbf{Kiểu batch} & \textbf{Cập nhật $w$, $b$} \\
 \midrule
-Full batch & 20 lần (1 lần / epoch). \\
-SGD & 20\,000 lần (1 mẫu / epoch). \\
+Full batch & 20 lần (1 lần / epoch, hình dung 1 batch x 20 epoch). \\
+SGD & 20\,000 lần (1 mẫu / epoch, hình dung 1\,000 batch x 20 epoch ). \\
 Mini-batch (100) & 200 lần (10 batch $\times$ 20 epoch). \\
 \end{tabularx}
 \end{congthuc}
@@ -555,9 +557,11 @@ Mini-batch (100) & 200 lần (10 batch $\times$ 20 epoch). \\
 
 \begin{dongco}[title={Thực hành learning rate}]
 Cùng dữ liệu MPG, lần này máy tự chạy GD. Ba mức learning rate cho ba kiểu hành vi: hội tụ nhanh, quá chậm, không hội tụ.
+
+Link bài tập: https://developers.google.com/machine-learning/crash-course/linear-regression/gradient-descent-exercise
 \end{dongco}
 
-\begin{phuongphap}[title={Ba nhiệm vụ (Gradient descent exercise)}]
+\begin{phuongphap}[title={Ba nhiệm vụ}]
 \begin{description}
   \item[Nhiệm vụ 1:] Learning rate $= 0{,}03$, nhấn Start. Ghi thời gian hội tụ, MSE, $w$, $b$.
   \item[Nhiệm vụ 2:] Reset; learning rate $\approx 1{,}1 \times 10^{-5}$. Quan sát tốc độ hội tụ.

@@ -1,0 +1,256 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- NUMPY}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{NumPy UltraQuick Tutorial}
+\def\coversubtitle{Dịch tiếng Việt từ Google ML Crash Course (Colab)}
+
+\input{../../_template/preamble.tex}
+
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\newcommand{\mlccurl}[1]{\url{#1}}
+
+\begin{document}
+
+\input{../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu dịch từ notebook \textit{NumPy UltraQuick Tutorial} của Google Machine Learning Crash Course:
+\mlccurl{https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/numpy_ultraquick_tutorial.ipynb}
+\end{ynghia}
+
+\begin{luuy}[title={Mục tiêu}]
+Đây không phải tutorial NumPy đầy đủ. Mục tiêu là cung cấp \textbf{vừa đủ} NumPy để làm các bài tập Colab trong ML Crash Course.
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Colab là gì?}
+%==============================================================================
+
+\begin{dinhnghia}[title={Colaboratory (Colab)}]
+Machine Learning Crash Course dùng \textbf{Colaboratory (Colab)} cho tất cả bài tập lập trình.
+Colab là một hiện thực của Google dựa trên \textbf{Jupyter Notebook}:
+\mlccurl{https://jupyter.org/}.
+
+Để tìm hiểu cách dùng Colab, xem \textit{Welcome to Colaboratory}:
+\mlccurl{https://research.google.com/colaboratory}.
+\end{dinhnghia}
+
+%==============================================================================
+\section{Giới thiệu NumPy}
+%==============================================================================
+
+\begin{dongco}[title={Vì sao cần NumPy?}]
+\textbf{NumPy} là thư viện Python để tạo và thao tác \textbf{ma trận} (cấu trúc dữ liệu trung tâm của nhiều thuật toán ML).
+Ma trận là đối tượng toán học lưu giá trị theo \textbf{hàng} và \textbf{cột}.
+\end{dongco}
+
+\begin{ynghia}[title={Cách gọi ``ma trận'' trong các thư viện}]
+Trong Python, ``ma trận'' thường được biểu diễn bằng \textbf{list}.
+Trong NumPy, ``ma trận'' thường được gọi là \textbf{array}.
+Trong TensorFlow, ``ma trận/mảng đa chiều'' thường được gọi là \textbf{tensor}.
+\end{ynghia}
+
+%==============================================================================
+\section{Nhập (import) NumPy}
+%==============================================================================
+
+\begin{phuongphap}[title={Import module NumPy}]
+Chạy cell sau để import NumPy.
+\end{phuongphap}
+
+\begin{lstlisting}
+import numpy as np
+\end{lstlisting}
+
+%==============================================================================
+\section{Khởi tạo array với giá trị cụ thể}
+%==============================================================================
+
+\begin{phuongphap}[title={Tạo array 1 chiều bằng \texttt{np.array}}]
+Gọi \texttt{np.array} để tạo một NumPy array với các giá trị bạn chọn.
+Ví dụ sau tạo một array 8 phần tử.
+\end{phuongphap}
+
+\begin{lstlisting}
+one_dimensional_array = np.array([1.2, 2.4, 3.5, 4.7, 6.1, 7.2, 8.3, 9.5])
+print(one_dimensional_array)
+\end{lstlisting}
+
+\begin{phuongphap}[title={Tạo array 2 chiều (ma trận)}]
+Để tạo array 2 chiều, bạn đặt thêm một lớp ngoặc vuông. Ví dụ sau tạo ma trận $3 \times 2$.
+\end{phuongphap}
+
+\begin{lstlisting}
+two_dimensional_array = np.array([[6, 5], [11, 7], [4, 8]])
+print(two_dimensional_array)
+\end{lstlisting}
+
+\begin{luuy}[title={Array toàn số 0 và toàn số 1}]
+Để tạo array toàn số 0, dùng \texttt{np.zeros}. Để tạo array toàn số 1, dùng \texttt{np.ones}.
+\end{luuy}
+
+%==============================================================================
+\section{Khởi tạo array theo dãy số}
+%==============================================================================
+
+\begin{phuongphap}[title={Tạo dãy số bằng \texttt{np.arange}}]
+Bạn có thể tạo array từ một dãy số liên tiếp.
+\end{phuongphap}
+
+\begin{lstlisting}
+sequence_of_integers = np.arange(5, 12)
+print(sequence_of_integers)
+\end{lstlisting}
+
+\begin{luuy}[title={Cận dưới và cận trên trong \texttt{np.arange}}]
+\texttt{np.arange(5, 12)} tạo dãy \textbf{có} 5 nhưng \textbf{không} gồm 12.
+\end{luuy}
+
+%==============================================================================
+\section{Khởi tạo array ngẫu nhiên}
+%==============================================================================
+
+\begin{phuongphap}[title={Số nguyên ngẫu nhiên bằng \texttt{np.random.randint}}]
+\texttt{np.random.randint} sinh số nguyên ngẫu nhiên trong khoảng \([\texttt{low}, \texttt{high})\).
+Ví dụ sau tạo array 6 phần tử trong khoảng 50 đến 100.
+\end{phuongphap}
+
+\begin{lstlisting}
+random_integers_between_50_and_100 = np.random.randint(low=50, high=101, size=(6,))
+print(random_integers_between_50_and_100)
+\end{lstlisting}
+
+\begin{luuy}[title={Giá trị lớn nhất sinh ra}]
+Số lớn nhất mà \texttt{np.random.randint} có thể sinh ra luôn \textbf{nhỏ hơn} đối số \texttt{high}.
+Vì vậy để có thể sinh 100, ta đặt \texttt{high=101}.
+\end{luuy}
+
+\begin{phuongphap}[title={Số thực ngẫu nhiên bằng \texttt{np.random.random}}]
+\texttt{np.random.random} sinh số thực ngẫu nhiên trong \([0.0, 1.0)\).
+\end{phuongphap}
+
+\begin{lstlisting}
+random_floats_between_0_and_1 = np.random.random((6,))
+print(random_floats_between_0_and_1)
+\end{lstlisting}
+
+%==============================================================================
+\section{Phép toán trên NumPy array và broadcasting}
+%==============================================================================
+
+\begin{dongco}[title={Vì sao cần broadcasting?}]
+Trong đại số tuyến tính, phép cộng/trừ hai array thường yêu cầu cùng kích thước.
+Phép nhân cũng có quy tắc tương thích kích thước chặt chẽ.
+NumPy hỗ trợ một cơ chế gọi là \textbf{broadcasting} để ``mở rộng ảo'' toán hạng nhỏ hơn cho phù hợp kích thước.
+\end{dongco}
+
+\begin{phuongphap}[title={Cộng một hằng số (broadcasting)}]
+Ví dụ sau cộng 2.0 vào mọi phần tử của array.
+\end{phuongphap}
+
+\begin{lstlisting}
+random_floats_between_2_and_3 = random_floats_between_0_and_1 + 2.0
+print(random_floats_between_2_and_3)
+\end{lstlisting}
+
+\begin{phuongphap}[title={Nhân với một hằng số (broadcasting)}]
+Ví dụ sau nhân mọi phần tử với 3.
+\end{phuongphap}
+
+\begin{lstlisting}
+random_integers_between_150_and_300 = random_integers_between_50_and_100 * 3
+print(random_integers_between_150_and_300)
+\end{lstlisting}
+
+%==============================================================================
+\section{Bài tập 1: Tạo dữ liệu tuyến tính}
+%==============================================================================
+
+\begin{phuongphap}[title={Yêu cầu bài tập}]
+Tạo dataset đơn giản gồm một đặc trưng (feature) và một nhãn (label):
+\begin{enumerate}
+  \item Gán dãy số nguyên từ 6 đến 20 (bao gồm cả 6 và 20) vào NumPy array tên \texttt{feature}.
+  \item Gán 15 giá trị vào NumPy array tên \texttt{label} sao cho:
+  \[
+    \texttt{label} = 3 \cdot \texttt{feature} + 4.
+  \]
+\end{enumerate}
+Ví dụ phần tử đầu tiên của \texttt{label} là:
+\[
+  3 \cdot 6 + 4 = 22.
+  \]
+\end{phuongphap}
+
+\begin{lstlisting}
+feature = ? # write your code here
+print(feature)
+label = ?   # write your code here
+print(label)
+\end{lstlisting}
+
+\begin{lstlisting}
+feature = np.arange(6, 21)
+print(feature)
+label = (feature * 3) + 4
+print(label)
+\end{lstlisting}
+
+%==============================================================================
+\section{Bài tập 2: Thêm nhiễu (noise) vào dataset}
+%==============================================================================
+
+\begin{phuongphap}[title={Yêu cầu bài tập}]
+Để dữ liệu thực tế hơn, hãy thêm một chút nhiễu ngẫu nhiên vào từng phần tử của \texttt{label}:
+\begin{itemize}
+  \item Mỗi phần tử của \texttt{label} được cộng với một số thực ngẫu nhiên \textbf{khác nhau} trong đoạn \([-2, 2]\).
+  \item Không dựa vào broadcasting. Hãy tạo một array \texttt{noise} có cùng kích thước với \texttt{label}.
+\end{itemize}
+\end{phuongphap}
+
+\begin{lstlisting}
+noise = ?    # write your code here
+print(noise)
+label = ?    # write your code here
+print(label)
+\end{lstlisting}
+
+\begin{lstlisting}
+noise = (np.random.random([15]) * 4) - 2
+print(noise)
+label = label + noise
+print(label)
+\end{lstlisting}
+
+\end{document}
+

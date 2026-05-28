@@ -1,0 +1,258 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC MÁY ỨNG DỤNG --- PANDAS}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Pandas DataFrame UltraQuick Tutorial}
+\def\coversubtitle{Dịch tiếng Việt từ Google ML Crash Course (Colab)}
+
+\input{../../_template/preamble.tex}
+
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\newcommand{\mlccurl}[1]{\url{#1}}
+
+\begin{document}
+
+\input{../../_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu dịch từ notebook \textit{Pandas DataFrame UltraQuick Tutorial} của Google Machine Learning Crash Course:
+\mlccurl{https://colab.research.google.com/github/google/eng-edu/blob/main/ml/cc/exercises/pandas_dataframe_ultraquick_tutorial.ipynb}
+\end{ynghia}
+
+\begin{luuy}[title={Mục tiêu}]
+Đây không phải tutorial DataFrame đầy đủ. Mục tiêu là giới thiệu \textbf{cực nhanh} các phần của pandas DataFrame cần để làm các bài tập Colab trong ML Crash Course.
+\end{luuy}
+
+\newpage
+
+%==============================================================================
+\section{Colab là gì?}
+%==============================================================================
+
+\begin{dinhnghia}[title={Colaboratory (Colab)}]
+Machine Learning Crash Course dùng \textbf{Colaboratory (Colab)} cho tất cả bài tập lập trình.
+Colab là một hiện thực của Google dựa trên \textbf{Jupyter Notebook}:
+\mlccurl{https://jupyter.org/}.
+
+Để tìm hiểu cách dùng Colab, xem \textit{Welcome to Colaboratory}:
+\mlccurl{https://research.google.com/colaboratory}.
+\end{dinhnghia}
+
+%==============================================================================
+\section{Giới thiệu DataFrame}
+%==============================================================================
+
+\begin{dongco}[title={DataFrame là gì?}]
+Notebook này giới thiệu \textbf{DataFrame}, cấu trúc dữ liệu trung tâm trong pandas.
+Một DataFrame tương tự một bảng tính (spreadsheet) trong bộ nhớ:
+\begin{itemize}
+  \item DataFrame lưu dữ liệu trong các \textbf{ô}.
+  \item DataFrame có các \textbf{cột có tên} (thường là vậy) và các \textbf{hàng đánh số}.
+\end{itemize}
+\end{dongco}
+
+%==============================================================================
+\section{Import NumPy và pandas}
+%==============================================================================
+
+\begin{phuongphap}[title={Import module}]
+Chạy cell sau để import NumPy và pandas.
+\end{phuongphap}
+
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+\end{lstlisting}
+
+%==============================================================================
+\section{Tạo một DataFrame}
+%==============================================================================
+
+\begin{phuongphap}[title={Tạo DataFrame từ mảng NumPy}]
+Cell dưới đây tạo một DataFrame đơn giản gồm 10 ô theo cấu trúc:
+\begin{itemize}
+  \item 5 hàng
+  \item 2 cột: \texttt{temperature} và \texttt{activity}
+\end{itemize}
+
+Ta khởi tạo \texttt{pd.DataFrame} với 2 tham số:
+\begin{itemize}
+  \item Tham số thứ nhất là dữ liệu để điền vào các ô (ở đây dùng \texttt{np.array} tạo mảng $5\times 2$).
+  \item Tham số thứ hai là danh sách tên cột.
+\end{itemize}
+
+\textbf{Lưu ý:} Không đổi tên/ghi đè biến trong cell này vì các cell sau dùng lại.
+\end{phuongphap}
+
+\begin{lstlisting}
+# Create and populate a 5x2 NumPy array.
+my_data = np.array([[0, 3], [10, 7], [20, 9], [30, 14], [40, 15]])
+
+# Create a Python list that holds the names of the two columns.
+my_column_names = ['temperature', 'activity']
+
+# Create a DataFrame.
+my_dataframe = pd.DataFrame(data=my_data, columns=my_column_names)
+
+# Print the entire DataFrame
+print(my_dataframe)
+\end{lstlisting}
+
+%==============================================================================
+\section{Thêm cột mới vào DataFrame}
+%==============================================================================
+
+\begin{phuongphap}[title={Tạo cột mới bằng phép gán}]
+Bạn có thể thêm cột mới vào DataFrame bằng cách gán giá trị cho một tên cột mới.
+Ví dụ sau tạo cột thứ ba \texttt{adjusted} trong \texttt{my\_dataframe}.
+\end{phuongphap}
+
+\begin{lstlisting}
+# Create a new column named adjusted.
+my_dataframe["adjusted"] = my_dataframe["activity"] + 2
+
+# Print the entire DataFrame
+print(my_dataframe)
+\end{lstlisting}
+
+%==============================================================================
+\section{Chọn một phần (subset) của DataFrame}
+%==============================================================================
+
+\begin{phuongphap}[title={Lấy hàng/cột/đoạn con}]
+pandas cung cấp nhiều cách để lấy ra các hàng, cột, lát cắt (slice) hoặc từng ô trong DataFrame.
+\end{phuongphap}
+
+\begin{lstlisting}
+print("Rows #0, #1, and #2:")
+print(my_dataframe.head(3), '\n')
+
+print("Row #2:")
+print(my_dataframe.iloc[[2]], '\n')
+
+print("Rows #1, #2, and #3:")
+print(my_dataframe[1:4], '\n')
+
+print("Column 'temperature':")
+print(my_dataframe['temperature'])
+\end{lstlisting}
+
+%==============================================================================
+\section{Bài tập 1: Tạo một DataFrame}
+%==============================================================================
+
+\begin{phuongphap}[title={Yêu cầu bài tập}]
+Thực hiện các bước sau:
+\begin{enumerate}
+  \item Tạo một pandas DataFrame kích thước $3 \times 4$ (3 hàng, 4 cột), với tên cột lần lượt là
+  \texttt{Eleanor}, \texttt{Chidi}, \texttt{Tahani}, \texttt{Jason}. Điền mỗi ô bằng một số nguyên ngẫu nhiên trong đoạn \([0,100]\) (bao gồm cả 0 và 100).
+  \item In ra:
+  \begin{itemize}
+    \item Toàn bộ DataFrame,
+    \item Giá trị ở ô hàng \#1 của cột \texttt{Eleanor}.
+  \end{itemize}
+  \item Tạo cột thứ năm tên \texttt{Janet}, có giá trị bằng tổng theo từng hàng của \texttt{Tahani} và \texttt{Jason}.
+\end{enumerate}
+
+Để làm bài này, bạn sẽ cần kiến thức NumPy cơ bản trong tài liệu \textit{NumPy UltraQuick Tutorial}.
+\end{phuongphap}
+
+\begin{lstlisting}
+# Write your code here.
+\end{lstlisting}
+
+\begin{lstlisting}
+# Create a Python list that holds the names of the four columns.
+my_column_names = ['Eleanor', 'Chidi', 'Tahani', 'Jason']
+
+# Create a 3x4 numpy array, each cell populated with a random integer.
+my_data = np.random.randint(low=0, high=101, size=(3, 4))
+
+# Create a DataFrame.
+df = pd.DataFrame(data=my_data, columns=my_column_names)
+
+# Print the entire DataFrame
+print(df)
+
+# Print the value in row #1 of the Eleanor column.
+print("\nSecond row of the Eleanor column: %d\n" % df['Eleanor'][1])
+
+# Create a column named Janet whose contents are the sum
+# of two other columns.
+df['Janet'] = df['Tahani'] + df['Jason']
+
+# Print the enhanced DataFrame
+print(df)
+\end{lstlisting}
+
+%==============================================================================
+\section{Sao chép DataFrame (tùy chọn)}
+%==============================================================================
+
+\begin{dongco}[title={Vì sao cần phân biệt tham chiếu và sao chép?}]
+Pandas có hai cách khác nhau để ``nhân đôi'' một DataFrame:
+\begin{itemize}
+  \item \textbf{Tham chiếu (referencing):} nếu bạn gán một DataFrame cho một biến mới, mọi thay đổi ở một bên sẽ phản ánh sang bên kia.
+  \item \textbf{Sao chép (copying):} nếu bạn gọi \texttt{pd.DataFrame.copy}, bạn tạo ra một bản sao độc lập thực sự; thay đổi ở bản gốc sẽ không ảnh hưởng bản sao và ngược lại.
+\end{itemize}
+Sự khác nhau có thể khó thấy ngay, nhưng rất quan trọng.
+\end{dongco}
+
+\begin{lstlisting}
+# Create a reference by assigning my_dataframe to a new variable.
+print("Experiment with a reference:")
+reference_to_df = df
+
+# Print the starting value of a particular cell.
+print("  Starting value of df: %d" % df['Jason'][1])
+print("  Starting value of reference_to_df: %d\n" % reference_to_df['Jason'][1])
+
+# Modify a cell in df.
+df.at[1, 'Jason'] = df['Jason'][1] + 5
+print("  Updated df: %d" % df['Jason'][1])
+print("  Updated reference_to_df: %d\n\n" % reference_to_df['Jason'][1])
+
+# Create a true copy of my_dataframe
+print("Experiment with a true copy:")
+copy_of_my_dataframe = my_dataframe.copy()
+
+# Print the starting value of a particular cell.
+print("  Starting value of my_dataframe: %d" % my_dataframe['activity'][1])
+print("  Starting value of copy_of_my_dataframe: %d\n" % copy_of_my_dataframe['activity'][1])
+
+# Modify a cell in df.
+my_dataframe.at[1, 'activity'] = my_dataframe['activity'][1] + 3
+print("  Updated my_dataframe: %d" % my_dataframe['activity'][1])
+print("  copy_of_my_dataframe does not get updated: %d" % copy_of_my_dataframe['activity'][1])
+\end{lstlisting}
+
+\end{document}
+
