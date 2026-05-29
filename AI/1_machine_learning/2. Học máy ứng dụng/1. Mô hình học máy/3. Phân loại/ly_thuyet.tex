@@ -49,7 +49,7 @@ Tài liệu biên soạn và dịch từ \emph{Classification} (Google ML Crash 
 \end{ynghia}
 
 \begin{luuy}[title={Điều kiện tiên quyết}]
-Cần nắm \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to ML}, \href{https://developers.google.com/machine-learning/crash-course/linear-regression}{Linear regression} và \href{https://developers.google.com/machine-learning/crash-course/logistic-regression}{\textbf{Logistic regression}}.
+Cần nắm \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to ML}, \href{https://developers.google.com/machine-learning/crash-course/linear-regression}{Linear regression} và \href{https://developers.google.com/machine-learning/crash-course/logistic-regression}{Logistic regression}.
 \end{luuy}
 
 \begin{phuongphap}[title={Mục tiêu học tập}]
@@ -93,7 +93,7 @@ Mô hình spam cho xác suất 0--1. Triển khai cần chuyển \texttt{0.75} t
 \end{dongco}
 
 \begin{dinhnghia}[title={Ngưỡng phân loại}]
-\href{https://developers.google.com/machine-learning/glossary\#classification-threshold}{Ngưỡng} $t$: $y' \geq t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#positive_class}{lớp dương} (spam); $y' < t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#negative_class}{lớp âm}. Keras: $y'=t$ xếp vào \textbf{âm}.
+\href{https://developers.google.com/machine-learning/glossary\#classification-threshold}{Ngưỡng} $t$: $y' \geq t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#positive_class}{lớp dương} (spam); $y' < t$ $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#negative_class}{lớp âm}. Với thư viện Keras: $y'=t$ xếp vào \textbf{âm}.
 \end{dinhnghia}
 
 \begin{vidu}[title={0,51 vs 0,99 với ngưỡng khác nhau}]
@@ -101,13 +101,18 @@ Email A: $y'=0{,}99$; email B: $y'=0{,}51$. Ngưỡng $0{,}5$: cả hai là spam
 \end{vidu}
 
 \begin{luuy}[title={0,5 không luôn tối ưu}]
-Tránh mặc định 0,5 khi: lớp mất cân bằng (0,01\% spam); chi phí FP/FN không đối xứng; sai lọc thư hợp lệ đắt hơn để spam lọt.
+Tránh mặc định 0,5 khi: lớp mất cân bằng (0,01\% spam); chi phí FP/FN không đối xứng; phân loại nhầm thư hợp lệ đắt hơn phân loại spam lọt vào hộp thư đến.
 \end{luuy}
 
 \subsection{Ma trận nhầm lẫn}
 
 \begin{dinhnghia}[title={Confusion matrix}]
-Điểm dự đoán $\neq$ \href{https://developers.google.com/machine-learning/glossary\#ground_truth}{ground truth}. Bốn ô (cột = thực tế, hàng = dự đoán):
+  Điểm số xác suất không phải là thực tế, cũng không phải là sự thật khách quan (\href{https://developers.google.com/machine-learning/glossary\#ground_truth}{ground truth}). Bốn ô (cột = thực tế, hàng = dự đoán):
+  \begin{itemize}
+    \item Probability score (Điểm số xác suất): Con số thể hiện khả năng xảy ra của một sự kiện (thường là kết quả dự đoán của thuật toán, mô hình AI).
+    \item Reality (Thực tế): Những gì thực sự xảy ra hoặc tồn tại trong đời thực.
+    \item Ground truth (Sự thật khách quan/Dữ liệu thực tế): Kết quả chính xác, đúng đắn đã được kiểm chứng ngoài đời thực.
+  \end{itemize}
 \end{dinhnghia}
 
 \begin{congthuc}[title={Ma trận nhầm lẫn (spam)}]
@@ -115,11 +120,11 @@ Tránh mặc định 0,5 khi: lớp mất cân bằng (0,01\% spam); chi phí FP
  & \textbf{Thực tế dương} & \textbf{Thực tế âm} \\
 \midrule
 \textbf{Dự đoán dương} &
-\textbf{TP} --- spam đúng vào thư rác &
-\textbf{FP} --- thư hợp lệ vào spam \\
+\textbf{TP (True positive) (Dương tính thật)} --- spam đúng vào thư rác &
+\textbf{FP (False positive) (Dương tính giả)} --- thư hợp lệ vào spam \\
 \textbf{Dự đoán âm} &
-\textbf{FN} --- spam lọt hộp thư &
-\textbf{TN} --- thư hợp lệ đúng hộp thư \\
+\textbf{FN (False negative) (Âm tính giả)} --- spam lọt hộp thư &
+\textbf{TN (True negative) (Âm tính thật)} --- thư hợp lệ đúng hộp thư \\
 \end{tabularx}
 \end{congthuc}
 
@@ -131,7 +136,7 @@ Tránh mặc định 0,5 khi: lớp mất cân bằng (0,01\% spam); chi phí FP
 \end{tinhchat}
 
 \begin{vidu}[title={Dữ liệu mất cân bằng}]
-Tổng thực tế dương không gần bằng tổng âm $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#class_imbalanced_data_set}{mất cân bằng lớp}. Ví dụ: hàng nghìn ảnh mây, loại volutus chỉ vài ảnh.
+Tổng thực tế dương không gần bằng tổng âm $\Rightarrow$ \href{https://developers.google.com/machine-learning/glossary\#class_imbalanced_data_set}{mất cân bằng lớp}.
 \end{vidu}
 
 \subsection{Ảnh hưởng của ngưỡng}
@@ -142,16 +147,14 @@ Tổng thực tế dương không gần bằng tổng âm $\Rightarrow$ \href{ht
 
 \begin{luuy}[title={Widget MLCC (Separated / Unseparated / Imbalanced)}]
 Kéo ngưỡng từ 0,1 $\rightarrow$ 0,9 để quan sát TP, FP, FN, TN thay đổi.
+
+Liên kết: \href{https://developers.google.com/machine-learning/crash-course/classification/thresholding}{Widget MLCC (Separated / Unseparated / Imbalanced)}
 \end{luuy}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Ngưỡng}]
-\textbf{Câu 1.} Site hợp lệ bị gán malware $\Rightarrow$ \textbf{FP} (âm bị gán dương).
+\begin{luuy}[title={Ngưỡng}]
+Site hợp lệ bị gán malware $\Rightarrow$ \textbf{FP} (âm bị gán dương - dương tính giả).
 
-\medskip
-\textbf{Câu 2.} Tăng ngưỡng $\Rightarrow$ \textbf{cả TP và FP giảm} (ít gán dương; ví dụ ngưỡng 0,9999).
-
-\medskip
-\textbf{Câu 3.} Tăng ngưỡng $\Rightarrow$ \textbf{TN tăng, FN giảm} (theo đáp án MLCC; thử trên widget).
+Tăng ngưỡng $\Rightarrow$ \textbf{TP và FP giảm; còn FN và TN tăng}.
 \end{luuy}
 
 \newpage
@@ -162,6 +165,12 @@ Kéo ngưỡng từ 0,1 $\rightarrow$ 0,9 để quan sát TP, FP, FN, TN thay đ
 
 \begin{dongco}[title={Một con số không đủ}]
 Metric phụ thuộc chi phí sai, mất cân bằng lớp và \textbf{ngưỡng} đang dùng (mỗi metric tính tại một ngưỡng cố định).
+\begin{itemize}
+    \item Accuracy: Độ chính xác
+    \item Recall: Độ nhạy / độ thu hồi / tỷ lệ dự báo đúng
+    \item Precision: Độ chuẩn xác / độ chuẩn xác dương tính
+    \item Metric: Đo lường / chỉ số đánh giá
+  \end{itemize}
 \end{dongco}
 
 \begin{congthuc}[title={Các công thức chính}]
@@ -178,19 +187,26 @@ Metric phụ thuộc chi phí sai, mất cân bằng lớp và \textbf{ngưỡng
 
 \begin{ynghia}[title={Diễn giải (ví dụ spam)}]
 \begin{itemize}
-  \item \textbf{Accuracy:} tỷ lệ email phân loại đúng.
-  \item \textbf{Recall (TPR):} trong spam thật, bắt được bao nhiêu? (\emph{probability of detection})
-  \item \textbf{FPR:} tỷ lệ thư hợp lệ bị gán nhầm spam.
-  \item \textbf{Precision:} trong email gán spam, bao nhiêu đúng là spam?
+  \item \textbf{Accuracy:} tỷ lệ email phân loại đúng. Cho biết tổng tỷ lệ dự đoán đúng của toàn bộ mô hình trên mọi trường hợp. Một mô hình hoàn hảo sẽ không có kết quả dương tính giả và không có kết quả âm tính giả, do đó, độ chính xác là 1.0.
+  \item \textbf{Recall (TPR - True Positive Rate):} trong spam thật, bắt được bao nhiêu? (\emph{probability of detection - xác suất phát hiện}). Trả lời câu hỏi: "Trong tổng số trường hợp thực tế cần tìm, mô hình đã quét được bao nhiêu phần trăm?". Một mô hình hoàn hảo giả định sẽ không có âm tính giả và do đó có độ thu hồi (TPR) là 1.0.
+  \item \textbf{FPR (False Positive Rate):} tỷ lệ thư hợp lệ bị gán nhầm spam. (\emph{probability of false alarm - xác suất báo động giả}). Trả lời câu hỏi: "Trong số những lần mô hình báo động (dự đoán dương tính), có bao nhiêu lần là cảnh báo giả?". Một mô hình hoàn hảo sẽ không có kết quả dương tính giả và do đó có FPR là 0.0.
+  \item \textbf{Precision:} trong email gán spam, bao nhiêu đúng là spam? Trả lời câu hỏi: "Mô hình dự đoán đúng được bao nhiêu trong số những lần nó cảnh báo?". Một mô hình hoàn hảo giả định sẽ không có dương tính giả và do đó có độ chính xác là 1.0.
+  \item \textbf{F1:} "Mô hình hoạt động cân bằng và ổn định như thế nào?" Trả lời câu hỏi: "Mô hình đang hoạt động ở mức độ nào? Độ nhạy và độ chính xác có đồng đều không?"
 \end{itemize}
 \end{ynghia}
 
-\begin{phanvidu}[title={Accuracy trên tập mất cân bằng}]
-99\% nhãn âm: mô hình luôn dự đoán âm $\Rightarrow$ accuracy 99\% nhưng \textbf{vô dụng}.
+\begin{phanvidu}[title={Trên tập mất cân bằng}]
+  Tuy nhiên, khi tập dữ liệu không cân bằng hoặc khi một loại lỗi (FN hoặc FP) tốn kém hơn loại còn lại (trường hợp này xảy ra trong hầu hết các ứng dụng thực tế), bạn nên tối ưu hoá cho một trong các chỉ số khác. Đối với các tập dữ liệu có độ mất cân bằng cao, trong đó một lớp xuất hiện rất hiếm, chẳng hạn như 1\%, một mô hình dự đoán giá trị âm 100\% sẽ đạt điểm 99\% về độ chính xác, mặc dù không có tác dụng.
+
+  Trong đó số lượng kết quả dương tính thực tế rất thấp, độ thu hồi là một chỉ số có ý nghĩa hơn độ chính xác vì độ thu hồi đo lường khả năng của mô hình trong việc xác định chính xác tất cả các trường hợp dương tính. Đối với các ứng dụng như dự đoán bệnh, việc xác định chính xác các trường hợp dương tính là rất quan trọng. Thông thường, kết quả âm tính giả sẽ có hậu quả nghiêm trọng hơn so với kết quả dương tính giả.
+
+  FPR thường là một chỉ số giàu thông tin hơn độ chính xác. Tuy nhiên, nếu số lượng âm tính thực tế rất thấp, thì FPR có thể không phải là lựa chọn lý tưởng do tính biến động của nó. Ví dụ: nếu chỉ có 4 giá trị âm thực tế trong một tập dữ liệu, thì một lần phân loại sai sẽ dẫn đến FPR là 25\%, trong khi lần phân loại sai thứ hai sẽ khiến FPR tăng lên 50\%. Trong những trường hợp như thế này, precision có thể là một chỉ số ổn định hơn để đánh giá tác động của kết quả dương tính giả.
+
+  Trong đó số lượng kết quả dương tính thực tế rất thấp, chẳng hạn như tổng cộng 1-2 ví dụ, precision sẽ ít có ý nghĩa và ít hữu ích hơn.
 \end{phanvidu}
 
 \begin{tinhchat}[title={Precision vs recall}]
-Tăng ngưỡng $\Rightarrow$ thường precision $\uparrow$, recall $\downarrow$ (đánh đổi nghịch).
+  Độ chính xác cải thiện khi số lượng kết quả dương tính giả giảm, trong khi độ thu hồi cải thiện khi số lượng kết quả âm tính giả giảm. Nhưng như đã thấy trong phần trước, việc tăng ngưỡng phân loại có xu hướng làm giảm số lượng kết quả dương tính giả và tăng số lượng kết quả âm tính giả, trong khi việc giảm ngưỡng sẽ có tác dụng ngược lại. Do đó, độ chính xác và khả năng thu hồi thường có mối quan hệ nghịch đảo, trong đó việc cải thiện một trong hai chỉ số này sẽ làm giảm chỉ số còn lại.
 \end{tinhchat}
 
 \begin{luuy}[title={NaN}]
@@ -210,20 +226,23 @@ $F_1$ & Cân bằng precision/recall; tập mất cân bằng. \\
 \end{congthuc}
 
 \begin{vidu}[title={Tính recall và precision}]
-$TP=5$, $TN=6$, $FP=3$, $FN=2$: Recall $=5/7\approx 0{,}714$; Precision $=5/8=0{,}625$.
+$TP=5$, $TN=6$, $FP=3$, $FN=2$:
 
-\medskip
-$TP=3$, $FP=2$, $FN=1$: Precision $=3/5=0{,}6$.
+Recall $=5/7\approx 0{,}714$,
+
+Precision $=5/8=0{,}625$.
+
+$TP=3$, $FP=2$, $FN=1$:
+
+Precision $=3/5=0{,}6$.
 \end{vidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Metric}]
-\textbf{Câu 1.} $TP=5$, $FN=2$ $\Rightarrow$ Recall $=5/7$ (không chia cho tổng mọi phân loại đúng).
+\begin{luuy}[title={Metric}]
+$TP=5$, $FN=2$ $\Rightarrow$ Recall $=5/7$ (không chia cho tổng mọi phân loại đúng).
 
-\medskip
-\textbf{Câu 2.} $TP=3$, $FP=2$ $\Rightarrow$ Precision $=3/5$ (chia cho mọi dự đoán dương).
+$TP=3$, $FP=2$ $\Rightarrow$ Precision $=3/5$ (chia cho mọi dự đoán dương).
 
-\medskip
-\textbf{Câu 3.} Bẫy côn trùng xâm lấn: FN đắt, FP rẻ $\Rightarrow$ tối đa \textbf{Recall}.
+Bẫy côn trùng xâm lấn: FN đắt, FP rẻ $\Rightarrow$ tối đa \textbf{Recall}.
 \end{luuy}
 
 \newpage
@@ -291,17 +310,14 @@ Tệ hơn ngẫu nhiên --- có thể \textbf{đảo nhãn} 0$\leftrightarrow$1 
 \begin{center}\small\textbf{Hình 7.} So sánh AUC: 0,77 tốt nhất; 0,31 tệ hơn ngẫu nhiên.\end{center}
 \end{figure}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- ROC}]
-\textbf{Câu 1.} AUC cao nhất: \path{auc_0-77.png} ($\approx 0{,}77$).
+\begin{luuy}[title={ROC}]
+AUC cao nhất: ($\approx 0{,}77$).
 
-\medskip
-\textbf{Câu 2.} Tệ hơn ngẫu nhiên: \path{auc_0-32.png} (AUC nhỏ hơn 0,5).
+Tệ hơn ngẫu nhiên: (AUC nhỏ hơn 0,5).
 
-\medskip
-\textbf{Câu 3.} Cải thiện không huấn luyện lại: \textbf{đảo nhãn dự đoán}.
+Cải thiện không huấn luyện lại: \textbf{đảo nhãn dự đoán}.
 
-\medskip
-\textbf{Câu 4.} Thư quan trọng không được vào spam $\Rightarrow$ \textbf{điểm A} (FPR thấp).
+Thư quan trọng không được vào spam $\Rightarrow$ \textbf{điểm A} (FPR thấp).
 \end{luuy}
 
 \newpage
@@ -353,7 +369,7 @@ Mỗi mẫu một lớp: chia thành nhiều bài toán nhị phân. Ba lớp A,
 \end{vidu}
 
 \begin{luuy}[title={Đa nhãn}]
-Một mẫu thuộc \textbf{nhiều lớp cùng lúc} $\Rightarrow$ \textbf{đa nhãn} (multi-label), khác đa lớp. Chi tiết: \href{https://developers.google.com/machine-learning/crash-course/neural-networks/multi-class}{Multi-class neural networks}.
+Một mẫu thuộc \textbf{nhiều lớp cùng lúc} $\Rightarrow$ \textbf{đa nhãn} (multi-label), khác đa lớp.
 \end{luuy}
 
 \begin{tongket}[title={Tổng kết chương --- Phân loại}]

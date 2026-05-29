@@ -188,37 +188,15 @@ print('Total number of rows: {0}\n\n'.format(len(training_df.index)))
 training_df.describe(include='all')
 \end{lstlisting}
 
-\begin{lstlisting}
-#@title Double-click or run to view answers about dataset statistics
-
-answer = '''
-What is the maximum fare? 				              Answer: $159.25
-What is the mean distance across all trips? 		Answer: 8.2895 miles
-How many cab companies are in the dataset? 		  Answer: 31
-What is the most frequent payment type? 		    Answer: Credit Card
-Are any features missing data? 				          Answer: No
-'''
-
-# What is the maximum fare?
-max_fare = training_df['FARE'].max()
-print("What is the maximum fare? 				Answer: ${fare:.2f}".format(fare = max_fare))
-
-# What is the mean distance across all trips?
-mean_distance = training_df['TRIP_MILES'].mean()
-print("What is the mean distance across all trips? 		Answer: {mean:.4f} miles".format(mean = mean_distance))
-
-# How many cab companies are in the dataset?
-num_unique_companies =  training_df['COMPANY'].nunique()
-print("How many cab companies are in the dataset? 		Answer: {number}".format(number = num_unique_companies))
-
-# What is the most frequent payment type?
-most_freq_payment_type = training_df['PAYMENT_TYPE'].value_counts().idxmax()
-print("What is the most frequent payment type? 		Answer: {type}".format(type = most_freq_payment_type))
-
-# Are any features missing data?
-missing_values = training_df.isnull().sum().sum()
-print("Are any features missing data? 				Answer:", "No" if missing_values == 0 else "Yes")
-\end{lstlisting}
+\begin{vidu}[title={Đáp án tham khảo}]
+\begin{itemize}
+  \item Giá cước tối đa? \textbf{159{,}25 USD}.
+  \item Quãng đường trung bình mọi chuyến? \textbf{8{,}2895 dặm}.
+  \item Có bao nhiêu hãng taxi trong dataset? \textbf{31}.
+  \item Loại thanh toán phổ biến nhất? \textbf{Thẻ tín dụng} (Credit Card).
+  \item Có feature nào thiếu dữ liệu không? \textbf{Không}.
+\end{itemize}
+\end{vidu}
 
 \subsection{Ma trận tương quan (correlation matrix)}
 
@@ -250,23 +228,14 @@ Chạy cell sau và trả lời:
 training_df.corr(numeric_only = True)
 \end{lstlisting}
 
-\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
-\end{luuy}
+\begin{vidu}[title={Đáp án tham khảo}]
+\textbf{Tương quan mạnh nhất với \texttt{FARE}:} \texttt{TRIP\_MILES} (quãng đường).
+Đúng như kỳ vọng, đây là feature tốt để bắt đầu huấn luyện.
+\texttt{TRIP\_SECONDS} (thời gian chuyến) cũng tương quan khá mạnh với giá cước.
 
-\begin{lstlisting}
-#@title Double-click to view answers about the correlation matrix
-
-answer = '''
-The feature with the strongest correlation to the FARE is TRIP_MILES.
-As you might expect, TRIP_MILES looks like a good feature to start with to train
-the model. Also, notice that the feature TRIP_SECONDS has a strong correlation
-with fare too.
-'''
-print(answer)
-
-answer = '''The feature with the weakest correlation to the FARE is TIP_RATE.'''
-print(answer)
-\end{lstlisting}
+\medskip
+\textbf{Tương quan yếu nhất với \texttt{FARE}:} \texttt{TIP\_RATE} (tỷ lệ tiền boa).
+\end{vidu}
 
 \subsection{Trực quan hóa quan hệ bằng pair plot}
 
@@ -288,7 +257,7 @@ px.scatter_matrix(training_df, dimensions=["FARE", "TRIP_MILES", "TRIP_SECONDS"]
 \subsection{Định nghĩa các hàm tạo và huấn luyện mô hình}
 
 \begin{phuongphap}[title={Hướng dẫn}]
-Chạy cell \textbf{Define ML functions}. Nếu muốn hiểu sâu, hãy mở rộng cell để đọc code.
+Chạy cell \textbf{Define ML functions}.
 \end{phuongphap}
 
 \begin{lstlisting}
@@ -381,30 +350,15 @@ ml_edu.results.plot_experiment_metrics(experiment_1, ['rmse'])
 ml_edu.results.plot_model_predictions(experiment_1, training_df, 'FARE')
 \end{lstlisting}
 
-\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
-\end{luuy}
+\begin{vidu}[title={Đáp án tham khảo}]
+\textbf{Bao nhiêu epoch để hội tụ?}
+Dùng loss curve để xem chỗ loss bắt đầu ``đi ngang''.
+Với \texttt{learning\_rate = 0.001}, \texttt{epochs = 20}, \texttt{batch\_size = 50}, khoảng \textbf{5 epoch} là đủ để mô hình hội tụ.
 
-\begin{lstlisting}
-#@title Double-click to view answers for training model with one feature
-
-answer = """
-Use the loss curve to see where the loss begins to level off during training.
-
-With this set of hyperparameters:
-
-  learning_rate = 0.001
-  epochs = 20
-  batch_size = 50
-
-it takes about 5 epochs for the training run to converge to the final model.
-"""
-print(answer)
-
-answer = '''
-It appears from the model plot that the model fits the sample data fairly well.
-'''
-print(answer)
-\end{lstlisting}
+\medskip
+\textbf{Mô hình khớp dữ liệu mẫu thế nào?}
+Nhìn đồ thị dự đoán, mô hình khớp dữ liệu mẫu \textbf{khá tốt}.
+\end{vidu}
 
 \subsection{Thử nghiệm siêu tham số}
 
@@ -453,38 +407,15 @@ ml_edu.results.plot_experiment_metrics(experiment_2, ['rmse'])
 ml_edu.results.plot_model_predictions(experiment_2, training_df, 'FARE')
 \end{lstlisting}
 
-\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
-\end{luuy}
+\begin{vidu}[title={Đáp án tham khảo}]
+\textbf{Tăng learning rate:} Loss curve dao động mạnh, không hướng về hội tụ sau mỗi vòng lặp; đồ thị dự đoán khớp dữ liệu kém. Learning rate quá cao thường \textbf{khó} huấn luyện được mô hình tốt.
 
-\begin{lstlisting}
-#@title Double-click to view answers for hyperparameter experiments
+\medskip
+\textbf{Giảm learning rate:} Loss giảm chậm, có thể cần nhiều epoch hơn mới hội tụ; có thể tăng số epoch để mô hình cuối cùng vẫn hội tụ, nhưng \textbf{mất thời gian hơn}.
 
-answer = """
-When the learning rate is too high, the loss curve bounces around and does not
-appear to be moving towards convergence with each iteration. Also, notice that
-the predicted model does not fit the data very well. With a learning rate that
-is too high, it is unlikely that you will be able to train a model with good
-results.
-"""
-print(answer)
-
-answer = '''
-When the learning rate is too small, it may take longer for the loss curve to
-converge. With a small learning rate the loss curve decreases slowly, but does
-not show a dramatic drop or leveling off. With a small learning rate you could
-increase the number of epochs so that your model will eventually converge, but
-it will take longer.
-'''
-print(answer)
-
-answer = '''
-Increasing the batch size makes each epoch run faster, but as with the smaller
-learning rate, the model does not converge with just 20 epochs. If you have
-time, try increasing the number of epochs and eventually you should see the
-model converge.
-'''
-print(answer)
-\end{lstlisting}
+\medskip
+\textbf{Tăng batch size:} Mỗi epoch chạy nhanh hơn (vì tăng batch size thì giảm số lần lặp trong mỗi epoch), nhưng với 20 epoch mô hình có thể chưa hội tụ (tương tự learning rate nhỏ). Nếu có thời gian, hãy tăng số epoch --- cuối cùng bạn sẽ thấy mô hình hội tụ.
+\end{vidu}
 
 \subsection{Huấn luyện mô hình với hai feature}
 
@@ -535,48 +466,26 @@ ml_edu.results.plot_experiment_metrics(experiment_3, ['rmse'])
 ml_edu.results.plot_model_predictions(experiment_3, training_df, 'FARE')
 \end{lstlisting}
 
-\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
-\end{luuy}
+\begin{vidu}[title={Đáp án tham khảo}]
+\textbf{Hai feature có tốt hơn một feature không?}
+So sánh RMSE giữa các lần chạy.
+Ví dụ: RMSE mô hình một feature là 3{,}7457, hai feature là 3{,}4787 $\Rightarrow$ trung bình dự đoán gần giá quan sát hơn khoảng \textbf{0{,}27 USD}.
 
-\begin{lstlisting}
-#@title Double-click to view answers for training with two features
+\medskip
+\textbf{Dùng \texttt{TRIP\_SECONDS} thay \texttt{TRIP\_MINUTES}?}
+Khi có nhiều feature số, các giá trị nên \textbf{cùng thứ tự độ lớn}.
+\texttt{TRIP\_MILES} có trung bình $\approx 8{,}3$, \texttt{TRIP\_SECONDS} $\approx 1\,320$ (chênh hai bậc độ lớn).
+\texttt{TRIP\_MINUTES} có trung bình $\approx 22$, gần thang của \texttt{TRIP\_MILES} hơn.
+Đây không phải cách duy nhất để chuẩn hóa; module khác sẽ nói thêm.
 
-answer = '''
-To answer this question for your specific training runs, compare the RMSE for
-each model. For example, if the RMSE for the model trained with one feature was
-3.7457 and the RMSE for the model with two features is 3.4787, that means that
-on average the model with two features makes predictions that are about $0.27
-closer to the observed fare.
-
-'''
-print(answer)
-
-answer = '''
-When training a model with more than one feature, it is important that all
-numeric values are roughly on the same scale. In this case, TRIP_SECONDS and
-TRIP_MILES do not meet this criteria. The mean value for TRIP_MILES is 8.3 and
-the mean for TRIP_SECONDS is 1,320; that is two orders of magnitude difference.
-In contrast, the mean for TRIP_MINUTES is 22, which is more similar to the scale
-of TRIP_MILES (8.3) than TRIP_SECONDS (1,320). Of course, this is not the
-only way to scale values before training, but you will learn about that in
-another module.
-'''
-print(answer)
-
-answer = '''
-In reality, Chicago taxi cabs use a documented formula to determine cab fares.
-For a single passenger paying cash, the fare is calculated like this:
-
-FARE = 2.25 * TRIP_MILES + 0.12 * TRIP_MINUTES + 3.25
-
-Typically with machine learning problems you would not know the 'correct'
-formula, but in this case you can use this knowledge to evaluate your model.
-Take a look at your model output (the weights and bias) and determine how
-well it matches the ground truth fare calculation. You should find that the
-model is roughly close to this formula.
-'''
-print(answer)
-\end{lstlisting}
+\medskip
+\textbf{So với công thức tính giá thật ở Chicago:}
+Hành khách trả tiền mặt, công thức tham khảo:
+\[
+  \texttt{FARE} = 2{,}25 \times \texttt{TRIP\_MILES} + 0{,}12 \times \texttt{TRIP\_MINUTES} + 3{,}25.
+\]
+Thường ta không biết công thức đúng, nhưng ở đây có thể so trọng số/bias học được với công thức trên --- mô hình thường \textbf{khá sát}.
+\end{vidu}
 
 \subsection{So sánh các experiment}
 
@@ -643,20 +552,10 @@ output = predict_fare(experiment_3.model, training_df, experiment_3.settings.inp
 show_predictions(output)
 \end{lstlisting}
 
-\begin{luuy}[title={Đáp án tham khảo (từ notebook)}]
-\end{luuy}
-
-\begin{lstlisting}
-#@title Double-click to view answers for validate model
-
-answer = '''
-Based on a random sampling of examples, the model seems to do pretty well
-predicting the fare for a taxi ride. Most of the predicted values do not vary
-significantly from the observed value. You should be able to see this by looking
-at the column L1_LOSS = |observed - predicted|.
-'''
-print(answer)
-\end{lstlisting}
+\begin{vidu}[title={Đáp án tham khảo}]
+Trên mẫu ngẫu nhiên, mô hình dự đoán giá cước \textbf{khá tốt}: hầu hết giá dự đoán không lệch nhiều so với giá quan sát.
+Xem cột \texttt{L1\_LOSS} $= |\text{quan sát} - \text{dự đoán}|$ để thấy rõ.
+\end{vidu}
 
 \end{document}
 

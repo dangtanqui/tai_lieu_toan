@@ -4,7 +4,7 @@
 \def\courseshortheader{HỌC MÁY --- GIỚI THIỆU}
 \def\coverbookline{TRÍ TUỆ NHÂN TẠO}
 \def\covermaintitle{Giới thiệu học máy}
-\def\coversubtitle{Lý thuyết --- Khái niệm nền, học có giám sát, kiểm tra hiểu biết}
+\def\coversubtitle{Lý thuyết --- Khái niệm nền, học có giám sát}
 
 \input{../_template/preamble.tex}
 
@@ -39,28 +39,6 @@
 \begin{ynghia}[title={Cách đọc tài liệu}]
 Biên soạn và dịch từ khóa \emph{Introduction to Machine Learning} của Google Developers\footnote{\url{https://developers.google.com/machine-learning/intro-to-ml}}.
 \end{ynghia}
-
-\begin{phuongphap}[title={Bản đồ các ô trong tài liệu}]
-\begin{itemize}
-  \item \textsf{\color{teal!60!black}Động cơ học} --- câu hỏi thực tế trước khi định nghĩa.
-  \item \textsf{\color{blue!60!black}Định nghĩa} --- khái niệm chính thống, có liên kết \href{https://developers.google.com/machine-learning/glossary}{ML Glossary}.
-  \item \textsf{\color{purple!50!black}Ý nghĩa \& Trực giác} --- giải thích ``đang nói gì''.
-  \item \textsf{\color{orange!50!black}Tính chất} --- quy tắc, phân loại, điểm cần nhớ.
-  \item \textsf{\color{gray!50!black}Phương pháp} --- quy trình, các bước làm.
-  \item \textsf{\color{cyan!50!black}Công thức} --- biểu thức / mối quan hệ toán tắt.
-  \item \textsf{\color{violet!50!black}Ví dụ} --- tình huống cụ thể.
-  \item \textsf{\color{red!40!black}Phản ví dụ} --- hiểu nhầm thường gặp.
-  \item \textsf{\color{olive!60!black}Ứng dụng thực tế} --- sản phẩm, ngành.
-  \item \textsf{\color{red!50!black}Lưu ý} --- cạm bẫy, kiểm tra hiểu biết.
-  \item \textsf{\color{blue!70!black}Tổng kết chương} --- thuật ngữ và bước tiếp theo.
-\end{itemize}
-\end{phuongphap}
-
-\begin{ungdung}[title={Tài liệu tham khảo mở rộng}]
-\href{https://developers.google.com/machine-learning/crash-course}{Machine Learning Crash Course} \textbullet\
-\href{https://developers.google.com/machine-learning/problem-framing}{Problem Framing} \textbullet\
-\href{https://pair.withgoogle.com/guidebook/}{People + AI Guidebook}.
-\end{ungdung}
 
 \newpage
 
@@ -108,7 +86,7 @@ Video: \url{https://www.youtube.com/watch?v=RdC7KZ6OFPA}
 \end{itemize}
 \end{phanvidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 Trong ML, ``mô hình'' là gì?
 
 \medskip
@@ -192,7 +170,7 @@ Lọc email spam; nhận diện mèo trong ảnh; phân loại loại thời ti�
 Dự đoán \textbf{kWh/năm} là \textbf{hồi quy} (số), không phải phân loại. Phân loại dùng khi cần \textbf{lớp} (spam/không spam), không phải khi nhãn là số đo liên tục trừ khi ta \emph{chủ động} chia khoảng thành lớp (cao/trung bình/thấp).
 \end{phanvidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 Dự đoán tiêu thụ điện tòa nhà (kWh) $\Rightarrow$ \textbf{hồi quy}.
 \end{luuy}
 
@@ -233,7 +211,7 @@ Dự đoán tiêu thụ điện tòa nhà (kWh) $\Rightarrow$ \textbf{hồi quy}
 \textbf{Sai:} ``Không giám sát tự biết nghĩa cụm.'' --- Máy chỉ gom nhóm; \textbf{người} đặt tên dựa trên hiểu biết miền.
 \end{phanvidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 \begin{itemize}
   \item Có giám sát: có đáp án đúng trong dữ liệu.
   \item Không giám sát: không có đáp án; tìm nhóm/mẫu.
@@ -401,7 +379,7 @@ Có thể lặp Huấn luyện $\leftrightarrow$ Đánh giá nhiều lần trư�
 Vài năm, đủ 12 tháng, nhưng ít năm $\Rightarrow$ thiếu biến thiên dài hạn; dự đoán thiếu tin cậy.
 \end{phanvidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Tập dữ liệu lý tưởng}]
+\begin{luuy}[title={Tập dữ liệu lý tưởng}]
 \textbf{Đáp án:} kích thước \textbf{lớn} và đa dạng \textbf{cao}. Tránh: lớn/thấp đa dạng; nhỏ/cao đa dạng; nhỏ/thấp đa dạng.
 \end{luuy}
 
@@ -471,7 +449,7 @@ Thử thêm/bỏ đặc trưng (ví dụ \texttt{time\_of\_day} trong dữ liệ
 \mlimg[0.8]{evaluating-a-model.png}
 \begin{center}\small\textbf{Hình 8.} So dự đoán với giá trị thực.\end{center}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Vì sao phải huấn luyện?}]
+\begin{luuy}[title={Vì sao phải huấn luyện?}]
 Mô hình phải \textbf{học} quan hệ đặc trưng--nhãn từ dữ liệu; không ``biết sẵn'' khi mới khởi tạo.
 \end{luuy}
 
@@ -514,7 +492,7 @@ Không phải mọi cột trong bảng đều giúp dự đoán nhãn. Chỉ và
 
 \mlimg{predictive_power.png}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Dự đoán giá xe}]
+\begin{luuy}[title={Dự đoán giá xe}]
 \textbf{Tốt nhất:} \texttt{make\_model}, \texttt{year}, \texttt{miles}.
 
 \textbf{Yếu:} \texttt{color}, \texttt{height}; \texttt{gearbox}; \texttt{tire\_size}, \texttt{wheel\_base}.
@@ -566,7 +544,7 @@ Dự đoán \textbf{kWh/năm} $\Rightarrow$ \textbf{có giám sát}; nhãn = \te
 \textbf{Sai:} ``Đổi sang không giám sát sẽ cải thiện dự đoán có nhãn.'' --- Không giải quyết bài toán dự đoán nhãn đã biết trong huấn luyện.
 \end{phanvidu}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Cải thiện mô hình}]
+\begin{luuy}[title={Cải thiện mô hình}]
 Chọn \textbf{hai} đáp án tốt: (1) huấn luyện lại với đặc trưng mạnh; (2) tập lớn/đa dạng hơn. Không chọn: ``không sửa được''; ``đổi sang không giám sát''.
 \end{luuy}
 

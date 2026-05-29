@@ -82,9 +82,8 @@ Trong \href{https://developers.google.com/machine-learning/crash-course/linear-r
 Nhiều bài toán cần \textbf{xác suất} làm đầu ra. Logistic là cơ chế rất hiệu quả. Bạn có thể:
 \begin{enumerate}
   \item Dùng trực tiếp: \texttt{0.932} $\Rightarrow$ 93,2\% khả năng spam.
-  \item Chuyển thành lớp: \texttt{Spam} / \texttt{Not Spam} (module \href{https://developers.google.com/machine-learning/crash-course/classification}{Phân loại}).
+  \item Chuyển thành lớp: \texttt{Spam} / \texttt{Not Spam}.
 \end{enumerate}
-Phần này dùng xác suất \textbf{trực tiếp}; chuyển sang lớp học ở module sau.
 \end{dongco}
 
 \subsection{Hàm sigmoid}
@@ -131,7 +130,7 @@ Dù $|x|$ lớn đến đâu, đầu ra luôn trong $(0,1)$.
 \]
 \begin{itemize}
   \item $z$: \href{https://developers.google.com/machine-learning/glossary\#log-odds}{\textbf{log odds}} (logit).
-  \item $b$: bias; $w_i$: trọng số học được; $x_i$: đặc trưng của ví dụ.
+  \item $b$: bias; $w_i$: trọng số học được; $x_i$: đặc trưng của mẫu.
   \item $y'$: xác suất dự đoán trong $(0,1)$.
 \end{itemize}
 \end{congthuc}
@@ -147,17 +146,10 @@ Từ $y = \dfrac{1}{1 + e^{-z}}$ suy ra $z = \ln\!\left(\dfrac{y}{1-y}\right)$ -
 Phương trình tuyến tính có thể cho $z$ rất lớn/nhỏ; sigmoid ``uốn'' đầu ra về $(0,1)$, không bao gồm hai đầu.
 \end{tinhchat}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- Tính $z$ và $y'$}]
+\begin{luuy}[title={Ví dụ: Tính $z$ và $y'$}]
 Cho $b=1$, $w_1=2$, $w_2=-1$, $w_3=5$; $x_1=0$, $x_2=10$, $x_3=2$.
 
-\medskip
-\textbf{Câu 1 --- $z$?} \textbf{Đúng: $z=1$.} Công thức $z = 1 + 2x_1 - x_2 + 5x_3$ $\Rightarrow$ $1+0-10+10=1$. Sai: $0{,}731$ là $y'$, không phải $z$.
-
-\medskip
-\textbf{Câu 2 --- $y'$?} \textbf{Đúng: $\approx 0{,}731$.}
-\[
-  y' = \frac{1}{1+e^{-1}} \approx \frac{1}{1{,}367} \approx 0{,}731
-\]
+$z = 1 + 2 \cdot 0 - 10 + 5 \cdot 2 = 1+0-10+10=1 \Rightarrow y' = \dfrac{1}{1+e^{-1}} \approx \dfrac{1}{1{,}367} \approx 0{,}731$.
 \end{luuy}
 
 \newpage
@@ -206,7 +198,7 @@ Squared loss phù hợp khi tốc độ thay đổi $y'$ gần hằng (ví dụ 
 
 \subsection{Chuẩn hóa trong hồi quy logistic}
 
-\begin{dinhnghia}[title={Regularization}]
+\begin{dinhnghia}[title={Chuẩn hóa (Regularization)}]
 \href{https://developers.google.com/machine-learning/glossary\#regularization}{Chuẩn hóa} phạt độ phức tạp khi huấn luyện. Không chuẩn hóa, logistic có thể cứ đẩy loss về 0 khi có nhiều đặc trưng. Thường dùng:
 \begin{itemize}
   \item \href{https://developers.google.com/machine-learning/crash-course/overfitting/regularization}{Chuẩn hóa $L_2$}
@@ -214,15 +206,10 @@ Squared loss phù hợp khi tốc độ thay đổi $y'$ gần hằng (ví dụ 
 \end{itemize}
 \end{dinhnghia}
 
-\begin{luuy}
-Chi tiết thêm: module \href{https://developers.google.com/machine-learning/crash-course/overfitting}{Datasets, Generalization, and Overfitting}.
-\end{luuy}
-
 \begin{tongket}[title={Tổng kết chương --- Hồi quy logistic}]
 \begin{itemize}
   \item $z = b + \sum w_i x_i$; $y' = \sigma(z) \in (0,1)$.
   \item Huấn luyện: Log Loss + chuẩn hóa ($L_2$ hoặc early stopping).
-  \item Tiếp theo: \href{https://developers.google.com/machine-learning/crash-course/classification}{Phân loại} --- ngưỡng chuyển xác suất thành lớp.
 \end{itemize}
 \end{tongket}
 

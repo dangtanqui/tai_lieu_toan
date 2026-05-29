@@ -248,7 +248,7 @@ Thực tế còn phụ thuộc \textbf{bài toán kinh doanh}: loại sai lệch
 \end{itemize}
 \end{tinhchat}
 
-\begin{luuy}[title={Kiểm tra hiểu biết --- MSE trên hai đồ thị}]
+\begin{luuy}[title={MSE trên hai đồ thị}]
 \begin{center}
 \includegraphics[width=0.44\linewidth]{mse-left.png}\hfill
 \includegraphics[width=0.44\linewidth]{mse-right.png}
@@ -405,7 +405,7 @@ Khi \href{https://developers.google.com/machine-learning/glossary\#convergence}{
 \mlimg[0.72]{low-loss.png}
 \begin{center}\small\textbf{Hình 18.} Cuối --- loss thấp, đường khớp tốt.\end{center}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 \textbf{Vai trò GD:} lặp tìm $w$, $b$ \textbf{minimize loss}. GD \textbf{không} chọn loại loss (L1/L2) và \textbf{không} xóa outlier khỏi dataset.
 \end{luuy}
 
@@ -494,14 +494,22 @@ Quá lớn & Loss dao động hoặc tăng --- không hội tụ. \\
 \mlimg[0.75]{increasing-loss.png}
 \begin{center}\small\textbf{Hình 26.} Learning rate quá lớn --- loss tăng.\end{center}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 Learning rate \textbf{lý tưởng phụ thuộc bài toán} --- không có một số cố định (0.01 hay 1.0) cho mọi dataset.
 \end{luuy}
 
 \subsection{Batch size}
 
 \begin{dinhnghia}[title={Batch size}]
-Số \href{https://developers.google.com/machine-learning/glossary\#example}{mẫu} xử lý trước mỗi lần cập nhật $w$, $b$.
+Số \href{https://developers.google.com/machine-learning/glossary\#example}{mẫu} xử lý trong mỗi lần huấn luyện trước khi tiến hành cập nhật $w$, $b$.
+
+Cách hoạt động: Thay vì đưa toàn bộ tập dữ liệu khổng lồ vào huấn luyện cùng lúc (gây tràn bộ nhớ) hoặc đưa từng mẫu một (tốn thời gian), dữ liệu được chia thành các lô nhỏ (mini-batch). Batch size chính là số lượng mẫu trong mỗi lô đó.
+
+Ví dụ: Bạn có tập dữ liệu 1000 ảnh. Nếu bạn chọn batch size = 32, mô hình sẽ lấy 32 ảnh đầu tiên để học, điều chỉnh hệ số, sau đó lấy tiếp 32 ảnh tiếp theo, v.v.
+
+Huấn luyện AI giống như một người đang cố gắng đi xuống đáy của một thung lũng (điểm hội tụ/tối ưu) trong điều kiện sương mù dày đặc.
+
+Tăng Batch Size (Gộp nhiều dữ liệu hơn trong mỗi bước): Giống như việc người đi bộ dừng lại, quan sát kỹ một nhóm cột mốc (thay vì chỉ nhìn một cột mốc nhỏ lẻ) trước khi quyết định hướng đi. Quá trình này giúp mô hình "nhìn" tổng quát dữ liệu nhanh hơn trong mỗi epoch, từ đó đưa ra bước đi chính xác, vững chắc và bớt chệch hướng.
 \end{dinhnghia}
 
 \begin{tinhchat}[title={Ba kiểu cập nhật}]
@@ -525,7 +533,7 @@ Một mức nhiễu có thể giúp \href{https://developers.google.com/machine-
 \subsection{Epoch}
 
 \begin{dinhnghia}[title={Epoch}]
-Một \href{https://developers.google.com/machine-learning/glossary\#epoch}{epoch} = mô hình đã duyệt \textbf{toàn bộ} tập huấn luyện đúng một lần. Ví dụ: 1000 mẫu, batch 100 $\Rightarrow$ 10 \href{https://developers.google.com/machine-learning/glossary\#iteration}{iteration} / epoch.
+Một \href{https://developers.google.com/machine-learning/glossary\#epoch}{epoch} = mô hình đã duyệt \textbf{toàn bộ} tập huấn luyện đúng một lần. Ví dụ: 1000 mẫu, batch 100 $\Rightarrow$ 10 lần lặp (\href{https://developers.google.com/machine-learning/glossary\#iteration}{iteration}) trong mỗi epoch.
 \end{dinhnghia}
 
 \mlimg[0.85]{batch-size.png}
@@ -541,7 +549,7 @@ Mini-batch (100) & 200 lần (10 batch $\times$ 20 epoch). \\
 \end{tabularx}
 \end{congthuc}
 
-\begin{luuy}[title={Kiểm tra hiểu biết}]
+\begin{luuy}
 \begin{enumerate}
   \item Batch size mini-batch \textbf{tùy dataset và tài nguyên}, không cố định 10 hay 100.
   \item Tăng gấp đôi learning rate có thể làm huấn luyện \textbf{chậm hơn} (nhảy quá mạnh, không hội tụ).
