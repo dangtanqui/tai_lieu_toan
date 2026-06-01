@@ -1,0 +1,33 @@
+%==============================================================================
+\section{Khái niệm nền --- Trực quan hoá dữ liệu trong ML}
+\label{sec:khai-niem-truc-quan}
+%==============================================================================
+
+\begin{dinhnghia}[title={Trực quan hoá dữ liệu (Data Visualization)}]
+Trực quan hoá dữ liệu là biểu diễn đồ họa của dữ liệu và thông tin.
+Nhờ đó ta thấy dữ liệu ``trông như thế nào'' và mức độ tương quan giữa các thuộc tính --- đây là cách nhanh nhất để kiểm tra feature có tương ứng với đầu ra hay không.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vai trò trong pipeline ML}]
+\begin{itemize}
+  \item \textbf{Khám phá dữ liệu}: pattern, tương quan, outlier; phát hiện missing, sai kiểu, không nhất quán.
+  \item \textbf{Chọn đặc trưng}: xác định biến mạnh/yếu so với biến mục tiêu.
+  \item \textbf{Đánh giá mô hình}: ROC, precision--recall, ma trận nhầm lẫn.
+  \item \textbf{Truyền đạt}: biểu đồ giúp stakeholder không chuyên hiểu kết quả.
+\end{itemize}
+\end{ynghia}
+
+\begin{phuongphap}[title={Hai nhóm biểu đồ trong phần này}]
+\begin{itemize}
+  \item \textbf{Univariate} (một biến): histogram, density plot, boxplot --- xem từng thuộc tính độc lập.
+  \item \textbf{Multivariate} (nhiều biến): ma trận tương quan, scatter matrix --- xem tương tác giữa các thuộc tính.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Thư viện Python thường dùng}]
+Matplotlib, Seaborn, Plotly, Bokeh.
+\end{phuongphap}
+
+\begin{vidu}[title={Tổng quan kỹ thuật trực quan}]
+\tsimg{01_data_visualization/img01.jpg}
+\end{vidu}

@@ -1,0 +1,80 @@
+\documentclass[12pt,a4paper]{article}
+
+\def\courseshortheader{MACHINE LEARNING (PHẦN 2)}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Machine Learning}
+\def\coversubtitle{Phần 2 --- Data Visualization}
+
+\input{../../../1_machine_learning/_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\graphicspath{{images/}}
+
+\newcommand{\tsurl}[1]{\url{#1}}
+
+\newcommand{\tsimg}[2][0.88]{%
+  \def\tsimgfile{images/#2}%
+  \IfFileExists{\tsimgfile}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy \expandafter\path\expandafter{\tsimgfile}.%
+    \end{luuy}%
+  }%
+}
+
+\begin{document}
+
+\input{../../../1_machine_learning/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Data Visualization:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_visualization.htm}.
+\end{ynghia}
+
+\begin{phuongphap}[title={Cách dùng}]
+\begin{itemize}
+  \item Đọc sau phần Basic (đặc biệt bài Data Understanding).
+  \item Mỗi chương có ví dụ Python (Matplotlib, Seaborn, Pandas, scikit-learn).
+\end{itemize}
+\end{phuongphap}
+
+\newpage
+
+\input{tex/00_khai_niem_truc_quan.tex}
+\input{tex/01_data_visualization.tex}
+\input{tex/02_histograms.tex}
+\input{tex/03_density_plots.tex}
+\input{tex/04_box_whisker_plots.tex}
+\input{tex/05_correlation_matrix_plot.tex}
+\input{tex/06_scatter_matrix_plot.tex}
+
+\end{document}

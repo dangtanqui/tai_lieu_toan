@@ -1,0 +1,79 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_statistics.htm",
+    "slug": "01_statistics",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_mean_median_mode.htm",
+    "slug": "02_mean_median_mode",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_standard_deviation.htm",
+    "slug": "03_standard_deviation",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_percentiles.htm",
+    "slug": "04_percentiles",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_data_distribution.htm",
+    "slug": "05_data_distribution",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/bell_shaped.jpg",
+        "file": "images/05_data_distribution/img01.jpg",
+        "bytes": 22717
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/skewed_distribution.jpg",
+        "file": "images/05_data_distribution/img02.jpg",
+        "bytes": 24509
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/uniform_distribution.jpg",
+        "file": "images/05_data_distribution/img03.jpg",
+        "bytes": 29247
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/bimodal_distribution.jpg",
+        "file": "images/05_data_distribution/img04.jpg",
+        "bytes": 31742
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_skewness_and_kurtosis.htm",
+    "slug": "06_skewness_kurtosis",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_bias_and_variance.htm",
+    "slug": "07_bias_variance",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/bias_graphical_representation.jpg",
+        "file": "images/07_bias_variance/img01.jpg",
+        "bytes": 29098
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/variance_graphical_representation.jpg",
+        "file": "images/07_bias_variance/img02.jpg",
+        "bytes": 23163
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/bias_variance_tradeoff.jpg",
+        "file": "images/07_bias_variance/img03.jpg",
+        "bytes": 47426
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_hypothesis.htm",
+    "slug": "08_hypothesis",
+    "images": []
+  }
+]

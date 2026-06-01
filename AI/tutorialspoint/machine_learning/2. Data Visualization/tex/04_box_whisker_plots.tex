@@ -1,0 +1,65 @@
+%==============================================================================
+\section{Box and Whisker Plots --- Biểu đồ hộp và râu}
+\label{sec:box-whisker}
+%==============================================================================
+
+\begin{dinhnghia}[title={Boxplot (Box and Whisker Plot)}]
+Boxplot là biểu diễn đồ họa tóm tắt dữ liệu bằng \textbf{năm số thống kê}:
+giá trị nhỏ nhất, tứ phân vị thứ nhất (Q1), median, tứ phân vị thứ ba (Q3), giá trị lớn nhất (trong phạm vi ``râu'' chuẩn).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Cấu trúc boxplot}]
+\begin{itemize}
+  \item \textbf{Hộp (box)}: khoảng liên tứ phân vị (IQR) từ Q1 đến Q3.
+  \item \textbf{Râu (whiskers)}: kéo từ hộp tới giá trị cao/thấp nhất còn nằm trong $1{,}5 \times \mathrm{IQR}$ tính từ biên hộp.
+  \item \textbf{Điểm ngoài râu}: outlier.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Boxplot trong Python}
+
+\begin{phuongphap}[title={Dataset Iris}]
+Ví dụ dùng \textbf{Iris} (scikit-learn): 150 hoa, 4 đo (sepal length/width, petal length/width), 3 loài Setosa, Versicolor, Virginica.
+\end{phuongphap}
+
+\subsection{Ví dụ --- Boxplot theo loài}
+
+\begin{vidu}[title={Nạp dữ liệu}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+target = iris.target
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Boxplot sepal length theo species}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+target = iris.target
+
+plt.figure(figsize=(7.5, 3.5))
+sns.boxplot(x=target, y=data[:, 0])
+plt.xlabel('Species')
+plt.ylabel('Sepal Length (cm)')
+plt.show()
+\end{lstlisting}
+
+Trục $x$: chỉ số loài (0, 1, 2); trục $y$: sepal length (cm).
+\end{vidu}
+
+\begin{ynghia}[title={Đọc biểu đồ}]
+Setosa có sepal length \textbf{ngắn hơn} Versicolor và Virginica (median và IQR thấp hơn).
+Versicolor và Virginica có median và độ trải tương tự.
+Setosa hầu như không có outlier; Versicolor và Virginica có vài điểm ngoài râu.
+\end{ynghia}
+
+\begin{vidu}[title={Output}]
+\tsimg{04_box_whisker_plots/img01.jpg}
+\end{vidu}

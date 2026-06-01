@@ -2,14 +2,9 @@
 \section{Challenges \& Common Issues --- Thách thức và vấn đề thường gặp}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_challenges_common_issues.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Tổng quan}]
 Học máy phát triển nhanh và có nhiều ứng dụng hứa hẹn.
 Tuy nhiên, để khai thác hết tiềm năng, có một số thách thức và vấn đề cần được giải quyết.
-Nguồn liệt kê các thách thức/vấn đề phổ biến như sau.
 \end{dongco}
 
 \subsection{Overfitting}
@@ -19,11 +14,11 @@ Overfitting xảy ra khi mô hình được huấn luyện trên một tập d�
 dẫn đến hiệu năng kém khi kiểm thử trên dữ liệu mới.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+\begin{phuongphap}[title={Cách xử lý}]
 \begin{itemize}
-  \item Cross-validation
-  \item Regularization
-  \item Early stopping
+  \item Kiểm tra chéo (Cross-validation)
+  \item Điều chỉnh (Regularization)
+  \item Dừng sớm (Early stopping)
 \end{itemize}
 \end{phuongphap}
 
@@ -33,7 +28,7 @@ dẫn đến hiệu năng kém khi kiểm thử trên dữ liệu mới.
 Underfitting xảy ra khi mô hình quá đơn giản và không thể nắm bắt pattern trong dữ liệu.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+\begin{phuongphap}[title={Cách xử lý}]
 \begin{itemize}
   \item Dùng mô hình phức tạp hơn
   \item Thêm nhiều feature cho dữ liệu
@@ -47,11 +42,11 @@ Mô hình ML “tốt đến đâu” phụ thuộc dữ liệu huấn luyện.
 Dữ liệu chất lượng kém có thể tạo ra mô hình không chính xác.
 \end{dongco}
 
-\begin{phuongphap}[title={Một số vấn đề chất lượng dữ liệu (theo nguồn)}]
+\begin{phuongphap}[title={Một số vấn đề chất lượng dữ liệu}]
 \begin{itemize}
-  \item Missing values
-  \item Incorrect values
-  \item Outliers
+  \item Giá trị thiếu (Missing values)
+  \item Giá trị sai (Incorrect values)
+  \item Giá trị ngoại lai (Outliers)
 \end{itemize}
 \end{phuongphap}
 
@@ -69,10 +64,10 @@ Mô hình ML có thể rất phức tạp, khiến khó hiểu mô hình đi đ�
 Điều này gây khó khăn khi giải thích cho stakeholder hoặc cơ quan quản lý.
 \end{dongco}
 
-\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ (theo nguồn)}]
+\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ}]
 \begin{itemize}
-  \item Feature importance
-  \item Partial dependence plots
+  \item Quan trọng của feature (Feature importance)
+  \item Biểu đồ phụ thuộc riêng phần (Partial dependence plots)
 \end{itemize}
 \end{phuongphap}
 
@@ -82,7 +77,7 @@ Mô hình ML có thể rất phức tạp, khiến khó hiểu mô hình đi đ�
 Mô hình ML được huấn luyện trên một dataset cụ thể, và có thể hoạt động kém trên dữ liệu mới nằm ngoài phân phối của tập huấn luyện.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+\begin{phuongphap}[title={Cách xử lý}]
 Cross-validation và regularization.
 \end{phuongphap}
 
@@ -92,11 +87,11 @@ Cross-validation và regularization.
 Mô hình ML có thể tốn kém tính toán và khó mở rộng cho dataset lớn.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Một số cách xử lý (theo nguồn)}]
+\begin{phuongphap}[title={Một số cách xử lý}]
 \begin{itemize}
-  \item Distributed computing
-  \item Parallel processing
-  \item Sampling
+  \item Tính toán phân tán (Distributed computing)
+  \item Xử lý song song (Parallel processing)
+  \item Lấy mẫu (Sampling)
 \end{itemize}
 \end{phuongphap}
 
@@ -104,19 +99,17 @@ Mô hình ML có thể tốn kém tính toán và khó mở rộng cho dataset l
 
 \begin{dongco}[title={Vấn đề đạo đức}]
 Mô hình ML có thể gây lo ngại đạo đức khi được dùng để ra quyết định ảnh hưởng đến con người.
-Nguồn nêu: bias, privacy và transparency.
+Bias, privacy và transparency.
 \end{dongco}
 
-\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ (theo nguồn)}]
+\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ}]
 \begin{itemize}
-  \item Fairness metrics
-  \item Explainable AI
+  \item Chỉ số công bằng (Fairness metrics)
+  \item AI giải thích được (Explainable AI)
 \end{itemize}
 \end{phuongphap}
 
-\begin{luuy}[title={Kết luận của nguồn}]
+\begin{luuy}[title={Kết luận}]
 Giải quyết các vấn đề trên cần kết hợp chuyên môn kỹ thuật và hiểu biết kinh doanh, đồng thời hiểu các cân nhắc đạo đức.
 Khi xử lý tốt, ML có thể tạo mô hình chính xác và đáng tin cậy, cung cấp insight và tạo giá trị cho doanh nghiệp.
 \end{luuy}
-
-% The downloader currently stores this page's images under the older combined slug.

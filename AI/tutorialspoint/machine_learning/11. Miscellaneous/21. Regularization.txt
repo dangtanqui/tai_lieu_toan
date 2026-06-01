@@ -1,0 +1,102 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_regularization.htm
+Regularization in Machine Learning
+In machine learning, regularization is a technique used to prevent overfitting, which occurs when a model is too complex and fits the training data too well, but fails to generalize to new, unseen data. Regularization introduces a penalty term to the cost function, which encourages the model to have smaller weights and a simpler structure, thereby reducing overfitting.
+
+There are several types of regularization techniques commonly used in machine learning, including L1 and L2 regularization, dropout regularization, and early stopping. In this article, we will focus on L1 and L2 regularization, which are the most commonly used techniques.
+
+L1 Regularization
+L1 regularization, also known as Lasso regularization, is a technique that adds a penalty term to the cost function, equal to the absolute value of the sum of the weights. The formula for the L1 regularization penalty is −
+
+$$\lambda \times \Sigma \left|w_{i} \right|$$
+
+where is a hyperparameter that controls the strength of the regularization, and is the i-th weight in the model.
+
+The effect of the L1 regularization penalty is to encourage the model to have sparse weights, that is, to eliminate the weights that have little or no impact on the output. This has the effect of simplifying the model and reducing overfitting.
+
+Example
+To implement L1 regularization in Python, we can use the Lasso class from the scikit-learn library. Here is an example of how to use L1 regularization for linear regression −
+
+from sklearn.linear_model import Lasso
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+
+# Load the Boston Housing dataset
+boston = load_boston()
+
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target, test_size=0.2, random_state=42)
+
+# Create a Lasso model with L1 regularization
+lasso = Lasso(alpha=0.1)
+
+# Train the model on the training data
+lasso.fit(X_train, y_train)
+
+# Make predictions on the test data
+y_pred = lasso.predict(X_test)
+
+# Calculate the mean squared error of the predictions
+mse = mean_squared_error(y_test, y_pred)
+print("Mean squared error:", mse)
+In this example, we load the Boston Housing dataset, split it into training and test sets, and create a Lasso model with L1 regularization using an alpha value of 0.1. We then train the model on the training data and make predictions on the test data. Finally, we calculate the mean squared error of the predictions.
+
+Output
+When you execute this code, it will produce the following output −
+
+Mean squared error: 25.155593753934173
+L2 Regularization
+L2 regularization, also known as Ridge regularization, is a technique that adds a penalty term to the cost function, equal to the square of the sum of the weights. The formula for the L2 regularization penalty is −
+
+$$\lambda \times \Sigma\left (w_{i} \right )^{2}$$
+
+where is a hyperparameter that controls the strength of the regularization, and wi is the ith weight in the model.
+
+The effect of the L2 regularization penalty is to encourage the model to have small weights, that is, to reduce the magnitude of all the weights in the model. This has the effect of smoothing the model and reducing overfitting.
+
+Example
+To implement L2 regularization in Python, we can use the Ridge class from the scikit-learn library. Here is an example of how to use L2 regularization for linear regression −
+
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+from sklearn.datasets import load_boston
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+
+# load the Boston housing dataset
+boston = load_boston()
+
+# create feature and target arrays
+X = boston.data
+y = boston.target
+
+# standardize the feature data
+scaler = StandardScaler()
+X = scaler.fit_transform(X)
+
+# split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# define the Ridge regression model with L2 regularization
+model = Ridge(alpha=0.1)
+
+# fit the model on the training data
+model.fit(X_train, y_train)
+
+# make predictions on the testing data
+y_pred = model.predict(X_test)
+
+# calculate the mean squared error
+mse = mean_squared_error(y_test, y_pred)
+print("Mean Squared Error: ", mse)
+In this example, we first load the Boston housing dataset and split it into training and testing sets. We then standardize the feature data using a StandardScaler.
+
+Next, we define the Ridge regression model and set the alpha parameter to 0.1, which controls the strength of the L2 regularization.
+
+We fit the model on the training data and make predictions on the testing data. Finally, we calculate the mean squared error to evaluate the performance of the model.
+
+Output
+When you execute this code, it will produce the following output −
+
+Mean Squared Error: 24.29346250596107

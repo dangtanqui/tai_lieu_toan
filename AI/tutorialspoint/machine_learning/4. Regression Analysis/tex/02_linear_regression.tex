@@ -1,0 +1,149 @@
+%==============================================================================
+\section{Hồi quy tuyến tính (Linear Regression)}
+\label{sec:linear-regression}
+%==============================================================================
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính}]
+Mô hình thống kê phân tích \textbf{quan hệ tuyến tính} giữa biến phụ thuộc và một hoặc nhiều biến độc lập.
+Khi biến độc lập thay đổi, biến phụ thuộc thay đổi tương ứng theo quy luật tuyến tính.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Trong học máy}]
+Dự đoán giá trị số liên tục từ quan hệ tuyến tính đã học; dùng trong mô hình dự báo, tài chính, đánh giá rủi ro.
+\end{ynghia}
+
+\subsection{Dữ liệu ví dụ (một feature)}
+
+\begin{phuongphap}[title={Bảng minh họa}]
+Diện tích (ft$^2$, feature $X$) và giá nhà (target $Y$): mô hình dùng $X$ để dự đoán $Y$.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Đường hồi quy}]
+Đường thẳng thể hiện quan hệ giữa biến phụ thuộc và độc lập.
+\end{dinhnghia}
+
+\tsimg{02_linear_regression/img01.jpg}
+
+\subsection{Quan hệ tuyến tính dương và âm}
+
+\begin{ynghia}[title={Quan hệ dương}]
+Cả hai biến cùng tăng (hoặc cùng giảm).
+\end{ynghia}
+
+\tsimg{02_linear_regression/img02.jpg}
+
+\begin{ynghia}[title={Quan hệ âm}]
+Biến độc lập tăng, biến phụ thuộc giảm (bài gốc ghi nhầm chữ ``positive'').
+\end{ynghia}
+
+\tsimg{02_linear_regression/img03.jpg}
+
+\subsection{Hai loại hồi quy tuyến tính}
+
+\begin{enumerate}
+  \item \textbf{Đơn biến} (Simple): một $X$.
+  \item \textbf{Đa biến} (Multiple): nhiều $X_1,\ldots,X_p$.
+\end{enumerate}
+
+\subsubsection{Hồi quy tuyến tính đơn}
+
+\tsimg{02_linear_regression/img04.jpg}
+
+\[
+\hat{Y} = w_0 + w_1 X + \epsilon
+\]
+
+\begin{itemize}
+  \item $Y$: target; $X$: feature; $w_0$: hệ số chặn; $w_1$: độ dốc; $\epsilon$: sai số.
+\end{itemize}
+
+\subsubsection{Hồi quy tuyến tính đa biến}
+
+\[
+\hat{Y} = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p + \epsilon
+\]
+
+\subsection{Cách hoạt động}
+
+\begin{phuongphap}[title={Ba bước chính}]
+\begin{enumerate}
+  \item \textbf{Giả thuyết}: quan hệ tuyến tính giữa đầu vào và đầu ra.
+  \item \textbf{Hàm mất mát}: đo sai số dự đoán (MSE, MAE, \ldots).
+  \item \textbf{Tối ưu}: cập nhật tham số đến khi mất mát nhỏ.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Hàm giả thuyết}
+
+\[
+\hat{Y} = w_0 + w_1 X \quad \text{(đơn biến)}
+\]
+\[
+\hat{Y} = w_0 + w_1 X_1 + \cdots + w_p X_p \quad \text{(đa biến)}
+\]
+
+\subsection{Đường khớp tốt nhất}
+
+Đường hồi quy tốt nhất khi sai số giữa giá trị thực và dự đoán là nhỏ nhất (trung bình).
+
+\tsimg{02_linear_regression/img05.jpg}
+
+\subsection{Hàm mất mát}
+
+\begin{dinhnghia}[title={MSE (phổ biến)}]
+\[
+J(w_0, w_1) = \frac{1}{2n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2,
+\quad \hat{Y}_i = w_0 + w_1 X_i
+\]
+\end{dinhnghia}
+
+\subsection{Gradient descent}
+
+\begin{phuongphap}[title={Cập nhật tham số}]
+\[
+w_0 \leftarrow w_0 - \alpha \frac{\partial J}{\partial w_0},
+\quad
+w_1 \leftarrow w_1 - \alpha \frac{\partial J}{\partial w_1}
+\]
+với $\alpha$ là learning rate. Lặp đến khi thay đổi $w_0, w_1$ không đáng kể.
+\end{phuongphap}
+
+\subsection{Giả định mô hình}
+
+\begin{luuy}[title={Giả định}]
+\begin{itemize}
+  \item Ít hoặc không đa cộng tuyến.
+  \item Ít tự tương quan trong phần dư.
+  \item Quan hệ giữa response và feature là \textbf{tuyến tính}.
+\end{itemize}
+Vi phạm giả định có thể làm ước lượng chệch hoặc kém hiệu quả.
+\end{luuy}
+
+\subsection{Metric đánh giá}
+
+\begin{tinhchat}[title={$R^2$, MSE, RMSE, MAE}]
+\[
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2},
+\quad
+\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
+\]
+\[
+\mathrm{RMSE} = \sqrt{\mathrm{MSE}},
+\quad
+\mathrm{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|
+\]
+\end{tinhchat}
+
+\subsection{Ứng dụng, ưu điểm và thách thức}
+
+\begin{ynghia}[title={Ứng dụng}]
+Mô hình dự báo (bất động sản), chọn feature, dự báo tài chính, quản trị rủi ro.
+\end{ynghia}
+
+\begin{tinhchat}[title={Ưu điểm}]
+Dễ giải thích, huấn luyện nhanh, nền tảng phân tích dự đoán, đơn giản và hiệu quả tính toán.
+\end{tinhchat}
+
+\begin{luuy}[title={Thách thức}]
+Overfitting, đa cộng tuyến, ảnh hưởng outlier; với dữ liệu phi tuyến có thể cần \textbf{hồi quy đa thức}.
+\end{luuy}

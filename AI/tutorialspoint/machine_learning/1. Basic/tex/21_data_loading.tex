@@ -2,10 +2,6 @@
 \section{Data Loading --- Nạp dữ liệu vào dự án học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_loading.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Bước đầu tiên của mọi dự án ML}]
 Khi bắt đầu dự án ML, thứ cần nhất là \textbf{dữ liệu} phải được nạp vào hệ thống.
 \end{dongco}
@@ -50,6 +46,7 @@ Dòng tùy chọn bắt đầu bằng ký tự như \texttt{\#} hoặc \texttt{/
 Không thường là dữ liệu huấn luyện, nhưng nếu có cần xử lý đúng khi nạp.
 \end{ynghia}
 
+\begin{phuongphap}[title={Lưu ý khi xử lý comment}]
 \begin{itemize}
   \item Biết \textbf{comment marker} đang dùng.
   \item Comment nên ở \textbf{dòng riêng}, không trộn với dữ liệu.
@@ -57,6 +54,7 @@ Không thường là dữ liệu huấn luyện, nhưng nếu có cần xử lý
   \item Hiểu thư viện có bỏ qua comment mặc định hay cần tham số.
   \item Nếu comment chứa thông tin quan trọng, có thể cần xử lý tách khỏi dữ liệu.
 \end{itemize}
+\end{phuongphap}
 
 \subsubsection{Delimiter (ký tự phân tách)}
 
@@ -66,7 +64,7 @@ Delimiter ảnh hưởng đáng kể độ chính xác và hiệu năng khi nạ
   \item Chọn delimiter phù hợp (ví dụ giá trị có dấu phẩy bên trong $\Rightarrow$ có thể dùng tab hoặc semicolon thay vì comma).
   \item \textbf{Consistency} trong cả file.
   \item \textbf{Encoding} tương thích với delimiter (ví dụ delimiter không-ASCII với UTF-8).
-  \item Một số thư viện ML yêu cầu delimiter cụ thể --- xem tài liệu công cụ.
+  \item Một số thư viện ML yêu cầu delimiter cụ thể.
 \end{itemize}
 \end{luuy}
 
@@ -144,7 +142,3 @@ data = load_iris().data
 \end{lstlisting}
 Nạp dataset Iris có sẵn trong sklearn vào mảng NumPy \texttt{data}.
 \end{vidu}
-
-\begin{luuy}[title={Đối chiếu}]
-Các bước tiền xử lý, hiểu dữ liệu và chia train/test: bài \texttt{19--23}; train/validation/test: Mục~\ref{sec:train-val-test}.
-\end{luuy}

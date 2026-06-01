@@ -1,0 +1,35 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_mlops.htm
+MLOps (Machine Learning Operations) is a set of practices and tools that combine software engineering, data science, and operations to enable the automated deployment, monitoring, and management of machine learning models in production environments.
+
+MLOps addresses the challenges of managing and scaling machine learning models in production, which include version control, reproducibility, model deployment, monitoring, and maintenance. It aims to streamline the entire machine learning lifecycle, from data preparation and model training to deployment and maintenance.
+
+MLOps Best Practices
+MLOps involves a number of key practices and tools, including −
+
+Version control − This involves tracking changes to code, data, and models using tools like Git to ensure reproducibility and maintain a history of all changes.
+
+Continuous integration and delivery (CI/CD) − This involves automating the process of building, testing, and deploying machine learning models using tools like Jenkins, Travis CI, or CircleCI.
+
+Containerization − This involves packaging machine learning models and dependencies into containers using tools like Docker or Kubernetes, which enables easy deployment and scaling of models in production environments.
+
+Model serving − This involves setting up a server to host machine learning models and serving predictions on incoming data.
+
+Monitoring and logging − This involves tracking the performance of machine learning models in production environments using tools like Prometheus or Grafana, and logging errors and alerts to enable proactive maintenance.
+
+Automated testing − This involves automating the testing of machine learning models to ensure they are accurate and robust.
+
+Python Libraries for MLOps
+Python has a number of libraries and tools that can be used for MLOps, including −
+
+Scikit-learn − A popular machine learning library that provides tools for data preprocessing, model selection, and evaluation.
+
+TensorFlow − A widely used open-source platform for building and deploying machine learning models.
+
+Keras − A high-level neural networks API that can run on top of TensorFlow.
+
+PyTorch − A deep learning framework that provides tools for building and deploying neural networks.
+
+MLflow − An open-source platform for managing the machine learning lifecycle that provides tools for tracking experiments, packaging code and models, and deploying models in production.
+
+Kubeflow − A machine learning toolkit for Kubernetes that provides tools for managing and scaling machine learning workflows.
+

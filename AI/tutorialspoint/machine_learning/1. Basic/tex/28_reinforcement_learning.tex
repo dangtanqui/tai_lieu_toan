@@ -3,10 +3,6 @@
 \label{sec:reinforcement-learning}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning.htm}.
-\end{ynghia}
-
 \subsection{Reinforcement Learning là gì?}
 
 \begin{dinhnghia}[title={Học tăng cường}]
@@ -15,9 +11,8 @@ Hành động tốt $\Rightarrow$ phản hồi tích cực; hành động xấu 
 Lấy cảm hứng từ cách động vật học từ kinh nghiệm: quyết định dựa trên hậu quả hành động.
 \end{dinhnghia}
 
-\begin{vidu}[title={Mô hình RL điển hình (theo nguồn)}]
+\begin{vidu}[title={Mô hình RL điển hình}]
 \tsimg{11_mo_hinh_va_cac_kieu_hoc/reinforcement_machine_learning.png}
-\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/reinforcement-machine-learning.png}\end{center}
 Agent ở một trạng thái, thực hiện hành động trong môi trường để hoàn thành tác vụ; nhận reward hoặc punishment.
 \end{vidu}
 
@@ -70,6 +65,7 @@ RL dùng MDP để tối đa hoá reward và tìm chiến lược quyết địn
 
 \subsection{Các bước trong quy trình RL}
 
+\begin{phuongphap}[title={Sáu bước}]
 \begin{enumerate}
   \item Chuẩn bị agent với tập chiến lược ban đầu.
   \item Quan sát môi trường và trạng thái hiện tại.
@@ -78,13 +74,16 @@ RL dùng MDP để tối đa hoá reward và tìm chiến lược quyết địn
   \item Cập nhật chiến lược nếu cần.
   \item Lặp bước 2--5 đến khi agent học policy tối ưu.
 \end{enumerate}
+\end{phuongphap}
 
 \subsection{Hai loại Reinforcement}
 
+\begin{ynghia}[title={Positive và negative reinforcement}]
 \begin{itemize}
   \item \textbf{Positive reinforcement}: hành động mong muốn $\Rightarrow$ reward $\Rightarrow$ tăng khả năng lặp lại hành động đó.
   \item \textbf{Negative reinforcement}: hành động tránh kết quả xấu $\Rightarrow$ bỏ kích thích tiêu cực (ví dụ robot tránh vật cản thành công $\Rightarrow$ ít gặp ``mối đe dọa'' hơn).
 \end{itemize}
+\end{ynghia}
 
 \subsection{Loại thuật toán RL}
 
@@ -98,27 +97,37 @@ Q-learning, policy gradient, Monte Carlo, \ldots
 
 \subsection{Ưu điểm}
 
+\begin{tinhchat}[title={Ưu điểm}]
 \begin{itemize}
   \item Không cần hướng dẫn/ quy tắc định sẵn và can thiệp con người nhiều.
   \item Thích nghi nhiều môi trường (tĩnh và động).
   \item Giải bài toán ra quyết định, dự báo, tối ưu.
   \item Cải thiện dần khi tích luỹ kinh nghiệm.
 \end{itemize}
+\end{tinhchat}
 
 \subsection{Nhược điểm}
 
+\begin{luuy}[title={Nhược điểm}]
 \begin{itemize}
   \item Phụ thuộc chất lượng \textbf{hàm reward} --- thiết kế kém thì mô hình không cải thiện.
   \item Thiết kế và tinh chỉnh RL phức tạp, cần chuyên môn.
 \end{itemize}
+\end{luuy}
 
 \subsection{Ứng dụng}
 
 \subsubsection{Robotics}
+
+\begin{ynghia}[title={Robotics}]
 Ra quyết định trong môi trường không chắc chắn; dùng cho bắt chước hành vi người, thao tác, điều hướng, di chuyển; robot thích nghi môi trường mới qua thử--sai.
+\end{ynghia}
 
 \subsubsection{Natural Language Processing}
+
+\begin{ynghia}[title={Natural Language Processing}]
 Cải thiện chatbot trong hội thoại phức tạp; huấn luyện tóm tắt văn bản và tác vụ NLP khác.
+\end{ynghia}
 
 \subsection{Reinforcement Learning vs Supervised Learning}
 

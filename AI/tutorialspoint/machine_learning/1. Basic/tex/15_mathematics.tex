@@ -3,23 +3,11 @@
 \label{sec:toan-nen-ml}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_mathematics.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Vai trò của toán trong ML}]
 Học máy là lĩnh vực liên ngành gồm khoa học máy tính, thống kê và toán học.
 Toán đóng vai trò then chốt trong việc phát triển và hiểu các thuật toán học máy.
 Bài này trình bày các khái niệm toán cần thiết: đại số tuyến tính, giải tích, xác suất và thống kê.
 \end{dongco}
-
-\begin{luuy}[title={Toán chi tiết trong repo}]
-Phần toán đầy đủ hơn (tensor, sigmoid, gradient, hồi quy logistic, MLP): \path{toan\_dai\_hoc/nhom\_9\_khac/O3\_hoc\_may/ly\_thuyet.tex}, mục ``Toán nền cho học máy''.
-\end{luuy}
-
-\begin{luuy}[title={Đối chiếu với bài Khái niệm nền}]
-Định nghĩa học máy, train/test và các loại học đã được trình bày ở phần \textbf{Khái niệm nền}; bài này tập trung vào \textbf{nền toán} phục vụ đọc hiểu thuật toán.
-\end{luuy}
 
 \subsection{Đại số tuyến tính (Linear Algebra)}
 
@@ -55,7 +43,7 @@ Giải tích là nhánh toán học nghiên cứu tốc độ thay đổi và t�
 Trong ML, giải tích dùng để tối ưu mô hình bằng cách tìm cực tiểu hoặc cực đại của hàm số --- điển hình là thuật toán \textbf{gradient descent}.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Gradient descent (tóm tắt theo nguồn)}]
+\begin{phuongphap}[title={Gradient descent (tóm tắt)}]
 Gradient descent là thuật toán tối ưu lặp: cập nhật trọng số mô hình theo gradient của hàm mất mát (loss).
 Gradient là vector các đạo hàm riêng của loss theo từng trọng số.
 Lặp lại cập nhật theo hướng gradient âm nhằm \textbf{giảm} loss.
@@ -115,7 +103,7 @@ Tập dữ liệu được chia thành nhiều phần; mô hình được huấn
   \item \textbf{Phân vị (percentiles)}: tóm tắt phân phối và nhận diện outlier.
   \item \textbf{Phân phối dữ liệu}: cách các điểm dữ liệu trải trên tập dữ liệu.
   \item \textbf{Độ lệch (skewness) và độ nhọn (kurtosis)}: đo hình dạng phân phối xác suất.
-  \item \textbf{Bias và variance}: mô tả nguồn sai số trong dự đoán; overfitting/underfitting: Mục~\ref{sec:train-val-test}, bài \texttt{04}.
+  \item \textbf{Bias và variance}: mô tả nguồn sai số trong dự đoán; overfitting/underfitting.
   \item \textbf{Kiểm định giả thuyết}: giả thuyết tạm thời có thể kiểm tra bằng dữ liệu.
   \item \textbf{Hồi quy tuyến tính}: thuật toán hồi quy supervised phổ biến nhất.
   \item \textbf{Hồi quy logistic}: thuật toán supervised quan trọng trong ML.

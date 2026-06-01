@@ -1,0 +1,144 @@
+%==============================================================================
+\section{Data Distribution --- Phân phối dữ liệu}
+\label{sec:data-distribution}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân phối dữ liệu}]
+Trong ML, phân phối dữ liệu là cách các điểm dữ liệu \textbf{trải rộng} trên dataset.
+Hiểu phân phối ảnh hưởng lớn đến hiệu năng thuật toán.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Đại lượng mô tả}]
+Mean, median, mode, độ lệch chuẩn, phương sai mô tả xu hướng trung tâm, độ trải và hình dạng.
+\end{ynghia}
+
+\subsection{Phân phối chuẩn (Normal / Gaussian)}
+
+\begin{dinhnghia}[title={Normal distribution}]
+Phân phối xác suất liên tục dạng \textbf{chuông}, đối xứng quanh mean; hai tham số: mean $\mu$ và độ lệch chuẩn $\sigma$.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ứng dụng trong ML}]
+Mô hình hoá sai số trong hồi quy tuyến tính; cơ sở kiểm định giả thuyết và khoảng tin cậy.
+\end{phuongphap}
+
+\begin{ynghia}[title={Quy tắc 68--95--99.7}]
+Khoảng $[\mu-\sigma, \mu+\sigma]$ chứa $\approx 68\%$ quan sát; $\pm 2\sigma$: $\approx 95\%$; $\pm 3\sigma$: $\approx 99{,}7\%$.
+\end{ynghia}
+
+\begin{vidu}[title={Sinh mẫu và vẽ PDF (scipy.stats)}]
+\begin{lstlisting}
+import numpy as np
+from scipy.stats import norm
+import matplotlib.pyplot as plt
+
+mu = 0
+sigma = 1
+sample = np.random.normal(mu, sigma, 1000)
+
+x = np.linspace(mu - 3*sigma, mu + 3*sigma, 100)
+pdf = norm.pdf(x, mu, sigma)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.hist(sample, bins=30, density=True, alpha=0.5)
+plt.plot(x, pdf)
+plt.show()
+\end{lstlisting}
+
+\textbf{Output}:
+\tsimg{05_data_distribution/img01.jpg}
+\end{vidu}
+
+\subsection{Phân phối lệch (Skewed)}
+
+\begin{ynghia}[title={Skewed distribution}]
+Dataset không đối xứng quanh mean; phần lớn điểm dồn một phía, đuôi kéo dài phía kia.
+\begin{itemize}
+  \item \textbf{Lệch trái} (negative skew): đuôi dài bên trái.
+  \item \textbf{Lệch phải} (positive skew): đuôi dài bên phải.
+\end{itemize}
+Dữ liệu lệch có thể làm méo mô hình --- cần chuẩn hoá hoặc biến đổi.
+\end{ynghia}
+
+\begin{vidu}[title={Gamma ngẫu nhiên}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+data = np.random.gamma(2, 1, 1000)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.hist(data, bins=30)
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Skewed Distribution')
+plt.show()
+\end{lstlisting}
+
+\textbf{Output}:
+\tsimg{05_data_distribution/img02.jpg}
+\end{vidu}
+
+\subsection{Phân phối đều (Uniform)}
+
+\begin{dinhnghia}[title={Uniform distribution}]
+Mọi kết quả có \textbf{xác suất bằng nhau}; không có cụm quanh một giá trị.
+Hữu ích làm chuẩn so sánh hoặc sinh số ngẫu nhiên không thiên lệch.
+\end{dinhnghia}
+
+\begin{ynghia}[title={PDF liên tục}]
+\[
+f(x) = \begin{cases}
+1 & \text{nếu } a \le x \le b \\
+0 & \text{ngược lại}
+\end{cases}
+\]
+Mean: $\frac{a+b}{2}$; variance: $\frac{(b-a)^2}{12}$.
+\end{ynghia}
+
+\begin{vidu}[title={Uniform trên $[0,1]$}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+uniform_data = np.random.uniform(low=0, high=1, size=10000)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.hist(uniform_data, bins=50, density=True)
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Uniform Distribution')
+plt.show()
+\end{lstlisting}
+
+\textbf{Output}:
+\tsimg{05_data_distribution/img03.jpg}
+\end{vidu}
+
+\subsection{Phân phối hai đỉnh (Bimodal)}
+
+\begin{dinhnghia}[title={Bimodal distribution}]
+Phân phối có \textbf{hai mode} (hai đỉnh), thường tách bởi vùng thấp (thung lũng) ở giữa --- có thể phản ánh hai tiểu quần thể.
+\end{dinhnghia}
+
+\begin{vidu}[title={Hai cụm Gaussian}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+
+bimodal_data = np.concatenate((
+    np.random.normal(loc=-2, scale=1, size=5000),
+    np.random.normal(loc=2, scale=1, size=5000)
+))
+
+plt.figure(figsize=(7.5, 3.5))
+plt.hist(bimodal_data, bins=50, density=True)
+plt.xlabel('Value')
+plt.ylabel('Frequency')
+plt.title('Bimodal Distribution')
+plt.show()
+\end{lstlisting}
+
+\textbf{Output}:
+\tsimg{05_data_distribution/img04.jpg}
+\end{vidu}

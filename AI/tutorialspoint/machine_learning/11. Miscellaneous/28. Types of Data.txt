@@ -1,0 +1,63 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_data_types.htm
+Data in machine learning are broadly categorized into two types − numerical (quantitative) and categorical (qualitative) data. The numerical data can be measured, counted or given a numerical value, for example, age, height, income, etc. The categorical data is non-numeric data that can be arranged in categories with or without meaningful order, for example, gender, blood group, etc.
+
+Further, the numerical data can be categorized into discrete and continuous data. The categorical data can also be categorized into two types − nominal and ordinal. Let's understand these types of data in machine learning in detail.
+
+Types of Data in Machine Learning
+What is Data in Machine Learning?
+Data in machine learning is a set of observations or measurement that are used to train, validate and test a machine learning model. Data is very crucial in machine learning because it is the foundation of creating accurate machine learning model.
+
+What are Types of Data?
+The data used in machine learning can be broadly categorized into two types −
+
+Numerical (quantitative) data
+Categorical (qualitative) data
+Numerical (Quantitative) Data
+The numerical (quantitative) data is data that can be measured, counted or given a numerical value. The examples of numerical data are age, height, income, number of students in class, number of books in a shelf, shoe size, etc.
+
+The numerical data can be categorized into the folloiwng two types −
+
+Discrete Data
+Continuous Data
+1. Discrete Data
+The discrete data is numerical data that is countable, finite, and can only take certain values, usually whole numbers. Examples of discrete data are number of students in class, number of books in a shelf, shoe size, number of ducks in a pond, etc.
+
+2. Continuous Data
+The continuous data is numerical data that can take any value within a specified range including fractions and decimals. Examples of continuous data are age, height, weight, income, time, temperature, etc.
+
+What is true zero?
+True zero represents the absence of the quantity being measured. For example, height, weight, age, temperature in Kelvin are examples of data with true zero. As the height with 0 CM represents the absolute absence of height, 0K temperature represents no heat. But temperature in Celsius (or Fahrenheit) is an example of data with false zero.
+
+We can categorize the numerical data into the following two types on basis of true zero −
+
+interval data − quantitative data with equal intervals between data points. Examples are temperature (Fahrenheit), temperature (Celsius), pH, SAT score (200-800), credit score (300-850), etc.
+ratio data − same as interval data but with true zero. Examples are weight in KG, number of students, income, speed, etc.
+Categorical (Qualitative) Data
+The categorical (qualitative) data can be categorized with or without a meaningful order. For example, gender, blood group, hair color, nationality, the school grades, level of education, range of income, ratings, etc.
+
+The categorical data can be divided into the folloiwng two types −
+
+Nominal Data
+Ordinal Data
+1. Nominal Data
+The nominal data is categorical data that can not be arranged in an order or rank. The examples of nominal data are gender, blood group, hair color, nationality, etc.
+
+2. Ordinal Data
+The ordinal data is categorical data can be ordered or ranked with a specific attribute. The examples of ordinal data are the school grades, level of education, range of income, ratings, etc.
+
+The Four Levels of Data Measurement
+We can categorized data into four level − nominal, ordinal, interval, and ratio. These levels of measurement are divided on basis of the following four features −
+
+Categories − data can be categorized but not in an order.
+Rank Order − data can be categorized with some meaningful order.
+Equal Difference − The difference between subsequent data remains same.
+True Zero − it represents the absence of quantity being measured.
+The following table highlights how the four level of measurement are associated with the above discussed four features.
+
+Nominal	Ordinal	Interval	Ratio
+Categories	Yes	Yes	Yes	Yes
+Rank Order		Yes	Yes	Yes
+Equal Difference			Yes	Yes
+True Zero				Yes
+The nominal data is categorical data with no meaningful order whereas ordinal data is a categorical data with meaningful order. The concept of true zero plays role to differentiate interval and ratio data. Ratio data is same as interval data but it includes true zero.
+

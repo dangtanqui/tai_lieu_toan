@@ -2,16 +2,16 @@
 \section{Getting Datasets --- Lấy bộ dữ liệu cho học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_getting_datasets.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Mô hình chỉ tốt bằng dữ liệu huấn luyện}]
 Mô hình học máy chỉ tốt bằng dữ liệu dùng để huấn luyện.
 Vì vậy, có được bộ dữ liệu chất lượng tốt và phù hợp là bước then chốt trong quy trình ML.
 Có nhiều kho mã nguồn mở (ví dụ Kaggle) để tải dataset; bạn cũng có thể mua dữ liệu, scrape website hoặc tự thu thập.
 Bài này giới thiệu các nguồn dataset và cách lấy chúng.
 \end{dongco}
+
+\begin{vidu}[title={Hình minh hoạ dữ liệu cho ML}]
+\tsimg{10_du_lieu_trong_ml/img01.jpg}
+\end{vidu}
 
 \subsection{Dataset là gì?}
 
@@ -59,32 +59,46 @@ Kaggle Datasets, AWS Datasets, Google Dataset Search, UCI Machine Learning Repos
 \end{phuongphap}
 
 \subsubsection{Kaggle Datasets}
+
+\begin{ynghia}[title={Kaggle Datasets}]
 Kaggle là cộng đồng trực tuyến phổ biến về data science và ML, lưu trữ hơn 23.000 dataset công khai.
 Đây là nền tảng được chọn nhiều nhất để lấy dataset vì dễ tìm, tải và đăng dữ liệu.
 Kaggle cung cấp dataset tiền xử lý chất lượng cao, phù hợp hầu hết mô hình ML theo nhu cầu người dùng.
 Kaggle còn có notebook kèm thuật toán và các loại mô hình pre-trained.
+\end{ynghia}
 
 \subsubsection{AWS Datasets}
+
+\begin{ynghia}[title={AWS Datasets}]
 Có thể tìm, tải và chia sẻ dataset công khai trong registry open data trên AWS.
 Dù truy cập qua AWS, dataset do tổ chức chính phủ, doanh nghiệp và nhà nghiên cứu duy trì, cập nhật.
+\end{ynghia}
 
 \subsubsection{Google Dataset Search Engine}
+
+\begin{ynghia}[title={Google Dataset Search}]
 Công cụ của Google cho phép tìm dataset từ nhiều nguồn trên web --- công cụ tìm kiếm chuyên cho dataset.
+\end{ynghia}
 
 \subsubsection{UCI Machine Learning Repository}
+
+\begin{ynghia}[title={UCI ML Repository}]
 Kho dataset của Đại học California, Irvine, dành riêng cho ML.
 Hàng trăm dataset từ nhiều miền: time series, classification, regression, recommendation systems, \ldots
+\end{ynghia}
 
 \subsubsection{Microsoft Dataset}
-Microsoft Research Open Data (nguồn ghi ``launched by Microsoft in 1918'' --- có thể là lỗi đánh máy trên trang gốc) cung cấp kho dữ liệu trên cloud.
+
+\begin{ynghia}[title={Microsoft Dataset}]
+Microsoft Research Open Data cung cấp kho dữ liệu trên cloud.
+\end{ynghia}
 
 \subsubsection{Scikit-learn Dataset}
+
+\begin{ynghia}[title={Scikit-learn Dataset}]
 Scikit-learn cung cấp dataset mẫu (Iris, \ldots) để thử nghiệm.
 Dataset mở, dùng học và thử mô hình ML.
-
-\begin{luuy}[title={Giảng viên lưu ý}]
-Nguồn còn nhắc \textbf{Boston housing} --- dataset này đã bị \textbf{gỡ khỏi scikit-learn} (vấn đề đạo đức dữ liệu). Nên dùng Iris, Diabetes (OpenML), California housing, \ldots
-\end{luuy}
+\end{ynghia}
 
 \begin{vidu}[title={Nạp dataset Iris từ scikit-learn}]
 \begin{lstlisting}
@@ -95,7 +109,12 @@ iris = load_iris()
 \end{vidu}
 
 \subsubsection{HuggingFace Datasets Hub}
+
+\begin{ynghia}[title={HuggingFace Datasets Hub}]
 Hub cung cấp các dataset công khai lớn: ảnh, âm thanh, văn bản, \ldots
+\end{ynghia}
+
+\begin{vidu}[title={Cài đặt và nạp dataset với HuggingFace}]
 Cài đặt thư viện \texttt{datasets}:
 \begin{lstlisting}
 pip3 install datasets
@@ -110,11 +129,15 @@ Ví dụ nạp Iris:
 from datasets import load_dataset
 ds = load_dataset("scikit-learn/iris")
 \end{lstlisting}
+\end{vidu}
 
 \subsubsection{Government Datasets}
-Mỗi quốc gia thường có nguồn dữ liệu chính phủ công khai, thu từ nhiều bộ ngành, nhằm minh bạch và phục vụ nghiên cứu.
 
-\begin{phuongphap}[title={Một số liên kết dataset chính phủ (theo nguồn)}]
+\begin{ynghia}[title={Government Datasets}]
+Mỗi quốc gia thường có nguồn dữ liệu chính phủ công khai, thu từ nhiều bộ ngành, nhằm minh bạch và phục vụ nghiên cứu.
+\end{ynghia}
+
+\begin{phuongphap}[title={Một số liên kết dataset chính phủ}]
 \begin{itemize}
   \item Indian Government Public Datasets
   \item U.S. Government's Open Data
@@ -134,14 +157,18 @@ Cần đảm bảo scrape \textbf{đạo đức và hợp pháp}, và nguồn đ
 
 \subsection{Data Purchase}
 
+\begin{ynghia}[title={Mua dataset}]
 Đôi khi cần mua dataset cho ML.
 Nhiều công ty bán dataset theo ngành hoặc use case.
 Trước khi mua, cần đánh giá chất lượng và mức độ liên quan tới dự án.
+\end{ynghia}
 
 \subsection{Data Collection}
 
+\begin{ynghia}[title={Thu thập thủ công}]
 Thu thập thủ công từ nhiều nguồn --- tốn thời gian, cần kế hoạch để dữ liệu chính xác, phù hợp.
 Có thể qua khảo sát, phỏng vấn hoặc hình thức thu thập khác.
+\end{ynghia}
 
 \subsection{Chiến lược có dataset chất lượng cao}
 
@@ -150,10 +177,6 @@ Có thể qua khảo sát, phỏng vấn hoặc hình thức thu thập khác.
   \item \textbf{Xác định bài toán}: trước khi lấy dữ liệu, làm rõ bài toán ML cần giải --- từ đó biết cần loại dữ liệu gì và lấy ở đâu.
   \item \textbf{Xác định quy mô dataset}: phụ thuộc độ phức tạp bài toán; thường dữ liệu nhiều hơn giúp mô hình tốt hơn, nhưng tránh quá lớn với dữ liệu trùng/không liên quan.
   \item \textbf{Đảm bảo liên quan và chính xác}: dữ liệu từ nguồn tin cậy, đã được kiểm tra.
-  \item \textbf{Tiền xử lý}: làm sạch, chuẩn hoá, biến đổi để mô hình dùng hiệu quả (xem pipeline dữ liệu bài \texttt{19--23}).
+  \item \textbf{Tiền xử lý}: làm sạch, chuẩn hoá, biến đổi để mô hình dùng hiệu quả.
 \end{itemize}
 \end{phuongphap}
-
-\begin{luuy}[title={Đối chiếu}]
-Train/validation/test: Mục~\ref{sec:train-val-test}; vòng đời dự án: Mục~\ref{sec:vong-doi-ml}.
-\end{luuy}

@@ -2,10 +2,6 @@
 \section{Data Preparation --- Chuẩn bị dữ liệu cho học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_preparation.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Bước then chốt ảnh hưởng mạnh tới mô hình}]
 Chuẩn bị dữ liệu là bước quan trọng trong ML, ảnh hưởng lớn tới độ chính xác và hiệu quả mô hình cuối.
 Cần chú ý chi tiết và hiểu sâu dữ liệu cùng bài toán.
@@ -19,9 +15,8 @@ Quá trình xử lý dữ liệu thô: làm sạch, tổ chức và biến đổ
 Dữ liệu sạch, có cấu trúc $\Rightarrow$ kết quả tốt hơn.
 \end{dinhnghia}
 
-\begin{vidu}[title={Sơ đồ quy trình chuẩn bị dữ liệu (theo nguồn)}]
+\begin{vidu}[title={Sơ đồ quy trình chuẩn bị dữ liệu}]
 \tsimg{10_du_lieu_trong_ml/machine_learning_data_preparation.jpg}
-\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/machine_learning_data_preparation.jpg}\end{center}
 \end{vidu}
 
 \subsection{Tầm quan trọng}
@@ -39,6 +34,7 @@ Dữ liệu sạch, có cấu trúc $\Rightarrow$ kết quả tốt hơn.
 
 \begin{phuongphap}[title={Chuỗi bước mục tiêu}]
 Data Collection $\rightarrow$ Data Cleaning $\rightarrow$ Data Transformation $\rightarrow$ Data Reduction $\rightarrow$ Data Splitting.
+
 Mục tiêu: dữ liệu chính xác, đầy đủ, liên quan cho phân tích và mô hình hoá.
 \end{phuongphap}
 
@@ -50,17 +46,11 @@ Quy trình không nhất thiết theo thứ tự cố định (ví dụ có th�
 
 \begin{ynghia}[title={Thu thập dữ liệu}]
 Bước đầu: gom dữ liệu từ database, file văn bản, ảnh, âm thanh, web scraping, \ldots
+
 Sau khi chọn dữ liệu thô, cần tiền xử lý để có insight --- đưa dữ liệu về dạng thuật toán ML dùng được.
+
 Đôi khi thu thập đi kèm bước \textbf{data integration}: gộp dữ liệu từ nhiều nguồn (khớp/liên kết bản ghi, merge theo biến chung).
 \end{ynghia}
-
-\begin{luuy}[title={Đối chiếu}]
-Thu thập dataset từ nguồn công khai đã trình bày ở bài \textbf{Getting Datasets}; mã hoá categorical ở bài \textbf{Categorical Data}.
-\end{luuy}
-
-\begin{luuy}[title={Giảng viên lưu ý}]
-Nguồn gốc dùng đường dẫn \texttt{C:\textbackslash...}; ví dụ dưới đây dùng \texttt{fetch\_openml("diabetes")} từ scikit-learn. Chi tiết train/validation/test: Mục~\ref{sec:train-val-test}.
-\end{luuy}
 
 \subsection{Data Cleaning}
 
@@ -69,7 +59,7 @@ Nhận diện và sửa lỗi, giá trị thiếu, trùng lặp, outlier, \ldots
 Đảm bảo dữ liệu chính xác, liên quan, không lỗi trước khi huấn luyện.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Các bước làm sạch (theo nguồn)}]
+\begin{phuongphap}[title={Các bước làm sạch}]
 \begin{enumerate}
   \item \textbf{Xử lý trùng lặp}: nhận diện và xoá bằng \texttt{drop\_duplicates} trong Pandas.
   \item \textbf{Sửa lỗi cú pháp/cấu trúc}: chuẩn hoá định dạng, quy ước đặt tên.
@@ -89,7 +79,7 @@ Chuyển dữ liệu từ định dạng gốc sang định dạng phù hợp ph
 Scaling, Normalization (L1, L2), Standardization, Binarization, Encoding, Log Transformation.
 \end{phuongphap}
 
-\subsubsection{1. Scaling (Min-Max)}
+\subsubsection{Scaling (Min-Max)}
 
 \begin{ynghia}[title={Rescaling}]
 Thuộc tính thường có thang đo khác nhau; nhiều thuật toán ML cần rescale về cùng thang (thường 0--1).
@@ -113,10 +103,10 @@ data_rescaled = data_scaler.fit_transform(array)
 set_printoptions(precision=1)
 print ("\nScaled data:\n", data_rescaled[0:10])
 \end{lstlisting}
-\textbf{Output} (10 hàng đầu, theo nguồn): mọi giá trị nằm trong khoảng $[0,1]$.
+\textbf{Output} (10 hàng đầu): mọi giá trị nằm trong khoảng $[0,1]$.
 \end{vidu}
 
-\subsubsection{2. Normalization (L1 và L2)}
+\subsubsection{Normalization (L1 và L2)}
 
 \begin{ynghia}[title={Normalization}]
 Rescale sao cho mỗi \textbf{hàng} có độ dài 1 (hữu ích với sparse data nhiều số 0).
@@ -155,7 +145,7 @@ print ("\nNormalized data:\n", Data_normalized [0:3])
 \end{lstlisting}
 \end{vidu}
 
-\subsubsection{3. Standardization}
+\subsubsection{Standardization}
 
 \begin{ynghia}[title={Chuẩn hoá Gaussian}]
 Biến đổi về phân phối Gaussian chuẩn: mean $= 0$, std $= 1$.
@@ -182,7 +172,7 @@ print ("\nRescaled data:\n", data_rescaled [0:5])
 \end{lstlisting}
 \end{vidu}
 
-\subsubsection{4. Binarization}
+\subsubsection{Binarization}
 
 \begin{ynghia}[title={Binarize / threshold}]
 Chuyển dữ liệu thành nhị phân theo ngưỡng: trên ngưỡng $\rightarrow 1$, dưới $\rightarrow 0$.
@@ -207,7 +197,7 @@ print ("\nBinary data:\n", Data_binarized [0:5])
 \end{lstlisting}
 \end{vidu}
 
-\subsubsection{5. Encoding (Label Encoding)}
+\subsubsection{Encoding (Label Encoding)}
 
 \begin{ynghia}[title={Label encoding}]
 Sklearn thường yêu cầu nhãn dạng số thay vì chữ; chuyển nhãn chữ $\rightarrow$ số bằng \texttt{LabelEncoder}.
@@ -233,7 +223,7 @@ decoded_list = encoder.inverse_transform(encoded_values)
 print("\nEncoded values =", encoded_values)
 print("\nDecoded labels =", list(decoded_list))
 \end{lstlisting}
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 Labels = ['green', 'red', 'black']
 Encoded values = [1, 2, 0]
@@ -243,7 +233,7 @@ Decoded labels = ['white', 'black', 'yellow', 'green']
 One-hot và target encoding chi tiết hơn ở bài \textbf{Categorical Data}.
 \end{vidu}
 
-\subsubsection{6. Log Transformation}
+\subsubsection{Log Transformation}
 
 \begin{ynghia}[title={Log transform}]
 Thường dùng với dữ liệu lệch (skewed): áp logarit tự nhiên lên giá trị để thay đổi thang đo.
@@ -257,7 +247,10 @@ Hữu ích khi dataset rất lớn hoặc nhiều phần không liên quan.
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Kỹ thuật}]
-\textbf{Dimensionality reduction} (giảm chiều không mất thông tin quan trọng); \textbf{Discretization} (rời rạc hoá biến liên tục như thời gian, nhiệt độ).
+\begin{itemize}
+\item \textbf{Dimensionality reduction} (giảm chiều không mất thông tin quan trọng)
+\item \textbf{Discretization} (rời rạc hoá biến liên tục như thời gian, nhiệt độ).
+\end{itemize}
 \end{phuongphap}
 
 \subsection{Data Splitting}
@@ -270,10 +263,6 @@ Bước cuối chuẩn bị dữ liệu cho ML:
   \item \textbf{Testing}: đánh giá mô hình đã huấn luyện.
 \end{itemize}
 \end{dinhnghia}
-
-\begin{luuy}[title={Giảng viên lưu ý}]
-Tỉ lệ train/validation/test và ý nghĩa overfitting: Mục~\ref{sec:train-val-test}.
-\end{luuy}
 
 \subsection{Ví dụ Python: breast cancer dataset}
 

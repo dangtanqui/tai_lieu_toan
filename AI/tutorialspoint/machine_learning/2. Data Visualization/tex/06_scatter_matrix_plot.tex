@@ -1,0 +1,54 @@
+%==============================================================================
+\section{Scatter Matrix Plot --- Ma trận scatter}
+\label{sec:scatter-matrix}
+%==============================================================================
+
+\begin{dinhnghia}[title={Scatter Matrix Plot}]
+Scatter Matrix Plot (còn gọi \textbf{Pair Plot}) là biểu diễn quan hệ giữa \textbf{nhiều biến} cùng lúc.
+Mỗi ô là scatter plot của một \textbf{cặp feature}; đường chéo có thể hiển thị phân phối từng biến.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vai trò trong ML}]
+Công cụ hữu ích để trực quan hoá tương quan giữa các feature, hỗ trợ feature engineering và hiểu cấu trúc dữ liệu trước khi huấn luyện.
+\end{ynghia}
+
+\subsection{Scatter matrix trong Python}
+
+\begin{phuongphap}[title={Dataset và thư viện}]
+Ví dụ dùng \textbf{Iris} qua Seaborn: 4 feature (sepal/petal length/width), 150 mẫu, 3 loài Setosa, Versicolor, Virginica.
+Seaborn xây trên Matplotlib, API gọn cho pair plot.
+\end{phuongphap}
+
+\subsection{Ví dụ --- pairplot với màu theo loài}
+
+\begin{vidu}[title={Code}]
+\begin{lstlisting}
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# load iris dataset
+iris = sns.load_dataset('iris')
+
+# create scatter matrix plot
+sns.pairplot(iris, hue='species')
+
+# show plot
+plt.show()
+\end{lstlisting}
+
+\texttt{load\_dataset('iris')} nạp bảng Iris có cột \texttt{species}.
+\texttt{pairplot(..., hue='species')} tô màu điểm theo loài.
+\end{vidu}
+
+\begin{ynghia}[title={Đọc biểu đồ}]
+Ma trận gồm scatter từng cặp feature; màu theo loài giúp thấy cụm tách biệt (ví dụ Setosa tách rõ ở nhiều cặp biến).
+\end{ynghia}
+
+\begin{vidu}[title={Output}]
+\tsimg{06_scatter_matrix_plot/img01.jpg}
+\end{vidu}
+
+\begin{luuy}[title={Pandas scatter\_matrix}]
+Ngoài \texttt{sns.pairplot}, có thể dùng \texttt{pd.plotting.scatter\_matrix} với tham số \texttt{diagonal='hist'}.
+\end{luuy}

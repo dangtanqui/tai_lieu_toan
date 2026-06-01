@@ -2,10 +2,6 @@
 \section{Data Understanding --- Hiểu dữ liệu trước khi huấn luyện}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_understanding.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Hai phần thường bị bỏ qua: toán và dữ liệu}]
 Trong dự án ML, người ta thường bỏ qua hai phần quan trọng: \textbf{toán học} và \textbf{dữ liệu}.
 Data understanding quan trọng vì ML là hướng \textbf{data-driven}: mô hình chỉ tốt bằng dữ liệu cung cấp.
@@ -15,9 +11,13 @@ Data understanding quan trọng vì ML là hướng \textbf{data-driven}: mô h�
 Phân tích và khám phá dữ liệu để nhận diện pattern hoặc xu hướng có trong dữ liệu.
 \end{dinhnghia}
 
+\begin{vidu}[title={Hình minh hoạ hiểu dữ liệu}]
+\tsimg{10_du_lieu_trong_ml/img01.jpg}
+\end{vidu}
+
 \subsection{Các bước trong giai đoạn hiểu dữ liệu}
 
-\begin{phuongphap}[title={Theo nguồn}]
+\begin{phuongphap}[title={Các bước trong giai đoạn hiểu dữ liệu}]
 \begin{itemize}
   \item \textbf{Data Collection}: thu thập dữ liệu liên quan từ database, website, API, \ldots
   \item \textbf{Data Cleaning}: loại dữ liệu không liên quan/trùng, xử lý missing; định dạng dễ phân tích.
@@ -41,14 +41,8 @@ Phân tích và khám phá dữ liệu để nhận diện pattern hoặc xu hư
 \subsection{Hiểu dữ liệu bằng thống kê}
 
 \begin{ynghia}[title={Hai hướng: thống kê và trực quan hoá}]
-Sau bài nạp CSV, cần hiểu dữ liệu trước khi đưa vào mô hình.
-Có thể hiểu bằng \textbf{thống kê} (bài này) hoặc trực quan hoá (Tutorialspoint có bài riêng ở phần sau).
-Dưới đây là các recipe Python; dataset dùng \textbf{sklearn} (chạy được trên Linux/macOS/Windows).
+Có thể hiểu bằng \textbf{thống kê} hoặc trực quan hoá. Dưới đây là các recipe Python; dataset dùng \textbf{sklearn}.
 \end{ynghia}
-
-\begin{luuy}[title={Nguồn dữ liệu thay cho đường dẫn \texttt{C:\textbackslash...} trong bản gốc}]
-Bản gốc Tutorialspoint dùng file CSV trên Windows. Ở đây dùng \texttt{fetch\_openml("diabetes")} (Pima) và \texttt{load\_iris()} (Iris) từ scikit-learn.
-\end{luuy}
 
 \subsubsection{Xem dữ liệu thô (Looking at Raw Data)}
 
@@ -62,7 +56,7 @@ data.columns = names
 print(data.head(10))
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn, 10 hàng đầu):
+\textbf{Output} (10 hàng đầu):
 \begin{lstlisting}
 preg   plas  pres    skin  test  mass   pedi    age      class
 0      6      148     72     35   0     33.6    0.627    50    1
@@ -102,7 +96,7 @@ import pandas as pd
 data = pd.DataFrame(load_iris().data, columns=load_iris().feature_names)
 print(data.dtypes)
 \end{lstlisting}
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 sepal_length  float64
 sepal_width   float64
@@ -132,7 +126,7 @@ set_option('precision', 2)
 print(data.shape)
 print(data.describe())
 \end{lstlisting}
-\textbf{Output}: shape \texttt{(768, 9)} và bảng thống kê mô tả đầy đủ các cột (count, mean, std, min, quartiles, max) theo nguồn.
+\textbf{Output}: shape \texttt{(768, 9)} và bảng thống kê mô tả đầy đủ các cột (count, mean, std, min, quartiles, max).
 \end{vidu}
 
 \subsubsection{Phân phối lớp (Class Distribution)}
@@ -151,7 +145,7 @@ data.columns = names
 count_class = data.groupby('class').size()
 print(count_class)
 \end{lstlisting}
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 Class
 0  500
@@ -189,7 +183,7 @@ set_option('precision', 2)
 correlations = data.corr(method='pearson')
 print(correlations)
 \end{lstlisting}
-Ma trận output cho tương quan giữa mọi cặp thuộc tính (theo bảng đầy đủ trong nguồn).
+Ma trận output cho tương quan giữa mọi cặp thuộc tính.
 \end{vidu}
 
 \subsubsection{Độ lệch phân phối (Skew)}
@@ -208,7 +202,7 @@ data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
 data.columns = names
 print(data.skew())
 \end{lstlisting}
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 preg   0.90
 plas   0.17

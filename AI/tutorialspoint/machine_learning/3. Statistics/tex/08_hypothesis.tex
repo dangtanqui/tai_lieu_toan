@@ -1,0 +1,106 @@
+%==============================================================================
+\section{Hypothesis --- Giả thuyết trong học máy}
+\label{sec:hypothesis}
+%==============================================================================
+
+\begin{dinhnghia}[title={Hypothesis (giả thuyết)}]
+Trong ML, giả thuyết là \textbf{lời giải thích hoặc giải pháp đề xuất} cho bài toán --- giả định tạm thời có thể kiểm tra bằng dữ liệu.
+Trong học có giám sát, giả thuyết chính là \textbf{mô hình} thuật toán học để dự đoán trên dữ liệu mới.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ví dụ đời thường}]
+``Giá nhà tỷ lệ thuận với diện tích sàn'' --- một giả thuyết có thể kiểm tra bằng dữ liệu.
+\end{ynghia}
+
+\subsection{Giả thuyết trong Machine Learning}
+
+\begin{ynghia}[title={Hàm giả thuyết}]
+Giả thuyết thường là hàm ánh xạ đầu vào sang dự đoán:
+\[
+h(x) = \hat{y}
+\]
+với $x$ là đầu vào, $\hat{y}$ là giá trị dự đoán.
+Mục tiêu ML: tìm giả thuyết \textbf{tổng quát hoá tốt} trên dữ liệu chưa thấy.
+\end{ynghia}
+
+\subsection{Hàm giả thuyết $h$}
+
+\begin{dinhnghia}[title={Hypothesis function}]
+Hàm giả thuyết nhận đầu vào và trả đầu ra.
+Hồi quy tuyến tính đơn biến:
+\[
+h(x) = w_0 + w_1 x
+\]
+$w_0$, $w_1$ là tham số (trọng số); $x$ là feature.
+
+Hồi quy tuyến tính đa biến:
+\[
+h(x) = w_0 + w_1 x_1 + \cdots + w_n x_n
+\]
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Huấn luyện}]
+Quá trình tìm giá trị tối ưu cho tham số sao cho \textbf{hàm mất mát} (cost) nhỏ nhất.
+\end{phuongphap}
+
+\subsection{Không gian giả thuyết $\mathcal{H}$}
+
+\begin{dinhnghia}[title={Hypothesis space}]
+Tập mọi giả thuyết có thể có gọi là \textbf{không gian giả thuyết}.
+Với hồi quy tuyến tính, không gian gồm mọi hàm tuyến tính có thể.
+Thuật toán tìm giả thuyết ``khớp'' nhất trong không gian này --- gọi là \textbf{huấn luyện / học}.
+\end{dinhnghia}
+
+\subsection{Hai loại giả thuyết (kiểm định thống kê)}
+
+\begin{dinhnghia}[title={Null hypothesis ($H_0$)}]
+Giả thuyết \textbf{mặc định}: không có quan hệ giữa feature và biến mục tiêu.
+Trong ML ta thường cố \textbf{bác bỏ} $H_0$ nếu $p$-value $< \alpha$ (mức ý nghĩa).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Alternative hypothesis ($H_1$)}]
+Giả thuyết \textbf{đối lập} $H_0$: có quan hệ có ý nghĩa giữa đầu vào và đầu ra.
+Bác bỏ $H_0$ $\Rightarrow$ chấp nhận $H_1$.
+\end{dinhnghia}
+
+\subsection{Kiểm định giả thuyết trong ML}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item Phát biểu $H_0$ và $H_1$.
+  \item Chọn mức ý nghĩa $\alpha$ (thường 0{,}05 hoặc 0{,}01).
+  \item Tính thống kê kiểm định ($t$, $z$, \ldots).
+  \item Tính $p$-value; nếu $p < \alpha$ thì bác bỏ $H_0$.
+  \item Kết luận: quan hệ có ý nghĩa hay không.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Tìm giả thuyết tốt nhất}
+
+\begin{ynghia}[title={Tối ưu hoá}]
+Huấn luyện = điều chỉnh tham số để tối thiểu hóa loss (sai khác giữa $\hat{y}$ và $y$).
+Kỹ thuật như \textbf{gradient descent} tìm $w$ tối ưu.
+
+Ví dụ hồi quy tuyến tính, cost (MSE):
+\[
+J(w) = \frac{1}{2n}\sum_{i=1}^{n}\bigl(h(x_i) - y_i\bigr)^2
+\]
+Mục tiêu: $w$ làm $J(w)$ nhỏ nhất $\Rightarrow$ giả thuyết tốt nhất trong lớp hàm đã chọn.
+\end{ynghia}
+
+\subsection{Tính chất giả thuyết tốt}
+
+\begin{tinhchat}[title={Một giả thuyết / mô hình tốt nên}]
+\begin{itemize}
+  \item \textbf{Generalization}: dự đoán tốt trên dữ liệu mới.
+  \item \textbf{Simplicity}: đơn giản, dễ diễn giải.
+  \item \textbf{Robustness}: chịu được nhiễu và outlier.
+  \item \textbf{Scalability}: xử lý được dữ liệu lớn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Các học thuật toán sinh giả thuyết}]
+Linear/logistic regression, cây quyết định, SVM, mạng nơ-ron, \ldots
+
+Sau huấn luyện cần \textbf{đánh giá} trên tập validation hoặc cross-validation trước khi triển khai thực tế.
+\end{phuongphap}

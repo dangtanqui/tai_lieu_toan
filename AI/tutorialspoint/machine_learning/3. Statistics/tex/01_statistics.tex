@@ -1,0 +1,114 @@
+%==============================================================================
+\section{Statistics --- Thống kê trong học máy}
+\label{sec:statistics}
+%==============================================================================
+
+\begin{dongco}[title={Vai trò của thống kê}]
+Thống kê là công cụ then chốt trong học máy vì giúp hiểu pattern nền trong dữ liệu.
+Nó cung cấp phương pháp mô tả, tóm tắt và phân tích dữ liệu.
+Phần này giới thiệu các cơ bản thống kê cho ML.
+\end{dongco}
+
+\subsection{Statistics là gì?}
+
+\begin{dinhnghia}[title={Định nghĩa}]
+Thống kê là nhánh toán học về thu thập, phân tích, diễn giải và trình bày dữ liệu.
+Nó cung cấp các phương pháp và kỹ thuật phân tích dữ liệu và rút kết luận.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Nền tảng cho ML}]
+Thống kê là nền tảng học máy: phân tích và trực quan hoá để tìm pattern.
+Ứng dụng: xác thực mô hình, làm sạch dữ liệu, chọn mô hình, đánh giá hiệu năng, \ldots
+\end{ynghia}
+
+\subsection{Các khái niệm thống kê cơ bản cho ML}
+
+\begin{phuongphap}[title={Danh sách khái niệm quan trọng}]
+\begin{itemize}
+  \item \textbf{Mean, Median, Mode}: đo xu hướng trung tâm.
+  \item \textbf{Standard deviation, Variance}: độ phân tán quanh mean.
+  \item \textbf{Percentiles}: giá trị dưới đó một tỷ lệ \% quan sát rơi vào.
+  \item \textbf{Data distribution}: cách điểm dữ liệu trải trên miền giá trị.
+  \item \textbf{Skewness, Kurtosis}: độ lệch và độ nhọn của phân phối.
+  \item \textbf{Bias, Variance}: nguồn sai số dự đoán mô hình.
+  \item \textbf{Hypothesis}: giả thuyết / lời giải đề xuất cho bài toán.
+  \item \textbf{Linear / Logistic Regression, PCA}: các kỹ thuật liên quan (chi tiết ở các phần sau Tutorialspoint).
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Hai loại thống kê}
+
+\begin{dinhnghia}[title={Thống kê mô tả}]
+Tập quy tắc/phương pháp dùng để \textbf{mô tả hoặc tóm tắt} đặc trưng của dataset.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Thống kê suy luận}]
+Đối phó với \textbf{dự đoán và suy luận} về quần thể dựa trên mẫu dữ liệu.
+\end{dinhnghia}
+
+\subsubsection{Thống kê mô tả (Descriptive Statistics)}
+
+\begin{ynghia}[title={Nội dung}]
+Nhánh thống kê tóm tắt và phân tích dữ liệu: mean, median, mode, variance, standard deviation.
+Giúp hiểu xu hướng trung tâm, độ biến thiên và hình dạng phân phối.
+\end{ynghia}
+
+\begin{phuongphap}[title={Ứng dụng trong ML}]
+Tóm tắt dữ liệu, nhận diện outlier, phát hiện pattern.
+Ví dụ: dùng mean và standard deviation để mô tả phân phối một feature.
+\end{phuongphap}
+
+\begin{vidu}[title={Tính thống kê mô tả với NumPy và Pandas}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+
+data = np.array([1, 2, 3, 4, 5])
+df = pd.DataFrame(data, columns=["Values"])
+print(df.describe())
+\end{lstlisting}
+
+\textbf{Output} (tóm tắt gồm count, mean, std, min, các phân vị, max):
+\begin{lstlisting}
+         Values
+count    5.000000
+mean     3.000000
+std      1.581139
+min      1.000000
+25%      2.000000
+50%      3.000000
+75%      4.000000
+max      5.000000
+\end{lstlisting}
+\end{vidu}
+
+\subsubsection{Thống kê suy luận (Inferential Statistics)}
+
+\begin{ynghia}[title={Nội dung}]
+Nhánh thống kê dự đoán và suy luận về quần thể từ mẫu: kiểm định giả thuyết, khoảng tin cậy, hồi quy.
+\end{ynghia}
+
+\begin{phuongphap}[title={Ứng dụng trong ML}]
+Dự đoán trên dữ liệu mới dựa trên dữ liệu hiện có --- ví dụ hồi quy giá nhà theo số phòng, diện tích, \ldots
+\end{phuongphap}
+
+\begin{vidu}[title={Hồi quy OLS với statsmodels}]
+\begin{lstlisting}
+import statsmodels.api as sm
+import numpy as np
+
+X = np.array([1, 2, 3, 4, 5])
+y = np.array([2, 4, 6, 8, 10])
+
+X = sm.add_constant(X)
+model = sm.OLS(y, X).fit()
+
+print(model.summary())
+\end{lstlisting}
+
+\textbf{Output} (trích): bảng hệ số, std err, $t$, $P>|t|$, $R^2$; với dữ liệu tuyến tính hoàn hảo, hệ số $x_1 \approx 2$.
+\end{vidu}
+
+\begin{luuy}[title={Tiếp theo}]
+Các chương sau trình bày chi tiết từng đại lượng thống kê kèm ví dụ Python.
+\end{luuy}

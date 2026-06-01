@@ -3,15 +3,11 @@
 \label{sec:vong-doi-ml}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_life_cycle.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Vòng đời ML là quy trình lặp}]
 Vòng đời học máy là một quy trình lặp để xây dựng dự án ML end-to-end.
 Việc xây mô hình là quá trình liên tục, nhất là khi dữ liệu tăng theo thời gian.
 ML tập trung cải thiện hiệu năng hệ thống bằng cách huấn luyện với dữ liệu thực tế.
-Nguồn nhấn mạnh: muốn dự án ML thành công, cần theo các bước/pha được định nghĩa rõ ràng.
+Muốn dự án ML thành công, cần theo các bước/pha được định nghĩa rõ ràng.
 \end{dongco}
 
 \subsection{Machine Learning Life Cycle là gì?}
@@ -26,28 +22,28 @@ Quy trình gồm nhiều pha từ xác định bài toán đến triển khai v�
 Trong khi phát triển dự án, ta thường quay lại các bước trước nhiều lần.
 \end{ynghia}
 
-\subsection{Các pha chính trong vòng đời (theo nguồn)}
+\subsection{Các pha chính trong vòng đời}
 
 \begin{phuongphap}[title={Danh sách pha}]
 \begin{itemize}
-  \item Problem Definition
-  \item Data Preparation
-  \item Model Development
-  \item Model Deployment
-  \item Monitoring and Maintenance
+  \item Xác định bài toán (Problem Definition)
+  \item Chuẩn bị dữ liệu (Data Preparation)
+  \item Xây mô hình (Model Development)
+  \item Triển khai mô hình (Model Deployment)
+  \item Giám sát và bảo trì (Monitoring and Maintenance)
 \end{itemize}
 \end{phuongphap}
 
 \subsection{Problem Definition}
 
 \begin{dongco}[title={Bước đầu tiên: xác định bài toán}]
-Pha đầu tiên là xác định bài toán cần giải. Đây là bước quan trọng giúp bạn bắt đầu xây một solution ML.
+Bước đầu tiên là xác định bài toán cần giải. Đây là bước quan trọng giúp bắt đầu xây một solution ML.
 Việc xác định bài toán giúp hiểu: đầu ra mong muốn là gì, phạm vi nhiệm vụ, và mục tiêu.
 \end{dongco}
 
 \begin{luuy}[title={Yêu cầu của problem definition}]
 Vì đặt nền móng cho mô hình ML, mô tả bài toán phải \textbf{rõ ràng} và \textbf{ngắn gọn}.
-Pha này gồm: hiểu bài toán kinh doanh, định nghĩa problem statement, và xác định success criteria cho mô hình.
+Bước này gồm: hiểu bài toán kinh doanh, định nghĩa problem statement, và xác định success criteria cho mô hình.
 \end{luuy}
 
 \subsection{Data Preparation}
@@ -57,30 +53,30 @@ Chuẩn bị dữ liệu là quá trình “làm dữ liệu sẵn sàng cho ph�
 \textbf{data exploration}, \textbf{feature engineering} và \textbf{feature selection}.
 Trong đó:
 \begin{itemize}
-  \item Data exploration: trực quan hóa và hiểu dữ liệu.
-  \item Feature engineering: tạo feature mới từ feature sẵn có.
-  \item Feature selection: chọn feature liên quan nhất để train mô hình.
+  \item Phân tích dữ liệu (Data exploration): trực quan hóa và hiểu dữ liệu.
+  \item Tạo feature mới (Feature engineering): tạo feature mới từ feature sẵn có.
+  \item Chọn feature (Feature selection): chọn feature liên quan nhất để train mô hình.
 \end{itemize}
 \end{dinhnghia}
 
-\begin{ynghia}[title={Các bước trong data preparation (theo nguồn)}]
+\begin{ynghia}[title={Các bước trong data preparation}]
 Data preparation thường gồm: thu thập dữ liệu, tiền xử lý, feature engineering \& selection; và thường bao gồm cả EDA.
 \end{ynghia}
 
-\subsubsection{1) Data Collection}
+\subsubsection{Data Collection}
 
 \begin{phuongphap}[title={Thu thập dữ liệu}]
 Sau khi phân tích problem statement, bước tiếp theo là thu thập dữ liệu từ nhiều nguồn làm “nguyên liệu thô” cho mô hình.
-Nguồn nêu một số tiêu chí khi thu thập:
+Một số tiêu chí khi thu thập:
 \begin{itemize}
-  \item \textbf{Relevant and usefulness}: dữ liệu liên quan problem statement và hữu ích để train hiệu quả.
-  \item \textbf{Quality and Quantity}: chất lượng và số lượng ảnh hưởng trực tiếp đến hiệu năng.
-  \item \textbf{Variety}: dữ liệu đa dạng để mô hình học nhiều kịch bản và nhận ra pattern.
+  \item \textbf{Liên quan và hữu ích (Relevant and usefulness)}: dữ liệu liên quan problem statement và hữu ích để train hiệu quả.
+  \item \textbf{Chất lượng và số lượng (Quality and Quantity)}: chất lượng và số lượng ảnh hưởng trực tiếp đến hiệu năng.
+  \item \textbf{Đa dạng (Variety)}: dữ liệu đa dạng để mô hình học nhiều kịch bản và nhận ra pattern.
 \end{itemize}
-Nguồn ví dụ nơi thu thập: khảo sát, database sẵn có, Kaggle. Nguồn dữ liệu có thể là primary (thu riêng cho bài toán) hoặc secondary (dữ liệu đã tồn tại).
+Ví dụ nơi thu thập: khảo sát, database sẵn có, Kaggle. Dữ liệu có thể là primary (thu riêng cho bài toán) hoặc secondary (dữ liệu đã tồn tại).
 \end{phuongphap}
 
-\subsubsection{2) Data Preprocessing}
+\subsubsection{Data Preprocessing}
 
 \begin{phuongphap}[title={Tiền xử lý dữ liệu}]
 Dữ liệu thu thập thường không có cấu trúc và “lộn xộn”, ảnh hưởng xấu đến kết quả.
@@ -88,19 +84,19 @@ Vì vậy cần tiền xử lý để tăng độ chính xác và hiệu năng.
 Các vấn đề cần xử lý: missing values, duplicate data, invalid data và noise.
 \end{phuongphap}
 
-\begin{luuy}[title={Data wrangling}]
-Nguồn gọi bước này là data preprocessing hoặc data wrangling, nhằm làm dữ liệu “dễ tiêu thụ” và hữu ích cho phân tích.
+\begin{luuy}[title={Tiền xử lý dữ liệu (Data wrangling)}]
+Bước này là data preprocessing hoặc data wrangling, nhằm làm dữ liệu “dễ tiêu thụ” và hữu ích cho phân tích.
 \end{luuy}
 
-\subsubsection{3) Analyzing Data}
+\subsubsection{Phân tích dữ liệu (Analyzing Data)}
 
 \begin{phuongphap}[title={Phân tích dữ liệu}]
 Sau khi dữ liệu được sắp xếp, cần hiểu dữ liệu:
 trực quan hóa và tóm tắt thống kê để lấy insight.
-Nguồn nhắc các công cụ như Power BI, Tableau giúp trực quan hóa để hiểu pattern/trend, từ đó hỗ trợ quyết định trong feature engineering và model selection.
+Các công cụ như Power BI, Tableau giúp trực quan hóa để hiểu pattern/trend, từ đó hỗ trợ quyết định trong feature engineering và model selection.
 \end{phuongphap}
 
-\subsubsection{4) Feature Engineering and Selection}
+\subsubsection{Tạo feature mới và chọn feature (Feature Engineering and Selection)}
 
 \begin{dinhnghia}[title={Feature Engineering}]
 Feature là đại lượng đo được (measurable quantity) được quan sát khi huấn luyện.
@@ -109,17 +105,17 @@ Feature engineering là quá trình tạo feature mới hoặc cải thiện fea
 
 \begin{dinhnghia}[title={Feature Selection}]
 Feature selection là chọn các feature ổn định và liên quan nhất với problem statement.
-Nguồn nhấn mạnh: feature engineering/selection giúp giảm kích thước dữ liệu, quan trọng khi dữ liệu tăng trưởng.
+Feature engineering/selection giúp giảm kích thước dữ liệu, quan trọng khi dữ liệu tăng trưởng.
 \end{dinhnghia}
 
 \subsection{Model Development}
 
 \begin{dongco}[title={Xây mô hình từ dữ liệu đã chuẩn bị}]
-Trong pha model development, ta xây mô hình ML từ dữ liệu đã chuẩn bị.
-Quy trình gồm: chọn thuật toán phù hợp, huấn luyện, tuning siêu tham số, và đánh giá bằng cross-validation.
+Trong bước model development, ta xây mô hình ML từ dữ liệu đã chuẩn bị.
+Quy trình gồm: chọn thuật toán phù hợp, huấn luyện, điều chỉnh siêu tham số, và đánh giá bằng cross-validation.
 \end{dongco}
 
-\begin{phuongphap}[title={Ba bước chính (theo nguồn)}]
+\begin{phuongphap}[title={Ba bước chính}]
 \begin{enumerate}
   \item \textbf{Model Selection}: chọn mô hình theo đặc tính dữ liệu, độ phức tạp bài toán, đầu ra mong muốn, và mức phù hợp với problem definition.
   \item \textbf{Model Training}: cho thuật toán học pattern/mối quan hệ trong feature từ dataset đã tiền xử lý.
@@ -128,14 +124,14 @@ Quy trình gồm: chọn thuật toán phù hợp, huấn luyện, tuning siêu 
 \end{phuongphap}
 
 \begin{luuy}[title={Lặp lại nếu chưa đạt}]
-Nếu mô hình vẫn không đạt, nguồn gợi ý quay lại bước chọn mô hình rồi train/evaluate tiếp để cải thiện.
+Nếu mô hình vẫn không đạt, quay lại bước chọn mô hình rồi train/evaluate tiếp để cải thiện.
 \end{luuy}
 
 \subsection{Model Deployment}
 
 \begin{phuongphap}[title={Triển khai mô hình}]
 Triển khai là đưa mô hình vào production: tích hợp với hệ thống để phục vụ người dùng/quản trị/mục đích khác, và kiểm thử trong kịch bản thực.
-Nguồn nêu hai yếu tố cần kiểm tra:
+Hai yếu tố cần kiểm tra:
 \begin{itemize}
   \item \textbf{Portable}: khả năng chuyển phần mềm từ máy này sang máy khác.
   \item \textbf{Scalable}: mở rộng mà không phải thiết kế lại để giữ hiệu năng.
@@ -150,13 +146,15 @@ Khi phát hiện vấn đề, mô hình có thể cần train lại bằng dữ 
 \end{dongco}
 
 \begin{luuy}[title={Khi vấn đề trở thành bài toán mới}]
-Nguồn nêu: đôi khi vấn đề không giải được chỉ bằng retrain, và chính vấn đề đó trở thành problem statement mới.
+Đôi khi vấn đề không giải được chỉ bằng retrain, và chính vấn đề đó trở thành problem statement mới.
 Khi đó vòng đời được “làm lại” từ khâu phân tích bài toán để phát triển mô hình cải tiến.
 \end{luuy}
 
-\begin{ynghia}[title={Kết luận của nguồn}]
+\begin{ynghia}[title={Kết luận}]
 Vòng đời ML là quy trình lặp; có thể cần quay lại bước trước để cải thiện hiệu năng hoặc đáp ứng yêu cầu mới.
 Theo vòng đời giúp đảm bảo mô hình hiệu quả, chính xác và đáp ứng yêu cầu kinh doanh.
 \end{ynghia}
 
-\InputIfFileExists{_figures/03_vong_doi_du_an_ml.tex}{}{}
+\begin{vidu}[title={Hình minh hoạ vòng đời dự án ML}]
+\tsimg{03_vong_doi_du_an_ml/img01.jpg}
+\end{vidu}

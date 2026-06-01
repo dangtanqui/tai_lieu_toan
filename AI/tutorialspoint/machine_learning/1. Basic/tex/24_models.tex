@@ -3,14 +3,14 @@
 \label{sec:mo-hinh-ml}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_models.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Nhiều cách xây mô hình từ dữ liệu}]
 Có nhiều thuật toán, kỹ thuật và phương pháp ML để xây mô hình giải bài toán thực tế bằng dữ liệu.
-Bài này giới thiệu các \textbf{nhóm phương pháp} chính; chi tiết từng nhóm ở các bài 25--28.
 \end{dongco}
+
+\begin{vidu}[title={Tổng quan các kiểu học máy}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img01.jpg}
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img02.jpg}
+\end{vidu}
 
 \begin{phuongphap}[title={Bốn loại phương pháp ML (theo mức giám sát)}]
 \begin{enumerate}
@@ -20,10 +20,6 @@ Bài này giới thiệu các \textbf{nhóm phương pháp} chính; chi tiết t
   \item Reinforcement Learning (học tăng cường)
 \end{enumerate}
 \end{phuongphap}
-
-\begin{luuy}[title={Đối chiếu Khái niệm nền}]
-Định nghĩa tổng quan về bốn kiểu học: Mục~\ref{sec:bon-kieu-hoc}; bài này bổ sung \textbf{phân nhánh tác vụ} và danh sách mô hình thường gặp.
-\end{luuy}
 
 \subsection{Supervised Learning (tổng quan)}
 
@@ -75,17 +71,13 @@ Ngược với supervised: \textbf{không} có nhãn/``giáo viên'' hướng d�
 Hữu ích khi không có dữ liệu đã gán nhãn sẵn nhưng cần trích pattern từ đầu vào $x$.
 \end{dinhnghia}
 
-\begin{luuy}[title={Giảng viên lưu ý}]
-Nguồn liệt kê KNN trong ngữ cảnh unsupervised --- thực tế \textbf{k-NN chủ yếu là thuật toán supervised} (classification/regression). Clustering thường dùng K-Means, DBSCAN, \ldots
-\end{luuy}
-
 \begin{ynghia}[title={Ví dụ trực giác}]
 Chỉ có $x$, không có $Y$ tương ứng; thuật toán tự khám phá cấu trúc thú vị trong dữ liệu.
 Ví dụ thuật toán: K-means clustering, K-nearest neighbors (trong ngữ cảnh unsupervised), \ldots
 \end{ynghia}
 
 \begin{phuongphap}[title={Ba nhóm tác vụ unsupervised}]
-Clustering, Association, Dimensionality Reduction (và Anomaly Detection --- nguồn liệt kê thêm).
+Clustering, Association, Dimensionality Reduction (và Anomaly Detection).
 \end{phuongphap}
 
 \subsubsection{Clustering}
@@ -133,7 +125,7 @@ Không hoàn toàn supervised cũng không hoàn toàn unsupervised --- nằm gi
 Thường dùng \textbf{ít} dữ liệu có nhãn và \textbf{nhiều} dữ liệu không nhãn.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Hai hướng triển khai (theo nguồn)}]
+\begin{phuongphap}[title={Hai hướng triển khai}]
 \begin{enumerate}
   \item Huấn luyện mô hình supervised trên ít dữ liệu có nhãn, áp dụng lên dữ liệu không nhãn để gán nhãn thêm, huấn luyện lại và lặp.
   \item Dùng unsupervised để cluster mẫu tương tự, gán nhãn cho cụm, rồi huấn luyện mô hình kết hợp thông tin này.
@@ -147,7 +139,7 @@ Khác các phương pháp trên và ít dùng hơn trong giới thiệu cơ bả
 Có \textbf{agent} được huấn luyện theo thời gian để tương tác môi trường: quan sát trạng thái, chọn hành động, nhận thưởng/phạt, cập nhật chiến lược.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Sáu bước (theo nguồn)}]
+\begin{phuongphap}[title={Sáu bước}]
 \begin{enumerate}
   \item Chuẩn bị agent với tập chiến lược ban đầu.
   \item Quan sát môi trường và trạng thái hiện tại.
@@ -161,7 +153,3 @@ Có \textbf{agent} được huấn luyện theo thời gian để tương tác m
 \begin{phuongphap}[title={Thuật toán RL phổ biến}]
 Q-learning, Markov Decision Process (MDP), SARSA, DQN, DDPG.
 \end{phuongphap}
-
-\begin{luuy}[title={Tiếp theo}]
-Chi tiết từng kiểu học: Mục~\ref{sec:supervised-vs-unsupervised}, \ref{sec:supervised-learning}, \ref{sec:unsupervised-learning}, \ref{sec:reinforcement-learning}.
-\end{luuy}

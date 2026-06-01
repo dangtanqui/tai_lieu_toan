@@ -2,15 +2,15 @@
 \section{Deep Learning --- Học sâu và học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/deep_machine_learning.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Hai thuật ngữ hay bị dùng lẫn}]
 Trong thế giới AI, ``machine learning'' và ``deep learning'' thường được dùng như nhau nhưng không trùng nghĩa.
 ML là tập con của AI cho phép máy học mà không lập trình tường minh; deep learning là tập con của ML dùng mạng nơ-ron để xử lý dữ liệu phức tạp.
 Bài này so sánh ML và deep learning và mối quan hệ giữa chúng.
 \end{dongco}
+
+\begin{vidu}[title={Hình minh hoạ deep learning}]
+\tsimg{09_ai_neural_deep/img01.jpg}
+\end{vidu}
 
 \subsection{Học máy là gì?}
 
@@ -18,27 +18,6 @@ Bài này so sánh ML và deep learning và mối quan hệ giữa chúng.
 Học máy (ML) là lĩnh vực con của AI, tự động cho phép máy học từ kinh nghiệm.
 Trong ML, phát triển thuật toán là công việc cốt lõi: thuật toán được huấn luyện trên dữ liệu để học pattern ẩn và dự đoán dựa trên những gì đã học; toàn bộ quá trình huấn luyện đôi khi gọi là \textbf{model building}.
 \end{dinhnghia}
-
-\begin{ynghia}[title={``Kinh nghiệm'' nghĩa là gì?}]
-Khi nói máy học từ kinh nghiệm, ``kinh nghiệm'' ở đây chính là \textbf{huấn luyện thuật toán bằng dữ liệu} --- tương tự con người học từ trải nghiệm, máy học từ dữ liệu khi ta huấn luyện.
-ML là một \textbf{kỹ thuật} triển khai giải pháp cho các bài toán liên quan AI; có nhiều cách triển khai, ML là một trong số đó.
-\end{ynghia}
-
-\begin{phuongphap}[title={Bốn hướng tiếp cận học từ dữ liệu}]
-\begin{itemize}
-  \item Supervised learning
-  \item Unsupervised learning
-  \item Semi-supervised learning
-  \item Reinforcement learning
-\end{itemize}
-Supervised learning huấn luyện trên dữ liệu có nhãn, phù hợp phân loại và hồi quy; ví dụ thuật toán: linear regression, k-nearest neighbors, random forests, \ldots
-\end{phuongphap}
-
-\begin{ynghia}[title={Mạng nơ-ron và độ chính xác}]
-Nguồn nêu: với mạng nơ-ron, ML đạt độ chính xác cao nhất trong nhiều bài toán.
-Mạng nơ-ron có thể xem là một hướng supervised learning phức tạp.
-Deep learning là cách khác để triển khai giải pháp ML, dùng mạng nơ-ron học quan hệ phức tạp trong dữ liệu.
-\end{ynghia}
 
 \subsection{Học sâu (Deep Learning) là gì?}
 
@@ -57,7 +36,7 @@ Nhận diện khuôn mặt, nhận dạng giọng nói, xe tự lái.
 
 \subsection{Khác biệt giữa Machine Learning và Deep Learning}
 
-\begin{vidu}[title={Bảng so sánh (dịch từ nguồn)}]
+\begin{vidu}[title={Bảng so sánh}]
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.6cm}XX}
 \textbf{Tiêu chí} & \textbf{Machine Learning} & \textbf{Deep Learning} \\
 \midrule
@@ -93,7 +72,7 @@ Dữ liệu phức tạp, không cấu trúc (unstructured). \\
 
 \subsection{So sánh sâu hơn}
 
-\begin{ynghia}[title={Bốn điểm (theo nguồn)}]
+\begin{ynghia}[title={Bốn điểm}]
 \begin{enumerate}
   \item ML là nhóm rộng gồm deep learning; deep learning là \textbf{một loại} thuật toán ML dùng mạng nơ-ron.
   \item Thuật toán ML cải thiện theo dữ liệu; deep learning được thiết kế để xử lý dữ liệu phức tạp và nhận pattern mà ML cổ điển có thể bỏ sót.

@@ -1,0 +1,78 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_regression_analysis.htm",
+    "slug": "01_regression_analysis",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_linear_regression.htm",
+    "slug": "02_linear_regression",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/regression_line_linear_regression.jpg",
+        "file": "images/02_linear_regression/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/positive_linear_relationship.jpg",
+        "file": "images/02_linear_regression/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/negative_linear_relationship.jpg",
+        "file": "images/02_linear_regression/img03.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/simple_regression_regression.jpg",
+        "file": "images/02_linear_regression/img04.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/linear_regression_best_fit_line.jpg",
+        "file": "images/02_linear_regression/img05.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_simple_linear_regression.htm",
+    "slug": "03_simple_linear_regression",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/simple_linear_regression.jpg",
+        "file": "images/03_simple_linear_regression/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/simple_linear_regression_linear_relation_output.jpg",
+        "file": "images/03_simple_linear_regression/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/simple_linear_regression_visualizing_training_set_results.jpg",
+        "file": "images/03_simple_linear_regression/img03.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/simple_linear_regression_visualizing_test_set_results.jpg",
+        "file": "images/03_simple_linear_regression/img04.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_multiple_linear_regression.htm",
+    "slug": "04_multiple_linear_regression",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_polynomial_regression.htm",
+    "slug": "05_polynomial_regression",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/linear_vs_polynomial_regression.jpg",
+        "file": "images/05_polynomial_regression/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/scatter_plot_original_data.jpg",
+        "file": "images/05_polynomial_regression/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/polynomial_regression_results.jpg",
+        "file": "images/05_polynomial_regression/img03.jpg"
+      }
+    ]
+  }
+]

@@ -1,0 +1,61 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_data_leakage.htm
+Data leakage is a common problem in machine learning that occurs when information from outside the training dataset is used to create or evaluate a model. This can lead to overfitting, where the model is too closely tailored to the training data and performs poorly on new data.
+
+There are two main types of data leakage: Target Leakage and Train-test Contamination
+
+Target Leakage
+Target leakage occurs when features that are not available during prediction are used to create the model. For example, if we are predicting whether a customer will churn, and we include the customer's cancellation date as a feature, then the model will have access to information that would not be available in practice. This can lead to unrealistically high accuracy during training and poor performance on new data.
+
+Train-test Contamination
+Train-test contamination occurs when information from the test set is inadvertently used in the training process. For example, if we normalize the data based on the mean and standard deviation of the entire dataset instead of just the training set, then the model will have access to information that would not be available in practice. This can lead to overly optimistic estimates of model performance.
+
+How to Prevent Data Leakage?
+To prevent data leakage, it is important to carefully preprocess the data and ensure that no information from the test set is used in the training process. Some strategies for preventing data leakage include −
+
+Splitting the data into separate training and test sets before doing any preprocessing or feature engineering.
+
+Only using features that would be available at the time of prediction.
+
+Using cross-validation to evaluate model performance instead of a single train-test split.
+
+Ensuring that all preprocessing steps (such as normalization or scaling) are applied to the training set only and then using the same transformations on the test set.
+
+Being aware of any potential sources of leakage, such as date or time-based features, and handling them appropriately.
+
+Example - Implementation in Python
+Here is an example in which we will be using Sklearn breast cancer dataset and ensure that no information from the test set is leaked into the model during training −
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC
+
+# Load the breast cancer dataset
+data = load_breast_cancer()
+
+# Separate features and labels
+X, y = data.data, data.target
+
+# Split the data into train and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Define the pipeline
+pipeline = Pipeline([
+   ('scaler', StandardScaler()),
+   ('svm', SVC())
+])
+
+# Fit the pipeline on the train set
+pipeline.fit(X_train, y_train)
+
+# Make predictions on the test set
+y_pred = pipeline.predict(X_test)
+
+# Evaluate the model performance
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.9824561403508771

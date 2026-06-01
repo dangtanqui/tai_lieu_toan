@@ -2,23 +2,11 @@
 \section{Basic Concepts --- Các khái niệm cơ bản}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_basics.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Mục tiêu}]
 Bài này giới thiệu các khái niệm cơ bản trong học máy: dữ liệu, đặc trưng, mô hình, huấn luyện/kiểm thử, overfitting/underfitting, và khi nào nên dùng học máy.
 \end{dongco}
 
-\begin{luuy}[title={Tham chiếu Khái niệm nền}]
-Data, feature, model, training, testing: Mục~\ref{sec:thanh-phan-co-lo} và~\ref{sec:train-val-test}. Bài này giữ phần \textbf{Tom Mitchell (T--P--E)} và hướng dẫn giảm overfitting/underfitting theo nguồn.
-\end{luuy}
-
 \subsection{Các thành phần cốt lõi (tóm tắt)}
-
-\begin{ynghia}[title={Data, Feature, Model, Training, Testing}]
-Xem định nghĩa đầy đủ ở Mục~\ref{sec:thanh-phan-co-lo} và~\ref{sec:train-val-test}. Nguồn nhấn mạnh: mô hình được đánh giá trên tập validation/test riêng để kiểm tra khả năng tổng quát.
-\end{ynghia}
 
 \subsection{Overfitting (Quá khớp)}
 
@@ -27,7 +15,7 @@ Overfitting xảy ra khi mô hình quá phức tạp và khớp dữ liệu hu�
 Hệ quả là mô hình hoạt động kém trên dữ liệu mới vì đã “chuyên biệt” cho tập train.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cách giảm overfitting (theo nguồn)}]
+\begin{phuongphap}[title={Cách giảm overfitting}]
 \begin{itemize}
   \item Dùng tập validation để đánh giá trong quá trình phát triển.
   \item Dùng \textbf{regularization} để làm mô hình đơn giản hơn.
@@ -41,7 +29,7 @@ Underfitting xảy ra khi mô hình quá đơn giản và không thể nắm b�
 Điều này dẫn tới hiệu năng kém trên cả train và test.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cách giảm underfitting (theo nguồn)}]
+\begin{phuongphap}[title={Cách giảm underfitting}]
 \begin{itemize}
   \item Tăng độ phức tạp mô hình.
   \item Thu thập thêm dữ liệu.
@@ -63,7 +51,7 @@ Ngoài lý do “cần ML”, còn có câu hỏi: trong kịch bản nào ta n�
 Có nhiều tình huống cần ra quyết định dựa trên dữ liệu với hiệu quả và quy mô lớn.
 \end{dongco}
 
-\begin{phuongphap}[title={Một số tình huống (theo nguồn)}]
+\begin{phuongphap}[title={Một số tình huống}]
 \begin{itemize}
   \item \textbf{Thiếu chuyên gia con người}: ví dụ điều hướng ở vùng chưa biết hoặc nhiệm vụ trong không gian.
   \item \textbf{Tình huống động}: hành vi thay đổi theo thời gian; ví dụ kết nối mạng, hạ tầng tổ chức.
@@ -87,12 +75,12 @@ nếu hiệu năng của nó khi thực hiện nhiệm vụ trong \(T\), đượ
 \end{itemize}
 \end{ynghia}
 
-\begin{phuongphap}[title={Cách diễn giải ngắn (theo nguồn)}]
+\begin{phuongphap}[title={Cách diễn giải ngắn}]
 ML là lĩnh vực AI gồm các thuật toán học mà:
 \begin{itemize}
-  \item cải thiện hiệu năng \(P\),
-  \item khi thực hiện nhiệm vụ \(T\),
-  \item theo thời gian nhờ kinh nghiệm \(E\).
+  \item Cải thiện hiệu năng \(P\).
+  \item Khi thực hiện nhiệm vụ \(T\).
+  \item Theo thời gian nhờ kinh nghiệm \(E\).
 \end{itemize}
 \end{phuongphap}
 
@@ -116,6 +104,6 @@ Kinh nghiệm của mô hình sẽ được dùng để giải nhiệm vụ \(T\
 \begin{ynghia}[title={Thước đo hiệu năng}]
 Thước đo hiệu năng cho biết thuật toán có đang làm đúng kỳ vọng không.
 \(P\) là metric định lượng đánh giá mô hình thực hiện \(T\) bằng kinh nghiệm \(E\) tốt đến đâu.
-Nguồn nêu một số metric: accuracy score, F1 score, confusion matrix, precision, recall, sensitivity, \ldots
+Một số metric: accuracy score, F1 score, confusion matrix, precision, recall, sensitivity, \ldots
 \end{ynghia}
 

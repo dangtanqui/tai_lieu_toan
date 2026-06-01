@@ -1,0 +1,52 @@
+%==============================================================================
+\section{Skewness and Kurtosis --- Độ lệch và độ nhọn}
+\label{sec:skewness-kurtosis}
+%==============================================================================
+
+\begin{dinhnghia}[title={Skewness (độ lệch)}]
+Skewness đo \textbf{độ bất đối xứng} của phân phối.
+\begin{itemize}
+  \item Dương: đuôi dài bên phải.
+  \item Âm: đuôi dài bên trái.
+  \item Bằng 0: đối xứng (như phân phối chuẩn lý tưởng).
+\end{itemize}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Kurtosis (độ nhọn)}]
+Kurtosis đo \textbf{độ nhọn} của phân phối so với chuẩn.
+\begin{itemize}
+  \item Kurtosis cao: đỉnh nhọn hơn, đuôi nặng hơn chuẩn.
+  \item Kurtosis thấp: đỉnh dẹt hơn, đuôi nhẹ hơn.
+  \item Bằng 0 (theo định nghĩa excess thường gặp trong SciPy): gần chuẩn.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ảnh hưởng tới ML}]
+Phân phối lệch mạnh có thể cần biến đổi dữ liệu hoặc phương pháp phi tham số.
+Kurtosis cao có thể cần mô hình hoặc ước lượng robust hơn.
+\end{ynghia}
+
+\subsection{Ví dụ Python (SciPy)}
+
+\begin{vidu}[title={skew() và kurtosis()}]
+\begin{lstlisting}
+import numpy as np
+from scipy.stats import skew, kurtosis
+
+data = np.random.normal(0, 1, 1000)
+
+skewness = skew(data)
+kurt_val = kurtosis(data)
+
+print('Skewness:', skewness)
+print('Kurtosis:', kurt_val)
+\end{lstlisting}
+
+(Lưu ý: không đặt tên biến \texttt{kurtosis} trùng hàm --- dùng \texttt{kurt\_val}.)
+
+\textbf{Output} (ví dụ, gần 0 với mẫu chuẩn):
+\begin{lstlisting}
+Skewness: -0.04119418903611285
+Kurtosis: -0.1152250196054534
+\end{lstlisting}
+\end{vidu}

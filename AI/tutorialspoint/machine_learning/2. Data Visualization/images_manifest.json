@@ -1,0 +1,103 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_data_visualization.htm",
+    "slug": "01_data_visualization",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/data_visualization_techniques.jpg",
+        "file": "images/01_data_visualization/img01.jpg",
+        "bytes": 32925
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ml_data_visualization_histograms.jpg",
+        "file": "images/01_data_visualization/img02.jpg",
+        "bytes": 49182
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ml_data_visualization_density_plot.jpg",
+        "file": "images/01_data_visualization/img03.jpg",
+        "bytes": 37278
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ml_data_visualization_box_plot.jpg",
+        "file": "images/01_data_visualization/img04.jpg",
+        "bytes": 23646
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ml_data_visualization_correlation_matrix_plot.jpg",
+        "file": "images/01_data_visualization/img05.jpg",
+        "bytes": 37454
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ml_data_visualization_scatter_matrix_plot.jpg",
+        "file": "images/01_data_visualization/img06.jpg",
+        "bytes": 133561
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_histograms.htm",
+    "slug": "02_histograms",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/mean_radius.jpg",
+        "file": "images/02_histograms/img01.jpg",
+        "bytes": 21414
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/mean_radius2.jpeg",
+        "file": "images/02_histograms/img02.jpeg",
+        "bytes": 24104
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_density_plots.htm",
+    "slug": "03_density_plots",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/kdeplot_function.jpg",
+        "file": "images/03_density_plots/img01.jpg",
+        "bytes": 25711
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/density_plot.jpg",
+        "file": "images/03_density_plots/img02.jpg",
+        "bytes": 29936
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_box_and_whisker_plots.htm",
+    "slug": "04_box_whisker_plots",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/species.jpg",
+        "file": "images/04_box_whisker_plots/img01.jpg",
+        "bytes": 24244
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_correlation_matrix_plot.htm",
+    "slug": "05_correlation_matrix_plot",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/correlation_matrix_plot.jpg",
+        "file": "images/05_correlation_matrix_plot/img01.jpg",
+        "bytes": 30043
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_scatter_matrix_plot.htm",
+    "slug": "06_scatter_matrix_plot",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/scatter_matrix_plot.jpg",
+        "file": "images/06_scatter_matrix_plot/img01.jpg",
+        "bytes": 105627
+      }
+    ]
+  }
+]

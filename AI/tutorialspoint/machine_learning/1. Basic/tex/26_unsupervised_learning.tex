@@ -3,10 +3,6 @@
 \label{sec:unsupervised-learning}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_unsupervised.htm}.
-\end{ynghia}
-
 \subsection{Unsupervised Machine Learning là gì?}
 
 \begin{dinhnghia}[title={Học không giám sát}]
@@ -14,11 +10,15 @@ Unsupervised learning học pattern và cấu trúc trong dữ liệu \textbf{kh
 Thuật toán phân tích dữ liệu để khám phá pattern ẩn trong tập \textbf{không nhãn}.
 \end{dinhnghia}
 
+\begin{vidu}[title={Minh hoạ unsupervised learning}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img03.jpg}
+\end{vidu}
+
 \begin{ynghia}[title={Khác supervised}]
 Không có quyền ``thoải mái'' như supervised với dữ liệu đã gán nhãn sẵn; cần trích pattern hữu ích từ đầu vào.
 \end{ynghia}
 
-\begin{vidu}[title={Tóm tắt một câu (theo nguồn)}]
+\begin{vidu}[title={Tóm tắt một câu}]
 \begin{itemize}
   \item Là cách tiếp cận/kỹ thuật ML
   \item Dùng thuật toán ML
@@ -57,7 +57,7 @@ Mô hình unsupervised phù hợp tổ chức dataset lớn thành các cụm.
 
 \subsection{Ba nhóm phương pháp}
 
-\subsubsection{1. Clustering}
+\subsubsection{Clustering}
 
 \begin{dinhnghia}[title={Clustering}]
 Gom tập đối tượng/điểm dữ liệu thành cụm theo độ tương đồng.
@@ -73,7 +73,7 @@ Gom tập đối tượng/điểm dữ liệu thành cụm theo độ tương đ
 \textbf{Gaussian Mixture Models}: mô hình xác suất kết hợp nhiều phân phối Gaussian để xác định điểm thuộc thành phần nào.
 \end{ynghia}
 
-\subsubsection{2. Association Rule Mining}
+\subsubsection{Association Rule Mining}
 
 \begin{ynghia}[title={Association}]
 Kỹ thuật dựa trên luật để tìm liên kết giữa tham số trong dataset lớn.
@@ -81,7 +81,7 @@ Phổ biến trong Market Basket Analysis; hỗ trợ quyết định và recomm
 Thuật toán chính: \textbf{Apriori} --- tìm item lặp lại thường xuyên và luật kết hợp trong dữ liệu giao dịch.
 \end{ynghia}
 
-\subsubsection{3. Dimensionality Reduction}
+\subsubsection{Dimensionality Reduction}
 
 \begin{ynghia}[title={Giảm chiều}]
 Chọn tập feature đại diện để giảm số chiều mỗi mẫu --- tránh curse of dimensionality khi có hàng triệu feature.
@@ -90,7 +90,7 @@ Thuật toán phổ biến: Principal Component Analysis (PCA), Missing Value Ra
 
 \subsection{Thuật toán Unsupervised Learning}
 
-\begin{phuongphap}[title={Danh sách thường dùng (theo nguồn)}]
+\begin{phuongphap}[title={Danh sách thường dùng}]
 \textbf{Clustering}: K-Means, Hierarchical, Mean-shift, DBSCAN, HDBSCAN, BIRCH, Affinity Propagation, Agglomerative.
 
 \textbf{Association}: Apriori, Eclat, FP-growth.
@@ -100,18 +100,22 @@ Thuật toán phổ biến: Principal Component Analysis (PCA), Missing Value Ra
 
 \subsection{Ưu điểm}
 
+\begin{tinhchat}[title={Ưu điểm}]
 \begin{itemize}
   \item Không cần dữ liệu có nhãn --- dễ và rẻ hơn.
   \item Khám phá pattern/quan hệ ẩn $\Rightarrow$ insight và ra quyết định.
   \item Phù hợp clustering, anomaly detection, giảm chiều.
 \end{itemize}
+\end{tinhchat}
 
 \subsection{Nhược điểm}
 
+\begin{luuy}[title={Nhược điểm}]
 \begin{itemize}
   \item \textbf{Khó đánh giá}: không có nhãn chuẩn để đo hiệu năng.
   \item \textbf{Kết quả có thể kém chính xác}: đặc biệt khi dữ liệu nhiễu hoặc thuật toán không biết đầu ra đúng.
 \end{itemize}
+\end{luuy}
 
 \subsection{Ứng dụng}
 
@@ -131,9 +135,3 @@ Tìm sự kiện/quan sát hiếm, hiếm khi xảy ra.
 Dùng kiến thức đã học để phân biệt điểm bất thường và bình thường.
 Clustering, KNN có thể hỗ trợ dựa trên feature.
 \end{dinhnghia}
-
-\subsection{Supervised vs Unsupervised (nhắc ngắn)}
-
-\begin{luuy}[title={Đối chiếu}]
-So sánh với supervised: Mục~\ref{sec:supervised-vs-unsupervised}.
-\end{luuy}

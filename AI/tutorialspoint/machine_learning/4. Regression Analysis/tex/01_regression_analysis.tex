@@ -1,0 +1,146 @@
+%==============================================================================
+\section{Phân tích hồi quy (Regression Analysis)}
+\label{sec:regression-analysis}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân tích hồi quy}]
+Kỹ thuật thống kê dự đoán \textbf{giá trị số liên tục} dựa trên quan hệ giữa biến độc lập và biến phụ thuộc.
+Mục tiêu: vẽ đường/đường cong khớp dữ liệu tốt nhất và ước lượng ảnh hưởng của biến này lên biến kia.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vai trò trong học máy}]
+Hồi quy là \textbf{học có giám sát}: mô hình học từ feature (độc lập) và target (phụ thuộc, số liên tục) để dự đoán trên dữ liệu mới.
+Ứng dụng: dự báo, phân tích dự đoán, tối ưu kinh doanh, kinh tế, tài chính.
+\end{ynghia}
+
+\subsection{Thuật ngữ}
+
+\begin{phuongphap}[title={Thuật ngữ thường gặp}]
+\begin{itemize}
+  \item \textbf{Biến độc lập} (predictor, feature): dùng để dự đoán.
+  \item \textbf{Biến phụ thuộc} (target, response): giá trị cần dự đoán.
+  \item \textbf{Đường hồi quy}: đường/đường cong khớp điểm dữ liệu.
+  \item \textbf{Overfitting}: khớp tốt tập huấn luyện, kém tập kiểm tra (phương sai cao).
+  \item \textbf{Underfitting}: mô hình kém cả trên tập huấn luyện (độ lệch cao).
+  \item \textbf{Outlier}: điểm cực cao/thấp, lệch pattern chung.
+  \item \textbf{Đa cộng tuyến} (multicollinearity): feature phụ thuộc lẫn nhau.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Cách hồi quy hoạt động}
+
+\begin{phuongphap}[title={Quy trình}]
+Thuật toán hồi quy được huấn luyện trên tập có nhãn (feature + target).
+Trong huấn luyện, mô hình học quan hệ giữa predictor và target; sau đó dự đoán giá trị mới từ quan hệ đã học.
+\end{phuongphap}
+
+\subsection{Các loại hồi quy trong học máy}
+
+Phân loại thường dựa trên: số biến độc lập, kiểu biến phụ thuộc, hình dạng đường hồi quy.
+
+\begin{phuongphap}[title={Các loại phổ biến}]
+\begin{enumerate}
+  \item \textbf{Hồi quy tuyến tính} --- quan hệ tuyến tính; gồm đơn biến và đa biến.
+  \item \textbf{Hồi quy logistic} --- xác suất sự kiện; phân loại nhị phân (sigmoid).
+  \item \textbf{Hồi quy đa thức} --- quan hệ bậc $n$; bắt phi tuyến, nhạy outlier.
+  \item \textbf{Lasso} (L1) --- chuẩn hóa, giảm overfitting; dữ liệu chiều cao.
+  \item \textbf{Ridge} (L2) --- chuẩn hóa; xử lý đa cộng tuyến, nhiều tham số.
+  \item \textbf{Cây quyết định hồi quy} --- chia tập con, giảm MSE từng nút.
+  \item \textbf{Random Forest hồi quy} --- tập hợp nhiều cây (bagging).
+  \item \textbf{SVR} --- máy vectơ hỗ trợ cho hồi quy; chịu outlier, phi tuyến.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
+Một biến độc lập $X$ dự đoán $Y$:
+\[
+Y = mX + b
+\]
+($Y$ phụ thuộc, $X$ độc lập, $m$ độ dốc, $b$ hệ số chặn.)
+\end{dinhnghia}
+
+\begin{luuy}[title={Lỗi trong nguồn gốc}]
+Bài gốc Tutorialspoint đôi chỗ ghi nhầm $X$/$Y$ là biến phụ thuộc/độc lập; phần dưới dùng ký hiệu chuẩn.
+\end{luuy}
+
+\subsection{Mô hình hồi quy đơn và đa biến}
+
+\begin{itemize}
+  \item \textbf{Mô hình đơn giản}: một feature duy nhất.
+  \item \textbf{Mô hình đa biến}: nhiều feature.
+\end{itemize}
+
+\subsection{Chọn mô hình hồi quy}
+
+\begin{phuongphap}[title={Tiêu chí}]
+So sánh MSE, MAE, $R^2$; độ phức tạp; khả năng giải thích.
+Chọn mô hình có metric tốt, đơn giản và dễ diễn giải khi có thể.
+\end{phuongphap}
+
+\subsection{Metric đánh giá}
+
+\begin{tinhchat}[title={Các chỉ số}]
+\begin{itemize}
+  \item \textbf{MAE}: trung bình $|y - \hat{y}|$.
+  \item \textbf{MSE}: trung bình $(y - \hat{y})^2$.
+  \item \textbf{Median absolute error}: trung vị $|y - \hat{y}|$.
+  \item \textbf{RMSE}: $\sqrt{\mathrm{MSE}}$.
+  \item \textbf{$R^2$}: tối đa 1.0; có thể âm nếu mô hình rất kém.
+  \item \textbf{MAPE}: MAE dạng phần trăm.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Ứng dụng}
+
+\begin{ynghia}[title={Ứng dụng điển hình}]
+\begin{itemize}
+  \item \textbf{Dự báo}: GDP, giá dầu, chuỗi thời gian.
+  \item \textbf{Tối ưu}: giờ cao điểm khách hàng.
+  \item \textbf{Hiệu chỉnh quyết định}: đánh giá và sửa chính sách.
+  \item \textbf{Kinh tế / tài chính}: cung--cầu, rủi ro danh mục.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Xây dựng regressor trong Python}
+
+\begin{phuongphap}[title={Các bước (scikit-learn)}]
+\begin{enumerate}
+  \item Import thư viện.
+  \item Nạp dữ liệu.
+  \item Chia train/test.
+  \item Huấn luyện và dự đoán.
+  \item Vẽ đồ thị.
+  \item Tính metric.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}[title={Hồi quy tuyến tính với dữ liệu tổng hợp}]
+Thay đường dẫn \texttt{C:\textbackslash linear.txt} và lỗi \texttt{num\_training} trong bài gốc bằng \texttt{make\_regression}:
+
+\begin{lstlisting}
+import numpy as np
+from sklearn import linear_model
+import sklearn.metrics as sm
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_regression
+
+X, y = make_regression(n_samples=100, n_features=1, noise=15, random_state=42)
+
+training_samples = int(0.6 * len(X))
+X_train, y_train = X[:training_samples], y[:training_samples]
+X_test, y_test = X[training_samples:], y[training_samples:]
+
+reg_linear = linear_model.LinearRegression()
+reg_linear.fit(X_train, y_train)
+y_test_pred = reg_linear.predict(X_test)
+
+plt.scatter(X_test, y_test, color='red')
+plt.plot(X_test, y_test_pred, color='black', linewidth=2)
+plt.show()
+
+print("Regressor model performance:")
+print("MAE =", round(sm.mean_absolute_error(y_test, y_test_pred), 2))
+print("MSE =", round(sm.mean_squared_error(y_test, y_test_pred), 2))
+print("R2 =", round(sm.r2_score(y_test, y_test_pred), 2))
+\end{lstlisting}
+\end{vidu}

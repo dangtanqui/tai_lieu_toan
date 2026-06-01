@@ -1,0 +1,146 @@
+%==============================================================================
+\section{Hồi quy tuyến tính đa biến (Multiple Linear Regression)}
+\label{sec:multiple-linear-regression}
+%==============================================================================
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính đa biến (MLR)}]
+Thuật toán học có giám sát mô hình quan hệ giữa \textbf{một} biến phụ thuộc liên tục và \textbf{nhiều} biến độc lập.
+Biến phân loại (ví dụ \texttt{State}) cần mã hóa số trước khi đưa vào mô hình tuyến tính.
+\end{dinhnghia}
+
+\begin{ynghia}[title={So với hồi quy đơn}]
+MLR là mở rộng của hồi quy đơn: dự đoán bằng hai hoặc nhiều feature.
+\end{ynghia}
+
+\begin{dinhnghia}[title={Phương trình}]
+Với $n$ quan sát, $p$ feature:
+\[
+h(x_i) = w_0 + w_1 x_{i1} + w_2 x_{i2} + \cdots + w_p x_{ip}
+\]
+Có phần dư:
+\[
+y_i = h(x_i) + e_i, \quad e_i = y_i - h(x_i)
+\]
+\end{dinhnghia}
+
+\subsection{Giả định}
+
+\begin{luuy}[title={Giả định MLR}]
+\begin{enumerate}
+  \item Tuyến tính giữa target và predictor.
+  \item Các quan sát độc lập.
+  \item Phương sai phần dư đồng nhất (homoscedasticity).
+  \item Phần dư gần phân phối chuẩn.
+  \item Không đa cộng tuyến mạnh giữa feature.
+  \item Không tự tương quan phần dư.
+  \item Giá trị biến độc lập cố định giữa các mẫu lặp.
+\end{enumerate}
+\end{luuy}
+
+\subsection{Triển khai Python}
+
+\begin{vidu}[title={Dataset data.csv}]
+50 dòng: \texttt{R\&D Spend}, \texttt{Administration}, \texttt{Marketing Spend}, \texttt{State}, \texttt{Profit}.
+Ví dụ dưới bỏ \texttt{State} như bài gốc (đơn giản hóa).
+\end{vidu}
+
+\begin{vidu}[title={Bước 1 --- Chuẩn bị}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dataset = pd.read_csv('data/data.csv')
+X = dataset[['R&D Spend', 'Administration', 'Marketing Spend']]
+y = dataset['Profit']
+print(X.head())
+print(y.head())
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Chia train/test (20\% test)}]
+\begin{lstlisting}
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=0)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2 --- Huấn luyện}]
+\begin{lstlisting}
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3 --- Kiểm tra}]
+\begin{lstlisting}
+y_pred = regressor.predict(X_test)
+df = pd.DataFrame({'Real Values': y_test.values,
+                   'Predicted Values': y_pred})
+print(df)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 4 --- Metric}]
+\begin{lstlisting}
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import numpy as np
+
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+print("MSE:", mse)
+print("RMSE:", rmse)
+print("MAE:", mae)
+print("R2:", r2)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Đọc $R^2 \approx 0{,}96$ (bài gốc)}]
+Khoảng 96\% biến thiên của \texttt{Profit} được giải thích bởi ba feature đầu vào (trên tập kiểm tra của ví dụ gốc).
+\end{ynghia}
+
+\begin{vidu}[title={Bước 5 --- Dự đoán điểm mới}]
+\begin{lstlisting}
+new_data = [[166343.2, 136787.8, 461724.1]]
+profit = regressor.predict(new_data)
+print(profit)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Hệ số và chặn}]
+\begin{lstlisting}
+print("coefficients:", regressor.coef_)
+print("intercept:", regressor.intercept_)
+\end{lstlisting}
+Kiểm tra tay: $\mathrm{Profit} \approx w_0 + w_1 X_1 + w_2 X_2 + w_3 X_3$.
+\end{vidu}
+
+\subsection{Ứng dụng và thách thức}
+
+\begin{phuongphap}[title={Ứng dụng}]
+Tài chính, marketing, bất động sản, y tế, kinh tế, khoa học xã hội.
+\end{phuongphap}
+
+\begin{luuy}[title={Thách thức}]
+Đa cộng tuyến, overfitting/underfitting, phi tuyến, outlier, dữ liệu thiếu.
+\end{luuy}
+
+\subsection{So sánh đơn và đa biến}
+
+\begin{center}
+\small
+\begin{tabular}{|l|p{4.2cm}|p{4.2cm}|}
+\hline
+\textbf{Tiêu chí} & \textbf{Đơn biến} & \textbf{Đa biến} \\
+\hline
+Số biến độc lập & 1 & $\geq 2$ \\
+Phương trình & $y = w_0 + w_1 x$ & $y = w_0 + \sum w_j x_j$ \\
+Độ phức tạp & Thấp hơn & Cao hơn \\
+Giải thích hệ số & Dễ hơn & Khó hơn \\
+\hline
+\end{tabular}
+\end{center}

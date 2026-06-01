@@ -1,0 +1,212 @@
+%==============================================================================
+\section{Data Visualization --- Trực quan hoá dữ liệu}
+\label{sec:data-visualization}
+%==============================================================================
+
+\begin{dongco}[title={Vì sao trực quan hoá quan trọng trong ML}]
+Trực quan hoá dữ liệu là khía cạnh quan trọng của học máy vì giúp phân tích và truyền đạt pattern, xu hướng và insight trong dữ liệu.
+Việc tạo biểu diễn đồ họa giúp nhận ra quan hệ có thể không thấy được khi chỉ nhìn dữ liệu thô.
+\end{dongco}
+
+\subsection{Data Visualization là gì?}
+
+\begin{dinhnghia}[title={Định nghĩa}]
+Trực quan hoá dữ liệu là biểu diễn đồ họa của dữ liệu và thông tin.
+Với trực quan hoá, ta quan sát được hình dạng dữ liệu và mức độ tương quan giữa các thuộc tính --- đây là cách nhanh nhất để xem feature có ``khớp'' với đầu ra hay không.
+\end{dinhnghia}
+
+\subsection{Tầm quan trọng trong Machine Learning}
+
+\begin{ynghia}[title={Bốn vai trò chính}]
+\begin{itemize}
+  \item \textbf{Khám phá dữ liệu}: nhận diện pattern, tương quan, outlier; phát hiện missing, mâu thuẫn, chất lượng kém.
+  \item \textbf{Chọn đặc trưng (feature selection)}: biểu đồ quan hệ với biến mục tiêu giúp giữ biến có sức dự đoán, loại biến nhiễu.
+  \item \textbf{Đánh giá mô hình}: ROC, đường precision--recall, ma trận nhầm lẫn để hiểu accuracy, precision, recall, F1.
+  \item \textbf{Truyền đạt insight}: scatter, line chart, bar chart giúp người không kỹ thuật hiểu kết quả phức tạp.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Thư viện Python phổ biến}
+
+\begin{dinhnghia}[title={Matplotlib}]
+Matplotlib là một trong các package Python phổ biến nhất cho trực quan hoá.
+Thư viện đa nền tảng, vẽ biểu đồ 2D từ mảng dữ liệu; API hướng đối tượng, nhúng được vào ứng dụng GUI (PyQt, WxPython, Tkinter).
+Dùng được trong shell Python/IPython, Jupyter Notebook và máy chủ web.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Seaborn}]
+Seaborn là thư viện Python mã nguồn mở (BSD) cung cấp API cấp cao để trực quan hoá dữ liệu.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Plotly}]
+Plotly là công ty kỹ thuật (Montreal) phát triển công cụ phân tích và trực quan (Dash, Chart Studio), kèm API đồ thị mã nguồn mở cho Python, R, MATLAB, JavaScript, \ldots
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Bokeh}]
+Bokeh trực quan hoá bằng HTML và JavaScript (khác Matplotlib/Seaborn vẽ trên canvas backend).
+Rất hữu ích khi xây dashboard web tương tác.
+\end{dinhnghia}
+
+\subsection{Các loại trực quan hoá}
+
+\begin{phuongphap}[title={Phân loại}]
+Dữ liệu ML thường chia thành:
+\begin{itemize}
+  \item \textbf{Biểu đồ một biến (Univariate Plots)}.
+  \item \textbf{Biểu đồ nhiều biến (Multivariate Plots)}.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Kỹ thuật trực quan hoá}
+
+\subsubsection{Univariate: hiểu từng thuộc tính độc lập}
+
+\begin{phuongphap}[title={Ba kỹ thuật univariate trong Python}]
+Histogram, Density Plots, Box and Whisker Plots (boxplot).
+\end{phuongphap}
+
+\paragraph{Ví dụ --- Histogram}
+
+\begin{ynghia}[title={Histogram}]
+Histogram gom dữ liệu vào các \textbf{bin} --- cách nhanh nhất để hình dung phân phối từng thuộc tính.
+\end{ynghia}
+
+\begin{tinhchat}[title={Đặc điểm histogram}]
+\begin{itemize}
+  \item Cho biết \textbf{số quan sát} trong mỗi bin.
+  \item Từ hình dạng bin suy ra phân phối: Gaussian, lệch (skewed), exponential, \ldots
+  \item Giúp phát hiện outlier có thể.
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Code histogram (NumPy + Matplotlib)}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+# Generate some random data
+data = np.random.randn(1000)
+# Create the histogram
+plt.hist(data, bins=30, color='skyblue', edgecolor='black')
+plt.xlabel('Values')
+plt.ylabel('Frequency')
+plt.title('Histogram Example')
+plt.show()
+\end{lstlisting}
+\textbf{Output} (số ngẫu nhiên có thể khác nhẹ mỗi lần chạy):
+\tsimg{01_data_visualization/img02.jpg}
+\end{vidu}
+
+\paragraph{Ví dụ --- Density Plot}
+
+\begin{ynghia}[title={Density plot}]
+Giống histogram nhưng có \textbf{đường cong mượt} trên đỉnh mỗi bin --- có thể coi là dạng ``histogram trừu tượng''.
+\end{ynghia}
+
+\begin{vidu}[title={Code density plot (Seaborn, Iris)}]
+\begin{lstlisting}
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Load a sample dataset
+df = sns.load_dataset("iris")
+# Create the density plot
+sns.kdeplot(data=df, x="sepal_length", fill=True)
+# Add labels and title
+plt.xlabel("Sepal Length")
+plt.ylabel("Density")
+plt.title("Density Plot of Sepal Length")
+# Show the plot
+plt.show()
+\end{lstlisting}
+\textbf{Output}:
+\tsimg{01_data_visualization/img03.jpg}
+\end{vidu}
+
+\paragraph{Ví dụ --- Box and Whisker Plot}
+
+\begin{ynghia}[title={Boxplot}]
+Boxplot (box and whisker) tóm tắt phân phối \textbf{một biến}: median, tứ phân vị, độ trải, outlier.
+\end{ynghia}
+
+\begin{tinhchat}[title={Thành phần boxplot}]
+\begin{itemize}
+  \item Đường giữa hộp: \textbf{median}.
+  \item Hộp: khoảng \textbf{25\%--75\%} (IQR).
+  \item Râu (whiskers): độ trải dữ liệu ``điển hình''.
+  \item Điểm ngoài râu: \textbf{outlier} (thường $> 1{,}5 \times$ IQR so với biên hộp).
+\end{itemize}
+\end{tinhchat}
+
+\begin{vidu}[title={Code boxplot đơn giản}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+# Sample data
+data = [10, 15, 18, 20, 22, 25, 28, 30, 32, 35]
+# Create a figure and axes
+fig, ax = plt.subplots()
+# Create the boxplot
+ax.boxplot(data)
+# Set the title
+ax.set_title('Box and Whisker Plot')
+# Show the plot
+plt.show()
+\end{lstlisting}
+\textbf{Output}:
+\tsimg{01_data_visualization/img04.jpg}
+\end{vidu}
+
+\subsubsection{Multivariate: tương tác nhiều biến}
+
+\begin{phuongphap}[title={Hai kỹ thuật multivariate}]
+Correlation Matrix Plot, Scatter Matrix Plot.
+\end{phuongphap}
+
+\paragraph{Ví dụ --- Correlation Matrix Plot}
+
+\begin{ynghia}[title={Ma trận tương quan}]
+Tương quan đo mức biến thiên đồng bộ giữa hai biến.
+Ma trận tương quan cho biết cặp nào tương quan cao/thấp.
+\end{ynghia}
+
+\begin{vidu}[title={Code heatmap tương quan}]
+\begin{lstlisting}
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+# Sample data
+data = {'A': [1, 2, 3, 4, 5],
+        'B': [5, 4, 3, 2, 1],
+        'C': [2, 3, 1, 4, 5]}
+df = pd.DataFrame(data)
+# Calculate the correlation matrix
+c_matrix = df.corr()
+# Create a heatmap
+sns.heatmap(c_matrix, annot=True, cmap='coolwarm')
+plt.title("Correlation Matrix")
+plt.show()
+\end{lstlisting}
+\textbf{Output} (ma trận đối xứng: góc dưới trái trùng góc trên phải):
+\tsimg{01_data_visualization/img05.jpg}
+\end{vidu}
+
+\paragraph{Ví dụ --- Scatter Matrix Plot}
+
+\begin{ynghia}[title={Scatter matrix}]
+Scatter matrix cho thấy một biến bị ảnh hưởng thế nào bởi biến khác --- quan hệ qua các điểm trên hai trục.
+Khái niệm gần với biểu đồ đường nhưng dùng điểm thay vì nối đường.
+\end{ynghia}
+
+\begin{vidu}[title={Code scatter matrix (Pandas + sklearn Iris)}]
+\begin{lstlisting}
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import datasets
+# Load the iris dataset
+iris = datasets.load_iris()
+df = pd.DataFrame(iris.data, columns=iris.feature_names)
+# Create the scatter matrix plot
+pd.plotting.scatter_matrix(df, diagonal='hist', figsize=(8, 7))
+plt.show()
+\end{lstlisting}
+\textbf{Output}:
+\tsimg{01_data_visualization/img06.jpg}
+\end{vidu}

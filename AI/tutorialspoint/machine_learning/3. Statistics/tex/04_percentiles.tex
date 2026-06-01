@@ -1,0 +1,61 @@
+%==============================================================================
+\section{Percentiles --- Phân vị}
+\label{sec:percentiles}
+%==============================================================================
+
+\begin{dinhnghia}[title={Percentile (phân vị)}]
+Percentile là đại lượng cho biết giá trị \textbf{dưới đó} một tỷ lệ \% quan sát trong nhóm rơi vào.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ví dụ}]
+\begin{itemize}
+  \item \textbf{Phân vị thứ 25} (Q1): 25\% quan sát nằm dưới giá trị này.
+  \item \textbf{Phân vị thứ 75} (Q3): 75\% quan sát nằm dưới giá trị này.
+\end{itemize}
+Percentile tóm tắt phân phối và giúp nhận diện outlier; thường dùng trong tiền xử lý và EDA.
+\end{ynghia}
+
+\begin{phuongphap}[title={Thư viện Python}]
+NumPy (\texttt{np.percentile}) và Pandas (\texttt{quantile}).
+\end{phuongphap}
+
+\subsection{Tính percentile với NumPy}
+
+\begin{vidu}[title={NumPy}]
+\begin{lstlisting}
+import numpy as np
+
+data = np.array([1, 2, 3, 4, 5])
+p25 = np.percentile(data, 25)
+p75 = np.percentile(data, 75)
+print('25th percentile:', p25)
+print('75th percentile:', p75)
+\end{lstlisting}
+
+\textbf{Output}:
+\begin{lstlisting}
+25th percentile: 2.0
+75th percentile: 4.0
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Tính percentile với Pandas}
+
+\begin{vidu}[title={Pandas Series}]
+\begin{lstlisting}
+import pandas as pd
+
+data = pd.Series([1, 2, 3, 4, 5])
+p25 = data.quantile(0.25)
+p75 = data.quantile(0.75)
+
+print('25th percentile:', p25)
+print('75th percentile:', p75)
+\end{lstlisting}
+
+\textbf{Output}:
+\begin{lstlisting}
+25th percentile: 2.0
+75th percentile: 4.0
+\end{lstlisting}
+\end{vidu}

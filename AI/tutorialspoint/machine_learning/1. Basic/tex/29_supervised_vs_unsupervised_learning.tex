@@ -3,48 +3,19 @@
 \label{sec:supervised-vs-unsupervised}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_supervised_vs_unsupervised_learning.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Hai hướng phổ biến nhất}]
 Supervised và unsupervised learning là hai cách tiếp cận phổ biến trong ML.
 Cách phân biệt đơn giản nhất: \textbf{loại tập huấn luyện} và \textbf{cách huấn luyện mô hình} --- nhưng còn nhiều khác biệt khác, trình bày dưới đây.
 \end{dongco}
 
-\begin{luuy}[title={Đối chiếu}]
-Hai bài \textbf{Supervised Learning} và \textbf{Unsupervised Learning} đi sâu từng hướng; bài này tập trung \textbf{bảng so sánh} và \textbf{chọn phương pháp}.
-\end{luuy}
-
-\subsection{Supervised Learning là gì? (nhắc lại)}
-
-\begin{dinhnghia}[title={Học có giám sát}]
-Dùng dataset \textbf{có nhãn} để huấn luyện mô hình --- phù hợp phân loại hoặc dự đoán đầu ra.
-Hai nhóm tác vụ:
-\end{dinhnghia}
-
-\textbf{1. Classification} --- dự đoán giá trị phân loại (spam/không spam, đúng/sai, \ldots).
-Thuật toán học ánh xạ đầu vào $\rightarrow$ nhãn lớp.
-Ví dụ: KNN, Random Forest, Decision Trees.
-
-\textbf{2. Regression} --- phân tích quan hệ giữa điểm dữ liệu, dự báo giá trị số liên tục (giá nhà, doanh số, \ldots).
-Ví dụ: linear regression, polynomial regression, logistic regression (nguồn liệt kê logistic trong regression --- thường dùng cho classification; giữ theo nguồn).
-
-\subsection{Unsupervised Learning là gì? (nhắc lại)}
-
-\begin{dinhnghia}[title={Học không giám sát}]
-Huấn luyện trên dữ liệu \textbf{thô, không nhãn} để tìm pattern không cần giám sát con người.
-\end{dinhnghia}
-
-\textbf{1. Clustering} --- gom điểm dữ liệu theo độ tương đồng (ví dụ K-means).
-
-\textbf{2. Association} --- nhóm theo quy tắc định sẵn; dùng trong Market Basket Analysis (Apriori).
-
-\textbf{3. Dimensionality Reduction} --- giảm kích thước dataset bằng cách bỏ feature không cần thiết mà vẫn giữ bản chất dữ liệu.
+\begin{vidu}[title={Minh hoạ so sánh}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img04.jpg}
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img05.jpg}
+\end{vidu}
 
 \subsection{Bảng khác biệt chính}
 
-\begin{vidu}[title={Supervised vs Unsupervised (dịch từ bảng nguồn)}]
+\begin{vidu}[title={Supervised vs Unsupervised}]
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.8cm}XX}
 \textbf{Tiêu chí} & \textbf{Supervised Learning} & \textbf{Unsupervised Learning} \\
 \midrule
@@ -64,23 +35,19 @@ Tác vụ &
 Regression, Classification. &
 Clustering, Association, Dimensionality Reduction. \\
 Độ phức tạp tính toán &
-Thường đơn giản hơn (theo nguồn). &
-Thường phức tạp hơn (theo nguồn). \\
+Thường đơn giản hơn. &
+Thường phức tạp hơn. \\
 Thuật toán &
 Linear regression, KNN, Decision Trees, Naive Bayes, SVM. &
 K-Means, DBSCAN, Autoencoders. \\
 Độ chính xác &
 Thường chính xác cao hơn khi có nhãn đúng. &
-Thường kém chính xác hơn (theo nguồn). \\
+Thường kém chính xác hơn. \\
 Ứng dụng &
 Phân loại ảnh, sentiment analysis, hệ gợi ý. &
 Phân khúc khách hàng, anomaly detection, recommendation engines, NLP. \\
 \end{tabularx}
 \end{vidu}
-
-\begin{luuy}[title={Giảng viên lưu ý}]
-Cột ``Độ phức tạp tính toán'' và ``Độ chính xác'' trong bảng nguồn là \textbf{khái quát hoá} --- phụ thuộc thuật toán, dữ liệu và metric. Unsupervised khó so ``chính xác'' vì thường không có nhãn chuẩn. Logistic regression thuộc \textbf{phân loại}, không phải hồi quy số.
-\end{luuy}
 
 \subsection{Chọn Supervised hay Unsupervised?}
 

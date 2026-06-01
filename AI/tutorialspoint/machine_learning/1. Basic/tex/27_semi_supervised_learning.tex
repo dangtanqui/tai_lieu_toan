@@ -2,13 +2,13 @@
 \section{Semi-Supervised Learning --- Học máy bán giám sát}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_semi_supervised_learning.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Giữa supervised và unsupervised}]
 Semi-supervised learning không hoàn toàn có giám sát cũng không hoàn toàn không giám sát --- nằm giữa hai phương pháp.
 \end{dongco}
+
+\begin{vidu}[title={Minh hoạ semi-supervised}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/img04.jpg}
+\end{vidu}
 
 \begin{ynghia}[title={Bối cảnh sử dụng}]
 Huấn luyện trên dataset gồm cả dữ liệu \textbf{có nhãn} và \textbf{không nhãn}.
@@ -26,7 +26,7 @@ Kỹ thuật ML kết hợp supervised và unsupervised: huấn luyện trên \t
 Phát triển thuật toán chia toàn bộ dữ liệu thành các cụm; điểm gần nhau trong không gian đặc trưng có khả năng cao cùng nhãn đầu ra, rồi gán cụm vào category định sẵn.
 \end{ynghia}
 
-\begin{vidu}[title={Tóm tắt (theo nguồn)}]
+\begin{vidu}[title={Tóm tắt}]
 \begin{itemize}
   \item Cách tiếp cận ML kết hợp supervised và unsupervised
   \item Huấn luyện bằng dữ liệu có nhãn và không nhãn
@@ -77,20 +77,32 @@ Trong ký hiệu xác suất: phân phối đầu vào $p(x)$ phải chứa thô
 
 \subsection{Các giả định (assumptions)}
 
-\subsubsection{Smoothness Assumption}
+\subsubsection{Giả định mượt mà (Smoothness Assumption)}
+
+\begin{ynghia}[title={Smoothness Assumption}]
 Hai điểm $x_1$, $x_2$ trong vùng mật độ cao (cùng cụm) thì nhãn $y_1$, $y_2$ nên gần nhau.
 Ở vùng mật độ thấp, nhãn đầu ra không nhất thiết gần.
+\end{ynghia}
 
-\subsubsection{Cluster Assumption}
+\subsubsection{Giả định cụm (Cluster Assumption)}
+
+\begin{ynghia}[title={Cluster Assumption}]
 Điểm trong cùng cụm có khả năng cùng lớp.
 Dữ liệu không nhãn giúp xác định biên cụm chính xác hơn; dữ liệu có nhãn gán lớp cho từng cụm.
+\end{ynghia}
 
-\subsubsection{Low Density Separation}
+\subsubsection{Giả định mật độ thấp (Low Density Separation)}
+
+\begin{ynghia}[title={Low Density Separation}]
 Biên quyết định nên nằm ở vùng mật độ thấp.
 Ví dụ nhận dạng chữ số 0 vs 1: điểm ngay trên biên trông như số ``dài'' lẫn lộn --- xác suất gặp mẫu như vậy rất nhỏ.
+\end{ynghia}
 
-\subsubsection{Manifold Assumption}
+\subsubsection{Giả định manifold (Manifold Assumption)}
+
+\begin{ynghia}[title={Manifold Assumption}]
 Trong không gian đầu vào chiều cao, dữ liệu nằm trên các manifold chiều thấp hơn; điểm cùng nhãn nằm trên cùng manifold.
+\end{ynghia}
 
 \subsection{Kỹ thuật Semi-Supervised}
 
@@ -104,10 +116,12 @@ Trong không gian đầu vào chiều cao, dữ liệu nằm trên các manifold
 
 \subsection{Thách thức}
 
+\begin{luuy}[title={Thách thức}]
 \begin{itemize}
   \item \textbf{Chất lượng dữ liệu không nhãn}: nhiễu hoặc không liên quan $\Rightarrow$ dự đoán sai.
   \item \textbf{Distribution shift}: dữ liệu có nhãn và không nhãn khác phân phối (ví dụ ảnh rõ vs ảnh camera an ninh) $\Rightarrow$ khó tổng quát hoá.
 \end{itemize}
+\end{luuy}
 
 \subsection{Ứng dụng}
 

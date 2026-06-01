@@ -1,0 +1,100 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_p_value.htm
+In machine learning, we use P-value to test the null hypothesis that there is no significant relationship between two variables. For example, if we have a dataset of house prices and we want to determine whether there is a significant relationship between the size of the house and its price, we can use P-value to test this hypothesis.
+
+To understand the concept of P-value in machine learning, we need to first understand the concept of null hypothesis and alternative hypothesis. The null hypothesis is the hypothesis that there is no significant relationship between the two variables, while the alternative hypothesis is the opposite of the null hypothesis, which states that there is a significant relationship between the two variables.
+
+Once we have defined our null hypothesis and alternative hypothesis, we can use P-value to test the significance of our hypothesis. The P-value is the probability of obtaining the observed result or a more extreme result, assuming that the null hypothesis is true.
+
+If the P-value is less than the significance level (usually set at 0.05), then we reject the null hypothesis and accept the alternative hypothesis. This means that there is a significant relationship between the two variables. On the other hand, if the P-value is greater than the significance level, then we fail to reject the null hypothesis and conclude that there is no significant relationship between the two variables.
+
+Implementation of P-value in Python
+Python provides several libraries for statistical analysis and hypothesis testing. One of the most popular libraries for statistical analysis is the scipy library. The scipy library provides a function called ttest_ind() that can be used to calculate the P-value for two independent samples.
+
+To demonstrate the implementation of p-value in Machine Learning, we will use the breast cancer dataset provided by scikit-learn. The goal of this dataset is to predict whether a breast tumor is malignant or benign based on various features such as the tumor's radius, texture, perimeter, area, smoothness, compactness, concavity, and symmetry.
+
+First, we will load the dataset and split it into training and testing sets −
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+Next, we will use the SelectKBest class from scikit-learn to select the top k features based on their p-values. Here, we will select the top 5 features −
+
+from sklearn.feature_selection import SelectKBest, f_classif
+k = 5
+selector = SelectKBest(score_func=f_classif, k=k)
+X_train_new = selector.fit_transform(X_train, y_train)
+X_test_new = selector.transform(X_test)
+The SelectKBest class takes a score function as input to calculate the p-values for each feature. We use the f_classif function, which is the ANOVA F-value between each feature and the target variable. The k parameter specifies the number of top features to select.
+
+After fitting the selector on the training data, we transform the data to keep only the top k features using the fit_transform() method. We also transform the testing data to keep only the selected features using the transform() method.
+
+We can now train a model on the selected features and evaluate its performance −
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+model = LogisticRegression()
+model.fit(X_train_new, y_train)
+y_pred = model.predict(X_test_new)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+In this example, we trained a logistic regression model on the top 5 selected features and evaluated its performance using accuracy. However, the p-value can also be used for hypothesis testing to determine whether a feature is statistically significant or not.
+
+For example, to test the hypothesis that the mean radius feature is significant, we can use the ttest_ind() function from the scipy.stats module −
+
+from scipy.stats import ttest_ind
+
+malignant = X[y == 0, 0]
+benign = X[y == 1, 0]
+t, p_value = ttest_ind(malignant, benign)
+
+print(f"P-value: {p_value:.2f}")
+The ttest_ind() function takes two arrays as input and returns the t-statistic and the two-tailed p-value.
+
+Complete Example
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+from sklearn.feature_selection import SelectKBest, f_classif
+k = 5
+selector = SelectKBest(score_func=f_classif, k=k)
+X_train_new = selector.fit_transform(X_train, y_train)
+X_test_new = selector.transform(X_test)
+
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+model = LogisticRegression()
+model.fit(X_train_new, y_train)
+y_pred = model.predict(X_test_new)
+
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy:.2f}")
+
+from scipy.stats import ttest_ind
+
+malignant = X[y == 0, 0]
+benign = X[y == 1, 0]
+t, p_value = ttest_ind(malignant, benign)
+
+print(f"P-value: {p_value:.2f}")
+Output
+We will get the following output from the above implementation −
+
+Accuracy: 0.97
+P-value: 0.00
+In this example, we calculated the p-value for the mean radius feature between the malignant and benign classes.
+

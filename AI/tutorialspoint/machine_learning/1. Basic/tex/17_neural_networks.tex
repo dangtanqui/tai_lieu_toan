@@ -2,10 +2,6 @@
 \section{Neural Networks --- Mạng nơ-ron và học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_artificial_neural_networks.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Hai khái niệm thường đi cùng nhau}]
 Học máy và mạng nơ-ron là hai công nghệ quan trọng trong AI.
 Chúng thường được dùng cùng nhau nhưng \textbf{không} trùng nhau.
@@ -18,21 +14,6 @@ Bài này làm rõ khái niệm từng bên và so sánh sự khác biệt.
 Machine Learning là lĩnh vực khoa học máy tính giúp hệ máy tính ``hiểu'' dữ liệu theo cách gần với con người.
 Nói đơn giản: ML là một dạng AI trích xuất pattern từ dữ liệu thô bằng thuật toán hoặc phương pháp.
 \end{dinhnghia}
-
-\begin{phuongphap}[title={Ba nhóm học máy (theo mức giám sát)}]
-\begin{itemize}
-  \item \textbf{Supervised learning}: huấn luyện trên dữ liệu có nhãn cho phân loại và hồi quy.
-  Ví dụ thuật toán: linear regression, K-nearest neighbors, decision trees, random forest, \ldots
-  \item \textbf{Unsupervised learning}: huấn luyện trên dữ liệu không nhãn; dùng cho clustering, association rule mining, giảm chiều.
-  Ví dụ: K-means, thuật toán Apriori, \ldots
-  \item \textbf{Reinforcement learning}: agent tương tác môi trường qua hành động và quan sát kết quả; học dựa trên thưởng/phạt.
-  Ví dụ: Q-learning, policy gradient, Monte Carlo, \ldots
-\end{itemize}
-\end{phuongphap}
-
-\begin{luuy}[title={Đối chiếu}]
-Ba kiểu học: Mục~\ref{sec:bon-kieu-hoc}; bài này nhấn góc nhìn \textbf{mạng nơ-ron}.
-\end{luuy}
 
 \subsection{Mạng nơ-ron là gì?}
 
@@ -47,15 +28,14 @@ Mạng nơ-ron dùng cho nhiều tác vụ: nhận dạng ảnh, giọng nói, N
 Đặc biệt phù hợp khi xử lý dữ liệu phức tạp hoặc nhận diện pattern trong dữ liệu.
 \end{ynghia}
 
-\begin{vidu}[title={Mô hình ANN tổng quát (theo nguồn)}]
+\begin{vidu}[title={Mô hình ANN tổng quát}]
 \tsimg{09_ai_neural_deep/artificial_neural_network_model.jpg}
-\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/artificial_neural_network_model.jpg}\end{center}
 Sơ đồ trên mô tả mô hình mạng nơ-ron nhân tạo tổng quát và quá trình xử lý qua các lớp.
 \end{vidu}
 
 \subsection{Machine Learning và Neural Networks}
 
-\begin{ynghia}[title={Bốn điểm so sánh chính (theo nguồn)}]
+\begin{ynghia}[title={Bốn điểm so sánh chính}]
 \begin{enumerate}
   \item ML là \textbf{nhóm rộng} gồm nhiều thuật toán, trong đó có mạng nơ-ron.
   \item ML dùng cho nhiều tác vụ; mạng nơ-ron đặc biệt mạnh với dữ liệu phức tạp và pattern tinh vi mà thuật toán khác có thể bỏ sót.

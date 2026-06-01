@@ -2,10 +2,6 @@
 \section{Python Libraries --- Các thư viện Python cho học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_python_libraries.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Vì sao dùng thư viện?}]
 Thư viện Python là tập các đoạn code và hàm có thể tái sử dụng cho một tác vụ cụ thể.
 Chúng giúp giảm công sức lập trình khi tác vụ lặp và phức tạp.
@@ -13,10 +9,26 @@ Học máy là lĩnh vực liên ngành: thuật toán kết hợp lập trình 
 Thay vì tự cài đặt toàn bộ thuật toán kèm công thức thống kê/toán, ta dùng thư viện để làm nhanh và đúng hơn.
 \end{dongco}
 
-\subsection{Danh sách thư viện ML phổ biến (theo nguồn)}
+\subsection{Danh sách thư viện ML phổ biến}
 
 \begin{phuongphap}[title={Các thư viện được liệt kê}]
-NumPy, Pandas, SciPy, Scikit-learn, PyTorch, TensorFlow, Keras, Matplotlib, Seaborn, OpenCV, NLTK, spaCy.
+\begin{itemize}
+  \item NumPy.
+  \item Pandas.
+  \item SciPy.
+  \item Scikit-learn.
+  \item PyTorch.
+  \item TensorFlow.
+  \item Keras.
+  \item Matplotlib.
+  \item Seaborn.
+  \item OpenCV.
+  \item NLTK.
+  \item spaCy.
+  \item XGBoost.
+  \item LightGBM.
+  \item Gensim.
+\end{itemize}
 \end{phuongphap}
 
 \subsection{NumPy}
@@ -27,7 +39,7 @@ thao tác đại số tuyến tính, biến đổi Fourier và các phép toán 
 NumPy cung cấp đối tượng mảng đa chiều hiệu năng cao và công cụ để thao tác ma trận, là thành phần quan trọng của hệ sinh thái ML Python.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Các phép toán quan trọng (theo nguồn)}]
+\begin{phuongphap}[title={Các phép toán quan trọng}]
 \begin{itemize}
   \item Phép toán toán học và logic trên array.
   \item Biến đổi Fourier.
@@ -36,7 +48,7 @@ NumPy cung cấp đối tượng mảng đa chiều hiệu năng cao và công c
 \end{phuongphap}
 
 \begin{luuy}[title={So sánh trực giác}]
-Nguồn nêu: có thể xem NumPy như “thay thế MATLAB” khi đi cùng SciPy và Matplotlib.
+Có thể xem NumPy như “thay thế MATLAB” khi đi cùng SciPy và Matplotlib.
 \end{luuy}
 
 \begin{phuongphap}[title={Cài đặt và import}]
@@ -47,7 +59,7 @@ Nguồn nêu: có thể xem NumPy như “thay thế MATLAB” khi đi cùng Sci
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: tạo array 1 chiều (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: tạo array 1 chiều}]
 \begin{lstlisting}
 import numpy as np
 data = np.array([1,2,3,4,5])
@@ -57,7 +69,7 @@ print(type(data))
 print(data.shape)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 [1 2 3 4 5]
 5
@@ -74,19 +86,19 @@ Trong pipeline ML, pandas thường dùng ở bước tiền xử lý/chuẩn b�
 Pandas dựa trên hai cấu trúc dữ liệu chính: \textbf{Series} (1 chiều) và \textbf{DataFrame} (2 chiều).
 \end{dinhnghia}
 
-\begin{phuongphap}[title={5 bước xử lý dữ liệu (theo nguồn)}]
+\begin{phuongphap}[title={5 bước xử lý dữ liệu}]
 Load, Prepare, Manipulate, Model, Analyze.
 \end{phuongphap}
 
-\begin{dinhnghia}[title={Các cấu trúc dữ liệu trong Pandas (theo nguồn)}]
+\begin{dinhnghia}[title={Các cấu trúc dữ liệu trong Pandas}]
 \begin{itemize}
   \item \textbf{Series}: mảng 1 chiều có nhãn trục (homogeneous).
   \item \textbf{DataFrame}: cấu trúc 2 chiều dạng bảng, có thể chứa dữ liệu khác kiểu (heterogeneous).
-  \item \textbf{Panel}: cấu trúc 3 chiều (nguồn nêu như container của DataFrame) --- \textbf{đã lỗi thời/deprecated} trong pandas; hiện dùng MultiIndex hoặc xarray.
+  \item \textbf{Panel}: cấu trúc 3 chiều (như container của DataFrame) --- \textbf{đã lỗi thời/deprecated} trong pandas; hiện dùng MultiIndex hoặc xarray.
 \end{itemize}
 \end{dinhnghia}
 
-\begin{vidu}[title={Ví dụ: Series từ ndarray (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: Series từ ndarray}]
 \begin{lstlisting}
 import pandas as pd
 import numpy as np
@@ -95,7 +107,7 @@ s = pd.Series(data)
 print (s)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 0    g
 1    a
@@ -115,7 +127,7 @@ Nó bao gồm các module cho tối ưu và các phép toán như tích phân, �
 SciPy xây trên NumPy nhưng mở rộng để làm các tác vụ phức tạp hơn.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Với Anaconda: thường đã có sẵn.
   \item Với Python chuẩn: \texttt{pip3 install scipy}.
@@ -123,7 +135,7 @@ SciPy xây trên NumPy nhưng mở rộng để làm các tác vụ phức tạp
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: nghịch đảo ma trận (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: nghịch đảo ma trận}]
 \begin{lstlisting}
 import numpy as np
 import scipy
@@ -132,7 +144,7 @@ A= np.array([[1,2],[3,4]])
 print(linalg.inv(A))
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 [[-2.   1. ]
  [ 1.5 -0.5]]
@@ -146,7 +158,7 @@ Scikit-learn là thư viện ML mã nguồn mở xây trên NumPy và SciPy, h�
 Nó cung cấp công cụ cho tiền xử lý dữ liệu, chọn feature, chọn mô hình, đánh giá mô hình, \ldots
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Đặc điểm nổi bật (theo nguồn)}]
+\begin{phuongphap}[title={Đặc điểm nổi bật}]
 \begin{itemize}
   \item Xây trên NumPy, SciPy và Matplotlib.
   \item Mã nguồn mở (BSD license).
@@ -162,7 +174,7 @@ Nó cung cấp công cụ cho tiền xử lý dữ liệu, chọn feature, chọ
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: load Breast Cancer dataset (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: load Breast Cancer dataset}]
 \begin{lstlisting}
 from sklearn.datasets import load_breast_cancer
 data = load_breast_cancer()
@@ -170,7 +182,7 @@ print(data.target[[10, 50, 85]])
 print(list(data.target_names))
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 [0 1 0]
 ['malignant', 'benign']
@@ -184,7 +196,7 @@ PyTorch là thư viện deep learning mã nguồn mở dựa trên Torch, thư�
 Nó dựa trên Python trực quan và có thể định nghĩa computational graph động; phù hợp cho nghiên cứu và phát triển cần linh hoạt.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Cài (ví dụ CPU Windows, Python 3.8+): \texttt{pip3 install torch torchvision torchaudio}.
   \item Link hướng dẫn cài: \tsurl{https://pytorch.org/get-started/locally/}.
@@ -192,7 +204,7 @@ Nó dựa trên Python trực quan và có thể định nghĩa computational gr
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: NumPy array $\rightarrow$ torch tensor (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: NumPy array $\rightarrow$ torch tensor}]
 \begin{lstlisting}
 import numpy as np
 import torch
@@ -201,7 +213,7 @@ y = torch.from_numpy(x)
 print(y)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 tensor([[1., 1., 1., 1.],
         [1., 1., 1., 1.],
@@ -216,7 +228,7 @@ TensorFlow là thư viện mã nguồn mở của Google cho ML/DL, hỗ trợ x
 Thường dùng cho NLP, nhận dạng ảnh, nhận dạng chữ viết tay.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Cài: \texttt{pip3 install tensorflow}.
   \item Link hướng dẫn: \tsurl{https://www.tensorflow.org/install/pip}.
@@ -224,14 +236,14 @@ Thường dùng cho NLP, nhận dạng ảnh, nhận dạng chữ viết tay.
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: tạo tensor (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: tạo tensor}]
 \begin{lstlisting}
 import tensorflow as tf
 data = tf.constant([[2,1],[4,6]])
 print(data)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 tf.Tensor(
 [[2 1]
@@ -243,17 +255,17 @@ tf.Tensor(
 
 \begin{dinhnghia}[title={Keras}]
 Keras là thư viện mạng nơ-ron mức cao để tạo mô hình deep learning.
-Nó chạy trên TensorFlow/CNTK/Theano (theo nguồn) và có API trực quan, phù hợp người mới và nghiên cứu vì dễ prototype nhanh.
+Nó chạy trên TensorFlow/CNTK/Theano và có API trực quan, phù hợp người mới và nghiên cứu vì dễ prototype nhanh.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Cài: \texttt{pip3 install keras}.
   \item Import: \texttt{import keras}.
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: dùng CIFAR-10 dataset (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: dùng CIFAR-10 dataset}]
 \begin{lstlisting}
 import keras
 (x_train, y_train), (x_test, y_test) = keras.datasets.cifar10.load_data()
@@ -263,7 +275,7 @@ print(y_train.shape)
 print(y_test.shape)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 (50000, 32, 32, 3)
 (10000, 32, 32, 3)
@@ -279,14 +291,14 @@ Matplotlib là thư viện vẽ phổ biến để trực quan hóa dữ liệu:
 Nó hỗ trợ phân tích, khám phá và trình bày dữ liệu.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Cài: \texttt{pip3 install matplotlib}.
   \item Import: \texttt{import matplotlib.pyplot as plt}.
 \end{itemize}
 \end{phuongphap}
 
-\begin{vidu}[title={Ví dụ: vẽ đường thẳng (theo nguồn)}]
+\begin{vidu}[title={Ví dụ: vẽ đường thẳng}]
 \begin{lstlisting}
 import matplotlib.pyplot as plt
 plt.plot([1,2,3],[1,2,3])
@@ -301,7 +313,7 @@ Seaborn là thư viện mã nguồn mở xây trên Matplotlib và tích hợp t
 Nó giúp tạo biểu đồ thống kê đẹp và nhiều thông tin, phù hợp phân tích business/marketing.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Cài đặt/nhập (theo nguồn)}]
+\begin{phuongphap}[title={Cài đặt/nhập}]
 \begin{itemize}
   \item Cài: \texttt{pip3 install seaborn}.
   \item Import: \texttt{import seaborn as sns}.
@@ -326,13 +338,10 @@ Nó có các interface như WordNet và thư viện cho classification, tokeniza
 
 \begin{dinhnghia}[title={spaCy}]
 spaCy là thư viện Python mã nguồn mở, hỗ trợ tác vụ NLP nâng cao theo cách nhanh và hiệu quả.
-Nguồn nêu tokenization và POS tagging là hai tác vụ thư viện làm tốt.
+Tokenization và POS tagging là hai tác vụ thư viện làm tốt.
 \end{dinhnghia}
 
 \begin{luuy}[title={Các tool/framework khác}]
-Nguồn nhắc thêm XGBoost, LightGBM, Gensim là các công cụ khác trong Python cho ML.
+XGBoost, LightGBM, Gensim là các công cụ khác trong Python cho ML.
 Việc học hệ sinh thái thư viện giúp bạn hiểu cách build/train/deploy mô hình.
 \end{luuy}
-
-\InputIfFileExists{_figures/01_he_sinh_thai_python.tex}{}{}
-

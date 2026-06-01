@@ -1,0 +1,83 @@
+%==============================================================================
+\section{Density Plots --- Biểu đồ mật độ}
+\label{sec:density-plots}
+%==============================================================================
+
+\begin{dinhnghia}[title={Density plot}]
+Density plot (biểu đồ mật độ) thể hiện \textbf{hàm mật độ xác suất} (PDF) của biến liên tục.
+Giống histogram nhưng thay cột bằng \textbf{đường cong mượt} biểu diễn mật độ xác suất.
+Trục $x$: miền giá trị; trục $y$: mật độ xác suất.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ứng dụng}]
+Hữu ích khi xem skewness, modality, outlier --- tương tự histogram nhưng dễ so sánh hình dạng phân phối khi chồng nhiều đường.
+\end{ynghia}
+
+\subsection{Density plot trong Python}
+
+\begin{phuongphap}[title={Thư viện và dataset}]
+Ví dụ dùng \textbf{Seaborn} và dataset Breast Cancer (30 feature, 569 mẫu) từ scikit-learn.
+\end{phuongphap}
+
+\subsection{Ví dụ --- Density plot đơn}
+
+\begin{vidu}[title={Import và kdeplot}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+\end{lstlisting}
+
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+
+plt.figure(figsize=(7.2, 3.5))
+sns.kdeplot(data.data[:,0], fill=True)
+plt.xlabel('Mean Radius')
+plt.ylabel('Density')
+plt.show()
+\end{lstlisting}
+
+\texttt{kdeplot()} ước lượng mật độ (KDE); \texttt{fill=True} tô vùng dưới đường (thay cho tham số \texttt{shade=True} đã lỗi thời trong Seaborn cũ).
+\end{vidu}
+
+\begin{ynghia}[title={Đọc biểu đồ}]
+PDF mean radius gần chuẩn, đỉnh khoảng 12--14.
+\end{ynghia}
+
+\begin{vidu}[title={Output (kdeplot)}]
+\tsimg{03_density_plots/img01.jpg}
+\end{vidu}
+
+\subsection{Ví dụ --- Density plot nhiều tập}
+
+\begin{vidu}[title={So sánh ác tính / lành tính}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+
+plt.figure(figsize=(7.5, 3.5))
+sns.kdeplot(data.data[data.target==0,0], fill=True, label='Malignant')
+sns.kdeplot(data.data[data.target==1,0], fill=True, label='Benign')
+plt.xlabel('Mean Radius')
+plt.ylabel('Density')
+plt.legend()
+plt.show()
+\end{lstlisting}
+
+Hai lần \texttt{kdeplot} với \texttt{label}; \texttt{legend()} phân biệt đường.
+\end{vidu}
+
+\begin{ynghia}[title={Nhận xét}]
+Đường mật độ nhóm ác tính \textbf{lệch phải} hơn --- mean radius trung bình cao hơn.
+\end{ynghia}
+
+\begin{vidu}[title={Output}]
+\tsimg{03_density_plots/img02.jpg}
+\end{vidu}

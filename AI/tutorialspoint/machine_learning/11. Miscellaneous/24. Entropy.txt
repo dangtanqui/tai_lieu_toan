@@ -1,0 +1,62 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_entropy.htm
+Entropy is a concept that originates from thermodynamics and was later applied in various fields, including information theory, statistics, and machine learning. In machine learning, entropy is used as a measure of the impurity or randomness of a set of data. Specifically, entropy is used in decision tree algorithms to decide how to split the data to create a more homogeneous subset. In this article, we will discuss entropy in machine learning, its properties, and its implementation in Python.
+
+Entropy is defined as a measure of disorder or randomness in a system. In the context of decision trees, entropy is used as a measure of the impurity of a node. A node is considered pure if all the examples in it belong to the same class. In contrast, a node is impure if it contains examples from multiple classes.
+
+To calculate entropy, we need to first define the probability of each class in the data set. Let p(i) be the probability of an example belonging to class i. If we have k classes, then the total entropy of the system, denoted by H(S), is calculated as follows −
+
+$$H\left ( S \right )=-sum\left ( p\left ( i \right )\ast log_{2}\left ( p\left ( i \right ) \right ) \right )$$
+
+where the sum is taken over all k classes. This equation is called the Shannon entropy.
+
+For example, suppose we have a dataset with 100 examples, of which 60 belong to class A and 40 belong to class B. Then the probability of class A is 0.6 and the probability of class B is 0.4. The entropy of the dataset is then −
+
+$$H\left ( S \right )=-(0.6\times log_{2}(0.6)+ 0.4\times log_{2}(0.4)) = 0.971$$
+
+If all the examples in the dataset belong to the same class, then the entropy is 0, indicating a pure node. On the other hand, if the examples are evenly distributed across all classes, then the entropy is high, indicating an impure node.
+
+In decision tree algorithms, entropy is used to determine the best split at each node. The goal is to create a split that results in the most homogeneous subsets. This is done by calculating the entropy of each possible split and selecting the split that results in the lowest total entropy.
+
+For example, suppose we have a dataset with two features, X1 and X2, and the goal is to predict the class label, Y. We start by calculating the entropy of the entire dataset, H(S). Next, we calculate the entropy of each possible split based on each feature. For example, we could split the data based on the value of X1 or the value of X2. The entropy of each split is calculated as follows −
+
+$$H\left ( X_{1} \right )=p_{1}\times H\left ( S_{1} \right )+p_{2}\times H\left ( S_{2} \right )H\left ( X_{2} \right )=p_{3}\times H\left ( S_{3} \right )+p_{4}\times H\left ( S_{4} \right )$$
+
+where p1, p2, p3, and p4 are the probabilities of each subset; and H(S1), H(S2), H(S3), and H(S4) are the entropies of each subset.
+
+We then select the split that results in the lowest total entropy, which is given by −
+
+$$H_{split}=H\left ( X_{1} \right )\, if\, H\left ( X_{1} \right )\leq H\left ( X_{2} \right );\: else\: H\left ( X_{2} \right )$$
+
+This split is then used to create the child nodes of the decision tree, and the process is repeated recursively until all nodes are pure or a stopping criterion is met.
+
+Example - Entropy Implementation
+Let's take an example to understand how it can be implemented in Python. Here we will use the "iris" dataset −
+
+from sklearn.datasets import load_iris
+import numpy as np
+
+# Load iris dataset
+iris = load_iris()
+
+# Extract features and target
+X = iris.data
+y = iris.target
+
+# Define a function to calculate entropy
+def entropy(y):
+   n = len(y)
+   _, counts = np.unique(y, return_counts=True)
+   probs = counts / n
+   return -np.sum(probs * np.log2(probs))
+
+# Calculate the entropy of the target variable
+target_entropy = entropy(y)
+print(f"Target entropy: {target_entropy:.3f}")
+The above code loads the iris dataset, extracts the features and target, and defines a function to calculate entropy. The entropy() function takes a vector of target values and returns the entropy of the set.
+
+The function first calculates the number of examples in the set and the count of each class. It then calculates the proportion of each class and uses these to calculate the entropy of the set using the entropy formula. Finally, the code calculates the entropy of the target variable in the iris dataset and prints it to the console.
+
+Output
+When you execute this code, it will produce the following output −
+
+Target entropy: 1.585

@@ -1,0 +1,83 @@
+%==============================================================================
+\section{Mean, Median, Mode --- Trung bình, trung vị, mode}
+\label{sec:mean-median-mode}
+%==============================================================================
+
+\begin{dinhnghia}[title={Ba đo xu hướng trung tâm}]
+Mean (trung bình), Median (trung vị) và Mode (mode) là các đại lượng mô tả \textbf{xu hướng trung tâm} của dataset.
+Trong ML, chúng giúp hiểu phân phối dữ liệu và nhận diện outlier.
+\end{dinhnghia}
+
+\subsection{Mean (Trung bình)}
+
+\begin{ynghia}[title={Mean}]
+Mean là \textbf{giá trị trung bình}: cộng tất cả giá trị rồi chia cho số quan sát.
+Mean nhạy với \textbf{outlier} --- giá trị cực đoan kéo mean mạnh.
+\end{ynghia}
+
+\begin{phuongphap}[title={Python}]
+Dùng \texttt{np.mean()} trong NumPy.
+\end{phuongphap}
+
+\subsection{Median (Trung vị)}
+
+\begin{ynghia}[title={Median}]
+Median là giá trị \textbf{ở giữa} sau khi sắp xếp.
+Nếu số phần tử chẵn, median là trung bình của hai giá trị giữa.
+Median \textbf{ít bị ảnh hưởng} bởi outlier hơn mean.
+\end{ynghia}
+
+\begin{phuongphap}[title={Python}]
+Dùng \texttt{np.median()}.
+\end{phuongphap}
+
+\subsection{Mode (Mode)}
+
+\begin{ynghia}[title={Mode}]
+Mode là giá trị \textbf{xuất hiện nhiều nhất}.
+Nếu nhiều giá trị cùng tần suất cao nhất, dataset có thể \textbf{bimodal}, \textbf{trimodal} hoặc \textbf{multimodal}.
+Mode hữu ích khi tìm giá trị phổ biến nhất; kém phù hợp khi dữ liệu trải rộng hoặc không có giá trị lặp.
+\end{ynghia}
+
+\begin{phuongphap}[title={Python}]
+SciPy có \texttt{mode()}; Pandas: \texttt{Series.mode()}.
+\end{phuongphap}
+
+\subsection{Triển khai Python}
+
+\begin{vidu}[title={Bảng lương mẫu}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+# create a sample salary table
+salary = pd.DataFrame({
+   'employee_id': ['001', '002', '003', '004', '005', '006', '007',
+   '008', '009', '010'],
+   'salary': [50000, 65000, 55000, 45000, 70000, 60000, 55000, 45000,
+   80000, 70000]
+})
+
+# calculate mean
+mean_salary = np.mean(salary['salary'])
+print('Mean salary:', mean_salary)
+
+# calculate median
+median_salary = np.median(salary['salary'])
+print('Median salary:', median_salary)
+
+# calculate mode
+mode_salary = salary['salary'].mode()[0]
+print('Mode salary:', mode_salary)
+\end{lstlisting}
+
+\textbf{Output}:
+\begin{lstlisting}
+Mean salary: 59500.0
+Median salary: 57500.0
+Mode salary: 45000
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Đọc kết quả}]
+Mean cao hơn median một chút (ảnh hưởng lương 70k--80k); mode 45000 vì hai nhân viên cùng mức lương đó.
+\end{ynghia}

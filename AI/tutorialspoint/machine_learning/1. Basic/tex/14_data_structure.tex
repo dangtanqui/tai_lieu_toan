@@ -2,10 +2,6 @@
 \section{Data Structure --- Cấu trúc dữ liệu trong học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_structure.htm}.
-\end{ynghia}
-
 \begin{dongco}[title={Vì sao cấu trúc dữ liệu quan trọng trong ML?}]
 Cấu trúc dữ liệu đóng vai trò quan trọng trong học máy vì giúp tổ chức, thao tác và phân tích dữ liệu.
 Dữ liệu là nền tảng của mô hình ML, và cấu trúc dữ liệu được dùng có thể ảnh hưởng đáng kể đến hiệu năng và độ chính xác.
@@ -31,7 +27,7 @@ Trong ML, cấu trúc dữ liệu đặc biệt quan trọng ở tiền xử lý
 Cấu trúc dữ liệu phù hợp giúp xử lý nhanh hơn, truy cập dữ liệu dễ hơn và lưu trữ hiệu quả hơn.
 \end{dongco}
 
-\subsubsection{1) Arrays}
+\subsubsection{Arrays}
 \begin{dinhnghia}[title={Arrays}]
 Array là cấu trúc cơ bản để lưu và thao tác dữ liệu trong ML.
 Phần tử truy cập qua chỉ số (index). Array cho truy xuất nhanh vì dữ liệu nằm liên tiếp trong bộ nhớ.
@@ -41,10 +37,10 @@ Phần tử truy cập qua chỉ số (index). Array cho truy xuất nhanh vì d
 Vì có thể thực hiện phép toán vector hoá (vectorized operations) trên array, nên biểu diễn input data dạng array là lựa chọn tốt.
 \end{ynghia}
 
-\begin{phuongphap}[title={Một số tác vụ dùng array (theo nguồn)}]
+\begin{phuongphap}[title={Một số tác vụ dùng array}]
 \begin{itemize}
   \item Dữ liệu thô thường biểu diễn dưới dạng array.
-  \item Chuyển pandas DataFrame sang list (nguồn nêu lý do: pandas series yêu cầu cùng kiểu; Python list có thể chứa nhiều kiểu).
+  \item Chuyển pandas DataFrame sang list (lý do: pandas series yêu cầu cùng kiểu; Python list có thể chứa nhiều kiểu).
   \item Tiền xử lý: normalization, scaling, reshaping.
   \item Word embedding: tạo ma trận đa chiều.
 \end{itemize}
@@ -54,71 +50,71 @@ Vì có thể thực hiện phép toán vector hoá (vectorized operations) trê
 Array dễ dùng và index nhanh, nhưng kích thước cố định, có thể là hạn chế khi làm với dataset lớn.
 \end{luuy}
 
-\subsubsection{2) Lists}
+\subsubsection{Lists}
 \begin{dinhnghia}[title={Lists}]
 List là tập các phần tử có thể khác kiểu (heterogeneous), truy cập bằng iterator.
 Trong ML, list thường dùng để lưu cấu trúc dữ liệu phức tạp như nested lists, dictionaries, tuples.
 List linh hoạt và hỗ trợ kích thước thay đổi, nhưng thường chậm hơn array do cần iteration.
 \end{dinhnghia}
 
-\subsubsection{3) Dictionaries}
+\subsubsection{Dictionaries}
 \begin{dinhnghia}[title={Dictionaries}]
 Dictionary là tập các cặp key--value, truy cập theo key.
 Thường dùng để lưu metadata hoặc label gắn với dữ liệu; hữu ích để tạo lookup table.
 Dictionary truy cập nhanh nhưng có thể tốn bộ nhớ khi dataset lớn.
 \end{dinhnghia}
 
-\subsubsection{4) Linked Lists}
+\subsubsection{Linked Lists}
 \begin{dinhnghia}[title={Linked lists}]
 Linked list là tập các node, mỗi node chứa dữ liệu và tham chiếu tới node tiếp theo.
 Trong ML, có thể dùng để lưu và thao tác dữ liệu tuần tự như time-series.
 Linked list chèn/xoá hiệu quả nhưng truy cập dữ liệu thường chậm hơn array/list.
 \end{dinhnghia}
 
-\begin{luuy}[title={Nhận xét của nguồn}]
+\begin{luuy}[title={Nhận xét}]
 Linked list hữu ích cho dữ liệu động (thêm/bớt nhiều), nhưng ít phổ biến hơn array vì array truy xuất dữ liệu hiệu quả hơn.
 \end{luuy}
 
-\subsubsection{5) Stack and Queue}
+\subsubsection{Stack and Queue}
 
 \begin{dinhnghia}[title={Stack (LIFO)}]
-Stack theo LIFO (Last In First Out). Nguồn nêu: cách tiếp cận “stacking classifier” có thể dùng để giải multi-class bằng cách chia thành nhiều bài toán nhị phân, rồi “stack” các output để đưa vào meta-classifier.
+Stack theo LIFO (Last In First Out). Cách tiếp cận “stacking classifier” có thể dùng để giải multi-class bằng cách chia thành nhiều bài toán nhị phân, rồi “stack” các output để đưa vào meta-classifier.
 \end{dinhnghia}
 
 \begin{dinhnghia}[title={Queue (FIFO)}]
 Queue theo FIFO (First In First Out), giống người xếp hàng.
-Nguồn nêu: queue dùng trong multi-threading để tối ưu và điều phối luồng dữ liệu giữa các thread; thường dùng để xử lý dữ liệu lớn và feed batch cho training để train liên tục và hiệu quả.
+Queue dùng trong multi-threading để tối ưu và điều phối luồng dữ liệu giữa các thread; thường dùng để xử lý dữ liệu lớn và feed batch cho training để train liên tục và hiệu quả.
 \end{dinhnghia}
 
-\subsubsection{6) Trees}
+\subsubsection{Trees}
 \begin{dinhnghia}[title={Trees}]
 Tree là cấu trúc phân cấp, thường dùng trong thuật toán ra quyết định như decision trees và random forests.
 Tree cho thuật toán tìm kiếm/sắp xếp hiệu quả nhưng có thể phức tạp khi cài đặt và có thể bị overfitting.
 \end{dinhnghia}
 
 \begin{luuy}[title={Binary trees}]
-Nguồn nhắc riêng binary trees như một dạng tree, cũng hay dùng trong decision trees và random forests, với các đặc tính tương tự.
+Binary trees như một dạng tree, cũng hay dùng trong decision trees và random forests, với các đặc tính tương tự.
 \end{luuy}
 
-\subsubsection{7) Graphs}
+\subsubsection{Graphs}
 \begin{dinhnghia}[title={Graphs}]
 Graph gồm nodes và edges, dùng để biểu diễn quan hệ phức tạp giữa các điểm dữ liệu.
 Adjacency matrices và linked lists có thể dùng để tạo và thao tác graph.
 Graph có thuật toán mạnh cho clustering, classification và prediction, nhưng có thể phức tạp và gặp vấn đề scalability.
 \end{dinhnghia}
 
-\begin{ynghia}[title={Ứng dụng graph (theo nguồn)}]
+\begin{ynghia}[title={Ứng dụng graph}]
 Graph dùng nhiều trong recommendation systems, link prediction và phân tích mạng xã hội.
 \end{ynghia}
 
-\subsubsection{8) Hash Maps}
+\subsubsection{Hash Maps}
 \begin{dinhnghia}[title={Hash maps}]
-Nguồn nêu hash maps thường dùng trong ML nhờ khả năng lưu và truy xuất key--value.
+Hash maps thường dùng trong ML nhờ khả năng lưu và truy xuất key--value.
 Chúng thường dùng để lưu metadata/label; hữu ích để tạo lookup tables; nhưng có thể tốn bộ nhớ khi dataset lớn.
 \end{dinhnghia}
 
 \begin{luuy}[title={Cấu trúc chuyên biệt}]
-Nguồn lưu ý: ngoài các cấu trúc trên, nhiều thư viện/framework ML còn cung cấp cấu trúc chuyên biệt cho use case cụ thể, như matrices và tensors cho deep learning.
+Ngoài các cấu trúc trên, nhiều thư viện/framework ML còn cung cấp cấu trúc chuyên biệt cho use case cụ thể, như matrices và tensors cho deep learning.
 Khi chọn cấu trúc dữ liệu, nên cân nhắc: kích thước dữ liệu, tốc độ xử lý và bộ nhớ.
 \end{luuy}
 
@@ -149,7 +145,7 @@ Ví dụ: array lưu pixel ảnh; matrix lưu phân phối tần suất từ tro
 \begin{phuongphap}[title={Xây cây quyết định}]
 Cây quyết định dùng cấu trúc tree để ra quyết định dựa trên tập feature.
 Cây quyết định hữu ích cho classification và regression.
-Nguồn mô tả: cây được tạo bằng cách chia dữ liệu đệ quy theo feature “thông tin nhất”; cấu trúc tree giúp dễ duyệt quá trình ra quyết định và dự đoán.
+Cây được tạo bằng cách chia dữ liệu đệ quy theo feature “thông tin nhất”; cấu trúc tree giúp dễ duyệt quá trình ra quyết định và dự đoán.
 \end{phuongphap}
 
 \subsubsection{Building Graphs}
@@ -158,5 +154,3 @@ Graph dùng để biểu diễn quan hệ phức tạp giữa các điểm dữ 
 Adjacency matrices và linked lists dùng để tạo/thao tác graph.
 Graph dùng cho clustering, classification và prediction.
 \end{phuongphap}
-
-% The downloader currently stores this page's images under the older combined slug.

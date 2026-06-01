@@ -1,0 +1,145 @@
+%==============================================================================
+\section{Hồi quy tuyến tính đơn (Simple Linear Regression)}
+\label{sec:simple-linear-regression}
+%==============================================================================
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
+Phương pháp học có giám sát dùng \textbf{một} biến độc lập để dự đoán biến phụ thuộc; mô hình quan hệ tuyến tính giữa hai biến.
+Khi thuật toán hồi quy tuyến tính chỉ có một feature $\Rightarrow$ hồi quy đơn; nhiều feature $\Rightarrow$ hồi quy đa biến.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Biến độc lập và phụ thuộc}]
+\begin{itemize}
+  \item \textbf{Độc lập} (predictor): trục ngang; ví dụ số năm kinh nghiệm.
+  \item \textbf{Phụ thuộc} (response): trục dọc; ví dụ lương.
+\end{itemize}
+\end{phuongphap}
+
+\tsimg{03_simple_linear_regression/img01.jpg}
+
+\begin{dinhnghia}[title={Mô hình}]
+\[
+Y = w_0 + w_1 X + \epsilon
+\]
+\end{dinhnghia}
+
+\subsection{Cách hoạt động}
+
+\begin{phuongphap}[title={Tìm đường khớp tốt nhất}]
+Giả thuyết: $\hat{Y} = w_0 + w_1 X$. Không gian giả thuyết là tập mọi đường thẳng với $(w_0,w_1)$ khác nhau.
+Khởi tạo tham số, dự đoán, tính mất mát (thường MSE), tối ưu (thường gradient descent).
+\end{phuongphap}
+
+\[
+J(w_0, w_1) = \frac{1}{2n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2
+\]
+
+\subsection{Giả định}
+
+\begin{luuy}[title={Giả định cổ điển}]
+\begin{itemize}
+  \item \textbf{Tuyến tính}: scatter plot gần đường thẳng.
+  \item \textbf{Phương sai đồng nhất} (homoscedasticity).
+  \item \textbf{Độc lập}: quan sát không phụ thuộc lẫn nhau.
+  \item \textbf{Chuẩn phần dư}: histogram phần dư gần chuẩn.
+\end{itemize}
+\end{luuy}
+
+\subsection{Triển khai Python}
+
+\begin{vidu}[title={Dataset Salary\_Data.csv}]
+30 mẫu: \texttt{YearsExperience} (feature), \texttt{Salary} (target).
+File: \path{data/Salary_Data.csv}.
+\end{vidu}
+
+\begin{vidu}[title={Bước 1 --- Chuẩn bị dữ liệu}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+
+dataset = pd.read_csv('data/Salary_Data.csv')
+X = dataset.iloc[:, :-1].values   # YearsExperience
+y = dataset.iloc[:, -1].values    # Salary
+print(dataset.head())
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Kiểm tra tuyến tính}]
+\begin{lstlisting}
+plt.scatter(X, y, color="green")
+plt.title("Salary vs Experience")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary (INR)")
+plt.show()
+\end{lstlisting}
+\tsimg{03_simple_linear_regression/img02.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Chia train/test (80/20)}]
+\begin{lstlisting}
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=0)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2 --- Huấn luyện}]
+\begin{lstlisting}
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3 --- Dự đoán trên tập kiểm tra}]
+\begin{lstlisting}
+y_pred = regressor.predict(X_test)
+df = pd.DataFrame({'Actual Values': y_test, 'Predicted Values': y_pred})
+print(df)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 4 --- Đánh giá}]
+\begin{lstlisting}
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import numpy as np
+
+y_pred = regressor.predict(X_test)
+print("MSE:", mean_squared_error(y_test, y_pred))
+print("RMSE:", np.sqrt(mean_squared_error(y_test, y_pred)))
+print("MAE:", mean_absolute_error(y_test, y_pred))
+print("R2:", r2_score(y_test, y_pred))
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Output trong bài gốc}]
+Bài gốc in MSE/MAE cực nhỏ do lỗi code (dùng \texttt{mean\_squared\_error} cho cả RMSE và có thể nhầm tập).
+Code trên dùng \texttt{np.sqrt} cho RMSE là đúng.
+\end{luuy}
+
+\begin{vidu}[title={Bước 5 --- Trực quan tập huấn luyện}]
+\begin{lstlisting}
+y_pred_train = regressor.predict(X_train)
+plt.scatter(X_train, y_train, color="green", label="actual")
+plt.scatter(X_train, y_pred_train, color="blue", label="predicted")
+plt.plot(X_train, y_pred_train, color="red")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary (INR)")
+plt.legend()
+plt.show()
+\end{lstlisting}
+\tsimg{03_simple_linear_regression/img03.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Bước 6 --- Trực quan tập kiểm tra}]
+\begin{lstlisting}
+y_pred = regressor.predict(X_test)
+plt.scatter(X_test, y_test, color="green", label="test actual")
+plt.scatter(X_test, y_pred, color="blue", label="test predicted")
+plt.plot(X_test, y_pred, color="red")
+plt.legend()
+plt.show()
+\end{lstlisting}
+\tsimg{03_simple_linear_regression/img04.jpg}
+\end{vidu}

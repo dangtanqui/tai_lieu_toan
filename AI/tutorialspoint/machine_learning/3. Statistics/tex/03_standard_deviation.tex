@@ -1,0 +1,74 @@
+%==============================================================================
+\section{Standard Deviation --- Độ lệch chuẩn}
+\label{sec:standard-deviation}
+%==============================================================================
+
+\begin{dinhnghia}[title={Standard deviation}]
+Độ lệch chuẩn đo mức \textbf{phân tán} (variation/dispersion) của các giá trị quanh mean.
+Trong ML, nó mô tả độ trải của dataset và hỗ trợ phát hiện outlier.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Công thức}]
+Độ lệch chuẩn là căn bậc hai của phương sai --- trung bình bình phương độ lệch so với mean:
+\[
+\sigma = \sqrt{\frac{\sum (x - \mu)^2}{N}}
+\]
+trong đó $\sigma$ là độ lệch chuẩn, $x$ là điểm dữ liệu, $\mu$ là mean, $N$ là số điểm.
+\end{ynghia}
+
+\begin{phuongphap}[title={Ứng dụng}]
+Tài chính: đo biến động giá cổ phiếu; xử lý ảnh: phát hiện nhiễu, \ldots
+\end{phuongphap}
+
+\subsection{Ví dụ 1 --- NumPy}
+
+\begin{vidu}[title={Độ lệch chuẩn mảng đơn giản}]
+\begin{lstlisting}
+import numpy as np
+
+data = np.array([1, 2, 3, 4, 5, 6])
+std_dev = np.std(data)
+
+print('Standard deviation:', std_dev)
+\end{lstlisting}
+
+\textbf{Output}:
+\begin{lstlisting}
+Standard deviation: 1.707825127659933
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Ví dụ 2 --- Iris (Pandas)}
+
+\begin{vidu}[title={Độ lệch chuẩn từng cột Iris}]
+\begin{lstlisting}
+import pandas as pd
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+iris_df = pd.DataFrame(
+    iris.data,
+    columns=['sepal length', 'sepal width', 'petal length', 'petal width']
+)
+
+std_devs = iris_df.std()
+print('Standard deviations:')
+print(std_devs)
+\end{lstlisting}
+
+(Nguồn gốc dùng URL UCI; ở đây dùng \texttt{load\_iris} của scikit-learn cho ổn định.)
+
+\textbf{Output}:
+\begin{lstlisting}
+Standard deviations:
+sepal length    0.828066
+sepal width     0.433594
+petal length    1.764420
+petal width     0.763161
+dtype: float64
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Nhận xét}]
+Độ lệch chuẩn \texttt{petal length} cao hơn hẳn các cột khác --- feature này biến thiên mạnh, có thể hữu ích cho phân loại.
+\end{ynghia}

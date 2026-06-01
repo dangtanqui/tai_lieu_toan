@@ -1,0 +1,64 @@
+%==============================================================================
+\section{Correlation Matrix Plot --- Ma trận tương quan}
+\label{sec:correlation-matrix}
+%==============================================================================
+
+\begin{dinhnghia}[title={Correlation matrix plot}]
+Ma trận tương quan là biểu diễn đồ họa của \textbf{tương quan cặp} giữa các biến trong dataset.
+Mỗi ô (hoặc heatmap) cho biết hệ số tương quan giữa hai biến; đường chéo thường thể hiện phân phối từng biến (tùy công cụ).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Hệ số tương quan}]
+Đo mức \textbf{quan hệ tuyến tính} giữa hai biến, trong khoảng $[-1, 1]$:
+\begin{itemize}
+  \item $+1$: tương quan dương hoàn hảo (biến này tăng thì biến kia tăng).
+  \item $-1$: tương quan âm hoàn hảo.
+  \item $0$: không có tương quan tuyến tính (trong ý nghĩa hệ số Pearson).
+\end{itemize}
+\end{ynghia}
+
+\subsection{Ma trận tương quan trong Python}
+
+\begin{phuongphap}[title={Dataset Iris}]
+Ví dụ dùng Iris (scikit-learn): 150 mẫu, 4 feature, 3 loài.
+\end{phuongphap}
+
+\subsection{Ví dụ --- Heatmap tương quan}
+
+\begin{vidu}[title={Code đầy đủ (Pandas + Seaborn)}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+data = pd.DataFrame(iris.data, columns=iris.feature_names)
+target = iris.target
+
+corr = data.corr()
+sns.set(style='white')
+mask = np.zeros_like(corr, dtype=bool)
+mask[np.triu_indices_from(mask)] = True
+f, ax = plt.subplots(figsize=(11, 9))
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
+   square=True, linewidths=.5, cbar_kws={"shrink": .5})
+plt.show()
+\end{lstlisting}
+
+\texttt{corr()} trên DataFrame; \texttt{mask} che tam giác trên để tránh lặp; \texttt{heatmap} tô màu theo hệ số.
+\end{vidu}
+
+\begin{ynghia}[title={Đọc biểu đồ}]
+\begin{itemize}
+  \item \texttt{sepal width} và \texttt{petal length}: tương quan âm vừa ($\approx -0{,}37$).
+  \item \texttt{petal length} và \texttt{petal width}: tương quan dương mạnh ($\approx 0{,}96$).
+  \item \texttt{sepal length} và \texttt{petal length}: tương quan dương ($\approx 0{,}87$).
+\end{itemize}
+\end{ynghia}
+
+\begin{vidu}[title={Output}]
+\tsimg{05_correlation_matrix_plot/img01.jpg}
+\end{vidu}

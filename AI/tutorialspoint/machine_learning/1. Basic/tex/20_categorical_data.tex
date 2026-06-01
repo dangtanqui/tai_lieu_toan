@@ -2,10 +2,6 @@
 \section{Categorical Data --- Dữ liệu phân loại trong học máy}
 %==============================================================================
 
-\begin{ynghia}[title={Nguồn}]
-\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_categorical_data.htm}.
-\end{ynghia}
-
 \subsection{Dữ liệu phân loại là gì?}
 
 \begin{dinhnghia}[title={Categorical data}]
@@ -19,6 +15,7 @@ Các nhóm có thể:
 
 \begin{ynghia}[title={Biểu diễn và one-hot}]
 Dữ liệu phân loại thường biểu diễn bằng giá trị rời rạc (số nguyên hoặc chuỗi), và thường được mã hoá thành vector one-hot trước khi đưa vào mô hình.
+
 One-hot encoding: với mỗi category tạo vector nhị phân có bit 1 ở vị trí tương ứng category đó và 0 ở các vị trí còn lại.
 \end{ynghia}
 
@@ -33,7 +30,7 @@ Tùy thuật toán và bản chất dữ liệu phân loại, có thể dùng: l
 One-Hot Encoding, Label Encoding, Frequency Encoding, Target Encoding, Binary Encoding.
 \end{phuongphap}
 
-\subsection{1. One-Hot Encoding}
+\subsection{One-Hot Encoding}
 
 \begin{dinhnghia}[title={One-hot encoding}]
 Tạo vector nhị phân cho mỗi category; mỗi phần tử biểu diễn có/không có category đó.
@@ -61,7 +58,7 @@ df = df.drop('color', axis=1)
 print(df)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
       color_blue    color_green    color_red
 0        0              0              1
@@ -77,7 +74,7 @@ Tạo ba biến nhị phân \texttt{color\_blue}, \texttt{color\_green}, \texttt
 One-hot phù hợp biến phân loại nhỏ, hữu hạn; với biến có cardinality lớn có thể tạo quá nhiều cột đặc trưng.
 \end{luuy}
 
-\subsection{2. Label Encoding}
+\subsection{Label Encoding}
 
 \begin{dinhnghia}[title={Label encoding}]
 Gán một giá trị số duy nhất cho mỗi category; thứ tự số có thể theo thứ tự category.
@@ -101,7 +98,7 @@ encoded_data = label_encoder.fit_transform(data)
 print(encoded_data)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
 [2 1 0 2 0]
 \end{lstlisting}
@@ -113,7 +110,7 @@ Hữu ích với biến ordinal (có thứ tự tự nhiên).
 Với biến nominal cần thận trọng vì số có thể gợi ý thứ tự không tồn tại --- khi đó one-hot an toàn hơn.
 \end{luuy}
 
-\subsection{3. Frequency Encoding}
+\subsection{Frequency Encoding}
 
 \begin{dinhnghia}[title={Frequency encoding}]
 Thay mỗi category bằng \textbf{tần suất} (hoặc tỉ lệ) xuất hiện trong dataset.
@@ -141,7 +138,7 @@ df = df.drop('color', axis=1)
 print(df)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
       color_freq
 0        0.4
@@ -150,14 +147,14 @@ print(df)
 3        0.4
 4        0.4
 \end{lstlisting}
-Ví dụ: hai lần ``red'' và ba lần ``green'' trong tập 5 mẫu $\Rightarrow$ tần suất tương ứng 0.4 và 0.6 (nguồn minh hoạ với output trên).
+Ví dụ: hai lần ``red'' và ba lần ``green'' trong tập 5 mẫu $\Rightarrow$ tần suất tương ứng 0.4 và 0.6.
 \end{vidu}
 
 \begin{luuy}[title={Ghi chú}]
 Frequency encoding là lựa chọn thay one-hot/label khi cardinality cao; hiệu quả phụ thuộc dataset và thuật toán.
 \end{luuy}
 
-\subsection{4. Target Encoding}
+\subsection{Target Encoding}
 
 \begin{dinhnghia}[title={Target encoding}]
 Thay mỗi category bằng giá trị tổng hợp (thường là \textbf{trung bình}) của biến mục tiêu (target) trong nhóm category đó.
@@ -191,7 +188,7 @@ df['color_encoded'] = df['color_encoded'].map(mean_encoder)
 print(df)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
    color     target     color_encoded
 0  red        1           0.5
@@ -202,11 +199,11 @@ print(df)
 \end{lstlisting}
 \end{vidu}
 
-\begin{luuy}[title={Giảng viên lưu ý --- data leakage}]
+\begin{luuy}[title={Lưu ý: data leakage}]
 Target encoding rất mạnh nhưng dễ \textbf{rò rỉ nhãn} nếu tính thống kê trên toàn bộ tập (kể cả test). Trong thực hành: chỉ fit encoder trên tập train, hoặc dùng cross-validation/out-of-fold encoding.
 \end{luuy}
 
-\subsection{5. Binary Encoding}
+\subsection{Binary Encoding}
 
 \begin{dinhnghia}[title={Binary encoding}]
 Mỗi category được gán mã nhị phân; mỗi chữ số cho biết category có mặt (1) hay không (0).
@@ -236,7 +233,7 @@ df = pd.concat([df, encoded_data], axis=1)
 print(df)
 \end{lstlisting}
 
-\textbf{Output} (theo nguồn):
+\textbf{Output}:
 \begin{lstlisting}
    color    color_0    color_1
 0   red       0           1
