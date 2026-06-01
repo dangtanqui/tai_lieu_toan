@@ -1,0 +1,56 @@
+https://www.tutorialspoint.com/machine_learning/deep_reinforcement_learning.htm
+What is Deep Reinforcement Learning?
+Deep Reinforcement Learning (Deep RL) is a subset of Machine Learning that is a combination of reinforcement learning with deep learning. Deep RL addresses the challenge of enabling computational agents to learn decision-making by incorporating deep learning from unstructured input data without manual engineering of the state space. Deep RL algorithms are capable of deciding what actions to perform for the optimization of an objective even with large inputs.
+
+Key Concepts of Deep Reinforcement Learning
+The building blocks of Deep Reinforcement Learning include all the aspects that empower learning and agents for decision-making. Effective environments are produced by the collaboration of the following elements −
+
+Agent − The learner and decision-maker who interacts with the environment. This agent acts according to the policies and gains experience.
+Environment − The system outside agent that it communicates with. It gives the agent feedback in the form of incentives or punishments based on its actions.
+State − Represents the current situation or condition of the environment at a specific moment, based on which the agent takes a decision.
+Action − A choice the agent makes that changes the state of the system.
+Policy − A plan that directs the agent's decision-making by mapping states to actions.
+Value Function − Estimates the expected cumulative reward an agent can achieve from a given state while following a specific policy.
+Model − Represents the environment's dynamics, allowing the agent to simulate potential outcomes of actions and states for planning purposes.
+Exploration - Exploitation Strategy − A decision-making approach that balances exploring new actions for learning versus exploiting known actions for immediate rewards.
+Learning Algorithm − The method by which the agent updates its value function or policy based on experiences gained from interacting with the environment.
+Experience Replay − A technique that randomly samples from previously stored experiences during training to enhance learning stability and reduce correlations between consecutive events.
+How Deep Reinforcement Learning Works?
+Deep Reinforcement Learning uses artificial neural networks, which consist of layers of nodes that replicate the functioning of neurons in the human brain. These nodes process and relay information through the trial and error method to determine effective outcomes.
+
+In Deep RL, the term policy refers to the strategy the computer develops based on the feedback it receives from interaction with its environment. These policies help the computer make decisions by considering its current state and the action set, which includes various options. On selecting these options, a process referred to as "search" through which the computer evaluates different actions and observes the outcomes. This ability to coordinate learning, decision-making, and representation could provide new insights simple to how the human brain operates.
+
+Architecture is what sets deep reinforcement learning apart, which allows it to learn similar to the human brain. It contains numerous layers of neural networks that are efficient enough to process unlabeled and unstructured data.
+
+List of Algorithms in Deep RL
+Following is the list of some important algorithms in deep reinforcement learning −
+
+Deep Q-Network or Deep Q-Learning
+Double Deep Q-Learning
+Actor - Critic Method
+Deep Deterministic Policy Gradient
+Applications of Deep Reinforcement Learning
+Some prominent fields that use deep Reinforcement Learning are −
+
+1. Gaming
+Deep RL is used in developing games that are far beyond what is humanly possible. The games designed using Deep RL include Atari 2600 games, Go, Poker, and many more.
+
+2. Robot Control
+This used robust adversarial reinforcement learning wherein an agent learns to operate in the presence of an adversary that applies disturbances to the system. The goal is to develop an optimal strategy to handle disruptions. AI-powered robots have a wide range of applications, including manufacturing, supply chain automation, healthcare, and many more.
+
+3. Self-driving Cars
+Deep reinforcement learning is one of the key concepts involved in autonomous driving. Autonomous driving scenarios involve understanding the environment, interacting agents, negotiation, and dynamic decision-making, which is possible only by Reinforcement learning.
+
+4. Healthcare
+Deep reinforcement learning enabled many advancements in healthcare, like personalization in medication to optimize patient health care, especially for those suffering from chronic conditions.
+
+Difference Between RL and Deep RL
+The following table highlights the key differences between Reinforcement Learning(RL) and Deep Reinforcement Learning (Deep RL) −
+
+Feature	Reinforcement Learning	Deep Reinforcement Learning
+Definition	It is a subset of Machine Learning that uses trial and error method for decision making.	It is a subset of RL that integrates deep learning for more complex decisions.
+Function Approximation	It uses simple methods like tabular methods for value estimation.	It uses neural networks for value estimation, allowing for more complex representation.
+State Representation	It relies on manually engineered features to represent the environment.	It automatically learns relevant features from raw input data.
+Complexity	It is effective for simple environments with smaller state/action spaces.	It is effective in high-dimensional, complex environments.
+Performance	It is effective in simpler environments but struggles in environments with large and continuous spaces.	It excels in complex tasks, including video games or controlling robots.
+Applications	Can be used for basic tasks like simple games.	Can be used in advanced applications like autonomous driving, game playing, and robotic control.

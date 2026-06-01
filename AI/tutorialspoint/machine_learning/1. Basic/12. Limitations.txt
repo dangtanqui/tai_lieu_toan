@@ -1,0 +1,29 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_limitations.htm
+Machine learning is a powerful technology that has transformed the way we approach data analysis, but like any technology, it has its limitations. Here are some of the key limitations of machine learning −
+
+Dependence on Data Quality
+Machine learning models are only as good as the data used to train them. If the data is incomplete, biased, or of poor quality, the model may not perform well.
+
+Lack of Transparency
+Machine learning models can be very complex, making it difficult to understand how they arrive at their predictions. This lack of transparency can make it challenging to explain model results to stakeholders.
+
+Limited Applicability
+Machine learning models are designed to find patterns in data, which means they may not be suitable for all types of data or problems.
+
+High Computational Costs
+Machine learning models can be computationally expensive, requiring significant processing power and storage.
+
+Data Privacy Concerns
+Machine learning models can sometimes collect and use personal data, which raises concerns about privacy and data security.
+
+Ethical Considerations
+Machine learning models can sometimes perpetuate biases or discriminate against certain groups, raising ethical concerns.
+
+Dependence on Experts
+Developing and deploying machine learning models requires significant expertise in data science, statistics, and programming, making it challenging for organizations without access to these skills.
+
+Lack of Creativity and Intuition
+Machine learning algorithms are good at finding patterns in data but lack creativity and intuition. This means that they may not be able to solve problems that require creative thinking or intuition.
+
+Limited Interpretability
+Some machine learning models, such as deep neural networks, can be difficult to interpret. This means that it may be challenging to understand how the model arrived at its predictions.

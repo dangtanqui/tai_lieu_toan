@@ -1,0 +1,59 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_birch_clustering.htm
+BIRCH (Balanced Iterative Reducing and Clustering hierarchies) is a hierarchical clustering algorithm that is designed to handle large datasets efficiently. The algorithm builds a treelike structure of clusters by recursively partitioning the data into subclusters until a stopping criterion is met.
+
+BIRCH uses two main data structures to represent the clusters: Clustering Feature (CF) and Sub-Cluster Feature (SCF). CF is used to summarize the statistical properties of a set of data points, while SCF is used to represent the structure of subclusters.
+
+BIRCH clustering has three main steps −
+
+Initialization − BIRCH constructs an empty tree structure and sets the maximum number of CFs that can be stored in a node.
+
+Clustering − BIRCH reads the data points one by one and adds them to the tree structure. If a CF is already present in a node, BIRCH updates the CF with the new data point. If there is no CF in the node, BIRCH creates a new CF for the data point. BIRCH then checks if the number of CFs in the node exceeds the maximum threshold. If the threshold is exceeded, BIRCH creates a new subcluster by recursively partitioning the CFs in the node.
+
+Refinement − BIRCH refines the tree structure by merging the subclusters that are similar based on a distance metric.
+
+Implementation of BIRCH Clustering in Python
+To implement BIRCH clustering in Python, we can use the scikit-learn library. The scikitlearn library provides a BIRCH class that implements the BIRCH algorithm.
+
+Here is an example of how to use the BIRCH class to cluster a dataset −
+
+Example - BIRCH Clustering
+from sklearn.datasets import make_blobs
+from sklearn.cluster import Birch
+import matplotlib.pyplot as plt
+
+# Generate sample data
+X, y = make_blobs(n_samples=1000, centers=10, cluster_std=0.50,
+random_state=0)
+
+# Cluster the data using BIRCH
+birch = Birch(threshold=1.5, n_clusters=4)
+birch.fit(X)
+labels = birch.predict(X)
+
+# Plot the results
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='winter')
+plt.show()
+In this example, we first generate a sample dataset using the make_blobs function from scikit-learn. We then cluster the dataset using the BIRCH algorithm. For the BIRCH algorithm, we instantiate a Birch object with the threshold parameter set to 1.5 and the n_clusters parameter set to 4. We then fit the Birch object to the dataset using the fit method and predict the cluster labels using the predict method. Finally, we plot the results using a scatter plot.
+
+Output
+When you execute the given program, it will produce the following plot as the output −
+
+Birch_algorithm
+Advantages of BIRCH Clustering
+BIRCH clustering has several advantages over other clustering algorithms, including −
+
+Scalability − BIRCH is designed to handle large datasets efficiently by using a treelike structure to represent the clusters.
+
+Memory efficiency − BIRCH uses CF and SCF data structures to summarize the statistical properties of the data points, which reduces the memory required to store the clusters.
+
+Fast clustering − BIRCH can cluster the data points quickly because it uses an incremental clustering approach.
+
+Disadvantages of BIRCH Clustering
+BIRCH clustering also has some disadvantages, including −
+
+Sensitivity to parameter settings − The performance of BIRCH clustering can be sensitive to the choice of parameters, such as the maximum number of CFs that can be stored in a node and the threshold value used to create subclusters.
+
+Limited ability to handle non-spherical clusters − BIRCH assumes that the clusters are spherical, which means it may not perform well on datasets with nonspherical clusters.
+
+Limited flexibility in the choice of distance metric − BIRCH uses the Euclidean distance metric by default, which may not be appropriate for all datasets.

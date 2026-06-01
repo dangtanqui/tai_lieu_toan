@@ -1,0 +1,119 @@
+%==============================================================================
+\section{Artificial Intelligence --- Trí tuệ nhân tạo và học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_traditional_ai.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={AI và ML: hai từ hay bị nhầm}]
+``Artificial Intelligence'' và ``Machine Learning'' là hai cụm từ rất phổ biến trong công nghệ.
+Chúng thường được dùng thay cho nhau nhưng \textbf{không} trùng nghĩa.
+AI và ML có quan hệ với nhau nhưng khác về định nghĩa, ứng dụng và hàm ý.
+Bài này so sánh sự khác biệt và mối liên hệ giữa hai khái niệm.
+\end{dongco}
+
+\subsection{Trí tuệ nhân tạo (AI) là gì?}
+
+\begin{dinhnghia}[title={Định nghĩa AI}]
+Trí tuệ nhân tạo là lĩnh vực rộng, phát triển các máy thông minh có thể thực hiện tác vụ thường cần trí tuệ con người: nhận thức, suy luận, học và ra quyết định.
+Nói đơn giản: AI là khả năng của máy thực hiện tác vụ thường cần sự can thiệp hoặc trí tuệ của con người.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Hai loại AI}]
+\begin{itemize}
+  \item \textbf{AI hẹp (narrow / weak AI)}: thiết kế cho tác vụ cụ thể (nhận dạng giọng nói, nhận dạng ảnh, \ldots).
+  \item \textbf{AI tổng quát (general / strong AI)}: có thể thực hiện mọi tác vụ trí tuệ như con người.
+\end{itemize}
+Hiện nay chỉ có AI hẹp đang được dùng; mục tiêu dài hạn là phát triển AI tổng quát áp dụng cho nhiều tác vụ.
+\end{phuongphap}
+
+\subsection{Các nhánh của AI}
+
+\begin{ynghia}[title={AI như một ``giỏ'' các nhánh}]
+AI gồm nhiều nhánh; các nhánh quan trọng gồm: Machine Learning (ML), Robotics, Expert Systems, Fuzzy Logic, Neural Networks, Computer Vision và Natural Language Processing (NLP).
+\end{ynghia}
+
+\begin{vidu}[title={Tổng quan quan hệ AI--ML (theo nguồn)}]
+\tsimg{09_ai_neural_deep/ai_ml.jpg}
+\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/ai_ml.jpg}\end{center}
+\end{vidu}
+
+\subsubsection{Robotics}
+Robot chủ yếu được thiết kế để làm các tác vụ lặp lại, tẻ nhạt.
+Robotics là nhánh AI nghiên cứu thiết kế, phát triển và điều khiển ứng dụng robot.
+
+\subsubsection{Computer Vision}
+Computer Vision giúp máy tính, robot và thiết bị số xử lý, hiểu ảnh/video kỹ thuật số và trích xuất thông tin quan trọng.
+Với AI, Computer Vision xây dựng thuật toán trích xuất, phân tích và hiểu thông tin hữu ích từ ảnh số.
+
+\subsubsection{Expert Systems}
+Hệ chuyên gia là ứng dụng giải bài toán phức tạp trong một miền cụ thể, với trí tuệ, độ chính xác và chuyên môn gần như chuyên gia con người.
+Giống chuyên gia, hệ này xuất sắc trong miền mà nó được huấn luyện.
+
+\subsubsection{Fuzzy Logic}
+Máy tính thường nhận đầu vào số rõ ràng True/False; Fuzzy Logic là phương pháp suy luận giúp máy suy luận như con người trước khi quyết định.
+Với Fuzzy Logic, máy có thể xét các khả năng trung gian giữa YES và NO, ví dụ ``Có thể đúng'', ``Có lẽ không'', \ldots
+
+\subsubsection{Neural Networks}
+Lấy cảm hứng từ mạng nơ-ron sinh học, Artificial Neural Networks (ANN) là tập các phần tử xử lý (node) kết nối dày, phản hồi động với đầu vào bên ngoài.
+ANN dùng dữ liệu huấn luyện để cải thiện hiệu quả và độ chính xác (chi tiết ở bài Neural Networks).
+
+\subsubsection{Natural Language Processing (NLP)}
+NLP cho phép hệ thông minh giao tiếp với con người bằng ngôn ngữ tự nhiên (ví dụ tiếng Anh).
+Có thể ra lệnh cho robot bằng tiếng Anh đơn giản; NLP cũng xử lý văn bản và hiểu nghĩa đầy đủ.
+Ứng dụng phổ biến: chatbot ảo, phân tích cảm xúc (sentiment analysis).
+
+\begin{vidu}[title={Ví dụ về AI}]
+Trợ lý ảo, xe tự lái, nhận diện khuôn mặt, xử lý ngôn ngữ tự nhiên, hệ thống ra quyết định.
+\end{vidu}
+
+\subsection{Học máy (ML) là gì?}
+
+\begin{dinhnghia}[title={Định nghĩa ML (nhắc lại ngắn)}]
+Học máy là \textbf{tập con} của AI, tập trung dạy máy học từ dữ liệu: máy tính tự học pattern và quan hệ trong dữ liệu mà không cần lập trình tường minh từng quy tắc.
+Thuật toán ML phát hiện và học từ pattern để dự đoán hoặc ra quyết định.
+\end{dinhnghia}
+
+\begin{luuy}[title={Đối chiếu}]
+Supervised/unsupervised/RL: Mục~\ref{sec:bon-kieu-hoc}; chi tiết từng kiểu: Mục~\ref{sec:mo-hinh-ml} trở đi.
+\end{luuy}
+
+\begin{vidu}[title={Ví dụ về ML}]
+Nhận dạng ảnh, nhận dạng giọng nói, hệ gợi ý, phát hiện gian lận, xử lý ngôn ngữ tự nhiên.
+\end{vidu}
+
+\subsection{AI và ML: tổng quan so sánh}
+
+\begin{ynghia}[title={Bốn điểm khác biệt chính (theo nguồn)}]
+\begin{enumerate}
+  \item ML là \textbf{tập con} của AI; ML là kỹ thuật triển khai AI.
+  \item ML tập trung thuật toán \textbf{học từ dữ liệu}; AI tập trung máy thông minh làm tác vụ cần trí tuệ con người.
+  \item Thuật toán ML cải thiện độ chính xác theo thời gian nhờ dữ liệu; hệ AI có thể thích nghi tình huống/môi trường mới.
+  \item ML thường \textbf{hẹp} hơn (chỉ học từ dữ liệu đã cho); AI hướng tới suy luận và quyết định trong bài toán phức tạp thực tế.
+\end{enumerate}
+\end{ynghia}
+
+\subsection{Bảng: AI và Machine Learning}
+
+\begin{vidu}[title={Khác biệt quan trọng (dịch từ bảng nguồn)}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.4cm}XX}
+\textbf{Tiêu chí} & \textbf{Artificial Intelligence} & \textbf{Machine Learning} \\
+\midrule
+Định nghĩa &
+Khả năng máy/hệ máy tính thực hiện tác vụ thường cần trí tuệ người (hiểu ngôn ngữ, nhận ảnh, ra quyết định). &
+Một loại AI cho phép hệ học và cải thiện từ kinh nghiệm mà không lập trình tường minh; mô tả cách máy học và dùng kiến thức để cải thiện quyết định. \\
+Khái niệm &
+Xoay quanh thiết bị thông minh, thông minh. &
+Xoay quanh việc cho máy học/quyết định và cải thiện kết quả. \\
+Mục tiêu &
+Mô phỏng trí tuệ con người để giải bài toán phức tạp. &
+Học từ dữ liệu cho sẵn và cải thiện hiệu năng máy. \\
+Bao gồm &
+ANN, NLP, Fuzzy Logic, Robotics, Expert Systems, Computer Vision, ML, \ldots &
+Supervised, unsupervised, reinforcement learning. \\
+Phát triển &
+Dẫn tới máy bắt chước hành vi con người. &
+Giúp phát triển thuật toán tự học. \\
+\end{tabularx}
+\end{vidu}

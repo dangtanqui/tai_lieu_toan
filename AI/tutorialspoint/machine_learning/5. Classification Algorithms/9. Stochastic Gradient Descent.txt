@@ -1,0 +1,95 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_stochastic_gradient_descent.htm
+Stochastic Gradient Descent (SGD) is a popular optimization technique in machine learning. It iteratively updates the model parameters (weights and bias) using individual training example instead of entire dataset. It is a variant of gradient descent and it is more efficient and faster for large and sparse dataset.
+
+What is Gradient Descent?
+Gradient Descent is a popular optimization algorithm that is used to minimize the cost function of a machine learning model. It works by iteratively adjusting the model parameters to minimize the difference between the predicted output and the actual output. The algorithm works by calculating the gradient of the cost function with respect to the model parameters and then adjusting the parameters in the opposite direction of the gradient.
+
+What is Stochastic Gradient Descent (SGD)?
+Stochastic Gradient Descent is a variant of Gradient Descent that updates the parameters using each training example instead of updating them after evaluating the entire dataset. This means that instead of using the entire dataset to calculate the gradient of the cost function, SGD only uses a single training example (or a mini batch). This approach allows the algorithm to converge faster and requires less memory to store the data.
+
+Stochastic Gradient Descent Algorithm
+Stochastic Gradient Descent works by randomly selecting a single (or a small mini batch) training example from the dataset and using it to update the model parameters. This process is repeated for a fixed number of epochs, or until the model converges to a minimum of the cost function.
+
+Here's how the Stochastic Gradient Descent algorithm works −
+
+Initialize the model parameters to random values.
+For each epoch, randomly shuffle the training data.
+For each training example −
+Calculate the gradient of the cost function with respect to the model parameters.
+Update the model parameters in the opposite direction of the gradient.
+Repeat until convergence
+The parameters or weights update rule for SGD is as follows −
+
+$${w := w - J(w; x_{i}, y_{i})}$$
+
+where,
+
+${x_{i}}$: The $i$th data point of input data
+${y_{i}}$: The corresponding target value
+${\alpha}$: The learning rate
+${J}$: The loss or cost function
+${J}$: The gradient of loss or cost function $J$ w.r.t. $w$.
+Here ":=" denotes the update of a variable in the algorithm.
+
+The main difference between Stochastic Gradient Descent and regular Gradient Descent is the way that the gradient is calculated and the way that the model parameters are updated. In Stochastic Gradient Descent, the gradient is calculated using a single training example, while in Gradient Descent, the gradient is calculated using the entire dataset.
+
+Example - Implementation of Stochastic Gradient Descent in Python
+Let's look at an example of how to implement Stochastic Gradient Descent in Python. We will use the scikit-learn library to implement the algorithm on the Iris dataset which is a popular dataset used for classification tasks. In this example we will be predicting Iris flower species using its two features namely sepal width and sepal length −
+
+# Import required libraries
+import sklearn
+
+import numpy as np
+from sklearn import datasets
+from sklearn.linear_model import SGDClassifier
+
+# Loading Iris flower dataset
+iris = datasets.load_iris()
+X_data, y_data = iris.data, iris.target
+
+# Dividing the dataset into training and testing dataset
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# Getting the Iris dataset with only the first two attributes
+X, y = X_data[:,:2], y_data
+
+# Split the dataset into a training and a testing set(20 percent)
+X_train, X_test, y_train, y_test = train_test_split(X, y,
+test_size=0.20, random_state=1)
+
+# Standarize the features
+scaler = StandardScaler().fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+
+# create the linear model SGDclassifier
+clfmodel_SGD = SGDClassifier(alpha=0.001, max_iter=200)
+
+# Train the classifier using fit() function
+clfmodel_SGD.fit(X_train, y_train)
+
+# Evaluate the result
+from sklearn import metrics
+y_train_pred = clfmodel_SGD.predict(X_train)
+print ("\nThe Accuracy of SGD classifier is:",
+metrics.accuracy_score(y_train, y_train_pred)*100)
+Output
+When you run this code, it will produce the following output −
+
+The Accuracy of SGD classifier is: 73.33333333333333
+Applications of Stochastic Gradient Descent
+Stochastic Gradient Descent (SGD) is not a full-fledged machine learning model, but just an optimization technique. It has bees successfully applied in different machine learning problems mainly when data is sparse. The Sparse ML problems are mainly encountered in text classification and natural language processing. This technique is very efficient for sparse data and can scale to the problems with more than tens of thousands examples and more than tens of thousands of features.
+
+Advantages of SGD
+The following are some advantages of Stochastic Gradient Descent −
+
+Efficiency − Processes data in smaller batches, reducing memory requirements.
+Faster Convergence − Can converge faster than batch gradient descent, especially for large datasets.
+Escaping Local Minima − The stochastic nature of SGD can help it escape local minima and find better solutions.
+Challenges of Stochastic Gradient Descent
+Stochastic Gradient Descent (SGD) is an efficient optimization algorithm but comes with challenges that can affect its effectiveness. The following are some challenges fo SGD −
+
+Noisy Gradients − The stochastic nature of SGD can lead to noisy gradients, which may slow down convergence.
+Learning Rate Tuning − Choosing the right learning rate is crucial for effective optimization.
+Mini-batch Size − The choice of mini-batch size affects the convergence speed and stability of the algorithm.

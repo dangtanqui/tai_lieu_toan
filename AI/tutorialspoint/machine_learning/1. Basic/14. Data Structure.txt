@@ -1,0 +1,74 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_data_structure.htm
+Data structure plays a critical role in machine learning as it facilitates the organization, manipulation, and analysis of data. Data is the foundation of machine learning models, and the data structure used can significantly impact the model's performance and accuracy.
+
+Data structures help to build and understand various complex problems in Machine learning. A careful choice of data structures can help to enhance the performance and optimize the machine learning models.
+
+What is Data Structure?
+Data structures are ways of organizing and storing data to use it efficiently. They include structures like arrays, linked lists, stacks, and others, which are designed to support specific operations. They play a crucial role in machine learning, especially in tasks such as data preprocessing, algorithm implementation, and optimization.
+
+Here we will discuss some commonly used data structures and how they are used in Machine Learning.
+
+Commonly Used Data Structure for Machine Learning
+Data structure is an essential component of machine learning, and the right data structure can help in achieving faster processing, easier access to data, and more efficient storage. Here are some commonly used data structures for machine learning −
+
+1. Arrays
+Array is a fundamental data structure used for storing and manipulating data in machine learning. Array elements can be accessed using the indexes. They allow fast data retrieval as the data is stored in contiguous memory locations and can be accessed easily.
+
+As we can perform vectorized operations on arrays, it is a good choice to represent the input data as arrays.
+
+Some machine learning tasks that use arrays are:
+
+The raw data is usually represented in the form of arrays.
+To convert pandas data frame into list, because pandas series require all the elements to be the same type, which Python list contains combination of data types.
+Used for data preprocessing techniques like normalization, scaling and reshaping.
+Used in word embedding, while creating multi-dimensional matrices.
+Arrays are easy to use and offer fast indexing, but their size is fixed, which can be a limitation when working with large datasets.
+
+2. Lists
+Lists are collections of heterogeneous data types that can be accessed using an iterator. They are commonly used in machine learning for storing complex data structures, such as nested lists, dictionaries, and tuples. Lists offer flexibility and can handle varying data sizes, but they are slower than arrays due to the need for iteration.
+
+3. Dictionaries
+Dictionaries are a collection of key-value pairs that can be accessed using the keys. They are commonly used in machine learning for storing metadata or labels associated with data. Dictionaries offer fast access to data and are useful for creating lookup tables, but they can be memory-intensive when dealing with large datasets.
+
+4. Linked Lists
+Linked lists are collections of nodes, each containing a data element and a reference to the next node in the list. They are commonly used in machine learning for storing and manipulating sequential data, such as time-series data. Linked lists offer efficient insertion and deletion operations, but they are slower than arrays and lists when it comes to accessing data.
+
+Linked lists are commonly used for managing dynamic data where elements are frequently added and removed. They are less common compared to arrays, which are more efficient for the data retrieval process.
+
+5. Stack and Queue
+Stack is based on the LIFO(Last In First Out). Stacking classifier approach can efficiently be implemented in solving multi-classification problems by dividing it into several binary classification problems. This is done by stacking all the outputs from binary classification and passing it as input to the meta classifier.
+
+Queue follows FIFO(First In First Out) structure which is similar to people waiting in a line. This data structure is used in Multi threading, which is used to optimize and coordinate data flow between threads in multi threaded environment. It is usually used to handle large amounts of data, to feed batches of data for the training process. To make sure that the training process is continuous and efficient.
+
+6. Trees
+Trees are hierarchical data structures that are commonly used in machine learning for decision-making algorithms, such as decision trees and random forests. Trees offer efficient searching and sorting algorithms, but they can be complex to implement and can suffer from overfitting.
+
+Binary trees are hierarchical data structures that are commonly used in machine learning for decision-making algorithms, such as decision trees and random forests. Trees offer efficient searching and sorting algorithms, but they can be complex to implement and can suffer from overfitting.
+
+7. Graphs
+Graphs are collections of nodes and edges that are commonly used in machine learning for representing complex relationships between data points. Data structures such as adjacency matrices and linked lists are used to create and manipulate graphs. Graphs offer powerful algorithms for clustering, classification, and prediction, but they can be complex to implement and can suffer from scalability issues.
+
+Graphs are widely used in recommendation system, link prediction, and social media analysis.
+
+8. Hash Maps
+Hash maps are predominantly used in machine learning due to its key-value storage and retrieval capabilities. They are commonly used in machine learning for storing metadata or labels associated with data. Dictionaries offer fast access to data and are useful for creating lookup tables, but they can be memory-intensive when dealing with large datasets.
+
+In addition to the above-mentioned data structures, many machine learning libraries and frameworks provide specialized data structures for specific use cases, such as matrices and tensors for deep learning. It is important to choose the right data structure for the task at hand, considering factors such as data size, processing speed, and memory usage.
+
+How Data Structure is Used in Machine Learning?
+Below are some ways data structures are used in machine learning −
+
+Storing and Accessing Data
+Machine learning algorithms require large amounts of data for training and testing. Data structures such as arrays, lists, and dictionaries are used to store and access data efficiently. For example, an array can be used to store a set of numerical values, while a dictionary can be used to store metadata or labels associated with data.
+
+Pre-processing Data
+Before training a machine learning model, it is necessary to pre-process the data to clean, transform, and normalize it. Data structures such as lists and arrays can be used to store and manipulate the data during pre-processing. For example, a list can be used to filter out missing values, while an array can be used to normalize the data.
+
+Creating Feature Vectors
+Feature vectors are a critical component of machine learning models as they represent the features that are used to make predictions. Data structures such as arrays and matrices are commonly used to create feature vectors. For example, an array can be used to store the pixel values of an image, while a matrix can be used to store the frequency distribution of words in a text document.
+
+Building Decision Trees
+Decision trees are a common machine learning algorithm that uses a tree data structure to make decisions based on a set of input features. Decision trees are useful for classification and regression problems. They are created by recursively splitting the data based on the most informative features. The tree data structure makes it easy to traverse the decision-making process and make predictions.
+
+Building Graphs
+Graphs are used in machine learning to represent complex relationships between data points. Data structures such as adjacency matrices and linked lists are used to create and manipulate graphs. Graphs are used for clustering, classification, and prediction tasks.

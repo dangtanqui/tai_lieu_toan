@@ -1,0 +1,139 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_introduction.htm
+Introduction to Machine Learning
+We are living in the 'age of data' that is enriched with better computational power and more storage resources. This data or information is increasing day by day, but the real challenge is to make sense of all the data. Businesses & organizations are trying to deal with it by building intelligent systems using the concepts and methodologies from Data Science, Data Mining, and Machine learning. Among them, machine learning is the most exciting field of computer science. It would not be wrong to call machine learning the application and science of algorithms that provide sense to the data.
+
+What is Machine Learning?
+Machine learning (ML) is a subfield of artificial intelligence that enables machines to learn from data without being explicitly programmed.
+
+In machine learning, algorithm development is core work. These algorithms are trained on data to learn the hidden patterns and make predictions based on what they learned. The whole process of training the algorithms is termed model building.
+
+How does Machine Learning work?
+The mechanism of how a machine learns from a model is divided into three main components −
+
+Decision Process − Based on the input data and output labels provided to the model, it will produce a logic about the pattern identified.
+
+Cost Function − It is the measure of error between expected value and predicted value. This is used to evaluate the performance of machine learning.
+
+Optimization Process − Cost function can be minimized by adjusting the weights at the training stage. The algorithm will repeat the process of evaluation and optimization until the error minimizes.
+
+Need for Machine Learning
+Human beings, at this moment, are the most intelligent and advanced species on earth because they can think, evaluate and solve complex problems. On the other side, AI is still in its initial stage and hasnt surpassed human intelligence in many aspects.
+
+Then the question is, what is the need to make machines learn? The most suitable reason for doing this is to make decisions, based on data, with efficiency and scale.
+
+Lately, organizations are investing heavily in newer technologies like Artificial Intelligence, Machine Learning and Deep Learning to get the key information from data to perform several real-world tasks and solve problems. We can call it data-driven decisions taken by machines, particularly to automate the process.
+
+These data-driven decisions can be used, instead of programming logic, in problems that cannot be programmed inherently. The fact is that we cant do without human intelligence, but another aspect is that we all need to solve real-world problems with efficiency at a huge scale. That is why the need for machine learning arises.
+
+History of Machine Learning
+The history of Machine learning roots back to the year 1959, when Arthur Samuel invented a program that calculates the winning probability in checkers for each side.
+
+Well, the evolution of Machine learning through decades started with the question, "Can Machines think?". Then came the rise of neural networks between 1960 and 1970. Machine learning continued to advance through statistical methods such as Bayesian networks and decision tree learning.
+
+The revolution of Deep Learning started off in the 2010s with the evolution of tasks such as natural language processing, convolution neural networks and speech recognition. Today, machine learning has turned out to be a revolutionizing technology that has become a part of all fields, ranging from healthcare to finance and transportation.
+
+Machine Learning Methods
+Machine learning models can be categorized mainly into the following four types −
+
+Supervised Machine Learning
+Unsupervised Machine Learning
+Semi-supervised Machine Learning
+Reinforcement Machine Learning
+Let's explore each of the above types of machine learning in detail.
+
+Supervised Machine Learning
+In supervised machine learning, the algorithm is trained on labeled data, meaning that the correct answer or output is provided for each input. The algorithm then uses this labeled data to make predictions about new, unseen data.
+
+Unsupervised Machine Learning
+In unsupervised machine learning, the algorithm is trained on unlabeled data, meaning that the correct output or answer is not provided for each input. Instead, the algorithm must identify patterns and structures in the data on its own.
+
+Semi-supervised Machine Learning
+Semi-supervised machine learning is a type of machine learning technique that is an integration of supervised and unsupervised learning as it uses a major portion of unlabeled dataset and minor portion of labeled data for training an algorithm preferably for classification and regression tasks.
+
+Reinforcement Machine Learning
+In reinforcement machine learning, the algorithm learns by receiving feedback in the form of rewards or punishments based on its actions. The algorithm then uses this feedback to adjust its behavior and improve performance.
+
+Machine Learning Use Cases
+Machine learning has become a significant part of all our lives. It is broadly used in every industry, especially industries that involve dealing with large data. Some of the use cases of Machine learning are:
+
+Recommendation System
+They are software engines designed to suggest items to users based on their likes and dislikes, previous engagement with the application, etc. This helps enhance the user experience which would increase sales of a business.
+
+Voice Assistants
+It is a digital assistant that works based on speech recognition, language processing algorithms, and voice synthesis to listen to a specific voice command and reciprocate back with relevant information asked by the user.
+
+Fraud Detection
+It is the process of identifying unusual activities within a system or organization mostly used in the financial sector to identify fraudulent transactions. An algorithm is trained to monitor transactions, behaviors, and patterns to identify suspicious activities that can be reported and looked into further.
+
+Health Care
+Machine learning is widely used in the health sector to diagnose a disease, improve medical imaging accuracy, and personalize patient treatment.
+
+Robotic Process Automation (RPA)
+Also known as software robotics, RPA uses intelligent automation technologies to perform repetitive manual tasks.
+
+Drive-less Cars
+The idea of having a car that drives for itself took technology to another level. Though the algorithm and tech stack behind these technologies are advanced, the core is machine learning. The most common example is Tesla cars, which are well-tested and proven.
+
+Computer Vision
+This focuses on enabling computers to identify and understand images and videos. They seek to perform and automate tasks that replicate human capabilities like face recognition.
+
+Advantages of Machine Learning
+Automation − With machine learning, every task especially repetitive can be done seamlessly saving time and energy for humans. For example, the deployment of chatbots has improved customer experience and reduced waiting time. While human agents can work on dealing with creativity and complex problems.
+Enhancing user experience and decision making − Machine learning models can analyze and gain insights from large datasets for decision making. Machine learning also allows for the personalization of products and services to enhance the customer experience. An algorithm analyzes customer preferences and past behavior to recommend products that enhance retail and also user experience.
+Wide Applicability − This technology has wide range of applications. From health care and finance to business and marketing, machine learning is applied in almost all sectors to improve productivity.
+Continuous Improvement − Machine learning algorithms are designed in a way that they keep learning to improve accuracy and efficiency. Every time the data is retrained by the model, the decisions improve.
+Disadvantages of Machine Learning
+Data acquisition − The most crucial and the most difficult task in machine learning is collecting data. Every machine learning algorithm requires data that is relevant, unbiased, and good quality. Better data would result in better performance of the machine learning model.
+Inaccurate Results − Another major challenge in machine learning is the credibility of the interpreted result generated by the algorithm.
+Chances of Error − Machine learning depends on two things data and algorithm. Any incorrectness or bias in these could result in errors and inaccurate outcomes. For example, if the dataset trained is small, then the algorithm cannot fully understand the patterns resulting in biased and irrelevant perdition.
+Maintenance − Machine learning models have to continuously be maintained and monitored to ensure that they remain effective and accurate over time.
+Challenges in Machine Learning
+Despite the progress of Machine learning, there are a few challenges and limitations that have to be addressed.
+
+Data Privacy − Machine learning models highly depend on data. Sometimes, it might be personal details. Keeping privacy and security concerns in mind, the data collected should be limited to only what is required by the model. It also requires the balance of the use of sensitive data with the protection of an individual's privacy. The key tasks include effective anonymization, data protection, and data security.
+Impact on Jobs − Machine learning takes up roles and tasks that can be automated like jobs in areas like data entry and customer service. Simultaneously it also creates job opportunities related to data preparation and algorithm development like data scientist, machine learning engineer and many more. Machine learning towards human resources towards data-driven decision making and creativity.
+Bias and Discrimination − In the aspect of privacy considerations, a few sensitive attributes have to be protected such as race and gender from being inappropriately used to avoid discrimination.
+Ethical Consideration − It helps to access how these machine learning algorithms impact individuals, society and various other sectors. The goal of these ethics is to establish a few guidelines to maintain transparency, accountability and social responsibility.
+Machine Learning Algorithms Vs. Traditional Programming
+The difference between machine algorithms and traditional programming depends on how they are programmed to handle tasks. Some comparisons based on different criteria are tabulated below:
+
+Criteria	Machine learning algorithms	Traditional programming
+Problem solving approach	The computer learns from training a model on large datasets.	Explicit rules are given to the computer to follow in the form of code that is manually programmed.
+Data	They heavily rely on data, it defines the performance of the model.	They rely less on data, as the output depends on the logic encoded.
+Complexity of Problem	Best suited for complex problems like image segmentation or natural language processing, which require identifying patterns and relationships in the data.	Best suited for a problem with defined outcome and logic.
+Flexibility	It is highly flexible and adapts to different scenarios, especially because the model is retrained with new data.	It has limited flexibility, as the changes should be done manually.
+Outcome	The outcome in machine learning is unpredictable, as it depends on data trained, model and many other things.	The outcome in traditional programming can be accurately predicted if the problem and logic are known.
+Machine Learning Vs. Deep Learning
+Deep learning is a sub-field of Machine learning. The actual difference between these is the way the algorithm learns.
+
+In Machine learning, computers learn from large datasets using algorithms to perform tasks like prediction and recommendation. Whereas Deep learning uses a complex structure of algorithms developed similar to the human brain.
+
+The effectiveness of deep learning models for complex problems is more compared to machine learning models. For example, autonomous vehicles are usually developed using deep learning where it can identify a U-TURN sign board using image segmentation while if a machine learning model was used, the features of the signboard are selected and then identified using a classifier algorithm.
+
+Machine Learning Vs. Generative AI
+Machine learning and Generative AI are different branches with different applications. While Machine Learning is used for predictive analysis and decision-making, Generative AI focuses on creating content, including realistic images and videos in existing patterns.
+
+Future of Machine Learning
+Machine Learning is definitely going to be the next game changer in technology. Automated machine learning and synthetic data generation, are new age developments that make machine learning more accessible and efficient.
+
+One big technology that is an adoption of machine learning is Quantum computing. It uses the mechanical phenomenon of quantum to create a system that exhibits multiple states at the same time. These advanced quantum algorithms are used to process data at high speed. AutoML is another technology that combines automation and machine learning. It potentially includes each stage from raw data to developing a model ready for deployment.
+
+Multi-modal AI is an AI system used to effectively interpret and analyze multi-sensory inputs, including texts, speech, images, and sensor data. Generative AI is another emerging application of machine learning which focuses on creating new content that mimics existing patterns. A few other emerging technologies that have an impact on Machine learning are Edge computing, Robotics, and many more.
+
+How to Learn Machine Learning?
+Getting started with machine learning can seem intimidating, but with the right resources and guidance, it can be a rewarding experience. Below is a 5-step process getting started with machine learning is broken −
+
+Step 1 − Learn the Fundamentals of Machine Learning
+Before diving into machine learning, it's important to have a solid understanding of the fundamentals. This includes learning about data types, statistics, algorithms, and programming languages like Python. There are many online courses, books, and tutorials available that can help you get started.
+
+Step 2 − Choose a Machine Learning Framework
+Once you have a basic understanding of machine learning, it's time to choose a framework. There are many popular machine learning frameworks available, including TensorFlow, PyTorch, and Scikit-Learn. Each framework has its own strengths and weaknesses, so it's important to choose one that aligns with your goals and expertise.
+
+Step 3 − Practice with Real Data
+One of the best ways to learn machine learning is by practicing with real data. You can find publicly available datasets on websites like Kaggle or UCI Machine Learning Repository. Practicing with real data will help you understand how to clean, preprocess, and analyze data, as well as how to choose appropriate algorithms for different types of problems.
+
+Step 4 − Build Your Own Projects
+As you gain more experience with machine learning, it's important to start building your own projects. This will help you apply what you've learned and develop your skills further. You can start with simple projects, like building a recommendation system or a sentiment analysis tool, and then move on to more complex projects as you become more comfortable with the process.
+
+Step 5 − Participate in Machine Learning Communities
+Joining machine learning communities, such as online forums or meetups, can be a great way to connect with other people who are interested in the same field. You can learn from others, share your own experiences, and get feedback on your projects. This can help you stay motivated and engaged as you continue to learn and grow.

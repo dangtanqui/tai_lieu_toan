@@ -1,0 +1,46 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_optics_clustering.htm
+OPTICS is like DBSCAN (Density-Based Spatial Clustering of Applications with Noise), another popular density-based clustering algorithm. However, OPTICS has several advantages over DBSCAN, including the ability to identify clusters of varying densities, the ability to handle noise, and the ability to produce a hierarchical clustering structure.
+
+Implementation of OPTICS in Python
+To implement OPTICS clustering in Python, we can use the scikit-learn library. The scikit-learn library provides a class called OPTICS that implements the OPTICS algorithm.
+
+Here's an example of how to use the OPTICS class in scikit-learn to cluster a dataset −
+
+Example - Optics Clustering
+from sklearn.cluster import OPTICS
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+# Generate sample data
+X, y = make_blobs(n_samples=2000, centers=4, cluster_std=0.60, random_state=0)
+
+# Cluster the data using OPTICS
+optics = OPTICS(min_samples=50, xi=.05)
+optics.fit(X)
+
+# Plot the results
+labels = optics.labels_
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='turbo')
+plt.show()
+In this example, we first generate a sample dataset using the make_blobs function from scikit-learn. We then instantiate an OPTICS object with the min_samples parameter set to 50 and the xi parameter set to 0.05. The min_samples parameter specifies the minimum number of samples required for a cluster to be formed, and the xi parameter controls the steepness of the cluster hierarchy. We then fit the OPTICS object to the dataset using the fit method. Finally, we plot the results using a scatter plot, where each data point is colored according to its cluster label.
+
+Output
+When you execute this program, it will produce the following plot as the output −
+
+optics
+Advantages of OPTICS Clustering
+Following are the advantages of using OPTICS clustering −
+
+Ability to handle clusters of varying densities − OPTICS can handle clusters that have varying densities, unlike some other clustering algorithms that require clusters to have uniform densities.
+
+Ability to handle noise − OPTICS can identify noise data points that do not belong to any cluster, which is useful for removing outliers from the dataset.
+
+Hierarchical clustering structure − OPTICS produces a hierarchical clustering structure that can be useful for analyzing the dataset at different levels of granularity.
+
+Disadvantages of OPTICS Clustering
+Following are some of the disadvantages of using OPTICS clustering.
+
+Sensitivity to parameters − OPTICS requires careful tuning of its parameters, such as the min_samples and xi parameters, which can be challenging.
+
+Computational complexity − OPTICS can be computationally expensive for large datasets, especially when using a high min_samples value.

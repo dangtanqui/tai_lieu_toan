@@ -1,0 +1,150 @@
+%==============================================================================
+\section{Data Loading --- Nạp dữ liệu vào dự án học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_loading.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Bước đầu tiên của mọi dự án ML}]
+Khi bắt đầu dự án ML, thứ cần nhất là \textbf{dữ liệu} phải được nạp vào hệ thống.
+\end{dongco}
+
+\begin{dinhnghia}[title={Data loading}]
+Trong ML, data loading là quá trình nhập/đọc dữ liệu từ nguồn bên ngoài và chuyển sang định dạng thuật toán dùng được.
+Sau đó dữ liệu được tiền xử lý (loại bất thường, giá trị thiếu, outlier).
+Khi đã tiền xử lý, dữ liệu được chia train/test để huấn luyện và đánh giá mô hình.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Nguồn và định dạng}]
+Dữ liệu có thể từ CSV, database, web API, cloud storage, \ldots
+Định dạng phổ biến nhất cho dự án ML là \textbf{CSV} (Comma Separated Values).
+\end{ynghia}
+
+\subsection{Lưu ý khi nạp dữ liệu CSV}
+
+\begin{dinhnghia}[title={CSV}]
+CSV là định dạng văn bản thuần lưu dữ liệu dạng bảng: mỗi hàng là một bản ghi, mỗi cột là một trường/thuộc tính.
+Đơn giản, nhẹ, dễ đọc/xử lý bằng Python, R, Java.
+Trong Python có nhiều cách nạp CSV vào dự án ML; trước khi nạp cần lưu ý các thành phần sau.
+\end{dinhnghia}
+
+\subsubsection{File Header (hàng tiêu đề)}
+
+\begin{phuongphap}[title={Vai trò và lưu ý}]
+Hàng đầu tiên của CSV thường chứa tên cột.
+\begin{itemize}
+  \item \textbf{Consistency}: số cột và tên cột phải nhất quán trên mọi hàng.
+  \item \textbf{Meaningful names}: tên cột có nghĩa, mô tả; tránh \texttt{column1}, \texttt{column2}, \ldots
+  \item \textbf{Case sensitivity}: tên cột có thể phân biệt hoa/thường tùy thư viện.
+  \item \textbf{Special characters}: tránh khoảng trắng, dấu phẩy, ngoặc kép trong tên cột; dùng underscore hoặc camelCase.
+  \item \textbf{Missing header}: nếu không có header, cần chỉ định tên cột thủ công hoặc tài liệu kèm theo.
+  \item \textbf{Encoding}: encoding của header phải tương thích với công cụ đọc file.
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Comments (dòng chú thích)}
+
+\begin{ynghia}[title={Dòng comment}]
+Dòng tùy chọn bắt đầu bằng ký tự như \texttt{\#} hoặc \texttt{//}, thường bị bỏ qua khi đọc CSV.
+Không thường là dữ liệu huấn luyện, nhưng nếu có cần xử lý đúng khi nạp.
+\end{ynghia}
+
+\begin{itemize}
+  \item Biết \textbf{comment marker} đang dùng.
+  \item Comment nên ở \textbf{dòng riêng}, không trộn với dữ liệu.
+  \item Dùng marker \textbf{nhất quán} trong cả file.
+  \item Hiểu thư viện có bỏ qua comment mặc định hay cần tham số.
+  \item Nếu comment chứa thông tin quan trọng, có thể cần xử lý tách khỏi dữ liệu.
+\end{itemize}
+
+\subsubsection{Delimiter (ký tự phân tách)}
+
+\begin{luuy}[title={Ảnh hưởng tới mô hình}]
+Delimiter ảnh hưởng đáng kể độ chính xác và hiệu năng khi nạp dữ liệu.
+\begin{itemize}
+  \item Chọn delimiter phù hợp (ví dụ giá trị có dấu phẩy bên trong $\Rightarrow$ có thể dùng tab hoặc semicolon thay vì comma).
+  \item \textbf{Consistency} trong cả file.
+  \item \textbf{Encoding} tương thích với delimiter (ví dụ delimiter không-ASCII với UTF-8).
+  \item Một số thư viện ML yêu cầu delimiter cụ thể --- xem tài liệu công cụ.
+\end{itemize}
+\end{luuy}
+
+\subsubsection{Quotes (dấu ngoặc kép)}
+
+\begin{phuongphap}[title={Lưu ý khi dùng quotes}]
+\begin{itemize}
+  \item Ký tự quote (\texttt{"} phổ biến nhất) nhất quán trong file.
+  \item Giá trị có delimiter hoặc xuống dòng có thể được bọc trong quotes.
+  \item Quote bên trong giá trị phải \textbf{escape} (thường nhân đôi quote), ví dụ: \texttt{"John ""the Hammer"" Smith"}.
+  \item Cách dùng quote có thể khác nhau tùy công cụ tạo CSV.
+  \item Encoding ảnh hưởng cách đọc quotes.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Các cách nạp file CSV trong Python}
+
+\begin{ynghia}[title={Nhiệm vụ then chốt}]
+Nạp đúng dữ liệu là bước quan trọng nhất; CSV có nhiều biến thể và độ khó parse khác nhau.
+\end{ynghia}
+
+\subsubsection{Dùng module CSV (built-in)}
+
+\begin{vidu}[title={csv.reader}]
+\begin{lstlisting}
+import csv
+with open('mydata.csv', 'r') as file:
+   reader = csv.reader(file)
+   for row in reader:
+      print(row)
+\end{lstlisting}
+Đọc \texttt{mydata.csv} và in từng hàng.
+\end{vidu}
+
+\subsubsection{Dùng thư viện Pandas}
+
+\begin{vidu}[title={pandas.read\_csv}]
+\begin{lstlisting}
+import pandas as pd
+
+data = pd.read_csv('mydata.csv')
+\end{lstlisting}
+Nạp CSV vào DataFrame \texttt{data} --- tiện cho thao tác và biến đổi dữ liệu.
+\end{vidu}
+
+\subsubsection{Dùng thư viện NumPy}
+
+\begin{vidu}[title={numpy.genfromtxt}]
+\begin{lstlisting}
+import numpy as np
+
+data = np.genfromtxt('mydata.csv', delimiter=',')
+\end{lstlisting}
+Nạp CSV vào mảng NumPy \texttt{data}.
+\end{vidu}
+
+\subsubsection{Dùng thư viện SciPy}
+
+\begin{vidu}[title={scipy loadtxt}]
+\begin{lstlisting}
+import numpy as np
+
+from scipy import loadtxt
+data = loadtxt('mydata.csv', delimiter=',')
+\end{lstlisting}
+\end{vidu}
+
+\subsubsection{Dùng thư viện scikit-learn}
+
+\begin{vidu}[title={load\_iris}]
+\begin{lstlisting}
+from sklearn.datasets import load_iris
+
+data = load_iris().data
+\end{lstlisting}
+Nạp dataset Iris có sẵn trong sklearn vào mảng NumPy \texttt{data}.
+\end{vidu}
+
+\begin{luuy}[title={Đối chiếu}]
+Các bước tiền xử lý, hiểu dữ liệu và chia train/test: bài \texttt{19--23}; train/validation/test: Mục~\ref{sec:train-val-test}.
+\end{luuy}

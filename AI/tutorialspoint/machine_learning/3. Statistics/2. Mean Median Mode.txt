@@ -1,0 +1,52 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_mean_median_mode.htm
+Mean, Median, and Mode are statistical measures used to describe the central tendency of a dataset. In machine learning, these measures are used to understand the distribution of data and identify outliers. Here, we will explore the concepts of Mean, Median, and Mode and their implementation in Python.
+
+Mean
+The "mean" is the average value of a dataset. It is calculated by adding up all the values in the dataset and dividing by the number of observations. The mean is a useful measure of central tendency because it is sensitive to outliers, meaning that extreme values can significantly affect the value of the mean.
+
+In Python, we can calculate the mean using the NumPy library, which provides a function called mean().
+
+Median
+The "median" is the middle value in a dataset. It is calculated by arranging the values in the dataset in order and finding the value that lies in the middle. If there are an even number of values in the dataset, the median is the average of the two middle values.
+
+The median is a useful measure of central tendency because it is not affected by outliers, meaning that extreme values do not significantly affect the value of the median.
+
+In Python, we can calculate the median using the NumPy library, which provides a function called median().
+
+Mode
+The "mode" is the most common value in a dataset. It is calculated by finding the value that occurs most frequently in the dataset. If there are multiple values that occur with the same frequency, the dataset is said to be bimodal, trimodal, or multimodal.
+
+The mode is a useful measure of central tendency because it can identify the most common value in a dataset. However, it is not a good measure of central tendency for datasets with a wide range of values or datasets with no repeating values.
+
+In Python, we can calculate the mode using the SciPy library, which provides a function called mode().
+
+Python Implementation
+Let's see an example of calculating mean, median, and mode for a salary table in Python using NumPy and Pandas −
+
+import numpy as np
+import pandas as pd
+# create a sample salary table
+salary = pd.DataFrame({
+   'employee_id': ['001', '002', '003', '004', '005', '006', '007',
+   '008', '009', '010'],
+   'salary': [50000, 65000, 55000, 45000, 70000, 60000, 55000, 45000,
+   80000, 70000]
+})
+
+# calculate mean
+mean_salary = np.mean(salary['salary'])
+print('Mean salary:', mean_salary)
+
+# calculate median
+median_salary = np.median(salary['salary'])
+print('Median salary:', median_salary)
+
+# calculate mode
+mode_salary = salary['salary'].mode()[0]
+print('Mode salary:', mode_salary)
+Output
+On executing this code, you will get the following output −
+
+Mean salary: 59500.0
+Median salary: 57500.0
+Mode salary: 45000

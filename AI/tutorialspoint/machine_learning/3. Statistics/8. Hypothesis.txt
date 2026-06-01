@@ -1,0 +1,86 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_hypothesis.htm
+In machine learning, a hypothesis is a proposed explanation or solution for a problem. It is a tentative assumption or idea that can be tested and validated using data. In supervised learning, the hypothesis is the model that the algorithm is trained on to make predictions on unseen data.
+
+Hypothesis in machine learning is generally expressed as a function that maps input data to output predictions. In other words, it defines the relationship between the input and output variables. The goal of machine learning is to find the best possible hypothesis that can generalize well to unseen data.
+
+What is Hypothesis?
+A hypothesis is an assumption or idea used as a possible explanation for something that can be tested to see if it might be true. The hypothesis is generally based on some evidence. A simple example of a hypothesis will be the assumption: "The price of a house is directly proportional to its square footage".
+
+Hypothesis in Machine Learning
+In machine learning, mainly supervised learning, a hypothesis is generally expressed as a function that maps input data to output predictions. In other words, it defines the relationship between the input and output variables. The goal of machine learning is to find the best possible hypothesis that can generalize well to unseen data.
+
+In supervised learning, a hypothesis (h) can be represented mathematically as follows −
+
+$$\mathrm{h(x) \: = \: \hat{y}}$$
+
+Here x is input and &ycirc; is predicted value.
+
+Hypothesis Function (h)
+A machine learning model is defined by its hypothesis function. A hypothesis function is a mathematical function that takes input and returns output. For a simple linear regression problem, a hypothesis can be represented as a linear function of the input feature ('x').
+
+$$\mathrm{h(x) \: = \: w_{0} \: + \: w_{1}x}$$
+
+Where w0 and w1 are the parameters (weights) and 'x' is the input feature.
+
+For a multiple linear regression problem, the model can be represented mathematically as follows −
+
+$$\mathrm{h(x) \: = \: w_{0} \: + \: w_{1}x \: + \: \dotso \: + \: w_{n}x_{n}}$$
+
+Where,
+
+w0, w1, ..., wn are the parameters.
+x1, x2, ..., xn are the input data (features)
+n is the total number of training examples
+h(x) is hypothesis function
+The machine learning process tries to find the optimal values for the parameters such that it minimizes the cost function.
+
+Hypothesis Space (H)
+A Set of all possible hypotheses is known as a hypotheses space or set. The machine learning process tries to find the best-fit hypothesis among all possible hypotheses.
+
+For a linear regression model, the hypothesis includes all possible linear functions.
+
+The process of finding the best hypothesis is called model training or learning. During the training process, the algorithm adjusts the model parameters to minimize the error or loss function, which measures the difference between the predicted output and the actual output.
+
+Types of Hypothesis in Machine Learning
+There are mainly two types of hypotheses in machine learning −
+
+1. Null Hypothesis (H0)
+The null hypothesis is the default assumption or explanation that there is no relation between input features and output variables. In the machine learning process, we try to reject the null hypothesis in favor of another hypothesis. The null hypothesis is rejected if the "p-value" is less than the significance level (α)
+
+2. Alternative Hypothesis (H1)
+The alternate hypothesis is a direct contradiction of the null hypothesis. The alternative hypothesis is a hypothesis that assumes a significant relation between the input data and output (target value). When we reject the null hypothesis, we accept an alternative hypothesis. When the p-value is less than the significance level, we reject the null hypothesis and accept the alternative hypothesis.
+
+Hypothesis Testing in Machine Learning
+Hypothesis testing determines whether the data sufficiently supports a particular hypothesis. The following are steps involved in hypothesis testing in machine learning −
+
+State the null and alternative hypotheses − define null hypothesis H0 and alternative hypothesis H1.
+Choose a significance level (α) − The significance level is the probability of rejecting a null hypothesis when it is true. Generally, the value of α is 0.05 (5%) or 0.01 (1%).
+Calculate a test statistic − Calculate t-statistic or z-statistic based on data and type of hypothesis.
+Determine the p-value − The p-value measures the strength against null hypothesis. If the p-value is less than the significance level, reject the null hypothesis.
+Make a decision − small p-value indicates that there are significant relations between the features and target variables. Reject the null hypothesis.
+How to Find the Best Hypothesis?
+The process of finding the best hypothesis is called model training or learning. During the training process, the algorithm adjusts the model parameters to minimize the error or loss function, which measures the difference between the predicted output and the actual output.
+
+Optimization techniques such as gradient descent are used to find the best hypothesis. The best hypothesis is one that minimizes the cost function or error function.
+
+For example, in linear regression, the Mean Square Error (MSE) is used as a cost function (J(w)). It is defined as
+
+$$\mathrm{J(x) \: = \: \frac{1}{2n}\displaystyle \sum \limits_{i=0}^n \left(h(x_{i}) \: - \: y_{i}\right)^{2}}$$
+
+Where,
+
+h(xi) is the predicted output for the ith data sample or observation..
+yi is the actual target value for the ith sample.
+n is the number of training data.
+Here, the goal is to find the optimal values of w that minimize the cost function. The hypothesis represented using these optimal values of parameters w will be the best hypothesis.
+
+Properties of a Good Hypothesis
+The hypothesis plays a critical role in the success of a machine learning model. A good hypothesis should have the following properties −
+
+Generalization − The model should be able to make accurate predictions on unseen data.
+Simplicity − The model should be simple and interpretable so that it is easier to understand and explain.
+Robustness − The model should be able to handle noise and outliers in the data.
+Scalability − The model should be able to handle large amounts of data efficiently.
+There are many types of machine learning algorithms that can be used to generate hypotheses, including linear regression, logistic regression, decision trees, support vector machines, neural networks, and more.
+
+Once the model is trained, it can be used to make predictions on new data. However, it is important to evaluate the performance of the model before using it in the real world. This is done by testing the model on a separate validation set or using cross-validation techniques.

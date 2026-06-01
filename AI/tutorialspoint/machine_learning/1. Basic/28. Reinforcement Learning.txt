@@ -1,0 +1,81 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning.htm
+What is Reinforcement Learning?
+Reinforcement learning is a machine learning approach where an agent (software entity) is trained to interpret the environment by performing actions and monitoring the results. For every good action, the agent gets positive feedback and for every bad action the agent gets negative feedback. It's inspired by how animals learn from their experiences, making decisions based on the consequences of their actions.
+
+The following diagram shows a typical reinforcement learning model −
+
+Reinforcement Machine Learning
+In the above diagram, the agent is represented in a particular state. The agent takes action in an environment to achieve a particular task. As a result of the performed task, the agent receives feedback as a reward or punishment.
+
+How Does Reinforcement Learning Work?
+In reinforcement learning, there would be an agent that we want to train over a period of time so that it can interact with a specific environment. The agent will follow a set of strategies for interacting with the environment and then after observing the environment it will take actions regarding the current state of the environment. The agent learns how to make decisions by receiving rewards or penalties based on its actions.
+
+The working of reinforcement learning can be understood by the approach of a master chess player.
+
+Exploration − Just like how a chess play considers various possible move and their outcome, the agent also explores different actions to understand their effects and learns which action would lead to better result.
+Exploitation − The chess player also uses intuition, based on past experiences to make decisions that seem right. Similarly, the agent uses knowledge gained from previous experiences to make best choices.
+Key Elements Reinforcement Learning
+Beyond the agent and the environment, one can identify four main sub elements of reinforcement learning system −
+
+Policy − It defines the learning agent's way of behaving at a given time. A policy is a mapping from perceived states of the environment to actions to be taken when in those states.
+Reward Signal − It defines the goal of a reinforcement learning problem. It is a numerical score received to the agent by the environment. This reward signal defines what are the good and bad events for the agent.
+Value function − It specifies what is good in the long run. The value is the total amount of reward an agent can expect to accumulate over the future, starting from that state.
+Model − Models are used for planning, which means deciding on a course of action by considering possible future situations before they are actually experienced.
+Markov Decision Processes(MDP) provide a mathematical framework for modeling decision-making in an environment with states, actions, rewards, probability. Reinforcement learning uses MDP to understand how an agent should act to maximize rewards and to find the best strategies for decision making.
+
+Markov Decision Processes (MDP)
+Reinforcement learning uses the mathematical framework of Markov decision processes(MDP) to define the interaction between learning agent and environment. Some important concepts and components of MDP are −
+
+States(S) − Represents all the situations in which an agent can find itself.
+Action(A) − The choices available for the agent from the gives states.
+Transition Probabilities(P) − The likelihood of moving from one state to another as a result of a specific action.
+Rewards(R) − Feedback received after transitioning to a new state due to an action, indication the outcome's desirability.
+Policy( ) − A strategy that defines the action to take in each state for achieving a reward.
+Steps in Reinforcement Learning Process
+Here are the major steps involved in reinforcement learning methods −
+
+Step 1 − First, we need to prepare an agent with some initial set of strategies.
+
+Step 2 − Then observe the environment and its current state.
+
+Step 3 − Next, select the optimal policy regards the current state of the environment and perform important action.
+
+Step 4 − Now, the agent can get corresponding reward or penalty as per accordance with the action taken by it in previous step.
+
+Step 5 − Now, we can update the strategies if it is required so.
+
+Step 6 − At last, repeat steps 2-5 until the agent got to learn & adopt the optimal policies.
+
+Types of Reinforcement Learning
+There are two types of Reinforcement learning:
+
+Positive Reinforcement − When an agent performs an action that is desirable or leads to a good out, it receives a rewards which increase the livelihood of that action being repeated.
+Negative Reinforcement − When an agent performs an action to avoid a negative outcome, the negative stimulus is removed. For example, if a robot is programmed to avoid an obstacle and successfully navigates away from it, the threat associated with action is removed. And the robot more likely avoids that action in the future.
+Types of Reinforcement Learning Algorithms
+There are various algorithms used in reinforcement learning such as Q-learning, policy gradient methods, Monte Carlo method and many more. All these algorithms can be classified into two broad categories −
+
+Model-free Reinforcement Learning − It is a category of reinforcement learning algorithms that learns to make decisions by interacting with the environment directly, without creating a model of the environment's dynamics. The agent performs different actions multiple times to learn the outcomes and creates a strategy (policy) that optimizes its reward points. This is ideal for changing, large or complex environments.
+Model-based Reinforcement Learning − This category of reinforcement learning algorithms involves creating a model of the environment's dynamics to make decisions and improve performance. This model is ideal when the environment is static, and well-defined, where real-world environment testing is difficult.
+Advantages of Reinforcement Learning
+Some of the advantages of reinforcement learning are −
+
+Reinforcement learning doesn't require pre-defined instructions and human intervention.
+Reinforcement learning model can adapt to wide range of environments including static and dynamic.
+Reinforcement learning can be used to solve wide range of problems, including decision making, prediction and optimization.
+Reinforcement learning model gets better as it gains experience and fine-tunes.
+Disadvantages of Reinforcement Learning
+Some of the disadvantages of reinforcement learning are −
+
+Reinforcement learning depends on the quality of the reward function, if it is poorly designed, the model can never get better with its performance.
+The designing and tuning of reinforcement learning can be complex and requires expertise.
+Applications of Reinforcement Learning
+Reinforcement learning has a wide range of applications across various fields. Some major applications are −
+
+1. Robotics
+Reinforcement learning is generally concerned with decision-making in unpredictable environments. This is the most used approach especially for complicated tasks, such as replicating human behavior, manipulation, navigation and locomotion. This approach also allows robots to adapt to new environments through trial and error.
+
+2. Natural Language Processing (NLP)
+In Natural Language Processing (NLP), Reinforcement learning is used to enhance the performance of chatbots by managing complex dialogues and improving user interactions. Additionally, this learning approach is also used to train models for tasks like summarizations.
+
+Reinforcement Learning Vs. Supervised learning
+Supervised learning and Reinforcement learning are two distinct approaches in machine learning. In supervised learning, a model is trained on a dataset that consists of both input and its corresponding outputs for predictive analysis. Whereas, in reinforcement learning an agent interacts with an environment, learning to make decisions by receiving feedback in the form of rewards or penalties, aiming to maximize cumulative rewards. Another difference between these two approaches is the tasks that they are ideal for. While supervised learning is used for tasks that are often with clear, structured output, reinforcement learning is used for complex decision making tasks with optimal strategies.

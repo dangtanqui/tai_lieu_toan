@@ -1,0 +1,139 @@
+%==============================================================================
+\section{Reinforcement Learning --- Học tăng cường}
+\label{sec:reinforcement-learning}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning.htm}.
+\end{ynghia}
+
+\subsection{Reinforcement Learning là gì?}
+
+\begin{dinhnghia}[title={Học tăng cường}]
+Agent (thực thể phần mềm) được huấn luyện để hiểu môi trường bằng cách thực hiện hành động và quan sát kết quả.
+Hành động tốt $\Rightarrow$ phản hồi tích cực; hành động xấu $\Rightarrow$ phản hồi tiêu cực.
+Lấy cảm hứng từ cách động vật học từ kinh nghiệm: quyết định dựa trên hậu quả hành động.
+\end{dinhnghia}
+
+\begin{vidu}[title={Mô hình RL điển hình (theo nguồn)}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/reinforcement_machine_learning.png}
+\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/reinforcement-machine-learning.png}\end{center}
+Agent ở một trạng thái, thực hiện hành động trong môi trường để hoàn thành tác vụ; nhận reward hoặc punishment.
+\end{vidu}
+
+\subsection{Cách Reinforcement Learning hoạt động}
+
+\begin{phuongphap}[title={Vòng lặp agent--môi trường}]
+Huấn luyện agent theo thời gian để tương tác môi trường: theo chiến lược, quan sát trạng thái, chọn hành động, học từ reward/penalty.
+\end{phuongphap}
+
+\begin{vidu}[title={Ví von kỳ thủ cờ}]
+\textbf{Exploration}: như kỳ thủ thử nhiều nước đi và hậu quả --- agent thử hành động khác nhau để hiểu tác động.
+
+\textbf{Exploitation}: dùng kinh nghiệm quá khứ chọn nước đi tốt --- agent tận dụng kiến thức đã học.
+\end{vidu}
+
+\subsection{Bốn thành phần chính (ngoài agent và môi trường)}
+
+\begin{dinhnghia}[title={Policy (chính sách)}]
+Cách agent hành xử tại một thời điểm: ánh xạ từ trạng thái cảm nhận được sang hành động cần thực hiện.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Reward signal}]
+Xác định mục tiêu bài toán RL: điểm số số học từ môi trường; định nghĩa sự kiện ``tốt'' và ``xấu'' cho agent.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Value function}]
+Đánh giá điều gì tốt về \textbf{dài hạn}: tổng reward kỳ vọng tích luỹ từ trạng thái hiện tại trở đi.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Model}]
+Dùng cho \textbf{planning}: quyết định chuỗi hành động bằng cách mô phỏng tình huống tương lai trước khi trải nghiệm thực tế.
+\end{dinhnghia}
+
+\begin{ynghia}[title={MDP}]
+Markov Decision Processes (MDP) là khung toán cho ra quyết định trong môi trường có trạng thái, hành động, reward, xác suất.
+RL dùng MDP để tối đa hoá reward và tìm chiến lược quyết định tốt.
+\end{ynghia}
+
+\subsection{Markov Decision Processes (MDP)}
+
+\begin{phuongphap}[title={Thành phần MDP}]
+\begin{itemize}
+  \item \textbf{States ($S$)}: mọi tình huống agent có thể gặp.
+  \item \textbf{Actions ($A$)}: lựa chọn hành động từ trạng thái cho trước.
+  \item \textbf{Transition probabilities ($P$)}: xác suất chuyển trạng thái sau một hành động.
+  \item \textbf{Rewards ($R$)}: phản hồi sau khi chuyển trạng thái, thể hiện mức ``mong muốn'' của kết quả.
+  \item \textbf{Policy ($\pi$)}: chiến lược chọn hành động ở mỗi trạng thái để đạt reward cao.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Các bước trong quy trình RL}
+
+\begin{enumerate}
+  \item Chuẩn bị agent với tập chiến lược ban đầu.
+  \item Quan sát môi trường và trạng thái hiện tại.
+  \item Chọn policy tối ưu theo trạng thái và thực hiện hành động.
+  \item Nhận reward hoặc penalty.
+  \item Cập nhật chiến lược nếu cần.
+  \item Lặp bước 2--5 đến khi agent học policy tối ưu.
+\end{enumerate}
+
+\subsection{Hai loại Reinforcement}
+
+\begin{itemize}
+  \item \textbf{Positive reinforcement}: hành động mong muốn $\Rightarrow$ reward $\Rightarrow$ tăng khả năng lặp lại hành động đó.
+  \item \textbf{Negative reinforcement}: hành động tránh kết quả xấu $\Rightarrow$ bỏ kích thích tiêu cực (ví dụ robot tránh vật cản thành công $\Rightarrow$ ít gặp ``mối đe dọa'' hơn).
+\end{itemize}
+
+\subsection{Loại thuật toán RL}
+
+\begin{phuongphap}[title={Ví dụ thuật toán}]
+Q-learning, policy gradient, Monte Carlo, \ldots
+
+\textbf{Model-free RL}: học trực tiếp từ tương tác môi trường, không xây mô hình động học môi trường; thử nhiều hành động để học policy tối ưu reward --- phù hợp môi trường lớn, phức tạp, thay đổi.
+
+\textbf{Model-based RL}: xây mô hình động học môi trường để ra quyết định --- phù hợp môi trường tĩnh, xác định rõ, khó thử nghiệm thực tế.
+\end{phuongphap}
+
+\subsection{Ưu điểm}
+
+\begin{itemize}
+  \item Không cần hướng dẫn/ quy tắc định sẵn và can thiệp con người nhiều.
+  \item Thích nghi nhiều môi trường (tĩnh và động).
+  \item Giải bài toán ra quyết định, dự báo, tối ưu.
+  \item Cải thiện dần khi tích luỹ kinh nghiệm.
+\end{itemize}
+
+\subsection{Nhược điểm}
+
+\begin{itemize}
+  \item Phụ thuộc chất lượng \textbf{hàm reward} --- thiết kế kém thì mô hình không cải thiện.
+  \item Thiết kế và tinh chỉnh RL phức tạp, cần chuyên môn.
+\end{itemize}
+
+\subsection{Ứng dụng}
+
+\subsubsection{Robotics}
+Ra quyết định trong môi trường không chắc chắn; dùng cho bắt chước hành vi người, thao tác, điều hướng, di chuyển; robot thích nghi môi trường mới qua thử--sai.
+
+\subsubsection{Natural Language Processing}
+Cải thiện chatbot trong hội thoại phức tạp; huấn luyện tóm tắt văn bản và tác vụ NLP khác.
+
+\subsection{Reinforcement Learning vs Supervised Learning}
+
+\begin{vidu}[title={So sánh ngắn}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XX}
+\textbf{Tiêu chí} & \textbf{Supervised} & \textbf{Reinforcement} \\
+\midrule
+Dữ liệu huấn luyện &
+Cặp đầu vào--đầu ra có nhãn. &
+Agent tương tác môi trường; học từ reward/penalty. \\
+Mục tiêu &
+Dự đoán/phân loại từ feature. &
+Tối đa hoá reward tích luỹ qua chuỗi hành động. \\
+Tác vụ điển hình &
+Đầu ra có cấu trúc rõ (nhãn, giá trị số). &
+Ra quyết định phức tạp, chiến lược tối ưu theo thời gian. \\
+\end{tabularx}
+\end{vidu}

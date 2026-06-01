@@ -1,0 +1,62 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_implementing.htm
+Implementing machine learning involves several steps, which include −
+
+Data Collection and Preparation
+The first step in implementing machine learning is collecting the data that will be used to train and test the model. The data should be relevant to the problem that the machine learning model is being built to solve. Once the data has been collected, it needs to be preprocessed and cleaned to remove any inconsistencies or missing values.
+
+Data Exploration and Visualization
+The next step is to explore and visualize the data to gain insights into its structure and identify any patterns or trends. Data visualization tools such as matplotlib and seaborn can be used to create visualizations such as histograms, scatter plots, and heat maps.
+
+Feature Selection and Engineering
+The features of the data that are relevant to the problem need to be selected or engineered. Feature engineering involves creating new features from existing data that can improve the accuracy of the model.
+
+Model Selection and Training
+Once the data has been prepared and features selected or engineered, the next step is to select a suitable machine learning algorithm to train the model. This involves splitting the data into training and testing sets and using the training set to fit the model. Various machine learning algorithms such as linear regression, logistic regression, decision trees, random forests, support vector machines, and neural networks can be used to train the model.
+
+Model Evaluation
+After training the model, it needs to be evaluated to determine its performance. The performance of the model can be evaluated using metrics such as accuracy, precision, recall, and F1 score. Cross-validation techniques can also be used to test the model's performance.
+
+Model Tuning
+The performance of the model can be improved by tuning its hyperparameters. Hyperparameters are settings that are not learned from the data, but rather set by the user. The optimal values for these hyperparameters can be found using techniques such as grid search and random search.
+
+Deployment and Monitoring
+Once the model has been trained and tuned, it needs to be deployed to a production environment. The deployment process involves integrating the model into the business process or system. The model also needs to be monitored regularly to ensure that it continues to perform well and to identify any issues that need to be addressed.
+
+Each of the above steps requires different tools and techniques, and successful implementation requires a combination of technical and business skills.
+
+Choosing the Language and IDE for ML Development
+To develop ML applications, you will have to decide on the platform, the IDE and the language for development. There are several choices available. Most of these would meet your requirements easily as all of them provide the implementation of AI algorithms discussed so far.
+
+If you are developing the ML algorithm on your own, the following aspects need to be understood carefully −
+
+The language of your choice − this essentially is your proficiency in one of the languages supported in ML development.
+
+The IDE that you use − This would depend on your familiarity with the existing IDEs and your comfort level.
+
+Development platform − There are several platforms available for development and deployment. Most of these are free-to-use. In some cases, you may have to incur a license fee beyond a certain amount of usage. Here is a brief list of choice of languages, IDEs and platforms for your ready reference.
+
+Language Choice
+Here is a list of languages that support ML development −
+
+Python
+R
+Matlab
+Octave
+Julia
+C++
+C
+This list is not essentially comprehensive; however, it covers many popular languages used in machine learning development. Depending upon your comfort level, select a language for the development, develop your models and test.
+
+IDEs
+Here is a list of IDEs which support ML development −
+
+R Studio
+Pycharm
+iPython/Jupyter Notebook
+Julia
+Spyder
+Anaconda
+Rodeo
+Google Colab
+The above list is not essentially comprehensive. Each one has its own merits and demerits. The reader is encouraged to try out these different IDEs before narrowing down to a single one.
+

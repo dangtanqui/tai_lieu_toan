@@ -1,0 +1,110 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_feature_selection.htm
+Feature selection is an important step in machine learning that involves selecting a subset of the available features to improve the performance of the model. The following are some commonly used feature selection techniques −
+
+Filter Methods
+This method involves evaluating the relevance of each feature by calculating a statistical measure (e.g., correlation, mutual information, chi-square, etc.) and ranking the features based on their scores. Features that have low scores are then removed from the model.
+
+To implement filter methods in Python, you can use the SelectKBest or SelectPercentile functions from the sklearn.feature_selection module. Below is a small code snippet to implement Feature selection.
+
+from sklearn.feature_selection import SelectPercentile, chi2
+selector = SelectPercentile(chi2, percentile=10)
+X_new = selector.fit_transform(X, y)
+Wrapper Methods
+This method involves evaluating the model's performance by adding or removing features and selecting the subset of features that yields the best performance. This approach is computationally expensive, but it is more accurate than filter methods.
+
+To implement wrapper methods in Python, you can use the RFE (Recursive Feature Elimination) function from the sklearn.feature_selection module. Below is a small code snippet to implement Wrapper method.
+
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+
+estimator = LogisticRegression()
+selector = RFE(estimator, n_features_to_select=5)
+selector = selector.fit(X, y)
+X_new = selector.transform(X)
+Embedded Methods
+This method involves incorporating feature selection into the model building process itself. This can be done using techniques such as Lasso regression, Ridge regression, or Decision Trees. These methods assign weights to each feature and features with low weights are removed from the model.
+
+To implement embedded methods in Python, you can use the Lasso or Ridge regression functions from the sklearn.linear_model module. Below is a small code snippet for implementing embedded methods −
+
+from sklearn.linear_model import Lasso
+
+lasso = Lasso(alpha=0.1)
+lasso.fit(X, y)
+coef = pd.Series(lasso.coef_, index = X.columns)
+important_features = coef[coef != 0]
+Principal Component Analysis (PCA)
+This is a type of unsupervised learning method that involves transforming the original features into a set of uncorrelated principal components that explain the maximum variance in the data. The number of principal components can be selected based on a threshold value, which can reduce the dimensionality of the dataset.
+
+To implement PCA in Python, you can use the PCA function from the sklearn.decomposition module. For example, to reduce the number of features you can use PCA as given the following code −
+
+from sklearn.decomposition import PCA
+pca = PCA(n_components=3)
+X_new = pca.fit_transform(X)
+Recursive Feature Elimination (RFE)
+This method involves recursively eliminating the least significant features until a subset of the most important features is identified. It uses a model-based approach and can be computationally expensive, but it can yield good results in high-dimensional datasets.
+
+To implement RFE in Python, you can use the RFECV (Recursive Feature Elimination with Cross Validation) function from the sklearn.feature_selection module. For example, below is a small code snippet with the help of which we can implement to use Recursive Feature Elimination −
+
+from sklearn.feature_selection import RFECV
+from sklearn.tree import DecisionTreeClassifier
+estimator = DecisionTreeClassifier()
+selector = RFECV(estimator, step=1, cv=5)
+selector = selector.fit(X, y)
+X_new = selector.transform(X)
+These feature selection techniques can be used alone or in combination to improve the performance of machine learning models. It is important to choose the appropriate technique based on the size of the dataset, the nature of the features, and the type of model being used.
+
+Example
+In the below example, we will implement three feature selection methods − univariate feature selection using the chi-square test, recursive feature elimination with cross-validation (RFECV), and principal component analysis (PCA).
+
+We will use the Breast Cancer Wisconsin (Diagnostic) Dataset, which is included in scikit-learn. This dataset contains 569 samples with 30 features, and the task is to classify whether a tumor is malignant or benign based on these features.
+
+Here is the Python code to implement these feature selection methods on the Breast Cancer Wisconsin (Diagnostic) Dataset −
+
+# Import necessary libraries and dataset
+import pandas as pd
+from sklearn.datasets import load_diabetes
+from sklearn.feature_selection import SelectKBest, chi2
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+# Load the dataset
+diabetes = pd.read_csv(r'C:\Users\Leekha\Desktop\diabetes.csv')
+
+# Split the dataset into features and target variable
+X = diabetes.drop('Outcome', axis=1)
+y = diabetes['Outcome']
+
+# Apply univariate feature selection using the chi-square test
+selector = SelectKBest(chi2, k=4)
+X_new = selector.fit_transform(X, y)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X_new, y, test_size=0.3, random_state=42)
+
+# Fit a logistic regression model on the selected features
+clf = LogisticRegression()
+clf.fit(X_train, y_train)
+
+# Evaluate the model on the test set
+accuracy = clf.score(X_test, y_test)
+print("Accuracy using univariate feature selection: {:.2f}".format(accuracy))
+
+# Recursive feature elimination with cross-validation (RFECV)
+estimator = LogisticRegression()
+selector = RFECV(estimator, step=1, cv=5)
+selector.fit(X, y)
+X_new = selector.transform(X)
+scores = cross_val_score(LogisticRegression(), X_new, y, cv=5)
+print("Accuracy using RFECV feature selection: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+
+# PCA implementation
+pca = PCA(n_components=5)
+X_new = pca.fit_transform(X)
+scores = cross_val_score(LogisticRegression(), X_new, y, cv=5)
+print("Accuracy using PCA feature selection: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+Output
+When you execute this code, it will produce the following output on the terminal −
+
+Accuracy using univariate feature selection: 0.74
+Accuracy using RFECV feature selection: 0.77 (+/- 0.03)
+Accuracy using PCA feature selection: 0.75 (+/- 0.07)

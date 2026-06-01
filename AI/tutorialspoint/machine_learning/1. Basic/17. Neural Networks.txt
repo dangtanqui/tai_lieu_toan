@@ -1,0 +1,36 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_artificial_neural_networks.htm
+Machine learning and neural networks are two important technologies in the field of artificial intelligence (AI). While they are often used together, they are not the same thing. Here, we will explore the differences between machine learning and neural networks and how they are related.
+
+Let us first understand both the terms in detail and then their differences.
+
+What is Machine Learning?
+Machine Learning is that field of computer science with the help of which computer systems can provide sense to data in much the same way as human beings do.
+
+In simple words, ML is a type of artificial intelligence that extracts patterns out of raw data by using an algorithm or method.
+
+Machine learning can be classified into three different categories on the basis of human supervision. These categories are supervised learning, unsupervised learning, and reinforcement learning.
+
+In supervised learning, machine learning algorithms are trained with labeled data sets to perform tasks related to classification and regression. Some of the used supervised learning algorithms are linear regression, K-nearest neighbors, decision trees, random forest, etc.
+
+In unsupervised learning, the models are trained on unlabeled datasets. Unsupervised learning is mainly used for tasks related to clustering, association rule mining, and dimensionality reduction. Some of the most used unsupervised algorithms include K-means clustering, apriori algorithm, etc.
+
+Reinforcement learning is somehow similar to supervised learning where an agent (algorithm or software entity) learns to interact environment by performing actions and monitoring results. Learning is based on rewards and penalties. There are various algorithms used in reinforcement learning, such as Q-learning, policy gradient methods, the Monte Carlo method, and many more.
+
+What are Neural Networks?
+Neural networks are a type of machine learning algorithm that is inspired by the structure of the human brain. They are designed to simulate how the brain works by using layers of interconnected nodes, or artificial neurons. Each neuron takes in input from the neurons in the previous layer and uses that input to produce an output. This process is repeated for each layer until a final output is produced.
+
+Neural networks can be used for a wide range of tasks, including image recognition, speech recognition, natural language processing, and prediction. They are particularly well-suited to tasks that involve processing complex data or recognizing patterns in data.
+
+The following diagram represents the general model of ANN followed by its processing.
+
+Artificial Neural Network Model
+Machine Learning vs. Neural Networks
+Now that we have a basic understanding of what machine learning and neural networks are. Let's dive deeper into the differences between the two.
+
+Firstly, machine learning is a broad category that encompasses many different types of algorithms, including neural networks. Neural networks are a specific type of machine learning algorithm that is designed to simulate the way the brain works.
+
+Secondly, while machine learning algorithms can be used for a wide range of tasks, neural networks are particularly well-suited to tasks that involve processing complex data or recognizing patterns in data. Neural networks can recognize complex patterns and relationships in data that other machine learning algorithms may not be able to detect.
+
+Thirdly, neural networks require a lot of data and processing power to train. Neural networks typically require large datasets and powerful hardware, such as graphics processing units (GPUs), to train effectively. Machine learning algorithms, on the other hand, can be trained on smaller datasets and less powerful hardware.
+
+Finally, neural networks can provide highly accurate predictions and decisions, but they can be more difficult to understand and interpret than other machine learning algorithms. The way that neural networks make decisions is not always transparent, which can make it difficult to understand how they arrived at their conclusions.

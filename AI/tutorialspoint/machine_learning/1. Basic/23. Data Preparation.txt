@@ -1,0 +1,332 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_preparing_data.htm
+Data preparation is a critical step in the machine learning process, and can have a significant impact on the accuracy and effectiveness of the final model. It requires careful attention to detail and a thorough understanding of the data and the problem at hand.
+
+Let's discuss how data should be prepared in order to fit right with the model for better accuracy and outcome.
+
+What is Data Preparation?
+Data preparation is the process of dealing with raw data i.e, cleaning, organizing and transforming it to align with the machine learning algorithms. Data preparation is a continuous process, and has a huge impact on the performance of machine learning model. Clean and structured data would result in better outcomes.
+
+Importance of Data Preparation
+In Machine learning, the model learns from the data that is fed. So, the algorithm can learn efficiently only if the data is organized and perfect. The quality of the data you use for your model can have a significant impact on the performance of the model.
+
+Few aspects that define the importance of data preparation in machine learning are −
+
+Improves model accuracy − Machine learning algorithms reply completely on data. When you provide clean and structured data to models, the outcomes are accurate.
+Facilitates Feature Engineering − Data preparation often includes the process of selecting or creating new features to train the model. Hence, data preparation would make feature engineering easy.
+Data Quality − Collected data most often would contain inconsistencies, errors and irrelevant information. Hence when tasks like data cleaning, transformation are applied, the data is formatted and neat. This can be used for gaining insights and patterns.
+Enables rate of prediction − Prepared data makes it easier to analyze results and would yield accurate outcomes.
+Data Preparation Process Steps
+Data preparation process involves a sequence of steps that is required to make data suitable for analysis and modeling. The goal of data preparation is to make sure that the data is accurate, complete, and relevant for the analysis.
+
+The following are some of the key steps involved in data preparation −
+
+Data Collection
+Data Cleaning
+Data Transformation
+Data Reduction
+Data Splitting
+ML Data Preparation Steps
+The process shown is not always sequential. You might, for example, split your data before you transform it. You might need to collect more data.
+Let's understand each of the above steps in detail −
+
+Data Collection
+Data collection is the first step in the process of machine learning, where data from different sources is gathered to make decisions, answer research questions and statistical planning. Different sources such as databases, text files, pictures, sound files, or web scraping may be used for data collection. Once the data is selected, the data has to be preprocessed in order to gain insights. This process is carried out to put the data in an appropriate format that would be useful for problem solving. Some time data collection follows the data integration step.
+
+Data integration involves combining data from multiple sources into a single dataset for analysis. This may involve matching or linking records across different datasets, or merging datasets based on common variables.
+
+After selecting the raw data, the most important task is data preprocessing. In broad sense, data preprocessing will convert the selected data into a form we can work with or can feed to ML algorithms. We always need to preprocess our data so that it can be as per the expectation of machine learning algorithm. The data preprocessing includes data cleaning, transformation and reduction. Let's discuss each of these three in detail.
+
+Data Cleaning
+Data cleaning is the process of identifying and correcting errors, missing values, duplicate values and outliers, etc. in the data. This step is crucial in the process of machine learning as it ensures that the data is accurate, relevant and error free.
+
+Common techniques used for data cleaning include imputation, outlier detection and removal, etc. The following is a sequence of steps for data cleaning −
+
+1. Handling duplicate values
+Duplicates in the dataset means that there is repeated data, which might occur due to data entry errors or issues while collecting data. The technique used to remove duplicates is first they are identified and then deleted using drop_duplicates function in Pandas.
+
+2. Fixing syntax errors
+In this step, structural errors like inconsistencies in data format or naming conventions should be addressed. Standardizing formats and fixing errors would ensure data consistence and accurate analysis.
+
+3. Dealing outliers
+Outliers are values that are unusual and differ greatly with the data. The techniques used to detect outliers include statistical methods like z-score or IQR method and machine learning methods like clustering and SVM's.
+
+4. Handling Missing Values
+Missing values are the values or data that is not stored for some values in the dataset. There are several ways to handle missing data like:
+
+Imputation − In this process the missing values are substituted with different value, which can be a central tendency measure like mean, median or mode for numeric values and most frequency category for categorical data. Some other methods in imputation include regression imputation and multiple imputation.
+Deletion − In this process the entire instances with missing values are removed. Well, this is not a reliable method since there is loss of data.
+5. Validating the data
+Data Validation is another stage that makes sure that the data aligns perfectly with the requirements so that the predicted outcome is accurate. Some common data validation procedures it the correctness of data before storing them in databases are:
+
+Data type check
+Code Check
+Format check
+Range check
+Data Transformation
+Data transformation is the process of converting the data from its original format into a format that is suitable for analysis and modeling. This could include defining the structure, aligning the data, extracting data from source, and then storing it in an appropriate form.
+
+There are many techniques available to transorm data into a sutable format. Some commonly used data transformation techniques are as follows −
+
+Scaling
+Normalization − L1 & L2 Normalizations
+Standardization
+Binarization
+Encoding
+Log Transformation
+Lets discuss each of the above data transformation techniques in detail −
+
+1. Scaling
+In most cases, the data we collected consists of attributes with varying scale, but we cannot provide such data to ML algorithm hence it requires rescaling. Data scaling makes sure that attributes are at the same scale i.e, usually range of 0 to 1.
+
+We can rescale the data with the help of MinMaxScaler class of scikit-learn Python library.
+
+Example
+In this example we will rescale the data of Pima Indians Diabetes dataset which we used earlier. First, the CSV data will be loaded (as done in the previous chapters) and then with the help of MinMaxScaler class, it will be rescaled in the range of 0 and 1.
+
+The first few lines of the following script are same as we have written in previous chapters while loading CSV data.
+
+from pandas import read_csv
+from numpy import set_printoptions
+from sklearn import preprocessing
+path = r'C:\pima-indians-diabetes.csv'
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv(path, names=names)
+array = dataframe.values
+Now, we can use MinMaxScaler class to rescale the data in the range of 0 and 1.
+
+data_scaler = preprocessing.MinMaxScaler(feature_range=(0,1))
+data_rescaled = data_scaler.fit_transform(array)
+We can also summarize the data for output as per our choice. Here, we are setting the precision to 1 and showing the first 10 rows in the output.
+
+set_printoptions(precision=1)
+print ("\nScaled data:\n", data_rescaled[0:10])
+Output
+Scaled data:
+[
+   [0.4 0.7 0.6 0.4 0.  0.5 0.2 0.5 1. ]
+   [0.1 0.4 0.5 0.3 0.  0.4 0.1 0.2 0. ]
+   [0.5 0.9 0.5 0.  0.  0.3 0.3 0.2 1. ]
+   [0.1 0.4 0.5 0.2 0.1 0.4 0.  0.  0. ]
+   [0.  0.7 0.3 0.4 0.2 0.6 0.9 0.2 1. ]
+   [0.3 0.6 0.6 0.  0.  0.4 0.1 0.2 0. ]
+   [0.2 0.4 0.4 0.3 0.1 0.5 0.1 0.1 1. ]
+   [0.6 0.6 0.  0.  0.  0.5 0.  0.1 0. ]
+   [0.1 1.  0.6 0.5 0.6 0.5 0.  0.5 1. ]
+   [0.5 0.6 0.8 0.  0.  0.  0.1 0.6 1. ]
+]
+From the above output, all the data got rescaled into the range of 0 and 1.
+
+2. Normalization
+Normalization is used to rescale the data with a distribution value between 0 and 1. For every feature, the minimum value is set to 0 and the maximum value is set to 1.
+
+This is used to rescale each row of data to have a length of 1. It is mainly useful in Sparse dataset where we have lots of zeros. We can rescale the data with the help of Normalizer class of scikit-learn Python library.
+
+In machine learning, there are two types of normalization preprocessing techniques as follows −
+
+L1 Normalization
+It may be defined as the normalization technique that modifies the dataset values in a way that in each row the sum of the absolute values will always be up to 1. It is also called Least Absolute Deviations.
+
+Example
+In this example, we use L1 Normalize technique to normalize the data of Pima Indians Diabetes dataset which we used earlier. First, the CSV data will be loaded and then with the help of Normalizer class it will be normalized.
+
+The first few lines of following script are same as we have written in previous chapters while loading CSV data.
+
+from pandas import read_csv
+from numpy import set_printoptions
+from sklearn.preprocessing import Normalizer
+path = r'C:\pima-indians-diabetes.csv'
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv (path, names=names)
+array = dataframe.values
+Now, we can use Normalizer class with L1 to normalize the data.
+
+Data_normalizer = Normalizer(norm='l1').fit(array)
+Data_normalized = Data_normalizer.transform(array)
+We can also summarize the data for output as per our choice. Here, we are setting the precision to 2 and showing the first 3 rows in the output.
+
+set_printoptions(precision=2)
+print ("\nNormalized data:\n", Data_normalized [0:3])
+Output
+Normalized data:
+[
+   [0.02 0.43 0.21 0.1  0. 0.1  0. 0.14 0. ]
+   [0.   0.36 0.28 0.12 0. 0.11 0. 0.13 0. ]
+   [0.03 0.59 0.21 0.   0. 0.07 0. 0.1  0. ]
+]
+L2 Normalization
+It may be defined as the normalization technique that modifies the dataset values in a way that in each row the sum of the squares will always be up to 1. It is also called least squares.
+
+Example
+In this example, we use L2 Normalization technique to normalize the data of Pima Indians Diabetes dataset which we used earlier. First, the CSV data will be loaded (as done in previous chapters) and then with the help of Normalizer class it will be normalized.
+
+The first few lines of following script are same as we have written in previous chapters while loading CSV data.
+
+from pandas import read_csv
+from numpy import set_printoptions
+from sklearn.preprocessing import Normalizer
+path = r'C:\pima-indians-diabetes.csv'
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv (path, names=names)
+array = dataframe.values
+Now, we can use Normalizer class with L1 to normalize the data.
+
+Data_normalizer = Normalizer(norm='l2').fit(array)
+Data_normalized = Data_normalizer.transform(array)
+We can also summarize the data for output as per our choice. Here, we are setting the precision to 2 and showing the first 3 rows in the output.
+
+set_printoptions(precision=2)
+print ("\nNormalized data:\n", Data_normalized [0:3])
+Output
+Normalized data:
+[
+   [0.03 0.83 0.4  0.2  0. 0.19 0. 0.28 0.01]
+   [0.01 0.72 0.56 0.24 0. 0.22 0. 0.26 0.  ]
+   [0.04 0.92 0.32 0.   0. 0.12 0. 0.16 0.01]
+]
+3. Standardization
+Standardization is used to transform data attributes to a standard Gaussian distribution with a mean of 0 and a standard deviation of 1. This technique is useful in ML algorithms like linear regression, logistic regression that assumes a Gaussian distribution in input dataset and produce better results with rescaled data.
+
+We can standardize the data (mean = 0 and SD =1) with the help of StandardScaler class of scikit-learn Python library.
+
+Example
+In this example, we will rescale the data of Pima Indians Diabetes dataset which we used earlier. First, the CSV data will be loaded and then with the help of StandardScaler class it will be converted into Gaussian Distribution with mean = 0 and SD = 1.
+
+The first few lines of following script are same as we have written in previous chapters while loading CSV data.
+
+from sklearn.preprocessing import StandardScaler
+from pandas import read_csv
+from numpy import set_printoptions
+path = r'C:\pima-indians-diabetes.csv'
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv(path, names=names)
+array = dataframe.values
+Now, we can use StandardScaler class to rescale the data.
+
+data_scaler = StandardScaler().fit(array)
+data_rescaled = data_scaler.transform(array)
+We can also summarize the data for output as per our choice. Here, we are setting the precision to 2 and showing the first 5 rows in the output.
+
+set_printoptions(precision=2)
+print ("\nRescaled data:\n", data_rescaled [0:5])
+Output
+Rescaled data:
+[
+   [ 0.64  0.85  0.15  0.91 -0.69  0.2   0.47  1.43  1.37]
+   [-0.84 -1.12 -0.16  0.53 -0.69 -0.68 -0.37 -0.19 -0.73]
+   [ 1.23  1.94 -0.26 -1.29 -0.69 -1.1   0.6  -0.11  1.37]
+   [-0.84 -1.   -0.16  0.15  0.12 -0.49 -0.92 -1.04 -0.73]
+   [-1.14  0.5  -1.5   0.91  0.77  1.41  5.48 -0.02  1.37]
+]
+4. Binarization
+As the name suggests, this is the technique with the help of which we can make our data binary. We can use a binary threshold for making our data binary. The values above that threshold value will be converted to 1 and below that threshold will be converted to 0. For example, if we choose threshold value = 0.5, then the dataset value above it will become 1 and below this will become 0. That is why we can call it binarizing the data or thresholding the data. This technique is useful when we have probabilities in our dataset and want to convert them into crisp values.
+
+We can binarize the data with the help of Binarizer class of scikit-learn Python library.
+
+Example
+In this example, we will rescale the data of Pima Indians Diabetes dataset which we used earlier. First, the CSV data will be loaded and then with the help of Binarizer class it will be converted into binary values i.e. 0 and 1 depending upon the threshold value. We are taking 0.5 as threshold value.
+
+The first few lines of following script are same as we have written in previous chapters while loading CSV data.
+
+from pandas import read_csv
+from sklearn.preprocessing import Binarizer
+path = r'C:\pima-indians-diabetes.csv'
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+dataframe = read_csv(path, names=names)
+array = dataframe.values
+Now, we can use Binarize class to convert the data into binary values.
+
+binarizer = Binarizer(threshold=0.5).fit(array)
+Data_binarized = binarizer.transform(array)
+Here, we are showing the first 5 rows in the output.
+
+print ("\nBinary data:\n", Data_binarized [0:5])
+Output
+Binary data:
+[
+   [1. 1. 1. 1. 0. 1. 1. 1. 1.]
+   [1. 1. 1. 1. 0. 1. 0. 1. 0.]
+   [1. 1. 1. 0. 0. 1. 1. 1. 1.]
+   [1. 1. 1. 1. 1. 1. 0. 1. 0.]
+   [0. 1. 1. 1. 1. 1. 1. 1. 1.]
+]
+5. Encoding
+This technique is used to convert categorical variables into numerical representations. Some common encoding techniques include one-hot encoding, label encoding and target encoding.
+
+Label Encoding
+Most of the sklearn functions expect that the data with number labels rather than word labels. Hence, we need to convert such labels into number labels. This process is called label encoding. We can perform label encoding of data with the help of LabelEncoder() function of scikit-learn Python library.
+
+Example
+In the following example, Python script will perform the label encoding.
+
+First, import the required Python libraries as follows −
+
+import numpy as np
+from sklearn import preprocessing
+Now, we need to provide the input labels as follows −
+
+input_labels = ['red','black','red','green','black','yellow','white']
+The next line of code will create the label encoder and train it.
+
+encoder = preprocessing.LabelEncoder()
+encoder.fit(input_labels)
+The next lines of script will check the performance by encoding the random ordered list −
+
+test_labels = ['green','red','black']
+encoded_values = encoder.transform(test_labels)
+print("\nLabels =", test_labels)
+print("Encoded values =", list(encoded_values))
+encoded_values = [3,0,4,1]
+decoded_list = encoder.inverse_transform(encoded_values)
+We can get the list of encoded values with the help of following python script −
+
+print("\nEncoded values =", encoded_values)
+print("\nDecoded labels =", list(decoded_list))
+Output
+Labels = ['green', 'red', 'black']
+Encoded values = [1, 2, 0]
+Encoded values = [3, 0, 4, 1]
+Decoded labels = ['white', 'black', 'yellow', 'green']
+6. Log Transformation
+This technique is usually used in handling skewed data. It involves apply natural logarithmic function for all values in the dataset to modify the scale of numeric values.
+
+Data Reduction
+Data Reduction is a technique to reduce the size of the dataset by selecting a subset of features or observations that are most relevant for the analysis. This can help to reduce noise and improve the accuracy of the model.
+
+This is useful when the dataset is very large or when a dataset contains large amount of irrelevant data.
+
+One of the most common technique used is Dimensionality Reduction, which reduces the size of the dataset without loosing the important information. Other method is the Discretization, where continuous values like time and temperature are converted to discrete categories which simplifies the data.
+
+Data Splitting
+Data Splitting is the last step in the preparation of data for machine learning, where the data is split into different sets -
+
+Training − subset which is used by the machine learning model for learning patterns.
+Validation − subset used to evaluate the performance of machine learning model while training.
+Testing − subset used to evaluate the performance and efficiency of the trained model.
+Python Example
+Let's check an example of data preparation using the breast cancer dataset −
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+
+# load the dataset
+data = load_breast_cancer()
+
+# separate the features and target
+X = data.data
+y = data.target
+
+# split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# normalize the data using StandardScaler
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+In this example, we first load the breast cancer dataset using load_breast_cancer function from scikit-learn. Then we separate the features and target, and split the data into training and testing sets using train_test_split function.
+
+Finally, we normalize the data using StandardScaler from scikit-learn, which subtracts the mean and scales the data to unit variance. This helps to bring all the features to a similar scale, which is particularly important for models like SVM and neural networks.
+
+Data Preparation and Feature Engineering
+Feature engineering involves creating new features from the existing data that may be more informative or useful for the analysis. It can involve combining or transforming existing features, or creating new features based on domain knowledge or insights. Both data preparation and feature engineering go hand-in-hand in the overall data preprocessing pipeline.
+

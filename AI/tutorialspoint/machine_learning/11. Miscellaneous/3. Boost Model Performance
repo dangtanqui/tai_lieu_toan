@@ -1,0 +1,301 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_boost_model_performance.htm
+Boosting is a popular ensemble learning technique that combines several weak learners to create a strong learner. It works by iteratively training weak learners on subsets of the data and assigning higher weights to the misclassified samples to increase their importance in the subsequent iterations. This process is repeated until the desired level of performance is achieved.
+
+Here are some techniques to boost model performance in machine learning −
+
+Feature Engineering − Feature engineering involves creating new features from the existing features or transforming the existing features to make them more informative for the model. This can include techniques such as one-hot encoding, scaling, normalization, and feature selection.
+
+Hyperparameter Tuning − Hyperparameters are parameters that are not learned during training but are set by the data scientist. They control the behavior of the model, and tuning them can significantly impact model performance. Grid search and randomized search are common techniques for hyperparameter tuning.
+
+Ensemble Learning − Ensemble learning involves combining multiple models to improve performance. Techniques such as bagging, boosting, and stacking can be used to create ensembles. Random forests are an example of a bagging ensemble, while gradient boosting machines (GBMs) are an example of a boosting ensemble.
+
+Regularization − Regularization is a technique that prevents overfitting by adding a penalty term to the loss function. L1 regularization (Lasso) and L2 regularization (Ridge) are common techniques used in linear models, while dropout is a technique used in neural networks.
+
+Data Augmentation − Data augmentation involves generating new data from the existing data by applying transformations such as rotation, scaling, and flipping. This can help to reduce overfitting and improve model performance.
+
+Model Architecture − The architecture of the model can significantly impact its performance. Techniques such as deep learning and convolutional neural networks (CNNs) can be used to create more complex models that are better able to learn complex patterns in the data.
+
+Early Stopping − Early stopping is a technique used to prevent overfitting by stopping the training process once the model performance stops improving on a validation set. This prevents the model from continuing to learn the noise in the data and can help to improve generalization.
+
+Cross-Validation − Cross-validation is a technique used to evaluate the performance of a model on multiple subsets of the data. This can help to identify overfitting and can be used to select the best hyperparameters for the model.
+
+These techniques can be implemented in Python using various machine learning libraries such as scikit-learn, TensorFlow, and Keras. By using these techniques, data scientists can improve the performance of their models and create more accurate predictions.
+
+The following example below in which implement cross-validation using Scikit-learn −
+
+Example
+from sklearn.datasets import load_iris
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import GradientBoostingClassifier
+
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+# Create a Gradient Boosting Classifier
+gb_clf = GradientBoostingClassifier()
+
+# Perform 5-fold cross-validation on the classifier
+scores = cross_val_score(gb_clf, X, y, cv=5)
+
+# Print the average accuracy and standard deviation of the cross-validation scores
+print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.96 (+/- 0.07)
+Performance Improvement with Ensembles
+Ensembles can give us boost in the machine learning result by combining several models. Basically, ensemble models consist of several individually trained supervised learning models and their results are merged in various ways to achieve better predictive performance compared to a single model. Ensemble methods can be divided into following two groups −
+
+Sequential ensemble methods
+As the name implies, in these kind of ensemble methods, the base learners are generated sequentially. The motivation of such methods is to exploit the dependency among base learners.
+
+Parallel ensemble methods
+As the name implies, in these kind of ensemble methods, the base learners are generated in parallel. The motivation of such methods is to exploit the independence among base learners.
+
+Ensemble Learning Methods
+The following are the most popular ensemble learning methods i.e. the methods for combining the predictions from different models −
+
+Bagging
+The term bagging is also known as bootstrap aggregation. In bagging methods, ensemble model tries to improve prediction accuracy and decrease model variance by combining predictions of individual models trained over randomly generated training samples. The final prediction of ensemble model will be given by calculating the average of all predictions from the individual estimators. One of the best examples of bagging methods are random forests.
+
+Boosting
+In boosting method, the main principle of building ensemble model is to build it incrementally by training each base model estimator sequentially. As the name suggests, it basically combine several week base learners, trained sequentially over multiple iterations of training data, to build powerful ensemble. During the training of week base learners, higher weights are assigned to those learners which were misclassified earlier. The example of boosting method is AdaBoost.
+
+Voting
+In this ensemble learning model, multiple models of different types are built and some simple statistics, like calculating mean or median etc., are used to combine the predictions. This prediction will serve as the additional input for training to make the final prediction.
+
+Bagging Ensemble Algorithms
+The following are three bagging ensemble algorithms −
+
+Bagged Decision Tree
+As we know that bagging ensemble methods work well with the algorithms that have high variance and, in this concern, the best one is decision tree algorithm. In the following Python recipe, we are going to build bagged decision tree ensemble model by using BaggingClassifier function of sklearn with DecisionTreeClasifier (a classification & regression trees algorithm) on Pima Indians diabetes dataset.
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+Now, we need to load the Pima diabetes dataset as we did in the previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+seed = 7
+kfold = KFold(n_splits=10, random_state=seed)
+cart = DecisionTreeClassifier()
+We need to provide the number of trees we are going to build. Here we are building 150 trees −
+
+num_trees = 150
+Next, build the model with the help of following script −
+
+model = BaggingClassifier(base_estimator=cart, n_estimators=num_trees, random_state=seed)
+Calculate and print the result as follows −
+
+results = cross_val_score(model, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7733766233766234
+The output above shows that we got around 77% accuracy of our bagged decision tree classifier model.
+
+Random Forest
+It is an extension of bagged decision trees. For individual classifiers, the samples of training dataset are taken with replacement, but the trees are constructed in such a way that reduces the correlation between them. Also, a random subset of features is considered to choose each split point rather than greedily choosing the best split point in construction of each tree.
+
+In the following Python recipe, we are going to build bagged random forest ensemble model by using RandomForestClassifier class of sklearn on Pima Indians diabetes dataset.
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import RandomForestClassifier
+Now, we need to load the Pima diabetes dataset as did in previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+seed = 7
+kfold = KFold(n_splits=10, random_state=seed)
+We need to provide the number of trees we are going to build. Here we are building 150 trees with split points chosen from 5 features −
+
+num_trees = 150
+max_features = 5
+Next, build the model with the help of following script −
+
+model = RandomForestClassifier(n_estimators=num_trees, max_features=max_features)
+Calculate and print the result as follows −
+
+results = cross_val_score(model, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7629357484620642
+The output above shows that we got around 76% accuracy of our bagged random forest classifier model.
+
+Extra Trees
+It is another extension of bagged decision tree ensemble method. In this method, the random trees are constructed from the samples of the training dataset.
+
+In the following Python recipe, we are going to build extra tree ensemble model by using ExtraTreesClassifier class of sklearn on Pima Indians diabetes dataset.
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import ExtraTreesClassifier
+Now, we need to load the Pima diabetes dataset as did in previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+seed = 7
+kfold = KFold(n_splits=10, random_state=seed)
+We need to provide the number of trees we are going to build. Here we are building 150 trees with split points chosen from 5 features −
+
+num_trees = 150
+max_features = 5
+Next, build the model with the help of following script −
+
+model = ExtraTreesClassifier(n_estimators=num_trees, max_features=max_features)
+Calculate and print the result as follows −
+
+results = cross_val_score(model, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7551435406698566
+The output above shows that we got around 75.5% accuracy of our bagged extra trees classifier model.
+
+Boosting Ensemble Algorithms
+The followings are the two most common boosting ensemble algorithms −
+
+AdaBoost
+It is one the most successful boosting ensemble algorithm. The main key of this algorithm is in the way they give weights to the instances in dataset. Due to this the algorithm needs to pay less attention to the instances while constructing subsequent models.
+
+In the following Python recipe, we are going to build Ada Boost ensemble model for classification by using AdaBoostClassifier class of sklearn on Pima Indians diabetes dataset.
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import AdaBoostClassifier
+Now, we need to load the Pima diabetes dataset as did in previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+seed = 5
+kfold = KFold(n_splits=10, random_state=seed)
+We need to provide the number of trees we are going to build. Here we are building 150 trees with split points chosen from 5 features −
+
+num_trees = 50
+Next, build the model with the help of following script −
+
+model = AdaBoostClassifier(n_estimators=num_trees, random_state=seed)
+Calculate and print the result as follows −
+
+results = cross_val_score(model, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7539473684210527
+The output above shows that we got around 75% accuracy of our AdaBoost classifier ensemble model.
+
+Stochastic Gradient Boosting
+It is also called Gradient Boosting Machines. In the following Python recipe, we are going to build Stochastic Gradient Boostingensemble model for classification by using GradientBoostingClassifier class of sklearn on Pima Indians diabetes dataset.
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.ensemble import GradientBoostingClassifier
+Now, we need to load the Pima diabetes dataset as did in previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+seed = 5
+kfold = KFold(n_splits=10, random_state=seed)
+We need to provide the number of trees we are going to build. Here we are building 150 trees with split points chosen from 5 features −
+
+num_trees = 50
+Next, build the model with the help of following script −
+
+model = GradientBoostingClassifier(n_estimators=num_trees, random_state=seed)
+Calculate and print the result as follows −
+
+results = cross_val_score(model, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7746582365003418
+The output above shows that we got around 77.5% accuracy of our Gradient Boosting classifier ensemble model.
+
+Voting Ensemble Algorithms
+As discussed, voting first creates two or more standalone models from training dataset and then a voting classifier will wrap the model along with taking the average of the predictions of sub-model whenever needed new data.
+
+In the following Python recipe, we are going to build Voting ensemble model for classification by using VotingClassifier class of sklearn on Pima Indians diabetes dataset. We are combining the predictions of logistic regression, Decision Tree classifier and SVM together for a classification problem as follows −
+
+First, import the required packages as follows −
+
+from pandas import read_csv
+from sklearn.model_selection import KFold
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.svm import SVC
+from sklearn.ensemble import VotingClassifier
+Now, we need to load the Pima diabetes dataset as did in previous examples −
+
+path = r"C:\pima-indians-diabetes.csv"
+headernames = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = read_csv(path, names=headernames)
+array = data.values
+X = array[:,0:8]
+Y = array[:,8]
+Next, give the input for 10-fold cross validation as follows −
+
+kfold = KFold(n_splits=10, random_state=7)
+Next, we need to create sub-models as follows −
+
+estimators = []
+model1 = LogisticRegression()
+estimators.append(('logistic', model1))
+model2 = DecisionTreeClassifier()
+estimators.append(('cart', model2))
+model3 = SVC()
+estimators.append(('svm', model3))
+Now, create the voting ensemble model by combining the predictions of above created sub models.
+
+ensemble = VotingClassifier(estimators)
+results = cross_val_score(ensemble, X, Y, cv=kfold)
+print(results.mean())
+Output
+0.7382262474367738
+The output above shows that we got around 74% accuracy of our voting classifier ensemble model.

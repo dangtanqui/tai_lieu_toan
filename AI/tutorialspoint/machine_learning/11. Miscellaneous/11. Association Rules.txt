@@ -1,0 +1,70 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_association_rules.htm
+Association rule mining is a technique used in machine learning to discover interesting patterns in large datasets. These patterns are expressed in the form of association rules, which represent relationships between different items or attributes in the dataset. The most common application of association rule mining is in market basket analysis, where the goal is to identify products that are frequently purchased together.
+
+Association rules are expressed as a set of antecedents and a set of consequents. The antecedents represent the conditions or items that must be present for the rule to apply, while the consequents represent the outcomes or items that are likely to be associated with the antecedents. The strength of an association rule is measured by two metrics: support and confidence. Support is the proportion of transactions in the dataset that contain both the antecedent and the consequent, while confidence is the proportion of transactions that contain the consequent given that they also contain the antecedent.
+
+Example - Association Rules Implementation
+In Python, the mlxtend library provides several functions for association rule mining. Here is an example implementation of association rule mining in Python using the apriori function from mlxtend −
+
+import pandas as pd
+from mlxtend.preprocessing import TransactionEncoder
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Create a sample dataset
+data = [['milk', 'bread', 'butter'],
+   ['milk', 'bread'],
+   ['milk', 'butter'],
+   ['bread', 'butter'],
+   ['milk', 'bread', 'butter', 'cheese'],
+   ['milk', 'cheese']]
+
+# Encode the dataset
+te = TransactionEncoder()
+te_ary = te.fit(data).transform(data)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Find frequent itemsets using Apriori algorithm
+frequent_itemsets = apriori(df, min_support=0.5, use_colnames=True)
+
+# Generate association rules
+rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.5)
+
+# Print the results
+print("Frequent Itemsets:")
+print(frequent_itemsets)
+print("\nAssociation Rules:")
+print(rules)
+In this example, we create a sample dataset of shopping transactions and encode it using TransactionEncoder from mlxtend. We then use the apriori function to find frequent itemsets with a minimum support of 0.5. Finally, we use the association_rules function to generate association rules with a minimum confidence of 0.5.
+
+The apriori function takes two parameters: the encoded dataset and the minimum support threshold. The use_colnames parameter is set to True to use the original item names instead of Boolean values. The association_rules function takes two parameters: the frequent itemsets and the metric and minimum threshold for generating association rules. In this example, we use the confidence metric with a minimum threshold of 0.5.
+
+Output
+The output of this code will show the frequent itemsets and the generated association rules. The frequent itemsets represent the sets of items that occur together frequently in the dataset, while the association rules represent the relationships between the items in the frequent itemsets.
+
+Frequent Itemsets:
+   support          itemsets
+0   0.666667          (bread)
+1   0.666667         (butter)
+2   0.833333           (milk)
+3   0.500000  (bread, butter)
+4   0.500000    (bread, milk)
+5   0.500000   (butter, milk)
+Association Rules:
+   antecedents    consequents    antecedent support    consequent support    support \
+0   (bread)        (butter)            0.666667             0.666667           0.5
+1   (butter)        (bread)            0.666667             0.666667           0.5
+2   (bread)          (milk)            0.666667             0.833333           0.5
+3   (milk)          (bread)            0.833333             0.666667           0.5
+4   (butter)         (milk)            0.666667             0.833333           0.5
+5   (milk)         (butter)            0.833333             0.666667           0.5
+
+
+   confidence    lift    leverage    conviction    zhangs_metric
+0     0.75      1.125     0.055556     1.333333      0.333333
+1     0.75      1.125     0.055556     1.333333      0.333333
+2     0.75      0.900    -0.055556     0.666667     -0.250000
+3     0.60      0.900    -0.055556     0.833333     -0.400000
+4     0.75      0.900    -0.055556     0.666667     -0.250000
+5     0.60      0.900    -0.055556     0.833333     -0.400000
+Association rule mining is a powerful technique that can be applied to many different types of datasets. It is commonly used in market basket analysis to identify products that are frequently purchased together, but it can also be applied to other domains such as healthcare, finance, and social media. With the help of Python libraries such as mlxtend, it is easy to implement association rule mining and generate valuable insights from large datasets.
+

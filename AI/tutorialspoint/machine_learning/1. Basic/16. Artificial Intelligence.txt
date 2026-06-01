@@ -1,0 +1,55 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_traditional_ai.htm
+Artificial Intelligence and Machine Learning are two buzzwords that are commonly used in the world of technology. Although they are often used interchangeably, they are not the same thing. Artificial intelligence (AI) and machine learning (ML) are related concepts, but they have different definitions, applications, and implications. In this article, we will explore the differences between machine learning and artificial intelligence and how they are related.
+
+What is Artificial Intelligence?
+Artificial intelligence is a broad field that encompasses the development of intelligent machines that can perform tasks that typically require human intelligence, such as perception, reasoning, learning, and decision-making. In simple terms, AI is the ability of machines to perform tasks that normally require human intervention or intelligence.
+
+There are two types of AI: narrow or weak AI and general or strong AI. Narrow AI is designed to perform specific tasks, such as speech recognition or image recognition, while general AI is designed to be able to perform any intellectual task that a human can do. Currently, we only have narrow AI in use, but the goal is to develop general AI that can be applied to a wide range of tasks.
+
+Branches of AI
+AI is like a basket containing several branches, the important ones being Machine Learning (ML), Robotics, Expert Systems, Fuzzy Logic, Neural Networks, Computer Vision, and Natural Language Processing (NLP).
+
+Data Visualization Techniques
+Here is a brief overview of the other important branches of AI:
+
+Robotics Robots are primarily designed to perform repetitive and tedious tasks. Robotics is an important branch of AI that deals with designing, developing and controlling the application of robots.
+
+Computer Vision It is an exciting field of AI that helps computers, robots, and other digital devices to process and understand digital images and videos, and extract vital information. With the power of AI, Computer Vision develops algorithms that can extract, analyze and comprehend useful information from digital images.
+
+Expert Systems Expert systems are applications specifically designed to solve complex problems in a specific domain, with humanlike intelligence, precision, and expertise. Just like human experts, Expert Systems excel in a specific domain in which they are trained.
+
+Fuzzy Logic We know computers take precise digital inputs like True (Yes) or False (No), but Fuzzy Logic is a method of reasoning that helps machines to reason like human beings before taking a decision. With Fuzzy Logic, machines can analyze all intermediate possibilities between a YES or NO, for example, "Possibly Yes", "Maybe No", etc.
+
+Neural Networks Inspired by the natural neural networks of the human brain, Artificial Neural Networks (ANN) can be considered as a group of highly interconnected group of processing elements (nodes) that can process information by their dynamic state response to external inputs. ANNs use training data to improve their efficiency and accuracy.
+
+Natural Language Processing (NLP) NLP is a field of AI that empowers intelligent systems to communicate with humans using a natural language like English. With the power of NLP, one can easily interact with a robot and instruct it in plain English to perform a task. NLP can also process text data and comprehend its full meaning. It is heavily used these days in virtual chatbots and sentiment analysis.
+
+Examples of AI include virtual assistants, autonomous vehicles, facial recognition, natural language processing, and decision-making systems.
+
+What is Machine Learning?
+Machine learning is a subset of artificial intelligence that focuses on teaching machines how to learn from data. In other words, machine learning is a process by which computers can automatically learn patterns and relationships in data without being explicitly programmed to do so. Machine learning algorithms are designed to detect and learn from patterns in data to make predictions or decisions.
+
+There are three main types of machine learning: supervised learning, unsupervised learning, and reinforcement learning. Supervised learning is when the machine is trained on labeled data with known outcomes. Unsupervised learning is when the machine is trained on unlabeled data and is asked to find patterns or similarities. Reinforcement learning is when the machine learns by trial and error through interactions with the environment.
+
+Examples of machine learning include image recognition, speech recognition, recommendation systems, fraud detection, and natural language processing.
+
+Artificial Intelligence Vs. Machine Learning Overview
+Now that we have a basic understanding of what machine learning and artificial intelligence are, let's dive deeper into the differences between the two.
+
+Firstly, machine learning is a subset of artificial intelligence, meaning that machine learning is a part of the larger field of AI. Machine learning is a technique used to implement artificial intelligence.
+
+Secondly, while machine learning focuses on developing algorithms that can learn from data, artificial intelligence focuses on developing intelligent machines that can perform tasks that normally require human intelligence. In other words, machine learning is more focused on the process of learning from data, while AI is more focused on the end goal of creating machines that can perform intelligent tasks.
+
+Thirdly, machine learning algorithms are designed to learn from data and improve their accuracy over time, while artificial intelligence systems are designed to learn and adapt to new situations and environments. Machine learning algorithms require a lot of data to be trained effectively, while AI systems can adapt and learn from new data in real-time.
+
+Finally, machine learning is more limited in its capabilities compared to AI. Machine learning algorithms can only learn from the data they are trained on, while AI systems can learn and adapt to new situations and environments. Machine learning is great for solving specific problems that can be solved through pattern recognition, while AI is better suited for complex, real-world problems that require reasoning and decision-making.
+
+Difference Between Artificial Intelligence and Machine Learning
+The following table highlights the important differences between Machine Learning and Artificial Intelligence
+
+Key	Artificial Intelligence	Machine Learning
+Definition	Artificial Intelligence refers to the ability of a machine or a computer system to perform tasks that would normally require human intelligence, such as understanding language, recognizing images, and making decisions.	Machine Learning is a type of Artificial Intelligence that allows a system to learn and improve from experience without being explicitly programmed. It articulates how a machine can learn and apply its knowledge to improve its decisions.
+Concept	Artificial Intelligence revolves around making smart and intelligent devices.	Machine Learning revolves around making a machine learn/decide and improve its results.
+Goal	The goal of Artificial Intelligence is to simulate human intelligence to solve complex problems.	The goal of Machine Learning is to learn from data provided and make improvements in machine's performance.
+Includes	Artificial Intelligence has several important branches including Artificial Neural Networks, Natural Language Processing, Fuzzy Logic, Robotics, Expert Systems, Computer Vision, and Machine Learning.	Machine Learning training methods include supervised learning, unsupervised learning, and reinforcement learning.
+Development	Artificial Intelligence is leading to the development of such machines which can mimic human behavior.	Machine Learning is helping in the development of self-learning algorithms.

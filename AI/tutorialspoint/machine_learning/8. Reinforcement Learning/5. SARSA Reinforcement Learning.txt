@@ -1,0 +1,37 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_sarsa_reinforcement_learning.htm
+SARSA stands for State-Action-Reward-State-Action, which is a modified version of the Q-learning algorithm where the target policy is the same as the behavior policy. The two consecutive state-action pairs and the immediate reward received by the agent while transitioning from the first state to the next state determine the updated Q value, so this method is called SARSA.
+
+What is SARSA?
+State-Action-Reward-State-Action (SARSA) is a reinforcement learning algorithm that explains a series of events in the process of learning. It is one of the effective 'On Policy' learning techniques for agents to make the right choices in various situations. The main idea behind SARSA is trial and error. The agent takes action in a situation, observes the consequence, and modifies its plan based on the result.
+
+For example, assume you are teaching a robot how to walk through a maze. The robot starts at a particular position, which is the 'state', and your goal is to find the best route to the end of the maze. The robot has the option to move in various directions during each step, referred to as 'action'. The robot is given feedback in the form of incentives, either positive or negative, to indicate how well it is performing.
+
+The equation for updated statements in the SARSA algorithm is as follows −
+
+SARSA Equation
+Components of SARSA
+Some of the core components of SARSA algorithm include −
+
+State(S) − A state is a reflection of the environment, containing all details about the agent's present situation.
+Action(A) − An action represents the decision made by the agent depending on its present condition. The action it chose from the repository causes a change from the current state to the next state. This shift is how the agent engages with its environment to generate desired results.
+Reward(R) − Reward is a variable provided by the environment in response to the agent's action within a specific state. This feedback signal shows the instant outcome of the agent's choice. Rewards help the agent learn by showing which actions are desirable in certain situations.
+Next State(S') − When the agent acts in a specific state, it causes a shift to a different situation called the "next state." This new state (s') is the agent's updated environment.
+Working of SARSA Algorithm
+The SARSA reinforcement learning algorithm allows agents to learn and make decisions in an environment by maximizing cumulative rewards over time using the State-Action-Reward-State-Action sequence. It involves an iterative cycle of engaging with the environment, gaining insights from past events, and enhancing the decision-making strategy. Let's analyze the working of the SARSA algorithm −
+
+Q-Table Initialization − SARSA begins by initializing Q(S,A) , which denotes the state-action pair to arbitrary values. In this process, the starting state (s) is determined, and initial action (A) is chosen by employing an epsilon-greedy algorithm policy replying to current Q-values.
+Exploration Vs. Exploitation − Exploitation involves using already known values that were estimated previously to improve the chance of receiving rewards in the learning process. On the other hand, exploration involves selecting actions that may result in short-term benefits but could help discover better actions and rewards in the future.
+Action execution and Feedback − Once the chosen action (A) is executed, it results in a reward (R) and a transition to the next state (S').
+Q-Value Update − The Q-value of the current state-action pair is updated based on the received and the new state. The next action (A') is selected from the values updated in the Q-table.
+Iteration and Learning − The above steps are repeated until the state terminates. Throughout the process, SARSA updates its Q-values continuously by considering the transitions of state-action-reward. These improvements enhance the algorithm's capacity to anticipate future rewards for state-action pairs, directing the agent toward making improved decisions in the long run.
+SARSA Vs Q-Learning
+SARSA and Q-learning are two algorithms in reinforcement learning that belong to value-based methods. SARSA follows the current policy, whereas Q-learning doesn't follow the current policy. This variance impacts the way in which each algorithm adjusts its action-value function. Some differences are tabulated below −
+
+Feature	SARSA	Q-Learning
+Policy Type	On-policy	Off-Policy
+Update Rule	Q(s,a) = Q(s,a) + ɑ(r + γmaxaQ(s',a)-Q(s,a))	Q(s,a) = Q(s,a) + ɑ(r + γ Q(s',a')-Q(s,a))
+Convergence	Slower convergence to the optimal policy.	Typically faster convergence to the optimal policy.
+Exploration Vs Exploitation	Exploration directly influences learning updates.	Exploration policy can differ from learning policy.
+Policy Update	Updates the action-value function based on the action actually taken.	Updates the action-value function, assuming the best possible action is always taken.
+Use case	Suitable for environments where stability is important.	Suitable for environments where efficiency is important.
+Example	Healthcare, traffic management, personalized learning.	Gaming, robotics, financial trading

@@ -1,0 +1,178 @@
+%==============================================================================
+\section{Home (Trang chủ) --- Tổng quan học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/index.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Vai trò của trang Home}]
+Trang này đóng vai trò “bản đồ tổng quan”: học máy là gì, học máy hoạt động thế nào, các kiểu học máy, một số thuật toán thường gặp, vì sao học máy quan trọng, ứng dụng thực tế, đối tượng phù hợp, điều kiện tiên quyết, và phần hỏi đáp (FAQ).
+\end{dongco}
+
+\begin{luuy}[title={Tham chiếu Khái niệm nền}]
+Định nghĩa ML, bốn kiểu học và quy trình ML đã có ở Mục~\ref{sec:khai-niem-nen}. Bài này giữ nội dung đặc thù của trang Home (FAQ, ví dụ code, ứng dụng).
+\end{luuy}
+
+\subsection{Machine Learning (ML) Tutorial}
+
+\begin{ynghia}[title={Mục tiêu của tutorial}]
+Tutorial này nhằm cung cấp hiểu biết chi tiết về các khái niệm học máy như:
+\begin{itemize}
+  \item các kiểu/nhóm thuật toán học máy,
+  \item ứng dụng,
+  \item thư viện thường dùng,
+  \item ví dụ thực tế.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Học máy là gì?}
+
+\begin{ynghia}[title={Định nghĩa}]
+Xem định nghĩa đầy đủ ở Mục~\ref{sec:ml-la-gi}. Tóm lại: ML là nhánh AI cho phép máy \textbf{học từ dữ liệu} để dự đoán hoặc ra quyết định mà không lập trình tường minh từng quy tắc.
+\end{ynghia}
+
+\begin{luuy}[title={Về phiên bản Python trong tutorial}]
+Tutorial “Machine Learning With Python” này được nói là dựa trên Python 3.14.2 (theo nội dung nguồn).
+\end{luuy}
+
+\subsection{Online Editor}
+
+\begin{ynghia}[title={Trình chạy Python online}]
+Nguồn cung cấp một Python Compiler/Interpreter online để bạn có thể chỉnh sửa và chạy code trực tiếp trên trình duyệt.
+\end{ynghia}
+
+\subsection{Ví dụ: xử lý dữ liệu phân loại bằng one-hot encoding}
+
+\begin{phuongphap}[title={Chạy thử đoạn code sau}]
+Ví dụ dưới đây minh hoạ xử lý biến phân loại trong học máy bằng one-hot encoding với pandas.
+\end{phuongphap}
+
+\begin{lstlisting}
+import pandas as pd
+
+# Creating a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# Performing one-hot encoding
+one_hot_encoded = pd.get_dummies(df['color'], prefix='color')
+
+# Combining the encoded data with the original data
+df = pd.concat([df, one_hot_encoded], axis=1)
+
+# Drop the original categorical variable
+df = df.drop('color', axis=1)
+
+# Print the encoded data
+print(df)
+\end{lstlisting}
+
+\subsection{Học máy hoạt động như thế nào?}
+
+\begin{dongco}[title={Quy trình tổng quát}]
+Một quy trình học máy thường bao gồm: thiết lập dự án, chuẩn bị dữ liệu, xây mô hình và triển khai.
+Nguồn có minh hoạ quy trình bằng một hình.
+\end{dongco}
+
+\begin{phuongphap}[title={Các giai đoạn (sequential process)}]
+\begin{enumerate}
+  \item \textbf{Thu thập dữ liệu (Data Collection)}: thu dữ liệu từ nhiều nguồn (database, file văn bản, ảnh, âm thanh, web scraping, \ldots), tổ chức về định dạng phù hợp (CSV hoặc database) và đảm bảo hữu ích cho bài toán.
+  \item \textbf{Tiền xử lý dữ liệu (Data Pre-processing)}: xoá trùng, sửa lỗi, xử lý thiếu dữ liệu (loại bỏ/điền), chuẩn hoá/định dạng.
+  \item \textbf{Chọn mô hình phù hợp (Choosing the Right Model)}: sau khi dữ liệu sẵn sàng, chọn mô hình (linear regression, decision trees, neural networks, \ldots) tuỳ dữ liệu, bài toán, quy mô, độ phức tạp và tài nguyên tính toán.
+  \item \textbf{Huấn luyện mô hình (Training the Model)}: huấn luyện để mô hình dự đoán tốt hơn.
+  \item \textbf{Đánh giá mô hình (Evaluating the model)}: kiểm thử trên dữ liệu mới mà mô hình chưa thấy khi huấn luyện.
+  \item \textbf{Tối ưu và tuning siêu tham số (Hyperparameter Tuning and Optimization)}: thử các tổ hợp siêu tham số và cross-validation để mô hình hoạt động tốt trên nhiều tập dữ liệu.
+  \item \textbf{Dự đoán và triển khai (Predictions and Deployment)}: dùng mô hình đã tối ưu để dự đoán dữ liệu mới; triển khai vào môi trường thật để xử lý dữ liệu thực tế.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Các loại học máy}
+
+\begin{ynghia}[title={Bốn nhóm}]
+Chi tiết từng kiểu học: Mục~\ref{sec:bon-kieu-hoc}. Các bài \ref{sec:mo-hinh-ml}--\ref{sec:reinforcement-learning} mở rộng thêm thuật toán và ứng dụng.
+\end{ynghia}
+
+\subsection{Một số thuật toán học máy phổ biến}
+
+\begin{phuongphap}[title={Danh sách thuật toán (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Neural Networks}: mô phỏng kiểu “nhiều nút liên kết”, dùng cho NLP, nhận dạng ảnh/giọng nói, tạo ảnh.
+  \item \textbf{Linear Regression}: dự đoán số từ dữ liệu quá khứ; ví dụ ước lượng giá nhà.
+  \item \textbf{Logistic Regression}: dự đoán “có/không”; ví dụ lọc spam, QC.
+  \item \textbf{Clustering}: nhóm dữ liệu tương tự mà không có hướng dẫn.
+  \item \textbf{Decision Trees}: cây quyết định để phân loại/dự đoán; dễ hiểu và kiểm tra.
+  \item \textbf{Random Forests}: kết hợp nhiều cây quyết định để tăng chất lượng.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Vì sao học máy quan trọng?}
+
+\begin{dongco}[title={Ý nghĩa tổng quát}]
+Học máy quan trọng trong tự động hoá, trích xuất insight từ dữ liệu và hỗ trợ ra quyết định.
+\end{dongco}
+
+\begin{phuongphap}[title={Một số lý do (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Xử lý dữ liệu}: phân tích dữ liệu lớn từ mạng xã hội, cảm biến, \ldots để tìm pattern/insight.
+  \item \textbf{Insight dựa trên dữ liệu}: tìm xu hướng/kết nối mà con người có thể bỏ sót.
+  \item \textbf{Tự động hoá}: tự động hoá tác vụ lặp, giảm lỗi, tiết kiệm thời gian.
+  \item \textbf{Cá nhân hoá}: phân tích sở thích người dùng để gợi ý nội dung/sản phẩm.
+  \item \textbf{Dự báo}: dự báo kết quả tương lai (sales forecast, quản trị rủi ro, lập kế hoạch).
+  \item \textbf{Nhận dạng mẫu}: ảnh, giọng nói, NLP.
+  \item \textbf{Tài chính / bán lẻ / an ninh}: chấm điểm tín dụng, phát hiện gian lận, tối ưu chuỗi cung ứng, \ldots
+  \item \textbf{Cải tiến liên tục}: mô hình được cập nhật với dữ liệu mới để thích nghi tốt hơn.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Ứng dụng của học máy}
+
+\begin{phuongphap}[title={Một số ứng dụng thường gặp}]
+\begin{itemize}
+  \item \textbf{Nhận dạng giọng nói}: chuyển giọng nói thành văn bản; trợ lý ảo.
+  \item \textbf{Chăm sóc khách hàng}: chatbot, agent ảo, trả lời FAQ, đề xuất sản phẩm.
+  \item \textbf{Thị giác máy tính}: phân tích ảnh/video; y tế; xe tự lái.
+  \item \textbf{Hệ gợi ý}: đề xuất sản phẩm/phim/nội dung theo hành vi.
+  \item \textbf{RPA}: tự động hoá thao tác lặp.
+  \item \textbf{Giao dịch tự động}: AI-driven trading.
+  \item \textbf{Phát hiện gian lận}: phát hiện giao dịch đáng ngờ trong tài chính.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Ai có thể học Machine Learning?}
+
+\begin{ynghia}[title={Đối tượng}]
+Tutorial hướng đến người muốn học từ cơ bản đến nâng cao. Học máy cần dữ liệu (văn bản, ảnh, âm thanh, số, video).
+Chất lượng và lượng dữ liệu ảnh hưởng mạnh đến chất lượng mô hình.
+\end{ynghia}
+
+\subsection{Điều kiện tiên quyết}
+
+\begin{luuy}[title={Prerequisites to Learn Machine Learning (theo nguồn)}]
+Nên quen với khái niệm dữ liệu/thông tin, dữ liệu có cấu trúc/phi cấu trúc/bán cấu trúc, xử lý dữ liệu, nền tảng AI;
+nắm dữ liệu có nhãn/không nhãn, trích chọn đặc trưng và ứng dụng trong ML.
+\end{luuy}
+
+\subsection{FAQ --- Câu hỏi thường gặp}
+
+\begin{phuongphap}[title={Một số câu hỏi tiêu biểu}]
+Nguồn liệt kê nhiều câu hỏi như:
+\begin{itemize}
+  \item ML là gì?
+  \item Vì sao ML quan trọng?
+  \item Các loại ML?
+  \item Ứng dụng phổ biến?
+  \item Thành phần cơ bản của hệ thống ML?
+  \item Ngôn ngữ lập trình hay dùng?
+  \item Supervised vs unsupervised khác gì?
+  \item Thuật toán phổ biến?
+  \item Đánh giá mô hình thế nào?
+  \item Thách thức phổ biến?
+  \item Bắt đầu học ra sao?
+  \item Các vấn đề đạo đức?
+  \item ML vs AI?
+  \item ML áp dụng cho loại dữ liệu nào?
+  \item Thu thập/chuẩn bị dữ liệu ra sao?
+\end{itemize}
+\end{phuongphap}
+

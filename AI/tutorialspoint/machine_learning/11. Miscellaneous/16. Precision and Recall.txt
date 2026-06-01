@@ -1,0 +1,51 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_precision_and_recall.htm
+Precision and recall are two important metrics used to evaluate the performance of classification models in machine learning. They are particularly useful for imbalanced datasets where one class has significantly fewer instances than the other.
+
+Precision is a measure of how many of the positive predictions made by a classifier were correct. It is defined as the ratio of true positives (TP) to the total number of positive predictions (TP + FP). In other words, precision measures the proportion of true positives among all positive predictions.
+
+$$Precision=TP/\left ( TP+FP \right )$$
+
+Recall, on the other hand, is a measure of how many of the actual positive instances were correctly identified by the classifier. It is defined as the ratio of true positives (TP) to the total number of actual positive instances (TP + FN). In other words, recall measures the proportion of true positives among all actual positive instances.
+
+$$Recall=TP/\left ( TP+FN \right )$$
+
+To understand precision and recall, consider the problem of detecting spam emails. A classifier may label an email as spam (positive prediction) or not spam (negative prediction). The actual label of the email can be either spam or not spam. If the email is actually spam and the classifier correctly labels it as spam, then it is a true positive. If the email is not spam but the classifier incorrectly labels it as spam, then it is a false positive. If the email is actually spam but the classifier incorrectly labels it as not spam, then it is a false negative. Finally, if the email is not spam and the classifier correctly labels it as not spam, then it is a true negative.
+
+In this scenario, precision measures the proportion of spam emails that were correctly identified as spam by the classifier. A high precision indicates that the classifier is correctly identifying most of the spam emails and is not labeling many legitimate emails as spam. On the other hand, recall measures the proportion of all spam emails that were correctly identified by the classifier. A high recall indicates that the classifier is correctly identifying most of the spam emails, even if it is labeling some legitimate emails as spam.
+
+Implementation in Python
+In scikit-learn, precision and recall can be calculated using the precision_score() and recall_score() functions, respectively. These functions take as input the true labels and predicted labels for a set of instances, and return the corresponding precision and recall scores.
+
+For example, consider the following code snippet that uses the breast cancer dataset from scikit-learn to train a logistic regression classifier and evaluate its precision and recall scores −
+
+Example - Precision and Recall
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import precision_score, recall_score
+
+# Load the breast cancer dataset
+data = load_breast_cancer()
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, test_size=0.2, random_state=42)
+
+# Train a logistic regression classifier
+clf = LogisticRegression(random_state=42)
+clf.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred = clf.predict(X_test)
+
+# Calculate precision and recall scores
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+print("Precision:", precision)
+print("Recall:", recall)
+In the above example, we first load the breast cancer dataset and split it into training and testing sets. We then train a logistic regression classifier on the training set and make predictions on the testing set using the predict() method. Finally, we calculate the precision and recall scores using the precision_score() and recall_score() functions.
+
+Output
+When you execute this code, it will produce the following output −
+
+Precision: 0.9459459459459459
+Recall: 0.9859154929577465

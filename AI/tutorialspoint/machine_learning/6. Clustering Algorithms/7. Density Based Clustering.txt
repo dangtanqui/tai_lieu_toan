@@ -1,0 +1,22 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_density_based_clustering.htm
+Density-based clustering is based on the idea that clusters are regions of high density separated by regions of low density.
+
+The algorithm works by first identifying "core" data points, which are data points that have a minimum number of neighbors within a specified distance. These core data points form the center of a cluster.
+
+Next, the algorithm identifies "border" data points, which are data points that are not core data points but have at least one core data point as a neighbor.
+
+Finally, the algorithm identifies "noise" data points, which are data points that are not core data points or border data points.
+
+Popular Density-based Clustering Algorithms
+Here are the most common density-based clustering algorithms −
+
+DBSCAN Clustering
+The DBSCAN (Density-Based Spatial Clustering of Applications with Noise) algorithm is one of the most common density-based clustering algorithms. The DBSCAN algorithm requires two parameters: the minimum number of neighbors (minPts) and the maximum distance between core data points (eps).
+
+OPTICS Clustering
+OPTICS (Ordering Points to Identify the Clustering Structure) is a density-based clustering algorithm that operates by building a reachability graph of the dataset. The reachability graph is a directed graph that connects each data point to its nearest neighbors within a specified distance threshold. The edges in the reachability graph are weighted according to the distance between the connected data points. The algorithm then constructs a hierarchical clustering structure by recursively splitting the reachability graph into clusters based on a specified density threshold.
+
+HDBSCAN Clustering
+HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise) is a clustering algorithm that is based on density clustering. It is a newer algorithm that builds upon the popular DBSCAN algorithm and offers several advantages over it, such as better handling of clusters of varying densities and the ability to detect clusters of different shapes and sizes.
+
+In the next three chapters, we will discuss all the three density-based clustering algorithms in detail along with their implementation in Python.

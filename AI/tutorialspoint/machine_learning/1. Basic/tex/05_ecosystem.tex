@@ -1,0 +1,161 @@
+%==============================================================================
+\section{Ecosystem --- Hệ sinh thái Python cho học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_ecosystem.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Vì sao nói về “hệ sinh thái”?}]
+Hệ sinh thái học máy là tập hợp công cụ/công nghệ dùng để phát triển ứng dụng ML.
+Python có nhiều thư viện và công cụ tạo thành các “thành phần” của hệ sinh thái này, khiến Python trở thành ngôn ngữ quan trọng cho ML và Data Science.
+\end{dongco}
+
+\subsection{Python Machine Learning Ecosystem}
+
+\begin{dinhnghia}[title={Machine learning ecosystem}]
+Hệ sinh thái ML là tập hợp các công cụ và công nghệ được dùng để phát triển ứng dụng ML.
+Với Python, nguồn nhấn mạnh ba thành phần chính:
+\begin{itemize}
+  \item \textbf{Ngôn ngữ lập trình:} Python
+  \item \textbf{IDE:} môi trường phát triển
+  \item \textbf{Thư viện Python:} các package phục vụ ML/Data Science
+\end{itemize}
+\end{dinhnghia}
+
+\subsection{Vì sao chọn Python cho Machine Learning?}
+
+\begin{ynghia}[title={Lý do chọn Python (theo nguồn)}]
+Nguồn dẫn Stack Overflow Developer Survey 2023: Python là ngôn ngữ phổ biến thứ ba và phổ biến nhất cho ML/Data Science.
+Các đặc điểm khiến Python được ưa chuộng:
+\end{ynghia}
+
+\begin{phuongphap}[title={Các điểm nổi bật}]
+\begin{itemize}
+  \item \textbf{Nhiều package mạnh}: NumPy, SciPy, pandas, scikit-learn, \ldots
+  \item \textbf{Prototype nhanh}: thuận lợi thử nghiệm thuật toán mới.
+  \item \textbf{Hỗ trợ cộng tác}: (nguồn nhấn mạnh nhu cầu collaboration trong data science).
+  \item \textbf{Một ngôn ngữ cho nhiều khâu}: trích xuất dữ liệu, thao tác dữ liệu, phân tích, feature extraction, modeling, evaluation, deployment, cập nhật.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Điểm mạnh và điểm yếu của Python}
+
+\begin{tinhchat}[title={Strengths (theo nguồn)}]
+\begin{itemize}
+  \item Dễ học và dễ hiểu (cú pháp đơn giản).
+  \item Đa mục đích (hỗ trợ structured/OOP/functional).
+  \item Số lượng module lớn (dễ mở rộng).
+  \item Cộng đồng mã nguồn mở lớn (dễ sửa lỗi, thích nghi).
+  \item Có khả năng mở rộng (cấu trúc tốt cho chương trình lớn).
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Weakness (theo nguồn)}]
+Tốc độ thực thi chậm hơn ngôn ngữ biên dịch vì Python là ngôn ngữ thông dịch.
+\end{luuy}
+
+\subsection{Cài đặt Python}
+
+\begin{phuongphap}[title={Hai cách cài (theo nguồn)}]
+\begin{itemize}
+  \item Cài Python riêng lẻ.
+  \item Dùng bản phân phối đóng gói sẵn như \textbf{Anaconda}.
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Cài Python riêng lẻ}
+\begin{phuongphap}[title={Unix/Linux (tóm tắt theo nguồn)}]
+\begin{itemize}
+  \item Vào \texttt{www.python.org/downloads/}.
+  \item Tải source code dạng nén cho Unix/Linux.
+  \item Giải nén; có thể chỉnh \texttt{Modules/Setup} nếu cần.
+  \item Chạy: \texttt{./configure}, \texttt{make}, \texttt{make install}.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Windows (tóm tắt theo nguồn)}]
+\begin{itemize}
+  \item Vào \texttt{www.python.org/downloads/}.
+  \item Tải Windows installer \texttt{python-XYZ.msi}.
+  \item Chạy installer, chấp nhận cấu hình mặc định và hoàn tất.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={MacOS (tóm tắt theo nguồn)}]
+\begin{itemize}
+  \item Nguồn gợi ý dùng Homebrew.
+  \item Cài Homebrew (lệnh trong nguồn), sau đó \texttt{brew update} và \texttt{brew install python3}.
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Cài bằng Anaconda}
+\begin{phuongphap}[title={Các bước (theo nguồn)}]
+\begin{enumerate}
+  \item Tải gói cài từ \texttt{www.anaconda.com/distribution/} theo OS.
+  \item Chọn phiên bản Python và bản 64-bit/32-bit.
+  \item Chạy file cài đặt.
+  \item Kiểm tra: mở command prompt và gõ \texttt{python}.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{IDE (Integrated Development Environment)}
+
+\begin{dinhnghia}[title={IDE là gì?}]
+IDE là công cụ phần mềm kết hợp các công cụ phát triển vào một giao diện đồ họa.
+Nguồn liệt kê một số IDE phổ biến trong ML/Data Science: Jupyter Notebook, PyCharm, VS Code, Spyder, Sublime Text, Atom, Thonny, Google Colab Notebook.
+\end{dinhnghia}
+
+\subsubsection{Jupyter Notebook}
+
+\begin{ynghia}[title={Vì sao Jupyter hữu ích? (theo nguồn)}]
+Jupyter notebooks cung cấp môi trường tương tác để phát triển ứng dụng Data Science:
+\begin{itemize}
+  \item Trình bày phân tích theo từng bước (code, ảnh, text, output).
+  \item Giúp ghi lại “thought process”.
+  \item Có thể lưu kết quả như một phần của notebook.
+  \item Dễ chia sẻ với người khác.
+\end{itemize}
+\end{ynghia}
+
+\begin{phuongphap}[title={Cài và chạy (theo nguồn)}]
+\begin{itemize}
+  \item Nếu dùng Anaconda: thường đã có sẵn.
+  \item Chạy: \texttt{jupyter notebook} để mở server (ví dụ localhost:8888).
+  \item Nếu dùng Python chuẩn: cài \texttt{pip3 install jupyter}.
+\end{itemize}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Các loại cell trong Jupyter (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Code cells}: viết code, gửi tới kernel.
+  \item \textbf{Markdown cells}: ghi chú text/ảnh/LaTeX/HTML.
+  \item \textbf{Raw cells}: hiển thị nguyên văn, không qua cơ chế convert.
+\end{itemize}
+\end{dinhnghia}
+
+\subsection{Python libraries và packages}
+
+\begin{dongco}[title={Thư viện giúp làm nhanh và đúng}]
+Hệ sinh thái Python có rất nhiều thư viện giúp xây dựng mô hình ML nhanh hơn: dữ liệu, trực quan hóa, mô hình, deep learning, \ldots
+\end{dongco}
+
+\begin{phuongphap}[title={Một số thư viện (theo nguồn, kèm lệnh cài)}]
+\begin{itemize}
+  \item NumPy: \texttt{pip3 install numpy}
+  \item Pandas: \texttt{pip3 install pandas}
+  \item Scikit-learn: \texttt{pip3 install scikit-learn}
+  \item TensorFlow: \texttt{pip install tensorflow}
+  \item PyTorch: \texttt{pip install torch}
+  \item Keras: \texttt{pip3 install keras}
+  \item OpenCV: \texttt{pip3 install opencv-python}
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Ghi chú của nguồn}]
+Ngoài các thư viện trên còn có nhiều tool/framework khác như XGBoost, LightGBM, spaCy, NLTK.
+Một số thư viện có thể cần thêm dependency hoặc yêu cầu hệ thống; nên xem tài liệu chính thức khi cài.
+\end{luuy}
+
+\InputIfFileExists{_figures/01_he_sinh_thai_python.tex}{}{}
+

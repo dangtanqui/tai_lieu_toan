@@ -1,0 +1,33 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_skewness_and_kurtosis.htm
+Skewness and kurtosis are two important measures of the shape of a probability distribution in machine learning.
+
+Skewness refers to the degree of asymmetry of a distribution. A distribution is said to be skewed if it is not symmetrical about its mean. Skewness can be positive, indicating that the tail of the distribution is longer on the right-hand side, or negative, indicating that the tail of the distribution is longer on the left-hand side. A skewness of zero indicates that the distribution is perfectly symmetrical.
+
+Kurtosis refers to the degree of peakedness of a distribution. A distribution with high kurtosis has a sharper peak and heavier tails than a normal distribution, while a distribution with low kurtosis has a flatter peak and lighter tails. Kurtosis can be positive, indicating a higher-than-normal peak, or negative, indicating a lower than normal peak. A kurtosis of zero indicates a normal distribution.
+
+Both skewness and kurtosis can have important implications for machine learning algorithms, as they can affect the assumptions of the models and the accuracy of the predictions. For example, a highly skewed distribution may require data transformation or the use of non-parametric methods, while a highly kurtotic distribution may require different statistical models or more robust estimation methods.
+
+Example
+In Python, the SciPy library provides functions for calculating skewness and kurtosis of a dataset. For example, the following code calculates the skewness and kurtosis of a dataset using the skew() and kurtosis() functions −
+
+import numpy as np
+from scipy.stats import skew, kurtosis
+
+# Generate a random dataset
+data = np.random.normal(0, 1, 1000)
+
+# Calculate the skewness and kurtosis of the dataset
+skewness = skew(data)
+kurtosis = kurtosis(data)
+
+# Print the results
+print('Skewness:', skewness)
+print('Kurtosis:', kurtosis)
+This code generates a random dataset of 1000 samples from a normal distribution with mean 0 and standard deviation 1. It then calculates the skewness and kurtosis of the dataset using the skew() and kurtosis() functions from the SciPy library. Finally, it prints the results to the console.
+
+Output
+On executing this code, you will get the following output −
+
+Skewness: -0.04119418903611285
+Kurtosis: -0.1152250196054534
+The resulting skewness and kurtosis values should be close to zero for a normal distribution.

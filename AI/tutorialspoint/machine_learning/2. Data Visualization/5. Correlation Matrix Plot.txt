@@ -1,0 +1,34 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_correlation_matrix_plot.htm
+A correlation matrix plot is a graphical representation of the pairwise correlation between variables in a dataset. The plot consists of a matrix of scatterplots and correlation coefficients, where each scatterplot represents the relationship between two variables, and the correlation coefficient indicates the strength of the relationship. The diagonal of the matrix usually shows the distribution of each variable.
+
+The correlation coefficient is a measure of the linear relationship between two variables and ranges from -1 to 1. A coefficient of 1 indicates a perfect positive correlation, where an increase in one variable is associated with an increase in the other variable. A coefficient of -1 indicates a perfect negative correlation, where an increase in one variable is associated with a decrease in the other variable. A coefficient of 0 indicates no correlation between the variables.
+
+Python Implementation of Correlation Matrix Plots
+Now that we have a basic understanding of correlation matrix plots, let's implement them in Python. For our example, we will be using the Iris flower dataset from Sklearn, which contains measurements of the sepal length, sepal width, petal length, and petal width of 150 iris flowers, belonging to three different species - Setosa, Versicolor, and Virginica.
+
+Example
+import numpy as np
+import pandas as pd
+import seaborn as sns
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+data = pd.DataFrame(iris.data, columns=iris.feature_names)
+target = iris.target
+
+plt.figure(figsize=(7.5, 3.5))
+
+corr = data.corr()
+sns.set(style='white')
+mask = np.zeros_like(corr, dtype=np.bool)
+mask[np.triu_indices_from(mask)] = True
+f, ax = plt.subplots(figsize=(11, 9))
+cmap = sns.diverging_palette(220, 10, as_cmap=True)
+sns.heatmap(corr, mask=mask, cmap=cmap, vmax=.3, center=0,
+   square=True, linewidths=.5, cbar_kws={"shrink": .5})
+plt.show()
+Output
+This code will produce a correlation matrix plot of the Iris dataset, with each square representing the correlation coefficient between two variables.
+
+correlation_matrix_plot
+From this plot, we can see that the variables 'sepal width (cm)' and 'petal length (cm)' have a moderate negative correlation (-0.37), while the variables 'petal length (cm)' and 'petal width (cm)' have a strong positive correlation (0.96). We can also see that the variable 'sepal length (cm)' has a weak positive correlation (0.87) with the variable 'petal length (cm)'.

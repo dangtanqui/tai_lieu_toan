@@ -1,0 +1,72 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_temporal_difference_learning.htm
+What is Temporal Difference Learning?
+Temporal Difference (TD) learning a model-free reinforcement learning technique that aims to align the expected prediction with the latest prediction, thus matching expectations with actual outcomes and progressively enhancing the accuracy of the overall prediction chain. It also seeks to predict a combination of the immediate reward and its own reward prediction at the same moment.
+
+In temporal difference learning, the signal used for training a prediction comes from a future prediction. This approach is a combination of the Monte Carlo (MC) technique and the Dynamic Programming (DP) technique. Monte Carlo methods modify their estimates only after the final result is known, whereas temporal difference techniques adjust predictions to match later, more precise predictions for the future, well before knowing the final outcome. This is essentially a type of bootstrapping.
+
+Parameters used in Temporal Difference Learning
+The most common parameters used in temporal difference learning are −
+
+Alpha (${\alpha}$) − This indicates the learning rate which varies between 0 to 1. It determines how much our estimates should be adjusted based on the error.
+Gamma (${\gamma}$) − This implies the discount rate which varies between 0 to 1. A large discount rate signifies that future rewards are valued to a greater extent.
+${\epsilon}$ − This means examining new possibilities with a likelihood of ${\epsilon}$ and remaining at the existing maximum with a likelihood of ${1-\epsilon}$. A greater ${\epsilon}$ indicates that more explorations take place during training.
+Temporal Difference Learning in AI & Machine Learning
+Temporal Difference (TD) learning has turned out to be an important concept in AI and machine learning. This method is a combination of strengths of Monte Carlo methods and dynamic programming, which enhances learning efficiency in environments with delayed rewards.
+
+Temporal Difference (TD) Learning facilitates adaptive learning from incomplete sequences by updating value function based on the difference between future predictions. This method is vital for applications involving real-time decision-making, including robotics, gaming, and finance. Using both observed and expected future rewards, TD Learning becomes one of the powerful approaches for creating intelligent and adaptive algorithms.
+
+Temporal Difference Learning Algorithms
+The main goal of Temporal Difference (TD) learning is to estimate the value function ${V(s)}$, which represents the expected future reward started from the state ${s}$. Following is the list of algorithms used in TD learning −
+
+1. TD(${\lambda}$) Algorithm
+TD(${\lambda}$) is a reinforcement learning algorithm that combines concepts from both Monte Carlo methods and TD(0). It calculates the value function by taking weighted average of n-steps return from the agent's trajectory, with the weight determined by ${\lambda}$.
+
+When ${\lambda = 0}$ it corresponds to TD(0), where the latest reward and the value of the next state are considered in updating the estimate.
+When ${\lambda = 1}$, it indicates the use of Monte Carlo methods, which involve updating the value based on the total return from a state until the episode ends.
+If the ${\lambda}$ lies between 0 to 1, TD(${\lambda}$) combines short-term TD(0) and Monte Carlo methods, emphasizing latest rewards.
+2. TD(0) Algorithm
+The simplest form of TD learning is ${TD(0)}$ algorithm (One-Step TD learning), where the value of a state is updated based on the successive reward and the estimated value of the next state. The update rule −
+
+$${V(s_t) \leftarrow V(s_t) + \alpha[R_{t+1} + \gamma V(s_{t+1}) - V(s_t)]}$$
+
+Where,
+
+${V(s_t)}$ represents the current estimate of the value of state ${s_t}$
+${R_{t+1}}$ represents the rewards received after transitioning from state ${s_t}$.
+${\gamma}$ is the discount factor
+${V(s_{t+1})}$ represents the estimated value of next state.
+${\alpha}$ is the learning rate.
+The rule adjusts the current estimate based on the difference between the predicted return (using ${V(s_{t+1})}$) and the actual return (using ${R_{t+1}}$).
+
+3. TD(1) ALgorithm
+Temporal Difference Learning with a trace length of 1, is known as TD(1) which is a combination of Monte Carlo techniques and Dynamic Programming in a reinforcement learning. This is the generalized version of TD(0). The main concept behind TD(1) is to adjust the value function using the last reward and the prediction of upcoming rewards.
+
+Difference between Temporal Difference learning and Q-Learning
+The difference between Q-learning and Temporal Difference Learning based on a few aspects is tabulated below −
+
+Aspect	Temporal Difference (TD) Learning	Q-Learning
+Objective	Estimates state-value function ${V(s)}$	Estimates action-value function ${Q(s, a)}$
+Type of Algorithm	State values ${V(s)}$	Action-state values ${Q(s, a)}$
+Policy Type	Model-free, on-policy or off-policy reinforcement learning	Model-free, off-policy reinforcement learning.
+Update Rule	Updates based on the next state's value (for state-value)	Update based on maximum future action-value (for Q-function)
+Update Formula	${V(s_t) \leftarrow V(s_t) + \alpha [r_{t+1} + \gamma V(s_{t+1}) - V(s_t)]}$	${Q(s_t, a_t) \leftarrow Q(s_t, a_t) + \alpha [ r_{t+1} + \gamma \max_{{a'}} Q(s_{t+1}, a') - Q(s_t, a_t)]}$
+Exploration vs Exploitation	Directly follows the exploration-exploitation trade-off of the current policy like epsilon-greedy.	Separates exploration through epsilon-greedy from learning the optimal policy
+Type of Learning	Model-free, learns from experience and bootstraps off of value estimates	Model-free, learns from experience and aims to optimize the policy
+Convergence	Converges to a good approximation of the state-value function ${V(s)}$	Converges to the optimal policy if enough exploration is done
+Example Algorithms	TD(0), SARSA	Q-learning
+What is Temporal Difference Error?
+The TD error is defined as the gap between the current estimation ${V_t}$ and the discounted value estimate of ${V_{t+1}}$, compared to the reward obtained from moving from ${S_t}$ to ${S_{t+1}}$. The TD error at step t requires information from the next state and reward, making it inaccessible until step ${t + 1}$. Updating the value function with the TD error is referred to as a backup. The TD error is connected to the Bellman equation. The equation that defines Temporal Difference Error is −
+
+$${\Delta t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)}$$
+
+Benefits of Temporal Difference Learning
+Some of the benefits of temporal difference learning that create an impact in enhancing machine learning are −
+
+TD learning techniques can learn from unfinished sequences, allowing them to be applied to continuous problems as well.
+TD learning is capable of operating in environments that do not terminate.
+TD Learning has lower variability compared to the Monte Carlo method because it relies on a single random action, transition, and reward.
+Challenges in Temporal Difference Learning
+Some of the challenges in TD learning that have to be addressed are −
+
+TD learning methods are more sensitive towards initial values.
+It is a biased estimation.

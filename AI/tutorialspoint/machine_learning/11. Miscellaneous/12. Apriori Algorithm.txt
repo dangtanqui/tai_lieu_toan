@@ -1,0 +1,62 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_apriori_algorithm.htm
+Apriori is a popular algorithm used for association rule mining in machine learning. It is used to find frequent itemsets in a transaction database and generate association rules based on those itemsets. The algorithm was first introduced by Rakesh Agrawal and Ramakrishnan Srikant in 1994.
+
+The Apriori algorithm works by iteratively scanning the database to find frequent itemsets of increasing size. It uses a "bottom-up" approach, starting with individual items and gradually adding more items to the candidate itemsets until no more frequent itemsets can be found. The algorithm also employs a pruning technique to reduce the number of candidate itemsets that need to be checked.
+
+Here's a brief overview of the steps involved in the Apriori algorithm −
+
+Scan the database to find the support count of each item.
+
+Generate a set of frequent 1-itemsets based on the minimum support threshold.
+
+Generate a set of candidate 2-itemsets by combining frequent 1-itemsets.
+
+Scan the database again to find the support count of each candidate 2-itemset.
+
+Generate a set of frequent 2-itemsets based on the minimum support threshold and prune any candidate 2-itemsets that are not frequent.
+
+Repeat steps 3-5 to generate candidate k-itemsets and frequent k-itemsets until no more frequent itemsets can be found.
+
+Example - Apriori Algorithm Implementation
+In Python, the mlxtend library provides an implementation of the Apriori algorithm. Below is an example of how to use use the mlxtend library in conjunction with the sklearn datasets to implement the Apriori algorithm on iris dataset.
+
+from mlxtend.frequent_patterns import apriori
+from mlxtend.preprocessing import TransactionEncoder
+from sklearn import datasets
+
+# Load the iris dataset
+iris = datasets.load_iris()
+
+# Convert the dataset into a list of transactions
+transactions = []
+for i in range(len(iris.data)):
+   transaction = []
+   transaction.append('sepal_length=' + str(iris.data[i][0]))
+   transaction.append('sepal_width=' + str(iris.data[i][1]))
+   transaction.append('petal_length=' + str(iris.data[i][2]))
+   transaction.append('petal_width=' + str(iris.data[i][3]))
+   transaction.append('target=' + str(iris.target[i]))
+   transactions.append(transaction)
+# Encode the transactions using one-hot encoding
+te = TransactionEncoder()
+te_ary = te.fit(transactions).transform(transactions)
+df = pd.DataFrame(te_ary, columns=te.columns_)
+
+# Find frequent itemsets with a minimum support of 0.3
+frequent_itemsets = apriori(df, min_support=0.3, use_colnames=True)
+
+# Print the frequent itemsets
+print(frequent_itemsets)
+In this example, we load the iris dataset from sklearn, which contains information about iris flowers. We convert the dataset into a list of transactions, where each transaction represents a single flower and contains the values for its four attributes (sepal_length, sepal_width, petal_length, and petal_width) as well as its target label (target). We then encode the transactions using one-hot encoding and find frequent itemsets with a minimum support of 0.3 using the apriori function from mlxtend.
+
+The output of this code will show the frequent itemsets and their corresponding support counts. Since the iris dataset is relatively small, we only find a single frequent itemset −
+
+Output
+   support   itemsets
+0  0.333333  (target=0)
+1  0.333333  (target=1)
+2  0.333333  (target=2)
+This indicates that 33% of the transactions in the dataset contain both a petal_length value of 1.4 and a target label of 0 (which corresponds to the setosa species in the iris dataset).
+
+The Apriori algorithm is widely used in market basket analysis to identify patterns in customer purchasing behavior. For example, a retailer might use the algorithm to find frequently purchased items that can be promoted together to increase sales. The algorithm can also be used in other domains such as healthcare, finance, and social media to identify patterns and generate insights from large datasets.
+

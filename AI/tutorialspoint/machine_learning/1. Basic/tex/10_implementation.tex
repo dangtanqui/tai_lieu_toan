@@ -1,0 +1,92 @@
+%==============================================================================
+\section{Implementation --- Triển khai học máy trong thực tế}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_implementing.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Mục tiêu}]
+Bài này mô tả các bước triển khai học máy (implementation) trong thực tế: từ dữ liệu, trực quan hoá, feature engineering đến chọn mô hình, đánh giá, tuning và triển khai/giám sát.
+\end{dongco}
+
+\subsection{Các bước triển khai học máy (theo nguồn)}
+
+\subsubsection{Data Collection and Preparation}
+\begin{phuongphap}[title={Thu thập và chuẩn bị dữ liệu}]
+Bước đầu tiên là thu thập dữ liệu để huấn luyện và kiểm thử mô hình.
+Dữ liệu cần \textbf{liên quan} bài toán.
+Sau khi thu thập, cần tiền xử lý và làm sạch để loại bỏ bất nhất hoặc thiếu dữ liệu.
+\end{phuongphap}
+
+\subsubsection{Data Exploration and Visualization}
+\begin{phuongphap}[title={Khám phá và trực quan hoá dữ liệu}]
+Bước tiếp theo là khám phá và trực quan hoá để hiểu cấu trúc và nhận diện pattern/trend.
+Nguồn nêu các công cụ như Matplotlib và Seaborn để vẽ histogram, scatter plots, heatmaps.
+\end{phuongphap}
+
+\subsubsection{Feature Selection and Engineering}
+\begin{phuongphap}[title={Chọn feature và tạo feature}]
+Chọn các feature liên quan bài toán hoặc tạo feature mới từ feature sẵn có để tăng độ chính xác mô hình.
+\end{phuongphap}
+
+\subsubsection{Model Selection and Training}
+\begin{phuongphap}[title={Chọn mô hình và huấn luyện}]
+Sau khi dữ liệu chuẩn bị và feature được chọn/tạo, bước tiếp theo là chọn thuật toán phù hợp để huấn luyện.
+Nguồn nhắc: chia train/test và fit mô hình trên train.
+Có thể dùng nhiều thuật toán như linear regression, logistic regression, decision trees, random forests, SVM, neural networks, \ldots
+\end{phuongphap}
+
+\subsubsection{Model Evaluation}
+\begin{phuongphap}[title={Đánh giá mô hình}]
+Sau khi huấn luyện, cần đánh giá hiệu năng.
+Nguồn nêu metric như accuracy, precision, recall, F1-score; và có thể dùng cross-validation để kiểm thử khả năng tổng quát.
+\end{phuongphap}
+
+\subsubsection{Model Tuning}
+\begin{phuongphap}[title={Tuning siêu tham số}]
+Có thể cải thiện hiệu năng bằng tuning hyperparameters (các tham số không học từ dữ liệu mà do người dùng đặt).
+Nguồn nêu: tìm bộ tối ưu bằng grid search và random search.
+\end{phuongphap}
+
+\subsubsection{Deployment and Monitoring}
+\begin{phuongphap}[title={Triển khai và giám sát}]
+Sau khi huấn luyện và tuning, triển khai mô hình vào production.
+Triển khai gồm tích hợp mô hình vào quy trình/hệ thống.
+Sau đó cần giám sát thường xuyên để đảm bảo mô hình tiếp tục hoạt động tốt và phát hiện vấn đề cần xử lý.
+\end{phuongphap}
+
+\begin{luuy}[title={Kết luận của nguồn}]
+Mỗi bước cần công cụ/kỹ thuật khác nhau.
+Triển khai thành công cần kết hợp kỹ năng kỹ thuật và hiểu bối cảnh kinh doanh.
+\end{luuy}
+
+\subsection{Chọn ngôn ngữ và IDE để phát triển ML}
+
+\begin{dongco}[title={Chọn công cụ theo năng lực và bối cảnh}]
+Để phát triển ứng dụng ML, bạn cần quyết định nền tảng, IDE và ngôn ngữ.
+Nhiều lựa chọn có thể đáp ứng nhu cầu vì đều có hiện thực các thuật toán AI/ML phổ biến.
+\end{dongco}
+
+\begin{phuongphap}[title={Nếu tự phát triển thuật toán}]
+Nguồn gợi ý cân nhắc:
+\begin{itemize}
+  \item Ngôn ngữ bạn thành thạo.
+  \item IDE bạn quen dùng.
+  \item Nền tảng triển khai (nhiều nền tảng miễn phí; một số có phí license theo mức sử dụng).
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Language Choice}
+\begin{phuongphap}[title={Ngôn ngữ hỗ trợ ML (theo nguồn)}]
+Python, R, Matlab, Octave, Julia, C++, C.
+Nguồn lưu ý: danh sách không đầy đủ, nhưng gồm các ngôn ngữ phổ biến.
+\end{phuongphap}
+
+\subsubsection{IDEs}
+\begin{phuongphap}[title={IDE hỗ trợ ML (theo nguồn)}]
+R Studio, PyCharm, iPython/Jupyter Notebook, Julia, Spyder, Anaconda, Rodeo, Google Colab.
+Nguồn lưu ý: danh sách không đầy đủ; mỗi IDE có ưu/nhược; nên thử trước khi chọn một IDE chính.
+\end{phuongphap}
+
+% The downloader currently stores this page's images under the older combined slug.

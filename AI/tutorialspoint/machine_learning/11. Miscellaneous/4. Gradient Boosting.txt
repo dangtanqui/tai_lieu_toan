@@ -1,0 +1,84 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_gradient_boosting.htm
+Gradient Boosting Machines (GBM) is a powerful machine learning technique that is widely used for building predictive models. It is a type of ensemble method that combines the predictions of multiple weaker models to create a stronger and more accurate model.
+
+GBM is a popular choice for a wide range of applications, including regression, classification, and ranking problems. Let's understand the workings of GBM and how it can be used in machine learning.
+
+What is a Gradient Boosting Machine (GBM)?
+GBM is an iterative machine learning algorithm that combines the predictions of multiple decision trees to make a final prediction.
+
+The algorithm works by training a sequence of decision trees, each of which is designed to correct the errors of the previous tree.
+
+In each iteration, the algorithm identifies the samples in the dataset that are most difficult to predict and focuses on improving the model's performance on these samples.
+
+This is achieved by fitting a new decision tree that is optimized to reduce the errors on the difficult samples. The process continues until a specified stopping criteria is met, such as reaching a certain level of accuracy or the maximum number of iterations.
+
+How Does a Gradient Boosting Machine Work?
+The basic steps involved in training a GBM model are as follows −
+
+Initialize the model − The algorithm starts by creating a simple model, such as a single decision tree, to serve as the initial model.
+
+Calculate residuals − The initial model is used to make predictions on the training data, and the residuals are calculated as the differences between the predicted values and the actual values.
+
+Train a new model − A new decision tree is trained on the residuals, with the goal of minimizing the errors on the difficult samples.
+
+Update the model − The predictions of the new model are added to the predictions of the previous model, and the residuals are recalculated based on the updated predictions.
+
+Repeat − Steps 3-4 are repeated until a specified stopping criteria is met.
+
+GBM can be further improved by introducing regularization techniques, such as L1 and L2 regularization, to prevent overfitting. Additionally, GBM can be extended to handle categorical variables, missing data, and multi-class classification problems.
+
+Example - Gradient Boosting
+Here is an example of implementing GBM using the Sklearn breast cancer dataset −
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the breast cancer dataset
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train the model using GradientBoostingClassifier
+model = GradientBoostingClassifier(n_estimators=100, max_depth=3, learning_rate=0.1)
+model.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred = model.predict(X_test)
+
+# Evaluate the model's accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+Output
+In this example, we load the breast cancer dataset using Sklearn's load_breast_cancer function and split it into training and testing sets. We then define the parameters for the GBM model using GradientBoostingClassifier, including the number of estimators (i.e., the number of decision trees), the maximum depth of each decision tree, and the learning rate.
+
+We train the GBM model using the fit method and make predictions on the testing set using the predict method. Finally, we evaluate the model's accuracy using the accuracy_score function from Sklearn's metrics module.
+
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.956140350877193
+Advantages of Using Gradient Boosting Machines
+There are several advantages of using GBM in machine learning −
+
+High accuracy − GBM is known for its high accuracy, as it combines the predictions of multiple weaker models to create a stronger and more accurate model.
+
+Robustness − GBM is robust to outliers and noisy data, as it focuses on improving the model's performance on the most difficult samples.
+
+Flexibility − GBM can be used for a wide range of applications, including regression, classification, and ranking problems.
+
+Interpretability − GBM provides insights into the importance of different features in making predictions, which can be useful for understanding the underlying factors driving the predictions.
+
+Scalability − GBM can handle large datasets and can be parallelized to accelerate the training process.
+
+Limitations of Gradient Boosting Machines
+There are also some limitations to using GBM in machine learning −
+
+Training time − GBM can be computationally expensive and may require a significant amount of training time, especially when working with large datasets.
+
+Hyperparameter tuning − GBM requires careful tuning of hyperparameters, such as the learning rate, number of trees, and maximum depth, to achieve optimal performance.
+
+Black box model − GBM can be difficult to interpret, as the final model is a combination of multiple decision trees and may not provide clear insights into the underlying factors driving the predictions.

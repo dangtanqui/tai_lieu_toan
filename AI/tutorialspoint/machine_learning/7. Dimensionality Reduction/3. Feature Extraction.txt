@@ -1,0 +1,55 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_feature_extraction.htm
+Feature extraction is often used in image processing, speech recognition, natural language processing, and other applications where the raw data is high-dimensional and difficult to work with.
+
+Example - Feature Extraction
+Here is an example of how to perform feature extraction using Principal Component Analysis (PCA) on the Iris Dataset using Python −
+
+# Import necessary libraries and dataset
+from sklearn.datasets import load_iris
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Load the dataset
+iris = load_iris()
+
+# Perform feature extraction using PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(iris.data)
+
+# Visualize the transformed data
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=iris.target)
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.show()
+In this code, we first import the necessary libraries, including sklearn for performing feature extraction using PCA and matplotlib for visualizing the transformed data.
+
+Next, we load the Iris Dataset using load_iris(). We then perform feature extraction using PCA with PCA() and set the number of components to 2 (n_components=2). This reduces the dimensionality of the input data from 4 features to 2 principal components.
+
+We then transform the input data using fit_transform() and store the transformed data in X_pca. Finally, we visualize the transformed data using plt.scatter() and color the data points based on their target value. We label the axes as PC1 and PC2, which are the first and second principal components, respectively, and show the plot using plt.show().
+
+Output
+When you execute the given program, it will produce the following plot as the output −
+
+feature extraction
+Advantages of Feature Extraction
+Following are the advantages of using Feature Extraction −
+
+Reduced Dimensionality − Feature extraction reduces the dimensionality of the input data by transforming it into a new set of features. This makes the data easier to visualize, process and analyze.
+
+Improved Performance − Feature extraction can improve the performance of machine learning algorithms by creating a set of more meaningful features that capture the essential information from the input data.
+
+Feature Selection − Feature extraction can be used to perform feature selection by selecting a subset of the most relevant features that are most informative for the machine learning model.
+
+Noise Reduction − Feature extraction can also help reduce noise in the data by filtering out irrelevant features or combining related features.
+
+Disadvantages of Feature Extraction
+Following are the disadvantages of using Feature Extraction −
+
+Loss of Information − Feature extraction can result in a loss of information as it involves reducing the dimensionality of the input data. The transformed data may not contain all the information from the original data, and some information may be lost in the process.
+
+Overfitting − Feature extraction can also lead to overfitting if the transformed features are too complex or if the number of features selected is too high.
+
+Complexity − Feature extraction can be computationally expensive and time-consuming, especially when dealing with large datasets or complex feature extraction techniques such as deep learning.
+
+Domain Expertise − Feature extraction requires domain expertise to select and transform the features effectively. It requires knowledge of the data and the problem at hand to choose the right features that are most informative for the machine learning model.

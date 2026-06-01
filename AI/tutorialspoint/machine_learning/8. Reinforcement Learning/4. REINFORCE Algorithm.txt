@@ -1,0 +1,42 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_reinforce_algorithm.htm
+What is REINFORCE Algorithm?
+The REINFORCE algorithm is a type of policy gradient algorithm in reinforcement learning that is based on Monte Carlo methods. The simple way to implement this algorithm is by employing gradient ascent to enhance a policy by directly increasing the expected cumulative reward. This algorithm does not require a model of the environment and is thus categorized as a model-free method.
+
+Key Concepts of REINFORCE Algorithm
+Some key concepts that are related to the REINFORCE algorithm are briefly described below −
+
+Policy Gradient Methods − The REINFORCE algorithm is a type of policy gradient method, which are algorithms that enhance a policy by following the gradient of the expected cumulative reward.
+Monte Carlo Methods − The Reinforce Algorithm represents a form of the Monte Carlo method, as it utilizes sampling to evaluate desired quantities.
+How does REINFORCE Algorithm Work?
+The Reinforce Algorithm was introduced by Ronald J. Williams in 1992. The main goal of this algorithm is to maximize the expected cumulative rewards by adjusting the policy parameters. This algorithm trains the agents to make sequential decisions in an environment. The step-by-step breakdown of the Reinforce Algorithm is −
+
+Episode Sampling
+The algorithm begins by sampling a complete episode of interaction with the environment, where the agent follows its current policy. An episode consists of a sequence of states, actions, and rewards until the state terminates.
+
+Trajectory of states, actions, and rewards
+The agent records the trajectory of interactions − (s1,a1,r1,......st,at,rt) where s represents the states, a represents the actions taken, and r represents the rewards received at each step.
+
+Return Calculations
+The return Gt The return represents the cumulative reward an agent expects to receive from time t onwards.
+
+Gt = rt + γrt+1 + γ2rt+2
+
+Calculate the Policy Gradient
+Compute the gradient of the expected return concerning the policy's parameters. To achieve this, it is necessary to calculate the gradient of the log livelihood for the selected course of action.
+
+Update the policy
+After computing the gradient of the expected cumulative reward, the policy parameters are updated in the direction that increases the expected reward.
+
+Repeat the above steps until the state terminates. Unlike temporal difference learning (Q-learning and SARSA), which focuses on immediate rewards. Reinforce enables the agent to learn from the full sequence of states, actions, and rewards.
+
+Advantages of REINFORCE Algorithm
+Some of the advantages of the REINFORCE algorithm are −
+
+Model-free − The REINFORCE algorithm doesn't require a model of the environment, making it appropriate for situations where the environment is not known or hard to model.
+Simple and intuitive − The algorithm is easy to understand and implement.
+Able to handle high-dimensional action spaces − In contrast to value-based methods, the REINFORCE algorithm can handle continuous and high-dimensional action spaces.
+Disadvantages of REINFORCE Algorithm
+Some of the disadvantages of REINFORCE algorithm are −
+
+High Variance − The REINFORCE Algorithm may experience significant variance in its gradient estimates, which can slow down the learning process and make it unstable.
+Inefficient sample use − The algorithm needs a fresh set of samples for each gradient calculation, which may be less efficient than techniques that utilize samples multiple times.

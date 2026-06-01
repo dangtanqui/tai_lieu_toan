@@ -1,0 +1,64 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_bayes_theorem.htm
+Bayes Theorem is a fundamental concept in probability theory that has many applications in machine learning. It allows us to update our beliefs about the probability of an event given new evidence. Actually, it forms the basis for probabilistic reasoning and decision making.
+
+Bayes Theorem states that the probability of an event A given evidence B is equal to the probability of evidence B given event A, multiplied by the prior probability of event A, divided by the probability of evidence B. In mathematical notation, this can be written as −
+
+$$P\left ( A| B \right )=P\left ( B|A \right )\ast P\left ( A \right )/P\left ( B \right )$$
+
+where −
+
+$P\left ( A| B \right )$ is the probability of event A given evidence B (the posterior probability)
+
+$P\left ( B|A \right )$ is the probability of evidence B given event A (the likelihood)
+
+$P\left ( A \right )$ is the prior probability of event A (our initial belief about the probability of event A)
+
+$P\left ( B \right )$ is the probability of evidence B (the total probability)
+
+Bayes Theorem can be used in a wide range of applications, such as spam filtering, medical diagnosis, and image recognition. In machine learning, Bayes Theorem is commonly used in Bayesian inference, which is a statistical technique for updating our beliefs about the parameters of a model based on new data.
+
+Implementation in Python
+In Python, there are several libraries that implement Bayes Theorem and Bayesian inference. One of the most popular is the scikit-learn library, which provides a range of tools for machine learning and data analysis.
+
+Let's consider an example of how Bayes Theorem can be implemented in Python using scikit-learn. Suppose we have a dataset of emails, some of which are spam and some of which are not. Our goal is to build a classifier that can accurately predict whether a new email is spam or not.
+
+We can use Bayes Theorem to calculate the probability of an email being spam given its features (such as the words in the subject line or body). To do this, we first need to estimate the parameters of the model, which in this case are the prior probabilities of spam and non-spam emails, as well as the likelihood of each feature given the class (spam or non-spam).
+
+We can estimate these probabilities using maximum likelihood estimation or Bayesian inference. In our example, we will be using the Multinomial Naive Bayes algorithm, which is a variant of the Naive Bayes algorithm that is commonly used for text classification tasks.
+
+Example - Bayes Theorem
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
+
+# Load the 20 newsgroups dataset
+categories = ['alt.atheism', 'comp.graphics', 'sci.med', 'soc.religion.christian']
+train = fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
+test = fetch_20newsgroups(subset='test', categories=categories, shuffle=True, random_state=42)
+
+# Vectorize the text data using a bag-of-words representation
+vectorizer = CountVectorizer()
+X_train = vectorizer.fit_transform(train.data)
+X_test = vectorizer.transform(test.data)
+
+# Train a Multinomial Naive Bayes classifier
+clf = MultinomialNB()
+clf.fit(X_train, train.target)
+
+# Make predictions on the test set and calculate accuracy
+y_pred = clf.predict(X_test)
+accuracy = accuracy_score(test.target, y_pred)
+print("Accuracy:", accuracy)
+In the above code, we first load the 20 newsgroups dataset , which is a collection of newsgroup posts classified into different categories. We select four categories (alt.atheism, comp.graphics, sci.med, and soc.religion.christian) and split the data into training and testing sets.
+
+We then use the CountVectorizer class from scikit-learn to convert the text data into a bag-of-words representation. This representation counts the occurrence of each word in the text and represents it as a vector.
+
+Next, we train a Multinomial Naive Bayes classifier using the fit() method. This method estimates the prior probabilities and the likelihood of each word given the class using maximum likelihood estimation. The classifier can then be used to make predictions on the test set using the predict() method.
+
+Finally, we calculate the accuracy of the classifier using the accuracy_score() function from scikit-learn.
+
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.9340878828229028

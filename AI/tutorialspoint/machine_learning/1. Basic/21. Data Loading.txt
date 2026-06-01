@@ -1,0 +1,120 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_data_loading.htm
+Suppose if you want to start a ML project then what is the first and most important thing you would require? It is the data that we need to load for starting any of the ML project.
+
+In machine learning, data loading refers to the process of importing or reading data from external sources and converting it into a format that can be used by the machine learning algorithm. The data is then preprocessed to remove any inconsistencies, missing values, or outliers. Once the data is preprocessed, it is split into training and testing sets, which are then used for model training and evaluation.
+
+The data can come from various sources such as CSV files, databases, web APIs, cloud storage, etc. The most common file formats for machine learning projects is CSV (Comma Separated Values).
+
+Consideration While Loading CSV data
+CSV is a plain text format that stores tabular data, where each row represents a record, and each column represents a field or attribute. It is widely used because it is simple, lightweight, and can be easily read and processed by programming languages such as Python, R, and Java.
+
+In Python, we can load CSV data into ML projects with different ways but before loading CSV data we must have to take care about some considerations.
+
+In this chapter, let's understand the main parts of a CSV file, how they might affect the loading and analysis of data, and some consideration we should take care before loading CSV data into ML projects.
+
+File Header
+This is the first row of the CSV file, and it typically contains the names of the columns in the table. When loading CSV data into an ML project, the file header (also known as column headers or variable names) can play an important role in data analysis and model training. Here are some considerations to keep in mind regarding the file header −
+
+Consistency − The header row should be consistent across the entire CSV file. This means that the number of columns and their names should be the same for each row. Inconsistencies can cause issues with parsing and analysis.
+
+Meaningful names − Column names should be meaningful and descriptive. This can help with understanding the data and building more accurate models. Avoid using generic names like "column1", "column2", etc.
+
+Case sensitivity − Depending on the tool or library being used to load the CSV file, the column names may be case sensitive. It's important to ensure that the case of the header row matches the expected case sensitivity of the tool or library being used.
+
+Special characters − Column names should not contain any special characters, such as spaces, commas, or quotation marks. These characters can cause issues with parsing and analysis. Instead, use underscores or camelCase to separate words.
+
+Missing header − If the CSV file does not have a header row, it's important to specify the column names manually or provide a separate file or documentation that includes the column names.
+
+Encoding − The encoding of the header row can affect its interpretation when loading the CSV file. It's important to ensure that the encoding of the header row is compatible with the tool or library being used to read the file.
+
+Comments
+These are optional lines that begin with a specified character, such as "#" or "//", and are ignored by most programs that read CSV files. They can be used to provide additional information or context about the data in the file.
+
+Comments in a CSV file are not typically used to represent data that would be used in a machine learning project. However, if comments are present in a CSV file, it's important to consider how they might affect the loading and analysis of the data. Here are some considerations −
+
+Comment markers − In a CSV file, comments can be indicated using a specific marker, such as "#" or "//". It's important to know what marker is being used, so that the loading process can ignore comments properly.
+
+Placement − Comments should be placed in a separate line from the actual data. If a comment is included in a line with actual data, it may cause issues with parsing and analysis.
+
+Consistency − If comments are used in a CSV file, it's important to ensure that the comment marker is used consistently throughout the entire file. Inconsistencies can cause issues with parsing and analysis.
+
+Handling comments − Depending on the tool or library being used to load the CSV file, comments may be ignored by default or may require a specific parameter to be set. It's important to understand how comments are handled by the tool or library being used.
+
+Effect on analysis − If comments contain important information about the data, it may be necessary to process them separately from the data itself. This can add complexity to the loading and analysis process.
+
+Delimiter
+This is the character that separates the fields in each row. While the name suggests that a comma is used as the delimiter, other characters such as tabs, semicolons, or pipes can also be used depending on the file.
+
+The delimiter used in a CSV file can significantly affect the accuracy and performance of a machine learning model, so it is important to consider the following while loading data into an ML project −
+
+Delimiter choice − The delimiter used in a CSV file should be carefully chosen based on the data being used. For example, if the data contains commas within the values (e.g. "New York, NY"), then using a comma as a delimiter may cause issues.
+
+In this case, a different delimiter, such as a tab or semicolon, may be more appropriate.
+
+Consistency − The delimiter used in the CSV file should be consistent throughout the entire file. Mixing different delimiters or using whitespace inconsistently can lead to errors and make it difficult to parse the data accurately.
+
+Encoding − The delimiter can also be affected by the encoding of the CSV file. For example, if the CSV file uses a non-ASCII delimiter and is encoded in UTF-8, it may not be correctly read by some machine learning libraries or tools. It is important to ensure that the encoding and delimiter are compatible with the machine learning tools being used.
+
+Other considerations − In some cases, the delimiter may need to be customized based on the machine learning tool being used. For example, some libraries may require a specific delimiter or may not support certain delimiters. It is important to check the documentation of the machine learning tool being used and customize the delimiter as needed.
+
+Quotes
+These are optional characters that can be used to enclose fields that contain the delimiter character or newlines. For example, if a field contains a comma, enclosing the field in quotes ensures that the comma is treated as part of the field and not as a delimiter. When loading CSV data into an ML project, there are several considerations to keep in mind regarding the use of quotes −
+
+Quote character − The quote character used in a CSV file should be consistent throughout the file. The most commonly used quote character is the double quote (") but some files may use single quotes or other characters. It's important to make sure that the quote character used is consistent with the tool or library being used to read the CSV file.
+
+Quoted values − In some cases, values in a CSV file may be enclosed in quotes to differentiate them from other values. For example, if a field contains a comma, it may be enclosed in quotes to prevent it from being interpreted as a new field. It's important to make sure that quoted values are properly handled when loading the data into an ML project.
+
+Escaping quotes − If a field contains the quote character used to enclose values, it must be escaped. This is typically done by doubling the quote character. For example, if the quote character is double quote (") and a field contains the value "John "the Hammer" Smith", it would be enclosed in quotes and the internal quotes would be escaped like this: "John ""the Hammer"" Smith".
+
+Use of quotes − The use of quotes in CSV files can vary depending on the tool or library being used to generate the file. Some tools may use quotes around every field, while others may only use quotes around fields that contain special characters. It's important to make sure that the quote usage is consistent with the tool or library being used to read the file.
+
+Encoding − The use of quotes can also be affected by the encoding of the CSV file. If the file is encoded in a non-standard way, it may cause issues when loading the data into an ML project. It's important to make sure that the encoding of the CSV file is compatible with the tool or library being used to read the file.
+
+Various Methods of Loading a CSV Data File
+While working with ML projects, the most crucial task is to load the data properly into it. As told earlier, the most common data format for ML projects is CSV and it comes in various flavors and varying difficulties to parse.
+
+In this section, we are going to discuss some common approaches in Python to load CSV data file into machine learning project −
+
+Using the CSV Module
+This is a built-in module in Python that provides functionality for reading and writing CSV files. You can use it to read a CSV file into a list or dictionary object. Below is its implementation example in Python −
+
+import csv
+with open('mydata.csv', 'r') as file:
+   reader = csv.reader(file)
+   for row in reader:
+      print(row)
+This code reads a CSV file called mydata.csv and prints each row in the file.
+
+Using the Pandas Library
+This is a popular data manipulation library in Python that provides a read_csv() function for reading CSV files into a pandas DataFrame object. This is a very convenient way to load data and perform various data manipulation tasks. Below is its implementation example in Python −
+
+import pandas as pd
+
+data = pd.read_csv('mydata.csv')
+This code reads a CSV file called mydata.csv and loads it into a pandas DataFrame object called data.
+
+Using the Numpy Library
+This is a numerical computing library in Python that provides a genfromtxt() function for loading CSV files into a numpy array. Below is its implementation example in Python −
+
+import numpy as np
+
+data = np.genfromtxt('mydata.csv', delimiter=',')
+This code reads a CSV file called mydata.csv and loads it into a numpy array called 'data'.
+
+Using the Scipy Library
+This is a scientific computing library in Python that provides a loadtxt() function for loading text files, including CSV files, into a numpy array. Below is its implementation example in Python −
+
+import numpy as np
+
+from scipy import loadtxt
+data = loadtxt('mydata.csv', delimiter=',')
+This code reads a CSV file called mydata.csv and loads it into a numpy array called 'data'.
+
+Using the Sklearn Library
+This is a popular machine learning library in Python that provides a load_iris() function for loading the iris dataset, which is a commonly used dataset for classification tasks. Below is its implementation example in Python −
+
+from sklearn.datasets import load_iris
+
+data = load_iris().data
+This code loads the iris dataset, which is included in the sklearn library, and loads it into a numpy array called data.
+

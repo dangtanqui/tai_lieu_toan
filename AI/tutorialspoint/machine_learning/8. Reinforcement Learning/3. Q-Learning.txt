@@ -1,0 +1,90 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_q_learning.htm
+Q-learning is a value-based reinforcement learning algorithm that enables models to iteratively learn and improve over time by taking the correct actions. While these correct actions are considered rewards, the bad actions are penalties.
+
+What is Q-Learning in Reinforcement Learning?
+Reinforcement learning is a machine learning approach in which a learning agent learns over time to make the right decisions in a certain environment by interacting continuously. The agent, in the process of learning, experiences various situations in the environment, which are called "states." The agent, while being in a particular state, performs an action picked from the set of actionable actions that fetches rewards or penalties. Over time, the learning agent learns to maximize these rewards to behave correctly in any state. Q-learning is one such algorithm that uses Q-values, also called action values, to iteratively improve the behavior of the learning agent.
+
+Key Components of Q-Learning
+Q-learning model functions through an iterative process with several components working together to train a model. The iterative process consists of the agent learning through exploration of the environment and continuously updating the model. Q-learning consists of the following components −
+
+Agents − The agent is the entity that functions and performs tasks in a given environment.
+States − The state is a variable that specifies an agent's current situation within an environment.
+Actions − The agent's behavior in a particular state.
+Rewards − The idea behind reinforcement learning is either providing a positive or negative response to the agent's actions.
+Episodes − An episode occurs when an agent reaches a point where it cannot take any more actions and terminates.
+Q-values − The Q-value is the measurement used to assess an action in a specific state.
+How does Q-Learning Works?
+Q-Learning works through trial-and-error experiences to learn the outcome of a particular action carried out by an agent in an environment. The Q-learning process involves modeling optimal behavior by learning an optimal action value function called Q-function. There are two methods to determine the Q-values −
+
+Temporal Difference
+The temporal difference equation determines the Q-value by evaluating the current state and action agents and the previous state and action to determine the differences.
+
+The Temporal Difference can be represented as −
+
+Q(s,a) = Q(s,a) + ɑ(r + γmaxaQ(s',a)-Q(s,a))
+
+Where,
+
+s represents current state of the agent.
+
+a represents current action picked from the Q-table.
+
+s' represents the next state, where the agent terminates.
+
+a' represents the next best action to be picked using current Q-value estimation.
+
+r represents the current reward observed from the environment in response to the current action.
+
+γ ( &0 and <=1) is the discounting factor for future rewards.
+
+ɑ is step length taken to update the estimation of Q(s,a).
+
+Bellman Equation
+Mathematician Richard Bellman developed this equation in 1957 as a way to make optimal decisions using recursion. In the context of Q-learning, Bellman's equation is utilized to determine the value of a specific state and evaluate its relative placement. The optimal state is determined by the state with the highest value.
+
+The Bellman's equation can be represented as −
+
+Q(s,a) = r(s,a) + ɑ maxaQ(s',a)
+
+Where,
+
+Q(s,a) represents the expected reward for an action 'a' in state 's'.
+
+R (s,a) represents the reward earned when action a is carried out in state 's'.
+
+ɑ is the discount factor, which denotes the significance of future rewards.
+
+maxaQ(s',a) represents the maximum Q-value for the next state s' and every possible action.
+
+Q-Learning Algorithm
+The Q-learning algorithm involves the agent learning through exploring the environment and updating the Q-table based on the received rewards. Q-table is a repository that stores rewards associated with optimal actions for each state in a given environment. The steps involved in the Q-learning algorithm process include −
+
+Q-learning Algorithm
+The following are the steps in the Q-learning algorithm −
+
+Initialization of Q-table − The first step involves initializing Q-table to monitor the progress related to actions taken in different states.
+Observation − The agent observes the present state of the environment.
+Action − The agent decides to take action within the environment. After the completion, the model observes if the action is helpful in the environment.
+Update − After the action is completed, it's time to update the Q-table with the results.
+Repeat − Repeat performing steps 2-4 until the model achieves a termination state.
+Advantages of Q-Learning
+The Q-learning approach in reinforcement learning offers various benefits such as −
+
+This learning approach, which is trial and error, resembles how people learn, making it almost ideal.
+This learning approach doesn't stick to a policy, which enables it to optimize to the fullest to get the best possible result.
+This model-free, off-policy approach improves the flexibility to work in environments whose parameters cannot be dynamically stated.
+The model has the ability to fix mistakes while training, and there is very little probability that the fixed mistake would happen again.
+Disadvantages of Q-Learning
+The Q-learning approach in reinforcement learning also has some disadvantages such as −
+
+It is quite challenging for this approach to find the right balance between trying new actions and sticking with what's already known.
+The Q-learning model sometimes exhibits excessive optimism and overestimates how good a particular action or strategy is.
+Sometimes, it is time-consuming for a Q-learning model to determine the optimal strategy when faced with multiple problem-solving options.
+Applications of Q-Learning
+The Q-learning models can improve processes in various scenarios. Some of the fields include −
+
+Gaming − Q-learning algorithms can teach gaming systems to reach expert levels of skill in various games by learning the best strategy to progress.
+Recommendation Systems − Q-learning algorithms can be utilized to improve recommendation systems, like advertising platforms.
+Robotics − Q-learning algorithms enable robots to learn how to perform different tasks like manipulating objects, avoiding obstacles, and transporting items.
+Autonomous Vehicles − Q-learning algorithms are used to train self-driving cars to make driving choices like changing lanes or coming to a halt.
+Supply Chain − Q-learning models can enhance the efficiency of supply chains by optimizing the path for products to market.

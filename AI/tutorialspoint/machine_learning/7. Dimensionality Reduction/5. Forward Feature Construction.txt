@@ -1,0 +1,100 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_forward_feature_construction.htm
+Forward Feature Construction is a feature selection method in machine learning where we start with an empty set of features and iteratively add the best performing feature at each step until the desired number of features is reached.
+
+The goal of feature selection is to identify the most important features that are relevant for predicting the target variable, while ignoring the less important features that add noise to the model and may lead to overfitting.
+
+The steps involved in Forward Feature Construction are as follows −
+
+Initialize an empty set of features.
+
+Set the maximum number of features to be selected.
+
+Iterate until the desired number of features is reached −
+
+For each remaining feature that is not already in the set of selected features, fit a model with the selected features and the current feature, and evaluate its performance using a validation set.
+
+Select the feature that leads to the best performance and add it to the set of selected features.
+
+Return the set of selected features as the optimal set for the model.
+
+The key advantage of Forward Feature Construction is that it is computationally efficient and can be used for high-dimensional datasets. However, it may not always lead to the optimal set of features, especially if there are highly correlated features or non-linear relationships between the features and the target variable.
+
+Example
+Here is an example to implement Forward Feature Construction in Python −
+
+# Importing the necessary libraries
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+# Load the diabetes dataset
+diabetes = pd.read_csv(r'C:\Users\Leekha\Desktop\diabetes.csv')
+
+# Define the predictor variables (X) and the target variable (y)
+X = diabetes.iloc[:, :-1].values
+y = diabetes.iloc[:, -1].values
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+# Create an empty set of features
+selected_features = set()
+
+# Set the maximum number of features to be selected
+max_features = 8
+
+# Iterate until the desired number of features is reached
+while len(selected_features) < max_features:
+
+   # Set the best feature and the best score to be 0
+   best_feature = None
+   best_score = 0
+   
+   # Iterate over all the remaining features
+   for i in range(X_train.shape[1]):
+
+      # Skip the feature if it's already selected
+      if i in selected_features:
+         continue
+      
+      # Select the current feature and fit a linear regression model
+      X_train_selected = X_train[:, list(selected_features) + [i]]
+      regressor = LinearRegression()
+      regressor.fit(X_train_selected, y_train)
+      
+      # Compute the score on the testing set
+      X_test_selected = X_test[:, list(selected_features) + [i]]
+      score = regressor.score(X_test_selected, y_test)
+
+      # Update the best feature and score if the current feature performs better
+      if score > best_score:
+         best_feature = i
+         best_score = score
+
+   # Add the best feature to the set of selected features
+   selected_features.add(best_feature)
+   
+   # Print the selected features and the score
+   print('Selected Features:', list(selected_features))
+   print('Score:', best_score)
+Output
+On execution, it will produce the following output −
+
+Selected Features: [1]
+Score: 0.23530716168783583
+Selected Features: [0, 1]
+Score: 0.2923143573608237
+Selected Features: [0, 1, 5]
+Score: 0.3164103491569179
+Selected Features: [0, 1, 5, 6]
+Score: 0.3287368302427327
+Selected Features: [0, 1, 2, 5, 6]
+Score: 0.334586804842275
+Selected Features: [0, 1, 2, 3, 5, 6]
+Score: 0.3356264736550455
+Selected Features: [0, 1, 2, 3, 4, 5, 6]
+Score: 0.3313166516703744
+Selected Features: [0, 1, 2, 3, 4, 5, 6, 7]
+Score: 0.32230203252064216

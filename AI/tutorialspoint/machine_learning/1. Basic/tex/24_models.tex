@@ -1,0 +1,167 @@
+%==============================================================================
+\section{Models --- Các loại mô hình và phương pháp học máy}
+\label{sec:mo-hinh-ml}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_models.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Nhiều cách xây mô hình từ dữ liệu}]
+Có nhiều thuật toán, kỹ thuật và phương pháp ML để xây mô hình giải bài toán thực tế bằng dữ liệu.
+Bài này giới thiệu các \textbf{nhóm phương pháp} chính; chi tiết từng nhóm ở các bài 25--28.
+\end{dongco}
+
+\begin{phuongphap}[title={Bốn loại phương pháp ML (theo mức giám sát)}]
+\begin{enumerate}
+  \item Supervised Learning (học có giám sát)
+  \item Unsupervised Learning (học không giám sát)
+  \item Semi-supervised Learning (học bán giám sát)
+  \item Reinforcement Learning (học tăng cường)
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Đối chiếu Khái niệm nền}]
+Định nghĩa tổng quan về bốn kiểu học: Mục~\ref{sec:bon-kieu-hoc}; bài này bổ sung \textbf{phân nhánh tác vụ} và danh sách mô hình thường gặp.
+\end{luuy}
+
+\subsection{Supervised Learning (tổng quan)}
+
+\begin{dinhnghia}[title={Học có giám sát}]
+Thuật toán nhận tập huấn luyện gồm mẫu đầu vào và \textbf{nhãn/đáp án} (output) tương ứng.
+Mục tiêu: học ánh xạ từ đầu vào $x$ sang đầu ra $Y$ sau nhiều lần huấn luyện:
+\[
+Y = f(x).
+\]
+Cần xấp xỉ $f$ tốt để dự đoán $Y$ cho dữ liệu $x$ mới.
+\end{dinhnghia}
+
+\begin{ynghia}[title={``Có giám sát''}]
+Quá trình học như có ``giáo viên'' chỉ đáp án đúng.
+Ví dụ thuật toán: Decision Tree, Random Forest, KNN, Logistic Regression, \ldots
+\end{ynghia}
+
+\begin{phuongphap}[title={Hai nhóm tác vụ supervised}]
+\begin{itemize}
+  \item \textbf{Classification} (phân loại)
+  \item \textbf{Regression} (hồi quy)
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Classification}
+
+\begin{ynghia}[title={Mục tiêu}]
+Dự đoán nhãn phân loại (categorical) cho đầu vào; đầu ra là giá trị rời rạc, không có thứ tự bắt buộc, mỗi mẫu thuộc một lớp.
+\end{ynghia}
+
+\begin{phuongphap}[title={Một số mô hình phân loại phổ biến}]
+Logistic Regression, Decision Trees, Random Forest, K-nearest Neighbor, Support Vector Machine, Naive Bayes, Linear Discriminant Analysis, Neural Networks.
+\end{phuongphap}
+
+\subsubsection{Regression}
+
+\begin{ynghia}[title={Mục tiêu}]
+Dự đoán giá trị số \textbf{liên tục}; mô hình học quan hệ giữa biến độc lập (feature) và biến phụ thuộc (outcome).
+\end{ynghia}
+
+\begin{phuongphap}[title={Một số mô hình hồi quy phổ biến}]
+Linear Regression, Ridge Regression, Decision Trees, Random Forest, K-nearest Neighbor, Neural Network Regression.
+\end{phuongphap}
+
+\subsection{Unsupervised Learning (tổng quan)}
+
+\begin{dinhnghia}[title={Học không giám sát}]
+Ngược với supervised: \textbf{không} có nhãn/``giáo viên'' hướng dẫn.
+Hữu ích khi không có dữ liệu đã gán nhãn sẵn nhưng cần trích pattern từ đầu vào $x$.
+\end{dinhnghia}
+
+\begin{luuy}[title={Giảng viên lưu ý}]
+Nguồn liệt kê KNN trong ngữ cảnh unsupervised --- thực tế \textbf{k-NN chủ yếu là thuật toán supervised} (classification/regression). Clustering thường dùng K-Means, DBSCAN, \ldots
+\end{luuy}
+
+\begin{ynghia}[title={Ví dụ trực giác}]
+Chỉ có $x$, không có $Y$ tương ứng; thuật toán tự khám phá cấu trúc thú vị trong dữ liệu.
+Ví dụ thuật toán: K-means clustering, K-nearest neighbors (trong ngữ cảnh unsupervised), \ldots
+\end{ynghia}
+
+\begin{phuongphap}[title={Ba nhóm tác vụ unsupervised}]
+Clustering, Association, Dimensionality Reduction (và Anomaly Detection --- nguồn liệt kê thêm).
+\end{phuongphap}
+
+\subsubsection{Clustering}
+
+\begin{ynghia}[title={Clustering}]
+Tìm độ tương đồng/quan hệ giữa mẫu và gom thành nhóm theo feature.
+Ví dụ thực tế: gom khách hàng theo hành vi mua hàng.
+\end{ynghia}
+
+\begin{phuongphap}[title={Mô hình clustering}]
+K-Means, Hierarchical Clustering, Mean-shift, DBSCAN, HDBSCAN, BIRCH, Affinity Propagation, Agglomerative Clustering.
+\end{phuongphap}
+
+\subsubsection{Association}
+
+\begin{ynghia}[title={Association / Market basket analysis}]
+Phân tích tập dữ liệu lớn để tìm pattern thể hiện quan hệ giữa các mục (ví dụ sản phẩm hay mua cùng nhau).
+\end{ynghia}
+
+\begin{phuongphap}[title={Mô hình association}]
+Apriori, Eclat, FP-growth.
+\end{phuongphap}
+
+\subsubsection{Dimensionality Reduction}
+
+\begin{ynghia}[title={Giảm chiều}]
+Chọn tập feature đại diện/chính để giảm số chiều mỗi mẫu --- tránh \textbf{curse of dimensionality} khi có hàng triệu feature.
+\end{ynghia}
+
+\begin{phuongphap}[title={Mô hình giảm chiều}]
+PCA, Autoencoders, SVD.
+\end{phuongphap}
+
+\subsubsection{Anomaly Detection}
+
+\begin{ynghia}[title={Phát hiện bất thường}]
+Tìm sự kiện/quan sát hiếm, không thường xảy ra; phân biệt điểm bất thường và bình thường.
+Một số thuật toán clustering, KNN có thể hỗ trợ phát hiện anomaly.
+\end{ynghia}
+
+\subsection{Semi-supervised Learning (tổng quan)}
+
+\begin{dinhnghia}[title={Học bán giám sát}]
+Không hoàn toàn supervised cũng không hoàn toàn unsupervised --- nằm giữa hai loại.
+Thường dùng \textbf{ít} dữ liệu có nhãn và \textbf{nhiều} dữ liệu không nhãn.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Hai hướng triển khai (theo nguồn)}]
+\begin{enumerate}
+  \item Huấn luyện mô hình supervised trên ít dữ liệu có nhãn, áp dụng lên dữ liệu không nhãn để gán nhãn thêm, huấn luyện lại và lặp.
+  \item Dùng unsupervised để cluster mẫu tương tự, gán nhãn cho cụm, rồi huấn luyện mô hình kết hợp thông tin này.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Reinforcement Learning (tổng quan)}
+
+\begin{dinhnghia}[title={Học tăng cường}]
+Khác các phương pháp trên và ít dùng hơn trong giới thiệu cơ bản.
+Có \textbf{agent} được huấn luyện theo thời gian để tương tác môi trường: quan sát trạng thái, chọn hành động, nhận thưởng/phạt, cập nhật chiến lược.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Sáu bước (theo nguồn)}]
+\begin{enumerate}
+  \item Chuẩn bị agent với tập chiến lược ban đầu.
+  \item Quan sát môi trường và trạng thái hiện tại.
+  \item Chọn policy tối ưu theo trạng thái và thực hiện hành động.
+  \item Nhận reward hoặc penalty.
+  \item Cập nhật chiến lược nếu cần.
+  \item Lặp bước 2--5 đến khi agent học được policy tối ưu.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Thuật toán RL phổ biến}]
+Q-learning, Markov Decision Process (MDP), SARSA, DQN, DDPG.
+\end{phuongphap}
+
+\begin{luuy}[title={Tiếp theo}]
+Chi tiết từng kiểu học: Mục~\ref{sec:supervised-vs-unsupervised}, \ref{sec:supervised-learning}, \ref{sec:unsupervised-learning}, \ref{sec:reinforcement-learning}.
+\end{luuy}

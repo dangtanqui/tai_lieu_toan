@@ -1,0 +1,70 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_missing_values_ratio.htm
+Missing Values Ratio is a feature selection technique used in machine learning to identify and remove features from the dataset that have a high percentage of missing values. This technique is used to improve the performance of the model by reducing the number of features used for training the model and to avoid the problem of bias caused by missing values.
+
+The Missing Values Ratio works by computing the percentage of missing values for each feature in the dataset and removing the features that have a missing value percentage above a certain threshold. This is done because features with a high percentage of missing values may not be useful for predicting the target variable and can introduce bias into the model.
+
+The steps involved in implementing Missing Values Ratio are as follows −
+
+Compute the percentage of missing values for each feature in the dataset.
+
+Set a threshold for the percentage of missing values for the features.
+
+Remove the features that have a missing value percentage above the threshold.
+
+Use the remaining features for training the machine learning model.
+
+Example
+Here is an example of how you can implement Missing Values Ratio in Python −
+
+# Importing the necessary libraries
+import numpy as np
+
+# Load the diabetes dataset
+diabetes = np.genfromtxt(r'C:\Users\Leekha\Desktop\diabetes.csv', delimiter=',')
+
+# Define the predictor variables (X) and the target variable (y)
+X = diabetes[:, :-1]
+y = diabetes[:, -1]
+
+# Compute the percentage of missing values for each feature
+missing_percentages = np.isnan(X).mean(axis=0)
+
+# Set the threshold for the percentage of missing values for the features
+threshold = 0.5
+
+# Find the indices of the features with a missing value percentage
+# above the threshold
+high_missing_indices = [i for i, percentage in enumerate(missing_percentages) if percentage > threshold]
+
+# Remove the high missing value features from the dataset
+X_filtered = np.delete(X, high_missing_indices, axis=1)
+
+# Print the shape of the filtered dataset
+print('Shape of the filtered dataset:', X_filtered.shape)
+The above code performs Missing Values Ratio on the diabetes dataset and removes the features that have a missing value percentage above the threshold.
+
+Output
+When you execute this code, it will produce the following output −
+
+Shape of the filtered dataset: (769, 8)
+Advantages of Missing Value Ratio
+Following are the advantages of using Missing Value Ratio −
+
+Saves computational resources − With fewer features, the computational resources required to train machine learning models are reduced.
+
+Improves model performance − By removing features with a high percentage of missing values, the Missing Value Ratio can improve the performance of machine learning models.
+
+Simplifies the model − With fewer features, the model can be easier to interpret and understand.
+
+Reduces bias − By removing features with a high percentage of missing values, the Missing Value Ratio can reduce bias in the model.
+
+Disadvantages of Missing Value Ratio
+Following are the disadvantages of using Missing Value Ratio −
+
+Information loss − The Missing Value Ratio can lead to information loss because it removes features that may contain important information.
+
+Affects non-missing data − Removing features with a high percentage of missing values can sometimes have a negative impact on non-missing data, particularly if the features are important for predicting the dependent variable.
+
+Impact on the dependent variable − Removing features with a high percentage of missing values can sometimes have a negative impact on the dependent variable, particularly if the features are important for predicting the dependent variable.
+
+Selection bias − The Missing Value Ratio may introduce selection bias if it removes features that are important for predicting the dependent variable.

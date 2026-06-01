@@ -1,0 +1,153 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_perceptron.htm
+Perceptron is one of the oldest and simplest neural network architectures. It was invented in the 1950s by Frank Rosenblatt. The Perceptron algorithm is a linear classifier that classifies input into one of two possible output categories. It is a type of supervised learning that trains the model by providing labeled training data. The Perceptron algorithm is based on a threshold function that takes the weighted sum of inputs and applies a threshold to generate a binary output.
+
+Architecture of Perceptron
+A single layer of Perceptron consists of an input layer, a weight layer, and an output layer. Each node in the input layer is connected to each node in the weight layer with a weight assigned to each connection. Each node in the weight layer computes a weighted sum of inputs and applies a threshold function to generate the output.
+
+The threshold function in Perceptron is the Heaviside step function, which returns a binary value of 1 if the input is greater than or equal to zero, and 0 otherwise. The output of each node in the weight layer is determined by −
+
+$$y=\left\{\begin{matrix} 1; & if\: w_{0}+w_{1}x_{1}+w_{2}x_{2}+\cdot \cdot \cdot +w_{n}x_{n}\: > = 0 \\ 0; & otherwise \\ \end{matrix}\right.$$
+
+Where "y" is the output,x1,x2, ...,xn are the input features; and w0, w1, w2, ..., wn are the corresponding weights, and >= 0 indicates the Heaviside step function.
+
+Training of Perceptron
+The training process of the Perceptron algorithm involves iteratively updating the weights until the model converges to a set of weights that can correctly classify all training examples. Initially, the weights are set to random values. For each training example, the predicted output is compared to the actual output, and the weights are updated accordingly to minimize the error.
+
+The weight update rule in Perceptron is as follows −
+
+$$w_{i}=w_{i}+\alpha \times \left ( y-y' \right )\times x_{i}$$
+
+Where Wi is the weight of the i-th feature,$\alpha$ is the learning rate,y is the actual output, y is the predicted output, and xi is the i-th input feature.
+
+Example - Implementation of Perceptron in Python
+The Perceptron algorithm is implemented in Python using the scikit-learn library. The scikit-learn library provides a Perceptron class that can be used for binary classification problems.
+
+Here is an example of implementing the Perceptron algorithm in Python using scikit-learn −
+
+from sklearn.linear_model import Perceptron
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load the iris dataset
+iris = load_iris()
+
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3, random_state=0)
+
+# Create a Perceptron object with a learning rate of 0.1
+perceptron = Perceptron(alpha=0.1)
+
+# Train the Perceptron on the training data
+perceptron.fit(X_train, y_train)
+
+# Use the trained Perceptron to make predictions on the testing data
+y_pred = perceptron.predict(X_test)
+
+# Evaluate the accuracy of the Perceptron
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.8
+Once the perceptron is trained, it can be used to make predictions on new input data. Given a set of input values, the perceptron computes a weighted sum of the inputs and applies an activation function to the sum to obtain the output value. This output value can then be interpreted as a prediction for the corresponding input.
+
+Role of Step Functions in the Training of Perceptrons
+The activation function used in a perceptron can vary, but a common choice is the step function. The step function returns 1 if the input is positive or 0 if it is negative or zero. This function is useful because it provides a binary output, which can be interpreted as a prediction for a binary classification problem.
+
+Here is an example implementation of a perceptron in Python using the step function as the activation function −
+
+import numpy as np
+
+class Perceptron:
+   def __init__(self, learning_rate=0.1, epochs=100):
+      self.learning_rate = learning_rate
+      self.epochs = epochs
+      self.weights = None
+      self.bias = None
+
+   def step_function(self, x):
+      return np.where(x >= 0, 1, 0)
+
+   def fit(self, X, y):
+      n_samples, n_features = X.shape
+
+      # initialize weights and bias to 0
+      self.weights = np.zeros(n_features)
+      self.bias = 0
+
+      # iterate over epochs and update weights and bias
+      for _ in range(self.epochs):
+         for i in range(n_samples):
+            linear_output = np.dot(self.weights, X[i]) + self.bias
+            y_pred = self.step_function(linear_output)
+
+            # update weights and bias based on error
+            update = self.learning_rate * (y[i] - y_pred)
+            self.weights += update * X[i]
+            self.bias += update
+   
+   def predict(self, X):
+      linear_output = np.dot(X, self.weights) + self.bias
+      y_pred = self.step_function(linear_output)
+      return y_pred
+In this implementation, the Perceptron class takes two parameters: learning_rate and epochs. The fit method trains the perceptron on the input data X and the corresponding target values y. The predict method takes an input data array and returns the predicted output values.
+
+To use this implementation, we can create an instance of the Perceptron class and call the fit method to train the model −
+
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([0, 0, 0, 1])
+
+perceptron = Perceptron(learning_rate=0.1, epochs=10)
+perceptron.fit(X, y)
+Once the model is trained, we can make predictions on new input data using the predict method −
+
+import numpy as np
+
+class Perceptron:
+   def __init__(self, learning_rate=0.1, epochs=100):
+      self.learning_rate = learning_rate
+      self.epochs = epochs
+      self.weights = None
+      self.bias = None
+
+   def step_function(self, x):
+      return np.where(x >= 0, 1, 0)
+
+   def fit(self, X, y):
+      n_samples, n_features = X.shape
+
+      # initialize weights and bias to 0
+      self.weights = np.zeros(n_features)
+      self.bias = 0
+
+      # iterate over epochs and update weights and bias
+      for _ in range(self.epochs):
+         for i in range(n_samples):
+            linear_output = np.dot(self.weights, X[i]) + self.bias
+            y_pred = self.step_function(linear_output)
+
+            # update weights and bias based on error
+            update = self.learning_rate * (y[i] - y_pred)
+            self.weights += update * X[i]
+            self.bias += update
+   
+   def predict(self, X):
+      linear_output = np.dot(X, self.weights) + self.bias
+      y_pred = self.step_function(linear_output)
+      return y_pred
+
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([0, 0, 0, 1])
+
+perceptron = Perceptron(learning_rate=0.1, epochs=10)
+perceptron.fit(X, y)
+
+test_data = np.array([[1, 1], [0, 1]])
+predictions = perceptron.predict(test_data)
+print(predictions)
+Output
+The output of this code is [1, 0], which are the predicted values for the input data [[1, 1], [0, 1]].
+
+[1 0]

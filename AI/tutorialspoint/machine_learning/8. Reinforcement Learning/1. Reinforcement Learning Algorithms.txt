@@ -1,0 +1,60 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning_algorithms.htm
+Reinforcement learning algorithms are a type of machine learning algorithm used to train agents to make optimal decisions in an environment. Algorithms like Q-learning, policy gradient methods, and Monte Carlo methods are commonly used in reinforcement learning. The goal is to maximize the agent's cumulative reward over time.
+
+What is Reinforcement Learning (RL)?
+Reinforcement Learning is a machine learning approach where an agent (software entity) is trained to interpret the environment by performing actions and monitoring the results. For every good action, the agent gets positive feedback, and for every bad action, the agent gets negative feedback. It's inspired by how animals learn from their experiences, making decisions based on the consequences of their actions.
+
+Types of Reinforcement Learning Algorithms
+Reinforcement learning algorithms can be categorized into two main types: model-based and model-free. The distinction lies in how they identify the optimal policy π −
+
+Model-Based Reinforcement Learning Algorithms − The agent develops a model of the environment and predicts the outcome of actions in various states. After the model is acquired, the agent uses it to strategize and predict future outcomes without directly engaging with the environment. This method will improve the efficiency of decision-making since it doesn't completely depend on trial and error.
+Model-Free Reinforcement Learning Algorithms − The model does not maintain a model of the environment. Rather, it acquires a policy or value function through interactions with the environment.
+Model-Based Reinforcement Learning Algorithms
+Following are some essential model-based optimization and control algorithms −
+
+1. Dynamic Programming
+Dynamic programming is a mathematical framework developed to solve complex problems especially in decision making and control scenarios. It has a set of algorithms that can be used to determine optimal policies when the agent knows everything about the environment, i.e., the agent has a perfect model of the surroundings. Some of the algorithms of dynamic programming in reinforcement learning are −
+
+Value Iteration
+Value Iteration is a dynamic programming algorithm used to calculate optimal policy. It calculates the value of each state based on the assumption that the agent will follow the optimal policy. The update policy is based on Bellman equations −
+
+$$\mathrm{ V(s) = \max_{a} \sum_{s',r} P(s',r|s,a) (R(s,a,s') + \gamma V(s')) }$$
+
+Policy Iteration
+Policy iteration is a two step optimization procedure to simultaneously find an optimal value function VΠ and the corresponding optimal policy Π. The steps involved are −
+
+Policy Evaluation − For a given policy, calculate the value function for every state using the Bellman equation.
+Policy Improvement − Using the current value functions, improve the policy by choosing an action that maximizes the expected return.
+This process alternates between evaluation and improvement until the policy reaches the optimal policy.
+
+2. Monte Carlo Tree Search (MCTS)
+Monte Carlo Tree Search is a heuristic search algorithm. It uses a tree structure to explore possible actions and states. This makes MCTS particularly useful for decision-making in complex environments.
+
+Model-Free Reinforcement Learning Algorithms
+Following are the list of some essential model-free algorithms −
+
+1. Monte Carlo Learning
+Monte Carlo learning is a technique in reinforcement learning that focuses on estimating value functions and developing policies based on real experiences instead of depending on the model or dynamics of the environment. Monte Carlo techniques usually use the concept of averaging over multiple episodes of interaction with the environment to compete estimates of expected return.
+
+2. Temporal Difference Learning
+Temporal difference(TD) learning is one of the model-free reinforcement learning techniques whose aim is to evaluate the value function of a policy by using the experiences an agent collects during its interactions with the environment. In comparison with Monte Carlo methods, that update value estimates only after the completion of an entire episode, while TD learning updates incrementally after each action is taken and each reward is received, making it the best choice of decision making.
+
+3. SARSA
+SARSA is an on-policy, model-free reinforcement learning algorithm method used for learning the action-value function Q(s,a). It stands for State-Action-Reward-State-Action, and updates its action-value estimates based on the actions that the agent actually takes during its interactions with the environment.
+
+4. Q-Learning
+Q-learning is a model-free, off-policy reinforcement learning technique used to learn the optimal action-value function Q*(s,a), which gives the maximum expected reward for any state-action pair. The main objective of Q-learning is to discover the best policy by evaluating the optimal action-value function, which represents the maximum expected reward from state s when performing an action a and thereafter following the optimal policy.
+
+5. Policy Gradient Optimization
+Policy gradient optimization is a class of reinforcement learning algorithms that focuses on directly optimizing the policy instead of learning a value function. These techniques modify the parameters of a parametric policy to optimize the anticipated return. The REINFORCE algorithm is a type of policy gradient algorithm in reinforcement learning that is based on Monte Carlo methods.
+
+Model-based RL vs Model-free RL
+The key differences between Model-Based and Model-Free Reinforcement Learning algorithms are −
+
+Feature	Model-Based RL	Model-free RL
+Learning Process	Initially, learns a model of the environment's dynamic and uses this model to predict future actions.	Completely based on trial-and-error, learns policies or value functions directly from observed transitions and rewards.
+Efficiency	Might achieve greater sample efficiency since it can stimulate many interactions using the learned model.	Requires additional real-world interactions to discover an optimal policy.
+Complexity	More complex since it requires learning and maintaining of an accurate model of the environment.	Comparatively easier since it doesn't have to execute model training.
+Utilizing environment	Actively develops a model of the environment to predict outcomes and further actions.	Does not develop any model of the environment and depends directly on previous experiences.
+Adaptability	Can adapt to the changing states in the environment.	Might take longer to adapt as it relies on previous experiences.
+Computational Requirements	Typically requires more computational resources due to the complexity of model development and learning.	Typically less computational demand, focusing on learning directly from experiences.

@@ -1,0 +1,312 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_multiple_linear_regression.htm
+Multiple linear regression in machine learning is a supervised algorithm that models the relationship between a dependent variable and multiple independent variables. This relationship is used to predict the outcome of the dependent variable.
+
+Multiple linear regression is a type of linear regression in machine learning. There are mainly two types of linear regression algorithms −
+
+simple linear regression − it deals with two features (one dependent variable and one independent variable).
+multiple linear regression − deals with more than two features (one dependent variable and more than one independent variables).
+Let's discuss multiple linear regression in detail −
+
+What is Multiple Linear Regression?
+In machine learning, multiple linear regression (MLR) is a statistical technique that is used to predict the outcome of a dependent variable based on the values of multiple independent variables. The multiple linear regression algorithm is trained on data to learn a relationship (known as a regression line) that best fits the data. This relation describes how various factors affect the result. This relation is used to forecast the value of dependent variable based on the values of independent variables.
+
+In linear regression (simple and multiple), the dependent variable is continuous (numeric value) and independent variables can be continuous or discreet (numeric value). Independent variables can also be categorical (gender, occupation), but they need to be converted to numerical values first.
+
+Multiple linear regression is basically the extension of simple linear regression that predicts a response using two or more features. Mathematically we can represent the multiple linear regression as follows −
+
+Consider a dataset having n observations, p features i.e. independent variables and y as one response i.e. dependent variable the regression line for p features can be calculated as follows −
+
+$$h\left ( x_{i} \right )=w_{0}+w_{1}x_{i1}+w_{2}x_{i2}+\cdot \cdot \cdot +w_{p}x_{ip}$$
+
+Here, $h\left ( x_{i} \right )$ is the predicted response value and $w_{0},w_{1},w_{2}....w_{p}$ are the regression coefficients.
+
+Multiple Linear Regression models always includes the errors in the data known as residual error which changes the calculation as follows −
+
+$$y_{i}=w_{0}+w_{1}x_{i1}+w_{2}x_{i2}+\cdot \cdot \cdot +w_{p}x_{ip}+e_{i}$$
+
+We can also write the above equation as follows −
+
+$$y_{i}=h\left ( x_{i} \right )+e_{i}\:\: or \:\: e_{i}=y_{i}-h\left ( x_{i} \right )$$
+
+Assumptions of Multiple Linear Regression
+The following are some assumptions about the dataset that are made by the multiple linear regression model −
+
+1. Linearity
+The relationship between the dependent variable (target) and independent (predictor) variables is linear.
+
+2. Independence
+Each observation is independent of others. The value of the dependent variable for one observation is independent of the value of another.
+
+3. Homoscedasticity
+For all observations, the variance of the residual errors is similar across the value of each independent variable.
+
+4. Normality of Errors
+The residuals (errors) are normally distributed. The residuals are differences between the actual and predicted values.
+
+5. No Multicollinearity
+The independent variables are not highly correlated with each other. Linear regression models assume that there is very little or no multi-collinearity in the data.
+
+6. No Autocorrelation
+There is no correlation between residuals. This ensures that the residuals (errors) are independent of each other.
+
+7. Fixed Independent Variables
+The values of independent variables are fixed in all repeated samples.
+
+Violations of these assumptions can lead to biased or inefficient estimates. It is essential to validate these assumptions to ensure model accuracy.
+
+Implementing Multiple Linear Regression in Python
+To implement multiple linear regression in Python using Scikit-Learn, we can use the same LinearRegression class as in simple linear regression, but this time we need to provide multiple independent variables as input.
+
+Step 1: Data Preparation
+We use the dataset named data.csv with 50 examples. It contains four predictor (independent) variables and a target (dependent) variable. The following table represents the data in data.csv file.
+
+data.csv
+
+R&D Spend	Administration	Marketing Spend	State	Profit
+165349.2	136897.8	471784.1	New York	192261.8
+162597.7	151377.6	443898.5	California	191792.1
+153441.5	101145.6	407934.5	Florida	191050.4
+144372.4	118671.9	383199.6	New York	182902
+142107.3	91391.77	366168.4	Florida	166187.9
+131876.9	99814.71	362861.4	New York	156991.1
+134615.5	147198.9	127716.8	California	156122.5
+130298.1	145530.1	323876.7	Florida	155752.6
+120542.5	148719	311613.3	New York	152211.8
+123334.9	108679.2	304981.6	California	149760
+101913.1	110594.1	229161	Florida	146122
+100672	91790.61	249744.6	California	144259.4
+93863.75	127320.4	249839.4	Florida	141585.5
+91992.39	135495.1	252664.9	California	134307.4
+119943.2	156547.4	256512.9	Florida	132602.7
+114523.6	122616.8	261776.2	New York	129917
+78013.11	121597.6	264346.1	California	126992.9
+94657.16	145077.6	282574.3	New York	125370.4
+91749.16	114175.8	294919.6	Florida	124266.9
+86419.7	153514.1	0	New York	122776.9
+76253.86	113867.3	298664.5	California	118474
+78389.47	153773.4	299737.3	New York	111313
+73994.56	122782.8	303319.3	Florida	110352.3
+67532.53	105751	304768.7	Florida	108734
+77044.01	99281.34	140574.8	New York	108552
+64664.71	139553.2	137962.6	California	107404.3
+75328.87	144136	134050.1	Florida	105733.5
+72107.6	127864.6	353183.8	New York	105008.3
+66051.52	182645.6	118148.2	Florida	103282.4
+65605.48	153032.1	107138.4	New York	101004.6
+61994.48	115641.3	91131.24	Florida	99937.59
+61136.38	152701.9	88218.23	New York	97483.56
+63408.86	129219.6	46085.25	California	97427.84
+55493.95	103057.5	214634.8	Florida	96778.92
+46426.07	157693.9	210797.7	California	96712.8
+46014.02	85047.44	205517.6	New York	96479.51
+28663.76	127056.2	201126.8	Florida	90708.19
+44069.95	51283.14	197029.4	California	89949.14
+20229.59	65947.93	185265.1	New York	81229.06
+38558.51	82982.09	174999.3	California	81005.76
+28754.33	118546.1	172795.7	California	78239.91
+27892.92	84710.77	164470.7	Florida	77798.83
+23640.93	96189.63	148001.1	California	71498.49
+15505.73	127382.3	35534.17	New York	69758.98
+22177.74	154806.1	28334.72	California	65200.33
+1000.23	124153	1903.93	New York	64926.08
+1315.46	115816.2	297114.5	Florida	49490.75
+0	135426.9	0	California	42559.73
+542.05	51743.15	0	New York	35673.41
+0	116983.8	45173.06	California	14681.4
+You can create a CSV file and store the above data points in it.
+
+We have our dataset as data.csv file. We will use it to understand the implementation of the multiple linear regression in Python.
+
+We need to import libraries before loading the dataset.
+
+# import libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+Load the dataset
+
+We load our dataset as a Pandas Data frame named <string>dataset. Now let's create a list of independent values (predictors) and put them in a variable called X.</string>
+
+The independent values are 'R&D Spend', 'Administration', 'Marketing Spend'. We are not using the independent variable 'State' for sake of simplicity.
+
+We put the dependent variable values to a variable y.
+
+# load dataset
+dataset = pd.read_csv('data.csv')
+X = dataset[['R&D Spend', 'Administration', 'Marketing Spend']]
+y = dataset['Profit']
+Let's check first five examples (rows) of input features (X) and target (y) −
+
+X.head()
+Output
+	R&D Spend	Administration	Marketing Spend
+0	165349.20	136897.80	471784.10
+1	162597.70	151377.59	443898.53
+2	153441.51	101145.55	407934.54
+3	144372.41	118671.85	383199.62
+4	142107.34	91391.77	366168.42
+y.head()
+Output
+	Profit
+0	192261.83
+1	191792.06
+2	191050.39
+3	182901.99
+4	166187.94
+Split the dataset into training and test sets
+
+Now, we split the dataset into a training set and a test set. Both the X(independent values) and y (dependent values) are divided into two sets - training and test. We will use 20% for the test set. In such a way out of 50 feature vectors (observations/ examples), there will be 40 feature vectors in training set and 10 feature vectors in test set.
+
+# Split the dataset into training and test sets 
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2)
+Here X_train and X_test represent input features in training set and test set, where y_train and y_test represent target values (output) in traning and test set.
+
+Step 2: Model Training
+The next step is to fit our model with training data. We will use linear_model class from sklearn module. We use the Linear Regression() method of linear_model class to create a linear regression object, here we name it as regressor.
+
+# Fit Multiple Linear Regression to the Training set
+from sklearn.linear_model import LinearRegression
+regressor = LinearRegression()
+regressor.fit(X_train, y_train)
+The regressor object has fit() method. The fit() method is used to fit the linear regression object, regressor to the training data. The model learns the relation between the predictor variable (X_train), and the target variable (y_train).
+
+Step 3: Model Testing
+Now our model is ready to use for prediction. Let's test our regressor model on test data.
+
+We use predict() method to predict the results for the test set. It takes input features (X_test) and return the redicted values.
+
+y_pred = regressor.predict(X_test)
+df = pd.DataFrame({'Real Values':y_test, 'Predicted Values':y_pred})
+print(df)
+Output
+	Real Values	Predicted Values
+23	108733.99	110159.827849
+43	69758.98	59787.885207
+26	105733.54	110545.686823
+34	96712.80	88204.710014
+24	108552.04	114094.816702
+39	81005.76	84152.640761
+44	65200.33	63862.256006
+18	124266.90	129379.514419
+47	42559.73	45832.902722
+17	125370.37	130086.829016
+You can compare the actual values and predicted values.
+
+Step 4: Model Evaluation
+We now evaluate our model to check how accurate it is. We will use mean square error (MSE), root mean square error (RMSE), mean absolute error (MAE), and R2-score (Coefficient of determination).
+
+from sklearn.metrics import mean_squared_error, root_mean_squared_error, mean_absolute_error, r2_score
+# Assuming you have your true y values (y_test) and predicted y values (y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = root_mean_squared_error(y_test, y_pred)
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print("Mean Squared Error (MSE):", mse)
+print("Root Mean Squared Error (RMSE):", rmse)
+print("Mean Absolute Error (MAE):", mae)
+print("R-squared (R2):", r2)
+Output
+Mean Squared Error (MSE): 72684687.6336162
+Root Mean Squared Error (RMSE): 8525.531516193943
+Mean Absolute Error (MAE): 6425.118502810154
+R-squared (R2): 0.9588459519573707
+You can examine the above metrics. Our model shows an R-squared score of around 0.96, which means that 96% of data points are scattered around the fitted regression line. Another interpretation is that 96% of the variation in the output variables is explained by the input variables.
+
+Step 5: Model Prediction for New Data
+Let's use our regressor model to predict profit values based on R&D Spend, Administration and Marketing Spend.
+
+['R&D Spend','Administration','Marketing Spend']=[166343.2, 136787.8, 461724.1]
+
+// predict profit when R&D Spend is 166343.2, Administration is 136787.8 and Marketing Spend is 461724.1
+new_data =[[166343.2, 136787.8, 461724.1]] 
+profit = regressor.predict(new_data)
+print(profit)
+Output
+[193053.61874652]
+The model predicts the profit value is approximately 192090.567 for the above three values.
+
+Model Parameters (Coefficients and Intercept)
+The model parameters (intercept and coefficients) describe the relation between a dependent variable and the independent variables.
+
+Our regression model for the above use case,
+
+$$\mathrm{ Y = w_0 + w_1 X_1 + w_2 X_2 + w_2 X_2 }$$
+
+$w_{0}$ is intercept and $w_{1},w_{2}, w_{3}$ are coefficients of $X_{1},X_{2}, X_{3}$ respectively.
+
+Here,
+
+$X_{1}$ represents R&D Spend,
+$X_{2}$ represents Administration, and
+$X_{3}$ represents Marketing Spend.
+Let's first compute the intercept and coefficients.
+
+print("coefficients: ", regressor.coef_)
+print("intercept: ", regressor.intercept_)
+Output
+coefficients: [ 0.81129358 -0.06184074  0.02515044]
+intercept: 54946.94052163202
+The above output shows the following -
+
+$w_{0}$ = 54946.94052163202
+$w_{1}$ = 0.81129358
+$w_{2}$ = -0.06184074
+$w_{3}$ = 0.02515044
+Result Explanation
+We have calculated intercept ($w_{0}$) and coefficients ($w_{1}$, $w_{2}$, $w_{3}$).
+
+The coefficients are as follows -
+
+R&D Spend: 0.81129358
+Administration: -0.06184074
+Marketing Spend: 0.02515044
+This shows that if R&D Spend is increased by 1 USD, the Profit will increase by 0.81851334 USD.
+
+The result shows that when Administration spend is increased by 1 USD, the Profit will decrease by 0.03124763 USD.
+
+And when Marketing Spend increases by 1 USD, the Profit increases by 0.02042286 USD.
+
+Let's verify the result,
+
+In step 5, we have predicted Profit for new data as 193053.61874652
+
+Here,
+
+new_data =[[166343.2, 136787.8, 461724.1]] 
+Profit = 54946.94052163202+ 0.81129358*166343.2 - 0.06184074* 136787.8 + 0.02515044 * 461724.1
+Profit = 193053.616257
+Which is approximately the same as model prediction. Why approximately? Because of residual error.
+
+residual error = 193053.61874652 - 193053.616257
+residual error = 0.00248952
+Applications of Multiple Linear Regression
+The following are some commonly used applications of multiple linear regression −
+
+Application	Description
+Finance	Predicting stock prices, forecasting exchange rates, assessing credit risk.
+Marketing	Predicting sales, customer churn, and marketing campaign effectiveness.
+Real Estate	Predicting house prices based on factors like size, location, and number of bedrooms.
+Healthcare	Predicting patient outcomes, analyzing the impact of treatments, and identifying risk factors for diseases.
+Economics	Forecasting economic growth, analyzing the impact of policies, and predicting inflation rates.
+Social Sciences	Modeling social phenomena, predicting election outcomes, and understanding human behavior.
+Challenges of Multiple Linear Regression
+The following are some common challenges faced by multiple linear regression in machine learning −
+
+Challenge	Description
+Multicollinearity	High correlation between independent variables, leading to unstable model coefficients and difficulty in interpreting the impact of individual variables.
+Overfitting	The model fits the training data too closely, leading to poor performance on new, unseen data.
+Underfitting	The model fails to capture the underlying patterns in the data, resulting in poor performance on both training and test data.
+Non-linearity	Multiple linear regression assumes a linear relationship between the independent and dependent variables. Non-linear relationships can lead to inaccurate predictions.
+Outliers	Outliers can significantly impact the model's performance, especially in small datasets.
+Missing Data	Missing data can lead to biased and inaccurate results.
+Difference Between Simple and Multiple Linear Regression
+The following table highlights the major differences between simple and multiple linear regression −
+
+Feature	Simple Linear Regression	Multiple Linear Regression
+Independent Variables	One	Two or more
+Model Equation	y = w1x + w0	y=w0+w1x1+w2x2+ ... +wpxp
+Complexity	Less complex	More complex due to multiple variables
+Real-world Applications	Predicting house prices based on square footage, predicting sales based on advertising expenditure	Predicting sales based on advertising expenditure, price, and competitor activity, predicting student performance based on study hours, attendance, and IQ
+Model Interpretation	Easier to interpret coefficients	More complex to interpret due to multiple variables

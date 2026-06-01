@@ -1,0 +1,176 @@
+%==============================================================================
+\section{Supervised Learning --- Học máy có giám sát}
+\label{sec:supervised-learning}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_supervised.htm}.
+\end{ynghia}
+
+\subsection{Supervised Machine Learning là gì?}
+
+\begin{dinhnghia}[title={Học có giám sát}]
+Supervised learning huấn luyện mô hình bằng dataset \textbf{có nhãn}: mỗi mẫu gồm feature (đầu vào) và target (đầu ra) tương ứng.
+Mục tiêu: học quan hệ giữa đầu vào và đầu ra sau nhiều lần huấn luyện.
+\end{dinhnghia}
+
+\subsection{Cách Supervised Learning hoạt động}
+
+\begin{phuongphap}[title={Quy trình huấn luyện}]
+\begin{itemize}
+  \item Mô hình huấn luyện trên tập cặp đầu vào--đầu ra.
+  \item Thuật toán phân tích dataset và học quan hệ giữa feature và nhãn/target đúng.
+  \item Trong huấn luyện, mô hình ước lượng tham số bằng cách \textbf{tối thiểu hoá hàm mất mát} (loss): đo sai khác giữa dự đoán và giá trị thực.
+  \item Cập nhật tham số lặp đến khi loss/error đủ nhỏ.
+  \item Sau huấn luyện, tham số tối ưu; mô hình dự đoán được cho dữ liệu mới chưa thấy.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Hai loại bài toán Supervised}
+
+\subsubsection{1. Classification (phân loại)}
+
+\begin{ynghia}[title={Mục tiêu}]
+Dự đoán nhãn phân loại (đúng/sai, nam/nữ, có/không, \ldots) --- giá trị rời rạc, không có thứ tự bắt buộc.
+\end{ynghia}
+
+Thuật toán phổ biến: decision trees, random forests, SVM, logistic regression, \ldots
+
+\subsubsection{2. Regression (hồi quy)}
+
+\begin{ynghia}[title={Mục tiêu}]
+Dự đoán giá trị số \textbf{liên tục}; học quan hệ giữa biến độc lập và biến phụ thuộc.
+\end{ynghia}
+
+Thuật toán phổ biến: linear regression, polynomial regression, Lasso regression, \ldots
+
+\subsection{Thuật toán Supervised Learning}
+
+\begin{luuy}[title={Đối chiếu}]
+Danh sách mô hình tổng quan: Mục~\ref{sec:mo-hinh-ml}. So sánh supervised vs unsupervised: Mục~\ref{sec:supervised-vs-unsupervised}.
+\end{luuy}
+
+\subsubsection{1. Linear Regression}
+
+\begin{ynghia}[title={Hồi quy tuyến tính}]
+Tìm quan hệ \textbf{tuyến tính} giữa feature và giá trị đầu ra để dự báo sự kiện tương lai.
+Ứng dụng: phân tích cổ phiếu, dự báo thời tiết, \ldots
+\end{ynghia}
+
+\subsubsection{2. K-Nearest Neighbors (kNN)}
+
+\begin{ynghia}[title={kNN}]
+Kỹ thuật thống kê cho classification và regression: phân loại/dự đoán mẫu mới bằng khoảng cách tới các điểm trong tập huấn luyện.
+\end{ynghia}
+
+\begin{vidu}[title={Phân loại đối tượng lạ bằng kNN}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/nearest_neighbours.jpg}
+\begin{center}\footnotesize Nguồn: Wikipedia --- K-nearest neighbors algorithm\end{center}
+
+Ba loại đối tượng (đỏ, xanh dương, xanh lá). Sau kNN, biên từng lớp như sau:
+
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/dataset_boundaries.jpg}
+\begin{center}\footnotesize Nguồn: Wikipedia --- K-nearest neighbors algorithm\end{center}
+
+Điểm mới (chưa biết lớp):
+
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/depicted_figure.jpg}
+\begin{center}\footnotesize Nguồn: Wikipedia --- K-nearest neighbors algorithm\end{center}
+
+Trực quan, điểm lạ thuộc lớp xanh dương.
+Toán học: đo khoảng cách tới mọi điểm khác --- hầu hết láng giềng gần nhất là xanh dương; khoảng cách trung bình tới đỏ/xanh lá lớn hơn tới xanh dương $\Rightarrow$ phân lớp xanh dương.
+kNN cũng dùng cho regression; có sẵn trong hầu hết thư viện ML.
+\end{vidu}
+
+\subsubsection{3. Decision Trees}
+
+\begin{ynghia}[title={Cây quyết định}]
+Cấu trúc dạng cây để ra quyết định và phân tích hậu quả.
+Chia dữ liệu thành tập con theo feature; node trong là quyết định, lá là dự đoán cuối.
+\end{ynghia}
+
+\begin{vidu}[title={Ví dụ cây quyết định đơn giản (email)}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/flowchart_format.jpg}
+\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/flowchart_format.jpg}\end{center}
+Sơ đồ minh hoạ quy tắc đọc email (trivial trong ví dụ nhỏ).
+Trong thực tế cây có thể lớn và phức tạp; cần nắm kỹ thuật tạo và duyệt cây.
+\end{vidu}
+
+\subsubsection{4. Naive Bayes}
+
+\begin{ynghia}[title={Naive Bayes}]
+Dùng xây classifier.
+Ví dụ phân loại trái cây: dùng màu, kích thước, hình dạng; tính xác suất từng feature thỏa ràng buộc (ví dụ ``tròn, $\sim$10\,cm $\Rightarrow$ táo'').
+Kết hợp xác suất các feature $\Rightarrow$ xác suất mẫu là táo.
+Thường cần ít dữ liệu huấn luyện.
+\end{ynghia}
+
+\subsubsection{5. Logistic Regression}
+
+\begin{ynghia}[title={Hồi quy logistic}]
+Thuật toán thống kê ước lượng \textbf{xác suất} xảy ra sự kiện.
+\end{ynghia}
+
+\begin{vidu}[title={Phân tách lớp bằng đường biên}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/distribution_data_points.jpg}
+\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/distribution_data_points.jpg}\end{center}
+Phân bố điểm đỏ và xanh; có thể vẽ đường biên --- điểm mới thuộc phía nào của đường quyết định thuộc lớp đó.
+\end{vidu}
+
+\subsubsection{6. Support Vector Machines (SVM)}
+
+\begin{ynghia}[title={SVM}]
+Dùng cho classification và regression.
+Classification: tạo \textbf{siêu phẳng} tách lớp.
+Regression: khớp đường hồi quy với sai số nhỏ.
+\end{ynghia}
+
+\begin{vidu}[title={Dữ liệu không tách tuyến tính}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/non_linear.jpg}
+\begin{center}\footnotesize Nguồn: \tsurl{http://uc-r.github.io/svm}\end{center}
+Ba lớp không tách được bằng đường thẳng; biên phi tuyến --- SVM hữu ích xác định ranh giới.
+\end{vidu}
+
+\subsubsection{7. Random Forest}
+
+\begin{ynghia}[title={Random Forest}]
+Thuật toán supervised linh hoạt cho classification và regression.
+Kết hợp nhiều decision tree để cải thiện độ chính xác dự đoán.
+\end{ynghia}
+
+\begin{vidu}[title={Cách Random Forest hoạt động}]
+\tsimg{11_mo_hinh_va_cac_kieu_hoc/random_forest_algorithm.jpg}
+\begin{center}\footnotesize Nguồn: \tsurl{https://www.tutorialspoint.com/machine_learning/images/random_forest_algorithm.jpg}\end{center}
+\end{vidu}
+
+\subsubsection{8. Gradient Boosting}
+
+\begin{ynghia}[title={Gradient Boosting}]
+Kết hợp các weak learner (decision tree) thành mô hình mạnh; mô hình mới sửa lỗi mô hình trước.
+Mục tiêu: tối thiểu hoá loss.
+Dùng hiệu quả cho classification và regression.
+\end{ynghia}
+
+\subsection{Ưu điểm Supervised Learning}
+
+\begin{itemize}
+  \item Mục tiêu rõ ràng $\Rightarrow$ cải thiện độ chính xác dự đoán.
+  \item Dataset có nhãn giúp dự đoán và phân loại hiệu quả.
+  \item Linh hoạt: spam detection, giá cổ phiếu, \ldots
+\end{itemize}
+
+\subsection{Nhược điểm}
+
+\begin{itemize}
+  \item Cần \textbf{lượng lớn} dữ liệu có nhãn --- tốn kém, tốn thời gian thu thập và gán nhãn.
+  \item Khó dự đoán chính xác nếu dữ liệu test khác phân phối train.
+  \item Gán nhãn chính xác phức tạp, cần chuyên môn.
+\end{itemize}
+
+\subsection{Ứng dụng}
+
+\begin{phuongphap}[title={Lĩnh vực ứng dụng}]
+\textbf{Image recognition}: huấn luyện trên ảnh có nhãn; nhận diện khuôn mặt, phát hiện đối tượng.
+
+\textbf{Predictive analytics}: học từ dữ liệu lịch sử có nhãn để nhận diện xu hướng, hỗ trợ quyết định kinh doanh dựa trên dữ liệu.
+\end{phuongphap}

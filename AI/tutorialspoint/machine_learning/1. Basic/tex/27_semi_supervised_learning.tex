@@ -1,0 +1,122 @@
+%==============================================================================
+\section{Semi-Supervised Learning --- Học máy bán giám sát}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_semi_supervised_learning.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Giữa supervised và unsupervised}]
+Semi-supervised learning không hoàn toàn có giám sát cũng không hoàn toàn không giám sát --- nằm giữa hai phương pháp.
+\end{dongco}
+
+\begin{ynghia}[title={Bối cảnh sử dụng}]
+Huấn luyện trên dataset gồm cả dữ liệu \textbf{có nhãn} và \textbf{không nhãn}.
+Thường dùng khi có rất nhiều dữ liệu không nhãn.
+Gán nhãn thủ công trong supervised tốn kém; unsupervised thuần có ứng dụng hạn chế $\Rightarrow$ semi-supervised cân bằng hai bên.
+\end{ynghia}
+
+\subsection{Semi-Supervised Learning là gì?}
+
+\begin{dinhnghia}[title={Định nghĩa}]
+Kỹ thuật ML kết hợp supervised và unsupervised: huấn luyện trên \textbf{ít} dữ liệu có nhãn và \textbf{nhiều} dữ liệu không nhãn.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Mục tiêu}]
+Phát triển thuật toán chia toàn bộ dữ liệu thành các cụm; điểm gần nhau trong không gian đặc trưng có khả năng cao cùng nhãn đầu ra, rồi gán cụm vào category định sẵn.
+\end{ynghia}
+
+\begin{vidu}[title={Tóm tắt (theo nguồn)}]
+\begin{itemize}
+  \item Cách tiếp cận ML kết hợp supervised và unsupervised
+  \item Huấn luyện bằng dữ liệu có nhãn và không nhãn
+  \item Phục vụ classification và regression
+\end{itemize}
+\end{vidu}
+
+\subsection{So với Supervised Learning}
+
+\begin{ynghia}[title={Khác biệt chính: dataset}]
+\textbf{Supervised}: mỗi mẫu có cặp feature--nhãn đích $\Rightarrow$ dự đoán/phân loại chính xác hơn khi nhãn đủ tốt.
+
+\textbf{Semi-supervised}: ít mẫu có nhãn, nhiều mẫu không nhãn; huấn luyện ban đầu trên phần có nhãn, dùng insight đó để học thêm pattern từ phần không nhãn.
+\end{ynghia}
+
+\subsection{So với Unsupervised Learning}
+
+\begin{ynghia}[title={Khác biệt}]
+\textbf{Unsupervised}: chỉ dữ liệu không nhãn, gom cụm theo feature chung.
+
+\textbf{Semi-supervised}: hỗn hợp có nhãn + không nhãn; hiệu quả hơn vì mỗi cụm có thể được gán nhãn định sẵn nhờ phần dữ liệu đã gán nhãn.
+\end{ynghia}
+
+\subsection{Khi nào chọn Semi-Supervised?}
+
+\begin{luuy}[title={Tình huống điển hình}]
+Khó và đắt có đủ dữ liệu có nhãn, nhưng thu thập dữ liệu không nhãn dễ hơn.
+Khi đó supervised thuần hoặc unsupervised thuần có thể không đủ tốt $\Rightarrow$ dùng semi-supervised.
+\end{luuy}
+
+\subsection{Cách Semi-Supervised Learning hoạt động}
+
+\begin{phuongphap}[title={Thành phần huấn luyện}]
+Thành phần supervised nhỏ (ít dữ liệu có nhãn) + thành phần unsupervised lớn (nhiều dữ liệu không nhãn).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hai hướng triển khai}]
+\begin{enumerate}
+  \item Huấn luyện mô hình supervised trên ít dữ liệu có nhãn; áp dụng lên dữ liệu không nhãn để tạo thêm nhãn; huấn luyện lại và lặp.
+  \item Dùng unsupervised cluster mẫu tương tự, gán nhãn cho cụm, huấn luyện mô hình với thông tin kết hợp.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Dữ liệu không nhãn phải liên quan}]
+Dữ liệu không nhãn phải phù hợp tác vụ mô hình đang học.
+Trong ký hiệu xác suất: phân phối đầu vào $p(x)$ phải chứa thông tin về $p(y|x)$ --- xác suất mẫu $x$ thuộc lớp $y$.
+\end{luuy}
+
+\subsection{Các giả định (assumptions)}
+
+\subsubsection{Smoothness Assumption}
+Hai điểm $x_1$, $x_2$ trong vùng mật độ cao (cùng cụm) thì nhãn $y_1$, $y_2$ nên gần nhau.
+Ở vùng mật độ thấp, nhãn đầu ra không nhất thiết gần.
+
+\subsubsection{Cluster Assumption}
+Điểm trong cùng cụm có khả năng cùng lớp.
+Dữ liệu không nhãn giúp xác định biên cụm chính xác hơn; dữ liệu có nhãn gán lớp cho từng cụm.
+
+\subsubsection{Low Density Separation}
+Biên quyết định nên nằm ở vùng mật độ thấp.
+Ví dụ nhận dạng chữ số 0 vs 1: điểm ngay trên biên trông như số ``dài'' lẫn lộn --- xác suất gặp mẫu như vậy rất nhỏ.
+
+\subsubsection{Manifold Assumption}
+Trong không gian đầu vào chiều cao, dữ liệu nằm trên các manifold chiều thấp hơn; điểm cùng nhãn nằm trên cùng manifold.
+
+\subsection{Kỹ thuật Semi-Supervised}
+
+\begin{phuongphap}[title={Một số kỹ thuật phổ biến}]
+\begin{itemize}
+  \item \textbf{Self-training}: chỉnh supervised (classification/regression) để dùng cả nhãn và không nhãn.
+  \item \textbf{Co-training}: mở rộng self-training với nhiều ``view'' dữ liệu (ví dụ trang web: nội dung text + hyperlink); hai classifier riêng trên hai view cải thiện học.
+  \item \textbf{Graph-based label propagation}: mô hình hoá dữ liệu thành đồ thị (node = điểm, cạnh = độ tương đồng); nhãn lan truyền từ điểm có nhãn sang láng giềng; cập nhật lặp để gán nhãn cho node chưa nhãn.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Thách thức}
+
+\begin{itemize}
+  \item \textbf{Chất lượng dữ liệu không nhãn}: nhiễu hoặc không liên quan $\Rightarrow$ dự đoán sai.
+  \item \textbf{Distribution shift}: dữ liệu có nhãn và không nhãn khác phân phối (ví dụ ảnh rõ vs ảnh camera an ninh) $\Rightarrow$ khó tổng quát hoá.
+\end{itemize}
+
+\subsection{Ứng dụng}
+
+\begin{phuongphap}[title={Lĩnh vực}]
+Text classification, image classification, speech analysis, anomaly detection --- mục tiêu chung: gán thực thể vào category định sẵn; điểm gần nhau có khả năng cùng nhãn.
+
+\textbf{Speech Recognition}: gán nhãn audio tốn thời gian; kết hợp audio không nhãn với ít bản ghi có transcript.
+
+\textbf{Web Content Classification}: hàng tỷ trang, không thể gán nhãn thủ công; hỗ trợ công cụ tìm kiếm xếp hạng nội dung.
+
+\textbf{Text Document Classification}: học từ ít tài liệu có nhãn + corpus lớn không nhãn $\Rightarrow$ tăng độ chính xác không cần dataset nhãn khổng lồ.
+\end{phuongphap}

@@ -1,0 +1,42 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_box_and_whisker_plots.htm
+A boxplot is a graphical representation of a dataset that displays the five-number summary of the data - the minimum value, the first quartile, the median, the third quartile, and the maximum value.
+
+The boxplot consists of a box with whiskers extending from the top and bottom of the box.
+
+The box represents the interquartile range (IQR) of the data, which is the range between the first and third quartiles.
+
+The whiskers extend from the top and bottom of the box to the highest and lowest values that are within 1.5 times the IQR.
+
+Any values that fall outside this range are considered outliers and are represented as points beyond the whiskers.
+
+Python Implementation of Box and Whisker Plots
+Now that we have a basic understanding of boxplots, let's implement them in Python. For our example, we will be using the Iris dataset from Sklearn, which contains measurements of the sepal length, sepal width, petal length, and petal width of 150 iris flowers, belonging to three different species - Setosa, Versicolor, and Virginica.
+
+To start, we need to import the necessary libraries and load the dataset.
+
+Example - Box and Whisker Plots
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+target = iris.target
+Next, we can create a boxplot of the sepal length for each of the three iris species using the Seaborn library.
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_iris
+iris = load_iris()
+data = iris.data
+target = iris.target
+
+plt.figure(figsize=(7.5, 3.5))
+sns.boxplot(x=target, y=data[:, 0])
+plt.xlabel('Species')
+plt.ylabel('Sepal Length (cm)')
+plt.show()
+Output
+This code will produce a boxplot of the sepal length for each of the three iris species, with the x-axis representing the species and the y-axis representing the sepal length in centimeters.
+
+species
+From this boxplot, we can see that the setosa species has a shorter sepal length compared to the versicolor and virginica species, which have a similar median and range of sepal lengths. Additionally, we can see that there are no outliers in the setosa species, but there are a few outliers in the versicolor and virginica specie.

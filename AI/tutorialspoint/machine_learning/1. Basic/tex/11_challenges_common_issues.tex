@@ -1,0 +1,122 @@
+%==============================================================================
+\section{Challenges \& Common Issues --- Thách thức và vấn đề thường gặp}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_challenges_common_issues.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Tổng quan}]
+Học máy phát triển nhanh và có nhiều ứng dụng hứa hẹn.
+Tuy nhiên, để khai thác hết tiềm năng, có một số thách thức và vấn đề cần được giải quyết.
+Nguồn liệt kê các thách thức/vấn đề phổ biến như sau.
+\end{dongco}
+
+\subsection{Overfitting}
+
+\begin{dinhnghia}[title={Overfitting}]
+Overfitting xảy ra khi mô hình được huấn luyện trên một tập dữ liệu hạn chế và trở nên quá phức tạp,
+dẫn đến hiệu năng kém khi kiểm thử trên dữ liệu mới.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+\begin{itemize}
+  \item Cross-validation
+  \item Regularization
+  \item Early stopping
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Underfitting}
+
+\begin{dinhnghia}[title={Underfitting}]
+Underfitting xảy ra khi mô hình quá đơn giản và không thể nắm bắt pattern trong dữ liệu.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+\begin{itemize}
+  \item Dùng mô hình phức tạp hơn
+  \item Thêm nhiều feature cho dữ liệu
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Data Quality Issues}
+
+\begin{dongco}[title={Chất lượng dữ liệu quyết định chất lượng mô hình}]
+Mô hình ML “tốt đến đâu” phụ thuộc dữ liệu huấn luyện.
+Dữ liệu chất lượng kém có thể tạo ra mô hình không chính xác.
+\end{dongco}
+
+\begin{phuongphap}[title={Một số vấn đề chất lượng dữ liệu (theo nguồn)}]
+\begin{itemize}
+  \item Missing values
+  \item Incorrect values
+  \item Outliers
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Imbalanced Datasets}
+
+\begin{dinhnghia}[title={Imbalanced datasets}]
+Mất cân bằng dữ liệu xảy ra khi một lớp phổ biến hơn đáng kể so với lớp khác.
+Điều này có thể tạo mô hình bị lệch: rất đúng với lớp đa số nhưng kém với lớp thiểu số.
+\end{dinhnghia}
+
+\subsection{Model Interpretability}
+
+\begin{dongco}[title={Mô hình khó giải thích}]
+Mô hình ML có thể rất phức tạp, khiến khó hiểu mô hình đi đến dự đoán thế nào.
+Điều này gây khó khăn khi giải thích cho stakeholder hoặc cơ quan quản lý.
+\end{dongco}
+
+\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ (theo nguồn)}]
+\begin{itemize}
+  \item Feature importance
+  \item Partial dependence plots
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Generalization}
+
+\begin{dinhnghia}[title={Generalization}]
+Mô hình ML được huấn luyện trên một dataset cụ thể, và có thể hoạt động kém trên dữ liệu mới nằm ngoài phân phối của tập huấn luyện.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách xử lý (theo nguồn)}]
+Cross-validation và regularization.
+\end{phuongphap}
+
+\subsection{Scalability}
+
+\begin{dinhnghia}[title={Scalability}]
+Mô hình ML có thể tốn kém tính toán và khó mở rộng cho dataset lớn.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Một số cách xử lý (theo nguồn)}]
+\begin{itemize}
+  \item Distributed computing
+  \item Parallel processing
+  \item Sampling
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Ethical Considerations}
+
+\begin{dongco}[title={Vấn đề đạo đức}]
+Mô hình ML có thể gây lo ngại đạo đức khi được dùng để ra quyết định ảnh hưởng đến con người.
+Nguồn nêu: bias, privacy và transparency.
+\end{dongco}
+
+\begin{phuongphap}[title={Một số kỹ thuật hỗ trợ (theo nguồn)}]
+\begin{itemize}
+  \item Fairness metrics
+  \item Explainable AI
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Kết luận của nguồn}]
+Giải quyết các vấn đề trên cần kết hợp chuyên môn kỹ thuật và hiểu biết kinh doanh, đồng thời hiểu các cân nhắc đạo đức.
+Khi xử lý tốt, ML có thể tạo mô hình chính xác và đáng tin cậy, cung cấp insight và tạo giá trị cho doanh nghiệp.
+\end{luuy}
+
+% The downloader currently stores this page's images under the older combined slug.

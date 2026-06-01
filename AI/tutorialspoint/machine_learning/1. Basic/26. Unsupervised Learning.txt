@@ -1,0 +1,104 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_unsupervised.htm
+What is Unsupervised Machine Learning?
+Unsupervised learning, also known as unsupervised machine learning, is a type of machine learning that learns patterns and structures within the data without human supervision. Unsupervised learning uses machine learning algorithms to analyze the data and discover underlying patterns within unlabeled data sets.
+
+Unlike supervised machine learning, unsupervised machine learning models are trained on unlabeled dataset. Unsupervised learning algorithms are handy in scenarios in which we do not have the liberty, like in supervised learning algorithms, of having pre-labeled training data and we want to extract useful patterns from input data.
+
+We can summarize unsupervised learning as −
+
+a machine learning approach or type that
+uses machine learning algorithms
+to find hidden patterns or structures
+within the data without human supervision.
+There are many approaches that are used in unsupervised machine learning. Some of the approaches are association, clustering, and dimensionality reduction. Some examples of unsupervised machine learning algorithms include K-means clustering, K-nearest neighbors, etc.
+
+In regression, we train the machine to predict a future value. In classification, we train the machine to classify an unknown object in one of the categories we define. In short, we have been training machines so that it can predict Y for our data X. Given a huge data set and not estimating the categories, it would be difficult for us to train the machine using supervised learning. What if the machine can look up and analyze the big data running into several Gigabytes and Terabytes and tell us that this data contains so many distinct categories?
+
+As an example, consider the voters data. By considering some inputs from each voter (these are called features in AI terminology), let the machine predict that there are so many voters who would vote for X political party and so many would vote for Y, and so on. Thus, in general, we are asking the machine given a huge set of data points X, What can you tell me about X?. Or it may be a question like What are the five best groups we can make out of X?. Or it could be even like What three features occur together most frequently in X?.
+
+This is exactly what Unsupervised Learning is all about.
+
+How does Unsupervised Learning Work?
+In unsupervised learning, machine learning algorithms (called self-learning algorithms) are trained on unlabeled data sets i.e, the input data is not categorized. Based on the tasks, or machine learning problems such as clustering, associations, etc. and the data sets, the suitable algorithms are chosen for the training.
+
+In the training process, the algorthims learn and infer their own rules on the basis of the similarities, patterns and differences of data points. The algorithms learn without any labels (target values) or pre-training.
+
+The outcome of this training process of algorithm with data sets is a machine learning model. As the data sets are unlabeled (no target values, no human supervision), the model is unsupervised machine learning model.
+
+Now the model is ready to perform the unsupervised learning tasks such as clustering, association, or dimensionality reduction.
+
+Unsupervised learning models is suitable complex tasks, like organizing large datasets into clusters.
+
+Unsupervised Machine Learning Methods
+Unsupervised learning methods or approaches are broadly categorized into three categories − clustering, association, and dimensionality reduction. Let us discuss these methods briefly and list some related algorithms −
+
+1. Clustering
+Clustering is a technique used to group a set of objects or data points into clusters based on their similarities. The goal of this technique is to make sure that the data points within the same cluster should have more similarities than those in other clusters.
+
+Clustering is sometimes called unsupervised classification because it produces the same result as classification does but without having predefined classes.
+
+Clustering is one of the popular unsupervised learning approaches. There are several unsupervised learning algorithms used for clustering like −
+
+K-Means Clustering − This algorithm is used to assign data points to one among the K clusters based on its distance from the center of the cluster. After assigning each data point to a cluster, new centroids are recalculated. This is an iterative process until the centroids no longer change. This shows that the algorithm is efficient and the clusters are stable.
+Mean Shift Algorithm − It is a clustering technique that identifies clusters by finding high data density areas. It is an iterative process, where mean of each data point is shifted towards the densest area of the data.
+Gaussian Mixture Models − It is a probabilistic model that is a combination of multiple Gaussian distributions. These models are used to determine which determination a given data belongs to.
+2. Association Rule Mining
+This is rule based technique that is used to discover associations between parameters in large dataset. It is popularly used for Market Basket Analysis, allows companies to make decisions and recommendation engines. One of the main algorithms that is used for Association Rule Mining is the Apriori algorithm.
+
+Apriori Algorithm
+Apriori algorithm is a technique used in unsupervised learning to identify data points that are frequently repeated and discover association rules within transactional data.
+
+3. Dimensionality Reduction
+As the name suggests, dimensionality reduction is used to reduce the number of feature variables for each data sample by selecting set of principal or representative features.
+
+A question arises here is that, why we need to reduce the dimensionality? The reason behind this is the problem of feature space complexity which arises when we start analyzing and extracting millions of features from data samples. This problem generally refers to "curse of dimensionality". Some popular algorithms in unsupervised learning that are used for dimensionality reduction are −
+
+Principle Component Analysis
+Missing Value Ratio
+Singular Value Decomposition
+Autoencoders
+Algorithms for Unsupervised Learning
+Algorithms are very important part in machine learning model training. A machine learning algorithm is a set of instructions that a program follows to analyze the data and produce the outcomes. For specific tasks, suitable machine learning algorithms are selected and trained on the data.
+
+Algorithms used in unsupervised learning generally fall under one of the three categories − clustering, association, or dimensionality reduction. The following are the most used unsupervised learning algorithms −
+
+K-Means Clustering
+Hierarchical Clustering
+Mean-shift Clustering
+DBSCAN Clustering
+HDBSCAN Clustering
+BIRCH Clustering
+Affinity Propagation
+Agglomerative Clustering
+Apriori Algorithm
+Eclat algorithm
+FP-growth algorithm
+Principal Component Analysis(PCA)
+Autoencoders
+Singular value decomposition (SVD)
+Advantages of Unsupervised Learning
+Unsupervised learning has many advantages that make it particularly purposeful in various tasks −
+
+No labeled data required − Unsupervised learning doesn't require a labeled dataset for training, which makes it easier and cheaper to use.
+Discovers hidden patterns − It helps in recognizing patterns and relationships in large data, which can lead to gaining insights and efficient decision-making.
+Suitable for complex tasks − It is efficiently used for various complex tasks like clustering, anomaly detection, and dimensionality reduction.
+Disadvantages of Unsupervised Learning
+While unsupervised learning has many advantages, some challenges can occur too while training the model without human intervention. Some of the disadvantages of unsupervised learning are:
+
+Difficult to evaluate − Without labeled data and predefined targets, it would be difficult to evaluate the performance of unsupervised learning algorithms.
+Inaccurate outcomes − The outcome of an unsupervised learning algorithm might be less accurate, especially if the input data has noise and also since the data is not labeled, the algorithms do not know the exact output.
+Applications of Unsupervised Learning
+Unsupervised learning provides a path for businesses to identify patterns in large volumes of data. Some real-world applications of unsupervised learning are:
+
+Customer Segmentation − In business and retail analysis, unsupervised learning is used to group customers into segments based on their purchases, past activity, or preferences.
+Anomaly Detection − Unsupervised learning algorithms are used in anomaly detection to identify unusual patterns, which is crucial for fraud detection in financial transactions and network security.
+Recommendation Engines − Unsupervised learning algorithms help to analyze large customer data to gain valuable insights and understand patterns. This can help in target marketing and personalization.
+Natural Language Processing− Unsupervised learning algorithms are used for various applications. For example, google used to categorize articles in the news section.
+What is Anomaly Detection?
+This unsupervised ML method is used to find out occurrences of rare events or observations that generally do not occur. By using the learned knowledge, anomaly detection methods would be able to differentiate between anomalous or normal data points.
+
+Some of the unsupervised algorithms, like clustering and KNN, can detect anomalies based on the data and its features.
+
+Supervised Vs. Unsupervised Learning
+Supervised learning algorithms are trained using labeled data. But there might be cases where data might not be labeled, so how do you gain insights from data that is unlabeled and messy? Well, to solve these types of cases, unsupervised learning is used. We have done a detailed analysis on comparison between supervised and unsupervised learning in supervised vs. unsupervised learning chapter.
+

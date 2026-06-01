@@ -1,0 +1,124 @@
+%==============================================================================
+\section{Mathematics --- Toán học nền tảng cho học máy}
+\label{sec:toan-nen-ml}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_mathematics.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Vai trò của toán trong ML}]
+Học máy là lĩnh vực liên ngành gồm khoa học máy tính, thống kê và toán học.
+Toán đóng vai trò then chốt trong việc phát triển và hiểu các thuật toán học máy.
+Bài này trình bày các khái niệm toán cần thiết: đại số tuyến tính, giải tích, xác suất và thống kê.
+\end{dongco}
+
+\begin{luuy}[title={Toán chi tiết trong repo}]
+Phần toán đầy đủ hơn (tensor, sigmoid, gradient, hồi quy logistic, MLP): \path{toan\_dai\_hoc/nhom\_9\_khac/O3\_hoc\_may/ly\_thuyet.tex}, mục ``Toán nền cho học máy''.
+\end{luuy}
+
+\begin{luuy}[title={Đối chiếu với bài Khái niệm nền}]
+Định nghĩa học máy, train/test và các loại học đã được trình bày ở phần \textbf{Khái niệm nền}; bài này tập trung vào \textbf{nền toán} phục vụ đọc hiểu thuật toán.
+\end{luuy}
+
+\subsection{Đại số tuyến tính (Linear Algebra)}
+
+\begin{dinhnghia}[title={Đại số tuyến tính}]
+Đại số tuyến tính là nhánh toán học nghiên cứu phương trình tuyến tính và cách biểu diễn chúng trong không gian vector.
+Trong học máy, đại số tuyến tính dùng để biểu diễn và thao tác dữ liệu: vector và ma trận biểu diễn điểm dữ liệu, đặc trưng và trọng số trong mô hình.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vector và ma trận}]
+Vector là danh sách có thứ tự các số; ma trận là mảng hình chữ nhật các số.
+Ví dụ: một vector có thể biểu diễn một điểm dữ liệu; một ma trận có thể biểu diễn cả tập dữ liệu.
+Các phép toán tuyến tính (nhân ma trận, nghịch đảo, \ldots) dùng để biến đổi và phân tích dữ liệu.
+\end{ynghia}
+
+\begin{phuongphap}[title={Các khái niệm đại số tuyến tính quan trọng trong ML}]
+\begin{itemize}
+  \item \textbf{Vector và ma trận}: biểu diễn dataset, feature, giá trị mục tiêu, trọng số, \ldots
+  \item \textbf{Phép toán ma trận}: cộng, trừ, nhân, chuyển vị --- xuất hiện trong hầu hết thuật toán ML.
+  \item \textbf{Giá trị riêng và vector riêng}: hữu ích cho giảm chiều, ví dụ PCA.
+  \item \textbf{Chiếu (projection)}: siêu phẳng và chiếu lên mặt phẳng --- cần để hiểu SVM.
+  \item \textbf{Phân tích ma trận}: phân tích ma trận, SVD --- trích thông tin quan trọng từ dữ liệu.
+  \item \textbf{Tensor}: trong deep learning biểu diễn dữ liệu đa chiều; tensor có thể là vô hướng, vector hoặc ma trận.
+  \item \textbf{Gradient}: tìm giá trị tối ưu của tham số mô hình.
+  \item \textbf{Ma trận Jacobian}: phân tích quan hệ giữa biến đầu vào và đầu ra của mô hình.
+  \item \textbf{Trực giao (orthogonality)}: khái niệm cốt lõi trong PCA, SVM.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Giải tích (Calculus)}
+
+\begin{dinhnghia}[title={Giải tích}]
+Giải tích là nhánh toán học nghiên cứu tốc độ thay đổi và tích lũy.
+Trong ML, giải tích dùng để tối ưu mô hình bằng cách tìm cực tiểu hoặc cực đại của hàm số --- điển hình là thuật toán \textbf{gradient descent}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Gradient descent (tóm tắt theo nguồn)}]
+Gradient descent là thuật toán tối ưu lặp: cập nhật trọng số mô hình theo gradient của hàm mất mát (loss).
+Gradient là vector các đạo hàm riêng của loss theo từng trọng số.
+Lặp lại cập nhật theo hướng gradient âm nhằm \textbf{giảm} loss.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Các khái niệm giải tích quan trọng trong ML}]
+\begin{itemize}
+  \item \textbf{Hàm số}: cốt lõi của ML --- mô hình học một hàm ánh xạ đầu vào $\rightarrow$ đầu ra khi huấn luyện; cần nắm hàm liên tục/rời rạc.
+  \item \textbf{Đạo hàm, gradient, độ dốc}: hiểu cách thuật toán tối ưu (gradient descent) hoạt động.
+  \item \textbf{Đạo hàm riêng}: tìm cực đại/cực tiểu; thường dùng trong tối ưu.
+  \item \textbf{Quy tắc chuỗi (chain rule)}: tính đạo hàm loss có nhiều biến --- ứng dụng chính trong mạng nơ-ron.
+  \item \textbf{Phương pháp tối ưu}: tìm tham số làm cost function nhỏ nhất; gradient descent là phương pháp phổ biến nhất.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Lý thuyết xác suất (Probability Theory)}
+
+\begin{dinhnghia}[title={Xác suất}]
+Xác suất nghiên cứu sự không chắc chắn và tính ngẫu nhiên.
+Trong ML, xác suất mô hình hoá và phân tích dữ liệu không chắc chắn hoặc biến thiên; phân phối xác suất (Gaussian, Poisson, \ldots) mô tả xác suất điểm dữ liệu hoặc sự kiện.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Suy luận Bayes}]
+Suy luận Bayes là kỹ thuật mô hình hoá xác suất phổ biến trong ML, dựa trên định lý Bayes:
+xác suất giả thuyết cho dữ liệu quan sát tỷ lệ với xác suất dữ liệu cho giả thuyết nhân với xác suất tiên nghiệm của giả thuyết.
+Cập nhật tiên nghiệm theo dữ liệu quan sát cho phép dự đoán hoặc phân loại theo xác suất.
+\end{ynghia}
+
+\begin{phuongphap}[title={Các khái niệm xác suất quan trọng trong ML}]
+\begin{itemize}
+  \item \textbf{Xác suất đơn giản}: nền tảng; mọi bài toán phân loại đều dùng xác suất; hàm SoftMax trong ANN dùng xác suất đơn giản.
+  \item \textbf{Xác suất có điều kiện}: ví dụ bộ phân loại Naive Bayes.
+  \item \textbf{Biến ngẫu nhiên}: gán giá trị khởi tạo tham số mô hình --- coi là bước đầu của quá trình huấn luyện.
+  \item \textbf{Phân phối xác suất}: dùng khi xây hàm mất mát cho phân loại.
+  \item \textbf{Phân phối liên tục và rời rạc}: mô hình hoá các kiểu dữ liệu khác nhau trong ML.
+  \item \textbf{Hàm phân phối}: mô hình hoá phân phối sai số trong hồi quy tuyến tính và mô hình thống kê khác.
+  \item \textbf{Ước lượng hợp lý cực đại (MLE)}: nền của một số phương pháp ML và deep learning cho phân loại.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Thống kê (Statistics)}
+
+\begin{dinhnghia}[title={Thống kê}]
+Thống kê nghiên cứu thu thập, phân tích, diễn giải và trình bày dữ liệu.
+Trong ML, thống kê dùng để đánh giá/so sánh mô hình, ước lượng tham số và kiểm định giả thuyết.
+\end{dinhnghia}
+
+\begin{vidu}[title={Cross-validation}]
+Cross-validation là kỹ thuật thống kê đánh giá hiệu năng mô hình trên dữ liệu mới, chưa thấy.
+Tập dữ liệu được chia thành nhiều phần; mô hình được huấn luyện và đánh giá trên từng phần, từ đó ước lượng hiệu năng trên dữ liệu mới và so sánh các mô hình.
+\end{vidu}
+
+\begin{phuongphap}[title={Các khái niệm thống kê quan trọng trong ML}]
+\begin{itemize}
+  \item \textbf{Mean, median, mode}: hiểu phân phối dữ liệu và phát hiện outlier.
+  \item \textbf{Độ lệch chuẩn, phương sai}: đo độ biến thiên của dataset và phát hiện outlier.
+  \item \textbf{Phân vị (percentiles)}: tóm tắt phân phối và nhận diện outlier.
+  \item \textbf{Phân phối dữ liệu}: cách các điểm dữ liệu trải trên tập dữ liệu.
+  \item \textbf{Độ lệch (skewness) và độ nhọn (kurtosis)}: đo hình dạng phân phối xác suất.
+  \item \textbf{Bias và variance}: mô tả nguồn sai số trong dự đoán; overfitting/underfitting: Mục~\ref{sec:train-val-test}, bài \texttt{04}.
+  \item \textbf{Kiểm định giả thuyết}: giả thuyết tạm thời có thể kiểm tra bằng dữ liệu.
+  \item \textbf{Hồi quy tuyến tính}: thuật toán hồi quy supervised phổ biến nhất.
+  \item \textbf{Hồi quy logistic}: thuật toán supervised quan trọng trong ML.
+  \item \textbf{PCA}: chủ yếu dùng cho giảm chiều trong ML.
+\end{itemize}
+\end{phuongphap}

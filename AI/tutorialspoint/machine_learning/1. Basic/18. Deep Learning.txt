@@ -1,0 +1,55 @@
+https://www.tutorialspoint.com/machine_learning/deep_machine_learning.htm
+In the world of artificial intelligence, two terms that are often used interchangeably are machine learning and deep learning. While both of these technologies are used to create intelligent systems, they are not the same thing. Machine learning is a subset of artificial intelligence (AI) that enables machines to learn without being explicitly programmed while deep learning is a subset of machine learning that uses neural networks to process complex data. In this chapter, we will explore the differences between machine learning and deep learning and how they are related.
+
+Let us first understand both the terms and then their differences in detail.
+
+What is Machine Learning?
+Machine learning, abbreviated as ML, is a subfield of artificial intelligence that automatically enables machines to learn from experience. In machine learning, algorithm development is core work. These algorithms are trained on data to learn the hidden patterns and make predictions based on what they learned. The whole process of training the algorithms is sometimes termed model building.
+
+When we say "machine learning enables the machine to learn from experience," what does it mean by experience? We often hear about training machine learning algorithms with data. This training of algorithms with data is termed as experience. Like we humans learn from experience, machines learn from data when we train them.
+
+In other words, machine learning is a technique to implement solutions for artificial intelligence related problems.
+
+There are many ways to implement solutions for AI problems. One of the ways is machine learning.
+
+There are mainly four approaches to making a machine learn from data: supervised learning, unsupervised learning, semi-supervised learning and reinforcement learning.
+
+Supervised learning is one of the most important approaches to making machines learn from labeled data. Supervised learning is best suited for tasks related to classification and regression. Again, there are different methods or algorithms to implement supervised learning in machine learning. Among these algorithms, linear regression, k-nearest neighbors, random forests, etc., are well known.
+
+With neural networks, machine learning has reached its highest accuracy. Neural networks can be classified as a complex supervised learning approach. Deep learning is another approach to implementing machine learning solutions. Deep learning uses neural networks to learn the complex relations in data. Let's learn more in detail about deep learning in the next section.
+
+What is Deep Learning?
+Deep learning is a type of machine learning that uses neural networks to process complex data. In other words, deep learning is a process by which computers can automatically learn patterns and relationships in data using multiple layers of interconnected nodes or artificial neurons. Deep learning algorithms are designed to detect and learn from patterns in data to make predictions or decisions.
+
+Deep learning is particularly well-suited to tasks that involve processing complex data, such as image and speech recognition, natural language processing, and self-driving cars. Deep learning algorithms are able to process vast amounts of data and can learn to recognize complex patterns and relationships in that data.
+
+Examples of deep learning include facial recognition, voice recognition, and self-driving cars.
+
+Difference between Machine Learning and Deep Learning
+The following table highlights the significant differences between machine learning and deep learning −
+
+Basis	Machine Learning	Deep Learning
+Definition	Machine learning is a subfield of AI that allows machines to learn without being explicitly programmed. ML uses algorithms to learn hidden patterns from data and make decisions and predictions based on new data.	Deep learning is a subfield of machine learning that uses neural networks to process complex data.
+Complexity	Machine learning uses simpler methods such as decision trees or linear regression to learn hidden patterns from data and make decisions and predictions based on new data.	Deep learning uses complex methods found in neural networks.
+Amount of Data	Machine learning needs a large amount of data. It is also useful for small amounts of data.	Deep learning requires larger data than ML requires. The accuracy increases with the increase of the amount of data.
+Training Methods	Machine learning has four training methods: supervised learning, unsupervised learning, semi-supervised learning, and reinforcement learning.	Deep learning has complex training methods such as convolutional neural networks, recurrent neural networks, generative adversarial networks, etc.
+Hardware Dependencies	As machine learning uses simpler methods, it needs less storage and computational power.	Because deep learning is more complex and larger data, deep learning models require more storage and computational power.
+Feature Engineering	In machine learning, you need to perform feature engineering manually.	In Deep learning, deep learning models are capable to of performing feature engineering tasks.
+Problem Solving Approach	Machine learning follows a standard approach, and uses statistics and mathematics to solve a problem.	Deep learning models use statistics and mathematics with neural network architecture.
+Execution Time	Machine learning algorithms require less execution time than deep learning models.	Deep learning requires a lot of time to train models as it has a lot of parameters to be trained on more complex data.
+Best Suited For	Machine learning is best suited for structured data.	Deep learning is also best for complex and unstructured data.
+Machine Learning Vs. Deep Learning: Key Comparisons
+Now that we have a basic understanding of what machine learning and deep learning are, let's dive deeper into the differences between the two.
+
+Firstly, machine learning is a broad category that encompasses many different types of algorithms, including deep learning. Deep learning is a specific type of machine learning algorithm that uses neural networks to process complex data.
+
+Secondly, while machine learning algorithms are designed to learn from data and improve their accuracy over time, deep learning algorithms are designed to process complex data and recognize patterns and relationships in that data. Deep learning algorithms are able to recognize complex patterns and relationships that other machine learning algorithms may not be able to detect.
+
+Thirdly, deep learning algorithms require a lot of data and processing power to train. Deep learning algorithms typically require large datasets and powerful hardware, such as graphics processing units (GPUs), to train effectively. Machine learning algorithms, on the other hand, can be trained on smaller datasets and less powerful hardware.
+
+Finally, deep learning algorithms can provide highly accurate predictions and decisions, but they can be more challenging to understand and interpret than other machine learning algorithms. Deep learning algorithms can process vast amounts of data and recognize complex patterns and relationships in that data, but it can be difficult to understand how the algorithm arrived at its conclusion.
+
+Machine learning and deep learning are both techniques to solve artificial intelligence-related problems. Without using machine learning or deep learning, we can implement artificial intelligence in real words. When we are not using machine learning to implement AI, we will be using rule-based algorithms to implement it.
+
+When discussing machine and deep learning methods, all deep learning methods fall under machine learning but not vice versa.
+

@@ -1,0 +1,36 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_grid_search.htm
+Grid Search is a hyperparameter tuning technique in Machine Learning that helps to find the best combination of hyperparameters for a given model. It works by defining a grid of hyperparameters and then training the model with all the possible combinations of hyperparameters to find the best performing set.
+
+In other words, Grid Search is an exhaustive search method where a set of hyperparameters are defined, and a search is performed over all possible combinations of these hyperparameters to find the optimal values that give the best performance.
+
+Implementation in Python
+In Python, Grid Search can be implemented using the GridSearchCV class from the sklearn module. The GridSearchCV class takes the model, the hyperparameters to tune, and a scoring function as input. It then performs an exhaustive search over all possible combinations of hyperparameters and returns the best set of hyperparameters that give the best score.
+
+Here is an example implementation of Grid Search in Python using the GridSearchCV class −
+
+Example - Grid Search Implementation
+from sklearn.model_selection import GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import make_classification
+
+# Generate a sample dataset
+X, y = make_classification(n_samples=1000, n_features=10, n_classes=2)
+
+# Define the model and the hyperparameters to tune
+model = RandomForestClassifier()
+hyperparameters = {'n_estimators': [10, 50, 100], 'max_depth': [None, 5, 10]}
+
+# Define the Grid Search object and fit the data
+grid_search = GridSearchCV(model, hyperparameters, scoring='accuracy', cv=5)
+grid_search.fit(X, y)
+
+# Print the best hyperparameters and the corresponding score
+print("Best hyperparameters: ", grid_search.best_params_)
+print("Best score: ", grid_search.best_score_)
+In this example, we define a RandomForestClassifier model and a set of hyperparameters to tune, namely the number of trees (n_estimators) and the maximum depth of each tree (max_depth). We then create a GridSearchCV object and fit the data using the fit() method. Finally, we print the best set of hyperparameters and the corresponding score.
+
+Output
+When you execute this code, it will produce the following output −
+
+Best hyperparameters: {'max_depth': None, 'n_estimators': 10}
+Best score: 0.953

@@ -1,0 +1,19 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_dimensionality_reduction.htm
+Dimensionality reduction in machine learning is the process of reducing the number of features or variables in a dataset while retaining as much of the original information as possible. In other words, it is a way of simplifying the data by reducing its complexity.
+
+The need for dimensionality reduction arises when a dataset has a large number of features or variables. Having too many features can lead to overfitting and increase the complexity of the model. It can also make it difficult to visualize the data and can slow down the training process.
+
+There are two main approaches to dimensionality reduction −
+
+Feature Selection
+This involves selecting a subset of the original features based on certain criteria, such as their importance or relevance to the target variable.
+
+The following are some commonly used feature selection techniques −
+
+Filter Methods
+Wrapper Methods
+Embedded Methods
+Feature Extraction
+Feature extraction is a process of transforming raw data into a set of meaningful features that can be used for machine learning models. It involves reducing the dimensionality of the input data by selecting, combining or transforming features to create a new set of features that are more useful for the machine learning model.
+
+Dimensionality reduction can improve the accuracy and speed of machine learning models, reduce overfitting, and simplify data visualization.

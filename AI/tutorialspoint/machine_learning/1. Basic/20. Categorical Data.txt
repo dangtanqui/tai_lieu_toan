@@ -1,0 +1,197 @@
+What is Categorical Data?
+Categorical data in Machine Learning refers to data that consists of categories or labels, rather than numerical values. These categories may be nominal, meaning that there is no inherent order or ranking between them (e.g., color, gender), or ordinal, meaning that there is a natural ordering between the categories (e.g., education level, income bracket).
+
+Categorical data is often represented using discrete values, such as integers or strings, and is frequently encoded as one-hot vectors before being used as input to machine learning models. One-hot encoding involves creating a binary vector for each category, where the vector has a 1 in the position corresponding to the category and 0s in all other positions.
+
+Techniques for Handling Categorical Data
+Handling categorical data is an important part of machine learning preprocessing, as many algorithms require numerical input. Depending on the algorithm and the nature of the categorical data, different encoding techniques may be used, such as label encoding, ordinal encoding, or binary encoding etc.
+
+In the subsequent sections of this chapter, we will discuss the following different techniques for handling categorical data in machine learning along with their implementations in Python.
+
+One-Hot Encoding
+Label Encoding
+Frequency Encoding
+Target Encoding
+Binary Encoding
+Let's understand the each of the above mentioned techniques to handle categorical data in machine learning.
+
+1. One-Hot Encoding
+One-hot encoding is a popular technique for handling categorical data in machine learning. It involves creating a binary vector for each category, where each element of the vector represents the presence or absence of the category. For example, if we have a categorical variable for color with values red, blue, and green, one-hot encoding would create three binary vectors: [1, 0, 0], [0, 1, 0], and [0, 0, 1] respectively.
+
+Example - One Hot Encoding
+Below is an example of how to perform one-hot encoding in Python using the Pandas library −
+
+import pandas as pd
+
+# Creating a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# Performing one-hot encoding
+one_hot_encoded = pd.get_dummies(df['color'], prefix='color')
+
+# Combining the encoded data with the original data
+df = pd.concat([df, one_hot_encoded], axis=1)
+
+# Drop the original categorical variable
+df = df.drop('color', axis=1)
+
+# Print the encoded data
+print(df)
+Output
+This will create a one-hot encoded dataframe with three binary variables ("color_blue," "color_green," and "color_red") that take the value 1 if the corresponding color is present and 0 if it is not. This encoded data, output given below, can then be used for machine learning tasks such as classification and regression.
+
+      color_blue    color_green    color_red
+0        0              0              1
+1        0              1              0
+2        1              0              0
+3        0              0              1
+4        0              1              0
+One-Hot Encoding technique works well for small and finite categorical variables but can be problematic for large categorical variables as it can lead to a high number of input features.
+
+2. Label Encoding
+Label Encoding is another technique for handling categorical data in machine learning. It involves assigning a unique numerical value to each category in a categorical variable, with the order of the values based on the order of the categories.
+
+For example, suppose we have a categorical variable "Size" with three categories: "small," "medium," and "large." Using label encoding, we would assign the values 0, 1, and 2 to these categories, respectively.
+
+Example - Label Encoding
+Below is an example of how to perform label encoding in Python using the scikit-learn library −
+
+from sklearn.preprocessing import LabelEncoder
+
+# create a sample dataset with a categorical variable
+data = ['small', 'medium', 'large', 'small', 'large']
+
+# create a label encoder object
+label_encoder = LabelEncoder()
+
+# fit and transform the data using the label encoder
+encoded_data = label_encoder.fit_transform(data)
+
+# print the encoded data
+print(encoded_data)
+This will create an encoded array with the values [0, 1, 2, 0, 2], which correspond to the encoded categories "small," "medium," and "large." Note that the encoding is based on the alphabetical order of the categories by default, but you can change the order by passing a custom list to the LabelEncoder object.
+
+Output
+[2 1 0 2 0]
+Label encoding can be useful when there is a natural ordering between the categories, such as in the case of ordinal categorical variables. However, it should be used with caution for nominal categorical variables because the numerical values may imply an order that does not actually exist. In these cases, one-hot encoding is a safer option.
+
+3. Frequency Encoding
+Frequency Encoding is another technique for handling categorical data in machine learning. It involves replacing each category in a categorical variable with its frequency (or count) in the dataset. The idea behind frequency encoding is that categories that appear more frequently may be more important or informative for the machine learning algorithm.
+
+Example - Frequency Encoding
+Below is an example of how to perform frequency encoding in Python −
+
+import pandas as pd
+
+# create a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# calculate the frequency of each category in the categorical variable
+freq = df['color'].value_counts(normalize=True)
+
+# replace each category with its frequency
+df['color_freq'] = df['color'].map(freq)
+
+# drop the original categorical variable
+df = df.drop('color', axis=1)
+
+# print the encoded data
+print(df)
+This will create an encoded dataframe with one variable ("color_freq") that represents the frequency of each category in the original categorical variable. For example, if the original variable had two occurrences of "red" and three occurrences of "green," then the corresponding frequencies would be 0.4 and 0.6, respectively.
+
+Output
+      color_freq
+0        0.4
+1        0.4
+2        0.2
+3        0.4
+4        0.4
+Frequency encoding can be a useful alternative to one-hot encoding or label encoding, especially when dealing with high-cardinality categorical variables (i.e., variables with a large number of categories). However, it may not always be effective, and its performance can depend on the particular dataset and machine learning algorithm being used.
+
+4. Target Encoding
+Target Encoding is another technique for handling categorical data in machine learning. It involves replacing each category in a categorical variable with the mean (or other aggregation) of the target variable (i.e., the variable you want to predict) for that category. The idea behind target encoding is that it can capture the relationship between the categorical variable and the target variable, and therefore improve the predictive performance of the machine learning model.
+
+Example - Target Encoding
+Below is an example of how to perform target encoding in Python with the Scikit-learn library by using a combination of a label encoder and a mean encoder −
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+# create a sample dataset with a categorical variable and a target variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green'],
+   'target': [1, 0, 1, 0, 1]}
+df = pd.DataFrame(data)
+
+# create a label encoder object and fit it to the data
+label_encoder = LabelEncoder()
+label_encoder.fit(df['color'])
+
+# transform the categorical variable using the label encoder
+df['color_encoded'] = label_encoder.transform(df['color'])
+
+# create a mean encoder object and fit it to the transformed data
+mean_encoder = df.groupby('color_encoded')['target'].mean().to_dict()
+
+# map the mean encoded values to the categorical variable
+df['color_encoded'] = df['color_encoded'].map(mean_encoder)
+
+# print the encoded data
+print(df)
+In this example, we first create a Pandas DataFrame df with a categorical variable 'color' and a target variable 'target'. We then create a LabelEncoder object from scikit-learn and fit it to the 'color' column of df.
+
+Next, we transform the categorical variable 'color' using the label encoder by calling the transform method on the label encoder object and assigning the resulting encoded values to a new column 'color_encoded' in df.
+
+Finally, we create a mean encoder object by grouping df by the 'color_encoded' column and calculating the mean of the 'target' column for each group. We then convert this mean encoder object to a dictionary and map the mean encoded values to the original 'color' column of df.
+
+Output
+   color     target     color_encoded
+0  red        1           0.5
+1  green      0           0.5
+2  blue       1           1.0
+3  red        0           0.5
+4  green      1           0.5
+Target encoding can be a powerful technique for improving the predictive performance of machine learning models, especially for datasets with high-cardinality categorical variables. However, it is important to avoid overfitting by using cross-validation and regularization techniques.
+
+5. Binary Encoding
+Binary encoding is another technique used for encoding categorical variables in machine learning. In binary encoding, each category is assigned a binary code, where each digit represents whether the category is present (1) or not (0). The binary codes are typically based on the position of the category in a sorted list of all categories.
+
+Example - Binary Encoding
+Here's an example Python implementation of binary encoding using the category_encoders library −
+
+import pandas as pd
+import category_encoders as ce
+
+# create a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# create a binary encoder object and fit it to the data
+binary_encoder = ce.BinaryEncoder(cols=['color'])
+binary_encoder.fit(df['color'])
+
+# transform the categorical variable using the binary encoder
+encoded_data = binary_encoder.transform(df['color'])
+
+# merge the encoded variable with the original dataframe
+df = pd.concat([df, encoded_data], axis=1)
+
+# print the encoded data
+print(df)
+In this example, we first create a Pandas DataFrame df with a categorical variable 'color'. We then create a BinaryEncoder object from the category_encoders library and fit it to the 'color' column of df.
+
+Next, we transform the categorical variable 'color' using the binary encoder by calling the transform method on the binary encoder object and assigning the resulting encoded values to a new DataFrame encoded_data.
+
+Finally, we merge the encoded variable with the original DataFrame df using the concat method along the column axis (axis=1). The resulting DataFrame should have the original 'color' column along with the encoded binary columns.
+
+Output
+When you run the code, it will produce the following output −
+
+   color    color_0    color_1
+0   red       0           1
+1   green     1           0
+2   blue      1           1
+3   red       0           1
+4   green     1           0
+The binary encoding works best for categorical variables with a moderate number of categories, as it can quickly become inefficient for variables with a large number of categories.

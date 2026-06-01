@@ -1,0 +1,79 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_semi_supervised_learning.htm
+Semi-supervised learning is a type of machine learning that is neither fully supervised nor fully unsupervised. The semi-supervised learning algorithms basically fall between supervised and unsupervised learning methods.
+
+In semi-supervise learning, mahcine learning algorithms are trained on datasets that contains both labeled and unlabeled data. Semi-supervised learning is generally used when we have a huge set of unlabeled data available. In any supervised learning algorithm, the available data has to be manually labelled which can be quite an expensive process. In contrast, the unlabeled data used in unsupervised learning has limited applications. Hence, semi-supervised learning algorithms were developed which can provide a perfect balance between the two.
+
+What is Semi-Supervised Learning?
+Semi-supervised learning is a machine learning approch or technique that works in combination of supervised and unsupervised learning. In semi-supervised learning, the machine learning alogrithms are trained on a small amount of labeled data and a large amount of unlabeled data.
+
+The goal of semi-supervised learning is to develop an algorithm to divide the entire data into different clusters and the data points closer to each other most likely share the same output label, and then to classify the cluster into a predefined category.
+
+We can summarize semi-supervised learning as
+
+a machine learning approach or technique that
+combines supervised learning and unsuprvised learning
+to train ML models by using labeled and unlabled data
+to perform classification and regreesion related tasks.
+Semi-supervised Learning Vs. Supervised Learning
+The primary difference between supervised learning and semi-supervised is the dataset that is used to train the model. In supervised learning, the model is trained on a dataset that consists of input and each of it is paired with a predefined label i.e, the features and their corresponding target label is provided. This allows for more accurate prediction or classification. Whereas, in semi-supervised learning the dataset consists of a minor amount of labeled data and a major amount of unlabeled data. The model is initially trained on labeled data, then uses these insights to train unlabeled data to discover additional patterns.
+
+Semi-supervised Learning Vs. Unsupervised Learning
+Unsupervised learning trains a model only on unlabeled dataset, aiming to identify groups with common features within the dataset. In contrast, semi-supervised learning uses a mix of labeled data(small amount) and unlabeled data(large amount). In unsupervised learning, the data points in the dataset are grouped into clusters based on common features, where as semi-supervised learning is much efficient since each cluster is allotted a pre-defined label since it train on labeled data along with unlabeled data.
+
+When to Choose Semi-Supervised Learning?
+Situations where obtaining a sufficient amount of labeled data is difficult and expensive, but gathering unlabeled data is much easier. In such scenarios, neither fully supervised nor unsupervised learning methods will provide accurate outcomes. This is where semi-supervised learning methods can be implemented.
+
+How Does Semi-Supervised Learning Work?
+Semi-supervised learning generally uses small supervised learning component, i.e., small amount of pre-labeled annotated data and large unsupervised learning component, i.e., lots of unlabeled data for training.
+
+In machine learning, we can follow any of the following approaches for implementing semi-supervised learning methods −
+
+The first and simple approach is to build the supervised model based on a small labeled and annotated data and then build the unsupervised model by applying the same to the large amounts of unlabeled data to get more labeled samples. Now, train the model on them and repeat the process.
+The second approach needs some extra efforts. In this approach, we can first use the unsupervised methods to cluster similar data samples, annotate these groups and then use a combination of this information to train the model.
+In Semi-supervised learning, the unlabeled data used should be relevant to the task the model is trained to perform. In mathematical terms, the input data's distribution p(x) must contain information about the posterior distribution p(y|x), which represents the probability of a given data point (x) belonging to a certain class (y).
+
+There are certain assumptions held for the working of semi-supervised learning like −
+
+Smoothness Assumption
+Cluster Assumption
+Low Density Separation
+Manifold Assumptions
+Let us have a brief understanding about the above listed assumptions.
+
+Smoothness Assumption
+This assumption states that two data points x1 and x2 in a high-density region (belong to same cluster) are close, so should be the corresponding output labels y1 and y2. On the other hand, if the data points are in low density region, their outputs need not be close
+
+Cluster Assumption
+Cluster assumption states that when data points are in the same cluster, they are likely to be of the same class. Unlabeled data should aid in finding the boundary of each cluster more accurately using clustering algorithms. Additionally, the labeled data points should be used to assign a class for each cluster.
+
+Low Density Separation
+Low Density Separation assumption states that the decision boundary should lie in the low density region. Consider digit recognition, for instance, one wants to distinguish a handwritten digit 0 against digit 1. A sample point taken exactly from the decision boundary will be between a 0 and a 1, most likely a digit looking like a very elongated zero. But the probability that someone wrote this weird digit is very small.
+
+Manifold Assumptions
+This assumption forms the basis of several semi-supervised learning methods, it states that in a higher-dimensional input space, there are several lower dimensional manifolds where all data points exist, and data points with the same label are located on the same manifold.
+
+Semi-supervised Learning Techniques
+Semi-supervised learning uses several techniques to bring out the best from both labeled and unlabeled data for accurate outcomes. Some popular techniques include −
+
+Self-training
+Self-training is a process in which any supervised method like classification and regression, can be modified to work in a semi-supervised manner, taking insights from both labeled and unlabeled data.
+
+Co-training
+This approach is an improved version of Self-training approach, where the idea wa to make use of different "views" on the data that is to be classified. This is ideally used for web content classification where, a web page can be represented by the text on the page, and can also be represented by the hyperlinks referring to the pages. Unlike the typical process, the co-training approach trains two individual classifiers based on two views of data to improve learning performance.
+
+Graph based label propagation
+The most efficient way to run semi-supervised learning, it models data as graphs where nodes represent data points and edges represent similarities between them, and then the label propagation algorithm is applied. In this approach, labeled data points propagate their labels through the graph, influencing the neighboring nodes. The labels are iteratively updated, allowing the model to assign labels to unlabeled nodes.
+
+Challenges of Semi-supervised Learning
+Semi-supervised learning requires only a small amount of labeled data along side large set of unlabeled data, reducing the cost and need of manual labeling. In contrast, there are a few challenges that has be addressed like −
+
+Quality of data − The efficiency of semi-supervised learning depends on the quality of unlabeled data. If the unlabeled data is noisy or irrelevant, there are chances that it might to lead to incorrect predictions and poor performance.
+Variation in the data − Semi-supervised learning models are more prone to distribution shifts between the labeled and unlabeled data. For examples, a model is trained on labeled dataset that consists clear high quality images where as the if the unlabeled data contains images from captured from surveillance cameras, it would be difficult to generalize from the labeled to the unlabeled images, impacting the outcomes.
+Applications of Semi-supervised Learning
+Semi-supervised machine learning finds its application in text classification, image classification, speech analysis, anomaly detection, etc. where the general goal is to classify an entity into a predefined category. Semi-supervised algorithm assumes that the data can be divided into discrete clusters and the data points closer to each other are more likely to share the same output label.
+
+Some popular applications of semi-supervised learning are −
+
+Speech Recognition − Labeling audio data is a time consuming task, semi-supervised techniques improve speech models combining unlabeled audio data alongside limited transcribed speech. This enhances the accuracy in recognizing spoken language.
+Web Content Classification − With billions of websites, manually labeling content is impractical. Semi-supervised Learning helps classify web content efficiently, improving search engines like Google in ranking and produces relevant content to user queries.
+Text Document Classification − Semi-supervised Learning is used to classify text by training on small set of labeled documents and large corpus of unlabeled text. The model first learns from labeled data to gain insights and then use it to classify text. This learning methods helps improve the accuracy of classification without the need for extensive labeled datasets.

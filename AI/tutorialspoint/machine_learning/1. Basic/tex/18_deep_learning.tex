@@ -1,0 +1,114 @@
+%==============================================================================
+\section{Deep Learning --- Học sâu và học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/deep_machine_learning.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Hai thuật ngữ hay bị dùng lẫn}]
+Trong thế giới AI, ``machine learning'' và ``deep learning'' thường được dùng như nhau nhưng không trùng nghĩa.
+ML là tập con của AI cho phép máy học mà không lập trình tường minh; deep learning là tập con của ML dùng mạng nơ-ron để xử lý dữ liệu phức tạp.
+Bài này so sánh ML và deep learning và mối quan hệ giữa chúng.
+\end{dongco}
+
+\subsection{Học máy là gì?}
+
+\begin{dinhnghia}[title={Machine Learning (ML)}]
+Học máy (ML) là lĩnh vực con của AI, tự động cho phép máy học từ kinh nghiệm.
+Trong ML, phát triển thuật toán là công việc cốt lõi: thuật toán được huấn luyện trên dữ liệu để học pattern ẩn và dự đoán dựa trên những gì đã học; toàn bộ quá trình huấn luyện đôi khi gọi là \textbf{model building}.
+\end{dinhnghia}
+
+\begin{ynghia}[title={``Kinh nghiệm'' nghĩa là gì?}]
+Khi nói máy học từ kinh nghiệm, ``kinh nghiệm'' ở đây chính là \textbf{huấn luyện thuật toán bằng dữ liệu} --- tương tự con người học từ trải nghiệm, máy học từ dữ liệu khi ta huấn luyện.
+ML là một \textbf{kỹ thuật} triển khai giải pháp cho các bài toán liên quan AI; có nhiều cách triển khai, ML là một trong số đó.
+\end{ynghia}
+
+\begin{phuongphap}[title={Bốn hướng tiếp cận học từ dữ liệu}]
+\begin{itemize}
+  \item Supervised learning
+  \item Unsupervised learning
+  \item Semi-supervised learning
+  \item Reinforcement learning
+\end{itemize}
+Supervised learning huấn luyện trên dữ liệu có nhãn, phù hợp phân loại và hồi quy; ví dụ thuật toán: linear regression, k-nearest neighbors, random forests, \ldots
+\end{phuongphap}
+
+\begin{ynghia}[title={Mạng nơ-ron và độ chính xác}]
+Nguồn nêu: với mạng nơ-ron, ML đạt độ chính xác cao nhất trong nhiều bài toán.
+Mạng nơ-ron có thể xem là một hướng supervised learning phức tạp.
+Deep learning là cách khác để triển khai giải pháp ML, dùng mạng nơ-ron học quan hệ phức tạp trong dữ liệu.
+\end{ynghia}
+
+\subsection{Học sâu (Deep Learning) là gì?}
+
+\begin{dinhnghia}[title={Deep Learning}]
+Deep learning là một kiểu học máy dùng mạng nơ-ron xử lý dữ liệu phức tạp: máy tự học pattern và quan hệ trong dữ liệu bằng nhiều lớp node/nơ-ron liên kết.
+Thuật toán deep learning phát hiện và học từ pattern để dự đoán hoặc ra quyết định.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Phù hợp với dữ liệu phức tạp}]
+Deep learning đặc biệt phù hợp nhận dạng ảnh, giọng nói, NLP, xe tự lái; có thể xử lý lượng dữ liệu rất lớn và học pattern/quan hệ phức tạp.
+\end{ynghia}
+
+\begin{vidu}[title={Ví dụ deep learning}]
+Nhận diện khuôn mặt, nhận dạng giọng nói, xe tự lái.
+\end{vidu}
+
+\subsection{Khác biệt giữa Machine Learning và Deep Learning}
+
+\begin{vidu}[title={Bảng so sánh (dịch từ nguồn)}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{2.6cm}XX}
+\textbf{Tiêu chí} & \textbf{Machine Learning} & \textbf{Deep Learning} \\
+\midrule
+Định nghĩa &
+Tập con AI: máy học không lập trình tường minh; thuật toán học pattern ẩn từ dữ liệu để dự đoán/quyết định trên dữ liệu mới. &
+Tập con ML: dùng mạng nơ-ron xử lý dữ liệu phức tạp. \\
+Độ phức tạp &
+Phương pháp đơn giản hơn: decision tree, linear regression, \ldots &
+Phương pháp phức tạp trong mạng nơ-ron (CNN, RNN, GAN, \ldots). \\
+Lượng dữ liệu &
+Cần nhiều dữ liệu; vẫn hữu ích khi dữ liệu ít. &
+Cần nhiều dữ liệu hơn ML; độ chính xác tăng khi dữ liệu tăng. \\
+Phương pháp huấn luyện &
+Bốn hướng: supervised, unsupervised, semi-supervised, reinforcement. &
+Phương pháp phức tạp: CNN, RNN, GAN, \ldots \\
+Phụ thuộc phần cứng &
+Phương pháp đơn giản hơn $\Rightarrow$ ít lưu trữ và tính toán hơn. &
+Phức tạp hơn, dữ liệu lớn hơn $\Rightarrow$ cần nhiều lưu trữ và sức mạnh tính toán hơn. \\
+Feature engineering &
+Thường phải làm feature engineering \textbf{thủ công}. &
+Mô hình deep learning có thể tự thực hiện phần lớn feature engineering. \\
+Cách giải bài toán &
+Tiếp cận chuẩn; dùng thống kê và toán. &
+Dùng thống kê, toán \textbf{kèm} kiến trúc mạng nơ-ron. \\
+Thời gian chạy &
+Thuật toán ML thường nhanh hơn. &
+Huấn luyện lâu hơn vì nhiều tham số và dữ liệu phức tạp. \\
+Phù hợp nhất &
+Dữ liệu có cấu trúc (structured). &
+Dữ liệu phức tạp, không cấu trúc (unstructured). \\
+\end{tabularx}
+\end{vidu}
+
+\subsection{So sánh sâu hơn}
+
+\begin{ynghia}[title={Bốn điểm (theo nguồn)}]
+\begin{enumerate}
+  \item ML là nhóm rộng gồm deep learning; deep learning là \textbf{một loại} thuật toán ML dùng mạng nơ-ron.
+  \item Thuật toán ML cải thiện theo dữ liệu; deep learning được thiết kế để xử lý dữ liệu phức tạp và nhận pattern mà ML cổ điển có thể bỏ sót.
+  \item Deep learning cần nhiều dữ liệu và phần cứng mạnh (GPU) hơn nhiều thuật toán ML khác.
+  \item Deep learning có thể rất chính xác nhưng \textbf{khó giải thích} hơn --- khó hiểu vì sao đưa ra kết luận.
+\end{enumerate}
+\end{ynghia}
+
+\subsection{AI không nhất thiết qua ML}
+
+\begin{luuy}[title={Triển khai AI bằng quy tắc}]
+ML và deep learning đều là kỹ thuật giải bài toán AI.
+Ta \textbf{có thể} triển khai AI trong thực tế mà không dùng ML/deep learning --- khi đó dùng thuật toán \textbf{dựa trên quy tắc} (rule-based).
+\end{luuy}
+
+\begin{dinhnghia}[title={Quan hệ tập hợp}]
+Mọi phương pháp deep learning đều thuộc machine learning, nhưng \textbf{không phải} mọi machine learning đều là deep learning.
+\end{dinhnghia}

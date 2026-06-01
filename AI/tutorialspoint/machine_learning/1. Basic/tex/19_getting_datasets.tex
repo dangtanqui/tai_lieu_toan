@@ -1,0 +1,159 @@
+%==============================================================================
+\section{Getting Datasets --- Lấy bộ dữ liệu cho học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_getting_datasets.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Mô hình chỉ tốt bằng dữ liệu huấn luyện}]
+Mô hình học máy chỉ tốt bằng dữ liệu dùng để huấn luyện.
+Vì vậy, có được bộ dữ liệu chất lượng tốt và phù hợp là bước then chốt trong quy trình ML.
+Có nhiều kho mã nguồn mở (ví dụ Kaggle) để tải dataset; bạn cũng có thể mua dữ liệu, scrape website hoặc tự thu thập.
+Bài này giới thiệu các nguồn dataset và cách lấy chúng.
+\end{dongco}
+
+\subsection{Dataset là gì?}
+
+\begin{dinhnghia}[title={Dataset}]
+Dataset là tập dữ liệu được tổ chức có cấu trúc, thường dùng để đơn giản hoá phân tích, lưu trữ, xử lý hoặc huấn luyện mô hình ML.
+Dataset có thể lưu ở nhiều định dạng: CSV, JSON, file nén, Excel, \ldots
+\end{dinhnghia}
+
+\subsection{Các loại dataset}
+
+\begin{phuongphap}[title={Phân loại theo kiểu thông tin}]
+\begin{itemize}
+  \item \textbf{Tabular}: dữ liệu dạng bảng (hàng/cột).
+  \item \textbf{Time series}: dữ liệu theo thời gian (giá cổ phiếu, khí hậu, \ldots).
+  \item \textbf{Image}: ảnh cho computer vision (phân loại ảnh, phát hiện đối tượng, segmentation).
+  \item \textbf{Text}: văn bản cho NLP (sentiment analysis, text classification, \ldots).
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Lấy dataset cho Machine Learning}
+
+\begin{ynghia}[title={Tầm quan trọng của bước lấy dữ liệu}]
+Lấy dataset là bước rất quan trọng khi xây giải pháp ML.
+Dữ liệu là yếu tố bắt buộc để huấn luyện mô hình; chất lượng, số lượng và độ đa dạng của dữ liệu ảnh hưởng mạnh tới hiệu năng mô hình.
+\end{ynghia}
+
+\begin{phuongphap}[title={Bốn nguồn chính}]
+\begin{itemize}
+  \item Open Source Datasets (dataset công khai)
+  \item Data Scraping (thu thập tự động từ web/nguồn khác)
+  \item Data Purchase (mua dữ liệu)
+  \item Data Collection (thu thập thủ công)
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Dataset công khai / mã nguồn mở phổ biến}
+
+\begin{ynghia}[title={Kho dữ liệu công khai}]
+Có nhiều dataset mã nguồn mở dùng cho ML, ví dụ: Kaggle, UCI Machine Learning Repository, Google Dataset Search, AWS Public Datasets.
+Các dataset này thường dùng cho nghiên cứu và mở cho cộng đồng.
+\end{ynghia}
+
+\begin{phuongphap}[title={Một số nguồn có dữ liệu có cấu trúc, giá trị cao}]
+Kaggle Datasets, AWS Datasets, Google Dataset Search, UCI Machine Learning Repository, Microsoft Datasets, Scikit-learn Dataset, HuggingFace Datasets Hub, Government Datasets.
+\end{phuongphap}
+
+\subsubsection{Kaggle Datasets}
+Kaggle là cộng đồng trực tuyến phổ biến về data science và ML, lưu trữ hơn 23.000 dataset công khai.
+Đây là nền tảng được chọn nhiều nhất để lấy dataset vì dễ tìm, tải và đăng dữ liệu.
+Kaggle cung cấp dataset tiền xử lý chất lượng cao, phù hợp hầu hết mô hình ML theo nhu cầu người dùng.
+Kaggle còn có notebook kèm thuật toán và các loại mô hình pre-trained.
+
+\subsubsection{AWS Datasets}
+Có thể tìm, tải và chia sẻ dataset công khai trong registry open data trên AWS.
+Dù truy cập qua AWS, dataset do tổ chức chính phủ, doanh nghiệp và nhà nghiên cứu duy trì, cập nhật.
+
+\subsubsection{Google Dataset Search Engine}
+Công cụ của Google cho phép tìm dataset từ nhiều nguồn trên web --- công cụ tìm kiếm chuyên cho dataset.
+
+\subsubsection{UCI Machine Learning Repository}
+Kho dataset của Đại học California, Irvine, dành riêng cho ML.
+Hàng trăm dataset từ nhiều miền: time series, classification, regression, recommendation systems, \ldots
+
+\subsubsection{Microsoft Dataset}
+Microsoft Research Open Data (nguồn ghi ``launched by Microsoft in 1918'' --- có thể là lỗi đánh máy trên trang gốc) cung cấp kho dữ liệu trên cloud.
+
+\subsubsection{Scikit-learn Dataset}
+Scikit-learn cung cấp dataset mẫu (Iris, \ldots) để thử nghiệm.
+Dataset mở, dùng học và thử mô hình ML.
+
+\begin{luuy}[title={Giảng viên lưu ý}]
+Nguồn còn nhắc \textbf{Boston housing} --- dataset này đã bị \textbf{gỡ khỏi scikit-learn} (vấn đề đạo đức dữ liệu). Nên dùng Iris, Diabetes (OpenML), California housing, \ldots
+\end{luuy}
+
+\begin{vidu}[title={Nạp dataset Iris từ scikit-learn}]
+\begin{lstlisting}
+from sklearn.datasets import load_iris
+iris = load_iris()
+\end{lstlisting}
+Đoạn trên nạp dataset Iris vào script Python.
+\end{vidu}
+
+\subsubsection{HuggingFace Datasets Hub}
+Hub cung cấp các dataset công khai lớn: ảnh, âm thanh, văn bản, \ldots
+Cài đặt thư viện \texttt{datasets}:
+\begin{lstlisting}
+pip3 install datasets
+\end{lstlisting}
+Cú pháp đơn giản:
+\begin{lstlisting}
+from datasets import load_dataset
+ds = load_dataset(dataset_name)
+\end{lstlisting}
+Ví dụ nạp Iris:
+\begin{lstlisting}
+from datasets import load_dataset
+ds = load_dataset("scikit-learn/iris")
+\end{lstlisting}
+
+\subsubsection{Government Datasets}
+Mỗi quốc gia thường có nguồn dữ liệu chính phủ công khai, thu từ nhiều bộ ngành, nhằm minh bạch và phục vụ nghiên cứu.
+
+\begin{phuongphap}[title={Một số liên kết dataset chính phủ (theo nguồn)}]
+\begin{itemize}
+  \item Indian Government Public Datasets
+  \item U.S. Government's Open Data
+  \item World Bank Data Catalog
+  \item European Union Open Data
+  \item U.K. Open Data
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Data Scraping}
+
+\begin{ynghia}[title={Scrape dữ liệu}]
+Data scraping là trích xuất tự động dữ liệu từ website hoặc nguồn khác.
+Hữu ích khi không có dataset đóng gói sẵn.
+Cần đảm bảo scrape \textbf{đạo đức và hợp pháp}, và nguồn đáng tin, chính xác.
+\end{ynghia}
+
+\subsection{Data Purchase}
+
+Đôi khi cần mua dataset cho ML.
+Nhiều công ty bán dataset theo ngành hoặc use case.
+Trước khi mua, cần đánh giá chất lượng và mức độ liên quan tới dự án.
+
+\subsection{Data Collection}
+
+Thu thập thủ công từ nhiều nguồn --- tốn thời gian, cần kế hoạch để dữ liệu chính xác, phù hợp.
+Có thể qua khảo sát, phỏng vấn hoặc hình thức thu thập khác.
+
+\subsection{Chiến lược có dataset chất lượng cao}
+
+\begin{phuongphap}[title={Sau khi chọn nguồn, cần đảm bảo chất lượng và liên quan}]
+\begin{itemize}
+  \item \textbf{Xác định bài toán}: trước khi lấy dữ liệu, làm rõ bài toán ML cần giải --- từ đó biết cần loại dữ liệu gì và lấy ở đâu.
+  \item \textbf{Xác định quy mô dataset}: phụ thuộc độ phức tạp bài toán; thường dữ liệu nhiều hơn giúp mô hình tốt hơn, nhưng tránh quá lớn với dữ liệu trùng/không liên quan.
+  \item \textbf{Đảm bảo liên quan và chính xác}: dữ liệu từ nguồn tin cậy, đã được kiểm tra.
+  \item \textbf{Tiền xử lý}: làm sạch, chuẩn hoá, biến đổi để mô hình dùng hiệu quả (xem pipeline dữ liệu bài \texttt{19--23}).
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Đối chiếu}]
+Train/validation/test: Mục~\ref{sec:train-val-test}; vòng đời dự án: Mục~\ref{sec:vong-doi-ml}.
+\end{luuy}

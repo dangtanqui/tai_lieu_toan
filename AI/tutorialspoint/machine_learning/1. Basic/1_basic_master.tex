@@ -1,0 +1,98 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{MACHINE LEARNING (PHẦN 1)}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Machine Learning}
+\def\coversubtitle{Phần 1 --- Basic}
+
+\input{../../../1_machine_learning/_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\graphicspath{{images/}}
+
+\newcommand{\tsurl}[1]{\url{#1}}
+
+\newcommand{\tsimg}[2][0.88]{%
+  \def\tsimgfile{images/#2}%
+  \IfFileExists{\tsimgfile}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy \expandafter\path\expandafter{\tsimgfile}.%
+    \end{luuy}%
+  }%
+}
+
+\begin{document}
+
+\input{../../../1_machine_learning/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu biên soạn và dịch từ Tutorialspoint Machine Learning:\ \tsurl{https://www.tutorialspoint.com/machine_learning/}.
+\end{ynghia}
+
+\newpage
+
+\input{tex/00_khai_niem_nen.tex}
+
+\input{tex/01_home.tex}
+\input{tex/02_introduction.tex}
+\input{tex/03_getting_started.tex}
+\input{tex/04_basic_concepts.tex}
+\input{tex/05_ecosystem.tex}
+\input{tex/06_python_libraries.tex}
+\input{tex/07_applications.tex}
+\input{tex/08_life_cycle.tex}
+\input{tex/09_required_skills.tex}
+\input{tex/10_implementation.tex}
+\input{tex/11_challenges_common_issues.tex}
+\input{tex/12_limitations.tex}
+\input{tex/13_real_life_examples.tex}
+\input{tex/14_data_structure.tex}
+\input{tex/15_mathematics.tex}
+\input{tex/16_artificial_intelligence.tex}
+\input{tex/17_neural_networks.tex}
+\input{tex/18_deep_learning.tex}
+\input{tex/19_getting_datasets.tex}
+\input{tex/20_categorical_data.tex}
+\input{tex/21_data_loading.tex}
+\input{tex/22_data_understanding.tex}
+\input{tex/23_data_preparation.tex}
+\input{tex/24_models.tex}
+\input{tex/29_supervised_vs_unsupervised_learning.tex}
+\input{tex/25_supervised_learning.tex}
+\input{tex/26_unsupervised_learning.tex}
+\input{tex/27_semi_supervised_learning.tex}
+\input{tex/28_reinforcement_learning.tex}
+
+\end{document}

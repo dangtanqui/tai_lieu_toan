@@ -1,0 +1,86 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_high_correlation_filter.htm
+High Correlation Filter is a feature selection technique used in machine learning to identify and remove highly correlated features from the dataset. This technique is used to improve the performance of the model by reducing the number of features used for training the model and to avoid the problem of multicollinearity, which occurs when two or more predictor variables are highly correlated with each other.
+
+The High Correlation Filter works by computing the correlation between each pair of features in the dataset and removing one of the two features that are highly correlated with each other. This is done by setting a threshold for the correlation coefficient between the features, and removing one of the features if the absolute value of the correlation coefficient is greater than the threshold.
+
+The steps involved in implementing High Correlation Filter are as follows −
+
+Compute the correlation matrix for the dataset.
+
+Set a threshold for the correlation coefficient between the features.
+
+Find the pairs of features that have a correlation coefficient greater than the threshold.
+
+Remove one of the two features from each pair of highly correlated features.
+
+Use the remaining features for training the machine learning model.
+
+The advantage of using High Correlation Filter is that it reduces the number of features used for training the model, which in turn reduces the complexity of the model and makes it easier to interpret. Moreover, it helps to avoid the problem of multicollinearity, which can lead to unstable and unreliable estimates of the model parameters.
+
+However, there are some limitations to High Correlation Filter. For example, it may not always select the best set of features for the model, especially if there are non-linear relationships between the features and the target variable. Also, if two features are highly correlated, removing one of them may result in the loss of some important information that was present in the removed feature.
+
+Example
+Here is an example to implement High Correlation Filter in Python −
+
+# Importing the necessary libraries
+import pandas as pd
+import numpy as np
+
+# Load the diabetes dataset
+diabetes = pd.read_csv(r'C:\Users\Leekha\Desktop\diabetes.csv')
+
+# Define the predictor variables (X) and the target variable (y)
+X = diabetes.iloc[:, :-1].values
+y = diabetes.iloc[:, -1].values
+
+# Compute the correlation matrix
+corr_matrix = np.corrcoef(X, rowvar=False)
+
+# Set the threshold for high correlation
+threshold = 0.8
+
+# Find the indices of the highly correlated features
+high_corr_indices = np.where(np.abs(corr_matrix) > threshold)
+
+# Create a set of feature pairs to be removed
+features_to_remove = set()
+
+# Iterate over the indices of the highly correlated features and
+# add them to the set of features to be removed
+for i, j in zip(*high_corr_indices):
+   if i != j and (j, i) not in features_to_remove:
+      features_to_remove.add((i, j))
+
+# Convert the set of feature pairs to a list
+features_to_remove = list(features_to_remove)
+
+# Remove one of the two features from each pair of highly correlated features
+X_filtered = np.delete(X, [j for i, j in features_to_remove], axis=1)
+
+# Print the shape of the filtered dataset
+print('Shape of the filtered dataset:', X_filtered.shape)
+Output
+When you execute this code, it will produce the following output −
+
+Shape of the filtered dataset: (768, 8)
+Advantages of High Correlation Filter
+Following are the advantages of using High Correlation Filter −
+
+Reduces multicollinearity − The High Correlation Filter can reduce multicollinearity, which occurs when two or more features are highly correlated with each other. Multicollinearity can negatively impact the performance of machine learning models.
+
+Improves model performance − By removing highly correlated features, the High Correlation Filter can improve the performance of machine learning models.
+
+Simplifies the model − With fewer features, the model can be easier to interpret and understand.
+
+Saves computational resources − With fewer features, the computational resources required to train machine learning models are reduced.
+
+Disadvantages of High Correlation Filter
+Following are the disadvantages of using High Correlation Filter −
+
+Information loss − The High Correlation Filter can lead to information loss because it removes features that may contain important information.
+
+Affects non-linear relationships − The High Correlation Filter assumes that the relationships between the features are linear. It may not work well for datasets where the relationships between the features are non-linear.
+
+Impact on the dependent variable − Removing highly correlated features can sometimes have a negative impact on the dependent variable, particularly if the features are strongly correlated with the dependent variable.
+
+Selection bias − The High Correlation Filter may introduce selection bias if it removes features that are important for predicting the dependent variable.

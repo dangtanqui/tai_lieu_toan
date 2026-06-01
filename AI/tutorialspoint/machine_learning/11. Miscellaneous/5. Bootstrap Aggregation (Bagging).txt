@@ -1,0 +1,58 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_bootstrap_aggregation.htm
+Bagging is an ensemble learning technique that combines the predictions of multiple models to improve the accuracy and stability of a single model. It involves creating multiple subsets of the training data by randomly sampling with replacement. Each subset is then used to train a separate model, and the final prediction is made by averaging the predictions of all models.
+
+The main idea behind Bagging is to reduce the variance of a single model by using multiple models that are less complex but still accurate. By averaging the predictions of multiple models, Bagging reduces the risk of overfitting and improves the stability of the model.
+
+How Does Bagging Work?
+The Bagging algorithm works in the following steps −
+
+Create multiple subsets of the training data by randomly sampling with replacement.
+
+Train a separate model on each subset of the data.
+
+Make predictions on the testing data using each model.
+
+Combine the predictions of all models by taking the average or majority vote.
+
+The key feature of Bagging is that each model is trained on a different subset of the training data, which introduces diversity into the ensemble. The models are typically trained using a base model, such as a decision tree, logistic regression, or support vector machine.
+
+Example - Bootstrap Aggregation
+Now let's see how we can implement Bagging in Python using the Scikit-learn library. For this example, we will use the famous Iris dataset.
+
+from sklearn.datasets import load_iris
+from sklearn.ensemble import BaggingClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+# Load the Iris dataset
+iris = load_iris()
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.2, random_state=42)
+
+# Define the base estimator
+base_estimator = DecisionTreeClassifier(max_depth=3)
+
+# Define the Bagging classifier
+bagging = BaggingClassifier(base_estimator, n_estimators=10, random_state=42)
+
+# Train the Bagging classifier
+bagging.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred = bagging.predict(X_test)
+
+# Evaluate the model's accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+In this example, we first load the Iris dataset using Scikit-learn's load_iris function and split it into training and testing sets using the train_test_split function.
+
+We then define the base estimator, which is a decision tree with a maximum depth of 3, and the Bagging classifier, which consists of 10 decision trees.
+
+We train the Bagging classifier using the fit method and make predictions on the testing set using the predict method. Finally, we evaluate the model's accuracy using the accuracy_score function from Scikit-learn's metrics module.
+
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 1.0

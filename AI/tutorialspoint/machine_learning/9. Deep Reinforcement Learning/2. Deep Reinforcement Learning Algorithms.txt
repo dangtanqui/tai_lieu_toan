@@ -1,0 +1,45 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_deep_rl_algorithms.htm
+Deep reinforcement learning algorithms are a type of algorithms in machine learning that combines deep learning and reinforcement learning.
+
+Deep reinforcement learning addresses the challenge of enabling computational agents to learn decision-making by incorporating deep learning from unstructured input data without manual engineering of the state space.
+
+Deep reinforcement learning algorithms are capable of deciding what actions to perform for the optimization of an objective even with large inputs.
+
+Reinforcement Learning
+Reinforcement Learning consists of an agent that learns from the feedback given in response to its actions while exploring an environment. The main goal of the agent is to maximize cumulative rewards by developing a strategy that guides decision-making in all possible scenarios.
+
+Role of Deep Learning in Reinforcement Learning
+In traditional reinforcement learning algorithms, tables or basic function approximates are commonly used to represent value functions, policies, or models. Well, these strategies are not efficient enough to be applied in challenging settings like video games, robotics or natural language processing. Neural networks allow for the approximation of complex, multi-dimensional functions through deep learning. This forms the basis of Deep Reinforcement Learning.
+
+Some of the benefits of the combination of deep learning networks and reinforcement learning are −
+
+Dealing with inputs with high dimensions (such as raw images and continuous sensor data).
+Understanding complex relationships between states and actions through learning.
+Learning a common representation by generalizing among different states and actions.
+Deep Reinforcement Learning Algorithms
+The following are some of the common deep reinforcement learning algorithms are −
+
+1. Deep Q-Networks
+A Deep Q-Network (DQN) is an extension of conventional Q-learning that employs deep neural networks to estimate the action-value function ${Q(s,a)}$. Instead of storing Q-values within a table, DQN uses a neural network to deal with complicated input domains like game pixel data. This makes reinforcement learning appropriately address complex tasks, like playing Atari, where the agent learns from visual inputs.
+
+DQN improves training stability through two primary methods: experience replay, which stores and selects past experiences, and target networks to maintain consistent Q-value targets by refreshing a different network periodically. These advancements assist DQN in effectively acquiring knowledge in large-scale settings.
+
+2. Double Deep Q-Networks
+Double Deep Q-Network (DDQN) enhances Deep Q-Network (DQN) by mitigating the problem of overestimation bias in Q-value updates. In typical DQN, a single Q-network is utilized for both action selection and value estimation, potentially resulting in overly optimistic value approximations.
+
+DDQN uses two distinct networks to manage action selection and evaluation − a current Q-network for choosing the action and a target Q-network for evaluating the action. This decrease in bias in the Q-value estimates leads to improved learning accuracy. DDQN incorporates the experience replay and target network methods used in DQN to improve the robustness and dependability.
+
+3. Dueling Deep Q-Networks
+Dueling Deep Q-Networks (Dueling DQN) is an extension to the standard Deep Q-Network (DQN) used in reinforcement learning. It separates the Q-value into two components − the state value function ${V(s)}$ and the advantage function ${A(s,a)}$, which estimates the ratio of the value for each action to the average value.
+
+The final Q-value is estimated by combining all these elements. This form of representation reduces the strength and effectiveness of Q-learning, where the model can estimate the state value more accurately and the need for accurate action values in certain situations is minimized.
+
+4. Policy Gradient Methods
+Policy Gradient Methods are algorithms based on a policy iteration approach where policy is directly manipulated to reach the optimal policy that maximizes the expected reward. Rather than focusing on learning a value function, these strategies have been developed in order to maximize rewards by optimizing the policy with respect to the gradient of the defined objective with respect to policy parameters.
+
+The main objective is computing the average reward gradient and strategy modification. The following are the algorithms: REINFORCE, Actor-Critic, and Proximal Policy Optimization (PPO). These approaches can be applied effectively in high or continuous dimensional spaces.
+
+5. Proximal Policy Optimization
+A Proximal Policy Optimization (PPO) algorithm in reinforcement learning with an approach to achieve more stable and efficient policy optimization. This approach updates policies by maximizing an objective function associated with the policy, but puts a cap on the amount of allowance for a policy update in order to avoid drastic changes in a policy.
+
+A new policy cannot be too far from an old policy, hence PPO adopts a clipped objective to ensure no policy ever changes drastically from the last policy. By using a clipped objective, PPO will prevent large changes in policy between the old and new one. This balance between the means of exploration and exploitation avoids performance degradation and promotes smoother convergence. PPO is applied in deep reinforcement learning for both continuous and discrete action spaces due to its simplicity and effectiveness.

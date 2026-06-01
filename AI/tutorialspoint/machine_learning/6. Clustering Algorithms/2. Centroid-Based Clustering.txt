@@ -1,0 +1,14 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_centroid_based_clustering.htm
+Centroid-based clustering is a class of machine learning algorithms that aims to partition a dataset into groups or clusters based on the proximity of data points to the centroid of each cluster.
+
+The centroid of a cluster is the arithmetic mean of all the data points in that cluster and serves as a representative point for that cluster.
+
+The two most popular centroid-based clustering algorithms are −
+
+K-means Clustering
+K-Means clustering is a popular unsupervised machine learning algorithm used for clustering data. It is a simple and efficient algorithm that can group data points into K clusters based on their similarity. The algorithm works by first randomly selecting K centroids, which are the initial centers of each cluster. Each data point is then assigned to the cluster whose centroid is closest to it. The centroids are then updated by taking the mean of all the data points in the cluster. This process is repeated until the centroids no longer move or the maximum number of iterations is reached.
+
+K-Medoids Clustering
+K-medoids clustering is a partition-based clustering algorithm that is used to cluster a set of data points into "k" clusters. Unlike K-means clustering, which uses the mean value of the data points to represent the center of the cluster, K-medoids clustering uses a representative data point, called a medoid, to represent the center of the cluster. The medoid is the data point that minimizes the sum of the distances between it and all the other data points in the cluster. This makes K-medoids clustering more robust to outliers and noise than K-means clustering.
+
+We will discuss these two clustering methods in the next two chapters.

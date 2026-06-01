@@ -1,0 +1,57 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_real_life_examples.htm
+Machine learning has transformed various industries by automating processes, predicting outcomes, and discovering patterns in large data sets. Some real-life examples of machine learning include virtual assistants & chatbots such as Google Assistant, Siri & Alexa, recommendation systems, Tesla autopilot, IBM's Watson for Oncology, etc.
+
+Most of us think that machine learning is something that is related to technology about futuristic robots that is very complex. Surprisingly, every one of us uses machine learning in our daily lives knowingly or unknowingly, such as Google Maps, email, Alexa, etc. Here we are providing the top real-life examples of machine learning −
+
+Virtual Assistants and Chatbots
+Fraud Detection in Banking and Finance
+Healthcare Diagnosis and Treatment
+Autonomous Vehicles
+Recommendation Systems
+Target Advertising
+Image Recognition
+Let's discuss each of the above real-life examples of machine learning in detail −
+
+Virtual Assistants and Chatbots
+Natural language processing (NLP) is an area of machine learning that focuses on understanding and generating human language. NLP is used in virtual assistants and chatbots, such as Siri, Alexa, and Google Assistant, to provide personalized and conversational experiences. Machine learning algorithms can analyze language patterns and respond to user queries in a natural and accurate way.
+
+Virtual assistants are applications of machine learning that interact with users through voice instructions. They are used to replace the work performed by human personal assistants, which includes making phone calls, scheduling appointments, or reading an email loud. The most popular virtual assistants that are used in our daily lives are Alexa, Apple Siri, and Google Assistant .
+
+Chatbots are machine learning programs designed to engage in conversations with users. This application is designed to replace the work of customer care. It is widely used by websites for providing information, answering FAQ, and providing basic customer support.
+
+Fraud Detection in Banking and Finance
+Machine learning is not only applied to make things easier but is also applied for safety and security purposes, like fraud detection. These algorithms are trained on datasets with undesired or fraud activities to identify similar patterns of these events and detect them when they occur in the future.
+
+These algorithms can analyze transaction data and identify patterns that indicate fraud. For example, credit card companies use machine learning to identify transactions that are likely to be fraudulent and notify customers in real time. Banks also use machine learning to detect money laundering, identify unusual behavior in accounts, and analyze credit risk.
+
+Machine learning algorithms are widely used in the financial industry to detect fraudulent activities. One real-life example can include PayPal which uses machine learning to improve authorized transactions on its platform.
+
+Healthcare Diagnosis and Treatment
+The applications of machine learning in health care are as diverse as they impact. The combination of machine learning and medicine aims to enhance the efficiency and personalization of healthcare. Some of them include personalized treatment, patient monitoring, and medical imaging diagnosis.
+
+Machine learning algorithms can analyze medical data, such as X-rays, MRI scans, and genomic data, to assist with the diagnosis of diseases. These algorithms can also be used to identify the most effective treatment for a patient based on their medical history and genetic makeup. For example, IBM's Watson for Oncology uses machine learning to analyze medical records and recommend personalized cancer treatments.
+
+Autonomous Vehicles
+Autonomous vehicles use machine learning to partially replace human drivers. These vehicles are designed to reach the destination avoiding obstacles and responding to traffic conditions. Autonomous vehicles use machine learning algorithms to navigate and make decisions on the road. These algorithms can analyze data from sensors and cameras to identify obstacles and make decisions about how to respond.
+
+Autonomous vehicles are expected to revolutionize transportation by reducing accidents and increasing efficiency. Companies such as Tesla, Waymo, and Uber are using machine learning to develop self-driving cars.
+
+Tesla's self-driving cars are installed with Tesla Vision, which uses cameras, sensors, and powerful neural net processing to sense and understand the environment around them. One of the real-life examples of machine learning in autonomous vehicles is Tesla AutoPilot. AutoPilot is an advanced driver assistance system.
+
+Recommendation Systems
+E-commerce platforms, such as Amazon and Netflix, use recommendation systems (machine learning algorithms) to provide personalized recommendations to users based on their browsing and viewing history. These recommendations can improve customer satisfaction and increase sales. Machine learning algorithms can analyze large amounts of data to identify patterns and predict user preferences, enabling e-commerce platforms and entertainment providers to offer a more personalized experience to their users.
+
+This application of Machine learning is used to narrow down and predict what people are looking for among the growing number of options. Some popular real-world examples of recommendation systems are as follows −
+
+Netflix − Netflix's recommendation system uses machine learning algorithms to analyze user's watch history, search behavior, and rating to suggest movies and TV shows.
+Amazon − Amazon's recommendation system makes personalized recommendations based on user's prior products viewed, purchases, and items added to their carts.
+Spotify − Spotify's recommendation system suggests songs and playlists depending on the user's listening history, search, and liked songs, etc.
+YouTube − YouTube's recommendation system suggests videos based on the user's viewing history, search, liked video, etc. The machine learning algorithm considers many other factors to make personalized recommendations.
+LinkedIn − LinkedIn's recommendation system suggests jobs, connections, etc., based on the user's profile, skills, etc. The machine learning algorithms take the user's current job profile, skills, location, industry, etc., to make personalized job recommendations.
+Target Advertising
+Targeted advertising uses machine learning to gain insights from data-driven to tailor advertisements based on the interests, behavior, and demographics of the individuals or groups.
+
+Image Recognition
+Image recognition is an application of computer vision that requires more than one computer vision task, such as image classification, object detection and image identification. It is prominently used in facial recognition, visual search, medical diagnosis, people identification and many more.
+
+In addition to these examples, machine learning is being used in many other applications, such as energy management, social media analysis, and predictive maintenance. Machine learning is a powerful tool that has the potential to revolutionize many industries and improve the lives of people around the world.

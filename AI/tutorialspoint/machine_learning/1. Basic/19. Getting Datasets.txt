@@ -1,0 +1,108 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_getting_datasets.htm
+Machine learning models are only as good as the data they are trained on. Therefore, obtaining good quality and relevant datasets is a critical step in the machine learning process. There are many open-source repositories, like Kaggle, from where you can download datasets. You can even purchase data, scrap a website, or collect data independently. Let's see some different sources of datasets for machine learning and how to obtain them.
+
+What is a dataset?
+Dataset is a collection of data in a structured and organized manner. It is typically used to simplify tasks like analysis, storage or processing, machine learning model training, etc. Datasets can be stored in multiple formats like CSV, JSON, zip files, Excel, etc.
+
+Types of Datasets
+Datasets are generally categorized based on the information they consist of. Some common types of datasets are:
+
+Tabular Datasets: They are structured collections of data organized into rows and columns, similar to a table.
+Time Series Datasets: These include data between a period, for example, stock price analysis, climatic information and many more.
+Image datasets: These include images as the data, which are used for computer vision tasks such as image classification, object detection and image segmentation.
+Text datasets: These include textual information like numeric, characters and alphabets. They are used in NLP techniques like sentiment analysis and text classification.
+Getting Datasets for Machine Learning
+Getting a dataset is a very important step while developing a solution for a machine learning problem. Data is the key necessity in training a machine learning model. The quality, quantity and diversity of the data collected would highly impact the performance of machine learning models.
+
+There are different ways or sources to get datasets for machine learning. Some of them are listed as below −
+
+Open Source Datasets
+Data Scraping
+Data Purchase
+Data Collection
+Let's discuss each of the above sources of dataset for machine learning in detail −
+
+Popular Open Source/ Public Datasets
+There are many publicly available open-source datasets that you can use for machine learning. Some popular sources of public datasets include Kaggle, UCI Machine Learning Repository, Google Dataset Search, and AWS Public Datasets. These datasets are often used for research and are open to the public.
+
+Some of the most popular sources where structured and valuable data is available are −
+
+Kaggle Datasets
+AWS Datasets
+Google Dataset Search Engine
+UCI Machine learning Repository
+Microsoft Datasets
+Scikit-learn Dataset
+HuggingFace Datasets Hub
+Government Datasets
+Kaggle Datasets
+Kaggle is a popular online community for data science and machine learning. It hosts more than 23,000 public datasets. It is the most chosen platform for getting datasets as it allows users to search, download, and publish data easily. It provides high-quality pre-processed dataset which fits right for almost all machine learning models based on the user's requirement.
+
+Kaggle also provides notebooks with the algorithms and different types of pre-trained models.
+
+AWS Datasets
+You can search, download and share the datasets that are publicly available in the registry of open data on AWS. Though they are accessed through AWS, the datasets are maintained and updated by government organizations, businesses and researchers.
+
+Google Dataset Search Engine
+Google Dataset Search is a tool developed by Google that allows users to search for datasets from different sources across the web. It is a search engine specially designed for datasets.
+
+UCI Machine learning Repository
+The UCI machine learning repository is a dataset repository developed by the University of California, Irvine exclusively for machine learning. It covers 100s of datasets from a wide range of domains. You can find datasets related to time series, classification, regression, or recommendation systems.
+
+Microsoft Dataset
+Microsoft Research Open Data, launched by Microsoft in 1918, provides a data repository in the cloud.
+
+Scikit-learn Dataset
+Scikit-learn is a popular Python library that provides a few datasets like the Iris dataset, Boston housing dataset, etc., for trial and error. These datasets are open and can be used to learn and experiment with machine learning models.
+
+Syntax to use Scikit-learn dataset −
+
+from sklearn.datasets import load_iris
+iris = load_iris()
+In the above code snippet, we loaded the iris dataset to our Python script.
+
+HuggingFace Datasets hub
+HuggingFace datasets hub provides major public datasets such as image datasets, audio datasets, text datasets, etc. You can access these datasets by installing "datasets" using the following command −
+
+pip3 install datasets
+You can use the following simple syntax to get any dataset to use in you program −
+
+from datasets import load_dataset
+ds = load_dataset(dataset_name)
+For exmaple you can use the following command to load iris dataset −
+
+from datasets import load_dataset
+ds = load_dataset("scikit-learn/iris")
+Government Datasets
+Each country has a source where government related data is available for public use, which is collected from various departments. The goal of these sources is to increase the transparency of government and to use them for productive research work.
+
+Followings are some government dataset links −
+
+Indian Government Public Datasets
+U.S. Government's Open Data
+World Bank Data Catalog
+European Union Open Data
+U.K. Open Data
+Data Scraping
+Data scraping involves automatically extracting data from websites or other sources. It can be a useful way to obtain data that is not available as a pre-packaged dataset. However, it is important to ensure that the data is being scraped ethically and legally, and that the source is reliable and accurate.
+
+Data Purchase
+In some cases, it may be necessary to purchase a dataset for machine learning. Many companies sell pre-packaged datasets that are tailored to specific industries or use cases. Before purchasing a dataset, it is important to evaluate its quality and relevance to your machine learning project.
+
+Data Collection
+Data collection involves manually collecting data from various sources. This can be time-consuming and requires careful planning to ensure that the data is accurate and relevant to your machine learning project. It may involve surveys, interviews, or other forms of data collection.
+
+Strategies for Acquiring High Quality Datasets
+Once you have identified the source of your dataset, it is important to ensure that the data is of good quality and relevant to your machine learning project. Below are some Strategies for obtaining good quality datasets −
+
+Identify the Problem You Want to Solve
+Before obtaining a dataset, it is important to identify the problem you want to solve with machine learning. This will help you determine the type of data you need and where to obtain it.
+
+Determine the Size of the Dataset
+The size of the dataset depends on the complexity of the problem you are trying to solve. Generally, the more data you have, the better your machine learning model will perform. However, it is important to ensure that the dataset is not too large and contains irrelevant or duplicate data.
+
+Ensure the Data is Relevant and Accurate
+It is important to ensure that the data is relevant and accurate to the problem you are trying to solve. Ensure that the data is from a reliable source and that it has been verified.
+
+Preprocess the Data
+Preprocessing the data involves cleaning, normalizing, and transforming the data to prepare it for machine learning. This step is critical to ensure that the machine learning model can understand and use the data effectively.

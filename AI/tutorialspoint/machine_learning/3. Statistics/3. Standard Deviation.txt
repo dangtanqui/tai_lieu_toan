@@ -1,0 +1,63 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_standard_deviation.htm
+Standard deviation is a measure of the amount of variation or dispersion of a set of data values around their mean. In machine learning, it is an important statistical concept that is used to describe the spread or distribution of a dataset.
+
+Standard deviation is calculated as the square root of the variance, which is the average of the squared differences from the mean. The formula for calculating standard deviation is as follows −
+
+$$\sigma =\sqrt{\left [\Sigma \left ( x-\mu \right )^{2}/N \right ]}$$
+
+Where −
+
+$\sigma$is the standard deviation
+
+$\Sigma$ is the sum of
+
+$x$ is the data point
+
+$\mu$ is the mean of the dataset
+
+$N$ is the total number of data points
+
+In machine learning, standard deviation is used to understand the variability of a dataset and to detect outliers. For example, in finance, standard deviation is used to measure the volatility of stock prices. In image processing, standard deviation can be used to detect image noise.
+
+Types of Examples
+Example 1
+In this example, we will be using the NumPy library to calculate the standard deviation −
+
+import numpy as np
+
+data = np.array([1, 2, 3, 4, 5, 6])
+std_dev = np.std(data)
+
+print('Standard deviation:', std_dev)
+Output
+It will produce the following output −
+
+Standard deviation: 1.707825127659933
+Example 2
+Let's see another example in which we will calculate the standard deviation of each column in Iris flower dataset using Python and Pandas library −
+
+import pandas as pd
+
+# load the iris dataset
+
+iris_df = pd.read_csv('https://archive.ics.uci.edu/ml/machine-learningdatabases/iris/iris.data',
+   names=['sepal length', 'sepal width', 'petal length', 'petal width', 'class'])
+
+# calculate the standard deviation of each column
+std_devs = iris_df.std()
+
+# print the standard deviations
+print('Standard deviations:')
+print(std_devs)
+In this example, we load the Iris dataset from the UCI Machine Learning Repository using Pandas' read_csv() method. We then calculate the standard deviation of each column using the std() method of the Pandas dataframe. Finally, we print the standard deviations for each column.
+
+Output
+On executing the code, you will get the following output −
+
+Standard deviations:
+sepal length    0.828066
+sepal width     0.433594
+petal length    1.764420
+petal width     0.763161
+dtype: float64
+This example demonstrates how standard deviation can be used to understand the variability of a dataset. In this case, we can see that the standard deviation of the 'petal length' column is much higher than that of the other columns, which suggests that this feature may be more variable and potentially more informative for classification tasks.

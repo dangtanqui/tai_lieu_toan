@@ -1,0 +1,139 @@
+%==============================================================================
+\section{Unsupervised Learning --- Học máy không giám sát}
+\label{sec:unsupervised-learning}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_unsupervised.htm}.
+\end{ynghia}
+
+\subsection{Unsupervised Machine Learning là gì?}
+
+\begin{dinhnghia}[title={Học không giám sát}]
+Unsupervised learning học pattern và cấu trúc trong dữ liệu \textbf{không} cần giám sát con người.
+Thuật toán phân tích dữ liệu để khám phá pattern ẩn trong tập \textbf{không nhãn}.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Khác supervised}]
+Không có quyền ``thoải mái'' như supervised với dữ liệu đã gán nhãn sẵn; cần trích pattern hữu ích từ đầu vào.
+\end{ynghia}
+
+\begin{vidu}[title={Tóm tắt một câu (theo nguồn)}]
+\begin{itemize}
+  \item Là cách tiếp cận/kỹ thuật ML
+  \item Dùng thuật toán ML
+  \item Tìm pattern/cấu trúc ẩn
+  \item Trong dữ liệu không có giám sát con người
+\end{itemize}
+\end{vidu}
+
+\begin{phuongphap}[title={Một số hướng và ví dụ}]
+Association, clustering, dimensionality reduction.
+Ví dụ thuật toán: K-means clustering, K-nearest neighbors, \ldots
+\end{phuongphap}
+
+\begin{vidu}[title={Ví dụ trực giác: dữ liệu cử tri}]
+Thay vì huấn luyện máy dự đoán $Y$ cho mỗi $X$ như supervised, ta hỏi:
+``Với tập dữ liệu khổng lồ $X$, bạn cho biết gì về $X$?''
+Hoặc: ``Có thể chia $X$ thành năm nhóm tốt nhất nào?''
+Hoặc: ``Ba feature nào hay xuất hiện cùng nhau nhất trong $X$?''
+--- Đó là tinh thần của unsupervised learning.
+\end{vidu}
+
+\subsection{Cách Unsupervised Learning hoạt động}
+
+\begin{phuongphap}[title={Quy trình huấn luyện}]
+\begin{itemize}
+  \item Thuật toán tự học (self-learning) huấn luyện trên dữ liệu \textbf{không nhãn}.
+  \item Tùy tác vụ (clustering, association, \ldots) chọn thuật toán phù hợp.
+  \item Thuật toán tự suy ra quy tắc dựa trên độ tương đồng, pattern, khác biệt --- không có nhãn hay pre-training.
+  \item Kết quả: \textbf{mô hình unsupervised}, sẵn sàng cho clustering, association hoặc giảm chiều.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ynghia}[title={Phù hợp bài toán phức tạp}]
+Mô hình unsupervised phù hợp tổ chức dataset lớn thành các cụm.
+\end{ynghia}
+
+\subsection{Ba nhóm phương pháp}
+
+\subsubsection{1. Clustering}
+
+\begin{dinhnghia}[title={Clustering}]
+Gom tập đối tượng/điểm dữ liệu thành cụm theo độ tương đồng.
+Điểm trong cùng cụm phải \textbf{giống nhau hơn} điểm ở cụm khác.
+Đôi khi gọi là \textbf{unsupervised classification} vì kết quả giống phân loại nhưng không có lớp định sẵn.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Một số thuật toán}]
+\textbf{K-Means}: gán điểm vào một trong $K$ cụm theo khoảng cách tới tâm; cập nhật centroid lặp đến khi ổn định.
+
+\textbf{Mean Shift}: tìm vùng mật độ dữ liệu cao; dịch mean của từng điểm về vùng dày nhất.
+
+\textbf{Gaussian Mixture Models}: mô hình xác suất kết hợp nhiều phân phối Gaussian để xác định điểm thuộc thành phần nào.
+\end{ynghia}
+
+\subsubsection{2. Association Rule Mining}
+
+\begin{ynghia}[title={Association}]
+Kỹ thuật dựa trên luật để tìm liên kết giữa tham số trong dataset lớn.
+Phổ biến trong Market Basket Analysis; hỗ trợ quyết định và recommendation engine.
+Thuật toán chính: \textbf{Apriori} --- tìm item lặp lại thường xuyên và luật kết hợp trong dữ liệu giao dịch.
+\end{ynghia}
+
+\subsubsection{3. Dimensionality Reduction}
+
+\begin{ynghia}[title={Giảm chiều}]
+Chọn tập feature đại diện để giảm số chiều mỗi mẫu --- tránh curse of dimensionality khi có hàng triệu feature.
+Thuật toán phổ biến: Principal Component Analysis (PCA), Missing Value Ratio, SVD, Autoencoders.
+\end{ynghia}
+
+\subsection{Thuật toán Unsupervised Learning}
+
+\begin{phuongphap}[title={Danh sách thường dùng (theo nguồn)}]
+\textbf{Clustering}: K-Means, Hierarchical, Mean-shift, DBSCAN, HDBSCAN, BIRCH, Affinity Propagation, Agglomerative.
+
+\textbf{Association}: Apriori, Eclat, FP-growth.
+
+\textbf{Giảm chiều}: PCA, Autoencoders, SVD.
+\end{phuongphap}
+
+\subsection{Ưu điểm}
+
+\begin{itemize}
+  \item Không cần dữ liệu có nhãn --- dễ và rẻ hơn.
+  \item Khám phá pattern/quan hệ ẩn $\Rightarrow$ insight và ra quyết định.
+  \item Phù hợp clustering, anomaly detection, giảm chiều.
+\end{itemize}
+
+\subsection{Nhược điểm}
+
+\begin{itemize}
+  \item \textbf{Khó đánh giá}: không có nhãn chuẩn để đo hiệu năng.
+  \item \textbf{Kết quả có thể kém chính xác}: đặc biệt khi dữ liệu nhiễu hoặc thuật toán không biết đầu ra đúng.
+\end{itemize}
+
+\subsection{Ứng dụng}
+
+\begin{phuongphap}[title={Thực tế}]
+\begin{itemize}
+  \item \textbf{Customer Segmentation}: gom khách theo mua hàng, hoạt động, sở thích.
+  \item \textbf{Anomaly Detection}: phát hiện pattern bất thường (gian lận, an ninh mạng).
+  \item \textbf{Recommendation Engines}: phân tích hành vi khách hàng, marketing cá nhân hoá.
+  \item \textbf{NLP}: ví dụ Google phân loại bài báo tin tức.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Anomaly Detection}
+
+\begin{dinhnghia}[title={Phát hiện bất thường}]
+Tìm sự kiện/quan sát hiếm, hiếm khi xảy ra.
+Dùng kiến thức đã học để phân biệt điểm bất thường và bình thường.
+Clustering, KNN có thể hỗ trợ dựa trên feature.
+\end{dinhnghia}
+
+\subsection{Supervised vs Unsupervised (nhắc ngắn)}
+
+\begin{luuy}[title={Đối chiếu}]
+So sánh với supervised: Mục~\ref{sec:supervised-vs-unsupervised}.
+\end{luuy}

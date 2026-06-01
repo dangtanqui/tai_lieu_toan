@@ -1,0 +1,46 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_percentiles.htm
+Percentiles are a statistical concept used in machine learning to describe the distribution of a dataset. A percentile is a measure that indicates the value below which a given percentage of observations in a group of observations falls.
+
+For example, the 25th percentile (also known as the first quartile) is the value below which 25% of the observations in the dataset fall, while the 75th percentile (also known as the third quartile) is the value below which 75% of the observations in the dataset fall.
+
+Percentiles can be used to summarize the distribution of a dataset and identify outliers. In machine learning, percentiles are often used in data preprocessing and exploratory data analysis to gain insights into the data.
+
+Python provides several libraries for calculating percentiles, including NumPy and Pandas.
+
+Calculating Percentiles using NumPy
+Below is an example of how to calculate percentiles using NumPy −
+
+Example
+import numpy as np
+
+data = np.array([1, 2, 3, 4, 5])
+p25 = np.percentile(data, 25)
+p75 = np.percentile(data, 75)
+print('25th percentile:', p25)
+print('75th percentile:', p75)
+In this example, we create a sample dataset using NumPy and then calculate the 25th and 75th percentiles using the np.percentile() function.
+
+Output
+The output shows the values of the percentiles for the dataset.
+
+25th percentile: 2.0
+75th percentile: 4.0
+Calculating Percentiles using Pandas
+Below is an example of how to calculate percentiles using Pandas −
+
+Example
+import pandas as pd
+
+data = pd.Series([1, 2, 3, 4, 5])
+p25 = data.quantile(0.25)
+p75 = data.quantile(0.75)
+
+print('25th percentile:', p25)
+print('75th percentile:', p75)
+In this example, we create a Pandas series object and then calculate the 25th and 75th percentiles using the quantile() method of the series object.
+
+Output
+The output shows the values of the percentiles for the dataset.
+
+25th percentile: 2.0
+75th percentile: 4.0

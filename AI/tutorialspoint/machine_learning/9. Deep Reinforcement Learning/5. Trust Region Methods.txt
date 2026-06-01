@@ -1,0 +1,38 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_trust_region_methods.htm
+In reinforcement learning, especially in policy optimization techniques, the main goal is to modify the agent's policy to improve the performance without affecting it's behavior. This is important when working with deep neural networks, especially if updates are large or not properly limited there might be a case of instability. Trust regions help maintain stability by guaranteeing that parameter updates are smooth and effective during training.
+
+What is Trust Region?
+A trust region is a concept used in optimization that restricts updates to the policy or value function in training, maintaining stability and reliability in the learning process. Trust regions assist in limiting the extent to which the model's parameters, like policy networks, are allowed to vary during updates. This will help in avoiding large or unpredictable changes that may disrupt the learning process.
+
+Role of Trust Regions in Policy Optimization
+The idea of trust regions is used to regulate the extent to which the policy can be altered during updates. This guarantees that every update improves the policy without implementing drastic changes that could cause instability or affect performance. Some of the aspects where trust regions play an important role are −
+
+Policy Gradient − Trust regions are often used in these methods to modify the policy to optimize expected rewards. However, in the absence of a trust region, important updates can result in unpredictable behavior, particularly when employing function approximators such as deep neural networks.
+KL Divergence − This is in Trust Region Policy Optimization (TRPO) which serves as the criteria for evaluating the extent of policy changes by calculating the divergence between the old and new policies. The main concept is that the minor policy changes tend to enhance the agent's performance consistently, whereas major changes may lead to instability.
+Surrogate Objective in PPO − It is used to estimate the trust region through a surrogate objective function incorporating a clipping mechanism. The primary goal is to prevent major changes in the policy by implementing penalties on big deviations from the previous policy. Additionally, this will improve the performance of the policy.
+Trust Region Methods for Deep Reinforcement Learning
+Following is a list of algorithms that use trust regions in deep reinforcement learning to ensure that updates are effective and reliable, improving the overall performance −
+
+1. Trust Region Policy Optimization
+Trust Region Policy Optimization (TRPO) is a reinforcement learning algorithm that aims to enhance policies in a more efficient and steady way. It deals with the issue of large, unstable updates that usually occur in policy gradient methods by introducing trust region constraint.
+
+The constraint used in TRPO is Kullback-Leibler(KL) divergence, as a restriction to guarantee minimal variation between the old and new policies through the assessment of their disparity. This process helps TRPO in maintaining stability of the learning process and improves the efficiency of the policy.
+
+The TRPO algorithm works by consistently modifying the policy parameters to improve a surrogate objective function with the boundaries of the trust region constraint. For this it is necessary to find a solution for the dilemma of enhancing the policy while maintaining stability.
+
+2. Proximal Policy Optimization
+Proximal Policy Optimization is a reinforcement learning algorithm whose aim is to enhance the consistency and dependability of policy updates. This process uses an alternative objective function along with the clipping mechanism to avoid extreme adjustments to policies. This approach ensures that there isn't much difference between the new policy and old , additionally maintaining a balance between exploration and exploitation.
+
+PPO is an easier and effective among all the trust region techniques. It is widely used in many applications like robotics, autonomous cars because of its reliability and simplicity. The algorithm includes collecting a set of experiences, calculating the advantage estimates, and carrying out several rounds of stochastic gradient descent to modify the policy.
+
+3. Natural Gradient Descent
+This technique modifies the step size according to the curvature of the objective function to form a trust region surrounding the current policy. It is particularly effective in high-dimensional environments.
+
+Challenges in Trust Regions
+There are certain challenges while implementing trust region techniques in deep reinforcement learning −
+
+
+Most trust region techniques like TRPO and PPO require approximations, which can violate constraints or fail to find the optimal solution within the trust region.
+The techniques can be computationally intensive, especially with high-dimensional spaces.
+These techniques often require a wide range of samples for effective learning.
+The efficiency of trust region techniques highly depends on the choice of hyperparameters. Tuning these parameters is quite challenging and often requires expertise.

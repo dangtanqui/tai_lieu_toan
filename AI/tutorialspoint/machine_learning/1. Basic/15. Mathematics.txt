@@ -1,0 +1,62 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_mathematics.htm
+Machine learning is an interdisciplinary field that involves computer science, statistics, and mathematics. In particular, mathematics plays a critical role in developing and understanding machine learning algorithms. In this chapter, we will discuss the mathematical concepts that are essential for machine learning, including linear algebra, calculus, probability, and statistics.
+
+Linear Algebra
+Linear algebra is the branch of mathematics that deals with linear equations and their representation in vector spaces. In machine learning, linear algebra is used to represent and manipulate data. In particular, vectors and matrices are used to represent and manipulate data points, features, and weights in machine learning models.
+
+A vector is an ordered list of numbers, while a matrix is a rectangular array of numbers. For example, a vector can represent a single data point, and a matrix can represent a dataset. Linear algebra operations, such as matrix multiplication and inversion, can be used to transform and analyze data.
+
+Followings are some of the important linear algebra concepts highlighting their importance in machine learning −
+
+Vectors and matrix − Vectors and matrices are used to represent datasets, features, target values, weights, etc.
+Matrix operations − operations such as addition, multiplication, subtraction, and transpose are used in all ML algorithms.
+Eigenvalues and eigenvectors − These are very useful in dimensionality reduction related algorithms such principal component analysis (PCA).
+Projection − Concept of hyperplane and projection onto a plane is essential to understand support vector machine (SVM).
+Factorization − Matrix factorization and singular value decomposition (SVD) are used to extract important information in the dataset.
+Tensors − Tensors are used in deep learning to represent multidimensional data. A tensor can represent a scalar, vector or matrix.
+Gradients − Gradients are used to find optimal values of the model parameters.
+Jacobian Matrix − Jacobian matrix is used to analyze the relationship between input and output variables in ML model
+Orthogonality − This is a core concept used in algorithms like principal component analysis (PCA), support vector machines (SVM)
+Calculus
+Calculus is the branch of mathematics that deals with rates of change and accumulation. In machine learning, calculus is used to optimize models by finding the minimum or maximum of a function. In particular, gradient descent, a widely used optimization algorithm, is based on calculus.
+
+Gradient descent is an iterative optimization algorithm that updates the weights of a model based on the gradient of the loss function. The gradient is the vector of partial derivatives of the loss function with respect to each weight. By iteratively updating the weights in the direction of the negative gradient, gradient descent tries to minimize the loss function.
+
+Followings are some of the important calculus concepts essential for machine learning −
+
+Functions − Functions are core of machine learning. In machine learning, model learns a function between inputs and outputs during the training phase. You should learn basics of functions, continuous and discrete functions.
+Derivative, Gradient and Slope − These are the core concepts to understand how optimization algorithms, like gradient descent, work.
+Partial Derivatives − These are used to find maxima or minima of a function. Generally used in optimization algorithms.
+Chain Rules − Chain rules are used to calculate the derivatives of loss functions with multiple variables. You can see the application of chain rules mainly in neural networks.
+Optimization Methods − These methods are used to find the optimal values of parameters that minimizes cost function. Gradient Descent is one of the most used optimization methods.
+Probability Theory
+Probability is the branch of mathematics that deals with uncertainty and randomness. In machine learning, probability is used to model and analyze data that are uncertain or variable. In particular, probability distributions, such as Gaussian and Poisson distributions, are used to model the probability of data points or events.
+
+Bayesian inference, a probabilistic modeling technique, is also widely used in machine learning. Bayesian inference is based on Bayes' theorem, which states that the probability of a hypothesis given the data is proportional to the probability of the data given the hypothesis multiplied by the prior probability of the hypothesis. By updating the prior probability based on the observed data, Bayesian inference can make probabilistic predictions or classifications.
+
+Followings are some of the important probability theory concepts essential for machine learning −
+
+Simple probability − It's a fundamental concept in machine learning. All classification problems use probability concepts. SoftMax function uses simple probability in artificial neural networks.
+Conditional probability − Classification algorithms like the Naive Bayes classifier are based on conditional probability.
+Random Variables − Random variables are used to assign the initial values to the model parameters. Parameter initialization is considered as the starting of the training process.
+Probability distribution − These are used in finding loss functions for classification problems.
+Continuous and Discrete distribution − These distributions are used to model different types of data in ML.
+Distribution functions − These functions are often used to model the distribution of error terms in linear regression and other statistical models.
+Maximum likelihood estimation − It is a base of some machine learning and deep learning approaches used for classification problems.
+Statistics
+Statistics is the branch of mathematics that deals with the collection, analysis, interpretation, and presentation of data. In machine learning, statistics is used to evaluate and compare models, estimate model parameters, and test hypotheses.
+
+For example, cross-validation is a statistical technique that is used to evaluate the performance of a model on new, unseen data. In cross-validation, the dataset is split into multiple subsets, and the model is trained and evaluated on each subset. This allows us to estimate the model's performance on new data and compare different models.
+
+Followings are some of the important statistics concepts essential for machine learning −
+
+Mean, Median, Mode − These measures are used to understand the distribution of data and identify outliers.
+Standard deviation, Variance − These are used to understand the variability of a dataset and to detect outliers.
+Percentiles − These are used to summarize the distribution of a dataset and identify outliers.
+Data Distribution − It is how data points are distributed or spread out across a dataset.
+Skewness and Kurtosis − These are two important measures of the shape of a probability distribution in machine learning.
+Bias and Variance − They describe the sources of error in a model's predictions.
+Hypothesis Testing − It is a tentative assumption or idea that can be tested and validated using data.
+Linear Regression − It is the most used regression algorithm in supervised machine learning.
+Logistic Regression − It's also an important supervised learning algorithm mostly used in machine learning.
+Principal Component Analysis − It is used mainly in dimensionality reduction in machine learning.

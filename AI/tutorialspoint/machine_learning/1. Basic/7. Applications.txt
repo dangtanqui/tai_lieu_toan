@@ -1,0 +1,94 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_applications.htm
+Machine learning has become the ubiquitous technology that has impacted many aspects of our lives, from business to healthcare to entertainment. Machine learning helps make decisions and find all possible solutions to a problem which improves the efficiency of work in every sector.
+
+Some of the successful machine learning applications are chatbots, language translation, face recognition, recommendation systems, autonomous vehicles, object detection, medical image analysis, etc. Here are some popular applications of machine learning −
+
+Image and Speech Recognition
+Natural Language Processing
+Finance Sector
+E-commerce and Retail
+Automotive Sector
+Computer Vision
+Manufacturing and Industries
+Healthcare Sector
+Let us discuss all applications of machine learning in detail −
+
+Image and Speech Recognition
+Image and speech recognition are two areas where machine learning has significantly improved. Machine learning algorithms are used in applications such as facial recognition, object detection, and speech recognition to accurately identify and classify images and speech.
+
+Natural Language Processing
+Natural Language Processing (NLP) is a field of computer science that deals with the interaction between computers and humans using natural language. NLP uses machine learning algorithms to identify parts of speech, sentiment and other aspects of text. It analyzes, understands, and generates human language. It is currently all over the internet which includes translation software, search engines, chatbots, grammar correction software and voice assistants, etc.
+
+Here is a list of some applications of machine learning in natural language processing −
+
+Sentiment Analysis
+Speech synthesis
+Speech recognition
+Text classification
+Chatbots
+Language translation
+Caption generation
+Document summarization
+Question answering
+Autocomplete in search engines
+Finance Sector
+The role of machine learning in finance is to maintain secure transactions. Also, in trading, the data is converted to information for the decision-making process. Some applications of machine learning in the finance sector are −
+
+1. Fraud Detection
+Machine learning is widely used in the finance industry for fraud detection. Fraud detection is a process of using a machine learning model to monitor transactions and understand patterns in the dataset to identify fraudulent and suspicious activities.
+
+Machine learning algorithms can analyze vast amounts of transactional data to detect patterns and anomalies that may indicate fraudulent activity, helping to prevent financial losses and protect customers.
+
+2. Algorithmic Trading
+Machine learning algorithms are used to identify complex patterns in the large dataset to discover trading signals which might not be possible for humans.
+
+Some other applications of machine learning in the finance sector are as follows −
+
+Stock market analysis and forecasting
+Credit risk assessment and management
+Security analysis and portfolio optimization
+Asset evaluation and management
+E-commerce and Retail
+Machine learning is used to enhance the business in e-commerce and retail sector through recommendation systems and target advertising which improve user experience. Machine learning makes the process of marketing easy by performing repetitive tasks. Some tasks where Machine learning is applied are:
+
+1. Recommendation Systems
+Recommendation systems are used to provide personalized recommendations to users based on their past behavior and preferences and previous interaction with the website. Machine learning algorithms are used to analyze user data and generate recommendations for products, services, and content.
+
+2. Demand Forecasting
+Companies use machine learning to understand the future demand for their product or services based on various factors like market trends, customer behavior and historical data regarding sales.
+
+3. Customer Segmentation
+Machine learning can be used to segment customers into particular groups with similar characteristics. The purpose of customer segmentation is to understand customer behavior and target them with personalized experience.
+
+Automotive Sector
+Who would have thought of a car that would move independently without driving? Machine learning enabled manufacturers to improve the performance of existing products and vehicles. One massive innovation is the development of autonomous vehicles also called drive less vehicles which can sense its environment and drive for itself passing the obstacles without human assistance. It uses machine learning algorithms for continuous analysis of the surroundings and predicting possible outcomes.
+
+Computer Vision
+Computer vision is an application of machine learning that uses algorithms and neural networks to teach computers to derive meaningful information from digital images and videos. Computer vision is applied in face recognition, to diagnose diseases based on MRI scans, and autonomous vehicles.
+
+Object detection and recognition
+Image classification and recognition
+Faicial recognition
+Autonomous vehicles
+Object segmentation
+Image reconstruction
+Manufacturing and Industries
+Machine learning is also used in manufacturing and industries to keep a check on the working conditions of machinery. Predictive Maintenance is used to identify defects in operational machines and equipment to avoid unexpected outages. This detection of anomalies would also help with regular maintenance.
+
+Predictive maintenance is a process of using machine learning algorithms to predict when maintenance will be required on a machine, such as a piece of equipment in a factory. By analyzing data from sensors and other sources, machine learning algorithms can detect patterns that indicate when a machine is likely to fail, enabling maintenance to be performed before the machine breaks down.
+
+Healthcare Sector
+Machine learning has also found many applications in the healthcare industry. For example, machine learning algorithms can be used to analyze medical images and detect diseases such as cancer or to predict patient outcomes based on their medical history and other factors.
+
+Some applications of machine learning in healthcare are discussed below −
+
+1. Medical Imaging and Diagnostics
+Machine learning in medical imaging is used to analyze the patterns in the image that indicate the presence of a particular disease.
+
+2. Drug Discovery
+Machine learning techniques are used to analyze vast datasets, to predict the biological activity of compounds, and to identify potential drugs for a disease by analyzing its chemical structures.
+
+3. Disease Diagnosis
+Machine learning may also be used to identify some types of diseases. Breast cancer, heart failure, Alzheimer's disease, and pneumonia are some examples of such diseases that can be identified using machine learning algorithms.
+
+These are just a few examples of the many applications of machine learning. As machine learning continues to evolve and improve, we can expect to see it used in more areas of our lives, improving efficiency, accuracy, and convenience in a variety of industries.

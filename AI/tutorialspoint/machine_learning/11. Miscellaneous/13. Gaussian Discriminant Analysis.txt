@@ -1,0 +1,46 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_gaussian_discriminant_analysis.htm
+Gaussian Discriminant Analysis (GDA) is a statistical algorithm used in machine learning for classification tasks. It is a generative model that models the distribution of each class using a Gaussian distribution, and it is also known as the Gaussian Naive Bayes classifier.
+
+The basic idea behind GDA is to model the distribution of each class as a multivariate Gaussian distribution. Given a set of training data, the algorithm estimates the mean and covariance matrix of each class's distribution. Once the parameters of the model are estimated, it can be used to predict the probability of a new data point belonging to each class, and the class with the highest probability is chosen as the prediction.
+
+The GDA algorithm makes several assumptions about the data −
+
+The features are continuous and normally distributed.
+
+The covariance matrix of each class is the same.
+
+The features are independent of each other given the class.
+
+Assumption 1 means that GDA is not suitable for data with categorical or discrete features. Assumption 2 means that GDA assumes that the variance of each feature is the same across all classes. If this is not true, the algorithm may not perform well. Assumption 3 means that GDA assumes that the features are independent of each other given the class label. This assumption can be relaxed using a different algorithm called Linear Discriminant Analysis (LDA).
+
+Example - GDA Implementation
+The implementation of GDA in Python is relatively straightforward. Here's an example of how to implement GDA on the Iris dataset using the scikit-learn library −
+
+from sklearn.datasets import load_iris
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
+from sklearn.model_selection import train_test_split
+
+# Load the iris dataset
+iris = load_iris()
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3, random_state=42)
+
+# Train a GDA model
+gda = QuadraticDiscriminantAnalysis()
+gda.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred = gda.predict(X_test)
+
+# Evaluate the model's accuracy
+accuracy = (y_pred == y_test).mean()
+print('Accuracy:', accuracy)
+In this example, we first load the Iris dataset using the load_iris function from scikit-learn. We then split the data into training and testing sets using the train_test_split function. We create a QuadraticDiscriminantAnalysis object, which represents the GDA model, and train it on the training data using the fit method. We then make predictions on the testing set using the predict method and evaluate the model's accuracy by comparing the predicted labels to the true labels.
+
+Output
+The output of this code will show the model's accuracy on the testing set. For the Iris dataset, the GDA model typically achieves an accuracy of around 97-99%.
+
+Accuracy: 0.9811320754716981
+Overall, GDA is a powerful algorithm for classification tasks that can handle a wide range of data types, including continuous and normally distributed data. While it makes several assumptions about the data, it is still a useful and effective algorithm for many real-world applications.
+

@@ -1,0 +1,121 @@
+%==============================================================================
+\section{Basic Concepts --- Các khái niệm cơ bản}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_basics.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Mục tiêu}]
+Bài này giới thiệu các khái niệm cơ bản trong học máy: dữ liệu, đặc trưng, mô hình, huấn luyện/kiểm thử, overfitting/underfitting, và khi nào nên dùng học máy.
+\end{dongco}
+
+\begin{luuy}[title={Tham chiếu Khái niệm nền}]
+Data, feature, model, training, testing: Mục~\ref{sec:thanh-phan-co-lo} và~\ref{sec:train-val-test}. Bài này giữ phần \textbf{Tom Mitchell (T--P--E)} và hướng dẫn giảm overfitting/underfitting theo nguồn.
+\end{luuy}
+
+\subsection{Các thành phần cốt lõi (tóm tắt)}
+
+\begin{ynghia}[title={Data, Feature, Model, Training, Testing}]
+Xem định nghĩa đầy đủ ở Mục~\ref{sec:thanh-phan-co-lo} và~\ref{sec:train-val-test}. Nguồn nhấn mạnh: mô hình được đánh giá trên tập validation/test riêng để kiểm tra khả năng tổng quát.
+\end{ynghia}
+
+\subsection{Overfitting (Quá khớp)}
+
+\begin{dinhnghia}[title={Overfitting}]
+Overfitting xảy ra khi mô hình quá phức tạp và khớp dữ liệu huấn luyện “quá sát”.
+Hệ quả là mô hình hoạt động kém trên dữ liệu mới vì đã “chuyên biệt” cho tập train.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách giảm overfitting (theo nguồn)}]
+\begin{itemize}
+  \item Dùng tập validation để đánh giá trong quá trình phát triển.
+  \item Dùng \textbf{regularization} để làm mô hình đơn giản hơn.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Underfitting (Thiếu khớp)}
+
+\begin{dinhnghia}[title={Underfitting}]
+Underfitting xảy ra khi mô hình quá đơn giản và không thể nắm bắt pattern/mối quan hệ trong dữ liệu.
+Điều này dẫn tới hiệu năng kém trên cả train và test.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách giảm underfitting (theo nguồn)}]
+\begin{itemize}
+  \item Tăng độ phức tạp mô hình.
+  \item Thu thập thêm dữ liệu.
+  \item Giảm regularization.
+  \item Feature engineering.
+\end{itemize}
+\end{phuongphap}
+
+\begin{luuy}[title={Cân bằng giữa underfitting và overfitting}]
+Giảm underfitting là một bài toán cân bằng giữa độ phức tạp mô hình và lượng dữ liệu hiện có.
+Tăng độ phức tạp có thể giúp bớt underfitting, nhưng nếu dữ liệu không đủ để “đỡ” độ phức tạp đó, mô hình có thể chuyển sang overfitting.
+Vì vậy cần theo dõi hiệu năng và điều chỉnh độ phức tạp khi cần.
+\end{luuy}
+
+\subsection{Khi nào nên “làm cho máy học”?}
+
+\begin{dongco}[title={Vì sao phải để máy học thay vì viết quy tắc?}]
+Ngoài lý do “cần ML”, còn có câu hỏi: trong kịch bản nào ta nên làm cho máy học?
+Có nhiều tình huống cần ra quyết định dựa trên dữ liệu với hiệu quả và quy mô lớn.
+\end{dongco}
+
+\begin{phuongphap}[title={Một số tình huống (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Thiếu chuyên gia con người}: ví dụ điều hướng ở vùng chưa biết hoặc nhiệm vụ trong không gian.
+  \item \textbf{Tình huống động}: hành vi thay đổi theo thời gian; ví dụ kết nối mạng, hạ tầng tổ chức.
+  \item \textbf{Khó chuyển chuyên môn thành bài toán tính toán}: con người có trực giác/chuyên môn nhưng không viết được quy tắc; ví dụ nhận dạng giọng nói, tác vụ nhận thức.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Định nghĩa học máy của Tom Mitchell và mô hình T--P--E}
+
+\begin{dinhnghia}[title={Định nghĩa (Tom Mitchell)}]
+Một chương trình máy tính được gọi là “học” từ kinh nghiệm \(E\) đối với một lớp nhiệm vụ \(T\) và thước đo hiệu năng \(P\),
+nếu hiệu năng của nó khi thực hiện nhiệm vụ trong \(T\), được đo bằng \(P\), được cải thiện nhờ kinh nghiệm \(E\).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ba thành phần của bài toán học}]
+Định nghĩa trên nhấn mạnh ba thành phần (cũng là thành phần chính của thuật toán học):
+\begin{itemize}
+  \item \textbf{Task (T)}: nhiệm vụ.
+  \item \textbf{Performance (P)}: thước đo hiệu năng.
+  \item \textbf{Experience (E)}: kinh nghiệm (dữ liệu/quá trình học).
+\end{itemize}
+\end{ynghia}
+
+\begin{phuongphap}[title={Cách diễn giải ngắn (theo nguồn)}]
+ML là lĩnh vực AI gồm các thuật toán học mà:
+\begin{itemize}
+  \item cải thiện hiệu năng \(P\),
+  \item khi thực hiện nhiệm vụ \(T\),
+  \item theo thời gian nhờ kinh nghiệm \(E\).
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Task (T)}
+\begin{ynghia}[title={Task theo góc nhìn ML}]
+Theo góc nhìn “bài toán thực”, \(T\) có thể là dự đoán giá nhà hoặc chọn chiến lược marketing tốt.
+Theo góc nhìn ML, \(T\) thường là những nhiệm vụ mà cách lập trình truyền thống khó giải vì phải xử lý trên nhiều điểm dữ liệu.
+Ví dụ về nhiệm vụ ML: classification, regression, structured annotation, clustering, transcription, \ldots
+\end{ynghia}
+
+\subsubsection{Experience (E)}
+\begin{ynghia}[title={Kinh nghiệm là gì?}]
+Kinh nghiệm là kiến thức thu được từ các điểm dữ liệu cung cấp cho thuật toán.
+Khi được cung cấp dataset, mô hình chạy lặp và học các pattern nội tại; phần học được gọi là experience \(E\).
+Theo tương tự với con người: con người học từ tình huống, quan hệ, \ldots
+Supervised/unsupervised/reinforcement là các cách khác nhau để “tạo kinh nghiệm”.
+Kinh nghiệm của mô hình sẽ được dùng để giải nhiệm vụ \(T\).
+\end{ynghia}
+
+\subsubsection{Performance (P)}
+\begin{ynghia}[title={Thước đo hiệu năng}]
+Thước đo hiệu năng cho biết thuật toán có đang làm đúng kỳ vọng không.
+\(P\) là metric định lượng đánh giá mô hình thực hiện \(T\) bằng kinh nghiệm \(E\) tốt đến đâu.
+Nguồn nêu một số metric: accuracy score, F1 score, confusion matrix, precision, recall, sensitivity, \ldots
+\end{ynghia}
+

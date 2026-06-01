@@ -1,0 +1,95 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_cost_function.htm
+Cost Function in Machine Learning
+In machine learning, a cost function is a measure of how well a machine learning model is performing. It is a mathematical function that takes in the model's predicted values and the true values of the data and outputs a single scalar value that represents the cost or error of the model's predictions. The goal of training a machine learning model is to minimize the cost function.
+
+The choice of cost function depends on the specific problem being solved. For example, in binary classification tasks, where the goal is to predict whether a data point belongs to one of two classes, the most commonly used cost function is the binary cross-entropy function. In regression tasks, where the goal is to predict a continuous value, the mean squared error function is commonly used.
+
+Cost Functions for Classification Problems
+Classification problems are categorized as supervised machine learning tasks. The object of a supervised learning model is to find optimal parameter values that minimize the cost function. A classification problem can be binary classification or multi-class classification. For binary classification, the most commonly used cost function is binary cross-entropy function, and for multi-class classification, the most commonly used cost function is categorical cross-entropy function.
+
+1. Binary Cross-Entropy Loss
+Let's take a closer look at the binary cross-entropy function. Given a binary classification problem with two classes, let's call them class 0 and class 1, and let's denote the model's predicted probability of class 1 as "p(y=1|x)". The true label of each data point is either 0 or 1. We can define the binary cross-entropy cost function as follows −
+
+For a single sample,
+
+$$\mathrm{\text{BCE} = -\left ( y\times log\left ( p \right )+\left ( 1-y \right )\times log\left ( 1-p \right ) \right )}$$
+
+For whole dataset,
+
+$$\mathrm{\text{BCE} = -\frac{1}{n} \sum_{i=1}^n \left[ y_i \log(p_i) + (1 - y_i) \log(1 - p_i) \right]}$$
+
+where "${n}$" is the number of data points, "${y_{i}}$" is the true label of ${i}$th data point, and "${p_{i}}$" is the corresponding predicted probability of class 1.
+
+The binary cross-entropy function has several desirable properties. First, it is a convex function, which means that it has a unique global minimum that can be found using optimization techniques. Second, it is a strictly positive function, which means that it penalizes incorrect predictions. Third, it is a differentiable function, which means that it can be used with gradient-based optimization algorithms.
+
+2. Categorical Cross-Entropy Loss
+Categorical Cross-Entropy loss is used for multi-class classification problems such as image classification, etc. It measures the dissimilarity between the predicted probability distribution and the true distribution for each class.
+
+$$\mathrm{\text{CCE} = -\frac{1}{n} \sum_{i=1}^n \sum_{j=1}^k y_{ij} \log(\hat{y}_{ij})}$$
+
+Cost Functions for Regression Problems
+The cost function for regression computes the differences between the actual values and the model's predicted values. There are different types of errors that can be used as a cost function. The most common cost functions for regression problems are mean absolute error (MAE) and mean squared error (MSE).
+
+1. Mean Squared Error (MSE)
+Mean Square Error (MSE) measures the average squared difference between the predicted and actual values.
+
+$$\mathrm{\text{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2}$$
+
+2. Mean Absolute Error (MAE)
+Mean Absolute Error (MAE) measures the average absolute difference between the predicted and actual values. It is less sensitive to outliers than MSE.
+
+$$\mathrm{ \text{MAE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i| }$$
+
+Implementation of binary cross-entropy loss in Python
+Now let's see how to implement the binary cross-entropy function in Python using NumPy −
+
+import numpy as np
+
+def binary_cross_entropy(y_pred, y_true):
+   eps = 1e-15
+   y_pred = np.clip(y_pred, eps, 1 - eps)
+   return -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred)).mean()
+In this implementation, we first clip the predicted probabilities to avoid numerical issues with logarithms. We then compute the binary cross-entropy loss using NumPy functions and return the mean over all data points.
+
+Once we have defined a cost function, we can use it to train a machine learning model using optimization techniques such as gradient descent. The goal of optimization is to find the set of model parameters that minimizes the cost function.
+
+Example - Cost Function
+Here is an example of using the binary cross-entropy function to train a logistic regression model on the Iris dataset using scikit-learn −
+
+import numpy as np
+    
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+def binary_cross_entropy(y_pred, y_true):
+   eps = 1e-15
+   y_pred = np.clip(y_pred, eps, 1 - eps)
+   return -(y_true * np.log(y_pred) + (1 - y_true) * np.log(1 - y_pred)).mean()
+    
+# Load the Iris dataset
+iris = load_iris()
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(iris.data, iris.target, test_size=0.3, random_state=42)
+
+# Train a logistic regression model
+logreg = LogisticRegression()
+logreg.fit(X_train, y_train)
+
+# Make predictions on the testing set
+y_pred = logreg.predict(X_test)
+
+# Compute the binary cross-entropy loss
+loss = binary_cross_entropy(logreg.predict_proba(X_test)[:, 1], y_test)
+print('Loss:', loss)
+In the above example, we first load the Iris dataset using the load_iris function from scikit-learn. We then split the data into training and testing sets using the "train_test _split" function. We train a logistic regression model on the training set using theLogisticRegressionclass from scikit-learn. We then make predictions on the testing set using the "predict" method of the trained model.
+
+To compute the binary cross-entropy loss, we use the predict_proba method of the logistic regression model to get the predicted probabilities of class 1 for each data point in the testing set. We then extract the probabilities for class 1 using indexing and pass them to our binary_cross_entropy function along with the true labels of the testing set. The function computes the loss and returns it, which we display on the terminal.
+
+Output
+When you execute this code, it will produce the following output −
+
+Loss: 1.6312339784720309
+The binary cross-entropy loss is a measure of how well the logistic regression model is able to predict the class of each data point in the testing set. A lower loss indicates better performance, and a loss of 0 would indicate perfect performance.
+

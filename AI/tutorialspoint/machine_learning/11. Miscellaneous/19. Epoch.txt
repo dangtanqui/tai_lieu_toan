@@ -1,0 +1,61 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_epochs.htm
+In machine learning, an epoch refers to a complete iteration over the entire training dataset during the model training process. In simpler terms, it is the number of times the algorithm goes through the entire dataset during the training phase.
+
+During the training process, the algorithm makes predictions on the training data, computes the loss, and updates the model parameters to reduce the loss. The objective is to optimize the model's performance by minimizing the loss function. One epoch is considered complete when the model has made predictions on all the training data.
+
+Epochs are an essential parameter in the training process as they can significantly affect the performance of the model. Setting the number of epochs too low can result in an underfit model, while setting it too high can lead to overfitting.
+
+Underfitting occurs when the model fails to capture the underlying patterns in the data and performs poorly on both the training and testing datasets. It happens when the model is too simple or not trained enough. In such cases, increasing the number of epochs can help the model learn more from the data and improve its performance.
+
+Overfitting, on the other hand, happens when the model learns the noise in the training data and performs well on the training set but poorly on the testing data. It occurs when the model is too complex or trained for too many epochs. To avoid overfitting, the number of epochs must be limited, and other regularization techniques like early stopping or dropout should be used.
+
+Implementation in Python
+In Python, the number of epochs is specified in the training loop of the machine learning model. For example, when training a neural network using the Keras library, you can set the number of epochs using the "epochs" argument in the "fit" method.
+
+Example
+# import necessary libraries
+import numpy as np
+from keras.models import Sequential
+from keras.layers import Dense
+
+# generate some random data for training
+X_train = np.random.rand(100, 10)
+y_train = np.random.randint(0, 2, size=(100,))
+
+# create a neural network model
+model = Sequential()
+model.add(Dense(16, input_dim=10, activation='relu'))
+model.add(Dense(1, activation='sigmoid'))
+
+# compile the model with binary cross-entropy loss and adam optimizer
+model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+# train the model with 10 epochs
+model.fit(X_train, y_train, epochs=10)
+In this example, we generate some random data for training and create a simple neural network model with one input layer, one hidden layer, and one output layer. We compile the model with binary cross-entropy loss and the Adam optimizer and set the number of epochs to 10 in the "fit" method.
+
+During the training process, the model makes predictions on the training data, computes the loss, and updates the weights to minimize the loss. After completing 10 epochs, the model is considered trained, and we can use it to make predictions on new, unseen data.
+
+Output
+When you execute this code, it will produce an output like this −
+
+Epoch 1/10
+4/4 [==============================] - 31s 2ms/step - loss: 0.7012 - accuracy: 0.4976
+Epoch 2/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6995 - accuracy: 0.4390
+Epoch 3/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6921 - accuracy: 0.5123
+Epoch 4/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6778 - accuracy: 0.5474
+Epoch 5/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6819 - accuracy: 0.5542
+Epoch 6/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6795 - accuracy: 0.5377
+Epoch 7/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6840 - accuracy: 0.5303
+Epoch 8/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6795 - accuracy: 0.5554
+Epoch 9/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6706 - accuracy: 0.5545
+Epoch 10/10
+4/4 [==============================] - 0s 1ms/step - loss: 0.6722 - accuracy: 0.5556

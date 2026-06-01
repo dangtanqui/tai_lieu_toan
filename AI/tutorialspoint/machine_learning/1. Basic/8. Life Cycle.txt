@@ -1,0 +1,82 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_life_cycle.htm
+Machine learning life cycle is an iterative process of building an end to end machine learning project or ML solution. Building a machine learning model is a continuous process especially with the growing amount of data. Machine learning focuses on improving a system's performance through training the model with real world data. We have to follow some well-defined steps for making a machine learning project successful. The machine learning life cycle provides us with these well-defined steps or phases.
+
+What is Machine Learning Life Cycle?
+The machine learning life cycle is an iterative process that moves from a business problem to a machine learning solution. It is used as a guide for developing a machine learning project to solve a problem. It provides us with instructions and best practices to be used in each phase while developing ML solutions.
+
+The machine learning life cycle is a process that involves several phases from problem identification to model deployment and monitoring. While developing an ML project, each step in the life cycle is revisited many times through these phases. The stages/ phases involved in the end to end machine life cycle process are as follows −
+
+Problem Definition
+Data Preparation
+Model Development
+Model Deployment
+Monitoring and Maintenance
+ML Life Cycle
+Let's discuss the above phases of machine learning life cycle process in detail −
+
+Problem Definition
+The first step in the machine learning life cycle is to identify the problem you want to solve. It is a crucial step which helps you start building a machine learning solution for a problem. This process of identifying a problem would establish an understanding about what the output might be, scope of the task and its objective.
+
+As this step lays the foundation for building a machine learning model, the problem definition has to be clear and concise.
+
+This stage involves understanding the business problem, defining the problem statement, and identifying the success criteria for the machine learning model.
+
+Data Preparation
+Data preparation is a process to prepare data for analysis by performing data exploration, feature engineering, and feature selection. Data exploration involves visualizing and understanding the data, while feature engineering involves creating new features from the existing data. Feature selection involves selecting the most relevant features that will be used to train the machine learning model.
+
+Data preparation process includes collecting data, preprocessing data, and feature engineering & feature selection. This stage generally also includes exploratory data analysis.
+
+Let's discuss each step involved in the data preparation phase of machine learning life cycle process −
+
+1. Data Collection
+After the problem statement is analyzed, the next step would be collecting data. This involves gathering data from various sources which is given as a raw material to the machine learning model. Few features that are considered while collecting data are −
+
+Relevant and usefulness − The data collected has to be relevant to the problem statement, and also should be useful enough to train the machine learning model efficiently.
+Quality and Quantity − The quality and quantity of the data collected would directly impact the performance of the machine learning model.
+Variety − Make sure that the data collected is diverse so that the model can be trained with multiple scenarios to recognize the patterns.
+There are various sources from where the data can be collected like surveys, existing databases, and online platforms like Kaggle. The sources may be primary data which includes data collected exclusively for the problem statement while the secondary data includes the existing data.
+
+2. Data Preprocessing
+The data collected often might be unstructured and messy which causes it to negatively affect the outcomes, hence pre processing data is important to improve the accuracy and performance of the machine learning model. Issues that have to be addressed are missing values, duplicate data, invalid data and noise.
+
+This step of data preprocessing also called data wrangling is intended to make the data more consumable and useful for analytics.
+
+3. Analyzing Data
+After the data is all sorted, it is time to understand the data that is collected. The data is visualized and statistically summarized to gain insights.
+
+Various tools like Power BI, Tableau are used to visualize data which helps in understanding the patterns and trends in the data. This analysis will help to make choices in feature engineering and model selection.
+
+4. Feature Engineering and Selection
+A 'Feature' is an individual measurable quantity which is preferably observed when the machine learning model is being trained. Feature Engineering is the process of creating new features or enhancing the existing ones to accurately understand the patterns and trends in the data.
+
+Feature selection involves the process of picking up features that are consistent and more relevant to the problem statement. The process of feature engineering and selection are used to reduce the size of the dataset which is important to tackle the issue of growing data.
+
+Model Development
+In the model development phase, the machine learning model is built using the prepared data. The model building process involves selecting the appropriate machine learning algorithm, algorithm training, tuning the hyperparameters of the algorithm, and evaluating the performance of the model using cross-validation techniques.
+
+This phase mainly consists of three steps, model selection, model training, and model evaluation. Let's discuss these three steps in detail −
+
+1. Model Selection
+Model selection is a crucial step in the machine learning workflow. The decision of choosing a model depends on basic features like characteristics of the data, complexity of the problem, desired outcomes and how well it aligns with the defined problem. This step affects the outcomes and performance metrics of the model.
+
+2. Model Training
+In this process, the algorithm is fed with a preprocessed dataset to identify and understand the patterns and relationships in the specified features.
+
+Consistent training of a model by adjusting parameters would improve the prediction rate and enhance accuracy. This step makes the model reliable in real-world scenarios.
+
+3. Model Evaluation
+In model evaluation, the performance of the machine learning model is evaluated using a set of evaluation metrics. These metrics measure the accuracy, precision, recall, and F1 score of the model. If the model has not achieved desired performance, the model is tuned to adjust hyper parameters and improve the predictive accuracy. This continuous iteration is essential to make the model more accurate and reliable.
+
+If the model's performance is still not satisfactory, it may be necessary to return to the model selection stage and continue to model training and evaluation to improve the model's performance.
+
+Model Deployment
+In the model deployment phase, we deploy the machine learning model into production. This process involves integrating the tested model with existing systems to make it available to users, management or other purposes. This also involves testing the model in a real-world scenario.
+
+Two important factors that have to be checked before deploying are whether the model is portable i.e, the ability to transfer the software from one machine to another and scalable i.e, the model need not be redesigned to maintain performance.
+
+Monitor and Maintenance
+Monitoring in machine learning involves techniques to measure the model performance metrics and to detect issues in the models. After an issue is detected, the model has to be trained with new data or the architecture has to be modified.
+
+Sometimes when the issue detected in the designed model cannot be solved with training it with new data, the issue becomes the problem statement. So, the machine learning life cycle revamps from analyzing the problem again to develop an improved model.
+
+The machine learning life cycle is an iterative process, and it may be necessary to revisit previous stages to improve the model's performance or address new requirements. By following the machine learning life cycle, data scientists can ensure that their machine learning models are effective, accurate, and meet the business requirements.

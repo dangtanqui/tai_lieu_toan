@@ -1,0 +1,37 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_train_and_test.htm
+In machine learning, the train-test split is a common technique used to evaluate the performance of a machine learning model. The basic idea behind the train-test split is to split the available data into two sets: a training set and a testing set. The training set is used to train the model, and the testing set is used to evaluate the model's performance.
+
+The train-test split is important because it allows us to test the model on data that it has not seen before. This is important because if we evaluate the model on the same data that it was trained on, the model may perform well on the training data but may not generalize well to new data.
+
+Example - Train and Test Split
+In Python, the train_test_split function from the sklearn.model_selection module can be used to split the data into training and testing sets. Here is an example implementation −
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+# Load the iris dataset
+data = load_iris()
+X = data.data
+y = data.target
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a logistic regression model and fit it to the training data
+model = LogisticRegression()
+model.fit(X_train, y_train)
+
+# Evaluate the model on the testing data
+accuracy = model.score(X_test, y_test)
+print(f"Accuracy: {accuracy:.2f}")
+In this example, we load the iris dataset and split it into training and testing sets using the train_test_split function. We then create a logistic regression model and fit it to the training data. Finally, we evaluate the model on the testing data using the score method of the model object.
+
+The test_size parameter in the train_test_split function specifies the proportion of the data that should be used for testing. In this example, we set it to 0.2, which means that 20% of the data will be used for testing and 80% will be used for training. The random_state parameter ensures that the split is reproducible, so we get the same split every time we run the code.
+
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 1.00
+Overall, the train-test split is a crucial step in evaluating the performance of a machine learning model. By splitting the data into training and testing sets, we can ensure that the model is not overfitting to the training data and can generalize well to new data.
+

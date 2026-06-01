@@ -1,0 +1,94 @@
+%==============================================================================
+\section{Khái niệm nền (đọc trước)}
+\label{sec:khai-niem-nen}
+%==============================================================================
+
+\subsection{Machine Learning là gì?}
+\label{sec:ml-la-gi}
+
+\begin{dinhnghia}[title={Machine Learning (ML)}]
+\textbf{Học máy} là một nhánh của \textbf{Trí tuệ nhân tạo (AI)} tập trung vào việc xây dựng thuật toán/mô hình có thể \textbf{học từ dữ liệu} để dự đoán hoặc ra quyết định mà không cần viết quy tắc tường minh cho mọi trường hợp.
+\end{dinhnghia}
+
+\begin{ynghia}[title={ML giúp giải bài toán nào?}]
+ML đặc biệt hữu ích khi:
+\begin{itemize}
+  \item Quy tắc quá phức tạp/khó mô tả bằng tay (nhận dạng ảnh/giọng nói, NLP).
+  \item Môi trường thay đổi theo thời gian (hành vi người dùng, mạng, rủi ro gian lận).
+  \item Cần ra quyết định dựa trên dữ liệu với quy mô lớn (tự động hóa).
+\end{itemize}
+\end{ynghia}
+
+\subsection{Các thành phần cốt lõi: dữ liệu, đặc trưng, mô hình}
+\label{sec:thanh-phan-co-lo}
+
+\begin{dinhnghia}[title={Dữ liệu (data)}]
+Dữ liệu là ``nguyên liệu'' của ML. Dữ liệu có thể là có cấu trúc (bảng), bán cấu trúc, hoặc phi cấu trúc (văn bản, ảnh, âm thanh).
+Chất lượng và số lượng dữ liệu ảnh hưởng mạnh đến chất lượng mô hình.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đặc trưng (feature)}]
+\textbf{Feature} là các biến/thuộc tính mô tả đầu vào. Chọn feature phù hợp (feature selection) và tạo feature mới (feature engineering) thường quyết định phần lớn hiệu quả mô hình.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mô hình (model)}]
+Mô hình là biểu diễn toán học học được mối liên hệ giữa feature và đầu ra (dự đoán/quyết định).
+Mô hình được học từ tập train và đánh giá trên tập validation/test để kiểm tra khả năng tổng quát.
+\end{dinhnghia}
+
+\subsection{Train / validation / test và overfitting}
+\label{sec:train-val-test}
+
+\begin{dinhnghia}[title={Huấn luyện (training)}]
+Training là quá trình cho thuật toán xem nhiều ví dụ dữ liệu và điều chỉnh tham số nội bộ để giảm sai số dự đoán.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Kiểm thử (testing)}]
+Testing là đánh giá mô hình trên dữ liệu \textbf{chưa từng thấy} nhằm ước lượng khả năng tổng quát hóa.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Overfitting và Underfitting}]
+\begin{itemize}
+  \item \textbf{Overfitting}: mô hình quá phức tạp, bám sát train, kém trên dữ liệu mới.
+  \item \textbf{Underfitting}: mô hình quá đơn giản, không học được cấu trúc, kém cả train và test.
+\end{itemize}
+\end{dinhnghia}
+
+\subsection{Các kiểu học máy}
+\label{sec:bon-kieu-hoc}
+
+\begin{dinhnghia}[title={Học có giám sát (Supervised)}]
+Dữ liệu có \textbf{nhãn} (đầu ra đúng). Hai nhóm bài toán phổ biến:
+\textbf{hồi quy} (đầu ra số) và \textbf{phân loại} (đầu ra lớp).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Học không giám sát (Unsupervised)}]
+Dữ liệu \textbf{không có nhãn}. Mục tiêu thường là tìm cấu trúc/nhóm trong dữ liệu:
+phân cụm, phát hiện bất thường, giảm chiều, \ldots
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Bán giám sát (Semi-supervised)}]
+Kết hợp một phần nhỏ dữ liệu có nhãn và phần lớn dữ liệu không nhãn (thường do gán nhãn tốn kém).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Tăng cường (Reinforcement)}]
+Tác tử (agent) tương tác với môi trường, nhận thưởng/phạt, học chính sách hành động để tối đa hóa phần thưởng dài hạn.
+\end{dinhnghia}
+
+\subsection{Chu trình giải bài toán ML (nhìn từ góc ``thực hành'')}
+\label{sec:chu-trinh-ml}
+
+\begin{phuongphap}[title={Chuỗi bước điển hình}]
+\begin{enumerate}
+  \item Xác định bài toán và tiêu chí thành công.
+  \item Thu thập và tiền xử lý dữ liệu (làm sạch, thiếu dữ liệu, nhiễu).
+  \item Khám phá dữ liệu và trực quan hóa để hiểu phân phối/pattern.
+  \item Chọn/thiết kế feature.
+  \item Chọn mô hình, huấn luyện, đánh giá.
+  \item Tinh chỉnh siêu tham số, kiểm tra lại.
+  \item Triển khai, giám sát, cập nhật theo thời gian.
+\end{enumerate}
+\end{phuongphap}
+
+\InputIfFileExists{_figures/00_khai_niem_nen.tex}{}{}
+

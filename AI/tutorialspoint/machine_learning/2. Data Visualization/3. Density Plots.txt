@@ -1,0 +1,57 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_density_plots.htm
+A density plot is a type of plot that shows the probability density function of a continuous variable. It is similar to a histogram, but instead of using bars to represent the frequency of each value, it uses a smooth curve to represent the probability density function. The xaxis represents the range of values of the variable, and the y-axis represents the probability density.
+
+Density plots are useful for identifying patterns in data, such as skewness, modality, and outliers. Skewness refers to the degree of asymmetry in the distribution of the variable. Modality refers to the number of peaks in the distribution. Outliers are data points that fall outside of the range of typical values for the variable.
+
+Python Implementation of Density Plots
+Python provides several libraries for data visualization, such as Matplotlib, Seaborn, Plotly, and Bokeh. For our example given below, we will use Seaborn to implement density plots.
+
+We will use the breast cancer dataset from the Sklearn library for this example. The breast cancer dataset contains information about the characteristics of breast cancer cells and whether they are malignant or benign. The dataset has 30 features and 569 samples.
+
+Example - Density Plots
+Let's start by importing the necessary libraries and loading the dataset −
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+Next, we will create a density plot of the mean radius feature of the dataset −
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+
+plt.figure(figsize=(7.2, 3.5))
+sns.kdeplot(data.data[:,0], shade=True)
+plt.xlabel('Mean Radius')
+plt.ylabel('Density')
+plt.show()
+In this code, we have used the kdeplot() function from Seaborn to create a density plot of the mean radius feature of the dataset. We have set the shade parameter to True to shade the area under the curve. We have also added labels to the x and y axes using the xlabel() and ylabel() functions.
+
+Output
+The resulting density plot shows the probability density function of mean radius values in the dataset. We can see that the data is roughly normally distributed, with a peak around 12-14.
+
+kdeplot function
+Example - Density Plot with Multiple Data Sets
+We can also create a density plot with multiple data sets to compare their probability density functions. Let's create density plots of the mean radius feature for both the malignant and benign samples −
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+
+plt.figure(figsize=(7.5, 3.5))
+sns.kdeplot(data.data[data.target==0,0], shade=True, label='Malignant')
+sns.kdeplot(data.data[data.target==1,0], shade=True, label='Benign')
+plt.xlabel('Mean Radius')
+plt.ylabel('Density')
+plt.legend()
+plt.show()
+In this code, we have used the kdeplot() function twice to create two density plots of the mean radius feature, one for the malignant samples and one for the benign samples. We have set the shade parameter to True to shade the area under the curve, and we have added labels to the plots using the label parameter. We have also added a legend to the plot using the legend() function.
+
+Output
+On executing this code, you will get the following plot as the output −
+
+Mean Radius
+The resulting density plot shows the probability density functions of mean radius values for both the malignant and benign samples. We can see that the probability density function for the malignant samples is shifted to the right, indicating a higher mean radius value.

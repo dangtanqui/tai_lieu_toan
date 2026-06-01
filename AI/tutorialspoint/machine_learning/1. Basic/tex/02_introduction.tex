@@ -1,0 +1,164 @@
+%==============================================================================
+\section{Introduction --- Giới thiệu về học máy}
+\label{sec:introduction}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_introduction.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Bối cảnh: thời đại dữ liệu}]
+Chúng ta đang sống trong “thời đại dữ liệu”: năng lực tính toán và lưu trữ tăng, dữ liệu tăng mỗi ngày.
+Thách thức lớn là \textbf{làm cho dữ liệu có ý nghĩa} (make sense of data).
+Doanh nghiệp/tổ chức xây hệ thống thông minh dựa trên Data Science, Data Mining và Machine Learning.
+\end{dongco}
+
+\begin{luuy}[title={Tham chiếu Khái niệm nền}]
+Định nghĩa ML và bốn kiểu học xem Mục~\ref{sec:khai-niem-nen}. Bài này bổ sung lịch sử, cost function, so sánh ML/traditional programming, đạo đức.
+\end{luuy}
+
+\subsection{Học máy là gì?}
+
+\begin{ynghia}[title={Định nghĩa}]
+Xem Mục~\ref{sec:ml-la-gi}. Nguồn nhấn mạnh \textbf{model building}: huấn luyện thuật toán trên dữ liệu để học hidden patterns.
+\end{ynghia}
+
+\subsection{Học máy hoạt động như thế nào?}
+
+\begin{phuongphap}[title={3 thành phần chính (theo nguồn)}]
+Cơ chế “máy học từ mô hình” được chia thành 3 phần:
+\begin{itemize}
+  \item \textbf{Decision Process}: dựa trên dữ liệu vào và nhãn đầu ra, mô hình hình thành một logic về pattern nhận diện được.
+  \item \textbf{Cost Function}: đo lỗi giữa giá trị kỳ vọng và giá trị dự đoán; dùng để đánh giá hiệu năng.
+  \item \textbf{Optimization Process}: tối thiểu hoá cost bằng cách điều chỉnh trọng số trong giai đoạn training; lặp đánh giá--tối ưu cho đến khi lỗi giảm.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Vì sao cần học máy?}
+
+\begin{dongco}[title={Quyết định dựa trên dữ liệu ở quy mô lớn}]
+Con người rất thông minh, còn AI vẫn chưa vượt con người ở nhiều mặt.
+Vậy tại sao vẫn cần “làm cho máy học”?
+Một lý do phù hợp: \textbf{ra quyết định dựa trên dữ liệu} với \textbf{hiệu quả và quy mô}.
+\end{dongco}
+
+\begin{ynghia}[title={Tự động hoá và quyết định dựa trên dữ liệu}]
+Gần đây, tổ chức đầu tư mạnh vào AI/ML/DL để khai thác thông tin then chốt từ dữ liệu cho các nhiệm vụ thực tế.
+Các quyết định dựa trên dữ liệu có thể dùng thay cho việc lập trình logic ở các bài toán vốn khó lập trình bằng tay.
+Ta vẫn cần trí tuệ con người, nhưng cũng cần giải quyết bài toán thực tế hiệu quả ở quy mô lớn.
+\end{ynghia}
+
+\subsection{Lược sử học máy}
+
+\begin{phuongphap}[title={Các mốc (theo nguồn)}]
+\begin{itemize}
+  \item 1959: Arthur Samuel tạo chương trình ước tính xác suất thắng trong trò checkers.
+  \item 1960--1970: giai đoạn neural networks phát triển.
+  \item Sau đó ML tiến triển nhờ phương pháp thống kê như Bayesian networks, decision tree learning.
+  \item 2010s: “cách mạng Deep Learning” với NLP, CNN, speech recognition.
+  \item Hiện nay ML trở thành công nghệ phổ biến trong nhiều lĩnh vực (y tế, tài chính, giao thông, \ldots).
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Các phương pháp học máy}
+
+\begin{ynghia}[title={Bốn nhóm chính}]
+Supervised, unsupervised, semi-supervised, reinforcement --- định nghĩa chi tiết ở Mục~\ref{sec:bon-kieu-hoc}. So sánh supervised vs unsupervised: Mục~\ref{sec:supervised-vs-unsupervised}.
+\end{ynghia}
+
+\subsection{Use cases của học máy}
+
+\begin{phuongphap}[title={Một số use case (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Recommendation system}: engine gợi ý theo sở thích/engagement trước đó.
+  \item \textbf{Voice assistants}: nhận dạng tiếng nói + xử lý ngôn ngữ + tổng hợp giọng.
+  \item \textbf{Fraud detection}: phát hiện hoạt động bất thường (thường ở tài chính).
+  \item \textbf{Health care}: chẩn đoán, cải thiện độ chính xác ảnh y khoa, cá nhân hoá điều trị.
+  \item \textbf{RPA}: tự động hoá tác vụ lặp.
+  \item \textbf{Drive-less cars}: xe tự lái; ví dụ Tesla (theo nguồn).
+  \item \textbf{Computer vision}: hiểu ảnh/video; nhận diện khuôn mặt.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Ưu điểm và nhược điểm của học máy}
+
+\subsubsection{Ưu điểm}
+\begin{phuongphap}[title={Advantages of Machine Learning (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Tự động hoá}: tác vụ lặp có thể tự động hoá; ví dụ chatbot giảm thời gian chờ.
+  \item \textbf{Cải thiện trải nghiệm và ra quyết định}: phân tích dữ liệu lớn để ra quyết định; cá nhân hoá sản phẩm/dịch vụ.
+  \item \textbf{Ứng dụng rộng}: áp dụng trong nhiều lĩnh vực.
+  \item \textbf{Cải tiến liên tục}: mô hình có thể học tiếp khi được retrain bằng dữ liệu mới.
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Nhược điểm}
+\begin{phuongphap}[title={Disadvantages of Machine Learning (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Thu thập dữ liệu khó}: cần dữ liệu liên quan, không thiên lệch, chất lượng tốt.
+  \item \textbf{Kết quả có thể không chính xác}: độ tin cậy phụ thuộc dữ liệu và thuật toán.
+  \item \textbf{Dễ sai nếu dữ liệu/thuật toán sai}: ví dụ dữ liệu nhỏ làm mô hình học pattern kém, dự đoán lệch.
+  \item \textbf{Cần bảo trì}: mô hình phải được giám sát và cập nhật liên tục.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Thách thức và vấn đề đạo đức}
+
+\begin{phuongphap}[title={Challenges in Machine Learning (theo nguồn)}]
+\begin{itemize}
+  \item \textbf{Data privacy}: dữ liệu có thể nhạy cảm; cần ẩn danh, bảo vệ dữ liệu, cân bằng sử dụng và quyền riêng tư.
+  \item \textbf{Impact on jobs}: tự động hoá thay đổi việc làm; đồng thời tạo nghề mới (data scientist, ML engineer, \ldots).
+  \item \textbf{Bias \& discrimination}: tránh dùng thuộc tính nhạy cảm sai cách (race, gender, \ldots).
+  \item \textbf{Ethical consideration}: minh bạch, trách nhiệm giải trình, tác động xã hội.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{ML algorithms vs Traditional programming}
+
+\begin{vidu}[title={So sánh theo tiêu chí (dịch từ bảng trong nguồn)}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XX}
+\textbf{Tiêu chí} & \textbf{Thuật toán học máy} & \textbf{Lập trình truyền thống} \\
+\midrule
+Cách tiếp cận & Máy học bằng cách huấn luyện trên dữ liệu lớn. & Lập trình viên viết quy tắc tường minh (code) để máy làm theo. \\
+Dữ liệu & Phụ thuộc mạnh vào dữ liệu; dữ liệu quyết định chất lượng mô hình. & Phụ thuộc ít hơn; đầu ra chủ yếu phụ thuộc logic được mã hoá. \\
+Độ phức tạp bài toán & Hợp bài toán phức tạp (image segmentation, NLP) cần nhận diện pattern. & Hợp bài toán có đầu ra/logic rõ ràng. \\
+Tính linh hoạt & Linh hoạt, thích nghi khi retrain bằng dữ liệu mới. & Ít linh hoạt; thay đổi phải sửa code thủ công. \\
+Kết quả & Khó dự đoán hoàn toàn vì phụ thuộc dữ liệu, mô hình, \ldots & Có thể dự đoán chính xác nếu logic đúng và đầy đủ. \\
+\end{tabularx}
+\end{vidu}
+
+\subsection{ML vs Deep Learning; ML vs Generative AI}
+
+\begin{ynghia}[title={ML vs Deep Learning (theo nguồn)}]
+Deep learning là một nhánh của ML, khác nhau ở cách thuật toán học: deep learning dùng cấu trúc “giống não người” (mạng sâu).
+Nguồn nêu deep learning thường hiệu quả hơn ở bài toán phức tạp (ví dụ xe tự lái).
+\end{ynghia}
+
+\begin{ynghia}[title={ML vs Generative AI (theo nguồn)}]
+Machine Learning chủ yếu dùng cho dự báo và ra quyết định; Generative AI tập trung tạo nội dung mới (ảnh/video/văn bản) theo pattern đã học.
+\end{ynghia}
+
+\subsection{Tương lai của học máy}
+
+\begin{phuongphap}[title={Một số xu hướng (theo nguồn)}]
+Nguồn đề cập các xu hướng như:
+\begin{itemize}
+  \item AutoML và synthetic data giúp ML dễ tiếp cận hơn.
+  \item Quantum computing được kỳ vọng tăng tốc xử lý dữ liệu.
+  \item Multi-modal AI: phân tích nhiều dạng input (text/speech/image/sensor).
+  \item Edge computing, robotics, \ldots
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Cách học Machine Learning (5 bước)}
+
+\begin{phuongphap}[title={Lộ trình 5 bước (theo nguồn)}]
+\begin{enumerate}
+  \item Học nền tảng (dữ liệu, thống kê, thuật toán, Python).
+  \item Chọn framework (TensorFlow, PyTorch, scikit-learn, \ldots).
+  \item Luyện với dữ liệu thật (Kaggle, UCI, \ldots).
+  \item Tự làm dự án (từ đơn giản đến phức tạp).
+  \item Tham gia cộng đồng (forum/meetup) để học hỏi và nhận phản hồi.
+\end{enumerate}
+\end{phuongphap}
+

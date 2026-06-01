@@ -1,0 +1,44 @@
+Supervised learning and Unsupervised learning are two popular approaches in Machine Learning. The simplest way to distinguish between supervised and unsupervised learning is the type of training dataset and the way the models are trained. However, there are other differences, which are further discussed in the chapter.
+
+What is Supervised Learning?
+Supervised Learning is a machine learning approach that uses labeled datasets to train the model, making it ideal for tasks like classifying data or predicting output. Supervised learning is categorized into two types −
+
+1. Classification
+Classification uses algorithms to predict categorical values, such as determining whether an email is spam or not or whether it is true or false. The algorithm learns to map each input to its corresponding output label. Some common algorithms include K-Nearest Neighbors, Random forests and Decision trees.
+
+2. Regression
+Regression is a statistical approach to analyze the relationship between data points. It can be used to forecast house prices based on features like location and size or estimate future sales. Some common algorithms include linear regression, polynomial regression, and logistic regression.
+
+What is Unsupervised Learning?
+Unsupervised Learning is a machine learning approach used to train models on raw and unlabeled data. This approach is often used to identify patterns in the data without human supervision. Unsupervised learning models are used to for the below tasks −
+
+1. Clustering
+This task uses unsupervised learning models to group data points into clusters based on their similarities. Popular algorithm used is the K-means clustering.
+
+2. Association
+This is another type of unsupervised learning that uses pre-defined rules to group data points into a cluster. It is commonly used in Market Basket Analysis, and the main algorithm behind this task is Apriori Algorithm.
+
+3. Dimensionality Reduction
+This method of unsupervised learning is used to reduce the size of a dataset by removing features that are not necessary without compromising the originality of the data.
+
+Differences between Supervised and Unsupervised Learning
+The table below shows some key differences between supervised and unsupervised machine learning −
+
+Basis	Supervised Learning	Unsupervised Learning
+Definition	Supervised learning algorithms train data, where every input has a corresponding output.	Unsupervised learning algorithms find patterns in data that has no predefined labels.
+Goal	The goal of supervised learning is to predict or classify based on input features.	The goal of unsupervised learning is to discover hidden patterns, structures and relationships.
+Input Data	Labeled: Input data with corresponding output labels.	Unlabeled: Input data is raw and unlabeled.
+Human Supervision	Supervised learning algorithms needs human supervision to train the model.	Unsupervised learning algorithms does not any kind of supervision to train the model..
+Tasks	Regression, Classification	Clustering, Association and Dimensionality Reduction
+Complexity	supervised machine learning methods are computationally simple.	Unsupervised machine learning methods are computationally complex.
+Algorithms	Linear regression, K-Nearest Neighbors, Decision Trees, Naive Bayes, SVM	K- Means clustering, DBSCAN, Autoencoders
+Accuracy	Supervised machine learning methods are highly accurate.	Unsupervised machine learning methods are less accurate.
+Applications	Image classification, Sentiment Analysis, Recommendation systems	Customer Segmentation, Anomaly Detection, Recommendation Engines, NLP
+Supervised or Unsupervised Learning - Which to Choose?
+Choosing the right approach is crucial and will also determine the efficiency of the outcome. To decide on which learning approach is best, the following things should be considered −
+
+Dataset − Evaluate the data, whether it is labeled or unlabeled. You will also need to assess whether you have the time, resources and expertise to support labeling.
+Goals − It is also important to define the problem you are trying to solve and the solution you are trying to opt for. It might be classification, discovering new patterns or insights in the data or creating a predictive model.
+Algorithm − Review the algorithm by making sure that it matches required dimensions, such as attributes and number of features. Also, evaluate if the algorithm can support the volume of the data.
+Semi-supervised Learning
+Semi-supervised learning is the safest medium if you are in a dilemma about choosing between supervised and unsupervised learning. This learning approach is a combination of both supervised and unsupervised learning, where a minor part of the dataset used is labeled and the major part is unlabeled. This is ideal when you have a high volume of data that makes it difficult to identify relevant features.

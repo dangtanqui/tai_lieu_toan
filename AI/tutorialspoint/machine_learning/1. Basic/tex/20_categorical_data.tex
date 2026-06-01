@@ -1,0 +1,252 @@
+%==============================================================================
+\section{Categorical Data --- Dữ liệu phân loại trong học máy}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_categorical_data.htm}.
+\end{ynghia}
+
+\subsection{Dữ liệu phân loại là gì?}
+
+\begin{dinhnghia}[title={Categorical data}]
+Dữ liệu phân loại trong ML là dữ liệu gồm các \textbf{nhóm} hoặc \textbf{nhãn}, thay vì giá trị số.
+Các nhóm có thể:
+\begin{itemize}
+  \item \textbf{Nominal}: không có thứ tự tự nhiên (ví dụ màu sắc, giới tính).
+  \item \textbf{Ordinal}: có thứ tự tự nhiên (ví dụ trình độ học vấn, nhóm thu nhập).
+\end{itemize}
+\end{dinhnghia}
+
+\begin{ynghia}[title={Biểu diễn và one-hot}]
+Dữ liệu phân loại thường biểu diễn bằng giá trị rời rạc (số nguyên hoặc chuỗi), và thường được mã hoá thành vector one-hot trước khi đưa vào mô hình.
+One-hot encoding: với mỗi category tạo vector nhị phân có bit 1 ở vị trí tương ứng category đó và 0 ở các vị trí còn lại.
+\end{ynghia}
+
+\subsection{Kỹ thuật xử lý dữ liệu phân loại}
+
+\begin{dongco}[title={Tiền xử lý bắt buộc với nhiều thuật toán}]
+Xử lý dữ liệu phân loại là phần quan trọng của tiền xử lý ML vì nhiều thuật toán yêu cầu đầu vào số.
+Tùy thuật toán và bản chất dữ liệu phân loại, có thể dùng: label encoding, ordinal encoding, binary encoding, \ldots
+\end{dongco}
+
+\begin{phuongphap}[title={Các kỹ thuật trong bài}]
+One-Hot Encoding, Label Encoding, Frequency Encoding, Target Encoding, Binary Encoding.
+\end{phuongphap}
+
+\subsection{1. One-Hot Encoding}
+
+\begin{dinhnghia}[title={One-hot encoding}]
+Tạo vector nhị phân cho mỗi category; mỗi phần tử biểu diễn có/không có category đó.
+Ví dụ biến màu với giá trị red, blue, green $\Rightarrow$ ba vector: $[1,0,0]$, $[0,1,0]$, $[0,0,1]$.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ One-Hot Encoding với Pandas}]
+\begin{lstlisting}
+import pandas as pd
+
+# Creating a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# Performing one-hot encoding
+one_hot_encoded = pd.get_dummies(df['color'], prefix='color')
+
+# Combining the encoded data with the original data
+df = pd.concat([df, one_hot_encoded], axis=1)
+
+# Drop the original categorical variable
+df = df.drop('color', axis=1)
+
+# Print the encoded data
+print(df)
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+      color_blue    color_green    color_red
+0        0              0              1
+1        0              1              0
+2        1              0              0
+3        0              0              1
+4        0              1              0
+\end{lstlisting}
+Tạo ba biến nhị phân \texttt{color\_blue}, \texttt{color\_green}, \texttt{color\_red} (1 nếu có màu tương ứng, 0 nếu không), dùng cho classification/regression.
+\end{vidu}
+
+\begin{luuy}[title={Hạn chế}]
+One-hot phù hợp biến phân loại nhỏ, hữu hạn; với biến có cardinality lớn có thể tạo quá nhiều cột đặc trưng.
+\end{luuy}
+
+\subsection{2. Label Encoding}
+
+\begin{dinhnghia}[title={Label encoding}]
+Gán một giá trị số duy nhất cho mỗi category; thứ tự số có thể theo thứ tự category.
+Ví dụ biến ``Size'' với small, medium, large $\Rightarrow$ có thể gán 0, 1, 2.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ Label Encoding với scikit-learn}]
+\begin{lstlisting}
+from sklearn.preprocessing import LabelEncoder
+
+# create a sample dataset with a categorical variable
+data = ['small', 'medium', 'large', 'small', 'large']
+
+# create a label encoder object
+label_encoder = LabelEncoder()
+
+# fit and transform the data using the label encoder
+encoded_data = label_encoder.fit_transform(data)
+
+# print the encoded data
+print(encoded_data)
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+[2 1 0 2 0]
+\end{lstlisting}
+Mặc định thứ tự mã hoá theo thứ tự alphabet; có thể đổi thứ tự bằng cách truyền danh sách tùy chỉnh vào \texttt{LabelEncoder}.
+\end{vidu}
+
+\begin{luuy}[title={Khi nào dùng label encoding}]
+Hữu ích với biến ordinal (có thứ tự tự nhiên).
+Với biến nominal cần thận trọng vì số có thể gợi ý thứ tự không tồn tại --- khi đó one-hot an toàn hơn.
+\end{luuy}
+
+\subsection{3. Frequency Encoding}
+
+\begin{dinhnghia}[title={Frequency encoding}]
+Thay mỗi category bằng \textbf{tần suất} (hoặc tỉ lệ) xuất hiện trong dataset.
+Ý tưởng: category xuất hiện nhiều có thể quan trọng/hữu ích hơn cho thuật toán.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ Frequency Encoding}]
+\begin{lstlisting}
+import pandas as pd
+
+# create a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# calculate the frequency of each category in the categorical variable
+freq = df['color'].value_counts(normalize=True)
+
+# replace each category with its frequency
+df['color_freq'] = df['color'].map(freq)
+
+# drop the original categorical variable
+df = df.drop('color', axis=1)
+
+# print the encoded data
+print(df)
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+      color_freq
+0        0.4
+1        0.4
+2        0.2
+3        0.4
+4        0.4
+\end{lstlisting}
+Ví dụ: hai lần ``red'' và ba lần ``green'' trong tập 5 mẫu $\Rightarrow$ tần suất tương ứng 0.4 và 0.6 (nguồn minh hoạ với output trên).
+\end{vidu}
+
+\begin{luuy}[title={Ghi chú}]
+Frequency encoding là lựa chọn thay one-hot/label khi cardinality cao; hiệu quả phụ thuộc dataset và thuật toán.
+\end{luuy}
+
+\subsection{4. Target Encoding}
+
+\begin{dinhnghia}[title={Target encoding}]
+Thay mỗi category bằng giá trị tổng hợp (thường là \textbf{trung bình}) của biến mục tiêu (target) trong nhóm category đó.
+Giúp nắm quan hệ giữa biến phân loại và target, có thể cải thiện dự đoán.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ Target Encoding (label encoder + mean theo nhóm)}]
+\begin{lstlisting}
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+
+# create a sample dataset with a categorical variable and a target variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green'],
+   'target': [1, 0, 1, 0, 1]}
+df = pd.DataFrame(data)
+
+# create a label encoder object and fit it to the data
+label_encoder = LabelEncoder()
+label_encoder.fit(df['color'])
+
+# transform the categorical variable using the label encoder
+df['color_encoded'] = label_encoder.transform(df['color'])
+
+# create a mean encoder object and fit it to the transformed data
+mean_encoder = df.groupby('color_encoded')['target'].mean().to_dict()
+
+# map the mean encoded values to the categorical variable
+df['color_encoded'] = df['color_encoded'].map(mean_encoder)
+
+# print the encoded data
+print(df)
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+   color     target     color_encoded
+0  red        1           0.5
+1  green      0           0.5
+2  blue       1           1.0
+3  red        0           0.5
+4  green      1           0.5
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Giảng viên lưu ý --- data leakage}]
+Target encoding rất mạnh nhưng dễ \textbf{rò rỉ nhãn} nếu tính thống kê trên toàn bộ tập (kể cả test). Trong thực hành: chỉ fit encoder trên tập train, hoặc dùng cross-validation/out-of-fold encoding.
+\end{luuy}
+
+\subsection{5. Binary Encoding}
+
+\begin{dinhnghia}[title={Binary encoding}]
+Mỗi category được gán mã nhị phân; mỗi chữ số cho biết category có mặt (1) hay không (0).
+Mã nhị phân thường dựa trên vị trí category trong danh sách đã sắp xếp.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ Binary Encoding với category\_encoders}]
+\begin{lstlisting}
+import pandas as pd
+import category_encoders as ce
+
+# create a sample dataset with a categorical variable
+data = {'color': ['red', 'green', 'blue', 'red', 'green']}
+df = pd.DataFrame(data)
+
+# create a binary encoder object and fit it to the data
+binary_encoder = ce.BinaryEncoder(cols=['color'])
+binary_encoder.fit(df['color'])
+
+# transform the categorical variable using the binary encoder
+encoded_data = binary_encoder.transform(df['color'])
+
+# merge the encoded variable with the original dataframe
+df = pd.concat([df, encoded_data], axis=1)
+
+# print the encoded data
+print(df)
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+   color    color_0    color_1
+0   red       0           1
+1   green     1           0
+2   blue      1           1
+3   red       0           1
+4   green     1           0
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Phạm vi áp dụng}]
+Binary encoding phù hợp biến có số category vừa phải; với số category rất lớn có thể kém hiệu quả.
+\end{luuy}

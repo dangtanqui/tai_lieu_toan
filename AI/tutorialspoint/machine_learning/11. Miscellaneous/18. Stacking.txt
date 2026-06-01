@@ -1,0 +1,51 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_stacking.htm
+Stacking, also known as stacked generalization, is an ensemble learning technique in machine learning where multiple models are combined in a hierarchical manner to improve prediction accuracy. The technique involves training a set of base models on the original training dataset, and then using the predictions of these base models as inputs to a meta-model, which is trained to make the final predictions.
+
+The basic idea behind stacking is to leverage the strengths of multiple models by combining them in a way that compensates for their individual weaknesses. By using a diverse set of models that make different assumptions and capture different aspects of the data, we can improve the overall predictive power of the ensemble.
+
+The stacking technique can be divided into two stages −
+
+Base Model Training − In this stage, a set of base models are trained on the original training data. These models can be of any type, such as decision trees, random forests, support vector machines, neural networks, or any other algorithm. Each model is trained on a subset of the training data, and produces a set of predictions for the remaining data points.
+
+Meta-model Training − In this stage, the predictions of the base models are used as inputs to a meta-model, which is trained on the original training data. The goal of the meta-model is to learn how to combine the predictions of the base models to produce more accurate predictions. The meta-model can be of any type, such as linear regression, logistic regression, or any other algorithm. The meta-model is trained using cross-validation to avoid overfitting.
+
+Once the meta-model is trained, it can be used to make predictions on new data points by passing the predictions of the base models as inputs. The predictions of the base models can be combined in different ways, such as by taking the average, weighted average, or maximum.
+
+Example - Stacking Implementation
+Here is an example implementation of stacking in Python using scikit-learn −
+
+from sklearn.datasets import load_iris
+from sklearn.model_selection import cross_val_predict
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from mlxtend.classifier import StackingClassifier
+from sklearn.metrics import accuracy_score
+
+# Load the iris dataset
+iris = load_iris()
+X, y = iris.data, iris.target
+
+# Define the base models
+rf = RandomForestClassifier(n_estimators=10, random_state=42)
+gb = GradientBoostingClassifier(random_state=42)
+
+# Define the meta-model
+lr = LogisticRegression()
+
+# Define the stacking classifier
+stack = StackingClassifier(classifiers=[rf, gb], meta_classifier=lr)
+
+# Use cross-validation to generate predictions for the meta-model
+y_pred = cross_val_predict(stack, X, y, cv=5)
+
+# Evaluate the performance of the stacked model
+acc = accuracy_score(y, y_pred)
+print(f"Accuracy: {acc}")
+In this code, we first load the iris dataset and define the base models, which are a random forest and a gradient boosting classifier. We then define the meta-model, which is a logistic regression model.
+
+We create a StackingClassifier object with the base models and meta-model, and use cross-validation to generate predictions for the meta-model. Finally, we evaluate the performance of the stacked model using the accuracy score.
+
+Output
+When you execute this code, it will produce the following output −
+
+Accuracy: 0.9666666666666667

@@ -1,0 +1,704 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/index.htm",
+    "slug": "00_khai_niem_nen",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/machine-learning.jpg",
+        "file": "images/00_khai_niem_nen/img01.jpg",
+        "bytes": 13486
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/run-button.png",
+        "file": "images/00_khai_niem_nen/img02.png",
+        "bytes": 6093
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/fundamental-blocks-of-machine-learning-process.png",
+        "file": "images/00_khai_niem_nen/img03.png",
+        "bytes": 34948
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/sequential-process-flow-of-machine-learning.png",
+        "file": "images/00_khai_niem_nen/img04.png",
+        "bytes": 43519
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/supervised-machine-learning.png",
+        "file": "images/00_khai_niem_nen/img05.png",
+        "bytes": 46852
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/unsupervised-machine-learning.png",
+        "file": "images/00_khai_niem_nen/img06.png",
+        "bytes": 22667
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/semi-supervised-learning.png",
+        "file": "images/00_khai_niem_nen/img07.png",
+        "bytes": 64257
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/reinforcement-machine-learning.png",
+        "file": "images/00_khai_niem_nen/img08.png",
+        "bytes": 15362
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/00_khai_niem_nen/img09.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/00_khai_niem_nen/img10.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/00_khai_niem_nen/img11.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_implementing.htm",
+    "slug": "05_trien_khai_du_an_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/05_trien_khai_du_an_ml/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/05_trien_khai_du_an_ml/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/05_trien_khai_du_an_ml/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_challenges_common_issues.htm",
+    "slug": "06_thach_thuc_va_gioi_han",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/06_thach_thuc_va_gioi_han/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/06_thach_thuc_va_gioi_han/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/06_thach_thuc_va_gioi_han/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_limitations.htm",
+    "slug": "06_thach_thuc_va_gioi_han",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/06_thach_thuc_va_gioi_han/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/06_thach_thuc_va_gioi_han/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/06_thach_thuc_va_gioi_han/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_real_life_examples.htm",
+    "slug": "02_ung_dung_va_vi_du_thuc_te",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_data_structure.htm",
+    "slug": "07_du_lieu_va_cau_truc_du_lieu",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/07_du_lieu_va_cau_truc_du_lieu/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/07_du_lieu_va_cau_truc_du_lieu/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/07_du_lieu_va_cau_truc_du_lieu/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_mathematics.htm",
+    "slug": "08_toan_nen_cho_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/08_toan_nen_cho_ml/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/08_toan_nen_cho_ml/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/08_toan_nen_cho_ml/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_traditional_ai.htm",
+    "slug": "09_ai_neural_deep",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/ai_ml.jpg",
+        "file": "images/09_ai_neural_deep/img01.jpg",
+        "bytes": 68303
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/09_ai_neural_deep/img02.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/09_ai_neural_deep/img03.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/09_ai_neural_deep/img04.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_artificial_neural_networks.htm",
+    "slug": "09_ai_neural_deep",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/artificial_neural_network_model.jpg",
+        "file": "images/09_ai_neural_deep/img01.jpg",
+        "bytes": 10336
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/09_ai_neural_deep/img02.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/09_ai_neural_deep/img03.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/09_ai_neural_deep/img04.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/deep_machine_learning.htm",
+    "slug": "09_ai_neural_deep",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/09_ai_neural_deep/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/09_ai_neural_deep/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/09_ai_neural_deep/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_getting_datasets.htm",
+    "slug": "10_du_lieu_trong_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/10_du_lieu_trong_ml/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/10_du_lieu_trong_ml/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/10_du_lieu_trong_ml/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_introduction.htm",
+    "slug": "00_khai_niem_nen",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/00_khai_niem_nen/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/00_khai_niem_nen/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/00_khai_niem_nen/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_data_loading.htm",
+    "slug": "10_du_lieu_trong_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/10_du_lieu_trong_ml/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/10_du_lieu_trong_ml/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/10_du_lieu_trong_ml/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_data_understanding.htm",
+    "slug": "10_du_lieu_trong_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/10_du_lieu_trong_ml/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/10_du_lieu_trong_ml/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/10_du_lieu_trong_ml/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_preparing_data.htm",
+    "slug": "10_du_lieu_trong_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/machine_learning_data_preparation.jpg",
+        "file": "images/10_du_lieu_trong_ml/img01.jpg",
+        "bytes": 42452
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/10_du_lieu_trong_ml/img02.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/10_du_lieu_trong_ml/img03.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/10_du_lieu_trong_ml/img04.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_models.htm",
+    "slug": "11_mo_hinh_va_cac_kieu_hoc",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_supervised.htm",
+    "slug": "11_mo_hinh_va_cac_kieu_hoc",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/nearest_neighbours.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img01.jpg",
+        "bytes": 45989
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/dataset_boundaries.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img02.jpg",
+        "bytes": 60055
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/depicted_figure.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img03.jpg",
+        "bytes": 63426
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/flowchart_format.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img04.jpg",
+        "bytes": 34787
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/distribution_data_points.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img05.jpg",
+        "bytes": 49491
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/non_linear.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img06.jpg",
+        "bytes": 70254
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/random_forest_algorithm.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img07.jpg",
+        "bytes": 49082
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img08.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img09.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img10.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_unsupervised.htm",
+    "slug": "11_mo_hinh_va_cac_kieu_hoc",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_semi_supervised_learning.htm",
+    "slug": "11_mo_hinh_va_cac_kieu_hoc",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning.htm",
+    "slug": "11_mo_hinh_va_cac_kieu_hoc",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/reinforcement-machine-learning.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img01.png",
+        "bytes": 15362
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/type_of_task.jpg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img02.jpg",
+        "bytes": 49190
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img03.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img04.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/11_mo_hinh_va_cac_kieu_hoc/img05.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_getting_started.htm",
+    "slug": "00_khai_niem_nen",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/00_khai_niem_nen/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/00_khai_niem_nen/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/00_khai_niem_nen/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_basics.htm",
+    "slug": "00_khai_niem_nen",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/machine_learning_model.jpg",
+        "file": "images/00_khai_niem_nen/img01.jpg",
+        "bytes": 56419
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/00_khai_niem_nen/img02.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/00_khai_niem_nen/img03.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/00_khai_niem_nen/img04.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_ecosystem.htm",
+    "slug": "01_he_sinh_thai_python",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/jupyter_notebook.jpg",
+        "file": "images/01_he_sinh_thai_python/img01.jpg",
+        "bytes": 84895
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/python_table.jpg",
+        "file": "images/01_he_sinh_thai_python/img02.jpg",
+        "bytes": 75682
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/search_bar.jpg",
+        "file": "images/01_he_sinh_thai_python/img03.jpg",
+        "bytes": 42651
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/01_he_sinh_thai_python/img04.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/01_he_sinh_thai_python/img05.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/01_he_sinh_thai_python/img06.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_python_libraries.htm",
+    "slug": "01_he_sinh_thai_python",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/01_he_sinh_thai_python/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/01_he_sinh_thai_python/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/01_he_sinh_thai_python/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_applications.htm",
+    "slug": "02_ung_dung_va_vi_du_thuc_te",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img01.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img02.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/02_ung_dung_va_vi_du_thuc_te/img03.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_life_cycle.htm",
+    "slug": "03_vong_doi_du_an_ml",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/machine_learning_life_cycle.jpg",
+        "file": "images/03_vong_doi_du_an_ml/img01.jpg",
+        "bytes": 43337
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/03_vong_doi_du_an_ml/img02.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/03_vong_doi_du_an_ml/img03.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/03_vong_doi_du_an_ml/img04.svg",
+        "bytes": 15307
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_skills.htm",
+    "slug": "04_yeu_cau_nen_tang_va_ky_nang",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/machine_learning_required_skills.jpg",
+        "file": "images/04_yeu_cau_nen_tang_va_ky_nang/img01.jpg",
+        "bytes": 55264
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/visualization_plots.jpg",
+        "file": "images/04_yeu_cau_nen_tang_va_ky_nang/img02.jpg",
+        "bytes": 46344
+      },
+      {
+        "url": "https://www.tutorialspoint.com/images/tutorix_banner_920x250_v3.png",
+        "file": "images/04_yeu_cau_nen_tang_va_ky_nang/img03.png",
+        "bytes": 126813
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/googleplay.svg",
+        "file": "images/04_yeu_cau_nen_tang_va_ky_nang/img04.svg",
+        "bytes": 9320
+      },
+      {
+        "url": "https://www.tutorialspoint.com/static/images/appstore.svg",
+        "file": "images/04_yeu_cau_nen_tang_va_ky_nang/img05.svg",
+        "bytes": 15307
+      }
+    ]
+  }
+]

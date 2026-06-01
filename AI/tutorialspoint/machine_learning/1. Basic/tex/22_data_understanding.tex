@@ -1,0 +1,225 @@
+%==============================================================================
+\section{Data Understanding --- Hiểu dữ liệu trước khi huấn luyện}
+%==============================================================================
+
+\begin{ynghia}[title={Nguồn}]
+\tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_data_understanding.htm}.
+\end{ynghia}
+
+\begin{dongco}[title={Hai phần thường bị bỏ qua: toán và dữ liệu}]
+Trong dự án ML, người ta thường bỏ qua hai phần quan trọng: \textbf{toán học} và \textbf{dữ liệu}.
+Data understanding quan trọng vì ML là hướng \textbf{data-driven}: mô hình chỉ tốt bằng dữ liệu cung cấp.
+\end{dongco}
+
+\begin{dinhnghia}[title={Data understanding}]
+Phân tích và khám phá dữ liệu để nhận diện pattern hoặc xu hướng có trong dữ liệu.
+\end{dinhnghia}
+
+\subsection{Các bước trong giai đoạn hiểu dữ liệu}
+
+\begin{phuongphap}[title={Theo nguồn}]
+\begin{itemize}
+  \item \textbf{Data Collection}: thu thập dữ liệu liên quan từ database, website, API, \ldots
+  \item \textbf{Data Cleaning}: loại dữ liệu không liên quan/trùng, xử lý missing; định dạng dễ phân tích.
+  \item \textbf{Data Exploration}: khám phá pattern (histogram, scatter plot, correlation, \ldots).
+  \item \textbf{Data Visualization}: biểu diễn trực quan (đồ thị, biểu đồ, bản đồ).
+  \item \textbf{Data Preprocessing}: biến đổi dữ liệu cho phù hợp thuật toán ML (scale, đổi định dạng, giảm chiều).
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Vì sao phải hiểu dữ liệu trước khi đưa vào dự án ML?}
+
+\begin{ynghia}[title={Bốn lý do chính}]
+\begin{itemize}
+  \item \textbf{Phát hiện vấn đề chất lượng}: missing, outlier, sai kiểu dữ liệu, không nhất quán --- xử lý sớm cải thiện mô hình.
+  \item \textbf{Đánh giá mức độ liên quan}: biết feature nào quan trọng, feature nào có thể bỏ.
+  \item \textbf{Chọn kỹ thuật ML phù hợp}: dữ liệu categorical $\Rightarrow$ classification; continuous $\Rightarrow$ regression, \ldots
+  \item \textbf{Cải thiện hiệu năng mô hình}: feature engineering, tiền xử lý, chọn thuật toán đúng $\Rightarrow$ accuracy, precision, recall, F1 tốt hơn.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Hiểu dữ liệu bằng thống kê}
+
+\begin{ynghia}[title={Hai hướng: thống kê và trực quan hoá}]
+Sau bài nạp CSV, cần hiểu dữ liệu trước khi đưa vào mô hình.
+Có thể hiểu bằng \textbf{thống kê} (bài này) hoặc trực quan hoá (Tutorialspoint có bài riêng ở phần sau).
+Dưới đây là các recipe Python; dataset dùng \textbf{sklearn} (chạy được trên Linux/macOS/Windows).
+\end{ynghia}
+
+\begin{luuy}[title={Nguồn dữ liệu thay cho đường dẫn \texttt{C:\textbackslash...} trong bản gốc}]
+Bản gốc Tutorialspoint dùng file CSV trên Windows. Ở đây dùng \texttt{fetch\_openml("diabetes")} (Pima) và \texttt{load\_iris()} (Iris) từ scikit-learn.
+\end{luuy}
+
+\subsubsection{Xem dữ liệu thô (Looking at Raw Data)}
+
+\begin{vidu}[title={head() trên dataset Pima Indians Diabetes}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+data.columns = names
+print(data.head(10))
+\end{lstlisting}
+
+\textbf{Output} (theo nguồn, 10 hàng đầu):
+\begin{lstlisting}
+preg   plas  pres    skin  test  mass   pedi    age      class
+0      6      148     72     35   0     33.6    0.627    50    1
+1      1       85     66     29   0     26.6    0.351    31    0
+...
+9      8      125     96      0   0     0.0     0.232    54    1
+10     4      110     92      0   0     37.6    0.191    30    0
+\end{lstlisting}
+Cột đầu là chỉ số hàng, hữu ích để tham chiếu một quan sát cụ thể.
+\end{vidu}
+
+\subsubsection{Kích thước dữ liệu (Dimensions)}
+
+\begin{ynghia}[title={Vì sao cần biết số hàng/cột}]
+\begin{itemize}
+  \item Quá nhiều hàng/cột $\Rightarrow$ huấn luyện lâu.
+  \item Quá ít $\Rightarrow$ không đủ dữ liệu huấn luyện tốt.
+\end{itemize}
+\end{ynghia}
+
+\begin{vidu}[title={shape trên Iris}]
+\begin{lstlisting}
+from sklearn.datasets import load_iris
+import pandas as pd
+data = pd.DataFrame(load_iris().data, columns=load_iris().feature_names)
+print(data.shape)
+\end{lstlisting}
+\textbf{Output}: \texttt{(150, 4)} --- 150 hàng, 4 cột.
+\end{vidu}
+
+\subsubsection{Kiểu dữ liệu từng thuộc tính}
+
+\begin{vidu}[title={dtypes trên Iris}]
+\begin{lstlisting}
+from sklearn.datasets import load_iris
+import pandas as pd
+data = pd.DataFrame(load_iris().data, columns=load_iris().feature_names)
+print(data.dtypes)
+\end{lstlisting}
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+sepal_length  float64
+sepal_width   float64
+petal_length  float64
+petal_width   float64
+dtype: object
+\end{lstlisting}
+Giúp biết khi nào cần chuyển kiểu (ví dụ string $\rightarrow$ float cho biến phân loại/thứ tự).
+\end{vidu}
+
+\subsubsection{Tóm tắt thống kê (describe)}
+
+\begin{ynghia}[title={8 thống kê từ describe() cho mỗi cột số}]
+Count, Mean, Standard Deviation, Min, Max, 25\%, Median (50\%), 75\%.
+\end{ynghia}
+
+\begin{vidu}[title={describe() trên Pima Indians Diabetes}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+from pandas import set_option
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+data.columns = names
+set_option('display.width', 100)
+set_option('precision', 2)
+print(data.shape)
+print(data.describe())
+\end{lstlisting}
+\textbf{Output}: shape \texttt{(768, 9)} và bảng thống kê mô tả đầy đủ các cột (count, mean, std, min, quartiles, max) theo nguồn.
+\end{vidu}
+
+\subsubsection{Phân phối lớp (Class Distribution)}
+
+\begin{ynghia}[title={Quan trọng trong classification}]
+Cần biết cân bằng lớp; lớp lệch mạnh có thể cần xử lý đặc biệt ở giai đoạn chuẩn bị dữ liệu.
+\end{ynghia}
+
+\begin{vidu}[title={groupby().size() trên cột class}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+data.columns = names
+count_class = data.groupby('class').size()
+print(count_class)
+\end{lstlisting}
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+Class
+0  500
+1  268
+dtype: int64
+\end{lstlisting}
+Lớp 0 gần gấp đôi lớp 1 --- dataset mất cân bằng lớp.
+\end{vidu}
+
+\subsubsection{Tương quan giữa các thuộc tính}
+
+\begin{dinhnghia}[title={Correlation}]
+Quan hệ giữa hai biến; hệ số tương quan Pearson phổ biến:
+\begin{itemize}
+  \item $= 1$: tương quan dương hoàn toàn.
+  \item $= -1$: tương quan âm hoàn toàn.
+  \item $= 0$: không tương quan tuyến tính.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{luuy}[title={Vì sao xem ma trận tương quan}]
+Linear regression, logistic regression có thể kém nếu có cặp thuộc tính tương quan rất cao (đa cộng tuyến).
+\end{luuy}
+
+\begin{vidu}[title={corr() Pearson}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+from pandas import set_option
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+data.columns = names
+set_option('display.width', 100)
+set_option('precision', 2)
+correlations = data.corr(method='pearson')
+print(correlations)
+\end{lstlisting}
+Ma trận output cho tương quan giữa mọi cặp thuộc tính (theo bảng đầy đủ trong nguồn).
+\end{vidu}
+
+\subsubsection{Độ lệch phân phối (Skew)}
+
+\begin{ynghia}[title={Skewness}]
+Phân phối giả định Gaussian nhưng bị lệch trái/phải.
+Nhiều thuật toán ML giả định dữ liệu gần phân phối chuẩn --- skew cao có thể cần hiệu chỉnh ở bước chuẩn bị dữ liệu.
+\end{ynghia}
+
+\begin{vidu}[title={skew() trên Pima dataset}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+
+names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+data.columns = names
+print(data.skew())
+\end{lstlisting}
+\textbf{Output} (theo nguồn):
+\begin{lstlisting}
+preg   0.90
+plas   0.17
+pres  -1.84
+skin   0.11
+test   2.27
+mass  -0.43
+pedi   1.92
+age    1.13
+class  0.64
+dtype: float64
+\end{lstlisting}
+Giá trị gần 0 $\Rightarrow$ ít lệch; dương/âm lớn $\Rightarrow$ lệch rõ.
+\end{vidu}

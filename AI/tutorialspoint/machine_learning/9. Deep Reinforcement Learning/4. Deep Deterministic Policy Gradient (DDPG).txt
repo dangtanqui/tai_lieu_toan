@@ -1,0 +1,55 @@
+https://www.tutorialspoint.com/machine_learning/machine_learning_deep_deterministic_policy_gradient.htm
+Deep Deterministic Policy Gradient (DDPG) is an algorithm that simultaneously learns from both Q-function and a policy. It learns the Q-function using off-policy data and the Bellman equation, which is then used to learn the policy.
+
+What is Deep Deterministic Policy Gradient?
+Deep Deterministic Policy Gradient (DDPG) is a reinforcement learning algorithm created to address problems with continuous action spaces. This algorithm, which is based on the actor-critic architecture, is off-policy and also a combination of Q-learning and policy gradient methods. DDPG is an off-policy algorithm that is model-free and uses deep learning to estimate value functions and policies, making it suitable for tasks involving continuous actions like robotic control and autonomous driving.
+
+In simple, it expands Deep Q-Networks (DQN) to continuous action spaces with a deterministic policy instead of the usual stochastic policies in DQN or REINFORCE.
+
+Key Concepts in DDPG
+The key concepts involved in Deep Deterministic Policy Gradient (DDPG) are −
+
+Policy Gradient Theorem − The deterministic policy gradient theorem is employed by DDPG, which allows the calculation of the gradient of the expected return in relation to the policy parameters. Additionally, this gradient is used for updating the actor network.
+Off-Policy − DDPG is an off-policy algorithm, indicating it learns from experiences created by a policy that is not the one being optimized. This is done by storing previous experiences in the replay buffer and using them for learning.
+What is Deterministic in DDPG?
+A deterministic strategy maps states with actions. When you provide a state to the function, it gives back an action to perform. In comparison with the value function, where we obtain probability function for every state. Deterministic policies are used in deterministic environments where the actions taken determine the outcome.
+
+Core Components in DDPG
+Following the core components used in Deep Deterministic Policy Gradient (DDPG) −
+
+Actor-Critic Architecture − While the actor is the policy network, it takes the state as input and outputs a deterministic action. The critic is the Q-function approximator that calculates the action-value function Q(s,a). It considers both the state and the action as input and predicts the expected return.
+Deterministic Policy − DDPG uses deterministic policy instead of stochastic policies, which are mostly used by algorithms like REINFORCE or other policy gradient methods. The actor produces one action for a given state rather than a range of actions.
+Experience Relay − DDPG uses an experience replay buffer for storing previous experiences in tuples consisting of state, action, reward, and next state. The buffer is used for selecting mini-batches in order to break the temporal dependencies among successive experiences, ultimately helping to improve the training stability.
+Target Networks − In order to ensure stability in learning, DDPG employs target networks for both the actor and the critic. These updated versions of the original networks are gradually improved to decrease the variability of updates when training.
+Exploration Noise − Since DDPG is a deterministic policy gradient method, the policy is inherently greedy and would not explore the environment sufficiently.
+How does DDPG Work?
+Deep Deterministic Policy Gradient (DDPG) is a reinforcement learning algorithm used particularly for continuous action spaces. It is an actor-critic method i.e., it uses two models actor, which decides the action to be taken in the current state and critic, which assesses the effectiveness of the action taken. The working of DDPG is described below −
+
+Continuous Action Spaces
+DDPG is effective with environments that have continuous action spaces like controlling the speed and direction of car's, in contrast to discrete action spaces found in games.
+
+Experience Replay
+DDPG uses experience replay by storing the agent's experiences in a buffer and sampling random batches of experiences for updating the networks. The tuple is represented as ${(s_t, a_t, r_t, s_{t+1})}$, where −
+
+${s_t}$ represents the state at time ${t}$.
+${a_t}$ represents the action taken.
+${r_t}$ represents the reward received.
+${s_{t+1}}$ represents the new state after the action.
+Randomly selecting experiences from the replay buffer reduces the correlation between consecutive events, leading to more stable training.
+
+Actor-Critic Training
+Critic Update − This critic update is based on Temporal Difference (TD) Learning, particularly the ${TD(0)}$ variation. The main task of the critic is to assess the actor's decisions by calculating the Q-value, which predicts the future rewards for specific state-action combinations. Additionally, the critic update in DDPG consists of reducing the TD error (which is the difference between the predicted Q-value and the target Q-value).
+Actor Update − The actor update involves modifying the actor's neural network to enhance the policy, or decision-making process. In the process of updating the actor, the Q-value gradient is calculated in relation to the action, and the actor's network is adjusted using gradient ascent to boost the likelihood of choosing actions that result in higher Q-values, enhancing the policy in the end.
+Target Networks and Soft Updates
+Instead of directly copying learned networks to target networks, DDPG employs a soft update approach, which updates target networks with a portion of the learned networks.
+
+${\theta' \leftarrow \tau + (1-\tau)\theta'}$ where, ${\tau}$ is a small value that ensures slow updates and improves stability.
+
+Exploration-exploitation
+DDPG uses Ornstein-Uhlenbeck noise in addition to the actions to promote exploration, as deterministic policies could become trapped in less than ideal solutions with continuous action spaces. The agent is motivated by the noise to explore the environment.
+
+Challenges in DDPG
+The two main challenges in DDPG that have to be addressed are −
+
+Instability − DDPG may experience stability issues in training, especially when employed with function approximators such as neural networks. This is dealt using target networks and experience replay, however, it still needs precise adjustment of hyper parameters.
+Exploration − Even with the use of Ornstein-Uhlenbeck noise for exploration, DDPG could face difficulties in extremely complicated environments if exploration strategies are not effective.
