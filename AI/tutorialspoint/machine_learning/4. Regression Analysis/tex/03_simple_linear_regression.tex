@@ -113,11 +113,6 @@ print("R2:", r2_score(y_test, y_pred))
 \end{lstlisting}
 \end{vidu}
 
-\begin{luuy}[title={Output trong bài gốc}]
-Bài gốc in MSE/MAE cực nhỏ do lỗi code (dùng \texttt{mean\_squared\_error} cho cả RMSE và có thể nhầm tập).
-Code trên dùng \texttt{np.sqrt} cho RMSE là đúng.
-\end{luuy}
-
 \begin{vidu}[title={Bước 5 --- Trực quan tập huấn luyện}]
 \begin{lstlisting}
 y_pred_train = regressor.predict(X_train)

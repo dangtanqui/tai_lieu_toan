@@ -16,6 +16,16 @@ Dự đoán giá trị số liên tục từ quan hệ tuyến tính đã học;
 
 \begin{phuongphap}[title={Bảng minh họa}]
 Diện tích (ft$^2$, feature $X$) và giá nhà (target $Y$): mô hình dùng $X$ để dự đoán $Y$.
+\begin{tabular}{cc}
+Diện tích (X) & Giá nhà (Y) \\
+1300 & 240 \\
+1500 & 320 \\
+1700 & 330 \\
+1830 & 295 \\
+1550 & 256 \\
+2350 & 409 \\
+1450 & 319 \\
+\end{tabular}
 \end{phuongphap}
 
 \begin{dinhnghia}[title={Đường hồi quy}]
@@ -33,19 +43,18 @@ Cả hai biến cùng tăng (hoặc cùng giảm).
 \tsimg{02_linear_regression/img02.jpg}
 
 \begin{ynghia}[title={Quan hệ âm}]
-Biến độc lập tăng, biến phụ thuộc giảm (bài gốc ghi nhầm chữ ``positive'').
+Biến độc lập tăng, biến phụ thuộc giảm.
 \end{ynghia}
 
 \tsimg{02_linear_regression/img03.jpg}
 
 \subsection{Hai loại hồi quy tuyến tính}
 
-\begin{enumerate}
-  \item \textbf{Đơn biến} (Simple): một $X$.
-  \item \textbf{Đa biến} (Multiple): nhiều $X_1,\ldots,X_p$.
-\end{enumerate}
-
 \subsubsection{Hồi quy tuyến tính đơn}
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
+Hồi quy tuyến tính đơn là một loại phân tích hồi quy trong đó một biến độc lập duy nhất (còn được gọi là feature) được sử dụng để dự đoán biến phụ thuộc (còn được gọi là target).
+\end{dinhnghia}
 
 \tsimg{02_linear_regression/img04.jpg}
 
@@ -59,11 +68,23 @@ Biến độc lập tăng, biến phụ thuộc giảm (bài gốc ghi nhầm ch
 
 \subsubsection{Hồi quy tuyến tính đa biến}
 
+\begin{dinhnghia}[title={Hồi quy tuyến tính đa biến}]
+Hồi quy tuyến tính đa biến là một loại phân tích hồi quy trong đó nhiều biến độc lập (còn được gọi là features) được sử dụng để dự đoán biến phụ thuộc (còn được gọi là target).
+\end{dinhnghia}
+
 \[
 \hat{Y} = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p + \epsilon
 \]
 
+\begin{itemize}
+  \item $Y$: target; $X_1, X_2, \ldots, X_p$: features; $w_0, w_1, \ldots, w_p$: hệ số; $\epsilon$: sai số.
+\end{itemize}
+
 \subsection{Cách hoạt động}
+
+\begin{dongco}[title={Mục tiêu chính của hồi quy tuyến tính}]
+Mục tiêu chính của hồi quy tuyến tính là tìm đường thẳng phù hợp nhất đi qua một tập hợp các điểm dữ liệu sao cho sự khác biệt giữa giá trị thực tế và giá trị dự đoán là nhỏ nhất.
+\end{dongco}
 
 \begin{phuongphap}[title={Ba bước chính}]
 \begin{enumerate}
