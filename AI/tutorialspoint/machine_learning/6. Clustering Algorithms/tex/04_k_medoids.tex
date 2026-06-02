@@ -1,0 +1,107 @@
+%==============================================================================
+\section{Phân cụm K-Medoids}
+\label{sec:k-medoids}
+%==============================================================================
+
+\begin{dinhnghia}[title={K-medoids}]
+K-medoids (PAM --- Partitioning Around Medoids) là thuật toán phân hoạch: chọn $k$ điểm thực làm tâm cụm, gán điểm, cập nhật medoid, lặp đến hội tụ.
+\end{dinhnghia}
+
+\subsection{Thuật toán K-medoids}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item \textbf{Khởi tạo $k$ medoid}: chọn ngẫu nhiên $k$ điểm dữ liệu làm medoid ban đầu.
+  \item \textbf{Gán điểm}: mỗi điểm được gán vào medoid \textbf{gần nhất}.
+  \item \textbf{Cập nhật medoid}: với mỗi cụm, chọn điểm \textbf{tối thiểu tổng khoảng cách} tới mọi điểm khác trong cụm; đặt làm medoid mới.
+  \item \textbf{Lặp} bước 2 và 3 đến khi hội tụ hoặc đạt số vòng lặp tối đa.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Triển khai bằng Python}
+
+\begin{dongco}[title={Thư viện}]
+Triển khai K-medoids trong Python thường dùng gói \texttt{sklearn-extra}: lớp \texttt{KMedoids} trong \texttt{sklearn\_extra.cluster}.
+\end{dongco}
+
+\begin{vidu}[title={Import và tạo dữ liệu mẫu}]
+\begin{lstlisting}
+from sklearn_extra.cluster import KMedoids
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+X, y = make_blobs(n_samples=500, centers=3, random_state=42)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Dataset make\_blobs}]
+Ví dụ trên sinh 500 điểm, 3 cụm, \texttt{random\_state=42} để tái lập kết quả.
+\end{ynghia}
+
+\begin{vidu}[title={Huấn luyện KMedoids}]
+\begin{lstlisting}
+kmedoids = KMedoids(n_clusters=3, random_state=42)
+kmedoids.fit(X)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ kết quả phân cụm}]
+\begin{lstlisting}
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=kmedoids.labels_, cmap='viridis')
+plt.scatter(kmedoids.cluster_centers_[:, 0],
+            kmedoids.cluster_centers_[:, 1],
+            marker='x', color='red')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Đồ thị kết quả}]
+Điểm được tô màu theo nhãn cụm; medoid hiển thị bằng dấu \texttt{x} màu đỏ.
+
+\tsimg{04_k_medoids/img01.jpg}
+\end{ynghia}
+
+\begin{vidu}[title={Mã đầy đủ}]
+\begin{lstlisting}
+from sklearn_extra.cluster import KMedoids
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+X, y = make_blobs(n_samples=500, centers=3, random_state=42)
+
+kmedoids = KMedoids(n_clusters=3, random_state=42)
+kmedoids.fit(X)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=kmedoids.labels_, cmap='viridis')
+plt.scatter(kmedoids.cluster_centers_[:, 0],
+            kmedoids.cluster_centers_[:, 1],
+            marker='x', color='red')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Ưu điểm K-medoids}
+
+\begin{tinhchat}[title={Bền với ngoại lai và nhiễu}]
+Dùng medoid (điểm thực) thay vì trung bình $\Rightarrow$ ít bị kéo bởi outlier hơn K-means.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Metric khoảng cách linh hoạt}]
+Có thể dùng metric không phải Euclidean: Manhattan, cosine similarity, v.v.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Độ phức tạp}]
+Độ phức tạp tính toán $O(k \cdot n^2)$; trong một số bối cảnh so sánh được với chi phí K-means khi $n$ vừa phải.
+\end{tinhchat}
+
+\subsection{Nhược điểm K-medoids}
+
+\begin{luuy}[title={Nhạy với $k$}]
+Hiệu năng phụ thuộc mạnh vào lựa chọn $k$ (số cụm).
+\end{luuy}
+
+\begin{luuy}[title={Dữ liệu chiều cao}]
+Trên dữ liệu \textbf{nhiều chiều}, bước chọn medoid tốn kém và chất lượng cụm có thể kém.
+\end{luuy}

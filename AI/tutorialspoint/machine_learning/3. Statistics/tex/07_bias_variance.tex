@@ -56,7 +56,7 @@ Trong ML, variance là \textbf{biến thiên dự đoán} khi huấn luyện tr�
 \tsimg{07_bias_variance/img02.jpg}
 \end{vidu}
 
-\subsection{Bias--Variance Tradeoff}
+\subsection{Đánh đổi Bias--Variance}
 
 \begin{ynghia}[title={Cân bằng}]
 Tăng độ phức tạp mô hình $\Rightarrow$ bias giảm, variance tăng.
@@ -64,7 +64,7 @@ Giảm độ phức tạp $\Rightarrow$ bias tăng, variance giảm.
 Cần điểm tối ưu sao cho \textbf{tổng lỗi dự đoán} nhỏ nhất.
 \end{ynghia}
 
-\begin{vidu}[title={Đồ thị tradeoff}]
+\begin{vidu}[title={Đồ thị đánh đổi Bias--Variance}]
 \tsimg{07_bias_variance/img03.jpg}
 
 Trục $X$: độ phức tạp mô hình; trục $Y$: lỗi dự đoán.
@@ -85,10 +85,6 @@ Giảm lỗi dự đoán bằng cách chọn độ phức tạp cân bằng bias
 \end{phuongphap}
 
 \subsection{Ví dụ Python}
-
-\begin{luuy}[title={Dataset}]
-Nguồn Tutorialspoint dùng Boston Housing (đã deprecated). Ví dụ dưới dùng \textbf{California Housing} từ scikit-learn, cùng bài toán hồi quy giá nhà.
-\end{luuy}
 
 \begin{vidu}[title={High bias --- Linear Regression}]
 \begin{lstlisting}

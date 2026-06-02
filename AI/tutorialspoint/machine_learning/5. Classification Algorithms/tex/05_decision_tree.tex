@@ -1,0 +1,201 @@
+%==============================================================================
+\section{Thuật toán Decision Tree (Cây quyết định)}
+\label{sec:decision-tree}
+%==============================================================================
+
+\begin{dinhnghia}[title={Decision Tree Algorithm}]
+Thuật toán cây quyết định là thuật toán phân cấp dạng \textbf{cây} dùng để phân loại hoặc dự đoán kết quả theo tập quy tắc.
+Chia dữ liệu thành các tập con theo giá trị feature đầu vào; lặp đệ quy cho đến khi mỗi tập con thuộc cùng một lớp hoặc cùng giá trị biến mục tiêu.
+Cây thu được là tập quy tắc quyết định để dự đoán hoặc phân loại dữ liệu mới.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Chọn feature tách tại mỗi nút}]
+Tại mỗi nút, chọn feature \textbf{tốt nhất} để tách dữ liệu --- feature mang lại nhiều \textbf{information gain} nhất hoặc giảm \textbf{entropy} nhiều nhất.
+Information gain đo lượng thông tin thu được khi tách tại một feature; entropy đo độ ngẫu nhiên/hỗn loạn trong dữ liệu.
+Thuật toán dùng các đại lượng này để quyết định feature tách tại mỗi nút.
+\end{phuongphap}
+
+\begin{vidu}[title={Ví dụ cây nhị phân}]
+Ví dụ cây nhị phân dự đoán người ``fit'' hay ``unfit'' theo tuổi, thói quen ăn uống và tập luyện:
+
+\tsimg{05_decision_tree/img01.jpg}
+
+Trong cây trên, các \textbf{câu hỏi} là nút quyết định (decision nodes); \textbf{kết quả cuối} là lá (leaves).
+\end{vidu}
+
+\subsection{Các loại thuật toán Decision Tree}
+
+\begin{dinhnghia}[title={Classification Tree}]
+Cây phân loại dùng để xếp dữ liệu vào các \textbf{lớp} hoặc \textbf{hạng mục} khác nhau.
+Tách tập con theo feature và gán mỗi tập con một lớp.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Regression Tree}]
+Cây hồi quy dùng để dự đoán giá trị \textbf{số} (biến liên tục).
+Tách tập con theo feature và gán mỗi tập con một giá trị số.
+\end{dinhnghia}
+
+\subsection{Triển khai thuật toán Decision Tree}
+
+\subsubsection{Chỉ số Gini}
+
+\begin{dinhnghia}[title={Gini Index}]
+Gini Index là tên hàm \textbf{cost} đánh giá các tách nhị phân trong dataset, làm việc với biến mục tiêu phân loại Success/Failure (hoặc hai lớp).
+Gini càng \textbf{cao} thì tập con càng \textbf{đồng nhất} (homogeneity).
+Gini hoàn hảo = 0; tệ nhất = 0.5 (bài toán 2 lớp).
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tính Gini cho một tách}]
+\begin{enumerate}
+  \item Tính Gini cho từng nút con bằng công thức $p^2 + q^2$ (tổng bình phương xác suất thành công và thất bại).
+  \item Tính Gini cho tách bằng \textbf{Gini có trọng số} của từng nút con.
+\end{enumerate}
+Thuật toán CART (Classification and Regression Tree) dùng phương pháp Gini để tạo tách nhị phân.
+\end{phuongphap}
+
+\subsubsection{Tạo tách (Split Creation)}
+
+\begin{dinhnghia}[title={Split}]
+Một tách gồm một \textbf{thuộc tính} trong dataset và một \textbf{giá trị}.
+Tách dataset thành hai danh sách hàng (nhóm trái/phải) theo chỉ số thuộc tính và giá trị tách.
+Sau khi có hai nhóm, tính giá trị tách bằng Gini ở bước trên; giá trị tách quyết định thuộc tính nằm ở nhóm nào.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Đánh giá mọi tách}]
+Kiểm tra mọi giá trị gắn với mỗi thuộc tính như ứng viên tách.
+Tìm tách tốt nhất bằng cách đánh giá \textbf{chi phí} tách; tách tốt nhất trở thành nút trong cây.
+\end{phuongphap}
+
+\subsubsection{Xây dựng cây (Building a Tree)}
+
+\begin{ynghia}[title={Nút gốc và nút lá}]
+Cây có nút gốc (root) và nút lá (terminal nodes).
+Sau khi tạo nút gốc, xây cây theo hai phần sau.
+\end{ynghia}
+
+\begin{phuongphap}[title={Phần 1: Tạo nút lá (terminal node)}]
+Quyết định khi nào \textbf{dừng} mở rộng cây, dùng hai tiêu chí:
+\begin{itemize}
+  \item \textbf{Maximum Tree Depth}: số nút tối đa sau nút gốc; dừng thêm nút lá khi đạt độ sâu tối đa.
+  \item \textbf{Minimum Node Records}: số mẫu huấn luyện tối thiểu một nút chịu trách nhiệm; dừng khi đạt hoặc dưới ngưỡng này.
+\end{itemize}
+Nút lá dùng để đưa ra \textbf{dự đoán cuối cùng}.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Phần 2: Tách đệ quy (Recursive Splitting)}]
+Sau khi tạo một nút, tạo nút con \textbf{đệ quy} trên từng nhóm dữ liệu sinh ra bởi tách --- gọi lại cùng hàm nhiều lần.
+\end{phuongphap}
+
+\subsection{Dự đoán (Prediction)}
+
+\begin{phuongphap}[title={Điều hướng trên cây}]
+Sau khi xây cây, dự đoán bằng cách \textbf{điều hướng} cây với một hàng dữ liệu cụ thể.
+Dùng hàm đệ quy tương tự khi xây cây: gọi lại routine dự đoán với nút con trái hoặc phải.
+\end{phuongphap}
+
+\subsection{Giả định}
+
+\begin{luuy}[title={Giả định khi tạo decision tree}]
+\begin{itemize}
+  \item Tập huấn luyện là \textbf{nút gốc}.
+  \item Bộ phân loại cây quyết định \textbf{ưu tiên} feature dạng phân loại (categorical). Nếu dùng giá trị liên tục cần \textbf{rời rạc hóa} (discretize) trước khi xây mô hình.
+  \item Bản ghi được phân phối \textbf{đệ quy} theo giá trị thuộc tính.
+  \item Dùng \textbf{phương pháp thống kê} để đặt thuộc tính ở vị trí nút (gốc hoặc nút trong).
+\end{itemize}
+\end{luuy}
+
+\subsection{Triển khai bằng Python}
+
+\begin{dongco}[title={Dataset Iris}]
+150 mẫu hoa iris, bốn feature: chiều dài/rộng đài, chiều dài/rộng cánh hoa.
+Ba lớp: setosa, versicolor, virginica.
+\end{dongco}
+
+\begin{vidu}[title={Import, nạp dữ liệu và chia tập}]
+\begin{lstlisting}
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.3, random_state=0)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Huấn luyện và dự đoán}]
+\begin{lstlisting}
+dtc = DecisionTreeClassifier()
+dtc.fit(X_train, y_train)
+y_pred = dtc.predict(X_test)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Độ chính xác}]
+\begin{lstlisting}
+accuracy = np.sum(y_pred == y_test) / len(y_test)
+print("Accuracy:", accuracy)
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{verbatim}
+Accuracy: 0.9777777777777777
+\end{verbatim}
+\end{vidu}
+
+\begin{vidu}[title={Trực quan hóa cây}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+plt.figure(figsize=(20, 10))
+plot_tree(dtc, filled=True,
+          feature_names=iris.feature_names,
+          class_names=iris.target_names)
+plt.show()
+\end{lstlisting}
+
+Hàm \texttt{plot\_tree} vẽ cấu trúc cây: mỗi nút là quyết định theo feature; mỗi lá là lớp hoặc giá trị số.
+Tham số \texttt{filled=True} tô màu nút; \texttt{feature\_names} và \texttt{class\_names} gắn nhãn.
+\end{vidu}
+
+\begin{ynghia}[title={Biểu đồ cây quyết định}]
+Biểu đồ minh họa:
+
+\tsimg{05_decision_tree/img02.jpg}
+
+Màu núc thể hiện lớp/ giá trị chiếm đa số trong nút; số ở đáy là số mẫu đi tới nút đó.
+\end{ynghia}
+
+\subsection{Ví dụ triển khai đầy đủ}
+
+\begin{vidu}[title={Mã hoàn chỉnh}]
+\begin{lstlisting}
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+import matplotlib.pyplot as plt
+from sklearn.tree import plot_tree
+
+iris = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    iris.data, iris.target, test_size=0.3, random_state=0)
+
+dtc = DecisionTreeClassifier()
+dtc.fit(X_train, y_train)
+y_pred = dtc.predict(X_test)
+
+accuracy = np.sum(y_pred == y_test) / len(y_test)
+print("Accuracy:", accuracy)
+
+plt.figure(figsize=(20, 10))
+plot_tree(dtc, filled=True,
+          feature_names=iris.feature_names,
+          class_names=iris.target_names)
+plt.show()
+\end{lstlisting}
+
+\textbf{Output:} \texttt{Accuracy: 0.9777777777777777} (khoảng \textbf{97,8\%}).
+\end{vidu}

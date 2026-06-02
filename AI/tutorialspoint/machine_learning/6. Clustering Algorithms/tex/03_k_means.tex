@@ -1,0 +1,296 @@
+%==============================================================================
+\section{Thuật toán K-Means}
+\label{sec:k-means}
+%==============================================================================
+
+\begin{dinhnghia}[title={K-Means Clustering}]
+Thuật toán K-Means tính centroid và lặp cho đến khi đạt centroid tối ưu. Giả định \textbf{đã biết trước} số cụm; còn gọi là thuật toán phân cụm \textbf{phẳng} (flat clustering). Ký hiệu $K$ là số cụm mà thuật toán xác định từ dữ liệu.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Mục tiêu tối thiểu}]
+Mỗi điểm được gán vào cụm sao cho \textbf{tổng bình phương khoảng cách} giữa điểm và centroid là nhỏ nhất. Biến thiên trong cụm càng nhỏ thì các điểm trong cùng cụm càng giống nhau.
+\end{ynghia}
+
+\subsection{Cách hoạt động của K-Means}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item[\textbf{Bước 1}] Chỉ định số cụm $K$ cần sinh.
+  \item[\textbf{Bước 2}] Chọn ngẫu nhiên $K$ điểm và gán ban đầu (phân loại theo số điểm khởi tạo).
+  \item[\textbf{Bước 3}] Tính centroid của từng cụm.
+  \item[\textbf{Bước 4}] Lặp đến khi phân gán ổn định:
+  \begin{enumerate}
+    \item[\textbf{4.1}] Tính tổng bình phương khoảng cách giữa điểm và centroid.
+    \item[\textbf{4.2}] Gán mỗi điểm vào cụm có centroid \textbf{gần hơn} các cụm còn lại.
+    \item[\textbf{4.3}] Cập nhật centroid bằng \textbf{trung bình} mọi điểm trong cụm.
+  \end{enumerate}
+\end{enumerate}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Expectation--Maximization (EM)}]
+K-means theo khung EM:
+\begin{itemize}
+  \item \textbf{Bước E (Expectation)}: gán điểm vào cụm gần nhất.
+  \item \textbf{Bước M (Maximization)}: tính lại centroid mỗi cụm.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{luuy}[title={Chuẩn hóa dữ liệu}]
+Thuật toán dùng đo \textbf{khoảng cách} để đo tương tự; nên \textbf{chuẩn hóa} (standardize) feature trước khi chạy K-means và các thuật toán phân cụm tương tự.
+\end{luuy}
+
+\begin{luuy}[title={Cục cực địa phương}]
+Do khởi tạo centroid ngẫu nhiên và lặp lặp lại, K-means có thể kẹt ở \textbf{cục cực địa phương} thay vì toàn cục. Nên thử \textbf{nhiều khởi tạo} centroid khác nhau (ví dụ \texttt{n\_init} trong scikit-learn).
+\end{luuy}
+
+\begin{tinhchat}[title={Ưu/nhược điểm tổng quan}]
+Thuật toán đơn giản, hiệu quả với dataset lớn; nhưng nhạy khởi tạo, dễ hội tụ cục bộ, và thường giả định phương sai đồng đều giữa các cụm.
+\end{tinhchat}
+
+\subsection{Mục tiêu phân tích cụm}
+
+\begin{dongco}[title={Hai mục tiêu chính}]
+\begin{itemize}
+  \item Rút ra \textbf{trực giác có ý nghĩa} từ dữ liệu.
+  \item \textbf{Cluster-then-predict}: xây mô hình riêng cho từng nhóm con sau khi phân cụm.
+\end{itemize}
+\end{dongco}
+
+\subsection{Triển khai K-Means bằng Python}
+
+\begin{phuongphap}[title={scikit-learn}]
+Python có scikit-learn với lớp \texttt{KMeans} trong \texttt{sklearn.cluster}.
+\end{phuongphap}
+
+\subsubsection{Ví dụ 1 --- Hiểu K-Means với dữ liệu ngẫu nhiên}
+
+\begin{dongco}[title={Bối cảnh}]
+Sinh 300 điểm hai chiều ngẫu nhiên, áp dụng K-means với $K=3$.
+\end{dongco}
+
+\begin{vidu}[title={Bước 1 --- Import}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2 --- Sinh và vẽ dữ liệu}]
+\begin{lstlisting}
+X = np.random.rand(300, 2)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], s=20)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Dữ liệu ban đầu}]
+\tsimg{03_k_means/img01.jpg}
+\end{ynghia}
+
+\begin{vidu}[title={Bước 3 --- Khởi tạo K-Means}]
+\begin{lstlisting}
+kmeans = KMeans(n_clusters=3, max_iter=100)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 4 --- Huấn luyện}]
+\begin{lstlisting}
+kmeans.fit(X)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 5 --- Vẽ cụm và centroid}]
+\begin{lstlisting}
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=kmeans.labels_, s=20)
+plt.scatter(kmeans.cluster_centers_[:, 0],
+            kmeans.cluster_centers_[:, 1],
+            marker='x', c='r', s=50, alpha=0.9)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả phân cụm}]
+Điểm tô màu theo nhãn cụm; centroid đánh dấu \texttt{x} màu đỏ.
+
+\tsimg{03_k_means/img02.jpg}
+\end{ynghia}
+
+\begin{vidu}[title={Mã đầy đủ (ví dụ 1)}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+X = np.random.rand(300, 2)
+
+kmeans = KMeans(n_clusters=3, max_iter=100)
+kmeans.fit(X)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=kmeans.labels_, s=20)
+plt.scatter(kmeans.cluster_centers_[:, 0],
+            kmeans.cluster_centers_[:, 1],
+            marker='x', c='r', s=50, alpha=0.9)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\subsubsection{Ví dụ 2 --- Dataset 2D bốn blob}
+
+\begin{dongco}[title={Bối cảnh}]
+Sinh dataset 2D gồm 4 blob bằng \texttt{make\_blobs}, huấn luyện K-means với 4 cụm.
+\end{dongco}
+
+\begin{vidu}[title={Import và sinh blob}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+X, y_true = make_blobs(n_samples=400, centers=4,
+                       cluster_std=0.60, random_state=0)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ dữ liệu gốc}]
+\begin{lstlisting}
+plt.scatter(X[:, 0], X[:, 1], s=20)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Trực quan 2D blob}]
+\tsimg{03_k_means/img03.jpg}
+\end{ynghia}
+
+\begin{vidu}[title={Huấn luyện và dự đoán}]
+\begin{lstlisting}
+kmeans = KMeans(n_clusters=4)
+kmeans.fit(X)
+y_kmeans = kmeans.predict(X)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ cụm và tâm}]
+\begin{lstlisting}
+plt.scatter(X[:, 0], X[:, 1], c=y_kmeans, s=20)
+centers = kmeans.cluster_centers_
+plt.scatter(centers[:, 0], centers[:, 1],
+            c='blue', s=100, alpha=0.9)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Centroid học được}]
+\tsimg{03_k_means/img04.jpg}
+\end{ynghia}
+
+\subsubsection{Ví dụ 3 --- Chữ số viết tay (digits)}
+
+\begin{dongco}[title={Bối cảnh}]
+Áp dụng K-means lên \texttt{load\_digits}: tìm nhóm chữ số tương tự \textbf{không} dùng nhãn gốc khi gom cụm.
+\end{dongco}
+
+\begin{vidu}[title={Nạp dữ liệu}]
+\begin{lstlisting}
+from sklearn.datasets import load_digits
+
+digits = load_digits()
+digits.data.shape   # (1797, 64)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kích thước}]
+1797 mẫu, mỗi mẫu 64 feature (ảnh $8 \times 8$).
+\end{ynghia}
+
+\begin{vidu}[title={Phân cụm 10 nhóm}]
+\begin{lstlisting}
+kmeans = KMeans(n_clusters=10, random_state=0)
+clusters = kmeans.fit_predict(digits.data)
+kmeans.cluster_centers_.shape   # (10, 64)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ tâm cụm dạng ảnh}]
+\begin{lstlisting}
+fig, ax = plt.subplots(2, 5, figsize=(8, 3))
+centers = kmeans.cluster_centers_.reshape(10, 8, 8)
+for axi, center in zip(ax.flat, centers):
+    axi.set(xticks=[], yticks=[])
+    axi.imshow(center, interpolation='nearest',
+               cmap=plt.cm.binary)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Centroid mỗi cụm}]
+\tsimg{03_k_means/img05.jpg}
+\end{ynghia}
+
+\begin{phuongphap}[title={Ghép nhãn cụm với nhãn thật}]
+Dùng \texttt{scipy.stats.mode} để gán mỗi cụm nhãn digit phổ biến nhất trong cụm đó, rồi tính \texttt{accuracy\_score}.
+\end{phuongphap}
+
+\begin{vidu}[title={Gán nhãn và độ chính xác}]
+\begin{lstlisting}
+from scipy.stats import mode
+from sklearn.metrics import accuracy_score
+
+labels = np.zeros_like(clusters)
+for i in range(10):
+    mask = (clusters == i)
+    labels[mask] = mode(digits.target[mask], keepdims=True).mode[0]
+
+accuracy_score(digits.target, labels)   # ~0.79
+\end{lstlisting}
+\end{vidu}
+
+\begin{tinhchat}[title={Độ chính xác ~80\%}]
+Ghép nhãn cụm với nhãn gốc cho độ chính xác khoảng \textbf{80\%} --- minh họa cụm bắt được cấu trúc chữ số dù không dùng nhãn lúc fit.
+\end{tinhchat}
+
+\subsection{Ưu điểm K-Means}
+
+\begin{tinhchat}[title={Danh sách ưu điểm}]
+\begin{itemize}
+  \item Dễ hiểu và triển khai.
+  \item Với số biến lớn, thường \textbf{nhanh hơn} phân cụm phân cấp.
+  \item Khi tính lại centroid, một mẫu có thể \textbf{đổi cụm}.
+  \item Cụm thường \textbf{chặt} hơn so với phân cụm phân cấp trong nhiều bài toán.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Nhược điểm K-Means}
+
+\begin{luuy}[title={Hạn chế}]
+\begin{itemize}
+  \item Khó chọn $k$ (số cụm).
+  \item Kết quả phụ thuộc mạnh vào $k$ và khởi tạo.
+  \item Thứ tự dữ liệu có thể ảnh hưởng kết quả cuối (với một số triển khai).
+  \item \textbf{Nhạy rescale}: chuẩn hóa/chuẩn tắc hóa làm thay đổi hoàn toàn phân cụm --- cần xử lý nhất quán.
+  \item Kém khi cụm có \textbf{hình học phức tạp} (không lồi, không cầu).
+\end{itemize}
+\end{luuy}
+
+\subsection{Ứng dụng K-Means}
+
+\begin{ynghia}[title={Phân đoạn ảnh}]
+Gom vùng pixel theo màu hoặc texture; dùng trong nhận dạng đối tượng, truy vấn ảnh, ảnh y khoa.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân khúc khách hàng}]
+Chia khách theo hành vi mua hoặc nhân khẩu; hỗ trợ giữ chân khách, loyalty, quảng cáo nhắm mục tiêu.
+\end{ynghia}
+
+\begin{ynghia}[title={Phát hiện bất thường}]
+Điểm không thuộc cụm nào (hoặc xa mọi centroid) có thể là anomaly --- gian lận, xâm nhập mạng, bảo trì dự đoán.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân tích biểu hiện gen}]
+Gom gen đồng điều hòa/biểu hiện; hỗ trợ khám phá thuốc, chẩn đoán, y học cá thể hóa.
+\end{ynghia}

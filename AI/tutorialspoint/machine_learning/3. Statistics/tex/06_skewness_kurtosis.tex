@@ -17,7 +17,7 @@ Kurtosis đo \textbf{độ nhọn} của phân phối so với chuẩn.
 \begin{itemize}
   \item Kurtosis cao: đỉnh nhọn hơn, đuôi nặng hơn chuẩn.
   \item Kurtosis thấp: đỉnh dẹt hơn, đuôi nhẹ hơn.
-  \item Bằng 0 (theo định nghĩa excess thường gặp trong SciPy): gần chuẩn.
+  \item Bằng 0: gần chuẩn.
 \end{itemize}
 \end{dinhnghia}
 
@@ -41,8 +41,6 @@ kurt_val = kurtosis(data)
 print('Skewness:', skewness)
 print('Kurtosis:', kurt_val)
 \end{lstlisting}
-
-(Lưu ý: không đặt tên biến \texttt{kurtosis} trùng hàm --- dùng \texttt{kurt\_val}.)
 
 \textbf{Output} (ví dụ, gần 0 với mẫu chuẩn):
 \begin{lstlisting}

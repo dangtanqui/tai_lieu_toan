@@ -1,0 +1,254 @@
+%==============================================================================
+\section{Thuật toán phân loại (Classification Algorithms)}
+\label{sec:classification-algorithms}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân loại trong học máy}]
+Quá trình dự đoán \textbf{lớp} hoặc \textbf{nhãn danh mục} từ các giá trị quan sát hoặc điểm dữ liệu cho trước.
+Đầu ra có thể là ``Đen''/``Trắng'', ``spam''/``không spam'', v.v.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Học có giám sát}]
+Phân loại là kỹ thuật \textbf{học có giám sát}: thuật toán huấn luyện trên dữ liệu có nhãn để dự đoán lớp của dữ liệu mới.
+\end{ynghia}
+
+\begin{dinhnghia}[title={Toán học}]
+Phân loại là bài toán xấp xỉ hàm ánh xạ $f$ từ biến đầu vào $X$ sang biến đầu ra $Y$; thuộc học có giám sát vì target được cung cấp cùng tập huấn luyện.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ phân loại nhị phân}]
+Phát hiện spam email: hai lớp ``spam'' và ``không spam''.
+Huấn luyện classifier trên email đã gán nhãn, sau đó phân loại email chưa biết.
+\end{vidu}
+
+\subsection{Hai loại learner trong phân loại}
+
+\begin{phuongphap}[title={Lazy Learners}]
+Học ``lười'': lưu dữ liệu huấn luyện, chỉ phân loại khi có dữ liệu kiểm tra.
+Ít thời gian huấn luyện, nhiều thời gian dự đoán.
+Ví dụ: K-nearest neighbor (KNN), case-based reasoning.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Eager Learners}]
+Ngược lazy: xây mô hình phân loại ngay sau khi lưu dữ liệu huấn luyện, không chờ test.
+Nhiều thời gian huấn luyện, ít thời gian dự đoán.
+Ví dụ: Decision Tree, Naive Bayes, mạng nơ-ron (ANN).
+\end{phuongphap}
+
+\subsection{Thuật toán phân loại phổ biến}
+
+\begin{dinhnghia}[title={Thuật toán phân loại}]
+Kỹ thuật học có giám sát dự đoán biến mục tiêu \textbf{phân loại} từ tập feature đầu vào.
+Mục tiêu: học hàm ánh xạ $f$ giữa $X$ và $Y$, thường biểu diễn bằng \textbf{ranh giới quyết định} tách các lớp trong không gian feature.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Danh sách (chi tiết ở các chương sau)}]
+Logistic Regression; K-Nearest Neighbors (KNN); Support Vector Machine (SVM); Decision Tree; Naive Bayes; Random Forest.
+\end{phuongphap}
+
+\subsubsection{Tóm tắt từng thuật toán}
+
+\begin{ynghia}[title={Logistic Regression}]
+Dùng cho phân loại \textbf{nhị phân}; mô hình hóa xác suất lớp; dự đoán lớp có xác suất cao nhất.
+Mô hình tuyến tính tổng quát, target Bernoulli; hàm logistic ánh xạ sang $[0,1]$.
+\end{ynghia}
+
+\begin{ynghia}[title={K-Nearest Neighbors (KNN)}]
+Học có giám sát cho phân loại và hồi quy: tìm $k$ điểm gần nhất, dùng láng giềng để dự đoán.
+$k$ là hyperparameter.
+Phân loại: gán lớp \textbf{xuất hiện nhiều nhất} trong $k$ láng giềng.
+Hồi quy: gán trung bình giá trị $k$ láng giềng.
+\end{ynghia}
+
+\begin{ynghia}[title={Support Vector Machine (SVM)}]
+Thuật toán linh hoạt, mạnh cho phân loại (và hồi quy); xử lý nhiều biến liên tục và phân loại.
+\end{ynghia}
+
+\begin{ynghia}[title={Decision Tree}]
+Cây phân cấp: chia dữ liệu theo feature đến khi mỗi tập con thuần lớp hoặc cùng giá trị target; tập quy tắc để dự đoán dữ liệu mới.
+\end{ynghia}
+
+\begin{ynghia}[title={Naive Bayes}]
+Dựa trên định lý Bayes; giả định feature \textbf{độc lập} (``naive'').
+Xác suất mẫu thuộc lớp từ xác suất từng feature.
+\end{ynghia}
+
+\begin{ynghia}[title={Random Forest}]
+Tập hợp nhiều cây quyết định, mỗi cây huấn luyện trên tập con dữ liệu khác nhau; kết hợp dự đoán.
+\end{ynghia}
+
+\subsection{Ứng dụng phân loại}
+
+\begin{phuongphap}[title={Ứng dụng quan trọng}]
+Nhận dạng giọng nói; nhận dạng chữ viết tay; nhận dạng sinh trắc học; phân loại tài liệu; phân loại ảnh; lọc spam; phát hiện gian lận; nhận diện khuôn mặt.
+\end{phuongphap}
+
+\subsection{Xây dựng mô hình phân loại}
+
+\begin{phuongphap}[title={Bước 1: Chuẩn bị dữ liệu}]
+Thu thập và tiền xử lý: làm sạch, xử lý thiếu, mã hóa biến phân loại sang số.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 2: Trích chọn feature}]
+Trích/chọn feature liên quan (tương quan, importance, PCA, \ldots).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 3: Chọn mô hình}]
+Chọn thuật toán phù hợp: logistic, cây, random forest, SVM, mạng nơ-ron, \ldots
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 4: Huấn luyện}]
+Huấn luyện trên dữ liệu có nhãn; cập nhật tham số để giảm sai số dự đoán.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 5: Đánh giá}]
+Đánh giá trên tập validation: accuracy, precision, recall, F1, AUC-ROC, \ldots
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 6: Tinh chỉnh hyperparameter}]
+Grid search, random search, Bayesian optimization cho learning rate, regularization, số lớp ẩn, v.v.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 7: Triển khai}]
+Tích hợp production, kiểm thử dữ liệu thực, giám sát hiệu năng theo thời gian.
+\end{phuongphap}
+
+\subsection{Xây dựng classifier bằng Python}
+
+\begin{phuongphap}[title={Scikit-learn}]
+Có thể xây classifier bằng scikit-learn theo các bước sau.
+\end{phuongphap}
+
+\begin{vidu}[title={Bước 1: Import}]
+\begin{lstlisting}
+import sklearn
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2: Dataset Breast Cancer Wisconsin}]
+\begin{lstlisting}
+from sklearn.datasets import load_breast_cancer
+data = load_breast_cancer()
+
+label_names = data['target_names']
+labels = data['target']
+feature_names = data['feature_names']
+features = data['data']
+\end{lstlisting}
+
+\begin{lstlisting}
+print(label_names)
+\end{lstlisting}
+\textbf{Output:} \texttt{['malignant' 'benign']}
+
+Nhãn ánh xạ nhị phân: 0 = ác tính (malignant), 1 = lành tính (benign).
+
+\begin{lstlisting}
+print(feature_names[0])   # mean radius
+print(feature_names[1])   # mean texture
+print(features[0])
+print(features[1])
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3: Chia train/test (60/40)}]
+\begin{lstlisting}
+from sklearn.model_selection import train_test_split
+train, test, train_labels, test_labels = train_test_split(
+    features, labels, test_size=0.40, random_state=42)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 4: Naive Bayes và dự đoán}]
+\begin{lstlisting}
+from sklearn.naive_bayes import GaussianNB
+gnb = GaussianNB()
+model = gnb.fit(train, train_labels)
+preds = gnb.predict(test)
+print(preds)
+\end{lstlisting}
+Chuỗi 0/1 là dự đoán ác tính/lành tính trên tập kiểm tra.
+\end{vidu}
+
+\begin{vidu}[title={Bước 5: Accuracy}]
+\begin{lstlisting}
+from sklearn.metrics import accuracy_score
+print(accuracy_score(test_labels, preds))
+\end{lstlisting}
+\textbf{Output mẫu:} \texttt{0.951754385965} --- Gaussian Naive Bayes khoảng \textbf{95.17\%} chính xác.
+\end{vidu}
+
+\subsection{Metric đánh giá (tổng quan)}
+
+\begin{phuongphap}[title={Chọn metric}]
+Sau khi triển khai mô hình cần đánh giá hiệu quả; metric ảnh hưởng cách so sánh thuật toán.
+Chi tiết confusion matrix và công thức: chương \ref{sec:confusion-matrix}; dưới đây là tóm tắt theo bài gốc chương 1.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Confusion Matrix}]
+Bảng hai chiều Actual / Predicted với TP, TN, FP, FN --- cách dễ nhất đo hiệu năng phân loại đa lớp hoặc nhị phân.
+\end{dinhnghia}
+
+\tsimg{01_classification_algorithms/img01.jpg}
+
+\begin{tinhchat}[title={True Positive (TP)}]
+Thực tế và dự đoán đều là lớp 1 (positive).
+\end{tinhchat}
+
+\begin{tinhchat}[title={True Negative (TN)}]
+Thực tế và dự đoán đều là lớp 0.
+\end{tinhchat}
+
+\begin{tinhchat}[title={False Positive (FP)}]
+Thực tế 0, dự đoán 1.
+\end{tinhchat}
+
+\begin{tinhchat}[title={False Negative (FN)}]
+Thực tế 1, dự đoán 0.
+\end{tinhchat}
+
+\begin{vidu}[title={Confusion matrix với sklearn}]
+\begin{lstlisting}
+from sklearn.metrics import confusion_matrix
+preds = gnb.predict(test)
+cm = confusion_matrix(test_labels, preds)
+print(cm)
+\end{lstlisting}
+\textbf{Output mẫu:}
+\begin{verbatim}
+[[ 73   7]
+ [  4 144]]
+\end{verbatim}
+\end{vidu}
+
+\begin{tinhchat}[title={Accuracy}]
+\[
+\mathrm{Accuracy}=\frac{TP+TN}{TP+FP+FN+TN}
+\]
+Ví dụ: $(73+144)/(73+7+4+144)=217/228\approx 0{,}952$.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Precision}]
+\[
+\mathrm{Precision}=\frac{TP}{TP+FP}
+\]
+Ví dụ: $73/80=0{,}915$.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Recall (Sensitivity)}]
+\[
+\mathrm{Recall}=\frac{TP}{TP+FN}
+\]
+Ví dụ: $73/77\approx 0{,}948$.
+\end{tinhchat}
+
+\begin{tinhchat}[title={Specificity}]
+\[
+\mathrm{Specificity}=\frac{TN}{TN+FP}
+\]
+Ví dụ: $144/151\approx 0{,}954$.
+\end{tinhchat}
+
+\begin{ynghia}[title={Chương tiếp theo}]
+Các thuật toán phân loại và confusion matrix được trình bày chi tiết trong các chương sau.
+\end{ynghia}

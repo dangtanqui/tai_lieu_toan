@@ -1,0 +1,68 @@
+%==============================================================================
+\section{Phân cụm dựa trên phân phối (Distribution-Based)}
+\label{sec:distribution-based}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân cụm dựa trên phân phối}]
+Còn gọi \textbf{phân cụm xác suất}: giả định dữ liệu sinh từ \textbf{hỗn hợp} phân phối xác suất;
+ước lượng phân phối nền rồi gom điểm có tính chất tương tự.
+\end{dinhnghia}
+
+\subsection{Gaussian Mixture Model (GMM)}
+
+\begin{dinhnghia}[title={GMM}]
+Giả định dữ liệu từ hỗn hợp phân phối \textbf{Gaussian}; mỗi Gaussian là một cụm.
+Ưu điểm: cụm \textbf{chồng lấn}, mô hình hóa \textbf{hiệp phương sai}, gán cụm \textbf{xác suất} cho từng điểm.
+Ứng dụng: phân đoạn ảnh, nhận dạng mẫu, phát hiện bất thường.
+\end{dinhnghia}
+
+\subsection{Triển khai Python (GaussianMixture, covariance full)}
+
+\begin{vidu}[title={Ví dụ GMM}]
+\begin{lstlisting}
+from sklearn.mixture import GaussianMixture
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+X, _ = make_blobs(n_samples=200, centers=4, random_state=0)
+
+gmm = GaussianMixture(n_components=4, covariance_type='full')
+gmm.fit(X)
+labels = gmm.predict(X)
+
+print("Cluster labels:", labels)
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={covariance\_type}]
+\texttt{full}: ma trận hiệp phương sai đầy đủ mỗi cụm.
+Các lựa chọn khác: \texttt{tied}, \texttt{diag}, \texttt{spherical}.
+Tham số khởi tạo điều khiển cách ước lượng tham số Gaussian ban đầu.
+\end{ynghia}
+
+\tsimg{13_distribution_based/img01.jpg}
+
+\subsection{Ưu và nhược điểm GMM}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item Mô hình hóa phân phối \textbf{linh hoạt}.
+  \item Xử lý dữ liệu \textbf{thiếu}.
+  \item Khung \textbf{xác suất} (độ không chắc chắn gán cụm).
+  \item Ước lượng mật độ và \textbf{sinh mẫu} mới.
+  \item Dùng trong \textbf{bán giám sát} khi một phần có nhãn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Nhạy} số cụm và khởi tạo mean/covariance.
+  \item \textbf{Đắt} trên chiều cao (nghịch đảo ma trận hiệp phương sai).
+  \item Giả định \textbf{Gaussian} có thể không đúng với mọi dữ liệu.
+  \item Dễ \textbf{overfitting} khi nhiều tham số hoặc ít mẫu.
+  \item Khó diễn giải khi ma trận hiệp phương sai phức tạp.
+\end{itemize}
+\end{luuy}

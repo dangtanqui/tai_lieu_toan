@@ -1,0 +1,63 @@
+%==============================================================================
+\section{OPTICS Clustering}
+\label{sec:optics}
+%==============================================================================
+
+\begin{dinhnghia}[title={OPTICS}]
+\textbf{O}rdering \textbf{P}oints \textbf{T}o \textbf{I}dentify the \textbf{C}lustering \textbf{S}tructure:
+thuật toán phân cụm dựa trên mật độ, liên quan DBSCAN nhưng mạnh hơn trong nhiều tình huống thực tế.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ưu thế so với DBSCAN}]
+\begin{itemize}
+  \item Nhận diện cụm \textbf{mật độ thay đổi}.
+  \item Xử lý \textbf{nhiễu} tốt hơn.
+  \item Sinh \textbf{cấu trúc phân cấp} cụm (phân tích ở nhiều mức độ chi tiết).
+\end{itemize}
+\end{ynghia}
+
+\subsection{Triển khai Python (scikit-learn)}
+
+\begin{vidu}[title={Ví dụ OPTICS với make\_blobs}]
+\begin{lstlisting}
+from sklearn.cluster import OPTICS
+from sklearn.datasets import make_blobs
+import matplotlib.pyplot as plt
+
+X, y = make_blobs(n_samples=2000, centers=4, cluster_std=0.60,
+                  random_state=0)
+
+optics = OPTICS(min_samples=50, xi=.05)
+optics.fit(X)
+
+labels = optics.labels_
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='turbo')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Tham số}]
+\texttt{min\_samples}: số mẫu tối thiểu để hình thành cụm.
+\texttt{xi}: độ dốc của hệ phân cấp cụm (steepness).
+Sau \texttt{fit}, mỗi điểm có nhãn cụm; vẽ scatter tô màu theo \texttt{labels\_}.
+\end{ynghia}
+
+\tsimg{09_optics/img01.jpg}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item Cụm \textbf{mật độ không đồng nhất}.
+  \item Tách \textbf{điểm nhiễu} không thuộc cụm nào.
+  \item \textbf{Dendrogram / reachability plot} hỗ trợ phân tích đa mức.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item Cần \textbf{tinh chỉnh} \texttt{min\_samples}, \texttt{xi} cẩn thận.
+  \item \textbf{Phức tạp tính toán} cao trên dataset lớn, đặc biệt khi \texttt{min\_samples} lớn.
+\end{itemize}
+\end{luuy}

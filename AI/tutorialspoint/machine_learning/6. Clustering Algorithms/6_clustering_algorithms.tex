@@ -1,9 +1,9 @@
 \documentclass[12pt,a4paper]{article}
 
-\def\courseshortheader{MACHINE LEARNING (PHẦN 3)}
+\def\courseshortheader{MACHINE LEARNING (PHẦN 6)}
 \def\coverbookline{TRÍ TUỆ NHÂN TẠO}
 \def\covermaintitle{Machine Learning}
-\def\coversubtitle{Phần 3 --- Statistics}
+\def\coversubtitle{Phần 6 --- Clustering Algorithms}
 
 \input{../../../1_machine_learning/_template/preamble.tex}
 
@@ -34,7 +34,6 @@
 \graphicspath{{images/}}
 
 \newcommand{\tsurl}[1]{\url{#1}}
-
 \newcommand{\tsimg}[2][0.88]{%
   \def\tsimgfile{images/#2}%
   \IfFileExists{\tsimgfile}{%
@@ -57,25 +56,30 @@
 \addcontentsline{toc}{section}{Lời nói đầu}
 
 \begin{ynghia}[title={Nguồn}]
-Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Statistics:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_statistics.htm}.
+Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Clustering Algorithms:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_clustering_algorithms.htm}.
 \end{ynghia}
 
 \begin{phuongphap}[title={Cách dùng}]
 \begin{itemize}
-  \item Đọc sau phần Basic và Data Visualization.
-  \item Ví dụ Python: NumPy, Pandas, SciPy, scikit-learn, statsmodels.
+  \item Đọc sau phần Classification Algorithms.
 \end{itemize}
 \end{phuongphap}
 
 \newpage
 
-\input{tex/01_statistics.tex}
-\input{tex/02_mean_median_mode.tex}
-\input{tex/03_standard_deviation.tex}
-\input{tex/04_percentiles.tex}
-\input{tex/05_data_distribution.tex}
-\input{tex/06_skewness_kurtosis.tex}
-\input{tex/07_bias_variance.tex}
-\input{tex/08_hypothesis.tex}
+\input{tex/01_clustering_algorithms.tex}
+\input{tex/02_centroid_based.tex}
+\input{tex/03_k_means.tex}
+\input{tex/04_k_medoids.tex}
+\input{tex/05_mean_shift.tex}
+\input{tex/06_hierarchical.tex}
+\input{tex/07_density_based.tex}
+\input{tex/08_dbscan.tex}
+\input{tex/09_optics.tex}
+\input{tex/10_hdbscan.tex}
+\input{tex/11_birch.tex}
+\input{tex/12_affinity_propagation.tex}
+\input{tex/13_distribution_based.tex}
+\input{tex/14_agglomerative.tex}
 
 \end{document}

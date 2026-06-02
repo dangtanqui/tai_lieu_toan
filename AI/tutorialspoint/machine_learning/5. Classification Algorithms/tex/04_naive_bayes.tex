@@ -1,0 +1,172 @@
+%==============================================================================
+\section{Thuật toán Naive Bayes}
+\label{sec:naive-bayes}
+%==============================================================================
+
+\begin{dinhnghia}[title={Naive Bayes là gì?}]
+Thuật toán Naive Bayes là thuật toán phân loại dựa trên \textbf{định lý Bayes}.
+Thuật toán giả định các feature \textbf{độc lập} với nhau --- vì vậy gọi là ``naive'' (ngây thơ).
+Tính xác suất mẫu thuộc một lớp dựa trên xác suất của từng feature.
+\end{dinhnghia}
+
+\begin{vidu}[title={Ví dụ điện thoại thông minh}]
+Điện thoại có thể được coi là ``thông minh'' nếu có màn hình cảm ứng, internet, camera tốt, v.v.
+Dù các feature phụ thuộc nhau trong thực tế, mỗi feature vẫn \textbf{đóng góp độc lập} vào xác suất điện thoại thông minh.
+\end{vidu}
+
+\begin{dinhnghia}[title={Xác suất hậu nghiệm trong phân loại Bayes}]
+Trong phân loại Bayes, quan tâm chính là xác suất hậu nghiệm: xác suất nhãn $L$ khi đã quan sát feature, $P(L \mid \text{features})$.
+Theo định lý Bayes:
+\[
+P(L \mid \text{features}) =
+\frac{P(L)\, P(\text{features} \mid L)}{P(\text{features})}
+\]
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ý nghĩa các thành phần}]
+\begin{itemize}
+  \item $P(L \mid \text{features})$: xác suất hậu nghiệm của lớp;
+  \item $P(L)$: xác suất tiên nghiệm (prior) của lớp;
+  \item $P(\text{features} \mid L)$: likelihood --- xác suất predictor khi biết lớp;
+  \item $P(\text{features})$: xác suất tiên nghiệm của predictor.
+\end{itemize}
+\end{ynghia}
+
+\begin{phuongphap}[title={Quy trình Naive Bayes}]
+Dùng định lý Bayes tính xác suất mẫu thuộc từng lớp.
+Với mỗi feature, tính $P(\text{feature} \mid L)$ rồi \textbf{nhân} các likelihood (giả định độc lập).
+Nhân likelihood với prior $P(L)$ để có posterior.
+Lặp cho mọi lớp; chọn lớp có xác suất cao nhất.
+\end{phuongphap}
+
+\subsection{Các loại thuật toán Naive Bayes}
+
+\begin{ynghia}[title={Nhiều biến thể}]
+Có nhiều loại Naive Bayes; phần này trình bày ba loại phổ biến.
+\end{ynghia}
+
+\begin{dinhnghia}[title={Gaussian Naive Bayes}]
+Gaussian Naive Bayes là bộ phân loại Naive Bayes đơn giản nhất: giả định dữ liệu mỗi nhãn được rút từ phân phối Gaussian.
+Dùng khi feature là biến \textbf{liên tục} tuân theo phân phối chuẩn.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Multinomial Naive Bayes}]
+Giả định feature được rút từ phân phối \textbf{Multinomial}.
+Phù hợp feature dạng \textbf{đếm rời rạc}; thường dùng phân loại văn bản (tần suất từ trong tài liệu).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Bernoulli Naive Bayes}]
+Giả định feature \textbf{nhị phân} (0 và 1).
+Phân loại văn bản với mô hình ``bag of words'' có thể dùng Bernoulli Naive Bayes.
+\end{dinhnghia}
+
+\subsection{Triển khai Naive Bayes bằng Python}
+
+\begin{dongco}[title={Gaussian Naive Bayes}]
+Tùy dataset chọn mô hình phù hợp; ở đây triển khai \textbf{Gaussian Naive Bayes} bằng scikit-learn.
+\end{dongco}
+
+\begin{vidu}[title={Import}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.set()
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Tạo blob phân phối Gaussian}]
+\begin{lstlisting}
+from sklearn.datasets import make_blobs
+X, y = make_blobs(300, 2, centers=2, random_state=2,
+                  cluster_std=1.5)
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='summer')
+plt.show()
+\end{lstlisting}
+
+\tsimg{04_naive_bayes/img01.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Huấn luyện GaussianNB}]
+\begin{lstlisting}
+from sklearn.naive_bayes import GaussianNB
+model_GNB = GaussianNB()
+model_GNB.fit(X, y)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Dự đoán trên dữ liệu mới}]
+\begin{lstlisting}
+rng = np.random.RandomState(0)
+Xnew = [-6, -14] + [14, 18] * rng.rand(2000, 2)
+ynew = model_GNB.predict(Xnew)
+
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='summer')
+lim = plt.axis()
+plt.scatter(Xnew[:, 0], Xnew[:, 1], c=ynew, s=20,
+            cmap='summer', alpha=0.1)
+plt.axis(lim)
+plt.show()
+\end{lstlisting}
+
+\tsimg{04_naive_bayes/img02.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Xác suất hậu nghiệm}]
+\begin{lstlisting}
+yprob = model_GNB.predict_proba(Xnew)
+yprob[-10:].round(3)
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{verbatim}
+array([[0.998, 0.002],
+       [1.   , 0.   ],
+       [0.987, 0.013],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [1.   , 0.   ],
+       [0.   , 1.   ],
+       [0.986, 0.014]])
+\end{verbatim}
+\end{vidu}
+
+\subsection{Ưu và nhược điểm phân loại Naive Bayes}
+
+\begin{tinhchat}[title={Ưu điểm (Pros)}]
+\begin{itemize}
+  \item Dễ triển khai và \textbf{nhanh}.
+  \item Hội tụ nhanh hơn mô hình phân biệt như logistic regression.
+  \item Cần \textbf{ít dữ liệu huấn luyện}.
+  \item Mở rộng tuyến tính theo số predictor và số điểm dữ liệu.
+  \item Dự đoán xác suất; xử lý dữ liệu liên tục và rời rạc.
+  \item Dùng cho phân loại \textbf{nhị phân} và \textbf{đa lớp}.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm (Cons)}]
+\begin{itemize}
+  \item Giả định \textbf{độc lập feature} mạnh --- trong thực tế gần như không bao giờ đúng tuyệt đối.
+  \item Vấn đề \textbf{zero frequency}: nếu một giá trị phân loại chưa xuất hiện trong tập huấn luyện, mô hình gán xác suất 0 và không dự đoán được (cần làm trơn Laplace trong thực hành).
+\end{itemize}
+\end{luuy}
+
+\subsection{Ứng dụng phân loại Naive Bayes}
+
+\begin{ynghia}[title={Dự đoán thời gian thực}]
+Triển khai và tính toán nhanh $\Rightarrow$ phù hợp dự đoán real-time.
+\end{ynghia}
+
+\begin{ynghia}[title={Dự đoán đa lớp}]
+Ước lượng xác suất hậu nghiệm của nhiều lớp biến mục tiêu.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân loại văn bản}]
+Phù hợp spam-filtering, phân tích cảm xúc (sentiment analysis).
+\end{ynghia}
+
+\begin{ynghia}[title={Hệ gợi ý (Recommendation system)}]
+Kết hợp collaborative filtering: lọc thông tin chưa thấy, dự đoán người dùng có thích tài nguyên hay không.
+\end{ynghia}

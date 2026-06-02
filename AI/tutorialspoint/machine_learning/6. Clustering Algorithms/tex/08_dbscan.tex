@@ -1,0 +1,90 @@
+%==============================================================================
+\section{DBSCAN Clustering}
+\label{sec:dbscan}
+%==============================================================================
+
+\begin{dinhnghia}[title={DBSCAN}]
+\textbf{D}ensity-\textbf{B}ased \textbf{S}patial \textbf{C}lustering of \textbf{A}pplications with \textbf{N}oise:
+thuật toán phân cụm dựa trên mật độ, cần hai tham số --- \texttt{minPts} (số láng giềng tối thiểu) và \texttt{eps} (khoảng cách tối đa giữa điểm lõi).
+\end{dinhnghia}
+
+\subsection{Cách DBSCAN hoạt động}
+
+\begin{phuongphap}[title={Các bước thuật toán}]
+\begin{enumerate}
+  \item Chọn ngẫu nhiên một điểm dữ liệu chưa được thăm.
+  \item Nếu điểm có ít nhất \texttt{minPts} láng giềng trong bán kính \texttt{eps}: tạo cụm mới, thêm điểm và các láng giềng vào cụm.
+  \item Nếu không đủ láng giềng: đánh dấu điểm là \textbf{nhiễu} (noise) và chuyển sang điểm tiếp theo.
+  \item Lặp các bước 1--3 cho đến khi mọi điểm đã được thăm.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Triển khai Python (scikit-learn)}
+
+\begin{vidu}[title={Bước 1: Nạp dataset make\_moons}]
+\begin{lstlisting}
+from sklearn.datasets import make_moons
+X, y = make_moons(n_samples=200, noise=0.05, random_state=0)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2: DBSCAN với eps và min\_samples}]
+\begin{lstlisting}
+from sklearn.cluster import DBSCAN
+clustering = DBSCAN(eps=0.2, min_samples=5)
+clustering.fit(X)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3: Trực quan hóa kết quả}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=clustering.labels_, cmap='rainbow')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Ví dụ đầy đủ}]
+\begin{lstlisting}
+from sklearn.datasets import make_moons
+from sklearn.cluster import DBSCAN
+import matplotlib.pyplot as plt
+
+X, y = make_moons(n_samples=200, noise=0.05, random_state=0)
+clustering = DBSCAN(eps=0.2, min_samples=5)
+clustering.fit(X)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=clustering.labels_, cmap='rainbow')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả mong đợi}]
+Biểu đồ phân tán cho thấy hai cụm tách bạch (hai ``vầng trăng''); điểm nhiễu thường được tô màu đen (nhãn $-1$).
+\end{ynghia}
+
+\tsimg{08_dbscan/img01.jpg}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item Xử lý cụm \textbf{hình dạng tùy ý}, không giả định cụm hình cầu như K-means.
+  \item \textbf{Không cần biết trước} số cụm.
+  \item \textbf{Phát hiện outlier}: điểm xa vùng mật độ cao được coi là nhiễu.
+  \item Tương đối \textbf{ít nhạy} với khởi tạo so với K-means.
+  \item \textbf{Mở rộng} tốt: chỉ cần khoảng cách giữa các láng giềng, không phải mọi cặp điểm.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Nhạy} với \texttt{eps} và \texttt{min\_samples}; chọn sai có thể gộp cụm hoặc bỏ sót cụm.
+  \item Kém trên dataset \textbf{mật độ không đồng nhất} (giả định mật độ cụm tương tự).
+  \item Có thể \textbf{không xác định} giữa các lần chạy.
+  \item \textbf{Tốn kém} trên dữ liệu chiều cao (tính khoảng cách đắt).
+  \item Nhiễu/outlier mật độ cao có thể bị gán nhầm vào cụm.
+\end{itemize}
+\end{luuy}

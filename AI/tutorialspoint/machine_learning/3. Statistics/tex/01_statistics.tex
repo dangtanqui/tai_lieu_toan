@@ -4,9 +4,8 @@
 %==============================================================================
 
 \begin{dongco}[title={Vai trò của thống kê}]
-Thống kê là công cụ then chốt trong học máy vì giúp hiểu pattern nền trong dữ liệu.
+Thống kê là công cụ then chốt trong học máy vì giúp hiểu pattern ẩn trong dữ liệu.
 Nó cung cấp phương pháp mô tả, tóm tắt và phân tích dữ liệu.
-Phần này giới thiệu các cơ bản thống kê cho ML.
 \end{dongco}
 
 \subsection{Statistics là gì?}
@@ -25,14 +24,16 @@ Thống kê là nền tảng học máy: phân tích và trực quan hoá để 
 
 \begin{phuongphap}[title={Danh sách khái niệm quan trọng}]
 \begin{itemize}
-  \item \textbf{Mean, Median, Mode}: đo xu hướng trung tâm.
-  \item \textbf{Standard deviation, Variance}: độ phân tán quanh mean.
-  \item \textbf{Percentiles}: giá trị dưới đó một tỷ lệ \% quan sát rơi vào.
-  \item \textbf{Data distribution}: cách điểm dữ liệu trải trên miền giá trị.
-  \item \textbf{Skewness, Kurtosis}: độ lệch và độ nhọn của phân phối.
-  \item \textbf{Bias, Variance}: nguồn sai số dự đoán mô hình.
-  \item \textbf{Hypothesis}: giả thuyết / lời giải đề xuất cho bài toán.
-  \item \textbf{Linear / Logistic Regression, PCA}: các kỹ thuật liên quan (chi tiết ở các phần sau Tutorialspoint).
+  \item \textbf{Trung bình (Mean), Trung vị (Median), Mode}: đo xu hướng trung tâm.
+  \item \textbf{Phương sai (Variance), Độ lệch chuẩn (Standard deviation)}: độ phân tán quanh mean.
+  \item \textbf{Phân vị (Percentiles)}: giá trị dưới đó một tỷ lệ \% quan sát rơi vào.
+  \item \textbf{Phân phối dữ liệu (Data distribution)}: cách điểm dữ liệu trải trên miền giá trị.
+  \item \textbf{Độ lệch (Skewness), Độ nhọn (Kurtosis)}: độ lệch và độ nhọn của phân phối.
+  \item \textbf{Sai số (Bias), Phương sai (Variance)}: nguồn sai số dự đoán mô hình.
+  \item \textbf{Giả thuyết (Hypothesis)}: giả thuyết / lời giải đề xuất cho bài toán.
+  \item \textbf{Hồi quy tuyến tính (Linear Regression)}: dự đoán giá trị của một biến dựa trên giá trị của một biến khác .
+  \item \textbf{Hồi quy logistic (Logistic Regression)}: ước tính xác suất xảy ra của một sự kiện.
+  \item \textbf{Phân tích thành phần chính (PCA)}: giảm số chiều của dữ liệu bằng cách tìm ra các thành phần chính (principal components) của dữ liệu.
 \end{itemize}
 \end{phuongphap}
 
@@ -108,7 +109,3 @@ print(model.summary())
 
 \textbf{Output} (trích): bảng hệ số, std err, $t$, $P>|t|$, $R^2$; với dữ liệu tuyến tính hoàn hảo, hệ số $x_1 \approx 2$.
 \end{vidu}
-
-\begin{luuy}[title={Tiếp theo}]
-Các chương sau trình bày chi tiết từng đại lượng thống kê kèm ví dụ Python.
-\end{luuy}

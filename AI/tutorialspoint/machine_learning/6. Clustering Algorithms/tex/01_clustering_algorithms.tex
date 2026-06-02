@@ -1,0 +1,160 @@
+%==============================================================================
+\section{Thuật toán phân cụm (Clustering Algorithms)}
+\label{sec:clustering-algorithms}
+%==============================================================================
+
+\begin{dinhnghia}[title={Thuật toán phân cụm}]
+Một trong những phương pháp \textbf{học không giám sát} hữu ích nhất: tìm độ tương tự và quy luật quan hệ giữa các mẫu dữ liệu, rồi gom các mẫu tương tự (theo feature) thành cụm.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Tầm quan trọng}]
+Phân cụm xác định nhóm nội tại trong dữ liệu \textbf{không nhãn}.
+Mỗi giả định về độ tương tự giữa điểm dữ liệu tạo ra các cụm khác nhau nhưng đều có thể hợp lệ.
+\end{ynghia}
+
+\tsimg{01_clustering_algorithms/img01.jpg}
+
+\subsection{Phương pháp hình thành cụm}
+
+\begin{phuongphap}[title={Không nhất thiết hình cầu}]
+Cụm không bắt buộc có dạng hình cầu. Các hướng hình thành cụm phổ biến:
+\end{phuongphap}
+
+\begin{ynghia}[title={Dựa trên mật độ (Density-based)}]
+Cụm là vùng \textbf{mật độ cao}; độ chính xác tốt, có thể gộp hai cụm.
+Ví dụ: DBSCAN, OPTICS.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân cấp (Hierarchical-based)}]
+Cụm dạng \textbf{cây} theo thứ bậc.
+Agglomerative (gộp từ dưới lên), Divisive (chia từ trên xuống).
+Ví dụ: CURE, BIRCH.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân hoạch (Partitioning)}]
+Chia đối tượng thành $k$ cụm; số cụm bằng số phân hoạch.
+Ví dụ: K-means, CLARANS.
+\end{ynghia}
+
+\begin{ynghia}[title={Lưới (Grid)}]
+Cụm dạng \textbf{lưới}; thao tác trên lưới nhanh, độc lập số đối tượng.
+Ví dụ: STING, CLIQUE.
+\end{ynghia}
+
+\subsection{Các thuật toán phân cụm chính}
+
+\begin{phuongphap}[title={Danh sách}]
+K-Means, K-Medoids, Mean-Shift, DBSCAN, OPTICS, HDBSCAN, BIRCH, Affinity Propagation, Agglomerative Clustering, Gaussian Mixture Model (GMM).
+Chi tiết từng thuật toán ở các chương sau; dưới đây là tóm tắt ngắn.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={K-Means}]
+Tính centroid và lặp đến centroid tối ưu; giả định \textbf{đã biết} số cụm $K$ (flat clustering).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={K-Medoids}]
+Cải tiến K-means: chọn $k$ medoid ngẫu nhiên, gán điểm, cập nhật medoid (tối thiểu tổng khoảng cách trong cụm), lặp đến hội tụ.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mean-Shift}]
+Phân cụm mạnh, \textbf{không tham số hóa} giả định phân phối (non-parametric).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={DBSCAN}]
+Cần hai tham số: \texttt{minPts} (số láng giềng tối thiểu) và \texttt{eps} (khoảng cách tối đa giữa điểm lõi).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={OPTICS}]
+Giống DBSCAN nhưng xử lý cụm mật độ khác nhau, nhiễu, và cho cấu trúc phân cấp.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={HDBSCAN}]
+Mở rộng DBSCAN: cụm mật độ thay đổi, hình dạng/kích thước đa dạng.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={BIRCH}]
+Phân cấp cho dataset lớn; cây cụm con bằng chia đệ quy đến khi đạt tiêu chí dừng.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Affinity Propagation}]
+Xác định ``exemplar''; không cần chỉ định trước số cụm --- hữu ích khám phá dữ liệu (Frey \& Dueck, 2007).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Agglomerative Clustering}]
+Phân cấp bottom-up: mỗi điểm là một cụm, gộp cụm gần nhất; sinh \textbf{dendrogram}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Gaussian Mixture Model (GMM)}]
+Giả định dữ liệu sinh từ hỗn hợp phân phối Gaussian; mỗi Gaussian là một cụm.
+\end{dinhnghia}
+
+\subsection{Đo hiệu năng phân cụm}
+
+\begin{dongco}[title={Bối cảnh}]
+Với học có giám sát, đánh giá mô hình tương đối dễ vì có nhãn.
+Với học không giám sát, dữ liệu không nhãn nhưng vẫn có metric so sánh mô hình với nhau (không chứng minh ``đúng tuyệt đối'').
+\end{dongco}
+
+\begin{phuongphap}[title={Ba metric phổ biến}]
+Silhouette Analysis; Davies--Bouldin Index; Dunn Index.
+\end{phuongphap}
+
+\subsubsection{Silhouette Analysis}
+
+\begin{tinhchat}[title={Silhouette score}]
+Đo khoảng cách giữa các cụm; hỗ trợ chọn số cụm qua điểm Silhouette.
+Miền giá trị $[-1, 1]$:
+\begin{itemize}
+  \item Gần $+1$: mẫu xa cụm láng giềng.
+  \item $0$: mẫu gần ranh giới giữa hai cụm.
+  \item Gần $-1$: mẫu có thể gán nhầm cụm.
+\end{itemize}
+\end{tinhchat}
+
+\begin{phuongphap}[title={Công thức (ý nghĩa)}]
+Với mỗi mẫu: $s = (b - a) / \max(a, b)$, trong đó $a$ = khoảng cách trung bình trong cụm, $b$ = khoảng cách trung bình đến cụm láng giềng gần nhất.
+\end{phuongphap}
+
+\subsubsection{Davies--Bouldin Index}
+
+\begin{tinhchat}[title={DB index}]
+Đánh giá cụm có \textbf{cách xa} nhau không, cụm có \textbf{dày} không; DB index \textbf{càng nhỏ} càng tốt.
+\[
+\mathrm{DB} = \frac{1}{n}\sum_{i=1}^{n} \max_{j \neq i}
+\left( \frac{\sigma_i + \sigma_j}{d(c_i, c_j)} \right)
+\]
+$n$: số cụm; $\sigma_i$: khoảng cách trung bình các điểm trong cụm đến centroid $c_i$.
+\end{tinhchat}
+
+\subsubsection{Dunn Index}
+
+\begin{tinhchat}[title={Dunn Index}]
+Tương tự DB index nhưng:
+\begin{itemize}
+  \item Dunn chỉ xét \textbf{trường hợp xấu nhất} (cụm gần nhau nhất).
+  \item DB xét dispersion và separation của \textbf{mọi} cặp cụm.
+  \item Dunn \textbf{tăng} khi hiệu năng tốt; DB tốt khi cụm tách xa và dày.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Ứng dụng phân cụm}
+
+\begin{ynghia}[title={Tóm tắt và nén dữ liệu}]
+Xử lý ảnh, lượng tử hóa vector.
+\end{ynghia}
+
+\begin{ynghia}[title={Hệ thống gợi ý và phân khúc khách hàng}]
+Gom sản phẩm hoặc người dùng tương tự.
+\end{ynghia}
+
+\begin{ynghia}[title={Bước trung gian khai phá dữ liệu}]
+Tóm tắt cho phân loại, kiểm định, sinh giả thuyết.
+\end{ynghia}
+
+\begin{ynghia}[title={Phát hiện xu hướng trong dữ liệu động}]
+Gom cụm xu hướng tương tự theo thời gian.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân tích mạng xã hội và dữ liệu sinh học}]
+Chuỗi trong ảnh/video/âm thanh; phân cụm trong phân tích dữ liệu sinh học.
+\end{ynghia}

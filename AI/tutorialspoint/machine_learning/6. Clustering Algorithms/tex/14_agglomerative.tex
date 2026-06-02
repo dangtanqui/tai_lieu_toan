@@ -1,0 +1,106 @@
+%==============================================================================
+\section{Agglomerative Clustering}
+\label{sec:agglomerative}
+%==============================================================================
+
+\begin{dinhnghia}[title={Agglomerative Clustering}]
+Thuật toán phân cụm \textbf{phân cấp bottom-up}: mỗi điểm ban đầu là một cụm, lặp gộp hai cụm gần nhất đến khi đạt tiêu chí dừng.
+Sinh \textbf{dendrogram} thể hiện quan hệ phân cấp giữa các cụm.
+\end{dinhnghia}
+
+\subsection{Các bước thuật toán}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item Coi \textbf{mỗi điểm} là một cụm riêng.
+  \item Tính \textbf{ma trận gần} (proximity) bằng metric khoảng cách.
+  \item \textbf{Gộp} hai cụm theo tiêu chí linkage (single, complete, average, ward, \ldots).
+  \item \textbf{Cập nhật} ma trận khoảng cách.
+  \item Lặp bước 3--4 cho đến khi còn \textbf{một cụm} (hoặc dừng sớm theo ngưỡng).
+\end{enumerate}
+\end{phuongphap}
+
+\begin{ynghia}[title={Vì sao dùng Agglomerative?}]
+Dễ diễn giải quan hệ giữa điểm; không bắt buộc biết số cụm trước khi xây dendrogram (số cụm chọn khi ``cắt'' cây).
+Hiệu quả, phát hiện được cụm nhỏ.
+\end{ynghia}
+
+\subsection{Triển khai Python (Iris, dendrogram)}
+
+\begin{vidu}[title={Nạp Iris và linkage ward}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import load_iris
+from sklearn.cluster import AgglomerativeClustering
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+Z = linkage(X, 'ward')
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ dendrogram}]
+\begin{lstlisting}
+plt.figure(figsize=(7.5, 3.5))
+plt.title("Iris Dendrogram")
+dendrogram(Z)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\tsimg{14_agglomerative/img01.jpg}
+
+\begin{vidu}[title={AgglomerativeClustering và scatter kết quả}]
+\begin{lstlisting}
+model = AgglomerativeClustering(n_clusters=3)
+model.fit(X)
+labels = model.labels_
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels)
+plt.xlabel("Sepal length")
+plt.ylabel("Sepal width")
+plt.title("Agglomerative Clustering Results")
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\tsimg{14_agglomerative/img02.jpg}
+
+\begin{ynghia}[title={ward}]
+Phương pháp \texttt{ward} tối thiểu hóa phương sai khoảng cách khi gộp cụm --- thường cho cụm cân bằng hơn trên Iris.
+\end{ynghia}
+
+\subsection{Ưu, nhược điểm và ứng dụng}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Dendrogram} thể hiện quan hệ phân cấp.
+  \item Nhiều \textbf{metric} và \textbf{linkage}.
+  \item Linh hoạt \textbf{số cụm} khi cắt cây.
+  \item Triển khai hiệu quả cho dataset lớn vừa phải.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Tốn kém} trên dataset rất lớn.
+  \item Cụm \textbf{mất cân bằng} nếu metric/linkage không phù hợp.
+  \item Kết quả \textbf{nhạy} lựa chọn metric và linkage.
+  \item Dendrogram \textbf{khó đọc} khi có rất nhiều cụm/điểm.
+\end{itemize}
+\end{luuy}
+
+\begin{ynghia}[title={Ứng dụng}]
+\begin{itemize}
+  \item \textbf{Phân đoạn ảnh} (Image Segmentation).
+  \item \textbf{Phân cụm tài liệu} (Document Clustering).
+  \item \textbf{Phân khúc khách hàng} / hành vi khách hàng.
+  \item \textbf{Phân khúc thị trường} (Market Segmentation).
+  \item \textbf{Phân tích mạng xã hội}.
+\end{itemize}
+\end{ynghia}

@@ -1,9 +1,9 @@
 \documentclass[12pt,a4paper]{article}
 
-\def\courseshortheader{MACHINE LEARNING (PHẦN 3)}
+\def\courseshortheader{MACHINE LEARNING (PHẦN 5)}
 \def\coverbookline{TRÍ TUỆ NHÂN TẠO}
 \def\covermaintitle{Machine Learning}
-\def\coversubtitle{Phần 3 --- Statistics}
+\def\coversubtitle{Phần 5 --- Classification Algorithms}
 
 \input{../../../1_machine_learning/_template/preamble.tex}
 
@@ -34,7 +34,6 @@
 \graphicspath{{images/}}
 
 \newcommand{\tsurl}[1]{\url{#1}}
-
 \newcommand{\tsimg}[2][0.88]{%
   \def\tsimgfile{images/#2}%
   \IfFileExists{\tsimgfile}{%
@@ -57,25 +56,25 @@
 \addcontentsline{toc}{section}{Lời nói đầu}
 
 \begin{ynghia}[title={Nguồn}]
-Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Statistics:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_statistics.htm}.
+Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Classification Algorithms:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_classification_algorithms.htm}.
 \end{ynghia}
 
 \begin{phuongphap}[title={Cách dùng}]
 \begin{itemize}
-  \item Đọc sau phần Basic và Data Visualization.
-  \item Ví dụ Python: NumPy, Pandas, SciPy, scikit-learn, statsmodels.
+  \item Đọc sau phần Regression Analysis.
 \end{itemize}
 \end{phuongphap}
 
 \newpage
 
-\input{tex/01_statistics.tex}
-\input{tex/02_mean_median_mode.tex}
-\input{tex/03_standard_deviation.tex}
-\input{tex/04_percentiles.tex}
-\input{tex/05_data_distribution.tex}
-\input{tex/06_skewness_kurtosis.tex}
-\input{tex/07_bias_variance.tex}
-\input{tex/08_hypothesis.tex}
+\input{tex/01_classification_algorithms.tex}
+\input{tex/02_logistic_regression.tex}
+\input{tex/03_knn.tex}
+\input{tex/04_naive_bayes.tex}
+\input{tex/05_decision_tree.tex}
+\input{tex/06_svm.tex}
+\input{tex/07_random_forest.tex}
+\input{tex/08_confusion_matrix.tex}
+\input{tex/09_stochastic_gradient_descent.tex}
 
 \end{document}

@@ -1,0 +1,98 @@
+%==============================================================================
+\section{Thuật toán Random Forest}
+\label{sec:random-forest}
+%==============================================================================
+
+\begin{dinhnghia}[title={Random Forest}]
+Thuật toán học máy dùng \textbf{tập hợp} (ensemble) cây quyết định để dự đoán; Leo Breiman, 2001.
+Tạo nhiều cây, mỗi cây huấn luyện trên tập con dữ liệu khác nhau; kết hợp dự đoán.
+\end{dinhnghia}
+
+\subsection{Cách Random Forest hoạt động}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item Chọn ngẫu nhiên mẫu từ dataset.
+  \item Xây cây quyết định cho từng mẫu; thu dự đoán từng cây.
+  \item \textbf{Bỏ phiếu} (voting) cho từng kết quả dự đoán.
+  \item Chọn kết quả được bỏ phiếu nhiều nhất làm dự đoán cuối.
+\end{enumerate}
+\end{phuongphap}
+
+\tsimg{07_random_forest/img01.jpg}
+
+\begin{ynghia}[title={Phân loại và hồi quy}]
+Phân loại: dùng \textbf{mode} (lớp đa số) của các cây.
+Hồi quy: dùng \textbf{trung bình} dự đoán các cây.
+\end{ynghia}
+
+\subsection{Ưu điểm}
+
+\begin{tinhchat}[title={Ưu điểm chính}]
+\begin{itemize}
+  \item \textbf{Chống overfitting}: ensemble giảm ảnh hưởng outlier và nhiễu.
+  \item \textbf{Độ chính xác cao}: kết hợp nhiều cây.
+  \item \textbf{Xử lý dữ liệu thiếu}: không bắt buộc mọi feature có mặt ở mọi điểm.
+  \item \textbf{Quan hệ phi tuyến}: cây quyết định mô hình hóa phi tuyến.
+  \item \textbf{Feature importance}: hỗ trợ chọn/làm feature.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Triển khai Python}
+
+\begin{vidu}[title={Bước 1--2: Import và nạp Iris}]
+\begin{lstlisting}
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.datasets import load_iris
+
+iris = load_iris()
+X = pd.DataFrame(iris.data, columns=iris.feature_names)
+y = iris.target
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3: Tiền xử lý và chia dữ liệu}]
+\begin{lstlisting}
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.35, random_state=42)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 4--5: Huấn luyện và dự đoán}]
+\begin{lstlisting}
+rfc = RandomForestClassifier(n_estimators=100)
+rfc.fit(X_train, y_train)
+y_pred = rfc.predict(X_test)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 6: Đánh giá}]
+\begin{lstlisting}
+from sklearn.metrics import (accuracy_score, precision_score,
+                             recall_score, f1_score)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("Precision:", precision_score(y_test, y_pred, average='weighted'))
+print("Recall:", recall_score(y_test, y_pred, average='weighted'))
+print("F1-score:", f1_score(y_test, y_pred, average='weighted'))
+\end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+Accuracy: 0.9811320754716981
+Precision: 0.9821802935010483
+Recall: 0.9811320754716981
+F1-score: 0.9811157396063056
+\end{verbatim}
+\end{vidu}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Pros}]
+Giảm overfitting nhờ trung bình/kết hợp cây; hoạt động tốt trên nhiều loại dữ liệu hơn một cây; phương sai thấp hơn một cây; linh hoạt, chính xác cao; \textbf{không bắt buộc scale} feature.
+\end{tinhchat}
+
+\begin{luuy}[title={Cons}]
+Phức tạp cao; xây dựng tốn thời gian và tài nguyên hơn một cây; khó trực quan khi có rất nhiều cây; dự đoán chậm hơn một số thuật toán khác.
+\end{luuy}

@@ -1,0 +1,72 @@
+%==============================================================================
+\section{HDBSCAN Clustering}
+\label{sec:hdbscan}
+%==============================================================================
+
+\begin{dinhnghia}[title={HDBSCAN}]
+\textbf{H}ierarchical \textbf{D}ensity-\textbf{B}ased \textbf{S}patial \textbf{C}lustering of \textbf{A}pplications with \textbf{N}oise:
+mở rộng DBSCAN, xử lý cụm mật độ và hình dạng đa dạng tốt hơn.
+\end{dinhnghia}
+
+\subsection{Cách HDBSCAN hoạt động}
+
+\begin{phuongphap}[title={Mutual reachability và phân cấp}]
+\begin{enumerate}
+  \item Xây đồ thị \textbf{mutual-reachability}: mỗi điểm là nút, cạnh có trọng số theo độ tương đồng/khoảng cách; nối hai điểm nếu \textbf{khoảng cách mutual reachability} dưới ngưỡng.
+  \item \textbf{Mutual reachability} giữa hai điểm là max của hai reachability distance; reachability phản ánh mức ``dễ'' đi từ điểm này sang điểm kia (phụ thuộc mật độ trên đường đi).
+  \item Trích \textbf{phân cấp cụm} từ đồ thị bằng thuật toán \textbf{minimum spanning tree (MST)}: lá = điểm đơn lẻ, nút trong = cụm nhiều kích thước/hình dạng.
+  \item Áp dụng \textbf{condensed tree} lên MST, cắt ở mức phù hợp (kích thước cụm tối thiểu hoặc độ ổn định cụm) để ra cụm cuối.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Cài đặt và sử dụng (gói hdbscan)}
+
+\begin{vidu}[title={Cài đặt pip}]
+\begin{lstlisting}
+pip install hdbscan
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Huấn luyện trên make\_blobs}]
+\begin{lstlisting}
+import hdbscan
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+X, y = make_blobs(n_samples=1000, centers=3, random_state=42)
+
+clusterer = hdbscan.HDBSCAN(min_cluster_size=10, metric='euclidean')
+clusterer.fit(X)
+
+labels = clusterer.labels_
+colors = np.array([x for x in 'bgrcmykbgrcmykbgrcmykbgrcmyk'])
+colors = np.hstack([colors] * 20)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=colors[labels])
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\tsimg{10_hdbscan/img01.jpg}
+
+\subsection{Tham số chính}
+
+\begin{tinhchat}[title={Tham số điều chỉnh}]
+\begin{itemize}
+  \item \texttt{min\_cluster\_size}: kích thước cụm tối thiểu; điểm không thuộc cụm nào được gán \textbf{noise}.
+  \item \texttt{min\_samples}: số mẫu tối thiểu trong lân cận để điểm là \textbf{core}.
+  \item \texttt{cluster\_selection\_epsilon}: bán kính lân cận khi chọn cụm.
+  \item \texttt{metric}: metric khoảng cách (ví dụ \texttt{euclidean}).
+\end{itemize}
+\end{tinhchat}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item Cụm \textbf{mật độ khác nhau}.
+  \item Cụm \textbf{không hình cầu}, kích thước đa dạng.
+  \item \textbf{Không cần} chỉ định số cụm.
+  \item \textbf{Chống nhiễu}: outlier gán nhãn noise.
+\end{itemize}
+\end{tinhchat}
