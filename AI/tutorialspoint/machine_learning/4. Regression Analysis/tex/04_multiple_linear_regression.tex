@@ -4,86 +4,152 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={Hồi quy tuyến tính đa biến (MLR)}]
-Thuật toán học có giám sát mô hình quan hệ giữa \textbf{một} biến phụ thuộc liên tục và \textbf{nhiều} biến độc lập.
-Biến phân loại (ví dụ \texttt{State}) cần mã hóa số trước khi đưa vào mô hình tuyến tính.
+Thuật toán học có giám sát mô hình quan hệ giữa \textbf{một} biến phụ thuộc và \textbf{nhiều} biến độc lập; quan hệ này dùng để dự đoán giá trị biến phụ thuộc.
 \end{dinhnghia}
 
-\begin{ynghia}[title={So với hồi quy đơn}]
-MLR là mở rộng của hồi quy đơn: dự đoán bằng hai hoặc nhiều feature.
+\begin{phuongphap}[title={Hai loại hồi quy tuyến tính}]
+\begin{itemize}
+  \item \textbf{Hồi quy đơn}: một biến phụ thuộc và một biến độc lập.
+  \item \textbf{Hồi quy đa biến}: một biến phụ thuộc và \textbf{hơn một} biến độc lập.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Khái niệm chi tiết}
+
+\begin{dinhnghia}[title={MLR trong học máy}]
+Kỹ thuật thống kê dự đoán kết quả biến phụ thuộc từ giá trị nhiều biến độc lập.
+Thuật toán huấn luyện trên dữ liệu để học quan hệ (đường hồi quy) khớp tốt nhất; quan hệ mô tả các yếu tố ảnh hưởng kết quả và dùng để \textbf{dự báo} khi biết giá trị các biến độc lập.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Kiểu biến}]
+Trong hồi quy tuyến tính (đơn và đa biến), biến phụ thuộc là \textbf{liên tục} (số).
+Biến độc lập có thể liên tục hoặc rời rạc (số); biến phân loại (giới tính, nghề nghiệp) cần \textbf{mã hóa số} trước khi đưa vào mô hình.
+\end{phuongphap}
+
+\begin{ynghia}[title={Mở rộng hồi quy đơn}]
+MLR mở rộng hồi quy đơn: dự đoán bằng hai hoặc nhiều feature.
 \end{ynghia}
 
-\begin{dinhnghia}[title={Phương trình}]
-Với $n$ quan sát, $p$ feature:
+\subsection{Phương trình}
+
+\begin{dinhnghia}[title={Mô hình với $n$ quan sát, $p$ feature}]
+Đường hồi quy cho $p$ feature:
 \[
 h(x_i) = w_0 + w_1 x_{i1} + w_2 x_{i2} + \cdots + w_p x_{ip}
 \]
-Có phần dư:
+$h(x_i)$ là giá trị dự đoán; $w_0, w_1, \ldots, w_p$ là hệ số hồi quy.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phần dư (residual error)}]
+Mô hình MLR luôn gồm sai số trong dữ liệu:
 \[
-y_i = h(x_i) + e_i, \quad e_i = y_i - h(x_i)
+y_i = w_0 + w_1 x_{i1} + \cdots + w_p x_{ip} + e_i
 \]
+hoặc $y_i = h(x_i) + e_i$, tức $e_i = y_i - h(x_i)$.
 \end{dinhnghia}
 
 \subsection{Giả định}
 
-\begin{luuy}[title={Giả định MLR}]
+\begin{luuy}[title={Giả định MLR (chi tiết)}]
 \begin{enumerate}
-  \item Tuyến tính giữa target và predictor.
-  \item Các quan sát độc lập.
-  \item Phương sai phần dư đồng nhất (homoscedasticity).
-  \item Phần dư gần phân phối chuẩn.
-  \item Không đa cộng tuyến mạnh giữa feature.
-  \item Không tự tương quan phần dư.
-  \item Giá trị biến độc lập cố định giữa các mẫu lặp.
+  \item \textbf{Tuyến tính}: quan hệ tuyến tính giữa target và predictor.
+  \item \textbf{Độc lập}: mỗi quan sát độc lập; giá trị target của quan sát này không phụ thuộc quan sát khác.
+  \item \textbf{Phương sai đồng nhất (Homoscedasticity)}: phương sai phần dư tương tự trên miền giá trị mỗi biến độc lập.
+  \item \textbf{Chuẩn phần dư}: phần dư (thực $-$ dự đoán) gần phân phối chuẩn.
+  \item \textbf{Không đa cộng tuyến}: biến độc lập không tương quan cao lẫn nhau.
+  \item \textbf{Không tự tương quan phần dư}: phần dư độc lập lẫn nhau.
+  \item \textbf{Biến độc lập cố định}: giá trị biến độc lập cố định trong các mẫu lặp.
 \end{enumerate}
+Vi phạm giả định có thể làm ước lượng chệch hoặc kém hiệu quả; cần kiểm tra giả định.
 \end{luuy}
 
-\subsection{Triển khai Python}
+\subsection{Triển khai bằng Python (Scikit-learn)}
 
-\begin{vidu}[title={Dataset data.csv}]
-50 dòng: \texttt{R\&D Spend}, \texttt{Administration}, \texttt{Marketing Spend}, \texttt{State}, \texttt{Profit}.
-Ví dụ dưới bỏ \texttt{State} như bài gốc (đơn giản hóa).
-\end{vidu}
+\begin{phuongphap}[title={Lớp \texttt{LinearRegression}}]
+Dùng cùng lớp \texttt{LinearRegression} như hồi quy đơn, nhưng đầu vào là \textbf{ma trận nhiều cột} feature.
+\end{phuongphap}
 
-\begin{vidu}[title={Bước 1 --- Chuẩn bị}]
+\begin{vidu}[title={Bước 1: Chuẩn bị dữ liệu}]
+Import thư viện trước khi nạp dữ liệu:
+
 \begin{lstlisting}
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+\end{lstlisting}
 
+Nạp \texttt{data.csv}, tách $X$ và $y$:
+
+\begin{lstlisting}
 dataset = pd.read_csv('data/data.csv')
 X = dataset[['R&D Spend', 'Administration', 'Marketing Spend']]
 y = dataset['Profit']
+\end{lstlisting}
+
+Xem 5 dòng đầu:
+
+\begin{lstlisting}
 print(X.head())
 print(y.head())
 \end{lstlisting}
+
+\textbf{Output \texttt{X.head()}:}
+\begin{verbatim}
+   R&D Spend  Administration  Marketing Spend
+0  165349.20       136897.80        471784.10
+1  162597.70       151377.59        443898.53
+...
+\end{verbatim}
+
+\textbf{Output \texttt{y.head()}:}
+\begin{verbatim}
+0    192261.83
+1    191792.06
+...
+\end{verbatim}
 \end{vidu}
 
-\begin{vidu}[title={Chia train/test (20\% test)}]
+\begin{vidu}[title={Chia train/test}]
+20\% kiểm tra: 40 mẫu train, 10 mẫu test (trong 50 quan sát).
+
 \begin{lstlisting}
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=0)
 \end{lstlisting}
+
+\texttt{X\_train}, \texttt{X\_test}: feature; \texttt{y\_train}, \texttt{y\_test}: target.
 \end{vidu}
 
-\begin{vidu}[title={Bước 2 --- Huấn luyện}]
+\begin{vidu}[title={Bước 2: Huấn luyện}]
 \begin{lstlisting}
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 \end{lstlisting}
+
+\texttt{fit()} học quan hệ giữa \texttt{X\_train} và \texttt{y\_train}.
 \end{vidu}
 
-\begin{vidu}[title={Bước 3 --- Kiểm tra}]
+\begin{vidu}[title={Bước 3: Kiểm thử}]
 \begin{lstlisting}
 y_pred = regressor.predict(X_test)
 df = pd.DataFrame({'Real Values': y_test.values,
                    'Predicted Values': y_pred})
 print(df)
 \end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+    Real Values  Predicted Values
+23    108733.99     110159.827849
+43     69758.98      59787.885207
+...
+\end{verbatim}
+So sánh giá trị thực và dự đoán.
 \end{vidu}
 
-\begin{vidu}[title={Bước 4 --- Metric}]
+\begin{vidu}[title={Bước 4: Đánh giá mô hình}]
 \begin{lstlisting}
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import numpy as np
@@ -92,55 +158,131 @@ mse = mean_squared_error(y_test, y_pred)
 rmse = np.sqrt(mse)
 mae = mean_absolute_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
-print("MSE:", mse)
-print("RMSE:", rmse)
-print("MAE:", mae)
-print("R2:", r2)
+
+print("Mean Squared Error (MSE):", mse)
+print("Root Mean Squared Error (RMSE):", rmse)
+print("Mean Absolute Error (MAE):", mae)
+print("R-squared (R2):", r2)
 \end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+Mean Squared Error (MSE): 72684687.6336162
+Root Mean Squared Error (RMSE): 8525.531516193943
+Mean Absolute Error (MAE): 6425.118502810154
+R-squared (R2): 0.9588459519573707
+\end{verbatim}
+
+\begin{ynghia}[title={Giải thích $R^2 \approx 0{,}96$}]
+Khoảng 96\% biến thiên của \texttt{Profit} được giải thích bởi các biến đầu vào (trên tập kiểm tra của ví dụ gốc).
+\end{ynghia}
 \end{vidu}
 
-\begin{ynghia}[title={Đọc $R^2 \approx 0{,}96$ (bài gốc)}]
-Khoảng 96\% biến thiên của \texttt{Profit} được giải thích bởi ba feature đầu vào (trên tập kiểm tra của ví dụ gốc).
-\end{ynghia}
+\begin{vidu}[title={Bước 5: Dự đoán dữ liệu mới}]
+Dự đoán \texttt{Profit} khi R\&D = 166343.2, Administration = 136787.8, Marketing = 461724.1:
 
-\begin{vidu}[title={Bước 5 --- Dự đoán điểm mới}]
 \begin{lstlisting}
 new_data = [[166343.2, 136787.8, 461724.1]]
 profit = regressor.predict(new_data)
 print(profit)
 \end{lstlisting}
+
+\textbf{Output:} \texttt{[193053.61874652]}.
 \end{vidu}
 
-\begin{vidu}[title={Hệ số và chặn}]
+\begin{dinhnghia}[title={Tham số mô hình (intercept và hệ số)}]
+Intercept và coefficients mô tả quan hệ giữa biến phụ thuộc và các biến độc lập:
+\[
+Y = w_0 + w_1 X_1 + w_2 X_2 + w_3 X_3
+\]
+$X_1$ = R\&D Spend; $X_2$ = Administration; $X_3$ = Marketing Spend.
+\end{dinhnghia}
+
+\begin{vidu}[title={In hệ số và chặn}]
 \begin{lstlisting}
 print("coefficients:", regressor.coef_)
 print("intercept:", regressor.intercept_)
 \end{lstlisting}
-Kiểm tra tay: $\mathrm{Profit} \approx w_0 + w_1 X_1 + w_2 X_2 + w_3 X_3$.
+
+\textbf{Output:}
+\begin{verbatim}
+coefficients: [ 0.81129358 -0.06184074  0.02515044]
+intercept: 54946.94052163202
+\end{verbatim}
 \end{vidu}
 
-\subsection{Ứng dụng và thách thức}
-
-\begin{phuongphap}[title={Ứng dụng}]
-Tài chính, marketing, bất động sản, y tế, kinh tế, khoa học xã hội.
+\begin{phuongphap}[title={Giải thích hệ số}]
+\begin{itemize}
+  \item $w_0 = 54946.94$
+  \item $w_1 = 0.8113$ (R\&D): tăng 1 USD R\&D $\Rightarrow$ Profit tăng khoảng 0.81 USD.
+  \item $w_2 = -0.0618$ (Administration): tăng 1 USD $\Rightarrow$ Profit giảm khoảng 0.06 USD.
+  \item $w_3 = 0.0252$ (Marketing): tăng 1 USD $\Rightarrow$ Profit tăng khoảng 0.025 USD.
+\end{itemize}
 \end{phuongphap}
 
-\begin{luuy}[title={Thách thức}]
-Đa cộng tuyến, overfitting/underfitting, phi tuyến, outlier, dữ liệu thiếu.
-\end{luuy}
+\begin{vidu}[title={Kiểm chứng tay}]
+$\mathrm{Profit} = 54946.94 + 0.8113 \times 166343.2 - 0.0618 \times 136787.8 + 0.0252 \times 461724.1
+\approx 193053.62$
 
-\subsection{So sánh đơn và đa biến}
+Gần \texttt{predict(new\_data)}; chênh lệch nhỏ do \textbf{phần dư}:
+$\text{residual} \approx 193053.6187 - 193053.6163 \approx 0.0025$.
+\end{vidu}
 
+\subsection{Ứng dụng}
+
+\begin{ynghia}[title={Ứng dụng MLR}]
 \begin{center}
 \small
-\begin{tabular}{|l|p{4.2cm}|p{4.2cm}|}
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Lĩnh vực} & \textbf{Mô tả} \\
+\hline
+Tài chính & Dự đoán giá cổ phiếu, tỷ giá, đánh giá tín dụng. \\
+Marketing & Dự đoán doanh số, churn, hiệu quả chiến dịch. \\
+Bất động sản & Giá nhà theo diện tích, vị trí, số phòng. \\
+Y tế & Kết quả bệnh nhân, tác động điều trị, yếu tố nguy cơ. \\
+Kinh tế & Tăng trưởng, chính sách, lạm phát. \\
+Khoa học xã hội & Hiện tượng xã hội, bầu cử, hành vi. \\
+\hline
+\end{tabular}
+\end{center}
+\end{ynghia}
+
+\subsection{Thách thức}
+
+\begin{luuy}[title={Thách thức MLR}]
+\begin{center}
+\small
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Thách thức} & \textbf{Mô tả} \\
+\hline
+Đa cộng tuyến & Feature tương quan cao $\Rightarrow$ hệ số không ổn định, khó diễn giải. \\
+Overfitting & Khớp quá sát tập train, kém trên dữ liệu mới. \\
+Underfitting & Không bắt pattern, kém cả train và test. \\
+Phi tuyến & MLR giả định tuyến tính; quan hệ cong $\Rightarrow$ dự đoán sai. \\
+Outlier & Ảnh hưởng mạnh, nhất là tập nhỏ. \\
+Dữ liệu thiếu & Kết quả chệch, không chính xác. \\
+\hline
+\end{tabular}
+\end{center}
+\end{luuy}
+
+\subsection{So sánh hồi quy đơn và đa biến}
+
+\begin{phuongphap}[title={Bảng so sánh}]
+\begin{center}
+\small
+\begin{tabular}{|l|p{3.8cm}|p{3.8cm}|}
 \hline
 \textbf{Tiêu chí} & \textbf{Đơn biến} & \textbf{Đa biến} \\
 \hline
-Số biến độc lập & 1 & $\geq 2$ \\
+Số biến độc lập & Một & Hai trở lên \\
 Phương trình & $y = w_0 + w_1 x$ & $y = w_0 + \sum w_j x_j$ \\
 Độ phức tạp & Thấp hơn & Cao hơn \\
+Ứng dụng & Giá nhà theo diện tích; doanh số theo quảng cáo & Doanh số theo giá, đối thủ; điểm sinh viên theo giờ học, điểm danh, IQ \\
 Giải thích hệ số & Dễ hơn & Khó hơn \\
 \hline
 \end{tabular}
 \end{center}
+\end{phuongphap}
