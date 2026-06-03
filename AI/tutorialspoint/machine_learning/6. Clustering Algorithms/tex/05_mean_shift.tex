@@ -1,0 +1,175 @@
+%==============================================================================
+\section{Thuật toán Mean-Shift}
+\label{sec:mean-shift}
+%==============================================================================
+
+\begin{dinhnghia}[title={Mean-Shift Clustering}]
+Mean-Shift là thuật toán phân cụm \textbf{không tham số hóa} (non-parametric): lặp dịch chuyển trung bình của điểm về vùng \textbf{mật độ cao nhất} của dữ liệu. Mật độ được định nghĩa qua \textbf{hàm nhân} (kernel), thường là Gaussian, gán trọng số theo khoảng cách tới mean hiện tại.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Không cần chỉ định $K$ trước}]
+Khác K-means phải cho biết số cụm, Mean-Shift \textbf{tự suy ra} số cụm từ dữ liệu và tham số bandwidth.
+\end{ynghia}
+
+\begin{tinhchat}[title={Phân cụm theo mật độ}]
+Thuật toán thuộc nhóm density-based: cụm là vùng mật độ điểm cao, không chỉ dựa vào khoảng cách Euclidean đơn thuần giữa hai điểm xa nhau.
+\end{tinhchat}
+
+\subsection{Cách hoạt động Mean-Shift}
+
+\begin{phuongphap}[title={Các bước}]
+\begin{enumerate}
+  \item[\textbf{Bước 1}] Ban đầu mỗi điểm (hoặc mỗi seed) được coi là một cụm riêng.
+  \item[\textbf{Bước 2}] Tính centroid (mean) có trọng số kernel quanh từng điểm.
+  \item[\textbf{Bước 3}] Cập nhật vị trí centroid mới.
+  \item[\textbf{Bước 4}] Lặp, dịch chuyển về vùng mật độ cao hơn.
+  \item[\textbf{Bước 5}] Dừng khi centroid không còn dịch chuyển đáng kể.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Triển khai Mean-Shift trong Python}
+
+\begin{phuongphap}[title={scikit-learn}]
+Dùng \texttt{MeanShift} và \texttt{estimate\_bandwidth} trong \texttt{sklearn.cluster}.
+\end{phuongphap}
+
+\begin{vidu}[title={Import}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import MeanShift, estimate_bandwidth
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Sinh dữ liệu và ước lượng bandwidth}]
+\begin{lstlisting}
+X = np.random.randn(500, 2)
+
+bandwidth = estimate_bandwidth(X, quantile=0.1, n_samples=100)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Bandwidth}]
+Bandwidth quyết định \textbf{độ rộng} kernel; ảnh hưởng trực tiếp số cụm và độ mịn của ranh giới.
+\end{ynghia}
+
+\begin{vidu}[title={Khởi tạo, huấn luyện, trực quan}]
+\begin{lstlisting}
+ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+ms.fit(X)
+
+labels = ms.labels_
+cluster_centers = ms.cluster_centers_
+n_clusters_ = len(np.unique(labels))
+print("Number of estimated clusters:", n_clusters_)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='viridis')
+plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1],
+            marker='*', s=300, c='r')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Ví dụ đầy đủ (dữ liệu Gaussian 2D)}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import MeanShift, estimate_bandwidth
+
+X = np.random.randn(500, 2)
+bandwidth = estimate_bandwidth(X, quantile=0.1, n_samples=100)
+ms = MeanShift(bandwidth=bandwidth, bin_seeding=True)
+ms.fit(X)
+
+labels = ms.labels_
+cluster_centers = ms.cluster_centers_
+print("Number of estimated clusters:", len(np.unique(labels)))
+
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='summer')
+plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1],
+            marker='*', s=200, c='r')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\subsubsection{Ví dụ 2 --- Dataset 2D nhiều blob}
+
+\begin{dongco}[title={make\_blobs 3D trong mã nguồn}]
+Một số ví dụ dùng \texttt{make\_blobs} với tâm 3 chiều; có thể chiếu hai cột đầu để vẽ 2D hoặc dùng \texttt{centers=4} hai chiều tương đương bài minh họa 4 cụm.
+\end{dongco}
+
+\begin{vidu}[title={Sinh blob và vẽ}]
+\begin{lstlisting}
+from sklearn.datasets import make_blobs
+
+X, _ = make_blobs(n_samples=700, centers=4,
+                  cluster_std=0.5, random_state=0)
+plt.scatter(X[:, 0], X[:, 1])
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Mean-Shift mặc định và in tâm}]
+\begin{lstlisting}
+ms = MeanShift()
+ms.fit(X)
+labels = ms.labels_
+cluster_centers = ms.cluster_centers_
+print(cluster_centers)
+print("Estimated clusters:", len(np.unique(labels)))
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Vẽ từng điểm theo nhãn}]
+\begin{lstlisting}
+colors = 10 * ['r.', 'g.', 'b.', 'c.', 'k.', 'y.', 'm.']
+for i in range(len(X)):
+    plt.plot(X[i][0], X[i][1], colors[labels[i]], markersize=3)
+plt.scatter(cluster_centers[:, 0], cluster_centers[:, 1],
+            marker='.', color='k', s=20, linewidths=5, zorder=10)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{tinhchat}[title={Kết quả mẫu}]
+Ví dụ trên có thể ước lượng khoảng \textbf{3 cụm} với ba tâm cụm in ra từ \texttt{cluster\_centers\_}.
+\end{tinhchat}
+
+\subsection{Ứng dụng Mean-Shift}
+
+\begin{ynghia}[title={Thị giác máy tính}]
+Theo dõi đối tượng, phân đoạn ảnh, trích xuất đặc trưng.
+\end{ynghia}
+
+\begin{ynghia}[title={Xử lý ảnh}]
+Phân đoạn ảnh theo độ tương đồng pixel.
+\end{ynghia}
+
+\begin{ynghia}[title={Phát hiện bất thường}]
+Vùng mật độ thấp có thể đánh dấu anomaly.
+\end{ynghia}
+
+\begin{ynghia}[title={Phân khúc khách hàng và mạng xã hội}]
+Gom nhóm hành vi hoặc sở thích người dùng tương tự.
+\end{ynghia}
+
+\subsection{Ưu điểm và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item Không giả định mô hình phân phối cố định như K-means hay GMM.
+  \item Mô hình được cụm \textbf{lồi và phức tạp} (non-convex).
+  \item Chỉ cần điều chỉnh chủ yếu tham số \textbf{bandwidth}; số cụm suy ra từ dữ liệu.
+  \item Ít vấn đề \textbf{cục cực địa phương} như K-means.
+  \item Tương đối ít bị ngoại lai kéo mean toàn cục như trung bình K-means.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item Chi phí tính toán cao trên dữ liệu \textbf{nhiều chiều}; số cụm có thể thay đổi đột ngột khi bandwidth không phù hợp.
+  \item Không kiểm soát trực tiếp số cụm --- một số bài toán cần $K$ cố định.
+  \item Khó phân biệt mode ``có ý nghĩa'' và mode nhiễu trên bề mặt mật độ.
+\end{itemize}
+\end{luuy}

@@ -4,100 +4,173 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={Hồi quy tuyến tính}]
-Mô hình thống kê phân tích \textbf{quan hệ tuyến tính} giữa biến phụ thuộc và một hoặc nhiều biến độc lập.
-Khi biến độc lập thay đổi, biến phụ thuộc thay đổi tương ứng theo quy luật tuyến tính.
+Trong học máy, hồi quy tuyến tính là mô hình thống kê phân tích \textbf{quan hệ tuyến tính} giữa biến phụ thuộc và một tập biến độc lập cho trước.
+Quan hệ tuyến tính nghĩa là: khi một hoặc nhiều biến độc lập thay đổi (tăng/giảm), biến phụ thuộc cũng thay đổi tương ứng.
 \end{dinhnghia}
 
-\begin{ynghia}[title={Trong học máy}]
-Dự đoán giá trị số liên tục từ quan hệ tuyến tính đã học; dùng trong mô hình dự báo, tài chính, đánh giá rủi ro.
+\begin{ynghia}[title={Ứng dụng trong học máy}]
+Dự đoán giá trị số liên tục từ quan hệ tuyến tính đã học trên dữ liệu mới; dùng trong mô hình dự báo, dự báo tài chính, đánh giá rủi ro.
 \end{ynghia}
 
-\subsection{Dữ liệu ví dụ (một feature)}
+\subsection{Khái niệm chi tiết}
 
-\begin{phuongphap}[title={Bảng minh họa}]
-Diện tích (ft$^2$, feature $X$) và giá nhà (target $Y$): mô hình dùng $X$ để dự đoán $Y$.
+\begin{dinhnghia}[title={Hồi quy tuyến tính (định nghĩa mở rộng)}]
+Kỹ thuật thống kê ước lượng quan hệ tuyến tính giữa biến phụ thuộc và một hoặc nhiều biến độc lập.
+Trong học máy, hồi quy tuyến tính là \textbf{học có giám sát}: tập có nhãn gồm feature (đầu vào) và target (đầu ra); feature là biến độc lập, target là biến phụ thuộc.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ví dụ một feature --- diện tích và giá nhà}]
+Để đơn giản, xét dữ liệu một feature và một target:
+\begin{center}
+\small
+\begin{tabular}{cc}
+\textbf{Diện tích (ft$^2$)} $X$ & \textbf{Giá nhà} $Y$ \\
+1300 & 240 \\
+1500 & 320 \\
+1700 & 330 \\
+1830 & 295 \\
+1550 & 256 \\
+2350 & 409 \\
+1450 & 319 \\
+\end{tabular}
+\end{center}
+Feature \texttt{Square Feet} dùng để dự đoán target \texttt{House Price}.
+Biến độc lập còn gọi predictor; biến phụ thuộc còn gọi response.
 \end{phuongphap}
 
-\begin{dinhnghia}[title={Đường hồi quy}]
-Đường thẳng thể hiện quan hệ giữa biến phụ thuộc và độc lập.
+\begin{dinhnghia}[title={Định nghĩa trong học máy}]
+Hồi quy tuyến tính dùng phương trình tuyến tính mô hình hóa quan hệ giữa biến phụ thuộc $Y$ và một hoặc nhiều biến độc lập.
+Mục tiêu chính: tìm \textbf{đường thẳng khớp tốt nhất} (đường hồi quy) qua các điểm dữ liệu.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đường hồi quy (Line of Regression)}]
+Đường thẳng thể hiện quan hệ giữa biến phụ thuộc và biến độc lập.
 \end{dinhnghia}
 
 \tsimg{02_linear_regression/img01.jpg}
 
 \subsection{Quan hệ tuyến tính dương và âm}
 
-\begin{ynghia}[title={Quan hệ dương}]
-Cả hai biến cùng tăng (hoặc cùng giảm).
+\begin{ynghia}[title={Quan hệ tuyến tính dương (Positive Linear Relationship)}]
+Quan hệ được gọi là \textbf{dương} khi biến độc lập và biến phụ thuộc \textbf{cùng tăng} (hoặc cùng giảm).
 \end{ynghia}
 
 \tsimg{02_linear_regression/img02.jpg}
 
-\begin{ynghia}[title={Quan hệ âm}]
-Biến độc lập tăng, biến phụ thuộc giảm (bài gốc ghi nhầm chữ ``positive'').
+\begin{ynghia}[title={Quan hệ tuyến tính âm (Negative Linear Relationship)}]
+Quan hệ được gọi là \textbf{âm} khi biến độc lập tăng và biến phụ thuộc \textbf{giảm}.
 \end{ynghia}
 
 \tsimg{02_linear_regression/img03.jpg}
 
 \subsection{Hai loại hồi quy tuyến tính}
 
-\begin{enumerate}
-  \item \textbf{Đơn biến} (Simple): một $X$.
-  \item \textbf{Đa biến} (Multiple): nhiều $X_1,\ldots,X_p$.
-\end{enumerate}
+\subsubsection{Hồi quy tuyến tính đơn (Simple Linear Regression)}
 
-\subsubsection{Hồi quy tuyến tính đơn}
+\begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
+Phân tích hồi quy dùng \textbf{một} biến độc lập (predictor) để dự đoán biến phụ thuộc; mô hình hóa quan hệ tuyến tính giữa hai biến.
+\end{dinhnghia}
 
 \tsimg{02_linear_regression/img04.jpg}
 
+\begin{phuongphap}[title={Phương trình}]
+Đường thẳng là đường hồi quy đơn; $\hat{Y}$ là giá trị dự đoán, $X$ là đầu vào:
 \[
-\hat{Y} = w_0 + w_1 X + \epsilon
+Y = w_0 + w_1 X + \epsilon
 \]
-
 \begin{itemize}
-  \item $Y$: target; $X$: feature; $w_0$: hệ số chặn; $w_1$: độ dốc; $\epsilon$: sai số.
+  \item $Y$: biến phụ thuộc (target);
+  \item $X$: biến độc lập (feature);
+  \item $w_0$: hệ số chặn (y-intercept);
+  \item $w_1$: độ dốc, ảnh hưởng của $X$ lên $Y$;
+  \item $\epsilon$: sai số, phần biến thiên của $Y$ không giải thích bởi $X$.
 \end{itemize}
+\end{phuongphap}
 
-\subsubsection{Hồi quy tuyến tính đa biến}
+\subsubsection{Hồi quy tuyến tính đa biến (Multiple Linear Regression)}
 
+\begin{dinhnghia}[title={Hồi quy tuyến tính đa biến}]
+Mở rộng hồi quy đơn: dự đoán response bằng \textbf{hai hoặc nhiều} feature.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phương trình đa biến}]
 \[
-\hat{Y} = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p + \epsilon
+Y = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p + \epsilon
 \]
+\begin{itemize}
+  \item $X_1,\ldots,X_p$: biến độc lập (features);
+  \item $w_0,w_1,\ldots,w_p$: hệ số;
+  \item $\epsilon$: sai số.
+\end{itemize}
+\end{phuongphap}
 
-\subsection{Cách hoạt động}
+\subsection{Cách hồi quy tuyến tính hoạt động}
+
+\begin{dongco}[title={Mục tiêu}]
+Tìm đường khớp tốt nhất sao cho chênh lệch giữa giá trị thực và dự đoán là nhỏ nhất --- bằng cách ước lượng các tham số $w_0, w_1, \ldots$
+\end{dongco}
 
 \begin{phuongphap}[title={Ba bước chính}]
 \begin{enumerate}
-  \item \textbf{Giả thuyết}: quan hệ tuyến tính giữa đầu vào và đầu ra.
-  \item \textbf{Hàm mất mát}: đo sai số dự đoán (MSE, MAE, \ldots).
-  \item \textbf{Tối ưu}: cập nhật tham số đến khi mất mát nhỏ.
+  \item \textbf{Giả thuyết (Hypothesis)}: giả định quan hệ tuyến tính giữa đầu vào và đầu ra.
+  \item \textbf{Hàm mất mát (Cost Function)}: định nghĩa hàm mất mát đo sai số dự đoán; nhận giá trị dự đoán và thực tế, trả về một số vô hướng.
+  \item \textbf{Tối ưu (Optimization)}: cập nhật tham số để \textbf{tối thiểu} hóa cost; lặp đến khi lỗi đủ nhỏ.
 \end{enumerate}
 \end{phuongphap}
 
 \subsection{Hàm giả thuyết}
 
-\[
-\hat{Y} = w_0 + w_1 X \quad \text{(đơn biến)}
-\]
-\[
-\hat{Y} = w_0 + w_1 X_1 + \cdots + w_p X_p \quad \text{(đa biến)}
-\]
+\begin{dinhnghia}[title={Hàm giả thuyết $h_w(X)$}]
+Giả định quan hệ tuyến tính giữa feature $X$ và giá trị dự đoán $\hat{Y}$.
+Hàm giả thuyết trả về dự đoán cho đầu vào cho trước; thường ký hiệu $h_w(X) = \hat{Y}$.
+\end{dinhnghia}
 
-\subsection{Đường khớp tốt nhất}
+\begin{phuongphap}[title={Công thức}]
+Hồi quy đơn:
+\[
+\hat{Y} = w_0 + w_1 X
+\]
+Hồi quy đa biến:
+\[
+\hat{Y} = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p
+\]
+Với mỗi bộ trọng số khác nhau có một đường hồi quy khác; mục tiêu là chọn đường khớp tốt nhất.
+\end{phuongphap}
 
-Đường hồi quy tốt nhất khi sai số giữa giá trị thực và dự đoán là nhỏ nhất (trung bình).
+\subsection{Đường khớp tốt nhất (Finding the Best Fit Line)}
+
+\begin{phuongphap}[title={Tiêu chí đường tốt nhất}]
+Không phải mọi đường hồi quy đều tối ưu.
+Đường được coi là khớp tốt nhất khi \textbf{sai số} giữa giá trị thực và dự đoán là nhỏ nhất.
+Sai số $\epsilon$ tính trên mọi điểm; mục tiêu là giảm trung bình lỗi.
+Có thể dùng MSE, MAE, L1 loss, L2 loss, v.v.
+\end{phuongphap}
 
 \tsimg{02_linear_regression/img05.jpg}
 
-\subsection{Hàm mất mát}
+\begin{dongco}[title={Hàm mất mát}]
+Để giảm sai số, cần hàm \textbf{cost function} / \textbf{loss function}: nhận dự đoán và thực tế, trả về một giá trị đại diện cho ``giá'' của dự đoán; mục tiêu là \textbf{tối thiểu hóa} hàm này.
+\end{dongco}
 
-\begin{dinhnghia}[title={MSE (phổ biến)}]
+\subsection{Hàm mất mát cho hồi quy tuyến tính}
+
+\begin{dinhnghia}[title={Mean Squared Error (MSE) --- phổ biến nhất}]
 \[
-J(w_0, w_1) = \frac{1}{2n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2,
-\quad \hat{Y}_i = w_0 + w_1 X_i
+J(w_0, w_1) = \frac{1}{2n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2
 \]
+\begin{itemize}
+  \item $n$: số điểm dữ liệu;
+  \item $Y_i$: giá trị quan sát tại điểm $i$;
+  \item $\hat{Y}_i = w_0 + w_1 X_i$: giá trị dự đoán tại điểm $i$.
+\end{itemize}
 \end{dinhnghia}
 
-\subsection{Gradient descent}
+\subsection{Gradient descent cho tối ưu}
+
+\begin{phuongphap}[title={Tối ưu mô hình}]
+Sau khi định nghĩa loss, bước tiếp theo là tối thiểu hóa để tìm tham số tối ưu --- quá trình \textbf{model optimization}.
+Gradient Descent là một trong các kỹ thuật tối ưu phổ biến nhất cho hồi quy tuyến tính, đặc biệt với tập dữ liệu lớn: cập nhật tham số theo hướng giảm nhanh nhất của cost.
+\end{phuongphap}
 
 \begin{phuongphap}[title={Cập nhật tham số}]
 \[
@@ -105,45 +178,102 @@ w_0 \leftarrow w_0 - \alpha \frac{\partial J}{\partial w_0},
 \quad
 w_1 \leftarrow w_1 - \alpha \frac{\partial J}{\partial w_1}
 \]
-với $\alpha$ là learning rate. Lặp đến khi thay đổi $w_0, w_1$ không đáng kể.
+với $\alpha$ là \textbf{learning rate}. Đạo hàm riêng:
+\[
+\frac{\partial J}{\partial w_0} = -\frac{1}{n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right),
+\quad
+\frac{\partial J}{\partial w_1} = -\frac{1}{n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right) X_i
+\]
+Lặp cập nhật đến khi $w_0, w_1$ thay đổi không đáng kể (hội tụ).
 \end{phuongphap}
 
-\subsection{Giả định mô hình}
+\subsection{Giả định của hồi quy tuyến tính}
 
-\begin{luuy}[title={Giả định}]
+\begin{luuy}[title={Giả định mô hình}]
 \begin{itemize}
-  \item Ít hoặc không đa cộng tuyến.
-  \item Ít tự tương quan trong phần dư.
-  \item Quan hệ giữa response và feature là \textbf{tuyến tính}.
+  \item \textbf{Đa cộng tuyến (Multi-collinearity)}: giả định ít hoặc không có đa cộng tuyến --- feature phụ thuộc lẫn nhau.
+  \item \textbf{Tự tương quan (Auto-correlation)}: giả định ít hoặc không tự tương quan --- phần dư phụ thuộc lẫn nhau.
+  \item \textbf{Quan hệ tuyến tính}: quan hệ giữa response và feature phải \textbf{tuyến tính}.
 \end{itemize}
-Vi phạm giả định có thể làm ước lượng chệch hoặc kém hiệu quả.
+Vi phạm giả định có thể làm ước lượng chệch hoặc kém hiệu quả; cần kiểm tra giả định để đảm bảo độ chính xác.
 \end{luuy}
 
 \subsection{Metric đánh giá}
 
-\begin{tinhchat}[title={$R^2$, MSE, RMSE, MAE}]
+\begin{tinhchat}[title={$R^2$ (R-squared)}]
+Đo tỷ lệ phương sai biến phụ thuộc có thể dự đoán từ biến độc lập:
 \[
-R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2},
-\quad
-\mathrm{MSE} = \frac{1}{n}\sum_{i=1}^n (y_i - \hat{y}_i)^2
-\]
-\[
-\mathrm{RMSE} = \sqrt{\mathrm{MSE}},
-\quad
-\mathrm{MAE} = \frac{1}{n}\sum_{i=1}^n |y_i - \hat{y}_i|
+R^2 = 1 - \frac{\sum (y_i - \hat{y}_i)^2}{\sum (y_i - \bar{y})^2}
 \]
 \end{tinhchat}
 
-\subsection{Ứng dụng, ưu điểm và thách thức}
+\begin{tinhchat}[title={MSE}]
+\[
+\mathrm{MSE} = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2
+\]
+\end{tinhchat}
 
-\begin{ynghia}[title={Ứng dụng}]
-Mô hình dự báo (bất động sản), chọn feature, dự báo tài chính, quản trị rủi ro.
+\begin{tinhchat}[title={RMSE}]
+$\mathrm{RMSE} = \sqrt{\mathrm{MSE}}$.
+\end{tinhchat}
+
+\begin{tinhchat}[title={MAE}]
+\[
+\mathrm{MAE} = \frac{1}{n} \sum_{i=1}^n |y_i - \hat{y}_i|
+\]
+\end{tinhchat}
+
+\subsection{Ứng dụng hồi quy tuyến tính}
+
+\begin{ynghia}[title={Mô hình dự báo (Predictive Modeling)}]
+Dùng rộng rãi cho dự báo; ví dụ bất động sản: dự đoán giá nhà từ diện tích, vị trí, số phòng ngủ.
 \end{ynghia}
 
-\begin{tinhchat}[title={Ưu điểm}]
-Dễ giải thích, huấn luyện nhanh, nền tảng phân tích dự đoán, đơn giản và hiệu quả tính toán.
+\begin{ynghia}[title={Chọn feature (Feature Selection)}]
+Trong hồi quy đa biến, phân tích hệ số giúp chọn feature; hệ số nhỏ hoặc bằng 0 có thể bỏ để đơn giản hóa mô hình.
+\end{ynghia}
+
+\begin{ynghia}[title={Dự báo tài chính (Financial Forecasting)}]
+Dự đoán giá cổ phiếu, chỉ số kinh tế, xu hướng thị trường; hỗ trợ đầu tư và lập kế hoạch tài chính.
+\end{ynghia}
+
+\begin{ynghia}[title={Quản trị rủi ro (Risk Management)}]
+Mô hình hóa quan hệ giữa yếu tố rủi ro và chỉ số tài chính; ví dụ bảo hiểm: đặc điểm chủ hợp đồng và số tiền bồi thường.
+\end{ynghia}
+
+\subsection{Ưu điểm hồi quy tuyến tính}
+
+\begin{tinhchat}[title={Advantages}]
+\begin{itemize}
+  \item \textbf{Dễ giải thích (Interpretability)}: dễ giải thích cách mô hình ra quyết định.
+  \item \textbf{Tốc độ (Speed)}: huấn luyện nhanh hơn nhiều thuật toán khác.
+  \item \textbf{Phân tích dự đoán}: nền tảng cơ bản cho predictive analytics.
+  \item \textbf{Quan hệ tuyến tính}: phương pháp mạnh khi quan hệ gần tuyến tính.
+  \item \textbf{Đơn giản}: dễ triển khai và diễn giải.
+  \item \textbf{Hiệu quả tính toán (Efficiency)}: tính toán nhẹ.
+\end{itemize}
 \end{tinhchat}
 
-\begin{luuy}[title={Thách thức}]
-Overfitting, đa cộng tuyến, ảnh hưởng outlier; với dữ liệu phi tuyến có thể cần \textbf{hồi quy đa thức}.
+\subsection{Thách thức thường gặp}
+
+\begin{luuy}[title={Overfitting}]
+Mô hình tốt trên tập huấn luyện nhưng kém khái quát hóa trên tập kiểm tra; dự đoán kém trên dữ liệu mới.
 \end{luuy}
+
+\begin{luuy}[title={Đa cộng tuyến (Multicollinearity)}]
+Khi các biến predictor tương quan cao, ước lượng hệ số có thể không ổn định.
+\end{luuy}
+
+\begin{luuy}[title={Outlier}]
+Outlier có thể khiến đường hồi quy kém khớp phần lớn dữ liệu.
+\end{luuy}
+
+\subsection{Hồi quy đa thức --- phương án thay thế}
+
+\begin{dinhnghia}[title={Polynomial Regression}]
+Quan hệ giữa biến độc lập và phụ thuộc được mô hình bằng đa thức bậc $n$, vượt qua giới hạn tuyến tính của hồi quy đơn và đa biến thuần túy.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Khi nào cần}]
+Khi dữ liệu phi tuyến, hồi quy tuyến tính không bắt được pattern cong.
+\end{ynghia}

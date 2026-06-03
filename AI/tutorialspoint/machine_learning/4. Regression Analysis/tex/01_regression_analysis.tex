@@ -5,11 +5,13 @@
 
 \begin{dinhnghia}[title={Phân tích hồi quy}]
 Kỹ thuật thống kê dự đoán \textbf{giá trị số liên tục} dựa trên quan hệ giữa biến độc lập và biến phụ thuộc.
+
 Mục tiêu: vẽ đường/đường cong khớp dữ liệu tốt nhất và ước lượng ảnh hưởng của biến này lên biến kia.
 \end{dinhnghia}
 
 \begin{ynghia}[title={Vai trò trong học máy}]
 Hồi quy là \textbf{học có giám sát}: mô hình học từ feature (độc lập) và target (phụ thuộc, số liên tục) để dự đoán trên dữ liệu mới.
+
 Ứng dụng: dự báo, phân tích dự đoán, tối ưu kinh doanh, kinh tế, tài chính.
 \end{ynghia}
 
@@ -17,13 +19,13 @@ Hồi quy là \textbf{học có giám sát}: mô hình học từ feature (độ
 
 \begin{phuongphap}[title={Thuật ngữ thường gặp}]
 \begin{itemize}
-  \item \textbf{Biến độc lập} (predictor, feature): dùng để dự đoán.
-  \item \textbf{Biến phụ thuộc} (target, response): giá trị cần dự đoán.
-  \item \textbf{Đường hồi quy}: đường/đường cong khớp điểm dữ liệu.
-  \item \textbf{Overfitting}: khớp tốt tập huấn luyện, kém tập kiểm tra (phương sai cao).
-  \item \textbf{Underfitting}: mô hình kém cả trên tập huấn luyện (độ lệch cao).
-  \item \textbf{Outlier}: điểm cực cao/thấp, lệch pattern chung.
-  \item \textbf{Đa cộng tuyến} (multicollinearity): feature phụ thuộc lẫn nhau.
+  \item \textbf{Biến độc lập} (predictor, biến dự báo, feature): dùng để dự đoán giá trị biến phụ thuộc.
+  \item \textbf{Biến phụ thuộc} (target, biến mục tiêu): biến cần dự đoán.
+  \item \textbf{Đường hồi quy}: đường thẳng / đường cong phù hợp nhất với dữ liệu.
+  \item \textbf{Quá khớp (Overfitting)} (phương sai cao): mô hình tốt trên tập huấn luyện nhưng kém trên tập kiểm tra.
+  \item \textbf{Thiếu khớp (Underfitting)} (độ lệch cao): mô hình kém cả trên tập huấn luyện.
+  \item \textbf{Điểm ngoại lai (Outlier)}: điểm không theo quy luật chung; giá trị cực cao hoặc cực thấp.
+  \item \textbf{Đa cộng tuyến (Multicollinearity)}: các biến độc lập tương quan cao với nhau.
 \end{itemize}
 \end{phuongphap}
 
@@ -31,116 +33,264 @@ Hồi quy là \textbf{học có giám sát}: mô hình học từ feature (độ
 
 \begin{phuongphap}[title={Quy trình}]
 Thuật toán hồi quy được huấn luyện trên tập có nhãn (feature + target).
-Trong huấn luyện, mô hình học quan hệ giữa predictor và target; sau đó dự đoán giá trị mới từ quan hệ đã học.
+
+Trong huấn luyện, mô hình học quan hệ giữa feature và target; sau đó dự đoán giá trị mới từ quan hệ đã học.
 \end{phuongphap}
 
 \subsection{Các loại hồi quy trong học máy}
 
-Phân loại thường dựa trên: số biến độc lập, kiểu biến phụ thuộc, hình dạng đường hồi quy.
-
-\begin{phuongphap}[title={Các loại phổ biến}]
-\begin{enumerate}
-  \item \textbf{Hồi quy tuyến tính} --- quan hệ tuyến tính; gồm đơn biến và đa biến.
-  \item \textbf{Hồi quy logistic} --- xác suất sự kiện; phân loại nhị phân (sigmoid).
-  \item \textbf{Hồi quy đa thức} --- quan hệ bậc $n$; bắt phi tuyến, nhạy outlier.
-  \item \textbf{Lasso} (L1) --- chuẩn hóa, giảm overfitting; dữ liệu chiều cao.
-  \item \textbf{Ridge} (L2) --- chuẩn hóa; xử lý đa cộng tuyến, nhiều tham số.
-  \item \textbf{Cây quyết định hồi quy} --- chia tập con, giảm MSE từng nút.
-  \item \textbf{Random Forest hồi quy} --- tập hợp nhiều cây (bagging).
-  \item \textbf{SVR} --- máy vectơ hỗ trợ cho hồi quy; chịu outlier, phi tuyến.
-\end{enumerate}
+\begin{phuongphap}[title={Cách phân loại và các loại thường dùng}]
+Nói chung, các phương pháp hồi quy được phân loại dựa trên ba tiêu chí: số biến độc lập, kiểu biến phụ thuộc, và hình dạng đường hồi quy.
 \end{phuongphap}
 
-\begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
-Một biến độc lập $X$ dự đoán $Y$:
-\[
-Y = mX + b
-\]
-($Y$ phụ thuộc, $X$ độc lập, $m$ độ dốc, $b$ hệ số chặn.)
+\subsubsection{Hồi quy tuyến tính (Linear Regression)}
+
+\begin{dinhnghia}[title={Hồi quy tuyến tính}]
+Hồi quy tuyến tính là mô hình hồi quy được dùng phổ biến nhất trong học máy.
+Đây là mô hình thống kê phân tích \textbf{quan hệ tuyến tính} giữa biến phụ thuộc với một tập biến độc lập cho trước.
 \end{dinhnghia}
 
-\begin{luuy}[title={Lỗi trong nguồn gốc}]
-Bài gốc Tutorialspoint đôi chỗ ghi nhầm $X$/$Y$ là biến phụ thuộc/độc lập; phần dưới dùng ký hiệu chuẩn.
-\end{luuy}
+\begin{phuongphap}[title={Quan hệ tuyến tính và hai nhánh}]
+Quan hệ tuyến tính giữa các biến nghĩa là: khi giá trị của một hoặc nhiều biến độc lập thay đổi (tăng hoặc giảm), giá trị biến phụ thuộc cũng thay đổi tương ứng (tăng hoặc giảm).
 
-\subsection{Mô hình hồi quy đơn và đa biến}
-
+Hồi quy tuyến tính chia thành hai nhánh con:
 \begin{itemize}
-  \item \textbf{Mô hình đơn giản}: một feature duy nhất.
-  \item \textbf{Mô hình đa biến}: nhiều feature.
+  \item \textbf{Hồi quy tuyến tính đơn} (simple linear regression): chỉ dùng \textbf{một} biến độc lập (predictor) để dự đoán biến phụ thuộc.
+  \item \textbf{Hồi quy tuyến tính đa biến} (multiple linear regression): nhiều biến độc lập được dùng để dự đoán biến phụ thuộc.
 \end{itemize}
-
-\subsection{Chọn mô hình hồi quy}
-
-\begin{phuongphap}[title={Tiêu chí}]
-So sánh MSE, MAE, $R^2$; độ phức tạp; khả năng giải thích.
-Chọn mô hình có metric tốt, đơn giản và dễ diễn giải khi có thể.
 \end{phuongphap}
 
-\subsection{Metric đánh giá}
+\subsubsection{Hồi quy logistic (Logistic Regression)}
 
-\begin{tinhchat}[title={Các chỉ số}]
+\begin{dinhnghia}[title={Hồi quy logistic}]
+Hồi quy logistic là thuật toán học máy phổ biến, dùng để dự đoán \textbf{xác suất} một sự kiện xảy ra.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Mô hình và hàm sigmoid}]
+Hồi quy logistic là mô hình tuyến tính tổng quát (generalized linear model) trong đó biến mục tiêu tuân theo phân phối Bernoulli.
+Thuật toán dùng hàm logistic hoặc hàm logit để học quan hệ giữa biến độc lập (predictors) và biến phụ thuộc (target).
+
+Biến phụ thuộc được ánh xạ qua hàm sigmoid của các biến độc lập.
+Hàm sigmoid cho xác suất trong khoảng $[0, 1]$; giá trị xác suất này được dùng để ước lượng giá trị biến phụ thuộc.
+\end{phuongphap}
+
+\begin{ynghia}[title={Ứng dụng chính}]
+Hồi quy logistic chủ yếu dùng cho \textbf{bài toán phân loại nhị phân}: biến mục tiêu là phân loại với hai lớp.
+Mô hình ước lượng xác suất của biến mục tiêu khi biết các feature đầu vào, rồi dự đoán lớp có xác suất cao nhất.
+\end{ynghia}
+
+\subsubsection{Hồi quy đa thức (Polynomial Regression)}
+
+\begin{dinhnghia}[title={Hồi quy đa thức}]
+Polynomial Linear Regression là phân tích hồi quy trong đó quan hệ giữa biến độc lập và biến phụ thuộc được mô hình hóa bằng hàm đa thức bậc $n$.
+Hồi quy đa thức cho phép bắt quan hệ phức tạp hơn so với quan hệ tuyến tính trong hồi quy đơn và hồi quy tuyến tính đa biến thuần túy.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Đặc điểm}]
+Hồi quy đa thức là một trong các hồi quy \textbf{phi tuyến} được dùng rộng rãi nhất.
+Có thể mô hình hóa quan hệ phi tuyến giữa predictor và target; đồng thời \textbf{nhạy hơn với outlier} so với hồi quy tuyến tính.
+\end{tinhchat}
+
+\subsubsection{Hồi quy Lasso (Lasso Regression)}
+
+\begin{dinhnghia}[title={Hồi quy Lasso}]
+Hồi quy Lasso là kỹ thuật \textbf{chuẩn hóa} (regularization): thêm hình phạt (penalty) để tránh overfitting và cải thiện độ chính xác mô hình hồi quy.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={L1 và trường hợp dùng}]
+Lasso thực hiện \textbf{chuẩn hóa L1}: sửa hàm mất mát bằng cách cộng thêm lượng co (shrinkage) bằng \textbf{tổng giá trị tuyệt đối} của các hệ số.
+
+Hồi quy Lasso thường dùng khi xử lý dữ liệu \textbf{chiều cao} (nhiều feature) và dữ liệu có \textbf{tương quan cao} giữa các biến.
+\end{phuongphap}
+
+\subsubsection{Hồi quy Ridge (Ridge Regression)}
+
+\begin{dinhnghia}[title={Hồi quy Ridge}]
+Hồi quy Ridge là kỹ thuật thống kê trong học máy nhằm \textbf{ngăn overfitting} trên mô hình hồi quy tuyến tính.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={L2 và trường hợp dùng}]
+Ridge là chuẩn hóa \textbf{L2}: sửa hàm mất mát / cost bằng cách cộng penalty bằng \textbf{bình phương độ lớn} của các hệ số.
+
+Ridge giúp giảm độ phức tạp mô hình và cải thiện độ dự đoán.
+Phù hợp khi mô hình có nhiều tham số với trọng số lớn, và với tập dữ liệu có \textbf{số feature lớn hơn số quan sát}.
+\end{phuongphap}
+
+\begin{luuy}[title={Đa cộng tuyến}]
+Ridge cũng giúp xử lý \textbf{đa cộng tuyến} --- tình huống các biến độc lập phụ thuộc lẫn nhau.
+\end{luuy}
+
+\subsubsection{Hồi quy cây quyết định (Decision Tree Regression)}
+
+\begin{dinhnghia}[title={Hồi quy cây quyết định}]
+Hồi quy cây quyết định dùng thuật toán cây quyết định để dự đoán \textbf{giá trị số}.
+Cây quyết định là thuật toán học có giám sát, dùng được cho cả phân loại và hồi quy.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cách hoạt động}]
+Trong hồi quy, cây dùng để dự đoán biến liên tục.
+Cách hoạt động: chia dữ liệu thành các tập con nhỏ hơn theo giá trị feature đầu vào, gán mỗi tập con một giá trị số; quá trình lặp dần xây dựng cây quyết định.
+
+Cây khớp các hồi quy tuyến tính cục bộ để xấp xỉ đường cong; mỗi lá (leaf) biểu diễn một giá trị số.
+Thuật toán cố gắng \textbf{giảm MSE} tại mỗi nút con --- đo mức dự đoán lệch so với target gốc.
+\end{phuongphap}
+
+\begin{ynghia}[title={Ứng dụng}]
+Dự đoán giá cổ phiếu, hành vi khách hàng, v.v.
+\end{ynghia}
+
+\subsubsection{Hồi quy Random Forest (Random Forest Regression)}
+
+\begin{dinhnghia}[title={Hồi quy Random Forest}]
+Hồi quy Random Forest là thuật toán học có giám sát dùng \textbf{tập hợp} (ensemble) nhiều cây quyết định để dự đoán biến mục tiêu liên tục.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Bagging}]
+Kỹ thuật \textbf{bagging}: chọn ngẫu nhiên các tập con dữ liệu huấn luyện để xây từng cây nhỏ; các mô hình nhỏ được kết hợp thành Random Forest và xuất ra \textbf{một} giá trị dự đoán.
+
+Cách này giúp tăng độ chính xác và \textbf{giảm phương sai} nhờ kết hợp dự đoán từ nhiều cây.
+\end{phuongphap}
+
+\subsubsection{Hồi quy vectơ hỗ trợ (Support Vector Regression)}
+
+\begin{dinhnghia}[title={SVR}]
+Support Vector Regression (SVR) là thuật toán học máy dùng máy vectơ hỗ trợ (SVM) để giải bài toán hồi quy.
+SVR có thể học quan hệ \textbf{phi tuyến} giữa dữ liệu đầu vào (feature) và đầu ra (target).
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Ưu điểm}]
+Xử lý được quan hệ tuyến tính và phi tuyến trong tập dữ liệu; \textbf{chịu outlier} tốt; có độ chính xác dự đoán cao.
+\end{tinhchat}
+
+\subsection{Hai loại mô hình hồi quy (đơn và đa biến)}
+
+\begin{dinhnghia}[title={Mô hình hồi quy đơn (Simple regression model)}]
+Đây là mô hình hồi quy cơ bản nhất: dự đoán được tạo từ \textbf{một} feature đơn biến (univariate) của dữ liệu.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Mô hình hồi quy đa biến (Multiple regression model)}]
+Như tên gọi, trong mô hình này dự đoán được tạo từ \textbf{nhiều} feature của dữ liệu.
+\end{dinhnghia}
+
+\subsection{Chọn mô hình hồi quy tốt nhất}
+
+\begin{phuongphap}[title={Cách chọn mô hình}]
+Có thể xét các yếu tố: metric hiệu năng, độ phức tạp mô hình, khả năng giải thích (interpretability), v.v.
+Đánh giá mô hình bằng các metric như MSE, MAE, $R^2$, v.v.
+
+So sánh hiệu năng của các mô hình khác nhau (hồi quy tuyến tính, cây quyết định, random forest, v.v.) và chọn mô hình có metric cao nhất, độ phức tạp thấp nhất, và dễ giải thích nhất (trong phạm vi phù hợp bài toán).
+\end{phuongphap}
+
+\subsection{Metric đánh giá hồi quy}
+
+\begin{tinhchat}[title={Metric đánh giá hồi quy}]
 \begin{itemize}
-  \item \textbf{MAE}: trung bình $|y - \hat{y}|$.
-  \item \textbf{MSE}: trung bình $(y - \hat{y})^2$.
-  \item \textbf{Median absolute error}: trung vị $|y - \hat{y}|$.
-  \item \textbf{RMSE}: $\sqrt{\mathrm{MSE}}$.
-  \item \textbf{$R^2$}: tối đa 1.0; có thể âm nếu mô hình rất kém.
-  \item \textbf{MAPE}: MAE dạng phần trăm.
+  \item Mean Absolute Error (MAE): Trung bình của \textbf{giá trị tuyệt đối} hiệu giữa giá trị dự đoán và giá trị thực.
+  \item Mean Squared Error (MSE): Trung bình của \textbf{bình phương} hiệu giữa giá trị thực và giá trị ước lượng.
+  \item Median Absolute Error: Trung vị của hiệu tuyệt đối giữa giá trị dự đoán và giá trị thực.
+  \item Root Mean Squared Error (RMSE): Căn bậc hai của MSE.
+  \item $R^2$ (coefficient of determination): Điểm tốt nhất có thể là $1{,}0$; có thể \textbf{âm} vì mô hình có thể tệ hơn mức tùy ý so với baseline đơn giản.
+  \item MAPE (Mean Absolute Percentage Error): Dạng phần trăm tương đương của MAE.
 \end{itemize}
 \end{tinhchat}
 
-\subsection{Ứng dụng}
+\subsection{Ứng dụng hồi quy trong học máy}
 
-\begin{ynghia}[title={Ứng dụng điển hình}]
+\begin{ynghia}[title={Ứng dụng hồi quy trong học máy}]
 \begin{itemize}
-  \item \textbf{Dự báo}: GDP, giá dầu, chuỗi thời gian.
-  \item \textbf{Tối ưu}: giờ cao điểm khách hàng.
-  \item \textbf{Hiệu chỉnh quyết định}: đánh giá và sửa chính sách.
-  \item \textbf{Kinh tế / tài chính}: cung--cầu, rủi ro danh mục.
+  \item Dự báo / phân tích dự đoán (Forecasting or Predictive analysis): Một trong những ứng dụng quan trọng của hồi quy là dự báo. Ví dụ: dự báo GDP, giá dầu, hoặc nói chung các dữ liệu định lượng thay đổi theo thời gian.
+  \item Tối ưu hóa (Optimization): Hồi quy giúp tối ưu quy trình kinh doanh. Ví dụ: quản lý cửa hàng có thể lập mô hình thống kê để hiểu giờ cao điểm khách đến.
+  \item Hiệu chỉnh sai lầm (Error correction): Trong kinh doanh, ra quyết định đúng quan trọng ngang với tối ưu quy trình. Hồi quy hỗ trợ ra quyết định đúng và \textbf{hiệu chỉnh} các quyết định đã triển khai.
+  \item Kinh tế (Economics): Hồi quy là công cụ được dùng nhiều nhất trong kinh tế: dự đoán cung, cầu, tiêu dùng, đầu tư tồn kho, v.v.
+  \item Tài chính (Finance): Công ty tài chính muốn giảm rủi ro danh mục và hiểu yếu tố ảnh hưởng khách hàng --- có thể mô hình hóa bằng hồi quy.
 \end{itemize}
 \end{ynghia}
 
-\subsection{Xây dựng regressor trong Python}
+\subsection{Xây dựng mô hình hồi quy trong Python}
 
-\begin{phuongphap}[title={Các bước (scikit-learn)}]
-\begin{enumerate}
-  \item Import thư viện.
-  \item Nạp dữ liệu.
-  \item Chia train/test.
-  \item Huấn luyện và dự đoán.
-  \item Vẽ đồ thị.
-  \item Tính metric.
-\end{enumerate}
+\begin{phuongphap}[title={Cách xây dựng mô hình hồi quy}]
+Có thể xây mô hình hồi quy từ đầu bằng Python; thư viện Scikit-learn cũng dùng được để xây mô hình hồi quy.
+
+Ví dụ dưới đây xây mô hình hồi quy cơ bản: khớp một đường thẳng với dữ liệu.
 \end{phuongphap}
 
-\begin{vidu}[title={Hồi quy tuyến tính với dữ liệu tổng hợp}]
-Thay đường dẫn \texttt{C:\textbackslash linear.txt} và lỗi \texttt{num\_training} trong bài gốc bằng \texttt{make\_regression}:
+\begin{vidu}[title={Bước 1: Import các gói Python}]
+Để xây mô hình hồi quy bằng scikit-learn, cần import scikit-learn cùng các gói khác:
 
 \begin{lstlisting}
 import numpy as np
 from sklearn import linear_model
 import sklearn.metrics as sm
 import matplotlib.pyplot as plt
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2: Nạp dataset}]
+Sau khi import, cần dataset để xây mô hình dự đoán hồi quy. Có thể lấy từ dataset của sklearn hoặc nguồn khác tùy nhu cầu.
+
+\begin{lstlisting}
 from sklearn.datasets import make_regression
-
 X, y = make_regression(n_samples=100, n_features=1, noise=15, random_state=42)
+\end{lstlisting}
+\end{vidu}
 
+\begin{vidu}[title={Bước 3: Chia tập huấn luyện và kiểm tra}]
+Cần kiểm thử trên dữ liệu chưa thấy, nên chia dataset thành tập huấn luyện và tập kiểm tra.
+
+\begin{lstlisting}
 training_samples = int(0.6 * len(X))
+testing_samples = len(X) - training_samples
 X_train, y_train = X[:training_samples], y[:training_samples]
 X_test, y_test = X[training_samples:], y[training_samples:]
+\end{lstlisting}
+\end{vidu}
 
+\begin{vidu}[title={Bước 4: Huấn luyện và dự đoán}]
+Sau khi chia dữ liệu, xây mô hình bằng \texttt{LinearRegression()} của Scikit-learn:
+
+\begin{lstlisting}
 reg_linear = linear_model.LinearRegression()
 reg_linear.fit(X_train, y_train)
 y_test_pred = reg_linear.predict(X_test)
+\end{lstlisting}
+\end{vidu}
 
+\begin{vidu}[title={Bước 5: Vẽ đồ thị}]
+Sau dự đoán, có thể vẽ và trực quan hóa:
+
+\begin{lstlisting}
 plt.scatter(X_test, y_test, color='red')
 plt.plot(X_test, y_test_pred, color='black', linewidth=2)
+plt.xticks(())
+plt.yticks(())
 plt.show()
-
-print("Regressor model performance:")
-print("MAE =", round(sm.mean_absolute_error(y_test, y_test_pred), 2))
-print("MSE =", round(sm.mean_squared_error(y_test, y_test_pred), 2))
-print("R2 =", round(sm.r2_score(y_test, y_test_pred), 2))
 \end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 6: Tính hiệu năng}]
+Tính hiệu năng mô hình bằng các metric:
+
+\begin{lstlisting}
+print("Regressor model performance:")
+print("Mean absolute error(MAE) =",
+      round(sm.mean_absolute_error(y_test, y_test_pred), 2))
+print("Mean squared error(MSE) =",
+      round(sm.mean_squared_error(y_test, y_test_pred), 2))
+print("Median absolute error =",
+      round(sm.median_absolute_error(y_test, y_test_pred), 2))
+print("Explain variance score =",
+      round(sm.explained_variance_score(y_test, y_test_pred), 2))
+print("R2 score =",
+      round(sm.r2_score(y_test, y_test_pred), 2))
+\end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+Regressor model performance:
+Mean absolute error(MAE) = 1.78
+Mean squared error(MSE) = 3.89
+Median absolute error = 2.01
+Explain variance score = -0.09
+R2 score = -0.09
+\end{verbatim}
 \end{vidu}

@@ -1,0 +1,80 @@
+\documentclass[12pt,a4paper]{article}
+
+\def\courseshortheader{MACHINE LEARNING (PHẦN 5)}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Machine Learning}
+\def\coversubtitle{Phần 5 --- Classification Algorithms}
+
+\input{../../../1_machine_learning/_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\graphicspath{{images/}}
+
+\newcommand{\tsurl}[1]{\url{#1}}
+\newcommand{\tsimg}[2][0.88]{%
+  \def\tsimgfile{images/#2}%
+  \IfFileExists{\tsimgfile}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy \expandafter\path\expandafter{\tsimgfile}.%
+    \end{luuy}%
+  }%
+}
+
+\begin{document}
+
+\input{../../../1_machine_learning/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Nguồn}]
+Tài liệu biên soạn và dịch đầy đủ từ Tutorialspoint Machine Learning --- mục Classification Algorithms:\ \tsurl{https://www.tutorialspoint.com/machine_learning/machine_learning_classification_algorithms.htm}.
+\end{ynghia}
+
+\begin{phuongphap}[title={Cách dùng}]
+\begin{itemize}
+  \item Đọc sau phần Regression Analysis.
+\end{itemize}
+\end{phuongphap}
+
+\newpage
+
+\input{tex/01_classification_algorithms.tex}
+\input{tex/02_logistic_regression.tex}
+\input{tex/03_knn.tex}
+\input{tex/04_naive_bayes.tex}
+\input{tex/05_decision_tree.tex}
+\input{tex/06_svm.tex}
+\input{tex/07_random_forest.tex}
+\input{tex/08_confusion_matrix.tex}
+\input{tex/09_stochastic_gradient_descent.tex}
+
+\end{document}

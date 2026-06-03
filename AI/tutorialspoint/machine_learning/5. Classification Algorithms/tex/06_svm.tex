@@ -1,0 +1,198 @@
+%==============================================================================
+\section{Support Vector Machine (SVM)}
+\label{sec:svm}
+%==============================================================================
+
+\begin{dinhnghia}[title={Support Vector Machine (SVM)}]
+Thuật toán học có giám sát mạnh và linh hoạt, dùng cho phân loại và hồi quy; thường dùng cho \textbf{phân loại}.
+Ra đời từ thập niên 1960, hoàn thiện thập niên 1990; phổ biến nhờ xử lý nhiều biến liên tục và phân loại.
+\end{dinhnghia}
+
+\subsection{Cách SVM hoạt động}
+
+\begin{dongco}[title={Mục tiêu}]
+Tìm \textbf{siêu phẳng} (hyperplane) tách các lớp; tối đa hóa \textbf{margin} --- khoảng cách từ siêu phẳng đến các điểm gần nhất mỗi lớp (support vectors).
+\end{dongco}
+
+\begin{phuongphap}[title={Khoảng cách đến siêu phẳng}]
+\[
+\mathrm{distance} = \frac{w \cdot x + b}{\|w\|}
+\]
+$w$: vector trọng số (vuông góc siêu phẳng); $b$: bias; $\|w\|$: chuẩn Euclid của $w$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bài toán tối ưu}]
+Tối đa hóa margin với ràng buộc mọi điểm được phân loại đúng --- bài toán lồi, giải bằng quadratic programming.
+Nếu không tách tuyến tính được: dùng \textbf{kernel trick} ánh xạ lên không gian chiều cao hơn mà không tính ánh xạ tường minh.
+\end{phuongphap}
+
+\tsimg{06_svm/img01.jpg}
+
+\begin{dinhnghia}[title={Support Vectors}]
+Điểm dữ liệu \textbf{gần siêu phẳng nhất}; định nghĩa đường phân tách.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hyperplane}]
+Mặt phẳng quyết định chia không gian thành vùng lớp khác nhau (đường thẳng trong 2D).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Margin}]
+Khoảng cách giữa hai đường song song qua support vectors gần nhất hai lớp; margin \textbf{lớn} thường tốt hơn margin nhỏ.
+\end{dinhnghia}
+
+\subsection{Triển khai SVM bằng Python}
+
+\begin{vidu}[title={Import và dữ liệu mẫu}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.datasets import make_blobs
+
+X, y = make_blobs(n_samples=100, centers=2, random_state=0,
+                  cluster_std=0.50)
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='summer')
+\end{lstlisting}
+\tsimg{06_svm/img02.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Nhiều đường phân tách có thể}]
+\begin{lstlisting}
+xfit = np.linspace(-1, 3.5)
+plt.scatter(X[:, 0], X[:, 1], c=y, s=50, cmap='summer')
+for m, b in [(1, 0.65), (0.5, 1.6), (-0.2, 2.9)]:
+    plt.plot(xfit, m * xfit + b, '-k')
+plt.xlim(-1, 3.5)
+\end{lstlisting}
+\tsimg{06_svm/img03.jpg}
+\end{vidu}
+
+\begin{vidu}[title={Maximum Marginal Hyperplane (MMH)}]
+\begin{lstlisting}
+for m, b, d in [(1, 0.65, 0.33), (0.5, 1.6, 0.55), (-0.2, 2.9, 0.2)]:
+    yfit = m * xfit + b
+    plt.plot(xfit, yfit, '-k')
+    plt.fill_between(xfit, yfit - d, yfit + d, color='#AAAAAA', alpha=0.4)
+plt.xlim(-1, 3.5)
+\end{lstlisting}
+\tsimg{06_svm/img04.jpg}
+
+SVM chọn đường \textbf{tối đa hóa margin}.
+\end{vidu}
+
+\begin{vidu}[title={SVC kernel tuyến tính}]
+\begin{lstlisting}
+from sklearn.svm import SVC
+model = SVC(kernel='linear', C=1E10)
+model.fit(X, y)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Hàm decision\_function và support vectors}]
+Vẽ biên quyết định và support vectors (xem code đầy đủ trong notebook); sau khi fit:
+
+\begin{lstlisting}
+print(model.support_vectors_)
+\end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+[[0.5323772  3.31338909]
+ [2.11114739 3.57660449]
+ [1.46870582 1.86947425]]
+\end{verbatim}
+\tsimg{06_svm/img05.jpg}
+\end{vidu}
+
+\subsection{SVM Kernels}
+
+\begin{phuongphap}[title={Kernel trick}]
+Kernel biến không gian đầu vào chiều thấp sang dạng phù hợp; biến bài toán không tách tuyến tính thành tách được trong không gian mới.
+\end{phuongphap}
+
+\begin{tinhchat}[title={Linear kernel}]
+$k(x, x_i) = \sum x \cdot x_i$ (tích vô hướng).
+\end{tinhchat}
+
+\begin{tinhchat}[title={Polynomial kernel}]
+$K(x, x_i) = 1 + \sum(x \cdot x_i)^d$; $d$ là bậc đa thức (chỉ định thủ công).
+\end{tinhchat}
+
+\begin{tinhchat}[title={RBF kernel}]
+$K(x, x_i) = \exp(-\gamma \sum (x - x_i)^2)$; $\gamma \in [0,1]$, mặc định thường 0.1.
+\end{tinhchat}
+
+\begin{vidu}[title={SVM với kernel trên Iris (2 feature)}]
+\begin{lstlisting}
+from sklearn import svm, datasets
+import matplotlib.pyplot as plt
+import numpy as np
+
+iris = datasets.load_iris()
+X = iris.data[:, :2]
+y = iris.target
+
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+h = (x_max - x_min) / 100
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                     np.arange(y_min, y_max, h))
+X_plot = np.c_[xx.ravel(), yy.ravel()]
+C = 1.0
+
+svc = svm.SVC(kernel='linear', C=C).fit(X, y)
+Z = svc.predict(X_plot).reshape(xx.shape)
+plt.contourf(xx, yy, Z, alpha=0.3)
+plt.scatter(X[:, 0], X[:, 1], c=y)
+plt.title('SVC with linear kernel')
+\end{lstlisting}
+\tsimg{06_svm/img06.jpg}
+
+Kernel RBF:
+\begin{lstlisting}
+svc = svm.SVC(kernel='rbf', gamma='auto', C=C).fit(X, y)
+\end{lstlisting}
+\tsimg{06_svm/img07.jpg}
+\end{vidu}
+
+\subsection{Tinh chỉnh tham số SVM}
+
+\begin{phuongphap}[title={Tham số quan trọng}]
+\textbf{kernel}: linear, polynomial, RBF, sigmoid.
+\textbf{C}: cân bằng margin vs lỗi phân loại; $C$ lớn $\Rightarrow$ ít sai số hơn, margin có thể nhỏ hơn.
+Tham số riêng từng kernel: bậc đa thức, $\gamma$ RBF, v.v.
+Dùng \textbf{cross-validation} (GridSearchCV) để chọn bộ tham số tốt.
+\end{phuongphap}
+
+\begin{vidu}[title={GridSearchCV}]
+\begin{lstlisting}
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVC
+
+param_grid = {
+    'C': [0.1, 1, 10, 100],
+    'kernel': ['linear', 'poly', 'rbf', 'sigmoid'],
+    'degree': [2, 3, 4],
+    'gamma': ['scale', 'auto']
+}
+grid_search = GridSearchCV(SVC(), param_grid, cv=5)
+grid_search.fit(X_train, y_train)
+print("Best parameters:", grid_search.best_params_)
+print("Best accuracy:", grid_search.best_score_)
+\end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+Best parameters: {'C': 0.1, 'degree': 3, 'gamma': 'scale', 'kernel': 'poly'}
+Best accuracy: 0.975
+\end{verbatim}
+\end{vidu}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+Độ chính xác cao; hiệu quả không gian chiều cao; dùng subset điểm huấn luyện nên tiết kiệm bộ nhớ.
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+Thời gian huấn luyện lớn --- không phù hợp dataset rất lớn; kém khi các lớp chồng lấn nhiều.
+\end{luuy}

@@ -1,0 +1,64 @@
+%==============================================================================
+\section{Phân cụm dựa trên mật độ (Density-Based Clustering)}
+\label{sec:density-based}
+%==============================================================================
+
+\begin{dinhnghia}[title={Ý tưởng phân cụm theo mật độ}]
+Phân cụm dựa trên mật độ cho rằng cụm là các vùng \textbf{mật độ cao}, ngăn cách bởi vùng \textbf{mật độ thấp}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ba loại điểm}]
+\begin{enumerate}
+  \item \textbf{Core (lõi)}: điểm có ít nhất một số láng giềng tối thiểu trong bán kính cho trước --- tâm vùng cụm.
+  \item \textbf{Border (biên)}: không phải core nhưng nằm trong lân cận của ít nhất một điểm core.
+  \item \textbf{Noise (nhiễu)}: không phải core cũng không phải border.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{ynghia}[title={So với centroid/partition}]
+Không giả định cụm hình cầu hay số cụm cố định; phù hợp hình dạng bất kỳ và phát hiện điểm nhiễu.
+\end{ynghia}
+
+\subsection{Các thuật toán phân cụm theo mật độ phổ biến}
+
+\subsubsection{DBSCAN}
+
+\begin{dinhnghia}[title={DBSCAN}]
+DBSCAN (Density-Based Spatial Clustering of Applications with Noise) là thuật toán phân cụm theo mật độ phổ biến nhất. Cần hai tham số:
+\begin{itemize}
+  \item \texttt{minPts}: số láng giềng tối thiểu để một điểm được coi là core.
+  \item \texttt{eps}: bán kính (hoặc khoảng cách tối đa) xét láng giềng giữa các điểm core.
+\end{itemize}
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cơ chế tóm tắt}]
+Từ mỗi core chưa thăm, mở rộng cụm bằng cách nối các core và border liên thông trong $\varepsilon$; điểm không đạt điều kiện gán là noise.
+\end{phuongphap}
+
+\subsubsection{OPTICS}
+
+\begin{dinhnghia}[title={OPTICS}]
+OPTICS (Ordering Points To Identify the Clustering Structure) xây \textbf{đồ thị reachability} nối mỗi điểm tới láng giềng gần trong ngưỡng khoảng cách; cạnh có trọng số theo khoảng cách. Từ đồ thị này, thuật toán tạo cấu trúc phân cấp bằng cách tách theo ngưỡng mật độ.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={So với DBSCAN}]
+OPTICS xử lý tốt hơn khi cụm có \textbf{mật độ khác nhau}, có nhiễu, và khi cần xem cấu trúc phân cấp mật độ mà không cố định một cặp \texttt{eps}/\texttt{minPts} duy nhất.
+\end{tinhchat}
+
+\subsubsection{HDBSCAN}
+
+\begin{dinhnghia}[title={HDBSCAN}]
+HDBSCAN (Hierarchical Density-Based Spatial Clustering of Applications with Noise) mở rộng DBSCAN theo hướng phân cấp mật độ.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Ưu điểm so với DBSCAN}]
+\begin{itemize}
+  \item Cụm \textbf{mật độ thay đổi} trong cùng dataset.
+  \item Phát hiện cụm \textbf{hình dạng và kích thước đa dạng}.
+  \item Ít phụ thuộc chọn một $\varepsilon$ duy nhất cho mọi mức mật độ.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Các chương tiếp theo}]
+Ba chương kế tiếp trình bày chi tiết DBSCAN, OPTICS và HDBSCAN kèm triển khai Python.
+\end{luuy}

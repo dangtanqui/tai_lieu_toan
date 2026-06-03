@@ -1,0 +1,104 @@
+%==============================================================================
+\section{Stochastic Gradient Descent (SGD)}
+\label{sec:sgd}
+%==============================================================================
+
+\begin{dinhnghia}[title={Stochastic Gradient Descent (SGD)}]
+Kỹ thuật tối ưu phổ biến trong học máy: cập nhật tham số (trọng số, bias) lặp lại bằng \textbf{từng mẫu huấn luyện} (hoặc mini-batch) thay vì toàn bộ dataset.
+Biến thể của gradient descent; hiệu quả và nhanh hơn với dataset lớn và thưa.
+\end{dinhnghia}
+
+\subsection{Gradient Descent}
+
+\begin{dinhnghia}[title={Gradient Descent}]
+Thuật toán tối ưu tối thiểu hóa \textbf{hàm cost} của mô hình: tính gradient cost theo tham số, cập nhật tham số ngược hướng gradient.
+\end{dinhnghia}
+
+\subsection{SGD}
+
+\begin{dinhnghia}[title={SGD}]
+Biến thể cập nhật tham số sau \textbf{mỗi ví dụ} (hoặc mini-batch nhỏ), không đợi duyệt hết dataset mỗi bước.
+Hội tụ nhanh hơn và cần ít bộ nhớ lưu toàn bộ dữ liệu hơn batch gradient descent.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Thuật toán SGD}]
+\begin{enumerate}
+  \item Khởi tạo tham số ngẫu nhiên.
+  \item Mỗi epoch: xáo trộn dữ liệu huấn luyện.
+  \item Với mỗi mẫu: tính gradient cost theo tham số; cập nhật tham số ngược gradient.
+  \item Lặp đến hội tụ.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Cập nhật trọng số}]
+\[
+w := w - \alpha \, \nabla_w J(w; x_i, y_i)
+\]
+$x_i$, $y_i$: mẫu và nhãn; $\alpha$: learning rate; $J$: hàm loss; $\nabla_w J$: gradient của $J$ theo $w$.
+\end{phuongphap}
+
+\begin{luuy}[title={Khác batch gradient descent}]
+SGD dùng \textbf{một} mẫu (hoặc mini-batch) để tính gradient; batch GD dùng \textbf{toàn bộ} dataset mỗi bước.
+\end{luuy}
+
+\subsection{Ví dụ Python --- SGDClassifier trên Iris}
+
+\begin{vidu}[title={Triển khai đầy đủ}]
+Dự đoán loài hoa Iris từ hai feature sepal width và sepal length:
+
+\begin{lstlisting}
+import numpy as np
+from sklearn import datasets
+from sklearn.linear_model import SGDClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn import metrics
+
+iris = datasets.load_iris()
+X, y = iris.data[:, :2], iris.target
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.20, random_state=1)
+
+scaler = StandardScaler().fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+
+clf = SGDClassifier(alpha=0.001, max_iter=200)
+clf.fit(X_train, y_train)
+
+y_train_pred = clf.predict(X_train)
+print("The Accuracy of SGD classifier is:",
+      metrics.accuracy_score(y_train, y_train_pred) * 100)
+\end{lstlisting}
+
+\textbf{Output mẫu:}
+\begin{verbatim}
+The Accuracy of SGD classifier is: 73.33333333333333
+\end{verbatim}
+\end{vidu}
+
+\subsection{Ứng dụng}
+
+\begin{ynghia}[title={Ứng dụng SGD}]
+SGD là kỹ thuật tối ưu, không phải mô hình ML hoàn chỉnh; dùng rộng rãi khi dữ liệu \textbf{thưa} --- đặc biệt phân loại văn bản, NLP.
+Mở rộng tốt cho bài toán hàng chục nghìn mẫu và hàng chục nghìn feature.
+\end{ynghia}
+
+\subsection{Ưu điểm và thách thức}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Hiệu quả bộ nhớ}: xử lý theo batch nhỏ.
+  \item \textbf{Hội tụ nhanh} trên dataset lớn so với batch GD.
+  \item \textbf{Thoát cực tiểu cục bộ}: tính ngẫu nhiên giúp tìm nghiệm tốt hơn đôi khi.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Thách thức}]
+\begin{itemize}
+  \item \textbf{Gradient nhiễu}: có thể làm chậm hội tụ.
+  \item \textbf{Chọn learning rate}: quan trọng cho tối ưu ổn định.
+  \item \textbf{Kích thước mini-batch}: ảnh hưởng tốc độ hội tụ và ổn định.
+\end{itemize}
+\end{luuy}

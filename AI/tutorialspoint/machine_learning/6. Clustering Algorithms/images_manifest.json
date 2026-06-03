@@ -1,0 +1,162 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_clustering_algorithms.htm",
+    "slug": "01_clustering_algorithms",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/clustering.jpg",
+        "file": "images/01_clustering_algorithms/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_hdbscan_clustering.htm",
+    "slug": "10_hdbscan",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/hdbscan.jpg",
+        "file": "images/10_hdbscan/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_birch_clustering.htm",
+    "slug": "11_birch",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/birch_algorithm.jpg",
+        "file": "images/11_birch/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_affinity_propagation.htm",
+    "slug": "12_affinity_propagation",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/affinity_propagation.jpg",
+        "file": "images/12_affinity_propagation/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_distribution_based_clustering.htm",
+    "slug": "13_distribution_based",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/gaussian_mixture_model.jpg",
+        "file": "images/13_distribution_based/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_agglomerative_clustering.htm",
+    "slug": "14_agglomerative",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/agglomerative_clustering.jpg",
+        "file": "images/14_agglomerative/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/agglomerative_clustering_results.jpg",
+        "file": "images/14_agglomerative/img02.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_centroid_based_clustering.htm",
+    "slug": "02_centroid_based",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_k_means_clustering.htm",
+    "slug": "03_k_means",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/k_means_clustering.jpg",
+        "file": "images/03_k_means/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/k_means_clustering_plot.jpg",
+        "file": "images/03_k_means/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/k_means_clustering_dataset_2d_blog.jpg",
+        "file": "images/03_k_means/img03.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/k_means_clustering_clusters_centers.jpg",
+        "file": "images/03_k_means/img04.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/k_means_clustering_digit_clusters_centers.jpg",
+        "file": "images/03_k_means/img05.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_k_medoids_clustering.htm",
+    "slug": "04_k_medoids",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/medoids.jpg",
+        "file": "images/04_k_medoids/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_hierarchical_clustering.htm",
+    "slug": "06_hierarchical",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/random_dots.jpg",
+        "file": "images/06_hierarchical/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/building.jpg",
+        "file": "images/06_hierarchical/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/red_building.jpg",
+        "file": "images/06_hierarchical/img03.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/random_red_dots.jpg",
+        "file": "images/06_hierarchical/img04.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/green_building.jpg",
+        "file": "images/06_hierarchical/img05.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/brown.jpg",
+        "file": "images/06_hierarchical/img06.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_density_based_clustering.htm",
+    "slug": "07_density_based",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_dbscan_clustering.htm",
+    "slug": "08_dbscan",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/dbscan_clustering.jpg",
+        "file": "images/08_dbscan/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_optics_clustering.htm",
+    "slug": "09_optics",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/optics.jpg",
+        "file": "images/09_optics/img01.jpg"
+      }
+    ]
+  }
+]

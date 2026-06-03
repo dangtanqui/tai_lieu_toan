@@ -1,0 +1,117 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_classification_algorithms.htm",
+    "slug": "01_classification_algorithms",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/confusion_matrix.jpg",
+        "file": "images/01_classification_algorithms/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_knn_nearest_neighbors.htm",
+    "slug": "03_knn",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/violate.jpg",
+        "file": "images/03_knn/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/circle.jpg",
+        "file": "images/03_knn/img02.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_naive_bayes_algorithms.htm",
+    "slug": "04_naive_bayes",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/blobs_points_gaussian_distribution.jpg",
+        "file": "images/04_naive_bayes/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/naive_bayes_model_prediction.jpg",
+        "file": "images/04_naive_bayes/img02.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_decision_tree_algorithm.htm",
+    "slug": "05_decision_tree",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/decision_tree_algorithm.jpg",
+        "file": "images/05_decision_tree/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/plot_of_decision_tree.jpg",
+        "file": "images/05_decision_tree/img02.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_support_vector_machine.htm",
+    "slug": "06_svm",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/working_of_svm.jpg",
+        "file": "images/06_svm/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_blobs_datapoints.jpg",
+        "file": "images/06_svm/img02.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_line_hyperplane.jpg",
+        "file": "images/06_svm/img03.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_maximum_marginal_hyperplane.jpg",
+        "file": "images/06_svm/img04.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_best_fit_hyperplane.jpg",
+        "file": "images/06_svm/img05.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_curve.jpg",
+        "file": "images/06_svm/img06.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/svm_classifier.jpg",
+        "file": "images/06_svm/img07.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_random_forest_classification.htm",
+    "slug": "07_random_forest",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/random_forest_algorithm.jpg",
+        "file": "images/07_random_forest/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_confusion_matrix.htm",
+    "slug": "08_confusion_matrix",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/confusion_matrix.jpg",
+        "file": "images/08_confusion_matrix/img01.jpg"
+      },
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/heatmap.jpg",
+        "file": "images/08_confusion_matrix/img02.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_stochastic_gradient_descent.htm",
+    "slug": "09_stochastic_gradient_descent",
+    "images": []
+  }
+]

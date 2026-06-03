@@ -4,68 +4,145 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={Hồi quy tuyến tính đơn}]
-Phương pháp học có giám sát dùng \textbf{một} biến độc lập để dự đoán biến phụ thuộc; mô hình quan hệ tuyến tính giữa hai biến.
-Khi thuật toán hồi quy tuyến tính chỉ có một feature $\Rightarrow$ hồi quy đơn; nhiều feature $\Rightarrow$ hồi quy đa biến.
+Phương pháp thống kê và học có giám sát: dùng \textbf{một} biến độc lập (predictor) để dự đoán biến phụ thuộc; mô hình hóa quan hệ tuyến tính giữa hai biến.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Biến độc lập và phụ thuộc}]
-\begin{itemize}
-  \item \textbf{Độc lập} (predictor): trục ngang; ví dụ số năm kinh nghiệm.
-  \item \textbf{Phụ thuộc} (response): trục dọc; ví dụ lương.
-\end{itemize}
+\begin{phuongphap}[title={Liên hệ với hồi quy tuyến tính}]
+Hồi quy tuyến tính đơn là một loại hồi quy tuyến tính.
+Thuật toán hồi quy tuyến tính với \textbf{một} feature $\Rightarrow$ hồi quy đơn; với \textbf{nhiều} feature $\Rightarrow$ hồi quy đa biến.
 \end{phuongphap}
+
+\subsection{Biến độc lập và phụ thuộc}
+
+\begin{dinhnghia}[title={Biến độc lập (Independent Variable)}]
+Feature trong dataset; trong hồi quy đơn chỉ có \textbf{một} biến độc lập.
+Còn gọi predictor --- dùng để dự đoán target; vẽ trên trục \textbf{ngang}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Biến phụ thuộc (Dependent Variable)}]
+Giá trị target trong dataset; còn gọi response hoặc predicted variable; vẽ trên trục \textbf{dọc}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Đường hồi quy (Line of Regression)}]
+Trong hồi quy đơn, đường hồi quy là đường thẳng khớp tốt nhất các điểm, thể hiện quan hệ giữa biến phụ thuộc và độc lập.
+\end{dinhnghia}
+
+\subsection{Biểu diễn đồ thị}
 
 \tsimg{03_simple_linear_regression/img01.jpg}
 
-\begin{dinhnghia}[title={Mô hình}]
+\subsection{Mô hình toán học}
+
+\begin{dinhnghia}[title={Phương trình}]
 \[
 Y = w_0 + w_1 X + \epsilon
 \]
+\begin{itemize}
+  \item $Y$: biến phụ thuộc (target);
+  \item $X$: biến độc lập (feature);
+  \item $w_0$: hệ số chặn;
+  \item $w_1$: độ dốc, ảnh hưởng của $X$ lên $Y$;
+  \item $\epsilon$: sai số.
+\end{itemize}
 \end{dinhnghia}
 
-\subsection{Cách hoạt động}
+\subsection{Cách hồi quy tuyến tính đơn hoạt động}
+
+\begin{dongco}[title={Mục tiêu}]
+Tìm đường thẳng khớp tốt nhất qua các điểm sao cho chênh lệch giữa giá trị thực và dự đoán là nhỏ nhất.
+\end{dongco}
+
+\begin{dinhnghia}[title={Hàm giả thuyết}]
+Giả thuyết: quan hệ tuyến tính giữa target (đầu ra) và feature (đầu vào):
+\[
+\hat{Y} = w_0 + w_1 X
+\]
+Với mỗi cặp $(w_0, w_1)$ có một đường thẳng; tập mọi đường thẳng đó gọi là \textbf{không gian giả thuyết} (hypothesis space).
+Mục tiêu: tìm đường khớp tốt nhất trong không gian giả thuyết.
+\end{dinhnghia}
 
 \begin{phuongphap}[title={Tìm đường khớp tốt nhất}]
-Giả thuyết: $\hat{Y} = w_0 + w_1 X$. Không gian giả thuyết là tập mọi đường thẳng với $(w_0,w_1)$ khác nhau.
-Khởi tạo tham số, dự đoán, tính mất mát (thường MSE), tối ưu (thường gradient descent).
+Định nghĩa hàm cost/loss đo chênh lệch giữa giá trị thực và dự đoán.
+Mô hình khởi tạo tham số (mặc định), dùng đường hồi quy ban đầu để dự đoán trên đầu vào.
 \end{phuongphap}
 
+\begin{dinhnghia}[title={Hàm mất mát (MSE)}]
+Dùng giá trị đầu vào và dự đoán để tính loss; loss giúp tìm tham số tối ưu.
+Có thể dùng MSE, MAE, $R^2$, v.v.; phổ biến nhất là \textbf{mean squared error}:
 \[
 J(w_0, w_1) = \frac{1}{2n} \sum_{i=1}^{n} \left( Y_i - \hat{Y}_i \right)^2
 \]
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Tối ưu hóa}]
+Tham số tối ưu là bộ giá trị \textbf{tối thiểu hóa} cost; quá trình lặp cập nhật tham số.
+Gradient Descent là kỹ thuật tối ưu đơn giản và phổ biến nhất trong hồi quy đơn.
+Phương trình tuyến tính với tham số tối ưu là đường hồi quy cuối cùng, dùng dự đoán dữ liệu mới.
+\end{phuongphap}
 
 \subsection{Giả định}
 
-\begin{luuy}[title={Giả định cổ điển}]
+\begin{luuy}[title={Giả định mô hình hồi quy đơn}]
 \begin{itemize}
-  \item \textbf{Tuyến tính}: scatter plot gần đường thẳng.
-  \item \textbf{Phương sai đồng nhất} (homoscedasticity).
-  \item \textbf{Độc lập}: quan sát không phụ thuộc lẫn nhau.
-  \item \textbf{Chuẩn phần dư}: histogram phần dư gần chuẩn.
+  \item \textbf{Tuyến tính (Linearity)}: biến phụ thuộc thay đổi tuyến tính theo biến độc lập; scatter plot gần đường thẳng.
+  \item \textbf{Phương sai đồng nhất (Homoskedasticity)}: phương sai phần dư gần như nhau cho mọi quan sát.
+  \item \textbf{Độc lập (Independence)}: các cặp $(X,Y)$ độc lập; kiểm tra bằng scatter phần dư so với fitted values.
+  \item \textbf{Chuẩn phần dư (Normality)}: phần dư (thực $-$ dự đoán) gần phân phối chuẩn; kiểm tra histogram phần dư.
 \end{itemize}
 \end{luuy}
 
-\subsection{Triển khai Python}
+\subsection{Triển khai bằng Python}
 
-\begin{vidu}[title={Dataset Salary\_Data.csv}]
-30 mẫu: \texttt{YearsExperience} (feature), \texttt{Salary} (target).
-File: \path{data/Salary_Data.csv}.
-\end{vidu}
+\begin{dongco}[title={Dataset và mục đích}]
+Hai biến: \texttt{YearsExperience} (độc lập) và \texttt{Salary} (phụ thuộc).
+File \path{data/Salary_Data.csv}, 30 mẫu (bảng đầy đủ trong file CSV).
+Mục đích: xác định \textbf{đường thẳng nào} biểu diễn tốt nhất quan hệ giữa hai biến.
+\end{dongco}
 
-\begin{vidu}[title={Bước 1 --- Chuẩn bị dữ liệu}]
+\begin{phuongphap}[title={Bảng dữ liệu (trích)}]
+\begin{center}
+\small
+\begin{tabular}{cc}
+\textbf{Năm KN} & \textbf{Lương} \\
+1.1 & 39343 \\
+1.3 & 46205 \\
+\ldots & \ldots \\
+10.5 & 121872 \\
+\end{tabular}
+\end{center}
+\end{phuongphap}
+
+\begin{vidu}[title={Bước 1: Chuẩn bị dữ liệu (Data Preparation)}]
+Tiền xử lý là bước đầu. Import thư viện trước khi nạp dữ liệu:
+
 \begin{lstlisting}
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
 dataset = pd.read_csv('data/Salary_Data.csv')
-X = dataset.iloc[:, :-1].values   # YearsExperience
-y = dataset.iloc[:, -1].values    # Salary
+\end{lstlisting}
+
+Tách feature và target (\texttt{YearsExperience} = độc lập, \texttt{Salary} = phụ thuộc; bài gốc đảo nhầm X/Y):
+
+\begin{lstlisting}
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, -1].values
 print(dataset.head())
 \end{lstlisting}
+
+\textbf{Output mẫu \texttt{head()}:}
+\begin{verbatim}
+   YearsExperience    Salary
+0              1.1   39343.0
+1              1.3   46205.0
+2              1.5   37731.0
+3              2.0   43525.0
+4              2.2   39891.0
+\end{verbatim}
 \end{vidu}
 
-\begin{vidu}[title={Kiểm tra tuyến tính}]
+\begin{vidu}[title={Kiểm tra tuyến tính của dataset}]
 \begin{lstlisting}
 plt.scatter(X, y, color="green")
 plt.title("Salary vs Experience")
@@ -73,34 +150,55 @@ plt.xlabel("Years of Experience")
 plt.ylabel("Salary (INR)")
 plt.show()
 \end{lstlisting}
+
 \tsimg{03_simple_linear_regression/img02.jpg}
+
+\begin{ynghia}[title={Kết luận từ biểu đồ}]
+Biến phụ thuộc và độc lập có quan hệ gần tuyến tính $\Rightarrow$ có thể áp dụng hồi quy tuyến tính đơn.
+\end{ynghia}
 \end{vidu}
 
-\begin{vidu}[title={Chia train/test (80/20)}]
+\begin{vidu}[title={Chia tập huấn luyện và kiểm tra}]
+30 quan sát: 80\% huấn luyện (24), 20\% kiểm tra (6); một tập train, một tập test.
+
 \begin{lstlisting}
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=0)
 \end{lstlisting}
+
+\texttt{X\_train}, \texttt{y\_train}: feature và target tập huấn luyện.
 \end{vidu}
 
-\begin{vidu}[title={Bước 2 --- Huấn luyện}]
+\begin{vidu}[title={Bước 2: Huấn luyện mô hình}]
+Dùng \texttt{LinearRegression} của scikit-learn:
+
 \begin{lstlisting}
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
 regressor.fit(X_train, y_train)
 \end{lstlisting}
+
+\texttt{fit()} huấn luyện regressor: học quan hệ giữa \texttt{X\_train} và \texttt{y\_train}.
 \end{vidu}
 
-\begin{vidu}[title={Bước 3 --- Dự đoán trên tập kiểm tra}]
+\begin{vidu}[title={Bước 3: Kiểm thử mô hình}]
+Dự đoán trên tập kiểm tra:
+
 \begin{lstlisting}
 y_pred = regressor.predict(X_test)
-df = pd.DataFrame({'Actual Values': y_test, 'Predicted Values': y_pred})
+df = pd.DataFrame({'Actual Values': y_test,
+                   'Predicted Values': y_pred})
 print(df)
 \end{lstlisting}
+
+\texttt{X\_test}: feature kiểm tra; \texttt{y\_pred}: target dự đoán.
+Có thể dự đoán tương tự trên tập huấn luyện bằng \texttt{predict(X\_train)}.
 \end{vidu}
 
-\begin{vidu}[title={Bước 4 --- Đánh giá}]
+\begin{vidu}[title={Bước 4: Đánh giá mô hình}]
+Dùng MSE, RMSE, MAE, $R^2$:
+
 \begin{lstlisting}
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import numpy as np
@@ -113,33 +211,40 @@ print("R2:", r2_score(y_test, y_pred))
 \end{lstlisting}
 \end{vidu}
 
-\begin{luuy}[title={Output trong bài gốc}]
-Bài gốc in MSE/MAE cực nhỏ do lỗi code (dùng \texttt{mean\_squared\_error} cho cả RMSE và có thể nhầm tập).
-Code trên dùng \texttt{np.sqrt} cho RMSE là đúng.
-\end{luuy}
+\begin{vidu}[title={Bước 5: Trực quan tập huấn luyện}]
+Scatter giá trị thực (xanh) và dự đoán (xanh dương); đường đỏ là đường hồi quy:
 
-\begin{vidu}[title={Bước 5 --- Trực quan tập huấn luyện}]
 \begin{lstlisting}
 y_pred_train = regressor.predict(X_train)
-plt.scatter(X_train, y_train, color="green", label="actual")
-plt.scatter(X_train, y_pred_train, color="blue", label="predicted")
+plt.scatter(X_train, y_train, color="green",
+            label="training data points (actual)")
+plt.scatter(X_train, y_pred_train, color="blue",
+            label="training data points (predicted)")
 plt.plot(X_train, y_pred_train, color="red")
+plt.title("Salary vs Experience (Training Dataset)")
 plt.xlabel("Years of Experience")
 plt.ylabel("Salary (INR)")
 plt.legend()
 plt.show()
 \end{lstlisting}
+
 \tsimg{03_simple_linear_regression/img03.jpg}
 \end{vidu}
 
-\begin{vidu}[title={Bước 6 --- Trực quan tập kiểm tra}]
+\begin{vidu}[title={Bước 6: Trực quan tập kiểm tra}]
 \begin{lstlisting}
 y_pred = regressor.predict(X_test)
-plt.scatter(X_test, y_test, color="green", label="test actual")
-plt.scatter(X_test, y_pred, color="blue", label="test predicted")
+plt.scatter(X_test, y_test, color="green",
+            label="test data points (actual)")
+plt.scatter(X_test, y_pred, color="blue",
+            label="test data points (predicted)")
 plt.plot(X_test, y_pred, color="red")
+plt.title("Salary vs Experience (Test Dataset)")
+plt.xlabel("Years of Experience")
+plt.ylabel("Salary (INR)")
 plt.legend()
 plt.show()
 \end{lstlisting}
+
 \tsimg{03_simple_linear_regression/img04.jpg}
 \end{vidu}

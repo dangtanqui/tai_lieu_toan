@@ -1,0 +1,161 @@
+%==============================================================================
+\section{Phân cụm phân cấp (Hierarchical Clustering)}
+\label{sec:hierarchical}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân cụm phân cấp}]
+Phân cụm phân cấp là thuật toán học \textbf{không giám sát} gom các điểm \textbf{không nhãn} có đặc tính tương tự. Cấu trúc cụm được biểu diễn dạng \textbf{cây} hoặc \textbf{dendrogram}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Hai họ thuật toán}]
+\begin{itemize}
+  \item \textbf{Agglomerative} (gộp từ dưới lên): mỗi điểm ban đầu là một cụm, lần lượt gộp cặp cụm gần nhất.
+  \item \textbf{Divisive} (chia từ trên xuống): ban đầu một cụm lớn, lần lượt chia thành cụm nhỏ hơn.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Các bước phân cụm phân cấp gộp (Agglomerative)}
+
+\begin{phuongphap}[title={Quy trình}]
+\begin{enumerate}
+  \item[\textbf{Bước 1}] Coi mỗi điểm là một cụm --- ban đầu có $K$ cụm bằng số điểm.
+  \item[\textbf{Bước 2}] Gộp hai điểm \textbf{gần nhất} thành một cụm $\Rightarrow$ còn $K-1$ cụm.
+  \item[\textbf{Bước 3}] Tiếp tục gộp hai cụm gần nhất $\Rightarrow$ $K-2$ cụm.
+  \item[\textbf{Bước 4}] Lặp đến khi còn một cụm duy nhất (mọi điểm đã được gộp).
+  \item[\textbf{Bước 5}] Dùng \textbf{dendrogram} để \textbf{cắt} cây thành số cụm phù hợp bài toán.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Vai trò dendrogram}
+
+\begin{ynghia}[title={Dendrogram sau khi gộp hết}]
+Khi đã có một cụm lớn duy nhất, dendrogram cho phép \textbf{tách} lại thành nhiều cụm con có quan hệ gần gũi, tùy ngưỡng cắt hoặc số cụm mong muốn.
+\end{ynghia}
+
+\subsubsection{Ví dụ --- Dendrogram}
+
+\begin{vidu}[title={Import và 10 điểm 2D}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+
+X = np.array([[7, 8], [12, 20], [17, 19], [26, 15], [32, 37],
+              [87, 75], [73, 85], [62, 80], [73, 60], [87, 96]])
+labels = range(1, 11)
+plt.figure(figsize=(10, 7))
+plt.subplots_adjust(bottom=0.1)
+plt.scatter(X[:, 0], X[:, 1], label='True Position')
+for label, x, y in zip(labels, X[:, 0], X[:, 1]):
+    plt.annotate(label, xy=(x, y), xytext=(-3, 3),
+                 textcoords='offset points', ha='right', va='bottom')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Hai nhóm trực quan}]
+Trên đồ thị dễ thấy hai nhóm điểm; dữ liệu thực tế có thể có hàng nghìn cụm tiềm ẩn.
+
+\tsimg{06_hierarchical/img01.jpg}
+\end{ynghia}
+
+\begin{vidu}[title={Vẽ dendrogram với SciPy}]
+\begin{lstlisting}
+from scipy.cluster.hierarchy import dendrogram, linkage
+
+linked = linkage(X, 'single')
+labelList = range(1, 11)
+plt.figure(figsize=(10, 7))
+dendrogram(linked, orientation='top', labels=labelList,
+           distance_sort='descending', show_leaf_counts=True)
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Dendrogram linkage single}]
+\tsimg{06_hierarchical/img02.jpg}
+\end{ynghia}
+
+\begin{phuongphap}[title={Chọn số cụm bằng khoảng cách dọc lớn nhất}]
+Chọn \textbf{đoạn dọc dài nhất} trên dendrogram, kẻ đường ngang cắt qua: số lần cắt cho biết số cụm. Ví dụ đường ngang cắt hai nhánh $\Rightarrow$ \textbf{2 cụm}.
+
+\tsimg{06_hierarchical/img03.jpg}
+\end{phuongphap}
+
+\begin{vidu}[title={AgglomerativeClustering (sklearn)}]
+\begin{lstlisting}
+from sklearn.cluster import AgglomerativeClustering
+
+cluster = AgglomerativeClustering(n_clusters=2, linkage='ward')
+cluster.fit_predict(X)
+
+plt.scatter(X[:, 0], X[:, 1], c=cluster.labels_, cmap='rainbow')
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Hai cụm sau gán nhãn}]
+\tsimg{06_hierarchical/img04.jpg}
+\end{ynghia}
+
+\begin{luuy}[title={Minh họa bổ sung}]
+Các hình \texttt{img05}, \texttt{img06} minh họa thêm các bước gộp cụm và kết quả phân tách trên ví dụ tương tự.
+
+\tsimg{06_hierarchical/img05.jpg}
+
+\tsimg{06_hierarchical/img06.jpg}
+\end{luuy}
+
+\subsubsection{Ví dụ --- Cụm trên dữ liệu y khoa}
+
+\begin{dongco}[title={Dataset tiểu đường}]
+Ví dụ minh họa dùng \texttt{sklearn.datasets.load\_diabetes} (nhiều feature, bối cảnh y khoa). Có thể thay bằng \texttt{fetch\_openml(name='diabetes', version=1)} nếu cần bộ Pima 8 cột.
+\end{dongco}
+
+\begin{luuy}[title={Đường dẫn CSV cục bộ}]
+Nếu có file Pima Indians Diabetes cục bộ, đặt đường dẫn hợp lệ và đọc bằng \texttt{pandas.read\_csv}; không bắt buộc khi đã dùng \texttt{load\_diabetes}.
+\end{luuy}
+
+\begin{vidu}[title={Nạp dữ liệu và chọn hai feature}]
+\begin{lstlisting}
+import matplotlib.pyplot as plt
+import numpy as np
+from sklearn.datasets import load_diabetes
+import scipy.cluster.hierarchy as shc
+from sklearn.cluster import AgglomerativeClustering
+
+data = load_diabetes()
+X_full = data.data
+patient_data = X_full[:, 3:5]   # hai cột feature (tương tự chọn cột 3:5)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Dendrogram trên toàn bộ feature}]
+\begin{lstlisting}
+plt.figure(figsize=(10, 7))
+plt.title("Patient Dendograms")
+dend = shc.dendrogram(shc.linkage(X_full, method='ward'))
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Phân 4 cụm trên hai chiều đã chọn}]
+\begin{lstlisting}
+cluster = AgglomerativeClustering(n_clusters=4, linkage='ward')
+cluster.fit_predict(patient_data)
+
+plt.figure(figsize=(7.2, 5.5))
+plt.scatter(patient_data[:, 0], patient_data[:, 1],
+            c=cluster.labels_, cmap='rainbow')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Hai đồ thị đầu ra}]
+Chạy mã trên sinh dendrogram (toàn feature) và scatter hai chiều tô màu theo 4 cụm --- tương ứng hai hình minh họa trong bài (dendrogram bệnh nhân và phân cụm 2D).
+\end{ynghia}
+
+\begin{tinhchat}[title={Linkage}]
+\texttt{single}, \texttt{complete}, \texttt{average}, \texttt{ward} ảnh hưởng cách đo khoảng cách giữa cụm; \texttt{ward} thường cho cụm compact khi feature đồng thang.
+\end{tinhchat}
+
+\begin{luuy}[title={Chi phí}]
+Phân cụm phân cấp tốn $O(n^2)$--$O(n^3)$ bộ nhớ/thời gian; dataset rất lớn nên cân nhắc K-means hoặc BIRCH.
+\end{luuy}

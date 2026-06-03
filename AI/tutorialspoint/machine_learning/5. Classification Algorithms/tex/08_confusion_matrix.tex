@@ -1,0 +1,149 @@
+%==============================================================================
+\section{Confusion Matrix (Ma trận nhầm lẫn)}
+\label{sec:confusion-matrix}
+%==============================================================================
+
+\begin{dinhnghia}[title={Confusion Matrix}]
+Cách \textbf{dễ nhất} đo hiệu năng bài toán phân loại khi đầu ra có hai hoặc nhiều lớp.
+Bảng hai chiều ``Actual'' và ``Predicted'' với TP, TN, FP, FN.
+\end{dinhnghia}
+
+\tsimg{08_confusion_matrix/img01.jpg}
+
+\begin{vidu}[title={Ví dụ spam email}]
+Spam = \textbf{positive} (1); email hợp lệ = \textbf{negative} (0).
+\end{vidu}
+
+\begin{tinhchat}[title={True Positive (TP)}]
+Thực tế và dự đoán đều 1; mô hình đúng lớp positive (ví dụ email spam đúng là spam).
+\end{tinhchat}
+
+\begin{tinhchat}[title={True Negative (TN)}]
+Thực tế và dự đoán đều 0; đúng lớp negative.
+\end{tinhchat}
+
+\begin{tinhchat}[title={False Positive (FP)}]
+Thực tế 0, dự đoán 1 --- \textbf{Type I error} (ví dụ email hợp lệ bị gán spam).
+\end{tinhchat}
+
+\begin{tinhchat}[title={False Negative (FN)}]
+Thực tế 1, dự đoán 0 --- \textbf{Type II error} (spam bị gán hợp lệ).
+\end{tinhchat}
+
+\begin{phuongphap}[title={Phân loại đúng / sai}]
+Đúng: TP và TN. Sai: FP và FN.
+Từ confusion matrix tính accuracy, precision, recall, v.v.
+\end{phuongphap}
+
+\subsection{Ví dụ thực hành}
+
+\begin{phuongphap}[title={10 email --- nhãn}]
+Positive (spam) = 1; negative (not spam) = 0.
+
+\textbf{Actual:} \quad 0\; 1\; 0\; 1\; 1\; 0\; 0\; 1\; 1\; 1
+
+\textbf{Predicted:} \quad 0\; 1\; 0\; 1\; 0\; 1\; 0\; 0\; 1\; 1
+
+\textbf{Kết quả:} \quad TN\; TP\; TN\; TP\; FN\; FP\; TN\; FN\; TP\; TP
+\end{phuongphap}
+
+\begin{phuongphap}[title={Đếm}]
+TP = 4; FN = 2; FP = 1; TN = 3.
+
+\begin{center}
+\begin{tabular}{c|cc}
+ & \textbf{Actual +} & \textbf{Actual $-$} \\
+\hline
+\textbf{Pred +} & 4 (TP) & 1 (FP) \\
+\textbf{Pred $-$} & 2 (FN) & 3 (TN) \\
+\end{tabular}
+\end{center}
+
+Trong 10 email: 7 đúng (TP+TN), 3 sai (FP+FN).
+\end{phuongphap}
+
+\subsection{Metric từ confusion matrix}
+
+\begin{tinhchat}[title={Accuracy}]
+\[
+\mathrm{Accuracy} = \frac{TP+TN}{TP+FP+FN+TN} = \frac{7}{10} = 0.7
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Precision}]
+\[
+\mathrm{Precision} = \frac{TP}{TP+FP} = \frac{4}{5} = 0.8
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Recall (Sensitivity)}]
+\[
+\mathrm{Recall} = \frac{TP}{TP+FN} = \frac{4}{6} \approx 0.667
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Specificity}]
+\[
+\mathrm{Specificity} = \frac{TN}{TN+FP} = \frac{3}{4} = 0.75
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={F1 Score}]
+\[
+F1 = 2 \times \frac{Precision \times Recall}{Precision + Recall} \approx 0.727
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Type I Error Rate}]
+\[
+\frac{FP}{FP+TN} = \frac{1}{4} = 0.25
+\]
+\end{tinhchat}
+
+\begin{tinhchat}[title={Type II Error Rate}]
+\[
+\frac{FN}{FN+TP} = \frac{2}{6} \approx 0.333
+\]
+\end{tinhchat}
+
+\subsection{Triển khai Python}
+
+\begin{luuy}[title={Thứ tự ma trận sklearn}]
+\texttt{confusion\_matrix(y\_actual, y\_pred)} trả về:
+\begin{center}
+\begin{tabular}{c|cc}
+ & Pred 0 & Pred 1 \\
+\hline
+Actual 0 & TN & FP \\
+Actual 1 & FN & TP \\
+\end{tabular}
+\end{center}
+\end{luuy}
+
+\begin{vidu}[title={confusion\_matrix}]
+\begin{lstlisting}
+from sklearn.metrics import confusion_matrix
+
+y_actual = [0, 1, 0, 1, 1, 0, 0, 1, 1, 1]
+y_pred   = [0, 1, 0, 1, 0, 1, 0, 0, 1, 1]
+cm = confusion_matrix(y_actual, y_pred)
+print(cm)
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{verbatim}
+[[3 1]
+ [2 4]]
+\end{verbatim}
+Khớp bảng ví dụ trên (TN=3, FP=1, FN=2, TP=4).
+\end{vidu}
+
+\begin{vidu}[title={Heatmap với seaborn}]
+\begin{lstlisting}
+import seaborn as sns
+sns.heatmap(cm, annot=True, cmap='summer')
+\end{lstlisting}
+\tsimg{08_confusion_matrix/img02.jpg}
+
+Trục $x$: dự đoán; trục $y$: thực tế; màu thể hiện số mẫu mỗi ô.
+\end{vidu}

@@ -1,0 +1,260 @@
+%==============================================================================
+\section{Thuật toán K-Nearest Neighbors (KNN)}
+\label{sec:knn}
+%==============================================================================
+
+\begin{dinhnghia}[title={K-Nearest Neighbors (KNN)}]
+K-nearest neighbors (KNN) là thuật toán học có giám sát dùng cho cả \textbf{phân loại} và \textbf{hồi quy}.
+Trong công nghiệp, KNN chủ yếu dùng cho bài toán phân loại.
+Ý tưởng: tìm $k$ điểm dữ liệu gần nhất với điểm kiểm tra và dùng các láng giềng đó để dự đoán.
+$k$ là siêu tham số cần tinh chỉnh --- số láng giềng xét đến.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Phân loại}]
+Với phân loại, KNN gán điểm kiểm tra vào \textbf{lớp xuất hiện nhiều nhất} trong $k$ láng giềng gần nhất (bỏ phiếu đa số).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hồi quy}]
+Với hồi quy, KNN gán điểm kiểm tra bằng \textbf{trung bình} giá trị của $k$ láng giềng gần nhất.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Metric khoảng cách}]
+Metric đo độ tương tự giữa hai điểm ảnh hưởng mạnh đến hiệu năng KNN.
+Phổ biến: khoảng cách \textbf{Euclidean}, \textbf{Manhattan}, \textbf{Minkowski}.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Hai đặc tính định nghĩa KNN}]
+\begin{itemize}
+  \item \textbf{Lazy learning}: không có giai đoạn huấn luyện chuyên biệt; dùng toàn bộ dữ liệu khi phân loại.
+  \item \textbf{Non-parametric}: không giả định gì về phân phối dữ liệu nền.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{KNN hoạt động như thế nào?}
+
+\begin{ynghia}[title={Feature similarity}]
+KNN dùng ``độ tương đồng feature'' để dự đoán giá trị điểm mới: điểm mới được gán nhãn dựa trên mức độ khớp với tập huấn luyện.
+\end{ynghia}
+
+\begin{phuongphap}[title={Bước 1 --- Dataset}]
+Để triển khai bất kỳ thuật toán nào cần có dataset.
+Ở bước đầu của KNN: nạp dữ liệu \textbf{huấn luyện} và \textbf{kiểm tra}.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 2 --- Chọn $K$}]
+Chọn giá trị $K$ (số điểm láng giềng gần nhất). $K$ có thể là bất kỳ số nguyên nào.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 3 --- Với mỗi điểm trong tập test}]
+\begin{enumerate}
+  \item[\textbf{3.1}] Tính khoảng cách giữa điểm test và mỗi hàng dữ liệu huấn luyện (Euclidean, Manhattan hoặc Hamming; phổ biến nhất là Euclidean).
+  \item[\textbf{3.2}] Sắp xếp theo khoảng cách tăng dần.
+  \item[\textbf{3.3}] Chọn $K$ hàng đầu từ mảng đã sắp xếp.
+  \item[\textbf{3.4}] Gán lớp cho điểm test theo \textbf{lớp xuất hiện nhiều nhất} trong $K$ hàng đó.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 4 --- Kết thúc}]
+Kết thúc quy trình cho mọi điểm test.
+\end{phuongphap}
+
+\subsection{Ví dụ minh họa}
+
+\begin{vidu}[title={Phân loại điểm mới với $K = 3$}]
+Giả sử có dataset có thể vẽ như sau (hai lớp màu):
+
+\tsimg{03_knn/img01.jpg}
+
+Cần phân loại điểm mới (chấm đen tại $(60, 60)$) vào lớp xanh hoặc đỏ.
+Giả sử $K = 3$: tìm ba điểm gần nhất.
+
+\tsimg{03_knn/img02.jpg}
+
+Trong ba láng giềng, hai thuộc lớp Đỏ $\Rightarrow$ chấm đen được gán lớp \textbf{Đỏ}.
+\end{vidu}
+
+\subsection{Xây dựng mô hình KNN}
+
+\begin{phuongphap}[title={Các bước xây mô hình}]
+\begin{enumerate}
+  \item \textbf{Nạp dữ liệu}: dùng pandas, numpy, hoặc \texttt{sklearn.datasets}.
+  \item \textbf{Chia dữ liệu}: tập huấn luyện và kiểm tra.
+  \item \textbf{Chuẩn hóa}: đảm bảo mỗi feature đóng góp như nhau vào khoảng cách.
+  \item \textbf{Tính khoảng cách}: giữa điểm test và từng điểm huấn luyện.
+  \item \textbf{Chọn $k$ láng giềng}: theo khoảng cách đã tính.
+  \item \textbf{Dự đoán}: bỏ phiếu đa số (phân loại) hoặc trung bình (hồi quy).
+  \item \textbf{Đánh giá}: accuracy, precision, recall, F1-score, v.v.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Triển khai KNN bằng Python}
+
+\begin{ynghia}[title={Classifier và Regressor}]
+KNN dùng được cho cả phân loại và hồi quy; dưới đây là hai ``recipe'' trong Python.
+\end{ynghia}
+
+\subsection{KNN làm bộ phân loại (Classifier)}
+
+\begin{vidu}[title={Import và nạp Iris}]
+\begin{lstlisting}
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from sklearn import datasets
+
+iris = datasets.load_iris()
+headernames = ['sepal-length', 'sepal-width',
+               'petal-length', 'petal-width', 'Class']
+dataset = pd.DataFrame(
+    np.column_stack([iris.data, iris.target_names[iris.target]]),
+    columns=headernames)
+dataset.head()
+\end{lstlisting}
+
+\textbf{Output mẫu \texttt{head()}:}
+\begin{verbatim}
+   sepal-length  sepal-width  petal-length  petal-width      Class
+0           5.1          3.5           1.4          0.2  Iris-setosa
+1           4.9          3.0           1.4          0.2  Iris-setosa
+2           4.7          3.2           1.3          0.2  Iris-setosa
+3           4.6          3.1           1.5          0.2  Iris-setosa
+4           5.0          3.6           1.4          0.2  Iris-setosa
+\end{verbatim}
+\end{vidu}
+
+\begin{vidu}[title={Tiền xử lý và chia tập}]
+\begin{lstlisting}
+X = dataset.iloc[:, :-1].values
+y = dataset.iloc[:, 4].values
+
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.40)
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler.fit(X_train)
+X_train = scaler.transform(X_train)
+X_test = scaler.transform(X_test)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Huấn luyện và dự đoán}]
+\begin{lstlisting}
+from sklearn.neighbors import KNeighborsClassifier
+classifier = KNeighborsClassifier(n_neighbors=8)
+classifier.fit(X_train, y_train)
+y_pred = classifier.predict(X_test)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Báo cáo kết quả}]
+\begin{lstlisting}
+from sklearn.metrics import (classification_report,
+    confusion_matrix, accuracy_score)
+
+result = confusion_matrix(y_test, y_pred)
+print("Confusion Matrix:")
+print(result)
+result1 = classification_report(y_test, y_pred)
+print("Classification Report:")
+print(result1)
+result2 = accuracy_score(y_test, y_pred)
+print("Accuracy:", result2)
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{verbatim}
+Confusion Matrix:
+[[21  0  0]
+ [ 0 16  0]
+ [ 0  7 16]]
+Classification Report:
+              precision    recall  f1-score   support
+ Iris-setosa       1.00      1.00      1.00        21
+Iris-versicolor       0.70      1.00      0.82        16
+  Iris-virginica       1.00      0.70      0.82        23
+     micro avg       0.88      0.88      0.88        60
+     macro avg       0.90      0.90      0.88        60
+  weighted avg       0.92      0.88      0.88        60
+
+Accuracy: 0.8833333333333333
+\end{verbatim}
+\end{vidu}
+
+\subsection{KNN làm bộ hồi quy (Regressor)}
+
+\begin{vidu}[title={Dữ liệu hai feature, target petal-length}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+from sklearn import datasets
+
+iris = datasets.load_iris()
+headernames = ['sepal-length', 'sepal-width',
+               'petal-length', 'petal-width', 'Class']
+data = pd.DataFrame(
+    np.column_stack([iris.data, iris.target_names[iris.target]]),
+    columns=headernames)
+array = data.values
+X = array[:, :2]
+Y = array[:, 2]
+data.shape
+\end{lstlisting}
+
+\textbf{Output:} \texttt{(150, 5)}
+\end{vidu}
+
+\begin{vidu}[title={KNeighborsRegressor và MSE}]
+\begin{lstlisting}
+from sklearn.neighbors import KNeighborsRegressor
+
+knnr = KNeighborsRegressor(n_neighbors=10)
+knnr.fit(X, Y)
+print("The MSE is:",
+      format(np.power(Y - knnr.predict(X), 2).mean()))
+\end{lstlisting}
+
+\textbf{Output:}
+\begin{verbatim}
+The MSE is: 0.12226666666666669
+\end{verbatim}
+\end{vidu}
+
+\subsection{Ưu và nhược điểm của KNN}
+
+\begin{tinhchat}[title={Ưu điểm (Pros)}]
+\begin{itemize}
+  \item Thuật toán rất \textbf{đơn giản}, dễ hiểu và diễn giải.
+  \item Hữu ích với dữ liệu \textbf{phi tuyến} vì không giả định dạng phân phối.
+  \item \textbf{Đa năng}: dùng cho phân loại và hồi quy.
+  \item Độ chính xác tương đối cao, dù còn nhiều mô hình có giám sát tốt hơn KNN.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm (Cons)}]
+\begin{itemize}
+  \item \textbf{Tốn tính toán}: lưu toàn bộ dữ liệu huấn luyện.
+  \item Cần \textbf{bộ nhớ lớn} so với thuật toán có giám sát khác.
+  \item Dự đoán \textbf{chậm} khi $N$ lớn.
+  \item \textbf{Nhạy thang đo} dữ liệu và feature không liên quan.
+\end{itemize}
+\end{luuy}
+
+\subsection{Ứng dụng của KNN}
+
+\begin{ynghia}[title={Ngân hàng}]
+KNN dự đoán cá nhân có phù hợp để duyệt vay không: có đặc điểm giống nhóm vỡ nợ không?
+\end{ynghia}
+
+\begin{ynghia}[title={Xếp hạng tín dụng}]
+So sánh với người có đặc điểm tương tự để ước lượng điểm tín dụng.
+\end{ynghia}
+
+\begin{ynghia}[title={Chính trị}]
+Phân loại cử tri tiềm năng: ``Sẽ bầu'', ``Không bầu'', ``Bầu đảng X'', ``Bầu đảng Y'', v.v.
+\end{ynghia}
+
+\begin{ynghia}[title={Lĩnh vực khác}]
+Nhận dạng giọng nói, chữ viết tay, ảnh và video.
+\end{ynghia}

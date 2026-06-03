@@ -1,0 +1,49 @@
+%==============================================================================
+\section{Phân cụm dựa trên centroid (Centroid-Based Clustering)}
+\label{sec:centroid-based}
+%==============================================================================
+
+\begin{dinhnghia}[title={Phân cụm dựa trên centroid}]
+Phân cụm dựa trên centroid là lớp thuật toán học máy nhằm \textbf{phân hoạch} tập dữ liệu thành các nhóm (cụm) dựa trên \textbf{khoảng cách} từ điểm dữ liệu đến centroid của từng cụm.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Centroid là gì?}]
+Centroid của một cụm là \textbf{trung bình cộng số học} của mọi điểm trong cụm đó; nó đóng vai trò điểm đại diện cho cụm.
+\end{ynghia}
+
+\begin{phuongphap}[title={Hai thuật toán phổ biến nhất}]
+Hai thuật toán phân cụm dựa trên centroid được dùng rộng rãi nhất là \textbf{K-means} và \textbf{K-medoids}. Chi tiết từng thuật toán ở hai chương kế tiếp; dưới đây là giới thiệu ngắn.
+\end{phuongphap}
+
+\subsection{K-means Clustering}
+
+\begin{dinhnghia}[title={K-means}]
+K-means là thuật toán học \textbf{không giám sát} phổ biến để phân cụm dữ liệu: đơn giản, hiệu quả, gom điểm vào $K$ cụm theo độ tương tự.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Cơ chế tóm tắt}]
+\begin{enumerate}
+  \item Chọn ngẫu nhiên $K$ centroid ban đầu --- tâm khởi tạo của mỗi cụm.
+  \item Gán mỗi điểm vào cụm có centroid \textbf{gần nhất}.
+  \item Cập nhật centroid bằng \textbf{trung bình} các điểm trong cụm.
+  \item Lặp đến khi centroid không đổi hoặc đạt số vòng lặp tối đa.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{K-Medoids Clustering}
+
+\begin{dinhnghia}[title={K-medoids}]
+K-medoids là thuật toán phân hoạch gom tập điểm thành $k$ cụm. Khác K-means dùng \textbf{giá trị trung bình} làm tâm cụm, K-medoids dùng một \textbf{điểm dữ liệu thực} gọi là \textbf{medoid} làm đại diện.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Medoid}]
+Medoid là điểm trong cụm \textbf{tối thiểu hóa tổng khoảng cách} tới mọi điểm khác trong cụm đó.
+\end{ynghia}
+
+\begin{tinhchat}[title={So với K-means}]
+K-medoids \textbf{bền hơn} với ngoại lai và nhiễu vì tâm cụm luôn là một mẫu quan sát được, không phải trung bình có thể bị kéo lệch bởi điểm cực đoan.
+\end{tinhchat}
+
+\begin{luuy}[title={Đọc tiếp}]
+Hai chương sau trình bày đầy đủ K-means (bước, EM, ví dụ Python) và K-medoids (thuật toán, \texttt{sklearn\_extra}, ưu/nhược điểm).
+\end{luuy}

@@ -1,0 +1,73 @@
+%==============================================================================
+\section{BIRCH Clustering}
+\label{sec:birch}
+%==============================================================================
+
+\begin{dinhnghia}[title={BIRCH}]
+\textbf{B}alanced \textbf{I}terative \textbf{R}educing and \textbf{C}lustering \textbf{H}ierarchies:
+thuật toán phân cụm phân cấp cho \textbf{dataset lớn}; xây cây cụm bằng chia đệ quy đến khi đạt tiêu chí dừng.
+\end{dinhnghia}
+
+\begin{ynghia}[title={CF và SCF}]
+\begin{itemize}
+  \item \textbf{Clustering Feature (CF)}: tóm tắt thống kê một tập điểm.
+  \item \textbf{Sub-Cluster Feature (SCF)}: biểu diễn cấu trúc các subcluster.
+\end{itemize}
+\end{ynghia}
+
+\subsection{Ba bước chính}
+
+\begin{phuongphap}[title={Ba giai đoạn BIRCH}]
+\begin{enumerate}
+  \item \textbf{Khởi tạo}: tạo cây rỗng; đặt số CF tối đa mỗi nút.
+  \item \textbf{Phân cụm}: đọc từng điểm; cập nhật CF nếu có, hoặc tạo CF mới; nếu vượt ngưỡng CF trong nút thì \textbf{chia subcluster} đệ quy.
+  \item \textbf{Tinh chỉnh (Refinement)}: gộp subcluster tương tự theo metric khoảng cách.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Triển khai Python (scikit-learn)}
+
+\begin{vidu}[title={Ví dụ Birch}]
+\begin{lstlisting}
+from sklearn.datasets import make_blobs
+from sklearn.cluster import Birch
+import matplotlib.pyplot as plt
+
+X, y = make_blobs(n_samples=1000, centers=10, cluster_std=0.50,
+                  random_state=0)
+
+birch = Birch(threshold=1.5, n_clusters=4)
+birch.fit(X)
+labels = birch.predict(X)
+
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X[:, 0], X[:, 1], c=labels, cmap='winter')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Tham số}]
+\texttt{threshold}: ngưỡng tạo subcluster.
+\texttt{n\_clusters}: số cụm đầu ra sau tinh chỉnh.
+Dùng \texttt{fit} rồi \texttt{predict} để lấy nhãn.
+\end{ynghia}
+
+\tsimg{11_birch/img01.jpg}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Khả mở rộng} trên dữ liệu lớn nhờ cấu trúc cây.
+  \item \textbf{Tiết kiệm bộ nhớ} nhờ CF/SCF.
+  \item \textbf{Nhanh} nhờ phân cụm gia tăng (incremental).
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Nhạy} tham số (số CF tối đa mỗi nút, ngưỡng subcluster).
+  \item Giả định cụm \textbf{gần hình cầu}; kém với cụm phi cầu.
+  \item Mặc định dùng \textbf{Euclidean}; có thể không phù hợp mọi bài toán.
+\end{itemize}
+\end{luuy}
