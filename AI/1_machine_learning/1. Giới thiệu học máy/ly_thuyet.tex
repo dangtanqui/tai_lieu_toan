@@ -57,7 +57,7 @@ Dịch máy, xe tự lái, gợi ý nhạc, tự hoàn thành câu, tóm tắt b
 \end{itemize}
 \end{ungdung}
 
-\begin{dinhnghia}[title={Học máy (mức cơ bản)}]
+\begin{dinhnghia}[title={Học máy}]
 ML là quá trình
 \href{https://developers.google.com/machine-learning/glossary\#training}{\textbf{huấn luyện}} (training) một phần mềm ---
 \href{https://developers.google.com/machine-learning/glossary\#model}{\textbf{mô hình}} (model) ---
@@ -109,6 +109,11 @@ Cùng là ``học từ dữ liệu'', nhưng bài toán khác nhau: có sẵn đ
   \item \textbf{AI tạo sinh} --- tạo văn bản, ảnh, âm thanh, video từ đầu vào người dùng.
 \end{enumerate}
 Một hệ thống có thể kết hợp nhiều nhóm (ví dụ tạo sinh: huấn luyện không giám sát rồi tinh chỉnh có giám sát).
+Các loại bổ sung :
+\begin{itemize}
+  \item Học tự giám sát (Self-Supervised Learning - SLM): Phương pháp này thường được coi là một nhánh nhỏ của học không giám sát, nhưng nó đã phát triển thành một lĩnh vực riêng nhờ thành công trong việc huấn luyện các mô hình quy mô lớn. Nó tự tạo ra nhãn từ dữ liệu mà không cần bất kỳ thao tác gắn nhãn thủ công nào.
+  \item Học bán giám sát (Semi-Supervised Learning - SSL): Phương pháp này kết hợp một lượng nhỏ dữ liệu được gán nhãn với một lượng lớn dữ liệu chưa được gán nhãn. Nó hữu ích khi việc gán nhãn dữ liệu tốn kém hoặc mất nhiều thời gian.
+\end{itemize}
 \end{tinhchat}
 
 \subsection{Học có giám sát}
