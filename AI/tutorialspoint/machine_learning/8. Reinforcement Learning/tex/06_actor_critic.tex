@@ -1,0 +1,143 @@
+%==============================================================================
+\section{Phương pháp Actor--Critic}
+\label{sec:actor-critic}
+%==============================================================================
+
+\begin{dinhnghia}[title={Actor--Critic}]
+Thuật toán \textbf{actor--critic} kết hợp học \textbf{dựa trên chính sách} (policy-based) và học \textbf{dựa trên giá trị} (value-based) để khắc phục hạn chế khi chỉ dùng một nhóm kỹ thuật. \textbf{Actor} chọn hành động theo chính sách; \textbf{Critic} đánh giá hành động đó bằng hàm giá trị, tạo phản hồi cho actor cải thiện chính sách trong khi cân bằng khám phá--khai thác.
+\end{dinhnghia}
+
+\subsection{Hai thành phần chính}
+
+\begin{dinhnghia}[title={Actor}]
+Actor chịu trách nhiệm chọn hành động theo chính sách hiện tại, thường ký hiệu $\pi_\theta(a \mid s)$ --- xác suất (hoặc phân phối) chọn $a$ khi ở $s$, với tham số $\theta$.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Critic}]
+Critic ước lượng hàm giá trị $V(s)$ hoặc $Q(s,a)$ --- kỳ vọng phần thưởng tích lũy từ $s$ (hoặc từ cặp $(s,a)$) --- để đo chất lượng hành động của actor.
+\end{dinhnghia}
+
+\subsection{Cách hoạt động từng bước}
+
+\begin{phuongphap}[title={Mục tiêu}]
+Học chính sách tối đa hóa phần thưởng kỳ vọng tích lũy: actor đề xuất hành động, critic chấm điểm, phản hồi dùng để cập nhật cả $\theta$ (policy) và trọng số critic.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Giải thuật (pseudo)}]
+\begin{enumerate}
+  \item Khởi tạo tham số chính sách actor $\theta$, hàm giá trị critic, môi trường; chọn trạng thái ban đầu $s_0$.
+  \item Lấy mẫu $(s_t, a_t)$ theo $\pi_\theta$ từ mạng actor.
+  \item Tính \textbf{hàm lợi thế} (advantage), thường qua \textbf{sai số TD} $\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)$ do critic cung cấp.
+  \item Tính gradient chính sách (policy gradient) có trọng số bởi $\delta_t$ hoặc $A(s_t,a_t)$.
+  \item Cập nhật $\theta$ theo hướng tăng phần thưởng kỳ vọng.
+  \item Cập nhật trọng số critic (học giá trị) từ $\delta_t$.
+  \item Lặp các bước trên cho tới khi chính sách hội tụ hoặc đạt tiêu chí dừng.
+\end{enumerate}
+\end{phuongphap}
+
+\tsimg{06_actor_critic/img01.jpg}
+
+\subsection{Ưu điểm}
+
+\begin{tinhchat}[title={Ưu điểm actor--critic}]
+\begin{itemize}
+  \item \textbf{Hiệu quả mẫu}: kết hợp policy và value giúp cần ít tương tác môi trường hơn so với chỉ policy gradient thuần.
+  \item \textbf{Hội tụ nhanh hơn}: cập nhật đồng thời chính sách và giá trị, thích nghi nhanh tác vụ mới.
+  \item \textbf{Linh hoạt không gian hành động}: xử lý hành động rời rạc và liên tục (với biến thể như DDPG, SAC).
+  \item \textbf{Off-policy (một số biến thể)}: có thể học từ kinh nghiệm cũ không khớp chính sách hiện tại (SAC, DDPG).
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Thách thức}
+
+\begin{luuy}[title={Thách thức cần xử lý}]
+\begin{itemize}
+  \item \textbf{Phương sai cao}: ước lượng gradient policy vẫn nhiễu; giảm bằng GAE (Generalized Advantage Estimation) hoặc baseline tốt hơn.
+  \item \textbf{Ổn định huấn luyện}: actor và critic học đồng thời dễ lệch pha; dùng TRPO, PPO để giới hạn bước cập nhật policy.
+  \item \textbf{Đánh đổi bias--variance}: critic kém chính xác gây bias gradient; critic quá nhạy gây dao động --- cần tinh chỉnh tốc độ học và kiến trúc mạng.
+\end{itemize}
+\end{luuy}
+
+\subsection{Các biến thể tiêu biểu}
+
+\begin{ynghia}[title={A2C --- Advantage Actor-Critic}]
+A2C dùng \textbf{hàm lợi thế} $A(s,a) = Q(s,a) - V(s)$ (hoặc xấp xỉ qua $n$-step return) để hướng gradient tới hành động tốt hơn trung bình tại $s$. Huấn luyện \textbf{đồng bộ}, thường một hoặc vài worker, cập nhật model sau mỗi batch bước --- dễ triển khai.
+\end{ynghia}
+
+\begin{ynghia}[title={A3C --- Asynchronous Advantage Actor-Critic}]
+A3C (Mnih et al., 2016) chạy \textbf{nhiều worker song song}, mỗi worker có mạng cục bộ, thu thập kinh nghiệm và đẩy gradient \textbf{bất đồng bộ} lên mạng global --- giảm tương quan mẫu, ổn định và nhanh hơn trên môi trường phức tạp.
+\end{ynghia}
+
+\begin{ynghia}[title={SAC --- Soft Actor-Critic}]
+SAC là off-policy, thêm \textbf{điều hòa entropy} vào mục tiêu để khuyến khích khám phá; tối ưu đồng thời return kỳ vọng và độ ``mềm'' của chính sách --- cân bằng khai thác--khám phá tốt trên hành động liên tục.
+\end{ynghia}
+
+\begin{ynghia}[title={DDPG --- Deep Deterministic Policy Gradient}]
+DDPG cho \textbf{không gian hành động liên tục}: actor xuất hành động xác định, critic xấp xỉ $Q$; dùng \textbf{mạng target} và replay buffer để ổn định huấn luyện.
+\end{ynghia}
+
+\begin{ynghia}[title={Q-Prop}]
+Q-Prop giảm phương sai gradient bằng \textbf{control variate} từ critic, không thêm bias như một số mẹo TD thuần --- kết hợp policy gradient với ước lượng $Q$ chính xác hơn.
+\end{ynghia}
+
+\subsection{Thuật toán A2C}
+
+\begin{phuongphap}[title={Các bước A2C}]
+\begin{enumerate}
+  \item Khởi tạo tham số policy $\theta$, tham số value $w$, và môi trường.
+  \item Agent tương tác môi trường: chọn $a_t \sim \pi_\theta(\cdot \mid s_t)$, nhận $r_t$, quan sát $s_{t+1}$.
+  \item Tính $A(s_t,a_t)$ từ rollout (hoặc $n$-step) và $V_w(s_t)$.
+  \item Cập nhật actor: $\theta \leftarrow \theta + \alpha_\theta \nabla_\theta \log \pi_\theta(a_t|s_t)\, A(s_t,a_t)$.
+  \item Cập nhật critic: giảm sai số TD hoặc MSE giữa $V_w$ và return mục tiêu.
+  \item Lặp đến hội tụ; có thể dùng nhiều môi trường song song nhưng \textbf{đồng bộ} hóa gradient trước mỗi bước global.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Thuật toán A3C}
+
+\begin{phuongphap}[title={Các bước A3C}]
+\begin{enumerate}
+  \item Khởi tạo \textbf{mạng global} (policy + value).
+  \item Khởi chạy nhiều \textbf{worker} song song; mỗi worker sao chép mạng global thành mạng cục bộ.
+  \item Mỗi worker: quan sát $s$, chọn $a$ theo policy cục bộ, nhận $r$ và $s'$; tính advantage / $\delta$.
+  \item Worker cập nhật critic và actor cục bộ trên đoạn trajectory ngắn ($t_{\max}$ bước).
+  \item Worker gửi gradient lên global network; global cập nhật \textbf{bất đồng bộ} (không chờ worker khác).
+  \item Worker đồng bộ lại tham số từ global và tiếp tục thu thập kinh nghiệm.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{A2C so với A3C}
+
+\begin{vidu}[title={Bảng so sánh A2C và A3C}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.6cm}XX}
+\textbf{Tiêu chí} & \textbf{A2C} & \textbf{A3C} \\
+\midrule
+Song song &
+Thường ít worker; cập nhật \textbf{đồng bộ} sau khi gom gradient. &
+Nhiều worker; cập nhật global \textbf{bất đồng bộ}. \\
+Cập nhật mô hình &
+Gradient từ batch worker được tổng hợp rồi áp dụng một lần. &
+Mỗi worker đẩy gradient độc lập, không đợi nhau. \\
+Tốc độ học &
+Gradient descent chuẩn; có thể hội tụ nhanh nhưng dễ dao động nếu batch nhỏ. &
+Cập nhật rải rác, đôi khi ổn định hơn nhờ giảm tương quan. \\
+Ổn định &
+Phụ thuộc đồng bộ hóa; dễ lệch nếu critic yếu. &
+Thường ổn định hơn nhờ nhiều luồng khám phá khác nhau. \\
+Hiệu quả lấy mẫu &
+Một (hoặc ít) luồng môi trường. &
+Nhiều luồng song song --- thu mẫu nhanh hơn. \\
+Triển khai &
+Đơn giản, phù hợp GPU/CPU vừa. &
+Phức tạp hơn (quản lý tiến trình, đồng bộ tham số). \\
+Tốc độ hội tụ &
+Chậm hơn nếu chỉ một agent học liên tục. &
+Nhanh hơn khi nhiều vùng môi trường được khám phá song song. \\
+Chi phí tính toán &
+Thấp hơn. &
+Cao hơn (nhiều worker). \\
+Use case &
+Môi trường đơn giản, tài nguyên hạn chế. &
+Môi trường lớn, cần khám phá mạnh và song song hóa. \\
+\end{tabularx}
+\end{vidu}

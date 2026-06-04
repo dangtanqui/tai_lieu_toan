@@ -1,0 +1,160 @@
+%==============================================================================
+\section{Học tăng cường sâu (Deep Reinforcement Learning)}
+\label{sec:deep-reinforcement-learning}
+%==============================================================================
+
+\subsection{Học tăng cường sâu là gì?}
+
+\begin{dinhnghia}[title={Deep Reinforcement Learning (Deep RL)}]
+Học tăng cường sâu là nhánh con của học máy, kết hợp \textbf{học tăng cường} với \textbf{học sâu}.
+Deep RL giải quyết bài toán cho phép agent tính toán học ra quyết định bằng cách tích hợp học sâu từ dữ liệu đầu vào \textbf{không có cấu trúc}, mà \textbf{không cần} kỹ thuật thủ công để thiết kế không gian trạng thái.
+Các thuật toán Deep RL có khả năng quyết định hành động nào nên thực hiện để tối ưu mục tiêu ngay cả khi đầu vào có kích thước lớn.
+\end{dinhnghia}
+
+\subsection{Các khái niệm then chốt}
+
+\begin{ynghia}[title={Khối xây dựng Deep RL}]
+Các khối xây dựng của học tăng cường sâu gồm mọi khía cạnh hỗ trợ học và agent ra quyết định.
+Môi trường hiệu quả được tạo ra nhờ sự phối hợp của các yếu tố sau.
+\end{ynghia}
+
+\begin{dinhnghia}[title={Agent (Tác tử)}]
+\textbf{Agent} là thực thể \textbf{học} và \textbf{ra quyết định}, tương tác với môi trường.
+Agent hành động theo \textbf{chính sách} (policy) và tích lũy \textbf{kinh nghiệm}.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Environment (Môi trường)}]
+\textbf{Môi trường} là hệ thống bên ngoài agent mà agent giao tiếp.
+Môi trường phản hồi cho agent dưới dạng \textbf{phần thưởng} hoặc \textbf{hình phạt} tùy theo hành động của agent.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={State (Trạng thái)}]
+\textbf{Trạng thái} biểu diễn tình huống hoặc điều kiện \textbf{hiện tại} của môi trường tại một thời điểm, là cơ sở để agent đưa ra quyết định.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Action (Hành động)}]
+\textbf{Hành động} là lựa chọn agent thực hiện, làm \textbf{thay đổi trạng thái} của hệ thống.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Policy (Chính sách)}]
+\textbf{Chính sách} là kế hoạch định hướng ra quyết định của agent, \textbf{ánh xạ} trạng thái sang hành động.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Value Function (Hàm giá trị)}]
+\textbf{Hàm giá trị} ước lượng \textbf{phần thưởng tích lũy kỳ vọng} mà agent có thể đạt được từ một trạng thái cho trước khi theo một chính sách cụ thể.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Model (Mô hình)}]
+\textbf{Mô hình} biểu diễn \textbf{động học} của môi trường, cho phép agent mô phỏng kết quả tiềm năng của các cặp hành động--trạng thái phục vụ \textbf{lập kế hoạch}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Chiến lược khám phá--khai thác (Exploration--Exploitation)}]
+\textbf{Chiến lược khám phá--khai thác} là cách tiếp cận ra quyết định \textbf{cân bằng} giữa:
+\begin{itemize}
+  \item \textbf{Khám phá} hành động mới để học thêm;
+  \item \textbf{Khai thác} hành động đã biết để nhận phần thưởng ngay lập tức.
+\end{itemize}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Learning Algorithm (Thuật toán học)}]
+\textbf{Thuật toán học} là phương pháp agent \textbf{cập nhật} hàm giá trị hoặc chính sách dựa trên kinh nghiệm thu được khi tương tác với môi trường.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Experience Replay (Bộ nhớ kinh nghiệm)}]
+\textbf{Experience replay} là kỹ thuật \textbf{lấy mẫu ngẫu nhiên} từ các kinh nghiệm đã lưu trước đó trong quá trình huấn luyện, nhằm tăng \textbf{ổn định} học và giảm tương quan giữa các sự kiện liên tiếp.
+\end{phuongphap}
+
+\subsection{Cách hoạt động của Deep RL}
+
+\begin{phuongphap}[title={Mạng nơ-ron và học thử--sai}]
+Học tăng cường sâu dùng \textbf{mạng nơ-ron nhân tạo}, gồm các lớp nút mô phỏng hoạt động của nơ-ron trong não người.
+Các nút xử lý và truyền thông tin qua phương pháp \textbf{thử--sai} để xác định kết quả hiệu quả.
+\end{phuongphap}
+
+\begin{ynghia}[title={Chính sách, tìm kiếm và đại diện}]
+Trong Deep RL, thuật ngữ \textbf{policy} chỉ chiến lược máy tính hình thành dựa trên phản hồi nhận được khi tương tác môi trường.
+Các policy này giúp máy tính ra quyết định bằng cách xét \textbf{trạng thái hiện tại} và \textbf{tập hành động} (các lựa chọn khả dụng).
+Khi chọn các lựa chọn đó, diễn ra quá trình gọi là \textbf{search} (tìm kiếm): máy tính đánh giá hành động khác nhau và quan sát kết quả.
+Khả năng phối hợp \textbf{học}, \textbf{ra quyết định} và \textbf{biểu diễn} có thể mang lại hiểu biết mới về cách não người vận hành.
+\end{ynghia}
+
+\begin{tinhchat}[title={Kiến trúc đặc trưng của Deep RL}]
+Điểm tách biệt học tăng cường sâu nằm ở \textbf{kiến trúc}, cho phép học tương tự não người.
+Kiến trúc gồm \textbf{nhiều lớp} mạng nơ-ron đủ mạnh để xử lý dữ liệu \textbf{không nhãn} và \textbf{không có cấu trúc}.
+\end{tinhchat}
+
+\subsection{Danh sách thuật toán Deep RL}
+
+\begin{phuongphap}[title={Các thuật toán quan trọng}]
+Dưới đây là một số thuật toán quan trọng trong học tăng cường sâu:
+\begin{enumerate}
+  \item \textbf{Deep Q-Network} hoặc \textbf{Deep Q-Learning}
+  \item \textbf{Double Deep Q-Learning}
+  \item \textbf{Actor--Critic Method}
+  \item \textbf{Deep Deterministic Policy Gradient (DDPG)}
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Ứng dụng của Deep RL}
+
+\begin{ynghia}[title={Các lĩnh vực ứng dụng nổi bật}]
+Học tăng cường sâu được dùng rộng rãi trong nhiều lĩnh vực sau.
+\end{ynghia}
+
+\subsubsection{Trò chơi (Gaming)}
+
+\begin{vidu}[title={Trò chơi điện tử}]
+Deep RL được dùng phát triển trò chơi vượt xa khả năng con người thông thường.
+Các trò chơi thiết kế bằng Deep RL gồm game Atari 2600, cờ \textbf{Go}, \textbf{Poker} và nhiều thể loại khác.
+\end{vidu}
+
+\subsubsection{Điều khiển robot (Robot Control)}
+
+\begin{phuongphap}[title={Học tăng cường đối kháng mạnh}]
+Lĩnh vực này dùng \textbf{học tăng cường đối kháng mạnh} (robust adversarial reinforcement learning): agent học vận hành khi có đối thủ gây \textbf{nhiễu} lên hệ thống.
+Mục tiêu là phát triển chiến lược tối ưu để xử lý gián đoạn.
+\end{phuongphap}
+
+\begin{vidu}[title={Robot trí tuệ nhân tạo}]
+Robot do AI điều khiển có ứng dụng rộng: sản xuất, tự động hóa chuỗi cung ứng, y tế và nhiều lĩnh vực khác.
+\end{vidu}
+
+\subsubsection{Xe tự lái (Self-driving Cars)}
+
+\begin{ynghia}[title={Lái tự động}]
+Học tăng cường sâu là một trong các khái niệm then chốt của \textbf{lái tự động}.
+Kịch bản lái tự động đòi hỏi hiểu môi trường, tác nhân tương tác, đàm phán và ra quyết định \textbf{động}---điều chỉ có được nhờ học tăng cường.
+\end{ynghia}
+
+\subsubsection{Y tế (Healthcare)}
+
+\begin{vidu}[title={Chăm sóc sức khỏe cá nhân hóa}]
+Deep RL đã thúc đẩy nhiều tiến bộ trong y tế, ví dụ \textbf{cá nhân hóa} liều thuốc để tối ưu chăm sóc bệnh nhân, đặc biệt với bệnh \textbf{mãn tính}.
+\end{vidu}
+
+\subsection{So sánh RL và Deep RL}
+
+\begin{tinhchat}[title={Bảng so sánh Reinforcement Learning và Deep Reinforcement Learning}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XX}
+\textbf{Tiêu chí} & \textbf{Reinforcement Learning (RL)} & \textbf{Deep Reinforcement Learning (Deep RL)} \\
+\midrule
+Định nghĩa &
+Nhánh con học máy dùng phương pháp \textbf{thử--sai} để ra quyết định. &
+Nhánh con của RL tích hợp \textbf{học sâu} cho quyết định phức tạp hơn. \\
+Xấp xỉ hàm (Function Approximation) &
+Dùng phương pháp đơn giản như \textbf{bảng tra} (tabular) để ước lượng giá trị. &
+Dùng \textbf{mạng nơ-ron} ước lượng giá trị, cho phép biểu diễn phức tạp hơn. \\
+Biểu diễn trạng thái &
+Phụ thuộc đặc trưng \textbf{thiết kế thủ công} để mô tả môi trường. &
+\textbf{Tự học} đặc trưng liên quan từ dữ liệu đầu vào thô. \\
+Độ phức tạp &
+Hiệu quả với môi trường \textbf{đơn giản}, không gian trạng thái/hành động nhỏ. &
+Hiệu quả với môi trường \textbf{chiều cao}, phức tạp. \\
+Hiệu năng &
+Tốt ở môi trường đơn giản; khó với không gian \textbf{lớn} hoặc \textbf{liên tục}. &
+Vượt trội ở tác vụ phức tạp: game video, điều khiển robot. \\
+Ứng dụng &
+Tác vụ cơ bản như game đơn giản. &
+Ứng dụng nâng cao: lái tự động, chơi game, điều khiển robot. \\
+\end{tabularx}
+\end{tinhchat}

@@ -1,0 +1,99 @@
+%==============================================================================
+\section{SARSA (State-Action-Reward-State-Action)}
+\label{sec:sarsa}
+%==============================================================================
+
+\begin{dinhnghia}[title={SARSA}]
+\textbf{SARSA} (State-Action-Reward-State-Action) là biến thể của Q-learning trong đó \textbf{chính sách mục tiêu trùng chính sách hành vi} (on-policy). Hai cặp trạng thái--hành động liên tiếp $(s,a)$ và $(s',a')$ cùng phần thưởng tức thời $r$ khi chuyển từ $s$ sang $s'$ quyết định giá trị cập nhật $Q$ --- đó là lý do tên thuật toán.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ý tưởng học thử--sai}]
+SARSA là kỹ thuật học \textbf{on-policy} hiệu quả: agent thực hiện hành động, quan sát hậu quả, rồi điều chỉnh kế hoạch theo kết quả. Cốt lõi là \textbf{thử và sai}: chọn hành động trong tình huống, nhận phản hồi từ môi trường, cập nhật chiến lược dần theo chuỗi S--A--R--S--A.
+\end{ynghia}
+
+\subsection{Ví dụ robot trong mê cung}
+
+\begin{vidu}[title={Robot đi mê cung}]
+Giả sử dạy robot đi qua mê cung. Vị trí hiện tại là \textbf{trạng thái} $s$; mục tiêu tìm đường tốt tới đích. Mỗi bước robot có thể \textbf{hành động} (đi lên, xuống, trái, phải). Môi trường trả \textbf{phần thưởng} dương hoặc âm để báo hiệu bước đi tốt hay tệ. Sau khi thực hiện $a$ tại $s$, robot chuyển sang \textbf{trạng thái kế} $s'$; hành động \textbf{tiếp theo thực sự} $a'$ (theo chính sách hiện tại, ví dụ $\varepsilon$-greedy) sẽ xuất hiện trong công thức cập nhật SARSA --- khác với Q-learning dùng $\max_{a'} Q(s',a')$.
+\end{vidu}
+
+\tsimg{05_sarsa/img01.jpg}
+
+\subsection{Phương trình cập nhật}
+
+\begin{dinhnghia}[title={Công thức SARSA}]
+Giá trị $Q(s,a)$ được cập nhật theo mẫu TD on-policy:
+\[
+Q(s,a) \leftarrow Q(s,a) + \alpha\,\bigl(r + \gamma\, Q(s',a') - Q(s,a)\bigr)
+\]
+trong đó $\alpha$ là tốc độ học, $\gamma$ hệ số chiết khấu, $r$ phần thưởng nhận được sau khi thực hiện $a$ tại $s$, $s'$ trạng thái kế, và $a'$ là \textbf{hành động thực sự} sẽ chọn tại $s'$ theo chính sách hành vi (không phải hành động tối ưu giả định).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Đọc nhanh công thức}]
+Mục tiêu TD là $r + \gamma Q(s',a')$: phần thưởng tức thời cộng giá trị chiết khấu của cặp trạng thái--hành động \textbf{kế tiếp theo chính sách đang theo}. Sai số $r + \gamma Q(s',a') - Q(s,a)$ nhân $\alpha$ rồi cộng vào $Q(s,a)$.
+\end{ynghia}
+
+\subsection{Các thành phần cốt lõi}
+
+\begin{dinhnghia}[title={Trạng thái $S$}]
+Trạng thái phản ánh môi trường, chứa mọi thông tin về tình huống hiện tại của agent (ví dụ ô trong mê cung).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hành động $A$}]
+Hành động là quyết định của agent trong trạng thái hiện tại; thực hiện $a$ gây chuyển từ $s$ sang trạng thái khác.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Phần thưởng $R$}]
+Phần thưởng là tín hiệu phản hồi tức thời từ môi trường sau hành động tại $s$; hướng agent biết hành động nào được ưu tiên trong bối cảnh đó.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Trạng thái kế $S'$}]
+Sau khi thực hiện $a$ tại $s$, agent vào trạng thái mới $s'$ --- môi trường đã thay đổi theo hành động vừa chọn.
+\end{dinhnghia}
+
+\subsection{Cách SARSA hoạt động}
+
+\begin{phuongphap}[title={Các bước thuật toán SARSA}]
+\begin{enumerate}
+  \item \textbf{Khởi tạo bảng $Q$}: gán $Q(s,a)$ giá trị tùy ý (hoặc 0); chọn trạng thái ban đầu $s$ và hành động ban đầu $a$ (thường bằng $\varepsilon$-greedy trên $Q$ hiện tại).
+  \item \textbf{Khai thác vs khám phá}: khai thác dùng $Q$ đã biết để tối đa phần thưởng ngắn hạn; khám phá thử hành động ít chắc chắn để tìm chiến lược tốt hơn về lâu dài.
+  \item \textbf{Thực thi và phản hồi}: thực hiện $a$, nhận $r$, chuyển sang $s'$.
+  \item \textbf{Cập nhật $Q$}: chọn $a'$ tại $s'$ theo chính sách hành vi; cập nhật $Q(s,a)$ bằng công thức SARSA ở trên.
+  \item \textbf{Lặp}: đặt $s \leftarrow s'$, $a \leftarrow a'$; lặp đến khi episode kết thúc. Qua nhiều vòng, $Q$ tiệm cận giá trị kỳ vọng theo \textbf{chính sách đang theo}, giúp quyết định ổn định hơn trong môi trường rủi ro.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{tinhchat}[title={Đặc điểm on-policy}]
+Mỗi bước học phụ thuộc hành động \textbf{thực sự} sẽ làm ở $s'$, nên khám phá ảnh hưởng trực tiếp tới cập nhật --- phù hợp khi cần học an toàn, ổn định theo chính sách triển khai (y tế, giao thông, học cá nhân hóa).
+\end{tinhchat}
+
+\subsection{SARSA so với Q-learning}
+
+\begin{vidu}[title={Bảng so sánh}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.4cm}XX}
+\textbf{Tiêu chí} & \textbf{SARSA} & \textbf{Q-learning} \\
+\midrule
+Loại chính sách &
+On-policy (mục tiêu = hành vi). &
+Off-policy (học tối ưu trong khi hành vi có thể khác). \\
+Quy tắc cập nhật &
+$Q(s,a) \leftarrow Q(s,a) + \alpha\bigl(r + \gamma Q(s',a') - Q(s,a)\bigr)$ &
+$Q(s,a) \leftarrow Q(s,a) + \alpha\bigl(r + \gamma \max_{a'} Q(s',a') - Q(s,a)\bigr)$ \\
+Hội tụ &
+Thường chậm hơn tới chính sách tối ưu toàn cục nhưng bám sát chính sách an toàn. &
+Thường nhanh hơn tới $Q^*$ nếu đủ khám phá. \\
+Khám phá--khai thác &
+Khám phá ảnh hưởng trực tiếp bước học. &
+Có thể tách chính sách khám phá khỏi chính sách học. \\
+Cập nhật policy &
+Dựa trên hành động \textbf{đã thực sự} chọn ở $s'$. &
+Giả định hành động \textbf{tốt nhất} ở $s'$ ($\max_{a'}$). \\
+Ứng dụng &
+Môi trường cần ổn định, rủi ro cao khi lệch chính sách. &
+Game, robot, giao dịch khi ưu tiên hiệu quả tối đa. \\
+\end{tabularx}
+\end{vidu}
+
+\begin{luuy}[title={Chọn thuật toán}]
+Dùng SARSA khi muốn học giá trị của \textbf{chính sách đang chạy} (kể cả $\varepsilon$-greedy). Dùng Q-learning khi muốn ước lượng $Q^*$ của chính sách tối ưu trong khi vẫn khám phá bằng chính sách khác.
+\end{luuy}

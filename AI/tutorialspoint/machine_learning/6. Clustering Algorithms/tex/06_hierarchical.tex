@@ -17,13 +17,13 @@ Phân cụm phân cấp là thuật toán học \textbf{không giám sát} gom c
 \subsection{Các bước phân cụm phân cấp gộp (Agglomerative)}
 
 \begin{phuongphap}[title={Quy trình}]
-\begin{enumerate}
-  \item[\textbf{Bước 1}] Coi mỗi điểm là một cụm --- ban đầu có $K$ cụm bằng số điểm.
-  \item[\textbf{Bước 2}] Gộp hai điểm \textbf{gần nhất} thành một cụm $\Rightarrow$ còn $K-1$ cụm.
-  \item[\textbf{Bước 3}] Tiếp tục gộp hai cụm gần nhất $\Rightarrow$ $K-2$ cụm.
-  \item[\textbf{Bước 4}] Lặp đến khi còn một cụm duy nhất (mọi điểm đã được gộp).
-  \item[\textbf{Bước 5}] Dùng \textbf{dendrogram} để \textbf{cắt} cây thành số cụm phù hợp bài toán.
-\end{enumerate}
+\begin{itemize}
+  \item \textbf{Bước 1}: Coi mỗi điểm là một cụm --- ban đầu có $K$ cụm bằng số điểm.
+  \item \textbf{Bước 2}: Gộp hai điểm \textbf{gần nhất} thành một cụm $\Rightarrow$ còn $K-1$ cụm.
+  \item \textbf{Bước 3}: Tiếp tục gộp hai cụm gần nhất $\Rightarrow$ $K-2$ cụm.
+  \item \textbf{Bước 4}: Lặp đến khi còn một cụm duy nhất (mọi điểm đã được gộp).
+  \item \textbf{Bước 5}: Dùng \textbf{dendrogram} để \textbf{cắt} cây thành số cụm phù hợp bài toán.
+\end{itemize}
 \end{phuongphap}
 
 \subsection{Vai trò dendrogram}

@@ -1,0 +1,79 @@
+%==============================================================================
+\section{Trích xuất đặc trưng (Feature Extraction)}
+\label{sec:feature-extraction}
+%==============================================================================
+
+\begin{dinhnghia}[title={Trích xuất đặc trưng}]
+Trích xuất đặc trưng thường dùng trong \textbf{xử lý ảnh}, \textbf{nhận dạng giọng nói}, \textbf{xử lý ngôn ngữ tự nhiên} và các ứng dụng khác, khi dữ liệu thô \textbf{chiều cao} và khó xử lý trực tiếp.
+\end{dinhnghia}
+
+\subsection{Ví dụ --- Trích xuất đặc trưng}
+
+\begin{dongco}[title={PCA trên bộ Iris}]
+Dưới đây là ví dụ trích xuất đặc trưng bằng \textbf{Phân tích thành phần chính (PCA)} trên bộ Iris bằng Python.
+\end{dongco}
+
+\begin{vidu}[title={Mã Python đầy đủ}]
+\begin{lstlisting}
+# Import thu vien va bo du lieu
+from sklearn.datasets import load_iris
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Tai bo du lieu
+iris = load_iris()
+
+# Trich xuat dac trung bang PCA
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(iris.data)
+
+# Truc quan hoa du lieu da bien doi
+plt.figure(figsize=(7.5, 3.5))
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=iris.target)
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{phuongphap}[title={Giải thích từng bước trong mã}]
+\begin{itemize}
+  \item Import các thư viện cần thiết: \texttt{sklearn} để PCA và \texttt{matplotlib} để vẽ.
+  \item Nạp bộ Iris bằng \texttt{load\_iris()}.
+  \item Tạo \texttt{PCA()} với \texttt{n\_components=2}: giảm chiều từ \textbf{4 đặc trưng} xuống \textbf{2 thành phần chính}.
+  \item Biến đổi dữ liệu bằng \texttt{fit\_transform()}, lưu kết quả vào \texttt{X\_pca}.
+  \item Vẽ bằng \texttt{plt.scatter()}, tô màu theo nhãn \texttt{iris.target}; trục \texttt{PC1}, \texttt{PC2} là hai thành phần chính đầu tiên; hiển thị bằng \texttt{plt.show()}.
+\end{itemize}
+\end{phuongphap}
+
+\begin{ynghia}[title={Kết quả đầu ra}]
+Khi chạy chương trình, biểu đồ phân tán hai chiều của dữ liệu sau PCA sẽ hiển thị --- các điểm thường tách theo ba loài hoa trong bộ Iris.
+\end{ynghia}
+
+\begin{vidu}[title={Hình minh họa kết quả}]
+\tsimg{03_feature_extraction/img01.jpg}
+\end{vidu}
+
+\subsection{Ưu điểm của trích xuất đặc trưng}
+
+\begin{tinhchat}[title={Ưu điểm}]
+Dưới đây là các ưu điểm khi dùng trích xuất đặc trưng:
+\begin{itemize}
+  \item \textbf{Giảm chiều (Reduced Dimensionality)}: Trích xuất đặc trưng giảm chiều dữ liệu đầu vào bằng cách biến đổi thành tập đặc trưng mới. Dữ liệu dễ \textbf{trực quan hóa}, \textbf{xử lý} và \textbf{phân tích} hơn.
+  \item \textbf{Cải thiện hiệu năng (Improved Performance)}: Trích xuất đặc trưng có thể cải thiện hiệu năng thuật toán học máy nhờ tạo tập đặc trưng \textbf{có ý nghĩa hơn}, nắm bắt thông tin cốt lõi từ dữ liệu gốc.
+  \item \textbf{Lựa chọn đặc trưng (Feature Selection)}: Trích xuất đặc trưng có thể dùng để \textbf{lựa chọn} tập con đặc trưng liên quan nhất, hữu ích nhất cho mô hình.
+  \item \textbf{Giảm nhiễu (Noise Reduction)}: Trích xuất đặc trưng giúp \textbf{giảm nhiễu} bằng cách lọc đặc trưng không liên quan hoặc kết hợp các đặc trưng có liên quan.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Nhược điểm của trích xuất đặc trưng}
+
+\begin{tinhchat}[title={Nhược điểm}]
+Dưới đây là các nhược điểm khi dùng trích xuất đặc trưng:
+\begin{itemize}
+  \item \textbf{Mất thông tin (Loss of Information)}: Trích xuất đặc trưng có thể \textbf{mất thông tin} vì phải giảm chiều. Dữ liệu biến đổi có thể không chứa hết thông tin gốc; một phần thông tin bị mất trong quá trình biến đổi.
+  \item \textbf{Overfitting}: Trích xuất đặc trưng có thể dẫn tới \textbf{overfitting} nếu đặc trưng biến đổi quá phức tạp hoặc số đặc trưng chọn quá lớn.
+  \item \textbf{Độ phức tạp (Complexity)}: Trích xuất đặc trưng có thể \textbf{tốn tính toán} và thời gian, đặc biệt với tập dữ liệu lớn hoặc kỹ thuật phức tạp như học sâu (deep learning).
+  \item \textbf{Chuyên môn miền (Domain Expertise)}: Trích xuất đặc trưng đòi hỏi \textbf{hiểu biết miền} để chọn và biến đổi đặc trưng hiệu quả; cần nắm dữ liệu và bài toán để chọn đúng đặc trưng mang thông tin cho mô hình.
+\end{itemize}
+\end{tinhchat}

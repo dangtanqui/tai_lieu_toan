@@ -1,0 +1,132 @@
+%==============================================================================
+\section{Học chênh lệch thời gian (Temporal Difference)}
+\label{sec:temporal-difference}
+%==============================================================================
+
+\begin{dinhnghia}[title={Temporal Difference (TD) learning}]
+\textbf{Học chênh lệch thời gian} (TD) là kỹ thuật RL \textbf{không mô hình} (model-free): căn chỉnh dự đoán hiện tại theo dự đoán \textbf{kế tiếp} đã bootstrap, kết hợp phần thưởng tức thời và giá trị trạng thái sau. Tín hiệu huấn luyện đến từ \textbf{dự đoán tương lai}, không cần chờ hết episode như Monte Carlo.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vị trí giữa MC và DP}]
+Monte Carlo chỉ cập nhật sau khi biết \textbf{kết quả cuối} episode; Dynamic Programming cần mô hình chuyển trạng thái. TD học từ kinh nghiệm thực như MC nhưng \textbf{bootstrap} từ ước lượng $V$ hoặc $Q$ như DP --- cập nhật từng bước, phù hợp bài toán liên tục và không kết thúc.
+\end{ynghia}
+
+\subsection{Tham số $\alpha$, $\gamma$, $\varepsilon$}
+
+\begin{dinhnghia}[title={$\alpha$ --- tốc độ học}]
+$\alpha \in [0,1]$: mức điều chỉnh ước lượng theo sai số TD. $\alpha$ lớn --- thích nghi nhanh nhưng nhiễu; $\alpha$ nhỏ --- ổn định nhưng chậm.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={$\gamma$ --- hệ số chiết khấu}]
+$\gamma \in [0,1]$: trọng số phần thưởng tương lai. $\gamma$ gần 1 --- coi trọng dài hạn; $\gamma$ nhỏ --- ưu tiên phần thưởng gần.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={$\varepsilon$ --- khám phá}]
+Với $\varepsilon$-greedy: xác suất $\varepsilon$ chọn hành động ngẫu nhiên, $1-\varepsilon$ chọn hành động tốt nhất theo ước lượng hiện tại. $\varepsilon$ lớn --- khám phá nhiều hơn trong huấn luyện.
+\end{dinhnghia}
+
+\subsection{TD trong AI và học máy}
+
+\begin{ynghia}[title={Vai trò thực tiễn}]
+TD là nền cho robot, game, tài chính thời gian thực: cập nhật giá trị từng bước khi reward trễ, thích nghi khi chuỗi không có điểm kết thúc rõ. Kết hợp quan sát và kỳ vọng tương lai giúp xây agent thích nghi nhanh.
+\end{ynghia}
+
+\subsection{Thuật toán TD($\lambda$)}
+
+\begin{ynghia}[title={TD($\lambda$)}]
+TD($\lambda$) trộn các return $n$-bước với trọng số $\lambda$:
+\begin{itemize}
+  \item $\lambda = 0$: tương đương \textbf{TD(0)} --- một bước bootstrap.
+  \item $\lambda = 1$: gần \textbf{Monte Carlo} --- cập nhật theo return đầy đủ tới hết episode.
+  \item $0 < \lambda < 1$: trộn phần thưởng ngắn hạn (TD) và dài hạn (MC), thường qua \textbf{eligibility traces}.
+\end{itemize}
+\end{ynghia}
+
+\subsection{TD(0)}
+
+\begin{dinhnghia}[title={Quy tắc TD(0) (one-step)}]
+Cập nhật hàm giá trị trạng thái:
+\[
+V(s_t) \leftarrow V(s_t) + \alpha\bigl[R_{t+1} + \gamma V(s_{t+1}) - V(s_t)\bigr]
+\]
+\begin{itemize}
+  \item $V(s_t)$: ước lượng hiện tại tại $s_t$.
+  \item $R_{t+1}$: phần thưởng sau khi rời $s_t$.
+  \item $V(s_{t+1})$: bootstrap giá trị trạng thái kế.
+  \item $\alpha$, $\gamma$: tốc độ học và chiết khấu.
+\end{itemize}
+Sai số trong ngoặc là mục tiêu TD một bước trừ ước lượng cũ.
+\end{dinhnghia}
+
+\subsection{TD(1)}
+
+\begin{ynghia}[title={TD(1)}]
+TD(1) (trace length 1) là dạng \textbf{tổng quát} của TD(0), trộn MC và DP: điều chỉnh $V$ dùng phần thưởng vừa nhận và chuỗi dự đoán phần thưởng tương lai qua eligibility trace --- nhấn mạnh credit assignment dọc theo chuỗi hành động gần đây.
+\end{ynghia}
+
+\subsection{TD so với Q-learning}
+
+\begin{vidu}[title={Bảng so sánh}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XX}
+\textbf{Khía cạnh} & \textbf{TD (giá trị trạng thái)} & \textbf{Q-learning} \\
+\midrule
+Mục tiêu &
+Ước lượng $V(s)$. &
+Ước lượng $Q(s,a)$. \\
+Đối tượng &
+Giá trị trạng thái. &
+Giá trị cặp trạng thái--hành động. \\
+Chính sách &
+Model-free; on- hoặc off-policy tùy biến thể. &
+Model-free; \textbf{off-policy} (học $\max Q$). \\
+Quy tắc cập nhật &
+Dựa trên $V(s_{t+1})$ của bước kế. &
+Dựa trên $\max_{a'} Q(s_{t+1},a')$. \\
+Công thức &
+$V(s_t) \leftarrow V(s_t) + \alpha[r_{t+1} + \gamma V(s_{t+1}) - V(s_t)]$ &
+$Q(s_t,a_t) \leftarrow Q(s_t,a_t) + \alpha[r_{t+1} + \gamma \max_{a'} Q(s_{t+1},a') - Q(s_t,a_t)]$ \\
+Khám phá &
+Theo trade-off của chính sách hiện tại ($\varepsilon$-greedy). &
+Có thể tách policy khám phá khỏi policy học tối ưu. \\
+Hội tụ &
+Xấp xỉ $V^\pi$ của chính sách đang đánh giá. &
+Tới $Q^*$ nếu đủ khám phá. \\
+Ví dụ &
+TD(0), SARSA (cập nhật $Q$ on-policy). &
+Q-learning. \\
+\end{tabularx}
+\end{vidu}
+
+\subsection{Sai số TD (TD error)}
+
+\begin{dinhnghia}[title={Định nghĩa TD error}]
+Sai số TD tại bước $t$ là chênh lệch giữa \textbf{mục tiêu bootstrap} và ước lượng hiện tại:
+\[
+\delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)
+\]
+Cần thông tin bước $t+1$ nên $\delta_t$ chỉ dùng được sau khi quan sát $s_{t+1}$ và $r_{t+1}$. Cập nhật $V$ bằng $\delta_t$ gọi là \textbf{backup} một bước; $\delta_t$ liên hệ phương trình Bellman cho $V$.
+\end{dinhnghia}
+
+\begin{ynghia}[title={TD error với $Q$}]
+Với hàm $Q$, dạng tương tự: $\delta_t = r_{t+1} + \gamma Q(s_{t+1}, a_{t+1}) - Q(s_t,a_t)$ (SARSA) hoặc thay $Q(s_{t+1},a_{t+1})$ bằng $\max_{a'} Q(s_{t+1},a')$ trong Q-learning.
+\end{ynghia}
+
+\subsection{Lợi ích}
+
+\begin{tinhchat}[title={Lợi ích TD}]
+\begin{itemize}
+  \item Học từ chuỗi \textbf{chưa hoàn thành} --- áp dụng bài toán liên tục.
+  \item Hoạt động khi môi trường \textbf{không có trạng thái kết thúc}.
+  \item Phương sai thường \textbf{thấp hơn MC} vì cập nhật từng bước, bootstrap một transition thay vì cả episode.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Thách thức}
+
+\begin{luuy}[title={Thách thức TD}]
+\begin{itemize}
+  \item \textbf{Nhạy giá trị khởi tạo}: $V$ hoặc $Q$ ban đầu ảnh hưởng mạnh quỹ đạo học sớm.
+  \item \textbf{Bias do bootstrap}: ước lượng dựa trên ước lượng khác gây thiên lệch, đổi lấy phương sai thấp hơn MC thuần.
+  \item Cần tinh chỉnh $\alpha$, $\gamma$ và lịch giảm $\varepsilon$ để hội tụ ổn định.
+\end{itemize}
+\end{luuy}

@@ -1,0 +1,118 @@
+[
+  {
+    "page_url": "https://machinelearningcoban.com/2017/01/12/gradientdescent/",
+    "slug": "01_gradient_descent_part1",
+    "images": [
+      {
+        "url": "https://machinelearningcoban.com/images/Buymeacoffee_blue.png",
+        "file": "images/01_gradient_descent_part1/img01.png"
+      },
+      {
+        "url": "https://github.com/tiepvupsu/tiepvupsu.github.io/blob/master/assets/GD/gradient_descent.png?raw=true",
+        "file": "images/01_gradient_descent_part1/img02.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/1dimg_5_0.1_-5.gif",
+        "file": "images/01_gradient_descent_part1/img03.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/1dimg_5_0.1_5.gif",
+        "file": "images/01_gradient_descent_part1/img04.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/1dimg_5_0.01_-5.gif",
+        "file": "images/01_gradient_descent_part1/img05.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/1dimg_5_0.5_-5.gif",
+        "file": "images/01_gradient_descent_part1/img06.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/check_grad.png",
+        "file": "images/01_gradient_descent_part1/img08.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/img1_1.gif",
+        "file": "images/01_gradient_descent_part1/img09.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/img2_1.gif",
+        "file": "images/01_gradient_descent_part1/img10.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/img1_0.1.gif",
+        "file": "images/01_gradient_descent_part1/img12.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/img3_0.015.gif",
+        "file": "images/01_gradient_descent_part1/img14.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/images/fundaml_web.png",
+        "file": "images/01_gradient_descent_part1/img19.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/14_mlp/multi_layers.png",
+        "file": "images/01_gradient_descent_part1/img20.png"
+      }
+    ]
+  },
+  {
+    "page_url": "https://machinelearningcoban.com/2017/01/16/gradientdescent2/",
+    "slug": "02_gradient_descent_part2",
+    "images": [
+      {
+        "url": "https://machinelearningcoban.com/images/Buymeacoffee_blue.png",
+        "file": "images/02_gradient_descent_part2/img01.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/momentum.png",
+        "file": "images/02_gradient_descent_part2/img03.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/nomomentum1d.gif",
+        "file": "images/02_gradient_descent_part2/img04.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/momentum1d.gif",
+        "file": "images/02_gradient_descent_part2/img05.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/nesterov.jpeg",
+        "file": "images/02_gradient_descent_part2/img06.jpeg"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/LR_momentum_contours.gif",
+        "file": "images/02_gradient_descent_part2/img07.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/LR_NAG_contours.gif",
+        "file": "images/02_gradient_descent_part2/img08.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/LR_SGD_contours.gif",
+        "file": "images/02_gradient_descent_part2/img09.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/GD/LR_SGD_loss.png",
+        "file": "images/02_gradient_descent_part2/img10.png"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Stogra.png",
+        "file": "images/02_gradient_descent_part2/img11.png"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/NewtonIteration_Ani.gif",
+        "file": "images/02_gradient_descent_part2/img12.gif"
+      },
+      {
+        "url": "https://machinelearningcoban.com/images/fundaml_web.png",
+        "file": "images/02_gradient_descent_part2/img18.png"
+      },
+      {
+        "url": "https://machinelearningcoban.com/assets/14_mlp/multi_layers.png",
+        "file": "images/02_gradient_descent_part2/img19.png"
+      }
+    ]
+  }
+]

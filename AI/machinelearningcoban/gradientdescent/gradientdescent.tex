@@ -1,0 +1,85 @@
+\documentclass[12pt,a4paper]{article}
+
+\def\courseshortheader{MACHINE LEARNING CƠ BẢN}
+\def\coverbookline{TRÍ TUỆ NHÂN TẠO}
+\def\covermaintitle{Machine Learning cơ bản}
+\def\coversubtitle{Chương: Gradient Descent}
+
+\input{../../1_machine_learning/_template/preamble.tex}
+
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage[T1]{fontenc}
+
+\lstdefinestyle{mlcode}{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  frame=single,
+  framerule=0.4pt,
+  rulecolor=\color{black!25},
+  backgroundcolor=\color{black!2},
+  xleftmargin=0.2cm,
+  xrightmargin=0.2cm
+}
+\lstset{style=mlcode}
+
+\graphicspath{{images/}}
+
+\newcommand{\mlcburl}[1]{\url{#1}}
+\newcommand{\mlcbimg}[2][0.88]{%
+  \def\mlcbimgfile{images/#2}%
+  \IfFileExists{\mlcbimgfile}{%
+    \begin{center}\includegraphics[width=#1\linewidth]{#2}\end{center}%
+  }{%
+    \begin{luuy}[title={Thiếu hình minh họa}]%
+      Không tìm thấy \expandafter\path\expandafter{\mlcbimgfile}. Chạy \texttt{download\_mlcb\_images.py}.%
+    \end{luuy}%
+  }%
+}
+
+\begin{document}
+
+\input{../../1_machine_learning/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+\begin{ynghia}[title={Vị trí trong giáo trình}]
+Chương trình bày thuật toán \textbf{Gradient Descent (GD)} và các biến thể --- nền tảng để huấn luyện hầu hết mô hình học máy có hàm mất mát khả vi. Nội dung cốt lõi biên soạn theo chuỗi bài Machine Learning cơ bản (Vũ Hồng Nghi); được chỉnh lý theo phong cách \textbf{bài giảng / giáo trình} (không giữ văn phong blog), kèm phần bổ trợ giải thích bản chất.
+\end{ynghia}
+
+\begin{phuongphap}[title={Tài liệu tham chiếu gốc}]
+\begin{itemize}
+  \item Bài 7 --- Gradient Descent (phần 1/2): \mlcburl{https://machinelearningcoban.com/2017/01/12/gradientdescent/}
+  \item Bài 8 --- Gradient Descent (phần 2/2): \mlcburl{https://machinelearningcoban.com/2017/01/16/gradientdescent2/}
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Cách học chương này}]
+\begin{itemize}
+  \item Đọc \textbf{Mục tiêu và ký hiệu}, sau đó Chương~1 (lý thuyết + code), rồi Chương~2 (SGD, momentum, Newton).
+  \item Chạy lại các đoạn Python; thử đổi $\eta$, $x_0$ để quan sát hội tụ.
+  \item Kết thúc bằng \textbf{Tổng hợp và củng cố} (bảng so sánh, câu hỏi ôn tập).
+\end{itemize}
+\end{phuongphap}
+
+\newpage
+
+\input{tex/00_chapter_frame.tex}
+\input{tex/01_gradient_descent_part1.tex}
+\input{tex/02_gradient_descent_part2.tex}
+\input{tex/03_synthesis_and_exercises.tex}
+
+\end{document}

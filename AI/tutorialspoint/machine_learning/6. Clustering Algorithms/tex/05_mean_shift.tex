@@ -18,13 +18,13 @@ Thuật toán thuộc nhóm density-based: cụm là vùng mật độ điểm c
 \subsection{Cách hoạt động Mean-Shift}
 
 \begin{phuongphap}[title={Các bước}]
-\begin{enumerate}
-  \item[\textbf{Bước 1}] Ban đầu mỗi điểm (hoặc mỗi seed) được coi là một cụm riêng.
-  \item[\textbf{Bước 2}] Tính centroid (mean) có trọng số kernel quanh từng điểm.
-  \item[\textbf{Bước 3}] Cập nhật vị trí centroid mới.
-  \item[\textbf{Bước 4}] Lặp, dịch chuyển về vùng mật độ cao hơn.
-  \item[\textbf{Bước 5}] Dừng khi centroid không còn dịch chuyển đáng kể.
-\end{enumerate}
+\begin{itemize}
+  \item \textbf{Bước 1}: Ban đầu mỗi điểm (hoặc mỗi seed) được coi là một cụm riêng.
+  \item \textbf{Bước 2}: Tính centroid (mean) có trọng số kernel quanh từng điểm.
+  \item \textbf{Bước 3}: Cập nhật vị trí centroid mới.
+  \item \textbf{Bước 4}: Lặp, dịch chuyển về vùng mật độ cao hơn.
+  \item \textbf{Bước 5}: Dừng khi centroid không còn dịch chuyển đáng kể.
+\end{itemize}
 \end{phuongphap}
 
 \subsection{Triển khai Mean-Shift trong Python}
@@ -138,20 +138,13 @@ Ví dụ trên có thể ước lượng khoảng \textbf{3 cụm} với ba tâm
 
 \subsection{Ứng dụng Mean-Shift}
 
-\begin{ynghia}[title={Thị giác máy tính}]
-Theo dõi đối tượng, phân đoạn ảnh, trích xuất đặc trưng.
-\end{ynghia}
-
-\begin{ynghia}[title={Xử lý ảnh}]
-Phân đoạn ảnh theo độ tương đồng pixel.
-\end{ynghia}
-
-\begin{ynghia}[title={Phát hiện bất thường}]
-Vùng mật độ thấp có thể đánh dấu anomaly.
-\end{ynghia}
-
-\begin{ynghia}[title={Phân khúc khách hàng và mạng xã hội}]
-Gom nhóm hành vi hoặc sở thích người dùng tương tự.
+\begin{ynghia}[title={Ứng dụng Mean-Shift}]
+  \begin{itemize}
+    \item Thị giác máy tính: Theo dõi đối tượng, phân đoạn ảnh, trích xuất đặc trưng.
+    \item Xử lý ảnh: Phân đoạn ảnh theo độ tương đồng pixel.
+    \item Phát hiện bất thường: Vùng mật độ thấp có thể đánh dấu bất thường.
+    \item Phân khúc khách hàng và mạng xã hội: Gom nhóm hành vi hoặc sở thích người dùng tương tự.
+  \end{itemize}
 \end{ynghia}
 
 \subsection{Ưu điểm và nhược điểm}

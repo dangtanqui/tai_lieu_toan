@@ -1,0 +1,124 @@
+%==============================================================================
+\section{Q-Learning}
+\label{sec:q-learning}
+%==============================================================================
+
+\begin{dinhnghia}[title={Q-Learning}]
+Q-learning là thuật toán RL \textbf{dựa trên giá trị (value-based)}: mô hình học và cải thiện dần qua thời gian bằng cách chọn \textbf{hành động đúng}.
+Hành động đúng được coi là \textbf{phần thưởng}; hành động sai là \textbf{hình phạt}.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Q-Learning trong bối cảnh RL}]
+Học tăng cường: agent học theo thời gian để ra quyết định đúng trong môi trường bằng \textbf{tương tác liên tục}.
+Các tình huống agent gặp gọi là \textbf{trạng thái (states)}.
+Ở mỗi trạng thái, agent thực hiện hành động từ tập hành động khả dụng và nhận reward hoặc penalty.
+Theo thời gian, agent học \textbf{tối đa hóa} các reward này.
+Q-learning dùng \textbf{giá trị Q} (action values) để cải thiện hành vi lặp lại.
+\end{ynghia}
+
+\subsection{Thành phần chính}
+
+\begin{phuongphap}[title={Các thành phần Q-Learning}]
+Q-learning hoạt động qua quy trình lặp: agent khám phá môi trường và cập nhật mô hình liên tục.
+\begin{itemize}
+  \item \textbf{Agent}: thực thể thực hiện tác vụ trong môi trường.
+  \item \textbf{States}: biến mô tả \textbf{tình huống hiện tại} của agent trong môi trường.
+  \item \textbf{Actions}: hành vi của agent tại một trạng thái cụ thể.
+  \item \textbf{Rewards}: phản hồi tích cực hoặc tiêu cực cho hành động của agent.
+  \item \textbf{Episodes}: một episode kết thúc khi agent đến điểm \textbf{không thể} thực hiện thêm hành động (trạng thái kết thúc).
+  \item \textbf{Q-values}: đại lượng đánh giá \textbf{chất lượng} một hành động tại một trạng thái.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Cách Q-Learning hoạt động}
+
+\begin{phuongphap}[title={Học qua thử--sai}]
+Q-Learning học kết quả của hành động agent thực hiện trong môi trường qua trải nghiệm thử--sai.
+Quá trình gồm học hành vi tối ưu bằng hàm giá trị hành động tối ưu --- \textbf{hàm Q}.
+Có hai cách (công thức) xác định giá trị Q phổ biến: \textbf{Temporal Difference} và \textbf{phương trình Bellman}.
+\end{phuongphap}
+
+\subsubsection{Temporal Difference (TD)}
+
+\begin{phuongphap}[title={Cập nhật Temporal Difference}]
+Phương trình TD xác định Q-value bằng cách so sánh trạng thái--hành động \textbf{hiện tại} và \textbf{trước đó}:
+\[
+Q(s,a) \leftarrow Q(s,a) + \alpha\,\Bigl(r + \gamma \max_{a'} Q(s',a') - Q(s,a)\Bigr)
+\]
+\begin{itemize}
+  \item $s$: trạng thái hiện tại của agent.
+  \item $a$: hành động hiện tại (từ bảng Q).
+  \item $s'$: trạng thái kế tiếp (có thể là trạng thái kết thúc).
+  \item $a'$: hành động tốt nhất kế tiếp theo ước lượng Q hiện tại.
+  \item $r$: reward quan sát từ môi trường sau hành động hiện tại.
+  \item $\gamma \in (0,1]$: hệ số chiết khấu phần thưởng tương lai.
+  \item $\alpha$: bước học (learning rate) cập nhật ước lượng $Q(s,a)$.
+\end{itemize}
+\end{phuongphap}
+
+\subsubsection{Phương trình Bellman}
+
+\begin{phuongphap}[title={Phương trình Bellman trong Q-Learning}]
+Richard Bellman đề xuất (1957) cách ra quyết định tối ưu bằng đệ quy.
+Trong Q-learning, phương trình Bellman xác định giá trị trạng thái và so sánh vị trí tương đối; trạng thái có giá trị cao nhất được coi là tối ưu.
+Dạng Bellman cho Q-value:
+\[
+Q(s,a) = r(s,a) + \gamma \max_{a'} Q(s',a')
+\]
+\begin{itemize}
+  \item $Q(s,a)$: reward kỳ vọng khi thực hiện $a$ ở $s$.
+  \item $r(s,a)$: reward thu được khi thực hiện $a$ ở $s$.
+  \item $\gamma$: hệ số chiết khấu, đánh giá tầm quan trọng reward tương lai.
+  \item $\max_{a'} Q(s',a')$: giá trị Q lớn nhất ở trạng thái kế $s'$ trên mọi hành động khả dụng.
+\end{itemize}
+\end{phuongphap}
+
+\subsection{Thuật toán Q-Learning}
+
+\begin{dinhnghia}[title={Bảng Q (Q-table)}]
+Bảng Q lưu reward gắn với \textbf{hành động tối ưu} cho từng trạng thái trong môi trường.
+Agent khám phá môi trường và cập nhật bảng Q theo reward nhận được.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Các bước thuật toán Q-Learning}]
+\begin{enumerate}
+  \item \textbf{Khởi tạo bảng Q}: khởi tạo bảng Q để theo dõi tiến độ hành động ở các trạng thái.
+  \item \textbf{Quan sát}: agent quan sát trạng thái hiện tại của môi trường.
+  \item \textbf{Hành động}: agent chọn và thực hiện hành động; sau đó kiểm tra hành động có hữu ích trong môi trường hay không.
+  \item \textbf{Cập nhật}: cập nhật bảng Q bằng kết quả (công thức TD hoặc Bellman).
+  \item \textbf{Lặp}: lặp bước 2--4 đến khi đạt \textbf{trạng thái kết thúc}.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{vidu}[title={Sơ đồ thuật toán Q-Learning}]
+\tsimg{03_q_learning/img01.jpg}
+\end{vidu}
+
+\subsection{Ưu, nhược điểm và ứng dụng}
+
+\begin{tinhchat}[title={Ưu điểm Q-Learning}]
+\begin{itemize}
+  \item Học thử--sai gần với cách con người học, gần với lý tưởng trong nhiều bài toán.
+  \item \textbf{Off-policy}: không bị ràng buộc chặt một policy cố định, có thể tối ưu tới policy tốt nhất.
+  \item \textbf{Model-free}: linh hoạt khi tham số môi trường không mô tả được động.
+  \item Có thể \textbf{sửa lỗi} trong quá trình huấn luyện; xác suất lặp lại cùng sai lầm thường thấp.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm Q-Learning}]
+\begin{itemize}
+  \item Khó tìm cân bằng giữa \textbf{thử hành động mới} và \textbf{giữ hành động đã biết tốt}.
+  \item Đôi khi \textbf{lạc quan quá mức}, overestimate chất lượng hành động hoặc chiến lược.
+  \item Với nhiều lựa chọn giải pháp, có thể \textbf{tốn thời gian} mới xác định được chiến lược tối ưu.
+\end{itemize}
+\end{luuy}
+
+\begin{ynghia}[title={Ứng dụng Q-Learning}]
+\begin{itemize}
+  \item \textbf{Trò chơi}: học chiến lược đạt trình độ cao trong nhiều game.
+  \item \textbf{Hệ gợi ý}: cải thiện hệ thống gợi ý (ví dụ nền tảng quảng cáo).
+  \item \textbf{Robot}: thao tác vật thể, tránh vật cản, vận chuyển.
+  \item \textbf{Xe tự lái}: quyết định như đổi làn, dừng xe.
+  \item \textbf{Chuỗi cung ứng}: tối ưu đường đưa sản phẩm ra thị trường.
+\end{itemize}
+\end{ynghia}

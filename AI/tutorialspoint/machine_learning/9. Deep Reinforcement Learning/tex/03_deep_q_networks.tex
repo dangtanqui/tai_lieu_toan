@@ -1,0 +1,160 @@
+%==============================================================================
+\section{Mạng Q sâu (Deep Q-Networks)}
+\label{sec:deep-q-networks}
+%==============================================================================
+
+\subsection{Deep Q-Network là gì?}
+
+\begin{dinhnghia}[title={Deep Q-Network (DQN)}]
+\textbf{Deep Q-Network (DQN)} là thuật toán trong học tăng cường, kết hợp \textbf{mạng nơ-ron sâu} với \textbf{Q-learning}, giúp agent học policy tối ưu trong môi trường phức tạp.
+Q-learning truyền thống hiệu quả khi số trạng thái \textbf{nhỏ và hữu hạn}, nhưng gặp khó với không gian trạng thái \textbf{lớn} hoặc \textbf{liên tục} vì kích thước bảng $Q$.
+DQN khắc phục bằng cách thay bảng $Q$ bằng mạng nơ-ron \textbf{xấp xỉ} giá trị $Q$ cho mọi cặp trạng thái--hành động.
+\end{dinhnghia}
+
+\subsection{Các thành phần chính}
+
+\begin{ynghia}[title={Kiến trúc DQN}]
+Dưới đây là các thành phần trong kiến trúc Deep Q-Networks.
+\end{ynghia}
+
+\begin{phuongphap}[title={Lớp đầu vào (Input Layer)}]
+\textbf{Lớp đầu vào} nhận thông tin trạng thái từ môi trường dưới dạng \textbf{vector giá trị số}.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Lớp ẩn (Hidden Layers)}]
+\textbf{Lớp ẩn} của DQN gồm nhiều nơ-ron \textbf{fully connected} biến đổi dữ liệu đầu vào thành đặc trưng phức tạp hơn, phù hợp cho \textbf{dự đoán}.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Lớp đầu ra (Output Layer)}]
+\textbf{Lớp đầu ra}: mỗi hành động khả dĩ ở trạng thái hiện tại tương ứng \textbf{một nơ-ron}.
+Giá trị đầu ra của các nơ-ron này là \textbf{ước lượng giá trị} của từng hành động trong trạng thái đó.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bộ nhớ (Memory)}]
+\textbf{Bộ nhớ}: DQN dùng \textbf{memory replay} lưu các sự kiện huấn luyện của agent.
+Mọi thông tin---trạng thái hiện tại, hành động đã chọn, phần thưởng nhận được, trạng thái kế tiếp---được lưu dưới dạng \textbf{bộ} (tuple) trong bộ nhớ.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Hàm mất mát (Loss Function)}]
+\textbf{Hàm mất mát}: DQN tính \textbf{chênh lệch} giữa giá trị $Q$ thực tế từ replay memory và giá trị $Q$ dự đoán để xác định loss.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Tối ưu hóa (Optimization)}]
+\textbf{Tối ưu hóa}: điều chỉnh trọng số mạng để \textbf{tối thiểu hóa} hàm mất mát.
+Thường dùng \textbf{stochastic gradient descent (SGD)} cho mục đích này.
+\end{phuongphap}
+
+\begin{vidu}[title={Sơ đồ kiến trúc DQN}]
+Hình sau minh họa các thành phần trong kiến trúc Deep Q-Network:
+\end{vidu}
+
+\tsimg{03_deep_q_networks/img01.jpg}
+
+\subsection{Cách hoạt động của DQN}
+
+\begin{phuongphap}[title={Các bước vận hành}]
+Quy trình làm việc của DQN gồm các bước sau.
+\end{phuongphap}
+
+\subsubsection{Kiến trúc mạng nơ-ron}
+
+\begin{phuongphap}[title={Neural Network Architecture}]
+DQN dùng chuỗi \textbf{frame} (ví dụ ảnh từ game) làm đầu vào và sinh tập giá trị $Q$ cho mọi hành động khả dĩ ở trạng thái đó.
+Cấu hình điển hình gồm lớp \textbf{convolutional} nắm quan hệ không gian và lớp \textbf{fully connected} xuất ra giá trị $Q$.
+\end{phuongphap}
+
+\subsubsection{Experience Replay}
+
+\begin{phuongphap}[title={Bộ đệm kinh nghiệm}]
+Trong huấn luyện, agent lưu các tương tác $(s, a, r, s')$ vào \textbf{replay buffer}.
+Lấy mẫu \textbf{ngẫu nhiên} các batch từ buffer để huấn luyện mạng, giảm tương quan giữa kinh nghiệm liên tiếp và tăng \textbf{ổn định} huấn luyện.
+\end{phuongphap}
+
+\subsubsection{Target Network}
+
+\begin{phuongphap}[title={Mạng mục tiêu}]
+Để ổn định quá trình huấn luyện, DQN dùng \textbf{mạng target riêng} sinh mục tiêu giá trị $Q$.
+Mạng target được \textbf{cập nhật định kỳ} trọng số từ mạng chính để giảm rủi ro \textbf{phân kỳ} khi huấn luyện.
+\end{phuongphap}
+
+\subsubsection{Chính sách Epsilon-Greedy}
+
+\begin{phuongphap}[title={Epsilon-Greedy Policy}]
+Agent dùng chiến lược \textbf{epsilon-greedy}:
+\begin{itemize}
+  \item Với xác suất $\varepsilon$: chọn hành động \textbf{ngẫu nhiên};
+  \item Với xác suất $1-\varepsilon$: chọn hành động có giá trị $Q$ \textbf{cao nhất}.
+\end{itemize}
+Cân bằng khám phá--khai thác giúp agent học hiệu quả.
+\end{phuongphap}
+
+\subsubsection{Quy trình huấn luyện}
+
+\begin{phuongphap}[title={Training Process}]
+Mạng nơ-ron được huấn luyện bằng \textbf{gradient descent} để tối thiểu hóa loss giữa $Q$ dự đoán và $Q$ mục tiêu.
+Giá trị $Q$ mục tiêu tính theo \textbf{phương trình Bellman}, kết hợp phần thưởng nhận được và giá trị $Q$ \textbf{lớn nhất} của trạng thái kế tiếp.
+\end{phuongphap}
+
+\subsection{Hạn chế của Deep Q-Networks}
+
+\begin{luuy}[title={Các hạn chế chính}]
+Deep Q-Networks có một số hạn chế ảnh hưởng hiệu quả và hiệu năng:
+\begin{enumerate}
+  \item \textbf{Bất ổn định} do vấn đề non-stationarity từ việc cập nhật mạng nơ-ron thường xuyên.
+  \item Đôi khi \textbf{overestimate} giá trị $Q$, gây tác động tiêu cực lên quá trình học.
+  \item Cần \textbf{nhiều mẫu} để học tốt---tốn kém và tốn thời gian tính toán.
+  \item Hiệu năng phụ thuộc mạnh vào \textbf{siêu tham số}: learning rate, hệ số chiết khấu, tỷ lệ khám phá.
+  \item DQN chủ yếu cho không gian hành động \textbf{rời rạc}; khó với hành động \textbf{liên tục}.
+\end{enumerate}
+\end{luuy}
+
+\subsection{Double Deep Q-Networks}
+
+\begin{dinhnghia}[title={Double DQN}]
+\textbf{Double DQN} là phiên bản mở rộng của DQN, nhằm xử lý vấn đề \textbf{thiên lệch overestimation} trong cập nhật giá trị $Q$.
+Thiên lệch này xuất phát từ việc quy tắc cập nhật Q-learning dùng \textbf{cùng một} mạng $Q$ để vừa chọn vừa đánh giá hành động, dẫn tới ước lượng $Q$ \textbf{phồng lên}.
+Điều này gây \textbf{bất ổn} huấn luyện và cản trở học.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Hai mạng tách vai trò}]
+Double DQN dùng hai mạng:
+\begin{itemize}
+  \item \textbf{Q-Network}: chọn hành động;
+  \item \textbf{Target Network}: đánh giá \textbf{giá trị} của hành động đã chọn.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Cách tính mục tiêu}]
+Thay đổi chính nằm ở cách tính \textbf{target}:
+thay vì dùng một mạng $Q$ cho cả chọn và đánh giá hành động kế tiếp, Double DQN dùng mạng $Q$ để \textbf{chọn} hành động ở trạng thái sau và mạng target để \textbf{đánh giá} giá trị $Q$ của hành động đó.
+Việc tách này giảm xu hướng overestimate, cho ước lượng giá trị \textbf{chính xác} hơn.
+\end{phuongphap}
+
+\begin{tinhchat}[title={Ổn định hơn DQN chuẩn}]
+Double DQN mang lại quá trình huấn luyện \textbf{nhất quán và đáng tin cậy} hơn, đặc biệt trong kịch bản như game Atari, nơi DQN thông thường có thể gặp khó với overestimation.
+\end{tinhchat}
+
+\subsection{Dueling Deep Q-Networks}
+
+\begin{dinhnghia}[title={Dueling DQN}]
+\textbf{Dueling Deep Q-Networks} cải thiện quá trình học của DQN truyền thống bằng cách \textbf{tách} ước lượng giá trị trạng thái khỏi \textbf{advantage} hành động.
+Trong DQN cổ điển, mỗi cặp trạng thái--hành động có một giá trị $Q$ riêng biểu diễn phần thưởng tích lũy kỳ vọng.
+Cách này có thể \textbf{kém hiệu quả} khi nhiều hành động dẫn tới hậu quả tương tự.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Công thức phân rã $Q$}]
+Dueling DQN phân rã giá trị $Q$ thành hai phần:
+\begin{itemize}
+  \item \textbf{Giá trị trạng thái} $V(s)$: giá trị của việc ở trạng thái $s$;
+  \item \textbf{Hàm advantage} $A(s,a)$: mức tốt hơn của hành động $a$ so với các hành động khác trong cùng trạng thái.
+\end{itemize}
+Giá trị $Q$ được cho bởi:
+\[
+Q(s,a) = V(s) + A(s,a).
+\]
+\end{phuongphap}
+
+\begin{tinhchat}[title={Lợi ích học tách rời}]
+Dueling DQN giúp agent hiểu môi trường sâu hơn và tránh học các ước lượng giá trị hành động \textbf{không cần thiết}.
+Hiệu năng cải thiện, đặc biệt khi phần thưởng \textbf{trễ}, vì agent nắm rõ hơn tầm quan trọng của các trạng thái khi chọn hành động tối ưu.
+\end{tinhchat}

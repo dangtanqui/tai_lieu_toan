@@ -14,24 +14,24 @@ Mỗi điểm được gán vào cụm sao cho \textbf{tổng bình phương kho
 \subsection{Cách hoạt động của K-Means}
 
 \begin{phuongphap}[title={Các bước}]
-\begin{enumerate}
-  \item[\textbf{Bước 1}] Chỉ định số cụm $K$ cần sinh.
-  \item[\textbf{Bước 2}] Chọn ngẫu nhiên $K$ điểm và gán ban đầu (phân loại theo số điểm khởi tạo).
-  \item[\textbf{Bước 3}] Tính centroid của từng cụm.
-  \item[\textbf{Bước 4}] Lặp đến khi phân gán ổn định:
-  \begin{enumerate}
-    \item[\textbf{4.1}] Tính tổng bình phương khoảng cách giữa điểm và centroid.
-    \item[\textbf{4.2}] Gán mỗi điểm vào cụm có centroid \textbf{gần hơn} các cụm còn lại.
-    \item[\textbf{4.3}] Cập nhật centroid bằng \textbf{trung bình} mọi điểm trong cụm.
-  \end{enumerate}
-\end{enumerate}
+\begin{itemize}
+  \item \textbf{Bước 1}: Chỉ định số cụm $K$ cần sinh.
+  \item \textbf{Bước 2}: Chọn ngẫu nhiên $K$ điểm và gán ban đầu (phân loại theo số điểm khởi tạo).
+  \item \textbf{Bước 3}: Tính centroid của từng cụm.
+  \item \textbf{Bước 4}: Lặp đến khi phân gán ổn định:
+  \begin{itemize}
+    \item \textbf{4.1}: Tính tổng bình phương khoảng cách giữa điểm và centroid.
+    \item \textbf{4.2}: Gán mỗi điểm vào cụm có centroid \textbf{gần hơn} các cụm còn lại.
+    \item \textbf{4.3}: Cập nhật centroid bằng \textbf{trung bình} mọi điểm trong cụm.
+  \end{itemize}
+\end{itemize}
 \end{phuongphap}
 
 \begin{dinhnghia}[title={Expectation--Maximization (EM)}]
 K-means theo khung EM:
 \begin{itemize}
-  \item \textbf{Bước E (Expectation)}: gán điểm vào cụm gần nhất.
-  \item \textbf{Bước M (Maximization)}: tính lại centroid mỗi cụm.
+  \item \textbf{Bước E (Expectation - Kỳ vọng)}: gán điểm vào cụm gần nhất.
+  \item \textbf{Bước M (Maximization - Cực đại hóa)}: tính lại centroid mỗi cụm.
 \end{itemize}
 \end{dinhnghia}
 
@@ -52,7 +52,7 @@ Thuật toán đơn giản, hiệu quả với dataset lớn; nhưng nhạy kh�
 \begin{dongco}[title={Hai mục tiêu chính}]
 \begin{itemize}
   \item Rút ra \textbf{trực giác có ý nghĩa} từ dữ liệu.
-  \item \textbf{Cluster-then-predict}: xây mô hình riêng cho từng nhóm con sau khi phân cụm.
+  \item \textbf{Phân cụm rồi dự đoán}: xây mô hình riêng cho từng nhóm con sau khi phân cụm.
 \end{itemize}
 \end{dongco}
 
@@ -119,7 +119,7 @@ plt.show()
 \tsimg{03_k_means/img02.jpg}
 \end{ynghia}
 
-\begin{vidu}[title={Mã đầy đủ (ví dụ 1)}]
+\begin{vidu}[title={Code đầy đủ (ví dụ 1)}]
 \begin{lstlisting}
 import numpy as np
 import matplotlib.pyplot as plt
@@ -272,25 +272,18 @@ Ghép nhãn cụm với nhãn gốc cho độ chính xác khoảng \textbf{80\%}
   \item Khó chọn $k$ (số cụm).
   \item Kết quả phụ thuộc mạnh vào $k$ và khởi tạo.
   \item Thứ tự dữ liệu có thể ảnh hưởng kết quả cuối (với một số triển khai).
-  \item \textbf{Nhạy rescale}: chuẩn hóa/chuẩn tắc hóa làm thay đổi hoàn toàn phân cụm --- cần xử lý nhất quán.
+  \item \textbf{Nhạy với chuẩn hóa (rescale)}: chuẩn hóa/chuẩn tắc hóa làm thay đổi hoàn toàn phân cụm --- cần xử lý nhất quán.
   \item Kém khi cụm có \textbf{hình học phức tạp} (không lồi, không cầu).
 \end{itemize}
 \end{luuy}
 
 \subsection{Ứng dụng K-Means}
 
-\begin{ynghia}[title={Phân đoạn ảnh}]
-Gom vùng pixel theo màu hoặc texture; dùng trong nhận dạng đối tượng, truy vấn ảnh, ảnh y khoa.
-\end{ynghia}
-
-\begin{ynghia}[title={Phân khúc khách hàng}]
-Chia khách theo hành vi mua hoặc nhân khẩu; hỗ trợ giữ chân khách, loyalty, quảng cáo nhắm mục tiêu.
-\end{ynghia}
-
-\begin{ynghia}[title={Phát hiện bất thường}]
-Điểm không thuộc cụm nào (hoặc xa mọi centroid) có thể là anomaly --- gian lận, xâm nhập mạng, bảo trì dự đoán.
-\end{ynghia}
-
-\begin{ynghia}[title={Phân tích biểu hiện gen}]
-Gom gen đồng điều hòa/biểu hiện; hỗ trợ khám phá thuốc, chẩn đoán, y học cá thể hóa.
+\begin{ynghia}[title={Ứng dụng K-Means}]
+  \begin{itemize}
+    \item Phân đoạn ảnh: Gom vùng pixel theo màu hoặc texture; dùng trong nhận dạng đối tượng, truy vấn ảnh, ảnh y khoa.
+    \item Phân khúc khách hàng: Chia khách theo hành vi mua hoặc nhân khẩu; hỗ trợ giữ chân khách, loyalty, quảng cáo nhắm mục tiêu.
+    \item Phát hiện bất thường: Điểm không thuộc cụm nào (hoặc xa mọi centroid) có thể là bất thường (anomaly) --- gian lận, xâm nhập mạng, bảo trì dự đoán.
+    \item Phân tích biểu hiện gen: Gom gen đồng điều hòa/biểu hiện; hỗ trợ khám phá thuốc, chẩn đoán, y học cá thể hóa.
+  \end{itemize}
 \end{ynghia}

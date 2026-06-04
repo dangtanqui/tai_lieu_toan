@@ -1,0 +1,62 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_reinforcement_learning_algorithms.htm",
+    "slug": "01_reinforcement_learning_algorithms",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_exploitation_and_exploration.htm",
+    "slug": "02_exploitation_exploration",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/epsilon_greedy_selection_algo.jpg",
+        "file": "images/02_exploitation_exploration/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_q_learning.htm",
+    "slug": "03_q_learning",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/q_learning_algorithm.jpg",
+        "file": "images/03_q_learning/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_reinforce_algorithm.htm",
+    "slug": "04_reinforce",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_sarsa_reinforcement_learning.htm",
+    "slug": "05_sarsa",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/sarsa_reinforcement_learning_equation.jpg",
+        "file": "images/05_sarsa/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_actor_critic_algorithm.htm",
+    "slug": "06_actor_critic",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/actor_critic_method.jpg",
+        "file": "images/06_actor_critic/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_monte_carlo_methods.htm",
+    "slug": "07_monte_carlo",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_temporal_difference_learning.htm",
+    "slug": "08_temporal_difference",
+    "images": []
+  }
+]

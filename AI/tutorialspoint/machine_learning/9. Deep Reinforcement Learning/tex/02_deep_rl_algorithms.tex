@@ -1,0 +1,125 @@
+%==============================================================================
+\section{Thuật toán học tăng cường sâu (Deep RL Algorithms)}
+\label{sec:deep-rl-algorithms}
+%==============================================================================
+
+\begin{dinhnghia}[title={Thuật toán Deep RL}]
+Thuật toán học tăng cường sâu là loại thuật toán học máy \textbf{kết hợp học sâu và học tăng cường}.
+Deep RL giải quyết bài toán cho agent tính toán học ra quyết định bằng cách tích hợp học sâu từ dữ liệu đầu vào không có cấu trúc, \textbf{không cần} kỹ thuật thủ công thiết kế không gian trạng thái.
+Các thuật toán này có khả năng quyết định hành động tối ưu mục tiêu ngay cả khi đầu vào có kích thước lớn.
+\end{dinhnghia}
+
+\subsection{Học tăng cường (Reinforcement Learning)}
+
+\begin{ynghia}[title={Vai trò của RL trong Deep RL}]
+\textbf{Học tăng cường} gồm một agent học từ \textbf{phản hồi} đối với hành động của mình khi khám phá môi trường.
+Mục tiêu chính của agent là \textbf{tối đa hóa phần thưởng tích lũy} bằng cách phát triển chiến lược định hướng ra quyết định trong mọi tình huống có thể.
+\end{ynghia}
+
+\subsection{Vai trò của học sâu trong RL}
+
+\begin{luuy}[title={Hạn chế xấp xỉ truyền thống}]
+Trong thuật toán RL truyền thống, \textbf{bảng tra} hoặc xấp xỉ hàm cơ bản thường được dùng để biểu diễn hàm giá trị, chính sách hoặc mô hình.
+Các cách này \textbf{không đủ hiệu quả} trong bối cảnh khó như game video, robot hoặc xử lý ngôn ngữ tự nhiên.
+\end{luuy}
+
+\begin{phuongphap}[title={Nền tảng Deep RL}]
+\textbf{Mạng nơ-ron} cho phép xấp xỉ các hàm \textbf{phức tạp, đa chiều} thông qua học sâu.
+Đây là nền tảng của học tăng cường sâu.
+\end{phuongphap}
+
+\subsection{Lợi ích kết hợp học sâu và RL}
+
+\begin{tinhchat}[title={Ba lợi ích chính}]
+Kết hợp mạng học sâu với học tăng cường mang lại các lợi ích sau:
+\begin{enumerate}
+  \item Xử lý đầu vào \textbf{chiều cao} (ảnh thô, dữ liệu cảm biến liên tục).
+  \item Hiểu quan hệ \textbf{phức tạp} giữa trạng thái và hành động thông qua học.
+  \item Học \textbf{biểu diễn chung} bằng cách khái quát hóa giữa các trạng thái và hành động khác nhau.
+\end{enumerate}
+\end{tinhchat}
+
+\subsection{Các thuật toán Deep RL phổ biến}
+
+\begin{ynghia}[title={Tổng quan}]
+Dưới đây là một số thuật toán học tăng cường sâu phổ biến.
+\end{ynghia}
+
+\subsubsection{Deep Q-Networks (DQN)}
+
+\begin{dinhnghia}[title={Deep Q-Network}]
+\textbf{Deep Q-Network (DQN)} là mở rộng của Q-learning cổ điển, dùng \textbf{mạng nơ-ron sâu} ước lượng hàm giá trị hành động $Q(s,a)$.
+Thay vì lưu giá trị $Q$ trong bảng, DQN dùng mạng nơ-ron xử lý miền đầu vào phức tạp như \textbf{pixel game}.
+Nhờ đó RL có thể giải quyết tác vụ phức tạp---ví dụ chơi Atari, agent học từ đầu vào \textbf{trực quan}.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ổn định huấn luyện DQN}]
+DQN cải thiện ổn định huấn luyện qua hai phương pháp chính:
+\begin{itemize}
+  \item \textbf{Experience replay}: lưu và lấy mẫu kinh nghiệm quá khứ;
+  \item \textbf{Target network}: duy trì mục tiêu $Q$ nhất quán bằng cách cập nhật định kỳ một mạng riêng.
+\end{itemize}
+Các cải tiến này giúp DQN học hiệu quả trong bối cảnh \textbf{quy mô lớn}.
+\end{phuongphap}
+
+\subsubsection{Double Deep Q-Networks (DDQN)}
+
+\begin{ynghia}[title={Giảm thiên lệch overestimation}]
+\textbf{Double Deep Q-Network (DDQN)} cải thiện DQN bằng cách giảm vấn đề \textbf{thiên lệch overestimation} khi cập nhật giá trị $Q$.
+Trong DQN thông thường, một mạng $Q$ duy nhất vừa \textbf{chọn hành động} vừa \textbf{ước lượng giá trị}, dễ dẫn tới xấp xỉ giá trị \textbf{lạc quan quá mức}.
+\end{ynghia}
+
+\begin{phuongphap}[title={Hai mạng trong DDQN}]
+DDQN dùng \textbf{hai mạng riêng}:
+\begin{itemize}
+  \item Mạng $Q$ \textbf{hiện tại} để chọn hành động;
+  \item Mạng \textbf{target} để đánh giá hành động đó.
+\end{itemize}
+Việc tách vai trò giảm thiên lệch, nâng \textbf{độ chính xác} học.
+DDQN vẫn kế thừa experience replay và target network từ DQN để tăng \textbf{độ bền} và \textbf{tin cậy}.
+\end{phuongphap}
+
+\subsubsection{Dueling Deep Q-Networks (Dueling DQN)}
+
+\begin{dinhnghia}[title={Dueling DQN}]
+\textbf{Dueling Deep Q-Networks} mở rộng DQN chuẩn bằng cách \textbf{tách} giá trị $Q$ thành hai thành phần:
+\begin{itemize}
+  \item Hàm giá trị trạng thái $V(s)$;
+  \item Hàm \textbf{advantage} $A(s,a)$, ước lượng mức giá trị của từng hành động so với giá trị trung bình.
+\end{itemize}
+Giá trị $Q$ cuối cùng được ước lượng bằng cách \textbf{kết hợp} hai thành phần này.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Lợi ích biểu diễn tách rời}]
+Biểu diễn này tăng \textbf{sức mạnh và hiệu quả} của Q-learning: mô hình ước lượng $V(s)$ chính xác hơn, đồng thời giảm nhu cầu ước lượng giá trị hành động chi tiết trong một số tình huống.
+\end{tinhchat}
+
+\subsubsection{Policy Gradient Methods}
+
+\begin{dinhnghia}[title={Phương pháp Policy Gradient}]
+\textbf{Policy Gradient} là nhóm thuật toán theo hướng \textbf{lặp chính sách}: điều chỉnh trực tiếp policy để đạt policy tối ưu \textbf{tối đa hóa phần thưởng kỳ vọng}.
+Thay vì chỉ học hàm giá trị, các phương pháp này \textbf{tối ưu policy} theo gradient của mục tiêu định nghĩa đối với tham số policy.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Mục tiêu và các biến thể}]
+Mục tiêu chính là tính \textbf{gradient phần thưởng trung bình} và cập nhật chiến lược.
+Các thuật toán tiêu biểu: \textbf{REINFORCE}, \textbf{Actor--Critic}, \textbf{Proximal Policy Optimization (PPO)}.
+Các cách tiếp cận này hiệu quả trong không gian hành động \textbf{chiều cao} hoặc \textbf{liên tục}.
+\end{phuongphap}
+
+\subsubsection{Proximal Policy Optimization (PPO)}
+
+\begin{dinhnghia}[title={PPO}]
+\textbf{Proximal Policy Optimization (PPO)} là thuật toán RL nhằm tối ưu chính sách \textbf{ổn định và hiệu quả} hơn.
+PPO cập nhật policy bằng cách tối đa hóa hàm mục tiêu gắn với policy, nhưng \textbf{giới hạn} mức thay đổi policy cho phép để tránh biến động đột ngột.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Mục tiêu clipped}]
+Policy mới \textbf{không được} lệch quá xa policy cũ; PPO dùng \textbf{mục tiêu clipped} để đảm bảo điều đó.
+Nhờ mục tiêu clipped, PPO ngăn thay đổi policy quá lớn giữa hai lần cập nhật liên tiếp.
+Sự cân bằng giữa khám phá và khai thác giúp tránh \textbf{suy giảm hiệu năng} và thúc đẩy \textbf{hội tụ mượt} hơn.
+\end{phuongphap}
+
+\begin{vidu}[title={Phạm vi ứng dụng PPO}]
+PPO được áp dụng trong Deep RL cho cả không gian hành động \textbf{liên tục} và \textbf{rời rạc} nhờ tính \textbf{đơn giản} và \textbf{hiệu quả}.
+\end{vidu}

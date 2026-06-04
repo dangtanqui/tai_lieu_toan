@@ -1,0 +1,141 @@
+%==============================================================================
+\section{Phương pháp vùng tin cậy (Trust Region)}
+\label{sec:trust-region}
+%==============================================================================
+
+\begin{ynghia}[title={Vai trò trong học tăng cường sâu}]
+Trong \textbf{tối ưu chính sách (policy optimization)}, mục tiêu là cải thiện policy để tăng phần thưởng kỳ vọng mà \textbf{không làm hành vi agent sụp đổ} sau một bước cập nhật quá lớn. Với mạng nơ-ron sâu làm xấp xỉ policy, gradient một bước có thể đẩy tham số xa khỏi vùng mà xấp xỉ còn đáng tin --- gây \textbf{dao động}, sụt hiệu năng, hoặc hội tụ kém. \textbf{Vùng tin cậy (trust region)} giới hạn mức thay đổi policy mỗi lần cập nhật để huấn luyện \textbf{mượt} và \textbf{đáng tin} hơn.
+\end{ynghia}
+
+\subsection{Định nghĩa vùng tin cậy}
+
+\begin{dinhnghia}[title={Trust region}]
+\textbf{Vùng tin cậy} là khái niệm tối ưu: trong mỗi bước lặp, chỉ cho phép cập nhật tham số (policy, hoặc hàm giá trị) nằm trong \textbf{tập tin cậy} quanh điểm hiện tại --- nơi mô hình xấp xỉ (surrogate) hoặc gradient còn phản ánh đúng hành vi thật. Ngoài vùng đó, bước cập nhật bị coi là \textbf{không đáng tin} và bị cắt hoặc chiếu lại.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Hệ quả khi huấn luyện policy}]
+\begin{itemize}
+  \item Giới hạn \textbf{độ lớn} thay đổi tham số policy mỗi iteration.
+  \item Tránh thay đổi \textbf{đột ngột} làm phân phối hành động lệch xa dữ liệu đã thu thập.
+  \item Cân bằng giữa \textbf{cải thiện mục tiêu} và \textbf{ổn định} học.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Vai trò trong tối ưu chính sách}
+
+\begin{ynghia}[title={Policy gradient và trust region}]
+\textbf{Policy gradient} tối đa hóa $J(\theta) = \mathbb{E}[G]$ bằng cách leo theo $\nabla_\theta J$. Không có ràng buộc, một bước SGD/Adam có thể quá lớn --- đặc biệt khi dùng \textbf{function approximator} sâu --- dẫn tới policy mới kém hẳn dù gradient cục bộ dương. Trust region \textbf{ép} mỗi bước chỉ ``đi xa'' một mức được phép trong metric phù hợp (thường liên quan phân phối hành động).
+\end{ynghia}
+
+\begin{ynghia}[title={KL divergence}]
+\textbf{Kullback--Leibler (KL) divergence} $D_{\mathrm{KL}}(\pi_{\theta_{\text{old}}} \| \pi_\theta)$ đo mức \textbf{lệch} giữa policy cũ và mới. TRPO dùng ràng buộc dạng $D_{\mathrm{KL}} \leq \delta$: thay đổi \textbf{nhỏ} theo KL thường cải thiện hiệu năng \textbf{ổn định}; thay đổi \textbf{lớn} dễ phá vỡ xấp xỉ và gây sụt reward.
+\end{ynghia}
+
+\begin{ynghia}[title={Surrogate objective và clipping (PPO)}]
+\textbf{Hàm surrogate} (mục tiêu thay thế) xấp xỉ lợi ích policy mới bằng tỷ số xác suất $\frac{\pi_\theta(a|s)}{\pi_{\theta_{\text{old}}}(a|s)}$ nhân advantage --- đúng khi policy mới gần policy cũ. \textbf{PPO} ước lượng trust region qua \textbf{clipping}: cắt tỷ số trong $[1-\epsilon, 1+\epsilon]$ để phạt cập nhật quá mạnh, không cần giải tối ưu ràng buộc KL đầy đủ như TRPO.
+\end{ynghia}
+
+\subsection{TRPO --- Trust Region Policy Optimization}
+
+\begin{dinhnghia}[title={TRPO}]
+\textbf{Trust Region Policy Optimization (TRPO)} tối đa hóa \textbf{surrogate objective} (thường dạng advantage-weighted ratio) \textbf{dưới ràng buộc} trust region bằng KL: mỗi bước tìm cập nhật policy cải thiện mục tiêu nhưng $D_{\mathrm{KL}}(\pi_{\text{old}} \| \pi_{\text{new}}) \leq \delta$. Mục đích: khắc phục bước policy gradient \textbf{quá lớn, không ổn định} khi dùng mạng sâu.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Ý tưởng thuật toán TRPO}]
+\begin{enumerate}
+  \item Thu thập rollout với policy hiện tại $\pi_{\theta_{\text{old}}}$.
+  \item Ước lượng \textbf{advantage} $A(s,a)$ (GAE, value baseline\ldots).
+  \item Tối đa hóa surrogate có kỳ vọng $\mathbb{E}\big[\frac{\pi_\theta(a|s)}{\pi_{\theta_{\text{old}}}(a|s)} A(s,a)\big]$ với ràng buộc KL $\leq \delta$.
+  \item Giải bài toán con bằng \textbf{natural gradient} / xấp xỉ Fisher information (thực tế dùng conjugate gradient, line search).
+  \item Gán $\theta_{\text{old}} \leftarrow \theta$; lặp.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{tinhchat}[title={Ưu và nhược TRPO}]
+\begin{itemize}
+  \item \textbf{Ưu}: cập nhật policy \textbf{ổn định}, lý thuyết rõ về monotonic improvement (trong điều kiện xấp xỉ đúng).
+  \item \textbf{Nhược}: triển khai \textbf{phức tạp}, tính toán KL và Fisher tốn kém; khó scale như PPO trên GPU thuần mini-batch.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{PPO --- Proximal Policy Optimization}
+
+\begin{dinhnghia}[title={PPO}]
+\textbf{Proximal Policy Optimization (PPO)} nhằm \textbf{đơn giản hóa} trust region: dùng cùng ý tưởng surrogate nhưng \textbf{giới hạn bước} bằng \textbf{clipped objective} thay vì ràng buộc KL cứng. Policy mới không được lệch quá xa policy cũ (theo tỷ số xác suất), vẫn cân bằng \textbf{khám phá--khai thác} trong on-policy rollout.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Mục tiêu clipped (PPO-clip)}]
+Với $r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_{\text{old}}}(a_t|s_t)}$ và advantage $\hat{A}_t$:
+\[
+L^{\mathrm{CLIP}}(\theta) = \mathbb{E}_t\Big[\min\big(r_t(\theta)\hat{A}_t,\; \mathrm{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)\hat{A}_t\big)\Big]
+\]
+Cập nhật $\theta$ bằng vài epoch \textbf{stochastic gradient ascent} trên cùng batch rollout (có thể kèm value loss, entropy bonus).
+\end{phuongphap}
+
+\begin{phuongphap}[title={Quy trình PPO điển hình}]
+\begin{enumerate}
+  \item Thu thập tập kinh nghiệm on-policy với $\pi_{\theta_{\text{old}}}$.
+  \item Tính return và advantage (thường GAE).
+  \item Tối ưu $L^{\mathrm{CLIP}}$ (và loss critic) nhiều mini-batch epoch trên cùng dữ liệu.
+  \item Đồng bộ $\theta_{\text{old}}$; lặp thu thập mới.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{tinhchat}[title={Vì sao PPO phổ biến}]
+Đơn giản hơn TRPO, dễ song song hóa, \textbf{ổn định} trên robot, game, điều khiển; ít phụ thuộc giải tối ưu con phức tạp. Là lựa chọn mặc định cho nhiều bài toán \textbf{policy gradient on-policy} sâu.
+\end{tinhchat}
+
+\subsection{Natural Gradient Descent}
+
+\begin{dinhnghia}[title={Natural gradient}]
+\textbf{Natural gradient descent} điều chỉnh hướng và độ dài bước theo \textbf{độ cong} của mặt phần thưởng trong không gian phân phối (metric Fisher). Một bước natural gradient tương đương di chuyển trong \textbf{trust region} quanh policy hiện tại --- hiệu quả khi không gian tham số \textbf{chiều cao}.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Liên hệ TRPO và natural gradient}]
+TRPO xấp xỉ giải bài toán constrained bằng \textbf{natural gradient} kèm line search để thỏa KL $\leq \delta$. PPO thay ràng buộc KL bằng \textbf{clipping} thực dụng hơn nhưng cùng triết lý: không bước policy quá xa trong một lần cập nhật.
+\end{ynghia}
+
+\subsection{So sánh nhanh}
+
+\begin{vidu}[title={TRPO, PPO và natural gradient}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XXX}
+\textbf{Tiêu chí} & \textbf{TRPO} & \textbf{PPO} & \textbf{Natural gradient} \\
+\midrule
+Cơ chế trust region &
+Ràng buộc KL cứng ($\leq \delta$). &
+Clipping surrogate / PPO-penalty. &
+Metric Fisher, bước trong vùng tin cậy. \\
+Độ phức tạp &
+Cao (CG, line search). &
+Thấp hơn, SGD mini-batch. &
+Trung bình--cao (ước lượng Fisher). \\
+On-policy &
+Có. &
+Có. &
+Thường dùng trong khung on-policy. \\
+Ứng dụng &
+Nền tảng lý thuyết; ít dùng trực tiếp hơn PPO. &
+Robot, Atari, LLM RLHF\ldots &
+Lõi của TRPO; có thể độc lập. \\
+\end{tabularx}
+\end{vidu}
+
+\subsection{Thách thức}
+
+\begin{luuy}[title={Thách thức khi dùng trust region}]
+\begin{itemize}
+  \item \textbf{Xấp xỉ và vi phạm ràng buộc}: TRPO/PPO dựa trên surrogate và ước lượng advantage; xấp xỉ sai có thể \textbf{vi phạm} KL hoặc clipping không đủ chặt --- policy vẫn sụt.
+  \item \textbf{Chi phí tính toán}: TRPO và natural gradient (Fisher, KL) tốn hơn PPO thuần; không gian tham số lớn càng nặng.
+  \item \textbf{Nhu cầu mẫu}: phương pháp on-policy trust region cần \textbf{nhiều rollout} mới mỗi vòng; sample efficiency thấp hơn off-policy (SAC, DDPG).
+  \item \textbf{Hyperparameter}: $\delta$ (KL), $\epsilon$ (clip), số epoch PPO, coefficient entropy/value --- \textbf{nhạy}, cần kinh nghiệm tinh chỉnh.
+  \item \textbf{Hành động liên tục}: PPO/TRPO chuẩn cho policy rời rạc hoặc Gaussian; bài toán liên tục phức tạp thường chuyển sang SAC/TD3 thay vì trust region thuần.
+\end{itemize}
+\end{luuy}
+
+\begin{tinhchat}[title={Thuật toán deep RL dùng trust region}]
+\begin{itemize}
+  \item \textbf{TRPO}: ràng buộc KL, surrogate constrained --- nền tảng lý thuyết trust region trong RL sâu.
+  \item \textbf{PPO}: clipping (hoặc penalty KL) --- chuẩn công nghiệp on-policy ổn định.
+  \item \textbf{Natural gradient}: điều chỉnh bước theo geometry policy; lõi của TRPO, có thể kết hợp các mục tiêu khác.
+\end{itemize}
+\end{tinhchat}

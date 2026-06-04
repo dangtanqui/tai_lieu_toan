@@ -1,0 +1,97 @@
+%==============================================================================
+\section{Thuật toán REINFORCE}
+\label{sec:reinforce}
+%==============================================================================
+
+\begin{dinhnghia}[title={REINFORCE Algorithm}]
+REINFORCE là thuật toán \textbf{policy gradient} trong RL, dựa trên phương pháp \textbf{Monte Carlo}.
+Cách triển khai đơn giản: dùng \textbf{gradient ascent} để tăng trực tiếp phần thưởng tích lũy kỳ vọng bằng cách điều chỉnh tham số policy.
+Thuật toán \textbf{không} cần mô hình môi trường $\Rightarrow$ thuộc nhóm \textbf{model-free}.
+\end{dinhnghia}
+
+\subsection{Khái niệm chính}
+
+\begin{ynghia}[title={Policy Gradient Methods}]
+REINFORCE thuộc lớp \textbf{policy gradient}: cải thiện policy bằng cách đi theo \textbf{gradient} của phần thưởng tích lũy kỳ vọng đối với tham số policy.
+\end{ynghia}
+
+\begin{ynghia}[title={Monte Carlo trong REINFORCE}]
+REINFORCE là dạng Monte Carlo vì dùng \textbf{lấy mẫu (sampling)} để ước lượng các đại lượng mong muốn (return, gradient) từ \textbf{toàn bộ episode}, không bootstrap từng bước như TD.
+\end{ynghia}
+
+\subsection{Cách REINFORCE hoạt động}
+
+\begin{dongco}[title={Lịch sử và mục tiêu}]
+Thuật toán do Ronald J. Williams giới thiệu (1992).
+Mục tiêu: \textbf{tối đa hóa phần thưởng tích lũy kỳ vọng} bằng cách điều chỉnh tham số policy; agent học ra quyết định \textbf{tuần tự} trong môi trường.
+\end{dongco}
+
+\subsubsection{Lấy mẫu episode (Episode Sampling)}
+
+\begin{phuongphap}[title={Bước 1 --- Lấy mẫu episode}]
+Bắt đầu bằng cách lấy mẫu một \textbf{episode đầy đủ}: agent tương tác môi trường theo \textbf{policy hiện tại}.
+Episode là chuỗi trạng thái, hành động và reward cho đến khi đạt \textbf{trạng thái kết thúc}.
+\end{phuongphap}
+
+\subsubsection{Quỹ đạo (Trajectory)}
+
+\begin{phuongphap}[title={Bước 2 --- Ghi quỹ đạo}]
+Agent ghi lại quỹ đạo tương tác:
+\[
+(s_1, a_1, r_1), (s_2, a_2, r_2), \ldots, (s_t, a_t, r_t)
+\]
+trong đó $s$ là trạng thái, $a$ là hành động, $r$ là reward tại mỗi bước.
+\end{phuongphap}
+
+\subsubsection{Return $G_t$}
+
+\begin{phuongphap}[title={Bước 3 --- Tính return}]
+Return $G_t$ là \textbf{phần thưởng tích lũy kỳ vọng} từ thời điểm $t$ trở đi:
+\[
+G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
+\]
+với $\gamma$ là hệ số chiết khấu.
+\end{phuongphap}
+
+\subsubsection{Policy gradient}
+
+\begin{phuongphap}[title={Bước 4 --- Gradient của return kỳ vọng}]
+Tính gradient của return kỳ vọng theo tham số $\theta$ của policy $\pi_\theta$.
+Theo nguyên lý policy gradient (Monte Carlo), cập nhật dựa trên \textbf{log-likelihood} của chuỗi hành động đã chọn:
+\[
+\nabla_\theta J(\theta) \approx \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, G_t
+\]
+\end{phuongphap}
+
+\subsubsection{Cập nhật policy}
+
+\begin{phuongphap}[title={Bước 5 --- Cập nhật tham số policy}]
+Sau khi có gradient, cập nhật tham số theo hướng \textbf{tăng} reward kỳ vọng, ví dụ:
+\[
+\theta \leftarrow \theta + \alpha \sum_{t=0}^{T-1} \nabla_\theta \log \pi_\theta(a_t \mid s_t)\, G_t
+\]
+với $\alpha$ là learning rate.
+\end{phuongphap}
+
+\begin{luuy}[title={So với TD (Q-learning, SARSA)}]
+Học TD (Q-learning, SARSA) thường nhấn mạnh reward \textbf{tức thời} và bootstrap.
+REINFORCE cho agent học từ \textbf{toàn bộ chuỗi} trạng thái, hành động và reward của episode.
+Lặp các bước trên cho đến khi episode (hoặc quá trình huấn luyện) kết thúc theo tiêu chí dừng.
+\end{luuy}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm REINFORCE}]
+\begin{itemize}
+  \item \textbf{Model-free}: phù hợp khi môi trường không biết hoặc khó mô hình hóa.
+  \item \textbf{Đơn giản, trực quan}: dễ hiểu và triển khai.
+  \item Xử lý được \textbf{không gian hành động chiều cao hoặc liên tục} --- khác nhiều phương pháp dựa trên giá trị rời rạc.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm REINFORCE}]
+\begin{itemize}
+  \item \textbf{Phương sai cao}: ước lượng gradient biến động mạnh, học có thể chậm và \textbf{không ổn định}.
+  \item \textbf{Dùng mẫu kém hiệu quả}: mỗi lần tính gradient thường cần bộ mẫu episode mới, kém tái sử dụng mẫu hơn các kỹ thuật dùng lại dữ liệu nhiều lần.
+\end{itemize}
+\end{luuy}

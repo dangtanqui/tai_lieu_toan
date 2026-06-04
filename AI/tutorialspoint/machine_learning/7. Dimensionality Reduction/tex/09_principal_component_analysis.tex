@@ -1,0 +1,124 @@
+%==============================================================================
+\section{Phân tích thành phần chính (PCA)}
+\label{sec:principal-component-analysis}
+%==============================================================================
+
+\begin{dinhnghia}[title={PCA (Principal Component Analysis)}]
+Kỹ thuật \textbf{không giám sát} giảm chiều: biến dữ liệu nhiều biến thành không gian chiều thấp hơn bằng các \textbf{thành phần chính} (principal components, PC) --- tổ hợp tuyến tính của biến gốc, sắp xếp theo lượng \textbf{phương sai} được giữ lại.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Vai trò}]
+PCA tìm cấu trúc và mối quan hệ giữa biến; ứng dụng trong nén dữ liệu, xử lý ảnh, trực quan hóa và tiền xử lý trước các thuật toán học máy. PC đầu giải thích nhiều biến thiên nhất, PC sau giải thích phần còn lại.
+\end{ynghia}
+
+\subsection{Lý thuyết --- các bước đầy đủ}
+
+\begin{phuongphap}[title={Bước 1: Chuẩn hóa dữ liệu}]
+PCA nhạy thang đo. Chuẩn hóa mỗi feature về \textbf{trung bình 0, phương sai 1}:
+\[
+z_{ij} = \frac{x_{ij} - \mu_j}{\sigma_j},
+\]
+với $\mu_j$, $\sigma_j$ là trung bình và độ lệch chuẩn cột $j$ trên tập huấn luyện.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 2: Ma trận hiệp phương sai}]
+Với dữ liệu đã chuẩn hóa (mỗi cột đã căn giữa), ma trận hiệp phương sai:
+\[
+\mathbf{C} = \frac{1}{n-1}\mathbf{Z}^{\top}\mathbf{Z},
+\]
+trong đó $\mathbf{Z}$ là ma trận $n \times p$ ($n$ mẫu, $p$ feature). $\mathbf{C}$ đối xứng, mô tả biến thiên và \textbf{đồng biến} giữa các feature.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 3: Trị riêng và vector riêng}]
+Giải bài toán trị riêng:
+\[
+\mathbf{C}\,\mathbf{v}_k = \lambda_k\,\mathbf{v}_k,
+\]
+với $\lambda_1 \geq \lambda_2 \geq \cdots \geq \lambda_p \geq 0$. Vector riêng $\mathbf{v}_k$ (đã chuẩn hóa) là hướng của \textbf{thành phần chính thứ $k$}; $\lambda_k$ là phương sai dọc theo hướng đó.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 4: Chọn số thành phần}]
+Giữ $k$ PC đầu sao cho tổng phương sai giải thích đạt ngưỡng (ví dụ $95\%$), hoặc cố định $k=2$ để vẽ đồ thị. Tỷ lệ phương sai giải thích của PC $k$:
+\[
+\text{EVR}_k = \frac{\lambda_k}{\sum_{j=1}^{p}\lambda_j}.
+\]
+\end{phuongphap}
+
+\begin{phuongphap}[title={Bước 5: Chiếu dữ liệu}]
+Ma trận loadings (các vector riêng làm cột) $\mathbf{W}_k = [\mathbf{v}_1,\ldots,\mathbf{v}_k]$. Tọa độ mới:
+\[
+\mathbf{T} = \mathbf{Z}\,\mathbf{W}_k.
+\]
+Mỗi hàng của $\mathbf{T}$ là điểm trong không gian $k$ chiều dùng cho huấn luyện hoặc trực quan hóa.
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Hệ trực giao và giảm tương quan}]
+Các PC mới \textbf{không tương quan} với nhau (trong giả thiết tuyến tính và sau chuẩn hóa). Đây là lý do PCA thường được dùng để giảm \textbf{đa cộng tuyến} trước hồi quy hoặc phân cụm.
+\end{dinhnghia}
+
+\begin{luuy}[title={Giả định và hạn chế lý thuyết}]
+PCA là mô hình \textbf{tuyến tính}; outlier làm lệch $\mathbf{C}$; PC khó diễn giải trực tiếp như tên feature gốc. Luôn chuẩn hóa (hoặc căn tỷ lệ hợp lý) trước khi áp dụng.
+\end{luuy}
+
+\subsection{Ví dụ Python --- Iris}
+
+\begin{dongco}[title={Dữ liệu}]
+Bộ \texttt{iris} qua \texttt{sklearn.datasets.load\_iris}; chuẩn hóa thủ công, PCA 2 chiều, vẽ scatter theo nhãn loài.
+\end{dongco}
+
+\begin{vidu}[title={Mã đầy đủ}]
+\begin{lstlisting}
+import numpy as np
+from sklearn.datasets import load_iris
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+iris = load_iris()
+X = iris.data
+y = iris.target
+
+X_standardized = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
+
+pca = PCA(n_components=2)
+X_pca = pca.fit_transform(X_standardized)
+
+print('Explained variance ratio:', pca.explained_variance_ratio_)
+
+plt.scatter(X_pca[:, 0], X_pca[:, 1], c=y)
+plt.xlabel('PC1')
+plt.ylabel('PC2')
+plt.show()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả đầu ra}]
+\textbf{Explained variance ratio:}
+\begin{lstlisting}
+Explained variance ratio: [0.72962445 0.22850762]
+\end{lstlisting}
+Hai PC đầu giữ khoảng $72{,}9\% + 22{,}9\% \approx 95{,}8\%$ tổng phương sai (trên dữ liệu đã chuẩn hóa). Biểu đồ scatter PC1--PC2 tách ba loài iris rõ ràng.
+
+\tsimg{09_principal_component_analysis/img01.jpg}
+\end{ynghia}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Giảm chiều}: phù hợp dữ liệu nhiều feature, giữ phần lớn biến thiên.
+  \item \textbf{Giảm tương quan}: PC mới trực giao, hỗ trợ mô hình nhạy đa cộng tuyến.
+  \item \textbf{Dễ trực quan}: 2--3 PC đầu cho đồ thị 2D/3D.
+  \item \textbf{Giảm overfitting}: ít chiều $\Rightarrow$ mô hình đơn giản hơn, tổng quát tốt hơn trên một số bài toán.
+  \item \textbf{Tăng tốc tính toán}: ma trận đầu vào nhỏ hơn cho bước học sau.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Mất thông tin}: chiếu xuống $k < p$ không thể khôi phục hoàn toàn dữ liệu gốc.
+  \item \textbf{Nhạy outlier}: một điểm cực đoan có thể kéo lệch PC.
+  \item \textbf{Khó diễn giải}: PC là tổ hợp tuyến tính, không còn là ``độ dài cánh hoa'' cụ thể.
+  \item \textbf{Giả định tuyến tính}: quan hệ phi tuyến mạnh cần kernel PCA hoặc phương pháp khác.
+  \item \textbf{Bắt buộc chuẩn hóa}: bỏ qua bước này có thể làm PC theo đúng đơn vị lớn nhất thay vì cấu trúc thật.
+\end{itemize}
+\end{luuy}

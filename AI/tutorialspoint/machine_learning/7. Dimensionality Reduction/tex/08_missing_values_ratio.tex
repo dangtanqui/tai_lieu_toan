@@ -1,0 +1,106 @@
+%==============================================================================
+\section{Tỷ lệ giá trị thiếu (Missing Values Ratio)}
+\label{sec:missing-values-ratio}
+%==============================================================================
+
+\begin{dinhnghia}[title={Tỷ lệ giá trị thiếu}]
+Kỹ thuật \textbf{lựa chọn đặc trưng} loại các feature có \textbf{tỷ lệ phần trăm giá trị thiếu (NaN)} vượt ngưỡng. Feature ``rỗng'' quá nhiều khó học có ích và dễ gây \textbf{thiên lệch} khi impute hoặc bỏ mẫu không đồng nhất.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Nguyên tắc}]
+Với mỗi cột, tính $\text{missing\_ratio} = \dfrac{\#\text{NaN}}{\#\text{mẫu}}$. Nếu tỷ lệ $>$ ngưỡng (ví dụ $50\%$), \textbf{xóa cột} đó trước khi huấn luyện.
+\end{ynghia}
+
+\subsection{Thuật toán}
+
+\begin{phuongphap}[title={Các bước triển khai}]
+\begin{enumerate}
+  \item Nạp $X$ dưới dạng mảng NumPy (hoặc DataFrame) có thể chứa \texttt{np.nan}.
+  \item Tính \textbf{tỷ lệ thiếu} theo từng cột: \texttt{np.isnan(X).mean(axis=0)}.
+  \item Đặt \textbf{ngưỡng} (ví dụ $0{,}5$ tức $50\%$).
+  \item Thu thập chỉ số cột có tỷ lệ thiếu \textbf{lớn hơn} ngưỡng.
+  \item \textbf{Xóa} các cột đó; giữ $y$ và các cột còn lại cho mô hình.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Ví dụ Python --- Diabetes (OpenML)}
+
+\begin{luuy}[title={Dữ liệu OpenML không có giá trị thiếu}]
+Bản \texttt{fetch\_openml("diabetes")} thường \textbf{không chứa NaN}. Đoạn dưới minh họa đúng \textbf{luồng tính toán}; kết quả shape thường giữ \textbf{8 feature}. Ví dụ Pima Indians gốc (CSV có ô trống) sau khi đọc và đặt NaN mới có thể loại cột --- tùy cách tiền xử lý.
+\end{luuy}
+
+\begin{vidu}[title={Mã đầy đủ}]
+\begin{lstlisting}
+import numpy as np
+from sklearn.datasets import fetch_openml
+
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+X = data.iloc[:, :-1].values.astype(float)
+y = data.iloc[:, -1].values
+
+missing_percentages = np.isnan(X).mean(axis=0)
+threshold = 0.5
+
+high_missing_indices = [
+    i for i, pct in enumerate(missing_percentages) if pct > threshold
+]
+
+X_filtered = np.delete(X, high_missing_indices, axis=1)
+
+print('Shape of the filtered dataset:', X_filtered.shape)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả đầu ra (diabetes OpenML)}]
+\textbf{Output:}
+\begin{lstlisting}
+Shape of the filtered dataset: (768, 8)
+\end{lstlisting}
+Không cột nào vượt ngưỡng $50\%$ thiếu $\Rightarrow$ \textbf{giữ đủ 8 feature}, $768$ mẫu.
+\end{ynghia}
+
+\begin{phuongphap}[title={Minh họa khi cần NaN tổng hợp}]
+Để thấy bộ lọc ``cắt'' cột, có thể \textbf{chèn NaN giả lập} (chỉ cho thí nghiệm):
+\begin{lstlisting}
+import numpy as np
+from sklearn.datasets import fetch_openml
+
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+X = data.iloc[:, :-1].values.astype(float)
+y = data.iloc[:, -1].values
+
+rng = np.random.default_rng(0)
+mask = rng.random(X.shape) < 0.6
+X_demo = X.copy()
+X_demo[mask] = np.nan
+
+missing_percentages = np.isnan(X_demo).mean(axis=0)
+threshold = 0.5
+high_missing_indices = [
+    i for i, pct in enumerate(missing_percentages) if pct > threshold
+]
+X_filtered = np.delete(X_demo, high_missing_indices, axis=1)
+print('Shape after filter (demo):', X_filtered.shape)
+\end{lstlisting}
+\end{phuongphap}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Tiết kiệm tài nguyên}: bỏ cột khó xử lý, giảm chi phí impute và huấn luyện.
+  \item \textbf{Cải thiện hiệu năng}: mô hình không phụ thuộc vào cột gần như trống.
+  \item \textbf{Đơn giản hóa pipeline}: ít quy tắc điền khuyết phức tạp trên cột ``chết''.
+  \item \textbf{Giảm thiên lệch}: hạn chế cột thiếu không đồng nhất giữa các nhóm mẫu.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Mất thông tin}: cột thiếu nhiều vẫn có thể mang tín hiệu (ví dụ ``không đo được'' có ý nghĩa).
+  \item \textbf{Ảnh hưởng dữ liệu còn lại}: xóa cột có thể làm mất biến liên quan chéo với cột khác.
+  \item \textbf{Ảnh hưởng biến phụ thuộc}: cột thiếu nhưng dự báo $y$ tốt có thể bị loại nhầm.
+  \item \textbf{Selection bias}: ngưỡng cố định không xét mô hình cuối.
+  \item \textbf{Phụ thuộc cách đọc dữ liệu}: CSV Pima cần quy ước mã hóa ô trống thành \texttt{NaN}; nếu đọc sai, tỷ lệ thiếu và kết quả lọc sẽ khác.
+\end{itemize}
+\end{luuy}

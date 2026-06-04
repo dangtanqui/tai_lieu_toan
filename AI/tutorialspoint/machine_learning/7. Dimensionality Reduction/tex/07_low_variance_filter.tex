@@ -1,0 +1,80 @@
+%==============================================================================
+\section{Bộ lọc phương sai thấp (Low Variance Filter)}
+\label{sec:low-variance-filter}
+%==============================================================================
+
+\begin{dinhnghia}[title={Bộ lọc phương sai thấp}]
+Kỹ thuật \textbf{lựa chọn đặc trưng} loại các feature có \textbf{phương sai (variance)} nhỏ hơn ngưỡng. Feature gần như \textbf{không đổi} giữa các mẫu thường ít khả năng phân biệt được lớp mục tiêu.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Ý nghĩa}]
+Phương sai đo mức \textbf{phân tán} của một biến. Biến hằng (hoặc gần hằng) mang ít ``năng lực phân loại''; loại bỏ chúng có thể giảm nhiễu và chi phí tính toán mà không làm mất nhiều tín hiệu dự báo.
+\end{ynghia}
+
+\subsection{Thuật toán}
+
+\begin{phuongphap}[title={Các bước triển khai}]
+\begin{enumerate}
+  \item Tính \textbf{phương sai} từng feature trên toàn tập $X$.
+  \item Đặt \textbf{ngưỡng} phương sai (ví dụ $0{,}1$).
+  \item Xác định chỉ số các feature có $\mathrm{Var} < \text{ngưỡng}$.
+  \item \textbf{Xóa} các feature đó khỏi ma trận dữ liệu.
+  \item Dùng tập feature còn lại để huấn luyện mô hình.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Ví dụ Python --- dataset Diabetes}
+
+\begin{dongco}[title={Dữ liệu và ngưỡng}]
+Bộ \texttt{diabetes} qua \texttt{fetch\_openml}; ngưỡng phương sai $0{,}1$.
+\end{dongco}
+
+\begin{vidu}[title={Mã đầy đủ}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import fetch_openml
+
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+
+variances = np.var(X, axis=0)
+threshold = 0.1
+
+low_var_indices = np.where(variances < threshold)
+X_filtered = np.delete(X, low_var_indices, axis=1)
+
+print('Shape of the filtered dataset:', X_filtered.shape)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả đầu ra}]
+\textbf{Output:}
+\begin{lstlisting}
+Shape of the filtered dataset: (768, 8)
+\end{lstlisting}
+Mọi feature trong diabetes OpenML đều có phương sai $\geq 0{,}1$, nên \textbf{không feature nào bị loại}.
+\end{ynghia}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Giảm overfitting}: bỏ biến gần như không đóng góp vào dự đoán.
+  \item \textbf{Tiết kiệm tài nguyên}: ít cột $\Rightarrow$ huấn luyện và suy luận nhanh hơn.
+  \item \textbf{Cải thiện hiệu năng}: giảm nhiễu từ biến ``đứng yên''.
+  \item \textbf{Đơn giản hóa mô hình}: tập feature gọn, dễ đọc.
+  \item \textbf{Triển khai đơn giản}: chỉ cần thống kê mô tả, không cần nhãn $y$.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Mất thông tin}: biến phương sai thấp vẫn có thể quan trọng khi kết hợp phi tuyến với biến khác.
+  \item \textbf{Giả định tuyến tính / độc lập}: không xét tương tác feature; loại một biến có thể phá cấu trúc ẩn.
+  \item \textbf{Ảnh hưởng biến phụ thuộc}: biến ít biến thiên nhưng có quan hệ mạnh với $y$ (ví dụ mã hiếm) có thể bị xóa nhầm.
+  \item \textbf{Selection bias}: ngưỡng cố định có thể không phù hợp thang đo (cần chuẩn hóa trước khi lọc).
+  \item \textbf{Nhạy thang đo}: feature chưa chuẩn hóa có thể bị đánh giá sai mức phương sai tương đối.
+\end{itemize}
+\end{luuy}

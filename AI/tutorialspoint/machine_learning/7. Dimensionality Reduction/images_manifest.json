@@ -1,0 +1,62 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_dimensionality_reduction.htm",
+    "slug": "01_dimensionality_reduction",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_feature_selection.htm",
+    "slug": "02_feature_selection",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_feature_extraction.htm",
+    "slug": "03_feature_extraction",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/feature_extraction.jpg",
+        "file": "images/03_feature_extraction/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_backward_elimination.htm",
+    "slug": "04_backward_elimination",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/backward_elimination.jpg",
+        "file": "images/04_backward_elimination/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_forward_feature_construction.htm",
+    "slug": "05_forward_feature_construction",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_high_correlation_filter.htm",
+    "slug": "06_high_correlation_filter",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_low_variance_filter.htm",
+    "slug": "07_low_variance_filter",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_missing_values_ratio.htm",
+    "slug": "08_missing_values_ratio",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_principal_component_analysis.htm",
+    "slug": "09_principal_component_analysis",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/principal_component_analysis.jpg",
+        "file": "images/09_principal_component_analysis/img01.jpg"
+      }
+    ]
+  }
+]

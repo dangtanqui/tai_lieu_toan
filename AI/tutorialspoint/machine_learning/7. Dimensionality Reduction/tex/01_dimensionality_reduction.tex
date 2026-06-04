@@ -1,0 +1,39 @@
+%==============================================================================
+\section{Giảm chiều dữ liệu (Dimensionality Reduction)}
+\label{sec:dimensionality-reduction}
+%==============================================================================
+
+\begin{dinhnghia}[title={Giảm chiều dữ liệu}]
+Trong học máy, giảm chiều là quá trình \textbf{giảm số đặc trưng (feature) hoặc biến} trong tập dữ liệu trong khi vẫn giữ được nhiều thông tin gốc nhất có thể. Nói cách khác, đây là cách \textbf{đơn giản hóa} dữ liệu bằng cách giảm độ phức tạp.
+\end{dinhnghia}
+
+\begin{dongco}[title={Khi nào cần giảm chiều?}]
+Nhu cầu giảm chiều xuất hiện khi dataset có \textbf{rất nhiều} đặc trưng:
+\begin{itemize}
+  \item Dễ \textbf{overfitting} và làm mô hình phức tạp hơn.
+  \item Khó \textbf{trực quan hóa} dữ liệu.
+  \item Làm \textbf{chậm} quá trình huấn luyện.
+\end{itemize}
+\end{dongco}
+
+\subsection{Hai hướng chính}
+
+\begin{phuongphap}[title={Lựa chọn đặc trưng (Feature Selection)}]
+Chọn một \textbf{tập con} các đặc trưng gốc theo tiêu chí như mức quan trọng hoặc mức liên quan đến biến mục tiêu.
+\end{phuongphap}
+
+\begin{ynghia}[title={Các kỹ thuật lựa chọn đặc trưng phổ biến}]
+\begin{itemize}
+  \item \textbf{Filter Methods} --- lọc theo thống kê, độc lập mô hình.
+  \item \textbf{Wrapper Methods} --- đánh giá hiệu năng mô hình khi thêm/bớt feature.
+  \item \textbf{Embedded Methods} --- chọn feature \textbf{gắn trong} quá trình huấn luyện (Lasso, Ridge, cây quyết định, \ldots).
+\end{itemize}
+\end{ynghia}
+
+\begin{phuongphap}[title={Trích xuất đặc trưng (Feature Extraction)}]
+Biến dữ liệu thô thành tập đặc trưng \textbf{có ý nghĩa} hơn cho mô hình: giảm chiều bằng cách chọn, kết hợp hoặc biến đổi feature để tạo tập mới hữu ích hơn.
+\end{phuongphap}
+
+\begin{tinhchat}[title={Lợi ích tổng quát}]
+Giảm chiều có thể cải thiện \textbf{độ chính xác và tốc độ} mô hình, giảm overfitting và đơn giản hóa trực quan hóa dữ liệu.
+\end{tinhchat}

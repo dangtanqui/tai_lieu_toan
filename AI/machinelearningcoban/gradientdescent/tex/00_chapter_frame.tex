@@ -1,0 +1,42 @@
+%==============================================================================
+\section*{Mục tiêu và ký hiệu}
+\addcontentsline{toc}{section}{Mục tiêu và ký hiệu}
+%==============================================================================
+
+\begin{phuongphap}[title={Mục tiêu học tập}]
+Sau chương này, người học có thể:
+\begin{enumerate}
+  \item Giải thích \textbf{bản chất} của Gradient Descent: đi theo hướng \textbf{ngược gradient} để giảm hàm mục tiêu (thường là hàm mất mát).
+  \item Viết và chạy GD cho hàm một biến và nhiều biến; kiểm tra gradient bằng \textbf{numerical gradient}.
+  \item Nhận biết ảnh hưởng của \textbf{điểm khởi tạo}, \textbf{learning rate} và hình dạng đường đồng mức tới hội tụ.
+  \item Phân biệt \textbf{Batch GD}, \textbf{SGD}, \textbf{mini-batch}; mô tả vai trò của \textbf{Momentum}, \textbf{NAG} và ý tưởng \textbf{Newton}.
+  \item Chọn điều kiện dừng phù hợp trong thực nghiệm.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Kiến thức tiên quyết}]
+Đạo hàm hàm một biến và nhiều biến; ma trận và nhân ma trận; Linear Regression (hàm mất mát dạng bình phương tối thiểu). Phần code dùng \texttt{numpy} và \texttt{matplotlib}.
+\end{luuy}
+
+\begin{phuongphap}[title={Ký hiệu thống nhất}]
+\begin{itemize}
+  \item $f$, $\mathcal{L}$, $J$: hàm mục tiêu / hàm mất mát.
+  \item $\boldsymbol{\theta}$ hoặc $\mathbf{w}$: vector tham số cần tối ưu.
+  \item $\eta$: learning rate (bước học); $\gamma$: hệ số momentum.
+  \item $\nabla f$, $\nabla_{\boldsymbol{\theta}}\mathcal{L}$: gradient (vector chỉ hướng \textbf{tăng nhanh nhất} của hàm).
+  \item $x^*$, $\boldsymbol{\theta}^*$: điểm cực tiểu (local hoặc global tùy bài toán).
+  \item GD: Gradient Descent; SGD: Stochastic Gradient Descent.
+\end{itemize}
+\end{phuongphap}
+
+\begin{dongco}[title={Bản chất Gradient Descent --- đọc trước khi vào chi tiết}]
+\textbf{Gradient Descent} không phải công thức đóng cho nghiệm tối ưu, mà là quy trình \textbf{lặp}:
+\begin{enumerate}
+  \item Tại tham số hiện tại, tính \textbf{gradient} của hàm mất mát.
+  \item Cập nhật tham số một bước nhỏ theo hướng \textbf{trừ gradient} (vì gradient chỉ hướng \textbf{đi lên dốc nhanh nhất} của hàm).
+  \item Dừng khi gradient đủ nhỏ hoặc đạt giới hạn vòng lặp.
+\end{enumerate}
+Trong Machine Learning, ta thường \textbf{không giải được} $\nabla \mathcal{L} = 0$ bằng đại số (hàm phi tuyến, số chiều lớn, dữ liệu lớn). GD thay thế bằng đi từng bước nhỏ --- giống ``lăn xuống thung lũng'' trên bề mặt lỗi (loss landscape).
+\end{dongco}
+
+\newpage

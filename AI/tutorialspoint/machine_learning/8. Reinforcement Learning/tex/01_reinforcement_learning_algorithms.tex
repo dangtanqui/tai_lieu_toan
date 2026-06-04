@@ -1,0 +1,116 @@
+%==============================================================================
+\section{Thuật toán học tăng cường (Reinforcement Learning Algorithms)}
+\label{sec:reinforcement-learning-algorithms}
+%==============================================================================
+
+\begin{dongco}[title={Mục tiêu học tăng cường}]
+Thuật toán học tăng cường huấn luyện \textbf{agent} ra quyết định tối ưu trong môi trường.
+Mục tiêu là \textbf{tối đa hóa phần thưởng tích lũy} (cumulative reward) theo thời gian.
+Các thuật toán phổ biến gồm Q-learning, policy gradient, Monte Carlo, \ldots
+\end{dongco}
+
+\subsection{Học tăng cường là gì?}
+
+\begin{dinhnghia}[title={Reinforcement Learning (RL)}]
+Học tăng cường là hướng học máy trong đó \textbf{agent} (thực thể phần mềm) được huấn luyện để hiểu môi trường bằng cách \textbf{thực hiện hành động} và theo dõi kết quả.
+Hành động tốt $\Rightarrow$ phản hồi tích cực; hành động xấu $\Rightarrow$ phản hồi tiêu cực.
+Cách tiếp cận lấy cảm hứng từ việc động vật học từ kinh nghiệm: quyết định dựa trên \textbf{hậu quả} hành động.
+\end{dinhnghia}
+
+\subsection{Hai loại thuật toán RL}
+
+\begin{ynghia}[title={Model-based và model-free}]
+Thuật toán RL chia thành hai nhóm chính: \textbf{model-based} và \textbf{model-free}.
+Điểm khác biệt nằm ở cách xác định \textbf{chính sách tối ưu} $\pi$.
+\end{ynghia}
+
+\begin{phuongphap}[title={Model-Based Reinforcement Learning}]
+Agent \textbf{xây mô hình} môi trường và \textbf{dự đoán} kết quả của hành động ở các trạng thái khác nhau.
+Sau khi có mô hình, agent dùng nó để lập chiến lược và dự báo tương lai mà \textbf{không cần} tương tác trực tiếp liên tục với môi trường.
+Cách này có thể \textbf{tăng hiệu quả} ra quyết định vì không hoàn toàn phụ thuộc thử--sai.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Model-Free Reinforcement Learning}]
+Agent \textbf{không} duy trì mô hình môi trường.
+Thay vào đó, học \textbf{chính sách} hoặc \textbf{hàm giá trị} qua tương tác trực tiếp với môi trường.
+\end{phuongphap}
+
+\subsection{Thuật toán model-based}
+
+\begin{phuongphap}[title={Các thuật toán tối ưu và điều khiển model-based}]
+\begin{enumerate}
+  \item \textbf{Dynamic Programming (Lập trình động)}
+  \item \textbf{Monte Carlo Tree Search (MCTS)}
+\end{enumerate}
+\end{phuongphap}
+
+\subsubsection{Lập trình động (Dynamic Programming)}
+
+\begin{dinhnghia}[title={Dynamic Programming}]
+Lập trình động là khung toán học giải bài toán phức tạp, đặc biệt trong \textbf{ra quyết định} và \textbf{điều khiển}.
+Khi agent \textbf{biết đầy đủ} môi trường (mô hình hoàn hảo), có thể dùng các thuật toán DP trong RL để tìm chính sách tối ưu.
+\end{dinhnghia}
+
+\begin{phuongphap}[title={Value Iteration --- Lặp giá trị}]
+Value Iteration là thuật toán DP tính \textbf{chính sách tối ưu} bằng cách ước lượng giá trị mỗi trạng thái với giả định agent theo policy tối ưu.
+Cập nhật dựa trên phương trình Bellman:
+\[
+V(s) = \max_{a} \sum_{s',r} P(s',r \mid s,a)\,\bigl(R(s,a,s') + \gamma V(s')\bigr)
+\]
+trong đó $P(s',r \mid s,a)$ là xác suất chuyển sang $s'$ và nhận $r$; $\gamma$ là hệ số chiết khấu.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Policy Iteration --- Lặp chính sách}]
+Policy Iteration là quy trình hai bước tìm đồng thời \textbf{hàm giá trị tối ưu} $V^\pi$ và \textbf{chính sách tối ưu} $\pi$:
+\begin{enumerate}
+  \item \textbf{Policy Evaluation (Đánh giá chính sách)}: với policy cho trước, tính hàm giá trị mọi trạng thái bằng phương trình Bellman.
+  \item \textbf{Policy Improvement (Cải thiện chính sách)}: dùng hàm giá trị hiện tại, cải thiện policy bằng cách chọn hành động \textbf{tối đa hóa} phần thưởng kỳ vọng.
+\end{enumerate}
+Hai bước \textbf{luân phiên} cho đến khi policy hội tụ về policy tối ưu.
+\end{phuongphap}
+
+\subsubsection{Monte Carlo Tree Search (MCTS)}
+
+\begin{dinhnghia}[title={MCTS}]
+Monte Carlo Tree Search là thuật toán \textbf{tìm kiếm heuristic} dùng \textbf{cây} để khám phá các hành động và trạng thái có thể.
+MCTS đặc biệt hữu ích cho ra quyết định trong môi trường \textbf{phức tạp}.
+\end{dinhnghia}
+
+\subsection{Thuật toán model-free}
+
+\begin{phuongphap}[title={Danh sách thuật toán model-free chính}]
+\begin{enumerate}
+  \item \textbf{Monte Carlo Learning} --- ước lượng hàm giá trị và policy từ \textbf{kinh nghiệm thực}, lấy trung bình qua nhiều episode thay vì dùng mô hình động học môi trường.
+  \item \textbf{Temporal Difference (TD) Learning} --- cập nhật giá trị \textbf{tăng dần} sau mỗi hành động và mỗi reward (khác Monte Carlo chỉ cập nhật sau khi episode kết thúc); phù hợp ra quyết định online.
+  \item \textbf{SARSA} --- thuật toán \textbf{on-policy}, model-free, học hàm giá trị hành động $Q(s,a)$; tên viết tắt State--Action--Reward--State--Action; cập nhật theo hành động agent \textbf{thực sự} thực hiện.
+  \item \textbf{Q-Learning} --- thuật toán \textbf{off-policy}, model-free, học $Q^*(s,a)$: phần thưởng kỳ vọng tối đa cho cặp trạng thái--hành động; mục tiêu tìm policy tối ưu qua hàm Q tối ưu.
+  \item \textbf{Policy Gradient Optimization} --- tối ưu \textbf{trực tiếp} tham số policy thay vì chỉ học hàm giá trị; REINFORCE là một dạng policy gradient dựa trên Monte Carlo.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{So sánh model-based và model-free}
+
+\begin{tinhchat}[title={Bảng so sánh Model-Based RL và Model-Free RL}]
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.0cm}XX}
+\textbf{Tiêu chí} & \textbf{Model-Based RL} & \textbf{Model-Free RL} \\
+\midrule
+Quá trình học &
+Ban đầu học mô hình động học môi trường, dùng mô hình dự đoán hành động tương lai. &
+Dựa hoàn toàn vào thử--sai; học policy hoặc hàm giá trị trực tiếp từ chuyển trạng thái và reward quan sát được. \\
+Hiệu quả mẫu &
+Có thể đạt \textbf{sample efficiency} cao hơn vì mô phỏng nhiều tương tác bằng mô hình đã học. &
+Cần \textbf{nhiều tương tác thực} hơn với môi trường để tìm policy tối ưu. \\
+Độ phức tạp &
+Phức tạp hơn: phải học và duy trì mô hình môi trường chính xác. &
+Tương đối đơn giản hơn vì không cần huấn luyện mô hình riêng. \\
+Sử dụng môi trường &
+Chủ động xây mô hình để dự đoán kết quả và hành động tiếp theo. &
+Không xây mô hình; phụ thuộc trực tiếp vào kinh nghiệm trước đó. \\
+Khả năng thích nghi &
+Có thể thích nghi khi trạng thái môi trường thay đổi (nhờ mô hình cập nhật). &
+Có thể \textbf{chậm thích nghi} vì dựa nhiều vào kinh nghiệm cũ. \\
+Yêu cầu tính toán &
+Thường cần tài nguyên tính toán lớn hơn (học và duy trì mô hình). &
+Thường ít tốn tính toán hơn, tập trung học trực tiếp từ trải nghiệm. \\
+\end{tabularx}
+\end{tinhchat}

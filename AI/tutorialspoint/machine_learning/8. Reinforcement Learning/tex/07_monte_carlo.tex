@@ -1,0 +1,102 @@
+%==============================================================================
+\section{Phương pháp Monte Carlo trong RL}
+\label{sec:monte-carlo}
+%==============================================================================
+
+\begin{dinhnghia}[title={Monte Carlo trong học tăng cường}]
+Phương pháp Monte Carlo (MC) học trực tiếp từ các \textbf{episode} trải nghiệm khi agent tương tác môi trường, \textbf{không cần} biết trước mô hình chuyển trạng thái MDP. Ý tưởng: dùng lấy mẫu ngẫu nhiên lặp lại để ước lượng số học các giá trị khó tính giải tích (giá trị trạng thái, hành động, hoặc cặp trạng thái--hành động).
+\end{dinhnghia}
+
+\subsection{Khái niệm then chốt}
+
+\begin{dinhnghia}[title={Episode}]
+Chuỗi trạng thái, hành động và phần thưởng từ lúc bắt đầu đến khi \textbf{kết thúc} episode (đích, thua, hoặc hết giới hạn bước).
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Return $G_t$}]
+Tổng phần thưởng tích lũy (thường có chiết khấu $\gamma$) từ bước $t$ trở về sau trong một episode:
+\[
+G_t = R_{t+1} + \gamma R_{t+2} + \gamma^2 R_{t+3} + \cdots
+\]
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Hàm giá trị $V$}]
+Hàm dự đoán phần thưởng kỳ vọng khi bắt đầu từ trạng thái $s$ (hoặc từ cặp $(s,a)$ với $Q$).
+\end{dinhnghia}
+
+\subsection{Đánh giá chính sách Monte Carlo}
+
+\begin{ynghia}[title={Ước lượng trung bình return}]
+MC ước lượng $V(s)$ bằng cách \textbf{lấy trung bình} return quan sát được mỗi khi $s$ xuất hiện trong nhiều episode. Với $N$ episode có ghé $s$, return thứ $i$ là $G_i$:
+\[
+V(s) = \frac{1}{N} \sum_{i=1}^{N} G_i
+\]
+trong đó $i$ là chỉ số episode, $s$ là trạng thái cần ước lượng, $N$ số lần $s$ được thăm, $G_i$ tổng phần thưởng chiết khấu từ lần thăm $s$ trong episode $i$ trở đi.
+\end{ynghia}
+
+\begin{phuongphap}[title={Quy trình ước lượng từng bước}]
+\begin{enumerate}
+  \item \textbf{Tạo episode}: agent theo chính sách $\pi$ tương tác môi trường, sinh chuỗi $(s,a,r)$.
+  \item \textbf{Tính return}: với mỗi $s$ (hoặc $(s,a)$) xuất hiện, tính $G_t$ từ thời điểm đó đến hết episode.
+  \item \textbf{Cập nhật giá trị}: ghi nhận các $G$; cập nhật $V(s)$ (hoặc $Q(s,a)$) bằng trung bình mẫu (first-visit hoặc every-visit).
+  \item Lặp nhiều episode cho đến khi ước lượng ổn định.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{On-policy và off-policy}
+
+\begin{ynghia}[title={On-policy}]
+Chính sách sinh episode trùng chính sách đang đánh giá hoặc cải thiện. Agent học từ hành vi \textbf{do chính mình} gây ra. Ví dụ: \textbf{first-visit MC} --- chỉ dùng return lần \textbf{đầu tiên} $s$ xuất hiện trong mỗi episode để cập nhật $V(s)$.
+\end{ynghia}
+
+\begin{ynghia}[title={Off-policy}]
+Episode có thể sinh bởi \textbf{chính sách hành vi} khác chính sách \textbf{mục tiêu} đang tối ưu; học từ quỹ đạo do policy khác tạo. Cần \textbf{trọng số importance sampling} để chỉnh cập nhật cho đúng phân phối mục tiêu.
+\end{ynghia}
+
+\subsection{Điều khiển Monte Carlo (MC control)}
+
+\begin{ynghia}[title={Khám phá trong MC}]
+Cần cân bằng khám phá--khai thác: dùng $\varepsilon$-greedy hoặc softmax để đảm bảo mọi $(s,a)$ được thăm đủ, tránh chính sách kẹt cục bộ.
+\end{ynghia}
+
+\begin{ynghia}[title={Cải thiện chính sách qua $Q$}]
+MC control lặp: ước lượng $Q(s,a)$ --- phần thưởng kỳ vọng khi ở $s$, chọn $a$, rồi theo $\pi$ --- và \textbf{cải thiện} $\pi$ bằng cách chọn hành động cho $Q(s,a)$ \textbf{lớn nhất} (greedy trên $Q$), có thể kèm $\varepsilon$-greedy để khám phá.
+\end{ynghia}
+
+\begin{phuongphap}[title={Thuật toán MC control (generating traces)}]
+\begin{enumerate}
+  \item Khởi tạo $Q(s,a)$ tùy ý và chính sách $\pi(s)$ (ví dụ $\varepsilon$-soft).
+  \item Với mỗi episode: sinh chuỗi theo $\pi$ (có khám phá).
+  \item Tính $G_t$ cho mỗi cặp $(s,a)$ xuất hiện (first-visit hoặc every-visit).
+  \item Cập nhật:
+  \[
+  Q(s,a) \leftarrow Q(s,a) + \alpha\bigl(G_t - Q(s,a)\bigr)
+  \]
+  \item \textbf{Cải thiện chính sách}: $\pi(s) \leftarrow \arg\max_a Q(s,a)$ (hoặc $\varepsilon$-greedy trên $Q$).
+  \item Lặp đến khi $\pi$ và $Q$ hội tụ gần tối ưu.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{luuy}[title={Sửa nhầm ``minimize $Q$''}]
+Khi cải thiện chính sách phải chọn hành động \textbf{maximize} $Q(s,a)$, không phải minimize --- maximize mới hướng tới phần thưởng cao nhất tại mỗi $s$.
+\end{luuy}
+
+\subsection{Ứng dụng}
+
+\begin{tinhchat}[title={Ứng dụng điển hình}]
+\begin{itemize}
+  \item \textbf{Trò chơi}: cờ, bài, game có episode rõ ràng và reward cuối ván.
+  \item \textbf{Robot}: học điều hướng, thao tác từ trial thực tế khi không có mô hình động học chính xác.
+  \item \textbf{Tài chính}: mô phỏng giá, định giá quyền chọn, tối ưu danh mục khi mô hình phân tích khó.
+\end{itemize}
+\end{tinhchat}
+
+\subsection{Hạn chế}
+
+\begin{luuy}[title={Hạn chế Monte Carlo}]
+\begin{itemize}
+  \item \textbf{Phương sai cao}: ít episode thì ước lượng dao động mạnh giữa các lần chạy.
+  \item \textbf{Episode dài}: phải chờ hết episode mới cập nhật --- kém hiệu quả khi reward trễ hoặc chuỗi rất dài.
+  \item \textbf{Không bootstrap}: không dùng ước lượng khác để chỉnh ước lượng hiện tại (khác TD) --- học chậm hơn trên không gian trạng thái lớn.
+\end{itemize}
+\end{luuy}

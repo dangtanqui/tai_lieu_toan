@@ -44,14 +44,21 @@ plt.show()
 
 \begin{vidu}[title={Output mẫu trên terminal}]
 \begin{verbatim}
-Cluster labels: [3 0 3 3 3 3 1 0 0 0 0 0 0 0 0 2 3 3 1 2 2 0 1 2 3 1 3 3 2 2 2 0 2 2 1 3 0 2 0 1 3 1 0 1 1 0 2 1 3 1 3 2 1 1 1 0 0 2 2 0 0 2 2 3 2 0 1 1 2 3 0 2 3 0 3 3 3 1 2 2 2 0 1 1 2 1 2 2 3 3 3 1 1 1 1 0 0 1 0 1]
+Cluster labels: [3 0 3 3 3 3 1 0 0 0 0 0 0 0 0 2 3 3 1 2 2 0 1 2 3 1 3 3 2 2
+
+ 2 0 2 2 1 3 0 2 0 1 3 1 0 1 1 0 2 1 3 1 3 2 1 1 1 0 0 2 2 0 0 2 2 3 2 0 1 1 2
+
+ 3 0 2 3 0 3 3 3 1 2 2 2 0 1 1 2 1 2 2 3 3 3 1 1 1 1 0 0 1 0 1]
+
 Exemplars: [9 41 51 74]
 \end{verbatim}
 \end{vidu}
 
-\begin{ynghia}[title={preference và damping}]
-\texttt{preference}: càng cao càng nhiều exemplar; càng thấp càng ít cụm.
-\texttt{damping}: hệ số làm mượt hội tụ; damping lớn $\Rightarrow$ hội tụ chậm hơn.
+\begin{ynghia}[title={Preference và Damping}]
+  \begin{itemize}
+    \item \textbf{Preference}: càng cao càng nhiều exemplar; càng thấp càng ít cụm.
+    \item \textbf{Damping}: hệ số làm mượt hội tụ; damping lớn $\Rightarrow$ hội tụ chậm hơn.
+  \end{itemize}
 \end{ynghia}
 
 \tsimg{12_affinity_propagation/img01.jpg}

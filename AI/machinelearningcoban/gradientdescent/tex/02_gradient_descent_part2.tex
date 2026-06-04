@@ -1,0 +1,423 @@
+%==============================================================================
+\section{Chương 2. Biến thể và kỹ thuật nâng cao}
+\label{sec:gd-part2}
+%==============================================================================
+
+\begin{ynghia}[title={Mở đầu chương}]
+Tốc độ hội tụ của các thuật toán Gradient Descent khác nhau có thể so sánh qua tổng quan trong survey \emph{An overview of gradient descent optimization algorithms}.
+
+Chương~1 đã giới thiệu thuật toán Gradient Descent. Nghiệm cuối cùng của Gradient Descent phụ thuộc rất nhiều vào điểm khởi tạo và learning rate. Trong phần này, ta đề cập một vài phương pháp thường được dùng để khắc phục những hạn chế của GD. Đồng thời, các thuật toán biến thể của GD thường được áp dụng trong các mô hình Deep Learning cũng được tổng hợp.
+\end{ynghia}
+
+%------------------------------------------------------------------------------
+\subsection{1. Các thuật toán tối ưu Gradient Descent}
+\label{subsec:gd-opt-algos}
+%------------------------------------------------------------------------------
+
+\subsubsection{1.1. Momentum}
+
+\paragraph{Nhắc lại thuật toán Gradient Descent.}
+
+\begin{luuy}[title={Ôn tập nhanh}]
+Để giải bài toán tìm điểm global optimal của hàm mất mát $J(\theta)$ (hàm mất mát cũng thường được ký hiệu là $J()$ với $\theta$ là tập hợp các tham số của mô hình), ta nhắc lại thuật toán GD.
+\end{luuy}
+
+\begin{phuongphap}[title={Thuật toán Gradient Descent}]
+\begin{enumerate}
+ \item Dự đoán một điểm khởi tạo $\theta = \theta_0$.
+ \item Cập nhật $\theta$ đến khi đạt được kết quả chấp nhận được:
+ \[
+ \theta = \theta - \eta \nabla_{\theta}J(\theta)
+ \]
+ với $\nabla_{\theta}J(\theta)$ là đạo hàm của hàm mất mát tại $\theta$.
+\end{enumerate}
+\end{phuongphap}
+
+\paragraph{Gradient dưới góc nhìn vật lý.}
+
+\begin{ynghia}[title={Ví von vật lý}]
+Thuật toán GD thường được ví với tác dụng của trọng lực lên một hòn bi đặt trên một mặt có dạng như hình một thung lũng giống như Hình~1a) dưới đây. Bất kể ta đặt hòn bi ở $A$ hay $B$ thì cuối cùng hòn bi cũng sẽ lăn xuống và kết thúc ở vị trí $C$.
+\end{ynghia}
+
+\mlcbimg{02_gradient_descent_part2/img03.png}
+
+\begin{luuy}[title={Hai đáy thung lũng}]
+Tuy nhiên, nếu bề mặt có hai đáy thung lũng như Hình~1b) thì tùy vào việc đặt bi ở $A$ hay $B$, vị trí cuối cùng của bi sẽ ở $C$ hoặc $D$. Điểm $D$ là một điểm local minimum chúng ta không mong muốn.
+\end{luuy}
+
+\begin{ynghia}[title={Vượt local minimum nhờ đà}]
+Nếu suy nghĩ một cách vật lý hơn, vẫn trong Hình~1b), nếu vận tốc ban đầu của bi khi ở điểm $B$ đủ lớn, khi bi lăn đến điểm $D$, theo đà, bi có thể tiếp tục di chuyển lên dốc phía bên trái của $D$. Và nếu giả sử vận tốc ban đầu lớn hơn nữa, bi có thể vượt dốc tới điểm $E$ rồi lăn xuống $C$ như trong Hình~1c). Đây chính là điều chúng ta mong muốn. Có thể đặt câu hỏi: liệu bi lăn từ $A$ tới $C$ có theo đà lăn tới $E$ rồi tới $D$ không? Điều này khó xảy ra hơn vì nếu so với dốc $DE$ thì dốc $CE$ cao hơn nhiều.
+
+Dựa trên hiện tượng này, một thuật toán được ra đời nhằm khắc phục việc nghiệm của GD rơi vào một điểm local minimum không mong muốn. Thuật toán đó có tên là \textbf{Momentum} (theo đà).
+\end{ynghia}
+
+\paragraph{Gradient Descent với Momentum.}
+
+\begin{ynghia}[title={Biểu diễn momentum bằng toán học}]
+Để biểu diễn momentum bằng toán học thì chúng ta phải làm thế nào?
+
+Trong GD, chúng ta cần tính lượng thay đổi ở thời điểm $t$ để cập nhật vị trí mới cho nghiệm (tức hòn bi). Nếu chúng ta coi đại lượng này như vận tốc $v_t$ trong vật lý, vị trí mới của hòn bi sẽ là $\theta_{t+1} = \theta_{t} - v_t$. Dấu trừ thể hiện việc phải di chuyển ngược với đạo hàm. Công việc của chúng ta bây giờ là tính đại lượng $v_t$ sao cho nó vừa mang thông tin của độ dốc (tức đạo hàm), vừa mang thông tin của đà, tức vận tốc trước đó $v_{t-1}$ (chúng ta coi như vận tốc ban đầu $v_0=0$). Một cách đơn giản nhất, ta có thể cộng (có trọng số) hai đại lượng này lại:
+\end{ynghia}
+
+\[
+ v_{t}= \gamma v_{t-1} + \eta \nabla_{\theta}J(\theta)
+\]
+
+Trong đó $\gamma$ thường được chọn là một giá trị khoảng $0.9$, $v_t$ là vận tốc tại thời điểm trước đó, $\nabla_{\theta}J(\theta)$ chính là độ dốc của điểm trước đó. Sau đó vị trí mới của hòn bi được xác định như sau:
+\[
+ \theta = \theta - v_t
+\]
+
+\begin{luuy}[title={Không gian nhiều chiều}]
+Thuật toán đơn giản này tỏ ra rất hiệu quả trong các bài toán thực tế (trong không gian nhiều chiều, cách tính toán cũng hoàn toàn tương tự). Dưới đây là một ví dụ trong không gian một chiều.
+\end{luuy}
+
+\paragraph{Một ví dụ nhỏ.}
+
+Chúng ta xem xét một hàm đơn giản có hai điểm local minimum, trong đó một điểm là global minimum:
+\[
+ f(x) = x^2 + 10\sin(x)
+\]
+Có đạo hàm là: $f'(x) = 2x + 10\cos(x)$.
+
+\begin{vidu}[title={So sánh GD và GD với Momentum}]
+Hình~2 dưới đây thể hiện sự khác nhau giữa thuật toán GD và thuật toán GD với Momentum.
+
+\mlcbimg{02_gradient_descent_part2/img04.png}
+\mlcbimg{02_gradient_descent_part2/img05.png}
+
+Hình bên trái là đường đi của nghiệm khi \textbf{không} sử dụng Momentum: thuật toán hội tụ sau chỉ 5 vòng lặp nhưng nghiệm tìm được là nghiệm local minimum.
+
+Hình bên phải là đường đi của nghiệm khi \textbf{có} sử dụng Momentum: hòn bi đã có thể vượt dốc tới khu vực gần điểm global minimum, sau đó dao động xung quanh điểm này, giảm tốc rồi cuối cùng tới đích. Mặc dù mất nhiều vòng lặp hơn, GD với Momentum cho chúng ta nghiệm chính xác hơn. Quan sát đường đi của hòn bi trong trường hợp này, chúng ta thấy rằng điều này giống với vật lý hơn!
+\end{vidu}
+
+\begin{phuongphap}[title={Hàm \texttt{GD\_momentum} trong Python}]
+Nếu biết trước điểm đặt bi ban đầu \texttt{theta}, đạo hàm của hàm mất mát tại một điểm bất kỳ \texttt{grad(theta)}, lượng thông tin lưu trữ từ vận tốc trước đó \texttt{gamma} và learning rate \texttt{eta}, chúng ta có thể viết hàm số \texttt{GD\_momentum} trong Python như sau:
+\end{phuongphap}
+
+\begin{lstlisting}[language=Python]
+# check convergence
+def has_converged(theta_new, grad):
+ return np.linalg.norm(grad(theta_new))/
+ len(theta_new) < 1e-3
+
+def GD_momentum(theta_init, grad, eta, gamma):
+ # Suppose we want to store history of theta
+ theta = [theta_init]
+ v_old = np.zeros_like(theta_init)
+ for it in range(100):
+ v_new = gamma*v_old + eta*grad(theta[-1])
+ theta_new = theta[-1] - v_new
+ if has_converged(theta_new, grad):
+ break
+ theta.append(theta_new)
+ v_old = v_new
+ return theta
+ # this variable includes all points in the path
+ # if you just want the final answer,
+ # use `return theta[-1]`
+\end{lstlisting}
+
+%------------------------------------------------------------------------------
+\subsubsection{1.2. Nesterov accelerated gradient (NAG)}
+%------------------------------------------------------------------------------
+
+\begin{luuy}[title={Hạn chế của Momentum thuần}]
+Momentum giúp hòn bi vượt qua được dốc local minimum, tuy nhiên, có một hạn chế chúng ta có thể thấy trong ví dụ trên: khi tới gần đích, momentum vẫn mất khá nhiều thời gian trước khi dừng lại. Lý do lại cũng chính là vì có đà. Có một phương pháp khác tiếp tục giúp khắc phục điều này, phương pháp đó mang tên \textbf{Nesterov accelerated gradient} (NAG), giúp cho thuật toán hội tụ nhanh hơn.
+\end{luuy}
+
+\paragraph{Ý tưởng chính.}
+
+\begin{ynghia}[title={Nhìn trước một bước}]
+Ý tưởng cơ bản là dự đoán hướng đi trong tương lai, tức nhìn trước một bước! Cụ thể, nếu sử dụng số hạng momentum $\gamma v_{t-1}$ để cập nhật thì ta có thể xấp xỉ được vị trí tiếp theo của hòn bi là $\theta - \gamma v_{t-1}$ (chúng ta không đính kèm phần gradient ở đây vì sẽ sử dụng nó trong bước cuối cùng). Vậy, thay vì sử dụng gradient của điểm hiện tại, NAG đi trước một bước, sử dụng gradient của điểm tiếp theo. Theo dõi hình dưới đây:
+\end{ynghia}
+
+\mlcbimg{02_gradient_descent_part2/img06.jpeg}
+
+\begin{itemize}
+ \item Với momentum thông thường: lượng thay đổi là tổng của hai vector: momentum vector và gradient ở thời điểm hiện tại.
+ \item Với Nesterov momentum: lượng thay đổi là tổng của hai vector: momentum vector và gradient ở thời điểm được xấp xỉ là điểm tiếp theo.
+\end{itemize}
+
+\paragraph{Công thức cập nhật.}
+
+Công thức cập nhật của NAG được cho như sau:
+\begin{align}
+ v_{t} &= \gamma v_{t-1} + \eta \nabla_{\theta}J(\theta - \gamma v_{t-1}) \label{eq:nag-v}\\
+ \theta &= \theta - v_{t} \label{eq:nag-theta}
+\end{align}
+
+\begin{luuy}[title={Điểm tính đạo hàm}]
+Để ý một chút: điểm được tính đạo hàm đã thay đổi so với Momentum thông thường.
+\end{luuy}
+
+\paragraph{Ví dụ minh họa.}
+
+\begin{vidu}[title={So sánh Momentum và NAG (Linear Regression)}]
+Dưới đây là ví dụ so sánh Momentum và NAG cho bài toán Linear Regression:
+
+\mlcbimg{02_gradient_descent_part2/img07.png}
+\mlcbimg{02_gradient_descent_part2/img08.png}
+
+Hình bên trái là đường đi của nghiệm với phương pháp Momentum: nghiệm đi khá zigzag và mất nhiều vòng lặp hơn. Hình bên phải là đường đi của nghiệm với phương pháp NAG: nghiệm hội tụ nhanh hơn, và đường đi ít zigzag hơn.
+\end{vidu}
+
+%------------------------------------------------------------------------------
+\subsubsection{1.3. Các thuật toán khác}
+%------------------------------------------------------------------------------
+
+\begin{ynghia}[title={Adagrad, Adam, RMSprop --- tổng quan}]
+Ngoài Momentum và NAG, trong Deep Learning thường dùng các optimizer \textbf{thích ứng learning rate theo từng tọa độ}: \textbf{Adagrad}, \textbf{RMSprop}, \textbf{Adam} (kết hợp momentum và RMSprop). Ý tưởng chi tiết và bảng so sánh xem mục \textbf{Tổng hợp và củng cố} cuối giáo trình; tài liệu mở rộng: Ruder, \emph{An overview of gradient descent optimization algorithms}.
+\end{ynghia}
+
+\begin{luuy}[title={Thực hành}]
+Trong \texttt{PyTorch}/\texttt{TensorFlow}, tham số \texttt{optimizer} (SGD + \texttt{momentum}, Adam, \ldots) triển khai các công thức này; người học nên map từng symbol trong slide sang cập nhật $\boldsymbol{\theta}$ ở trên.
+\end{luuy}
+
+%------------------------------------------------------------------------------
+\subsection{2. Biến thể của Gradient Descent}
+\label{subsec:gd-variants}
+%------------------------------------------------------------------------------
+
+\begin{ynghia}[title={Ví dụ Linear Regression}]
+Tiếp tục dùng bài toán Linear Regression làm ví dụ. Hàm mất mát và đạo hàm của nó cho bài toán này lần lượt là (để cho thuận tiện, trong bài này ta dùng ký hiệu $\mathbf{X}$ thay cho dữ liệu mở rộng $\bar{\mathbf{X}}$):
+\end{ynghia}
+
+\[
+ J(\mathbf{w}) = \frac{1}{2N}\|\mathbf{X}\mathbf{w} - \mathbf{y}\|_2^2
+ = \frac{1}{2N} \sum_{i=1}^N(\mathbf{x}_i \mathbf{w} - y_i)^2
+\]
+và:
+\[
+ \nabla_{\mathbf{w}} J(\mathbf{w}) = \frac{1}{N}\sum_{i=1}^N \mathbf{x}_i^T(\mathbf{x}_i\mathbf{w} - y_i)
+\]
+
+\subsubsection{2.1. Batch Gradient Descent}
+
+\begin{dinhnghia}[title={Batch Gradient Descent}]
+Thuật toán Gradient Descent chúng ta nói từ đầu phần 1 đến giờ còn được gọi là \textbf{Batch Gradient Descent}. Batch ở đây được hiểu là tất cả, tức khi cập nhật $\theta = \mathbf{w}$, chúng ta sử dụng tất cả các điểm dữ liệu $\mathbf{x}_i$.
+\end{dinhnghia}
+
+\begin{luuy}[title={Hạn chế với dữ liệu lớn và online learning}]
+Cách làm này có một vài hạn chế đối với cơ sở dữ liệu có vô cùng nhiều điểm (hơn 1 tỉ người dùng của Facebook chẳng hạn). Việc phải tính toán lại đạo hàm với tất cả các điểm này sau mỗi vòng lặp trở nên cồng kềnh và không hiệu quả. Thêm nữa, thuật toán này được coi là không hiệu quả với \textbf{online learning}.
+
+\textbf{Online learning} là khi cơ sở dữ liệu được cập nhật liên tục (thêm người dùng đăng ký hàng ngày chẳng hạn), mỗi lần thêm vài điểm dữ liệu mới. Kéo theo đó là mô hình của chúng ta cũng phải thay đổi một chút để phù hợp với các dữ liệu mới này. Nếu làm theo Batch Gradient Descent, tức tính lại đạo hàm của hàm mất mát tại tất cả các điểm dữ liệu, thì thời gian tính toán sẽ rất lâu, và thuật toán của chúng ta coi như không online nữa do mất quá nhiều thời gian tính toán.
+
+Trên thực tế, có một thuật toán đơn giản hơn và tỏ ra rất hiệu quả, có tên gọi là \textbf{Stochastic Gradient Descent} (SGD).
+\end{luuy}
+
+\subsubsection{2.2. Stochastic Gradient Descent}
+
+\begin{dinhnghia}[title={Stochastic Gradient Descent (SGD)}]
+Trong thuật toán này, tại một thời điểm, ta chỉ tính đạo hàm của hàm mất mát dựa trên \textbf{chỉ một} điểm dữ liệu $\mathbf{x}_i$ rồi cập nhật $\theta$ dựa trên đạo hàm này. Việc này được thực hiện với từng điểm trên toàn bộ dữ liệu, sau đó lặp lại quá trình trên. Thuật toán rất đơn giản này trên thực tế lại làm việc rất hiệu quả.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Epoch và ưu điểm SGD}]
+Mỗi lần duyệt một lượt qua tất cả các điểm trên toàn bộ dữ liệu được gọi là một \textbf{epoch}. Với GD thông thường thì mỗi epoch ứng với 1 lần cập nhật $\theta$; với SGD thì mỗi epoch ứng với $N$ lần cập nhật $\theta$ với $N$ là số điểm dữ liệu. Nhìn vào một mặt, việc cập nhật từng điểm một như thế này có thể làm giảm đi tốc độ thực hiện 1 epoch. Nhưng nhìn vào một mặt khác, SGD chỉ yêu cầu một lượng epoch rất nhỏ (thường là 10 cho lần đầu tiên, sau đó khi có dữ liệu mới thì chỉ cần chạy dưới một epoch là đã có nghiệm tốt). Vì vậy SGD phù hợp với các bài toán có lượng cơ sở dữ liệu lớn (chủ yếu là Deep Learning) và các bài toán yêu cầu mô hình thay đổi liên tục, tức online learning.
+\end{ynghia}
+
+\paragraph{Thứ tự lựa chọn điểm dữ liệu.}
+
+\begin{luuy}[title={Shuffle sau mỗi epoch}]
+Một điểm cần lưu ý: sau mỗi epoch, chúng ta cần \textbf{shuffle} (xáo trộn) thứ tự của các dữ liệu để đảm bảo tính ngẫu nhiên. Việc này cũng ảnh hưởng tới hiệu năng của SGD.
+\end{luuy}
+
+Một cách toán học, quy tắc cập nhật của SGD là:
+\[
+ \theta = \theta - \eta \nabla_{\theta} J(\theta; \mathbf{x}_i; \mathbf{y}_i)
+\]
+trong đó $J(\theta; \mathbf{x}_i; \mathbf{y}_i)$ là hàm mất mát với chỉ 1 cặp điểm dữ liệu (input, label) là $(\mathbf{x}_i, \mathbf{y}_i)$.
+
+\begin{luuy}[title={Kết hợp với Momentum, AdaGrad, \ldots}]
+Chúng ta hoàn toàn có thể áp dụng các thuật toán tăng tốc GD như Momentum, AdaGrad, \ldots vào SGD.
+\end{luuy}
+
+\paragraph{Ví dụ với bài toán Linear Regression.}
+
+Với bài toán Linear Regression, $\theta = \mathbf{w}$, hàm mất mát tại một điểm dữ liệu là:
+\[
+ J(\mathbf{w}; \mathbf{x}_i; y_i) = \frac{1}{2}(\mathbf{x}_i \mathbf{w} - y_i)^2
+\]
+Đạo hàm theo $\mathbf{w}$ tương ứng là:
+\[
+ \nabla_{\mathbf{w}}J(\mathbf{w}; \mathbf{x}_i; y_i) = \mathbf{x}_i^T(\mathbf{x}_i \mathbf{w} - y_i)
+\]
+
+\begin{phuongphap}[title={Hàm \texttt{sgrad} và \texttt{SGD} trong Python}]
+Và dưới đây là hàm số trong Python để giải Linear Regression theo SGD:
+\end{phuongphap}
+
+\begin{lstlisting}[language=Python]
+# single point gradient
+def sgrad(w, i, rd_id):
+ true_i = rd_id[i]
+ xi = Xbar[true_i, :]
+ yi = y[true_i]
+ a = np.dot(xi, w) - yi
+ return (xi*a).reshape(2, 1)
+
+def SGD(w_init, grad, eta):
+ w = [w_init]
+ w_last_check = w_init
+ iter_check_w = 10
+ N = X.shape[0]
+ count = 0
+ for it in range(10):
+ # shuffle data
+ rd_id = np.random.permutation(N)
+ for i in range(N):
+ count += 1
+ g = sgrad(w[-1], i, rd_id)
+ w_new = w[-1] - eta*g
+ w.append(w_new)
+ if count%iter_check_w == 0:
+ w_this_check = w_new
+ if np.linalg.norm(w_this_check - w_last_check)/len(w_init) < 1e-3:
+ return w
+ w_last_check = w_this_check
+ return w
+\end{lstlisting}
+
+\begin{vidu}[title={Kết quả SGD trên Linear Regression}]
+Kết quả được cho như hình dưới đây (với dữ liệu được tạo giống như ở phần 1).
+
+\mlcbimg{02_gradient_descent_part2/img09.png}
+\mlcbimg{02_gradient_descent_part2/img10.png}
+
+\textbf{Trái:} đường đi của nghiệm với SGD. \textbf{Phải:} giá trị của loss function tại 50 vòng lặp đầu tiên.
+
+Hình bên trái mô tả đường đi của nghiệm. Chúng ta thấy rằng đường đi khá zigzag chứ không mượt như khi sử dụng GD. Điều này là dễ hiểu vì một điểm dữ liệu không thể đại diện cho toàn bộ dữ liệu được. Tuy nhiên, chúng ta cũng thấy rằng thuật toán hội tụ khá nhanh đến vùng lân cận của nghiệm. Với 1000 điểm dữ liệu, SGD chỉ cần gần 3 epoches (2911 tương ứng với 2911 lần cập nhật, mỗi lần lấy 1 điểm). Nếu so với con số 49 vòng lặp (epoches) như kết quả tốt nhất có được bằng GD, thì kết quả này lợi hơn rất nhiều.
+
+Hình bên phải mô tả hàm mất mát cho toàn bộ dữ liệu sau khi chỉ sử dụng 50 điểm dữ liệu đầu tiên. Mặc dù không mượt, tốc độ hội tụ vẫn rất nhanh.
+
+Thực tế cho thấy chỉ lấy khoảng 10 điểm là ta đã có thể xác định được gần đúng phương trình đường thẳng cần tìm rồi. Đây chính là ưu điểm của SGD --- hội tụ rất nhanh.
+\end{vidu}
+
+\subsubsection{2.3. Mini-batch Gradient Descent}
+
+\begin{dinhnghia}[title={Mini-batch Gradient Descent}]
+Khác với SGD, mini-batch sử dụng một số lượng $n$ lớn hơn 1 (nhưng vẫn nhỏ hơn tổng số dữ liệu $N$ rất nhiều). Giống với SGD, Mini-batch Gradient Descent bắt đầu mỗi epoch bằng việc xáo trộn ngẫu nhiên dữ liệu rồi chia toàn bộ dữ liệu thành các mini-batch, mỗi mini-batch có $n$ điểm dữ liệu (trừ mini-batch cuối có thể có ít hơn nếu $N$ không chia hết cho $n$). Mỗi lần cập nhật, thuật toán này lấy ra một mini-batch để tính toán đạo hàm rồi cập nhật.
+\end{dinhnghia}
+
+Công thức có thể viết dưới dạng:
+\[
+ \theta = \theta - \eta\nabla_{\theta} J(\theta; \mathbf{x}_{i:i+n}; \mathbf{y}_{i:i+n})
+\]
+Với $\mathbf{x}_{i:i+n}$ được hiểu là dữ liệu từ thứ $i$ tới thứ $i+n-1$ (theo ký hiệu của Python). Dữ liệu này sau mỗi epoch là khác nhau vì chúng cần được xáo trộn.
+
+\begin{luuy}[title={Kết hợp Momentum, Adagrad, Adadelta, \ldots}]
+Một lần nữa, các thuật toán khác cho GD như Momentum, Adagrad, Adadelta, \ldots cũng có thể được áp dụng vào đây.
+\end{luuy}
+
+\begin{ynghia}[title={Ứng dụng thực tế}]
+Mini-batch GD được sử dụng trong hầu hết các thuật toán Machine Learning, đặc biệt là trong Deep Learning. Giá trị $n$ thường được chọn là khoảng từ 50 đến 100.
+\end{ynghia}
+
+\begin{vidu}[title={Dao động hàm mất mát (fluctuate)}]
+Dưới đây là ví dụ về giá trị của hàm mất mát mỗi khi cập nhật tham số $\theta$ của một bài toán khác phức tạp hơn.
+
+\mlcbimg{02_gradient_descent_part2/img11.png}
+
+Hàm mất mát nhảy lên nhảy xuống (fluctuate) sau mỗi lần cập nhật nhưng nhìn chung giảm dần và có xu hướng hội tụ về cuối.
+
+Để có thêm thông tin chi tiết hơn, có thể tham khảo mục Stochastic Gradient Descent trên Wikipedia.
+\end{vidu}
+
+%------------------------------------------------------------------------------
+\subsection{3. Stopping Criteria (điều kiện dừng)}
+\label{subsec:stopping-criteria}
+%------------------------------------------------------------------------------
+
+\begin{ynghia}[title={Khi nào dừng?}]
+Có một điểm cũng quan trọng mà từ đầu chưa nhắc đến: khi nào thì chúng ta biết thuật toán đã hội tụ và dừng lại?
+
+Trong thực nghiệm, có một vài phương pháp như dưới đây:
+\end{ynghia}
+
+\begin{enumerate}
+ \item \textbf{Giới hạn số vòng lặp:} đây là phương pháp phổ biến nhất và cũng để đảm bảo rằng chương trình chạy không quá lâu. Tuy nhiên, một nhược điểm của cách làm này là có thể thuật toán dừng lại trước khi đủ gần với nghiệm.
+ \item \textbf{So sánh gradient của nghiệm tại hai lần cập nhật liên tiếp:} khi nào giá trị này đủ nhỏ thì dừng lại. Phương pháp này cũng có một nhược điểm lớn là việc tính đạo hàm đôi khi trở nên quá phức tạp (ví dụ như khi có quá nhiều dữ liệu); nếu áp dụng phương pháp này thì coi như ta không được lợi khi sử dụng SGD và mini-batch GD.
+ \item \textbf{So sánh giá trị của hàm mất mát} của nghiệm tại hai lần cập nhật liên tiếp, khi nào giá trị này đủ nhỏ thì dừng lại. Nhược điểm của phương pháp này là nếu tại một thời điểm, đồ thị hàm số có dạng bẳng phẳng tại một khu vực nhưng khu vực đó không chứa điểm local minimum (khu vực này thường được gọi là \textbf{saddle points}), thuật toán cũng dừng lại trước khi đạt giá trị mong muốn.
+ \item \textbf{Trong SGD và mini-batch GD,} cách thường dùng là so sánh nghiệm sau một vài lần cập nhật. Trong đoạn code Python phía trên về SGD, ta áp dụng việc so sánh này mỗi khi nghiệm được cập nhật 10 lần. Việc làm này cũng tỏ ra khá hiệu quả.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\subsection{4. Một phương pháp tối ưu đơn giản khác: Newton's method}
+\label{subsec:newton}
+%------------------------------------------------------------------------------
+
+\begin{ynghia}[title={First-order và second-order}]
+Nhân tiện đang nói về tối ưu, ta xin giới thiệu một phương pháp nữa có cách giải thích đơn giản: \textbf{Newton's method}. Các phương pháp GD đã trình bày còn được gọi là \textbf{first-order methods}, vì lời giải tìm được dựa trên đạo hàm bậc nhất của hàm số. Newton's method là một \textbf{second-order method}, tức lời giải yêu cầu tính đến đạo hàm bậc hai.
+
+Nhắc lại rằng, cho tới thời điểm này, chúng ta luôn giải phương trình đạo hàm của hàm mất mát bằng 0 để tìm các điểm local minimum. (Và trong nhiều trường hợp, coi nghiệm tìm được là nghiệm của bài toán tìm giá trị nhỏ nhất của hàm mất mát.) Có một thuật toán nổi tiếng giúp giải bài toán $f(x) = 0$, thuật toán đó có tên là Newton's method.
+\end{ynghia}
+
+\subsubsection{Newton's method cho giải phương trình $f(x) = 0$}
+
+\begin{ynghia}[title={Ý tưởng hình học}]
+Thuật toán Newton's method được mô tả trong hình động minh họa dưới đây:
+
+\mlcbimg{02_gradient_descent_part2/img12.png}
+
+Ý tưởng giải bài toán $f(x) = 0$ bằng phương pháp Newton's method như sau. Xuất phát từ một điểm $x_0$ được cho là gần với nghiệm $x^*$. Sau đó vẽ đường tiếp tuyến (mặt tiếp tuyến trong không gian nhiều chiều) với đồ thị hàm số $y = f(x)$ tại điểm trên đồ thị có hoành độ $x_0$. Giao điểm $x_1$ của đường tiếp tuyến này với trục hoành được xem là gần với nghiệm $x^*$ hơn. Thuật toán lặp lại với điểm mới $x_1$ và cứ như vậy đến khi ta được $f(x_t) \approx 0$.
+\end{ynghia}
+
+\begin{phuongphap}[title={Công thức lập trình}]
+Đó là ý nghĩa hình học của Newton's method; chúng ta cần một công thức để có thể dựa vào đó để lập trình. Việc này không quá phức tạp sau khóa Giải tích I. Thật vậy, phương trình tiếp tuyến với đồ thị của hàm $f(x)$ tại điểm có hoành độ $x_t$ là:
+\[
+ y = f'(x_t)(x - x_t) + f(x_t)
+\]
+Giao điểm của đường thẳng này với trục $x$ tìm được bằng cách giải phương trình vế phải của biểu thức trên bằng 0, tức là:
+\[
+ x = x_t - \frac{f(x_t)}{f'(x_t)} \triangleq x_{t+1}
+\]
+\end{phuongphap}
+
+\subsubsection{Newton's method trong bài toán tìm local minimum}
+
+Áp dụng phương pháp này cho việc giải phương trình $f'(x) = 0$ ta có:
+\[
+ x_{t+1} = x_t -(f''(x_t))^{-1}{f'(x_t)}
+\]
+
+Và trong không gian nhiều chiều với $\theta$ là biến:
+\[
+ \theta = \theta - \mathbf{H}(J(\theta))^{-1} \nabla_{\theta} J(\theta)
+\]
+trong đó $\mathbf{H}(J(\theta))$ là đạo hàm bậc hai của hàm mất mát (còn gọi là \textbf{Hessian matrix}). Biểu thức này là một ma trận nếu $\theta$ là một vector. Và $\mathbf{H}(J(\theta))^{-1}$ chính là nghịch đảo của ma trận đó.
+
+\subsubsection{Hạn chế của Newton's method}
+
+\begin{enumerate}
+ \item \textbf{Điểm khởi tạo phải rất gần với nghiệm $x^*$.} Ý tưởng sâu xa hơn của Newton's method là dựa trên khai triển Taylor của hàm số $f(x)$ tới đạo hàm thứ nhất:
+ \[
+ 0 = f(x^*) \approx f(x_t) + f'(x_t)(x_t - x^*)
+ \]
+ Từ đó suy ra: $x^* \approx x_t - \frac{f(x_t)}{f'(x_t)}$. Một điểm rất quan trọng: khai triển Taylor chỉ đúng nếu $x_t$ rất gần với $x^*$! Dưới đây là một ví dụ kinh điển trên Wikipedia về việc Newton's method cho một dãy số phân kỳ (divergence): nghiệm là một điểm gần $-2$; tiếp tuyến của đồ thị hàm số tại điểm có hoành độ bằng 0 cắt trục hoành tại 1, và ngược lại. Trong trường hợp này, Newton's method không bao giờ hội tụ.
+
+ \item \textbf{Đạo hàm ở mẫu số gần 0.} Trong việc giải phương trình $f(x) = 0$, chúng ta có đạo hàm ở mẫu số. Khi đạo hàm này gần với 0, ta sẽ được một đường thẳng song song hoặc gần song song với trục hoành. Ta sẽ hoặc không tìm được giao điểm, hoặc được một giao điểm ở vô cùng. Đặc biệt, khi nghiệm chính là điểm có đạo hàm bằng 0, thuật toán gần như sẽ không tìm được nghiệm!
+
+ \item \textbf{Chi phí Hessian trong không gian nhiều chiều.} Khi áp dụng Newton's method cho bài toán tối ưu trong không gian nhiều chiều, chúng ta cần tính nghịch đảo của Hessian matrix. Khi số chiều và số điểm dữ liệu lớn, đạo hàm bậc hai của hàm mất mát sẽ là một ma trận rất lớn, ảnh hưởng tới cả memory và tốc độ tính toán của hệ thống.
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\subsection{5. Kết luận}
+\label{subsec:gd-part2-conclusion}
+%------------------------------------------------------------------------------
+
+\begin{tongket}[title={Tóm tắt Chương 2}]
+Chương này bổ sung \textbf{Momentum}, \textbf{NAG}, phân loại \textbf{Batch / SGD / mini-batch}, \textbf{điều kiện dừng} và ý tưởng \textbf{Newton}. Đây là các công cụ thực tế khi huấn luyện mô hình quy mô lớn. Phần \textbf{Tổng hợp và củng cố} (cuối giáo trình) gom bảng so sánh, Adam/RMSprop và câu hỏi ôn tập.
+\end{tongket}
+
+%------------------------------------------------------------------------------
+\subsection{6. Tài liệu tham khảo}
+\label{subsec:gd-part2-refs}
+%------------------------------------------------------------------------------
+
+\begin{enumerate}
+ \item Newton's method --- Wikipedia: \url{https://en.wikipedia.org/wiki/Newton%27s_method}
+ \item An overview of gradient descent optimization algorithms: \url{http://sebastianruder.com/optimizing-gradient-descent/}
+ \item Stochastic Gradient Descent --- Wikipedia: \url{https://en.wikipedia.org/wiki/Stochastic_gradient_descent}
+ \item Stochastic Gradient Descent --- Andrew Ng (Coursera lecture notes)
+ \item Nesterov, Y. (1983). A method for unconstrained convex minimization problem with the rate of convergence $O(1/k^2)$. \emph{Doklady ANSSSR} (translated as \emph{Soviet Math. Dokl.}), vol.~269, pp.~543--547.
+\end{enumerate}

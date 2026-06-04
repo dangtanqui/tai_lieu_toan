@@ -1,0 +1,189 @@
+%==============================================================================
+\section{Lựa chọn đặc trưng (Feature Selection)}
+\label{sec:feature-selection}
+%==============================================================================
+
+\begin{dinhnghia}[title={Lựa chọn đặc trưng}]
+Lựa chọn đặc trưng là bước quan trọng trong học máy: chọn một \textbf{tập con} các đặc trưng có sẵn để cải thiện hiệu năng mô hình.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Các kỹ thuật phổ biến}]
+Dưới đây là một số kỹ thuật lựa chọn đặc trưng thường dùng.
+\end{ynghia}
+
+\subsection{Phương pháp lọc (Filter Methods)}
+
+\begin{phuongphap}[title={Ý tưởng Filter}]
+Phương pháp này đánh giá mức \textbf{liên quan} của từng đặc trưng bằng cách tính một độ đo thống kê (ví dụ: tương quan, thông tin tương hỗ, kiểm định chi-square, \ldots) rồi \textbf{xếp hạng} đặc trưng theo điểm số. Các đặc trưng có điểm thấp sẽ bị loại khỏi mô hình.
+\end{phuongphap}
+
+\begin{vidu}[title={Filter trong Python --- SelectPercentile và chi2}]
+Để triển khai phương pháp lọc trong Python, dùng \texttt{SelectKBest} hoặc \texttt{SelectPercentile} từ module \texttt{sklearn.feature\_selection}. Ví dụ chọn 10\% đặc trưng tốt nhất theo chi-square (phù hợp dữ liệu không âm, phân loại):
+\begin{lstlisting}
+from sklearn.feature_selection import SelectPercentile, chi2
+
+selector = SelectPercentile(chi2, percentile=10)
+X_new = selector.fit_transform(X, y)
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Chi-square và kiểu dữ liệu}]
+\texttt{chi2} yêu cầu giá trị đặc trưng \textbf{không âm}. Với đặc trưng liên tục (như bộ Breast Cancer), nên dùng \texttt{f\_classif} hoặc \texttt{mutual\_info\_classif} thay vì \texttt{chi2}.
+\end{luuy}
+
+\subsection{Phương pháp bọc (Wrapper Methods)}
+
+\begin{phuongphap}[title={Ý tưởng Wrapper}]
+Phương pháp này đánh giá hiệu năng mô hình khi \textbf{thêm hoặc bớt} đặc trưng, rồi chọn tập con đặc trưng cho kết quả tốt nhất. Cách này \textbf{tốn tính toán} hơn phương pháp lọc nhưng thường \textbf{chính xác} hơn.
+\end{phuongphap}
+
+\begin{vidu}[title={Wrapper trong Python --- RFE}]
+Triển khai wrapper trong Python bằng hàm \texttt{RFE} (Recursive Feature Elimination) trong \texttt{sklearn.feature\_selection}:
+\begin{lstlisting}
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+
+estimator = LogisticRegression()
+selector = RFE(estimator, n_features_to_select=5)
+selector = selector.fit(X, y)
+X_new = selector.transform(X)
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Phương pháp nhúng (Embedded Methods)}
+
+\begin{phuongphap}[title={Ý tưởng Embedded}]
+Phương pháp này \textbf{gắn} lựa chọn đặc trưng vào ngay quá trình xây dựng mô hình, ví dụ hồi quy Lasso, Ridge hoặc cây quyết định. Các phương pháp này gán \textbf{trọng số} cho từng đặc trưng; đặc trưng có trọng số nhỏ sẽ bị loại.
+\end{phuongphap}
+
+\begin{vidu}[title={Embedded trong Python --- Lasso}]
+Triển khai embedded trong Python bằng \texttt{Lasso} hoặc \texttt{Ridge} từ \texttt{sklearn.linear\_model}:
+\begin{lstlisting}
+import pandas as pd
+from sklearn.linear_model import Lasso
+
+lasso = Lasso(alpha=0.1)
+lasso.fit(X, y)
+coef = pd.Series(lasso.coef_, index=X.columns)
+important_features = coef[coef != 0]
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Phân tích thành phần chính (PCA)}
+
+\begin{dinhnghia}[title={PCA trong ngữ cảnh lựa chọn đặc trưng}]
+PCA là phương pháp học \textbf{không giám sát}: biến đổi các đặc trưng gốc thành tập các thành phần chính \textbf{không tương quan}, giải thích \textbf{phương sai tối đa} trong dữ liệu. Số thành phần chính có thể chọn theo ngưỡng, từ đó \textbf{giảm chiều} tập dữ liệu.
+\end{dinhnghia}
+
+\begin{vidu}[title={PCA trong Python}]
+Triển khai PCA trong Python bằng \texttt{PCA} từ \texttt{sklearn.decomposition}:
+\begin{lstlisting}
+from sklearn.decomposition import PCA
+
+pca = PCA(n_components=3)
+X_new = pca.fit_transform(X)
+\end{lstlisting}
+\end{vidu}
+
+\subsection{Loại trừ đặc trưng đệ quy (RFE)}
+
+\begin{phuongphap}[title={RFE --- Recursive Feature Elimination}]
+Phương pháp này \textbf{loại dần} các đặc trưng kém quan trọng nhất cho đến khi còn tập đặc trưng quan trọng nhất. RFE dựa trên mô hình; có thể tốn tính toán nhưng cho kết quả tốt trên dữ liệu \textbf{chiều cao}.
+\end{phuongphap}
+
+\begin{vidu}[title={RFECV trong Python}]
+Triển khai RFE kèm xác thực chéo bằng \texttt{RFECV} (Recursive Feature Elimination with Cross Validation):
+\begin{lstlisting}
+from sklearn.feature_selection import RFECV
+from sklearn.tree import DecisionTreeClassifier
+
+estimator = DecisionTreeClassifier()
+selector = RFECV(estimator, step=1, cv=5)
+selector = selector.fit(X, y)
+X_new = selector.transform(X)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết hợp các kỹ thuật}]
+Các kỹ thuật lựa chọn đặc trưng trên có thể dùng \textbf{riêng lẻ} hoặc \textbf{kết hợp} để cải thiện hiệu năng mô hình học máy. Cần chọn kỹ thuật phù hợp theo \textbf{kích thước} tập dữ liệu, \textbf{bản chất} đặc trưng và \textbf{loại} mô hình đang dùng.
+\end{ynghia}
+
+\subsection{Ví dụ --- Breast Cancer Wisconsin}
+
+\begin{dongco}[title={Bối cảnh ví dụ}]
+Ví dụ dưới đây triển khai ba cách: lựa chọn đặc trưng đơn biến (univariate), loại trừ đặc trưng đệ quy có xác thực chéo (RFECV), và phân tích thành phần chính (PCA).
+\end{dongco}
+
+\begin{ynghia}[title={Bộ dữ liệu Breast Cancer}]
+Dùng bộ \textbf{Breast Cancer Wisconsin (Diagnostic)} có sẵn trong scikit-learn: 569 mẫu, 30 đặc trưng; nhiệm vụ phân loại khối u \textbf{ác tính} (malignant) hay \textbf{lành tính} (benign).
+\end{ynghia}
+
+\begin{vidu}[title={Mã Python đầy đủ}]
+\begin{lstlisting}
+# Import thu vien va bo du lieu
+import numpy as np
+from sklearn.datasets import load_breast_cancer
+from sklearn.feature_selection import SelectKBest, f_classif, RFECV
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.linear_model import LogisticRegression
+from sklearn.decomposition import PCA
+
+# Tai bo du lieu
+data = load_breast_cancer()
+X = data.data
+y = data.target
+
+# Loc don bien: f_classif (phu hop dac trung lien tuc)
+selector = SelectKBest(f_classif, k=10)
+X_new = selector.fit_transform(X, y)
+
+# Chia tap huan luyen / kiem tra
+X_train, X_test, y_train, y_test = train_test_split(
+    X_new, y, test_size=0.3, random_state=42)
+
+# Hoi quy logistic tren dac trung da chon
+clf = LogisticRegression(max_iter=10000)
+clf.fit(X_train, y_train)
+
+# Danh gia tren tap kiem tra
+accuracy = clf.score(X_test, y_test)
+print("Accuracy using univariate feature selection: {:.2f}".format(accuracy))
+
+# RFECV
+estimator = LogisticRegression(max_iter=10000)
+selector = RFECV(estimator, step=1, cv=5)
+selector.fit(X, y)
+X_new = selector.transform(X)
+scores = cross_val_score(LogisticRegression(max_iter=10000), X_new, y, cv=5)
+print("Accuracy using RFECV feature selection: %0.2f (+/- %0.2f)" %
+      (scores.mean(), scores.std() * 2))
+
+# PCA
+pca = PCA(n_components=5)
+X_new = pca.fit_transform(X)
+scores = cross_val_score(LogisticRegression(max_iter=10000), X_new, y, cv=5)
+print("Accuracy using PCA feature selection: %0.2f (+/- %0.2f)" %
+      (scores.mean(), scores.std() * 2))
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Sua loi so voi ban goc Tutorialspoint}]
+Ban goc dung \texttt{chi2} va duong dan \texttt{C:\textbackslash...} tren file diabetes.csv; day la \textbf{Breast Cancer} voi dac trung \textbf{lien tuc}, nen dung \texttt{load\_breast\_cancer} va \texttt{f\_classif}. Them import \texttt{cross\_val\_score} va \texttt{PCA} con thieu trong ban goc.
+\end{luuy}
+
+\begin{vidu}[title={Ket qua chay (tham khao)}]
+Khi chay ma tren, terminal co the in tuong tu:
+\begin{lstlisting}
+Accuracy using univariate feature selection: 0.74
+Accuracy using RFECV feature selection: 0.77 (+/- 0.03)
+Accuracy using PCA feature selection: 0.75 (+/- 0.07)
+\end{lstlisting}
+\end{vidu}
+
+\begin{tinhchat}[title={So sanh nhanh ba cach trong vi du}]
+\begin{itemize}
+  \item \textbf{Univariate + f\_classif}: nhanh, doc lap mô hình; chon $k=10$ trong 30 dac trung.
+  \item \textbf{RFECV}: tim tap dac trung tot theo hieu nang mo hinh va CV; ton tinh toan hon.
+  \item \textbf{PCA}: giam chieu bang bien doi tuyen tinh; khong giu ten dac trung goc.
+\end{itemize}
+\end{tinhchat}

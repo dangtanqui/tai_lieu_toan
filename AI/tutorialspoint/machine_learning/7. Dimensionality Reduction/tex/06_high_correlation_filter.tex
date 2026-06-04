@@ -1,0 +1,86 @@
+%==============================================================================
+\section{Bộ lọc tương quan cao (High Correlation Filter)}
+\label{sec:high-correlation-filter}
+%==============================================================================
+
+\begin{dinhnghia}[title={Bộ lọc tương quan cao}]
+Kỹ thuật \textbf{lựa chọn đặc trưng} (filter method) dùng để phát hiện và loại các feature \textbf{tương quan mạnh} với nhau. Mục tiêu: giảm số biến dự báo, hạn chế \textbf{đa cộng tuyến} (multicollinearity) --- khi hai hay nhiều biến giải thích gần như cùng một thông tin.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Nguyên tắc hoạt động}]
+Tính hệ số tương quan giữa từng \textbf{cặp} feature; nếu $|r|$ vượt ngưỡng, loại \textbf{một} trong hai feature của cặp. Feature còn lại dùng huấn luyện mô hình.
+\end{ynghia}
+
+\subsection{Thuật toán}
+
+\begin{phuongphap}[title={Các bước triển khai}]
+\begin{enumerate}
+  \item Tính \textbf{ma trận tương quan} (correlation matrix) trên toàn bộ feature.
+  \item Đặt \textbf{ngưỡng} cho hệ số tương quan (ví dụ $0{,}8$).
+  \item Tìm các \textbf{cặp feature} có $|r|$ lớn hơn ngưỡng.
+  \item Với mỗi cặp tương quan cao, \textbf{xóa một} feature (thường giữ feature có tương quan mạnh hơn với biến mục tiêu, hoặc xóa theo quy tắc cố định như trong ví dụ).
+  \item Huấn luyện mô hình trên tập feature còn lại.
+\end{enumerate}
+\end{phuongphap}
+
+\subsection{Ví dụ Python --- dataset Diabetes}
+
+\begin{dongco}[title={Dữ liệu}]
+Dùng bộ \texttt{diabetes} từ OpenML qua \texttt{sklearn.datasets.fetch\_openml}; ngưỡng tương quan $0{,}8$.
+\end{dongco}
+
+\begin{vidu}[title={Mã đầy đủ}]
+\begin{lstlisting}
+import numpy as np
+import pandas as pd
+from sklearn.datasets import fetch_openml
+
+data = fetch_openml("diabetes", version=1, as_frame=True, parser="auto").frame
+X = data.iloc[:, :-1].values
+y = data.iloc[:, -1].values
+
+corr_matrix = np.corrcoef(X, rowvar=False)
+threshold = 0.8
+
+high_corr_indices = np.where(np.abs(corr_matrix) > threshold)
+features_to_remove = set()
+
+for i, j in zip(*high_corr_indices):
+    if i != j and (j, i) not in features_to_remove:
+        features_to_remove.add((i, j))
+
+features_to_remove = list(features_to_remove)
+X_filtered = np.delete(X, [j for i, j in features_to_remove], axis=1)
+
+print('Shape of the filtered dataset:', X_filtered.shape)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Kết quả đầu ra}]
+\textbf{Output:}
+\begin{lstlisting}
+Shape of the filtered dataset: (768, 8)
+\end{lstlisting}
+Với ngưỡng $0{,}8$, không có cặp feature nào vượt ngưỡng trên bộ diabetes chuẩn hóa từ OpenML, nên \textbf{giữ nguyên 8} biến dự báo và $768$ mẫu.
+\end{ynghia}
+
+\subsection{Ưu và nhược điểm}
+
+\begin{tinhchat}[title={Ưu điểm}]
+\begin{itemize}
+  \item \textbf{Giảm đa cộng tuyến}: loại biến trùng lặp thông tin, ổn định hơn cho hồi quy tuyến tính.
+  \item \textbf{Cải thiện hiệu năng mô hình}: ít feature $\Rightarrow$ huấn luyện nhanh hơn, ít nhiễu.
+  \item \textbf{Đơn giản hóa mô hình}: dễ giải thích khi số biến giảm.
+  \item \textbf{Tiết kiệm tài nguyên tính toán}: ma trận thiết kế nhỏ hơn.
+\end{itemize}
+\end{tinhchat}
+
+\begin{luuy}[title={Nhược điểm}]
+\begin{itemize}
+  \item \textbf{Mất thông tin}: feature bị xóa có thể chứa tín hiệu hữu ích riêng.
+  \item \textbf{Giả định tuyến tính}: chỉ đo tương quan Pearson; quan hệ phi tuyến có thể bị bỏ sót.
+  \item \textbf{Ảnh hưởng biến phụ thuộc}: nếu hai feature tương quan cao đều quan trọng với $y$, xóa một có thể làm giảm chất lượng dự báo.
+  \item \textbf{Selection bias}: quy tắc ``xóa feature thứ hai trong cặp'' có thể không tối ưu cho mọi bài toán.
+  \item \textbf{Không đảm bảo tập tối ưu}: filter độc lập mô hình, có thể không khớp metric cuối (AUC, F1, \ldots).
+\end{itemize}
+\end{luuy}

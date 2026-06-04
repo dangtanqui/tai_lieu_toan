@@ -1,0 +1,32 @@
+[
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/deep_reinforcement_learning.htm",
+    "slug": "01_deep_reinforcement_learning",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_deep_rl_algorithms.htm",
+    "slug": "02_deep_rl_algorithms",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_deep_q_networks.htm",
+    "slug": "03_deep_q_networks",
+    "images": [
+      {
+        "url": "https://www.tutorialspoint.com/machine_learning/images/deep_q_network.jpg",
+        "file": "images/03_deep_q_networks/img01.jpg"
+      }
+    ]
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_deep_deterministic_policy_gradient.htm",
+    "slug": "04_ddpg",
+    "images": []
+  },
+  {
+    "page_url": "https://www.tutorialspoint.com/machine_learning/machine_learning_trust_region_methods.htm",
+    "slug": "05_trust_region_methods",
+    "images": []
+  }
+]

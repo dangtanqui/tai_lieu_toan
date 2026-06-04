@@ -1,0 +1,63 @@
+%==============================================================================
+\section*{Tổng hợp và củng cố}
+\addcontentsline{toc}{section}{Tổng hợp và củng cố}
+%==============================================================================
+
+\subsection{Bảng so sánh các biến thể GD}
+
+\begin{tinhchat}[title={Phân loại theo dữ liệu và cập nhật}]
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Phương pháp} & \textbf{Gradient dùng mỗi bước} & \textbf{Đặc điểm chính} \\
+\midrule
+Batch GD & Toàn bộ $N$ mẫu & Ổn định; tốn kém khi $N$ lớn \\
+SGD & Một mẫu $\mathbf{x}_i$ & Nhanh/epoch; nhiễu; cần shuffle \\
+Mini-batch & $n$ mẫu ($n \ll N$) & Chuẩn trong Deep Learning \\
+Momentum / NAG & (kết hợp với trên) & Vượt vùng dốc thoải; NAG ít zigzag hơn \\
+Newton & Hessian $\mathbf{H}^{-1}\nabla J$ & Ít bước nếu gần nghiệm; đắt tính $\mathbf{H}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{tinhchat}
+
+\subsection{Bổ trợ: các optimizer phổ biến trong Deep Learning}
+
+\begin{ynghia}[title={AdaGrad, RMSprop, Adam --- ý tưởng ngắn gọn}]
+Phần 2 chỉ liệt kê tên; dưới đây là khung hiểu để đọc tài liệu chuyên sâu (ví dụ Ruder, 2016).
+\begin{itemize}
+  \item \textbf{AdaGrad:} chia learning rate cho căn bậc hai \textbf{tổng tích lũy bình phương gradient} theo từng tọa độ --- học nhanh chiều ít cập nhật, chậm chiều gradient lớn; nhược điểm: tốc độ học có thể ``chết'' khi tích lũy quá lớn.
+  \item \textbf{RMSprop:} dùng \textbf{trung bình trượt} bình phương gradient (EMA) thay tổng vô hạn --- khắc phục AdaGrad trên dữ liệu không dừng.
+  \item \textbf{Adam:} kết hợp \textbf{momentum} (EMA của gradient) và \textbf{RMSprop} (EMA của $g^2$); thường là lựa chọn mặc định đầu tiên khi huấn luyện mạng sâu, vẫn cần tinh chỉnh $\eta$.
+\end{itemize}
+\end{ynghia}
+
+\begin{dongco}[title={Hàm lồi (convex) và tại sao LR quan trọng}]
+Với hàm lồi (ví dụ MSE của Linear Regression), mọi local minimum là \textbf{global minimum}. GD với $\eta$ đủ nhỏ sẽ hội tụ (lý thuyết). Trên thực tế:
+\begin{itemize}
+  \item $\eta$ quá nhỏ: hội tụ chậm, tốn epoch.
+  \item $\eta$ quá lớn: dao động hoặc \textbf{phân kỳ} (nhảy qua đáy).
+  \item Đường đồng mức \textbf{dẹt/elongated} (ma trận $\bar{\mathbf{X}}^{\mathsf{T}}\bar{\mathbf{X}}$ xấu điều kiện): GD zigzag --- động lực cho Momentum, preconditioning, Adam.
+\end{itemize}
+\end{dongco}
+
+\begin{luuy}[title={Saddle point và non-convex}]
+Hàm mất mát mạng sâu thường \textbf{không lồi}: có nhiều cực tiểu cục bộ, \textbf{saddle point} (gradient $=0$ nhưng không phải cực tiểu). GD vẫn dùng rộng rãi vì đơn giản và kết hợp tốt với mini-batch + momentum; không đảm bảo global optimum.
+\end{luuy}
+
+\subsection{Câu hỏi củng cố}
+
+\begin{phuongphap}[title={Tự kiểm tra}]
+\begin{enumerate}
+  \item Vì sao cập nhật $x_{t+1} = x_t - \eta f'(x_t)$ lại \textbf{giảm} $f$ khi $|\eta f'(x_t)|$ đủ nhỏ và $f$ trơn?
+  \item Giải thích sự khác nhau giữa \textbf{một epoch} của Batch GD và của SGD (số lần cập nhật $\boldsymbol{\theta}$).
+  \item Khi nào nên dùng \textbf{numerical gradient} thay vì gradient công thức?
+  \item Momentum giúp gì khi loss có hai ``thung lũng'' cục bộ?
+  \item Newton method cần thêm thông tin gì so với GD? Vì sao ít dùng trực tiếp cho mạng lớn?
+\end{enumerate}
+\end{phuongphap}
+
+\begin{tongket}[title={Tóm tắt chương}]
+Gradient Descent là \textbf{xương sống} của huấn luyện có gradient: đi ngược hướng tăng nhanh nhất của loss, lặp với bước $\eta$. Thực hành ML dùng \textbf{mini-batch SGD} kèm \textbf{momentum/NAG/Adam}, shuffle dữ liệu, và điều kiện dừng phù hợp. Hiểu rõ \textbf{gradient}, \textbf{learning rate} và \textbf{hình dạng đường đồng mức} là chìa khóa để debug mô hình không hội tụ.
+\end{tongket}

@@ -62,7 +62,7 @@ plt.show()
 \tsimg{04_k_medoids/img01.jpg}
 \end{ynghia}
 
-\begin{vidu}[title={Mã đầy đủ}]
+\begin{vidu}[title={Code đầy đủ}]
 \begin{lstlisting}
 from sklearn_extra.cluster import KMedoids
 from sklearn.datasets import make_blobs
@@ -84,24 +84,19 @@ plt.show()
 
 \subsection{Ưu điểm K-medoids}
 
-\begin{tinhchat}[title={Bền với ngoại lai và nhiễu}]
-Dùng medoid (điểm thực) thay vì trung bình $\Rightarrow$ ít bị kéo bởi outlier hơn K-means.
-\end{tinhchat}
-
-\begin{tinhchat}[title={Metric khoảng cách linh hoạt}]
-Có thể dùng metric không phải Euclidean: Manhattan, cosine similarity, v.v.
-\end{tinhchat}
-
-\begin{tinhchat}[title={Độ phức tạp}]
-Độ phức tạp tính toán $O(k \cdot n^2)$; trong một số bối cảnh so sánh được với chi phí K-means khi $n$ vừa phải.
+\begin{tinhchat}[title={Ưu điểm K-medoids}]
+  \begin{itemize}
+    \item Bền với ngoại lai và nhiễu: Dùng medoid (điểm thực) thay vì trung bình $\Rightarrow$ ít bị kéo bởi outlier hơn K-means.
+    \item Metric khoảng cách linh hoạt: Có thể dùng metric không phải Euclidean: Manhattan, cosine similarity, v.v.
+    \item Độ phức tạp: Độ phức tạp tính toán $O(k \cdot n^2)$; trong một số bối cảnh so sánh được với chi phí K-means khi $n$ vừa phải.
+  \end{itemize}
 \end{tinhchat}
 
 \subsection{Nhược điểm K-medoids}
 
-\begin{luuy}[title={Nhạy với $k$}]
-Hiệu năng phụ thuộc mạnh vào lựa chọn $k$ (số cụm).
-\end{luuy}
-
-\begin{luuy}[title={Dữ liệu chiều cao}]
-Trên dữ liệu \textbf{nhiều chiều}, bước chọn medoid tốn kém và chất lượng cụm có thể kém.
+\begin{luuy}[title={Nhược điểm K-medoids}]
+  \begin{itemize}
+    \item Nhạy với $k$: Hiệu năng phụ thuộc mạnh vào lựa chọn $k$ (số cụm).
+    \item Dữ liệu chiều cao: Trên dữ liệu \textbf{nhiều chiều}, bước chọn medoid tốn kém và chất lượng cụm có thể kém.
+  \end{itemize}
 \end{luuy}

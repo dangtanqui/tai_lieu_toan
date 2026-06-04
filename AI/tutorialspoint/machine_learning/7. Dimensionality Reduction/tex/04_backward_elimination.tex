@@ -1,0 +1,147 @@
+%==============================================================================
+\section{Loại dần ngược (Backward Elimination)}
+\label{sec:backward-elimination}
+%==============================================================================
+
+\begin{dinhnghia}[title={Backward Elimination}]
+Loại dần ngược là kỹ thuật \textbf{lựa chọn đặc trưng} trong học máy nhằm chọn các đặc trưng \textbf{quan trọng nhất} cho mô hình dự đoán. Ban đầu xét \textbf{tất cả} đặc trưng, sau đó \textbf{lặp loại bỏ} đặc trưng kém ý nghĩa nhất cho đến khi có tập con tốt nhất về hiệu năng.
+\end{dinhnghia}
+
+\subsection{Triển khai trong Python}
+
+\begin{phuongphap}[title={Các bước triển khai}]
+\begin{enumerate}
+  \item Import các thư viện: \texttt{pandas}, \texttt{numpy}, \texttt{statsmodels.api}.
+  \item Nạp tập dữ liệu vào \texttt{DataFrame} (ví dụ bộ Pima Indians Diabetes).
+  \item Định nghĩa biến dự đoán \texttt{X} và biến mục tiêu \texttt{y}.
+  \item Thêm cột hằng số 1 vào \texttt{X} để biểu diễn \textbf{hệ số chặn} (intercept).
+  \item Dùng \textbf{OLS} (Ordinary Least Squares) từ \texttt{statsmodels} để khớp hồi quy tuyến tính đa biến với mọi biến dự đoán.
+  \item Xem \textbf{p-value} của từng biến dự đoán, loại biến có \textbf{p-value cao nhất} (ít ý nghĩa nhất).
+  \item Lặp bước 5 và 6 cho đến khi mọi biến còn lại có p-value \textbf{dưới mức ý nghĩa} (ví dụ 0{,}05).
+\end{enumerate}
+\end{phuongphap}
+
+\begin{ynghia}[title={Vòng lặp p-value}]
+Mỗi lần lặp, \texttt{regressor\_OLS.summary()} liệt kê p-value từng hệ số. Biến có p-value \textbf{lớn nhất} (thường $> 0{,}05$) được coi là \textbf{không có ý nghĩa thống kê} với biến phụ thuộc trong mô hình hiện tại; loại biến đó rồi ước lượng lại OLS trên tập còn lại. Quá trình dừng khi \textbf{tất cả} p-value còn lại nhỏ hơn ngưỡng (ví dụ 0{,}05) --- đó là tập đặc trưng tối ưu theo tiêu chí này.
+\end{ynghia}
+
+\begin{vidu}[title={Bước 1 --- Import}]
+\begin{lstlisting}
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 2 --- Nạp dữ liệu diabetes}]
+\begin{lstlisting}
+from sklearn.datasets import fetch_openml
+
+diabetes = fetch_openml('diabetes', version=0, as_frame=True, parser='auto')
+X = diabetes.iloc[:, :-1].values
+y = diabetes.iloc[:, -1].astype(int).values
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 3--4 --- Intercept}]
+\begin{lstlisting}
+X = np.append(arr=np.ones((len(X), 1)).astype(int),
+              values=X, axis=1)
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 5 --- OLS với tất cả biến (ví dụ 6 biến đầu)}]
+\begin{lstlisting}
+X_opt = X[:, [0, 1, 2, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+\end{lstlisting}
+\end{vidu}
+
+\begin{vidu}[title={Bước 6--7 --- Loại dần theo p-value}]
+\begin{lstlisting}
+X_opt = X[:, [0, 1, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3, 4, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3, 5]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 3]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Tập đặc trưng cuối}]
+Tập biến dự đoán cuối cùng có p-value dưới mức ý nghĩa là tập đặc trưng \textbf{tối ưu} (theo tiêu chí loại dần OLS + p-value) cho mô hình.
+\end{ynghia}
+
+\subsection{Ví dụ đầy đủ}
+
+\begin{dongco}[title={Triển khai hoàn chỉnh}]
+Dưới đây là triển khai đầy đủ loại dần ngược trong Python (8 đặc trưng Pima + intercept, lặp loại theo summary):
+\end{dongco}
+
+\begin{vidu}[title={Mã Python đầy đủ}]
+\begin{lstlisting}
+# Import thu vien
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+from sklearn.datasets import fetch_openml
+
+# Tai bo diabetes (Pima Indians, OpenML)
+diabetes = fetch_openml('diabetes', version=0, as_frame=True, parser='auto')
+
+# Dinh nghia X va y
+X = diabetes.iloc[:, :-1].values
+y = diabetes.iloc[:, -1].astype(int).values
+
+# Cot 1 cho intercept
+X = np.append(arr=np.ones((len(X), 1)).astype(int),
+              values=X, axis=1)
+
+# OLS voi tat ca 8 bien du doan (chi so 0 la intercept)
+X_opt = X[:, [0, 1, 2, 3, 4, 5, 6, 7, 8]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+# Lap: loai bien p-value cao nhat, uoc luong lai
+X_opt = X[:, [0, 1, 2, 3, 5, 6, 7, 8]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 1, 3, 5, 6, 7, 8]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 1, 3, 5, 7, 8]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+
+X_opt = X[:, [0, 1, 3, 5, 7]]
+regressor_OLS = sm.OLS(endog=y, exog=X_opt).fit()
+regressor_OLS.summary()
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Chi số cột trong X\_opt}]
+Cột 0 trong \texttt{X} sau khi thêm intercept là hằng số 1; các chỉ số \texttt{1..8} tương ứng 8 đặc trưng gốc (Pregnancies, Glucose, \ldots). Mỗi lần loại một chỉ số khỏi \texttt{X\_opt} tương ứng loại một biến có p-value cao nhất trong \texttt{summary()} vừa in.
+\end{luuy}
+
+\begin{vidu}[title={Hình minh họa}]
+\tsimg{04_backward_elimination/img01.jpg}
+\end{vidu}
+
+\begin{tinhchat}[title={Ưu và hạn chế}]
+\begin{itemize}
+  \item \textbf{Ưu}: Dễ hiểu, gắn với kiểm định ý nghĩa thống kê (p-value); phù hợp hồi quy tuyến tính.
+  \item \textbf{Hạn chế}: Giả định tuyến tính; tốn thời gian khi số đặc trưng rất lớn; thứ tự loại phụ thuộc mô hình hiện tại (không đảm bảo tập tối ưu toàn cục).
+\end{itemize}
+\end{tinhchat}

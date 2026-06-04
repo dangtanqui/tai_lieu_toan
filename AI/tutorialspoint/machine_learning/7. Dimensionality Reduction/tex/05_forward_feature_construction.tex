@@ -1,0 +1,124 @@
+%==============================================================================
+\section{Xây dựng đặc trưng tiến (Forward Feature Construction)}
+\label{sec:forward-feature-construction}
+%==============================================================================
+
+\begin{dinhnghia}[title={Forward Feature Construction}]
+Xây dựng đặc trưng tiến là phương pháp \textbf{lựa chọn đặc trưng}: bắt đầu từ tập đặc trưng \textbf{rỗng}, rồi \textbf{lặp thêm} đặc trưng cho hiệu năng tốt nhất ở mỗi bước cho đến khi đạt số đặc trưng mong muốn.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Mục tiêu lựa chọn đặc trưng}]
+Mục tiêu là xác định các đặc trưng \textbf{quan trọng nhất} để dự đoán biến mục tiêu, đồng thời bỏ qua đặc trưng ít quan trọng --- vốn thêm \textbf{nhiễu} vào mô hình và có thể gây \textbf{overfitting}.
+\end{ynghia}
+
+\subsection{Các bước thuật toán}
+
+\begin{phuongphap}[title={Các bước Forward Feature Construction}]
+\begin{enumerate}
+  \item \textbf{Khởi tạo} tập đặc trưng rỗng.
+  \item \textbf{Đặt} số đặc trưng tối đa cần chọn.
+  \item \textbf{Lặp} cho đến khi đủ số đặc trưng:
+  \begin{itemize}
+    \item Với mỗi đặc trưng \textbf{chưa} nằm trong tập đã chọn: khớp mô hình gồm tập đã chọn \textbf{cộng} đặc trưng hiện tại, đánh giá hiệu năng trên tập \textbf{kiểm tra} (validation/test).
+    \item \textbf{Chọn} đặc trưng cho hiệu năng tốt nhất và \textbf{thêm} vào tập đã chọn.
+  \end{itemize}
+  \item \textbf{Trả về} tập đặc trưng đã chọn làm tập tối ưu cho mô hình.
+\end{enumerate}
+\end{phuongphap}
+
+\begin{tinhchat}[title={Ưu điểm}]
+Ưu điểm chính: \textbf{hiệu quả tính toán}, có thể áp dụng cho dữ liệu \textbf{chiều cao}.
+\end{tinhchat}
+
+\begin{luuy}[title={Hạn chế}]
+Không luôn dẫn tới tập đặc trưng \textbf{tối ưu toàn cục}, đặc biệt khi có đặc trưng \textbf{tương quan cao} hoặc quan hệ \textbf{phi tuyến} giữa đặc trưng và biến mục tiêu.
+\end{luuy}
+
+\subsection{Ví dụ triển khai Python}
+
+\begin{dongco}[title={Bối cảnh}]
+Ví dụ dưới dùng hồi quy tuyến tính (\texttt{LinearRegression}), điểm \texttt{score} trên tập kiểm tra làm tiêu chí chọn đặc trưng tiến.
+\end{dongco}
+
+\begin{vidu}[title={Code Python đầy đủ}]
+\begin{lstlisting}
+# Import thu vien
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.datasets import fetch_openml
+
+# Tai bo diabetes
+diabetes = fetch_openml('diabetes', version=0, as_frame=True, parser='auto')
+X = diabetes.iloc[:, :-1].values
+y = diabetes.iloc[:, -1].astype(int).values
+
+# Chia tap huan luyen / kiem tra
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=0)
+
+# Tap dac trung da chon (rong)
+selected_features = set()
+
+# So dac trung toi da
+max_features = 8
+
+# Lap den khi du 8 dac trung
+while len(selected_features) < max_features:
+
+    best_feature = None
+    best_score = 0
+
+    for i in range(X_train.shape[1]):
+
+        if i in selected_features:
+            continue
+
+        X_train_selected = X_train[:, list(selected_features) + [i]]
+        regressor = LinearRegression()
+        regressor.fit(X_train_selected, y_train)
+
+        X_test_selected = X_test[:, list(selected_features) + [i]]
+        score = regressor.score(X_test_selected, y_test)
+
+        if score > best_score:
+            best_feature = i
+            best_score = score
+
+    selected_features.add(best_feature)
+
+    print('Selected Features:', list(selected_features))
+    print('Score:', best_score)
+\end{lstlisting}
+\end{vidu}
+
+\begin{ynghia}[title={Cách đọc vòng lặp}]
+Ở mỗi vòng \texttt{while}, thuật toán thử \textbf{từng} cột chưa chọn: huấn luyện trên \texttt{X\_train} gồm các cột đã chọn + cột thử \texttt{i}, tính \texttt{regressor.score} trên \texttt{X\_test} tương ứng. Cột có \texttt{score} cao nhất được \textbf{cố định} vào \texttt{selected\_features}. In ra tập chỉ số và điểm sau mỗi bước.
+\end{ynghia}
+
+\begin{vidu}[title={Kết quả chạy (mẫu)}]
+Khi chạy, terminal có thể in:
+\begin{lstlisting}
+Selected Features: [1]
+Score: 0.23530716168783583
+Selected Features: [0, 1]
+Score: 0.2923143573608237
+Selected Features: [0, 1, 5]
+Score: 0.3164103491569179
+Selected Features: [0, 1, 5, 6]
+Score: 0.3287368302427327
+Selected Features: [0, 1, 2, 5, 6]
+Score: 0.334586804842275
+Selected Features: [0, 1, 2, 3, 5, 6]
+Score: 0.3356264736550455
+Selected Features: [0, 1, 2, 3, 4, 5, 6]
+Score: 0.3313166516703744
+Selected Features: [0, 1, 2, 3, 4, 5, 6, 7]
+Score: 0.32230203252064216
+\end{lstlisting}
+\end{vidu}
+
+\begin{luuy}[title={Chỉ số đặc trưng}]
+Các số \texttt{0, 1, 2, \ldots} là \textbf{chỉ số cột} trong ma trận \texttt{X} (thứ tự cột của bộ Pima sau \texttt{fetch\_openml}), không phải tên biến. Thứ tự thêm phụ thuộc dữ liệu và \texttt{random\_state} khi chia train/test.
+\end{luuy}

@@ -1,0 +1,128 @@
+%==============================================================================
+\section{Deep Deterministic Policy Gradient (DDPG)}
+\label{sec:ddpg}
+%==============================================================================
+
+\begin{dinhnghia}[title={DDPG}]
+\textbf{Deep Deterministic Policy Gradient (DDPG)} là thuật toán học tăng cường đồng thời học \textbf{hàm Q} và \textbf{chính sách (policy)}. Hàm Q được học từ dữ liệu \textbf{off-policy} và phương trình Bellman; sau đó dùng để cập nhật policy. DDPG mở rộng \textbf{Deep Q-Networks (DQN)} sang \textbf{không gian hành động liên tục}, với policy \textbf{xác định (deterministic)} thay vì policy ngẫu nhiên như trong DQN hay REINFORCE.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Bối cảnh và đặc điểm}]
+DDPG được thiết kế cho bài toán có \textbf{hành động liên tục} (điều khiển robot, lái xe tự động, điều khiển động cơ\ldots). Thuật toán \textbf{model-free}, \textbf{off-policy}, dựa trên kiến trúc \textbf{actor--critic}, kết hợp ý tưởng \textbf{Q-learning} (học giá trị) và \textbf{policy gradient} (học chính sách). Deep learning dùng để xấp xỉ cả hàm giá trị lẫn policy khi quan sát và hành động có chiều cao.
+\end{ynghia}
+
+\subsection{Khái niệm then chốt}
+
+\begin{ynghia}[title={Định lý Policy Gradient (xác định)}]
+DDPG dùng \textbf{định lý gradient chính sách xác định} (deterministic policy gradient theorem): gradient của \textbf{return kỳ vọng} theo tham số policy $\mu_\theta(s)$ có thể tính qua đạo hàm của $Q(s,a)$ theo hành động $a$ tại $a = \mu_\theta(s)$. Gradient này dùng để cập nhật mạng \textbf{actor}.
+\end{ynghia}
+
+\begin{ynghia}[title={Off-policy}]
+DDPG là \textbf{off-policy}: học từ kinh nghiệm do \textbf{chính sách hành vi (behavior policy)} tạo ra --- có thể khác policy đang tối ưu --- nhờ lưu các bước $(s,a,r,s')$ vào \textbf{replay buffer} rồi lấy mẫu mini-batch ngẫu nhiên để cập nhật mạng.
+\end{ynghia}
+
+\begin{dinhnghia}[title={``Deterministic'' trong DDPG}]
+\textbf{Chính sách xác định} ánh xạ mỗi trạng thái $s$ sang \textbf{một} hành động cụ thể $a = \mu_\theta(s)$, không phải phân phối xác suất $\pi(a|s)$ như REINFORCE hay policy gradient ngẫu nhiên. So với hàm giá trị/hàm Q (thường gán điểm số cho mọi hành động khả dĩ), actor chỉ \textbf{xuất ra một vector hành động} cho mỗi $s$. Phù hợp môi trường liên tục nơi hành động là số thực (vận tốc, góc lái\ldots).
+\end{dinhnghia}
+
+\subsection{Thành phần cốt lõi (actor--critic)}
+
+\begin{dinhnghia}[title={Kiến trúc Actor--Critic}]
+\begin{itemize}
+  \item \textbf{Actor} (mạng policy): nhận $s$, xuất hành động xác định $a = \mu_\theta(s)$; tham số $\theta$.
+  \item \textbf{Critic} (mạng Q): xấp xỉ $Q_\phi(s,a)$ --- giá trị kỳ vọng return khi ở $s$ và thực hiện $a$; nhận cả $s$ và $a$; tham số $\phi$.
+\end{itemize}
+Actor quyết định \textbf{hành động}; critic \textbf{chấm điểm} hành động đó để hướng cập nhật actor.
+\end{dinhnghia}
+
+\begin{tinhchat}[title={Policy xác định so với policy ngẫu nhiên}]
+Với mỗi $s$, actor trả về \textbf{một} $a$, không lấy mẫu từ phân phối. Điều này giúp gradient theo hành động liên tục ổn định hơn, nhưng \textbf{khám phá} phải bổ sung bằng nhiễu (xem mục Ornstein--Uhlenbeck).
+\end{tinhchat}
+
+\subsection{Cách DDPG hoạt động}
+
+\begin{phuongphap}[title={Không gian hành động liên tục}]
+Khác môi trường rời rạc (game với tập hành động hữu hạn), DDPG xử lý $a \in \mathbb{R}^d$ (tốc độ, moment, torque\ldots). Critic học $Q(s,a)$ trên toàn miền liên tục; actor tối đa hóa $Q$ theo $a$ cho mỗi $s$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Experience replay}]
+Lưu kinh nghiệm dạng bộ tứ:
+\[
+(s_t, a_t, r_t, s_{t+1})
+\]
+vào buffer có dung lượng cố định. Mỗi bước huấn luyện \textbf{lấy ngẫu nhiên} mini-batch từ buffer thay vì chỉ dùng dữ liệu liên tiếp theo thời gian. Điều này:
+\begin{itemize}
+  \item giảm \textbf{tương quan} giữa các mẫu liền kề;
+  \item tái sử dụng dữ liệu cũ (hiệu quả mẫu cho off-policy);
+  \item ổn định hơn khi cập nhật mạng sâu.
+\end{itemize}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Huấn luyện Critic (TD)}]
+Critic cập nhật theo \textbf{Temporal Difference}, thường dạng $TD(0)$. Mục tiêu xấp xỉ Bellman với policy \textbf{target} $\mu_{\theta'}$:
+\[
+y = r + \gamma\, Q_{\phi'}(s', \mu_{\theta'}(s'))
+\]
+Giảm sai số TD (MSE giữa $Q_\phi(s,a)$ và $y$), ví dụ:
+\[
+L_{\text{critic}} = \mathbb{E}\big[(Q_\phi(s,a) - y)^2\big]
+\]
+Critic đánh giá chất lượng quyết định của actor qua $Q$.
+\end{phuongphap}
+
+\begin{phuongphap}[title={Huấn luyện Actor (gradient ascent trên Q)}]
+Actor cập nhật để \textbf{tăng} $Q(s, \mu_\theta(s))$: tính $\nabla_\theta Q_\phi(s, \mu_\theta(s))$ (chuỗi quy tắc qua hành động do actor sinh ra), rồi đi theo hướng \textbf{gradient ascent} trên $\theta$ --- ưu tiên hành động mang $Q$ cao hơn. Đây là bước ``policy improvement'' trong vòng actor--critic.
+\end{phuongphap}
+
+\subsection{Mạng target và soft update}
+
+\begin{ynghia}[title={Mạng target}]
+DDPG duy trì bản sao \textbf{chậm} của actor và critic: $\mu_{\theta'}$, $Q_{\phi'}$. Target dùng trong $y$ ở bước critic để tránh ``đuổi theo'' mục tiêu thay đổi quá nhanh --- nguyên nhân hay gặp của \textbf{dao động} khi dùng xấp xỉ hàm sâu (tương tự DQN).
+\end{ynghia}
+
+\begin{phuongphap}[title={Soft update (Polyak averaging)}]
+Thay vì copy cứng toàn bộ trọng số mỗi $C$ bước, DDPG \textbf{cập nhật mềm} target từng bước nhỏ:
+\[
+\theta' \leftarrow \tau\,\theta + (1-\tau)\,\theta', \qquad
+\phi' \leftarrow \tau\,\phi + (1-\tau)\,\phi'
+\]
+với $\tau \ll 1$ (ví dụ $10^{-3}$) để target thay đổi \textbf{chậm}, tăng ổn định.
+\end{phuongphap}
+
+\begin{luuy}[title={Công thức soft update}]
+Một số tài liệu ghi nhầm dạng $\theta' \leftarrow \tau + (1-\tau)\theta'$ (thiếu $\theta$ ở vế phải). Công thức chuẩn trong DDPG (Lillicrap et al., 2015) và triển khai phổ biến là \textbf{trộn có trọng số} giữa mạng online và mạng target như trên, áp dụng riêng cho actor ($\theta$) và critic ($\phi$).
+\end{luuy}
+
+\subsection{Khám phá--khai thác}
+
+\begin{phuongphap}[title={Nhiễu Ornstein--Uhlenbeck (OU)}]
+Policy xác định vốn \textbf{tham lam}: luôn chọn hành động ``tốt nhất'' theo mạng hiện tại, ít khám phá. DDPG thêm \textbf{nhiễu OU} có tương quan theo thời gian vào hành động thực thi trong môi trường:
+\[
+a_{\text{exec}} = \mu_\theta(s) + \mathcal{N}_{\text{OU}}
+\]
+OU mô phỏng quán tính (phù hợp điều khiển liên tục) hơn nhiễu Gaussian trắng từng bước. Khi thu thập vào replay buffer vẫn lưu hành động đã thực hiện (có nhiễu); khi học, actor vẫn hướng tới tối đa $Q$ của policy xác định.
+\end{phuongphap}
+
+\begin{luuy}[title={Exploration vs.\ exploitation}]
+Giai đoạn đầu cần nhiễu đủ lớn; về sau có thể giảm biên độ nhiễu. Nếu chỉ khai thác policy hiện tại, agent dễ kẹt ở cực tiểu cục bộ --- đặc biệt trên không gian hành động liên tục, phức tạp.
+\end{luuy}
+
+\subsection{Thách thức}
+
+\begin{luuy}[title={Thách thức chính của DDPG}]
+\begin{itemize}
+  \item \textbf{Không ổn định khi huấn luyện}: xấp xỉ hàm bằng mạng sâu dễ dao động; target network và replay buffer giúp nhưng vẫn \textbf{nhạy hyperparameter} (tốc độ học actor/critic, $\tau$, kích thước batch, kiến trúc).
+  \item \textbf{Khám phá kém}: dù có nhiễu OU, môi trường rất phức tạp hoặc reward thưa vẫn có thể học chậm hoặc hội tụ kém; cần điều chỉnh nhiễu, schedule, hoặc thuật toán kế thừa (TD3, SAC).
+  \item \textbf{Overestimation / bias Q}: critic lạc kéo actor sai; các biến thể như \textbf{Twin Delayed DDPG (TD3)} giảm vấn đề này.
+  \item \textbf{Hyperparameter và tái lập}: kết quả phụ thuộc seed, scale reward, chuẩn hóa quan sát --- cần thực hành tinh chỉnh cẩn thận.
+\end{itemize}
+\end{luuy}
+
+\begin{tinhchat}[title={Tóm tắt luồng DDPG}]
+\begin{enumerate}
+  \item Agent tương tác môi trường với $a = \mu_\theta(s) + \text{nhiễu}$, lưu $(s,a,r,s')$ vào replay.
+  \item Lấy mini-batch; cập nhật critic bằng TD target từ $Q_{\phi'}$, $\mu_{\theta'}$.
+  \item Cập nhật actor theo gradient của $Q_\phi(s, \mu_\theta(s))$ theo $\theta$.
+  \item Soft-update $\theta'$, $\phi'$; lặp.
+\end{enumerate}
+\end{tinhchat}
