@@ -46,6 +46,41 @@
   }%
 }
 
+% Lưới frame GIF: \mlcbframegrid{cols}{dir/prefix}{start}{end}
+\newcount\mlcbframeidx
+\newcount\mlcbframecol
+\newcount\mlcbframeend
+\newcount\mlcbframecols
+\newlength{\mlcbframew}
+\newcommand{\mlcbframegrid}[4]{%
+  \mlcbframecols=#1\relax
+  \mlcbframeend=#4\relax
+  \setlength{\mlcbframew}{\dimexpr(0.97\linewidth)/\mlcbframecols\relax}%
+  \par\smallskip\begin{center}%
+  \mlcbframeidx=#3\relax
+  \mlcbframecol=0
+  \loop\ifnum\mlcbframeidx>\mlcbframeend\else
+    \begin{minipage}[t]{\mlcbframew}%
+      \centering
+      \edef\mlcbframename{#2-\the\mlcbframeidx}%
+      \IfFileExists{images/\mlcbframename.png}{%
+        \includegraphics[width=\linewidth]{\mlcbframename}%
+      }{%
+        \fbox{\parbox[c][1cm][c]{\dimexpr\linewidth-2\fboxsep\relax}{\centering\scriptsize\mlcbframename}}%
+      }%
+    \end{minipage}%
+    \advance\mlcbframecol by 1
+    \ifnum\mlcbframecol=\mlcbframecols\relax
+      \par\medskip
+      \mlcbframecol=0
+    \else
+      \hspace{0.25em}%
+    \fi
+    \advance\mlcbframeidx by 1
+  \repeat
+  \end{center}\smallskip
+}
+
 \begin{document}
 
 \input{../../1_machine_learning/_template/trang_bia.tex}
@@ -57,21 +92,13 @@
 \addcontentsline{toc}{section}{Lời nói đầu}
 
 \begin{ynghia}[title={Vị trí trong giáo trình}]
-Chương trình bày thuật toán \textbf{Gradient Descent (GD)} và các biến thể --- nền tảng để huấn luyện hầu hết mô hình học máy có hàm mất mát khả vi. Nội dung cốt lõi biên soạn theo chuỗi bài Machine Learning cơ bản (Vũ Hồng Nghi); được chỉnh lý theo phong cách \textbf{bài giảng / giáo trình} (không giữ văn phong blog), kèm phần bổ trợ giải thích bản chất.
+Chương trình bày thuật toán \textbf{Gradient Descent (GD)} và các biến thể --- nền tảng để huấn luyện hầu hết mô hình học máy có hàm mất mát khả vi.
 \end{ynghia}
 
 \begin{phuongphap}[title={Tài liệu tham chiếu gốc}]
 \begin{itemize}
   \item Bài 7 --- Gradient Descent (phần 1/2): \mlcburl{https://machinelearningcoban.com/2017/01/12/gradientdescent/}
   \item Bài 8 --- Gradient Descent (phần 2/2): \mlcburl{https://machinelearningcoban.com/2017/01/16/gradientdescent2/}
-\end{itemize}
-\end{phuongphap}
-
-\begin{phuongphap}[title={Cách học chương này}]
-\begin{itemize}
-  \item Đọc \textbf{Mục tiêu và ký hiệu}, sau đó Chương~1 (lý thuyết + code), rồi Chương~2 (SGD, momentum, Newton).
-  \item Chạy lại các đoạn Python; thử đổi $\eta$, $x_0$ để quan sát hội tụ.
-  \item Kết thúc bằng \textbf{Tổng hợp và củng cố} (bảng so sánh, câu hỏi ôn tập).
 \end{itemize}
 \end{phuongphap}
 

@@ -1,9 +1,9 @@
 %==============================================================================
-\section{Chương 1. Cơ sở Gradient Descent}
+\section{Cơ sở Gradient Descent}
 \label{sec:gd-part1}
 %==============================================================================
 
-\subsection{1.1. Giới thiệu}
+\subsection{Giới thiệu}
 
 \begin{ynghia}[title={Bề mặt hàm số và cực tiểu}]
 Hình minh họa dưới đây thể hiện đồ thị hàm một biến và vị trí cực tiểu:
@@ -15,10 +15,10 @@ Hình minh họa dưới đây thể hiện đồ thị hàm một biến và v�
 
 \begin{dinhnghia}[title={Local minimum và đạo hàm}]
 Giả sử chúng ta đang quan tâm đến một hàm số một biến có đạo hàm mọi nơi. Nhắc lại vài điều đã quá quen thuộc:
-
-Điểm local minimum $x^*$ của hàm số là điểm có đạo hàm $f'(x^*)$ bằng $0$. Hơn thế nữa, trong lân cận của nó, đạo hàm của các điểm phía bên trái $x^*$ là không dương, đạo hàm của các điểm phía bên phải $x^*$ là không âm.
-
-Đường tiếp tuyến với đồ thị hàm số đó tại một điểm bất kỳ có hệ số góc chính bằng đạo hàm của hàm số tại điểm đó.
+\begin{itemize}
+\item Điểm local minimum $x^*$ của hàm số là điểm có đạo hàm $f'(x^*) =0$. Hơn thế nữa, trong lân cận của nó, đạo hàm của các điểm phía bên trái $x^*$ là không dương, đạo hàm của các điểm phía bên phải $x^*$ là không âm.
+\item Đường tiếp tuyến với đồ thị hàm số đó tại một điểm bất kỳ có hệ số góc chính bằng đạo hàm của hàm số tại điểm đó.
+\end{itemize}
 \end{dinhnghia}
 
 \begin{tinhchat}[title={Dấu đạo hàm quanh cực tiểu}]
@@ -37,10 +37,6 @@ Các điểm local minimum là nghiệm của phương trình đạo hàm bằng
 Hướng tiếp cận phổ biến nhất là xuất phát từ một điểm mà chúng ta coi là gần với nghiệm của bài toán, sau đó dùng một phép toán lặp để tiến dần đến điểm cần tìm, tức đến khi đạo hàm gần với $0$. \textbf{Gradient Descent} (viết gọn là GD) và các biến thể của nó là một trong những phương pháp được dùng nhiều nhất.
 \end{phuongphap}
 
-\begin{phuongphap}[title={Cấu trúc chương}]
-Nội dung GD được chia hai chương: \textbf{Chương~1} (mục này) --- ý tưởng, cập nhật một/nhiều biến, Linear Regression và kiểm tra gradient; \textbf{Chương~2} --- momentum, NAG, Batch/SGD/mini-batch, điều kiện dừng, Newton. Bài toán \emph{large-scale} (số chiều và số mẫu lớn) là động lực cho các biến thể ở Chương~2.
-\end{phuongphap}
-
 \begin{phuongphap}[title={Thuật toán Gradient Descent (khung chung)}]
 \textbf{Đầu vào:} hàm khả vi $f(\boldsymbol{\theta})$ (hoặc $\mathcal{L}$), learning rate $\eta > 0$, điểm khởi tạo $\boldsymbol{\theta}_0$, tiêu chí dừng.\\
 \textbf{Lặp} cho $t = 0, 1, 2, \ldots$ đến khi dừng:
@@ -53,7 +49,7 @@ Nội dung GD được chia hai chương: \textbf{Chương~1} (mục này) --- �
 \end{phuongphap}
 
 %------------------------------------------------------------------------------
-\subsection{1.2. Gradient Descent cho hàm một biến}
+\subsection{Gradient Descent cho hàm một biến}
 %------------------------------------------------------------------------------
 
 \begin{ynghia}[title={Quan sát từ đồ thị}]
@@ -116,17 +112,15 @@ def cost(x):
 def myGD1(eta, x0):
  x = [x0]
  for it in range(100):
- x_new = x[-1] - eta*grad(x[-1])
- if abs(grad(x_new)) < 1e-3:
- break
- x.append(x_new)
+  x_new = x[-1] - eta*grad(x[-1])
+  if abs(grad(x_new)) < 1e-3:
+   break
+  x.append(x_new)
  return (x, it)
 \end{lstlisting}
 \end{vidu}
 
-\paragraph{Điểm khởi tạo khác nhau.}
-
-\begin{vidu}[title={Thử $x_0 = -5$ và $x_0 = 5$}]
+\begin{vidu}[title={Điểm khởi tạo khác nhau: Thử $x_0 = -5$ và $x_0 = 5$}]
 Sau khi có các hàm cần thiết, thử nghiệm với nghiệm với các điểm khởi tạo khác nhau là $x_0 = -5$ và $x_0 = 5$:
 \begin{lstlisting}[language=Python]
 (x1, it1) = myGD1(.1, -5)
@@ -141,23 +135,27 @@ Solution x1 = -1.110667, cost = -3.246394, obtained after 11 iterations
 Solution x2 = -1.110341, cost = -3.246394, obtained after 29 iterations
 \end{lstlisting}
 
-Vậy là với các điểm ban đầu khác nhau, thuật toán của chúng ta tìm được nghiệm gần giống nhau, mặc dù với tốc độ hội tụ khác nhau. Dưới đây là hình ảnh minh họa thuật toán GD cho bài toán này .
-
-\mlcbimg{01_gradient_descent_part1/img03.png}
-\mlcbimg{01_gradient_descent_part1/img04.png}
+Vậy là với các điểm ban đầu khác nhau, thuật toán của chúng ta tìm được nghiệm gần giống nhau, mặc dù với tốc độ hội tụ khác nhau.
 \end{vidu}
+
+$x_0 = -5$:
+\mlcbframegrid{4}{01_gradient_descent_part1/img03}{0}{10}
+
+$x_0 = 5$:
+\mlcbframegrid{4}{01_gradient_descent_part1/img04}{0}{28}
 
 \begin{ynghia}[title={So sánh hai điểm khởi tạo}]
 Từ hình minh họa trên ta thấy rằng ở hình bên trái, tương ứng với $x_0 = -5$, nghiệm hội tụ nhanh hơn, vì điểm ban đầu $x_0$ gần với nghiệm $x^* \approx -1$ hơn. Hơn nữa, với $x_0 = 5$ ở hình bên phải, đường đi của nghiệm có chứa một khu vực có đạo hàm khá nhỏ gần điểm có hoành độ bằng $2$. Điều này khiến cho thuật toán la cà ở đây khá lâu. Khi vượt qua được điểm này thì mọi việc diễn ra rất tốt đẹp.
 \end{ynghia}
 
-\paragraph{Learning rate khác nhau.}
-
-\begin{vidu}[title={Cùng $x_0 = -5$, $\eta$ khác nhau}]
+\begin{vidu}[title={Learning rate khác nhau: Cùng $x_0 = -5$, $\eta$ khác nhau}]
 Tốc độ hội tụ của GD không những phụ thuộc vào điểm khởi tạo ban đầu mà còn phụ thuộc vào learning rate. Dưới đây là một ví dụ với cùng điểm khởi tạo $x_0 = -5$ nhưng learning rate khác nhau:
 
-\mlcbimg{01_gradient_descent_part1/img05.png}
-\mlcbimg{01_gradient_descent_part1/img06.png}
+$\eta = 0.01$:
+\mlcbframegrid{5}{01_gradient_descent_part1/img05}{0}{98}
+
+$\eta = 0.5$:
+\mlcbframegrid{5}{01_gradient_descent_part1/img06}{0}{98}
 \end{vidu}
 
 \begin{tinhchat}[title={Hai trường hợp learning rate}]
@@ -169,11 +167,11 @@ Ta quan sát thấy hai điều:
 \end{tinhchat}
 
 \begin{luuy}[title={Chọn learning rate}]
-Việc lựa chọn learning rate rất quan trọng trong các bài toán thực tế. Việc lựa chọn giá trị này phụ thuộc nhiều vào từng bài toán và phải làm một vài thí nghiệm để chọn ra giá trị tốt nhất. Ngoài ra, tùy vào một số bài toán, GD có thể làm việc hiệu quả hơn bằng cách chọn ra learning rate phù hợp hoặc chọn learning rate khác nhau ở mỗi vòng lặp. Phần sau trình bày vấn đề này ở phần 2.
+Việc lựa chọn learning rate rất quan trọng trong các bài toán thực tế. Việc lựa chọn giá trị này phụ thuộc nhiều vào từng bài toán và phải làm một vài thí nghiệm để chọn ra giá trị tốt nhất. Ngoài ra, tùy vào một số bài toán, GD có thể làm việc hiệu quả hơn bằng cách chọn ra learning rate phù hợp hoặc chọn learning rate khác nhau ở mỗi vòng lặp.
 \end{luuy}
 
 %------------------------------------------------------------------------------
-\subsection{1.3. Gradient Descent cho hàm nhiều biến}
+\subsection{Gradient Descent cho hàm nhiều biến}
 %------------------------------------------------------------------------------
 
 \begin{dinhnghia}[title={Cập nhật với vector tham số $\boldsymbol{\theta}$}]
@@ -187,8 +185,6 @@ Giả sử ta cần tìm global minimum cho hàm $f(\boldsymbol{\theta})$ trong 
 Hoặc viết dưới dạng đơn giản hơn: $\boldsymbol{\theta} \leftarrow \boldsymbol{\theta} - \eta\, \nabla_{\boldsymbol{\theta}} f(\boldsymbol{\theta})$.
 
 \textbf{Quy tắc cần nhớ:} luôn luôn đi ngược hướng với đạo hàm.
-
-Việc tính toán đạo hàm của các hàm nhiều biến là một kỹ năng cần thiết.
 \end{congthuc}
 
 \subsubsection{Ứng dụng: Linear Regression}
@@ -198,7 +194,12 @@ Việc tính toán đạo hàm của các hàm nhiều biến là một kỹ nă
 \end{ynghia}
 
 \begin{dongco}[title={GD so với nghiệm công thức}]
-Với MSE và ma trận đầy đủ hạng, nghiệp vụ tối thiểu là duy nhất (hàm lồi). GD và công thức ma trận \textbf{cùng hướng tới cùng $\mathbf{w}^*$} nếu $\eta$ phù hợp. GD vẫn quan trọng vì: (i) không cần lưu nghịch đảo ma trận lớn; (ii) mở rộng được khi thêm regularization hoặc mô hình phi tuyến; (iii) là mẫu cho SGD khi $N$ rất lớn.
+Với MSE và ma trận đầy đủ hạng, nghiệp vụ tối thiểu là duy nhất (hàm lồi). GD và công thức ma trận \textbf{cùng hướng tới cùng $\mathbf{w}^*$} nếu $\eta$ phù hợp. GD vẫn quan trọng vì:
+\begin{itemize}
+\item Không cần lưu nghịch đảo ma trận lớn.
+\item Mở rộng được khi thêm regularization hoặc mô hình phi tuyến.
+\item Là mẫu cho SGD khi $N$ rất lớn.
+\end{itemize}
 \end{dongco}
 
 \begin{congthuc}[title={Hàm mất mát và gradient}]
@@ -230,7 +231,7 @@ import matplotlib.pyplot as plt
 np.random.seed(2)
 \end{lstlisting}
 
-\textbf{Tiếp theo,} chúng ta tạo $1000$ điểm dữ liệu được chọn gần với đường thẳng $y = 4 + 3x$, hiển thị chúng và tìm nghiệm theo công thức:
+Tiếp theo, chúng ta tạo $1000$ điểm dữ liệu được chọn gần với đường thẳng $y = 4 + 3x$, hiển thị chúng và tìm nghiệm theo công thức:
 \begin{lstlisting}[language=Python]
 X = np.random.rand(1000, 1)
 y = 4 + 3 * X + .2*np.random.randn(1000, 1) # noise added
@@ -263,9 +264,11 @@ Kết quả:
 Solution found by formula: w = [[ 4.00305242 2.99862665]]
 \end{lstlisting}
 
+\mlcbimg{01_gradient_descent_part1/img07.png}
+
 Đường thẳng tìm được là đường có màu vàng có phương trình $y \approx 4 + 2.998x$.
 
-\textbf{Tiếp theo} ta viết đạo hàm và hàm mất mát:
+Tiếp theo, ta viết đạo hàm và hàm mất mát:
 \begin{lstlisting}[language=Python]
 def grad(w):
  N = Xbar.shape[0]
@@ -277,9 +280,7 @@ def cost(w):
 \end{lstlisting}
 \end{vidu}
 
-\paragraph{Kiểm tra đạo hàm.}
-
-\begin{dinhnghia}[title={Numerical gradient}]
+\begin{dinhnghia}[title={Kiểm tra đạo hàm: Numerical gradient}]
 Việc tính đạo hàm của hàm nhiều biến thông thường khá phức tạp và rất dễ mắc lỗi, nếu chúng ta tính sai đạo hàm thì thuật toán GD không thể chạy đúng được. Trong thực nghiệm, có một cách để kiểm tra liệu đạo hàm tính được có chính xác không. Cách này dựa trên định nghĩa của đạo hàm (cho hàm một biến):
 \[
 f'(x) = \lim_{\varepsilon \rightarrow 0}\frac{f(x + \varepsilon) - f(x)}{\varepsilon}
@@ -299,21 +300,17 @@ f'(x) \approx \frac{f(x + \varepsilon) - f(x - \varepsilon)}{2\varepsilon} \qqua
 Có hai cách giải thích cho vấn đề này, một bằng hình học, một bằng giải tích.
 \end{luuy}
 
-\paragraph{Giải thích bằng hình học.}
-
-\begin{ynghia}[title={Ba vector xấp xỉ so với đạo hàm chính xác}]
+\begin{ynghia}[title={Giải thích bằng hình học: Ba vector xấp xỉ so với đạo hàm chính xác}]
 Quan sát hình dưới đây:
 
 \mlcbimg{01_gradient_descent_part1/img08.png}
 
-Trong hình, vector màu đỏ là đạo hàm chính xác của hàm số tại điểm có hoành độ bằng $x_0$. Vector màu xanh lam (có vẻ là hơi tím sau khi convert từ \texttt{.pdf} sang \texttt{.png}) thể hiện cách xấp xỉ đạo hàm phía phải. Vector màu xanh lục thể hiện cách xấp xỉ đạo hàm phía trái. Vector màu nâu thể hiện cách xấp xỉ đạo hàm hai phía. Trong ba vector xấp xỉ đó, vector xấp xỉ hai phía màu nâu là gần với vector đỏ nhất nếu xét theo hướng.
+Trong hình, vector màu đỏ là đạo hàm chính xác của hàm số tại điểm có hoành độ bằng $x_0$. Vector màu xanh lam thể hiện cách xấp xỉ đạo hàm phía phải. Vector màu xanh lục thể hiện cách xấp xỉ đạo hàm phía trái. Vector màu nâu thể hiện cách xấp xỉ đạo hàm hai phía. Trong ba vector xấp xỉ đó, vector xấp xỉ hai phía màu nâu là gần với vector đỏ nhất nếu xét theo hướng.
 
 Sự khác biệt giữa các cách xấp xỉ còn lớn hơn nữa nếu tại điểm $x$, hàm số bị bẻ cong mạnh hơn. Khi đó, xấp xỉ trái và phải sẽ khác nhau rất nhiều. Xấp xỉ hai bên sẽ ổn định hơn.
 \end{ynghia}
 
-\paragraph{Giải thích bằng giải tích.}
-
-\begin{phuongphap}[title={Khai triển Taylor và sai số $O(\varepsilon)$ vs.\ $O(\varepsilon^2)$}]
+\begin{phuongphap}[title={Giải thích bằng giải tích: Khai triển Taylor và sai số $O(\varepsilon)$ vs.\ $O(\varepsilon^2)$}]
 Chúng ta cùng quay lại một chút với Giải tích I năm thứ nhất đại học: Khai triển Taylor.
 
 Với $\varepsilon$ rất nhỏ, ta có hai xấp xỉ sau:
@@ -336,9 +333,7 @@ Từ đó, nếu xấp xỉ đạo hàm bằng công thức $(3)$ (xấp xỉ đ
 Cả hai cách giải thích trên đây đều cho chúng ta thấy rằng, xấp xỉ đạo hàm hai phía là xấp xỉ tốt hơn.
 \end{phuongphap}
 
-\paragraph{Với hàm nhiều biến.}
-
-\begin{luuy}[title={Áp dụng numerical gradient cho nhiều biến}]
+\begin{luuy}[title={Với hàm nhiều biến: Áp dụng numerical gradient cho nhiều biến}]
 Với hàm nhiều biến, công thức $(2)$ được áp dụng cho từng biến khi các biến khác cố định. Cách tính này thường cho giá trị khá chính xác. Tuy nhiên, cách này không được sử dụng để tính đạo hàm vì độ phức tạp quá cao so với cách tính trực tiếp. Khi so sánh đạo hàm này với đạo hàm chính xác tính theo công thức, người ta thường giảm số chiều dữ liệu và giảm số điểm dữ liệu để thuận tiện cho tính toán. Một khi đạo hàm tính được rất gần với numerical gradient, chúng ta có thể tự tin rằng đạo hàm tính được là chính xác.
 \end{luuy}
 
@@ -370,8 +365,6 @@ Kết quả:
 Checking gradient... True
 \end{lstlisting}
 
-(Với các hàm số khác, người học chỉ cần viết lại hàm \texttt{grad} và \texttt{cost} ở phần trên rồi áp dụng đoạn code này để kiểm tra đạo hàm. Nếu hàm số là hàm của một ma trận thì chúng ta thay đổi một chút trong hàm \texttt{numerical\_grad}, có thể chỉnh sửa tương tự).
-
 Với bài toán Linear Regression, cách tính đạo hàm như trong $(1)$ phía trên được coi là đúng vì sai số giữa hai cách tính là rất nhỏ (nhỏ hơn $10^{-6}$). Sau khi có được đạo hàm chính xác, chúng ta viết hàm cho GD:
 \begin{lstlisting}[language=Python]
 def myGD(w_init, grad, eta):
@@ -396,26 +389,21 @@ after 49 iterations.
 
 Sau $49$ vòng lặp, thuật toán đã hội tụ với một nghiệm khá gần với nghiệm tìm được theo công thức.
 
-Dưới đây là hình động minh họa thuật toán GD.
+Các đường thẳng màu đỏ là nghiệm tìm được sau mỗi vòng lặp:
+\mlcbframegrid{5}{01_gradient_descent_part1/img09}{0}{48}
 
-\mlcbimg{01_gradient_descent_part1/img09.png}
-\mlcbimg{01_gradient_descent_part1/img10.png}
+Đường đồng mức:
+\mlcbframegrid{5}{01_gradient_descent_part1/img10}{0}{48}
 \end{vidu}
-
-\begin{ynghia}[title={Hai panel minh họa GD cho Linear Regression}]
-Trong hình bên trái, các đường thẳng màu đỏ là nghiệm tìm được sau mỗi vòng lặp.
-
-Trong hình bên phải, đây là khái niệm: \textbf{đường đồng mức}.
-\end{ynghia}
 
 \subsubsection{Đường đồng mức (level sets)}
 
 \begin{dinhnghia}[title={Level sets}]
 Với đồ thị của một hàm số với hai biến đầu vào cần được vẽ trong không gian ba chiều, nhiều khi chúng ta khó nhìn được nghiệm có khoảng tọa độ bao nhiêu. Trong toán tối ưu, người ta thường dùng một cách vẽ sử dụng khái niệm \textbf{đường đồng mức} (level sets).
 
-Trong bản đồ tự nhiên trong các bản đồ tự nhiên, để miêu tả độ cao của các dãy núi, người ta dùng nhiều đường cong kín bao quanh nhau như sau:
+Trong bản đồ tự nhiên, để miêu tả độ cao của các dãy núi, người ta dùng nhiều đường cong kín bao quanh nhau.
 
-Ví dụ về đường đồng mức trong các bản đồ tự nhiên. (Địa lý 6: Đường đồng mức là những đường như thế nào?)
+\mlcbimg{01_gradient_descent_part1/img11.jpg}
 
 Các vòng nhỏ màu đỏ hơn thể hiện các điểm ở trên cao hơn.
 
@@ -429,7 +417,8 @@ Quay trở lại với hình minh họa thuật toán GD cho bài toán Linear R
 \begin{vidu}[title={Learning rate nhỏ hơn trên Linear Regression}]
 Thử nghiệm với learning rate nhỏ hơn, kết quả như sau:
 
-\mlcbimg{01_gradient_descent_part1/img12.png}
+\mlcbframegrid{5}{01_gradient_descent_part1/img12}{0}{98}
+\mlcbframegrid{5}{01_gradient_descent_part1/img13}{0}{98}
 \end{vidu}
 
 \begin{luuy}[title={Hội tụ chậm khi $\eta$ quá nhỏ}]
@@ -437,28 +426,22 @@ Tốc độ hội tụ đã chậm đi nhiều, thậm chí sau $99$ vòng lặp
 \end{luuy}
 
 %------------------------------------------------------------------------------
-\subsection{1.4. Ví dụ: hai cực tiểu phụ thuộc khởi tạo}
+\subsection{Ví dụ: hai cực tiểu phụ thuộc khởi tạo}
 %------------------------------------------------------------------------------
 
 \begin{vidu}[title={Hàm $f(x,y) = (x^2 + y - 7)^2 + (x - y + 1)^2$}]
-Trước khi chuyển sang Chương~2, xét thêm một ví dụ hàm hai biến:
-
 Hàm số $f(x, y) = (x^2 + y - 7)^2 + (x - y + 1)^2$ có hai điểm local minimum màu xanh lục tại $(2, 3)$ và $(-3, -2)$, và chúng cũng là hai điểm global minimum. Trong ví dụ này, tùy vào điểm khởi tạo mà chúng ta thu được các nghiệm cuối cùng khác nhau.
 
-\mlcbimg{01_gradient_descent_part1/img14.png}
+\mlcbframegrid{5}{01_gradient_descent_part1/img14}{0}{98}
 \end{vidu}
 
 %------------------------------------------------------------------------------
-\subsection{1.5. Kết chương 1}
+\subsection{Tổng kết}
 %------------------------------------------------------------------------------
 
-\begin{tongket}[title={Tóm tắt Chương 1}]
-Chương này xây dựng \textbf{Gradient Descent} từ quan sát đạo hàm một biến đến cập nhật vector $\boldsymbol{\theta}$, với minh họa Python và Linear Regression. Các ý then chốt: đi \textbf{ngược gradient}; $\eta$ và $\boldsymbol{\theta}_0$ quyết định hội tụ; kiểm tra $\nabla \mathcal{L}$ bằng numerical gradient; đường đồng mức giải thích đường đi zigzag. Chương~2 bổ sung cách scale dữ liệu lớn và tăng tốc hội tụ.
+\begin{tongket}[title={Tổng kết}]
+Chương này xây dựng \textbf{Gradient Descent} từ quan sát đạo hàm một biến đến cập nhật vector $\boldsymbol{\theta}$, với minh họa Python và Linear Regression. Các ý then chốt: đi \textbf{ngược gradient}; $\eta$ và $\boldsymbol{\theta}_0$ quyết định hội tụ; kiểm tra $\nabla \mathcal{L}$ bằng numerical gradient; đường đồng mức giải thích đường đi zigzag.
 \end{tongket}
-
-%------------------------------------------------------------------------------
-\subsection{Tài liệu tham khảo}
-%------------------------------------------------------------------------------
 
 \begin{phuongphap}[title={Tài liệu đọc thêm}]
 \begin{enumerate}
