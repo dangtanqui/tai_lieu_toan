@@ -231,14 +231,42 @@
   \end{itemize}
 \end{dinhnghia}
 
+\begin{luuy}
+  \begin{itemize}
+    \item Nếu hàm số đồng biến trên $K$ thì từ trái sang phải đồ thị đi lên.
+    \begin{center}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/hs_dong_bien.png}
+    \end{center}
+    \item Nếu hàm số nghịch biến trên $K$ thì từ trái sang phải đồ thị đi xuống.
+    \begin{center}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/hs_nghich_bien.png}
+    \end{center}
+  \end{itemize}
+\end{luuy}
+
 \begin{dinhly}[title={Điều kiện đủ xét tính đơn điệu}]
   Cho hàm số $f$ có đạo hàm trên khoảng $K$:
   \begin{itemize}
     \item $f'(x) > 0,\;\forall x \in K \;\Rightarrow\; f$ đồng biến trên $K$.
     \item $f'(x) < 0,\;\forall x \in K \;\Rightarrow\; f$ nghịch biến trên $K$.
-    \item $f'(x) = 0,\;\forall x \in K \;\Rightarrow\; f$ là hàm hằng trên $K$.
   \end{itemize}
 \end{dinhly}
+
+\begin{dinhly}[title={Tổng quát}]
+  Cho hàm số $f$ có đạo hàm trên $K$ ($K$ là khoảng, đoạn hoặc nửa khoảng):
+  \begin{itemize}
+    \item $f'(x) > 0,\;\forall x \in K$ và $f'(x) = 0$ tại một số hữu hạn điểm trên $K$ $\Rightarrow\; f$ đồng biến trên $K$.
+    \item $f'(x) < 0,\;\forall x \in K$ và $f'(x) = 0$ tại một số hữu hạn điểm trên $K$ $\Rightarrow\; f$ nghịch biến trên $K$.
+  \end{itemize}
+\end{dinhly}
+
+\begin{luuy}
+  \begin{itemize}
+    \item Nếu hàm số $y = f(x)$ liên tục trên đoạn $[a; b]$ và $f'(x) > 0,\;\forall x \in (a; b)$ thì hàm số đồng biến trên đoạn $[a; b]$.
+    \item Nếu hàm số $y = f(x)$ liên tục trên đoạn $[a; b]$ và $f'(x) < 0,\;\forall x \in (a; b)$ thì hàm số nghịch biến trên đoạn $[a; b]$.
+    \item Tương tự với các khái niệm hàm số đồng biến, nghịch biến trên các nửa khoảng.
+  \end{itemize}
+\end{luuy}
 
 \begin{phuongphap}[title={Các bước xét tính đơn điệu}]
   \begin{enumerate}
@@ -248,8 +276,8 @@
         \item $\sqrt{P(x)}$ có nghĩa khi $P(x) \ge 0$.
         \item $\dfrac{1}{\sqrt{P(x)}}$ có nghĩa khi $P(x) > 0$.
       \end{itemize}
-    \item \textbf{Tính} $f'(x)$ và giải phương trình $f'(x) = 0$.
-    \item \textbf{Lập bảng biến thiên} (xét dấu $f'(x)$).
+    \item \textbf{Tính} $f'(x)$ và tìm các nghiệm $x_i$ của phương trình $f'(x) = 0$ hoặc tại đó $f'(x)$ không xác định.
+    \item \textbf{Lập bảng biến thiên} sắp xếp các điểm $x_i$ theo thứ tự tăng dần và xét dấu $f'(x)$.
     \item \textbf{Kết luận} các khoảng đồng biến, nghịch biến.
   \end{enumerate}
 \end{phuongphap}
@@ -279,6 +307,9 @@
         f(x) > f(x_0),\quad \forall\, x \in (x_0 - h,\; x_0 + h),\; x \ne x_0.
       \]
     \item Giá trị cực đại, cực tiểu gọi chung là \textbf{cực trị}.
+    \begin{center}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/hs_cuc_tri.png}
+    \end{center}
   \end{itemize}
 \end{dinhnghia}
 
@@ -287,11 +318,11 @@
   \begin{itemize}
     \item $f'(x)$ đổi dấu từ $+$ sang $-$ khi $x$ qua $x_0$ $\Rightarrow$ $f$ đạt \textbf{cực đại} tại $x_0$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/cuc_dai.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/cuc_dai.png}
     \end{center}
     \item $f'(x)$ đổi dấu từ $-$ sang $+$ khi $x$ qua $x_0$ $\Rightarrow$ $f$ đạt \textbf{cực tiểu} tại $x_0$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/cuc_tieu.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/cuc_tieu.png}
     \end{center}
   \end{itemize}
   \textbf{Quy tắc đạo hàm cấp hai:} Nếu $f'(x_0) = 0$ thì:
@@ -305,7 +336,7 @@
 \begin{luuy}
   \begin{itemize}
     \item Giá trị cực đại, cực tiểu \textbf{không nhất thiết} là giá trị lớn nhất, nhỏ nhất của hàm số.
-    \item Nếu $f'(x) = 0$ có $n$ nghiệm đơn $x_i$ thì hàm số có $n$ điểm cực trị.
+    \item Nếu $f'(x) = 0$ có $n$ nghiệm đơn $x_i$ thì hàm số có $n$ điểm cực trị. Nếu có nghiệm kép $x_j$ thì điểm $x_j$ không phải là điểm cực trị.
     \item $f'(x_0)$ là hệ số góc của tiếp tuyến tại $x_0$.
     \item \textbf{Phương trình tiếp tuyến} tại điểm $M\bigl(x_0,\, f(x_0)\bigr)$:
       \[
@@ -318,12 +349,15 @@
 \begin{phuongphap}[title={Các bước tìm cực trị}]
   \begin{enumerate}
     \item Tìm tập xác định.
-    \item Tính $f'(x)$.
-    \item Giải $f'(x) = 0$.
-    \item Lập bảng biến thiên hoặc xét $f''(x)$.
+    \item \textbf{Tính} $f'(x)$ và tìm các nghiệm $x_i$ của phương trình $f'(x) = 0$ hoặc tại đó $f'(x)$ không xác định.
+    \item \textbf{Lập bảng biến thiên} sắp xếp các điểm $x_i$ theo thứ tự tăng dần và xét dấu $f'(x)$ hoặc xét dấu $f''(x)$.
     \item Kết luận cực trị.
   \end{enumerate}
 \end{phuongphap}
+
+\begin{vidu}
+  Tìm cực trị của hàm số $y = x^3 - 3x^2 + 4x - 2$.
+\end{vidu}
 
 \medskip\noindent\textbf{Các dạng bài tập:}
 \begin{enumerate}[label=\textbf{Dạng \arabic*:}, leftmargin=*, align=left]
@@ -795,7 +829,7 @@
     = a_1 b_1 + a_2 b_2 + a_3 b_3.
   \]
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_vo_huong.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/tich_vo_huong.png}
   \end{center}
 \end{congthuc}
 
@@ -845,12 +879,12 @@
   \begin{itemize}
     \item $[\vec{a},\, \vec{b}] \perp \vec{a}$ và $[\vec{a},\, \vec{b}] \perp \vec{b}$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_co_huong.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/tich_co_huong.png}
     \end{center}
     \item Diện tích hình bình hành: $S_{\text{hbh}} = \bigl|[\vec{a},\, \vec{b}]\bigr| = |\vec{a}|.|\vec{b}|.\sin{(\vec{a}, \vec{b})}$.
     \item Diện tích tam giác: $S_{\triangle} = \dfrac{1}{2}\bigl|[\vec{a},\, \vec{b}]\bigr|$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/tich_co_huong_dien_tich.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/tich_co_huong_dien_tich.png}
     \end{center}
   \end{itemize}
 \end{tinhchat}
@@ -883,7 +917,7 @@
   \begin{itemize}
     \item \textbf{Vectơ pháp tuyến (VTPT):} $\vec{n} = (A;\, B;\, C)$ vuông góc với mặt phẳng.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/vector_phap_tuyen_mat_phang.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/vector_phap_tuyen_mat_phang.png}
     \end{center}
     \item \textbf{Phương trình tổng quát:} $Ax + By + Cz + D = 0$.
     \item \textbf{Phương trình mặt chắn} (cắt ba trục tại $A(a;0;0)$, $B(0;b;0)$, $C(0;0;c)$):
@@ -891,7 +925,7 @@
         \dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} = 1.
       \]
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_chan.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/mat_chan.png}
     \end{center}
     \item \textbf{Đi qua} $M(x_0;\, y_0;\, z_0)$ với VTPT $\vec{n} = (A;\, B;\, C)$:
       \[
@@ -905,11 +939,11 @@
     \item \textbf{Biết 1 điểm và VTPT:} áp dụng trực tiếp.
     \item \textbf{Biết 1 điểm và 2 VTCP} $\vec{a}$, $\vec{b}$: tìm $\vec{n} = [\vec{a},\, \vec{b}]$, quay về dạng 1.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_phang_di_qua_1_diem_va_co_2_vector_chi_phuong.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/mat_phang_di_qua_1_diem_va_co_2_vector_chi_phuong.png}
     \end{center}
     \item \textbf{Biết 3 điểm không thẳng hàng:} lập 2 VTCP từ 3 điểm, quay về dạng 2.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_phan_di_qua_3_diem.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/mat_phan_di_qua_3_diem.png}
     \end{center}
   \end{enumerate}
 \end{phuongphap}
@@ -921,11 +955,11 @@
     \item \textbf{Song song:} $\dfrac{a_1}{a_2} = \dfrac{b_1}{b_2} = \dfrac{c_1}{c_2} \ne \dfrac{d_1}{d_2}$.
     \item \textbf{Cắt nhau:} $[\vec{n}_1,\, \vec{n}_2] \ne \vec{0}$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/2_mat_phang_cat_nhau.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/2_mat_phang_cat_nhau.png}
     \end{center}
     \item \textbf{Vuông góc:} $\vec{n}_1 \cdot \vec{n}_2 = 0$, tức $a_1 a_2 + b_1 b_2 + c_1 c_2 = 0$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/2_mat_phang_vuong_goc.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/2_mat_phang_vuong_goc.png}
     \end{center}
   \end{itemize}
 \end{congthuc}
@@ -937,7 +971,7 @@
         d\bigl(M,\, (P)\bigr) = \dfrac{\bigl|\vec{n} \cdot \overrightarrow{MN}\bigr|}{|\vec{n}|} = \dfrac{|Ax_0 + By_0 + Cz_0 + D|}{\sqrt{A^2 + B^2 + C^2}}.
       \]
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/khoang_cach_1_diem_den_1_mat_phang.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/khoang_cach_1_diem_den_1_mat_phang.png}
     \end{center}
     \item \textbf{Hai mặt phẳng song song:} chọn 1 điểm trên mặt phẳng này, tính khoảng cách đến mặt phẳng kia. Hoặc sử dụng công thức: $d(P, Q) = \dfrac{|D_1 - D_2|}{\sqrt{A^2 + B^2 + C^2}}$. Với:
     \begin{itemize}
@@ -945,7 +979,7 @@
         \item $(Q)$: $Ax + By + Cz + D_2 = 0$
     \end{itemize}
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/khoang_cach_giua_2_mat_phang_song_song.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/khoang_cach_giua_2_mat_phang_song_song.png}
     \end{center}
   \end{itemize}
 \end{congthuc}
@@ -956,7 +990,7 @@
     \item Viết đường thẳng $d$ qua $M$ có VTCP $= \vec{n}_{(P)}$.
     \item Tìm giao điểm $H$ của $d$ với $(P)$. Điểm $H$ là hình chiếu.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/hinh_chieu_vuong_goc_1_diem_len_mat_phang.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/hinh_chieu_vuong_goc_1_diem_len_mat_phang.png}
     \end{center}
   \end{enumerate}
   \textbf{Điểm đối xứng} $M'$ của $M$ qua $(P)$:
@@ -964,7 +998,7 @@
     \item Tìm hình chiếu $H$ (như trên), rồi $M' = 2H - M$.
   \end{itemize}
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/diem_doi_xung_qua_mat_phang.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/diem_doi_xung_qua_mat_phang.png}
   \end{center}
 \end{phuongphap}
 
@@ -1017,7 +1051,7 @@
     \item \textbf{Dạng tham số:} $\;\begin{cases} x = x_0 + at \\ y = y_0 + bt \\ z = z_0 + ct \end{cases}$\quad $(t \in \mathbb{R})$.
     \item \textbf{Dạng chính tắc:} $\;\dfrac{x - x_0}{a} = \dfrac{y - y_0}{b} = \dfrac{z - z_0}{c}$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/duong_thang_va_vector_chi_phong_phap_tuyen.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/duong_thang_va_vector_chi_phong_phap_tuyen.png}
     \end{center}
   \end{itemize}
 \end{dinhnghia}
@@ -1028,7 +1062,7 @@
     \dfrac{x - x_1}{x_2 - x_1} = \dfrac{y - y_1}{y_2 - y_1} = \dfrac{z - z_1}{z_2 - z_1}.
   \]
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/duong_thang_di_qua_2_diem.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/duong_thang_di_qua_2_diem.png}
   \end{center}
 \end{congthuc}
 
@@ -1043,7 +1077,7 @@
   \]
   Chọn 1 điểm bằng cách cho $x = x_0$ hoặc $y = y_0$ hoặc $z = z_0$ nào đó (Ví dụ: $0$), rồi giải phương trình tìm 2 tọa độ còn lại
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/giao_tuyen_2_mat_phang.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/giao_tuyen_2_mat_phang.png}
   \end{center}
 \end{congthuc}
 
@@ -1102,12 +1136,12 @@
   \begin{itemize}
     \item Viết $H$ thuộc $d$ (theo tham số $t$), giải $\overrightarrow{MH} \cdot \vec{u} = 0$ tìm $t$.
     \begin{center}
-        \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/hinh_chieu_diem_len_duong_thang.png}
+        \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/hinh_chieu_diem_len_duong_thang.png}
     \end{center}
   \end{itemize}
   \textbf{Điểm đối xứng:} $M' = 2H - M$.
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/diem_doi_xung_qua_duong_thang.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/diem_doi_xung_qua_duong_thang.png}
   \end{center}
 \end{phuongphap}
 
@@ -1157,7 +1191,7 @@
     = \dfrac{|aa' + bb' + cc'|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{a'^2 + b'^2 + c'^2}}.
   \]
   \begin{center}
-      \includegraphics[width=1\linewidth]{cap_3//hinh_12/goc_giua_2_duong_thang.png}
+      \includegraphics[width=1\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/goc_giua_2_duong_thang.png}
   \end{center}
 \end{congthuc}
 
@@ -1168,7 +1202,7 @@
     = \dfrac{|aA + bB + cC|}{\sqrt{a^2 + b^2 + c^2}\;\sqrt{A^2 + B^2 + C^2}}.
   \]
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/goc_giua_duong_thang_va_mat_phang.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/goc_giua_duong_thang_va_mat_phang.png}
   \end{center}
 \end{congthuc}
 
@@ -1179,7 +1213,7 @@
     = \dfrac{|A_1 A_2 + B_1 B_2 + C_1 C_2|}{\sqrt{A_1^2 + B_1^2 + C_1^2}\;\sqrt{A_2^2 + B_2^2 + C_2^2}}.
   \]
   \begin{center}
-      \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/gioc_giua_2_mat_phang.png}
+      \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/gioc_giua_2_mat_phang.png}
   \end{center}
 \end{congthuc}
 
@@ -1203,7 +1237,7 @@
       \;(điều kiện $a^2 + b^2 + c^2 - d > 0$),
       \;tâm $I(a;\, b;\, c)$, bán kính $R = \sqrt{a^2 + b^2 + c^2 - d}$.
      \begin{center}
-         \includegraphics[width=0.5\linewidth]{cap_3//hinh_12/mat_cau.png}
+         \includegraphics[width=0.5\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/mat_cau.png}
      \end{center}
   \end{itemize}
 \end{dinhnghia}
@@ -1240,7 +1274,7 @@
     \item $d = R$: tiếp xúc tại 1 điểm.
     \item $d < R$: cắt nhau theo đường tròn bán kính $r = \sqrt{R^2 - d^2}$.
     \begin{center}
-        \includegraphics[width=1\linewidth]{cap_3//hinh_12/vivi_tri_mat_phang_va_mat_cau.png}
+        \includegraphics[width=1\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/vivi_tri_mat_phang_va_mat_cau.png}
     \end{center}
   \end{itemize}
 
@@ -1251,7 +1285,7 @@
     \item $d = R$: tiếp xúc tại 1 điểm.
     \item $d < R$: cắt tại 2 điểm.
     \begin{center}
-        \includegraphics[width=1\linewidth]{cap_3//hinh_12/vi_tri_duong_thang_va_mat_cau.png}
+        \includegraphics[width=1\linewidth]{D://DangTanQui//Toan//tai_lieu_toan//cursor//cap_3//lop_12//hinh/vi_tri_duong_thang_va_mat_cau.png}
     \end{center}
   \end{itemize}
 \end{congthuc}
