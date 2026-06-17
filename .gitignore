@@ -4,3 +4,4 @@
 *.toc
 *.mp4
 *.zip
+.venv

@@ -1,0 +1,54 @@
+So you know that a matrix is just a block or 2D array of numbers.
+What does it mean to multiply two matrices? Let's take a look.
+In order to build up to multiplying matrices, let's start by looking at how we take dot products between vectors.
+Let's use the example of taking the dot product between this vector, 1, 2, and this vector, 3, 4.
+If z is the dot product between these two vectors, then you compute z by multiplying the first element by this first element here, so it's 1 times 3, plus the second element times the second element, plus 2 times 4, and so that's just 3 plus 8, which is equal to 11.
+In the more general case, if z is the dot product between a vector a and a vector w, then you compute z by multiplying the first element together, and then the second element together, and the third, and so on, and then adding up all of these products.
+So that's the vector-vector dot product.
+It turns out there's another equivalent way of writing a dot product, which is given a vector a, that is, 1, 2, written as a column, you can turn this into a row, that is, you can turn it from what's called a column vector to a row vector by taking the transpose of a.
+So the transpose of a vector a means you take this vector and lay its elements on the side like this.
+And it turns out that if you multiply a transpose, this is a row vector, or you can think of this as a 1 by 2 matrix, with w, which you can now think of as a 2 by 1 matrix, then z equals a transpose times w, and this is the same as taking the dot product between a and w.
+So to recap, z equals the dot product between a and w is the same as z equals a transpose, this is a, laid on the side, multiplied by w.
+And this will be useful for understanding matrix multiplication, that these are just two ways of writing the exact same computation to arrive at z.
+Now let's look at vector matrix multiplication, which is when you take a vector and you multiply a vector by a matrix.
+Here again is the vector a, 1, 2, and a transpose is a laid on the side, so rather than just kind of think of this as a 2 by 1 matrix, it becomes a 1 by 2 matrix.
+And let me now create a 2 by 2 matrix w with these four elements, 3, 4, 5, 6.
+If you want to compute capital Z as a transpose times w, so let's see how you would go about doing so.
+It turns out that z is going to be a 1 by 2 matrix, and to compute the first value of z, we're going to take a transpose, 1, 2 here, and multiply that by the first column of w, so that's 3, 4.
+And so to compute the first element of z, you end up with 1 times 3 plus 2 times 4, which we saw earlier is equal to 11, and so the first element of z is 11.
+Let's figure out what's the second element of z.
+Turns out you just repeat this process, but now I'm multiplying a transpose by the second column of w, and so to do that computation, you have 1 times 5 plus 2 times 6, which is equal to 5 plus 12, which is 17, so that's equal to 17.
+The z is equal to this 1 by 2 matrix, 11 and 17.
+Now just one last thing, and then that'll take us to the end of this video, which is how to take vector matrix multiplication and generalize it to matrix matrix multiplication.
+I have a matrix A with these four elements.
+The first column is 1, 2, and the second column is negative 1, negative 2, and I want to know how to compute A transpose times w.
+Unlike the previous slide, A now is a matrix rather than just a vector, but the matrix is just a set of different vectors stacked together in columns.
+So first, let's figure out what is A transpose.
+In order to compute A transpose, we're going to take the columns of A, and similar to what happened when you transpose a vector, we're going to take the columns and lay them on the side, one column at a time.
+So the first column, 1, 2, becomes the first row, 1, 2, because it's just laid on the side, and this second column, negative 1, negative 2, becomes laid on the side, negative 1, negative 2, like this.
+So the way you transpose a matrix is you take the columns and you just lay the columns on the side, one column at a time.
+So you end up with this being A transpose.
+Next, we have this matrix, w, which we're going to write as 3, 4, 5, 6.
+So there's a column 3, 4, and a column 5, 6.
+One way I encourage you to think of matrices that's useful for neural network implementations is if you see a matrix, think of the columns of the matrix, and if you see the transpose of a matrix, think of the rows of that matrix as being grouped together, as illustrated here with A and A transpose, as well as w.
+And now, let me show you how to multiply A transpose and w.
+In order to carry out this computation, let me call the columns of A, A1 and A2, and that means that A1 transpose is the first row of A transpose, and A2 transpose is the second row of A transpose.
+And then, same as before, let me call the columns of w to be w1 and w2.
+So it turns out that to compute A transpose w, the first thing we need to do is, let's just ignore the second row of A, and let's just pay attention to the first row of A, and let's take this row 1, 2, that is A1 transpose, and multiply that with w.
+So you already know how to do that from the previous slide.
+The first element is 1, 2, inner product or dot product with 3, 4, so that ends up with 3 times 1 plus 2 times 4, which is 11.
+And then the second element is 1, 2, A transpose, inner product with 5, 6, so that's 5 times 1 plus 6 times 2, which is 5 plus 12, which is 17.
+So that gives you the first row of z equals A transpose w.
+So all we've done is take A1 transpose and multiply that by w.
+That's exactly what we did on the previous slide.
+Next, let's forget A1 for now, and let's just look at A2, and take A2 transpose and multiply that by w.
+So now we have A2 transpose times w, and to compute that, first we take negative 1 and negative 2, and dot product that with 3, 4.
+So that's negative 1 times 3 plus negative 2 times 4, and that turns out to be negative 11.
+And then we have to compute A2 transpose times the second column, and that's negative 1 times 5 plus negative 2 times 6, and that turns out to be negative 17.
+So you end up with A transpose times w is equal to this 2 by 2 matrix over here.
+Let's talk about the general form of matrix multiplication next.
+So let's go see that in the next video.
+So this was an example of how you multiply a vector with a matrix, or a matrix with a matrix.
+There's a lot of dot products between vectors, but all did in a certain way to construct the elements of the output z one element at a time.
+I know this was a lot, but in the next video, let's look at the general form of how a matrix matrix multiplication is defined, and I hope that that will make all this clear as well.
+Let's go on to the next video.
