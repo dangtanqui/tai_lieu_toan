@@ -1,6 +1,6 @@
 # Graded Quiz - Optimization in Neural Networks and Newton's Method
 
-![](/C2/w3/q1/ss1.png)
-![](/C2/w3/q1/ss2.png)
-![](/C2/w3/q1/ss3.png)
-![](/C2/w3/q1/ss4.png)
+![](ss1.png)
+![](ss2.png)
+![](ss3.png)
+![](ss4.png)
