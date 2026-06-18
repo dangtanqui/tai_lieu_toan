@@ -3,7 +3,7 @@
 - **Tự implement** + tips thực tế để thuật toán chạy tốt
 
 ## Vì sao ML phổ biến?
-- ML là nhánh của **AI** — mục tiêu: xây máy thông minh
+- ML là nhánh của **AI** — target: xây máy thông minh
 - Nhiều bài toán **không lập trình tường minh** được: tìm kiếm web, nhận dạng giọng nói, chẩn đoán X-quang, xe tự lái
 - Cách duy nhất: để **máy tự học**
 

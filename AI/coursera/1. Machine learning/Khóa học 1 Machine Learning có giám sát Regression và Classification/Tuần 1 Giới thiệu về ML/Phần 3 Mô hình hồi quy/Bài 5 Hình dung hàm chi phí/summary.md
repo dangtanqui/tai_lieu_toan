@@ -1,6 +1,6 @@
 ## J(w,b) với 2 tham số
 - Trở lại model đầy đủ: **f(x) = wx + b**
-- Mục tiêu: **minimize J(w,b)**
+- target: **minimize J(w,b)**
 
 ## 3D Surface Plot
 - 1 tham số w → J(w) dạng **chữ U** (2D)

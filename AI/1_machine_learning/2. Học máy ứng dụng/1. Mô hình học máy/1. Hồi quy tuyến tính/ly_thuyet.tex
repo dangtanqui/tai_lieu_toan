@@ -35,7 +35,7 @@ Tài liệu biên soạn và dịch từ \emph{Linear Regression} (Google ML Cra
 Cần nắm khái niệm từ \href{https://developers.google.com/machine-learning/intro-to-ml}{Introduction to Machine Learning}: mẫu, đặc trưng, nhãn, huấn luyện, mất mát, hồi quy có giám sát.
 \end{luuy}
 
-\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{phuongphap}[title={target học tập}]
 \begin{itemize}
   \item Giải thích hàm mất mát và cách dùng trong huấn luyện.
   \item Mô tả gradient descent tìm tham số tối ưu (trọng số, bias).
@@ -152,7 +152,7 @@ Hai đường khác nhau đều ``nhìn ổn'' trên đồ thị MPG --- cần m
 \end{dongco}
 
 \begin{dinhnghia}[title={Mất mát}]
-  \href{https://developers.google.com/machine-learning/glossary\#loss}{\textbf{Mất mát}} (loss) đo khoảng cách giữa dự đoán $y'$ và nhãn thật $y$; mục tiêu huấn luyện là \textbf{giảm mất mát} tới mức thấp nhất có thể. Mất mát (loss) không quan tâm dự đoán \textbf{cao hơn} hay \textbf{thấp hơn}, chỉ quan tâm \textbf{xa bao nhiêu}.
+  \href{https://developers.google.com/machine-learning/glossary\#loss}{\textbf{Mất mát}} (loss) đo khoảng cách giữa dự đoán $y'$ và nhãn thật $y$; target huấn luyện là \textbf{giảm mất mát} tới mức thấp nhất có thể. Mất mát (loss) không quan tâm dự đoán \textbf{cao hơn} hay \textbf{thấp hơn}, chỉ quan tâm \textbf{xa bao nhiêu}.
 \end{dinhnghia}
 
 \mlimg[0.85]{loss-lines.png}
@@ -259,7 +259,7 @@ Thực tế còn phụ thuộc \textbf{bài toán kinh doanh}: loại sai lệch
 \end{luuy}
 
 \begin{phanvidu}
-MSE = 0 trên mọi điểm $\Rightarrow$ khớp hoàn hảo --- thường là \textbf{overfitting}, không phải mục tiêu thực tế.
+MSE = 0 trên mọi điểm $\Rightarrow$ khớp hoàn hảo --- thường là \textbf{overfitting}, không phải target thực tế.
 \end{phanvidu}
 
 \newpage
@@ -457,7 +457,7 @@ MSE = 0 nghĩa là khớp \textbf{mọi} điểm --- thường là \textbf{overf
 \subsection{Tốc độ học (learning rate)}
 
 \begin{dinhnghia}[title={Tốc độ học}]
-  Tốc độ học xác định mức độ thay đổi cần thực hiện đối với các trọng số và độ lệch trong mỗi bước của quy trình hạ độ dốc, ảnh hưởng đến tốc độ hội tụ của mô hình. Nếu tốc độ học quá thấp, mô hình có thể mất nhiều thời gian để hội tụ. Tuy nhiên, nếu tốc độ học tập quá cao, mô hình sẽ không bao giờ hội tụ, mà thay vào đó sẽ dao động xung quanh các trọng số và độ lệch giúp giảm thiểu tổn thất. Mục tiêu là chọn tốc độ học tập không quá cao cũng không quá thấp để mô hình hội tụ nhanh chóng.
+  Tốc độ học xác định mức độ thay đổi cần thực hiện đối với các trọng số và độ lệch trong mỗi bước của quy trình hạ độ dốc, ảnh hưởng đến tốc độ hội tụ của mô hình. Nếu tốc độ học quá thấp, mô hình có thể mất nhiều thời gian để hội tụ. Tuy nhiên, nếu tốc độ học tập quá cao, mô hình sẽ không bao giờ hội tụ, mà thay vào đó sẽ dao động xung quanh các trọng số và độ lệch giúp giảm thiểu tổn thất. target là chọn tốc độ học tập không quá cao cũng không quá thấp để mô hình hội tụ nhanh chóng.
   
   Hệ số $\eta$ nhân với gradient để quyết định \textbf{độ lớn bước} cập nhật $w$, $b$ mỗi vòng. Sự khác biệt giữa các tham số mô hình cũ và các tham số mô hình mới tỷ lệ thuận với độ dốc của hàm tổn thất. Ví dụ: nếu độ dốc lớn, mô hình sẽ thực hiện một bước lớn. Nếu nhỏ, hãy thực hiện một bước nhỏ.
   

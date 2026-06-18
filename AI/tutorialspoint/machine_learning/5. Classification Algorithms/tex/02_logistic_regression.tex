@@ -4,7 +4,7 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={Giới thiệu hồi quy logistic}]
-Hồi quy logistic là thuật toán phân loại học có giám sát dùng để dự đoán \textbf{xác suất} của biến mục tiêu.
+Hồi quy logistic là thuật toán phân loại học có giám sát dùng để dự đoán \textbf{xác suất} của biến target.
 Bản chất biến phụ thuộc (target) là \textbf{dichotomous} --- chỉ có hai lớp có thể.
 \end{dinhnghia}
 
@@ -20,8 +20,8 @@ Về mặt toán học, mô hình hồi quy logistic dự đoán $P(Y=1)$ như m
 \subsection{Các loại hồi quy logistic}
 
 \begin{ynghia}[title={Phân loại theo số lớp}]
-Thông thường ``hồi quy logistic'' nghĩa là hồi quy logistic \textbf{nhị phân} với biến mục tiêu nhị phân; tuy nhiên biến mục tiêu có thể có thêm các dạng khác.
-Theo số lớp của biến mục tiêu, hồi quy logistic chia thành các loại sau.
+Thông thường ``hồi quy logistic'' nghĩa là hồi quy logistic \textbf{nhị phân} với biến target nhị phân; tuy nhiên biến target có thể có thêm các dạng khác.
+Theo số lớp của biến target, hồi quy logistic chia thành các loại sau.
 \end{ynghia}
 
 \begin{dinhnghia}[title={Nhị phân (Binary hoặc Binomial)}]
@@ -44,7 +44,7 @@ Ví dụ: ``kém'', ``tốt'', ``rất tốt'', ``xuất sắc''; mỗi hạng c
 \begin{luuy}[title={Giả định trước khi triển khai}]
 Trước khi triển khai hồi quy logistic, cần lưu ý các giả định sau.
 \begin{itemize}
-  \item Với hồi quy logistic nhị phân, biến mục tiêu phải \textbf{luôn nhị phân}; kết quả mong muốn được biểu diễn bởi mức nhân tố 1.
+  \item Với hồi quy logistic nhị phân, biến target phải \textbf{luôn nhị phân}; kết quả mong muốn được biểu diễn bởi mức nhân tố 1.
   \item Mô hình \textbf{không} được có đa cộng tuyến (multi-collinearity): các biến độc lập phải độc lập với nhau.
   \item Chỉ đưa các biến \textbf{có ý nghĩa} vào mô hình.
   \item Nên chọn \textbf{cỡ mẫu lớn} cho hồi quy logistic.
@@ -54,8 +54,8 @@ Trước khi triển khai hồi quy logistic, cần lưu ý các giả định s
 \subsection{Mô hình hồi quy logistic nhị phân}
 
 \begin{dinhnghia}[title={Dạng đơn giản nhất}]
-Dạng đơn giản nhất là hồi quy logistic nhị phân (binomial): biến mục tiêu chỉ có hai giá trị 1 hoặc 0.
-Cho phép mô hình hóa quan hệ giữa nhiều biến dự báo và biến mục tiêu nhị phân.
+Dạng đơn giản nhất là hồi quy logistic nhị phân (binomial): biến target chỉ có hai giá trị 1 hoặc 0.
+Cho phép mô hình hóa quan hệ giữa nhiều biến dự báo và biến target nhị phân.
 Trong hồi quy logistic, hàm tuyến tính được dùng làm đầu vào cho hàm khác:
 \[
 h_{\theta}(x) = g(\theta^{T} x)
@@ -82,7 +82,7 @@ Cần định nghĩa hàm loss đo mức độ tốt của thuật toán với t
 \[
 J(\theta) = \frac{1}{m}\left(-y^{T}\log(h) - (1 - y)^{T}\log(1 - h)\right)
 \]
-Mục tiêu chính: \textbf{tối thiểu hóa} hàm loss --- điều chỉnh trọng số (tăng/giảm).
+target chính: \textbf{tối thiểu hóa} hàm loss --- điều chỉnh trọng số (tăng/giảm).
 Nhờ đạo hàm của loss theo từng trọng số, biết tham số nào nên lớn hoặc nhỏ hơn.
 \end{dinhnghia}
 
@@ -207,7 +207,7 @@ Trong thực hành nên tách train/test để đánh giá không chệch.
 \subsection{Mô hình hồi quy logistic đa thức}
 
 \begin{dinhnghia}[title={Multinomial logistic regression}]
-Dạng hữu ích khác: hồi quy logistic \textbf{đa thức} --- biến mục tiêu có 3 lớp trở lên \textbf{không có thứ tự}, không có ý nghĩa định lượng.
+Dạng hữu ích khác: hồi quy logistic \textbf{đa thức} --- biến target có 3 lớp trở lên \textbf{không có thứ tự}, không có ý nghĩa định lượng.
 \end{dinhnghia}
 
 \subsection{Triển khai hồi quy logistic đa thức bằng Python}

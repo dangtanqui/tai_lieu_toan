@@ -4,7 +4,7 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={SARSA}]
-\textbf{SARSA} (State-Action-Reward-State-Action) là biến thể của Q-learning trong đó \textbf{chính sách mục tiêu trùng chính sách hành vi} (on-policy). Hai cặp trạng thái--hành động liên tiếp $(s,a)$ và $(s',a')$ cùng phần thưởng tức thời $r$ khi chuyển từ $s$ sang $s'$ quyết định giá trị cập nhật $Q$ --- đó là lý do tên thuật toán.
+\textbf{SARSA} (State-Action-Reward-State-Action) là biến thể của Q-learning trong đó \textbf{chính sách target trùng chính sách hành vi} (on-policy). Hai cặp trạng thái--hành động liên tiếp $(s,a)$ và $(s',a')$ cùng phần thưởng tức thời $r$ khi chuyển từ $s$ sang $s'$ quyết định giá trị cập nhật $Q$ --- đó là lý do tên thuật toán.
 \end{dinhnghia}
 
 \begin{ynghia}[title={Ý tưởng học thử--sai}]
@@ -14,7 +14,7 @@ SARSA là kỹ thuật học \textbf{on-policy} hiệu quả: agent thực hiệ
 \subsection{Ví dụ robot trong mê cung}
 
 \begin{vidu}[title={Robot đi mê cung}]
-Giả sử dạy robot đi qua mê cung. Vị trí hiện tại là \textbf{trạng thái} $s$; mục tiêu tìm đường tốt tới đích. Mỗi bước robot có thể \textbf{hành động} (đi lên, xuống, trái, phải). Môi trường trả \textbf{phần thưởng} dương hoặc âm để báo hiệu bước đi tốt hay tệ. Sau khi thực hiện $a$ tại $s$, robot chuyển sang \textbf{trạng thái kế} $s'$; hành động \textbf{tiếp theo thực sự} $a'$ (theo chính sách hiện tại, ví dụ $\varepsilon$-greedy) sẽ xuất hiện trong công thức cập nhật SARSA --- khác với Q-learning dùng $\max_{a'} Q(s',a')$.
+Giả sử dạy robot đi qua mê cung. Vị trí hiện tại là \textbf{trạng thái} $s$; target tìm đường tốt tới đích. Mỗi bước robot có thể \textbf{hành động} (đi lên, xuống, trái, phải). Môi trường trả \textbf{phần thưởng} dương hoặc âm để báo hiệu bước đi tốt hay tệ. Sau khi thực hiện $a$ tại $s$, robot chuyển sang \textbf{trạng thái kế} $s'$; hành động \textbf{tiếp theo thực sự} $a'$ (theo chính sách hiện tại, ví dụ $\varepsilon$-greedy) sẽ xuất hiện trong công thức cập nhật SARSA --- khác với Q-learning dùng $\max_{a'} Q(s',a')$.
 \end{vidu}
 
 \tsimg{05_sarsa/img01.jpg}
@@ -30,7 +30,7 @@ trong đó $\alpha$ là tốc độ học, $\gamma$ hệ số chiết khấu, $r
 \end{dinhnghia}
 
 \begin{ynghia}[title={Đọc nhanh công thức}]
-Mục tiêu TD là $r + \gamma Q(s',a')$: phần thưởng tức thời cộng giá trị chiết khấu của cặp trạng thái--hành động \textbf{kế tiếp theo chính sách đang theo}. Sai số $r + \gamma Q(s',a') - Q(s,a)$ nhân $\alpha$ rồi cộng vào $Q(s,a)$.
+target TD là $r + \gamma Q(s',a')$: phần thưởng tức thời cộng giá trị chiết khấu của cặp trạng thái--hành động \textbf{kế tiếp theo chính sách đang theo}. Sai số $r + \gamma Q(s',a') - Q(s,a)$ nhân $\alpha$ rồi cộng vào $Q(s,a)$.
 \end{ynghia}
 
 \subsection{Các thành phần cốt lõi}
@@ -63,7 +63,7 @@ Sau khi thực hiện $a$ tại $s$, agent vào trạng thái mới $s'$ --- mô
 \end{enumerate}
 \end{phuongphap}
 
-\begin{tinhchat}[title={Đặc điểm on-policy}]
+\begin{tinhchat}[title={feature on-policy}]
 Mỗi bước học phụ thuộc hành động \textbf{thực sự} sẽ làm ở $s'$, nên khám phá ảnh hưởng trực tiếp tới cập nhật --- phù hợp khi cần học an toàn, ổn định theo chính sách triển khai (y tế, giao thông, học cá nhân hóa).
 \end{tinhchat}
 
@@ -74,7 +74,7 @@ Mỗi bước học phụ thuộc hành động \textbf{thực sự} sẽ làm �
 \textbf{Tiêu chí} & \textbf{SARSA} & \textbf{Q-learning} \\
 \midrule
 Loại chính sách &
-On-policy (mục tiêu = hành vi). &
+On-policy (target = hành vi). &
 Off-policy (học tối ưu trong khi hành vi có thể khác). \\
 Quy tắc cập nhật &
 $Q(s,a) \leftarrow Q(s,a) + \alpha\bigl(r + \gamma Q(s',a') - Q(s,a)\bigr)$ &

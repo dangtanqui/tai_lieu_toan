@@ -7,7 +7,7 @@
 
 \begin{dinhnghia}[title={Học có giám sát}]
 Supervised learning huấn luyện mô hình bằng dataset \textbf{có nhãn}: mỗi mẫu gồm feature (đầu vào) và target (đầu ra) tương ứng.
-Mục tiêu: học quan hệ giữa đầu vào và đầu ra sau nhiều lần huấn luyện.
+target: học quan hệ giữa đầu vào và đầu ra sau nhiều lần huấn luyện.
 \end{dinhnghia}
 
 \subsection{Cách Supervised Learning hoạt động}
@@ -26,7 +26,7 @@ Mục tiêu: học quan hệ giữa đầu vào và đầu ra sau nhiều lần 
 
 \subsubsection{Classification (phân loại)}
 
-\begin{ynghia}[title={Mục tiêu}]
+\begin{ynghia}[title={target}]
 Dự đoán nhãn phân loại (đúng/sai, nam/nữ, có/không, \ldots) --- giá trị rời rạc, không có thứ tự bắt buộc.
 \end{ynghia}
 
@@ -36,7 +36,7 @@ decision trees, random forests, SVM, logistic regression, \ldots
 
 \subsubsection{Regression (hồi quy)}
 
-\begin{ynghia}[title={Mục tiêu}]
+\begin{ynghia}[title={target}]
 Dự đoán giá trị số \textbf{liên tục}; học quan hệ giữa biến độc lập và biến phụ thuộc.
 \end{ynghia}
 
@@ -137,7 +137,7 @@ Kết hợp nhiều decision tree để cải thiện độ chính xác dự đo
 
 \begin{ynghia}[title={Gradient Boosting}]
 Kết hợp các weak learner (decision tree) thành mô hình mạnh; mô hình mới sửa lỗi mô hình trước.
-Mục tiêu: tối thiểu hoá loss.
+target: tối thiểu hoá loss.
 Dùng hiệu quả cho classification và regression.
 \end{ynghia}
 
@@ -145,7 +145,7 @@ Dùng hiệu quả cho classification và regression.
 
 \begin{tinhchat}[title={Ưu điểm}]
 \begin{itemize}
-  \item Mục tiêu rõ ràng $\Rightarrow$ cải thiện độ chính xác dự đoán.
+  \item target rõ ràng $\Rightarrow$ cải thiện độ chính xác dự đoán.
   \item Dataset có nhãn giúp dự đoán và phân loại hiệu quả.
   \item Linh hoạt: spam detection, giá cổ phiếu, \ldots
 \end{itemize}

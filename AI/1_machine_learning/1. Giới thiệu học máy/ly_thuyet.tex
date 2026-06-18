@@ -104,7 +104,7 @@ Cùng là ``học từ dữ liệu'', nhưng bài toán khác nhau: có sẵn đ
 \begin{tinhchat}[title={Bốn nhóm hệ thống ML}]
 \begin{enumerate}
   \item \textbf{Học có giám sát} --- dữ liệu có nhãn/đáp án đúng.
-  \item \textbf{Học không giám sát} --- tìm cấu trúc, cụm, mẫu; không có nhãn cho mục tiêu.
+  \item \textbf{Học không giám sát} --- tìm cấu trúc, cụm, mẫu; không có nhãn cho target.
   \item \textbf{Học tăng cường} --- học qua phần thưởng/hình phạt trong môi trường.
   \item \textbf{AI tạo sinh} --- tạo văn bản, ảnh, âm thanh, video từ đầu vào người dùng.
 \end{enumerate}
@@ -182,13 +182,13 @@ Dự đoán tiêu thụ điện tòa nhà (kWh) $\Rightarrow$ \textbf{hồi quy}
 \subsection{Học không giám sát}
 
 \begin{dinhnghia}[title={Học không giám sát}]
-\href{https://developers.google.com/machine-learning/glossary\#unsupervised-machine-learning}{Học không giám sát} tìm \textbf{mẫu có ý nghĩa} trong dữ liệu \textbf{không có nhãn} cho mục tiêu. Kỹ thuật phổ biến:
+\href{https://developers.google.com/machine-learning/glossary\#unsupervised-machine-learning}{Học không giám sát} tìm \textbf{mẫu có ý nghĩa} trong dữ liệu \textbf{không có nhãn} cho target. Kỹ thuật phổ biến:
 \href{https://developers.google.com/machine-learning/glossary\#clustering}{\textbf{phân cụm}} (clustering) --- gom điểm tương tự thành \textbf{cụm}.
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Quy trình phân cụm (trực giác)}]
 \begin{enumerate}
-  \item Đưa dữ liệu (không cần nhãn mục tiêu).
+  \item Đưa dữ liệu (không cần nhãn target).
   \item Thuật toán đo ``gần nhau'' (khoảng cách, độ tương tự).
   \item Gom thành cụm; \textbf{người} đặt tên cụm sau (mùa, loại khách hàng\ldots).
 \end{enumerate}
@@ -231,7 +231,7 @@ Dự đoán tiêu thụ điện tòa nhà (kWh) $\Rightarrow$ \textbf{hồi quy}
 \href{https://developers.google.com/machine-learning/glossary\#policy}{\textbf{chính sách}} (policy) tối đa hóa phần thưởng tích lũy.
 \end{dinhnghia}
 
-\begin{congthuc}[title={Mục tiêu RL (ý tưởng)}]
+\begin{congthuc}[title={target RL (ý tưởng)}]
 Tìm chính sách $\pi$ sao cho tổng phần thưởng kỳ vọng lớn:
 \[
   \pi^\ast \approx \arg\max_{\pi}\; \mathbb{E}\Big[\sum_t \gamma^t\, r_t\Big],
@@ -346,7 +346,7 @@ Có thể lặp Huấn luyện $\leftrightarrow$ Đánh giá nhiều lần trư�
 \begin{dinhnghia}[title={Tập dữ liệu, mẫu, đặc trưng, nhãn}]
 \textbf{Tập dữ liệu} (dataset): tập dữ liệu liên quan (ảnh mèo, giá nhà, thời tiết).
 
-\textbf{Mẫu} (\href{https://developers.google.com/machine-learning/glossary\#example}{example}): một đơn vị --- như một dòng bảng.
+\textbf{Mẫu} (\href{https://developers.google.com/machine-learning/glossary\#example}{example}): một đơn vị --- như một đường thẳng bảng.
 
 \textbf{Đặc trưng} (\href{https://developers.google.com/machine-learning/glossary\#feature}{feature}): giá trị đầu vào mô hình dùng để dự đoán.
 

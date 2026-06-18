@@ -2,7 +2,7 @@
 
 ## Khi nào dùng
 
-- Ít dữ liệu có nhãn cho task mục tiêu
+- Ít dữ liệu có nhãn cho task target
 - Có dataset lớn task **liên quan** (cùng loại input)
 
 ## Hai bước

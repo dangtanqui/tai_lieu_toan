@@ -6,14 +6,14 @@
 \begin{dinhnghia}[title={Thuật toán Deep RL}]
 Thuật toán học tăng cường sâu là loại thuật toán học máy \textbf{kết hợp học sâu và học tăng cường}.
 Deep RL giải quyết bài toán cho agent tính toán học ra quyết định bằng cách tích hợp học sâu từ dữ liệu đầu vào không có cấu trúc, \textbf{không cần} kỹ thuật thủ công thiết kế không gian trạng thái.
-Các thuật toán này có khả năng quyết định hành động tối ưu mục tiêu ngay cả khi đầu vào có kích thước lớn.
+Các thuật toán này có khả năng quyết định hành động tối ưu target ngay cả khi đầu vào có kích thước lớn.
 \end{dinhnghia}
 
 \subsection{Học tăng cường (Reinforcement Learning)}
 
 \begin{ynghia}[title={Vai trò của RL trong Deep RL}]
 \textbf{Học tăng cường} gồm một agent học từ \textbf{phản hồi} đối với hành động của mình khi khám phá môi trường.
-Mục tiêu chính của agent là \textbf{tối đa hóa phần thưởng tích lũy} bằng cách phát triển chiến lược định hướng ra quyết định trong mọi tình huống có thể.
+target chính của agent là \textbf{tối đa hóa phần thưởng tích lũy} bằng cách phát triển chiến lược định hướng ra quyết định trong mọi tình huống có thể.
 \end{ynghia}
 
 \subsection{Vai trò của học sâu trong RL}
@@ -57,7 +57,7 @@ Nhờ đó RL có thể giải quyết tác vụ phức tạp---ví dụ chơi A
 DQN cải thiện ổn định huấn luyện qua hai phương pháp chính:
 \begin{itemize}
   \item \textbf{Experience replay}: lưu và lấy mẫu kinh nghiệm quá khứ;
-  \item \textbf{Target network}: duy trì mục tiêu $Q$ nhất quán bằng cách cập nhật định kỳ một mạng riêng.
+  \item \textbf{Target network}: duy trì target $Q$ nhất quán bằng cách cập nhật định kỳ một mạng riêng.
 \end{itemize}
 Các cải tiến này giúp DQN học hiệu quả trong bối cảnh \textbf{quy mô lớn}.
 \end{phuongphap}
@@ -98,11 +98,11 @@ Biểu diễn này tăng \textbf{sức mạnh và hiệu quả} của Q-learning
 
 \begin{dinhnghia}[title={Phương pháp Policy Gradient}]
 \textbf{Policy Gradient} là nhóm thuật toán theo hướng \textbf{lặp chính sách}: điều chỉnh trực tiếp policy để đạt policy tối ưu \textbf{tối đa hóa phần thưởng kỳ vọng}.
-Thay vì chỉ học hàm giá trị, các phương pháp này \textbf{tối ưu policy} theo gradient của mục tiêu định nghĩa đối với tham số policy.
+Thay vì chỉ học hàm giá trị, các phương pháp này \textbf{tối ưu policy} theo gradient của target định nghĩa đối với tham số policy.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Mục tiêu và các biến thể}]
-Mục tiêu chính là tính \textbf{gradient phần thưởng trung bình} và cập nhật chiến lược.
+\begin{phuongphap}[title={target và các biến thể}]
+target chính là tính \textbf{gradient phần thưởng trung bình} và cập nhật chiến lược.
 Các thuật toán tiêu biểu: \textbf{REINFORCE}, \textbf{Actor--Critic}, \textbf{Proximal Policy Optimization (PPO)}.
 Các cách tiếp cận này hiệu quả trong không gian hành động \textbf{chiều cao} hoặc \textbf{liên tục}.
 \end{phuongphap}
@@ -111,12 +111,12 @@ Các cách tiếp cận này hiệu quả trong không gian hành động \textb
 
 \begin{dinhnghia}[title={PPO}]
 \textbf{Proximal Policy Optimization (PPO)} là thuật toán RL nhằm tối ưu chính sách \textbf{ổn định và hiệu quả} hơn.
-PPO cập nhật policy bằng cách tối đa hóa hàm mục tiêu gắn với policy, nhưng \textbf{giới hạn} mức thay đổi policy cho phép để tránh biến động đột ngột.
+PPO cập nhật policy bằng cách tối đa hóa hàm target gắn với policy, nhưng \textbf{giới hạn} mức thay đổi policy cho phép để tránh biến động đột ngột.
 \end{dinhnghia}
 
-\begin{phuongphap}[title={Mục tiêu clipped}]
-Policy mới \textbf{không được} lệch quá xa policy cũ; PPO dùng \textbf{mục tiêu clipped} để đảm bảo điều đó.
-Nhờ mục tiêu clipped, PPO ngăn thay đổi policy quá lớn giữa hai lần cập nhật liên tiếp.
+\begin{phuongphap}[title={target clipped}]
+Policy mới \textbf{không được} lệch quá xa policy cũ; PPO dùng \textbf{target clipped} để đảm bảo điều đó.
+Nhờ target clipped, PPO ngăn thay đổi policy quá lớn giữa hai lần cập nhật liên tiếp.
 Sự cân bằng giữa khám phá và khai thác giúp tránh \textbf{suy giảm hiệu năng} và thúc đẩy \textbf{hội tụ mượt} hơn.
 \end{phuongphap}
 

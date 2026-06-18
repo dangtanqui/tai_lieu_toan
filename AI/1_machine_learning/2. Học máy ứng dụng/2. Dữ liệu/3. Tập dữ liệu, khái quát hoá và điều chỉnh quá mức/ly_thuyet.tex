@@ -28,16 +28,16 @@
 %==============================================================================
 
 \begin{ynghia}[title={Nguồn và cách đọc}]
-Tài liệu biên soạn và dịch đầy đủ từ \emph{Datasets, Generalization, and Overfitting} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/overfitting}}, tương ứng \textbf{11 phần} (file \texttt{1}--\texttt{11}) trong thư mục. Mục tiêu là giữ nội dung cốt lõi, các câu hỏi trắc nghiệm ``check your intuition/understanding'' và các gợi ý đáp án, tránh tóm tắt quá mức.
+Tài liệu biên soạn và dịch đầy đủ từ \emph{Datasets, Generalization, and Overfitting} (Google Machine Learning Crash Course)\footnote{\url{https://developers.google.com/machine-learning/crash-course/overfitting}}, tương ứng \textbf{11 phần} (file \texttt{1}--\texttt{11}) trong thư mục. target là giữ nội dung cốt lõi, các câu hỏi trắc nghiệm ``check your intuition/understanding'' và các gợi ý đáp án, tránh tóm tắt quá mức.
 \end{ynghia}
 
 \begin{luuy}[title={Thời lượng ước tính}]
 Khoảng \textbf{105 phút} theo MLCC.
 \end{luuy}
 
-\begin{phuongphap}[title={Mục tiêu học tập}]
+\begin{phuongphap}[title={target học tập}]
 \begin{itemize}
-  \item Nhận diện bốn đặc điểm của dữ liệu và dataset.
+  \item Nhận diện bốn feature của dữ liệu và dataset.
   \item Nêu ít nhất bốn nguyên nhân khiến dữ liệu kém tin cậy.
   \item Biết khi nào nên xóa dữ liệu thiếu và khi nào nên impute.
   \item Phân biệt nhãn trực tiếp và nhãn proxy/được suy ra.
@@ -76,18 +76,18 @@ Nếu buộc phải ưu tiên cải thiện \textbf{một} thứ trong dự án 
 \begin{luuy}[title={Câu hỏi dẫn dắt thứ hai: thời gian làm dữ liệu}]\nTrong dự án ML, bạn thường dành bao nhiêu thời gian cho chuẩn bị và biến đổi dữ liệu?\n\begin{itemize}\n  \item \textbf{Hơn một nửa thời gian.} (Đúng: đa số thời gian là dựng dataset và feature engineering.)\n  \item Ít hơn một nửa. (Thực tế, thường khoảng \textbf{80\%} thời gian của dự án ML nằm ở dựng dataset và biến đổi dữ liệu.)\n\end{itemize}\n\end{luuy}
 
 \begin{ynghia}
-Trong module này, ta học đặc điểm của dataset ML và cách chuẩn bị dữ liệu để đạt kết quả chất lượng cao khi huấn luyện và đánh giá mô hình.
+Trong module này, ta học feature của dataset ML và cách chuẩn bị dữ liệu để đạt kết quả chất lượng cao khi huấn luyện và đánh giá mô hình.
 \end{ynghia}
 
 %==============================================================================
-\section{Đặc điểm dữ liệu (Data characteristics)}
+\section{feature dữ liệu (Data characteristics)}
 %==============================================================================
 
 \begin{dinhnghia}[title={Dataset và example}]
 \href{https://developers.google.com/machine-learning/glossary\#dataset}{Dataset} là tập các \href{https://developers.google.com/machine-learning/glossary\#example}{example}. Nhiều dataset lưu dạng bảng (CSV, spreadsheet, bảng DB): mỗi hàng là một example, mỗi cột là feature hoặc label tiềm năng. Tuy nhiên dataset cũng có thể xuất phát từ log, protocol buffers, v.v.
 \end{dinhnghia}
 
-\begin{dongco}\nMô hình ML chỉ tốt bằng dữ liệu mà nó được train. Phần này xem các đặc điểm quan trọng của dữ liệu.\n\end{dongco}
+\begin{dongco}\nMô hình ML chỉ tốt bằng dữ liệu mà nó được train. Phần này xem các feature quan trọng của dữ liệu.\n\end{dongco}
 
 \subsection{Các loại dữ liệu}
 
@@ -111,7 +111,7 @@ Mô hình train trên dataset lớn với ít feature thường vượt mô hìn
 
 \subsection{Chất lượng và độ tin cậy (quality \& reliability)}
 
-\begin{dinhnghia}[title={Định nghĩa thực dụng về chất lượng}]\nTrong khóa này, \textbf{dataset chất lượng cao} là dataset giúp mô hình đạt mục tiêu; dataset chất lượng thấp là dataset cản trở mô hình đạt mục tiêu.\n\end{dinhnghia}
+\begin{dinhnghia}[title={Định nghĩa thực dụng về chất lượng}]\nTrong khóa này, \textbf{dataset chất lượng cao} là dataset giúp mô hình đạt target; dataset chất lượng thấp là dataset cản trở mô hình đạt target.\n\end{dinhnghia}
 
 \begin{dinhnghia}[title={Reliability}]\n\textbf{Reliability} là mức độ bạn có thể \textbf{tin} dữ liệu. Mô hình train trên dữ liệu tin cậy có khả năng dự đoán hữu ích hơn.\n\end{dinhnghia}
 
@@ -149,11 +149,11 @@ Mô hình train trên dataset lớn với ít feature thường vượt mô hìn
 \section{Nhãn (Labels)}
 %==============================================================================
 
-\begin{dinhnghia}[title={Nhãn trực tiếp và nhãn proxy}]\nHai loại nhãn:\n\begin{itemize}\n  \item \textbf{Direct labels}: nhãn trùng đúng thứ mô hình cần dự đoán (cột đó có sẵn trong dataset). Ví dụ cột \\texttt{bicycle owner} là direct label cho bài toán dự đoán có sở hữu xe đạp hay không.\n  \item \textbf{Proxy labels}: nhãn gần giống nhưng không trùng hoàn toàn với mục tiêu. Ví dụ người đăng ký tạp chí xe đạp có thể (nhưng không chắc) sở hữu xe đạp.\n\end{itemize}\nDirect label thường tốt hơn proxy. Nếu có direct label thì nên dùng. Nhưng đôi khi direct label không tồn tại.\n\nProxy label luôn là thỏa hiệp: xấp xỉ không hoàn hảo. Proxy chỉ hữu ích nếu mối liên hệ giữa proxy và mục tiêu đủ mạnh.\n\end{dinhnghia}
+\begin{dinhnghia}[title={Nhãn trực tiếp và nhãn proxy}]\nHai loại nhãn:\n\begin{itemize}\n  \item \textbf{Direct labels}: nhãn trùng đúng thứ mô hình cần dự đoán (cột đó có sẵn trong dataset). Ví dụ cột \\texttt{bicycle owner} là direct label cho bài toán dự đoán có sở hữu xe đạp hay không.\n  \item \textbf{Proxy labels}: nhãn gần giống nhưng không trùng hoàn toàn với target. Ví dụ người đăng ký tạp chí xe đạp có thể (nhưng không chắc) sở hữu xe đạp.\n\end{itemize}\nDirect label thường tốt hơn proxy. Nếu có direct label thì nên dùng. Nhưng đôi khi direct label không tồn tại.\n\nProxy label luôn là thỏa hiệp: xấp xỉ không hoàn hảo. Proxy chỉ hữu ích nếu mối liên hệ giữa proxy và target đủ mạnh.\n\end{dinhnghia}
 
 \begin{luuy}\nNhớ rằng mọi label cuối cùng đều phải được biểu diễn dưới dạng số thực (tương tự feature vector), vì ML rốt cuộc là các phép toán. Đôi khi direct label có nhưng khó biểu diễn float; khi đó dùng proxy.\n\end{luuy}
 
-\begin{luuy}[title={Bài tập: gửi coupon cho chủ xe đạp}]\nMục tiêu: dự đoán ai sở hữu xe đạp. Dataset không có cột \\texttt{bike owner} nhưng có cột \\texttt{recently bought a bicycle}. Đây là proxy tốt hay kém?\n\n\textbf{Đáp án: Proxy tương đối tốt.} Người mua xe đạp thường sở hữu xe đạp, nhưng vẫn không hoàn hảo (mua làm quà, v.v.).\n\end{luuy}
+\begin{luuy}[title={Bài tập: gửi coupon cho chủ xe đạp}]\ntarget: dự đoán ai sở hữu xe đạp. Dataset không có cột \\texttt{bike owner} nhưng có cột \\texttt{recently bought a bicycle}. Đây là proxy tốt hay kém?\n\n\textbf{Đáp án: Proxy tương đối tốt.} Người mua xe đạp thường sở hữu xe đạp, nhưng vẫn không hoàn hảo (mua làm quà, v.v.).\n\end{luuy}
 
 \subsection{Dữ liệu do con người tạo (human-generated)}
 
@@ -188,7 +188,7 @@ Mô hình train trên dataset lớn với ít feature thường vượt mô hìn
 
 \subsection{Train dataset imbalanced: downsampling + upweighting}
 
-\begin{ynghia}\nTrong training, mô hình cần học hai thứ:\n\begin{itemize}\n  \item Mỗi lớp ``trông như thế nào'' (liên hệ feature \(\to\) class)\n  \item Mỗi lớp phổ biến ra sao (phân phối class)\n\end{itemize}\nTraining chuẩn trộn lẫn hai mục tiêu này. Kỹ thuật \textbf{downsampling + upweighting majority class} tách chúng ra để mô hình đạt cả hai.\n\end{ynghia}
+\begin{ynghia}\nTrong training, mô hình cần học hai thứ:\n\begin{itemize}\n  \item Mỗi lớp ``trông như thế nào'' (liên hệ feature \(\to\) class)\n  \item Mỗi lớp phổ biến ra sao (phân phối class)\n\end{itemize}\nTraining chuẩn trộn lẫn hai target này. Kỹ thuật \textbf{downsampling + upweighting majority class} tách chúng ra để mô hình đạt cả hai.\n\end{ynghia}
 
 \begin{phuongphap}[title={Bước 1: Downsample majority class}]\n\href{https://developers.google.com/machine-learning/glossary\#downsampling}{Downsampling} là train trên tỉ lệ nhỏ bất thường của majority class: bỏ nhiều ví dụ majority để dataset ``cân bằng hơn'' một cách nhân tạo. Điều này tăng xác suất mỗi batch có đủ minority để train hiệu quả.\n\nVí dụ, dataset 99\% majority và 1\% minority. Downsample majority theo hệ số 25 tạo train set cân bằng hơn (80\% majority, 20\% minority):\n\end{phuongphap}
 
@@ -307,7 +307,7 @@ Fit tốt & Tốt trên train và khái quát tốt \\
 \mlimgmaybe[0.75]{underfit_fit_overfit.png}
 \begin{center}\small\textbf{Hình 14.} Underfit, fit, overfit.\end{center}
 
-\begin{dinhnghia}[title={Tổng quát hóa}]\n\href{https://developers.google.com/machine-learning/glossary\#generalization}{Generalization} là đối lập với overfitting: mô hình dự đoán tốt trên dữ liệu mới. Đây là mục tiêu.\n\end{dinhnghia}
+\begin{dinhnghia}[title={Tổng quát hóa}]\n\href{https://developers.google.com/machine-learning/glossary\#generalization}{Generalization} là đối lập với overfitting: mô hình dự đoán tốt trên dữ liệu mới. Đây là target.\n\end{dinhnghia}
 
 \subsection{Phát hiện overfitting}
 
@@ -352,7 +352,7 @@ Fit tốt & Tốt trên train và khái quát tốt \\
 
 \subsection{Regularization}
 
-\begin{dinhnghia}[title={Regularization}]\nMô hình cần đồng thời đạt hai mục tiêu mâu thuẫn: (1) khớp dữ liệu tốt; (2) khớp đơn giản nhất có thể. Một cách giữ mô hình đơn giản là phạt mô hình phức tạp trong lúc train --- đó là \\textbf{regularization}.\n\end{dinhnghia}
+\begin{dinhnghia}[title={Regularization}]\nMô hình cần đồng thời đạt hai target mâu thuẫn: (1) khớp dữ liệu tốt; (2) khớp đơn giản nhất có thể. Một cách giữ mô hình đơn giản là phạt mô hình phức tạp trong lúc train --- đó là \\textbf{regularization}.\n\end{dinhnghia}
 
 \begin{vidu}[title={Ẩn dụ cái còi báo ồn}]\nTưởng tượng mỗi sinh viên có một cái còi làm thầy khó chịu. Mỗi khi bài giảng quá phức tạp, sinh viên bấm còi khiến thầy buộc phải đơn giản hóa. Dần dần, còi ``huấn luyện'' thầy giảng đủ đơn giản để hiểu, dù có thể kém chi tiết.\n\end{vidu}
 
@@ -404,7 +404,7 @@ Fit tốt & Tốt trên train và khái quát tốt \\
 
 \subsection{Cân bằng learning rate và regularization rate}
 
-\begin{ynghia}\nLearning rate và regularization rate thường kéo weights theo hai hướng ngược nhau: learning rate cao kéo weights \textbf{ra xa} 0; regularization rate cao đẩy weights \textbf{về} 0.\n\nNếu regularization quá cao so với learning rate: weights yếu \(\Rightarrow\) dự đoán kém. Nếu learning rate quá cao so với regularization: weights mạnh \(\Rightarrow\) overfit.\n\nMục tiêu: tìm điểm cân bằng; nhưng khi đổi learning rate bạn có thể phải tìm lại lambda tối ưu.\n\end{ynghia}
+\begin{ynghia}\nLearning rate và regularization rate thường kéo weights theo hai hướng ngược nhau: learning rate cao kéo weights \textbf{ra xa} 0; regularization rate cao đẩy weights \textbf{về} 0.\n\nNếu regularization quá cao so với learning rate: weights yếu \(\Rightarrow\) dự đoán kém. Nếu learning rate quá cao so với regularization: weights mạnh \(\Rightarrow\) overfit.\n\ntarget: tìm điểm cân bằng; nhưng khi đổi learning rate bạn có thể phải tìm lại lambda tối ưu.\n\end{ynghia}
 
 %==============================================================================
 \section{Diễn giải đường cong tổn thất (Interpreting loss curves)}

@@ -1,6 +1,6 @@
 # Bài 3 — Thêm dữ liệu
 
-## Thu data có mục tiêu
+## Thu data có target
 
 - Không nhất thiết thu "mọi thứ" — tốn chậm, đắt
 - Error analysis chỉ ra subset yếu → thu thêm **đúng loại đó** (pharma spam, phishing…)

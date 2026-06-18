@@ -7,8 +7,8 @@
 Xây dựng đặc trưng tiến là phương pháp \textbf{lựa chọn đặc trưng}: bắt đầu từ tập đặc trưng \textbf{rỗng}, rồi \textbf{lặp thêm} đặc trưng cho hiệu năng tốt nhất ở mỗi bước cho đến khi đạt số đặc trưng mong muốn.
 \end{dinhnghia}
 
-\begin{ynghia}[title={Mục tiêu lựa chọn đặc trưng}]
-Mục tiêu là xác định các đặc trưng \textbf{quan trọng nhất} để dự đoán biến mục tiêu, đồng thời bỏ qua đặc trưng ít quan trọng --- vốn thêm \textbf{nhiễu} vào mô hình và có thể gây \textbf{overfitting}.
+\begin{ynghia}[title={target lựa chọn đặc trưng}]
+target là xác định các đặc trưng \textbf{quan trọng nhất} để dự đoán biến target, đồng thời bỏ qua đặc trưng ít quan trọng --- vốn thêm \textbf{nhiễu} vào mô hình và có thể gây \textbf{overfitting}.
 \end{ynghia}
 
 \subsection{Các bước thuật toán}
@@ -31,7 +31,7 @@ Mục tiêu là xác định các đặc trưng \textbf{quan trọng nhất} đ�
 \end{tinhchat}
 
 \begin{luuy}[title={Hạn chế}]
-Không luôn dẫn tới tập đặc trưng \textbf{tối ưu toàn cục}, đặc biệt khi có đặc trưng \textbf{tương quan cao} hoặc quan hệ \textbf{phi tuyến} giữa đặc trưng và biến mục tiêu.
+Không luôn dẫn tới tập đặc trưng \textbf{tối ưu toàn cục}, đặc biệt khi có đặc trưng \textbf{tương quan cao} hoặc quan hệ \textbf{phi tuyến} giữa đặc trưng và biến target.
 \end{luuy}
 
 \subsection{Ví dụ triển khai Python}

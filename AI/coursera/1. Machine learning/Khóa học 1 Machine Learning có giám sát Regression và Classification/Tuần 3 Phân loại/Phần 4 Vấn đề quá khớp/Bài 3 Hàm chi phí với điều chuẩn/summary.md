@@ -10,7 +10,7 @@ J = (1/2m)·Σ(f⁽ⁱ⁾ − y⁽ⁱ⁾)²  +  (λ/2m)·Σwⱼ²
 - **λ (lambda):** tham số regularization — cần chọn như α
 - Thường **không** penalize b
 
-## Cân bằng 2 mục tiêu
+## Cân bằng 2 target
 - Hạng 1: fit data tốt
 - Hạng 2: giữ w nhỏ → ít overfit
 

@@ -12,7 +12,7 @@
 - μ = mean, σ = standard deviation
 
 ## Rule of thumb
-- Mục tiêu: features trong khoảng **~[−1, 1]** (linh hoạt)
+- target: features trong khoảng **~[−1, 1]** (linh hoạt)
 - x ∈ [−3, 3] hoặc [−0.3, 0.3] → OK
 - x ∈ [−100, 100] hoặc [−0.001, 0.001] → **nên scale**
 - Nhiệt độ 98.6–105°F → nên scale

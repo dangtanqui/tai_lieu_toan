@@ -20,7 +20,7 @@ Giả thuyết thường là hàm ánh xạ đầu vào sang dự đoán:
 h(x) = \hat{y}
 \]
 với $x$ là đầu vào, $\hat{y}$ là giá trị dự đoán.
-Mục tiêu ML: tìm giả thuyết \textbf{tổng quát hoá tốt} trên dữ liệu chưa thấy.
+target ML: tìm giả thuyết \textbf{tổng quát hoá tốt} trên dữ liệu chưa thấy.
 \end{ynghia}
 
 \subsection{Hàm giả thuyết $h$}
@@ -54,7 +54,7 @@ Thuật toán tìm giả thuyết ``khớp'' nhất trong không gian này --- g
 \subsection{Hai loại giả thuyết (kiểm định thống kê)}
 
 \begin{dinhnghia}[title={Null hypothesis ($H_0$)}]
-Giả thuyết \textbf{mặc định}: không có quan hệ giữa feature và biến mục tiêu.
+Giả thuyết \textbf{mặc định}: không có quan hệ giữa feature và biến target.
 Trong ML ta thường cố \textbf{bác bỏ} $H_0$ nếu $p$-value $< \alpha$ (mức ý nghĩa).
 \end{dinhnghia}
 
@@ -85,7 +85,7 @@ Ví dụ hồi quy tuyến tính, cost (MSE):
 \[
 J(w) = \frac{1}{2n}\sum_{i=1}^{n}\bigl(h(x_i) - y_i\bigr)^2
 \]
-Mục tiêu: $w$ làm $J(w)$ nhỏ nhất $\Rightarrow$ giả thuyết tốt nhất trong lớp hàm đã chọn.
+target: $w$ làm $J(w)$ nhỏ nhất $\Rightarrow$ giả thuyết tốt nhất trong lớp hàm đã chọn.
 \end{ynghia}
 
 \subsection{Tính chất giả thuyết tốt}

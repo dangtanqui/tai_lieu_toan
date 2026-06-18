@@ -7,7 +7,7 @@
 Thuật toán K-Means tính centroid và lặp cho đến khi đạt centroid tối ưu. Giả định \textbf{đã biết trước} số cụm; còn gọi là thuật toán phân cụm \textbf{phẳng} (flat clustering). Ký hiệu $K$ là số cụm mà thuật toán xác định từ dữ liệu.
 \end{dinhnghia}
 
-\begin{ynghia}[title={Mục tiêu tối thiểu}]
+\begin{ynghia}[title={target tối thiểu}]
 Mỗi điểm được gán vào cụm sao cho \textbf{tổng bình phương khoảng cách} giữa điểm và centroid là nhỏ nhất. Biến thiên trong cụm càng nhỏ thì các điểm trong cùng cụm càng giống nhau.
 \end{ynghia}
 
@@ -47,9 +47,9 @@ Do khởi tạo centroid ngẫu nhiên và lặp lặp lại, K-means có thể 
 Thuật toán đơn giản, hiệu quả với dataset lớn; nhưng nhạy khởi tạo, dễ hội tụ cục bộ, và thường giả định phương sai đồng đều giữa các cụm.
 \end{tinhchat}
 
-\subsection{Mục tiêu phân tích cụm}
+\subsection{target phân tích cụm}
 
-\begin{dongco}[title={Hai mục tiêu chính}]
+\begin{dongco}[title={Hai target chính}]
 \begin{itemize}
   \item Rút ra \textbf{trực giác có ý nghĩa} từ dữ liệu.
   \item \textbf{Phân cụm rồi dự đoán}: xây mô hình riêng cho từng nhóm con sau khi phân cụm.
@@ -282,7 +282,7 @@ Ghép nhãn cụm với nhãn gốc cho độ chính xác khoảng \textbf{80\%}
 \begin{ynghia}[title={Ứng dụng K-Means}]
   \begin{itemize}
     \item Phân đoạn ảnh: Gom vùng pixel theo màu hoặc texture; dùng trong nhận dạng đối tượng, truy vấn ảnh, ảnh y khoa.
-    \item Phân khúc khách hàng: Chia khách theo hành vi mua hoặc nhân khẩu; hỗ trợ giữ chân khách, loyalty, quảng cáo nhắm mục tiêu.
+    \item Phân khúc khách hàng: Chia khách theo hành vi mua hoặc nhân khẩu; hỗ trợ giữ chân khách, loyalty, quảng cáo nhắm target.
     \item Phát hiện bất thường: Điểm không thuộc cụm nào (hoặc xa mọi centroid) có thể là bất thường (anomaly) --- gian lận, xâm nhập mạng, bảo trì dự đoán.
     \item Phân tích biểu hiện gen: Gom gen đồng điều hòa/biểu hiện; hỗ trợ khám phá thuốc, chẩn đoán, y học cá thể hóa.
   \end{itemize}

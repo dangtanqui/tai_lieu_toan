@@ -3,7 +3,7 @@
 - Nhận dạng chữ số 0–9: đổi lớp đầu ra từ 1 → **10 nơ-ron** với **softmax**
 - Lan truyền xuôi: lớp ẩn giữ nguyên; lớp 3 tính \(z_1 \ldots z_{10}\) rồi softmax → \(a_1 \ldots a_{10}\)
 
-## Đặc điểm softmax
+## feature softmax
 
 - Khác sigmoid/ReLU/linear: mỗi \(a_j\) phụ thuộc **tất cả** \(z_1 \ldots z_n\), không tính độc lập từng nơ-ron
 - Phải tính đồng thời toàn bộ vector z

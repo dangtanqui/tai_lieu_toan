@@ -15,7 +15,7 @@
 - Vừa đủ: ellipse (đa thức bậc 2)
 - Overfit: ranh giới **quá phức tạp**, ôm sát training
 
-## Mục tiêu
+## target
 - Tránh cả underfitting lẫn overfitting — model **vừa phải** (như cốc cháo vừa ăn trong truyện Gấu)
 
 ## Giải pháp (preview)

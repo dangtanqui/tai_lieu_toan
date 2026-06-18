@@ -1,4 +1,4 @@
-## Mục tiêu
+## target
 - **Minimize J(w,b)** — tìm w, b sao cho J nhỏ nhất
 - J đo tổng squared error → J nhỏ = model fit tốt
 

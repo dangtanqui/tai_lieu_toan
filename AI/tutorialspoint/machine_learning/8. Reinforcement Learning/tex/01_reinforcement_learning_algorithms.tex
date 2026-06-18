@@ -3,9 +3,9 @@
 \label{sec:reinforcement-learning-algorithms}
 %==============================================================================
 
-\begin{dongco}[title={Mục tiêu học tăng cường}]
+\begin{dongco}[title={target học tăng cường}]
 Thuật toán học tăng cường huấn luyện \textbf{agent} ra quyết định tối ưu trong môi trường.
-Mục tiêu là \textbf{tối đa hóa phần thưởng tích lũy} (cumulative reward) theo thời gian.
+target là \textbf{tối đa hóa phần thưởng tích lũy} (cumulative reward) theo thời gian.
 Các thuật toán phổ biến gồm Q-learning, policy gradient, Monte Carlo, \ldots
 \end{dongco}
 
@@ -83,7 +83,7 @@ MCTS đặc biệt hữu ích cho ra quyết định trong môi trường \textb
   \item \textbf{Monte Carlo Learning} --- ước lượng hàm giá trị và policy từ \textbf{kinh nghiệm thực}, lấy trung bình qua nhiều episode thay vì dùng mô hình động học môi trường.
   \item \textbf{Temporal Difference (TD) Learning} --- cập nhật giá trị \textbf{tăng dần} sau mỗi hành động và mỗi reward (khác Monte Carlo chỉ cập nhật sau khi episode kết thúc); phù hợp ra quyết định online.
   \item \textbf{SARSA} --- thuật toán \textbf{on-policy}, model-free, học hàm giá trị hành động $Q(s,a)$; tên viết tắt State--Action--Reward--State--Action; cập nhật theo hành động agent \textbf{thực sự} thực hiện.
-  \item \textbf{Q-Learning} --- thuật toán \textbf{off-policy}, model-free, học $Q^*(s,a)$: phần thưởng kỳ vọng tối đa cho cặp trạng thái--hành động; mục tiêu tìm policy tối ưu qua hàm Q tối ưu.
+  \item \textbf{Q-Learning} --- thuật toán \textbf{off-policy}, model-free, học $Q^*(s,a)$: phần thưởng kỳ vọng tối đa cho cặp trạng thái--hành động; target tìm policy tối ưu qua hàm Q tối ưu.
   \item \textbf{Policy Gradient Optimization} --- tối ưu \textbf{trực tiếp} tham số policy thay vì chỉ học hàm giá trị; REINFORCE là một dạng policy gradient dựa trên Monte Carlo.
 \end{enumerate}
 \end{phuongphap}

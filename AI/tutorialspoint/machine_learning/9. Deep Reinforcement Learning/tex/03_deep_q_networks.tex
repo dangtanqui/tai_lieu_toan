@@ -72,8 +72,8 @@ Lấy mẫu \textbf{ngẫu nhiên} các batch từ buffer để huấn luyện m
 
 \subsubsection{Target Network}
 
-\begin{phuongphap}[title={Mạng mục tiêu}]
-Để ổn định quá trình huấn luyện, DQN dùng \textbf{mạng target riêng} sinh mục tiêu giá trị $Q$.
+\begin{phuongphap}[title={Mạng target}]
+Để ổn định quá trình huấn luyện, DQN dùng \textbf{mạng target riêng} sinh target giá trị $Q$.
 Mạng target được \textbf{cập nhật định kỳ} trọng số từ mạng chính để giảm rủi ro \textbf{phân kỳ} khi huấn luyện.
 \end{phuongphap}
 
@@ -91,8 +91,8 @@ Cân bằng khám phá--khai thác giúp agent học hiệu quả.
 \subsubsection{Quy trình huấn luyện}
 
 \begin{phuongphap}[title={Training Process}]
-Mạng nơ-ron được huấn luyện bằng \textbf{gradient descent} để tối thiểu hóa loss giữa $Q$ dự đoán và $Q$ mục tiêu.
-Giá trị $Q$ mục tiêu tính theo \textbf{phương trình Bellman}, kết hợp phần thưởng nhận được và giá trị $Q$ \textbf{lớn nhất} của trạng thái kế tiếp.
+Mạng nơ-ron được huấn luyện bằng \textbf{gradient descent} để tối thiểu hóa loss giữa $Q$ dự đoán và $Q$ target.
+Giá trị $Q$ target tính theo \textbf{phương trình Bellman}, kết hợp phần thưởng nhận được và giá trị $Q$ \textbf{lớn nhất} của trạng thái kế tiếp.
 \end{phuongphap}
 
 \subsection{Hạn chế của Deep Q-Networks}
@@ -124,7 +124,7 @@ Double DQN dùng hai mạng:
 \end{itemize}
 \end{phuongphap}
 
-\begin{phuongphap}[title={Cách tính mục tiêu}]
+\begin{phuongphap}[title={Cách tính target}]
 Thay đổi chính nằm ở cách tính \textbf{target}:
 thay vì dùng một mạng $Q$ cho cả chọn và đánh giá hành động kế tiếp, Double DQN dùng mạng $Q$ để \textbf{chọn} hành động ở trạng thái sau và mạng target để \textbf{đánh giá} giá trị $Q$ của hành động đó.
 Việc tách này giảm xu hướng overestimate, cho ước lượng giá trị \textbf{chính xác} hơn.

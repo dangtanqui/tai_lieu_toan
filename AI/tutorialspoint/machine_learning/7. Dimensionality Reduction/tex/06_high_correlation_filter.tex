@@ -4,7 +4,7 @@
 %==============================================================================
 
 \begin{dinhnghia}[title={Bộ lọc tương quan cao}]
-Kỹ thuật \textbf{lựa chọn đặc trưng} (filter method) dùng để phát hiện và loại các feature \textbf{tương quan mạnh} với nhau. Mục tiêu: giảm số biến dự báo, hạn chế \textbf{đa cộng tuyến} (multicollinearity) --- khi hai hay nhiều biến giải thích gần như cùng một thông tin.
+Kỹ thuật \textbf{lựa chọn đặc trưng} (filter method) dùng để phát hiện và loại các feature \textbf{tương quan mạnh} với nhau. target: giảm số biến dự báo, hạn chế \textbf{đa cộng tuyến} (multicollinearity) --- khi hai hay nhiều biến giải thích gần như cùng một thông tin.
 \end{dinhnghia}
 
 \begin{ynghia}[title={Nguyên tắc hoạt động}]
@@ -18,7 +18,7 @@ Tính hệ số tương quan giữa từng \textbf{cặp} feature; nếu $|r|$ v
   \item Tính \textbf{ma trận tương quan} (correlation matrix) trên toàn bộ feature.
   \item Đặt \textbf{ngưỡng} cho hệ số tương quan (ví dụ $0{,}8$).
   \item Tìm các \textbf{cặp feature} có $|r|$ lớn hơn ngưỡng.
-  \item Với mỗi cặp tương quan cao, \textbf{xóa một} feature (thường giữ feature có tương quan mạnh hơn với biến mục tiêu, hoặc xóa theo quy tắc cố định như trong ví dụ).
+  \item Với mỗi cặp tương quan cao, \textbf{xóa một} feature (thường giữ feature có tương quan mạnh hơn với biến target, hoặc xóa theo quy tắc cố định như trong ví dụ).
   \item Huấn luyện mô hình trên tập feature còn lại.
 \end{enumerate}
 \end{phuongphap}

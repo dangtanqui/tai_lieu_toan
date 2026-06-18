@@ -6,11 +6,11 @@
 
 ## Cách sử dụng
 
-1. **Danh sách chính** (Phần I): Liệt kê từng mảng kiến thức **một lần duy nhất**, kèm mức độ và mục tiêu.
+1. **Danh sách chính** (Phần I): Liệt kê từng mảng kiến thức **một lần duy nhất**, kèm mức độ và target.
 2. **Bảng ánh xạ** (Phần II): Tên gọi khác nhau (các khóa/cộng đồng) → mục tương ứng trong danh sách chính.
 3. **Lộ trình theo giai đoạn** (Phần III): Thứ tự học từ cơ bản → ứng dụng → nghiên cứu, tham chiếu ID.
 
-Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không cần** học lại “tên khác” của nó; chỉ học phần nâng cao khi thật sự khác mục tiêu.
+Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không cần** học lại “tên khác” của nó; chỉ học phần nâng cao khi thật sự khác target.
 
 ---
 
@@ -18,7 +18,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 0: Kỹ năng nền (bắt buộc để đi xa)
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | F0 | **Python cơ bản + môi trường** | 0 | Viết code, chạy notebook, quản lý dự án | Python, pip/venv/conda, Jupyter, typing cơ bản |
 | F1 | **Git + tư duy làm dự án** | 0–1 | Làm việc như kỹ sư | git, nhánh, PR, README, tái lập thí nghiệm |
@@ -26,7 +26,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 1: Toán tối thiểu cho AI
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | M1 | **Đại số tuyến tính (cho ML/DL)** | 1 | Hiểu vector/matrix trong mô hình | norm, inner product, eigen/SVD, projection |
 | M2 | **Giải tích + tối ưu cơ bản** | 1 | Hiểu gradient/backprop | đạo hàm nhiều biến, chain rule, Taylor, convexity cơ bản |
@@ -34,7 +34,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 2: Nền tảng Machine Learning cổ điển
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | ML0 | **Tư duy ML + quy trình** | 1 | Biết làm 1 bài toán end-to-end | train/val/test, leakage, metrics, baseline |
 | ML1 | **Supervised learning cơ bản** | 1 | Làm được hồi quy/phân loại | linear/logistic, kNN, Naive Bayes, SVM |
@@ -45,7 +45,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 3: Deep Learning (từ cơ bản đến hiện đại)
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | DL0 | **NN cơ bản** | 1–2 | Hiểu backprop & training | MLP, activations, loss, SGD/Adam |
 | DL1 | **CNN cho thị giác** | 2 | Làm CV cơ bản | conv, pooling, augmentation, transfer learning |
@@ -55,7 +55,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 4: Dữ liệu, hệ thống, MLOps (đi làm / sản phẩm)
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | S1 | **Data engineering tối thiểu** | 1–2 | Thu thập & làm sạch dữ liệu | ETL, schema, parquet, quality checks |
 | S2 | **Experiment tracking & reproducibility** | 2 | Làm nghiên cứu/kỹ thuật chuẩn | seeds, logging, W&B/MLflow, configs |
@@ -64,7 +64,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 5: LLM & GenAI (hướng ứng dụng và hướng nghiên cứu)
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | LLM0 | **LLM basics** | 2 | Biết LLM hoạt động gì | tokenization, pretrain vs finetune, scaling |
 | LLM1 | **Prompting & evaluation** | 2 | Dùng LLM có kiểm soát | prompt patterns, test set, hallucination |
@@ -75,7 +75,7 @@ Nguyên tắc: nếu bạn đã học xong một ID (ví dụ ML1), **không c�
 
 ## Nhóm 6: Nền tảng nghiên cứu (đọc paper, làm thí nghiệm)
 
-| ID | Chủ đề | Mức | Mục tiêu | Nội dung chính |
+| ID | Chủ đề | Mức | target | Nội dung chính |
 |---|---|---|---|---|
 | R1 | **Đọc paper & viết báo cáo** | 2–3 | Đọc hiểu, tóm tắt, tái lập | structure, ablation, baseline, repro |
 | R2 | **Information theory & generalization (tùy)** | 3 | Cơ sở lý thuyết | entropy, KL, PAC-ish intuition |

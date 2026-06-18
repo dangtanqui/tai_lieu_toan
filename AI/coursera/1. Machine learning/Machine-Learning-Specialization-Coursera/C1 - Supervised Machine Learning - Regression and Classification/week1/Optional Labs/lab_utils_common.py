@@ -55,7 +55,7 @@ def compute_gradient_matrix(X, y, w, b):
       dj_db (scalar):        The gradient of the cost w.r.t. the parameter b.
 
     """
-    m,n = X.shape
+    m = X.shape[0]
     f_wb = X @ w + b
     e   = f_wb - y
     dj_dw  = (1/m) * (X.T @ e)
@@ -101,7 +101,8 @@ def compute_gradient(X, y, w, b):
     dj_db = 0.
 
     for i in range(m):
-        err = (np.dot(X[i], w) + b) - y[i]
+        f_wb_i = np.dot(X[i],w) + b           #(n,)(n,)=scalar
+        err = f_wb_i - y[i]
         for j in range(n):
             dj_dw[j] = dj_dw[j] + err * X[i,j]
         dj_db = dj_db + err

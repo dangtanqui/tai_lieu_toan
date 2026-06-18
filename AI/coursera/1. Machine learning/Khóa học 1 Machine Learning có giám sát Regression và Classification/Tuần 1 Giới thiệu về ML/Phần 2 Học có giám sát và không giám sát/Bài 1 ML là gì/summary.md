@@ -19,7 +19,7 @@ Supervised · Unsupervised · Recommender systems
 ## Trọng tâm khóa học
 - Không chỉ học **công cụ** (thuật toán) mà còn **cách áp dụng** hiệu quả
 - Best practices xây hệ thống ML thực tế → tránh mất tháng đi sai hướng
-- Mục tiêu: biết **thiết kế & xây dựng** hệ thống ML nghiêm túc
+- target: biết **thiết kế & xây dựng** hệ thống ML nghiêm túc
 
 ## Tiếp theo
 - Supervised vs Unsupervised — định nghĩa + khi nào dùng

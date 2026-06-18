@@ -55,7 +55,7 @@ V(s_t) \leftarrow V(s_t) + \alpha\bigl[R_{t+1} + \gamma V(s_{t+1}) - V(s_t)\bigr
   \item $V(s_{t+1})$: bootstrap giá trị trạng thái kế.
   \item $\alpha$, $\gamma$: tốc độ học và chiết khấu.
 \end{itemize}
-Sai số trong ngoặc là mục tiêu TD một bước trừ ước lượng cũ.
+Sai số trong ngoặc là target TD một bước trừ ước lượng cũ.
 \end{dinhnghia}
 
 \subsection{TD(1)}
@@ -70,7 +70,7 @@ TD(1) (trace length 1) là dạng \textbf{tổng quát} của TD(0), trộn MC v
 \begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{3.2cm}XX}
 \textbf{Khía cạnh} & \textbf{TD (giá trị trạng thái)} & \textbf{Q-learning} \\
 \midrule
-Mục tiêu &
+target &
 Ước lượng $V(s)$. &
 Ước lượng $Q(s,a)$. \\
 Đối tượng &
@@ -100,7 +100,7 @@ Q-learning. \\
 \subsection{Sai số TD (TD error)}
 
 \begin{dinhnghia}[title={Định nghĩa TD error}]
-Sai số TD tại bước $t$ là chênh lệch giữa \textbf{mục tiêu bootstrap} và ước lượng hiện tại:
+Sai số TD tại bước $t$ là chênh lệch giữa \textbf{target bootstrap} và ước lượng hiện tại:
 \[
 \delta_t = r_{t+1} + \gamma V(s_{t+1}) - V(s_t)
 \]

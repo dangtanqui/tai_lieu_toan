@@ -8,7 +8,7 @@
 | | Supervised | Unsupervised |
 |---|------------|--------------|
 | Nhãn | Có (benign/malignant...) | Không |
-| Mục tiêu | Dự đoán y cho x mới | Tìm pattern / nhóm trong data |
+| target | Dự đoán y cho x mới | Tìm pattern / nhóm trong data |
 
 ## Clustering (phân cụm)
 - Thuật toán unsupervised phổ biến nhất
@@ -22,7 +22,7 @@
 
 **DNA / Gen**
 - Mỗi cột = 1 người, mỗi hàng = 1 gene
-- Clustering nhóm người theo đặc điểm di truyền (type 1, 2, 3...)
+- Clustering nhóm người theo feature di truyền (type 1, 2, 3...)
 
 **Market segmentation (phân khúc khách hàng)**
 - Gom khách hàng thành nhóm để phục vụ hiệu quả hơn

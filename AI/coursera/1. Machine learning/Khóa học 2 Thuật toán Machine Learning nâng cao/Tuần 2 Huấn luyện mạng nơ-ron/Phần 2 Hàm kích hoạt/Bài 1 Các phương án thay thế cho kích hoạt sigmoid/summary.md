@@ -5,7 +5,7 @@
 
 ## Ba hàm kích hoạt phổ biến
 
-| Hàm | Công thức | Đặc điểm |
+| Hàm | Công thức | feature |
 |-----|-----------|----------|
 | **Sigmoid** | \(g(z) = \frac{1}{1+e^{-z}}\) | Đầu ra 0–1 |
 | **ReLU** | \(g(z) = \max(0, z)\) | 0 khi z < 0; bằng z khi z ≥ 0 |

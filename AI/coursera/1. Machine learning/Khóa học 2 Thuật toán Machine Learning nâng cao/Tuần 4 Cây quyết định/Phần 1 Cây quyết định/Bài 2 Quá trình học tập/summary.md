@@ -11,7 +11,7 @@
 
 ### Chọn feature để split
 
-- Mục tiêu: tối đa **purity** (tập con gần all-cat hoặc all-not-cat)
+- target: tối đa **purity** (tập con gần all-cat hoặc all-not-cat)
 - Ví dụ lý tưởng: feature "cat DNA" → hai nhánh hoàn toàn pure
 - Thực tế: so sánh ear shape, face shape, whiskers theo độ pure của nhánh trái/phải
 - Sẽ dùng **entropy** để đo impurity

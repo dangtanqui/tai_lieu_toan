@@ -1,4 +1,4 @@
-## Mục tiêu
+## target
 - Implement **forward propagation** một layer bằng Python/NumPy (không TensorFlow)
 
 ## Quy ước ký hiệu code

@@ -6,7 +6,7 @@
 \begin{dinhnghia}[title={Phân tích hồi quy}]
 Kỹ thuật thống kê dự đoán \textbf{giá trị số liên tục} dựa trên quan hệ giữa biến độc lập và biến phụ thuộc.
 
-Mục tiêu: vẽ đường/đường cong khớp dữ liệu tốt nhất và ước lượng ảnh hưởng của biến này lên biến kia.
+target: vẽ đường/đường cong khớp dữ liệu tốt nhất và ước lượng ảnh hưởng của biến này lên biến kia.
 \end{dinhnghia}
 
 \begin{ynghia}[title={Vai trò trong học máy}]
@@ -20,7 +20,7 @@ Hồi quy là \textbf{học có giám sát}: mô hình học từ feature (độ
 \begin{phuongphap}[title={Thuật ngữ thường gặp}]
 \begin{itemize}
   \item \textbf{Biến độc lập} (predictor, biến dự báo, feature): dùng để dự đoán giá trị biến phụ thuộc.
-  \item \textbf{Biến phụ thuộc} (target, biến mục tiêu): biến cần dự đoán.
+  \item \textbf{Biến phụ thuộc} (target, biến target): biến cần dự đoán.
   \item \textbf{Đường hồi quy}: đường thẳng / đường cong phù hợp nhất với dữ liệu.
   \item \textbf{Quá khớp (Overfitting)} (phương sai cao): mô hình tốt trên tập huấn luyện nhưng kém trên tập kiểm tra.
   \item \textbf{Thiếu khớp (Underfitting)} (độ lệch cao): mô hình kém cả trên tập huấn luyện.
@@ -67,7 +67,7 @@ Hồi quy logistic là thuật toán học máy phổ biến, dùng để dự �
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Mô hình và hàm sigmoid}]
-Hồi quy logistic là mô hình tuyến tính tổng quát (generalized linear model) trong đó biến mục tiêu tuân theo phân phối Bernoulli.
+Hồi quy logistic là mô hình tuyến tính tổng quát (generalized linear model) trong đó biến target tuân theo phân phối Bernoulli.
 Thuật toán dùng hàm logistic hoặc hàm logit để học quan hệ giữa biến độc lập (predictors) và biến phụ thuộc (target).
 
 Biến phụ thuộc được ánh xạ qua hàm sigmoid của các biến độc lập.
@@ -75,8 +75,8 @@ Hàm sigmoid cho xác suất trong khoảng $[0, 1]$; giá trị xác suất nà
 \end{phuongphap}
 
 \begin{ynghia}[title={Ứng dụng chính}]
-Hồi quy logistic chủ yếu dùng cho \textbf{bài toán phân loại nhị phân}: biến mục tiêu là phân loại với hai lớp.
-Mô hình ước lượng xác suất của biến mục tiêu khi biết các feature đầu vào, rồi dự đoán lớp có xác suất cao nhất.
+Hồi quy logistic chủ yếu dùng cho \textbf{bài toán phân loại nhị phân}: biến target là phân loại với hai lớp.
+Mô hình ước lượng xác suất của biến target khi biết các feature đầu vào, rồi dự đoán lớp có xác suất cao nhất.
 \end{ynghia}
 
 \subsubsection{Hồi quy đa thức (Polynomial Regression)}
@@ -86,7 +86,7 @@ Polynomial Linear Regression là phân tích hồi quy trong đó quan hệ gi�
 Hồi quy đa thức cho phép bắt quan hệ phức tạp hơn so với quan hệ tuyến tính trong hồi quy đơn và hồi quy tuyến tính đa biến thuần túy.
 \end{dinhnghia}
 
-\begin{tinhchat}[title={Đặc điểm}]
+\begin{tinhchat}[title={feature}]
 Hồi quy đa thức là một trong các hồi quy \textbf{phi tuyến} được dùng rộng rãi nhất.
 Có thể mô hình hóa quan hệ phi tuyến giữa predictor và target; đồng thời \textbf{nhạy hơn với outlier} so với hồi quy tuyến tính.
 \end{tinhchat}
@@ -142,7 +142,7 @@ Dự đoán giá cổ phiếu, hành vi khách hàng, v.v.
 \subsubsection{Hồi quy Random Forest (Random Forest Regression)}
 
 \begin{dinhnghia}[title={Hồi quy Random Forest}]
-Hồi quy Random Forest là thuật toán học có giám sát dùng \textbf{tập hợp} (ensemble) nhiều cây quyết định để dự đoán biến mục tiêu liên tục.
+Hồi quy Random Forest là thuật toán học có giám sát dùng \textbf{tập hợp} (ensemble) nhiều cây quyết định để dự đoán biến target liên tục.
 \end{dinhnghia}
 
 \begin{phuongphap}[title={Bagging}]

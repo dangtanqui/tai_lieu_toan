@@ -19,7 +19,7 @@ Critic ước lượng hàm giá trị $V(s)$ hoặc $Q(s,a)$ --- kỳ vọng ph
 
 \subsection{Cách hoạt động từng bước}
 
-\begin{phuongphap}[title={Mục tiêu}]
+\begin{phuongphap}[title={target}]
 Học chính sách tối đa hóa phần thưởng kỳ vọng tích lũy: actor đề xuất hành động, critic chấm điểm, phản hồi dùng để cập nhật cả $\theta$ (policy) và trọng số critic.
 \end{phuongphap}
 
@@ -69,7 +69,7 @@ A3C (Mnih et al., 2016) chạy \textbf{nhiều worker song song}, mỗi worker c
 \end{ynghia}
 
 \begin{ynghia}[title={SAC --- Soft Actor-Critic}]
-SAC là off-policy, thêm \textbf{điều hòa entropy} vào mục tiêu để khuyến khích khám phá; tối ưu đồng thời return kỳ vọng và độ ``mềm'' của chính sách --- cân bằng khai thác--khám phá tốt trên hành động liên tục.
+SAC là off-policy, thêm \textbf{điều hòa entropy} vào target để khuyến khích khám phá; tối ưu đồng thời return kỳ vọng và độ ``mềm'' của chính sách --- cân bằng khai thác--khám phá tốt trên hành động liên tục.
 \end{ynghia}
 
 \begin{ynghia}[title={DDPG --- Deep Deterministic Policy Gradient}]
@@ -88,7 +88,7 @@ Q-Prop giảm phương sai gradient bằng \textbf{control variate} từ critic,
   \item Agent tương tác môi trường: chọn $a_t \sim \pi_\theta(\cdot \mid s_t)$, nhận $r_t$, quan sát $s_{t+1}$.
   \item Tính $A(s_t,a_t)$ từ rollout (hoặc $n$-step) và $V_w(s_t)$.
   \item Cập nhật actor: $\theta \leftarrow \theta + \alpha_\theta \nabla_\theta \log \pi_\theta(a_t|s_t)\, A(s_t,a_t)$.
-  \item Cập nhật critic: giảm sai số TD hoặc MSE giữa $V_w$ và return mục tiêu.
+  \item Cập nhật critic: giảm sai số TD hoặc MSE giữa $V_w$ và return target.
   \item Lặp đến hội tụ; có thể dùng nhiều môi trường song song nhưng \textbf{đồng bộ} hóa gradient trước mỗi bước global.
 \end{enumerate}
 \end{phuongphap}

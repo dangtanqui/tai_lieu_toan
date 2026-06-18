@@ -40,7 +40,7 @@ Biến độc lập còn gọi predictor; biến phụ thuộc còn gọi respon
 
 \begin{dinhnghia}[title={Định nghĩa trong học máy}]
 Hồi quy tuyến tính dùng phương trình tuyến tính mô hình hóa quan hệ giữa biến phụ thuộc $Y$ và một hoặc nhiều biến độc lập.
-Mục tiêu chính: tìm \textbf{đường thẳng khớp tốt nhất} (đường hồi quy) qua các điểm dữ liệu.
+target chính: tìm \textbf{đường thẳng khớp tốt nhất} (đường hồi quy) qua các điểm dữ liệu.
 \end{dinhnghia}
 
 \begin{dinhnghia}[title={Đường hồi quy (Line of Regression)}]
@@ -106,7 +106,7 @@ Y = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p + \epsilon
 
 \subsection{Cách hồi quy tuyến tính hoạt động}
 
-\begin{dongco}[title={Mục tiêu}]
+\begin{dongco}[title={target}]
 Tìm đường khớp tốt nhất sao cho chênh lệch giữa giá trị thực và dự đoán là nhỏ nhất --- bằng cách ước lượng các tham số $w_0, w_1, \ldots$
 \end{dongco}
 
@@ -134,7 +134,7 @@ Hồi quy đa biến:
 \[
 \hat{Y} = w_0 + w_1 X_1 + w_2 X_2 + \cdots + w_p X_p
 \]
-Với mỗi bộ trọng số khác nhau có một đường hồi quy khác; mục tiêu là chọn đường khớp tốt nhất.
+Với mỗi bộ trọng số khác nhau có một đường hồi quy khác; target là chọn đường khớp tốt nhất.
 \end{phuongphap}
 
 \subsection{Đường khớp tốt nhất (Finding the Best Fit Line)}
@@ -142,14 +142,14 @@ Với mỗi bộ trọng số khác nhau có một đường hồi quy khác; m�
 \begin{phuongphap}[title={Tiêu chí đường tốt nhất}]
 Không phải mọi đường hồi quy đều tối ưu.
 Đường được coi là khớp tốt nhất khi \textbf{sai số} giữa giá trị thực và dự đoán là nhỏ nhất.
-Sai số $\epsilon$ tính trên mọi điểm; mục tiêu là giảm trung bình lỗi.
+Sai số $\epsilon$ tính trên mọi điểm; target là giảm trung bình lỗi.
 Có thể dùng MSE, MAE, L1 loss, L2 loss, v.v.
 \end{phuongphap}
 
 \tsimg{02_linear_regression/img05.jpg}
 
 \begin{dongco}[title={Hàm mất mát}]
-Để giảm sai số, cần hàm \textbf{cost function} / \textbf{loss function}: nhận dự đoán và thực tế, trả về một giá trị đại diện cho ``giá'' của dự đoán; mục tiêu là \textbf{tối thiểu hóa} hàm này.
+Để giảm sai số, cần hàm \textbf{cost function} / \textbf{loss function}: nhận dự đoán và thực tế, trả về một giá trị đại diện cho ``giá'' của dự đoán; target là \textbf{tối thiểu hóa} hàm này.
 \end{dongco}
 
 \subsection{Hàm mất mát cho hồi quy tuyến tính}
@@ -238,7 +238,7 @@ Dự đoán giá cổ phiếu, chỉ số kinh tế, xu hướng thị trường
 \end{ynghia}
 
 \begin{ynghia}[title={Quản trị rủi ro (Risk Management)}]
-Mô hình hóa quan hệ giữa yếu tố rủi ro và chỉ số tài chính; ví dụ bảo hiểm: đặc điểm chủ hợp đồng và số tiền bồi thường.
+Mô hình hóa quan hệ giữa yếu tố rủi ro và chỉ số tài chính; ví dụ bảo hiểm: feature chủ hợp đồng và số tiền bồi thường.
 \end{ynghia}
 
 \subsection{Ưu điểm hồi quy tuyến tính}

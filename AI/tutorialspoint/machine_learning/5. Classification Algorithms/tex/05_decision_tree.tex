@@ -5,7 +5,7 @@
 
 \begin{dinhnghia}[title={Decision Tree Algorithm}]
 Thuật toán cây quyết định là thuật toán phân cấp dạng \textbf{cây} dùng để phân loại hoặc dự đoán kết quả theo tập quy tắc.
-Chia dữ liệu thành các tập con theo giá trị feature đầu vào; lặp đệ quy cho đến khi mỗi tập con thuộc cùng một lớp hoặc cùng giá trị biến mục tiêu.
+Chia dữ liệu thành các tập con theo giá trị feature đầu vào; lặp đệ quy cho đến khi mỗi tập con thuộc cùng một lớp hoặc cùng giá trị biến target.
 Cây thu được là tập quy tắc quyết định để dự đoán hoặc phân loại dữ liệu mới.
 \end{dinhnghia}
 
@@ -40,7 +40,7 @@ Tách tập con theo feature và gán mỗi tập con một giá trị số.
 \subsubsection{Chỉ số Gini}
 
 \begin{dinhnghia}[title={Gini Index}]
-Gini Index là tên hàm \textbf{cost} đánh giá các tách nhị phân trong dataset, làm việc với biến mục tiêu phân loại Success/Failure (hoặc hai lớp).
+Gini Index là tên hàm \textbf{cost} đánh giá các tách nhị phân trong dataset, làm việc với biến target phân loại Success/Failure (hoặc hai lớp).
 Gini càng \textbf{cao} thì tập con càng \textbf{đồng nhất} (homogeneity).
 Gini hoàn hảo = 0; tệ nhất = 0.5 (bài toán 2 lớp).
 \end{dinhnghia}

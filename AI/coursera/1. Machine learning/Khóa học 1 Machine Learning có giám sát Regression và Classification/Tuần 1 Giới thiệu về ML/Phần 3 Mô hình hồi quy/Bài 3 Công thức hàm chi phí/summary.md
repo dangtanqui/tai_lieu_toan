@@ -13,7 +13,7 @@
 | 0.5 | 0 | Qua gốc, slope = 0.5 |
 | 0.5 | 1 | Slope 0.5, cắt trục y tại 1 |
 
-## Mục tiêu
+## target
 - Chọn w, b sao cho đường thẳng **fit data** (gần các điểm training)
 - **ŷ⁽ⁱ⁾** ≈ **y⁽ⁱ⁾** cho nhiều / tất cả mẫu
 
