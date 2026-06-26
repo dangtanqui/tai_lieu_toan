@@ -1,0 +1,313 @@
+WEBVTT
+
+1
+00:00:00.500 --> 00:00:03.375
+Phân cụm là gì?
+
+2
+00:00:03.375 --> 00:00:05.430
+Thuật toán phân cụm xem xét
+
+3
+00:00:05.430 --> 00:00:07.545
+một số điểm dữ liệu và
+
+4
+00:00:07.545 --> 00:00:09.945
+tự động tìm các điểm dữ liệu có
+
+5
+00:00:09.945 --> 00:00:12.780
+liên quan hoặc tương tự với nhau. Chúng
+
+6
+00:00:12.780 --> 00:00:14.940
+ta hãy xem điều đó có nghĩa là gì.
+
+7
+00:00:14.940 --> 00:00:17.070
+Hãy để tôi đối chiếu phân cụm, đây
+
+8
+00:00:17.070 --> 00:00:19.910
+là một thuật toán học tập không giám sát,
+
+9
+00:00:19.910 --> 00:00:22.475
+với những gì bạn đã thấy trước đây với việc
+
+10
+00:00:22.475 --> 00:00:25.585
+học có giám sát để phân loại nhị phân.
+
+11
+00:00:25.585 --> 00:00:32.670
+Cho một tập dữ liệu như thế này với các tính năng x_1 và x_2.
+
+12
+00:00:32.670 --> 00:00:36.665
+Với việc học có giám sát, chúng tôi đã có một bộ đào tạo với cả các
+
+13
+00:00:36.665 --> 00:00:41.080
+tính năng đầu vào x cũng như nhãn y.
+
+14
+00:00:41.080 --> 00:00:44.750
+Chúng tôi có thể vẽ một tập dữ liệu như thế này và phù hợp, giả sử,
+
+15
+00:00:44.750 --> 00:00:46.790
+một thuật toán hồi quy logistic hoặc
+
+16
+00:00:46.790 --> 00:00:50.635
+một mạng nơ-ron để tìm hiểu ranh giới quyết định như thế.
+
+17
+00:00:50.635 --> 00:00:53.960
+Trong học có giám sát, tập dữ liệu bao gồm
+
+18
+00:00:53.960 --> 00:00:57.955
+cả đầu vào x cũng như đầu ra mục tiêu y. Ng
+
+19
+00:00:57.955 --> 00:01:01.280
+ược lại, trong học tập không giám sát,
+
+20
+00:01:01.280 --> 00:01:05.060
+bạn được cung cấp một tập dữ liệu như thế này chỉ với x,
+
+21
+00:01:05.060 --> 00:01:08.770
+nhưng không phải nhãn hoặc nhãn đích y.
+
+22
+00:01:08.770 --> 00:01:11.180
+Đó là lý do tại sao khi tôi vẽ một tập dữ liệu,
+
+23
+00:01:11.180 --> 00:01:12.890
+nó trông như thế này,
+
+24
+00:01:12.890 --> 00:01:15.410
+chỉ với các dấu chấm thay vì hai lớp
+
+25
+00:01:15.410 --> 00:01:19.015
+được biểu thị bằng x và o.
+
+26
+00:01:19.015 --> 00:01:21.960
+Bởi vì chúng tôi không có nhãn mục tiêu y,
+
+27
+00:01:21.960 --> 00:01:23.690
+chúng tôi không thể cho
+
+28
+00:01:23.690 --> 00:01:27.425
+thuật toán biết “câu trả lời đúng,
+
+29
+00:01:27.425 --> 00:01:29.815
+y” mà chúng tôi muốn dự đoán là gì.
+
+30
+00:01:29.815 --> 00:01:32.600
+Thay vào đó, chúng ta sẽ yêu cầu thuật toán
+
+31
+00:01:32.600 --> 00:01:35.080
+tìm một cái gì đó thú vị về dữ liệu,
+
+32
+00:01:35.080 --> 00:01:36.860
+đó là tìm một số
+
+33
+00:01:36.860 --> 00:01:38.950
+cấu trúc thú vị về dữ liệu này.
+
+34
+00:01:38.950 --> 00:01:42.320
+Nhưng thuật toán học tập không giám sát đầu tiên
+
+35
+00:01:42.320 --> 00:01:46.310
+mà bạn tìm hiểu được gọi là thuật toán phân cụm, tìm
+
+36
+00:01:46.310 --> 00:01:48.440
+kiếm một
+
+37
+00:01:48.440 --> 00:01:50.405
+loại cấu trúc cụ thể trong dữ liệu.
+
+38
+00:01:50.405 --> 00:01:53.510
+Cụ thể, hãy nhìn vào tập dữ liệu như thế này và cố gắng
+
+39
+00:01:53.510 --> 00:01:57.920
+xem liệu nó có thể được nhóm thành các cụm hay không,
+
+40
+00:01:57.920 --> 00:02:01.540
+nghĩa là các nhóm điểm tương tự nhau hay không.
+
+41
+00:02:01.540 --> 00:02:04.025
+Một thuật toán phân cụm, trong trường hợp này,
+
+42
+00:02:04.025 --> 00:02:06.065
+có thể thấy rằng tập dữ liệu này
+
+43
+00:02:06.065 --> 00:02:09.935
+bao gồm dữ liệu từ hai cụm được hiển thị ở đây.
+
+44
+00:02:09.935 --> 00:02:12.460
+Dưới đây là một số ứng dụng của phân cụm. Trong
+
+45
+00:02:12.460 --> 00:02:15.635
+tuần đầu tiên của khóa học đầu tiên,
+
+46
+00:02:15.635 --> 00:02:17.465
+bạn đã nghe tôi nói về việc
+
+47
+00:02:17.465 --> 00:02:20.005
+nhóm các bài báo tương tự
+
+48
+00:02:36.305 --> 00:02:38.675
+lại với nhau, như câu chuyện về gấu trúc hoặc phân khúc thị trường, trong đó tại deeplearning.ai, chúng tôi phát hiện ra rằng có rất nhiều người học đến đây vì bạn có thể muốn phát triển kỹ năng của mình, hoặc phát triển sự nghiệp của bạn, hoặc cập nhật về
+
+49
+00:02:38.675 --> 00:02:41.930
+AI và hiểu nó ảnh hưởng đến lĩnh vực làm việc của bạn như thế nào.
+
+50
+00:02:41.930 --> 00:02:44.570
+Chúng tôi muốn giúp tất cả mọi người có bất kỳ
+
+51
+00:02:44.570 --> 00:02:49.150
+kỹ năng nào trong số này tìm hiểu về học máy
+
+52
+00:02:49.150 --> 00:02:51.859
+hoặc nếu bạn không rơi vào một trong những cụm này,
+
+53
+00:02:51.859 --> 00:02:53.525
+điều đó cũng hoàn toàn ổn.
+
+54
+00:02:53.525 --> 00:02:56.330
+Tôi hy vọng tài
+
+55
+00:02:56.330 --> 00:02:57.860
+liệu của deeplearning.ai và Stanford Online
+
+56
+00:02:57.860 --> 00:02:59.450
+cũng sẽ hữu ích cho bạn.
+
+57
+00:02:59.450 --> 00:03:03.680
+Phân cụm cũng đã được sử dụng để phân tích dữ liệu DNA,
+
+58
+00:03:03.680 --> 00:03:08.300
+nơi bạn sẽ xem xét dữ liệu biểu hiện di truyền từ các
+
+59
+00:03:08.300 --> 00:03:10.760
+cá thể khác nhau và cố gắng nhóm chúng
+
+60
+00:03:10.760 --> 00:03:15.325
+thành những người thể hiện các đặc điểm tương tự.
+
+61
+00:03:15.325 --> 00:03:21.740
+Tôi thấy thiên văn học và khám phá không gian hấp dẫn.
+
+62
+00:03:21.740 --> 00:03:24.500
+Một ứng dụng mà tôi nghĩ rất
+
+63
+00:03:24.500 --> 00:03:27.290
+thú vị là các nhà thiên văn học sử dụng phân
+
+64
+00:03:27.290 --> 00:03:30.950
+cụm để phân tích dữ liệu thiên văn để
+
+65
+00:03:30.950 --> 00:03:33.650
+nhóm các thiên thể trong không gian lại với nhau để
+
+66
+00:03:33.650 --> 00:03:37.440
+phân tích riêng những gì đang diễn ra trong không gian.
+
+67
+00:03:37.490 --> 00:03:40.265
+Một trong những ứng dụng mà tôi thấy
+
+68
+00:03:40.265 --> 00:03:43.430
+hấp dẫn là các nhà thiên văn học sử dụng
+
+69
+00:03:43.430 --> 00:03:48.860
+phân cụm để nhóm các thiên thể lại với nhau để tìm ra
+
+70
+00:03:48.860 --> 00:03:51.350
+cái nào tạo thành một thiên hà hoặc thiên hà
+
+71
+00:03:51.350 --> 00:03:55.685
+nào tạo thành cấu trúc mạch lạc trong không gian.
+
+72
+00:03:55.685 --> 00:03:58.910
+Phân cụm ngày nay được sử dụng cho tất cả các
+
+73
+00:03:58.910 --> 00:04:02.155
+ứng dụng này và nhiều ứng dụng khác.
+
+74
+00:04:02.155 --> 00:04:03.785
+Trong video tiếp theo, chúng
+
+75
+00:04:03.785 --> 00:04:04.955
+ta hãy xem
+
+76
+00:04:04.955 --> 00:04:07.520
+thuật toán phân cụm được sử dụng phổ biến nhất
+
+77
+00:04:07.520 --> 00:04:09.545
+được gọi là thuật toán k-mean
+
+78
+00:04:09.545 --> 00:04:12.570
+và chúng ta hãy xem cách nó hoạt động.
