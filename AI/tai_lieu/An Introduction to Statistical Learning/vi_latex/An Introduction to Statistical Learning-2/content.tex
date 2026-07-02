@@ -1,0 +1,1989 @@
+% --- page 1 ---
+\subsection{Lab: Giới thiệu về Python 43}
+
+\subsection{Trong [12]: x.dtype}
+
+\subsection{Ra[12]: dtype('int64')}
+
+Nếu ta sử dụng số thập phân, thì ta sẽ thu được một mảng các số thực (tức là các số có
+
+Giá trị thực).
+
+\subsection{Trong [13]: np.array([[1, 2], [3.0, 4]]).dtype}
+
+\subsection{Ra[13]: dtype('float64')}
+
+Các cột bằng cách xem xét thuộc tính hình dạng của chúng .
+
+\subsection{Trong [14]: np.array?}
+
+"Typing fun? " sẽ khiến Python hiển thị tài liệu liên quan đến...
+
+\subsection{Trong [15]: np.array([[1, 2], [3, 4]], float).dtype}
+
+\subsection{Ra[15]: dtype('float64')}
+
+Chúng ta cũng có thể tính tổng các phần tử của x bằng cách truyền x làm đối số cho hàm.
+
+\subsection{Trong [16]: x.shape}
+
+\subsection{Cho phương thức sum() của nó .}
+
+Một phương thức là một hàm được liên kết với một đối tượng. Ví dụ: phương thức cho một mảng x, biểu thức x.sum() tính tổng tất cả các phần tử của nó bằng cách sử dụng phương thức sum() cho mảng. Lệnh gọi x.sum() tự động cung cấp x làm đối số đầu tiên .sum() cho phương thức sum() của nó.
+
+\subsection{Trong [17]: x = np.array([1, 2, 3, 4])}
+
+X.sum()
+
+\subsection{Hàm np.sum() .}
+
+Chúng ta cũng có thể tính tổng các phần tử của x bằng cách chuyển x làm đối số cho hàm np.sum(). Np.sum()
+
+\subsection{Trong [14]: np.array?}
+
+Out[12]: dtype('int64')
+
+\subsection{Trong [12]: x.dtype}
+
+Một ví dụ khác, phương thức reshape() trả về một mảng mới có các phần tử .reshape() giống như x nhưng có hình dạng khác. Chúng ta làm điều này bằng cách chuyển vào một bộ tuple
+
+% --- page 2 ---
+\section{2. Statistical Learning}
+
+Print('x\_reshape trước khi chúng ta sửa đổi x\_reshape:\textbackslash{}n', x\_reshape) x\_reshape[0, 0] = 5
+
+Print('x\_reshape sau khi
+
+\subsection{Trong [19]: x = np.array([1, 2, 3, 4, 5, 6])}
+
+Print('bắt đầu x:\textbackslash{}n', x) x\_reshape = x.reshape((2, 3)) print('reshape x:\textbackslash{}n', x\_reshape)
+
+Bắt đầu x:
+
+Trong [19]: x = np.array([1, 2, 3, 4, 5, 6]) print('bắt đầu
+
+X:\textbackslash{}n', x) x\_reshape = x.reshape((2, 3))
+
+Kết quả đầu ra trước đó cho thấy mảng numpy được chỉ định dưới dạng một chuỗi các hàng. Điều này được gọi là thứ tự hàng chính, trái ngược với thứ tự cột chính.
+
+Python (và do đó numpy) sử dụng lập chỉ mục dựa trên 0. Điều này có nghĩa là để truy cập phần tử trên cùng bên trái của x\_reshape, chúng ta nhập x\_reshape[0,0].
+
+\subsection{Trong [20]: x\_reshape[0, 0]}
+
+\subsection{X: [[1 2}
+
+Tương tự, x\_reshape[1,2] mang lại phần tử ở hàng thứ hai và cột thứ ba của x\_reshape.
+
+\subsection{Trong [21]: x\_reshape[1, 2]}
+
+\subsection{Ra ngoài[21]: 6}
+
+Trong [20]: x\_reshape[0, 0]
+
+Out[22]: x trước khi chúng ta sửa đổi x\_reshape: [1 2 3 4 5
+
+\subsection{Trong [22]: print('x trước khi chúng ta sửa đổi x\_reshape:\textbackslash{}n', x)}
+
+X\_reshape trước khi chúng ta sửa đổi x\_reshape: [[1 2 3] [4
+
+X\_reshape) print('x sau khi chúng ta sửa đổi phần tử trên cùng bên trái của x\_reshape:\textbackslash{}n', x)
+
+\subsection{X\_reshape sau khi chúng ta sửa đổi phần tử trên cùng bên trái của nó:}
+
+[1 2 3 4 5 6] x\_reshape trước khi chúng ta sửa đổi x\_reshape:
+
+Giống như danh sách, bộ dữ liệu (tuple) biểu diễn một chuỗi các đối tượng. Tại sao chúng ta cần nhiều hơn một cách để
+
+% [[5 2 3]
+Tạo ra một chuỗi? Có một vài điểm khác biệt giữa bộ dữ liệu và danh sách, nhưng có lẽ quan trọng nhất là các phần tử của bộ
+
+% --- page 3 ---
+\subsection{Lab: Giới thiệu về Python 45}
+
+X sau khi chúng ta sửa đổi phần tử trên cùng bên trái của x\_reshape:
+
+Trong [23]: my\_tuple = (3, 4, 5)
+
+Việc sửa đổi x\_reshape cũng sửa đổi x vì hai đối tượng chiếm cùng một không gian trong bộ nhớ.
+
+Chúng ta vừa thấy rằng chúng ta có thể sửa đổi một phần tử của mảng. Chúng ta cũng có thể sửa đổi một bộ dữ liệu không? Hóa ra là chúng ta không thể - và việc cố gắng làm như vậy sẽ gây ra một ngoại lệ hoặc lỗi. Ngoại lệ
+
+\subsection{Trong [23]: my\_tuple = (3, 4, 5)}
+
+My\_tuple[0] = 2
+
+\subsection{TypeError: đối tượng 'tuple' không hỗ trợ gán mục}
+
+Bây giờ chúng ta đề cập ngắn gọn một số thuộc tính hữu ích của mảng. Thuộc tính hình dạng của mảng chứa kích thước của nó; đây luôn là một bộ dữ liệu. Thuộc tính ndim mang lại số thứ nguyên và T cung cấp chuyển vị của nó.
+
+\subsection{Trong [24]: x\_reshape.shape, x\_reshape.ndim, x\_reshape.T}
+
+\subsection{Ra[24]: ((2, 3),}
+
+2, mảng([[5, 4],
+
+[5 2 3 4 5 6]
+
+Lưu ý rằng ba đầu ra riêng lẻ (2,3), 2 và array([[5, 4],[2, 5], [3,6]]) đều là đầu ra dưới dạng một bộ dữ liệu.
+
+Trong [24]: x\_reshape.shape, x\_reshape.ndim, x\_reshape.T
+
+\subsection{Trong [25]: np.sqrt(x)}
+
+\subsection{Out[25]: array([2.24, 1.41, 1.73, 2., 2.24, 2.45])}
+
+\subsection{Chúng ta cũng có thể bình phương các phần tử:}
+
+Np.sqrt()
+
+\subsection{Ra[26]: mảng([25, 4, 9, 16, 25, 36])}
+
+Chúng ta có thể tính căn bậc hai bằng cách sử dụng cùng một ký hiệu, nâng lũy ​​thừa lên 1/2 thay vì 2.
+
+2.3 Lab: Giới thiệu về Python 45
+
+\subsection{Ngoài [27]: mảng ([2,24, 1,41, 1,73, 2., 2,24, 2,45])}
+
+Thuộc tính ndim cung cấp số chiều, và T cung cấp matrix chuyển vị của nó.
+
+Normal() Chúng ta có thể tìm hiểu thêm về chức năng này bằng cách xem trang trợ giúp, thông qua lệnh gọi tới np.random.normal?. Dòng đầu tiên của trang trợ giúp ghi là normal(loc=0.0,scale=1.0, size=None). Dòng chữ ký này cho chúng ta biết rằng chữ ký của hàm
+
+% --- page 4 ---
+\section{2. Statistical Learning}
+
+Nướu răng có vị trí, tỷ lệ và kích thước. Đây là các đối số từ khóa, từ khóa này có nghĩa là khi chúng được truyền vào hàm, chúng có thể được gọi bằng tên (theo bất kỳ thứ tự nào).3 Theo default, hàm này sẽ tạo ra (các) biến chuẩn ngẫu nhiên có giá trị trung bình (loc) 0 và độ lệch chuẩn (tỷ lệ) 1; hơn nữa, một biến ngẫu nhiên duy nhất sẽ được tạo trừ khi đối số về kích thước được thay đổi.
+
+Các lệnh. Cụ thể, mỗi lần chúng ta gọi np.random.normal(), chúng ta sẽ nhận được
+
+\subsection{Trong [28]: x = np.random.normal(size=50)}
+
+% x
+Ngoài[28]: mảng([-1.19, 0.41, 0.9 , -0.44, -0.9 , -0.38, 0.13, 1.87, -0.35, 1.16, 0.79, -0.97, -1.21, 0.06, -1.62, -0.6 , -0.77, -2.12, 0,38, -1,22, -0,06, -1,97, -1,74, -0,56, 1,7, -0,95, 0,56, 0,35, 0,87, 0,88, -1,66, -0,32, -0,3, -1,36, 0,92, -0,31, 1,28, -1,94, 1,07, 0,07, 0,79, -0,46, 2,19, -0,27, -0,64, 0,85, 0,13, 0,46, -0,09, 0,7 ])
+
+Khi chạy, chúng ta có thể thiết lập một hạt giống ngẫu nhiên bằng cách sử dụng hàm
+
+\subsection{Np.random.default\_rng() . Hàm này nhận một đối số số nguyên tùy ý do người dùng chỉ định.}
+
+Hàm np.corrcoef() tính toán matrix tương quan giữa x và y. Các phần tử ngoài đường chéo chính cho
+
+\subsection{Trong [30]: np.corrcoef(x, y)}
+
+Cho mỗi phần tử của x.
+
+Biến ngẫu nhiên thông thường với giá trị trung bình (loc) là 0 và độ lệch chuẩn (scale) là 1; hơn
+
+\subsection{Trong [31]: print(np.random.normal(scale=5, size=2))}
+
+Các tham số là loc, scale và size. Đây là các tham số từ khóa , có nghĩa là khi chúng được truyền
+
+\subsection{Vào hàm, chúng có thể được tham chiếu đến.}
+
+[4,62 -2,54]
+
+Bây giờ chúng ta tạo ra 50 biến ngẫu nhiên độc lập từ phân phối N(0, 1).
+
+Np.ngẫu nhiên. Hàm default\_rng(). Hàm này nhận một đối số nguyên tùy ý do người dùng chỉ định. Nếu chúng ta đặt hạt giống ngẫu nhiên trước khi tạo dữ liệu ngẫu nhiên thì việc chạy lại mã của chúng ta sẽ mang lại kết quả tương tự. Đối tượng rng về cơ bản có tất cả
+
+3Python cũng sử dụng các đối số vị trí. Đối số vị trí không cần sử dụng từ khóa. Để xem ví dụ, hãy nhập np.sum?. Chúng ta thấy rằng a là một đối số vị trí, tức là hàm này giả định rằng đối số không tên đầu tiên mà nó nhận được là mảng cần tính tổng. Ngược lại, axis và dtype là các đối số từ khóa: vị trí mà các đối số này được nhập vào np.sum() không quan trọng.
+
+% --- page 5 ---
+\subsection{Lab: Giới thiệu về Python 47}
+
+Bình, phương sai và độ lệch chuẩn của mảng. Các hàm này cũng có sẵn dưới dạng phương thức trên mảng. Np.var ( )
+
+\subsection{Trong [32]: rng = np.random.default\_rng(1303)}
+
+Matrix. Để thấy điều này, chúng ta xây dựng một matrix 10 × 3 gồm N(0, 1) biến ngẫu
+
+\subsection{Nhiên và xem xét việc tính tổng các hàng của nó.}
+
+Xuyên suốt labs trong cuốn sách này, chúng ta sử dụng np.random.default\_rng() bất cứ khi nào chúng ta thực hiện các phép tính liên quan đến các đại lượng ngẫu nhiên trong numpy. Về nguyên tắc, điều này sẽ cho phép người đọc tái tạo chính xác các kết quả đã nêu. Tuy nhiên, khi có phiên bản mới của numpy, có thể xảy ra một số khác biệt nhỏ giữa đầu ra trong labs và đầu ra từ numpy.
+
+Bất cứ khi nào thực hiện các phép tính liên quan đến các đại lượng ngẫu nhiên trong numpy.
+
+Np.var()
+
+Np.std()
+
+Giữa kết quả trong các bài lab và kết quả từ numpy.
+
+\subsection{Trong [33]: rng = np.random.default\_rng(3)}
+
+Các phương thức tạo số ngẫu nhiên được tìm thấy trong np.random. Do đó, để tạo dữ liệu
+
+\subsection{Phân bố chuẩn, chúng ta sử dụng rng.normal().}
+
+\subsection{Trong [34]: np.var(y), y.var(), np.mean((y - y.mean())**2)}
+
+\subsection{Ddof trong np.var?.}
+
+Trong [36]: X = rng.standard\_normal((10, 3))
+
+\subsection{Trong [35]: np.sqrt(np.var(y)), np.std(y)}
+
+\subsection{Trong [33]: rng = np.random.default\_rng(3) y}
+
+Các hàm np.mean(), np.var() và np.std() cũng có thể được áp dụng cho các hàng và cột của matrix. Để thấy điều này, chúng ta xây dựng matrix 10 × 3 gồm N(0, 1) biến ngẫu nhiên và xem xét việc tính tổng hàng của nó.
+
+\subsection{Trong [36]: X = rng.standard\_normal((10, 3))}
+
+% X
+\subsection{Out[36]: mảng([[ 0,23, -0,35, -0,28],}
+
+[-0,67, -1,06, -0,39], [ 0,48, -0,24, 0,96], [-0,2 , 0,02, 1,55], [ 0,55, -0,51, -0,18], [ 0,54, 1,94, -0,27], [-0,24, 1. , -0,89], [-0,29, 0,88, 0,58], [ 0,09, 0,67, -2,83], [ 1,02, -0,96, -1,67]])
+
+% --- page 6 ---
+\section{2. Statistical Learning}
+
+Hàng. Chúng ta truyền đối số này vào phương thức mean() của đối tượng X.
+
+\subsection{Out[37]: mảng([0.15, 0.14, -0.34])}
+
+Cách làm sau đây cũng cho kết quả tương tự.
+
+\subsection{Trong [38]: X.mean(0)}
+
+\subsection{Out[38]: mảng([0.15, 0.14, -0.34])}
+
+\subsubsection{Đồ họa}
+
+Trong Python, cách phổ biến là sử dụng thư viện matplotlib cho đồ họa. Matplotlib Tuy nhiên, vì Python không được viết với mục đích phân tích dữ liệu nên khái niệm vẽ đồ thị không phải là bản chất của ngôn ngữ. Chúng ta sẽ sử dụng hàm subplots() từ matplotlib.pyplot để tạo một hình và các trục mà chúng ta vẽ biểu đồ dữ liệu của mình trên đó. Để biết thêm ví dụ về cách tạo biểu đồ trong Python, độc giả nên truy cập matplotlib.org/stable/gallery/.
+
+Trong Python, thông lệ phổ biến là sử dụng thư viện matplotlib để vẽ đồ họa.
+
+Các trục coi hình này như một khung vẽ trống trên đó một hoặc nhiều ô sẽ được hiển thị: đó là toàn bộ cửa sổ vẽ đồ thị. Các trục chứa thông tin quan trọng về từng biểu đồ, chẳng hạn như nhãn trục x và trục y, tiêu đề, v.v. (Lưu ý rằng trong matplotlib, từ trục không phải là số nhiều của trục: trục của biểu đồ chứa nhiều thông tin hơn chỉ trục x và trục y.)
+
+Chúng ta bắt đầu bằng cách nhập hàm subplots() từ matplotlib. Chúng ta subplots() sử dụng chức năng này xuyên suốt khi tạo số liệu. Hàm trả về một bộ có độ dài bằng hai: một đối tượng hình cũng như đối tượng trục có liên quan. Thông thường chúng ta sẽ chuyển figsize làm đối số từ khóa. Sau khi tạo các trục, chúng ta thử vẽ đồ thị đầu tiên bằng phương thứcplot() của nó. Để tìm hiểu thêm .plot() về nó, hãy nhập ax.plot?.
+
+\subsection{Chúng ta bắt đầu bằng cách nhập hàm subplots() từ matplotlib. Chúng ta sử dụng hàm này xuyên}
+
+Suốt quá trình tạo hình ảnh. Hàm này trả về giá trị (...)
+
+Thường được ưa chuộng hơn so với cách diễn đạt tương đương nhưng dài dòng hơn một chút sau đây.
+
+\subsection{Trong [40]: đầu ra = ô phụ(figsize=(8, 8))}
+
+Thông tin về từng đồ thị, chẳng hạn như nhãn trục x và trục y, tiêu đề, và
+
+Các trục của đồ thị chứa nhiều thông tin hơn là chỉ trục x và trục y.
+
+% --- page 7 ---
+\subsection{Lab: Giới thiệu về Python 49}
+
+\subsection{Trong [41]: fig, ax = subplots(figsize=(8, 8))}
+
+Ax.plot(x, y, 'o');
+
+Các giá trị khác nhau của đối số bổ sung này có thể được sử dụng để tạo ra các đường kẻ có
+
+Màu sắc khác nhau cũng như các kiểu đường kẻ khác nhau.
+
+\subsection{Trong [42]: fig, ax = subplots(figsize=(8, 8))}
+
+Phẩy. Điều này ngăn ax.plot(x, y) in văn bản ra sổ tay.
+
+Lưu ý rằng trong các khối mã ở trên, chúng ta đã kết thúc dòng cuối cùng bằng dấu chấm phẩy. Điều này ngăn ax.plot(x, y) in văn bản vào sổ ghi chép. Tuy nhiên, nó không ngăn cản việc tạo ra một âm mưu. Nếu chúng ta bỏ qua dấu chấm phẩy ở cuối thì chúng ta sẽ nhận được kết quả sau:
+
+\subsection{Cách truyền thêm các đối số cho hàm subplots(). Dưới đây, chúng ta tạo một lưới đồ thị 2 × 3}
+
+Ax.scatter(x, y, marker='o')
+
+\subsection{Ra[43]: <matplotlib.collections.PathCollection tại 0x7fb3d9c8f310 >}
+
+\subsection{Hình(432x288)}
+
+Từ khóa sharex=True. Đối tượng axes bên dưới là một mảng trỏ đến các đồ thị khác nhau trong
+
+Để gắn nhãn cho cốt truyện của mình, chúng ta sử dụng set\_xlabel(), set\_ylabel() và .set\_xlabel()
+
+Bây giờ chúng ta tạo một biểu đồ phân tán với ký tự 'o' ở cột thứ hai của hàng đầu tiên và
+
+Một biểu đồ phân tán với ký tự '+' ở cột thứ ba của hàng thứ hai.
+
+Tuy nhiên, điều đó không ngăn cản việc tạo ra biểu đồ. Nếu ta bỏ dấu chấm phẩy cuối cùng, ta
+
+Việc truy cập vào đối tượng figure fig có nghĩa là chúng ta có thể vào và thay đổi một số khía cạnh rồi hiển thị lại nó. Ở đây, chúng ta thay đổi kích thước từ (8, 8) thành (12, 3).
+
+Hình.set\_size\_inches(12,3) hình
+
+Đôi khi chúng ta muốn tạo nhiều ô trong một hình. Điều này có thể đạt được bằng cách chuyển các đối số bổ sung cho subplots(). Dưới đây, chúng ta tạo một lưới các ô 2 × 3 trong một hình có kích thước được xác định bởi đối số figsize. Trong những tình huống như vậy, thường có mối quan hệ giữa các trục trong đồ thị. Ví dụ: tất cả các ô có thể có trục x chung. Hàm subplots() có thể tự động xử lý tình huống này khi truyền đối số từ khóa sharex=True. Đối tượng trục bên dưới là một mảng trỏ đến các ô khác nhau trong hình.
+
+\subsection{In [45]: fig, axes = subplots(nrows=2,}
+
+Ncols=3, figsize=(15, 5))
+
+Và thay đổi một số khía cạnh rồi hiển thị lại. Ở đây, chúng ta thay đổi kích thước từ (8, 8)
+
+% --- page 8 ---
+\section{2. Statistical Learning}
+
+\subsection{Trong [46]: axes[0,1].plot(x, y, 'o')}
+
+Chúng ta có thể tiếp tục chỉnh sửa hình vẽ bằng cách cập nhật từng bước; ví dụ:
+
+• Một vector gồm các giá trị x (chiều thứ nhất),
+
+Giờ chúng ta sẽ tạo ra một số biểu đồ phức tạp hơn. Phương thức ax.contour() tạo ra
+
+\subsection{Trong [47]: fig.savefig("figure.png", dpi=400)}
+
+Phương thức này nhận ba tham số:
+
+• Một matrix có các phần tử tương ứng với giá trị z (chiều thứ ba)
+
+\subsection{Trong [48]: trục[0,1].set\_xlim([-1,1])}
+
+Chúng ta có thể tăng độ phân giải bằng cách thêm nhiều lớp vào hình ảnh.
+
+Phương thức ax.imshow() tương tự như ax.contour(), ngoại trừ việc nó tạo ra một biểu
+
+Đồ mã màu với các màu sắc phụ thuộc vào giá trị z . Điều này được biết đến
+
+• Một vector các giá trị y (chiều thứ hai), và
+
+Nó được dùng như một bản đồ nhiệt, và đôi khi được sử dụng để biểu diễn nhiệt độ trong các dự báo thời tiết.
+
+Chúng ta có thể sửa đổi phạm vi của trục x, lưu lại hình vẽ, và thậm chí hiển thị lại.
+
+Để tạo x và y, chúng ta sẽ sử dụng lệnh np.linspace(a, b, n), lệnh này np.linspace() trả về một vector gồm n số bắt đầu từ a và kết thúc tại b.
+
+\subsection{Trong [49]: fig, ax = subplots(figsize=(8, 8))}
+
+Để tạo ra x và y, chúng ta sẽ sử dụng lệnh np.linspace(a, b, n), lệnh này trả về một
+
+Vector gồm n số bắt đầu từ a và kết thúc ở b.
+
+\subsection{Trong [50]: fig, ax = subplots(figsize=(8, 8))}
+
+2. Học thống kê 50
+
+Nhập "subplots?" để tìm hiểu thêm về hàm subplots().
+
+Phương thức ax.imshow() tương tự như ax.contour(), ngoại trừ việc nó pro- .imshow() tạo ra một biểu đồ được mã hóa màu có màu phụ thuộc vào giá trị z. Đây được gọi là bản đồ nhiệt và đôi khi được sử dụng để vẽ đồ thị nhiệt độ trong các bản đồ nhiệt dự báo thời tiết.
+
+\subsection{Trong [51]: fig, ax = subplots(figsize=(8, 8))}
+
+.savefig()
+
+% --- page 9 ---
+\subsection{Lab: Giới thiệu về Python 51}
+
+\subsubsection{Trình tự và ký hiệu lát cắt}
+
+Out[52]: array([ 0., 1., 2., 3., 4., 5., 6., 7., 8., 9., 10.])
+
+\subsection{Trong [52]: seq1 = np.linspace(0, 10, 11)}
+
+Seq1
+
+\subsection{Out[52]: array([ 0., 1., 2., 3., 4., 5., 6., 7., 8., 9., 10.])}
+
+Hàm np.arange() trả về một dãy số cách nhau bởi bước np.arange(). Nếu bước không được chỉ định thì giá trị default là 1 sẽ được sử dụng. Hãy tạo một chuỗi bắt đầu từ 0 và kết thúc ở 10.
+
+\subsection{Trong [53]: seq2 = np.arange(0, 10)}
+
+Seq2
+
+\subsection{Out[53]: array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])}
+
+Tại sao không có kết quả 10 ở trên? Điều này liên quan đến ký hiệu lát cắt trong Python. Slice Ký hiệu lát cắt được sử dụng để lập chỉ mục các chuỗi như danh sách, bộ dữ liệu và mảng. Giả sử chúng ta muốn truy xuất các mục từ thứ tư đến thứ sáu (bao gồm) của một chuỗi. Chúng ta thu được một lát của chuỗi bằng cách sử dụng ký hiệu lập chỉ mục [3:6].
+
+\subsection{Trong [54]: "xin chào thế giới"[3:6]}
+
+\subsection{Ra[54]: 'lo'}
+
+Trong khối mã ở trên, ký hiệu 3:6 là tốc ký của slice(3,6) khi được sử dụng bên trong [].
+
+\subsection{Trong [55]: "xin chào thế giới"[slice(3,6)]}
+
+\subsection{5, 6, 7], [ 8, 9,}
+
+Bạn có thể đã mong đợi slice(3,6) xuất ra các ký tự thứ tư đến thứ bảy trong chuỗi văn bản (nhớ lại rằng Python bắt đầu lập chỉ mục ở mức 0), nhưng thay vào đó, nó lại xuất ra ký tự thứ tư đến thứ sáu. Điều này cũng giải thích tại sao lệnh np.arange(0, 10) trước đó chỉ xuất ra các số nguyên từ 0 đến 9. Xem phần tài liệu không? Để có các tùy chọn hữu ích trong việc tạo các lát cắt.
+
+\subsubsection{Lập chỉ mục dữ liệu}
+
+Gõ A[1,2] sẽ truy xuất phần tử tương ứng với hàng thứ hai và cột thứ ba. (Như thường lệ, Python
+
+\subsection{Trong [56]: A = np.array(np.arange(16)).reshape((4, 4))}
+
+MỘT
+
+Định, giá trị mặc định là 1 sẽ được sử dụng. Hãy tạo một dãy số bắt đầu từ 0 và kết thúc ở 10.
+
+Như đã thấy ở trên, hàm np.linspace() có thể được sử dụng để tạo ra một dãy số.
+
+% --- page 10 ---
+\section{2. Statistical Learning}
+
+Out[59]: array([[ 0, 2], [ 4,
+
+\subsection{6], [ 8,}
+
+Số đầu tiên sau dấu ngoặc mở [ chỉ hàng và số thứ hai chỉ cột.
+
+\subsection{Lập chỉ mục hàng, cột và matrix con}
+
+Để chọn nhiều hàng cùng một lúc, chúng ta có thể chuyển vào một danh sách chỉ định lựa chọn của mình. Chẳng hạn, [1,3] sẽ truy xuất hàng thứ hai và thứ tư:
+
+Trong [57]: A[1,2]
+
+\subsection{Out[58]: array([[ 4, 5, 6, 7], [12, 13, 14, 15]])}
+
+Để chọn cột thứ nhất và thứ ba, chúng ta chuyển [0,2] làm đối số thứ hai trong dấu ngoặc vuông. Trong trường hợp này, chúng ta cần cung cấp đối số đầu tiên: đối số này chọn tất cả các hàng.
+
+Trong [60]: A[[1,3],[0,2]]
+
+\subsection{Out[58]: array([[ 4, 5, 6, 7], [12, 13,}
+
+Bây giờ, giả sử chúng ta muốn chọn matrix con được tạo thành từ hàng thứ hai và thứ tư cũng như cột thứ nhất và thứ ba. Đây là lúc việc lập chỉ mục trở nên hơi khó khăn. Việc cố gắng sử dụng danh sách để truy xuất các hàng và cột là điều tự nhiên:
+
+Out[61]: array([ 4, 14])
+
+\subsection{Out[60]: mảng([ 4, 14])}
+
+Trong [61]: np.array([A[1,0],A[3,2]])
+
+\subsection{Trong [61]: np.array([A[1,0],A[3,2]])}
+
+\subsection{Out[61]: mảng([ 4, 14])}
+
+Để chọn cột thứ nhất và cột thứ ba, ta truyền [0,2] làm đối số thứ hai trong dấu ngoặc vuông.
+
+Trong [62]: A[[1,3],[0,2,3]]
+
+\subsection{IndexError: hình dạng không khớp: không thể phát các mảng lập chỉ mục}
+
+Mình. Ví dụ, [1,3] sẽ truy xuất hàng thứ hai và hàng thứ tư:
+
+% --- page 11 ---
+\subsection{Lab: Giới thiệu về Python 53}
+
+Chúng ta có thể thấy những gì đã sai ở đây. Khi được cung cấp hai danh sách chỉ mục, cách giải thích của numpy là chúng cung cấp các cặp chỉ mục i, j cho một loạt mục nhập. Đó là lý do tại sao cặp danh sách phải có cùng độ dài. Tuy nhiên, đó không phải là mục đích của chúng ta vì chúng ta đang tìm kiếm một matrix con.
+
+Khác nhau. Slice có thể được sử dụng để trích xuất các đối tượng từ các chuỗi tùy ý, chẳng hạn như
+
+Trong [63]: A[[1,3]][:,[0,2]]
+
+\subsection{Ra[63]: mảng([[ 4, 6], [12, 14]])}
+
+Tuy nhiên, đó không phải là ý định của chúng ta, vì chúng ta đang tìm kiếm một matrix con.
+
+Chúng ta có thể thấy vấn đề ở đây là gì. Khi được cung cấp hai danh sách chỉ mục, cách hiểu của
+
+NumPy là chúng cung cấp các cặp chỉ mục i, j cho một chuỗi các mục nhập. Đó là lý do tại sao cặp
+
+\subsection{A[idx]}
+
+\subsection{Out[64]: array([[ 4, 6, 7], [12, 14, 15]])}
+
+Cách chọn lọc các hàng của matrix A, và sau đó, chúng ta tạo thêm một matrix con khác bằng cách
+
+Chọn lọc các cột của matrix con đó.
+
+\subsection{Ra[65]: mảng([[ 4, 6], [12, 14]])}
+
+Tại sao chúng ta có thể truy xuất trực tiếp một matrix con bằng cách sử dụng các lát cắt nhưng không sử dụng danh sách? Đó là bởi vì chúng là các loại Python khác nhau và được numpy xử lý khác nhau. Các lát cắt có thể được sử dụng để trích xuất các đối tượng từ các chuỗi tùy ý, chẳng hạn như chuỗi, danh sách và bộ dữ liệu, trong khi việc sử dụng danh sách để lập chỉ mục bị hạn chế hơn.
+
+\subsection{Lập chỉ mục Boolean}
+
+Cách sử dụng các lát cắt. Lát cắt 1:4:2 bao gồm phần tử thứ hai và thứ tư của một chuỗi, trong
+
+\subsection{Trong [66]: keep\_rows = np.zeros(A.shape[0], bool)}
+
+Thước bước).
+
+\subsection{Trong numpy, Boolean là kiểu dữ liệu bằng True hoặc False (cũng được biểu diễn tương ứng là 1 và}
+
+0). Dòng tiếp theo tạo một vector gồm toàn số 0, được biểu diễn dưới dạng Boolean, có độ dài bằng
+
+\subsection{Trong [67]: keep\_rows[[1,3]] = Đúng}
+
+Lập chỉ mục Boolean
+
+% --- page 12 ---
+\section{2. Statistical Learning}
+
+\subsection{Tuy nhiên, mặc dù np.array([0,1,0,1]) và keep\_rows bằng nhau theo toán tử ==, chúng lại truy}
+
+Cập các tập hợp hàng khác nhau! Phương thức trước truy xuất hàng thứ nhất, thứ hai, hàng thứ nhất
+
+\subsection{Trong [68]: np.all(keep\_rows == np.array([0,1,0,1]))}
+
+\subsection{Ra[68]: Đúng}
+
+Np.array([0,1,0,1]). Bên dưới, chúng ta sử dụng == để kiểm tra sự bằng nhau của chúng. Khi áp
+
+Tuy nhiên, mặc dù np.array([0,1,0,1]) và keep\_rows bằng nhau theo ==, chúng lập chỉ mục các tập hợp hàng khác nhau! Cái trước lấy hàng đầu tiên, thứ hai, thứ nhất và thứ hai của A.
+
+\subsection{Trong [69]: A[np.array([0,1,0,1])]}
+
+\subsection{Out[69]: mảng([[0, 1, 2, 3],}
+
+Có phải là True hay không.)
+
+Chúng ta lại sử dụng hàm np.ix\_() để tạo một lưới chứa hàng thứ hai và thứ tư, cùng các cột thứ
+
+\subsection{Trong [70]: A[keep\_rows]}
+
+\subsection{Out[70]: array([[ 4, 5, 6, 7], [12, 13, 14, 15]])}
+
+Để biết thêm chi tiết về việc lập chỉ mục trong numpy, độc giả có thể tham khảo hướng dẫn numpy
+
+Chúng ta lại sử dụng hàm np.ix\_() để tạo lưới chứa hàng thứ hai và thứ tư cũng như cột thứ nhất, thứ ba và thứ tư. Lần này, chúng ta áp dụng hàm này cho Booleans thay vì danh sách.
+
+\subsection{Chúng ta cũng có thể kết hợp một danh sách với một mảng các giá trị Boolean trong các đối số}
+
+Keep\_cols[[0, 2, 3]] = Đúng idx\_bool = np.ix\_(keep\_rows, keep\_cols) A[idx\_bool]
+
+\subsection{Out[71]: array([[ 4, 6, 7], [12, 14, 15]])}
+
+Mà giá trị Boolean bằng TRUE.
+
+\subsection{Trong [72]: idx\_mixed = np.ix\_([1,3], keep\_cols)}
+
+\subsection{A[idx\_mixed]}
+
+\subsection{Out[72]: array([[ 4, 6, 7], [12, 14, 15]])}
+
+Để biết thêm chi tiết về lập chỉ mục trong numpy, độc giả có thể tham khảo hướng dẫn numpy đã đề cập trước đó.
+
+% --- page 13 ---
+\subsection{Lab: Giới thiệu về Python 55}
+
+\subsubsection{Đang tải dữ liệu}
+
+Data sets thường chứa các loại dữ liệu khác nhau và có thể có tên được liên kết với các hàng hoặc cột. Vì những lý do này, chúng thường được điều chỉnh tốt nhất bằng cách sử dụng khung dữ liệu. Chúng ta có thể coi khung dữ liệu là khung dữ liệu, một chuỗi các mảng có độ dài giống hệt nhau; đây là những cột Các mục trong các mảng khác nhau có thể được kết hợp để tạo thành một hàng. Thư viện pandas có thể được sử dụng để tạo và làm việc với các đối tượng khung dữ liệu.
+
+\subsection{Đọc trong Data Set}
+
+Bước đầu tiên của hầu hết các phân tích liên quan đến việc nhập data set vào Python. Trước khi thử tải data set, chúng ta phải đảm bảo rằng Python biết nơi tìm tệp chứa nó. Nếu tệp nằm ở cùng vị trí với tệp sổ ghi chép này thì chúng ta đã hoàn tất. Nếu không, lệnh os.chdir() có thể được sử dụng os.chdir() để thay đổi thư mục. (Bạn sẽ cần gọi import os trước khi gọi os.chdir().)
+
+Chúng ta sẽ bắt đầu bằng việc đọc trong Auto.csv, có sẵn trên trang web sách. Đây là một tệp được phân tách bằng dấu phẩy và có thể được đọc bằng pd.read\_csv(): pd.read\_csv()
+
+\subsection{Trong [73]: nhập pandas dưới dạng pd}
+
+\subsection{Auto = pd.read\_csv('Auto.csv') Auto}
+
+Trang web sách cũng có phiên bản được phân cách bằng khoảng trắng của dữ liệu này, được gọi là Auto.data. Điều này có thể được đọc như sau:
+
+\subsection{Trong [74]: Auto = pd.read\_csv('Auto.data', delim\_whitespace=True)}
+
+Cả Auto.csv và Auto.data đều chỉ là các tệp văn bản. Trước khi tải dữ liệu vào Python, bạn nên xem dữ liệu đó bằng trình soạn thảo văn bản hoặc phần mềm khác, chẳng hạn như Microsoft Excel.
+
+Bây giờ chúng ta xét cột Auto tương ứng với mã lực thay đổi:
+
+\subsection{Trong [75]: Auto['mã lực']}
+
+Out[75]: 0 130.0 1 165.0 2 150.0 3 150.0 4 140.0 ... 392 86.00 393 52.00 394 84.00 395 79.00 396 82.00 Tên: mã lực , Chiều dài: 397, dtype: vật thể
+
+Chúng ta thấy rằng dtype của cột này là đối tượng. Hóa ra tất cả các giá trị của cột mã lực đều được hiểu là chuỗi khi đọc dữ liệu. Chúng ta có thể tìm hiểu lý do tại sao bằng cách nhìn vào các giá trị duy nhất.
+
+\subsection{Trong [76]: np.unique(Auto['mã lực'])}
+
+% --- page 14 ---
+\section{2. Statistical Learning}
+
+Với việc truy cập các hàng và cột của một mảng. Hãy nhớ rằng điều đầu tiên
+
+Đối số truyền vào phương thức [] luôn được áp dụng cho các hàng của mảng. Tương tự, việc
+
+\subsection{Truyền vào một slice cho phương thức [] sẽ tạo ra một data frame có các hàng tương ứng .}
+
+Những kiến thức cơ bản về chọn hàng và cột
+
+\subsection{Ra [77]: 40952.0}
+
+Để khắc phục sự cố, chúng ta phải cung cấp một đối số cho pd.read\_csv()
+
+\subsection{Trong [78]: Auto.shape}
+
+\subsection{Ra[78]: (397, 9)}
+
+Có nhiều cách khác nhau để xử lý dữ liệu bị thiếu. Trong trường hợp này, vì chỉ có năm hàng chứa các quan sát bị thiếu nên chúng ta chọn sử dụng phương thức Auto.dropna() để xóa các hàng này một cách đơn giản. .dropna()
+
+\subsection{Thuộc tính Auto.shape cho chúng ta biết rằng dữ liệu có 397 quan sát, hay nói cách khác,}
+
+\subsection{Auto\_new.shape}
+
+\subsection{Ra[79]: (392, 9)}
+
+\subsection{Cơ bản về chọn hàng và cột}
+
+Chúng ta có thể sử dụng Auto.columns để kiểm tra tên biến.
+
+\subsection{Trong [80]: Auto = Auto\_new \# ghi đè giá trị trước đó}
+
+\subsection{Auto.column}
+
+\subsection{Out[80]: Index(['mpg', 'xi lanh', 'chuyển vị', 'mã lực',}
+
+Phương thức Auto.dropna() được sử dụng để xóa các hàng này một cách đơn giản.
+
+Việc truy cập vào các hàng và cột của khung dữ liệu cũng tương tự nhưng không giống với việc truy cập vào các hàng và cột của một mảng. Hãy nhớ lại rằng đối số đầu tiên của phương thức [] luôn được áp dụng cho các hàng của mảng. Tương tự, việc chuyển một lát vào phương thức [] sẽ tạo một khung dữ liệu có các hàng được xác định bởi lát cắt:
+
+\subsection{Trong [81]: Auto[:3]}
+
+Out[81]: mpg xi lanh dung tích mã lực trọng lượng ... 0 18,0 8 307,0 130,0 3504,0 ... 1 15,0 8 350,0 165,0 3693,0 ... 2 18,0 8 318,0 150,0 3436,0 ...
+
+\subsection{Tương tự, một mảng Boolean có thể được sử dụng để tập hợp con các hàng:}
+
+% --- page 15 ---
+\subsection{Lab: Giới thiệu về Python 57}
+
+\subsection{Trong [82]: idx\_80 = Auto['năm'] > 80}
+
+\subsection{Auto[idx\_80]}
+
+Tuy nhiên, nếu chúng ta chuyển danh sách các chuỗi vào phương thức [] thì chúng ta sẽ nhận được khung dữ liệu chứa tập hợp các cột tương ứng.
+
+\subsection{Trong [83]: Auto[['mpg', 'mã lực']]}
+
+Ra[83]: mpg mã lực 0 18,0 130,0 1 15,0 165,0 2 18,0 150,0 3 16,0 150,0 4 17,0 140,0 ... ... ... 392 27,0 86,0 393 44,0 52,0 394 32,0 84,0 395 28,0 79,0 396 31,0 82,0 392 hàng x 2 cột
+
+Vì chúng ta không chỉ định cột chỉ mục khi tải khung dữ liệu nên các hàng được gắn nhãn bằng số nguyên từ 0 đến 396.
+
+\subsection{Trong [84]: Auto.index}
+
+Ra[84]: Int64Index([ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ... 387, 388, 389, 390, 391, 392, 393, 394, 395, 396], dtype='int64', length=392)
+
+Chúng ta có thể sử dụng phương thức set\_index() để đổi tên các hàng bằng cách sử dụng nội dung .set\_index() của Auto['name'].
+
+\subsection{Trong [85]: Auto\_re = Auto.set\_index('name')}
+
+\subsection{Tự động\_re}
+
+Out[85]: mpg xi lanh chuyển vị ... Tên
+
+Chevrolet chevelle malibu 18.0 8 307.0 ... Buick skylark 32 15.0 8 350.0 ... Vệ tinh plymouth 18.0 8 318.0 ... Amc Rebel sst 16.0 8 304.0 ...
+
+\subsection{Trong [86]: Auto\_re.columns}
+
+\subsection{Out[86]: Index(['mpg', 'xi lanh', 'chuyển vị', 'mã lực',}
+
+'trọng lượng', 'gia tốc', 'năm', 'nguồn gốc'], dtype='đối tượng')
+
+Chúng ta thấy rằng cột 'tên' không còn ở đó nữa.
+
+Bây giờ chỉ mục đã được đặt thành tên, chúng ta có thể truy cập các hàng của khung dữ liệu theo tên bằng phương thức loc[] của Auto: .loc[]
+
+% --- page 16 ---
+\section{2. Statistical Learning}
+
+\subsection{Trong [87]: row = ['amc Rebel sst', 'ford torino']}
+
+\subsection{Auto\_re.loc[hàng]}
+
+Out[87]: mpg xi lanh dung tích mã lực ... Tên amc Rebel sst 16.0 8 304.0 150.0 ... Ford torino 17.0 8 302.0 140.0 ...
+
+Để thay thế cho việc sử dụng tên chỉ mục, chúng ta có thể truy xuất hàng thứ 4 và thứ 5 của Auto bằng phương thức iloc[]: .iloc[]
+
+\subsection{Trong [88]: Auto\_re.iloc[[3,4]]}
+
+Mpg dung tích xi lanh mã lực
+
+\subsection{Trong [89]: Auto\_re.iloc[:,[0,2,3]]}
+
+Chúng ta có thể trích xuất hàng thứ 4 và thứ 5, cũng như cột thứ 1, thứ 3 và thứ 4, bằng cách sử dụng một lệnh gọi tới iloc[]:
+
+\subsection{Trong [90]: Auto\_re.iloc[[3,4],[0,2,3]]}
+
+Out[90]: mpg mã lực dịch chuyển tên amc Rebel sst 16.0 304.0 150.0 ford torino 17.0 302.0 140.0
+
+Các mục chỉ mục không cần phải là duy nhất: có một số ô tô trong khung dữ liệu có tên ford galaxie 500.
+
+\subsection{Trong [91]: Auto\_re.loc['ford galaxie 500', ['mpg', 'origin']]}
+
+Out[91]: mpg tên xuất xứ ford galaxie 500 15.0 1 ford galaxie 500 14.0 1 ford galaxie 500 14.0 1
+
+\subsection{Thông tin thêm về cách chọn hàng và cột}
+
+Giả sử bây giờ chúng ta muốn tạo một khung dữ liệu bao gồm trọng lượng và nguồn gốc của tập hợp con những chiếc ô tô có năm lớn hơn 80 - tức là những chiếc được sản xuất sau năm 1980. Để thực hiện điều này, trước tiên chúng ta tạo một mảng Boolean lập chỉ mục cho các hàng. Phương thức loc[] cho phép nhập các mục Boolean cũng như các chuỗi:
+
+\subsection{Trong [91]: Auto\_re.loc['ford galaxie 500',['mpg', 'origin']]}
+
+\subsection{Auto\_re.loc[idx\_80, ['trọng lượng', 'nguồn gốc']]}
+
+Để làm điều này một cách chính xác hơn, chúng ta có thể sử dụng một hàm ẩn danh gọi là lambda: lambda
+
+Trong [93]: Auto\_re.loc[lambda df: df['year'] > 80, ['weight', 'origin']]
+
+Lệnh gọi lambda tạo một hàm nhận vào một đối số duy nhất, ở đây là df và trả về df['year']>80. Vì nó được tạo bên trong phương thức loc[] cho
+
+% --- page 17 ---
+\subsection{Lab: Giới thiệu về Python 59}
+
+Đối với các truy vấn dựa trên số nguyên, hãy sử dụng phương thức iloc[] . Đối với các lựa chọn
+
+\subsection{Trong [94]: Auto\_re.loc[lambda df: (df['year'] > 80) \& (df['mpg'] > 30),}
+
+% ['weight', 'origin'] ]
+Ký hiệu \& tính toán từng phần tử và phép toán. Một ví dụ khác, giả sử chúng ta muốn truy xuất tất cả các xe Ford và Datsun có dung tích nhỏ hơn 300. Chúng ta kiểm tra xem mỗi mục tên có chứa chuỗi ford hay datsun hay không bằng cách sử dụng phương thức str.contains() của .str.
+
+Ở đây, ký hiệu | thực hiện phép toán OR trên từng phần tử.
+
+\subsection{DataFrame Auto\_re sẽ là đối số được cung cấp. Một ví dụ khác về việc sử dụng lambda là giả sử}
+
+Chúng ta muốn tất cả các xe ô tô được sản xuất sau năm 1980 có mức tiêu hao nhiên liệu trên 30
+
+Ở đây, biểu tượng | tính toán một phần tử hoặc phép toán.
+
+Tóm lại, có sẵn một tập hợp các thao tác mạnh mẽ để lập chỉ mục các hàng và cột của khung dữ liệu. Đối với các truy vấn dựa trên số nguyên, hãy sử dụng phương thức iloc[]. Đối với các lựa chọn chuỗi và Boolean, hãy sử dụng phương thức loc[]. Đối với các truy vấn chức năng lọc các hàng, hãy sử dụng phương thức loc[] với một hàm (thường là lambda) trong đối số row.
+
+\subsubsection{Đối với vòng lặp}
+
+Có chứa chuỗi "ford" hoặc "datsun" hay không bằng cách sử dụng phương thức str.contains() của
+
+\subsection{Trong [96]: tổng = 0}
+
+Cho giá trị trong [3,2,19]:
+
+Việc đánh giá một đoạn mã nào đó trong khi thay đổi các giá trị khác nhau bên trong đoạn mã đó.
+
+\subsection{Tổng cộng là: 24}
+
+Mã thụt lề bên dưới dòng có câu lệnh for được chạy cho từng giá trị trong chuỗi được chỉ định trong câu lệnh for. Vòng lặp kết thúc khi ô kết thúc hoặc khi mã được thụt vào cùng mức với câu lệnh for ban đầu. Chúng ta thấy rằng dòng cuối cùng ở trên in tổng chỉ được thực hiện một lần sau khi vòng lặp for kết thúc. Các vòng lặp có thể được lồng vào nhau bằng cách thụt lề bổ sung.
+
+\subsection{Trong [97]: tổng = 0}
+
+Cho giá trị trong [2,3,19]:
+
+Cho trọng lượng trong [3, 2, 1]:
+
+Tổng += giá trị * trọng lượng in('Tổng cộng là: \{0\}'.format(total))
+
+\subsection{Tổng cộng là: 144}
+
+% --- page 18 ---
+\section{2. Statistical Learning}
+
+Ở trên, chúng ta đã tổng hợp từng sự kết hợp giữa giá trị và trọng lượng. Chúng ta cũng tận dụng ký hiệu tăng dần trong Python: biểu thức tăng dần a += b tương đương với a = a + b. Bên cạnh việc là một ký hiệu thuận tiện, điều này có thể tiết kiệm thời gian trong các tác vụ tính toán nặng trong đó giá trị trung gian của a+b không cần phải được tạo một cách rõ ràng.
+
+Có lẽ một nhiệm vụ phổ biến hơn là tính tổng các cặp (giá trị, weight). Ví dụ: để tính giá trị trung bình của một biến ngẫu nhiên có các giá trị có thể là 2, 3 hoặc 19 với xác suất lần lượt là 0,2, 0,3, 0,5, chúng ta sẽ tính tổng có weight. Những tác vụ như thế này thường có thể được thực hiện bằng cách sử dụng hàm zip() lặp qua một chuỗi các bộ dữ liệu. Zip()
+
+\subsection{Trong [98]: tổng = 0}
+
+Về giá trị, trọng lượng tính bằng zip([2,3,19],
+
+D = pd.DataFrame(A, columns=['food',
+
+\subsection{Trung bình có weight là: 10,8}
+
+\subsection{Định dạng chuỗi}
+
+Trong đoạn mã trên, chúng ta cũng in một chuỗi hiển thị tổng số. Tuy nhiên, tổng đối tượng là số nguyên chứ không phải chuỗi. Chèn giá trị của thứ gì đó vào chuỗi là một tác vụ phổ biến, được thực hiện đơn giản bằng cách sử dụng một số công cụ định dạng chuỗi mạnh mẽ trong Python. Nhiều tác vụ làm sạch dữ liệu liên quan đến việc thao tác và tạo ra các chuỗi theo chương trình.
+
+Ví dụ: chúng ta có thể muốn lặp qua các cột của khung dữ liệu và in phần trăm còn thiếu trong mỗi cột. Hãy tạo khung dữ liệu D với các cột trong đó thiếu 20\% mục nhập, tức là được đặt thành np.nan. Np.nan Chúng ta sẽ tạo các giá trị trong D từ phân phối chuẩn với giá trị trung bình là 0 và variance 1 bằng rng.standard\_normal() và sau đó ghi đè một số mục nhập ngẫu nhiên bằng rng.choice().
+
+\subsection{Trong [99]: rng = np.random.default\_rng(1)}
+
+A = rng.standard\_normal((127, 5)) M = rng.choice([0, np.nan], p=[0.8,0.2], size=A.shape) A += M D = pd.DataFrame(A, columns=['food',
+
+'bar', 'dưa chua', 'đồ ăn nhẹ', 'bỏng ngô']) D[:3]
+
+Out[99]: thanh đồ ăn dưa chua snack bỏng ngô 0 0,345584 0,821618 0,330437 -1,303157 NaN 1 NaN -0,536953 0,581118 0,364572 0,294132 2 NaN 0,546713 NaN -0.162910 -0.482119
+
+\subsection{Trong [100]: cho col trong D.columns:}
+
+Template = 'Cột "\{0\}" có \{1:.2\%\} giá trị bị thiếu' print(template.format(col,
+
+Np.isnan(D[col]).mean()))
+
+% --- page 19 ---
+\subsection{Lab: Giới thiệu về Python 61}
+
+Cột "thực phẩm" có 16,54\% giá trị thiếu Cột "thanh" có 25,98\% giá trị thiếu Cột "dưa chua" có 29,13\% giá trị thiếu Cột "đồ ăn nhẹ" có 21,26\% giá trị thiếu Cột "bắp rang" có 22,83\% giá trị thiếu
+
+Chúng ta thấy rằng phương thức template.format() cần có hai đối số \{0\} và \{1:.2\%\}, đối số sau bao gồm một số thông tin định dạng. Cụ thể, nó chỉ định rằng đối số thứ hai phải được biểu thị dưới dạng phần trăm với hai chữ số thập phân.
+
+Cột "food" có 16,54\% giá trị bị thiếu. Cột "bar" có
+
+\subsubsection{Tóm tắt bổ sung bằng đồ họa và số}
+
+Chúng ta có thể sử dụng hàm ax.plot() hoặc ax.scatter() để hiển thị các biến định lượng. Tuy nhiên, chỉ cần gõ tên biến sẽ tạo ra một thông báo lỗi, vì Python không biết tìm trong Auto data set để tìm các biến đó.
+
+\subsection{Trong [101]: fig, ax = subplots(figsize=(8, 8))}
+
+Trong [101]: fig, ax = subplots(figsize=(8, 8))
+
+\subsection{Ax.plot(horsepower , mpg, 'o');}
+
+\subsection{Chúng ta có thể giải quyết vấn đề này bằng cách truy cập trực tiếp vào các cột:}
+
+\subsection{Trong [102]: fig, ax = subplots(figsize=(8, 8))}
+
+Ax.set\_title('Mã lực so với MPG')
+
+Ngoài ra, chúng ta có thể sử dụng phương thức cốt truyện() với lệnh gọi Auto.plot(). Sử dụng .plot() phương thức này, các biến có thể được truy cập theo tên. Các phương thức vẽ đồ thị của khung dữ liệu trả về một đối tượng quen thuộc: một trục. Chúng ta có thể sử dụng nó để cập nhật cốt truyện như đã làm trước đây:
+
+\subsection{Fig.savefig('horsepower\_mpg.png');}
+
+Auto.plot.scatter('horsepower', 'mpg', ax=axes[1]);
+
+Trong [105]: fig, axes = subplots(ncols=3, figsize=(15, 5))
+
+\subsection{Trong [104]: fig = ax.figure}
+
+Hãy thử nhập Auto.horsepower.
+
+Chúng ta có thể hướng dẫn thêm khung dữ liệu để vẽ đồ thị cho một đối tượng trục cụ thể. Trong trường hợp này, phương thức story() tương ứng sẽ trả về các trục đã sửa đổi mà chúng ta đã chuyển vào làm đối số. Lưu ý rằng khi chúng ta yêu cầu lưới đồ thị một chiều, các trục đối tượng cũng có dạng một chiều tương tự. Chúng ta đặt biểu đồ phân tán của mình vào ô ở giữa của một hàng gồm ba ô trong một hình.
+
+\subsection{Trong [105]: fig, axes = subplots(ncols=3, figsize=(15, 5))}
+
+\subsection{Axes cũng tương tự như vậy, là một chiều. Chúng ta đặt biểu đồ phân tán của mình vào đồ thị ở}
+
+Giữa của một hàng gồm ba đồ thị trong một hình.
+
+% --- page 20 ---
+\section{2. Statistical Learning}
+
+Bây giờ chúng ta xem xét biến hình trụ. Việc nhập Auto.circles.dtype cho thấy rằng nó đang được coi như một biến định lượng. Tuy nhiên, vì chỉ có một số lượng nhỏ các giá trị có thể có cho biến này nên chúng ta có thể coi nó là định tính. Dưới đây, chúng ta thay thế cột trụ bằng phiên bản classification của Auto.circles. Hàm pd.Series() có tên pd.Series() là do pandas thường được sử dụng trong các ứng dụng chuỗi thời gian.
+
+Bạn có thể thay đổi màu sắc của các thanh và số lượng ô:
+
+\subsection{Auto.xi lanh.dtype}
+
+Điều này cho thấy nó đang được coi là một biến định lượng. Tuy nhiên, vì
+
+\subsection{Trong [107]: fig, ax = subplots(figsize=(8, 8))}
+
+\subsection{Vì hình trụ là dữ liệu định tính, chúng ta có thể hiển thị nó bằng phương pháp boxplot() .}
+
+Phương thức hist() có thể được sử dụng để vẽ biểu đồ tần số.
+
+\subsection{Trong [108]: fig, ax = subplots(figsize=(8, 8))}
+
+\subsection{Auto.hist('mpg', ax=ax);}
+
+\subsection{Màu sắc của các thanh và số lượng thùng có thể thay đổi:}
+
+\subsection{Trong [109]: fig, ax = subplots(figsize=(8, 8))}
+
+\subsection{Auto.hist('mpg', color='red', bins=12, ax=ax);}
+
+Chúng ta cũng có thể tạo biểu đồ phân tán cho một tập hợp con các biến.
+
+Xem Auto.hist? Để biết thêm các tùy chọn vẽ biểu đồ.
+
+Để thoát khỏi Jupyter, chọn File / Close và Halt.
+
+\subsection{Trong [110]: pd.plotting.scatter\_matrix(Auto);}
+
+Bây giờ chúng ta xem xét biến cylinders . Gõ vào Auto.cylinders.dtype
+
+\subsection{Auto.hist('mpg', ax=ax);}
+
+% 'displacement', 'weight']]);
+Phương thức mô tả() tạo ra một bản tóm tắt bằng số của từng cột trong khung dữ liệu .describe().
+
+\subsection{Trong [112]: Auto[['mpg', 'weight']].describe()}
+
+Chúng ta cũng có thể tạo ra một bản tóm tắt chỉ bằng một cột duy nhất.
+
+\subsection{Auto.cylinders.dtype}
+
+\subsection{Auto.boxplot('mpg', by='cylinders', ax=ax);}
+
+Trong [108]: fig, ax = subplots(figsize=(8, 8))
+
+% --- page 21 ---
+\subsection{Bài tập 63}
+
+\subsection{Bài tập}
+
+\subsection{Khái niệm}
+
+Biết chúng ta quan tâm nhất đến suy luận hay dự đoán. Cuối cùng, hãy cung
+
+Mong đợi hiệu suất của phương pháp statistical learning linh hoạt sẽ tốt hơn hoặc kém hơn phương pháp không linh hoạt. Biện minh cho câu trả lời của bạn.
+
+(c) Chúng ta quan tâm đến việc dự đoán phần trăm thay đổi của tỷ giá USD/
+
+Tors p nhỏ.
+
+Thế giới. Do đó, chúng ta thu thập dữ liệu hàng tuần trong suốt năm
+
+2012. Mỗi tuần, chúng ta ghi lại phần trăm thay đổi của tỷ giá USD/
+
+Euro, phần trăm thay đổi của thị trường Mỹ, phần trăm thay đổi của thị
+
+Phi tuyến tính.
+
+(a) Chúng ta thu thập một bộ dữ liệu về 500 công ty hàng đầu tại Mỹ. Đối với mỗi công
+
+Cao.
+
+CEO. Chúng ta quan tâm đến việc tìm hiểu những yếu tố nào ảnh hưởng đến mức lương
+
+Lem và cho biết liệu chúng ta quan tâm nhất đến suy luận hay dự đoán hay không. Cuối cùng, cung cấp n và p.
+
+Đang xem xét việc ra mắt một sản phẩm mới và muốn biết liệu nó sẽ thành công hay thất bại.
+
+Chúng ta thu thập dữ liệu về 20 sản phẩm tương tự đã được ra mắt trước đó. Đối với
+
+Mỗi sản phẩm, chúng ta đã ghi lại liệu nó có thành công hay thất bại, giá bán sản
+
+Whether it will be a success or a failure. Chúng ta thu thập dữ liệu về 20 sản phẩm tương tự đã được tung ra trước đó. Đối với mỗi sản phẩm, chúng ta ghi lại xem đó là thành công hay thất bại, giá tính cho sản phẩm, ngân sách tiếp thị, giá cạnh tranh và mười biến số khác.
+
+(a) Hãy phác thảo các đường cong điển hình (bình phương) về độ lệch, phương
+
+Tỷ giá hối đoái liên quan đến những thay đổi hàng tuần trên thị trường chứng khoán thế giới. Do đó, chúng ta thu thập dữ liệu hàng tuần cho cả năm 2012. Mỗi tuần chúng ta ghi lại \% thay đổi ở USD/Euro, \% thay đổi ở thị trường US, \% thay đổi ở thị trường Anh và \% thay đổi ở thị trường Đức.
+
+Giảm thiểu), trên cùng một đồ thị, khi chúng ta chuyển từ các phương
+
+Pháp học thống kê kém linh hoạt hơn sang các phương pháp linh hoạt hơn.
+
+Các đường cong lỗi ror, test error và Bayes (hoặc không thể rút gọn), trên một biểu đồ, khi chúng ta đi từ các phương pháp statistical learning kém linh hoạt hơn sang các phương pháp linh hoạt hơn. Trục x phải biểu thị mức độ linh hoạt trong phương pháp và trục y phải biểu thị các giá trị cho từng đường cong. Cần có năm đường cong. Make sure to label each one.
+
+Biểu thị các giá trị cho mỗi đường cong. Sẽ có năm đường cong.
+
+Phần (a).
+
+% --- page 22 ---
+\section{2. Statistical Learning}
+
+4. Bây giờ bạn sẽ nghĩ đến một số ứng dụng thực tế trong việc học thống kê-
+
+Ing.
+
+(a) Mô tả ba ứng dụng thực tế trong đó classification có thể
+
+Trở nên hữu ích. Mô tả response, cũng như predictors. Mục tiêu của mỗi ứng dụng là suy luận hay dự đoán? Giải thích câu trả lời của bạn.
+
+(d) Nếu ranh giới quyết định Bayes trong bài toán này có tính phi tuyến
+
+Cao, thì liệu chúng ta có kỳ vọng giá trị tối ưu của K sẽ lớn hay nhỏ?
+
+(c) Mô tả ba ứng dụng thực tế trong đó phân tích cụm
+
+Có thể hữu ích.
+
+(a) Tính khoảng cách Euclidean giữa mỗi điểm quan sát và
+
+Một cách tiếp cận kém linh hoạt hơn) cho regression hoặc classification? Trong trường hợp nào một cách tiếp cận linh hoạt hơn có thể được ưu tiên hơn một cách tiếp cận kém linh hoạt hơn? Khi nào một cách tiếp cận ít linh hoạt hơn có thể được ưa thích?
+
+7. Bảng dưới đây cung cấp một dataset training bao gồm sáu quan sát, ba
+
+Cách tiếp cận statistical learning. Ưu điểm của cách tiếp cận tham số đối với regression hoặc classification (trái ngược với cách tiếp cận không tham số) là gì? Nhược điểm của nó là gì?
+
+(b) Mô tả ba ứng dụng thực tế mà trong đó regression có thể hữu ích. Mô tả
+
+Biến response cũng như các predictor. Mục tiêu của mỗi ứng dụng là
+
+Suy luận hay dự đoán? Giải thích lý do của bạn.
+
+(a) Mô tả ba ứng dụng thực tế mà trong đó classification có thể hữu ích. Mô tả
+
+Response cũng như các yếu tố dự đoán. Mục tiêu của mỗi ứng dụng là suy
+
+Luận hay dự đoán? Giải thích lý do của bạn.
+
+4. Bây giờ bạn hãy nghĩ đến một số ứng dụng thực tế của statistical learning.
+
+(c) Dự đoán của chúng ta với K = 3 là gì? Tại sao?
+
+(d) Nếu Bayes decision boundary trong bài toán này rất không-
+
+(c) Dự đoán của chúng ta với K = 3 là gì? Tại sao?
+
+% --- page 23 ---
+\subsection{Bài tập 65}
+
+\subsection{Đã áp dụng}
+
+College3.set\_index('College')
+
+Tệp College.csv trên trang web sách. Nó chứa một số biến cho 777 trường đại học và cao đẳng khác nhau trong US. The variables are
+
+2.4 Bài tập 65
+
+Trước khi đọc dữ liệu vào Python, dữ liệu có thể được xem trước trong Excel hoặc trình soạn
+
+• Chấp nhận : Số lượng ứng viên được chấp nhận
+
+• Chấp nhận : Số lượng ứng viên được chấp nhận
+
+8. Bài tập này liên quan đến dataset College , có thể tìm thấy trong tệp College.csv trên
+
+Trang web của sách. Dataset này chứa một số biến số cho 777 trường đại học và cao đẳng
+
+Khác nhau ở Hoa Kỳ. Các biến số đó là:
+
+• Ngoại bang : Học phí dành cho sinh viên ngoại bang
+
+• Tiến sĩ : Tỷ lệ giảng viên có bằng Tiến sĩ •
+
+Bằng cấp cao nhất : Tỷ lệ giảng viên có bằng cấp cao nhất • Tỷ lệ
+
+Sinh viên/giảng viên: Tỷ lệ sinh viên/ giảng
+
+Viên • Tỷ lệ cựu sinh viên đóng góp
+
+• Cá nhân : Chi tiêu cá nhân ước tính
+
+• Chi phí : Chi phí giảng dạy trên mỗi học sinh
+
+• Số lượng đăng ký : Số lượng sinh viên mới đăng ký
+
+(b) Hãy xem dữ liệu được sử dụng trong sổ tay bằng cách tạo và chạy một ô mới chỉ
+
+Chứa mã " college" . Bạn sẽ nhận thấy rằng cột đầu tiên chỉ là tên của mỗi
+
+Trường đại học trong một cột có tên tương tự như "Unnamed: 0". Chúng ta thực sự
+
+Không muốn pandas coi đây là dữ liệu. Tuy nhiên, việc có những tên này có thể
+
+Hữu ích cho sau này. Hãy thử các lệnh sau và xem các khung dữ liệu kết quả
+
+Trường đại học dữ liệu được tải. Đảm bảo rằng bạn đã đặt thư mục ở đúng vị trí cho dữ liệu.
+
+• Riêng tư : Chỉ báo công khai/riêng tư • Ứng
+
+Một ô mới chỉ có trường đại học mã trong đó. Bạn nên lưu ý rằng cột đầu tiên chỉ là tên của từng trường đại học trong một cột có tên giống như Chưa đặt tên: 0. Chúng ta thực sự không muốn pandas coi đây là dữ liệu. Tuy nhiên, có thể sẽ hữu ích nếu sử dụng những tên này sau này. Hãy thử các lệnh sau và xem các khung dữ liệu kết quả theo cách tương tự:
+
+• F.Undergrad : Số lượng sinh viên đại học hệ chính quy •
+
+P.Undergrad : Số lượng sinh viên đại học hệ bán thời gian
+
+% --- page 24 ---
+\section{2. Statistical Learning}
+
+Điều này đã sử dụng cột đầu tiên trong tệp làm chỉ mục cho khung dữ liệu. Điều này có nghĩa là pandas đã đặt cho mỗi hàng một tên tương ứng với trường đại học thích hợp. Bây giờ bạn sẽ thấy cột dữ liệu đầu tiên là Riêng tư. Lưu ý rằng tên của các trường cao đẳng xuất hiện ở bên trái bảng. Chúng ta cũng đã giới thiệu một đối tượng python mới ở trên: một từ điển, được chỉ định bởi các cặp từ điển (khóa, giá trị). Giữ phiên bản đã sửa đổi của dữ liệu như sau:
+
+Đại học = đại học3
+
+Nhóm dựa trên việc tỷ lệ học sinh đến từ nhóm 10\% học sinh giỏi nhất trường trung
+
+Học có vượt quá 50\% hay không.
+
+(c) Sử dụng phương thức describe() để tạo bản tóm tắt số.
+
+Thao tác này đã sử dụng cột đầu tiên trong tệp làm chỉ mục cho khung dữ liệu. Điều
+
+Này có nghĩa là pandas đã gán cho mỗi hàng một tên tương ứng với trường đại học
+
+Thích hợp. Bây giờ bạn sẽ thấy rằng cột dữ liệu đầu tiên là Private. Lưu ý rằng
+
+Tên của các trường cao đẳng xuất hiện ở bên trái của bảng. Chúng ta cũng đã giới
+
+Thiệu một đối tượng Python mới ở trên: một từ điển, được xác định bởi các cặp
+
+(khóa, giá trị) . Hãy giữ nguyên phiên bản dữ liệu đã chỉnh sửa của bạn như sau:
+
+Của các biến trong dataset.
+
+Hãy nhớ rằng bạn có thể tham chiếu đến một danh sách C các cột của một khung dữ
+
+(g) Sử dụng phương phápplot.hist() của trường đại học để tạo ra một số-
+
+Togram với số lượng thùng khác nhau cho một số biến định lượng. Lệnh plt.subplots(2, 2) có thể hữu ích: nó sẽ chia cửa sổ đồ thị thành bốn vùng để có thể tạo bốn đồ thị đồng thời. Bằng cách thay đổi các đối số, bạn có thể chia màn hình thành các kết hợp khác.
+
+(g) Sử dụng phương thức value\_counts() của college['Elite'] để xem có bao nhiêu
+
+Những gì bạn khám phá.
+
+Song song của Outstate so với Elite. (h) Sử dụng phương thức plot.hist() của
+
+College để tạo một số biểu đồ tần số với số lượng bin khác nhau cho một vài biến định
+
+Lượng. Lệnh plt.subplots(2, 2) có thể hữu ích: nó sẽ chia cửa sổ đồ thị thành bốn
+
+Ngụ ý?
+
+Thể chia màn hình theo các cách kết hợp khác. (h) Tiếp tục khám phá dữ liệu và
+
+Cung cấp bản tóm tắt ngắn gọn về những gì bạn phát hiện ra.
+
+Predictor?
+
+% --- page 25 ---
+\subsection{Bài tập 67}
+
+(a) Đầu tiên, hãy tải bộ dữ liệu Boston , một phần của ISLP.
+
+Các hàng và cột biểu thị điều gì?
+
+(d) Bây giờ hãy loại bỏ các quan sát từ thứ 10 đến thứ 85. Khoảng variance, giá trị
+
+Trung bình và độ lệch chuẩn của mỗi biến dự báo trong dataset con còn lại là
+
+(f) Giả sử chúng ta muốn dự đoán mức tiêu thụ xăng (mpg) trên cơ sở
+
+(e) Sử dụng toàn bộ dataset, hãy nghiên cứu các biến dự báo bằng đồ thị, sử dụng biểu
+
+Đồ phân tán hoặc các công cụ khác mà bạn lựa chọn. Tạo một số biểu đồ làm nổi bật mối
+
+Quan hệ giữa các biến dự báo. Nhận xét về những phát hiện của bạn.
+
+Thư viện.
+
+(b) Dataset này có bao nhiêu hàng? Bao nhiêu cột? Cái gì
+
+(d) Có yếu tố dự báo nào liên quan đến tỷ lệ tội phạm bình quân đầu người không?
+
+Bộ dữ liệu này. Hãy mô tả những phát hiện của bạn.
+
+Nếu vậy, hãy giải thích mối quan hệ đó.
+
+(e) Có khu ngoại ô nào của Boston có tỷ lệ tội phạm đặc biệt cao không? Thuế suất? Tỷ lệ
+
+Học sinh-giáo viên? Nhận xét về phạm vi của mỗi yếu tố dự báo.
+
+(e) Có bất kỳ vùng ngoại ô nào của Boston có vẻ đặc biệt
+
+Tỷ lệ tội phạm cao? Thuế suất? Tỷ lệ học sinh-giáo viên? Nhận xét về phạm vi của mỗi predictor.
+
+(f) Giả sử chúng ta muốn dự đoán mức tiêu hao nhiên liệu (mpg) dựa trên các biến số khác.
+
+Dòng sông?
+
+Đoán mpg không? Hãy giải thích lý do.
+
+Data set?
+
+(h) Vùng ngoại ô nào của Boston có giá trị trung bình của chủ sở hữu thấp nhất-
+
+(c) Vẽ một số biểu đồ phân tán theo cặp của các predictor (cột) trong
+
+(i) Trong data set này, có bao nhiêu vùng ngoại ô trung bình cao hơn
+
+(h) Khu ngoại ô nào của Boston có giá trị trung vị thấp nhất đối với nhà ở do chủ sở hữu
+
+% --- page 26 ---
+\section{Linear Regression}
+
+Chương này nói về linear regression, một cách tiếp cận rất đơn giản dành cho supervised learning. Đặc biệt, linear regression là một công cụ hữu ích để dự đoán response định lượng. Nó đã có từ rất lâu và là chủ đề của vô số sách giáo khoa. Mặc dù nó có vẻ hơi buồn tẻ so với một số phương pháp statistical learning hiện đại hơn được mô tả trong các chương sau của cuốn sách này, nhưng linear regression vẫn là một phương pháp statistical learning hữu ích và được sử dụng rộng rãi. Hơn nữa, nó đóng vai trò là điểm khởi đầu tốt cho các phương pháp tiếp cận mới hơn: như chúng ta sẽ thấy trong các chương sau, nhiều phương pháp statistical learning ưa thích có thể được coi là sự khái quát hóa hoặc mở rộng của linear regression. Do đó, tầm quan trọng của việc hiểu rõ về linear regression trước khi nghiên cứu các phương pháp học phức tạp hơn là không thể phủ nhận. Trong chương này, chúng ta xem xét một số ý tưởng chính làm cơ sở cho linear regression model, cũng như phương pháp bình phương tối thiểu thường được sử dụng nhất để phù hợp với model này.
+
+Nhớ lại dữ liệu Quảng cáo từ Chương 2. Hình 2.1 hiển thị doanh số bán hàng (tính bằng nghìn đơn vị) cho một sản phẩm cụ thể dưới dạng hàm của ngân sách quảng cáo (tính bằng nghìn đô la) cho TV, đài phát thanh và báo chí. Giả sử với vai trò là nhà tư vấn thống kê, chúng ta được yêu cầu đề xuất, trên cơ sở dữ liệu này, một kế hoạch tiếp thị cho năm tới sẽ mang lại doanh số bán sản phẩm cao. Thông tin nào sẽ hữu ích để đưa ra khuyến nghị như vậy? Dưới đây là một số câu hỏi quan trọng mà chúng ta có thể tìm cách giải quyết:
+
+1. Có mối quan hệ giữa ngân sách quảng cáo và doanh số bán hàng không?
+
+Mục tiêu đầu tiên của chúng ta là xác định liệu dữ liệu có cung cấp bằng chứng về mối liên hệ giữa chi tiêu quảng cáo và doanh số bán hàng hay không. Nếu bằng chứng yếu thì người ta có thể lập luận rằng không nên chi tiền cho quảng cáo!
+
+% © Springer Nature Switzerland AG 2023 G. James et al., An Introduction to Statistical Learning, Springer Texts in Statistics, https://doi.org/10.1007/978-3-031-38747-0\_3
+% 69
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/p26_b7.png}
+\end{figure}
+
+% --- page 27 ---
+\section{3. Linear Regression}
+
+2. Mối quan hệ giữa ngân sách quảng cáo và doanh thu mạnh đến mức nào?
+
+Giả sử có mối quan hệ giữa quảng cáo và bán hàng, chúng ta muốn biết sức mạnh của mối quan hệ này. Kiến thức về ngân sách quảng cáo có cung cấp nhiều thông tin về doanh số bán sản phẩm không?
+
+3. Phương tiện nào gắn liền với việc bán hàng?
+
+Cả ba phương tiện truyền thông—TV, đài phát thanh và báo chí—có liên quan đến bán hàng hay chỉ là một hoặc hai phương tiện truyền thông có liên quan? Để trả lời câu hỏi này, chúng ta phải tìm cách tách biệt sự đóng góp của từng phương tiện vào doanh số bán hàng khi chúng ta đã chi tiền cho cả ba phương tiện.
+
+70 3. Regression tuyến tính
+
+7. Có sự phối hợp hiệu quả giữa các phương tiện quảng cáo không?
+
+Các câu hỏi. Trước tiên, chúng ta sẽ thảo luận tất cả những câu hỏi này trong bối cảnh tổng quát.
+
+Chúng ta muốn biết mức độ bền chặt của mối quan hệ này. Liệu việc nắm rõ ngân sách quảng cáo có cung
+
+Cấp nhiều thông tin về vấn đề này không?
+
+Nếu có mối quan hệ gần như đường thẳng giữa chi tiêu quảng cáo trên các phương tiện truyền thông khác nhau và doanh số bán hàng thì linear regression là một công cụ thích hợp. Nếu không, thì vẫn có thể chuyển đổi predictor hoặc response để có thể sử dụng linear regression.
+
+Giả sử có mối quan hệ giữa quảng cáo và doanh số bán hàng,
+
+Có lẽ việc chi 50.000 \$50,000 on television advertising and \$ cho quảng cáo trên đài sẽ mang lại doanh thu cao hơn việc phân bổ 100.000 USD cho riêng từng đài phát thanh hoặc truyền hình. Trong tiếp thị, đây được gọi là hiệu ứng tổng hợp, trong khi trong thống kê, nó được gọi là hiệu ứng tương tác. Sức mạnh tổng hợp
+
+Cả ba phương tiện truyền thông—truyền hình, phát thanh và báo chí—đều có liên quan đến
+
+\subsection{Linear Regression đơn giản}
+
+Như một hiệu ứng hiệp đồng , trong khi trong thống kê nó được gọi là hiệu ứng tương tác .
+
+Phương pháp regression để dự đoán response Y định lượng trên cơ sở một biến predictor X. Phương pháp này giả định rằng có mối quan hệ tuyến tính gần đúng giữa X và Y . Về mặt toán học, chúng ta có thể viết mối quan hệ tuyến tính này như
+
+Y ≈β0 + β1X. (3.1)
+
+Bạn có thể đọc “≈” là “được model hóa gần đúng”. Đôi khi chúng ta sẽ mô tả (3.1) bằng cách nói rằng chúng ta đang regression Y theo X (hoặc Y về X).
+
+% --- page 28 ---
+\subsection{Linear Regression đơn giản 71}
+
+Ví dụ: X có thể đại diện cho quảng cáo TV và Y có thể đại diện cho doanh số bán hàng. Sau đó, chúng ta có thể điều chỉnh doanh số bán hàng trên TV bằng cách lắp model
+
+Doanh số ≈β0 + β1 × TV.
+
+Trong phương trình 3.1, β0 và β1 là hai hằng số chưa biết biểu thị số hạng tung độ gốc và độ dốc trong model tuyến tính. Cùng với nhau, β0 và β1 là phần chặn
+
+Độ dốc được gọi là model coefficients hoặc parameters. Một khi chúng ta đã sử dụng
+
+Coefficient parameter
+
+Dữ liệu training để tạo ra estimates ˆβ0 và ˆβ1 cho model coefficients, chúng ta có thể dự đoán doanh số bán hàng trong tương lai dựa trên giá trị cụ thể của quảng cáo TV bằng máy tính
+
+Bình phương tối thiểu
+
+Trong đó ˆy biểu thị dự đoán về Y trên cơ sở X = x. Ở đây chúng ta sử dụng ký hiệu mũ, ˆ, để biểu thị giá trị ước tính cho parameter hoặc coefficient chưa xác định hoặc để biểu thị giá trị dự đoán của response.
+
+\subsubsection{Ước tính Coefficients}
+
+Trong thực tế, β0 và β1 đều chưa được biết. Vì vậy trước khi có thể sử dụng (3.1) để đưa ra dự đoán, chúng ta phải sử dụng dữ liệu để estimate coefficients. Cho phép
+
+Trong phương trình 3.1, β0 và β1 là hai hằng số chưa biết biểu thị
+
+Đại diện cho n cặp quan sát, mỗi cặp bao gồm phép đo X và phép đo Y . Trong ví dụ về Quảng cáo, data set này bao gồm ngân sách quảng cáo TV và doanh số bán sản phẩm ở n = 200 thị trường khác nhau. (Nhớ lại rằng dữ liệu được hiển thị trong Hình 2.1.) Mục tiêu của chúng ta là thu được coefficient estimates ˆβ0 và ˆβ1 sao cho model tuyến tính (3.1) khớp tốt với dữ liệu có sẵn—nghĩa là sao cho yi ≈ˆβ0 + ˆβ1xi với i = 1, . . . , N. Nói cách khác, chúng ta muốn tìm điểm chặn ˆβ0 và độ dốc ˆβ1 sao cho đường kết quả càng gần n = 200 điểm dữ liệu càng tốt. Có một số cách để đo mức độ gần gũi. Tuy nhiên, cho đến nay, cách tiếp cận phổ biến nhất liên quan đến việc giảm thiểu tiêu chí bình phương tối thiểu và chúng ta sử dụng cách tiếp cận đó trong chương này. Các phương pháp tiếp cận khác sẽ được xem xét ở Chương 6.
+
+Đặt ˆyi = ˆβ0 + ˆβ1xi là dự đoán cho Y dựa trên giá trị thứ i của X. Khi đó ei = yi −ˆyi đại diện cho phần dư thứ i—đây là sự khác biệt giữa phần dư của giá trị response quan sát được thứ i và giá trị response thứ i được dự đoán bởi model tuyến tính của chúng ta. Chúng ta xác định tổng bình phương còn lại (RSS) là tổng bình phương còn lại RSS = e2
+
+\section{+ e2}
+
+\section{+ · · · + e2}
+
+N,
+
+Hoặc tương đương như
+
+Phương pháp bình phương tối thiểu chọn βˆ0 và βˆ1 để giảm thiểu RSS. Sử dụng
+
+Nói cách khác, chúng ta muốn tìm hệ số chặn βˆ0 và hệ số góc βˆ1 sao cho
+
+% ˆβ1 =
+(3.4)
+
+I=1(xi −¯x)(yi −¯y) )n
+
+I=1(xi −¯x)2 ,
+
+ˆβ0 = ¯y −ˆβ1¯x,
+
+% (3.4)
+% --- page 29 ---
+\section{3. Linear Regression}
+
+% 0 50 100 150 200 250 300
+% 5 10 15 20 25
+TV
+
+\subsection{Việc bán hàng}
+
+\noindent\textit{FIGURE 3.1. Đối với dữ liệu Quảng cáo, ô vuông nhỏ nhất phù hợp với regression của doanh số bán hàng trên TV được hiển thị. Sự phù hợp được tìm thấy bằng cách giảm thiểu tổng bình phương còn lại. Mỗi đoạn đường màu xám đại diện cho phần dư. Trong trường hợp này, sự phù hợp tuyến tính nắm bắt được bản chất của mối quan hệ, mặc dù nó đánh giá quá cao xu hướng ở bên trái của biểu đồ.}
+
+72 3. Regression tuyến tính
+
+N
+
+)N
+
+Bên trái của cốt truyện.
+
+N
+
+)N
+
+3.1.2 Đánh giá độ chính xác của các ước lượng hệ số
+
+\noindent\textit{Hình 3.1 hiển thị linear regression đơn giản phù hợp với dữ liệu Quảng cáo, trong đó ˆβ0 = 7,03 và ˆβ1 = 0,0475. Nói cách khác, theo ước tính này, thêm 1.000 USD chi cho quảng cáo TV có liên quan đến việc bán thêm khoảng 47,5 đơn vị sản phẩm. Trong Hình 3.2, chúng ta đã tính toán RSS cho một số giá trị β0 và β1, sử dụng dữ liệu quảng cáo với doanh số bán hàng là response và TV là predictor. Trong mỗi ô, dấu chấm màu đỏ biểu thị cặp bình phương nhỏ nhất estimates (ˆβ0, ˆβ1) cho bởi (3.4). Những giá trị này giảm thiểu rõ ràng RSS.}
+
+\subsubsection{Đánh giá độ chính xác của Coefficient Estimates}
+
+Nhớ lại từ (2.1) rằng chúng ta giả sử rằng mối quan hệ thực sự giữa X và Y có dạng Y = f(X) + ϵ đối với hàm f chưa biết nào đó, trong đó ϵ là số hạng sai số ngẫu nhiên trung bình bằng 0. Nếu f được xấp xỉ bởi một hàm tuyến tính thì chúng ta có thể viết mối quan hệ này dưới dạng
+
+Y = β0 + β1X + ϵ. (3.5)
+
+Ở đây β0 là số hạng bị chặn—tức là giá trị kỳ vọng của Y khi X = 0, và β1 là độ dốc—mức tăng trung bình của Y liên quan đến sự tăng lên một đơn vị của X. Sai số là tất cả những gì chúng ta bỏ lỡ với model đơn giản này: mối quan hệ thực sự có thể không tuyến tính, có thể có các biến số khác gây ra sự biến đổi của Y và có thể có sai số đo lường. Chúng ta thường giả định rằng hạng sai số độc lập với X.
+
+% --- page 30 ---
+\subsection{Linear Regression đơn giản 73}
+
+\noindent\textit{FIGURE 3.2. Đường viền và sơ đồ ba chiều của RSS trên dữ liệu Quảng cáo, sử dụng doanh số là response và TV là predictor. Các chấm màu đỏ tương ứng với bình phương nhỏ nhất estimates ˆβ0 và ˆβ1, cho bởi (3.4).}
+
+Model cho bởi (3.5) xác định đường dân số regression, dân số
+
+Đường regression là phép tính gần đúng tuyến tính tốt nhất cho mối quan hệ thực sự giữa X và Y.1 Bình phương nhỏ nhất regression coefficient estimates (3.4) feature cho đường bình phương nhỏ nhất (3.2). Bảng bên trái của Hình 3.3 hiển thị các bình phương nhỏ nhất này
+
+HÌNH 3.2. Đồ thị đường đồng mức và đồ thị ba chiều của RSS trên
+
+3.1 Regression tuyến tính đơn giản 73
+
+Trong đó ϵ được tạo ra từ phân phối chuẩn có giá trị trung bình bằng 0. Đường màu đỏ ở phần bên trái của Hình 3.3 hiển thị mối quan hệ thực sự, f(X) = 2 + 3X, trong khi đường màu xanh là bình phương nhỏ nhất estimate dựa trên dữ liệu quan sát được. Mối quan hệ thực sự thường không được biết đến với dữ liệu thực, nhưng đường bình phương nhỏ nhất luôn có thể được tính bằng cách sử dụng coefficient estimates cho trong (3.4). Nói cách khác, trong các ứng dụng thực tế, chúng ta có quyền truy cập vào một tập hợp các quan sát mà từ đó chúng ta có thể tính toán đường bình phương nhỏ nhất; tuy nhiên, dòng regression dân số không được quan sát. Trong bảng bên phải của Hình 3.3, chúng ta đã tạo ra mười data sets khác nhau từ model cho bởi (3.6) và vẽ mười đường bình phương nhỏ nhất tương ứng. Lưu ý rằng các data sets khác nhau được tạo ra từ cùng một model thực sẽ dẫn đến các đường bình phương tối thiểu hơi khác nhau một chút, nhưng đường regression của quần thể không được quan sát không thay đổi.
+
+Thoạt nhìn, sự khác biệt giữa đường regression dân số và đường bình phương nhỏ nhất có vẻ tinh tế và khó hiểu. Chúng ta chỉ có một data set, vậy hai dòng khác nhau mô tả mối quan hệ giữa predictor và response có nghĩa là gì? Về cơ bản, khái niệm về hai đường này là sự mở rộng tự nhiên của phương pháp thống kê tiêu chuẩn về việc sử dụng thông tin từ mẫu đến các đặc điểm estimate của một quần thể lớn. Ví dụ, giả sử chúng ta muốn biết
+
+1Giả định về tính tuyến tính thường là một model hữu ích. Tuy nhiên, bất chấp những gì sách giáo khoa có thể nói với chúng ta, chúng ta hiếm khi tin rằng mối quan hệ thực sự là tuyến tính.
+
+% β0
+% β1
+% 2.11
+% 2.15
+% 2.2
+% 2.3
+% 2.5
+% 2.5
+% 3
+% 3
+% 5 6 7 8 9
+% 0.03 0.04 0.05 0.06
+\subsection{RSS}
+
+% β1 β0
+% --- page 31 ---
+\section{3. Linear Regression}
+
+% −2 −1 0 1 2
+% −10 −5 0 5 10
+% X
+Y
+
+% −2 −1 0 1 2
+% −10 −5 0 5 10
+% X
+Y
+
+\noindent\textit{FIGURE 3.3. Một data set mô phỏng. Bên trái: Đường màu đỏ thể hiện mối quan hệ thực sự, f(X) = 2 + 3X, được gọi là đường regression của dân số. Đường màu xanh là đường bình phương nhỏ nhất; nó là bình phương nhỏ nhất estimate của f(X) dựa trên dữ liệu quan sát được, được hiển thị bằng màu đen. Phải: Đường regression dân số lại được hiển thị bằng màu đỏ và đường bình phương nhỏ nhất có màu xanh đậm. Với màu xanh lam nhạt, mười dòng bình phương nhỏ nhất được hiển thị, mỗi dòng được tính toán trên cơ sở một tập hợp quan sát ngẫu nhiên riêng biệt. Mỗi đường bình phương nhỏ nhất là khác nhau, nhưng tính trung bình, các đường bình phương nhỏ nhất khá gần với đường regression dân số.}
+
+Trung bình tổng thể µ của một biến ngẫu nhiên Y nào đó. Thật không may, µ chưa được biết, nhưng chúng ta có quyền truy cập vào n quan sát từ Y , y1, . . . , yn, mà chúng ta có thể sử dụng để estimate µ. Estimate hợp lý là ˆµ = ¯y, trong đó
+
+Y¯ =
+
+N
+
+)N
+
+I=1 yi là giá trị trung bình mẫu. Giá trị trung bình mẫu và giá trị trung bình tổng thể là khác nhau, nhưng nói chung giá trị trung bình mẫu sẽ cung cấp estimate tốt cho giá trị trung bình tổng thể. Theo cách tương tự, coefficients β0 và β1 chưa biết trong linear regression xác định dòng regression tổng thể. Chúng ta tìm kiếm estimate những coefficients chưa biết này bằng cách sử dụng ˆβ0 và ˆβ1 cho trong (3.4). Các coefficient estimates này xác định đường bình phương nhỏ nhất.
+
+Sự tương tự giữa linear regression và ước tính giá trị trung bình của một biến ngẫu nhiên là một sự tương tự dựa trên khái niệm bias. Nếu chúng ta sử dụng trung bình mẫu bias ˆµ đến estimate µ, thì estimate này không bias, theo nghĩa là trung bình không bias, chúng ta mong đợi ˆµ bằng µ. Chính xác điều này có nghĩa là gì? Nó có nghĩa là trên cơ sở một tập hợp quan sát cụ thể y1, . . . , yn, ˆµ có thể đánh giá quá cao µ, và trên cơ sở một loạt quan sát khác, ˆµ có thể đánh giá thấp µ. Nhưng nếu chúng ta có thể tính trung bình một số lượng lớn estimates của µ thu được từ một số lượng lớn các tập hợp quan sát, thì mức trung bình này sẽ chính xác bằng µ. Do đó, estimator không bias không vượt quá hoặc dưới estimate thực sự một cách có hệ thống. Tính chất không bias cũng áp dụng cho bình phương nhỏ nhất coefficient estimates cho bởi (3.4): nếu chúng ta estimate β0 và β1 trên cơ sở một data set cụ thể, thì estimates của chúng ta sẽ không chính xác bằng β0 và β1. Nhưng nếu chúng ta có thể tính trung bình estimates thu được trên một số lượng lớn data sets, thì mức trung bình của những estimates này sẽ chính xác! Trong thực tế, chúng ta có thể thấy từ bảng bên phải của Hình 3.3 rằng trung bình của nhiều đường bình phương nhỏ nhất, mỗi đường
+
+% --- page 32 ---
+\subsection{Linear Regression 75 đơn giản}
+
+Được ước tính từ một data set riêng biệt, khá gần với dòng regression của quần thể thực sự.
+
+Chúng ta tiếp tục phép tương tự với ước lượng trung bình tổng thể µ của biến ngẫu nhiên Y . Một câu hỏi tự nhiên như sau: trung bình mẫu ˆµ của estimate của µ có độ chính xác đến mức nào? Chúng ta đã xác định rằng mức trung bình của ˆµ’ trên nhiều data sets sẽ rất gần với µ, nhưng một estimate ˆµ có thể là sự đánh giá thấp hoặc đánh giá quá cao đáng kể về µ. Estimate đơn lẻ của ˆµ đó sẽ đi được bao xa? Nói chung, chúng ta trả lời câu hỏi này bằng cách tính sai số chuẩn của ˆµ, được viết là SE(ˆµ). Chúng ta có tiêu chuẩn
+
+Lỗi công thức nổi tiếng
+
+\subsection{Var(ˆµ) = SE(ˆµ)2 = σ2}
+
+N , (3.7)
+
+Trong đó σ là độ lệch chuẩn của từng cách thực hiện yi của Y .2
+
+Nói một cách đại khái, sai số chuẩn cho chúng ta biết mức độ trung bình mà estimate ˆµ này khác với giá trị thực của µ. Phương trình 3.7 cũng cho chúng ta biết độ lệch này giảm theo n như thế nào—chúng ta càng có nhiều quan sát thì sai số chuẩn của ˆµ càng nhỏ. Theo cách tương tự, chúng ta có thể thắc mắc ˆβ0 và ˆβ1 gần với giá trị thực β0 và β1 đến mức nào. Để tính sai số chuẩn liên quan đến ˆβ0 và ˆβ1, chúng ta sử dụng các công thức sau:
+
+SE(ˆβ0)
+
+% 2 = σ2
+% 3 1
+Tiêu chuẩn
+
+I=1(xi −¯x)2
+
+% 4
+, SE(ˆβ1)
+
+\section{= σ2 )n}
+
+Tiêu chuẩn
+
+Trong đó σ2 = Var(ϵ). Để các công thức này có giá trị tuyệt đối, chúng ta cần giả sử rằng các sai số ϵi cho mỗi quan sát có chung variance σ2 và không tương quan. Điều này rõ ràng là không đúng trong Hình 3.1, nhưng công thức vẫn là một xấp xỉ tốt. Lưu ý trong công thức rằng SE(ˆβ1) nhỏ hơn khi xi trải rộng hơn; về mặt trực giác, chúng ta có nhiều đòn bẩy hơn để tạo độ dốc cho estimate khi trường hợp này xảy ra. Chúng ta cũng thấy rằng SE(ˆβ0) sẽ giống như SE(ˆµ) nếu ¯x bằng 0 (trong trường hợp đó ˆβ0 sẽ bằng ¯y). Nói chung, σ2 chưa được biết nhưng có thể ước lượng được từ dữ liệu. Estimate này của σ được gọi là sai số chuẩn dư và được tính bằng công thức dư
+
+75 3.1 Regression tuyến tính đơn giản
+
+% 5
+Sai số chuẩn của µˆ. Tương tự, ta có thể tự hỏi βˆ0 gần với mức độ nào.
+
+Sai số chuẩn có thể được sử dụng để tính khoảng tin cậy. Độ tin cậy 95\%
+
+Khoảng tin cậy được định nghĩa là một phạm vi giá trị sao cho với xác suất 95 \%, phạm vi đó sẽ chứa giá trị thực chưa biết của parameter. Phạm vi được xác định theo giới hạn dưới và giới hạn trên được tính toán từ mẫu dữ liệu. Khoảng tin cậy 95\% có đặc tính sau: nếu chúng ta lấy các mẫu lặp lại và xây dựng khoảng tin cậy cho từng mẫu thì 95\% khoảng sẽ chứa giá trị thực chưa biết của parameter. Đối với linear regression, khoảng tin cậy 95 \% cho β1 có dạng gần đúng
+
+ˆβ1 ± 2 · SE(ˆβ1). (3.9)
+
+Liệu trung bình mẫu µˆ có phải là ước lượng của µ không? Chúng ta đã xác định rằng
+
+% --- page 33 ---
+\section{3. Linear Regression}
+
+\subsection{Nghĩa là, có khoảng 95\% khả năng khoảng thời gian đó}
+
+% 7
+Tức là, có khoảng 95\% khả năng khoảng thời gian đó sẽ đúng.
+
+% 8
+% (3.10)
+Sẽ chứa giá trị thực của β1.3 Tương tự, khoảng tin cậy cho β0 xấp xỉ có dạng
+
+Có dạng gần đúng như sau:
+
+Trong trường hợp dữ liệu quảng cáo, khoảng tin cậy 95 \% cho β0 là [6,130, 7,935] và khoảng tin cậy 95 \% cho β1 là [0,042, 0,053]. Do đó, chúng ta có thể kết luận rằng nếu không có bất kỳ quảng cáo nào, doanh số bán hàng trung bình sẽ rơi vào khoảng từ 6.130 đến 7.935 chiếc. Hơn nữa, với mỗi mức tăng 1.000 đô la trong quảng cáo truyền hình, doanh số bán hàng sẽ tăng trung bình từ 42 đến 53 đơn vị.
+
+Sai số chuẩn cũng có thể được sử dụng để thực hiện kiểm định giả thuyết về giả thuyết đó.
+
+Phụ thuộc vào độ chính xác của βˆ1—tức là, nó phụ thuộc vào SE(βˆ1). Nếu SE(βˆ1) là
+
+Nhỏ, thì ngay cả những giá trị tương đối nhỏ của βˆ1 cũng có thể cung cấp bằng chứng mạnh mẽ.
+
+\subsection{Về mặt toán học, điều này tương ứng với việc kiểm tra}
+
+H0 : β1 = 0
+
+So với
+
+Hà : β1 ̸= 0,
+
+Vì nếu β1 = 0 thì model (3.5) giảm xuống Y = β0 + ϵ và X không liên kết với Y . Để kiểm tra giả thuyết không, chúng ta cần xác định xem liệu ˆβ1, estimate của chúng ta đối với β1, có đủ xa 0 để chúng ta có thể tin tưởng rằng β1 khác 0 hay không. Bao xa là đủ xa? Tất nhiên, điều này phụ thuộc vào độ chính xác của ˆβ1—nghĩa là nó phụ thuộc vào SE(ˆβ1). Nếu SE(ˆβ1) nhỏ thì ngay cả những giá trị tương đối nhỏ của ˆβ1 cũng có thể cung cấp bằng chứng chắc chắn rằng β1 ̸= 0, và do đó có mối quan hệ giữa X và Y . Ngược lại, nếu SE(ˆβ1) lớn thì ˆβ1 phải có giá trị tuyệt đối lớn để chúng ta bác bỏ giả thuyết không. Trong thực tế, chúng ta tính toán một thống kê t, thống kê t cho bởi
+
+T =
+
+% ˆβ1 −0
+SE(ˆβ1)
+
+% , (3.14)
+3Có lẽ vì một số lý do. Phương trình 3.10 dựa trên giả định rằng các sai số là Gaussian. Ngoài ra, hệ số 2 đứng trước số hạng SE(ˆβ1) sẽ thay đổi đôi chút tùy thuộc vào số lượng quan sát n trong linear regression. Nói chính xác, thay vì số 2, (3.10) phải chứa lượng tử 97,5 \% của phân phối t với n−2 degrees of freedom. Chi tiết về cách tính chính xác khoảng tin cậy 95\% trong R sẽ được cung cấp sau trong chương này.
+
+% --- page 34 ---
+\subsection{Linear Regression đơn giản 77}
+
+4Trong Bảng 3.1, giá trị p nhỏ đối với hệ số chặn cho thấy chúng ta có thể bác bỏ giả thuyết không rằng
+
+\noindent\textit{TABLE 3.1. Đối với dữ liệu Quảng cáo, coefficients của bình phương nhỏ nhất model cho regression của số lượng đơn vị được bán trên ngân sách quảng cáo TV. Ngân sách quảng cáo TV tăng thêm 1.000 USD có liên quan đến việc doanh số bán hàng tăng khoảng 50 đơn vị. (Hãy nhớ lại rằng biến số bán hàng được tính bằng hàng nghìn đơn vị và biến TV được tính bằng hàng nghìn đô la.)}
+
+Đo số độ lệch chuẩn mà ˆβ1 khác 0. Nếu thực sự không có mối quan hệ nào giữa X và Y thì chúng ta kỳ vọng rằng (3.14) sẽ có phân phối t với n −2 degrees of freedom. Phân phối t có hình chuông và với các giá trị n lớn hơn khoảng 30 thì nó khá giống với phân phối chuẩn chuẩn. Do đó, việc tính xác suất quan sát được bất kỳ số nào bằng |t| là một vấn đề đơn giản. Hoặc lớn hơn về giá trị tuyệt đối, giả sử β1 = 0. Chúng ta gọi xác suất này là p-value. Nói một cách đại khái, chúng ta giải thích p-value như sau: một p-value p-value nhỏ cho thấy rằng khó có thể quan sát thấy mối liên hệ đáng kể như vậy giữa predictor và response do tình cờ, trong trường hợp không có bất kỳ mối liên hệ thực sự nào giữa predictor và response. Do đó, nếu chúng ta thấy một p-value nhỏ thì chúng ta có thể suy ra rằng có mối liên hệ giữa predictor và response. Chúng ta bác bỏ giả thuyết không—nghĩa là chúng ta tuyên bố tồn tại mối quan hệ giữa X và Y—nếu p-value đủ nhỏ. Các giới hạn điển hình của p-value để bác bỏ giả thuyết không là 5\% hoặc 1\%, mặc dù chủ đề này sẽ được khám phá chi tiết hơn nhiều trong Chương 13. Khi n = 30, những giới hạn này tương ứng với thống kê t (3,14) lần lượt là khoảng 2 và 2,75.
+
+\noindent\textit{Bảng 3.1 cung cấp chi tiết về bình phương nhỏ nhất model cho regression của số lượng đơn vị được bán trên ngân sách quảng cáo TV cho dữ liệu Quảng cáo. Lưu ý rằng coefficients cho ˆβ0 và ˆβ1 rất lớn so với sai số chuẩn của chúng, do đó thống kê t cũng lớn; xác suất nhìn thấy những giá trị như vậy nếu H0 đúng là gần như bằng không. Do đó chúng ta có thể kết luận rằng β0 ̸= 0 và β1 ̸= 0,4}
+
+\subsubsection{Đánh giá độ chính xác của Model}
+
+Khi chúng ta đã bác bỏ giả thuyết không (3.12) để ủng hộ giả thuyết thay thế (3.13), việc định lượng mức độ mà model phù hợp với dữ liệu là điều tự nhiên. Chất lượng của sự phù hợp linear regression thường được đánh giá bằng hai đại lượng liên quan: sai số chuẩn dư (RSE) và R2
+
+TV Chặn
+
+4Trong Bảng 3.1, một p-value nhỏ cho phần chặn chỉ ra rằng chúng ta có thể bác bỏ giả thuyết không cho rằng β0 = 0, và một p-value nhỏ cho TV chỉ ra rằng chúng ta có thể bác bỏ giả thuyết không cho rằng β1 = 0. Việc bác bỏ giả thuyết không sau cho phép chúng ta kết luận rằng có một mối quan hệ giữa TV và doanh số bán hàng. Việc bác bỏ điều trước cho phép chúng ta kết luận rằng nếu không có chi tiêu TV, doanh thu sẽ khác 0.
+
+% --- page 35 ---
+\section{3. Linear Regression}
+
+Số lượng Giá trị Sai số chuẩn dư 3,26 R2 0,612 Thống kê F 312,1
+
+\noindent\textit{TABLE 3.2. Đối với dữ liệu Quảng cáo, hãy biết thêm thông tin về bình phương nhỏ nhất model cho regression của số lượng đơn vị được bán trên ngân sách quảng cáo TV.}
+
+\noindent\textit{Bảng 3.2 hiển thị RSE, thống kê R2 và thống kê F (được mô tả trong Phần 3.2.2) cho linear regression của số lượng đơn vị được bán trên ngân sách quảng cáo TV.}
+
+\subsection{Lỗi chuẩn dư}
+
+Nhớ lại từ model (3.5) liên quan đến mỗi quan sát là một số hạng sai số ϵ. Do sự hiện diện của các thuật ngữ lỗi này, ngay cả khi chúng ta biết đường regression thực (tức là ngay cả khi biết β0 và β1), chúng ta sẽ không thể dự đoán Y từ X một cách hoàn hảo. RSE là estimate của độ lệch chuẩn của ϵ. Nói một cách đại khái, đó là mức trung bình mà response sẽ đi chệch khỏi dòng regression thực sự. Nó được tính bằng công thức
+
+\subsection{RSE =}
+
+% 9
+\section{n −2RSS =}
+
+: ; ; < 1 n −2
+
+N 0
+
+Tôi=1
+
+Thấy model không phù hợp với dữ liệu tốt.
+
+Lưu ý rằng RSS đã được xác định trong Phần 3.1.1 và được tính theo công thức
+
+\subsection{RSS =}
+
+N 0
+
+Tôi=1
+
+(yi −ˆyi)2. (3.16)
+
+Trong trường hợp dữ liệu quảng cáo, chúng ta thấy từ đầu ra linear regression trong Bảng 3.2 rằng RSE là 3,26. Nói cách khác, doanh số bán hàng thực tế ở mỗi thị trường lệch so với dòng regression thực tế trung bình khoảng 3.260 chiếc. Một cách khác để nghĩ về điều này là ngay cả khi model là chính xác và giá trị thực của coefficients β0 và β1 chưa biết đã được biết chính xác, mọi dự đoán về doanh số bán hàng dựa trên quảng cáo TV vẫn sẽ sai lệch trung bình khoảng 3.260 đơn vị. Tất nhiên, việc 3.260 đơn vị có phải là sai số dự đoán có thể chấp nhận được hay không còn tùy thuộc vào bối cảnh vấn đề. Trong quảng cáo data set, giá trị trung bình của doanh số bán hàng trên tất cả các thị trường là khoảng 14.000 đơn vị và do đó sai số phần trăm là 3.260/14.000 = 23 \%.
+
+RSE được coi là thước đo cho thấy model (3.5) không phù hợp với dữ liệu. Nếu các dự đoán thu được bằng cách sử dụng model rất gần với các giá trị outcome thực—tức là, nếu ˆyi ≈yi với i = 1, . . . , n—khi đó (3.15) sẽ nhỏ và chúng ta có thể kết luận rằng model rất phù hợp với dữ liệu. Mặt khác, nếu ˆyi ở rất xa yi đối với một hoặc nhiều quan sát thì RSE có thể khá lớn, cho thấy model không phù hợp với dữ liệu.
+
+\subsection{Thống kê R2}
+
+RSE cung cấp thước đo tuyệt đối về sự thiếu phù hợp của model (3.5) với dữ liệu. Nhưng vì nó được đo bằng đơn vị Y nên không phải lúc nào cũng
+
+% --- page 36 ---
+\subsection{Linear Regression đơn giản 79}
+
+Rõ ràng điều gì tạo nên một RSE tốt. Thống kê R2 cung cấp một thước đo khác về mức độ phù hợp. Nó có dạng tỷ lệ—tỷ lệ của variance được giải thích—và do đó, nó luôn có giá trị từ 0 đến 1 và độc lập với tỷ lệ của Y .
+
+\subsection{Để tính R2, chúng ta sử dụng công thức}
+
+\subsection{R2 = TSS −RSS}
+
+\subsection{TSS = 1 −RSS}
+
+\subsection{I=1(xi   x)2}
+
+Đánh giá sự phù hợp của model tuyến tính. Trên thực tế, có thể chứng minh rằng trong trường hợp đơn giản
+
+Bình phương trong (3.16). TSS đo tổng variance trong response Y và có thể được coi là mức độ variance vốn có trong response trước khi regression được thực hiện. Ngược lại, RSS đo mức độ variance không giải thích được sau khi thực hiện regression. Do đó, TSS −RSS đo mức độ variance trong response được giải thích (hoặc loại bỏ) bằng cách thực hiện regression và R2 đo tỷ lệ variance trong Y có thể giải thích bằng X. Thống kê R2 gần bằng 1 cho thấy rằng phần lớn variance trong response được giải thích bởi regression. Con số gần 0 cho thấy regression không giải thích được nhiều về tính variance trong response; điều này có thể xảy ra do model tuyến tính sai hoặc lỗi variance σ2 cao hoặc cả hai. Trong Bảng 3.2, R2 là 0,61, và do đó chỉ dưới 2/3 sự variance trong doanh số được giải thích bằng linear regression trên TV.
+
+Thống kê R2 (3.17) có lợi thế về diễn giải so với RSE (3.15), vì không giống như RSE, nó luôn nằm trong khoảng từ 0 đến 1. Tuy nhiên, vẫn có thể gặp khó khăn khi xác định đâu là giá trị R2 tốt và nói chung, điều này sẽ phụ thuộc vào ứng dụng. Ví dụ, trong một số vấn đề vật lý nhất định, chúng ta có thể biết rằng dữ liệu thực sự đến từ model tuyến tính với một sai số dư nhỏ. Trong trường hợp này, chúng ta sẽ thấy giá trị R2 cực kỳ gần bằng 1 và giá trị R2 nhỏ hơn đáng kể có thể cho thấy có vấn đề nghiêm trọng với thử nghiệm trong đó dữ liệu được tạo ra. Mặt khác, trong các ứng dụng điển hình về sinh học, tâm lý học, tiếp thị và các lĩnh vực khác, model tuyến tính (3.5) tốt nhất chỉ là một giá trị gần đúng cực kỳ thô đối với dữ liệu và các lỗi dư do các yếu tố không được đo lường khác thường rất lớn. Trong cài đặt này, chúng ta mong đợi chỉ một tỷ lệ rất nhỏ variance trong response được predictor giải thích và giá trị R2 dưới 0,1 có thể thực tế hơn!
+
+Thống kê R2 là thước đo mối quan hệ tuyến tính giữa X và Y. Hãy nhớ lại mối tương quan đó, được định nghĩa là sự tương quan
+
+\subsection{Cor(X, Y ) =}
+
+)N
+
+I=1(xi −x)(yi −y) 5)n
+
+Cor(X, Y )=
+
+I=1(yi −y)2 , (3.18)
+
+Điều này không giải thích được nhiều về sự variance trong response; điều này có thể xảy ra
+
+Làm rõ những gì tạo nên một RSE tốt. Chỉ số R2 cung cấp một giải pháp thay thế.
+
+% --- page 37 ---
+\section{3. Linear Regression}
+
+\subsection{Regression đơn giản bán hàng trên đài phát thanh}
+
+Doanh thu được chuyển vào ngân sách quảng cáo trên báo. Tăng 1.000 đô la cho báo chí.
+
+\subsection{Chặn 9,312 0,563 16,54 < 0,0001 đài 0,203 0,020 9,92 < 0,0001}
+
+\subsection{Regression đơn giản bán hàng trên báo}
+
+Ngân sách quảng cáo có liên quan đến việc tăng doanh số bán hàng khoảng...
+
+Hệ số Sai số chuẩn Thống kê t Giá trị p
+
+\noindent\textit{TABLE 3.3. Linear regression models đơn giản hơn cho dữ liệu Quảng cáo. Coefficients của linear regression model đơn giản cho số lượng đơn vị được bán ở trên cùng: ngân sách quảng cáo trên đài và dưới cùng: ngân sách quảng cáo trên báo. Mức tăng chi tiêu 1.000 đô la cho quảng cáo trên đài có liên quan đến doanh số bán hàng tăng trung bình khoảng 203 đơn vị, trong khi cùng mức tăng chi tiêu cho quảng cáo trên báo có liên quan đến doanh số bán hàng tăng trung bình khoảng 55 đơn vị. (Lưu ý rằng biến số bán hàng được tính bằng hàng nghìn đơn vị, còn biến số của đài phát thanh và báo chí được tính bằng hàng nghìn đô la.)}
+
+\subsection{Cài đặt linear regression, R2 = r2. Nói cách khác, mối tương quan bình phương và thống kê R2 là giống hệt nhau. Tuy nhiên, trong phần tiếp theo, chúng ta sẽ thảo luận về bài toán multiple linear regression, trong đó chúng ta sử dụng đồng thời một số predictors để dự đoán response. Khái niệm về mối tương quan giữa predictors và response không tự động mở rộng sang cài đặt này, vì mối tương quan định lượng mối liên hệ giữa một cặp biến thay vì giữa một số lượng biến lớn hơn. Chúng ta sẽ thấy R2 hoàn thành vai trò này. 3.2 Multiple Linear Regression}
+
+Linear regression đơn giản là một cách tiếp cận hữu ích để dự đoán response trên cơ sở một biến predictor duy nhất. Tuy nhiên, trong thực tế chúng ta thường có nhiều hơn một predictor. Ví dụ: trong dữ liệu Quảng cáo, chúng ta đã kiểm tra mối quan hệ giữa doanh số bán hàng và quảng cáo TV. Chúng ta cũng có dữ liệu về số tiền chi cho quảng cáo trên đài phát thanh và báo chí, đồng thời chúng ta có thể muốn biết liệu một trong hai phương tiện này có liên quan đến doanh số bán hàng hay không. Làm cách nào chúng ta có thể mở rộng phân tích dữ liệu quảng cáo để đáp ứng hai predictors bổ sung này?
+
+Một tùy chọn là chạy ba regression tuyến tính đơn giản riêng biệt, mỗi regression sử dụng một phương tiện quảng cáo khác nhau làm predictor. Ví dụ: chúng ta có thể lắp một linear regression đơn giản để dự đoán doanh số bán hàng trên cơ sở số tiền chi cho quảng cáo trên radio. Kết quả được thể hiện ở Bảng 3.3 (bảng trên cùng). Chúng ta thấy rằng việc tăng \$1,000 increase in spending on radio advertising is associated with an increase in sales of around 203 units. Table 3.3 (bottom table) contains the least squares coefficients for a simple linear regression of sales onto newspaper advertising budget. A \$1.000 trong ngân sách quảng cáo trên báo có liên quan đến việc tăng doanh số bán hàng khoảng 55 đơn vị.
+
+% --- page 38 ---
+\subsection{Multiple Linear Regression 81}
+
+Tuy nhiên, cách lắp một linear regression model đơn giản riêng biệt cho mỗi predictor là không hoàn toàn thỏa đáng. Trước hết, không rõ làm thế nào để đưa ra một dự đoán duy nhất về doanh số bán hàng cho ba ngân sách truyền thông quảng cáo, vì mỗi ngân sách được liên kết với một phương trình regression riêng biệt. Thứ hai, mỗi phương trình trong số ba phương trình regression bỏ qua hai phương tiện còn lại trong việc hình thành estimates cho regression coefficients. Chúng ta sẽ sớm thấy rằng nếu ngân sách truyền thông có mối tương quan với nhau tại 200 thị trường trong data set của chúng ta, thì điều này có thể dẫn đến estimates rất sai lệch về mối liên hệ giữa từng ngân sách truyền thông và doanh số bán hàng.
+
+Thay vì lắp một linear regression model đơn giản riêng biệt cho mỗi predictor, một cách tiếp cận tốt hơn là mở rộng linear regression model (3.5) đơn giản để nó có thể chứa trực tiếp nhiều predictors. Chúng ta có thể làm điều này bằng cách cấp cho mỗi predictor một độ dốc coefficient riêng biệt trong một model duy nhất. Nói chung, giả sử rằng chúng ta có p predictors riêng biệt. Khi đó multiple linear regression model có dạng
+
+\subsection{Các tham số được ước tính bằng phương pháp bình phương tối thiểu tương tự như}
+
+Trong đó Xj đại diện cho predictor thứ j và βj định lượng mối liên hệ giữa biến đó và response. Chúng ta hiểu βj là tác động trung bình lên Y khi Xj tăng một đơn vị, giữ cho tất cả predictors khác cố định. Trong ví dụ quảng cáo, (3.19) trở thành
+
+Β1,..., βp để giảm thiểu tổng bình phương phần dư.
+
+\subsubsection{Ước tính Regression Coefficients}
+
+Như trường hợp trong cài đặt linear regression đơn giản, regression coefficients β0, β1, . . . , βp trong (3.19) chưa biết và phải được ước tính. Cho estimates ˆβ0, ˆβ1, . . . , ˆβp, chúng ta có thể đưa ra dự đoán bằng công thức
+
+Trong ví dụ quảng cáo, (3.19) trở thành
+
+Parameters được ước tính bằng cách sử dụng phương pháp bình phương tối thiểu giống như chúng ta đã thấy trong bối cảnh linear regression đơn giản. Ta chọn β0, β1, . . . , βp để giảm thiểu tổng bình phương phần dư
+
+\subsection{RSS =}
+
+N 0
+
+Tôi=1
+
+(yi −ˆyi)2
+
+% =
+N 0
+
+Tôi=1
+
+Tính đơn giản được đưa ra trong (3.4), các ước tính hệ số regression bội có dạng
+
+Các giá trị ˆβ0, ˆβ1, . . . , ˆβp mà cực tiểu hóa (3.22) là bội số bình phương nhỏ nhất regression coefficient estimates. Không giống như linear regression estimates đơn giản được đưa ra trong (3.4), bội số regression coefficient estimates có dạng hơi phức tạp và được biểu diễn dễ dàng nhất bằng cách sử dụng đại số matrix. Vì lý do này, chúng ta không cung cấp chúng ở đây. Bất kỳ gói phần mềm thống kê nào cũng có thể được sử dụng để tính toán các coefficient estimates này và ở phần sau của chương này, chúng ta sẽ chỉ ra cách thực hiện việc này trong R. Hình 3.4
+
+% --- page 39 ---
+\section{3. Linear Regression}
+
+Y
+
+\noindent\textit{Hình minh họa này thể hiện một ví dụ về phương pháp bình phương tối thiểu phù hợp với một dataset giả định có p}
+
+Minh họa một ví dụ về bình phương tối thiểu phù hợp với đồ chơi data set với p = 2 predictors.
+
+\noindent\textit{Bảng 3.4 hiển thị nhiều regression coefficient estimates khi TV, ngân sách quảng cáo trên đài và báo được sử dụng để dự đoán doanh số bán sản phẩm bằng cách sử dụng dữ liệu Quảng cáo. Chúng ta diễn giải những kết quả này như sau: với một lượng TV và quảng cáo trên báo nhất định, chi tiêu tăng thêm \$1,000 on radio advertising is associated with approximately 189 units of additional sales. Comparing these coefficient estimates to those displayed in Tables 3.1 and 3.3, we notice that the multiple regression coefficient estimates for TV and radio are pretty similar to the simple linear regression coefficient estimates. However, while the newspaper regression coefficient estimate in Table 3.3 was significantly non-zero, the coefficient estimate for newspaper in the multiple regression model is close to zero, and the corresponding pvalue is no longer significant, with a value around 0.86. This illustrates that the simple and multiple regression coefficients can be quite different. This difference stems from the fact that in the simple regression case, the slope term represents the average increase in product sales associated with a \$1.000 cho quảng cáo trên báo, bỏ qua predictors khác như TV và đài phát thanh. Ngược lại, trong cài đặt nhiều regression, coefficient dành cho báo biểu thị mức tăng trung bình trong doanh số bán sản phẩm liên quan đến việc tăng chi tiêu cho báo thêm 1.000 USD trong khi giữ cố định TV và đài.}
+
+Chí để dự đoán doanh số bán sản phẩm dựa trên dữ liệu Quảng cáo . Chúng ta diễn giải các kết quả này như sau: với
+
+% --- page 40 ---
+\subsection{Multiple Linear Regression 83}
+
+Coefficient Std. Lỗi thống kê t p-value Chặn 2,939 0,3119 9,42 < 0,0001 TV 0,046 0,0014 32,81 < 0,0001 đài 0,189 0,0086 21,89 < 0,0001 báo −0,001 0,0059 −0,18 0,8599
+
+\noindent\textit{TABLE 3.4. Đối với dữ liệu Quảng cáo, bình phương tối thiểu coefficient estimates của multiple linear regression của số lượng đơn vị được bán trên TV, ngân sách quảng cáo trên đài và báo.}
+
+TV doanh số báo phát thanh TV 1,0000 0,0548 0,0567 0,7822 doanh số phát thanh 1,0000 0,3541 0,5762 doanh số báo 1,0000 0,2283 doanh số 1,0000
+
+\noindent\textit{TABLE 3.5. Matrix tương quan cho TV, đài, báo và doanh số bán hàng cho dữ liệu Quảng cáo.}
+
+Đối diện? Trong thực tế nó có. Xét matrix tương quan của ba biến predictor và response variable, được hiển thị trong Bảng 3.5. Lưu ý rằng mối tương quan giữa đài và báo là 0,35. Điều này cho thấy rằng những thị trường có lượng quảng cáo trên báo cao cũng có xu hướng có lượng quảng cáo trên đài phát thanh cao. Bây giờ giả sử rằng bội số regression là đúng và quảng cáo trên báo không liên quan đến doanh số bán hàng, nhưng quảng cáo trên đài phát thanh có liên quan đến doanh số bán hàng. Khi đó, ở những thị trường mà chúng ta chi tiêu nhiều hơn cho đài phát thanh, doanh số bán hàng của chúng ta sẽ có xu hướng cao hơn và như matrix tương quan của chúng ta cho thấy, chúng ta cũng có xu hướng chi tiêu nhiều hơn cho quảng cáo trên báo chí ở chính những thị trường đó. Do đó, trong một linear regression đơn giản chỉ kiểm tra doanh số bán hàng so với báo chí, chúng ta sẽ nhận thấy rằng giá trị cao hơn của tờ báo có xu hướng gắn liền với giá trị doanh thu cao hơn, mặc dù quảng cáo trên báo không liên quan trực tiếp đến doanh số bán hàng. Vì vậy, quảng cáo trên báo là sự thay thế cho quảng cáo trên đài; tờ báo nhận được “công lao” cho sự liên kết giữa đài phát thanh trong việc bán hàng.
+
+Kết quả hơi phản trực giác này rất phổ biến trong nhiều tình huống thực tế đời sống. Hãy xem xét một ví dụ ngớ ngẩn để minh họa quan điểm. Chạy regression về các cuộc tấn công của cá mập so với doanh số bán kem cho dữ liệu được thu thập tại một cộng đồng bãi biển nhất định trong một khoảng thời gian sẽ cho thấy mối quan hệ tích cực, tương tự như mối quan hệ được thấy giữa doanh số bán hàng và báo chí. Tất nhiên, chưa có ai đề xuất rằng nên cấm bán kem ở các bãi biển để giảm các cuộc tấn công của cá mập. Trên thực tế, nhiệt độ cao hơn khiến nhiều người đến bãi biển hơn, từ đó dẫn đến doanh số bán kem nhiều hơn và nhiều vụ cá mập tấn công hơn. Một loạt regression bị cá mập tấn công vào doanh số bán kem và nhiệt độ cho thấy rằng, như trực giác ám chỉ, doanh số bán kem không còn là predictor đáng kể sau khi điều chỉnh theo nhiệt độ.
+
+\subsubsection{Một số câu hỏi quan trọng}
+
+Khi thực hiện multiple linear regression, chúng ta thường quan tâm đến việc trả lời một số câu hỏi quan trọng.
+
+% --- page 41 ---
+\section{3. Linear Regression}
+
+1. Có ít nhất một trong các predictors X1, X2, . . . , Xp hữu ích trong việc dự đoán
+
+(3.23)
+
+Hoặc chỉ là một tập hợp con của
+
+Predictors hữu ích?
+
+Câu trả lời là gì?
+
+4. Cho một tập hợp các giá trị predictor, chúng ta nên dự đoán giá trị response là bao nhiêu,
+
+3. Model phù hợp với dữ liệu tốt đến mức nào?
+
+2. Liệu tất cả các biến dự báo có giúp giải thích được biến dự
+
+\subsection{Một: Có mối quan hệ nào giữa Response và Predictors không?}
+
+Hãy nhớ lại rằng trong cài đặt linear regression đơn giản, để xác định liệu có mối quan hệ giữa response và predictor hay không, chúng ta chỉ cần kiểm tra xem β1 = 0. Trong cài đặt bội regression với p predictors, chúng ta cần hỏi xem liệu tất cả regression coefficients có bằng 0 hay không, tức là liệu β1 = β2 = · · · = βp = 0. Như trong cách đơn giản Cài đặt linear regression, chúng ta sử dụng thử nghiệm giả thuyết để trả lời câu hỏi này. Chúng ta kiểm tra giả thuyết không,
+
+H0 : β1 = β2 = ··· = βp =0
+
+So với giải pháp thay thế
+
+Thống kê F sẽ có giá trị gần bằng 1. Mặt khác, nếu giả thuyết Ha đúng, thì E\{(TSS   RSS)/
+
+P\} > σ2, nên ta kỳ vọng F sẽ lớn hơn 1.
+
+\subsection{Ha : Ít nhất một βj khác 0.}
+
+\subsection{Và với điều kiện H0 là đúng,}
+
+Trong đó, như với linear regression đơn giản, TSS = )(yi −¯y)2 và RSS = )(yi −ˆyi)2. Nếu giả định model tuyến tính là đúng, người ta có thể chỉ ra rằng
+
+\subsection{Chúng ta sẽ lần lượt giải đáp từng câu hỏi này.}
+
+Phép kiểm định giả thuyết này được thực hiện bằng cách tính toán thống kê F.
+
+Vậy dự đoán của chúng ta chính xác đến mức nào?
+
+4. Cho một tập hợp các giá trị predictor, chúng ta nên dự đoán giá trị biến response nào?
+
+Thống kê F cho multiple linear regression model thu được bằng cách regression doanh số bán hàng trên đài, TV và báo được trình bày trong Bảng 3.6. Trong ví dụ này, thống kê F là 570. Vì giá trị này lớn hơn 1 rất nhiều nên nó cung cấp bằng chứng thuyết phục chống lại giả thuyết H0. Nói cách khác, thống kê F lớn cho thấy rằng ít nhất một trong các phương tiện quảng cáo phải liên quan đến doanh số bán hàng. Tuy nhiên, điều gì sẽ xảy ra nếu thống kê F gần với 1 hơn? Thống kê F cần phải lớn đến mức nào trước khi chúng ta có thể bác bỏ H0 và
+
+% --- page 42 ---
+\subsection{Multiple Linear Regression 85}
+
+\subsection{Số lượng Giá trị Sai số chuẩn dư 1,69 R2 0,897 Thống kê F 570}
+
+\noindent\textit{Thì ít nhất một trong các biến dự báo có liên quan đến biến response. Tuy nhiên, lập}
+
+Kết luận rằng có một mối quan hệ? Hóa ra câu trả lời phụ thuộc vào giá trị của n và p. Khi n lớn, thống kê F chỉ lớn hơn 1 một chút vẫn có thể cung cấp bằng chứng chống lại H0. Ngược lại, cần có thống kê F lớn hơn để bác bỏ H0 nếu n nhỏ. Khi H0 đúng và các lỗi ϵi có phân phối chuẩn, thống kê F tuân theo phân phối F.6 Với bất kỳ giá trị nào của n và p, bất kỳ gói phần mềm thống kê nào cũng có thể được sử dụng để tính toán p-value liên kết với thống kê F bằng cách sử dụng phân bố này. Dựa trên p-value này, chúng ta có thể xác định có nên bác bỏ H0 hay không. Đối với dữ liệu quảng cáo, p-value liên quan đến thống kê F trong Bảng 3.6 về cơ bản là bằng 0, vì vậy chúng ta có bằng chứng cực kỳ thuyết phục rằng ít nhất một trong các phương tiện truyền thông có liên quan đến việc tăng doanh số bán hàng.
+
+Trong (3.23) chúng ta đang kiểm tra H0 rằng tất cả coefficients đều bằng 0. Đôi khi chúng ta muốn kiểm tra xem một tập con cụ thể của q của coefficients có bằng không hay không. Điều này tương ứng với một giả thuyết không
+
+Trong (3.23) chúng ta đang kiểm tra H0 rằng tất cả các hệ số đều bằng không. Đôi
+
+Để thuận tiện, chúng ta đã đặt các biến được chọn để bỏ qua ở cuối danh sách. Trong trường hợp này, chúng ta điều chỉnh model thứ hai sử dụng tất cả các biến ngoại trừ biến q cuối cùng. Giả sử tổng bình phương còn lại của model đó là RSS0. Khi đó thống kê F thích hợp là
+
+\subsection{Số lượng Giá trị Sai số chuẩn dư 1,69 R2}
+
+0,897 Thống kê F 570
+
+Lưu ý rằng trong Bảng 3.4, đối với mỗi predictor riêng lẻ, một thống kê t và p-value đã được báo cáo. Những thông tin này cung cấp thông tin về việc mỗi predictor riêng lẻ có liên quan đến response hay không, sau khi điều chỉnh cho predictors khác. Hóa ra mỗi biến trong số này hoàn toàn tương đương7 với Ftest loại bỏ biến duy nhất đó khỏi model, để lại tất cả các biến khác trong—tức là. Q=1 trong (3,24). Vì vậy, nó báo cáo tác động một phần của việc thêm biến đó vào model. Ví dụ, như chúng ta đã thảo luận trước đó, những p-values này chỉ ra rằng TV và đài có liên quan đến doanh số bán hàng, nhưng không có bằng chứng nào cho thấy báo có liên quan đến doanh số bán hàng, khi TV và đài được giữ cố định.
+
+Với các p-values riêng lẻ này cho từng biến, tại sao chúng ta cần xem xét thống kê F tổng thể? Rốt cuộc, có vẻ như nếu bất kỳ một trong số p-values đối với các biến riêng lẻ là rất nhỏ thì ít nhất một trong các predictors có liên quan đến response. Tuy nhiên, logic này còn thiếu sót, đặc biệt khi số lượng predictors p lớn.
+
+Thống kê F lớn hơn để bác bỏ H0 nếu n nhỏ. Khi H0 đúng và sai số i có phân phối chuẩn, thống kê
+
+F tuân theo phân phối F.6 Với bất kỳ giá trị nào của n và p, bất kỳ phần mềm thống kê nào cũng
+
+% --- page 43 ---
+\section{3. Linear Regression}
+
+Ví dụ, hãy xem xét một ví dụ trong đó p = 100 và H0 : β1 = β2 = · · · = βp = 0 là đúng, do đó không có biến nào thực sự liên quan đến response. Trong tình huống này, khoảng 5 \% p-values liên kết với mỗi biến (thuộc loại được hiển thị trong Bảng 3.4) sẽ ngẫu nhiên ở dưới 0,05. Nói cách khác, chúng ta hy vọng sẽ thấy khoảng năm p-values nhỏ ngay cả khi không có bất kỳ mối liên hệ thực sự nào giữa predictors và response.8. Trên thực tế, rất có thể chúng ta sẽ tình cờ quan sát thấy ít nhất một p-value dưới 0,05! Do đó, nếu chúng ta sử dụng thống kê t riêng lẻ và p-values liên quan để quyết định xem có bất kỳ mối liên hệ nào giữa các biến và response hay không, thì có khả năng rất cao là chúng ta sẽ kết luận sai rằng có mối quan hệ. Tuy nhiên, thống kê F không gặp phải vấn đề này vì nó điều chỉnh số lượng predictors. Do đó, nếu H0 đúng thì chỉ có 5 \% khả năng thống kê F sẽ dẫn đến giá trị p dưới 0,05, bất kể số lượng predictors hay số lượng quan sát.
+
+Cách tiếp cận sử dụng thống kê F để kiểm tra bất kỳ mối liên hệ nào giữa predictors và response hoạt động khi p tương đối nhỏ và chắc chắn là nhỏ so với n. Tuy nhiên, đôi khi chúng ta có một số lượng biến rất lớn. Nếu p > n thì có nhiều coefficients βj đến estimate hơn số quan sát từ đó đến estimate. Trong trường hợp này, chúng ta thậm chí không thể khớp multiple linear regression model bằng cách sử dụng bình phương nhỏ nhất, vì vậy Fstatistic không thể được sử dụng và hầu hết các khái niệm khác mà chúng ta đã thấy cho đến nay trong chương này cũng vậy. Khi p lớn, một số phương pháp được thảo luận trong phần tiếp theo, chẳng hạn như lựa chọn chuyển tiếp, có thể được sử dụng. Cài đặt chiều cao này được thảo luận chi tiết hơn trong Chương 6.
+
+\subsection{Hai: Quyết định các biến quan trọng}
+
+Như đã thảo luận trong phần trước, bước đầu tiên trong phân tích bội regression là tính toán thống kê F và kiểm tra giá trị p liên quan. Nếu chúng ta kết luận trên cơ sở p-value đó rằng ít nhất một trong số predictors có liên quan đến response, thì đương nhiên chúng ta sẽ tự hỏi ai là người có tội! Chúng ta có thể xem xét p-values riêng lẻ như trong Bảng 3.4, nhưng như đã thảo luận (và được khám phá sâu hơn trong Chương 13), nếu p lớn thì chúng ta có khả năng thực hiện một số khám phá sai.
+
+Có thể tất cả predictors đều được liên kết với response, nhưng thông thường trường hợp response chỉ được liên kết với một tập hợp con của predictors. Nhiệm vụ xác định predictors nào được liên kết với response, để phù hợp với một model duy nhất chỉ liên quan đến những predictors đó, được gọi là lựa chọn biến. Biến lựa chọn biến
+
+Do đó, nếu chúng ta sử dụng các giá trị thống kê t riêng lẻ và các giá trị p tương ứng theo thứ tự
+
+Lý tưởng nhất là chúng ta muốn thực hiện lựa chọn biến bằng cách thử nhiều models khác nhau, mỗi biến chứa một tập hợp con khác nhau của predictors. Ví dụ: nếu p = 2 thì chúng ta có thể xem xét bốn models: (1) model không chứa biến, (2) model chỉ chứa X1, (3) model chứa
+
+Các model khác nhau, mỗi model chứa một tập hợp con khác nhau của các predictor. Ví dụ:
+
+% --- page 44 ---
+\subsection{Multiple Linear Regression 87}
+
+Chỉ X2 và (4) model chứa cả X1 và X2. Sau đó, chúng ta có thể chọn model tốt nhất trong số tất cả models mà chúng ta đã xem xét. Làm cách nào để xác định model nào là tốt nhất? Có thể sử dụng nhiều số liệu thống kê khác nhau để đánh giá chất lượng của model. Chúng bao gồm Cp của Mallow, tiêu chí thông tin Akaike- Tiêu chí Cp của Mallow (AIC), tiêu chí thông tin Bayesian (BIC) và tiêu chí điều chỉnh
+
+\subsection{Tiêu chí thông tin Akaike Tiêu chí thông tin Bayesian}
+
+R2. Những điều này sẽ được thảo luận chi tiết hơn ở Chương 6. Chúng ta cũng có thể xác định
+
+Thông tin
+
+Khai thác model nào tốt nhất bằng cách vẽ các đầu ra model khác nhau, chẳng hạn như phần dư, để tìm kiếm các mẫu.
+
+Thật không may, có tổng cộng 2p models chứa tập hợp con của biến p. Điều này có nghĩa là ngay cả với p vừa phải, việc thử mọi tập con có thể có của predictors là không khả thi. Ví dụ, chúng ta thấy rằng nếu p = 2 thì có 22 = 4 models cần xét. Nhưng nếu p = 30 thì chúng ta phải xét 230 = 1.073.741.824 models! Điều này không thực tế. Do đó, trừ khi p rất nhỏ, chúng ta không thể xem xét tất cả models 2p và thay vào đó, chúng ta cần một cách tiếp cận tự động và hiệu quả để chọn một tập hợp models nhỏ hơn để xem xét. Có ba cách tiếp cận cổ điển cho nhiệm vụ này:
+
+• Chuyển tiếp lựa chọn. Chúng ta bắt đầu với model rỗng—một model chuyển tiếp
+
+Lựa chọn null model có được phần chặn nhưng không có predictors. Sau đó, chúng ta khớp p regression tuyến tính đơn giản và thêm vào model rỗng biến dẫn đến RSS thấp nhất. Sau đó, chúng ta thêm vào model biến dẫn đến RSS thấp nhất cho model hai biến mới. Cách tiếp cận này được tiếp tục cho đến khi một số quy tắc dừng được thỏa mãn.
+
+• Lựa chọn lùi. Chúng ta bắt đầu với tất cả các biến trong model và ngược lại
+
+Lựa chọn loại bỏ biến có p-value lớn nhất—nghĩa là biến có ít ý nghĩa thống kê nhất. Biến model mới (p −1) là phù hợp và biến có p-value lớn nhất sẽ bị loại bỏ. Quá trình này tiếp tục cho đến khi đạt đến quy tắc dừng. Ví dụ: chúng ta có thể dừng khi tất cả các biến còn lại có p-value dưới ngưỡng nào đó.
+
+• Lựa chọn hỗn hợp. Đây là sự kết hợp giữa tiến và lùi
+
+Bài giảng tuyển chọn. Chúng ta bắt đầu không có biến nào trong model và cũng như với lựa chọn chuyển tiếp, chúng ta thêm biến mang lại sự phù hợp nhất. Chúng ta tiếp tục thêm từng biến một. Tất nhiên, như chúng ta đã lưu ý trong ví dụ về Quảng cáo, p-values dành cho các biến có thể trở nên lớn hơn khi predictors mới được thêm vào model. Do đó, nếu tại bất kỳ thời điểm nào p-value của một trong các biến trong model tăng trên một ngưỡng nhất định thì chúng ta sẽ xóa biến đó khỏi model. Chúng ta tiếp tục thực hiện các bước tiến và lùi này cho đến khi tất cả các biến trong model có p-value đủ thấp và tất cả các biến bên ngoài model sẽ có p-value lớn nếu được thêm vào model.
+
+Lựa chọn lùi không thể được sử dụng nếu p > n, trong khi lựa chọn tiến luôn có thể được sử dụng. Lựa chọn chuyển tiếp là một cách tiếp cận tham lam và có thể bao gồm các biến sớm mà sau này trở nên dư thừa. Lựa chọn hỗn hợp có thể khắc phục điều này.
+
+% --- page 45 ---
+\section{3. Linear Regression}
+
+\subsection{Ba: Model Phù hợp}
+
+Giá trị R2 gần bằng 1 cho thấy model giải thích được một phần lớn phương sai
+
+Hãy nhớ lại rằng trong regression đơn giản, R2 là bình phương mối tương quan giữa response và biến. Trong multiple linear regression, hóa ra nó bằng Cor(Y, ˆY )2, bình phương của mối tương quan giữa response và model tuyến tính được trang bị; trên thực tế, một đặc tính của model tuyến tính được trang bị là nó tối đa hóa mối tương quan này giữa tất cả models tuyến tính có thể có.
+
+Giá trị R2 gần bằng 1 cho biết model giải thích phần lớn variance trong response variable. Ví dụ: chúng ta thấy trong Bảng 3.6 rằng đối với dữ liệu Quảng cáo, model sử dụng cả ba phương tiện quảng cáo để dự đoán doanh số bán hàng có R2 là 0,8972. Mặt khác, model chỉ sử dụng TV và radio để dự đoán doanh số bán hàng có giá trị R2 là 0,89719. Nói cách khác, có một sự gia tăng nhỏ trong R2 nếu chúng ta bao gồm quảng cáo trên báo trong model đã chứa TV và quảng cáo trên radio, mặc dù trước đó chúng ta đã thấy rằng p-value cho quảng cáo trên báo trong Bảng 3.4 là không đáng kể. Hóa ra R2 sẽ luôn tăng khi có nhiều biến hơn được thêm vào model, ngay cả khi những biến đó chỉ liên kết yếu với response. Điều này là do thực tế là việc thêm một biến khác luôn làm giảm tổng bình phương còn lại trên dữ liệu training (mặc dù không nhất thiết là dữ liệu thử nghiệm). Do đó, thống kê R2, cũng được tính toán trên dữ liệu training, phải tăng lên. Thực tế là việc thêm quảng cáo trên báo vào model chỉ chứa TV và quảng cáo trên radio dẫn đến chỉ tăng R2 một chút, cung cấp thêm bằng chứng cho thấy báo có thể bị loại khỏi model. Về cơ bản, tờ báo không cung cấp cải tiến thực sự nào về độ phù hợp của model với các mẫu training và việc đưa nó vào có thể sẽ dẫn đến kết quả kém trên các mẫu thử nghiệm độc lập do overfitting.
+
+Ngược lại, model chỉ chứa TV là predictor có R2 là 0,61 (Bảng 3.2). Việc thêm đài vào model sẽ dẫn đến cải tiến đáng kể ở R2. Điều này ngụ ý rằng model sử dụng TV và chi phí phát thanh để dự đoán doanh số bán hàng sẽ tốt hơn đáng kể so với model chỉ sử dụng quảng cáo TV. Chúng ta có thể định lượng thêm sự cải thiện này bằng cách xem xét p-value cho đài coefficient trong model chỉ chứa TV và đài là predictors.
+
+Model chỉ chứa TV và radio là predictors có RSE là 1,681 và model cũng chứa báo là predictor có RSE là 1,686 (Bảng 3.6). Ngược lại, model chỉ chứa TV có RSE là 3,26 (Bảng 3.2). Điều này chứng thực cho kết luận trước đây của chúng ta rằng model sử dụng TV và chi tiêu vô tuyến để dự đoán doanh số bán hàng sẽ chính xác hơn nhiều (trên dữ liệu training) so với chi tiêu chỉ sử dụng TV. Hơn nữa, do TV và chi tiêu cho đài được sử dụng làm predictors nên việc sử dụng chi tiêu cho báo chí làm predictor trong model cũng chẳng ích gì. Người đọc tinh ý có thể thắc mắc làm thế nào RSE có thể tăng khi tờ báo được thêm vào model vì RSS phải giảm. Nói chung RSE được định nghĩa là
+
+\subsection{RSE =}
+
+\section{1 n −p −1RSS, (3.25)}
+
+% --- page 46 ---
+\subsection{Multiple Linear Regression 89}
+
+\subsection{Việc bán hàng}
+
+\subsection{Radio}
+
+TV
+
+\noindent\textit{FIGURE 3.5. Đối với dữ liệu Quảng cáo, linear regression phù hợp để bán hàng bằng TV và đài phát thanh dưới dạng predictors. Từ model phần dư, chúng ta có thể thấy rằng có mối quan hệ phi tuyến tính rõ rệt trong dữ liệu. Phần dư dương (những phần có thể nhìn thấy trên bề mặt), có xu hướng nằm dọc theo đường 45 độ, trong đó ngân sách TV và Radio được chia đều. Phần dư âm (hầu hết không nhìn thấy được), có xu hướng nằm cách xa đường này, nơi ngân sách bị chênh lệch nhiều hơn.}
+
+Trong trường hợp phần lớn ngân sách quảng cáo được chi riêng cho truyền hình hoặc radio. Nó lại
+
+Ngoài việc xem số liệu thống kê RSE và R2 vừa thảo luận, việc lập biểu đồ dữ liệu có thể hữu ích. Tóm tắt bằng đồ họa có thể tiết lộ các vấn đề với model mà thống kê số không thể nhìn thấy được. Ví dụ: Hình 3.5 hiển thị biểu đồ ba chiều của TV và đài phát thanh so với doanh số bán hàng. Chúng ta thấy rằng một số quan sát nằm ở trên và một số quan sát nằm dưới mặt phẳng regression bình phương nhỏ nhất. Đặc biệt, model tuyến tính dường như đánh giá quá cao doanh số bán hàng trong những trường hợp trong đó phần lớn số tiền quảng cáo được chi riêng cho TV hoặc đài phát thanh. Nó đánh giá thấp doanh số bán hàng trong trường hợp ngân sách được phân chia giữa hai phương tiện truyền thông. Model phi tuyến tính rõ rệt này cho thấy sức mạnh tổng hợp hoặc hiệu ứng tương tác giữa sự tương tác giữa các phương tiện quảng cáo, nhờ đó việc kết hợp các phương tiện với nhau sẽ mang lại doanh số bán hàng tăng cao hơn so với việc sử dụng bất kỳ phương tiện đơn lẻ nào. Trong Phần 3.3.2, chúng ta sẽ thảo luận về việc mở rộng model tuyến tính để đáp ứng các hiệu ứng hiệp đồng như vậy thông qua việc sử dụng các thuật ngữ tương tác.
+
+\subsection{Bốn: Dự đoán}
+
+Các phương tiện quảng cáo, theo đó việc kết hợp các phương tiện truyền thông với nhau sẽ mang lại
+
+Hiệu quả thúc đẩy doanh số bán hàng lớn hơn so với việc sử dụng bất kỳ phương tiện nào riêng lẻ.
+
+\subsection{Tức là mặt phẳng bình phương nhỏ nhất}
+
+Hiệu ứng cộng hưởng như vậy thông qua việc sử dụng các thuật ngữ tương tác.
+
+% --- page 47 ---
+\section{3. Linear Regression}
+
+Chỉ là estimate cho mặt phẳng regression tổng thể thực sự
+
+F(X) = β0 + β1X1 + · · · + βpXp.
+
+Sự thiếu chính xác trong coefficient estimates có liên quan đến sai số có thể giảm được trong Chương 2. Chúng ta có thể tính khoảng tin cậy để xác định xem ˆY sẽ gần đến mức nào với f(X).
+
+2. Tất nhiên, trong thực tế giả sử model tuyến tính cho f(X) gần như
+
+Luôn là sự gần đúng của thực tế, do đó có thêm một nguồn sai số có khả năng giảm thiểu mà chúng ta gọi là model bias. Vì vậy, khi chúng ta sử dụng model tuyến tính, trên thực tế, chúng ta đang ước tính xấp xỉ tuyến tính tốt nhất cho bề mặt thực. Tuy nhiên, ở đây chúng ta sẽ bỏ qua sự khác biệt này và hoạt động như thể model tuyến tính là chính xác.
+
+Nói cách khác, nếu chúng ta thu thập một số lượng lớn các dataset như dataset Quảng
+
+Cáo , và chúng ta xây dựng khoảng tin cậy cho doanh số bán hàng trung bình dựa trên mỗi tập dữ
+
+ˆY? Chúng ta sử dụng khoảng dự đoán để trả lời câu hỏi này. Khoảng dự đoán luôn rộng hơn khoảng tin cậy, bởi vì chúng kết hợp cả sai số trong estimate đối với f(X) (sai số có thể rút gọn) và độ không chắc chắn về việc một điểm riêng lẻ sẽ khác bao nhiêu so với mặt phẳng regression tổng thể (sai số không thể tối giản).
+
+95\% các khoảng tin cậy này sẽ chứa giá trị thực của doanh số bán hàng trung bình.
+
+Khoảng cách giữa doanh số bán hàng trung bình trên một số lượng lớn các thành phố. Ví dụ: với điều kiện \$100,000 is spent on TV advertising and \$20.000 được chi cho quảng cáo trên đài phát thanh ở mỗi thành phố, khoảng tin cậy 95 \% là [10,985, 11,528]. Chúng ta giải thích điều này có nghĩa là 95 \% khoảng thời gian ở dạng này sẽ chứa giá trị thực của f(X).9 Mặt khác, khoảng dự đoán có thể được sử dụng để định lượng dự đoán
+
+Khoảng thời gian không chắc chắn xung quanh doanh số bán hàng của một thành phố cụ thể. Cho rằng \$100,000 is spent on TV advertising and \$20.000 được chi cho quảng cáo trên đài phát thanh ở thành phố đó, khoảng dự đoán 95 \% là [7.930, 14.580]. Chúng ta giải thích điều này có nghĩa là 95 \% khoảng thời gian của biểu mẫu này sẽ chứa giá trị thực của Y cho thành phố này. Lưu ý rằng cả hai khoảng đều tập trung ở mức 11.256, nhưng khoảng dự đoán rộng hơn đáng kể so với khoảng tin cậy, phản ánh mức độ không chắc chắn ngày càng tăng về doanh số bán hàng của một thành phố nhất định so với doanh số trung bình ở nhiều địa điểm.
+
+9Nói cách khác, nếu chúng ta thu thập một số lượng lớn data sets như data set quảng cáo và chúng ta xây dựng khoảng tin cậy cho doanh số bán hàng trung bình trên cơ sở mỗi data set (được cho \$100,000 in TV and \$20.000 trong quảng cáo trên đài phát thanh), thì 95\% khoảng tin cậy này sẽ chứa giá trị thực của doanh số bán hàng trung bình.
+
+% --- page 48 ---
+\subsection{Những cân nhắc khác trong Regression Model 91}
+
+\subsection{Những cân nhắc khác trong Regression Model}
+
+\subsubsection{Qualitative Predictors}
+
+Đối với một số lượng lớn chủ thẻ tín dụng. Câu trả lời là số dư (tín dụng trung bình) .
+
+Ví dụ: data set tín dụng được hiển thị trong Hình 3.6 ghi lại các biến cho một số chủ thẻ tín dụng. Response là số dư (nợ thẻ tín dụng trung bình của mỗi cá nhân) và có một số predictors định lượng: tuổi, thẻ (số thẻ tín dụng), trình độ học vấn (số năm học), thu nhập (tính bằng nghìn đô la), giới hạn (hạn mức tín dụng) và xếp hạng (xếp hạng tín dụng). Mỗi bảng của Hình 3.6 là một biểu đồ phân tán cho một cặp biến có danh tính được cho bởi nhãn hàng và cột tương ứng. Ví dụ: biểu đồ phân tán ngay bên phải từ “Số dư” mô tả sự cân bằng so với tuổi, trong khi biểu đồ ngay bên phải “Tuổi” tương ứng với tuổi so với các quân bài. Ngoài các biến định lượng này, chúng ta còn có bốn biến định tính: sở hữu (quyền sở hữu nhà), sinh viên (tình trạng sinh viên), tình trạng (tình trạng hôn nhân) và khu vực (Đông, Tây hoặc Nam).
+
+\subsection{Predictors chỉ có hai cấp độ}
+
+Giả sử chúng ta muốn điều tra sự khác biệt trong số dư thẻ tín dụng giữa những người sở hữu một ngôi nhà và những người không sở hữu nhà, tạm thời bỏ qua các biến số khác. Nếu hệ số predictor định tính (còn được gọi là hệ số) chỉ có hai cấp độ hoặc các giá trị có thể có, thì việc kết hợp nó vào model cấp độ regression là rất đơn giản. Chúng ta chỉ đơn giản tạo một chỉ báo hoặc biến giả
+
+Nhà và những người không sở hữu nhà, tạm thời bỏ qua các biến số khác. Nếu một biến dự
+
+Xi =
+
+% =
+\section{nếu người thứ i sở hữu nhà 0 nếu người thứ i không sở hữu nhà, (3.26)}
+
+Hoặc biến giả có hai giá trị số có thể có.<sup>10</sup> Ví dụ, dựa trên
+
+Yi = β0 + β1xi + ϵi =
+
+% =
+Nếu người thứ i không làm thế.
+
+Bây giờ β0 có thể được hiểu là số dư thẻ tín dụng trung bình trong số những người không sở hữu nhà, β0 + β1 là số dư thẻ tín dụng trung bình trong số những người sở hữu nhà của họ và β1 là chênh lệch trung bình trong số dư thẻ tín dụng giữa chủ sở hữu và người không sở hữu.
+
+\noindent\textit{Bảng 3.7 hiển thị coefficient estimates và các thông tin khác liên quan đến model (3.27). Khoản nợ thẻ tín dụng trung bình đối với người không phải là chủ sở hữu được ước tính là \$509.80, whereas owners are estimated to carry \$19,73 cộng thêm khoản nợ bổ sung với tổng số \$509.80 + \$19,73 = \$529,53. Tuy nhiên, chúng ta}
+
+Bốn biến định tính: sở hữu (quyền sở hữu nhà), sinh viên (tình trạng sinh viên),
+
+% --- page 49 ---
+\section{3. Linear Regression}
+
+\subsection{Sự cân bằng}
+
+% 20 40 60 80 100 5 10 15 20 2000 8000 14000
+% 0 500 1500
+% 20 40 60 80 100
+% Age
+\subsection{Thẻ}
+
+% 2 4 6 8
+% 5 10 15 20
+% Education
+\subsection{Thu nhập}
+
+% 50 100 150
+% 2000 8000 14000
+\subsection{Giới hạn}
+
+% 0 500 1500 2 4 6 8 50 100 150 200 600 1000
+% 200 600 1000
+\subsection{Đánh giá}
+
+\noindent\textit{HÌNH 3.6. Bộ dữ liệu Tín dụng chứa thông tin về số dư, tuổi,}
+
+Lưu ý rằng p-value của biến giả là rất cao. Điều này cho thấy rằng không có bằng chứng thống kê nào về sự khác biệt trong số dư thẻ tín dụng trung bình dựa trên quyền sở hữu nhà.
+
+Quyết định mã hóa chủ sở hữu là 1 và không phải chủ sở hữu là 0 trong (3.27) là tùy ý và không ảnh hưởng đến sự phù hợp của regression nhưng làm thay đổi cách giải thích của coefficients. Nếu chúng ta mã hóa những người không phải là chủ sở hữu là 1 và chủ sở hữu là 0 thì estimates cho β0 và β1 sẽ lần lượt là 529,53 và −19,73, một lần nữa dẫn đến dự đoán về khoản nợ thẻ tín dụng là \$529.53 −\$19,73 = \$509.80 for non-owners and a prediction of \$529,53 đối với chủ sở hữu. Ngoài ra, thay vì sơ đồ mã hóa 0/1, chúng ta có thể tạo một biến giả
+
+50 100 150
+
+% =
+\section{nếu người thứ i sở hữu một ngôi nhà −1 nếu người thứ i không sở hữu một ngôi nhà}
+
+Và sử dụng biến này trong phương trình regression. Điều này dẫn đến model
+
+10 15 20
+
+% =
+Β0 + β1 + ϵi nếu người thứ i sở hữu nhà β0 −β1 + ϵi nếu người thứ i không sở hữu nhà.
+
+% --- page 50 ---
+\subsection{Những cân nhắc khác trong Regression Model 93}
+
+Coefficient Std. Lỗi thống kê t p-value Chặn 509,80 33,13 15,389 < 0,0001 riêng[Có] 19,73 46,05 0,429 0,6690
+
+\noindent\textit{TABLE 3.7. Bình phương tối thiểu coefficient estimates được liên kết với regression của số dư trong Tín dụng data set. Model tuyến tính được cho trong (3.27). Nghĩa là, quyền sở hữu được mã hóa như một biến giả, như trong (3.26).}
+
+Bây giờ β0 có thể được hiểu là số dư thẻ tín dụng trung bình tổng thể (bỏ qua ảnh hưởng của quyền sở hữu nhà) và β1 là số tiền mà chủ sở hữu nhà và người không sở hữu nhà có số dư thẻ tín dụng tương ứng cao hơn và thấp hơn mức trung bình.11 Trong ví dụ này, estimate cho β0 là \$519.665, halfway between the non-owner and owner averages of \$509,80 và \$529.53. The estimate for β1 is \$9,865, bằng một nửa của 19,73 USD, chênh lệch trung bình giữa chủ sở hữu và người không phải chủ sở hữu. Điều quan trọng cần lưu ý là dự đoán cuối cùng về số dư tín dụng của chủ sở hữu và người không phải chủ sở hữu sẽ giống nhau bất kể sơ đồ mã hóa được sử dụng. Sự khác biệt duy nhất là ở cách coefficients được diễn giải.
+
+\subsection{Qualitative Predictors có nhiều hơn hai cấp độ}
+
+Khi predictor định tính có nhiều hơn hai cấp độ, một biến giả duy nhất không thể biểu thị tất cả các giá trị có thể có. Trong tình huống này, chúng ta có thể tạo thêm các biến giả. Ví dụ: đối với biến vùng, chúng ta tạo hai biến giả. Đầu tiên có thể là
+
+Xi1 =
+
+% =
+\section{nếu người thứ i đến từ miền Nam 0 nếu người thứ i không đến từ miền Nam, (3.28)}
+
+Được gọi là đường cơ sở.
+
+Xi2 =
+
+% =
+\section{nếu người đó đến từ phương Tây 0 nếu người đó không đến từ phương Tây. (3.29)}
+
+Sau đó, cả hai biến này có thể được sử dụng trong phương trình regression để thu được model
+
+15,389 < 0,0001
+
+  
+
+46,05
+
+Β0+β1+ϵi nếu người thứ i đến từ miền Nam β0+β2+ϵi nếu người thứ i đến từ miền Tây β0+ϵi nếu người thứ i đến từ miền Đông.
+
+(3.30) Bây giờ β0 có thể được hiểu là số dư thẻ tín dụng trung bình của các cá nhân ở phương Đông, β1 có thể được hiểu là sự khác biệt trong số dư trung bình giữa những người từ miền Nam so với miền Đông, và β2 có thể được hiểu là sự khác biệt trong số dư trung bình giữa những người từ phương Tây so với phương Đông. Sẽ luôn có ít hơn một biến giả so với số cấp độ. Mức không có biến giả—Đông trong ví dụ này—được gọi là đường cơ sở. Đường cơ sở
+
+11Về mặt kỹ thuật, β0 bằng một nửa tổng số nợ trung bình của người sở hữu nhà và khoản nợ trung bình của người không sở hữu nhà. Do đó, β0 chỉ chính xác bằng mức trung bình tổng thể nếu hai nhóm có số lượng thành viên bằng nhau.
+
+% --- page 51 ---
+\section{3. Linear Regression}
+
+Coefficient Std. Lỗi thống kê t p-value Chặn 531,00 46,32 11,464 < 0,0001 vùng[Miền Nam] −12,50 56,68 −0,221 0,8260 vùng[Tây] −18,69 65,02 −0,287 0,7740
+
+\noindent\textit{TABLE 3.8. Bình phương nhỏ nhất coefficient estimates được liên kết với regression của số dư trên vùng trong Tín dụng data set. Model tuyến tính được cho trong (3.30). Nghĩa là vùng được mã hóa thông qua hai biến giả (3.28) và (3.29).}
+
+Từ Bảng 3.8, chúng ta thấy rằng số dư ước tính cho đường cơ sở phía Đông là ít nợ hơn \$531.00. It is estimated that those in the South will have \$18,69 so với những người ở phía Đông và những người ở phía Tây sẽ có khoản nợ ít hơn 12,50 USD so với những người ở phía Đông. Tuy nhiên, p-values được liên kết với coefficient estimates cho hai biến giả là rất lớn, cho thấy không có bằng chứng thống kê nào về sự khác biệt thực sự trong số dư thẻ tín dụng trung bình giữa miền Nam và miền Đông hoặc giữa Tây và Đông.12 Một lần nữa, mức được chọn làm loại cơ sở là tùy ý và dự đoán cuối cùng cho mỗi nhóm sẽ giống nhau bất kể lựa chọn này. Tuy nhiên, coefficients và p-values của chúng phụ thuộc vào việc lựa chọn mã hóa biến giả. Thay vì dựa vào coefficients riêng lẻ, chúng ta có thể sử dụng phép thử F để kiểm tra H0: β1 = β2 = 0; điều này không phụ thuộc vào mã hóa. Thử nghiệm F này có p-value là 0,96, cho thấy rằng chúng ta không thể bác bỏ giả thuyết khống rằng không có mối quan hệ giữa sự cân bằng và khu vực.
+
+Việc sử dụng phương pháp tiếp cận biến giả này không gặp khó khăn gì khi kết hợp cả định lượng và qualitative predictors. Ví dụ: để regression sự cân bằng trên cả biến định lượng như thu nhập và biến định tính như sinh viên, chúng ta chỉ cần tạo một biến giả cho sinh viên và sau đó khớp bội số regression model sử dụng thu nhập và biến giả như predictors cho số dư thẻ tín dụng.
+
+Có nhiều cách khác nhau để mã hóa các biến định tính bên cạnh cách tiếp cận biến giả được đưa ra ở đây. Tất cả các cách tiếp cận này đều dẫn đến sự phù hợp với model tương đương, nhưng coefficients khác nhau và có cách hiểu khác nhau, đồng thời được thiết kế để đo độ tương phản cụ thể. Sự tương phản chủ đề này nằm ngoài phạm vi của cuốn sách.
+
+\subsubsection{Phần mở rộng của Model tuyến tính}
+
+Linear regression model (3.19) tiêu chuẩn cung cấp kết quả có thể hiểu được và hoạt động khá tốt trên nhiều vấn đề trong thế giới thực. Tuy nhiên, nó đưa ra một số giả định có tính hạn chế cao thường bị vi phạm trong thực tế. Hai trong số những giả định quan trọng nhất nêu rõ rằng mối quan hệ giữa predictors và response là phụ gia và tuyến tính. Giả định cộng tính cộng
+
+Tuyến tính có nghĩa là sự liên kết giữa predictor Xj và response Y không phụ thuộc vào giá trị của predictors khác. Giả định tuyến tính phát biểu rằng sự thay đổi trong response Y gắn liền với sự thay đổi một đơn vị trong Xj là không đổi, bất kể giá trị của Xj. Trong các chương sau của cuốn sách này, chúng ta xem xét một số phương pháp phức tạp giúp nới lỏng hai điều này.
+
+12 Về mặt lý thuyết vẫn có thể có sự khác biệt giữa miền Nam và miền Tây, mặc dù dữ liệu ở đây không cho thấy bất kỳ sự khác biệt nào.
+
+% --- page 52 ---
+\subsection{Những cân nhắc khác trong Regression Model 95}
+
+Chúng ta muốn dự đoán số lượng sản phẩm được sản xuất dựa trên số lượng dây chuyền
+
+\subsection{Loại bỏ giả định phụ gia}
+
+Trong phân tích trước đây về dữ liệu Quảng cáo, chúng ta đã kết luận rằng cả TV và đài phát thanh dường như đều có liên quan đến doanh số bán hàng. Models tuyến tính hình thành cơ sở cho kết luận này giả định rằng tác động lên doanh số bán hàng của việc tăng một phương tiện quảng cáo không phụ thuộc vào số tiền chi tiêu cho phương tiện khác. Ví dụ: model tuyến tính (3.20) cho biết mức tăng trung bình trong doanh số bán hàng liên quan đến việc tăng một đơn vị trong TV luôn là β1, bất kể số tiền chi cho radio.
+
+Tuy nhiên, model đơn giản này có thể không chính xác. Giả sử rằng việc chi tiền cho quảng cáo trên radio thực sự làm tăng tính hiệu quả của quảng cáo TV, do đó hệ số dốc cho TV sẽ tăng lên khi radio tăng lên. Trong tình huống này, với ngân sách cố định là 100.000 USD, việc chi một nửa cho đài phát thanh và một nửa cho TV có thể tăng doanh số bán hàng nhiều hơn là phân bổ toàn bộ số tiền cho TV hoặc cho đài phát thanh. Trong tiếp thị, điều này được gọi là hiệu ứng tổng hợp và trong thống kê, nó được gọi là hiệu ứng tương tác. Hình 3.5 gợi ý rằng hiệu ứng như vậy có thể xuất hiện trong dữ liệu quảng cáo. Lưu ý rằng khi mức TV hoặc đài phát thanh ở mức thấp thì doanh số thực tế sẽ thấp hơn dự đoán của model tuyến tính. Nhưng khi quảng cáo được phân chia giữa hai phương tiện truyền thông thì model có xu hướng đánh giá thấp doanh số bán hàng.
+
+\subsection{Hãy xem xét linear regression model tiêu chuẩn với hai biến,}
+
+Y = β0 + β1X1 + β2X2 + ϵ.
+
+Theo model này, mức tăng một đơn vị của X1 có liên quan đến mức tăng trung bình của Y là β1 đơn vị. Lưu ý rằng sự hiện diện của X2 không làm thay đổi tuyên bố này - nghĩa là, bất kể giá trị của X2, việc tăng một đơn vị trong X1 sẽ tương ứng với việc tăng β1 đơn vị trong Y. Một cách để mở rộng model này là bao gồm predictor thứ ba, được gọi là số hạng tương tác, được xây dựng bằng cách tính tích của X1 và X2. Điều này dẫn đến model
+
+Còn là hằng số nữa: sự thay đổi giá trị của X2 sẽ làm thay đổi mối liên hệ giữa X1 và Y.
+
+Một lập luận tương tự cho thấy rằng sự thay đổi giá trị của X1 sẽ làm thay đổi mối liên hệ
+
+Y = β0 + (β1 + β3X2)X1 + β2X2 + ϵ (3,32) = β0 + ˜β1X1 + β2X2 + ϵ
+
+Trong đó ˜β1 = β1 + β3X2. Vì ˜β1 bây giờ là một hàm của X2, nên mối liên hệ giữa X1 và Y không còn là hằng số nữa: một sự thay đổi trong giá trị của X2 sẽ làm thay đổi mối liên hệ giữa X1 và Y. Lập luận tương tự cho thấy rằng sự thay đổi giá trị của X1 sẽ làm thay đổi mối liên hệ giữa X2 và Y.
+
+Ví dụ, giả sử chúng ta quan tâm đến việc nghiên cứu năng suất của một nhà máy. Chúng ta muốn dự đoán số lượng đơn vị sản xuất trên cơ sở số lượng dây chuyền sản xuất và tổng số công nhân. Có vẻ như tác động của việc tăng số lượng dây chuyền sản xuất
+

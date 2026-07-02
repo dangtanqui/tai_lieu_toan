@@ -1,0 +1,1304 @@
+% --- page 1 ---
+% (BSFUI +BNFT t \%BOJFMB 8JUUFO t 5SFWPS )BTUJF 3PCFSU 5JCTIJSBOJ t +POBUIBO 5BZMPS
+% "O *OUSPEVDUJPO UP 4UBUJTUJDBM -FBSOJOH
+% XJUI "QQMJDBUJPOT JO 1ZUIPO
+In lần đầu: ngày 5 tháng 7 năm 2023
+
+% --- page 2 ---
+Gửi tới cha mẹ của chúng ta:
+
+Alison và Michael James
+
+Chiara Nappi và Edward Witten
+
+Valerie và Patrick Hastie
+
+Vera và Sami Tibshirani
+
+John và Brenda Taylor
+
+Michael, Daniel và Catherine
+
+Michael, Daniel và Catherine
+
+Tessa, Theo, Otto và Ari
+
+Samantha, Timothy và Lynda
+
+Charlie, Ryan, Julie và Cheryl
+
+Lee-Ann và Isobel
+
+% --- page 3 ---
+\section{Lời tựa}
+
+Statistical learning đề cập đến một bộ công cụ để hiểu datasets phức tạp. Trong những năm gần đây, chúng ta đã chứng kiến ​​sự gia tăng đáng kinh ngạc về quy mô và phạm vi thu thập dữ liệu trên hầu hết các lĩnh vực khoa học và công nghiệp. Do đó, statistical learning đã trở thành bộ công cụ quan trọng cho bất kỳ ai muốn hiểu dữ liệu - và khi ngày càng có nhiều công việc liên quan đến dữ liệu, điều này có nghĩa là statistical learning đang nhanh chóng trở thành bộ công cụ quan trọng cho mọi người.
+
+Một trong những cuốn sách đầu tiên về statistical learning — The Elements of Statistical Learning (ESL, của Hastie, Tibshirani và Friedman) — được xuất bản năm 2001, tái bản lần thứ hai vào năm 2009. ESL đã trở thành một văn bản phổ biến không chỉ trong thống kê mà còn trong các lĩnh vực liên quan. Một trong những lý do khiến ESL trở nên phổ biến là do phong cách tương đối dễ tiếp cận của nó. Nhưng ESL phù hợp nhất cho những cá nhân có advanced training về khoa học toán học.
+
+An Introduction to Statistical Learning, Với các ứng dụng trong R (ISLR) - được xuất bản lần đầu năm 2013, với ấn bản thứ hai vào năm 2021 - xuất phát từ nhu cầu rõ ràng về cách xử lý rộng hơn và ít mang tính kỹ thuật hơn đối với các chủ đề chính trong statistical learning. Ngoài phần đánh giá về linear regression, ISLR còn đề cập đến nhiều phương pháp thống kê và machine learning quan trọng nhất hiện nay, bao gồm resampling, các shrinkage methods cho classification và regression, generalized additive models, các phương pháp dựa trên cây, support vector machines, deep learning, survival analysis, clustering và nhiều thử nghiệm.
+
+Kể từ khi được xuất bản vào năm 2013, ISLR đã trở thành tài liệu chính trong các lớp học đại học và sau đại học trên toàn thế giới, đồng thời là cuốn sách tham khảo quan trọng cho các nhà khoa học dữ liệu. Một trong những chìa khóa thành công của nó là, bắt đầu từ Chương 2, mỗi chương đều có R lab minh họa cách triển khai các phương pháp statistical learning được thấy trong chương đó, cung cấp cho người đọc trải nghiệm lab có giá trị.
+
+Sách là, bắt đầu từ Chương 2, mỗi chương đều có một bài lab bằng ngôn ngữ R minh họa
+
+% Vii
+% --- page 4 ---
+% Viiii
+Là phiên bản Python thay thế cho ISLR. Do đó, cuốn sách này, An Introduction to Statistical Learning, Với các ứng dụng trong Python (ISLP), bao gồm các tài liệu tương tự như ISLR nhưng được triển khai labs trong Python - một kỳ tích đạt được nhờ có thêm một đồng tác giả mới, Jonathan Taylor. Một số labs sử dụng gói ISLP Python mà chúng ta đã viết để tạo điều kiện thuận lợi cho việc thực hiện các phương pháp statistical learning được đề cập trong mỗi chương trong Python. Những labs này sẽ hữu ích cho cả người mới sử dụng Python cũng như người dùng có kinh nghiệm.
+
+Mục đích đằng sau ISLP (và ISLR) là tập trung nhiều hơn vào các ứng dụng của phương pháp và ít hơn vào các chi tiết toán học, do đó, nó phù hợp cho sinh viên đại học hoặc thạc sĩ cao cấp về thống kê hoặc các lĩnh vực định lượng liên quan hoặc cho các cá nhân trong các ngành khác muốn sử dụng công cụ statistical learning để phân tích dữ liệu của họ. Nó có thể được sử dụng làm sách giáo khoa cho một khóa học kéo dài hai học kỳ.
+
+Chúng ta rất biết ơn những độc giả này đã cung cấp những nhận xét có giá trị về ấn bản đầu tiên của ISLR: Pallavi Basu, Alexandra Chouldechova, Patrick Danaher, Will Fithian, Luella Fu, Sam Gross, Max Grazier G'Sell, Courtney Paulson, Xinghao Qiao, Elisa Sheng, Noah Simon, Kean Ming Tan, Xin Lu Tan. Chúng ta cảm ơn những độc giả này vì những đóng góp hữu ích cho ấn bản thứ hai của ISLR: Alan Agresti, Iain Carmichael, Yiqun Chen, Erin Craig, Daisy Ding, Lucy Gao, Ismael Lemhadri, Bryan Martin, Anna Neufeld, Geoff Tims, Carsten Voelkmann, Steve Yadlowsky và James Zou. Chúng ta vô cùng biết ơn Balasubramanian “Naras” Narasimhan vì sự hỗ trợ của anh ấy trên cả ISLR và ISLP.
+
+Thật vinh dự và đặc ân cho chúng ta khi thấy tác động đáng kể mà ISLR đã mang lại đối với cách thức lab statistical learning, cả trong và ngoài môi trường học thuật. Chúng ta hy vọng rằng phiên bản Python mới này sẽ tiếp tục cung cấp cho các nhà thống kê và nhà khoa học dữ liệu ứng dụng ngày nay và ngày mai những công cụ họ cần để thành công trong một thế giới dựa trên dữ liệu.
+
+Sheng, Noah Simon, Kean Ming Tan, Xin Lu Tan. Chúng ta cũng cảm ơn những độc giả đã đóng
+
+-Yogi Berra
+
+Lời tựa
+
+% --- page 5 ---
+\section{Nội dung}
+
+Lời tựa vii
+
+1 Giới thiệu 1
+
+% [muc luc] p5_b3
+% [muc luc] p5_b4
+% . 25
+% --- page 6 ---
+X Nội dung
+
+% [muc luc] p6_b1
+% [muc luc] p6_b2
+% --- page 7 ---
+Nội dung xi
+
+% [muc luc] p7_b1
+% [muc luc] p7_b2
+% [muc luc] p7_b3
+% --- page 8 ---
+Xii Nội dung
+
+% 7.5 Làm mịn các đường trục . . . . . . . . . . . . . . . . . . . . . . . 300 7.5.1 Tổng quan về Làm mịn Splines . . . . . . . . . 300 7.5.2 Chọn Làm mịn Parameter λ . . . . . . . 301 7.6 Regression cục bộ . . . . . . . . . . . . . . . . . . . . . . . . 303 7.7 Phụ gia tổng quát Models . . . . . . . . . . . . . . . . . 305 7.7.1 GAMs dành cho sự cố Regression . . . . . . . . . . . 306 7.7.2 GAMs cho các vấn đề về Classification . . . . . . . . . . 308 7.8 Lab: Model phi tuyến tính . . . . . . . . . . . . . . . . . . 309 7.8.1 Polynomial Regression và các hàm bước . . . . . 310 7.8.2 Đường trục . . . . . . . . . . . . . . . . . . . . . . . . . 315 7.8.3 Làm mịn Splines và GAMs . . . . . . . . . . . . 317 7.8.4 Regression cục bộ . . . . . . . . . . . . . . . . . . . 324 7.9 Bài tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . 325
+% [muc luc] p8_b2
+% [muc luc] p8_b3
+% --- page 9 ---
+Nội dung xiii
+
+% [muc luc] p9_b1
+% [muc luc] p9_b2
+% [muc luc] p9_b3
+% --- page 10 ---
+Xiv Nội dung
+
+% [muc luc] p10_b1
+% [muc luc] p10_b2
+% [muc luc] p10_b3
+% --- page 11 ---
+Nội dung xv
+
+% 13.5 Phương pháp resampling đối với p-Values và tỷ lệ phát hiện sai . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 577 13.5.1 Phương pháp resampling cho p-Value . . . . . . 578 13.5.2 Phương pháp resampling đối với tỷ lệ phát hiện sai579 13.5.3 Khi nào phương pháp resampling hữu ích? . . . . 581 13.6 Lab: Thử nghiệm nhiều lần . . . . . . . . . . . . . . . . . . . . . 583 13.6.1 Đánh giá các thử nghiệm giả thuyết . . . . . . . . . . . . . 583 13.6.2 Tỷ lệ lỗi thông minh trong gia đình . . . . . . . . . . . . . . . 585 13.6.3 False Discovery Rate . . . . . . . . . . . . . . . . . 588 13.6.4 Phương pháp resampling . . . . . . . . . . . . . . 590 13.7 Bài tập . . . . . . . . . . . . . . . . . . . . . . . . . . . . 593
+Chỉ số 597
+
+% --- page 12 ---
+\section{Giới thiệu}
+
+\subsection{Tổng quan về Statistical Learning}
+
+Statistical learning đề cập đến một bộ công cụ phong phú để hiểu dữ liệu. Những công cụ này có thể được được được được được được được được được được được được phân loại là supervised hoặc không supervised. Nói rộng hơn, statistical learning supervised bao gồm việc xây dựng model thống kê để dự đoán hoặc ước tính output dựa trên một hoặc nhiều input. Những vấn đề thuộc loại này xảy ra trong nhiều lĩnh vực đa dạng như kinh doanh, y học, vật lý thiên văn và chính sách công. Với statistical learning không supervised, có input nhưng không có supervising output; tuy nhiên chúng ta có thể tìm hiểu các mối quan hệ và cấu trúc từ dữ liệu đó. Để minh họa một số ứng dụng của statistical learning, chúng ta thảo luận ngắn gọn về ba data sets trong thế giới thực được xem xét trong cuốn sách này.
+
+% Dữ liệu Wage
+Trong ứng dụng này (mà chúng ta gọi là Wage data set trong suốt cuốn sách này), chúng ta xem xét một số yếu tố liên quan đến tiền lương của một nhóm nam giới đến từ vùng Đại Tây Dương của Hoa Kỳ. Đặc biệt, chúng ta mong muốn hiểu được mối liên hệ giữa tuổi tác và trình độ học vấn cũng như năm dương lịch trên wage của anh ấy. Ví dụ, hãy xem xét panel bên trái của Hình 1.1, hiển thị wage so với tuổi của từng individual trong data set. Có bằng chứng cho thấy wage tăng theo độ tuổi nhưng sau đó giảm trở lại sau khoảng 60 tuổi. Đường màu xanh lam cung cấp estimate của wage trung bình cho một độ tuổi nhất định, làm cho xu hướng này rõ ràng hơn. Với độ tuổi của nhân viên, chúng ta có thể sử dụng đường cong này để dự đoán wage của anh ta. Tuy nhiên, Hình 1.1 cũng cho thấy rõ rằng có một mức độ variance đáng kể liên quan đến giá trị trung bình này và do đó, chỉ riêng tuổi tác khó có thể đưa ra dự đoán chính xác về wage của một người đàn ông cụ thể.
+
+% © Springer Nature Switzerland AG 2023 G. James et al., An Introduction to Statistical Learning, Springer Texts in Statistics, https://doi.org/10.1007/978-3-031-38747-0\_1
+\[1\]
+
+% --- page 13 ---
+2 1. Giới thiệu
+
+\[20 40 60 80\]
+
+% 50 100 200 300
+% Age
+% Wage
+% 2003 2006 2009
+% 50 100 200 300
+% Năm
+% Wage
+\[1 2 3 4 5\]
+
+% 50 100 200 300
+% Trình độ học vấn
+% Wage
+\noindent\textit{FIGURE 1.1. Dữ liệu Wage, chứa thông tin khảo sát thu nhập dành cho nam giới từ khu vực trung tâm Đại Tây Dương của Hoa Kỳ. Bên trái: wage là hàm của tuổi. Trung bình, wage tăng theo độ tuổi cho đến khoảng 60 tuổi, lúc này nó bắt đầu giảm. Tâm: wage là hàm của năm. Có mức tăng chậm nhưng đều đặn khoảng 10.000 USD đối với wage trung bình từ năm 2003 đến năm 2009. Bên phải: Biểu đồ hộp hiển thị wage như một chức năng của giáo dục, với 1 biểu thị cấp độ thấp nhất (không có bằng tốt nghiệp trung học) và 5 là cấp độ cao nhất (bằng tốt nghiệp nâng cao). Trung bình, wage tăng theo trình độ học vấn.}
+
+Chúng ta cũng có thông tin về trình độ học vấn của từng nhân viên và năm kiếm được wage. Bảng ở giữa và bên phải của Hình 1.1, hiển thị wage như một hàm của cả năm học và trình độ học vấn, chỉ ra rằng cả hai yếu tố này đều có liên quan đến wage. Tiền lương tăng khoảng 10.000 USD, theo kiểu gần như tuyến tính (hoặc đường thẳng), từ năm 2003 đến năm 2009, mặc dù mức tăng này rất nhỏ so với sự thay đổi của dữ liệu. Mức lương cũng thường cao hơn đối với những cá nhân có trình độ học vấn cao hơn: nam giới có trình độ học vấn thấp nhất (1) có xu hướng có mức lương thấp hơn đáng kể so với những người có trình độ học vấn cao nhất (5). Rõ ràng, dự đoán chính xác nhất về wage của một người đàn ông sẽ có được bằng cách kết hợp tuổi tác, trình độ học vấn và năm sinh của anh ta. Trong Chương 3, chúng ta thảo luận về linear regression, có thể được sử dụng để dự đoán wage từ data set này. Lý tưởng nhất là chúng ta nên dự đoán wage theo cách tính đến mối quan hệ phi tuyến tính giữa wage và tuổi. Trong Chương 7, chúng ta thảo luận về một nhóm các phương pháp tiếp cận để giải quyết vấn đề này.
+
+Dữ liệu thị trường chứng khoán
+
+Dữ liệu Wage liên quan đến việc dự đoán giá trị output liên tục hoặc định lượng. Điều này thường được gọi là vấn đề regression. Tuy nhiên, trong một số trường hợp nhất định, thay vào đó, chúng ta có thể muốn dự đoán một giá trị phi số—nghĩa là output được phân loại hoặc định tính. Ví dụ, trong Chương 4, chúng ta xem xét thị trường chứng khoán data set chứa các biến động hàng ngày của chỉ số chứng khoán Standard \& Poor's 500 (S\&P) trong khoảng thời gian 5 năm từ 2001 đến 2005. Chúng ta gọi đây là dữ liệu Smarket. Mục tiêu là dự đoán liệu chỉ số sẽ tăng hay giảm vào một ngày nhất định, sử dụng phần trăm thay đổi chỉ số trong 5 ngày qua. Ở đây bài toán statistical learning không liên quan đến việc dự đoán một giá trị số. Thay vào đó, nó liên quan đến việc dự đoán liệu một
+
+% --- page 14 ---
+% Hướng đi hôm nay
+% Xuống lên
+% Hướng đi hôm nay Hướng đi hôm nay
+% Hôm qua
+% Hướng đi hôm nay
+% Phần trăm thay đổi trong S\&P
+% Xuống lên
+% −4 −2 0 2 4 6
+% Hai ngày trước
+% Hướng đi hôm nay
+% Phần trăm thay đổi trong S\&P
+% Xuống lên
+% -4 -2
+% Ba Ngày Trước
+% Hướng đi hôm nay
+% Phần trăm thay đổi trong S\&P
+\noindent\textit{FIGURE 1.2. Bên trái: Biểu đồ về phần trăm thay đổi của ngày hôm trước trong chỉ số S\&P cho những ngày thị trường tăng hoặc giảm, thu được từ dữ liệu Smarket. Giữa và Phải: Tương tự như bảng bên trái, nhưng phần trăm thay đổi trong 2 và 3 ngày trước đó được hiển thị.}
+
+Hiệu suất thị trường chứng khoán trong ngày sẽ rơi vào nhóm Tăng hoặc nhóm Giảm. Điều này được gọi là classification problem. Model có thể dự đoán chính xác hướng di chuyển của thị trường sẽ rất hữu ích!
+
+Bảng bên trái của Hình 1.2 hiển thị hai biểu đồ hộp về phần trăm thay đổi của ngày hôm trước trong chỉ số chứng khoán: một biểu thị cho 648 ngày mà thị trường tăng vào ngày hôm sau và một biểu thị cho 602 ngày mà thị trường giảm. Hai đồ thị trông gần như giống nhau, cho thấy rằng không có chiến lược đơn giản nào để sử dụng biến động của ngày hôm qua trong chỉ số S\&P để dự đoán lợi nhuận ngày hôm nay. Các bảng còn lại, hiển thị biểu đồ hình hộp cho phần trăm thay đổi 2 và 3 ngày trước đó đến ngày hôm nay, tương tự cho thấy rất ít mối liên hệ giữa lợi nhuận trong quá khứ và hiện tại. Tất nhiên, việc thiếu model này là điều có thể dự đoán được: khi có mối tương quan chặt chẽ giữa lợi nhuận của những ngày liên tiếp, người ta có thể áp dụng một chiến lược giao dịch đơn giản để tạo ra lợi nhuận từ thị trường. Tuy nhiên, trong Chương 4, chúng ta khám phá những dữ liệu này bằng cách sử dụng một số phương pháp statistical learning khác nhau. Điều thú vị là có những gợi ý về một số xu hướng yếu trong dữ liệu cho thấy rằng, ít nhất trong khoảng thời gian 5 năm này, có thể dự đoán chính xác hướng chuyển động của thị trường trong khoảng 60\% thời gian (Hình 1.3).
+
+Dữ liệu biểu hiện gen
+
+Hai ứng dụng trước minh họa data sets với cả input variables và output. Tuy nhiên, một loại vấn đề quan trọng khác liên quan đến các tình huống trong đó chúng ta chỉ quan sát các input variables mà không có output tương ứng. Ví dụ: trong môi trường tiếp thị, chúng ta có thể có thông tin nhân khẩu học của một số khách hàng hiện tại hoặc tiềm năng. Chúng ta có thể muốn hiểu những loại khách hàng nào giống nhau bằng cách nhóm các cá nhân theo đặc điểm quan sát được của họ. Đây được biết đến như một
+
+% --- page 15 ---
+4 1. Giới thiệu
+
+% Xuống lên
+% 0,46 0,48 0,50 0,52
+% Hướng đi hôm nay
+% Xác suất dự đoán
+\noindent\textit{FIGURE 1.3. Chúng ta điều chỉnh quadratic discriminant analysis model cho tập hợp con của dữ liệu Smarket tương ứng với khoảng thời gian 2001–2004 và dự đoán xác suất thị trường chứng khoán giảm bằng cách sử dụng dữ liệu năm 2005. Trung bình, xác suất giảm được dự đoán sẽ cao hơn vào những ngày thị trường giảm. Dựa trên những kết quả này, chúng ta có thể dự đoán chính xác hướng chuyển động của thị trường trong 60\% thời gian.}
+
+Đây là một câu hỏi khó trả lời, một phần vì có hàng nghìn phép đo biểu hiện gen trên mỗi dòng tế
+
+Chúng ta dành Chương 12 để thảo luận về các phương pháp statistical learning cho các bài toán không có sẵn biến output tự nhiên. Chúng ta xem xét NCI60 data set, bao gồm 6.830 phép đo biểu hiện gen cho mỗi trong số 64 dòng tế bào ung thư. Thay vì dự đoán một biến output cụ thể, chúng ta quan tâm đến việc xác định liệu có các nhóm hoặc cụm trong số các dòng tế bào dựa trên các phép đo biểu hiện gen của chúng hay không. Đây là một câu hỏi khó giải quyết, một phần vì có hàng nghìn phép đo biểu hiện gen trên mỗi dòng tế bào, khiến cho việc hình dung dữ liệu trở nên khó khăn.
+
+Bảng bên trái của Hình 1.4 giải quyết vấn đề này bằng cách biểu diễn mỗi dòng trong số 64 dòng ô chỉ bằng hai số Z1 và Z2. Đây là hai principal components đầu tiên của dữ liệu, tóm tắt 6.830 phép đo biểu thức cho mỗi dòng ô xuống còn hai số hoặc kích thước. Mặc dù có khả năng việc giảm kích thước này đã dẫn đến mất một số thông tin, nhưng hiện tại có thể kiểm tra dữ liệu một cách trực quan để tìm bằng chứng về clustering. Việc quyết định số lượng cụm thường là một vấn đề khó khăn. Nhưng bảng bên trái của Hình 1.4 gợi ý ít nhất bốn nhóm dòng tế bào mà chúng ta đã thể hiện bằng các màu riêng biệt.
+
+Trong data set đặc biệt này, hóa ra các dòng tế bào tương ứng với 14 loại ung thư khác nhau. (Tuy nhiên, thông tin này không được sử dụng để tạo bảng bên trái của Hình 1.4.) Bảng bên phải của Hình 1.4 giống hệt với bảng bên trái, ngoại trừ 14 loại ung thư được hiển thị bằng các ký hiệu màu riêng biệt. Có bằng chứng rõ ràng rằng các dòng tế bào có cùng loại ung thư có xu hướng nằm gần nhau trong biểu diễn hai chiều này. Ngoài ra, mặc dù thông tin về ung thư không được sử dụng để tạo ra bảng bên trái, nhưng clustering thu được có một số điểm tương đồng với một số loại ung thư thực tế được quan sát ở bảng bên phải. Điều này cung cấp một số xác minh độc lập về tính chính xác của phân tích clustering của chúng ta.
+
+% --- page 16 ---
+-20 0 -40 0 40 20  40  20 20 60 40 60
+
+% Không gian.
+% −60 −40 −20 0 20
+% −40 −20 0 20 40 60
+% −60 −40 −20 0 20
+% 1. Giới thiệu
+% Z2
+% Z2
+\noindent\textit{FIGURE 1.4. Bên trái: Biểu diễn gen NCI60 biểu hiện data set trong không gian hai chiều, Z1 và Z2. Mỗi điểm tương ứng với một trong 64 dòng ô. Dường như có bốn nhóm dòng tế bào mà chúng ta đã thể hiện bằng các màu khác nhau. Bên phải: Tương tự như bảng bên trái ngoại trừ việc chúng ta đã thể hiện từng loại trong số 14 loại ung thư khác nhau bằng cách sử dụng biểu tượng có màu khác nhau. Các dòng tế bào tương ứng với cùng loại ung thư có xu hướng ở gần nhau trong không gian hai chiều.}
+
+\subsection{Tóm tắt lịch sử của Statistical Learning}
+
+Mặc dù thuật ngữ statistical learning còn khá mới nhưng nhiều khái niệm làm nền tảng cho lĩnh vực này đã được phát triển từ lâu. Vào đầu thế kỷ 19, phương pháp bình phương tối thiểu đã được phát triển, áp dụng dạng sớm nhất của cái mà ngày nay được gọi là linear regression. Cách tiếp cận này lần đầu tiên được áp dụng thành công cho các vấn đề trong thiên văn học. Linear regression được sử dụng để dự đoán các giá trị định lượng, chẳng hạn như mức lương của một cá nhân. Để dự đoán các giá trị định tính, chẳng hạn như bệnh nhân sống hay chết, hay thị trường chứng khoán tăng hay giảm, linear discriminant analysis đã được đề xuất vào năm 1936. Vào những năm 1940, nhiều tác giả đã đưa ra một phương pháp thay thế, logistic regression. Vào đầu những năm 1970, thuật ngữ generalized linear models đã được phát triển để mô tả toàn bộ lớp phương pháp statistical learning bao gồm cả tuyến tính và logistic regression như những trường hợp đặc biệt.
+
+Vào cuối những năm 1970, nhiều kỹ thuật học từ dữ liệu đã xuất hiện. Tuy nhiên, chúng hầu như chỉ là các phương pháp tuyến tính vì việc điều chỉnh các mối quan hệ phi tuyến tính vào thời điểm đó rất khó khăn về mặt tính toán. Đến những năm 1980, công nghệ máy tính cuối cùng đã được cải thiện đủ mức để các phương pháp phi tuyến tính không còn bị hạn chế về mặt tính toán nữa. Vào giữa những năm 1980, cây classification và regression đã được phát triển, ngay sau đó là generalized additive models. Neural networks trở nên phổ biến vào những năm 1980 và support vector machines nổi lên vào những năm 1990.
+
+Kể từ thời điểm đó, statistical learning đã nổi lên như một trường con mới trong thống kê, tập trung vào model hóa và dự đoán có giám sát và không giám sát. Trong những năm gần đây, sự tiến bộ trong statistical learning đã được đánh dấu bằng sự sẵn có ngày càng tăng của phần mềm mạnh mẽ và tương đối thân thiện với người dùng, chẳng hạn như hệ thống Python phổ biến và có sẵn miễn phí. Điều này có tiềm năng tiếp tục chuyển đổi lĩnh vực này từ một tập hợp các kỹ thuật được sử dụng và
+
+% --- page 17 ---
+6 1. Giới thiệu
+
+Được các nhà thống kê và nhà khoa học máy tính phát triển thành bộ công cụ thiết yếu cho một cộng đồng rộng lớn hơn nhiều.
+
+\subsection{Cuốn sách này}
+
+The Elements of Statistical Learning (ESL) của Hastie, Tibshirani và Friedman được xuất bản lần đầu tiên vào năm 2001. Kể từ thời điểm đó, nó đã trở thành một tài liệu tham khảo quan trọng về các nguyên tắc cơ bản của machine learning thống kê. Thành công của nó bắt nguồn từ việc xử lý toàn diện và chi tiết nhiều chủ đề quan trọng trong statistical learning, cũng như thực tế là (so với nhiều sách giáo khoa thống kê cấp cao hơn) nó có thể tiếp cận được với nhiều đối tượng. Tuy nhiên, yếu tố lớn nhất đằng sau sự thành công của ESL là tính thời sự của nó. Vào thời điểm nó được xuất bản, sự quan tâm đến lĩnh vực statistical learning đã bắt đầu bùng nổ. ESL đã cung cấp một trong những phần giới thiệu toàn diện và dễ tiếp cận đầu tiên về chủ đề này.
+
+Kể từ khi ESL được xuất bản lần đầu tiên, lĩnh vực statistical learning đã tiếp tục phát triển mạnh mẽ. Việc mở rộng lĩnh vực này có hai hình thức. Sự tăng trưởng rõ ràng nhất liên quan đến việc phát triển các phương pháp tiếp cận statistical learning mới và cải tiến nhằm trả lời một loạt câu hỏi khoa học trên một số lĩnh vực. Tuy nhiên, lĩnh vực statistical learning cũng đã mở rộng đối tượng của mình. Vào những năm 1990, sự gia tăng sức mạnh tính toán đã tạo ra sự quan tâm ngày càng tăng trong lĩnh vực này từ những người không chuyên về thống kê, những người mong muốn sử dụng các công cụ thống kê tiên tiến để phân tích dữ liệu của họ. Thật không may, bản chất kỹ thuật cao của các phương pháp này có nghĩa là cộng đồng người dùng chủ yếu vẫn bị giới hạn ở các chuyên gia về thống kê, khoa học máy tính và các lĩnh vực liên quan được training (và thời gian) để hiểu và thực hiện chúng.
+
+Trong những năm gần đây, các gói phần mềm mới và cải tiến đã giảm bớt đáng kể gánh nặng triển khai cho nhiều phương pháp statistical learning. Đồng thời, ngày càng có nhiều sự công nhận trên một số lĩnh vực, từ kinh doanh đến chăm sóc sức khỏe, di truyền đến khoa học xã hội và hơn thế nữa, rằng statistical learning là một công cụ mạnh mẽ với những ứng dụng thực tế quan trọng. Kết quả là, lĩnh vực này đã chuyển từ một lĩnh vực được quan tâm chủ yếu về mặt học thuật sang một lĩnh vực chính thống, với lượng khán giả tiềm năng khổng lồ. Xu hướng này chắc chắn sẽ tiếp tục với sự sẵn có ngày càng tăng của lượng dữ liệu khổng lồ và phần mềm để phân tích dữ liệu.
+
+Mục đích của An Introduction to Statistical Learning (ISL) là tạo điều kiện thuận lợi cho việc chuyển đổi statistical learning từ lĩnh vực học thuật sang lĩnh vực chính thống. ISL không nhằm mục đích thay thế ESL, đây là một văn bản toàn diện hơn nhiều cả về số lượng các phương pháp tiếp cận được xem xét và chiều sâu mà chúng được khám phá. Chúng ta coi ESL là người bạn đồng hành quan trọng dành cho các chuyên gia (có bằng tốt nghiệp về thống kê, machine learning hoặc các lĩnh vực liên quan), những người cần hiểu các chi tiết kỹ thuật đằng sau các phương pháp tiếp cận statistical learning. Tuy nhiên, cộng đồng người dùng kỹ thuật statistical learning đã mở rộng để bao gồm những cá nhân có nhiều sở thích và nền tảng khác nhau. Do đó, cần có một nơi dành cho phiên bản ESL ít kỹ thuật hơn và dễ tiếp cận hơn.
+
+% --- page 18 ---
+1. Giới thiệu 7
+
+Khi giảng dạy những chủ đề này trong nhiều năm, chúng ta đã phát hiện ra rằng chúng được các sinh viên thạc sĩ và PhD quan tâm trong các lĩnh vực khác nhau như quản trị kinh doanh, sinh học và khoa học máy tính cũng như sinh viên đại học cấp trên theo định hướng định lượng. Điều quan trọng là nhóm đa dạng này có thể hiểu được models, trực giác cũng như điểm mạnh và điểm yếu của các phương pháp tiếp cận khác nhau. Nhưng đối với khán giả này, nhiều chi tiết kỹ thuật đằng sau các phương pháp statistical learning, chẳng hạn như thuật toán tối ưu hóa và các tính chất lý thuyết, không được quan tâm hàng đầu. Chúng ta tin rằng những sinh viên này không cần hiểu biết sâu sắc về các khía cạnh này để trở thành người dùng có hiểu biết về các phương pháp khác nhau và để đóng góp cho các lĩnh vực họ đã chọn thông qua việc sử dụng các công cụ statistical learning.
+
+Cách tiếp cận (một nhiệm vụ bất khả thi), chúng ta đã tập trung vào việc trình bày
+
+Trong mỗi chương đều có các bài lab máy tính. Tại mỗi bài lab, chúng ta sẽ hướng dẫn người đọc.
+
+Phạm vi của các ngành học thuật và phi học thuật, ngoài khoa học thống kê. Chúng ta tin rằng nhiều quy trình statistical learning hiện đại sẽ và sẽ trở nên phổ biến và được sử dụng rộng rãi như trường hợp của các phương pháp cổ điển như linear regression hiện nay. Kết quả là, thay vì cố gắng xem xét mọi cách tiếp cận khả thi (một nhiệm vụ bất khả thi), chúng ta tập trung vào việc trình bày các phương pháp mà chúng ta tin là có thể áp dụng rộng rãi nhất.
+
+Và hoàn toàn có thể hiểu toàn bộ cuốn sách mà không cần bản tóm tắt chi tiết.
+
+Cách tiếp cận duy nhất sẽ hoạt động tốt trong tất cả các ứng dụng có thể. Nếu không hiểu hết các bánh răng bên trong hộp hoặc sự tương tác giữa các bánh răng đó thì không thể chọn được chiếc hộp tốt nhất. Do đó, chúng ta đã cố gắng mô tả cẩn thận model, trực giác, giả định và sự đánh đổi đằng sau mỗi phương pháp mà chúng ta xem xét.
+
+Và các thuộc tính lý thuyết, không phải là mối quan tâm chính.
+
+Không cần phải có kỹ năng chế tạo chiếc máy bên trong hộp! Vì vậy, chúng ta đã giảm thiểu việc thảo luận về các chi tiết kỹ thuật liên quan đến quy trình lắp đặt và các tính chất lý thuyết. Chúng ta giả định rằng người đọc cảm thấy thoải mái với các khái niệm toán học cơ bản, nhưng chúng ta không giả định có bằng tốt nghiệp về khoa học toán học. Ví dụ, chúng ta gần như đã tránh hoàn toàn việc sử dụng đại số matrix và có thể hiểu được toàn bộ cuốn sách mà không cần kiến ​​thức chi tiết về matrix và vector.
+
+Tránh hoàn toàn việc sử dụng đại số matrix.
+
+Các phương pháp giải quyết các vấn đề trong thế giới thực. Để tạo điều kiện thuận lợi cho việc này cũng như thúc đẩy các kỹ thuật được thảo luận, chúng ta đã dành một phần trong mỗi chương cho máy tính labs. Trong mỗi lab, chúng ta hướng dẫn người đọc cách áp dụng thực tế các phương pháp được xem xét trong chương đó. Khi dạy tài liệu này trong các khóa học của mình, chúng ta đã phân bổ khoảng một phần ba thời gian trên lớp để làm việc thông qua labs và chúng ta nhận thấy chúng cực kỳ hữu ích. Nhiều sinh viên ít thiên về tính toán, những người ban đầu bị labs đe dọa, đã hiểu rõ mọi thứ trong suốt một quý hoặc một học kỳ. Cuốn sách này ban đầu xuất hiện (2013, ấn bản thứ hai 2021)
+
+% --- page 19 ---
+8 1. Giới thiệu
+
+Với máy tính labs viết bằng ngôn ngữ R. Kể từ đó, nhu cầu triển khai Python của các kỹ thuật quan trọng trong statistical learning ngày càng tăng. Do đó, phiên bản này có labs trong Python. Số lượng gói Python hiện có ngày càng tăng nhanh chóng và bằng cách kiểm tra các gói nhập ở đầu mỗi lab, độc giả sẽ thấy rằng chúng ta đã lựa chọn cẩn thận và sử dụng gói phù hợp nhất. Chúng ta cũng đã cung cấp một số mã và chức năng bổ sung trong gói ISLP của mình. Tuy nhiên, labs trong ISL là độc lập và có thể bỏ qua nếu người đọc muốn sử dụng gói phần mềm khác hoặc không muốn áp dụng các phương pháp được thảo luận cho các vấn đề trong thế giới thực.
+
+Ai nên đọc cuốn sách này?
+
+Cuốn sách này dành cho những ai quan tâm đến việc sử dụng các phương pháp thống kê hiện đại để lập model và dự đoán từ dữ liệu. Nhóm này bao gồm các nhà khoa học, kỹ sư, nhà phân tích dữ liệu, nhà khoa học dữ liệu và nhà phân tích, nhưng cũng có những cá nhân ít kỹ thuật hơn có bằng cấp trong các lĩnh vực phi định lượng như khoa học xã hội hoặc kinh doanh. Chúng ta hy vọng rằng người đọc đã có ít nhất một khóa học cơ bản về thống kê. Kiến thức nền tảng về linear regression cũng rất hữu ích, mặc dù không bắt buộc, vì chúng ta sẽ xem xét các khái niệm chính đằng sau linear regression trong Chương 3. Trình độ toán học của cuốn sách này còn khiêm tốn và không cần phải có kiến ​​thức chi tiết về các phép toán matrix. Cuốn sách này cung cấp phần giới thiệu về Python. Việc tiếp xúc trước với ngôn ngữ lập trình, chẳng hạn như MATLAB hoặc R, rất hữu ích nhưng không bắt buộc.
+
+Phiên bản đầu tiên của cuốn sách giáo khoa này đã được sử dụng để dạy thạc sĩ và sinh viên PhD về kinh doanh, kinh tế, khoa học máy tính, sinh học, khoa học trái đất, tâm lý học và nhiều lĩnh vực khác của khoa học vật lý và xã hội. Nó cũng đã được sử dụng để dạy cho sinh viên đại học nâng cao đã tham gia khóa học về linear regression. Trong bối cảnh khóa học khắt khe hơn về mặt toán học trong đó ESL đóng vai trò là sách giáo khoa chính, ISL có thể được sử dụng làm văn bản bổ sung để dạy các khía cạnh tính toán của các phương pháp khác nhau.
+
+Ký hiệu và đại số matrix đơn giản
+
+Cuốn sách này dành cho bất cứ ai quan tâm đến việc sử dụng các phương pháp thống kê hiện đại để lập
+
+Chúng ta sẽ sử dụng n để biểu thị số lượng điểm dữ liệu hoặc quan sát riêng biệt trong mẫu của chúng ta. Chúng ta sẽ đặt p biểu thị số lượng biến có sẵn để sử dụng trong việc đưa ra dự đoán. Ví dụ: Wage data set bao gồm 11 biến cho 3.000 người, vì vậy chúng ta có n = 3.000 quan sát và p = 11 biến (chẳng hạn như năm, tuổi, chủng tộc, v.v.). Lưu ý rằng xuyên suốt cuốn sách này, chúng ta chỉ ra tên biến bằng phông chữ màu: Tên biến.
+
+Và không yêu cầu kiến thức chi tiết về các phép toán matrix. Cuốn sách này
+
+% --- page 20 ---
+Xn1 xn2 ... Xnp
+
+Nói chung, chúng ta sẽ để xij biểu thị giá trị của biến thứ j cho quan sát thứ i, trong đó i = 1, 2, . . . , n và j = 1, 2, . . . , P. Trong suốt cuốn sách này, i sẽ được sử dụng để lập chỉ mục các mẫu hoặc quan sát (từ 1 đến n) và j sẽ được sử dụng để lập chỉ mục cho các biến (từ 1 đến p). Chúng ta gọi X là matrix n × p có phần tử thứ (i, j) là xij. Đó là,
+
+\[X =\]
+
+
+
+X1p x2p ... Xnp
+
+$X_{21}$ $x_{22}$ ... X2p
+
+... ... ... Xn1 xn2 . . . Xnp
+
+
+
+$X_{11}$ $x_{12}$ ... X1p
+
+Đối với những độc giả chưa quen với matrix, việc hình dung X dưới dạng bảng tính gồm các số có n hàng và p cột sẽ rất hữu ích.
+
+Đôi khi chúng ta sẽ quan tâm đến các hàng của X mà chúng ta viết là $x_{1}$, $x_{2}$, . . . , xn. Ở đây xi là một vector có độ dài p, chứa các số đo biến p cho quan sát thứ i. Đó là,
+
+\[Xi =\]
+
+
+
+   
+
+Xi1 xi2
+
+... Xip
+
+
+
+%    . (1.1)
+(Các vector được default biểu thị dưới dạng các cột.) Ví dụ: đối với dữ liệu Wage, xi là vector có độ dài 11, bao gồm năm, tuổi, chủng tộc và các giá trị khác cho cá nhân thứ i. Vào những lúc khác, thay vào đó chúng ta sẽ quan tâm đến các cột của X, chúng ta viết là $x_{1}$, $x_{2}$, . . . , xp. Mỗi cái là một vector có độ dài n. Đó là,
+
+\[Xj =\]
+
+
+
+   
+
+X1j x2j
+
+...xnj
+
+
+
+   .
+
+\[For example, for the Wage data, $x_{1}$ contains the n = 3,000 values for year.\]
+
+Sử dụng ký hiệu này, matrix X có thể được viết là
+
+\[X =\]
+
+'$x_{1}$ $x_{2}$ · · · xp
+
+% (
+% ,
+Hoặc
+
+\[X =\]
+
+
+
+   
+
+\[XT\]
+
+1 xT
+
+2...xT
+
+N
+
+
+
+   .
+
+Ký hiệu T biểu thị sự chuyển vị của matrix hoặc vector. Vì vậy, ví dụ,
+
+\[XT =\]
+
+
+
+   
+
+$X_{11}$ $x_{21}$ . . . Xn1 $x_{12}$ $x_{22}$ . . . Xn2 ... ... ... X1p x2p . . . Xnp
+
+
+
+   ,
+
+% --- page 21 ---
+10 1. Giới thiệu
+
+Trong khi
+
+\[XT\]
+
+\[I =\]
+
+1 × 5 + 2 × 7 1 × 6 + 2 ×
+
+% (
+\[.\]
+
+Vài trường hợp, việc tránh hoàn toàn trở nên quá phức tạp. Trong những trường hợp hiếm hoi này,
+
+\[Y =\]
+
+
+
+   
+
+Xem xét
+
+... Yn
+
+
+
+Đậm; ví dụ:
+
+Khi đó dữ liệu quan sát của chúng ta gồm có \{($x_{1}$, y1), ($x_{2}$, y2), . . . , (xn, yn)\}, trong đó mỗi xi là một vector có độ dài p. (Nếu p = 1 thì xi đơn giản là một đại lượng vô hướng.)
+
+Trong văn bản này, vector có độ dài n sẽ luôn được biểu thị bằng chữ in đậm; ví dụ.
+
+\[A =\]
+
+
+
+   
+
+A1 a2
+
+... MỘT
+
+
+
+   .
+
+Tuy nhiên, các vector không có độ dài n (chẳng hạn như vector feature có độ dài p, như trong (1.1)) sẽ được biểu thị bằng phông chữ thường chữ thường, ví dụ: Một. Vô hướng cũng sẽ được biểu thị bằng phông chữ thường chữ thường, ví dụ: Một. Trong những trường hợp hiếm hoi mà hai cách sử dụng phông chữ thường này dẫn đến sự mơ hồ, chúng ta sẽ làm rõ mục đích sử dụng nào. Matrix sẽ được biểu thị bằng chữ in hoa đậm, chẳng hạn như A. Các biến ngẫu nhiên sẽ được biểu thị bằng phông chữ viết hoa thông thường, ví dụ: A, bất kể kích thước của chúng.
+
+Đôi khi chúng ta muốn chỉ ra kích thước của một vật thể cụ thể. Để chỉ ra rằng một đối tượng là vô hướng, chúng ta sẽ sử dụng ký hiệu a ∈R. Để chỉ ra rằng nó là một vector có độ dài k, chúng ta sẽ sử dụng ∈Rk (hoặc ∈Rn nếu nó có độ dài n). Chúng ta sẽ chỉ ra rằng một đối tượng là matrix r × s bằng cách sử dụng A ∈Rr×s.
+
+Chúng ta đã tránh sử dụng đại số matrix bất cứ khi nào có thể. Tuy nhiên, trong một số trường hợp, việc tránh nó hoàn toàn trở nên quá cồng kềnh. Trong những trường hợp hiếm gặp này, điều quan trọng là phải hiểu khái niệm nhân hai matrix. Giả sử A ∈Rr×d và B ∈Rd×s. Khi đó tích của A và B được ký hiệu là AB. Phần tử thứ (i, j) của AB được tính bằng cách nhân từng phần tử của hàng thứ i của A với phần tử tương ứng của cột thứ j của B. Nghĩa là (AB)ij = )d
+
+\[K=1 aikbkj. As an example, consider\]
+
+\[A =\]
+
+% A   Rr×s.
+\[+\]
+
+\[And B =\]
+
+% *5 6 7 8
+\[+\]
+
+\[.\]
+
+Sau đó
+
+\[AB =\]
+
+% *1 2 3 4
+% + *5 6 7 8
+\[+\]
+
+\[=\]
+
+% *1 × 5 + 2 × 7 1 × 6 + 2 × 8 3 × 5 + 4 × 7 3 × 6 + 4 × 8
+\[+\]
+
+\[=\]
+
+% Hàng của B.
+\[+\]
+
+\[.\]
+
+Lưu ý rằng thao tác này tạo ra matrix r × s. Chỉ có thể tính AB nếu số cột của A bằng số hàng của B.
+
+% --- page 22 ---
+Cấu trúc của cuốn sách này
+
+\subsection{Tổ chức của cuốn sách này}
+
+Chương 2 giới thiệu các thuật ngữ và khái niệm cơ bản đằng sau statistical learning. Chương này cũng trình bày về classifier K-nearest neighbor, một phương pháp rất đơn giản nhưng có hiệu quả đáng kinh ngạc trong nhiều vấn đề. Chương 3 và 4 đề cập đến các phương pháp tuyến tính cổ điển cho regression và classification. Đặc biệt, Chương 3 sẽ đánh giá linear regression, điểm khởi đầu cơ bản cho tất cả các phương pháp regression. Trong Chương 4, chúng ta thảo luận về hai phương pháp classification cổ điển quan trọng nhất, logistic regression và linear discriminant analysis.
+
+Vấn đề trọng tâm trong tất cả các tình huống statistical learning liên quan đến việc chọn phương pháp tốt nhất cho một ứng dụng nhất định. Do đó, trong Chương 5, chúng ta giới thiệu cross-validation và bootstrap, có thể được sử dụng để estimate đánh giá độ chính xác của một số phương pháp khác nhau nhằm chọn ra phương pháp tốt nhất.
+
+Phần lớn nghiên cứu gần đây về statistical learning tập trung vào các phương pháp phi tuyến tính. Tuy nhiên, các phương pháp tuyến tính thường có lợi thế hơn các đối thủ cạnh tranh phi tuyến tính về khả năng diễn giải và đôi khi cả độ chính xác. Do đó, trong Chương 6 chúng ta xem xét một loạt các phương pháp tuyến tính, cả cổ điển lẫn hiện đại hơn, mang lại những cải tiến tiềm năng so với linear regression tiêu chuẩn. Chúng bao gồm lựa chọn từng bước, ridge regression, principal components regression và lasso.
+
+Các chương còn lại chuyển sang thế giới statistical learning phi tuyến tính. Đầu tiên chúng ta giới thiệu trong Chương 7 một số phương pháp phi tuyến tính có hiệu quả đối với các bài toán với một input variables duy nhất. Sau đó, chúng ta chỉ ra cách sử dụng các phương pháp này để khớp models phụ gia phi tuyến tính có nhiều hơn một input. Trong Chương 8, chúng ta điều tra các phương pháp dựa trên cây, bao gồm bagging, boosting và random forests. Support vector machines, một tập hợp các phương pháp để thực hiện cả classification tuyến tính và phi tuyến tính, sẽ được thảo luận trong Chương 9. Chúng ta đề cập đến deep learning, một phương pháp tiếp cận dành cho non-linear regression và classification đã nhận được nhiều sự chú ý trong những năm gần đây, trong Chương 10. Chương 11 khám phá survival analysis, một cách tiếp cận regression chuyên biệt cho bối cảnh trong đó biến output bị kiểm duyệt, tức là không hoàn toàn quan sát thấy.
+
+Trong Chương 12, chúng ta xem xét cài đặt không giám sát, trong đó chúng ta có các input variables nhưng không có biến output. Cụ thể, chúng ta trình bày phân tích principal components, K-means clustering và clustering phân cấp. Cuối cùng, trong Chương 13, chúng ta đề cập đến chủ đề rất quan trọng của việc kiểm tra nhiều giả thuyết.
+
+Ở cuối mỗi chương, chúng ta trình bày một hoặc nhiều phần Python lab trong đó chúng ta làm việc một cách có hệ thống thông qua việc áp dụng các phương pháp khác nhau được thảo luận trong chương đó. Các labs này thể hiện điểm mạnh và điểm yếu của các phương pháp khác nhau, đồng thời cung cấp tài liệu tham khảo hữu ích về cú pháp cần thiết để triển khai các phương pháp khác nhau. Người đọc có thể chọn làm việc với labs theo tốc độ riêng của họ hoặc labs có thể là trọng tâm của các buổi học nhóm như một phần của môi trường lớp học. Trong mỗi Python lab, chúng ta trình bày các kết quả mà chúng ta thu được khi thực hiện lab tại thời điểm viết cuốn sách này. Tuy nhiên, các phiên bản mới của Python liên tục được phát hành và theo thời gian, các gói có tên trong labs sẽ được cập nhật. Vì vậy, trong tương lai, có thể những kết quả thể hiện ở
+
+% --- page 23 ---
+12 1. Giới thiệu
+
+Tên Mô tả Auto Tiết kiệm xăng, mã lực và các thông tin khác dành cho ô tô. Bikeshare Sử dụng chương trình chia sẻ xe đạp hàng giờ ở Washington, DC. Giá trị Nhà ở Boston và các thông tin khác về vùng điều tra dân số ở Boston. BrainCancer Thời gian sống sót của bệnh nhân được chẩn đoán mắc bệnh ung thư não. Đoàn lữ hành Thông tin về các cá nhân được cung cấp bảo hiểm đoàn lữ hành. Carseats Thông tin về doanh số bán ghế ngồi ô tô tại 400 cửa hàng. Đặc điểm nhân khẩu học của trường đại học, học phí, v.v. Đối với các trường cao đẳng USA. Thông tin tín dụng về nợ thẻ tín dụng cho 400 khách hàng. Default Khách hàng ghi chép default cho một công ty thẻ tín dụng. Lợi nhuận của 2.000 nhà quản lý quỹ phòng hộ trong 50 tháng. Hitters Hồ sơ và mức lương cho các cầu thủ bóng chày. Đo biểu hiện Khan Gene cho bốn loại ung thư. NCI60 Đo biểu hiện gen của 64 dòng tế bào ung thư. NYSE Lợi nhuận, độ biến động và khối lượng của Sở giao dịch chứng khoán New York. OJ Thông tin bán nước cam Citrus Hill và Minute Maid. Portfolio Giá trị quá khứ của tài sản tài chính, để sử dụng trong phân bổ portfolio. Thời gian xuất bản cho 244 thử nghiệm lâm sàng. Phần trăm lợi nhuận hàng ngày của Smarket dành cho S\&P 500 trong khoảng thời gian 5 năm. USArrests Thống kê tội phạm trên 100.000 cư dân ở 50 tiểu bang của USA. Wage Dữ liệu khảo sát thu nhập dành cho nam giới ở khu vực trung tâm Đại Tây Dương của USA. Hàng tuần 1.089 lợi nhuận thị trường chứng khoán hàng tuần trong 21 năm.
+
+\noindent\textit{TABLE 1.1. Danh sách data sets cần thiết để thực hiện labs và các bài tập trong sách giáo khoa này. Tất cả data sets đều có sẵn trong gói ISLP, ngoại trừ USArrests, là một phần của bản phân phối base R, nhưng có thể truy cập được từ Python.}
+
+Các phần lab có thể không còn tương ứng chính xác với kết quả mà người đọc thực hiện labs thu được. Nếu cần, chúng ta sẽ đăng thông tin cập nhật về labs trên trang web sách.
+
+Chúng ta sử dụng
+
+Biểu tượng để biểu thị các phần hoặc bài tập có chứa các khái niệm khó hơn. Những độc giả không muốn tìm hiểu sâu về tài liệu hoặc thiếu nền tảng toán học có thể dễ dàng bỏ qua những phần này.
+
+\section{Data Sets Được sử dụng trong Labs và Bài tập}
+
+Trong sách giáo khoa này, chúng ta minh họa các phương pháp statistical learning bằng cách sử dụng các ứng dụng từ tiếp thị, tài chính, sinh học và các lĩnh vực khác. Gói ISLP chứa một số data sets cần thiết để thực hiện labs và các bài tập liên quan đến cuốn sách này. Một data set khác là một phần của phân phối R cơ sở (dữ liệu USArrests) và chúng ta trình bày cách truy cập nó từ Python trong Phần 12.5.1. Bảng 1.1 chứa bản tóm tắt về data sets cần thiết để thực hiện labs và các bài tập. Một số data sets này cũng có sẵn dưới dạng tệp văn bản trên trang web sách để sử dụng trong Chương 2.
+
+% --- page 24 ---
+1. Giới thiệu 13
+
+\subsection{Trang web sách}
+
+Trang web của cuốn sách này nằm ở
+
+Www.statlearning.com
+
+Thị khác được tạo ra cho phiên bản R của ISL, ngoại trừ Hình 13.10 khác biệt do phần mềm
+
+\subsection{Lời cảm ơn}
+
+Một số đồ thị trong cuốn sách này được lấy từ ESL: Hình 6.7, 8.3 và 12.14. Tất cả các sơ đồ khác được tạo cho phiên bản R của ISL, ngoại trừ Hình 13.10 khác do phần mềm Python hỗ trợ sơ đồ.
+
+% --- page 25 ---
+\section{Statistical Learning}
+
+\subsection{Statistical Learning là gì?}
+
+Để thúc đẩy nghiên cứu về statistical learning, chúng ta bắt đầu bằng một ví dụ đơn giản. Giả sử chúng ta là nhà tư vấn thống kê được khách hàng thuê để điều tra mối liên hệ giữa quảng cáo và bán một sản phẩm cụ thể. Quảng cáo data set bao gồm doanh số bán sản phẩm đó ở 200 thị trường khác nhau, cùng với ngân sách quảng cáo cho sản phẩm ở mỗi thị trường đó cho ba phương tiện truyền thông khác nhau: TV, đài phát thanh và báo chí. Dữ liệu được hiển thị trong Hình 2.1. Khách hàng của chúng ta không thể trực tiếp tăng doanh số bán sản phẩm. Mặt khác, họ có thể kiểm soát chi phí quảng cáo trên mỗi phương tiện trong số ba phương tiện truyền thông. Do đó, nếu chúng ta xác định rằng có mối liên hệ giữa quảng cáo và bán hàng thì chúng ta có thể hướng dẫn khách hàng điều chỉnh ngân sách quảng cáo, từ đó gián tiếp tăng doanh số bán hàng. Nói cách khác, mục tiêu của chúng ta là phát triển model chính xác có thể được sử dụng để dự đoán doanh số bán hàng trên cơ sở ba ngân sách truyền thông.
+
+Khách hàng thuê để điều tra mối liên hệ giữa quảng cáo và doanh số bán hàng của
+
+Một sản phẩm cụ thể. Dataset Quảng cáo bao gồm doanh số bán hàng của sản phẩm
+
+Ký hiệu biến output X, có chỉ số dưới để phân biệt chúng. Vì vậy, $X_{1}$ có thể là ngân sách TV, $X_{2}$ là ngân sách phát thanh và $X_{3}$ là ngân sách báo chí. Các input có nhiều tên khác nhau, chẳng hạn như predictors, các biến độc lập, features, predictor
+
+Biến độc lập feature
+
+Hoặc đôi khi chỉ là các biến. Biến output—trong trường hợp này là doanh số—là
+
+Biến
+
+Https://doi.org/10.1007/978-3-031-38747-0\_2
+
+Response
+
+Biến phụ thuộc
+
+Sử dụng ký hiệu Y. Trong suốt cuốn sách này, chúng ta sẽ sử dụng thay thế cho nhau tất cả các thuật ngữ này.
+
+Tổng quát hơn, giả sử rằng chúng ta quan sát một response Y định lượng và p khác nhau predictors, $X_{1}$, $X_{2}$, . . . , Xp. Chúng ta giả định rằng có một mối quan hệ nào đó giữa Y và X = ($X_{1}$, $X_{2}$, . . ., Xp), mối quan hệ này có thể được viết dưới dạng rất tổng quát
+
+Y = f(X) + ϵ. (2.1)
+
+% © Springer Nature Switzerland AG 2023 G. James et al., An Introduction to Statistical Learning, Springer Texts in Statistics, https://doi.org/10.1007/978-3-031-38747-0\_2
+\[15\]
+
+% --- page 26 ---
+16 2. Statistical Learning
+
+% 0 50 100 200 300
+% 5 10 15 20 25
+TV
+
+Việc bán hàng
+
+% 0 10 20 30 40 50
+% 5 10 15 20 25
+Radio
+
+Việc bán hàng
+
+% 0 20 40 60 80 100
+% 5 10 15 20 25
+Báo
+
+Việc bán hàng
+
+\noindent\textit{FIGURE 2.1. The Advertising data set. The plot displays sales, in thousands of units, as a function of TV, radio, and newspaper budgets, in thousands of dollars, for 200 different markets. In each plot we show the simple least squares fit of sales to that variable, as described in Chapter 3. In other words, each blue line represents a simple model that can be used to predict sales using TV, radio, and newspaper, respectively.}
+
+Ở đây f là một hàm cố định nhưng chưa biết của $X_{1}$, . . . , Xp và ϵ là số hạng sai số ngẫu nhiên, độc lập với X và có giá trị trung bình bằng 0. Trong thuật ngữ lỗi công thức này, f biểu thị thông tin có hệ thống mà X cung cấp về Y. Có tính hệ thống
+
+% 10 12 14 16 18 20 22
+% 20 30 40 50 60 70 80
+% Năm giáo dục
+Thu nhập
+
+% 10 12 14 16 18 20 22
+% 20 30 40 50 60 70 80
+% Năm giáo dục
+Thu nhập
+
+\noindent\textit{FIGURE 2.2. Thu nhập data set. Bên trái: Các chấm đỏ là giá trị quan sát được của thu nhập (tính bằng nghìn đô la) và số năm học tập của 30 cá nhân. Phải: Đường cong màu xanh biểu thị mối quan hệ cơ bản thực sự giữa thu nhập và số năm đi học, mối quan hệ này thường chưa được biết đến (nhưng được biết đến trong trường hợp này vì dữ liệu được mô phỏng). Các đường màu đen biểu thị lỗi liên quan đến mỗi quan sát. Lưu ý rằng một số sai số là dương (nếu quan sát nằm phía trên đường cong màu xanh) và một số sai số là âm (nếu quan sát nằm bên dưới đường cong). Nhìn chung, những lỗi này có giá trị trung bình xấp xỉ bằng 0.}
+
+Một ví dụ khác, hãy xem bảng bên trái của Hình 2.2, biểu đồ thu nhập so với số năm học tập của 30 cá nhân trong Thu nhập data set. Cốt truyện gợi ý rằng người ta có thể dự đoán thu nhập dựa trên số năm học tập. Tuy nhiên, hàm f kết nối input variables với
+
+% --- page 27 ---
+% 2.1 Statistical Learning là gì? 17
+Biến output nói chung là không xác định. Trong tình huống này người ta phải ước tính f dựa trên các điểm quan sát được. Vì Thu nhập là data set mô phỏng nên f được biết và được biểu thị bằng đường cong màu xanh ở bảng bên phải của Hình 2.2. Các đường thẳng đứng biểu thị sai số ϵ. Chúng ta lưu ý rằng một số trong số 30 quan sát nằm phía trên đường cong màu xanh và một số nằm bên dưới đường cong màu xanh; nhìn chung, các lỗi có giá trị trung bình xấp xỉ bằng 0.
+
+Nói chung, hàm f có thể bao gồm nhiều hơn một input variables. Trong Hình 2.3, chúng ta vẽ biểu đồ thu nhập theo số năm học tập và thâm niên. Ở đây f là bề mặt hai chiều phải được ước tính dựa trên dữ liệu quan sát được.
+
+Về bản chất, statistical learning đề cập đến một tập hợp các phương pháp ước tính f. Trong chương này, chúng ta phác thảo một số khái niệm lý thuyết quan trọng nảy sinh khi ước tính f, cũng như các công cụ để đánh giá estimates thu được.
+
+\subsubsection{Tại sao ước tính f??}
+
+Là một hộp đen, theo nghĩa là người ta thường không quan tâm đến dạng chính xác của ˆf, miễn là
+
+Dự đoán
+
+Trong nhiều trường hợp, có sẵn một tập hợp input X nhưng không thể dễ dàng có được output Y. Trong cài đặt này, vì thuật ngữ lỗi trung bình bằng 0 nên chúng ta có thể dự đoán Y bằng cách sử dụng
+
+Dự đoán
+
+Trong đó ˆf đại diện cho estimate của chúng ta cho f và ˆY đại diện cho dự đoán kết quả cho Y . Trong cài đặt này, ˆf thường được coi như một hộp đen, theo nghĩa là người ta thường không quan tâm đến dạng chính xác của ˆf, miễn là nó mang lại những dự đoán chính xác cho Y.
+
+Ví dụ: giả sử $X_{1}$, . . . , Xp là các đặc điểm của mẫu máu của bệnh nhân có thể dễ dàng đo được bằng lab và Y là biến mã hóa nguy cơ bệnh nhân gặp phải phản ứng bất lợi nghiêm trọng đối với một loại thuốc cụ thể. Việc tìm cách dự đoán Y bằng cách sử dụng X là điều tự nhiên, vì khi đó chúng ta có thể tránh đưa thuốc đang được đề cập cho những bệnh nhân có nguy cơ cao bị phản ứng bất lợi—tức là những bệnh nhân có estimate của Y cao.
+
+Đối với một loại thuốc cụ thể. Việc tìm cách dự đoán Y bằng cách sử dụng X là điều tự nhiên, vì
+
+Lỗi không thể khắc phục được
+
+ˆf sẽ không phải là một estimate hoàn hảo cho f, và sự thiếu chính xác này sẽ gây ra một số lỗi. Lỗi này có thể giảm được vì chúng ta có thể cải thiện độ chính xác của ˆf bằng cách sử dụng kỹ thuật statistical learning thích hợp nhất cho ước tính f. Tuy nhiên, ngay cả khi có thể hình thành một estimate hoàn hảo cho f, sao cho response ước tính của chúng ta có dạng ˆY = f(X), thì dự đoán của chúng ta vẫn sẽ có một số lỗi trong đó! Điều này là do Y cũng là một hàm của ϵ, mà theo định nghĩa, không thể dự đoán được bằng cách sử dụng X. Do đó, độ variance liên quan đến ϵ cũng ảnh hưởng đến độ chính xác của dự đoán của chúng ta. Đây được gọi là sai số không thể giảm được, bởi vì cho dù chúng ta có ước tính f tốt đến đâu, chúng ta cũng không thể giảm được sai số do ϵ đưa ra.
+
+Độ chính xác của Yˆ như một dự đoán cho Y phụ thuộc vào hai đại lượng, mà chúng ta sẽ gọi là
+
+% --- page 28 ---
+18 2. Statistical Learning
+
+% Năm giáo dục
+Thâm niên
+
+Thu nhập
+
+\noindent\textit{FIGURE 2.3. Biểu đồ thể hiện thu nhập theo số năm học và thâm niên trong Thu nhập data set. Bề mặt màu xanh lam thể hiện mối quan hệ cơ bản thực sự giữa thu nhập, số năm học tập và thâm niên, được biết đến từ khi dữ liệu được mô phỏng. Các chấm màu đỏ biểu thị giá trị quan sát được của các đại lượng này đối với 30 individual.}
+
+Đo chúng, f không thể sử dụng chúng để dự đoán. Đại lượng ϵ cũng có thể chứa đựng những variance không thể đo lường được. Ví dụ, nguy cơ xảy ra phản ứng bất lợi có thể khác nhau đối với một bệnh nhân vào một ngày nhất định, tùy thuộc vào sự thay đổi trong quá trình sản xuất thuốc hoặc cảm giác khỏe mạnh chung của bệnh nhân vào ngày đó.
+
+Và thâm niên trong dataset Thu nhập . Bề mặt màu xanh lam thể hiện giá trị thực.
+
+2. Học thống kê
+
+Mối quan hệ cơ bản giữa thu nhập , số năm học và thâm niên.
+
+Có thể thu nhỏ
+
+% Của Năm
+Trong đó E(Y −ˆY )2 biểu thị giá trị trung bình hoặc giá trị kỳ vọng của bình phương kỳ vọng
+
+Chênh lệch giá trị giữa giá trị dự đoán và giá trị thực tế của Y và Var(ϵ) đại diện cho variance liên quan đến thuật ngữ lỗi ϵ. Variance Trọng tâm của cuốn sách này là các kỹ thuật ước lượng f nhằm mục đích giảm thiểu sai số có thể giảm được. Điều quan trọng cần ghi nhớ là sai số không thể giảm được sẽ luôn đưa ra giới hạn trên về độ chính xác trong dự đoán của chúng ta đối với Y. Giới hạn này hầu như luôn chưa được biết đến trong thực tế.
+
+Suy luận
+
+Chúng ta thường quan tâm đến việc tìm hiểu mối liên hệ giữa Y và $X_{1}$, . . . , Xp. Trong tình huống này, chúng ta mong muốn ước tính f, nhưng mục tiêu của chúng ta không nhất thiết là đưa ra dự đoán cho Y . Bây giờ ˆf không thể được coi là hộp đen vì chúng ta cần biết dạng chính xác của nó. Trong bối cảnh này, người ta có thể quan tâm đến việc trả lời các câu hỏi sau:
+
+% --- page 29 ---
+% 2.1 Statistical Learning là gì? 19
+Mối liên hệ giữa mỗi biến số và xác suất mua hàng. Ví dụ, giá sản phẩm có liên quan
+
+Rằng chỉ một phần nhỏ predictors có sẵn có liên quan đáng kể đến Y . Việc xác định một số predictors quan trọng trong số lượng lớn các biến có thể có có thể cực kỳ hữu ích, tùy thuộc vào ứng dụng.
+
+• Những yếu tố dự báo nào liên quan đến response? Thường thì là như vậy
+
+Một số predictors có thể có mối quan hệ tích cực với Y, theo nghĩa là các giá trị lớn hơn của predictor có liên quan đến các giá trị lớn hơn của Y. Predictors khác có thể có mối quan hệ ngược lại. Tùy thuộc vào độ phức tạp của f, mối quan hệ giữa response và predictor nhất định cũng có thể phụ thuộc vào giá trị của predictors khác.
+
+Một phương trình tuyến tính hay mối quan hệ đó phức tạp hơn? Trong lịch sử,
+
+Được kết hợp bằng cách sử dụng phương trình tuyến tính, hay mối quan hệ này phức tạp hơn? Về mặt lịch sử, hầu hết các phương pháp ước tính f đều có dạng tuyến tính. Trong một số tình huống, giả định như vậy là hợp lý hoặc thậm chí là đáng mong muốn. Nhưng thường thì mối quan hệ thực sự phức tạp hơn, trong trường hợp đó model tuyến tính có thể không cung cấp sự biểu diễn chính xác mối quan hệ giữa các input variables và output.
+
+Có thể quan tâm đến việc trả lời các câu hỏi như:
+
+Ví dụ: hãy xem xét một công ty quan tâm đến việc thực hiện chiến dịch tiếp thị trực tiếp. Mục tiêu là xác định những cá nhân có khả năng response tích cực với việc gửi thư, dựa trên quan sát các biến số nhân khẩu học được đo lường trên mỗi cá nhân. Trong trường hợp này, các biến nhân khẩu học đóng vai trò là predictors và response cho chiến dịch tiếp thị (tích cực hoặc tiêu cực) đóng vai trò là outcome. Công ty không quan tâm đến việc hiểu biết sâu sắc về mối quan hệ giữa mỗi cá nhân predictor và response; thay vào đó, công ty chỉ muốn dự đoán chính xác response bằng cách sử dụng predictors. Đây là một ví dụ về model dự đoán.
+
+Mục đích đơn giản là muốn dự đoán chính xác response bằng cách sử dụng các biến dự báo. Điều này
+
+– Những phương tiện truyền thông nào gắn liền với việc bán hàng?
+
+– Những phương tiện truyền thông nào liên quan đến doanh số bán hàng?
+
+Mối quan hệ giữa các input variables và output.
+
+Trong quảng cáo TV?
+
+Tình huống này rơi vào model suy luận. Một ví dụ khác liên quan đến việc lập model thương hiệu của sản phẩm mà khách hàng có thể mua dựa trên các biến số như giá cả, vị trí cửa hàng, mức chiết khấu, giá cạnh tranh, v.v. Trong tình huống này, người ta có thể thực sự quan tâm nhất đến mối liên hệ giữa từng biến số và xác suất mua hàng. Ví dụ: giá của sản phẩm gắn liền với doanh số bán hàng ở mức độ nào? Đây là một ví dụ về model suy luận.
+
+Cuối cùng, một số model có thể được tiến hành cho cả dự đoán và suy luận. Ví dụ, trong môi trường bất động sản, người ta có thể tìm cách liên hệ các giá trị
+
+% --- page 30 ---
+20 2. Statistical Learning
+
+Từ số nhà đến các yếu tố input như tỷ lệ tội phạm, quy hoạch, khoảng cách từ sông, chất lượng không khí, trường học, mức thu nhập của cộng đồng, quy mô nhà ở, v.v. Trong trường hợp này, người ta có thể quan tâm đến mối liên hệ giữa từng input variables riêng lẻ và giá nhà đất - ví dụ, một ngôi nhà sẽ có giá trị thêm bao nhiêu nếu nó có tầm nhìn ra sông? Đây là một vấn đề suy luận. Alternatively, one may simply be interested in predicting the value of a home given its characteristics: is this house under- or over-valued? Đây là một vấn đề dự đoán.
+
+Tùy thuộc vào mục tiêu cuối cùng của chúng ta là dự đoán, suy luận hay kết hợp cả hai, các phương pháp ước tính f khác nhau có thể phù hợp. Ví dụ, models tuyến tính cho phép suy luận có thể giải thích được model nội tuyến tương đối đơn giản và tuyến tính, nhưng có thể không mang lại dự đoán chính xác như một số phương pháp khác. Ngược lại, một số cách tiếp cận phi tuyến tính cao mà chúng ta thảo luận trong các chương sau của cuốn sách này có thể có khả năng đưa ra những dự đoán khá chính xác cho Y, nhưng điều này lại gây tổn hại đến một model khó giải thích hơn, khiến việc suy luận trở nên khó khăn hơn.
+
+\subsubsection{Chúng ta ước tính f như thế nào?}
+
+Xuyên suốt cuốn sách này, chúng ta khám phá nhiều cách tiếp cận tuyến tính và phi tuyến tính để ước lượng f. Tuy nhiên, các phương pháp này thường có chung một số đặc điểm nhất định. Chúng ta cung cấp cái nhìn tổng quan về những đặc điểm chung này trong phần này. Chúng ta sẽ luôn giả định rằng chúng ta đã quan sát được một tập hợp n điểm dữ liệu khác nhau. Ví dụ trong Hình 2.2 chúng ta quan sát được n = 30 điểm dữ liệu. Những quan sát này được gọi là dữ liệu training vì chúng ta sẽ sử dụng những dữ liệu training này
+
+Data observations to train, or teach, our method how to ước tính f. Đặt xij biểu thị giá trị của predictor thứ j, hoặc input, cho quan sát i, trong đó i = 1, 2, . . . , n và j = 1, 2, . . . , P. Tương ứng, gọi yi đại diện cho biến response cho quan sát thứ i. Khi đó dữ liệu training của chúng ta bao gồm \{($x_{1}$, y1), ($x_{2}$, y2), . . . , (xn, yn)\} where xi = (xi1, xi2, . . . , xip)T .
+
+Mục tiêu của chúng ta là áp dụng phương pháp statistical learning cho dữ liệu training để estimate hàm chưa biết f. Nói cách khác, chúng ta muốn tìm một hàm ˆf sao cho Y ≈ˆf(X) cho mọi quan sát (X, Y ). Nói rộng ra, hầu hết các phương pháp statistical learning cho nhiệm vụ này có thể được mô tả là tham số hoặc không tham số. Bây giờ chúng ta thảo luận ngắn gọn về các parameter này
+
+2. Học thống kê 20
+
+Phương pháp tham số
+
+Các dự đoán khá chính xác cho Y nhưng điều này lại phải trả giá bằng độ chính xác thấp hơn.
+
+Các yếu tố ảnh hưởng đến số lượng nhà ở bao gồm tỷ lệ tội phạm, quy hoạch khu vực, khoảng cách từ sông, chất lượng không khí.
+
+Tắt. Ví dụ, một giả định rất đơn giản là f tuyến tính trong X:
+
+P + 1 hệ số β0, β1,..., βp.
+
+This is a linear model, which will be discussed extensively in Chapter 3. Once we have assumed that f is linear, the problem of estimating f is greatly simplified. Thay vì phải estimate một hàm p chiều f(X) hoàn toàn tùy ý, người ta chỉ cần estimate p + 1 coefficients β0, β1, . . . , βp.
+
+% --- page 31 ---
+% 2.1 Statistical Learning là gì? 21
+% Năm giáo dục
+Thâm niên
+
+Thu nhập
+
+\noindent\textit{FIGURE 2.4. Model tuyến tính phù hợp với bình phương tối thiểu của dữ liệu Thu nhập từ Hình 2.3. Các quan sát được hiển thị bằng màu đỏ và mặt phẳng màu vàng biểu thị bình phương nhỏ nhất phù hợp với dữ liệu.}
+
+Hình 2.3. Các quan sát được hiển thị bằng màu đỏ, và mặt phẳng màu vàng biểu thị...
+
+Dữ liệu training để phù hợp hoặc training model. Trong trường hợp khớp model tuyến tính
+
+Training (2.4), chúng ta cần estimate parameters β0, β1, . . . , βp. Nghĩa là, chúng ta muốn tìm các giá trị của parameters này sao cho
+
+Y ≈β0 + β1X1 + β2X2 + · · · + βpXp.
+
+Cách tiếp cận phổ biến nhất để khớp model (2.4) được gọi là bình phương tối thiểu (thông thường), mà chúng ta sẽ thảo luận trong Chương 3. Tuy nhiên, bình phương tối thiểu bình phương nhỏ nhất là một trong nhiều cách có thể để khớp model tuyến tính. Trong Chương 6, chúng ta thảo luận các phương pháp khác để ước tính parameters trong (2.4).
+
+Cách tiếp cận dựa trên model vừa mô tả được gọi là tham số; nó làm giảm vấn đề ước tính f xuống còn vấn đề ước tính một tập hợp parameters. Giả sử dạng tham số cho f sẽ đơn giản hóa vấn đề ước tính f vì nói chung việc estimate một tập hợp parameters, chẳng hạn như β0, β1, . . . , βp trong model tuyến tính (2.4), hơn là phù hợp với một hàm hoàn toàn tùy ý f. Nhược điểm tiềm ẩn của phương pháp tham số là model mà chúng ta chọn thường sẽ không khớp với dạng thực chưa biết của f. Nếu model được chọn quá xa f thực thì estimate của chúng ta sẽ kém. Chúng ta có thể cố gắng giải quyết vấn đề này bằng cách chọn models linh hoạt có thể phù hợp với nhiều dạng hàm khác nhau có thể linh hoạt cho f. Nhưng nói chung, việc lắp một model linh hoạt hơn đòi hỏi phải ước tính số lượng parameters lớn hơn. Những models phức tạp hơn này có thể dẫn đến một hiện tượng được gọi là dữ liệu overfitting, về cơ bản có nghĩa là overfitting tuân theo các lỗi hoặc nhiễu quá chặt chẽ. Những vấn đề này sẽ được thảo luận xuyên suốt cuốn sách này.
+
+\noindent\textit{Hình 2.4 minh họa một ví dụ về phương pháp tham số được áp dụng cho}
+
+Nó đơn giản hóa vấn đề ước lượng f thành vấn đề ước lượng một tập hợp các
+
+% --- page 32 ---
+22 2. Statistical Learning
+
+% Năm giáo dục
+Thâm niên
+
+Thu nhập
+
+\noindent\textit{Ta có thể thấy rằng đường khớp tuyến tính trong Hình 2.4 không hoàn toàn chính xác: hàm f thực}
+
+Vì chúng ta đã giả định mối quan hệ tuyến tính giữa response và hai predictors, toàn bộ vấn đề khớp nối giảm xuống còn việc ước tính β0, β1 và β2, mà chúng ta thực hiện bằng cách sử dụng bình phương tối thiểu linear regression. So sánh Hình 2.3 với Hình 2.4, chúng ta có thể thấy rằng độ khớp tuyến tính cho trong Hình 2.4 không hoàn toàn đúng: f đúng có một số độ cong không thể hiện được trong độ khớp tuyến tính. Tuy nhiên, sự phù hợp tuyến tính dường như vẫn làm tốt công việc nắm bắt mối quan hệ tích cực giữa số năm học tập và thu nhập, cũng như mối quan hệ kém tích cực hơn một chút giữa thâm niên và thu nhập. It may be that with such a small number of observations, this is the best we can do.
+
+Phương pháp phi tham số
+
+Các phương pháp phi tham số không đưa ra các giả định rõ ràng về dạng hàm của f. Thay vào đó, họ tìm kiếm một estimate của f càng gần các điểm dữ liệu càng tốt mà không quá thô hoặc lung lay. Những cách tiếp cận như vậy có thể có một lợi thế lớn so với các cách tiếp cận tham số: bằng cách tránh giả định một dạng hàm cụ thể cho f, chúng có khả năng khớp chính xác một phạm vi rộng hơn các hình dạng có thể có của f. Bất kỳ cách tiếp cận tham số nào đều có khả năng là dạng hàm được sử dụng cho ước tính f rất khác so với f thực, trong trường hợp đó model thu được sẽ không phù hợp lắm với dữ liệu. Ngược lại, các cách tiếp cận phi tham số hoàn toàn tránh được hazard này, vì về cơ bản không có giả định nào về dạng của f được đưa ra. Nhưng các phương pháp phi tham số có một nhược điểm lớn: vì chúng không làm giảm vấn đề ước tính f xuống một số lượng nhỏ parameters, nên cần có một số lượng quan sát rất lớn (nhiều hơn mức thường cần cho một phương pháp tham số) để thu được estimate chính xác cho f.
+
+Sát ít ỏi như vậy, đây là kết quả tốt nhất chúng ta có thể đạt được.
+
+Hình 2.5 minh họa một ví dụ về phương pháp phi tham số để khớp dữ liệu Thu nhập . Phương
+
+% --- page 33 ---
+% 2.1 Statistical Learning là gì? 23
+% Năm giáo dục
+Thâm niên
+
+Thu nhập
+
+\noindent\textit{FIGURE 2.6. Một đường trục tấm mỏng thô phù hợp với dữ liệu Thu nhập từ Hình 2.3. Sự phù hợp này không tạo ra lỗi nào trên dữ liệu training.}
+
+Để tạo ra một estimate cho f càng gần với dữ liệu quan sát được càng tốt, tùy thuộc vào sự phù hợp—nghĩa là bề mặt màu vàng trong Hình 2.5—phải nhẵn. Trong trường hợp này, sự phù hợp phi tham số đã tạo ra estimate có độ chính xác đáng kể của f thực được hiển thị trong Hình 2.3. Để phù hợp với đường rãnh tấm mỏng, nhà phân tích dữ liệu phải chọn mức độ trơn tru. Hình 2.6 cho thấy khớp nối dạng tấm mỏng tương tự bằng cách sử dụng độ mịn thấp hơn, cho phép khớp chặt hơn. Estimate thu được hoàn toàn phù hợp với dữ liệu được quan sát! Tuy nhiên, độ khớp spline trong Hình 2.6 có thể thay đổi nhiều hơn so với hàm thực f, từ Hình 2.3. Đây là một ví dụ về dữ liệu overfitting mà chúng ta đã thảo luận trước đây. Đó là một tình huống không mong muốn vì sự phù hợp thu được sẽ không mang lại estimates chính xác của response trên các quan sát mới không phải là một phần của data set training ban đầu. Chúng ta thảo luận về các phương pháp để chọn mức độ mịn chính xác trong Chương 5. Các đường nối được thảo luận trong Chương 7.
+
+Như chúng ta đã thấy, có những ưu điểm và nhược điểm đối với các phương pháp tham số và phi tham số đối với statistical learning. Chúng ta khám phá cả hai loại phương pháp trong suốt cuốn sách này.
+
+\subsubsection{Sự đánh đổi giữa độ chính xác của dự đoán và model interpretability}
+
+Trong số nhiều phương pháp mà chúng ta xem xét trong cuốn sách này, một số phương pháp kém linh hoạt hơn hoặc hạn chế hơn, theo nghĩa là chúng chỉ có thể tạo ra một phạm vi hình dạng tương đối nhỏ so với ước tính f. Ví dụ, linear regression là một cách tiếp cận tương đối kém linh hoạt, bởi vì nó chỉ có thể tạo ra các hàm tuyến tính như các đường trong Hình 2.1 hoặc mặt phẳng được hiển thị trong Hình 2.4. Other methods, such as the thin plate splines shown in Figures 2.5 and 2.6, are considerably more flexible because they can generate a much wider range of possible shapes to ước tính f.
+
+% --- page 34 ---
+24 2. Statistical Learning
+
+Tính linh hoạt
+
+Khả năng giải thích
+
+Thấp Cao
+
+Thấp Cao
+
+Lựa chọn tập hợp con
+
+Lasso
+
+Bình phương nhỏ nhất
+
+Phụ gia tổng hợp Models
+
+Cây cối
+
+Bagging, boosting
+
+Support Vector Machines
+
+Deep Learning
+
+\noindent\textit{FIGURE 2.7. Sự thể hiện sự cân bằng giữa tính linh hoạt và khả năng diễn giải bằng cách sử dụng các phương pháp statistical learning khác nhau. Nói chung, khi tính linh hoạt của một phương pháp tăng lên thì khả năng diễn giải của nó sẽ giảm đi.}
+
+One might reasonably ask the following question: why would we ever choose to use a more restrictive method instead of a very flexible approach? There are several reasons that we might prefer a more restrictive model. If we are mainly interested in inference, then restrictive models are much more interpretable. For instance, when inference is the goal, the linear model may be a good choice since it will be quite easy to understand the relationship between Y and $X_{1}$, $X_{2}$, . . . , Xp. In contrast, very flexible approaches, such as the splines discussed in Chapter 7 and displayed in Figures 2.5 and 2.6, and the boosting methods discussed in Chapter 8, can lead to such complicated estimates of f that it is difficult to understand how any individual predictor is associated with the response.
+
+\noindent\textit{Figure 2.7 provides an illustration of the trade-off between flexibility and interpretability for some of the methods that we cover in this book. Least squares linear regression, discussed in Chapter 3, is relatively inflexible but is quite interpretable. The lasso, discussed in Chapter 6, relies upon the lasso linear model (2.4) but uses an alternative fitting procedure for estimating the coefficients β0, β1, . . . , βp. The new procedure is more restrictive in estimating the coefficients, and sets a number of them to exactly zero. Hence in this sense the lasso is a less flexible approach than linear regression. It is also more interpretable than linear regression, because in the final model the response variable will only be related to a small subset of the predictors—namely, those with nonzero coefficient estimates. Generalized additive models (GAMs), discussed in Chapter 7, instead extend the lin- generalized}
+
+Phụ gia model tai model (2.4) để cho phép thực hiện một số mối quan hệ phi tuyến tính nhất định. Do đó, GAMs linh hoạt hơn linear regression. Chúng cũng khó hiểu hơn một chút so với linear regression, vì mối quan hệ giữa mỗi predictor và response hiện được model hóa bằng một đường cong. Cuối cùng, các phương pháp hoàn toàn phi tuyến tính như bagging, boosting, bagging support vector machines
+
+Với một số phương pháp mà chúng ta đề cập trong cuốn sách này. Regression tuyến tính
+
+Support vector machine
+
+Nhưng khá dễ giải thích. Phương pháp lasso, được thảo luận trong Chương 6, dựa
+
+% --- page 35 ---
+% 2.1 Statistical Learning là gì? 25
+Chúng ta đã xác định rằng khi mục tiêu là suy luận thì việc sử dụng các phương pháp statistical learning đơn giản và tương đối linh hoạt sẽ có những lợi thế rõ ràng. Tuy nhiên, trong một số cài đặt, chúng ta chỉ quan tâm đến dự đoán và khả năng diễn giải của model dự đoán đơn giản là không được quan tâm. Ví dụ: nếu chúng ta tìm cách phát triển một thuật toán để dự đoán giá cổ phiếu, yêu cầu duy nhất của chúng ta đối với thuật toán đó là nó phải dự đoán chính xác—khả năng diễn giải không phải là vấn đề đáng lo ngại. Trong cài đặt này, chúng ta có thể mong đợi rằng tốt nhất nên sử dụng model linh hoạt nhất hiện có. Đáng ngạc nhiên là điều này không phải lúc nào cũng đúng! Chúng ta thường sẽ có được những dự đoán chính xác hơn bằng cách sử dụng một phương pháp kém linh hoạt hơn. Hiện tượng này thoạt nhìn có vẻ phản trực giác, nhưng có liên quan đến tiềm năng của overfitting trong các phương pháp rất linh hoạt. Chúng ta đã thấy một ví dụ về overfitting trong Hình 2.6. Chúng ta sẽ thảo luận sâu hơn về khái niệm rất quan trọng này trong Phần 2.2 và xuyên suốt cuốn sách này.
+
+\subsubsection{Supervised versus Unsupervised Learning}
+
+Hầu hết các vấn đề về statistical learning thuộc một trong hai loại: có giám sát có giám sát hoặc không có giám sát. Các ví dụ mà chúng ta đã thảo luận cho đến nay trong chương này - thuật ngữ không giám sát đều thuộc miền supervised learning. Đối với mỗi lần quan sát (các) phép đo predictor xi, i = 1, . . . , n có một phép đo response liên quan. Chúng ta mong muốn lắp model có liên hệ response với predictors, nhằm mục đích dự đoán chính xác response cho các quan sát (dự đoán) trong tương lai hoặc hiểu rõ hơn về mối quan hệ giữa response và predictors (suy luận). Nhiều phương pháp statistical learning cổ điển như linear regression và logistic regression (Chương 4), như logistic
+
+Regression cũng như các phương pháp hiện đại hơn như GAM, boosting và support vector machines, hoạt động trong miền supervised learning. Phần lớn cuốn sách này được dành cho bối cảnh này.
+
+Ngược lại, unsupervised learning mô tả tình huống có phần khó khăn hơn, trong đó với mỗi quan sát i = 1, . . . , n, chúng ta quan sát một vector có số đo xi nhưng không có response yi liên quan. Không thể khớp linear regression model vì không có biến response để dự đoán. Trong bối cảnh này, theo một nghĩa nào đó, chúng ta đang làm việc một cách mù quáng; tình huống này được coi là không supervised vì chúng ta thiếu biến response có thể giám sát phân tích của chúng ta. Những loại phân tích thống kê có thể được thực hiện? Chúng ta có thể tìm cách hiểu mối quan hệ giữa các biến số hoặc giữa các quan sát. Một công cụ statistical learning mà chúng ta có thể sử dụng trong cài đặt này là phân tích cụm hoặc clustering. Mục tiêu của cụm phân tích cụm
+
+Phân tích là để xác định, trên cơ sở $x_{1}$, . . . , xn, liệu các quan sát có rơi vào các nhóm tương đối khác biệt hay không. Ví dụ: trong nghiên cứu phân khúc thị trường, chúng ta có thể quan sát nhiều đặc điểm (biến số) của khách hàng tiềm năng, chẳng hạn như mã vùng, thu nhập gia đình và thói quen mua sắm. Chúng ta có thể tin rằng khách hàng thuộc các nhóm khác nhau, chẳng hạn như nhóm chi tiêu nhiều và nhóm chi tiêu thấp. Nếu có sẵn thông tin về cách chi tiêu của từng khách hàng thì việc phân tích có giám sát sẽ có thể thực hiện được. Tuy nhiên, thông tin này không có sẵn—tức là chúng ta không biết liệu mỗi khách hàng tiềm năng có phải là người chi tiêu nhiều hay không. Trong cài đặt này, chúng ta có thể cố gắng phân nhóm khách hàng trên cơ sở các biến được đo lường để xác định
+
+% --- page 36 ---
+26 2. Statistical Learning
+
+% 0 2 4 6 8 10 12
+% 2 4 6 8 10 12
+\[0 2 4 6\]
+
+\[2 4 6 8\]
+
+$X_{1}$ $X_{1}$
+
+\noindent\textit{FIGURE 2.8. Một clustering data set bao gồm ba nhóm. Mỗi nhóm được hiển thị bằng cách sử dụng một biểu tượng màu khác nhau. Bên trái: Ba nhóm được tách biệt rõ ràng. Trong cài đặt này, cách tiếp cận clustering sẽ xác định thành công ba nhóm. Đúng: Có một số điểm trùng lặp giữa các nhóm. Bây giờ nhiệm vụ clustering khó khăn hơn.}
+
+Những nhóm khách hàng tiềm năng riêng biệt. Việc xác định các nhóm như vậy có thể được quan tâm vì có thể các nhóm khác nhau về một số đặc tính được quan tâm, chẳng hạn như thói quen chi tiêu.
+
+\noindent\textit{Hình 2.8 cung cấp một minh họa đơn giản về bài toán clustering. Chúng ta đã vẽ đồ thị 150 quan sát với các phép đo trên hai biến $X_{1}$ và $X_{2}$. Mỗi quan sát tương ứng với một trong ba nhóm riêng biệt. Với mục đích minh họa, chúng ta đã vẽ các thành viên của mỗi nhóm bằng cách sử dụng các màu sắc và ký hiệu khác nhau. Tuy nhiên, trong thực tế, các thành viên của nhóm không được biết đến và mục tiêu là xác định nhóm mà mỗi quan sát thuộc về. Trong bảng bên trái của Hình 2.8, đây là một nhiệm vụ tương đối dễ dàng vì các nhóm được phân tách rõ ràng. Ngược lại, bảng bên phải minh họa một bối cảnh khó khăn hơn, trong đó có sự chồng chéo giữa các nhóm. Không thể mong đợi phương pháp clustering có thể gán tất cả các điểm chồng chéo vào nhóm chính xác của chúng (xanh lam, xanh lục hoặc cam).}
+
+Trong các ví dụ ở Hình 2.8, chỉ có hai biến và do đó người ta có thể kiểm tra trực quan các biểu đồ phân tán của các quan sát để xác định các cụm. Tuy nhiên, trong thực tế, chúng ta thường gặp data sets chứa nhiều hơn hai biến. Trong trường hợp này, chúng ta không thể dễ dàng vẽ biểu đồ các quan sát. Ví dụ: nếu có p biến trong data set của chúng ta, thì p(p −1)/2 biểu đồ phân tán riêng biệt có thể được tạo và việc kiểm tra trực quan đơn giản không phải là cách khả thi để xác định các cụm. Vì lý do này, các phương pháp clustering tự động rất quan trọng. Chúng ta thảo luận về clustering và các phương pháp tiếp cận unsupervised learning khác trong Chương 12.
+
+Nhiều vấn đề tự nhiên rơi vào model supervised hoặc unsupervised learning. Tuy nhiên, đôi khi câu hỏi liệu một phân tích nên được coi là có giám sát hay không giám sát lại chưa rõ ràng. Ví dụ: giả sử chúng ta có một tập hợp n quan sát. Đối với m của các quan sát, trong đó m < n, chúng ta có cả phép đo predictor và response
+
+% --- page 37 ---
+% 2.2 Đánh giá độ chính xác của Model 27
+Đo lường. Đối với n −m quan sát còn lại, chúng ta có phép đo predictor nhưng không có phép đo response. Kịch bản như vậy có thể xảy ra nếu predictors có thể được đo tương đối rẻ nhưng việc thu thập responses tương ứng lại đắt hơn nhiều. Chúng ta coi cài đặt này là sự cố bán supervised learning. Trong cài đặt này, chúng ta muốn sử dụng một sta-semi-
+
+Phương pháp học thực tế supervised learning có thể kết hợp m quan sát mà phép đo response có sẵn cũng như n −m quan sát mà chúng không có sẵn. Mặc dù đây là một chủ đề thú vị nhưng nó nằm ngoài phạm vi của cuốn sách này.
+
+\subsubsection{Vấn đề giữa Regression và Classification}
+
+Đảm bảo rằng mọi biến dự báo định tính đều được mã hóa đúng cách trước khi tiến hành phân tích.
+
+Câu trả lời có thể là định lượng hoặc định tính; tức là chúng ta có thể sử dụng regression tuyến
+
+Phạm vi rộng bao gồm tuổi, chiều cao hoặc thu nhập của một người, giá trị của một ngôi nhà và giá của một cổ phiếu. Ngược lại, các biến định tính nhận các giá trị thuộc một trong K lớp hoặc loại khác nhau. Ví dụ về loại biến định tính bao gồm tình trạng hôn nhân của một người (đã kết hôn hoặc chưa), nhãn hiệu sản phẩm đã mua (nhãn hiệu A, B hoặc C), liệu một người có vỡ nợ hay không (có hoặc không) hoặc chẩn đoán ung thư (Bệnh bạch cầu tủy cấp tính, Bệnh bạch cầu cấp tính hoặc Không có bệnh bạch cầu). Chúng ta có xu hướng coi các bài toán có response định lượng là bài toán regression, trong khi những bài toán liên quan đến response định tính của regression thường được gọi là bài toán classification. Làm thế nào- classification bao giờ hết, sự khác biệt không phải lúc nào cũng rõ ràng. Bình phương nhỏ nhất linear regression (Chương 3) được sử dụng với response định lượng, trong khi logistic regression (Chương 4) thường được sử dụng với response lại nhị phân định tính (hai lớp hoặc nhị phân). Vì vậy, mặc dù có tên như vậy nhưng logistic regression là một phương pháp classification. Nhưng vì nó có xác suất của lớp estimates nên nó cũng có thể được coi là một phương pháp regression. Một số phương pháp thống kê, chẳng hạn như K-nearest neighbors (Chương 2 và 4) và boosting (Chương 8), có thể được sử dụng trong trường hợp responses định lượng hoặc định tính.
+
+Chúng ta có xu hướng chọn các phương pháp statistical learning trên cơ sở response là định lượng hay định tính; tức là chúng ta có thể sử dụng linear regression khi định lượng và logistic regression khi định tính. Tuy nhiên, việc predictors là định tính hay định lượng thường được coi là ít quan trọng hơn. Hầu hết các phương pháp statistical learning được thảo luận trong cuốn sách này có thể được áp dụng bất kể loại biến predictor nào, miễn là mọi predictors định tính đều được mã hóa chính xác trước khi thực hiện phân tích. Điều này được thảo luận ở Chương 3.
+
+\subsection{Đánh giá độ chính xác của Model}
+
+Một trong những mục đích chính của cuốn sách này là giới thiệu cho người đọc một loạt các phương pháp statistical learning vượt xa cách tiếp cận linear regression tiêu chuẩn. Tại sao cần phải giới thiệu nhiều phương pháp statistical learning khác nhau thay vì chỉ một phương pháp tốt nhất? Không có bữa trưa miễn phí trong thống kê: không có phương pháp nào thống trị tất cả các phương pháp khác trên tất cả data sets có thể. Trên một data set cụ thể, một phương pháp cụ thể có thể hoạt động
+
+% --- page 38 ---
+28 2. Statistical Learning
+
+Tốt nhất, nhưng một số phương pháp khác có thể hoạt động tốt hơn trên data set tương tự nhưng khác. Do đó, nhiệm vụ quan trọng là phải quyết định xem phương pháp nào mang lại kết quả tốt nhất cho bất kỳ tập hợp dữ liệu nào. Chọn phương pháp tốt nhất có thể là một trong những phần thử thách nhất khi thực hiện statistical learning trong thực tế.
+
+Trong phần này, chúng ta thảo luận về một số khái niệm quan trọng nhất nảy sinh khi chọn quy trình statistical learning cho data set cụ thể. Khi cuốn sách tiến triển, chúng ta sẽ giải thích cách áp dụng các khái niệm được trình bày ở đây vào thực tế.
+
+\subsubsection{Đo lường chất lượng độ vừa vặn}
+
+In order to evaluate the performance of a statistical learning method on a given data set, we need some way to measure how well its predictions actually match the observed data. That is, we need to quantify the extent to which the predicted response value for a given observation is close to the true response value for that observation. Trong cài đặt regression, thước đo được sử dụng phổ biến nhất là mean squared error (MSE), được tính bởi mean squared error MSE = 1
+
+N
+
+N 0
+
+\[I=1\]
+
+(yi −ˆf(xi))2, (2.5)
+
+Trong đó ˆf(xi) là dự đoán mà ˆf đưa ra cho quan sát thứ i. MSE sẽ nhỏ nếu responses được dự đoán rất gần với responses thực và sẽ lớn nếu đối với một số quan sát, responses được dự đoán và responses thực sự khác nhau đáng kể.
+
+6 tháng. Nhưng chúng ta không thực sự quan tâm phương pháp của mình dự đoán tuần trước chính xác đến mức nào.
+
+MSE trên dữ liệu training. Đúng hơn, chúng ta quan tâm đến tính chính xác của các dự đoán mà chúng ta thu được khi áp dụng phương pháp của mình cho dữ liệu thử nghiệm chưa từng thấy trước đây. Tại sao đây lại là điều chúng ta quan tâm? Giả sử chúng ta quan tâm đến dữ liệu thử nghiệm trong việc phát triển thuật toán dự đoán giá cổ phiếu dựa trên lợi nhuận cổ phiếu trước đó. Chúng ta có thể training phương pháp này bằng cách sử dụng lợi nhuận chứng khoán trong 6 tháng qua. Nhưng chúng ta không thực sự quan tâm đến việc phương pháp của chúng ta dự đoán giá cổ phiếu tuần trước tốt đến mức nào. Thay vào đó, chúng ta quan tâm đến việc nó sẽ dự đoán giá của ngày mai hoặc giá của tháng tiếp theo tốt như thế nào. Một lưu ý tương tự, giả sử rằng chúng ta có các phép đo lâm sàng (ví dụ: cân nặng, huyết áp, chiều cao, tuổi, tiền sử gia đình mắc bệnh) cho một số bệnh nhân, cũng như thông tin về việc mỗi bệnh nhân có mắc bệnh tiểu đường hay không. Chúng ta có thể sử dụng những bệnh nhân này để training phương pháp statistical learning nhằm dự đoán nguy cơ mắc bệnh tiểu đường dựa trên các phép đo lâm sàng. Trong thực tế, chúng ta muốn phương pháp này dự đoán chính xác nguy cơ mắc bệnh tiểu đường cho bệnh nhân trong tương lai dựa trên các phép đo lâm sàng của họ. Chúng ta không quan tâm lắm đến việc liệu phương pháp này có dự đoán chính xác nguy cơ mắc bệnh tiểu đường cho những bệnh nhân được sử dụng để training model hay không, vì chúng ta đã biết những bệnh nhân nào mắc bệnh tiểu đường.
+
+Để phát biểu nó một cách toán học hơn, giả sử rằng chúng ta điều chỉnh phương pháp statistical learning của mình dựa trên các quan sát training của chúng ta \{($x_{1}$, y1), ($x_{2}$, y2), . . . , (xn, yn)\}, và chúng ta thu được estimate ˆf. Khi đó chúng ta có thể tính ˆf($x_{1}$), ˆf($x_{2}$), . . . , ˆf(xn).
+
+% --- page 39 ---
+% 2.2 Đánh giá độ chính xác của Model 29
+% 0 20 40 60 80 100
+% 2 4 6 8 10 12
+% X
+Y
+
+\[2 5 10 20\]
+
+% 0,0 0,5 1,0 1,5 2,0 2,5
+Tính linh hoạt
+
+Mean Squared Error
+
+\noindent\textit{FIGURE 2.9. Bên trái: Dữ liệu mô phỏng từ f, hiển thị màu đen. Ba estimates của f được hiển thị: đường linear regression (đường cong màu cam) và hai đường khớp spline làm mịn (đường cong màu xanh lam và xanh lục). Bên phải: Training MSE (đường cong màu xám), kiểm tra MSE (đường cong màu đỏ) và kiểm tra MSE tối thiểu có thể trên tất cả các phương pháp (đường đứt nét). Các hình vuông thể hiện quá trình training và kiểm tra MSEs cho ba kiểu khớp được hiển thị trong bảng bên trái.}
+
+Hình f được hiển thị: đường regression tuyến tính (đường cong màu cam) và hai đường cong spline làm mịn.
+
+ˆf(xi) ≈yi; thay vào đó, chúng ta muốn biết liệu ˆf($x_{0}$) có xấp xỉ bằng y0 hay không, trong đó ($x_{0}$, y0) là quan sát kiểm tra chưa từng thấy trước đây không được sử dụng để training phương pháp statistical learning. Chúng ta muốn chọn phương pháp cho MSE thử nghiệm thấp nhất, trái ngược với MSE training thấp nhất. Nói cách khác, hãy kiểm tra MSE nếu chúng ta có số lượng quan sát thử nghiệm lớn, chúng ta có thể tính toán
+
+Ave(y0 −ˆf($x_{0}$))2, (2.6)
+
+Sai số dự đoán bình phương trung bình cho các quan sát thử nghiệm này ($x_{0}$, y0). Chúng ta muốn chọn model có số lượng càng nhỏ càng tốt.
+
+Làm thế nào chúng ta có thể cố gắng chọn một phương pháp giảm thiểu MSE thử nghiệm? Trong một số cài đặt, chúng ta có thể có sẵn data set thử nghiệm—nghĩa là chúng ta có thể có quyền truy cập vào một tập hợp các quan sát không được sử dụng để training phương pháp statistical learning. Sau đó, chúng ta có thể đánh giá (2.6) một cách đơn giản dựa trên các quan sát kiểm tra và chọn phương pháp học mà MSE kiểm tra là nhỏ nhất. Nhưng điều gì sẽ xảy ra nếu không có quan sát thử nghiệm nào? Trong trường hợp đó, người ta có thể tưởng tượng chỉ cần chọn phương pháp statistical learning để giảm thiểu việc training MSE (2.5). Đây có vẻ như là một cách tiếp cận hợp lý vì MSE training và MSE thử nghiệm dường như có liên quan chặt chẽ với nhau. Thật không may, có một vấn đề cơ bản với chiến lược này: không có gì đảm bảo rằng phương pháp có MSE training thấp nhất cũng sẽ có MSE thử nghiệm thấp nhất. Nói một cách đại khái, vấn đề là có nhiều phương pháp thống kê cụ thể là estimate coefficients để giảm thiểu training set MSE. Đối với các phương pháp này, training set MSE có thể khá nhỏ, nhưng MSE thử nghiệm thường lớn hơn nhiều.
+
+\noindent\textit{Hình 2.9 minh họa hiện tượng này bằng một ví dụ đơn giản. Trong phần bên trái của Hình 2.9, chúng ta đã tạo ra các quan sát từ (2.1) với}
+
+% --- page 40 ---
+30 2. Statistical Learning
+
+F thực được cho bởi đường cong màu đen. Các đường cong màu cam, xanh lam và xanh lục minh họa ba estimates có thể có cho f thu được bằng các phương pháp có mức độ linh hoạt ngày càng tăng. Đường màu cam phù hợp với linear regression, tương đối không linh hoạt. Các đường cong màu xanh lam và màu xanh lá cây được tạo ra bằng cách sử dụng các đường dẫn làm mịn, được thảo luận trong Chương 7, với các mức độ làm mịn khác nhau. Nó đang làm mịn
+
+Spline rõ ràng rằng khi mức độ linh hoạt tăng lên, các đường cong sẽ khớp với dữ liệu được quan sát chặt chẽ hơn. Đường cong màu xanh lá cây linh hoạt nhất và rất khớp với dữ liệu; tuy nhiên, chúng ta nhận thấy rằng nó không khớp với f thật (hiển thị bằng màu đen) vì nó quá lung lay. Bằng cách điều chỉnh mức độ linh hoạt của việc làm mịn spline fit, chúng ta có thể tạo ra nhiều kiểu khớp khác nhau cho dữ liệu này.
+
+Bây giờ chúng ta chuyển sang bảng bên phải của Hình 2.9. Đường cong màu xám hiển thị MSE training trung bình như một hàm của tính linh hoạt, hay chính thức hơn là bậc tự do, đối với một số đường trục làm mịn. Mức độ của
+
+Bậc tự do tự do là đại lượng tóm tắt tính linh hoạt của đường cong; nó sẽ được thảo luận đầy đủ hơn trong Chương 7. Các ô vuông màu cam, xanh lam và xanh lục biểu thị MSEs được liên kết với các đường cong tương ứng trong panel bên trái. Một đường cong bị hạn chế hơn và do đó mượt mà hơn có ít bậc tự do hơn một đường cong ngoằn ngoèo—lưu ý rằng trong Hình 2.9, linear regression ở đầu hạn chế nhất, với hai bậc tự do. Quá trình training MSE giảm dần khi tính linh hoạt tăng lên. Trong ví dụ này, f đúng là phi tuyến tính, và do đó độ khớp tuyến tính màu cam không đủ linh hoạt đối với ước tính f. Đường cong màu xanh lá cây có MSE training thấp nhất trong cả ba phương pháp, vì nó tương ứng với đường cong linh hoạt nhất trong ba đường cong phù hợp trong panel bên trái.
+
+Trong ví dụ này, chúng ta biết hàm thực f và vì vậy chúng ta cũng có thể tính toán MSE thử nghiệm trên một test set rất lớn, như một hàm linh hoạt. (Tất nhiên, nói chung f chưa biết nên điều này sẽ không thể xảy ra.) Phép thử MSE được hiển thị bằng đường cong màu đỏ ở phần bên phải của Hình 2.9. Giống như MSE training, bài kiểm tra MSE ban đầu giảm khi mức độ linh hoạt tăng lên. Tuy nhiên, tại một số thời điểm, MSE thử nghiệm giảm dần và sau đó bắt đầu tăng trở lại. Do đó, cả hai đường cong màu cam và màu xanh lá cây đều có MSE thử nghiệm cao. Đường cong màu xanh làm giảm thiểu thử nghiệm MSE, điều này không có gì đáng ngạc nhiên vì về mặt trực quan, nó có vẻ tốt nhất đối với estimate trong panel bên trái của Hình 2.9. Đường đứt nét ngang biểu thị Var(ϵ), sai số không thể giảm được trong (2.3), tương ứng với thử nghiệm MSE có thể đạt được thấp nhất trong số tất cả các phương pháp có thể. Do đó, đường cong làm mịn được biểu thị bằng đường cong màu xanh gần như tối ưu.
+
+Trong bảng bên phải của Hình 2.9, khi tính linh hoạt của phương pháp statistical learning tăng lên, chúng ta quan sát thấy sự giảm đơn điệu trong training MSE và hình chữ U trong thử nghiệm MSE. Đây là thuộc tính cơ bản của statistical learning, không phụ thuộc vào data set cụ thể hiện có và bất kể phương pháp thống kê nào đang được sử dụng. Khi tính linh hoạt của model tăng lên, MSE training sẽ giảm, nhưng MSE thử nghiệm có thể không. Khi một phương pháp nhất định mang lại MSE training nhỏ nhưng MSE thử nghiệm lớn, chúng ta được gọi là dữ liệu overfitting. Điều này xảy ra do quy trình statistical learning của chúng ta đang làm việc quá sức để tìm các mẫu trong dữ liệu training và có thể chọn ra một số mẫu chỉ do ngẫu nhiên gây ra chứ không phải do các thuộc tính thực sự của hàm f chưa biết. Khi chúng ta khớp quá mức dữ liệu training, bài kiểm tra MSE sẽ rất lớn vì giả định
+
+% --- page 41 ---
+% 2.2 Đánh giá độ chính xác của Model 31
+% 0 20 40 60 80 100
+% 2 4 6 8 10 12
+% X
+Y
+
+\[2 5 10 20\]
+
+% 0,0 0,5 1,0 1,5 2,0 2,5
+Tính linh hoạt
+
+Mean Squared Error
+
+\noindent\textit{HÌNH 2.10. Chi tiết tương tự như trong Hình 2.9, sử dụng giá trị f thực khác là...}
+
+Các mẫu mà phương pháp tìm thấy trong dữ liệu training không tồn tại trong dữ liệu thử nghiệm. Lưu ý rằng bất kể overfitting có xảy ra hay không, chúng ta hầu như luôn mong đợi MSE training sẽ nhỏ hơn MSE thử nghiệm vì hầu hết các phương pháp statistical learning đều trực tiếp hoặc gián tiếp tìm cách giảm thiểu MSE training. Overfitting đề cập cụ thể đến trường hợp model kém linh hoạt hơn sẽ mang lại MSE thử nghiệm nhỏ hơn.
+
+\noindent\textit{Hình 2.10 cung cấp một ví dụ khác trong đó f đúng gần như tuyến tính. Một lần nữa, chúng ta quan sát thấy rằng quá trình training MSE giảm đi một cách đơn điệu khi độ linh hoạt của model tăng lên và có hình chữ U trong thử nghiệm MSE. Tuy nhiên, vì độ chân thực gần tuyến tính nên phép thử MSE chỉ giảm nhẹ trước khi tăng trở lại, do đó, mức độ khớp của bình phương nhỏ nhất màu cam tốt hơn đáng kể so với đường cong màu xanh lá cây rất linh hoạt. Cuối cùng, Hình 2.11 trình bày một ví dụ trong đó f có tính phi tuyến cao. Các đường cong MSE training và kiểm tra vẫn thể hiện các mẫu chung giống nhau, nhưng hiện tại có sự giảm nhanh ở cả hai đường cong trước khi MSE thử nghiệm bắt đầu tăng chậm.}
+
+Trong thực tế, người ta thường có thể tính toán MSE training tương đối dễ dàng, nhưng việc ước tính MSE thử nghiệm khó hơn nhiều vì thường không có sẵn dữ liệu thử nghiệm. Như ba ví dụ trước minh họa, mức độ linh hoạt tương ứng với model với MSE thử nghiệm tối thiểu có thể khác nhau đáng kể giữa các data sets. Xuyên suốt cuốn sách này, chúng ta thảo luận về nhiều cách tiếp cận khác nhau có thể được sử dụng trong thực tế để đạt được điểm tối thiểu này của estimate. Một phương pháp quan trọng là cross-validation (Chương 5), đây là một phương pháp chéo
+
+Phương pháp xác thực để ước tính bài kiểm tra MSE bằng cách sử dụng dữ liệu training.
+
+\subsubsection{Bias-Variance Trade-Off}
+
+Hình chữ U quan sát được trong các đường cong MSE thử nghiệm (Hình 2.9–2.11) hóa ra là kết quả của hai đặc tính cạnh tranh của các phương pháp statistical learning.
+
+% --- page 42 ---
+32 2. Statistical Learning
+
+% 0 20 40 60 80 100
+\[-10 0 10 20\]
+
+% X
+Y
+
+\[2 5 10 20\]
+
+% 0 5 10 15 20
+Tính linh hoạt
+
+Mean Squared Error
+
+\noindent\textit{Độ lệch chuẩn thấp và độ sai lệch thấp. Lưu ý rằng độ lệch chuẩn vốn dĩ là một giá trị không âm.}
+
+Mặc dù chứng minh toán học nằm ngoài phạm vi của cuốn sách này, nhưng có thể chỉ ra rằng phép thử MSE kỳ vọng, với một giá trị $x_{0}$ cho trước, luôn có thể được phân tích thành tổng của ba đại lượng cơ bản: variance của ˆf($x_{0}$), bias bình phương của ˆf($x_{0}$) và variance của sai số variance
+
+Thuật ngữ bias ϵ. Đó là,
+
+\[E\]
+
+\[1\]
+
+% (2.7)
+\[22\]
+
+Quá nhiều khác biệt giữa các tập training. Tuy nhiên, nếu một phương pháp có độ variance cao
+
+Ở đây ký hiệu E
+
+\[1\]
+
+$Y_{0}$ −ˆf($x_{0}$)
+
+\[22\]
+
+Chúng ta cần lựa chọn một phương pháp học thống kê đạt được đồng thời các mục tiêu sau:
+
+Ước tính bằng cách sử dụng một dataset training khác. Vì dữ liệu training
+
+= Var( ˆf($x_{0}$)) + [Độ lệch( ˆf($x_{0}$))]2 + Var().
+
+\[1\]
+
+$Y_{0}$ −ˆf($x_{0}$)
+
+\[22\]
+
+Sai số bình phương trung bình (MSE) dự kiến tổng thể của bài kiểm tra có thể được tính bằng cách lấy trung bình E y0   ˆf($x_{0}$)
+
+Phương trình 2.7 cho chúng ta biết rằng để giảm thiểu sai số kiểm tra dự kiến, chúng ta cần chọn phương pháp statistical learning đồng thời đạt được variance thấp và bias thấp. Lưu ý rằng variance vốn là một đại lượng không âm và bias bình phương cũng không âm. Do đó, chúng ta thấy rằng phép kiểm tra dự kiến ​​MSE không bao giờ có thể nằm dưới Var(ϵ), sai số không thể giảm được từ (2.3).
+
+Ý nghĩa của variance và bias của phương pháp statistical learning là gì? Variance đề cập đến mức độ mà ˆf sẽ thay đổi nếu chúng ta ước tính nó bằng cách sử dụng data set training khác. Vì dữ liệu training được sử dụng để phù hợp với phương pháp statistical learning, nên việc training data sets khác nhau sẽ dẫn đến ˆf khác nhau. Nhưng lý tưởng nhất là estimate cho f không nên khác nhau quá nhiều giữa training sets. Tuy nhiên, nếu một phương thức có variance cao thì những thay đổi nhỏ trong dữ liệu training có thể dẫn đến những thay đổi lớn về ˆf. Nói chung, các phương pháp thống kê linh hoạt hơn có variance cao hơn. Xét các đường cong màu xanh lá cây và màu cam trong Hình 2.9. Đường cong màu xanh lá cây linh hoạt đang theo sát các quan sát rất chặt chẽ. Nó có variance cao vì việc thay đổi bất kỳ điểm dữ liệu nào trong số này có thể khiến estimate ˆf thay đổi đáng kể.
+
+% --- page 43 ---
+% 2.2 Đánh giá độ chính xác của Model 33
+\[2 5 10 20\]
+
+% 0,0 0,5 1,0 1,5 2,0 2,5
+Tính linh hoạt
+
+\[2 5 10 20\]
+
+% 0,0 0,5 1,0 1,5 2,0 2,5
+Tính linh hoạt
+
+\[2 5 10 20\]
+
+% 0 5 10 15 20
+Tính linh hoạt
+
+MSE Bias Tùy chọn
+
+\noindent\textit{Kiểm tra MSE giảm. Tuy nhiên, đến một lúc nào đó, việc tăng tính linh hoạt sẽ không còn nhiều tác dụng.}
+
+Ngược lại, đường bình phương nhỏ nhất màu cam tương đối không linh hoạt và có variance thấp, bởi vì việc di chuyển bất kỳ quan sát đơn lẻ nào có thể sẽ chỉ gây ra một sự thay đổi nhỏ ở vị trí của đường thẳng.
+
+Mặt khác, bias đề cập đến lỗi được đưa ra bằng cách tính gần đúng một bài toán thực tế, có thể cực kỳ phức tạp, bằng một model đơn giản hơn nhiều. Ví dụ: linear regression giả định rằng có mối quan hệ tuyến tính giữa Y và $X_{1}$, $X_{2}$, . . . , Xp. Không chắc rằng bất kỳ bài toán thực tế nào thực sự có mối quan hệ tuyến tính đơn giản như vậy, và do đó việc thực hiện linear regression chắc chắn sẽ dẫn đến một số bias trong estimate của f. Trong Hình 2.11, f thực về cơ bản là phi tuyến tính, vì vậy cho dù chúng ta có bao nhiêu quan sát training đi nữa thì cũng không thể tạo ra một estimate chính xác bằng cách sử dụng linear regression. Nói cách khác, linear regression cho kết quả bias cao trong ví dụ này. Tuy nhiên, trong Hình 2.10, f thực rất gần với tuyến tính, và do đó với đủ dữ liệu, linear regression có thể tạo ra estimate chính xác. Nói chung, các phương pháp linh hoạt hơn sẽ tạo ra ít bias hơn.
+
+Theo nguyên tắc chung, khi chúng ta sử dụng các phương pháp linh hoạt hơn, variance sẽ tăng và bias sẽ giảm. Tốc độ thay đổi tương đối của hai đại lượng này xác định liệu MSE thử nghiệm tăng hay giảm. Khi chúng ta tăng tính linh hoạt của một lớp phương thức, bias ban đầu có xu hướng giảm nhanh hơn so với mức tăng variance. Do đó, thử nghiệm MSE dự kiến ​​sẽ giảm. Tuy nhiên, tại một số điểm, việc tăng tính linh hoạt ít ảnh hưởng đến bias nhưng bắt đầu tăng đáng kể variance. Khi điều này xảy ra, MSE thử nghiệm sẽ tăng lên. Lưu ý rằng chúng ta đã quan sát model giảm thử nghiệm MSE này, sau đó là tăng thử nghiệm MSE trong bảng bên phải của Hình 2.9–2.11.
+
+Ba đồ thị trong Hình 2.12 minh họa Công thức 2.7 cho các ví dụ trong Hình 2.9–2.11. Trong mỗi trường hợp, đường cong liền màu xanh biểu thị bias bình phương, cho các mức độ linh hoạt khác nhau, trong khi đường cong màu cam tương ứng với variance. Đường đứt nét ngang biểu thị Var(ϵ), sai số không thể giảm được. Cuối cùng, đường cong màu đỏ tương ứng với test set MSE, là tổng
+
+% --- page 44 ---
+34 2. Statistical Learning
+
+Của ba đại lượng này. Trong cả ba trường hợp, variance đều tăng và bias giảm khi tính linh hoạt của phương pháp tăng lên. Tuy nhiên, mức độ linh hoạt tương ứng với thử nghiệm tối ưu MSE khác nhau đáng kể giữa ba data sets, vì bias bình phương và variance thay đổi ở các tốc độ khác nhau trong mỗi data sets. Trong bảng bên trái của Hình 2.12, bias ban đầu giảm nhanh chóng, dẫn đến thử nghiệm dự kiến ​​MSE ban đầu giảm mạnh. Mặt khác, trong bảng ở giữa của Hình 2.12, f thực gần tuyến tính, do đó bias chỉ giảm một chút khi tính linh hoạt tăng lên, và MSE thử nghiệm chỉ giảm nhẹ trước khi tăng nhanh khi variance tăng. Cuối cùng, trong phần bên phải của Hình 2.12, khi tính linh hoạt tăng lên thì bias giảm đáng kể vì f thực rất phi tuyến tính. Variance cũng tăng rất ít khi tính linh hoạt tăng lên. Do đó, thử nghiệm MSE giảm đáng kể trước khi tăng nhẹ khi tính linh hoạt của model tăng lên.
+
+Mối quan hệ giữa bias, variance và test set MSE được đưa ra trong Phương trình 2.7 và được hiển thị trong Hình 2.12 được gọi là bias-variance trade-off. Hiệu suất test set tốt của phương pháp statistical learning lại bias-variance
+
+Sự đánh đổi yêu cầu variance thấp cũng như bias bình phương thấp. Điều này được gọi là sự đánh đổi vì dễ dàng có được một phương pháp có bias cực thấp nhưng variance cao (ví dụ: bằng cách vẽ một đường cong đi qua từng quan sát training) hoặc một phương pháp có variance rất thấp nhưng bias cao (bằng cách khớp một đường ngang với dữ liệu). Thách thức nằm ở việc tìm ra một phương pháp mà cả variance và bias bình phương đều thấp. Sự đánh đổi này là một trong những chủ đề quan trọng nhất được lặp lại trong cuốn sách này.
+
+Trong tình huống thực tế trong đó f không được quan sát, nói chung không thể tính toán rõ ràng phép thử MSE, bias hoặc variance cho phương pháp statistical learning. Tuy nhiên, người ta phải luôn ghi nhớ bias-variance trade-off. Trong cuốn sách này, chúng ta khám phá các phương pháp cực kỳ linh hoạt và do đó về cơ bản có thể loại bỏ bias. Tuy nhiên, điều này không đảm bảo rằng chúng sẽ hoạt động tốt hơn một phương pháp đơn giản hơn nhiều như linear regression. Để lấy một ví dụ cực đoan, giả sử rằng f đúng là tuyến tính. Trong tình huống này, linear regression sẽ không có bias, khiến cho việc cạnh tranh trở nên rất khó khăn để có một phương pháp linh hoạt hơn. Ngược lại, nếu f thực rất phi tuyến tính và chúng ta có nhiều quan sát training thì chúng ta có thể làm tốt hơn bằng cách sử dụng cách tiếp cận rất linh hoạt, như trong Hình 2.11. Trong Chương 5, chúng ta thảo luận về cross-validation, đây là một cách để estimate kiểm tra MSE bằng cách sử dụng dữ liệu training.
+
+\subsubsection{classification setting}
+
+Cho đến nay, cuộc thảo luận của chúng ta về độ chính xác của model đã tập trung vào cài đặt regression. Nhưng nhiều khái niệm mà chúng ta đã gặp, chẳng hạn như bias-variance trade-off, được chuyển sang classification setting chỉ với một số sửa đổi do thực tế là yi không còn mang tính định lượng nữa. Giả sử chúng ta tìm kiếm ước tính f trên cơ sở quan sát training \{($x_{1}$, y1), . . . , (xn, yn)\}, hiện tại y1, . . . , yn là chất lượng. Cách tiếp cận phổ biến nhất để định lượng độ chính xác của estimate ˆf của chúng ta là tỷ lệ lỗi training, tỷ lệ lỗi xảy ra nếu chúng ta áp dụng tỷ lệ lỗi
+
+% --- page 45 ---
+% 2.2 Đánh giá độ chính xác của Model 35
+Estimate ˆf của chúng ta cho các quan sát training:
+
+1 n
+
+N 0
+
+\[I=1\]
+
+Tôi(yi ̸= ˆyi). (2.8)
+
+Ở đây ˆyi là nhãn lớp được dự đoán cho quan sát thứ i sử dụng ˆf. Và I(yi ̸= ˆyi) là biến chỉ báo có giá trị bằng 1 nếu yi ̸= ˆyi và bằng 0 nếu yi = ˆyi. Chỉ báo
+
+Biến Nếu I(yi ̸= ˆyi) = 0 thì quan sát thứ i được phân loại chính xác theo phương pháp classification của chúng ta; nếu không thì nó đã bị classification sai. Do đó phương trình 2.8 tính toán tỷ lệ classification không chính xác.
+
+Phương trình 2.8 được gọi là tỷ lệ lỗi training vì nó đang được training
+
+Lỗi được đưa ra dựa trên dữ liệu được sử dụng để training classifier của chúng ta. Như trong cài đặt regression, chúng ta quan tâm nhất đến tỷ lệ lỗi do áp dụng classifier của chúng ta để kiểm tra các quan sát không được sử dụng trong training. Tỷ lệ lỗi kiểm tra liên quan đến một tập hợp các quan sát kiểm tra về lỗi kiểm tra dạng ($x_{0}$, y0) được cho bởi
+
+Có điều kiện
+
+Where ˆy0 is the predicted class label that results from applying the classifier to the test observation with predictor $x_{0}$. A good classifier is one for which the test error (2.9) is smallest.
+
+Classifier Bayes
+
+Có thể chỉ ra (mặc dù bằng chứng nằm ngoài phạm vi của cuốn sách này) rằng tỷ lệ lỗi kiểm tra được đưa ra trong (2.9) được giảm thiểu trung bình bằng một classifier rất đơn giản gán mỗi quan sát cho lớp có khả năng xảy ra nhất, với các giá trị predictor của nó. In other words, we should simply assign a test observation with predictor vector $x_{0}$ to the class j for which
+
+% Pr(Y = j|X = x0) (2.10)
+Quan sát nào nằm ở phía màu cam của ranh giới sẽ được chỉ định.
+
+Tương ứng với việc dự đoán lớp một nếu $\Pr(Y = 1 \mid X = x_{0})$ > 0,5 và lớp
+
+Classifier only two possible response values, say class 1 or class 2, the Bayes classifier corresponds to predicting class one if $\Pr(Y = 1 \mid X = x_{0})$ > 0.5, and class two otherwise.
+
+\noindent\textit{Hình 2.13 cung cấp một ví dụ sử dụng data set mô phỏng trong không gian hai chiều bao gồm predictors $X_{1}$ và $X_{2}$. Các vòng tròn màu cam và màu xanh tương ứng với các quan sát training thuộc hai lớp khác nhau. Đối với mỗi giá trị của $X_{1}$ và $X_{2}$, có xác suất khác nhau để response có màu cam hoặc xanh lam. Vì đây là dữ liệu mô phỏng nên chúng ta biết dữ liệu được tạo ra như thế nào và chúng ta có thể tính toán các xác suất có điều kiện cho từng giá trị của $X_{1}$ và $X_{2}$. Vùng tô màu cam phản ánh tập hợp các điểm có $\Pr(Y = \mathrm{orange} \mid X)$ lớn hơn 50\%, trong khi vùng tô bóng màu xanh biểu thị tập hợp các điểm có xác suất dưới 50\%. Đường đứt nét màu tím biểu thị các điểm có xác suất chính xác là 50\%. Đây được gọi là ranh giới quyết định Bayes. Naive Bayes}
+
+Phương trình 2.8 được gọi là tỷ lệ lỗi training vì nó được tính toán dựa trên dữ
+
+% --- page 46 ---
+36 2. Statistical Learning
+
+\noindent\textit{FIGURE 2.13. Một data set mô phỏng bao gồm 100 quan sát trong mỗi nhóm trong số hai nhóm, được biểu thị bằng màu xanh lam và màu cam. Đường đứt nét màu tím biểu thị ranh giới quyết định Bayes. Lưới nền màu cam cho biết khu vực trong đó một quan sát thử nghiệm sẽ được gán cho lớp màu cam và lưới nền màu xanh lam cho biết khu vực trong đó một quan sát thử nghiệm sẽ được gán cho lớp màu xanh lam.}
+
+Sang lớp màu cam, và tương tự, quan sát ở phía màu xanh của ranh giới sẽ được gán cho lớp màu xanh.
+
+Classifier Bayes tạo ra tỷ lệ lỗi kiểm tra thấp nhất có thể, được gọi là tỷ lệ lỗi Bayes. Vì classifier Bayes sẽ luôn chọn lỗi Bayes của lớp
+
+Tỷ lệ mà (2.10) lớn nhất thì tỷ lệ lỗi sẽ là 1−$\max_j$ $\Pr(Y = j \mid X = x_{0})$ tại X = $x_{0}$. Nói chung, tỷ lệ lỗi Bayes tổng thể được đưa ra bởi
+
+\[1 -E\]
+
+% *
+Tối đa
+
+\[J $\Pr(Y = j \mid X)$\]
+
+\[+\]
+
+% , (2.11)
+Trong đó kỳ vọng tính trung bình xác suất trên tất cả các giá trị có thể có của X. Đối với dữ liệu mô phỏng của chúng ta, tỷ lệ lỗi Bayes là 0,133. Nó lớn hơn 0, bởi vì các lớp trùng nhau trong quần thể thực, điều này ngụ ý rằng $\max_j$ $\Pr(Y = j \mid X = x_{0})$ < 1 đối với một số giá trị của $x_{0}$. Tỷ lệ lỗi Bayes tương tự như lỗi không thể giảm được, đã thảo luận trước đó.
+
+K-Nearest Neighbors
+
+Về lý thuyết, chúng ta luôn muốn dự đoán responses định tính bằng cách sử dụng classifier Bayes. Nhưng đối với dữ liệu thực, chúng ta không biết phân bố có điều kiện của Y cho X và do đó việc tính toán classifier Bayes là không thể. Do đó, classifier Bayes đóng vai trò là tiêu chuẩn vàng không thể đạt được để so sánh với các phương pháp khác. Nhiều cách tiếp cận cố gắng estimate phân bố có điều kiện của Y cho X và sau đó classification một quan sát nhất định vào lớp có xác suất ước tính cao nhất. Một phương pháp như vậy là classifier K-nearest neighbors (KNN). Cho giá trị dương ở K-gần nhất
+
+Hàng xóm
+
+% --- page 47 ---
+% 2.2 Đánh giá độ chính xác của Model 37
+Cho một số nguyên dương $K$ và quan sát kiểm tra $x_{0}$, classifier KNN trước tiên xác định các điểm K trong dữ liệu training gần $x_{0}$ nhất, được biểu thị bằng $N_{0}$. Sau đó, estimates xác suất có điều kiện cho lớp j là tỷ lệ các điểm trong $N_{0}$ có giá trị response bằng j:
+
+\[$\Pr(Y = j \mid X = x_{0})$ = 1\]
+
+\[K\]
+
+\[0\]
+
+I $N_{0}$
+
+\[I(yi = j).\]
+
+Cuối cùng, KNN classification quan sát thử nghiệm $x_{0}$ thành lớp có xác suất lớn nhất từ ​​(2.12).
+
+\noindent\textit{Hình 2.14 cung cấp một ví dụ minh họa về phương pháp KNN. Trong bảng bên trái, chúng ta đã vẽ một data set training nhỏ bao gồm sáu quan sát màu xanh lam và sáu quan sát màu cam. Mục tiêu của chúng ta là đưa ra dự đoán cho điểm được đánh dấu bằng chữ thập màu đen. Giả sử chúng ta chọn K = 3. Khi đó KNN trước tiên sẽ xác định ba quan sát gần đường chéo nhất. Vùng lân cận này được hiển thị dưới dạng một vòng tròn. Nó bao gồm hai điểm màu xanh lam và một điểm màu cam, dẫn đến xác suất ước tính là 2/3 đối với lớp màu xanh lam và 1/3 đối với lớp màu cam. Do đó KNN sẽ dự đoán rằng chữ thập màu đen thuộc lớp màu xanh. Trong bảng bên phải của Hình 2.14, chúng ta đã áp dụng phương pháp KNN với K = 3 ở tất cả các giá trị có thể có của $X_{1}$ và $X_{2}$, đồng thời đã vẽ ranh giới quyết định KNN tương ứng.}
+
+Mặc dù thực tế đây là một cách tiếp cận rất đơn giản nhưng KNN thường có thể tạo ra các classifier gần giống với classifier Bayes tối ưu một cách đáng ngạc nhiên. Hình 2.15 hiển thị ranh giới quyết định KNN, sử dụng K = 10, khi áp dụng cho data set mô phỏng lớn hơn từ Hình 2.13. Lưu ý rằng mặc dù classifier KNN không biết phân bố thực sự, nhưng ranh giới quyết định KNN rất gần với ranh giới quyết định của classifier Bayes. Tỷ lệ lỗi kiểm tra khi sử dụng KNN là 0,1363, gần với tỷ lệ lỗi Bayes là 0,1304.
+
+Việc lựa chọn K có ảnh hưởng mạnh mẽ đến classifier KNN thu được. Hình 2.16 hiển thị hai KNN phù hợp với dữ liệu mô phỏng từ Hình 2.13, sử dụng K = 1 và K = 100. Khi K = 1, ranh giới quyết định quá linh hoạt và tìm thấy các mẫu trong dữ liệu không tương ứng với ranh giới quyết định Bayes. Điều này tương ứng với một classifier có bias thấp nhưng variance rất cao. Khi K tăng lên, phương pháp trở nên kém linh hoạt hơn và tạo ra ranh giới quyết định gần với tuyến tính. Điều này tương ứng với classifier variance thấp nhưng bias cao. Trên data set mô phỏng này, cả K = 1 và K = 100 đều không đưa ra dự đoán tốt: chúng có tỷ lệ lỗi kiểm tra lần lượt là 0,1695 và 0,1925.
+
+Giống như trong cài đặt regression, không có mối quan hệ chặt chẽ giữa tỷ lệ lỗi training và tỷ lệ lỗi kiểm tra. Với K = 1, tỷ lệ lỗi training KNN là 0, nhưng tỷ lệ lỗi kiểm tra có thể khá cao. Nói chung, khi chúng ta sử dụng các phương pháp classification linh hoạt hơn, tỷ lệ lỗi training sẽ giảm nhưng tỷ lệ lỗi kiểm tra có thể không giảm. Trong Hình 2.17, chúng ta đã vẽ đồ thị các lỗi training và kiểm tra KNN dưới dạng hàm của 1/K. Khi 1/K tăng lên, phương pháp này trở nên linh hoạt hơn. Như trong cài đặt regression, tỷ lệ lỗi training liên tục giảm khi độ linh hoạt tăng lên. However, the test error exhibits a characteristic U-shape, declining at first (with a minimum at approximately K = 10) before increasing again when the method becomes excessively flexible and overfits.
+
+% --- page 48 ---
+38 2. Statistical Learning
+
+\noindent\textit{FIGURE 2.14. Cách tiếp cận KNN, sử dụng K = 3, được minh họa trong một tình huống đơn giản với sáu quan sát màu xanh lam và sáu quan sát màu cam. Bên trái: một quan sát kiểm tra tại đó nhãn lớp dự đoán được mong muốn được hiển thị dưới dạng chữ thập màu đen. Ba điểm gần nhất với quan sát thử nghiệm đã được xác định và người ta dự đoán rằng quan sát thử nghiệm thuộc về loại thường xảy ra nhất, trong trường hợp này là màu xanh lam. Phải: Ranh giới quyết định KNN cho ví dụ này được hiển thị bằng màu đen. Lưới màu xanh lam biểu thị khu vực trong đó một quan sát thử nghiệm sẽ được xếp vào lớp màu xanh lam và lưới màu cam biểu thị khu vực trong đó quan sát thử nghiệm sẽ được xếp vào lớp màu cam.}
+
+KNN: K=10
+
+\noindent\textit{FIGURE 2.15. Đường cong màu đen biểu thị ranh giới quyết định KNN trên dữ liệu từ Hình 2.13, sử dụng K = 10. Ranh giới quyết định Bayes được hiển thị dưới dạng đường đứt nét màu tím. Ranh giới quyết định của KNN và Bayes rất giống nhau.}
+
+Trong cả cài đặt regression và classification, việc chọn mức độ linh hoạt chính xác là rất quan trọng đối với sự thành công của bất kỳ phương pháp statistical learning nào. Bias-variance tradeoff và hình chữ U trong lỗi kiểm tra có thể khiến việc này trở thành một nhiệm vụ khó khăn. Trong Chương 5, chúng ta quay lại chủ đề này và thảo luận
+
+% --- page 49 ---
+% 2.2 Đánh giá độ chính xác của Model 39
+KNN: K=1 KNN: K=100
+
+\noindent\textit{FIGURE 2.16. So sánh các ranh giới quyết định KNN (các đường cong liền màu đen) thu được bằng cách sử dụng K = 1 và K = 100 trên dữ liệu từ Hình 2.13. Với K = 1, ranh giới quyết định quá linh hoạt, trong khi với K = 100 thì ranh giới quyết định không đủ linh hoạt. Ranh giới quyết định Bayes được hiển thị dưới dạng đường đứt nét màu tím.}
+
+% 0,01 0,02 0,05 0,10 0,20 0,50 1,00
+% 0,00 0,05 0,10 0,15 0,20
+1/K
+
+Tỷ lệ lỗi
+
+Lỗi training Lỗi kiểm tra
+
+\noindent\textit{FIGURE 2.17. Tỷ lệ lỗi training KNN (màu xanh lam, 200 quan sát) và tỷ lệ lỗi kiểm tra (màu cam, 5.000 quan sát) trên dữ liệu từ Hình 2.13, khi mức độ linh hoạt (được đánh giá bằng 1/K trên thang log) tăng lên hoặc tương đương khi số lượng lân cận K giảm. Đường đứt nét màu đen biểu thị tỷ lệ lỗi Bayes. Độ giật của các đường cong là do kích thước nhỏ của data set training.}
+
+Các phương pháp khác nhau để ước tính tỷ lệ lỗi kiểm tra và từ đó chọn mức độ linh hoạt tối ưu cho phương pháp statistical learning nhất định.
+
+% --- page 50 ---
+40 2. Statistical Learning
+
+\subsection{Lab: Giới thiệu về Python}
+
+\subsubsection{Bắt đầu}
+
+Để chạy labs trong cuốn sách này, bạn sẽ cần hai thứ:
+
+Nếu bạn đang sử dụng Windows, bạn có thể sử dụng menu Bắt đầu để truy cập Anaconda.
+
+Trong labs.
+
+2. Truy cập vào Jupyter, giao diện Python chạy mã rất phổ biến
+
+Thông qua một tập tin gọi là sổ ghi chép. Notebook Bạn có thể tải xuống và cài đặt Python3 bằng cách làm theo hướng dẫn có tại anaconda.com.
+
+Gõ lệnh `pip install ISLP` trong terminal Linux ; lệnh này cũng cài đặt hầu hết các gói cần
+
+Thiết khác trong các bài lab. Trang tài nguyên Python có liên kết đến ISLP.
+
+Lab jupyter Ch2-statlearn-lab.ipynb.
+
+2.3 Lab: Giới thiệu về Python
+
+Có sẵn tại jupyter.org/install.
+
+Vui lòng xem trang tài nguyên Python trên trang web sách statlearning.com để biết thông tin cập nhật về cách giúp Python và Jupyter hoạt động trên máy tính của bạn.
+
+Bạn sẽ cần cài đặt gói ISLP, gói này cung cấp quyền truy cập vào datasets và các chức năng được xây dựng tùy chỉnh mà chúng ta cung cấp. Bên trong thiết bị đầu cuối macOS hoặc Linux, loại pip install ISLP; điều này cũng cài đặt hầu hết các gói khác cần thiết trong labs. Trang tài nguyên Python có liên kết đến trang web tài liệu ISLP.
+
+Để chạy lab này, hãy tải xuống tệp Ch2-statlearn-lab.ipynb từ trang tài nguyên Python. Bây giờ hãy chạy đoạn mã sau tại dòng lệnh: jupyter lab Ch2-statlearn-lab.ipynb.
+
+Nếu bạn đang sử dụng Windows, bạn có thể sử dụng menu bắt đầu để truy cập anaconda và theo các liên kết. Ví dụ: để cài đặt ISLP và chạy lab này, bạn có thể chạy cùng một mã ở trên trong shell anaconda.
+
+\subsubsection{Các lệnh cơ bản}
+
+1. Cần có bản cài đặt Python3, đây là phiên bản Python cụ thể được sử dụng.
+
+Giống như hầu hết các ngôn ngữ lập trình, Python sử dụng các hàm để thực hiện các thao tác hàm. Để chạy một hàm có tên fun, chúng ta gõ fun(input1,input2), trong đó input (hoặc đối số) input1 và input2 cho Python biết cách chạy hàm. Một hàm có thể có số lượng input bất kỳ. Ví dụ: hàm đối số print() xuất ra một biểu diễn văn bản của tất cả các đối số của nó tới panel print().
+
+Trong [1]: print('khớp model với', 11, 'biến')
+
+% --- page 51 ---
+% 2.3 Lab: Giới thiệu về Python 41
+Phù hợp với model với 11 biến
+
+Trong Python, dữ liệu văn bản được xử lý bằng chuỗi. Ví dụ, "hello" và "hello" là các chuỗi. Chúng
+
+Trong [2]: in?
+
+Lệnh sau đây sẽ cung cấp thông tin về hàm print() .
+
+Trong [3]: 3 + 5
+
+Ra [3]: 8
+
+Các phần tử của danh sách được lấy từng phần tử một? Trong Python, danh sách chứa các phần tử tùy ý
+
+Trong [4]: ​​"xin chào" + " " + "thế giới"
+
+Out[4]: 'xin chào thế giới'
+
+Rằng Python là một ngôn ngữ lập trình đa năng. Phần lớn chức năng cụ thể về dữ liệu của Python
+
+Lệnh sau hướng dẫn Python nối các số 3, 4 và 5 lại với nhau và lưu chúng dưới dạng danh sách có tên x. Khi chúng ta gõ x, nó sẽ trả lại danh sách cho chúng ta.
+
+Trong [5]: x = [3, 4, 5]
+
+% X
+Ra[5]: [3, 4, 5]
+
+Chuỗi ký tự. Bây giờ chúng ta sẽ giới thiệu danh sách.
+
+Lệnh sau đây hướng dẫn Python nối các số 3 lại với nhau,
+
+Trong [6]: y = [4, 9, 7]
+
+X + y
+
++ "thế giới".
+
+Các gói khác, đáng chú ý là numpy và pandas. Trong phần tiếp theo, chúng ta sẽ giới thiệu
+
+Gói numpy . Xem docs.scipy.org/doc/numpy/user/quickstart.html
+
+Ví dụ này phản ánh thực tế rằng Python là ngôn ngữ lập trình có mục đích chung. Phần lớn chức năng dành riêng cho dữ liệu của Python đến từ các gói khác, đặc biệt là numpy và pandas. Trong phần tiếp theo, chúng ta sẽ giới thiệu gói numpy. Xem docs.scipy.org/doc/numpy/user/quickstart.html để biết thêm thông tin về numpy.
+
+% --- page 52 ---
+42 2. Statistical Learning
+
+\subsubsection{Giới thiệu về Python số}
+
+Dòng trước đó. Cú pháp np.array() cho biết hàm được gọi là một phần của gói
+
+Gói không nhất thiết phải có trong bản phân phối Python cơ sở. Tên numpy là viết tắt của Python số.
+
+Để truy cập numpy, trước tiên chúng ta phải nhập nó. Nhập vào [7]: nhập numpy dưới dạng np
+
+Kết quả output cho thấy x là một mảng hai chiều. Tương tự, x.dtype
+
+Phần này, khi chúng ta cố gắng cộng hai danh sách mà không sử dụng numpy.
+
+Trong [8]: x = np.array([3, 4, 5])
+
+Phải được bao gồm trong bản phân phối Python cơ bản . Tên numpy
+
+Lưu ý rằng nếu trước đó bạn quên chạy lệnh import numpy as np thì bạn sẽ gặp lỗi khi gọi hàm np.array() ở dòng trước. Cú pháp np.array() chỉ ra rằng hàm đang được gọi là một phần của gói numpy mà chúng ta đã viết tắt là np.
+
+Vì x và y đã được xác định bằng np.array(), nên chúng ta sẽ nhận được kết quả hợp lý khi cộng chúng lại với nhau. So sánh kết quả này với kết quả của chúng ta trong phần trước, khi chúng ta cố gắng thêm hai danh sách mà không sử dụng numpy.
+
+Trong [9]: x + y
+
+Out[9]: mảng([ 7, 13, 12])
+
+Trong numpy, matrix thường được biểu diễn dưới dạng mảng hai chiều và vector dưới dạng mảng một chiều.1 Chúng ta có thể tạo mảng hai chiều như sau.
+
+Trong [10]: x = np.array([[1, 2], [3, 4]])
+
+% X
+Out[10]: mảng([[1, 2],
+
+% [3, 4]])
+Đối tượng x có một số thuộc tính hoặc các đối tượng liên quan. Để truy cập thuộc tính thuộc tính của x, chúng ta nhập x.attribute, trong đó chúng ta thay thế thuộc tính bằng tên của thuộc tính. Ví dụ: chúng ta có thể truy cập thuộc tính ndim của x ndim như sau.
+
+Trong [11]: x.ndim
+
+Ra [11]: 2
+
+Kết quả output chỉ ra rằng x là một mảng hai chiều. Tương tự, x.dtype là thuộc tính kiểu dữ liệu của đối tượng x. Điều này chỉ ra rằng x bao gồm kiểu dữ liệu gồm các số nguyên 64 bit:
+
+Ở dòng trước, chúng ta đã đặt tên cho mô-đun numpy là np; một từ viết tắt để dễ tham chiếu
+
