@@ -26,10 +26,30 @@ pip install -r requirements-translate.txt
 | `vi_latex/An Introduction to Statistical Learning-{N}/` | Output chỉnh sửa được |
 | `vi_latex/An Introduction to Statistical Learning-{N}/blocks.json` | **Nguồn chính để sửa tay** |
 | `vi_latex/.../content.tex`, `main.tex` | LaTeX sinh tự động từ `blocks.json` |
-| `vi_latex/.../figures/` | Ảnh trích từ PDF |
+| `vi_latex/.../figures/` | Ảnh trích từ PDF (chỉ khi **không** dùng `--no-images`) |
 | `vi_latex/An Introduction to Statistical Learning-{N}.pdf` | PDF tiếng Việt sau compile |
 
 **Part** = số thứ tự file sau khi cắt bằng ilovepdf (1–12). Mỗi part xử lý độc lập.
+
+## Đọc song song (khuyến nghị: bỏ hình trong bản dịch)
+
+Nếu bạn mở **PDF gốc tiếng Anh** và **PDF dịch** cạnh nhau, không cần nhúng hình vào bản Việt. Thêm `--no-images` để:
+
+- Bỏ qua trích ảnh ra `figures/` (extract nhanh hơn, ít dung lượng)
+- Không chèn `\includegraphics` vào `content.tex` / PDF dịch
+- Compile LaTeX nhẹ hơn
+
+Căn nội dung theo comment `% --- page N ---` trong `content.tex`, hoặc theo tiêu đề section.
+
+```bash
+python translate_pdf_vi.py --part N --all --no-images
+```
+
+Đã extract có `figures/` từ trước? Chỉ cần export lại:
+
+```bash
+python translate_pdf_vi.py --part N --export-latex --compile --no-images
+```
 
 ## Quy trình nhanh (lần đầu)
 
@@ -37,7 +57,7 @@ pip install -r requirements-translate.txt
 cd "AI/tai_lieu/An Introduction to Statistical Learning"
 
 # Part 1: extract + dịch + xuất LaTeX + compile PDF (~30–60 phút/part)
-python translate_pdf_vi.py --part 1 --all
+python translate_pdf_vi.py --part 1 --all --no-images
 ```
 
 Lặp lại với `--part 2`, `--part 3`, … cho toàn bộ sách.
@@ -46,13 +66,13 @@ Lặp lại với `--part 2`, `--part 3`, … cho toàn bộ sách.
 
 ```bash
 # 1. Trích block từ PDF EN + PDF Google (nếu có)
-python translate_pdf_vi.py --part 1 --extract
+python translate_pdf_vi.py --part 1 --extract --no-images
 
 # 2. Dịch (ghi vào blocks.json, field "vi")
 python translate_pdf_vi.py --part 1 --translate
 
 # 3. Xuất LaTeX
-python translate_pdf_vi.py --part 1 --export-latex
+python translate_pdf_vi.py --part 1 --export-latex --no-images
 
 # 4. Biên dịch PDF (xelatex)
 python translate_pdf_vi.py --part 1 --compile
@@ -78,7 +98,7 @@ Sau khi sửa:
 
 ```bash
 python translate_pdf_vi.py --part 1 --fix-existing
-python translate_pdf_vi.py --part 1 --export-latex --compile
+python translate_pdf_vi.py --part 1 --export-latex --compile --no-images
 ```
 
 - `--fix-existing`: áp dụng lại sửa thuật ngữ tự động, phân loại block, lọc nhiễu biểu đồ (`o`/`Ồ`…).
@@ -94,20 +114,21 @@ python translate_pdf_vi.py --part 1 --export-latex --compile
 | `--no-vi-ref` | Bỏ PDF Google, chỉ dùng translator online |
 | `--fix-existing` | Polish + reclassify + dọn nhiễu, không dịch lại |
 | `--no-toc` | Xuất `main.tex` không có `\tableofcontents` |
+| `--no-images` | Không trích/nhúng hình — dùng khi đọc song song PDF gốc |
 | `--allow-en-fallback` | Xuất tiếng Anh nếu thiếu `vi` (không khuyến nghị) |
 
 Ví dụ dịch thử vài trang:
 
 ```bash
 python translate_pdf_vi.py --part 1 --translate --page-range 12-15
-python translate_pdf_vi.py --part 1 --export-latex
+python translate_pdf_vi.py --part 1 --export-latex --no-images
 ```
 
 ## Pipeline bên trong
 
 ```
 PDF EN (ilovepdf_split)  ──┐
-                           ├── extract ──► blocks.json + figures/
+                           ├── extract ──► blocks.json [+ figures/]
 PDF VI Google (vi/)     ───┘                    │
                                                 ▼
                                          translate (vi)
@@ -119,12 +140,14 @@ PDF VI Google (vi/)     ───┘                    │
                                          xelatex ──► main.pdf
 ```
 
+(`figures/` và `\includegraphics` chỉ khi không dùng `--no-images`.)
+
 ## Lưu ý khi đọc kết quả
 
 1. **Phải chạy `--translate` xong** trước khi export — nếu không PDF/LaTeX sẽ thiếu tiếng Việt.
 2. **Mục lục LaTeX** chỉ gồm heading thật (dạng `1 Tiêu đề`, `2.1 Tiêu đề`…). Dòng thường (tên tác giả, nhãn trục, mảnh công thức) không vào TOC; dùng `--no-toc` nếu vẫn thấy lộn xộn.
 3. **Công thức** (`Pr(Y|X)`, `X_1`, `max_j`…) được chuẩn hóa khi `--fix-existing` và bọc `$...$` khi xuất LaTeX. Sửa tay trong `blocks.json` nếu còn sai.
-4. **Điểm trên biểu đồ** (`o`, `Ồ`, `X1`…) là nhiễu trích từ hình — đã được lọc; hình vector trong sách **không** tự chuyển thành ảnh đẹp trong LaTeX.
+4. **Điểm trên biểu đồ** (`o`, `Ồ`, `X1`…) là nhiễu trích từ hình — đã được lọc. Với `--no-images`, hình không xuất ra PDF dịch; xem hình trên PDF gốc khi đọc song song.
 5. **Trang bìa** có thể lỗi font encoding từ PDF gốc — sửa tay trong `blocks.json` nếu cần.
 6. Thuật ngữ ML giữ **tiếng Anh** (`statistical learning`, `feature`, `model`, …) kèm giải thích tiếng Việt — giống tool dịch notebook Coursera.
 

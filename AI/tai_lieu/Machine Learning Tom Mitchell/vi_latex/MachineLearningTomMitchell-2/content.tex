@@ -1,0 +1,1117 @@
+% --- page 1 ---
+% CHAPTER 3 DECISION TREE LEARNING 59
+Thuộc tính nào là classification tốt nhất?
+
+S: [9+,5-I
+
+% E =0.940
+Độ ẩm
+
+Cao
+
+[3+,4-I [6t,l-l
+
+E S.985 E S.592
+
+Tăng (S, Hurnidiry )
+
+S: [9+,5-I
+
+E S.940 wx Mạnh mẽ
+
+[6+,2-I [3+,3-I
+
+% ES.811 E =1.00
+Tăng (S, Gió)
+
+% = ,940 - (8/14).811 - (6114)l.O = ,048
+% FIGURE 3.3 Humidity provides greater information gain than Wind, relative to the target classification. Here, E stands for entropy and S for the original collection of examples. Given an initial collection S of 9 positive and 5 negative examples, [9+, 5-1, sorting these by their Humidity produces collections of
+% [3+, 4-1 (Humidity = High) and [6+, 1-1 (Humidity = Normal). The information gained by this partitioning is .151, compared to a gain of only .048 for the attribute Wind.
+\subsubsection{Một ví dụ minh họa}
+
+Để minh họa hoạt động của ID3, hãy xem xét nhiệm vụ học tập được thể hiện bằng các ví dụ training trong Bảng 3.2. Ở đây, thuộc tính đích PlayTennis, có thể có các giá trị có hoặc không cho các buổi sáng Thứ Bảy khác nhau, sẽ được dự đoán dựa trên các thuộc tính khác của buổi sáng được đề cập. Hãy xem xét bước đầu tiên thông qua
+
+Ngày dự báo Nhiệt độ Độ ẩm Gió PlayTennis
+
+D l Nắng Nóng Cao Yếu Không
+
+D2 Nắng Nóng Cao Mạnh Không
+
+D3 U ám Nóng Cao Yếu Có
+
+D4 Mưa Nhẹ Cao Yếu Có
+
+D5 Mưa Mát Bình thường Yếu Có
+
+D6 Mưa Mát Bình thường Mạnh Không
+
+D7 U ám Mát Bình thường Mạnh Có
+
+D8 Nắng Nhẹ Cao Yếu Không
+
+D9 Nắng Mát Bình thường Yếu Có
+
+Dl0 Mưa Nhẹ Bình thường Yếu Có
+
+Dl1 Nắng Nhẹ Bình thường Mạnh Có
+
+Dl2 U ám Nhẹ Cao Mạnh Có
+
+Dl3 U ám Nóng Bình thường Yếu Có
+
+Dl4 Mưa Nhẹ Cao Mạnh Không
+
+\noindent\textit{TABLE 3.2 Ví dụ training cho khái niệm mục tiêu PlayTennis.}
+
+% --- page 2 ---
+Thuật toán trong đó nút trên cùng của decision tree được tạo. Thuộc tính nào cần được kiểm tra đầu tiên trong cây? ID3 xác định mức tăng thông tin cho từng thuộc tính ứng cử viên (ví dụ: Outlook, Nhiệt độ, Độ ẩm và Gió), sau đó chọn thuộc tính có mức tăng thông tin cao nhất. Việc tính toán độ lợi thông tin cho hai thuộc tính này được thể hiện trong Hình 3.3. Các giá trị thu được thông tin cho cả bốn thuộc tính là
+
+% Gain(S, Outlook) = 0.246
+% Gain(S, Humidity) = 0.151
+% Gain(S, Wind) = 0.048
+% Gain(S, Temperature) = 0.029 where S denotes the collection of training examples from Table 3.2.
+% According to the information gain measure, the Outlook attribute provides the best prediction of the target attribute, PlayTennis, over the training examples. Therefore, Outlook is selected as the decision attribute for the root node, and branches are created below the root for each of its possible values (i.e., Sunny, Overcast, and Rain). The resulting partial decision tree is shown in Figure 3.4, along with the training examples sorted to each new descendant node. Note that every example for which Outlook = Overcast is also a positive example of PlayTennis. Therefore, this node of the tree becomes a leaf node with the classification PlayTennis = Yes. In contrast, the descendants corresponding to
+% Outlook = Sunny and Outlook = Rain still have nonzero entropy, and the decision tree will be further elaborated below these nodes.
+% The process of selecting a new attribute and partitioning the training examples is now repeated for each nontenninal descendant node, this time using only the training examples associated with that node. Attributes that have been incorporated higher in the tree are excluded, so that any given attribute can appear at most once along any path through the tree. This process continues for each new leaf node until either of two conditions is met: (1) every attribute has already been included along this path through the tree, or (2) the training examples associated with this leaf node all have the same target attribute value (i.e., their entropy is zero). Figure 3.4 illustrates the computations of information gain for the next step in growing the decision tree. The final decision tree learned by ID3 from the
+\section{Các training example của Bảng 3.2 được thể hiện trên Hình 3.1.}
+
+\subsection{Giả thuyết tìm kiếm không gian trong Decision Tree}
+
+\subsection{Học hỏi}
+
+Giống như các phương pháp inductive learning khác, ID3 có thể được mô tả là tìm kiếm một không gian giả thuyết phù hợp với các ví dụ training. Hypothesis space được ID3 tìm kiếm là tập hợp decision trees có thể có. ID3 thực hiện tìm kiếm leo đồi từ đơn giản đến phức tạp thông qua hypothesis space này, bắt đầu từ cây trống, sau đó xem xét các giả thuyết phức tạp hơn dần dần để tìm kiếm decision tree classification chính xác dữ liệu training. Chức năng đánh giá
+
+% --- page 3 ---
+\{Dl, D2, ..., Dl41
+
+P+S-I
+
+Thuộc tính nào cần được kiểm tra ở đây?
+
+% Gain (Ssunnyj Temperaare) = ,970 - (215) 0.0 - (Y5) 1.0 - (115) 0.0 = ,570
+% Gain (Sss,,,, Wind) = 970 - (215) 1.0 - (315) ,918 = ,019
+\noindent\textit{FIGURE 3.4 decision tree đã học được một phần từ bước đầu tiên của ID3. Các ví dụ training được sắp xếp theo các nút con tương ứng. Hậu duệ Overcast chỉ có các ví dụ tích cực và do đó trở thành nút lá với classification Có. Hai nút còn lại sẽ được mở rộng hơn nữa, bằng cách chọn thuộc tính có mức tăng thông tin cao nhất so với các tập hợp con mẫu mới.}
+
+Hướng dẫn tìm kiếm leo đồi này là thước đo thu được thông tin. Việc tìm kiếm này được mô tả trong Hình 3.5.
+
+% By viewing ID\textasciicircum{} in terms of its search space and search strategy, we can get some insight into its capabilities and limitations.
+% 1 \textasciitilde{} 3 ' s hypothesis space of all decision trees is a complete space of finite discrete-valued functions, relative to the available attributes. Because every finite discrete-valued function can be represented by some decision tree, ID3 avoids one of the major risks of methods that search incomplete hypothesis spaces (such as methods that consider only conjunctive hypotheses): that the hypothesis space might not contain the target function.
+% ID3 maintains only a single current hypothesis as it searches through the space of decision trees. This contrasts, for example, with the earlier version space candidate-\textasciitilde{}lirninat-od, which maintains the set of all hypotheses consistent with the available training examples. By determining only a single hypothesis, ID\textasciicircum{} loses the capabilities that follow from
+% --- page 4 ---
+% F: + - + FIGURE 3.5 Hypothesis space search by ID3. ID3 searches throuah the mace of possible decision trees from simplest to increasingly complex, guided by the ... ... information gain heuristic.
+% explicitly representing all consistent hypotheses. For example, it does not have the ability to determine how many alternative decision trees are consistent with the available training data, or to pose new instance queries that optimally resolve among these competing hypotheses.
+% 0 ID3 in its pure form performs no backtracking in its search. Once it,selects an attribute to test at a particular level in the tree, it never backtracks to reconsider this choice. Therefore, it is susceptible to the usual risks of hill-climbing search without backtracking: converging to locally optimal solutions that are not globally optimal. In the case of ID3, a locally optimal solution corresponds to the decision tree it selects along the single search path it explores. However, this locally optimal solution may be less desirable than trees that would have been encountered along a different branch of the search. Below we discuss an extension that adds a form of backtracking (post-pruning the decision tree).
+% 0 ID3 uses all training examples at each step in the search to make statistically based decisions regarding how to refine its current hypothesis. This contrasts with methods that make decisions incrementally, based on individual training examples (e.g., FIND-S or CANDIDATE-ELIMINATION). One advantage of using statistical properties of all the examples (e.g., information gain) is that the resulting search is much less sensitive to errors in individual training examples. ID3 can be easily extended to handle noisy training data by modifying its termination criterion to accept hypotheses that imperfectly fit the training data.
+% --- page 5 ---
+\subsection{Xu hướng quy nạp trong học tập Decision Tree}
+
+Chính sách mà ID3 khái quát hóa từ các ví dụ training được quan sát để classification các trường hợp không nhìn thấy là gì? Nói cách khác, inductive bias của nó là gì? Nhớ lại Chương 2 rằng inductive bias là tập hợp các giả định, cùng với dữ liệu training, chứng minh một cách suy diễn các classification mà người học chỉ định cho các trường hợp trong tương lai.
+
+% Given a collection of training examples, there are typically many decision trees consistent with these examples. Describing the inductive bias of ID3 therefore consists of describing the basis by which it chooses one of these consistent hypotheses over the others. Which of these decision trees does ID3 choose? It chooses the first acceptable tree it encounters in its simple-to-complex, hillclimbing search through the space of possible trees. Roughly speaking, then, the ID3 search strategy (a) selects in favor of shorter trees over longer ones, and
+% (b) selects trees that place the attributes with highest information gain closest to the root. Because of the subtle interaction between the attribute selection heuristic used by ID3 and the particular training examples it encounters, it is difficult to characterize precisely the inductive bias exhibited by ID3. However, we can approximately characterize its bias as a preference for short decision trees over complex trees.
+Inductive bias gần đúng của ID3: Cây ngắn hơn được ưa thích hơn cây lớn hơn.
+
+% In fact, one could imagine an algorithm similar to ID3 that exhibits precisely this inductive bias. Consider an algorithm that begins with the empty tree and searches breadth Jirst through progressively more complex trees, first considering all trees of depth 1, then all trees of depth 2, etc. Once it finds a decision tree consistent with the training data, it returns the smallest consistent tree at that search depth (e.g., the tree with the fewest nodes). Let us call this breadth-first search algorithm BFS-ID3. BFS-ID3 finds a shortest decision tree and thus exhibits precisely the bias "shorter trees are preferred over longer trees." ID3 can be viewed as an efficient approximation to BFS-ID3, using a greedy heuristic search to attempt to find the shortest tree without conducting the entire breadth-first search through the hypothesis space.
+% Because ID3 uses the information gain heuristic and a hill climbing strategy, it exhibits a more complex bias than BFS-ID3. In particular, it does not always find the shortest consistent tree, and it is biased to favor trees that place attributes with high information gain closest to the root.
+Gần đúng hơn với inductive bias của ID3: Cây ngắn hơn được ưa thích hơn cây dài hơn. Những cây có thuộc tính thu được thông tin cao gần gốc sẽ được ưu tiên hơn những cây không có.
+
+\subsubsection{Những thành kiến ​​hạn chế và những thành kiến ​​ưu tiên}
+
+Có một sự khác biệt thú vị giữa các loại inductive bias được thể hiện bởi ID3 và bởi thuật toán CANDIDATE-ELIMINATION được thảo luận trong Chương 2.
+
+% --- page 6 ---
+% Consider the difference between the hypothesis space search in these two approaches:
+% ID3 searches a complete hypothesis space (i.e., one capable of expressing any finite discrete-valued function). It searches incompletely through this space, from simple to complex hypotheses, until its termination condition is met (e.g., until it finds a hypothesis consistent with the data). Its inductive bias is solely a consequence of the ordering of hypotheses by its search strategy. Its hypothesis space introduces no additional bias.
+% 0 The version space CANDIDATE-ELIMINATION algorithm searches an incomplete hypothesis space (i.e., one that can express only a subset of the potentially teachable concepts). It searches this space completely, finding every hypothesis consistent with the training data. Its inductive bias is solely a consequence of the expressive power of its hypothesis representation. Its search strategy introduces no additional bias.
+% In brief, the inductive bias of ID3 follows from its search strategy, whereas the inductive bias of the CANDIDATE-ELIMINATION algorithm follows from the definition of its search space.
+% The inductive bias of ID3 is thus a preference for certain hypotheses over others (e.g., for shorter hypotheses), with no hard restriction on the hypotheses that can be eventually enumerated. This form of bias is typically called a preference bias (or, alternatively, a search bias). In contrast, the bias of the CANDIDATEELIMINATION algorithm is in the form of a categorical restriction on the set of hypotheses considered. This form of bias is typically called a restriction bias (or, alternatively, a language bias).
+% Given that some form of inductive bias is required in order to generalize beyond the training data (see Chapter 2), which type of inductive bias shall we prefer; a preference bias or restriction bias?
+% Typically, a preference bias is more desirable than a restriction bias, because it allows the learner to work within a complete hypothesis space that is assured to contain the unknown target function. In contrast, a restriction bias that strictly limits the set of potential hypotheses is generally less desirable, because it introduces the possibility of excluding the unknown target function altogether.
+% Whereas ID3 exhibits a purely preference bias and CANDIDATE-ELIMINATION a purely restriction bias, some learning systems combine both. Consider, for example, the program described in Chapter 1 for learning a numerical evaluation function for game playing. In this case, the learned evaluation function is represented by a linear combination of a fixed set of board features, and the learning algorithm adjusts the parameters of this linear combination to best fit the available training data. In this case, the decision to use a linear function to represent the evaluation function introduces a restriction bias (nonlinear evaluation functions cannot be represented in this form). At the same time, the choice of a particular parameter tuning method (the LMS algorithm in this case) introduces a preference bias stemming from the ordered search through the space of all possible parameter values.
+% --- page 7 ---
+\subsubsection{Tại sao lại thích những giả thuyết ngắn?}
+
+Inductive bias của ID3 ưu tiên decision trees ngắn hơn có phải là cơ sở hợp lý để khái quát hóa ngoài dữ liệu training không? Các triết gia và những người khác đã tranh luận về câu hỏi này trong nhiều thế kỷ và cuộc tranh luận này vẫn chưa được giải quyết cho đến ngày nay. William xứ Occam là một trong những người đầu tiên thảo luận về vấn đề này vào khoảng năm 1320, vì vậy bias này thường được gọi là dao cạo của Occam.
+
+Dao cạo của Occam: Ưu tiên giả thuyết đơn giản nhất phù hợp với dữ liệu.
+
+% Of course giving an inductive bias a name does not justify it. Why should one prefer simpler hypotheses? Notice that scientists sometimes appear to follow this inductive bias. Physicists, for example, prefer simple explanations for the motions of the planets, over more complex explanations. Why? One argument is that because there are fewer short hypotheses than long ones (based on straightforward combinatorial arguments), it is less likely that one will find a short hypothesis that coincidentally fits the training data. In contrast there are often many very complex hypotheses that fit the current training data but fail to generalize correctly to subsequent data. Consider decision tree hypotheses, for example. There are many more 500-node decision trees than 5-node decision trees. Given a small set of 20 training examples, we might expect to be able to find many 500-node decision trees consistent with these, whereas we would be more surprised if a 5-node decision tree could perfectly fit this data. We might therefore believe the 5-node tree is less likely to be a statistical coincidence and prefer this hypothesis over the 500-node hypothesis.
+% Upon closer examination, it turns out there is a major difficulty with the above argument. By the same reasoning we could have argued that one should prefer decision trees containing exactly 17 leaf nodes with 11 nonleaf nodes, that use the decision attribute A1 at the root, and test attributes A2 through All, in numerical order. There are relatively few such trees, and we might argue (by the same reasoning as above) that our a priori chance of finding one consistent with an arbitrary set of data is therefore small. The difficulty here is that there are very many small sets of hypotheses that one can define-most of them rather arcane.
+Tại sao chúng ta nên tin rằng tập hợp nhỏ các giả thuyết bao gồm decision trees với các mô tả ngắn gọn sẽ phù hợp hơn vô số các tập hợp giả thuyết nhỏ khác mà chúng ta có thể định nghĩa?
+
+% A second problem with the above argument for Occam's razor is that the size of a hypothesis is determined by the particular representation used internally by the learner. Two learners using different internal representations could therefore anive at different hypotheses, both justifying their contradictory conclusions by Occam's razor! For example, the function represented by the learned decision tree in Figure 3.1 could be represented as a tree with just one decision node, by a learner that uses the boolean attribute XYZ, where we define the attribute XYZ to
+\textasciitilde{} \textasciitilde{} p r e n t l \textasciitilde{} trong khi cạo râu.
+
+% --- page 8 ---
+Đúng đối với các trường hợp được decision tree classification dương tính trong Hình 3.1 và sai trong các trường hợp khác. Do đó, hai người học, đều áp dụng dao cạo của Occam, sẽ khái quát hóa theo những cách khác nhau nếu một người sử dụng thuộc tính XYZ để mô tả các ví dụ của nó và người kia chỉ sử dụng các thuộc tính Outlook, Nhiệt độ, Độ ẩm và Gió.
+
+% This last argument shows that Occam's razor will produce two different hypotheses from the same training examples when it is applied by two learners that perceive these examples in terms of different internal representations. On this basis we might be tempted to reject Occam's razor altogether. However, consider the following scenario that examines the question of which internal representations might arise from a process of evolution and natural selection. Imagine a population of artificial learning agents created by a simulated evolutionary process involving reproduction, mutation, and natural selection of these agents. Let us assume that this evolutionary process can alter the perceptual systems of these agents from generation to generation, thereby changing the internal attributes by which they perceive their world. For the sake of argument, let us also assume that the learning agents employ a fixed learning algorithm (say ID3) that cannot be altered by evolution. It is reasonable to assume that over time evolution will produce internal representation that make these agents increasingly successful within their environment. Assuming that the success of an agent depends highly on its ability to generalize accurately, we would therefore expect evolution to develop internal representations that work well with whatever learning algorithm and inductive bias is present. If the species of agents employs a learning algorithm whose inductive bias is Occam's razor, then we expect evolution to produce internal representations for which Occam's razor is a successful strategy. The essence of the argument here is that evolution will create internal representations that make the learning algorithm's inductive bias a self-fulfilling prophecy, simply because it can alter the representation easier than it can alter the learning algorithm.
+Hiện tại, chúng ta tạm dừng cuộc tranh luận về dao cạo của Occam. Chúng ta sẽ xem lại nó trong
+
+Chương 6, nơi chúng ta thảo luận về nguyên tắc Độ dài mô tả tối thiểu, một phiên bản của dao cạo Occam có thể được diễn giải trong khuôn khổ Bayesian.
+
+\subsection{Các vấn đề trong việc học Decision Tree}
+
+Các vấn đề thực tế khi học decision trees bao gồm xác định mức độ phát triển decision tree, xử lý các thuộc tính liên tục, chọn thước đo lựa chọn thuộc tính thích hợp, xử lý dữ liệu training với các giá trị thuộc tính bị thiếu, xử lý các thuộc tính với chi phí khác nhau và cải thiện hiệu quả tính toán. Dưới đây chúng ta thảo luận về từng vấn đề và phần mở rộng của thuật toán ID3 cơ bản để giải quyết chúng. Bản thân ID3 đã được mở rộng để giải quyết hầu hết các vấn đề này và kết quả là hệ thống được đổi tên thành C4.5 (Quinlan 1993).
+
+\subsubsection{Tránh trang bị quá nhiều dữ liệu}
+
+Thuật toán được mô tả trong Bảng 3.1 phát triển từng nhánh của cây vừa đủ sâu để classification hoàn hảo các ví dụ training. Mặc dù điều này đôi khi là một
+
+% --- page 9 ---
+Chiến lược hợp lý, trên thực tế nó có thể dẫn đến khó khăn khi có nhiễu trong dữ liệu hoặc khi số lượng mẫu training quá nhỏ để tạo ra một mẫu đại diện cho hàm mục tiêu thực sự. Trong cả hai trường hợp này, thuật toán đơn giản này có thể tạo ra các cây vượt trội hơn các mẫu training.
+
+% We will say that a hypothesis overfits the training examples if some other hypothesis that fits the training examples less well actually performs better over the entire distribution of instances (i.e., including instances beyond the training set).
+% Definition: Given a hypothesis space H, a hypothesis h E H is said to overlit the training data if there exists some alternative hypothesis h' E H, such that h has smaller error than h' over the training examples, but h' has a smaller error than h over the entire distribution of instances.
+% Figure 3.6 illustrates the impact of overfitting in a typical application of decision tree learning. In this case, the ID3 algorithm is applied to the task of learning which medical patients have a form of diabetes. The horizontal axis of this plot indicates the total number of nodes in the decision tree, as the tree is being constructed. The vertical axis indicates the accuracy of predictions made by the tree. The solid line shows the accuracy of the decision tree over the training examples, whereas the broken line shows accuracy measured over an independent set of test examples (not included in the training set). Predictably, the accuracy of the tree over the training examples increases monotonically as the tree is grown. However, the accuracy measured over the independent test examples first increases, then decreases. As can be seen, once the tree size exceeds approximately 25 nodes,
+% On training data On test data ---i
+Kích thước của cây (số nút)
+
+\noindent\textit{FIGURE 3.6 Overfitting trong decision tree learning. Khi ID3 thêm các nút mới để phát triển decision tree, độ chính xác của cây được đo qua các ví dụ training sẽ tăng lên một cách đơn điệu. Tuy nhiên, khi đo trên một tập hợp các mẫu thử nghiệm độc lập với các mẫu training, độ chính xác ban đầu tăng lên, sau đó giảm xuống. Phần mềm và dữ liệu để thử nghiệm các biến thể của cốt truyện này có sẵn trên World Wide Web tại http://www.cs.cmu.edu/-torn/mlbook.html.}
+
+% --- page 10 ---
+Việc xây dựng thêm cây sẽ làm giảm độ chính xác của nó đối với các mẫu thử nghiệm mặc dù độ chính xác của nó trên các mẫu training đã tăng lên.
+
+% How can it be possible for tree h to fit the training examples better than h', but for it to perform more poorly over subsequent examples? One way this can occur is when the training examples contain random errors or noise. To illustrate, consider the effect of adding the following positive training example, incorrectly labeled as negative, to the (otherwise correct) examples in Table 3.2.
+% (Outlook = Sunny, Temperature = Hot, Humidity = Normal,
+% Wind = Strong, PlayTennis = No)
+Với dữ liệu ban đầu không có lỗi, ID3 tạo ra decision tree như trong Hình 3.1. Tuy nhiên, việc bổ sung ví dụ không chính xác này bây giờ sẽ khiến ID3 xây dựng một cây phức tạp hơn. Cụ thể, ví dụ mới sẽ được sắp xếp vào nút lá thứ hai từ bên trái trong cây đã học của Hình 3.1, cùng với các ví dụ tích cực trước đó là D9 và Dl 1. Vì ví dụ mới được gắn nhãn là ví dụ tiêu cực, ID3 sẽ tìm kiếm các sàng lọc tiếp theo cho cây bên dưới nút này. Tất nhiên, miễn là ví dụ sai sót mới khác với các ví dụ khác được liên kết với nút này theo một cách tùy ý nào đó, ID3 sẽ thành công trong việc tìm ra thuộc tính quyết định mới để tách ví dụ mới này khỏi hai ví dụ tích cực trước đó tại nút cây này. Kết quả là ID3 sẽ tạo ra decision tree (h) phức tạp hơn cây ban đầu trong Hình 3.1 (h'). Tất nhiên h sẽ phù hợp hoàn hảo với tập hợp các ví dụ training, trong khi h' đơn giản hơn thì không. Tuy nhiên, do nút quyết định mới chỉ đơn giản là kết quả của việc phù hợp với mẫu training ồn ào, chúng ta hy vọng h sẽ hoạt động tốt hơn h' so với dữ liệu tiếp theo được rút ra từ cùng một phân phối phiên bản.
+
+% The above example illustrates how random noise in the training examples can lead to overfitting. In fact, overfitting is possible even when the training data are noise-free, especially when small numbers of examples are associated with leaf nodes. In this case, it is quite possible for coincidental regularities to occur, in which some attribute happens to partition the examples very well, despite being unrelated to the actual target function. Whenever such coincidental regularities exist, there is a risk of overfitting.
+% Overfitting is a significant practical difficulty for decision tree learning and many other learning methods. For example, in one experimental study of ID3 involving five different learning tasks with noisy, nondeterministic data (Mingers
+% 1989b), overfitting was found to decrease the accuracy of learned decision trees by 10-25\% on most problems.
+Có một số cách tiếp cận để tránh overfitting trong decision tree learning.
+
+Chúng có thể được nhóm thành hai lớp:
+
+Các phương pháp ngừng phát triển cây sớm hơn, trước khi đạt đến điểm classification dữ liệu training một cách hoàn hảo,
+
+% 0 approaches that allow the tree to overfit the data, and then post-prune the tree.
+% --- page 11 ---
+% Although the first of these approaches might seem.more direct, the second approach of post-pruning overfit trees has been found to be more successful in practice. This is due to the difficulty in the first approach of estimating precisely when to stop growing the tree.
+% Regardless of whether the correct tree size is found by stopping early or by post-pruning, a key question is what criterion is to be used to determine the correct final tree size. Approaches include:
+% 0 Use a separate set of examples, distinct from the training examples, to evaluate the utility of post-pruning nodes from the tree.
+% 0 Use all the available data for training, but apply a statistical test to estimate whether expanding (or pruning) a particular node is likely to produce an improvement beyond the training set. For example, Quinlan (1986) uses a chi-square test to estimate whether further expanding a node is likely to improve performance over the entire instance distribution, or only on the current sample of training data.
+% 0 Use an explicit measure of the complexity for encoding the training examples and the decision tree, halting growth of the tree when this encoding size is minimized. This approach, based on a heuristic called the Minimum
+Mô tả Nguyên tắc về độ dài, sẽ được thảo luận sâu hơn trong Chương 6, cũng như trong Quinlan và Rivest (1989) và Mehta et al. (199.5).
+
+% The first of the above approaches is the most common and is often referred to as a training and validation set approach. We discuss the two main variants of this approach below. In this approach, the available data are separated into two sets of examples: a training set, which is used to form the learned hypothesis, and a separate validation set, which is used to evaluate the accuracy of this hypothesis over subsequent data and, in particular, to evaluate the impact of pruning this hypothesis. The motivation is this: Even though the learner may be misled by random errors and coincidental regularities within the training set, the validation set is unlikely to exhibit the same random fluctuations. Therefore, the validation set can be expected to provide a safety check against overfitting the spurious characteristics of the training set. Of course, it is important that the validation set be large enough to itself provide a statistically significant sample of the instances.
+Một phương pháp phỏng đoán phổ biến là giữ lại một phần ba số mẫu có sẵn cho validation set, sử dụng hai phần ba còn lại để training.
+
+3.7.1.1 REDUCED ERROR PRUNING
+
+Chính xác thì chúng ta có thể sử dụng validation set như thế nào để ngăn chặn overfitting? Một cách tiếp cận, được gọi là cắt tỉa giảm lỗi (Quinlan 1987), là coi mỗi nút quyết định trong cây là ứng cử viên cho việc cắt tỉa. Việc cắt bớt một nút quyết định bao gồm việc loại bỏ cây con có gốc tại nút đó, biến nó thành nút lá và gán cho nó classification phổ biến nhất trong số các ví dụ training được liên kết với nút đó. Các nút chỉ bị loại bỏ nếu cây được cắt tỉa kết quả hoạt động không tệ hơn
+
+% --- page 12 ---
+Nguyên bản trên validation set. Điều này có tác dụng là bất kỳ nút lá nào được thêm vào do sự đều đặn ngẫu nhiên trong training set đều có khả năng bị cắt bớt vì những sự trùng hợp tương tự này khó có thể xảy ra trong validation set. Các nút được cắt bớt lặp đi lặp lại, luôn chọn nút có khả năng loại bỏ nhiều nhất sẽ làm tăng độ chính xác của decision tree so với validation set. Việc cắt tỉa các nút tiếp tục cho đến khi việc cắt tỉa tiếp theo có hại (tức là làm giảm độ chính xác của cây trên validation set).
+
+% The impact of reduced-error pruning on the accuracy of the decision tree is illustrated in Figure 3.7. As in Figure 3.6, the accuracy of the tree is shown measured over both training examples and test examples. The additional line in Figure 3.7 shows accuracy over the test examples as the tree is pruned. When pruning begins, the tree is at its maximum size and lowest accuracy over the test set. As pruning proceeds, the number of nodes is reduced and accuracy over the test set increases. Here, the available data has been split into three subsets: the training examples, the validation examples used for pruning the tree, and a set of test examples used to provide an unbiased estimate of accuracy over future unseen examples. The plot shows accuracy over the training and test sets. Accuracy over the validation set used for pruning is not shown.
+% Using a separate set of data to guide pruning is an effective approach provided a large amount of data is available. The major drawback of this approach is that when data is limited, withholding part of it for the validation set reduces even further the number of examples available for training. The following section presents an alternative approach to pruning that has been found useful in many practical situations where data is limited. Many additional techniques have been proposed as well, involving partitioning the available data several different times in
+\[7\]
+
+---..--...\_..\_..\_\textasciitilde{}\textasciitilde{} " .------.------2--... -, .--.. -..... -... .-...
+
+% \textbackslash{}\_\_\_\_\_.. --... -.... --... -.\_\_\_.\_..\_\_\_...-\_-------On training data On test data ---On test data (during pruning) - - - - -
+% 0 10 20 30 40 50 60 70 80 90 100
+Kích thước của cây (số nút)
+
+\noindent\textit{FIGURE 3.7 Hiệu quả của việc cắt tỉa giảm lỗi trong decision tree learning. Biểu đồ này thể hiện các đường cong training và độ chính xác của test set tương tự như trong Hình 3.6. Ngoài ra, nó còn cho thấy tác động của việc giảm lỗi cắt tỉa cây do ID3 tạo ra. Lưu ý sự gia tăng độ chính xác so với test set khi các nút được cắt bớt khỏi cây. Ở đây, validation set được sử dụng để cắt tỉa khác biệt với cả test sets training và test sets.}
+
+% --- page 13 ---
+Nhiều cách rồi lấy kết quả trung bình. Đánh giá thực nghiệm về các phương pháp cắt tỉa cây thay thế được báo cáo bởi Mingers (1989b) và Malerba et al. (1995).
+
+3.7.1.2 RULE POST-PRUNING
+
+% In practice, one quite successful method for finding high accuracy hypotheses is a technique we shall call rule post-pruning. A variant of this pruning method is used by C4.5 (Quinlan 1993), which is an outgrowth of the original ID3 algorithm. Rule post-pruning involves the following steps:
+% 1. Infer the decision tree from the training set, growing the tree until the training data is fit as well as possible and allowing overfitting to occur.
+% 2. Convert the learned tree into an equivalent set of rules by creating one rule for each path from the root node to a leaf node.
+% 3. Prune (generalize) each rule by removing any preconditions that result in improving its estimated accuracy.
+% 4. Sort the pruned rules by their estimated accuracy, and consider them in this sequence when classifying subsequent instances.
+% To illustrate, consider again the decision tree in Figure 3.1. In rule postpruning, one rule is generated for each leaf node in the tree. Each attribute test along the path from the root to the leaf becomes a rule antecedent (precondition) and the classification at the leaf node becomes the rule consequent (postcondition). For example, the leftmost path of the tree in Figure 3.1 is translated into the rule
+% IF (Outlook = Sunny) A (Humidity = High)
+% THEN PlayTennis = No
+% Next, each such rule is pruned by removing any antecedent, or precondition, whose removal does not worsen its estimated accuracy. Given the above rule, for example, rule post-pruning would consider removing the preconditions
+% (Outlook = Sunny) and (Humidity = High). It would select whichever of these pruning steps produced the greatest improvement in estimated rule accuracy, then consider pruning the second precondition as a further pruning step. No pruning step is performed if it reduces the estimated rule accuracy.
+% As noted above, one method to estimate rule accuracy is to use a validation set of examples disjoint from the training set. Another method, used by C4.5, is to evaluate performance based on the training set itself, using a pessimistic estimate to make up for the fact that the training data gives an estimate biased in favor of the rules. More precisely, C4.5 calculates its pessimistic estimate by calculating the rule accuracy over the training examples to which it applies, then calculating the standard deviation in this estimated accuracy assuming a binomial distribution. For a given confidence level, the lower-bound estimate is then taken as the measure of rule performance (e.g., for a 95\% confidence interval, rule accuracy is pessimistically estimated by the observed accuracy over the training
+% --- page 14 ---
+Đặt, trừ 1,96 lần độ lệch chuẩn ước tính). Hiệu quả thực sự là đối với data sets lớn, estimate bi quan rất gần với độ chính xác quan sát được
+
+% (e.g., the standard deviation is very small), whereas it grows further from the observed accuracy as the size of the data set decreases. Although this heuristic method is not statistically valid, it has nevertheless been found useful in practice. See Chapter 5 for a discussion of statistically valid approaches to estimating means and confidence intervals.
+% Why convert the decision tree to rules before pruning? There are three main advantages.
+% Converting to rules allows distinguishing among the different contexts in which a decision node is used. Because each distinct path through the decision tree node produces a distinct rule, the pruning decision regarding that attribute test can be made differently for each path. In contrast, if the tree itself were pruned, the only two choices would be to remove the decision node completely, or to retain it in its original form. Converting to rules removes the distinction between attribute tests that occur near the root of the tree and those that occur near the leaves. Thus, we avoid messy bookkeeping issues such as how to reorganize the tree if the root node is pruned while retaining part of the subtree below this test. Converting to rules improves readability. Rules are often easier for to understand.
+\subsubsection{Kết hợp các thuộc tính có giá trị liên tục}
+
+Định nghĩa ban đầu của chúng ta về ID3 bị giới hạn ở các thuộc tính có một tập hợp giá trị riêng biệt. Đầu tiên, thuộc tính đích có giá trị được dự đoán bởi cây đã học phải có giá trị rời rạc. Thứ hai, các thuộc tính được kiểm tra trong các nút quyết định của cây cũng phải có giá trị rời rạc. Hạn chế thứ hai này có thể dễ dàng được loại bỏ để các thuộc tính quyết định có giá trị liên tục có thể được đưa vào cây đã học. Điều này có thể được thực hiện bằng cách xác định động các thuộc tính có giá trị rời rạc mới để phân chia giá trị thuộc tính liên tục thành một tập hợp các khoảng rời rạc. Cụ thể, đối với thuộc tính A có giá trị liên tục, thuật toán có thể tự động tạo thuộc tính boolean mới A, điều đó đúng nếu A < c và sai nếu ngược lại. Câu hỏi duy nhất là làm thế nào để chọn giá trị tốt nhất cho ngưỡng c.
+
+Ví dụ: giả sử chúng ta muốn bao gồm thuộc tính có giá trị liên tục
+
+% Temperature in describing the training example days in the learning task of Table 3.2. Suppose further that the training examples associated with a particular node in the decision tree have the following values for Temperature and the target attribute PlayTennis.
+\subsection{Nhiệt độ: 40 48 60 72 80 90}
+
+\subsection{PlayTennis: Không Không Có Có Có NO}
+
+% --- page 15 ---
+% CHAPTER 3 DECISION TREE LEARNING 73
+% What threshold-based boolean attribute should be defined based on Temperature? Clearly, we would like to pick a threshold, c, that produces the greatest information gain. By sorting the examples according to the continuous attribute A, then identifying adjacent examples that differ in their target classification, we can generate a set of candidate thresholds midway between the corresponding values of A. It can be shown that the value of c that maximizes information gain must always lie at such a boundary (Fayyad 1991). These candidate thresholds can then be evaluated by computing the information gain associated with each. In the current example, there are two candidate thresholds, corresponding to the values of Temperature at which the value of PlayTennis changes: (48 + 60)/2, and (80 + 90)/2. The information gain can then be computed for each of the candidate attributes, Temperat\textasciitilde{}re,\textasciitilde{}\textasciitilde{} and Temperat\textasciitilde{}re,\textasciitilde{}\textasciitilde{}, and the best can be selected (Temperat\textasciitilde{}re,\textasciitilde{}\textasciitilde{}). This dynamically created boolean attribute can then compete with the other discrete-valued candidate attributes available for growing the decision tree. Fayyad and Irani (1993) discuss an extension to this approach that splits the continuous attribute into multiple intervals rather than just two intervals based on a single threshold. Utgoff and Brodley (1991) and Murthy et al. ( 1994) discuss approaches that define features by thresholding linear combinations of several continuous-valued attributes.
+\subsubsection{Các biện pháp thay thế để lựa chọn thuộc tính}
+
+Có một bias tự nhiên trong thước đo mức tăng thông tin ưu tiên các thuộc tính có nhiều giá trị hơn những thuộc tính có ít giá trị. Một ví dụ điển hình, hãy xem xét thuộc tính Ngày, có số lượng giá trị có thể rất lớn (ví dụ: ngày 4 tháng 3,
+
+% 1979). If we were to add this attribute to the data in Table 3.2, it would have the highest information gain of any of the attributes. This is because Date alone perfectly predicts the target attribute over the training data. Thus, it would be selected as the decision attribute for the root node of the tree and lead to a (quite broad) tree of depth one, which perfectly classifies the training data. Of course, this decision tree would fare poorly on subsequent examples, because it is not a useful predictor despite the fact that it perfectly separates the training data.
+% What is wrong with the attribute Date? Simply put, it has so many possible values that it is bound to separate the training examples into very small subsets. Because of this, it will have a very high information gain relative to the training examples, despite being a very poor predictor of the target function over unseen instances.
+% One way to avoid this difficulty is to select decision attributes based on some measure other than information gain. One alternative measure that has been used successfully is the gain ratio (Quinlan 1986). The gain ratio measure penalizes attributes such as Date by incorporating a term, called split informution, that is sensitive to how broadly and uniformly the attribute splits the data:
+% --- page 16 ---
+% 74 MACHINE LEARNING where S1 through S, are the c subsets of examples resulting from partitioning S by the c-valued attribute A. Note that Splitlnfomzation is actually the entropy of
+% S with respect to the values of attribute A. This is in contrast to our previous uses of entropy, in which we considered only the entropy of S with respect to the target attribute whose value is to be predicted by the learned tree.
+% The Gain Ratio measure is defined in terms of the earlier Gain measure, as well as this Splitlnfomzation, as follows
+Tăng (S, A) GainRatio(S, A) r Phân tách thông tin(S, A)
+
+Lưu ý rằng thuật ngữ Splitlnfomzation không khuyến khích việc lựa chọn các thuộc tính có nhiều giá trị được phân bố đồng đều. Ví dụ: hãy xem xét một tập hợp n ví dụ được phân tách hoàn toàn bởi thuộc tính A (ví dụ: Ngày). Trong trường hợp này, giá trị Splitlnfomzation sẽ là log, n. Ngược lại, thuộc tính boolean B chia đôi chính xác n ví dụ giống nhau sẽ có Hệ số phân tách là 1. Nếu thuộc tính A và B tạo ra mức tăng thông tin giống nhau thì rõ ràng B sẽ đạt điểm cao hơn theo thước đo Tỷ lệ khuếch đại.
+
+% One practical issue that arises in using GainRatio in place of Gain to select attributes is that the denominator can be zero or very small when ISi 1 x IS1 for one of the Si. This either makes the GainRatio undefined or very large for attributes that happen to have the same value for nearly all members of S. To avoid selecting attributes purely on this basis, we can adopt some heuristic such as first calculating the Gain of each attribute, then applying the GainRatio test only considering those attributes with above average Gain (Quinlan 1986).
+% An alternative to the GainRatio, designed to directly address the above difficulty, is a distance-based measure introduced by Lopez de Mantaras (1991). This measure is based on defining a distance metric between partitions of'the data. Each attribute is evaluated based on the distance between the data partition it creates and the perfect partition (i.e., the partition that perfectly classifies the training data). The attribute whose partition is closest to the perfect partition is chosen. Lopez de Mantaras (1991) defines this distance measure, proves that it is not biased toward attributes with large numbers of values, and reports experimental studies indicating that the predictive accuracy of the induced trees is not significantly different from that obtained with the Gain and Gain Ratio measures. However, this distance measure avoids the practical difficulties associated with the
+% GainRatio measure, and in his experiments it produces significantly smaller trees in the case of data sets whose attributes have very different numbers of values.
+% A variety of other selection measures have been proposed as well (e.g., see Breiman et al. 1984; Mingers 1989a; Kearns and Mansour 1996; Dietterich et al. 1996). Mingers (1989a) provides an experimental analysis of the relative effectiveness of several selection measures over a variety of problems. He reports significant differences in the sizes of the unpruned trees produced by the different selection measures. However, in his experimental domains the choice of attribute selection measure appears to have a smaller impact on final accuracy than does the extent and method of post-pruning.
+% --- page 17 ---
+% CHAPTER 3 DECISION TREE LEARNING 75
+3.7.4 Xử lý các ví dụ training bị thiếu giá trị thuộc tính
+
+Trong một số trường hợp nhất định, dữ liệu có sẵn có thể thiếu giá trị cho một số thuộc tính. Ví dụ: trong lĩnh vực y tế mà chúng ta muốn dự đoán bệnh nhân outcome dựa trên các xét nghiệm khác nhau trong lab, có thể kết quả xét nghiệm máu lab chỉ có sẵn cho một nhóm nhỏ bệnh nhân. Trong những trường hợp như vậy, estimate thường có giá trị thuộc tính bị thiếu dựa trên các ví dụ khác mà thuộc tính này có giá trị đã biết.
+
+% Consider the situation in which Gain(S, A) is to be calculated at node n in the decision tree to evaluate whether the attribute A is the best attribute to test at this decision node. Suppose that (x, c(x)) is one of the training examples in S and that the value A(x) is unknown.
+% One strategy for dealing with the missing attribute value is to assign it the value that is most common among training examples at node n. Alternatively, we might assign it the most common value among examples at node n that have the classification c(x). The elaborated training example using this estimated value for A(x) can then be used directly by the existing decision tree learning algorithm. This strategy is examined by Mingers (1989a).
+% A second, more complex procedure is to assign a probability to each of the possible values of A rather than simply assigning the most common value to A(x). These probabilities can be estimated again based on the observed frequencies of the various values for A among the examples at node n. For example, given a boolean attribute A, if node n contains six known examples with A = 1 and four with A = 0, then we would say the probability that A(x) = 1 is 0.6, and the probability that A(x) = 0 is 0.4. A fractional 0.6 of instance x is now distributed down the branch for A = 1, and a fractional 0.4 of x down the other tree branch. These fractional examples are used for the purpose of computing information
+% Gain and can be further subdivided at subsequent branches of the tree if a second missing attribute value must be tested. This same fractioning of examples can also be applied after learning, to classify new instances whose attribute values are unknown. In this case, the classification of the new instance is simply the most probable classification, computed by summing the weights of the instance fragments classified in different ways at the leaf nodes of the tree. This method for handling missing attribute values is used in C4.5 (Quinlan 1993).
+\subsubsection{Xử lý các thuộc tính với chi phí khác nhau}
+
+Trong một số nhiệm vụ học tập, các thuộc tính thể hiện có thể có chi phí liên quan. Ví dụ: khi học cách classification các bệnh nội khoa, chúng ta có thể mô tả bệnh nhân theo các thuộc tính như Nhiệt độ, BiopsyResult, Mạch, BloodTestResults, v.v. Các thuộc tính này khác nhau đáng kể về chi phí, cả về chi phí tiền tệ và chi phí mang lại sự thoải mái cho bệnh nhân. Trong các nhiệm vụ như vậy, chúng ta ưu tiên decision trees sử dụng các thuộc tính chi phí thấp nếu có thể, chỉ dựa vào các thuộc tính chi phí cao khi cần để tạo ra các classification đáng tin cậy.
+
+% ID3 can be modified to take into account attribute costs by introducing a cost term into the attribute selection measure. For example, we might divide the Gpin
+% --- page 18 ---
+% by the cost of the attribute, so that lower-cost attributes would be preferred. While such cost-sensitive measures do not guarantee finding an optimal cost-sensitive decision tree, they do bias the search in favor of low-cost attributes.
+% Tan and Schlimmer (1990) and Tan (1993) describe one such approach and apply it to a robot perception task in which the robot must learn to classify different objects according to how they can be grasped by the robot's manipulator. In this case the attributes correspond to different sensor readings obtained by a movable sonar on the robot. Attribute cost is measured by the number of seconds required to obtain the attribute value by positioning and operating the sonar. They demonstrate that more efficient recognition strategies are learned, without sacrificing classification accuracy, by replacing the information gain attribute selection measure by the following measure
+\subsection{Chi phí ( A )}
+
+% Nunez (1988) describes a related approach and its application to learning medical diagnosis rules. Here the attributes are different symptoms and laboratory tests with differing costs. His system uses a somewhat different attribute selection measure
+2GaWS.A) - 1
+
+% (Cost(A) + where w E [0, 11 is a constant that determines the relative importance of cost versus information gain. Nunez (1991) presents an empirical comparison of these two approaches over a range of tasks.
+\subsection{Tóm tắt và đọc thêm}
+
+Các điểm chính của chương này bao gồm:
+
+Decision tree learning cung cấp một phương pháp thực tế cho concept learning và để học các hàm có giá trị rời rạc khác. Nhóm thuật toán ID3 suy ra decision trees bằng cách phát triển chúng từ gốc trở xuống, tham lam chọn thuộc tính tốt nhất tiếp theo cho mỗi nhánh quyết định mới được thêm vào cây. ID3 searches a complete hypothesis space (i.e., the space of decision trees can represent any discrete-valued function defined over discrete-valued instances). Do đó, nó tránh được khó khăn lớn liên quan đến các phương pháp chỉ xem xét các tập hợp giả thuyết hạn chế: hàm mục tiêu có thể không có trong hypothesis space. Inductive bias tiềm ẩn trong ID3 bao gồm ưu tiên cho các cây nhỏ hơn; nghĩa là, việc tìm kiếm của nó thông qua hypothesis space chỉ phát triển cây ở mức cần thiết để classification các mẫu training có sẵn. Overfitting dữ liệu training là một vấn đề quan trọng trong decision tree learning. Vì các ví dụ training chỉ là mẫu của tất cả các trường hợp có thể,
+
+% --- page 19 ---
+% CHAFER 3 DECISION TREE LEARNING 77 it is possible to add branches to the tree that improve performance on the training examples while decreasing performance on other instances outside this set. Methods for post-pruning the decision tree are therefore important to avoid overfitting in decision tree learning (and other inductive inference methods that employ a preference bias). A large variety of extensions to the basic ID3 algorithm has been developed by different researchers. These include methods for post-pruning trees, handling real-valued attributes, accommodating training examples with missing attribute values, incrementally refining decision trees as new training examples become available, using attribute selection measures other than information gain, and considering costs associated with instance attributes.
+% Among the earliest work on decision tree learning is Hunt's Concept Learning System (CLS) (Hunt et al. 1966) and Friedman and Breiman's work resulting in the CART system (Friedman 1977; Breiman et al. 1984). Quinlan's ID3 system (Quinlan 1979, 1983) forms the basis for the discussion in this chapter. Other early work on decision tree learning includes ASSISTANT (Kononenko et al. 1984; Cestnik et al. 1987). Implementations of decision tree induction algorithms are now commercially available on many computer platforms.
+Để biết thêm chi tiết về cảm ứng decision tree, một cuốn sách xuất sắc của Quinlan
+
+(1993) thảo luận nhiều vấn đề thực tế và cung cấp mã thực thi cho C4.5. Mingers (1989a) và Buntine và Niblett (1992) cung cấp hai nghiên cứu thực nghiệm so sánh các biện pháp lựa chọn thuộc tính khác nhau. Mingers (1989b) và Malerba et al. (1995) cung cấp các nghiên cứu về các chiến lược cắt tỉa khác nhau. Các thí nghiệm so sánh decision tree learning và các phương pháp học tập khác có thể được tìm thấy trong nhiều bài báo, bao gồm (Dietterich và cộng sự 1995; Fisher và McKusick 1989; Quinlan
+
+1988a; Shavlik và cộng sự. 1991; Thrun và cộng sự. 1991; Weiss và Kapouleas 1989).
+
+\section{Bài tập}
+
+Cho decision trees biểu diễn các hàm boolean sau: (a) A A -B (b) A V [ B A C ] (c) A XOR B (d) [ A A B] v [C A Dl Hãy xem xét tập hợp các ví dụ training sau:
+
+Ví dụ Classification a1 a2
+
+% --- page 20 ---
+% (a) What is the entropy of this collection of training examples with respect to the target function classification?
+(b) Mức thu được thông tin của a2 so với các ví dụ training này là bao nhiêu?
+
+% 3.3. True or false: If decision tree D2 is an elaboration of tree Dl, then Dl is moregeneral-than D2. Assume Dl and D2 are decision trees representing arbitrary boolean functions, and that D2 is an elaboration of Dl if ID3 could extend Dl into D2. If true, give a proof; if false, a counterexample. (More-general-than is defined in Chapter 2.)
+% 3.4. ID3 searches for just one consistent hypothesis, whereas the CANDIDATEELIMINATION algorithm finds all consistent hypotheses. Consider the correspondence between these two learning algorithms. (a) Show the decision tree that would be learned by ID3 assuming it is given the four training examples for the Enjoy Sport? target concept shown in Table 2.1 of Chapter 2.
+(b) Mối quan hệ giữa decision tree đã học và version space đã học là gì
+
+(thể hiện trong Hình 2.3 của Chương 2) được học từ những ví dụ tương tự này? Cây đã học có tương đương với một trong các thành viên của version space không?
+
+% (c) Add the following training example, and compute the new decision tree. This time, show the value of the information gain for each candidate attribute at each step in growing the tree.
+Dự báo nhiệt độ không khí trên bầu trời Độ ẩm gió nước Thưởng thức thể thao?
+
+Nắng Ấm Bình thường Yếu Ấm Tương tự Không
+
+% ( d ) Suppose we wish to design a learner that (like ID3) searches a space of decision tree hypotheses and (like CANDIDATE-ELIMINATION) finds all hypotheses consistent with the data. In short, we wish to apply the CANDIDATE-ELIMINATION algorithm to searching the space of decision tree hypotheses. Show the S and G sets that result from the first training example from Table 2.1. Note S must contain the most specific decision trees consistent with the data, whereas G must contain the most general. Show how the S and G sets are refined by thesecond training example (you may omit syntactically distinct trees that describe the same concept). What difficulties do you foresee in applying CANDIDATE-ELIMINATION to a decision tree hypothesis space?
+\subsection{Tài liệu tham khảo}
+
+% Breiman, L., Friedman, J. H., Olshen, R. A., \& Stone, P. 1. (1984). ClassiJication and regression trees. Belmont, CA: Wadsworth International Group.
+Brodley, C. E., \& Utgoff, P. E. (1995). Decision trees đa biến. Machine Learning, 19, 45-77. Buntine, W., \& Niblett, T. (1992). Một so sánh sâu hơn về các quy tắc phân chia cho việc quy nạp cây quyết định.
+
+Machine Learning, 8, 75-86.
+
+% Cestnik, B., Kononenko, I., \& Bratko, I. (1987). ASSISTANT-86: A knowledge-elicitation tool for sophisticated users. In I. Bratko \& N. LavraE (Eds.), Progress in machine learning. Bled, Yugoslavia: Sigma Press.
+Dietterich, T. G., Hild, H., \& Bakiri, G. (1995). So sánh ID3 và BACKPROPAGATION cho
+
+Ánh xạ văn bản thành giọng nói tiếng Anh. Machine Learning, 18(1), 51-80.
+
+% Dietterich, T. G., Kearns, M., \& Mansour, Y. (1996). Applying the weak learning framework to understand and improve C4.5. Proceedings of the 13th International Conference on Machine Learning (pp. 96104). San Francisco: Morgan Kaufmann.
+% Fayyad, U. M. (1991). On the induction of decision trees for multiple concept leaning, (Ph.D. dissertation). EECS Department, University of Michigan.
+% --- page 21 ---
+\subsection{C M 3 Decision Tree Học 79}
+
+% Fayyad, U. M., \& Irani, K. B. (1992). On the handling of continuous-valued attributes in decision tree generation. Machine Learning, 8, 87-102.
+% Fayyad, U. M., \& Irani, K. B. (1993). Multi-interval discretization of continuous-valued attributes for classification learning. In R. Bajcsy (Ed.), Proceedings of the 13th International Joint Conference on ArtiJcial Intelligence (pp. 1022-1027). Morgan-Kaufmann.
+% Fayyad, U. M., Weir, N., \& Djorgovski, S. (1993). SKICAT: A machine learning system for automated cataloging of large scale sky surveys. Proceedings of the Tenth International Conference on Machine Learning (pp. 112-1 19). Amherst, MA: Morgan Kaufmann.
+Fisher, D. H. Và McKusick, K. B. (1989). So sánh thực nghiệm giữa ID3 và backpropagation.
+
+Kỷ yếu Hội nghị chung quốc tế lần thứ 11 về A1 (trang 788-793). Morgan Kaufmann.
+
+Fnedman, J. H. (1977). Quy tắc quyết định phân vùng đệ quy cho classification không tham số. IEEE
+
+Giao dịch trên máy tính @p. 404408).
+
+% Hunt, E. B. (1975). Art\$cial Intelligence. New Yorc Academic Press. Hunt, E. B., Marin, J., \& Stone, P. J. (1966). Experiments in Induction. New York: Academic Press. Kearns, M., \& Mansour, Y. (1996). On the boosting ability of top-down decision tree learning algorithms. Proceedings of the 28th ACM Symposium on the Theory of Computing. New York: ACM Press.
+% Kononenko, I., Bratko, I., \& Roskar, E. (1984). Experiments in automatic learning of medical diagnostic rules (Technical report). Jozef Stefan Institute, Ljubljana, Yugoslavia.
+% Lopez de Mantaras, R. (1991). A distance-based attribute selection measure for decision tree induction. Machine Learning, 6(1), 81-92.
+% Malerba, D., Floriana, E., \& Semeraro, G. (1995). A further comparison of simplification methods for decision tree. induction. In D. Fisher \& H. Lenz (Eds.), Learningfrom data: AI and statistics. Springer-Verlag.
+% Mehta, M., Rissanen, J., \& Agrawal, R. (1995). MDL-based decision tree pruning. Proceedings of the First International Conference on Knowledge Discovery and Data Mining (pp. 216-221). Menlo Park, CA: AAAI Press.
+Mingers, J. (1989a). Một so sánh thực nghiệm về các biện pháp lựa chọn cho việc tạo ra cây quyết định.
+
+Machine Learning, 3(4), 319-342.
+
+Mingers, J. (1989b). Một so sánh thực nghiệm về các phương pháp cắt tỉa để tạo ra cây quyết định.
+
+Machine Learning, 4(2), 227-243.
+
+% Murphy, P. M., \& Pazzani, M. J. (1994). Exploring the decision forest: An empirical investigation of Occam's razor in decision tree induction. Journal of Artijicial Intelligence Research, 1, 257-275.
+Murthy, S. K., Kasif, S., \& Salzberg, S. (1994). Một hệ thống cảm ứng decision trees xiên.
+
+Tạp chí Nghiên cứu Trí tuệ Art\$cial, 2, 1-33.
+
+Nunez, M. (1991). Việc sử dụng kiến ​​thức nền tảng trong quy nạp decision tree. Machine Learning,
+
+% 6(3), 23 1-250.
+% Pagallo, G., \& Haussler, D. (1990). Boolean feature discovery in empirical learning. Machine Learning, 5, 71-100.
+Qulnlan, J. R. (1979). Khám phá các quy tắc bằng quy nạp từ tập hợp lớn các ví dụ. Ở D
+
+Michie (Ed.), Hệ thống chuyên gia trong thời đại vi điện tử. Đại học Edinburgh Nhấn.
+
+% Qulnlan, J. R. (1983). Learning efficient classification procedures and their application to chess end games. In R. S. Michalski, J. G. Carbonell, \& T. M. Mitchell (Eds.), Machine learning: An artificial intelligence approach. San Matw, CA: Morgan Kaufmann.
+Qulnlan, J. R. (1986). Cảm ứng decision trees. Machine Learning, 1(1), 81-106. Qulnlan, J. R. (1987). Quy tắc quy nạp với dữ liệu thống kê - so sánh với nhiều regression.
+
+Tạp chí của Hiệp hội Nghiên cứu Hoạt động, 38,347-352.
+
+% Quinlan, J.R. (1988). An empirical comparison of genetic and decision-tree classifiers. Proceedings of the Fifrh International Machine Learning Conference (135-141). San Matw, CA: Morgan Kaufmann.
+Quinlan, JR (1988b). Decision trees và các thuộc tính đa giá trị. Trong Hayes, Michie và Richards
+
+(Eds.), Máy thông minh 11, (trang 305-318). Oxford, Anh: Nhà xuất bản Đại học Oxford.
+
+% --- page 22 ---
+% 80 MACHINE LEARNING
+Quinlan, JR, \& Rivest, R. (1989). Thông tin và Tính toán, (go), 227-248. Quinlan, JR (1993). C4.5: Các chương trình dành cho Machine Learning. San Mateo, CA: Morgan Kaufmann. Rissanen, J. (1983). Một ưu tiên phổ quát cho số nguyên và ước tính theo độ dài mô tả tối thiểu.
+
+Biên niên sử thống kê 11 (2), 416-431.
+
+% Rivest, R. L. (1987). Learning decision lists. Machine Learning, 2(3), 229-246. Schaffer, C. (1993). Overfitting avoidance as bias. Machine Learning, 10, 113-152. Shavlik, J. W., Mooney, R. J., \& Towell, G. G. (1991). Symbolic and neural learning algorithms: an experimental comparison. Machine kaming, 6(2), 11 1-144.
+Tân, M. (1993). Học kiến ​​thức về classification với chi phí hợp lý và các ứng dụng của nó trong chế tạo robot.
+
+Machine Learning, 13(1), 1-33.
+
+% Tan, M., \& Schlimmer, J. C. (1990). Two case studies in cost-sensitive concept acquisition. Proceedings of the AAAZ-90.
+% Thrun, S. B. et al. (1991). The Monk's problems: A pe\textasciitilde{}ormance comparison of different learning algorithms, (Technical report CMU-FS-91-197). Computer Science Department, Carnegie Mellon Univ., Pittsburgh, PA.
+% Turney, P. D. (1995). Cost-sensitive classification: empirical evaluation of a hybrid genetic decision tree induction algorithm. Journal of A1 Research, 2, 369409.
+Utgoff, P. E. (1989). Cảm ứng tăng dần của decision trees. Machine Learning, 4(2), 161-186. Utgoff, P. E., \& Brodley, C. E. (1991). Máy tuyến tính decision trees, (Báo cáo kỹ thuật COINS
+
+91-10). Đại học Massachusetts, Amherst, MA.
+
+% Weiss, S., \& Kapouleas, I. (1989). An empirical comparison of pattern recognition, neural nets, and machine learning classification methods. Proceedings of the Eleventh IJCAI, (781-787), Morgan Kaufmann.
+% --- page 23 ---
+% CHAPTER
+% ARTIFICIAL
+% NEURAL
+% NETWORKS
+% Artificial neural networks (ANNs) provide a general, practical method for learning real-valued, discrete-valued, and vector-valued functions from examples. Algorithms such as BACKPROPAGATION use gradient descent to tune network parameters to best fit a training set of input-output pairs. ANN learning is robust to errors in the training data and has been successfully applied to problems such as interpreting visual scenes, speech recognition, and learning robot control strategies.
+\subsection{Giới thiệu}
+
+% Neural network learning methods provide a robust approach to approximating real-valued, discrete-valued, and vector-valued target functions. For certain types of problems, such as learning to interpret complex real-world sensor data, artificial neural networks are among the most effective learning methods currently known. For example, the BACKPROPAGATION algorithm described in this chapter has proven surprisingly successful in many practical problems such as learning to recognize handwritten characters (LeCun et al. 1989), learning to recognize spoken words (Lang et al. 1990), and learning to recognize faces (Cottrell 1990). One survey of practical applications is provided by Rumelhart et al. (1994).
+% --- page 24 ---
+\subsubsection{Động lực sinh học}
+
+% The study of artificial neural networks (ANNs) has been inspired in part by the observation that biological learning systems are built of very complex webs of interconnected neurons. In rough analogy, artificial neural networks are built out of a densely interconnected set of simple units, where each unit takes a number of real-valued inputs (possibly the outputs of other units) and produces a single real-valued output (which may become the input to many other units).
+% To develop a feel for this analogy, let us consider a few facts from neurobiology. The human brain, for example, is estimated to contain a densely interconnected network of approximately 1011 neurons, each connected, on average, to lo4 others. Neuron activity is typically excited or inhibited through connections to other neurons. The fastest neuron switching times are known to be on the order of loe3 seconds--quite slow compared to computer switching speeds of 10-lo seconds. Yet humans are able to make surprisingly complex decisions, surprisingly quickly. For example, it requires approximately lo-' seconds to visually recognize your mother. Notice the sequence of neuron firings that can take place during this
+% 10-'-second interval cannot possibly be longer than a few hundred steps, given the switching speed of single neurons. This observation has led many to speculate that the information-processing abilities of biological neural systems must follow from highly parallel processes operating on representations that are distributed over many neurons. One motivation for ANN systems is to capture this kind of highly parallel computation based on distributed representations. Most ANN software runs on sequential machines emulating distributed processes, although faster versions of the algorithms have also been implemented on highly parallel machines and on specialized hardware designed specifically for ANN applications.
+% While ANNs are loosely motivated by biological neural systems, there are many complexities to biological neural systems that are not modeled by ANNs, and many features of the ANNs we discuss here are known to be inconsistent with biological systems. For example, we consider here ANNs whose individual units output a single constant value, whereas biological neurons output a complex time series of spikes.
+% Historically, two groups of researchers have worked with artificial neural networks. One group has been motivated by the goal of using ANNs to study and model biological learning processes. A second group has been motivated by the goal of obtaining highly effective machine learning algorithms, independent of whether these algorithms mirror biological processes. Within this book our interest fits the latter group, and therefore we will not dwell further on biological modeling. For more information on attempts to model biological systems using ANNs, see, for example, Churchland and Sejnowski (1992); Zornetzer et al. (1994); Gabriel and Moore (1990).
+4.2 NEURAL NETWORK REPRESENTATIONS Một ví dụ điển hình về việc học ANN được cung cấp bởi hệ thống ALVINN của Pomerleau (1993), hệ thống này sử dụng ANN đã học để điều khiển phương tiện tự hành lái
+
+% --- page 25 ---
+Ở tốc độ bình thường trên đường cao tốc công cộng. Đầu vào của neural network là lưới cường độ pixel 30 x 32 thu được từ một camera hướng về phía trước gắn trên xe. Đầu ra của mạng là hướng mà xe được điều khiển. ANN được training để bắt chước các lệnh lái được quan sát của con người điều khiển phương tiện trong khoảng 5 phút. ALVINN đã sử dụng các mạng đã học của mình để lái xe thành công ở tốc độ lên tới 70 dặm một giờ và trong khoảng cách 90 dặm trên đường cao tốc công cộng (lái xe ở làn bên trái của đường cao tốc công cộng bị chia cắt, có sự hiện diện của các phương tiện khác).
+
+% Figure 4.1 illustrates the neural network representation used in one version of the ALVINN system, and illustrates the kind of representation typical of many ANN systems. The network is shown on the left side of the figure, with the input camera image depicted below it. Each node (i.e., circle) in the network diagram corresponds to the output of a single network unit, and the lines entering the node from below are its inputs. As can be seen, there are four units that receive inputs directly from all of the 30 x 32 pixels in the image. These are called "hidden" units because their output is available only within the network and is not available as part of the global network output. Each of these four hidden units computes a single real-valued output based on a weighted combination of its 960 inputs. These hidden unit outputs are then used as inputs to a second layer of 30 "output" units. Each output unit corresponds to a particular steering direction, and the output values of these units determine which steering direction is recommended most strongly.
+% The diagrams on the right side of the figure depict the learned weight values associated with one of the four hidden units in this ANN. The large matrix of black and white boxes on the lower right depicts the weights from the 30 x 32 pixel inputs into the hidden unit. Here, a white box indicates a positive weight, a black box a negative weight, and the size of the box indicates the weight magnitude. The smaller rectangular diagram directly above the large matrix shows the weights from this hidden unit to each of the 30 output units.
+% The network structure of ALYINN is typical of many ANNs. Here the individual units are interconnected in layers that form a directed acyclic graph. In general, ANNs can be graphs with many types of structures-acyclic or cyclic, directed or undirected. This chapter will focus on the most common and practical ANN approaches, which are based on the BACKPROPAGATION algorithm. The BACKPROPAGATION algorithm assumes the network is a fixed structure that corresponds to a directed graph, possibly containing cycles. Learning corresponds to choosing a weight value for each edge in the graph. Although certain types of cycles are allowed, the vast majority of practical applications involve acyclic feed-forward networks, similar to the network structure used by ALVINN.
+\subsection{Các vấn đề phù hợp để học Neural Network}
+
+Việc học ANN rất phù hợp với các vấn đề trong đó dữ liệu training tương ứng với dữ liệu cảm biến phức tạp, ồn ào, chẳng hạn như đầu vào từ máy ảnh và micrô.
+
+% --- page 26 ---
+E2'
+
+Thẳng
+
+Phía trước
+
+\section{1 1 30 Đầu ra}
+
+% Units n
+Võng mạc đầu vào cảm biến 30x32
+
+\[1\]
+
+% FIGURE 4.1 Neural network learning to steer an autonomous vehicle. The ALVINN system uses BACKPROPAGATION to learn to steer an autonomous vehicle (photo at top) driving at speeds up to 70 miles per hour. The diagram on the left shows how the image of a forward-mounted camera is mapped to 960 neural network inputs, which are fed forward to 4 hidden units, connected to 30 output units. Network outputs encode the commanded steering direction. The figure on the right shows weight values for one of the hidden units in this network. The 30 x 32 weights into the hidden unit are displayed in the large matrix, with white blocks indicating positive and black indicating negative weights. The weights from this hidden unit to the 30 output units are depicted by the smaller rectangular block directly above the large block. As can be seen from these output weights, activation of this particular hidden unit encourages a turn toward the left.
+% --- page 27 ---
+\textasciitilde{}t cũng có thể áp dụng cho các bài toán thường sử dụng nhiều biểu diễn ký hiệu hơn, chẳng hạn như các nhiệm vụ decision tree learning đã thảo luận trong Chương 3. Trong những trường hợp này, ANN và decision tree learning thường tạo ra kết quả có độ chính xác tương đương. Xem Shavlik và cộng sự. (1991) và Weiss và Kapouleas (1989) để so sánh thử nghiệm việc học decision tree và ANN. Thuật toán BACKPROPAGATION là kỹ thuật học ANN được sử dụng phổ biến nhất. Nó phù hợp cho các vấn đề có các đặc điểm sau:
+
+% 0 Instances are represented by many attribute-value pairs. The target function to be learned is defined over instances that can be described by a vector of predefined features, such as the pixel values in the ALVINN example. These input attributes may be highly correlated or independent of one another. Input values can be any real values.
+% The target function output may be discrete-valued, real-valued, or a vector of several real- or discrete-valued attributes. For example, in the ALVINN system the output is a vector of 30 attributes, each corresponding to a recommendation regarding the steering direction. The value of each output is some real number between 0 and 1, which in this case corresponds to the confidence in predicting the corresponding steering direction. We can also train a single network to output both the steering command and suggested acceleration, simply by concatenating the vectors that encode these two output predictions.
+% The training examples may contain errors. ANN learning methods are quite robust to noise in the training data. Long training times are acceptable. Network training algorithms typically require longer training times than, say, decision tree learning algorithms. Training times can range from a few seconds to many hours, depending on factors such as the number of weights in the network, the number of training examples considered, and the settings of various learning algorithm parameters. Fast evaluation of the learned target function may be required. Although ANN learning times are relatively long, evaluating the learned network, in order to apply it to a subsequent instance, is typically very fast. For example, ALVINN applies its neural network several times per second to continually update its steering command as the vehicle drives forward.
+I Khả năng con người hiểu được chức năng mục tiêu đã học là không quan trọng. Các weight mà neural networks học được thường khó giải thích đối với con người. Neural networks đã học được khó truyền đạt tới con người hơn các quy tắc đã học được.
+
+% The rest of this chapter is organized as follows: We first consider several alternative designs for the primitive units that make up artificial neural networks (perce\textasciitilde{}trons, linear units, and sigmoid units), along with learning algorithms for training single units. We then present the BACKPROPAGATION algorithm for training
+% --- page 28 ---
+% multilayer networks of such units and consider several general issues such as the representational capabilities of ANNs, nature of the hypothesis space search, overfitting problems, and alternatives to the BACKPROPAGATION algorithm. A detailed example is also presented applying BACKPROPAGATION to face recognition, and directions are provided for the reader to obtain the data and code to experiment further with this application.
+\subsection{Perceptron}
+
+Một loại hệ thống ANN dựa trên một đơn vị gọi là perceptron, được minh họa trong
+
+% Figure 4.2. A perceptron takes a vector of real-valued inputs, calculates a linear combination of these inputs, then outputs a 1 if the result is greater than some threshold and -1 otherwise. More precisely, given inputs xl through x,, the output o(x1, . . . , x,) computed by the perceptron is o(x1,. . . , x , ) = 1 if wo + wlxl+ \textasciitilde{} 2 x 2 + - . + W,X, > 0
+% -1 otherwise where each wi is a real-valued constant, or weight, that determines the contribution of input xi to the perceptron output. Notice the quantity (-wO) is a threshold that the weighted combination of inputs wlxl + . . . + wnxn must surpass in order for the perceptron to output a 1.
+% To simplify notation, we imagine an additional constant input xo = 1, allowing us to write the above inequality as C:=o wixi > 0, or in vector form as iir ..i! > 0. For brevity, we will sometimes write the perceptron function as where
+Học một perceptron bao gồm việc chọn các giá trị cho các weight wo, . . . , ,.
+
+Do đó, không gian H của các giả thuyết ứng cử viên được xem xét trong quá trình học perceptron là tập hợp tất cả các vector weight có giá trị thực có thể có.
+
+\subsubsection{Sức mạnh đại diện của Perceptron}
+
+Chúng ta có thể xem perceptron như biểu diễn bề mặt quyết định siêu phẳng trong không gian n chiều của các thể hiện (tức là các điểm). Perceptron xuất ra giá trị 1 cho các trường hợp nằm ở một phía của siêu phẳng và xuất ra -1 cho các trường hợp nằm ở phía bên kia, như minh họa trong Hình 4.3. Phương trình cho siêu phẳng quyết định này là iir . .Tôi! = 0. Tất nhiên, một số tập hợp ví dụ dương và âm không thể được phân tách bằng bất kỳ siêu phẳng nào. Những tập hợp có thể tách rời được gọi là tập hợp mẫu có thể phân tách tuyến tính.
+
+% --- page 29 ---
+\noindent\textit{FIGURE 4 3 Một tri giác.}
+
+% A single perceptron can be used to represent many boolean functions. For example, if we assume boolean values of 1 (true) and -1 (false), then one way to use a two-input perceptron to implement the AND function is to set the weights wo = -3, and wl = wz = .5. This perceptron can be made to represent the OR function instead by altering the threshold to wo = -.3. In fact, AND and OR can be viewed as special cases of m-of-n functions: that is, functions where at least m of the n inputs to the perceptron must be true. The OR function corresponds to rn = 1 and the AND function to m = n. Any m-of-n function is easily represented using a perceptron by setting all input weights to the same value (e.g., 0.5) and then setting the threshold wo accordingly.
+Perceptron có thể biểu diễn tất cả các hàm boolean nguyên thủy AND, OR,
+
+NAND ( 1 AND) và NOR ( 1 OR). Tuy nhiên, thật không may, một số hàm boolean không thể được biểu diễn bằng một perceptron đơn lẻ, chẳng hạn như hàm XOR có giá trị là 1 khi và chỉ khi xl \# xz. Lưu ý tập hợp các ví dụ training không thể phân tách tuyến tính được hiển thị trong Hình 4.3(b) tương ứng với hàm XOR này.
+
+% The ability of perceptrons to represent AND, OR, NAND, and NOR is important because every boolean function can be represented by some network of interconnected units based on these primitives. In fact, every boolean function can be represented by some network of perceptrons only two levels deep, in which
+\noindent\textit{FIGURE 4.3 Bề mặt quyết định được biểu thị bằng perceptron hai đầu vào. (a) Một tập hợp các ví dụ training và bề mặt quyết định của một perceptron classification chúng một cách chính xác. (b) Một tập hợp các ví dụ training không thể phân tách tuyến tính (nghĩa là không thể classification chính xác theo bất kỳ đường thẳng nào). Xl và $x_{2}$ là đầu vào Perceptron. Các ví dụ tích cực được biểu thị bằng "+", tiêu cực bằng "-".}
+
+% --- page 30 ---
+Đầu vào được cung cấp cho nhiều đơn vị và đầu ra của các đơn vị này sau đó được đưa vào giai đoạn thứ hai, giai đoạn cuối cùng. Một cách là biểu diễn hàm boolean ở dạng phân biệt chuẩn (tức là, dưới dạng phân tách (OR) của một tập hợp các liên từ (ANDs) của các đầu vào và các phủ định của chúng). Lưu ý rằng đầu vào của một perceptron AND có thể bị phủ định đơn giản bằng cách thay đổi dấu của weight đầu vào tương ứng.
+
+% Because networks of threshold units can represent a rich variety of functions and because single units alone cannot, we will generally be interested in learning multilayer networks of threshold units.
+\subsubsection{Quy tắc training Perceptron}
+
+Mặc dù chúng ta quan tâm đến mạng học tập của nhiều đơn vị được kết nối với nhau, nhưng chúng ta hãy bắt đầu bằng cách tìm hiểu cách học các weight cho một perceptron đơn lẻ. Ở đây, vấn đề học chính xác là xác định một vector weight làm cho perceptron tạo ra đầu ra f 1 chính xác cho mỗi training examples đã cho.
+
+% Several algorithms are known to solve this learning problem. Here we consider two: the perceptron rule and the delta rule (a variant of the LMS rule used in Chapter 1 for learning evaluation functions). These two algorithms are guaranteed to converge to somewhat different acceptable hypotheses, under somewhat different conditions. They are important to ANNs because they provide the basis for learning networks of many units.
+% One way to learn an acceptable weight vector is to begin with random weights, then iteratively apply the perceptron to each training example, modifying the perceptron weights whenever it misclassifies an example. This process is repeated, iterating through the training examples as many times as needed until the perceptron classifies all training examples correctly. Weights are modified at each step according to the perceptron training rule, which revises the weight wi associated with input xi according to the rule where
+% Here t is the target output for the current training example, o is the output generated by the perceptron, and q is a positive constant called the learning rate. The role of the learning rate is to moderate the degree to which weights are changed at each step. It is usually set to some small value (e.g., 0.1) and is sometimes made to decay as the number of weight-tuning iterations increases.
+% Why should this update rule converge toward successful weight values? To get an intuitive feel, consider some specific cases. Suppose the training example is correctly classified already by the perceptron. In this case, (t - o) is zero, making
+% Awi zero, so that no weights are updated. Suppose the perceptron outputs a -1, when the target output is + 1. To make the perceptron output a + 1 instead of - 1 in this case, the weights must be altered to increase the value of G.2. For example, if xi r 0, then increasing wi will bring the perceptron closer to correctly classifying
+% --- page 31 ---
+Ví dụ này Lưu ý quy tắc training sẽ tăng w, trong trường hợp này, vì (t - o),
+
+% 7, and Xi are all positive. For example, if xi = .8, q = 0.1, t = 1, and o = - 1, then the weight update will be Awi = q(t - o)xi = O.1(1 - (-1))0.8 = 0.16. On the other hand, if t = -1 and o = 1, then weights associated with positive xi will be decreased rather than increased.
+% In fact, the above learning procedure can be proven to converge within a finite number of applications of the perceptron training rule to a weight vector that correctly classifies all training examples, provided the training examples are linearly separable and provided a sufficiently small 7 is used (see Minsky and Papert 1969). If the data are not linearly separable, convergence is not assured.
+\subsubsection{Gradient Descent và Quy tắc Delta}
+
+Mặc dù quy tắc perceptron tìm thấy một vector weight thành công khi các mẫu training có thể phân tách tuyến tính, nhưng nó có thể không hội tụ nếu các mẫu không phân tách tuyến tính. Quy tắc training thứ hai, được gọi là quy tắc delta, được thiết kế để khắc phục khó khăn này. Nếu các mẫu training không thể phân tách tuyến tính thì quy tắc delta sẽ hội tụ về một xấp xỉ phù hợp nhất với khái niệm đích.
+
+% The key idea behind the delta rule is to use gradient descent to search the hypothesis space of possible weight vectors to find the weights that best fit the training examples. This rule is important because gradient descent provides the basis for the BACKPROPAGATION algorithm, which can learn networks with many interconnected units. It is also important because gradient descent can serve as the basis for learning algorithms that must search through hypothesis spaces containing many different types of continuously parameterized hypotheses.
+% The delta training rule is best understood by considering the task of training an unthresholded perceptron; that is, a linear unit for which the output o is given by
+Do đó, một đơn vị tuyến tính tương ứng với giai đoạn đầu tiên của một perceptron, không có ngưỡng.
+
+% In order to derive a weight learning rule for linear units, let us begin by specifying a measure for the training error of a hypothesis (weight vector), relative to the training examples. Although there are many ways to define this error, one common measure that will turn out to be especially convenient is where D is the set of training examples, td is the target output for training example d, and od is the output of the linear unit for training example d. By this definition,
+% E ( 6 ) is simply half the squared difference between the target output td and the hear unit output od, summed over all training examples. Here we characterize
+% E as a function of 27, because the linear unit output o depends on this weight vector. Of course E also depends on the particular set of training examples, but
+% --- page 32 ---
+Chúng ta giả sử những điều này là cố định trong quá trình training, vì vậy chúng ta không bận tâm viết E như một hàm rõ ràng của những điều này. Chương 6 cung cấp cơ sở biện minh Bayes cho việc chọn định nghĩa cụ thể này của E. Cụ thể, ở đó chúng ta chỉ ra rằng trong những điều kiện nhất định, giả thuyết cực tiểu hóa E cũng là giả thuyết có khả năng xảy ra nhất trong H dựa trên dữ liệu training.
+
+4.4.3.1 VISUALIZING THE HYPOTHESIS SPACE
+
+% To understand the gradient descent algorithm, it is helpful to visualize the entire hypothesis space of possible weight vectors and their associated E values, as illustrated in Figure 4.4. Here the axes wo and wl represent possible values for the two weights of a simple linear unit. The wo, wl plane therefore represents the entire hypothesis space. The vertical axis indicates the error E relative to some fixed set of training examples. The error surface shown in the figure thus summarizes the desirability of every weight vector in the hypothesis space (we desire a hypothesis with minimum error). Given the way in which we chose to define E, for linear units this error surface must always be parabolic with a single global minimum. The specific parabola will depend, of course, on the particular set of training examples.
+% FIGURE 4.4 Error of different hypotheses. For a linear unit with two weights, the hypothesis space H is the wg, wl plane. The vertical axis indicates tk error of the corresponding weight vector hypothesis, relative to a fixed set of training examples. The arrow shows the negated gradient at one particular point, indicating the direction in the wo, w l plane producing steepest descent along the error surface.
+% --- page 33 ---
+% Gradient descent search determines a weight vector that minimizes E by starting with an arbitrary initial weight vector, then repeatedly modifying it in small steps. At each step, the weight vector is altered in the direction that produces the steepest descent along the error surface depicted in Figure 4.4. This process continues until the global minimum error is reached.
+4.4.3.2 DERIVATION OF THE GRADIENT DESCENT RULE
+
+Làm thế nào chúng ta có thể tính toán hướng đi xuống dốc nhất dọc theo bề mặt sai số?
+
+Hướng này có thể được tìm bằng cách tính đạo hàm của E đối với từng thành phần của vector 2. Đạo hàm vector này được gọi là gradient của E đối với 221, được viết là \textasciitilde{} \textasciitilde{} ( i i r ) .
+
+% Notice VE(221) is itself a vector, whose components are the partial derivatives of E with respect to each of the wi. When interpreted as a vector in weight space, the gradient specijies the direction that produces the steepest increase in
+E. Do đó, giá trị âm của vector này cho biết hướng giảm mạnh nhất.
+
+Ví dụ, mũi tên trong Hình 4.4 hiển thị gradient phủ định -VE(G) cho một điểm cụ thể trong mặt phẳng wo, wl.
+
+% Since the gradient specifies the direction of steepest increase of E, the training rule for gradient descent is where
+% Here r] is a positive constant called the learning rate, which determines the step size in the gradient descent search. The negative sign is present because we want to move the weight vector in the direction that decreases E. This training rule can also be written in its component form where which makes it clear that steepest descent is achieved by altering each component w, of ii in proportion to E.
+% To construct a practical algorithm for iteratively updating weights according to Equation ( 4 4 , we need an efficient way of calculating the gradient at each step. Fortunately, this is not difficult. The vector of derivatives that form the
+% --- page 34 ---
+% gradient can be obtained by differentiating E from Equation (4.2), as where xid denotes the single input component xi for training example d. We now have an equation that gives in terms of the linear unit inputs xid, outputs
+% Od, and target values td associated with the training examples. Substituting Equation (4.6) into Equation (4.5) yields the weight update rule for gradient descent
+% To summarize, the gradient descent algorithm for training linear units is as follows: Pick an initial random weight vector. Apply the linear unit to all training examples, then compute Awi for each weight according to Equation (4.7). Update each weight wi by adding Awi, then repeat this process. This algorithm is given in Table 4.1. Because the error surface contains only a single global minimum, this algorithm will converge to a weight vector with minimum error, regardless of whether the training examples are linearly separable, given a sufficiently small learning rate q is used. If r) is too large, the gradient descent search runs the risk of overstepping the minimum in the error surface rather than settling into it. For this reason, one common modification to the algorithm is to gradually reduce the value of r) as the number of gradient descent steps grows.
+4.4.3.3 STOCHASTIC APPROXIMATION TO GRADIENT DESCENT
+
+Giảm dần độ dốc là một model chung quan trọng cho việc học. Đó là một chiến lược tìm kiếm thông qua hypothesis space lớn hoặc vô hạn có thể được áp dụng bất cứ khi nào (1) hypothesis space chứa các giả thuyết được tham số hóa liên tục (ví dụ: weight trong một đơn vị tuyến tính) và (2) lỗi có thể được phân biệt theo giả thuyết parameters này. Những khó khăn chính trong thực tế khi áp dụng giảm độ dốc là (1) việc hội tụ về mức cực tiểu cục bộ đôi khi có thể khá chậm (nghĩa là có thể yêu cầu hàng nghìn bước giảm độ dốc) và (2) nếu có nhiều cực tiểu cục bộ trên bề mặt lỗi thì không có gì đảm bảo rằng quy trình sẽ tìm được mức tối thiểu toàn cục.
+
+% --- page 35 ---
+% CHAF'l'ER 4 ARTIFICIAL NEURAL NETWORKS 93 \textasciitilde{} \textasciitilde{} A D I E N T - D E s c E N T ( \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} x \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} \textasciitilde{} s , q)
+Mỗi ví dụ training là một cặp có dạng (2, t), trong đó x' là vector của các giá trị đầu vào và t là giá trị đầu ra mục tiêu. Q là tốc độ học tập (ví dụ: 0,05). . Khởi tạo mỗi w thành một giá trị ngẫu nhiên nhỏ nào đó. Cho đến khi điều kiện kết thúc được đáp ứng, Do
+
+\section{Khởi tạo mỗi Awi về 0.}
+
+% 0 For each (2, t ) in trainingaxamples, Do w Input the instance x' to the unit and compute the output o
+Với mỗi đơn vị trọng lượng tuyến tính w, Do
+
+Với mỗi đơn vị trọng lượng tuyến tính wi, Do
+
+% TABLE 4.1 GRADIENT DESCENT algorithm for training a linear unit. To implement the stochastic approximation to gradient descent, Equation (T4.2) is deleted, and Equation (T4.1) replaced by wi c wi +q(t - o b i .
+% One common variation on gradient descent intended to alleviate these difficulties is called incremental gradient descent, or alternatively stochastic gradient descent. Whereas the gradient descent training rule presented in Equation (4.7) computes weight updates after summing over a22 the training examples in D, the idea behind stochastic gradient descent is to approximate this gradient descent search by updating weights incrementally, following the calculation of the error for each individual example. The modified training rule is like the training rule given by Equation (4.7) except that as we iterate through each training example we update the weight according to where t, o, and xi are the target value, unit output, and ith input for the training example in question. To modify the gradient descent algorithm of Table 4.1 to implement this stochastic approximation, Equation (T4.2) is simply deleted and Equation (T4.1) replaced by wi t wi + v (t - o) xi. One way to view this stochastic gradient descent is to consider a distinct error function \textasciitilde{} \textasciitilde{} ( 6 ) defined for each individual training example d as follows
+% 1 Ed (6) = - (td - 0 d ) 2
+% 2 (4.11)
+Trong đó t và od là giá trị đích và giá trị đầu ra đơn vị cho ví dụ training d. Stochastic gradient descent lặp lại trên các ví dụ training d trong D, tại mỗi lần lặp sẽ thay đổi các weight theo độ dốc đối với
+
+% Ed(;). The sequence of these weight updates, when iterated over all training examples, provides a reasonable approximation to descending the gradient with respect to our original error function E(G). By making the value of 7 (the gradient
+% --- page 36 ---
+% 94 MACHINE LEARNING descent step size) sufficiently small, stochastic gradient descent can be made to approximate true gradient descent arbitrarily closely. The key differences between standard gradient descent and stochastic gradient descent are:
+% 0 In standard gradient descent, the error is summed over all examples before updating weights, whereas in stochastic gradient descent weights are updated upon examining each training example. . Summing over multiple examples in standard gradient descent requires more computation per weight update step. On the other hand, because it uses the true gradient, standard gradient descent is often used with a larger step size per weight update than stochastic gradient descent.
+% r, In cases where there are multiple local minima with respect to E(\$, stochastic gradient descent can sometimes avoid falling into these local minima because it uses the various V E d ( G ) rather than V E ( 6 ) to guide its search.
+Cả hai phương pháp giảm độ dốc ngẫu nhiên và tiêu chuẩn đều được sử dụng phổ biến trong thực tế.
+
+% The training rule in Equation (4.10) is known as the delta rule, or sometimes the LMS (least-mean-square) rule, Adaline rule, or Widrow-Hoff rule (after its inventors). In Chapter 1 we referred to it as the LMS weight-update rule when describing its use for learning an evaluation function for game playing. Notice the delta rule in Equation (4.10) is similar to the perceptron training rule in Equation (4.4.2). In fact, the two expressions appear to be identical. However, the rules are different because in the delta rule o refers to the linear unit output o(2) = i;) .?, whereas for the perceptron rule o refers to the thresholded output o(2) = sgn(\$ . 2 ) .
+% Although we have presented the delta rule as a method for learning weights for unthresholded linear units, it can easily be used to train thresholded perceptron units, as well. Suppose that o = i;) . x' is the unthresholded linear unit output as above, and of = sgn(G.2) is the result of thresholding o as in the perceptron. Now if we wish to train a perceptron to fit training examples with target values o f f 1 for o', we can use these same target values and examples to train o instead, using the delta rule. Clearly, if the unthresholded output o can be trained to fit these values perfectly, then the threshold output of will fit them as well (because sgn(1) = 1, and sgn(-1) = -1). Even when the target values cannot be fit perfectly, the thresholded of value will correctly fit the f 1 target value whenever the linear unit output o has the correct sign. Notice, however, that while this procedure will learn weights that minimize the error in the linear unit output o, these weights will not necessarily minimize the number of training examples misclassified by the thresholded output 0'.
+\subsubsection{Bình luận}
+
+Chúng ta đã xem xét hai thuật toán tương tự để học lặp lại các weight perceptron. Sự khác biệt chính giữa các thuật toán này là perceptron training
+
+% --- page 37 ---
+% C H m R 4 ARTIFICIAL NEURAL NETWORKS 95 ing rule updates weights based on the error in the thresholded perceptron output, whereas the delta rule updates weights based on the error in the unthresholded linear combination of inputs.
+% The difference between these two training rules is reflected in different convergence properties. The perceptron training rule converges after a finite number of iterations to a hypothesis that perfectly classifies the training data, provided the training examples are linearly separable. The delta rule converges only asymptotically toward the minimum error hypothesis, possibly requiring unbounded time, but converges regardless of whether the training data are linearly separable. A detailed presentation of the convergence proofs can be found in Hertz et al. (1991).
+% A third possible algorithm for learning the weight vector is linear programming. Linear programming is a general, efficient method for solving sets of linear inequalities. Notice each training example corresponds to an inequality of the form zZI - x' > 0 or G . x' 5 0, and their solution is the desired weight vector. Unfortunately, this approach yields a solution only when the training examples are linearly separable; however, Duda and Hart (1973, p. 168) suggest a more subtle formulation that accommodates the nonseparable case. In any case, the approach of linear programming does not scale to training multilayer networks, which is our primary concern. In contrast, the gradient descent approach, on which the delta rule is based, can be easily extended to multilayer networks, as shown in the following section.
+\subsection{Multi-layer network và thuật toán Backpropagation}
+
+% As noted in Section 4.4.1, single perceptrons can only express linear decision surfaces. In contrast, the kind of multilayer networks learned by the BACKPROPACATION algorithm are capable of expressing a rich variety of nonlinear decision surfaces. For example, a typical multilayer network and decision surface is depicted in Figure 4.5. Here the speech recognition task involves distinguishing among 10 possible vowels, all spoken in the context of "h-d" (i.e., "hid," "had," "head," "hood," etc.). The input speech signal is represented by two numerical parameters obtained from a spectral analysis of the sound, allowing us to easily visualize the decision surface over the two-dimensional instance space. As shown in the figure, it is possible for the multilayer network to represent highly nonlinear decision surfaces that are much more expressive than the linear decision surfaces of single units shown earlier in Figure 4.3.
+% This section discusses how to learn such multilayer networks using a gradient descent algorithm similar to that discussed in the previous section.
+% 4.5.1 A
+% Differentiable Threshold Unit
+Chúng ta sẽ sử dụng loại đơn vị nào làm cơ sở để xây dựng mạng nhiều lớp? Lúc đầu, chúng ta có thể muốn chọn các đơn vị tuyến tính được thảo luận ở phần trước.
+
+% --- page 38 ---
+\subsection{Đầu giấu 4 ai sẽ trùm đầu}
+
+\section{Xấu . Giấu}
+
+% + hod r had r hawed . hoard o heed c hud , who'd hood
+% FIGURE 4.5 Decision regions of a multilayer feedforward network. The network shown here was trained to recognize 1 of 10 vowel sounds occurring in the context "hd" (e.g., "had," "hid"). The network input consists of two parameters, F1 and F2, obtained from a spectral analysis of the sound. The
+% 10 network outputs correspond to the 10 possible vowel sounds. The network prediction is the output whose value is highest. The plot on the right illustrates the highly nonlinear decision surface represented by the learned network. Points shown on the plot are test examples distinct from the examples used to train the network. (Reprinted by permission from Haung and Lippmann (1988).) section, for which we have already derived a gradient descent learning rule. However, multiple layers of cascaded linear units still produce only linear functions, and we prefer networks capable of representing highly nonlinear functions. The perceptron unit is another possible choice, but its discontinuous threshold makes it undifferentiable and hence unsuitable for gradient descent. What we need is a unit whose output is a nonlinear function of its inputs, but whose output is also a differentiable function of its inputs. One solution is the sigmoid unit-a unit very much like a perceptron, but based on a smoothed, differentiable threshold function.
+% The sigmoid unit is illustrated in Figure 4.6. Like the perceptron, the sigmoid unit first computes a linear combination of its inputs, then applies a threshold to the result. In the case of the sigmoid unit, however, the threshold output is a net = C wi xi 1 o = @net) = 1 + kMf
+\noindent\textit{FIGURE 4.6 Đơn vị ngưỡng sigmoid.}
+
+% --- page 39 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 97 continuous function of its input. More precisely, the sigmoid unit computes its output o as where a is often called the sigmoid function or, alternatively, the logistic function. Note its output ranges between 0 and 1, increasing monotonically with its input (see the threshold function plot in Figure 4.6.). Because it maps a very large input domain to a small range of outputs, it is often referred to as the squashingfunction of the unit. The sigmoid function has the useful property that its derivative is easily expressed in terms of its output [in particular, = dy O(Y) . (1 - dy))]. As we shall see, the gradient descent learning rule makes use of this derivative. Other differentiable functions with easily calculated derivatives are sometimes used in place of a. For example, the term e-y in the sigmoid function definition is sometimes replaced by e-k'y where k is some positive constant that determines the steepness of the threshold. The function tanh is also sometimes used in place of the sigmoid function (see Exercise 4.8).
+\subsubsection{Thuật toán BACKPROPAGATION}
+
+% The BACKPROPAGATION algorithm learns the weights for a multilayer network, given a network with a fixed set of units and interconnections. It employs gradient descent to attempt to minimize the squared error between the network output values and the target values for these outputs. This section presents the BACKPROPAGATION algorithm, and the following section gives the derivation for the gradient descent weight update rule used by BACKPROPAGATION.
+% Because we are considering networks with multiple output units rather than single units as before, we begin by redefining E to sum the errors over all of the network output units where outputs is the set of output units in the network, and tkd and OM are the
+Tôi nhắm mục tiêu và các giá trị đầu ra được liên kết với đơn vị đầu ra thứ k và ví dụ training d.
+
+% The learning problem faced by BACKPROPAGATION is to search a large hypothesis space defined by all possible weight values for all the units in the network. The situation can be visualized in terms of an error surface similar to that shown for linear units in Figure 4.4. The error in that diagram is replaced by our new definition of E, and the other dimensions of the space correspond now to all of the weights associated with all of the units in the network. As in the case of training a single unit, gradient descent can be used to attempt to find a hypothesis to minimize E.
+% --- page 40 ---
+\subsection{B\textasciitilde{}c\textasciitilde{}\textasciitilde{}\textasciitilde{}o\textasciitilde{}\textasciitilde{}GATIO\textasciitilde{}(trainingaxamp\textasciitilde{}es, q, ni, , no,, , nhidden)}
+
+Mỗi ví dụ training là một cặp có dạng (2, i ), trong đó x' là vector của các giá trị đầu vào mạng và là vector của các giá trị đầu ra của mạng đích.
+
+Q là tốc độ học tập (ví dụ: .O5). Ni, là số lượng đầu vào mạng, số lượng đơn vị trong lớp ẩn và không, số lượng đơn vị đầu ra. Đơn vị i đầu vào vào đơn vị j được ký hiệu là xji và weight từ đơn vị i đến đơn vị j được ký hiệu là wji.
+
+A Tạo mạng chuyển tiếp nguồn cấp dữ liệu với ni, đầu vào, đơn vị ẩn trung gian và đơn vị đầu ra nour. A Khởi tạo tất cả các weight mạng thành các số ngẫu nhiên nhỏ (ví dụ: trong khoảng -0,05 đến 0,05).
+
+% r Until the termination condition is met, Do a For each (2, i ) in trainingaxamples, Do
+Truyền bá đầu vào chuyển tiếp qua mạng:
+
+% 1, Input the instance x' to the network and compute the output o, of every unit u in the network.
+Truyền ngược các lỗi qua mạng:
+
+2. Với mỗi đơn vị đầu ra mạng k, tính toán sai số Sk của nó
+
+6k 4- được(l - ok)(tk - 0 k )
+
+3. Với mỗi đơn vị ẩn h, tính sai số 6h của nó
+
+% 4. Update each network weight wji where
+Ôi.. Jl - I 11
+
+% TABLE 4.2 The stochastic gradient descent version of the BACKPROPAGATION algorithm for feedforward networks containing two layers of sigmoid units.
+% One major difference in the case of multilayer networks is that the error surface can have multiple local minima, in contrast to the single-minimum parabolic error surface shown in Figure 4.4. Unfortunately, this means that gradient descent is guaranteed only to converge toward some local minimum, and not necessarily the global minimum error. Despite this obstacle, in practice BACKPROPAGATION has been found to produce excellent results in many real-world applications.
+% The BACKPROPAGATION algorithm is presented in Table 4.2. The algorithm as described here applies to layered feedforward networks containing two layers of sigmoid units, with units at each layer connected to all units from the preceding layer. This is the incremental, or stochastic, gradient descent version of BACKPROPAGATION. The notation used here is the same as that used in earlier sections, with the following extensions:
+% --- page 41 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 99
+Một chỉ mục (ví dụ: một số nguyên) được gán cho mỗi nút trong mạng, trong đó "nút" là đầu vào của mạng hoặc đầu ra của một số đơn vị trong mạng.
+
+0 xji biểu thị đầu vào từ nút i đến đơn vị j và wji biểu thị tương ứng
+
+% weight.
+% 0 6, denotes the error term associated with unit n. It plays a role analogous to the quantity (t - o) in our earlier discussion of the delta training rule. As we shall see later, 6, = - s.
+% Notice the algorithm in Table 4.2 begins by constructing a network with the desired number of hidden and output units and initializing all network weights to small random values. Given this fixed network structure, the main loop of the algorithm then repeatedly iterates over the training examples. For each training example, it applies the network to the example, calculates the error of the network output for this example, computes the gradient with respect to the error on this example, then updates all weights in the network. This gradient descent step is iterated (often thousands of times, using the same training examples multiple times) until the network performs acceptably well.
+% The gradient descent weight-update rule (Equation [T4.5] in Table 4.2) is similar to the delta training rule (Equation [4.10]). Like the delta rule, it updates each weight in proportion to the learning rate r], the input value xji to which the weight is applied, and the error in the output of the unit. The only difference is that the error (t - o) in the delta rule is replaced by a more complex error term, aj. The exact form of aj follows from the derivation of the weighttuning rule given in Section 4.5.3. To understand it intuitively, first consider how ak is computed for each network output unit k (Equation [T4.3] in the algorithm). ak is simply the familiar (tk - ok) from the delta rule, multiplied by the factor ok(l - ok), which is the derivative of the sigmoid squashing function. The ah value for each hidden unit h has a similar form (Equation [T4.4] in the algorithm). However, since training examples provide target values tk only for network outputs, no target values are directly available to indicate the error of hidden units' values. Instead, the error term for hidden unit h is calculated by summing the error terms Jk for each output unit influenced by h, weighting each of the ak's by wkh, the weight from hidden unit h to output unit k. This weight characterizes the degree to which hidden unit h is "responsible for" the error in output unit k.
+I Thuật toán trong Bảng 4.2 cập nhật các weight tăng dần, theo
+
+I Trình bày từng ví dụ training. Điều này tương ứng với một xấp xỉ ngẫu nhiên đối với việc giảm độ dốc. Để có được gradient thực sự của E, người ta sẽ tính tổng các giá trị 6, x, trên tất cả các mẫu training trước khi thay đổi giá trị weight.
+
+% The weight-update loop in BACKPROPAGATION may be iterated thousands of times in a typical application. A variety of termination conditions can be used to halt the procedure. One may choose to halt after a fixed number of iterations through the loop, or once the error on the training examples falls below some threshold, or once the error on a separate validation set of examples meets some
+% --- page 42 ---
+% 100 MACHINE LEARNING criterion. The choice of termination criterion is an important one, because too few iterations can fail to reduce error sufficiently, and too many can lead to overfitting the training data. This issue is discussed in greater detail in Section 4.6.5.
+4.5.2.1 ADDING MOMENTUM
+
+% Because BACKPROPAGATION is such a widely used algorithm, many variations have been developed. Perhaps the most common is to alter the weight-update rule in Equation (T4.5) in the algorithm by making the weight update on the nth iteration depend partially on the update that occurred during the (n - 1)th iteration, as follows:
+% Here Awji(n) is the weight update performed during the nth iteration through the main loop of the algorithm, and 0 5 a < 1 is a constant called the momentum. Notice the first term on the right of this equation is just the weight-update rule of Equation (T4.5) in the BACKPROPAGATION algorithm. The second term on the right is new and is called the momentum term. To see the effect of this momentum term, consider that the gradient descent search trajectory is analogous to that of a (momentumless) ball rolling down the error surface. The effect of a! is to add momentum that tends to keep the ball rolling in the same direction from one iteration to the next. This can sometimes have the effect of keeping the ball rolling through small local minima in the error surface, or along flat regions in the surface where the ball would stop if there were no momentum. It also has the effect of gradually increasing the step size of the search in regions where the gradient is unchanging, thereby speeding convergence.
+4.5.2.2 LEARNING IN ARBITRARY ACYCLIC NETWORKS
+
+% The definition of BACKPROPAGATION presented in Table 4.2 applies ohy to twolayer networks. However, the algorithm given there easily generalizes to feedforward networks of arbitrary depth. The weight update rule seen in Equation (T4.5) is retained, and the only change is to the procedure for computing 6 values. In general, the 6, value for a unit r in layer rn is computed from the 6 values at the next deeper layer rn + 1 according to
+% Notice this is identical to Step 3 in the algorithm of Table 4.2, so all we are really saying here is that this step may be repeated for any number of hidden layers in the network.
+% It is equally straightforward to generalize the algorithm to any directed acyclic graph, regardless of whether the network units are arranged in uniform layers as we have assumed up to now. In the case that they are not, the rule for calculating 6 for any internal unit (i.e., any unit that is not an output) is
+% --- page 43 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 101 where Downstream(r) is the set of units immediately downstream from unit r in the network: that is, all units whose inputs include the output of unit r. It is this gneral form of the weight-update rule that we derive in Section 4.5.3.
+\subsubsection{Đạo hàm của Quy tắc BACKPROPAGATION}
+
+Phần này trình bày nguồn gốc của quy tắc điều chỉnh weight BACKPROPAGATION.
+
+Nó có thể được bỏ qua trong lần đọc đầu tiên mà không làm mất tính liên tục.
+
+% The specific problem we address here is deriving the stochastic gradient descent rule implemented by the algorithm in Table 4.2. Recall from Equation (4. l l ) that stochastic gradient descent involves iterating through the training examples one at a time, for each training example d descending the gradient of the error
+% Ed with respect to this single example. In other words, for each training example d every weight wji is updated by adding to it Awji where Ed is the error on training example d, summed over all output units in the network
+Ở đây đầu ra là tập hợp các đơn vị đầu ra trong mạng, tk là giá trị đích của đơn vị k cho ví dụ training d và ok là đầu ra của đơn vị k cho ví dụ training d.
+
+% The derivation of the stochastic gradient descent rule is conceptually straightforward, but requires keeping track of a number of subscripts and variables. We will follow the notation shown in Figure 4.6, adding a subscript j to denote to the jth unit of the network as follows:
+% xji = the ith input to unit j wji = the weight associated with the ith input to unit j netj = xi wjixji (the weighted sum of inputs for unit j ) oj = the output computed by unit j t, = the target output for unit j a = the sigmoid function outputs = the set of units in the final layer of the network Downstream(j) = the set of units whose immediate inputs include the output of unit j
+% We now derive an expression for 2 in order to implement the stochastic gradient descent rule seen in Equation (4:2l). To begin, notice that weight wji can influence the rest of the network only through netj. Therefore, we can use the
+% --- page 44 ---
+% 102 MACHINE LEARNING chain rule to write
+% Given Equation (4.22), our remaining task is to derive a convenient expression for z. We consider two cases in turn: the case where unit j is an output unit for the network, and the case where j is an internal unit.
+Trường hợp 1: raini in\textasciicircum{} Quy tắc cho trọng lượng đơn vị đầu ra. Cũng như wji chỉ có thể ảnh hưởng đến phần còn lại của mạng thông qua mạng,, net, chỉ có thể ảnh hưởng đến mạng thông qua oj. Vì vậy, chúng ta có thể gọi lại quy tắc dây chuyền để viết
+
+Để bắt đầu, hãy xem xét số hạng đầu tiên trong phương trình (4.23)
+
+Đạo hàm \&(tk - ok12 sẽ bằng 0 đối với tất cả các đơn vị đầu ra k ngoại trừ khi k = j. Do đó, chúng ta bỏ phép tính tổng theo các đơn vị đầu ra và chỉ cần đặt k = j.
+
+% Next consider the second term in Equation (4.23). Since oj = a(netj), the derivative \$ is just the derivative of the sigmoid function, which we have already noted is equal to a(netj)(l - a(netj)). Therefore,
+Thay thế các biểu thức (4.24) và (4.25) thành (4.23), chúng ta thu được
+
+% --- page 45 ---
+Và kết hợp điều này với các phương trình (4.21) và (4.22), chúng ta có quy tắc giảm độ dốc ngẫu nhiên cho các đơn vị đầu ra
+
+% Note this training rule is exactly the weight update rule implemented by Equations (T4.3) and (T4.5) in the algorithm of Table 4.2. Furthermore, we can see now that Sk in Equation (T4.3) is equal to the quantity -\$. In the remainder of this section we will use Si to denote the quantity -\% for an arbitrary unit i .
+Trường hợp 2: Quy tắc training cho trọng lượng đơn vị ẩn. Trong trường hợp j là đơn vị nội bộ hoặc ẩn trong mạng, việc rút ra quy tắc training cho wji phải tính đến các cách gián tiếp mà wji có thể ảnh hưởng đến đầu ra của mạng và do đó là Ed. Vì lý do này, chúng ta sẽ thấy hữu ích khi đề cập đến tập hợp tất cả các đơn vị ngay phía dưới đơn vị j trong mạng (tức là tất cả các đơn vị có đầu vào trực tiếp bao gồm đầu ra của đơn vị j). Chúng ta biểu thị tập hợp các đơn vị này bằng
+
+Hạ lưu(j). Lưu ý rằng netj chỉ có thể ảnh hưởng đến đầu ra mạng (và do đó là Ed) thông qua các đơn vị trong Downstream(j). Vì vậy, chúng ta có thể viết
+
+% Rearranging terms and using S j to denote -\$, we have and which is precisely the general rule from Equation (4.20) for updating internal unit weights in arbitrary acyclic directed graphs. Notice Equation (T4.4) from Table 4.2 is just a special case of this rule, in which Downstream(j) = outputs.
+% --- page 46 ---
+\subsection{Nhận xét về thuật toán Backpropagation}
+
+\subsubsection{Sự hội tụ và cực tiểu địa phương}
+
+% As shown above, the BACKPROPAGATION algorithm implements a gradient descent search through the space of possible network weights, iteratively reducing the error E between the training example target values and the network outputs. Because the error surface for multilayer networks may contain many different local minima, gradient descent can become trapped in any of these. As a result, BACKPROPAGATION over multilayer networks is only guaranteed to converge toward some local minimum in E and not necessarily to the global minimum error.
+% Despite the lack of assured convergence to the global minimum error, BACKPROPAGATION is a highly effective function approximation method in practice. In many practical applications the problem of local minima has not been found to be as severe as one might fear. To develop some intuition here, consider that networks with large numbers of weights correspond to error surfaces in very high dimensional spaces (one dimension per weight). When gradient descent falls into a local minimum with respect to one of these weights, it will not necessarily be in a local minimum with respect to the other weights. In fact, the more weights in the network, the more dimensions that might provide "escape routes" for gradient descent to fall away from the local minimum with respect to this single weight.
+% A second perspective on local minima can be gained by considering the manner in which network weights evolve as the number of training iterations increases. Notice that if network weights are initialized to values near zero, then during early gradient descent steps the network will represent a very smooth function that is approximately linear in its inputs. This is because the sigmoid threshold function itself is approximately linear when the weights are close to zero (see the plot of the sigmoid function in Figure 4.6). Only after the weights have had time to grow will they reach a point where they can represent highly nonlinear network functions. One might expect more local minima to exist in the region of the weight space that represents these more complex functions. One hopes that by the time the weights reach this point they have already moved close enough to the global minimum that even local minima in this region are acceptable.
+% Despite the above comments, gradient descent over the complex error surfaces represented by ANNs is still poorly understood, and no methods are known to predict with certainty when local minima will cause difficulties. Common heuristics to attempt to alleviate the problem of local minima include:
+Thêm một số hạng động lượng vào quy tắc cập nhật weight như được mô tả trong phương trình (4.18). Động lượng đôi khi có thể thực hiện quy trình giảm độ dốc thông qua các cực tiểu cục bộ hẹp (mặc dù về nguyên tắc, nó cũng có thể mang nó từ cực tiểu toàn cục hẹp đến cực tiểu cục bộ khác!). Sử dụng phương pháp giảm độ dốc ngẫu nhiên thay vì giảm độ dốc thực sự. Như đã thảo luận trong Phần 4.4.3.3, phép tính gần đúng ngẫu nhiên để giảm độ dốc có hiệu quả làm giảm bề mặt lỗi khác nhau cho mỗi ví dụ training, tái
+
+% --- page 47 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 105 lying on the average of these to approximate the gradient with respect to the full training set. These different error surfaces typically will have different local minima, making it less likely that the process will get stuck in any one of them.
+% 0 Train multiple networks using the same data, but initializing each network with different random weights. If the different training efforts lead to different local minima, then the network with the best performance over a separate validation data set can be selected. Alternatively, all networks can be retained and treated as a "committee" of networks whose output is the (possibly weighted) average of the individual network outputs.
+\subsubsection{Sức mạnh đại diện của mạng Feedforward}
+
+% What set of functions can be represented by feedfonvard networks? Of course the answer depends on the width and depth of the networks. Although much is still unknown about which function classes can be described by which types of networks, three quite general results are known:
+% Boolean functions. Every boolean function can be represented exactly by some network with two layers of units, although the number of hidden units required grows exponentially in the worst case with the number of network inputs. To see how this can be done, consider the following general scheme for representing an arbitrary boolean function: For each possible input vector, create a distinct hidden unit and set its weights so that it activates if and only if this specific vector is input to the network. This produces a hidden layer that will always have exactly one unit active. Now implement the output unit as an OR gate that activates just for the desired input patterns.
+% 0 Continuous functions. Every bounded continuous function can be approximated with arbitrarily small error (under a finite norm) by a network with two layers of units (Cybenko 1989; Hornik et al. 1989). The theorem in this case applies to networks that use sigmoid units at the hidden layer and (unthresholded) linear units at the output layer. The number of hidden units required depends on the function to be approximated.
+% Arbitraryfunctions. Any function can be approximated to arbitrary accuracy by a network with three layers of units (Cybenko 1988). Again, the output layer uses linear units, the two hidden layers use sigmoid units, and the number of units required at each layer is not known in general. The proof of this involves showing that any function can be approximated by a linear combination of many localized functions that have value 0 everywhere except for some small region, and then showing that two layers of sigmoid units are sufficient to produce good local approximations.
+% These results show that limited depth feedfonvard networks provide a very expressive hypothesis space for BACKPROPAGATION. However, it is important to
+% --- page 48 ---
+Hãy nhớ rằng các vector weight mạng có thể truy cập bằng cách giảm độ dốc từ các giá trị weight ban đầu có thể không bao gồm tất cả các vector weight có thể có. Hertz và cộng sự. (1991) cung cấp một cuộc thảo luận chi tiết hơn về các kết quả trên.
+
+\subsubsection{Giả thuyết tìm kiếm không gian và sai lệch quy nạp}
+
+% It is interesting to compare the hypothesis space search of BACKPROPAGATION to the search performed by other learning algorithms. For BACKPROPAGATION, every possible assignment of network weights represents a syntactically distinct hypothesis that in principle can be considered by the learner. In other words, the hypothesis space is the n-dimensional Euclidean space of the n network weights. Notice this hypothesis space is continuous, in contrast to the hypothesis spaces of decision tree learning and other methods based on discrete representations. The fact that it is continuous, together with the fact that E is differentiable with respect to the continuous parameters of the hypothesis, results in a well-defined error gradient that provides a very useful structure for organizing the search for the best hypothesis. This structure is quite different from the general-to-specific ordering used to organize the search for symbolic concept learning algorithms, or the simple-to-complex ordering over decision trees used by the ID3 and C4.5 algorithms.
+% What is the inductive bias by which BACKPROPAGATION generalizes beyond the observed data? It is difficult to characterize precisely the inductive bias of BACKPROPAGATION learning, because it depends on the interplay between the gradient descent search and the way in which the weight space spans the space of representable functions. However, one can roughly characterize it as smooth interpolation between data points. Given two positive training examples with no negative examples between them, BACKPROPAGATION will tend to label points in between as positive examples as well. This can be seen, for example, in the decision surface illustrated in Figure 4.5, in which the specific sample of training examples gives rise to smoothly varying decision regions.
+\subsubsection{Biểu diễn lớp ẩn}
+
+% One intriguing property of BACKPROPAGATION is its ability to discover useful intermediate representations at the hidden unit layers inside the network. Because training examples constrain only the network inputs and outputs, the weight-tuning procedure is free to set weights that define whatever hidden unit representation is most effective at minimizing the squared error E. This can lead BACKPROPAGATION to define new hidden layer features that are not explicit in the input representation, but which capture properties of the input instances that are most relevant to learning the target function.
+% Consider, for example, the network shown in Figure 4.7. Here, the eight network inputs are connected to three hidden units, which are in turn connected to the eight output units. Because of this structure, the three hidden units will be forced to re-represent the eight input values in some way that captures their
+% --- page 49 ---
+\subsection{Đầu vào Đầu ra Đầu vào}
+
+\[10000000\]
+
+0 1000000 00 100000 00010000 00001000 00000 100 oOOOOo 10 0000000 1
+
+\subsection{Ẩn giấu}
+
+\subsection{Giá trị}
+
+% .89 .04 .08 +
+% .15 .99 .99 +
+% .01 .97 .27 +
+% .99 .97 .71 +
+% .03 .05 .02 +
+.01 .ll .88 + .80 .01 .98 +
+
+% .60 .94 .01 +
+\subsection{Đầu ra}
+
+\[10000000\]
+
+\section{1000000 00 100000 000 10000 0000 1000 00000 100 000000 10 0000000 1}
+
+\noindent\textit{FIGURE 4.7 Biểu diễn lớp ẩn đã học. Mạng 8 x 3 x 8 này được training để tìm hiểu hàm nhận dạng, sử dụng 8 ví dụ training được hiển thị. Sau 5000 kỷ nguyên training, ba giá trị đơn vị ẩn sẽ mã hóa tám đầu vào riêng biệt bằng cách sử dụng mã hóa hiển thị bên phải. Lưu ý nếu các giá trị được mã hóa được làm tròn thành 0 hoặc 1 thì kết quả sẽ là mã hóa nhị phân tiêu chuẩn cho 8 giá trị riêng biệt.}
+
+Features có liên quan, để các đơn vị đầu ra có thể sử dụng biểu diễn lớp ẩn này để tính toán các giá trị mục tiêu chính xác.
+
+% Consider training the network shown in Figure 4.7 to learn the simple target function f (2) = 2, where 2 is a vector containing seven 0's and a single 1. The network must learn to reproduce the eight inputs at the corresponding eight output units. Although this is a simple function, the network in this case is constrained to use only three hidden units. Therefore, the essential information from all eight input units must be captured by the three learned hidden units.
+% When BACKPROPAGATION is applied to this task, using each of the eight possible vectors as training examples, it successfully learns the target function. What hidden layer representation is created by the gradient descent BACKPROPAGATION algorithm? By examining the hidden unit values generated by the learned network for each of the eight possible input vectors, it is easy to see that the learned encoding is similar to the familiar standard binary encoding of eight values using three bits (e.g., 000,001,010,. . . , 111). The exact values of the hidden units for one typical run of BACKPROPAGATION are shown in Figure 4.7.
+% This ability of multilayer networks to automatically discover useful representations at the hidden layers is a key feature of ANN learning. In contrast to learning methods that are constrained to use only predefined features provided by the human designer, this provides an important degree of flexibility that allows the learner to invent features not explicitly introduced by the human designer. Of course these invented features must still be computable as sigmoid unit functions of the provided network inputs. Note when more layers of units are used in the network, more complex features can be invented. Another example of hidden layer features is provided in the face recognition application discussed in Section 4.7.
+% In order to develop a better intuition for the operation of BACKPROPAGATION in this example, let us examine the operation of the gradient descent procedure in
+% --- page 50 ---
+% greater detailt. The network in Figure 4.7 was trained using the algorithm shown in Table 4.2, with initial weights set to random values in the interval (-0.1,0.1), learning rate q = 0.3, and no weight momentum (i.e., a! = 0). Similar results were obtained by using other learning rates and by including nonzero momentum. The hidden unit encoding shown in Figure 4.7 was obtained after 5000 training iterations through the outer loop of the algorithm (i.e., 5000 iterations through each of the eight training examples). Most of the interesting weight changes occurred, however, during the first 2500 iterations.
+% We can directly observe the effect of BACKPROPAGATION'S gradient descent search by plotting the squared output error as a function of the number of gradient descent search steps. This is shown in the top plot of Figure 4.8. Each line in this plot shows the squared output error summed over all training examples, for one of the eight network outputs. The horizontal axis indicates the number of iterations through the outermost loop of the BACKPROPAGATION algorithm. As this plot indicates, the sum of squared errors for each output decreases as the gradient descent procedure proceeds, more quickly for some output units and less quickly for others.
+% The evolution of the hidden layer representation can be seen in the second plot of Figure 4.8. This plot shows the three hidden unit values computed by the learned network for one of the possible inputs (in particular, 01000000). Again, the horizontal axis indicates the number of training iterations. As this plot indicates, the network passes through a number of different encodings before converging to the final encoding given in Figure 4.7.
+% Finally, the evolution of individual weights within the network is illustrated in the third plot of Figure 4.8. This plot displays the evolution of weights connecting the eight input units (and the constant 1 bias input) to one of the three hidden units. Notice that significant changes in the weight values for this hidden unit coincide with significant changes in the hidden layer encoding and output squared errors. The weight that converges to a value near zero in this case is the bias weight wo.
+\subsubsection{Tiêu chí khái quát hóa, trang bị quá mức và dừng}
+
+% In the description of t'le BACKPROPAGATION algorithm in Table 4.2, the termination condition for the algcrithm has been left unspecified. What is an appropriate condition for terrninatinp the weight update loop? One obvious choice is to continue training until the errcr E on the training examples falls below some predetermined threshold. In fact, this is a poor strategy because BACKPROPAGATION is susceptible to overfitting the training examples at the cost of decreasing generalization accuracy over other unseen examples.
+% To see the dangers of minimizing the error over the training data, consider how the error E varies with the number of weight iterations. Figure 4.9 shows t \textasciitilde{} h e source code to reproduce this example is available at http://www.cs.cmu.edu/-tom/mlbook.hhnl.
+% --- page 51 ---
+Tổng các sai số bình phương cho mỗi đơn vị đầu ra
+
+Mã hóa đơn vị ẩn cho đầu vào 01000000
+
+\noindent\textit{FIGURE 4.8}
+
+Học mạng 8 x 3 x 8. Biểu đồ trên cùng hiển thị tổng các lỗi bình phương ngày càng tăng đối với từng đơn vị trong số tám đơn vị đầu ra, khi số lần lặp lại training (kỷ nguyên) tăng lên. Biểu đồ ở giữa hiển thị biểu diễn lớp ẩn đang phát triển cho chuỗi đầu vào "01000000." Biểu đồ phía dưới hiển thị weight tăng dần của một trong ba đơn vị ẩn.
+
+Trọng lượng từ đầu vào đến một đơn vị ẩn
+
+\[4\]
+
+\[3\]
+
+\[2\]
+
+\[1\]
+
+\[-1\]
+
+\[-2\]
+
+% I .................. ...:........... ......... .:siii..... ziiii .. ..................... ...... .... ....---. . ...---....---.-.... \_.. \_\_-. .->-.------
+% /-,-.<-........... ,*' ,.. ... , . ... .>, ... ,'... ... ,,,.-.. ................................................ .. ....;, ..< , . , ,I' ,I ./;. /,/' \&:>::.--= <, " -I-- ... '.,.. ....... - . ... .. '.. . .:.
+, - -. -- . - - - - - . . \_ .., . . . \_ . . \_ . .
+
+% . . . . . . . . . . . . . . . . . . . . . . . . . -
+% .-.. ......."... ..... - \_ ..\_ -\_ . -. -- \_ \_ \_ \_ \_ \_ \_ ...... ......................................... 1
+% --- page 52 ---
+% 110 MACHINE LEARNING
+Cập nhật lỗi so với trọng lượng (ví dụ 1)
+
+Lỗi Validation set
+
+\[0.008\]
+
+\[0.007\]
+
+\section{5000 lo00 15000 20000}
+
+Số lần cập nhật cân nặng
+
+\section{Lo00 2000 3000 4000 5000 6000}
+
+Số lần cập nhật cân nặng
+
+Cập nhật lỗi so với trọng lượng (ví dụ 2)
+
+% 0.08 \%** I r 8
+\noindent\textit{FIGURE 4.9 Sơ đồ lỗi E là hàm của số lần cập nhật weight đối với hai nhiệm vụ nhận biết robot khác nhau. Trong cả hai trường hợp học, lỗi E trên các ví dụ training đều giảm một cách đơn điệu, vì việc giảm độ dốc sẽ giảm thiểu mức độ lỗi này. Lỗi trên tập hợp các ví dụ "xác thực" riêng biệt thường giảm lúc đầu, sau đó có thể tăng lên do overfitting các ví dụ training. Mạng mà IikeIy có thể khái quát chính xác nhất cho dữ liệu không nhìn thấy là mạng có sai số thấp nhất so với validation set. Lưu ý trong cốt truyện thứ hai, người ta phải cẩn thận để không ngừng training quá sớm khi lỗi validation set bắt đầu tăng.}
+
+\[0.07\]
+
+\[0.06\]
+
+% this variation for two fairly typical applications of BACKPROPAGATION. Consider first the top plot in this figure. The lower of the two lines shows the monotonically decreasing error E over the training set, as the number of gradient descent iterations grows. The upper line shows the error E measured over a different validation set of examples, distinct from the training examples. This line measures the generalization accuracy of the network-the accuracy with which it fits examples beyond the training data.
+% Training set error * Validation set error + y+:L
+% --- page 53 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 111
+% Notice the generalization accuracy measured over the validation examples first decreases, then increases, even as the error over the training examples continues to decrease. How can this occur? This occurs because the weights are being tuned to fit idiosyncrasies of the training examples that are not representative of the general distribution of examples. The large number of weight parameters in ANNs provides many degrees of freedom for fitting such idiosyncrasies.
+% Why does overfitting tend to occur during later iterations, but not during earlier iterations? Consider that network weights are initialized to small random values. With weights of nearly identical value, only very smooth decision surfaces are describable. As training proceeds, some weights begin to grow in order to reduce the error over the training data, and the complexity of the learned decision surface increases. Thus, the effective complexity of the hypotheses that can be reached by BACKPROPAGATION increases with the number of weight-tuning iterations. Given enough weight-tuning iterations, BACKPROPAGATION will often be able to create overly complex decision surfaces that fit noise in the training data or unrepresentative characteristics of the particular training sample. This overfitting problem is analogous to the overfitting problem in decision tree learning (see Chapter 3).
+% Several techniques are available to address the overfitting problem for BACKPROPAGATION learning. One approach, known as weight decay, is to decrease each weight by some small factor during each iteration. This is equivalent to modifying the definition of E to include a penalty term corresponding to the total magnitude of the network weights. The motivation for this approach is to keep weight values small, to bias learning against complex decision surfaces.
+% One of the most successful methods for overcoming the overfitting problem is to simply provide a set of validation data to the algorithm in addition to the training data. The algorithm monitors the error with respect to this validation set, while using the training set to drive the gradient descent search. In essence, this allows the algorithm itself to plot the two curves shown in Figure 4.9. How many weight-tuning iterations should the algorithm perform? Clearly, it should use the number of iterations that produces the lowest error over the validation set, since this is the best indicator of network performance over unseen examples. In typical implementations of this approach, two copies of the network weights are kept: one copy for training and a separate copy of the best-performing weights thus far, measured by their error over the validation set. Once the trained weights reach a significantly higher error over the validation set than the stored weights, training is terminated and the stored weights are returned as the final hypothesis. When this procedure is applied in the case of the top plot of Figure 4.9, it outputs the network weights obtained after 9100 iterations. The second plot in Figure 4.9 shows that it is not always obvious when the lowest error on the validation set has been reached. In this plot, the validation set error decreases, then increases, then decreases again. Care must be taken to avoid the mistaken conclusion that the network has reached its lowest validation set error at iteration 850.
+Nhìn chung, vấn đề của overfitting và cách khắc phục là một vấn đề tế nhị.
+
+Cách tiếp cận cross-validation ở trên hoạt động tốt nhất khi có thêm dữ liệu để cung cấp validation set. Tuy nhiên, thật không may, vấn đề của overfitting là
+
+% --- page 54 ---
+\section{Machine Learning}
+
+% I severe for small training sets. In these cases, a k-fold cross-validation approach is sometimes used, in which cross validation is performed k different times, each time using a different partitioning of the data into training and validation sets, and the results are then averaged. In one version of this approach, the m available examples are partitioned into k disjoint subsets, each of size m/k. The crossvalidation procedure is then run k times, each time using a different one of these subsets as the validation set and combining the other subsets for the training set. Thus, each example is used in the validation set for one of the experiments and in the training set for the other k - 1 experiments. On each experiment the above cross-validation approach is used to determine the number of iterations i that yield the best performance on the validation set. The mean i of these estimates for i is then calculated, and a final run of BACKPROPAGATION is performed training on all n examples for i iterations, with no validation set. This procedure is closely related to the procedure for comparing two learning methods based on limited data, described in Chapter 5.
+\subsection{Một ví dụ minh họa: Nhận dạng khuôn mặt}
+
+% To illustrate some of the practical design choices involved in applying BACKPROPAGATION, this section discusses applying it to a learning task involving face recognition. All image data and code used to produce the examples described in this section are available at World Wide Web site http://www.cs.cmu.edu/-tomlmlbook. html, along with complete documentation on how to use the code. Why not try it yourself?
+\subsubsection{Nhiệm vụ}
+
+Nhiệm vụ học tập ở đây liên quan đến việc classification hình ảnh khuôn mặt của nhiều người trong các tư thế khác nhau. Hình ảnh của 20 người khác nhau đã được thu thập, bao gồm khoảng 32 hình ảnh cho mỗi người, thay đổi biểu cảm của mỗi người (vui, buồn, tức giận, bình thường), hướng họ nhìn (trái, phải, thẳng về phía trước, lên trên) và liệu họ có đeo kính râm hay không. Như có thể thấy từ các ảnh ví dụ trong Hình 4.10, cũng có sự khác biệt về hậu cảnh phía sau người đó, quần áo người đó mặc và vị trí khuôn mặt của người đó trong ảnh. Tổng cộng, 624 hình ảnh thang độ xám đã được thu thập, mỗi hình ảnh có độ phân giải 120 x 128, với mỗi pixel hình ảnh được mô tả bằng giá trị cường độ thang độ xám trong khoảng từ 0 (đen) đến 255 (trắng).
+
+% A variety of target functions can be learned from this image data. For example, given an image as input we could train an ANN to output the identity of the person, the direction in which the person is facing, the gender of the person, whether or not they are wearing sunglasses, etc. All of these target functions can be learned to high accuracy from this image data, and the reader is encouraged to try out these experiments. In the remainder of this section we consider one particular task: learning the direction in which the person is facing (to their left, right, straight ahead, or upward). I
+% --- page 55 ---
+% 30 x 32 resolution input images left straight right L
+% Network weights after 1 iteration through each training example left
+\subsection{Weight mạng sau 100 lần lặp qua mỗi mẫu training}
+
+\noindent\textit{FIGURE 4.10 Học neural network nhân tạo để nhận dạng tư thế khuôn mặt. Ở đây, mạng 960 x 3 x 4 được training dựa trên hình ảnh cấp độ xám của khuôn mặt (xem trên cùng), để dự đoán xem một người đang nhìn sang trái, phải, phía trước hay lên trên. Sau khi training trên 260 hình ảnh như vậy, mạng đạt được độ chính xác 90\% so với test set riêng biệt. Các weight mạng đã học được hiển thị sau một lần lặp điều chỉnh weight thông qua các ví dụ training và sau 100 lần lặp. Mỗi đơn vị đầu ra (trái, thẳng, phải, lên) có bốn weight, được thể hiện bằng các khối tối (âm) và sáng (dương). Khối ngoài cùng bên trái tương ứng với weight wg, xác định ngưỡng đơn vị và ba khối bên phải tương ứng với weight trên đầu vào từ ba đơn vị ẩn. Weight từ các pixel hình ảnh vào từng đơn vị ẩn cũng được hiển thị, với mỗi weight được biểu thị ở vị trí của pixel hình ảnh tương ứng.}
+
+\subsubsection{Lựa chọn thiết kế}
+
+% In applying BACKPROPAGATION to any given task, a number of design choices must be made. We summarize these choices below for our task of learning the direction in which a person is facing. Although no attempt was made to determine the precise optimal design choices for this task, the design described here learns
+% --- page 56 ---
+% the target function quite well. After training on a set of 260 images, classification accuracy over a separate test set is 90\%. In contrast, the default accuracy achieved by randomly guessing one of the four possible face directions is 25\%.
+% Input encoding. Given that the ANN input is to be some representation of the image, one key design choice is how to encode this image. For example, we could preprocess the image to extract edges, regions of uniform intensity, or other local image features, then input these features to the network. One difficulty with this design option is that it would lead to a variable number of features (e.g., edges) per image, whereas the ANN has a fixed number of input units. The design option chosen in this case was instead to encode the image as a fixed set of 30 x 32 pixel intensity values, with one network input per pixel. The pixel intensity values ranging from 0 to 255 were linearly scaled to range from 0 to 1 so that network inputs would have values in the same interval as the hidden unit and output unit activations. The 30 x 32 pixel image is, in fact, a coarse resolution summary of the original 120 x 128 captured image, with each coarse pixel intensity calculated as the mean of the corresponding high-resolution pixel intensities. Using this coarse-resolution image reduces the number of inputs and network weights to a much more manageable size, thereby reducing computational demands, while maintaining sufficient resolution to correctly classify the images. Recall from Figure 4.1 that the ALVINN system uses a similar coarse-resolution image as input to the network. One interesting difference is that in ALVINN, each coarse resolution pixel intensity is obtained by selecting the intensity of a single pixel at random from the appropriate region within the high-resolution image, rather than taking the mean of all pixel intensities within this region. The motivation for this ic ALVINN is that it significantly reduces the computation required to produce the coarse-resolution image from the available high-resolution image. This efficiency is especially important when the network must be used to process many images per second while autonomously driving the vehicle.
+Mã hóa đầu ra. ANN phải xuất ra một trong bốn giá trị cho biết hướng mà người đó đang nhìn (trái, phải, lên hoặc thẳng). Lưu ý rằng chúng ta có thể mã hóa classification bốn chiều này bằng cách sử dụng một đơn vị đầu ra duy nhất, gán các đầu ra, chẳng hạn như 0,2,0,4,0,6 và 0,8 để mã hóa bốn giá trị có thể này. Thay vào đó, chúng ta sử dụng bốn đơn vị đầu ra riêng biệt, mỗi đơn vị đại diện cho một trong bốn hướng mặt có thể có, với đầu ra có giá trị cao nhất được lấy làm dự đoán mạng. Điều này thường được gọi là mã hóa đầu ra 1 -0f-n. Có hai động lực để lựa chọn
+
+% 1-of-n output encoding over the single unit option. First, it provides more degrees of freedom to the network for representing the target function (i.e., there are n times as many weights available in the output layer of units). Second, in the 1-of-n encoding the difference between the highest-valued output and the second-highest can be used as a measure of the confidence in the network prediction (ambiguous classifications may result in near or exact ties). A further design choice here is "what should be the target values for these four output units?' One obvious choice would be to use the four target values (1,0,0,O) to encode a face looking to the
+% --- page 57 ---
+Trái, (0,1,0,O) để mã hóa một khuôn mặt nhìn thẳng, v.v. Thay vì giá trị 0 và 1, chúng ta sử dụng các giá trị 0,1 và 0,9, do đó (0,9,O. 1,0.1,0.1) là vector đầu ra mục tiêu cho khuôn mặt nhìn sang trái. Lý do tránh các giá trị mục tiêu 0 và 1 là các đơn vị sigmoid không thể tạo ra các giá trị đầu ra này với weight hữu hạn. Nếu chúng ta cố gắng training mạng để phù hợp với các giá trị mục tiêu chính xác là 0 và 1, thì việc giảm độ dốc sẽ buộc các weight tăng lên không giới hạn. Mặt khác, các giá trị 0,1 và 0,9 có thể đạt được bằng cách sử dụng đơn vị sigmoid có weight hữu hạn.
+
+% Network graph structure. As described earlier, BACKPROPAGATION can be applied to any acyclic directed graph of sigmoid units. Therefore, another design choice we face is how many units to include in the network and how to interconnect them. The most common network structure is a layered network with feedforward connections from every unit in one layer to every unit in the next. In the current design we chose this standard structure, using two layers of sigmoid units (one hidden layer and one output layer). It is common to use one or two layers of sigmoid units and, occasionally, three layers. It is not common to use more layers than this because training times become very long and because networks with three layers of sigmoid units can already express a rich variety of target functions (see Section 4.6.2). Given our choice of a layered feedforward network with one hidden layer, how many hidden units should we include? In the results reported in Figure 4.10, only three hidden units were used, yielding a test set accuracy of 90\%. In other experiments 30 hidden units were used, yielding a test set accuracy one to two percent higher. Although the generalization accuracy varied only a small amount between these two experiments, the second experiment required significantly more training time. Using 260 training images, the training time was approximately 1 hour on a Sun Sparc5 workstation for the 30 hidden unit network, compared to approximately 5 minutes for the 3 hidden unit network. In many applications it has been found that some minimum number of hidden units is required in order to learn the target function accurately and that extra hidden units above this number do not dramatically affect generalization accuracy, provided cross-validation methods are used to determine how many gradient descent iterations should be performed. If such methods are not used, then increasing the number of hidden units often increases the tendency to overfit the training data, thereby reducing generalization accuracy.
+Thuật toán học tập khác parameters. Trong các thí nghiệm học tập này, tốc độ học r] được đặt thành 0,3 và động lượng a! Được đặt thành 0,3. Giá trị thấp hơn cho cả parameters tạo ra độ chính xác tổng quát gần như tương đương, nhưng thời gian training dài hơn. Nếu các giá trị này được đặt quá cao, quá trình training sẽ không hội tụ được vào mạng có lỗi có thể chấp nhận được trên training set. Giảm độ dốc đầy đủ đã được sử dụng trong tất cả các thử nghiệm này (ngược lại với phép tính gần đúng ngẫu nhiên đối với giảm độ dốc trong thuật toán của Bảng 4.2). Weight mạng trong các đơn vị đầu ra được khởi tạo thành các giá trị ngẫu nhiên nhỏ. Tuy nhiên, weight đơn vị đầu vào được khởi tạo bằng 0, vì điều này mang lại hình ảnh trực quan dễ hiểu hơn nhiều về weight đã học (xem Hình 4.10), mà không có bất kỳ tác động đáng chú ý nào đến độ chính xác tổng quát hóa. Các
+
+% --- page 58 ---
+Số lần lặp training đã được chọn bằng cách phân vùng dữ liệu có sẵn thành training set và validation set riêng biệt. Giảm độ dốc được sử dụng để giảm thiểu lỗi trên training set và sau mỗi 50 bước giảm độ dốc, hiệu suất của mạng được đánh giá trên validation set. Mạng được chọn cuối cùng là mạng có độ chính xác cao nhất so với validation set. Xem Phần 4.6.5 để biết giải thích và biện minh cho thủ tục này. Độ chính xác được báo cáo cuối cùng (ví dụ: 90\% cho mạng trong Hình 4.10) được đo lường qua tập hợp các ví dụ kiểm tra thứ ba không được sử dụng dưới bất kỳ hình thức nào để tác động đến việc training.
+
+\subsubsection{Các biểu diễn ẩn đã học}
+
+Thật thú vị khi kiểm tra các giá trị weight đã học cho 2899 weight trong mạng. Hình 4.10 mô tả giá trị của từng weight này sau một lần lặp thông qua cập nhật weight cho tất cả các ví dụ training và một lần nữa sau 100 lần lặp.
+
+% To understand this diagram, consider first the four rectangular blocks just below the face images in the figure. Each of these rectangles depicts the weights for one of the four output units in the network (encoding left, straight, right, and up). The four squares within each rectangle indicate the four weights associated with this output unit-the weight wo, which determines the unit threshold (on the left), followed by the three weights connecting the three hidden units to this output. The brightness of the square indicates the weight value, with bright white indicating a large positive weight, dark black indicating a large negative weight, and intermediate shades of grey indicating intermediate weight values. For example, the output unit labeled "up" has a near zero wo threshold weight, a large positive weight from the first hidden unit, and a large negative weight from the second hidden unit.
+% The weights of the hidden units are shown directly below those for the output units. Recall that each hidden unit receives an input from each of the 30 x 32 image pixels. The 30 x 32 weights associated with these inputs are displayed so that each weight is in the position of the corresponding image pixel (with the wo threshold weight superimposed in the top left of the array). Interestingly, one can see that the weights have taken on values that are especially sensitive to features in the region of the image in which the face and body typically appear.
+% The values of the network weights after 100 gradient descent iterations through each training example are shown at the bottom of the figure. Notice the leftmost hidden unit has very different weights than it had after the first iteration, and the other two hidden units have changed as well. It is possible to understand to some degree the encoding in this final set of weights. For example, consider the output unit that indicates a person is looking to his right. This unit has a strong positive weight from the second hidden unit and a strong negative weight from the third hidden unit. Examining the weights of these two hidden units, it is easy to see that if the person's face is turned to his right (i.e., our left), then his bright skin will roughly align with strong positive weights in this hidden unit, and his dark hair will roughly align with negative weights, resulting in this unit outputting a large value. The same image will cause the third hidden unit to output a value
+% --- page 59 ---
+Gần bằng 0, vì mặt sáng sẽ có xu hướng thẳng hàng với các weight âm lớn trong trường hợp này.
+
+\subsection{Các chủ đề nâng cao về mạng nơ ron nhân tạo}
+
+\subsubsection{Chức năng lỗi thay thế}
+
+% As noted earlier, gradient descent can be performed for any function E that is differentiable with respect to the parameterized hypothesis space. While the basic BAcWROPAGATION algorithm defines E in terms of the sum of squared errors of the network, other definitions have been suggested in order to incorporate other constraints into the weight-tuning rule. For each new definition of E a new weight-tuning rule for gradient descent must be derived. Examples of alternative definitions of E include a Adding a penalty term for weight magnitude. As discussed above, we can add a term to E that increases with the magnitude of the weight vector. This causes the gradient descent search to seek weight vectors with small magnitudes, thereby reducing the risk of overfitting. One way to do this is to redefine E as which yields a weight update rule identical to the BACKPROPAGATION rule, except that each weight is multiplied by the constant (1 - 2yq) upon each iteration. Thus, choosing this definition of E is equivalent to using a weight decay strategy (see Exercise 4.10.) a Adding a term for errors in the slope, or derivative of the target function. In some cases, training information may be available regarding desired derivatives of the target function, as well as desired values. For example, Simard et al. (1992) describe an application to character recognition in which certain training derivatives are used to constrain the network to learn character recognition functions that are invariant of translation within the image. Mitchell and Thrun (1993) describe methods for calculating training derivatives based on the learner's prior knowledge. In both of these systems (described in Chapter 12), the error function is modified to add a term measuring the discrepancy between these training derivatives and the actual derivatives of the learned network. One example of such an error function is
+Ở đây x: biểu thị giá trị của đơn vị đầu vào thứ j cho ví dụ training d.
+
+Vì vậy, 2 là đạo hàm training mô tả giá trị đầu ra mục tiêu
+
+% --- page 60 ---
+% 118 MACHINE LEARNING tkd should vary with a change in the input xi. Similarly, 9 denotes the ax, corresponding derivative of the actual learned network. The constant ,u determines the relative weight placed on fitting the training values versus the training derivatives.
+0 Giảm thiểu entropy chéo của mạng đối với các giá trị đích.
+
+% Consider learning a probabilistic function, such as predicting whether a loan applicant will pay back a loan based on attributes such as the applicant's age and bank balance. Although the training examples exhibit only boolean target values (either a 1 or 0, depending on whether this applicant paid back the loan), the underlying target function might be best modeled by outputting the probability that the given applicant will repay the loan, rather than attempting to output the actual 1 and 0 value for each input instance. Given such situations in which we wish for the network to output probability estimates, it can be shown that the best (i.e., maximum likelihood) probability estimates are given by the network that minimizes the cross entropy, defined as
+% Here od is the probability estimate output by the network for training example d, and td is the 1 or 0 target value for training example d. Chapter 6 discusses when and why the most probable network hypothesis is the one that minimizes this cross entropy and derives the corresponding gradient descent weight-tuning rule for sigmoid units. That chapter also describes other conditions under which the most probable hypothesis is the one that minimizes the sum of squared errors.
+% 0 Altering the effective error function can also be accomplished by weight sharing, or "tying together" weights associated with different units or inputs. The idea here is that different network weights are forced to take on identical values, usually to enforce some constraint known in advance to the human designer. For example, Waibel et al. (1989) and Lang et al. (1990) describe an application of neural networks to speech recognition, in which the network inputs are the speech frequency components at different times within a
+% 144 millisecond time window. One assumption that can be made in this application is that the frequency components that identify a specific sound (e.g.,
+% "eee") should be independent of the exact time that the sound occurs within the 144 millisecond window. To enforce this constraint, the various units that receive input from different portions of the time window are forced to share weights. The net effect is to constrain the space of potential hypotheses, thereby reducing the risk of overfitting and improving the chances for accurately generalizing to unseen situations. Such weight sharing is typically implemented by first updating each of the shared weights separately within each unit that uses the weight, then replacing each instance of the shared weight by the mean of their values. The result of this procedure is that shared weights effectively adapt to a different error function than do the unshared weights.
+% --- page 61 ---
+\subsubsection{Quy trình giảm thiểu lỗi thay thế}
+
+% While gradient descent is one of the most general search methods for finding a hypothesis to minimize the error function, it is not always the most efficient. It is not uncommon for BACKPROPAGATION to require tens of thousands of iterations through the weight update loop when training complex networks. For this reason, a number of alternative weight optimization algorithms have been proposed and explored. To see some of the other possibilities, it is helpful to think of a weightupdate method as involving two decisions: choosing a direction in which to alter the current weight vector and choosing a distance to move. In BACKPROPAGATION, the direction is chosen by taking the negative of the gradient, and the distance is determined by the learning rate constant q.
+% One optimization method, known as line search, involves a different approach to choosing the distance for the weight update. In particular, once a line is chosen that specifies the direction of the update, the update distance is chosen by finding the minimum of the error function along this line. Notice this can result in a very large or very small weight update, depending on the position of the point along the line that minimizes error. A second method, that builds on the idea of line search, is called the conjugate gradient method. Here, a sequence of line searshes is performed to search for a minimum in the error surface. On the first step in this sequence, the direction chosen is the negative of the gradient. On each subsequent step, a new direction is chosen so that the component of the error gradient that has just been made zero, remains zero.
+% While alternative error-minimization methods sometimes lead to improved efficiency in training the network, methods such as conjugate gradient tend to have no significant impact on the generalization error of the final network. The only likely impact on the final error is that different error-minimization procedures may fall into different local minima. Bishop (1996) contains a general discussion of several parameter optimization methods for training networks.
+\subsubsection{Mạng định kỳ}
+
+Cho đến thời điểm này, chúng ta chỉ xem xét các cấu trúc liên kết mạng tương ứng với đồ thị có hướng không theo chu kỳ. Mạng lặp lại là artificial neural networks áp dụng cho dữ liệu chuỗi thời gian và sử dụng đầu ra của các đơn vị mạng tại thời điểm t làm đầu vào cho các đơn vị khác tại thời điểm t + 1. Bằng cách này, chúng hỗ trợ một dạng chu trình được định hướng trong mạng. Để minh họa, hãy xem xét nhiệm vụ dự đoán chuỗi thời gian để dự đoán giá trị trung bình của thị trường chứng khoán ngày hôm sau y(t + 1 ) dựa trên các chỉ số kinh tế của ngày hiện tại x(t). Với một chuỗi thời gian gồm những dữ liệu như vậy, một cách tiếp cận rõ ràng là training mạng chuyển tiếp để dự đoán y(t + 1 ) là đầu ra của nó, dựa trên các giá trị đầu vào x(t). Mạng như vậy được thể hiện trong Hình 4.11(a).
+
+% One limitation of such a network is that the prediction of y(t + 1 ) depends only on x(t) and cannot capture possible dependencies of y (t + 1 ) on earlier values of x. This might be necessary, for example, if tomorrow's stock market average \textasciitilde{} ( t + 1 ) depends on the difference between today's economic indicator values x(t) and yesterday's values x(t - 1). Of course we could remedy this difficulty
+% --- page 62 ---
+\subsection{Tôi 120 Machine Learning}
+
+% (4 Feedforward network (b) Recurrent network x(t - 2) c(t - 2)
+% ( d Recurrent network unfolded in time
+\noindent\textit{FIGURE 4.11 Mạng định kỳ.}
+
+% by making both x(t) and x(t - 1) inputs to the feedforward network. However, if we wish the network to consider an arbitrary window of time in the past when predicting y(t + l), then a different solution is required. The recurrent network shown in Figure 4.1 1(b) provides one such solution. Here, we have added a new unit b to the hidden layer, and new input unit c(t). The value of c(t) is defined as the value of unit b at time t - 1; that is, the input value c(t) to the network at one time step is simply copied from the value of unit b on the previous time step. Notice this implements a recurrence relation, in which b represents information about the history of network inputs. Because b depends on both x(t) and on c(t), it is possible for b to summarize information from earlier values of x that are arbitrarily distant in time. Many other network topologies also can be used to
+% --- page 63 ---
+% CHAPTER 4 ARTIFICIAL NEURAL NETWORKS 121 represent recurrence relations. For example, we could have inserted several layers of units between the input and unit b, and we could have added several context in parallel where we added the single units b and c. How can such recurrent networks be trained? There are several variants of recurrent networks, and several training methods have been proposed (see, for example, Jordan 1986; Elman 1990; Mozer 1995; Williams and Zipser 1995). Interestingly, recurrent networks such as the one shown in Figure 4.1 1(b) can be trained using a simple variant of BACKPROPAGATION. TO understand how, consider
+% Figure 4.11(c), which shows the data flow of the recurrent network "unfolded in time. Here we have made several copies of the recurrent network, replacing the feedback loop by connections between the various copies. Notice that this large unfolded network contains no cycles. Therefore, the weights in the unfolded network can be trained directly using BACKPROPAGATION. Of course in practice we wish to keep only one copy of the recurrent network and one set of weights. Therefore, after training the unfolded network, the final weight wji in the recurrent network can be taken to be the mean value of the corresponding wji weights in the various copies. Mozer (1995) describes this training process in greater detail. In practice, recurrent networks are more difficult to train than networks with no feedback loops and do not generalize as reliably. However, they remain important due to their increased representational power.
+\subsubsection{Tự động sửa đổi cấu trúc mạng}
+
+Cho đến thời điểm này, chúng ta đã coi neural network learning là bài toán điều chỉnh weight trong cấu trúc đồ thị cố định. Một loạt các phương pháp đã được đề xuất để tăng hoặc giảm linh hoạt số lượng đơn vị mạng và kết nối nhằm cải thiện độ chính xác tổng quát hóa và hiệu quả training.
+
+% One idea is to begin with a network containing no hidden units, then grow the network as needed by adding hidden units until the training error is reduced to some acceptable level. The CASCADE-CORRELATION algorithm (Fahlman and
+% Lebiere 1990) is one such algorithm. CASCADE-CORRELATION begins by constructing a network with no hidden units. In the case of our face-direction learning task, for example, it would construct a network containing only the four output units completely connected to the 30 x 32 input nodes. After this network is trained for some time, we may well find that there remains a significant residual error due to the fact that the target function cannot be perfectly represented by a network with this single-layer structure. In this case, the algorithm adds a hidden unit, choosing its weight values to maximize the correlation between the hidden unit value and the residual error of the overall network. The new unit is now installed into the network, with its weight values held fixed, and a new connection from this new unit is added to each output unit. The process is now repeated. The original weights are retrained (holding the hidden unit weights fixed), the residual error is checked, and a second hidden unit added if the residual error is still above threshold. Whenever a new hidden unit is added, its inputs include all of the original network inputs plus the outputs of any existing hidden units. The network is
+% --- page 64 ---
+% 122 MACHINE LEARNING grown in this fashion, accumulating hidden units until the network residual enor is reduced to some acceptable level. Fahlman and Lebiere (1990) report cases in which CASCADE-CORRELATION significantly reduces training times, due to the fact that only a single layer of units is trained at each step. One practical difficulty is that because the algorithm can add units indefinitely, it is quite easy for it to overfit the training data, and precautions to avoid overfitting must be taken.
+% A second idea for dynamically altering network structure is to take the opposite approach. Instead of beginning with the simplest possible network and adding complexity, we begin with a complex network and prune it as we find that certain connections are inessential. One way to decide whether a particular weight is inessential is to see whether its value is close to zero. A second way, which appears to be more successful in practice, is to consider the effect that a small variation in the weight has on the error E. The effect on E of varying w (i.e., g) can be taken as a measure of the salience of the connection. LeCun et al. (1990) describe a process in which a network is trained, the least salient connections removed, and this process iterated until some termination condition is met. They refer to this as the "optimal brain damage" approach, because at each step the algorithm attempts to remove the least useful connections. They report that in a character recognition application this approach reduced the number of weights in a large network by a factor of 4, with a slight improvement in generalization accuracy and a significant improvement in subsequent training efficiency.
+% In general, techniques for dynamically modifying network structure have met with mixed success. It remains to be seen whether they can reliably improve on the generalization accuracy of BACKPROPAGATION. However, they have been shown in some cases to provide significant improvements in training times.
+\subsection{Tóm tắt và đọc thêm}
+
+Các điểm chính của chương này bao gồm:
+
+% 0 Artificial neural network learning provides a practical method for learning real-valued and vector-valued functions over continuous and discrete-valued attributes, in a way that is robust to noise in the training data. The BACKPROPAGATION algorithm is the most common network learning method and has been successfully applied to a variety of learning tasks, such as handwriting recognition and robot control.
+% 0 The hypothesis space considered by the BACKPROPAGATION algorithm is the space of all functions that can be represented by assigning weights to the given, fixed network of interconnected units. Feedforward networks containing three layers of units are able to approximate any function to arbitrary accuracy, given a sufficient (potentially very large) number of units in each layer. Even networks of practical size are capable of representing a rich space of highly nonlinear functions, making feedforward networks a good choice for learning discrete and continuous functions whose general form is unknown in advance.
+% --- page 65 ---
+% BACKPROPAGATION searches the space of possible hypotheses using gradient descent to iteratively reduce the error in the network fit to the training examples. Gradient descent converges to a local minimum in the training error with respect to the network weights. More generally, gradient descent is a potentially useful method for searching many continuously parameterized hypothesis spaces where the training error is a differentiable function of hypothesis parameters. One of the most intriguing properties of BACKPROPAGATION is its ability to invent new features that are not explicit in the input to the network. In particular, the internal (hidden) layers of multilayer networks learn to represent intermediate features that are useful for learning the target function and that are only implicit in the network inputs. This capability is illustrated, for example, by the ability of the 8 x 3 x 8 network in Section 4.6.4 to invent the boolean encoding of digits from 1 to 8 and by the image features represented by the hidden layer in the face-recognition application of Section 4.7. Overfitting the training data is an important issue in ANN learning. Overfitting results in networks that generalize poorly to new data despite excellent performance over the training data. Cross-validation methods can be used to estimate an appropriate stopping point for gradient descent search and thus to minimize the risk of overfitting.
+% 0 Although BACKPROPAGATION is the most common ANN learning algorithm, many others have been proposed, including algorithms for more specialized tasks. For example, recurrent neural network methods train networks containing directed cycles, and algorithms such as CASCADE CORRELATION alter the network structure as well as the network weights.
+% Additional information on ANN learning can be found in several other chapters in this book. A Bayesian justification for choosing to minimize the sum of squared errors is given in Chapter 6, along with a justification for minimizing the cross-entropy instead of the sum of squared errors in other cases. Theoretical results characterizing the number of training examples needed to reliably learn boolean functions and the Vapnik-Chervonenkis dimension of certain types of networks can be found in Chapter 7. A discussion of overfitting and how to avoid it can be found in Chapter 5. Methods for using prior knowledge to improve the generalization accuracy of ANN learning are discussed in Chapter 12.
+% Work on artificial neural networks dates back to the very early days of computer science. McCulloch and Pitts (1943) proposed a model of a neuron that corresponds to the perceptron, and a good deal of work through the 1960s explored variations of this model. During the early 1960s Widrow and Hoff (1960) explored perceptron networks (which they called "adelines") and the delta rule, and Rosenblatt (1962) proved the convergence of the perceptron training rule. However, by the late 1960s it became clear that single-layer perceptron networks had limited representational capabilities, and no effective algorithms were known for training multilayer networks. Minsky and Papert (1969) showed that even
+% --- page 66 ---
+Các chức năng đơn giản như XOR không thể được biểu diễn hoặc học bằng mạng perceptron một lớp và hoạt động trên ANNs đã suy thoái trong những năm 1970.
+
+% During the mid-1980s work on ANNs experienced a resurgence, caused in large part by the invention of BACKPROPAGATION and related algorithms for training multilayer networks (Rumelhart and McClelland 1986; Parker 1985). These ideas can be traced to related earlier work (e.g., Werbos 1975). Since the 1980s, BACKPROPAGATION has become a widely used learning method, and many other
+Các phương pháp tiếp cận ANN đã được tích cực khám phá. Sự ra đời của các máy tính rẻ tiền trong cùng thời kỳ này đã cho phép thử nghiệm các thuật toán tính toán chuyên sâu mà không thể khám phá kỹ lưỡng trong những năm 1960.
+
+Một số sách giáo khoa được dành cho chủ đề neural network learning.
+
+Một cuốn sách sớm nhưng vẫn hữu ích về phương pháp học parameter để nhận dạng mẫu là Duda và Hart (1973). Văn bản của Widrow và Stearns (1985) đề cập đến các perceptron và các mạng một lớp liên quan cũng như các ứng dụng của chúng. Rumelhart và McClelland (1986) đã biên soạn một bộ sưu tập các bài báo đã được chỉnh sửa giúp tạo ra sự quan tâm ngày càng tăng đối với các phương pháp này bắt đầu từ giữa những năm 1980. Những cuốn sách gần đây về neural network learning bao gồm Bishop (1996); Chauvin và Rumelhart (1995); Freeman và Skapina (1991); Fu (1994); Hecht-Nielsen (1990); và Hertz và cộng sự. (1991).
+
+\section{Bài tập}
+
+% 4.1. What are the values of weights wo, wl, and w2 for the perceptron whose decision surface is illustrated in Figure 4.3? Assume the surface crosses the xl axis at -1, and the x2 axis at 2.
+% 4.2. Design a two-input perceptron that implements the boolean function A A -. B. Design a two-layer network of perceptrons that implements A XO R B.
+4.3. Xét hai perceptron được xác định bởi biểu thức ngưỡng wo + w l x l + \textasciitilde{} 2 x 2 > 0.
+
+% Perceptron A has weight values and perceptron B has the weight values
+Đúng hay sai? Perceptron A là tổng quát hơn\textasciitilde{}han perceptron B. (tổng quát hơn\textasciitilde{}han được định nghĩa trong Chương 2.)
+
+% 4.4. Implement the delta training rule for a two-input linear unit. Train it to fit the target concept -2 + X I + 2x2 > 0. Plot the error E as a function of the number of training iterations. Plot the decision surface after 5, 10, 50, 100, . . . , iterations. (a) Try this using various constant values for 17 and using a decaying learning rate of qo/i for the ith iteration. Which works better?
+% (b) Try incremental and batch learning. Which converges more quickly? Consider both number of weight updates and total execution time.
+4.5. Rút ra quy tắc training giảm độ dốc cho một đơn vị có đầu ra o, trong đó
+
+% --- page 67 ---
+% 4.6. Explain informally why the delta training rule in Equation (4.10) is only an approximation to the true gradient descent rule of Equation (4.7).
+% 4.7. Consider a two-layer feedforward ANN with two inputs a and b, one hidden unit c, and one output unit d. This network has five weights (w,, web, wd, wdc, wdO), where w,o represents the threshold weight for unit x. Initialize these weights to the values (. 1, .l, .l, .l, .I), then give their values after each of the first two training iterations of the BACKPROPAGATION algorithm. Assume learning rate 17 = .3, momentum a! = 0.9, incremental weight updates, and the following training examples:
+A b d
+
+\[1 0 1\]
+
+\[0 1 0\]
+
+% 4.8. Revise the BACKPROPAGATION algorithm in Table 4.2 so that it operates on units using the squashing function tanh in place of the sigmoid function. That is, assume the output of a single unit is o = tanh(6.x'). Give the weight update rule for output layer weights and hidden layer weights. Hint: tanh'(x) = 1 - tanh2(x).
+% 4.9. Recall the 8 x 3 x 8 network described in Figure 4.7. Consider trying to train a 8 x 1 x 8 network for the same task; that is, a network with just one hidden unit. Notice the eight training examples in Figure 4.7 could be represented by eight distinct values for the single hidden unit (e.g., 0.1,0.2, . . . ,0.8). Could a network with just one hidden unit therefore learn the identity function defined over these training examples? Hint: Consider questions such as "do there exist values for the hidden unit weights that can create the hidden unit encoding suggested above?'"do there exist values for the output unit weights that could correctly decode this encoding of the input?'and
+"việc giảm độ dốc có khả năng tìm thấy trọng lượng như vậy không?'
+
+4.10. Hãy xem xét hàm lỗi thay thế được mô tả trong Phần 4.8.1
+
+Suy ra quy tắc cập nhật giảm độ dốc cho định nghĩa này của E. Chứng minh rằng nó có thể được thực hiện bằng cách nhân mỗi weight với một hằng số nào đó trước khi thực hiện cập nhật giảm độ dốc tiêu chuẩn được đưa ra trong Bảng 4.2.
+
+4.11. Áp dụng BACKPROPAGATION vào nhiệm vụ nhận dạng khuôn mặt. Xem World Wide Web
+
+URL http://www.cs.cmu.edu/-tomlbook.html để biết chi tiết, bao gồm dữ liệu hình ảnh khuôn mặt, mã BACKPROPAGATION và các tác vụ cụ thể.
+
+% 4.12. Consider deriving a gradient descent algorithm to learn target concepts corresponding to rectangles in the x, y plane. Describe each hypothesis by the x and y coordinates of the lower-left and upper-right comers of the rectangle - Ilx, Ily, urn, and ury respectively. An instance (x, y) is labeled positive by hypothesis (llx, lly, urx, ury) if and only if the point (x, y) lies inside the corresponding rectangle. Define error
+% E as in the chapter. Can you devise a gradient descent algorithm to learn such rectangle hypotheses? Notice that E is not a continuous function of llx, Ily, urx, and ury, just as in the case of perceptron learning. (Hint: Consider the two solutions used for perceptrons: (1) changing the classification rule to make output predictions continuous functions of the inputs, and (2) defining an alternative error-such as distance to the rectangle center-as in using the delta rule to train perceptrons.)
+Thuật toán của bạn có hội tụ đến giả thuyết lỗi tối thiểu khi các ví dụ dương và âm được phân tách bằng một hình chữ nhật không? Khi họ không? Bạn có
+
+% --- page 68 ---
+Có vấn đề với cực tiểu địa phương? Thuật toán của bạn so sánh với các phương pháp ký hiệu như thế nào để học các liên từ của ràng buộc feature?
+
+\subsection{Tài liệu tham khảo}
+
+Giám mục, C. M. (1996). Neural networks để nhận dạng mẫu. Oxford, Anh: Đại học Oxford
+
+Nhấn.
+
+Chauvin, Y., \& Rumelhart, D. (1995). BACKPROPAGATION: Lý thuyết, kiến ​​trúc và ứng dụng
+
+(bộ sưu tập đã được chỉnh sửa). Hillsdale, NJ: Lawrence Erlbaum PGS.
+
+Churchland, P. S., \& Sejnowski, T. J. (1992). Bộ não tính toán. Cambridge, MA: MIT
+
+Nhấn.
+
+% Cyhenko, G. (1988). Continuous valued neural networks with two hidden layers are sufficient (Technical Report). Department of Computer Science, Tufts University, Medford, MA.
+% Cybenko, G. (1989). Approximation by superpositions of a sigmoidal function. Mathematics of Control, Signals, and Systems, 2, 303-3 14.
+% Cottrell, G. W. (1990). Extracting features from faces using compression networks: Face, identity, emotion and gender recognition using holons. In D. Touretzky (Ed.), Connection Models: Proceedings of the 1990 Summer School. San Mateo, CA: Morgan Kaufmann.
+Dietterich, T. G., Hild, H., \& Bakiri, G. (1995). So sánh ID3 và BACKPROPAGATION cho
+
+Ánh xạ văn bản thành giọng nói tiếng Anh. Machine Learning, 18(1), 51-80.
+
+Duda, R., \& Hart, P. (1973). Phân tích mẫu lớp@cation và cảnh. New York: John Wiley \&
+
+Con trai.
+
+Elman, J. L. (1990). Tìm kiếm cấu trúc trong thời gian Khoa học nhận thức, 14, 179-21 1. Fahlman, S., \& Lebiere, C. (1990). Kiến trúc học tập CASCADE-CORRELATION (Kỹ thuật
+
+Báo cáo CMU-CS-90-100). Khoa Khoa học Máy tính, Đại học Carnegie Mellon, Pittsburgh, PA.
+
+% Freeman, J. A., \& Skapura, D. M. (1991). Neural networks. Reading, MA: Addison Wesley. Fu, L. (1994). Neural networks in computer intelligence. New York: McGraw Hill. Gabriel, M. \& Moore, J. (1990). Learning and computational neuroscience: Foundations of adaptive networks (edited collection). Cambridge, MA: The MIT Press.
+% Hecht-Nielsen, R. (1990). Neurocomputing. Reading, MA: Addison Wesley. Hertz, J., Krogh, A., \& Palmer, R.G. (1991). Introduction to the theory of neural computation. Reading, MA: Addison Wesley.
+% Homick, K., Stinchcombe, M., \& White, H. (1989). Multilayer feedforward networks are universal approximators. Neural Networks, 2, 359-366.
+Huang, W. Y., \& Lippmann, R. P. (1988). Mạng lưới thần kinh và classification truyền thống. Trong Anderson (Ed.),
+
+Hệ thống xử lý thông tin thần kinh (trang 387-396).
+
+% Jordan, M. (1986). Attractor dynamics and parallelism in a connectionist sequential machine. Proceedings of the Eighth Annual Conference of the Cognitive Science Society (pp. 531-546).
+% Kohonen, T. (1984). Self-organization and associative memory. Berlin: Springer-Verlag. Lang, K. J., Waibel, A. H., \& Hinton, G. E. (1990). A time-delay neural network architecture for isolated word recognition. Neural Networks, 3, 3343.
+LeCun, Y., Boser, B., Denker, J. S., Henderson, D., Howard, R. E., Hubbard, W., \& Jackel, L.D.
+
+% (1989). BACKPROPAGATION applied to handwritten zip code recognition. Neural Computation, l(4).
+LeCun, Y., Denker, J. S., \& Solla, S. A. (1990). Tổn thương não tối ưu. Trong D. Touretzky (Ed.),
+
+Những tiến bộ trong Hệ thống xử lý thông tin thần kinh (Tập 2, trang 598405). San Mateo, CA:
+
+Morgan Kaufmann.
+
+% Manke, S., Finke, M. \& Waibel, A. (1995). NPEN++: a writer independent, large vocabulary online cursive handwriting recognition system. Proceedings of the International Conference on
+Phân tích và nhận dạng tài liệu. Montréal, Canada: Hiệp hội máy tính IEEE.
+
+McCulloch, W. S., \& Pitts, W. (1943). Một phép tính logic về những ý tưởng nội tại trong hoạt động thần kinh.
+
+Bản tin Vật lý sinh học toán học, 5, 115-133.
+
+% --- page 69 ---
+Mitchell, T. M., \& Thrun, S. B. (1993). Neural network learning dựa trên giải thích để điều khiển robot.
+
+Trong Hanson, Cowan, \& Giles (Eds.), Những tiến bộ trong hệ thống xử lý thông tin thần kinh 5 (trang 287-294). San Francisco: Morgan Kaufmann.
+
+Mozer, M. (1995). Thuật toán BACKPROPAGATION tập trung để nhận dạng mẫu thời gian. TRONG
+
+Y. Chauvin \& D. Rumelhart (Eds.), Backpropagation: Lý thuyết, kiến ​​trúc và ứng dụng (trang 137-169). Hillsdale, NJ: Hiệp hội Lawrence Erlbaum.
+
+Minsky, M., \& Papert, S. (1969). Perceptron. Cambridge, MA: Nhà xuất bản MIT. Nilsson, N. J. (1965). Máy học tập. New York: Đồi McGraw. Parker, D. (1985). Logic học tập (Báo cáo kỹ thuật MIT TR-47). Trung tâm nghiên cứu MIT ở
+
+Kinh tế tính toán và khoa học quản lý.
+
+% pomerleau, D. A. (1993). Knowledge-based training of artificial neural networks for autonomous robot driving. In J. Come11 \& S. Mahadevan (Eds.), Robot Learning (pp. 19-43). Boston: Kluwer Academic Publishers.
+% Rosenblatt, F. (1959). The perceptron: a probabilistic model for information storage and organization in the brain. Psychological Review, 65, 386-408.
+% Rosenblatt, F. (1962). Principles of neurodynamics. New York: Spartan Books. Rumelhart, D. E., \& McClelland, J. L. (1986). Parallel distributed processing: exploration in the microstructure of cognition (Vols. 1 \& 2). Cambridge, MA: MIT Press.
+% Rumelhart, D., Widrow, B., \& Lehr, M. (1994). The basic ideas in neural networks. Communications of the ACM, 37(3), 87-92.
+Shavlik, J. W., Mooney, R. J., \& Towell, G. G. (1991). Các thuật toán học tập tượng trưng và thần kinh:
+
+Một so sánh thực nghiệm Machine Learning, 6(2), 11 1-144.
+
+% Simard, P. S., Victorri, B., LeCun, Y., \& Denker, J. (1992). Tangent prop--A formalism for specifying selected invariances in an adaptive network. In Moody, et al. (Eds.), Advances in Neural
+Hệ thống xử lý thông tin 4 (trang 895-903). San Francisco: Morgan Kaufmann.
+
+% Waibel, A., Hanazawa, T., Hinton, G., Shikano, K., \& Lang, K. (1989). Phoneme recognition using time-delay neural networks. ZEEE Transactions on Acoustics, Speech and Signal Processing.
+% Weiss, S., \& Kapouleas, I. (1989). An empirical comparison of pattern recognition, neural nets, and machine learning classification methods. Proceedings of the Eleventh ZJCAI @p. 781-787). San Francisco: Morgan Kaufmann.
+Werbos, P. (1975). Beyond regression: Các công cụ mới để dự đoán và phân tích trong khoa học hành vi
+
+(Luận án tiến sĩ). Đại học Harvard.
+
+Widrow, B., \& Hoff, M. E. (1960). Mạch chuyển mạch thích ứng. Bản ghi Công ước IRE WESCON,
+
+% 4,96104.
+Widrow, B., \& Stearns, S. D. (1985). Xử lý tín hiệu thích ứng Chuỗi xử lý tín hiệu. Englewood
+
+Vách đá, NJ: Hội trường Prentice.
+
+% Williams, R., \& Zipser, D. (1995). Gradient-based learning algorithms for recurrent networks and their computational complexity. In Y. Chauvin \& D. Rumelhart (Eds.), Backpropagation: Theory, architectures, and applications (pp. 433-486). Hillsdale, NJ: Lawrence Erlbaum Associates.
+Zometzer, S. F., Davis, J. L., \& Lau, C. (1994). Giới thiệu về neiworks thần kinh và điện tử
+
+(bộ sưu tập đã chỉnh sửa) (tái bản lần thứ 2). New York: Nhà xuất bản học thuật.
+
+% --- page 70 ---
+% CHAPTER
+\subsection{Đánh giá giả thuyết}
+
+Đánh giá theo kinh nghiệm tính chính xác của các giả thuyết là nền tảng của machine learning. Chương này trình bày phần giới thiệu về các phương pháp thống kê để ước tính độ chính xác của giả thuyết, tập trung vào ba câu hỏi. Đầu tiên, với độ chính xác quan sát được của một giả thuyết đối với một mẫu dữ liệu hạn chế, estimate này có độ chính xác như thế nào so với các ví dụ bổ sung? Thứ hai, giả thuyết này tốt hơn giả thuyết khác về một số mẫu dữ liệu, nói chung giả thuyết này có khả năng chính xác hơn như thế nào? Thứ ba, khi dữ liệu bị hạn chế, cách tốt nhất để sử dụng dữ liệu này để tìm hiểu một giả thuyết và tính chính xác của nó là estimate? Bởi vì các mẫu dữ liệu hạn chế có thể trình bày sai sự phân bổ dữ liệu chung nên việc ước tính độ chính xác thực sự từ các mẫu đó có thể gây hiểu nhầm. Các phương pháp thống kê, cùng với các giả định về phân phối dữ liệu cơ bản, cho phép người ta xác định sự khác biệt giữa độ chính xác quan sát được trên mẫu dữ liệu có sẵn và độ chính xác thực sự trên toàn bộ phân phối dữ liệu.
+
+\subsection{Động lực}
+
+Trong nhiều trường hợp, điều quan trọng là phải đánh giá hiệu quả của các giả thuyết đã học một cách chính xác nhất có thể. Một lý do đơn giản là để hiểu có nên sử dụng giả thuyết hay không. Ví dụ, khi học từ cơ sở dữ liệu có kích thước giới hạn cho thấy hiệu quả của các phương pháp điều trị y tế khác nhau, điều quan trọng là phải hiểu chính xác nhất có thể tính chính xác của các giả thuyết đã học. Lý do thứ hai là việc đánh giá các giả thuyết là một phần không thể thiếu trong nhiều phương pháp học tập. Ví dụ: trong quá trình cắt tỉa decision trees sau cắt tỉa để tránh overfitting, chúng ta phải đánh giá
+

@@ -1143,9 +1143,16 @@ def heading_command(block: dict) -> tuple[str, str, bool]:
   return "subsubsection", title, False
 
 
-def block_to_latex(block: dict, part_dir: Path, allow_en_fallback: bool = False) -> str:
+def block_to_latex(
+  block: dict,
+  part_dir: Path,
+  allow_en_fallback: bool = False,
+  include_images: bool = True,
+) -> str:
   kind = block.get("kind")
   if kind == "image":
+    if not include_images:
+      return ""
     img = part_dir / block.get("image_file", "")
     if not img.exists():
       return f"% missing image {block['id']}\n"
@@ -1209,6 +1216,7 @@ def export_latex(
   meta: dict,
   allow_en_fallback: bool = False,
   include_toc: bool = True,
+  include_images: bool = True,
 ) -> None:
   blocks_path = part_dir / "blocks.json"
   data = json.loads(blocks_path.read_text(encoding="utf-8"))
@@ -1232,7 +1240,9 @@ def export_latex(
   for page in pages:
     content_lines.append(f"% --- page {page['page']} ---\n")
     for block in page["blocks"]:
-      content_lines.append(block_to_latex(block, part_dir, allow_en_fallback))
+      content_lines.append(
+        block_to_latex(block, part_dir, allow_en_fallback, include_images)
+      )
 
   content_tex = "".join(content_lines)
   (part_dir / "content.tex").write_text(content_tex, encoding="utf-8")
@@ -1308,7 +1318,7 @@ def part_paths(part: int) -> dict[str, Path]:
   }
 
 
-def run_extract(part: int) -> Path:
+def run_extract(part: int, include_images: bool = True) -> Path:
   paths = part_paths(part)
   if not paths["en"].exists():
     raise FileNotFoundError(paths["en"])
@@ -1319,7 +1329,10 @@ def run_extract(part: int) -> Path:
 
   print(f"Extracting EN: {paths['en'].name}")
   en_pages = extract_pdf_blocks(paths["en"], lang="en")
-  extract_images(paths["en"], en_pages, figures_dir)
+  if include_images:
+    extract_images(paths["en"], en_pages, figures_dir)
+  else:
+    print("  [info] Skipping image extraction (--no-images).")
 
   if paths["vi_ref"].exists():
     print(f"Extracting VI reference: {paths['vi_ref'].name}")
@@ -1382,6 +1395,11 @@ def main() -> None:
     action="store_true",
     help="Do not include \\tableofcontents in exported main.tex",
   )
+  parser.add_argument(
+    "--no-images",
+    action="store_true",
+    help="Skip figure extraction and omit images from exported LaTeX/PDF",
+  )
   args = parser.parse_args()
 
   page_range: tuple[int, int] | None = None
@@ -1402,7 +1420,7 @@ def main() -> None:
     return
 
   if args.extract:
-    part_dir = run_extract(args.part)
+    part_dir = run_extract(args.part, include_images=not args.no_images)
 
   blocks_path = part_dir / "blocks.json"
   if args.fix_existing:
@@ -1415,7 +1433,7 @@ def main() -> None:
 
   if args.translate:
     if not blocks_path.exists():
-      part_dir = run_extract(args.part)
+      part_dir = run_extract(args.part, include_images=not args.no_images)
       blocks_path = part_dir / "blocks.json"
     data = json.loads(blocks_path.read_text(encoding="utf-8"))
     print(f"Translating part {args.part}...")
@@ -1436,6 +1454,7 @@ def main() -> None:
       data,
       allow_en_fallback=args.allow_en_fallback,
       include_toc=not args.no_toc,
+      include_images=not args.no_images,
     )
 
   if args.compile:

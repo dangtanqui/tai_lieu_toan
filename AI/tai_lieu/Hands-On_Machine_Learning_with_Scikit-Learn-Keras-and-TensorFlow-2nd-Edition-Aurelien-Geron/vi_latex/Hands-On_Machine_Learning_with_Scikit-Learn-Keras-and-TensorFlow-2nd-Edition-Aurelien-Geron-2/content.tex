@@ -1,0 +1,1016 @@
+% --- page 1 ---
+6 Định nghĩa của hàm prepare\_country\_stats() không được hiển thị ở đây (xem Jupyter notebook của chương này nếu bạn muốn biết tất cả các chi tiết đẫm máu). Nó chỉ là code pandas nhàm chán kết hợp dữ liệu về mức độ hài lòng với cuộc sống từ OECD với dữ liệu GDP bình quân đầu người từ IMF.
+
+7 Đó là OK nếu bạn chưa hiểu hết code; chúng ta sẽ trình bày Scikit-Learn trong các chương sau.
+
+Bây giờ model khớp với dữ liệu training nhất có thể (đối với model tuyến tính), như bạn có thể thấy trong Hình 1-19.
+
+\noindent\textit{Hình 1-19. Model tuyến tính phù hợp nhất với dữ liệu training}
+
+% [muc luc] p1_b5
+Để kích thích sự thèm ăn của bạn, Ví dụ 1-1 hiển thị code Python tải dữ liệu, chuẩn bị dữ liệu,6 tạo một biểu đồ phân tán để trực quan hóa, sau đó training model tuyến tính và đưa ra dự đoán.7
+
+Ví dụ 1-1. Training và chạy model tuyến tính bằng cách sử dụng Scikit-Learn import matplotlib.pyplot as plt import numpy as np import pandas as pd import sklearn.linear\_model
+
+\# Tải dữ liệu oecd\_bli = pd.read\_csv("oecd\_bli\_2015.csv", hàng ngàn=',') gdp\_per\_capita = pd.read\_csv("gdp\_per\_capita.csv",thousands=',',delimiter='\textbackslash{}t',coding='latin1', na\_values="n/a")
+
+\[Types of Machine Learning Systems | 21\]
+
+% --- page 2 ---
+\# Chuẩn bị dữ liệu country\_stats = prepare\_country\_stats(oecd\_bli, gdp\_per\_capita) X = np.c\_[country\_stats["GDP bình quân đầu người"]] y = np.c\_[country\_stats["Cuộc sống hài lòng"]]
+
+\# Trực quan hóa dữ liệu country\_stats.plot(kind='scatter', x="GDP bình quân đầu người", y='Sự hài lòng về cuộc sống') plt.show()
+
+\# Chọn một model model tuyến tính = sklearn.linear\_model.LinearRegression()
+
+\# Training model model.fit(X, y)
+
+\# Đưa ra dự đoán cho Síp X\_new = [[22587]] \# GDP bình quân đầu người của Síp(model.predict(X\_new)) \# đầu ra [[ 5.96242338]]
+
+% [muc luc] p2_b6
+Việc thay thế Linear Regression model bằng k-Nearest Neighbors regression trong code trước cũng đơn giản như thay thế hai dòng sau:
+
+Nhập sklearn.linear\_model model = sklearn.linear\_model.LinearRegression() với hai cái sau:
+
+Nhập sklearn.neighbors model = sklearn.neighbors.KNeighborsRegressor( n\_neighbors=3)
+
+Nếu mọi việc suôn sẻ, model của bạn sẽ đưa ra những dự đoán tốt. Nếu không, bạn có thể cần sử dụng nhiều thuộc tính hơn (tỷ lệ việc làm, sức khỏe, ô nhiễm không khí, v.v.), nhận được nhiều dữ liệu training có chất lượng tốt hơn hoặc có thể chọn model mạnh hơn (ví dụ: Polynomial Regression model).
+
+22 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 3 ---
+Tóm lại:
+
+• Bạn đã nghiên cứu dữ liệu.
+
+• Bạn đã chọn model.
+
+• Bạn đã training nó trên dữ liệu training (tức là thuật toán học đã tìm kiếm các giá trị model parameter để cực tiểu hóa hàm chi phí).
+
+• Cuối cùng, bạn áp dụng model để đưa ra dự đoán cho các trường hợp mới (gọi là suy luận), hy vọng model này sẽ khái quát tốt.
+
+Đây là giao diện của một dự án Machine Learning điển hình. Trong Chương 2, bạn sẽ trực tiếp trải nghiệm điều này bằng cách xem xét từ đầu đến cuối dự án.
+
+Cho đến nay, chúng ta đã đề cập đến rất nhiều kiến ​​thức: bây giờ bạn đã biết Machine Learning thực sự là gì, tại sao nó hữu ích, một số danh mục phổ biến nhất của hệ thống ML là gì và quy trình làm việc dự án điển hình trông như thế nào. Bây giờ, hãy xem điều gì có thể xảy ra sai sót trong quá trình học tập và ngăn cản bạn đưa ra những dự đoán chính xác.
+
+\subsection{Những thách thức chính của Machine Learning}
+
+Nói tóm lại, vì nhiệm vụ chính của bạn là chọn một thuật toán học và training nó trên một số dữ liệu, nên hai điều có thể sai là “thuật toán xấu” và “dữ liệu xấu”. Hãy bắt đầu với các ví dụ về dữ liệu xấu.
+
+\subsection{Không đủ số lượng dữ liệu training}
+
+Để trẻ mới biết đi biết quả táo là gì, bạn chỉ cần chỉ vào quả táo và nói “quả táo” (có thể lặp lại quy trình này một vài lần). Bây giờ trẻ đã có thể nhận biết được các loại táo với đủ loại màu sắc và hình dạng. Thiên tài.
+
+Machine Learning vẫn chưa hoàn thiện; cần rất nhiều dữ liệu để hầu hết các thuật toán Machine Learning hoạt động bình thường. Ngay cả đối với những vấn đề rất đơn giản, bạn thường cần hàng nghìn ví dụ và đối với những vấn đề phức tạp như nhận dạng hình ảnh hoặc giọng nói, bạn có thể cần hàng triệu ví dụ (trừ khi bạn có thể sử dụng lại các phần của model hiện có).
+
+\[Main Challenges of Machine Learning | 23\]
+
+% --- page 4 ---
+8 Ví dụ: biết nên viết “to”, “hai” hay “quá”, tùy thuộc vào ngữ cảnh.
+
+9 Hình được sao chép lại với sự cho phép của Michele Banko và Eric Brill, “Mở rộng đến tập đoàn rất rất lớn để định hướng ngôn ngữ tự nhiên,” Kỷ yếu của Hội nghị thường niên lần thứ 39 của Hiệp hội Ngôn ngữ học tính toán (2001): 26–33.
+
+10 Peter Norvig và cộng sự, “Tính hiệu quả phi lý của dữ liệu,” Hệ thống thông minh IEEE 24, không. 2 (2009): 8–12.
+
+\subsection{Hiệu quả phi lý của dữ liệu}
+
+Trong một bài báo nổi tiếng xuất bản năm 2001, các nhà nghiên cứu Michele Banko và Eric Brill của Microsoft đã chỉ ra rằng các thuật toán Machine Learning rất khác nhau, bao gồm cả những thuật toán khá đơn giản, hoạt động gần như giống hệt nhau đối với một vấn đề phức tạp về phân định ngôn ngữ tự nhiên8 khi chúng được cung cấp đủ dữ liệu (như bạn có thể thấy trong Hình 1-20).
+
+\noindent\textit{Hình 1-20. Tầm quan trọng của dữ liệu so với thuật toán9}
+
+Như các tác giả đã nói, “những kết quả này cho thấy rằng chúng ta có thể muốn xem xét lại sự cân bằng giữa việc dành thời gian và tiền bạc cho việc phát triển thuật toán so với việc dành nó cho việc phát triển kho ngữ liệu”.
+
+Ý tưởng cho rằng dữ liệu quan trọng hơn thuật toán cho các vấn đề phức tạp đã được phổ biến rộng rãi hơn bởi Peter Norvig et al. Trong một bài báo có tựa đề “Tính hiệu quả phi lý của dữ liệu”, xuất bản năm 2009.10 Tuy nhiên, cần lưu ý rằng datasets quy mô vừa và nhỏ vẫn rất phổ biến và không phải lúc nào cũng dễ dàng hoặc rẻ để có được dữ liệu training bổ sung—vì vậy đừng vội từ bỏ các thuật toán.
+
+24 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 5 ---
+\subsection{Dữ liệu training không đại diện}
+
+Để khái quát hóa tốt, điều quan trọng là dữ liệu training của bạn phải đại diện cho các trường hợp mới mà bạn muốn khái quát hóa. Điều này đúng cho dù bạn sử dụng phương pháp học tập dựa trên phiên bản hay học tập dựa trên model.
+
+Ví dụ: tập hợp các quốc gia mà chúng ta sử dụng trước đó để training model tuyến tính không mang tính đại diện hoàn hảo; một vài quốc gia đã bị mất tích. Hình 1-21 cho thấy dữ liệu trông như thế nào khi bạn thêm các quốc gia bị thiếu.
+
+\noindent\textit{Hình 1-21. Một mẫu training mang tính đại diện hơn}
+
+Nếu bạn training model tuyến tính trên dữ liệu này, bạn sẽ có được đường liền nét, trong khi model cũ được biểu thị bằng đường chấm. Như bạn có thể thấy, việc thêm một vài quốc gia bị thiếu không chỉ làm thay đổi đáng kể model mà còn cho thấy rõ rằng model tuyến tính đơn giản như vậy có lẽ sẽ không bao giờ hoạt động tốt. Có vẻ như các nước rất giàu không hạnh phúc hơn các nước giàu vừa phải (trên thực tế, họ có vẻ bất hạnh hơn), và ngược lại một số nước nghèo có vẻ hạnh phúc hơn nhiều nước giàu.
+
+Bằng cách sử dụng training set không đại diện, chúng ta đã training model không có khả năng đưa ra dự đoán chính xác, đặc biệt là đối với các nước rất nghèo và rất giàu.
+
+Điều quan trọng là sử dụng training set đại diện cho các trường hợp bạn muốn khái quát hóa. Điều này thường khó hơn tưởng tượng: nếu mẫu quá nhỏ, bạn sẽ có nhiễu lấy mẫu (tức là dữ liệu không mang tính đại diện do ngẫu nhiên), nhưng ngay cả những mẫu rất lớn cũng có thể không mang tính đại diện nếu phương pháp lấy mẫu bị sai sót. Điều này được gọi là lấy mẫu bias.
+
+\[Main Challenges of Machine Learning | 25\]
+
+% --- page 6 ---
+\subsection{Ví dụ về sai lệch lấy mẫu}
+
+Có lẽ ví dụ nổi tiếng nhất về việc lấy mẫu bias đã xảy ra trong cuộc bầu cử tổng thống US năm 1936, khiến Landon đọ sức với Roosevelt: Literary Digest đã tiến hành một cuộc thăm dò rất lớn, gửi thư tới khoảng 10 triệu người. Nó đã nhận được 2,4 triệu câu trả lời và dự đoán với độ tin cậy cao rằng Landon sẽ nhận được 57\% số phiếu bầu. Thay vào đó, Roosevelt đã giành chiến thắng với 62\% số phiếu bầu. Lỗ hổng nằm ở phương pháp lấy mẫu của Literary Digest:
+
+• Đầu tiên, để có được địa chỉ gửi các cuộc thăm dò ý kiến, Literary Digest đã sử dụng danh bạ điện thoại, danh sách người đăng ký tạp chí, danh sách thành viên câu lạc bộ, v.v. Tất cả những danh sách này đều có xu hướng ủng hộ những người giàu có hơn, những người có nhiều khả năng bỏ phiếu cho đảng Cộng hòa hơn (do đó là Landon).
+
+• Thứ hai, chưa đến 25\% số người được hỏi trả lời. Một lần nữa, điều này đã giới thiệu một mẫu bias, bằng cách có khả năng loại trừ những người không quan tâm nhiều đến chính trị, những người không thích Literary Digest và các nhóm chủ chốt khác. Đây là kiểu lấy mẫu bias đặc biệt được gọi là bias không phản hồi.
+
+Đây là một ví dụ khác: giả sử bạn muốn xây dựng một hệ thống nhận dạng các video nhạc funk. Một cách để xây dựng training set của bạn là tìm kiếm “nhạc funk” trên YouTube và sử dụng các video thu được. Nhưng điều này giả định rằng công cụ tìm kiếm của YouTube trả về một tập hợp các video đại diện cho tất cả các video nhạc funk trên YouTube. Trên thực tế, kết quả tìm kiếm có thể thiên về các nghệ sĩ nổi tiếng (và nếu bạn sống ở Brazil, bạn sẽ nhận được rất nhiều video “funk carioca”, nghe chẳng giống James Brown chút nào). Mặt khác, làm cách nào khác bạn có thể có được một chiếc training set lớn?
+
+\subsection{Dữ liệu kém chất lượng}
+
+Rõ ràng, nếu dữ liệu training của bạn chứa đầy lỗi, ngoại lệ và nhiễu (ví dụ: do các phép đo chất lượng kém), điều đó sẽ khiến hệ thống khó phát hiện các mẫu cơ bản hơn, do đó hệ thống của bạn ít có khả năng hoạt động tốt. Việc dành thời gian dọn dẹp dữ liệu training của bạn thường rất đáng giá. Sự thật là hầu hết các nhà khoa học dữ liệu đều dành một phần đáng kể thời gian của họ để làm việc đó. Sau đây là một số ví dụ về thời điểm bạn muốn dọn sạch dữ liệu training:
+
+• Nếu một số trường hợp rõ ràng là ngoại lệ, có thể chỉ cần loại bỏ chúng hoặc cố gắng sửa lỗi theo cách thủ công.
+
+• Nếu một số phiên bản thiếu một vài features (ví dụ: 5\% khách hàng của bạn không chỉ định tuổi của họ), bạn phải quyết định xem bạn có muốn bỏ qua thuộc tính này hoàn toàn hay không, bỏ qua các phiên bản này, điền vào các giá trị còn thiếu (ví dụ: với độ tuổi trung bình) hoặc training một model với feature và một model không có thuộc tính đó.
+
+26 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 7 ---
+\subsection{Tính năng không liên quan}
+
+Tục ngữ có câu: rác vào, rác ra. Hệ thống của bạn sẽ chỉ có khả năng học nếu dữ liệu training chứa đủ features phù hợp và không có quá nhiều dữ liệu không liên quan. Một phần quan trọng tạo nên sự thành công của dự án Machine Learning là có được một bộ features tốt để training. Quá trình này, được gọi là kỹ thuật feature, bao gồm các bước sau:
+
+• Lựa chọn Feature (chọn features hữu ích nhất để training trong số features hiện có)
+
+• Trích xuất Feature (kết hợp features hiện có để tạo ra một features hữu ích hơn—như chúng ta đã thấy trước đó, các thuật toán giảm kích thước có thể giúp ích)
+
+• Tạo features mới bằng cách thu thập dữ liệu mới
+
+Bây giờ chúng ta đã xem xét nhiều ví dụ về dữ liệu xấu, hãy xem một vài ví dụ về thuật toán xấu.
+
+\subsection{Trang bị quá mức dữ liệu training}
+
+Giả sử bạn đang đi du lịch nước ngoài và tài xế taxi đã lừa bạn. Bạn có thể muốn nói rằng tất cả tài xế taxi ở nước đó đều là kẻ trộm. Khái quát hóa quá mức là điều mà con người chúng ta thường xuyên làm, và thật không may, máy móc có thể rơi vào bẫy tương tự nếu chúng ta không cẩn thận. Trong Machine Learning, nó được gọi là overfitting: có nghĩa là model hoạt động tốt trên dữ liệu training nhưng không khái quát hóa tốt.
+
+\noindent\textit{Hình 1-22 cho thấy một ví dụ về sự thỏa mãn cuộc sống đa thức cấp độ cao model phù hợp mạnh mẽ với dữ liệu training. Mặc dù nó hoạt động trên dữ liệu training tốt hơn nhiều so với model tuyến tính đơn giản, liệu bạn có thực sự tin tưởng vào dự đoán của nó không?}
+
+\noindent\textit{Hình 1-22. Overfitting dữ liệu training}
+
+\[Main Challenges of Machine Learning | 27\]
+
+% --- page 8 ---
+% [muc luc] p8_b1
+Overfitting xảy ra khi model quá phức tạp so với số lượng và độ ồn của dữ liệu training. Dưới đây là các giải pháp khả thi:
+
+• Đơn giản hóa model bằng cách chọn một parameters ít hơn (ví dụ: model tuyến tính thay vì model đa thức bậc cao), bằng cách giảm số lượng thuộc tính trong dữ liệu training hoặc bằng cách hạn chế model.
+
+• Thu thập thêm dữ liệu training.
+
+• Giảm nhiễu trong dữ liệu training (ví dụ: sửa lỗi dữ liệu và loại bỏ các giá trị ngoại lệ).
+
+Việc ràng buộc model để đơn giản hơn và giảm rủi ro về overfitting được gọi là regularization. Ví dụ: model tuyến tính mà chúng ta đã xác định trước đó có hai parameters, θ0 và θ1. Điều này mang lại cho thuật toán học hai bậc tự do để điều chỉnh model cho phù hợp với dữ liệu training: nó có thể điều chỉnh cả chiều cao (θ0) và gradient (θ1) của đường thẳng. Nếu chúng ta buộc θ1 = 0, thuật toán sẽ chỉ có một bậc tự do và sẽ gặp khó khăn hơn nhiều khi khớp dữ liệu một cách chính xác: tất cả những gì nó có thể làm là di chuyển dòng lên hoặc xuống để đến gần nhất có thể với các trường hợp training, vì vậy nó sẽ kết thúc quanh mức trung bình. Thực sự là một model rất đơn giản! Nếu chúng ta cho phép thuật toán sửa đổi θ1 nhưng chúng ta buộc nó phải giữ nó ở mức nhỏ thì thuật toán học thực tế sẽ có khoảng từ một đến hai bậc tự do. Nó sẽ tạo ra một model đơn giản hơn một model có hai bậc tự do, nhưng phức tạp hơn một model chỉ có một bậc tự do. Bạn muốn tìm sự cân bằng phù hợp giữa việc điều chỉnh dữ liệu training một cách hoàn hảo và giữ cho model đủ đơn giản để đảm bảo rằng nó sẽ khái quát tốt.
+
+\noindent\textit{Hình 1-23 hiển thị ba models. Đường chấm chấm thể hiện model ban đầu đã được training trên các quốc gia được biểu thị dưới dạng hình tròn (không có các quốc gia được biểu thị dưới dạng hình vuông), đường đứt nét là model thứ hai của chúng ta được training với tất cả các quốc gia (hình tròn và hình vuông) và đường liền nét là model được training với cùng dữ liệu với model đầu tiên}
+
+28 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 9 ---
+Nhưng có ràng buộc regularization. Bạn có thể thấy rằng regularization đã buộc model phải có gradient nhỏ hơn: model này không phù hợp với dữ liệu training (hình tròn) cũng như model đầu tiên, nhưng nó thực sự khái quát hóa tốt hơn các ví dụ mới mà nó không thấy trong quá trình training (hình vuông).
+
+\noindent\textit{Hình 1-23. Regularization làm giảm nguy cơ overfitting}
+
+Lượng regularization áp dụng trong quá trình học có thể được kiểm soát bởi siêu parameter. Hyperparameter là parameter của thuật toán learning (không phải của model). Như vậy, nó không bị ảnh hưởng bởi chính thuật toán học; nó phải được thiết lập trước khi training và không đổi trong quá trình training. Nếu bạn đặt siêu regularization hyper- parameter thành một giá trị rất lớn, bạn sẽ nhận được model gần như phẳng (gradient gần bằng 0); thuật toán học gần như chắc chắn sẽ không phù hợp quá mức với dữ liệu training nhưng sẽ ít có khả năng tìm ra giải pháp tốt hơn. Điều chỉnh hyperparameters là một phần quan trọng trong việc xây dựng hệ thống Machine Learning (bạn sẽ xem ví dụ chi tiết trong chương tiếp theo).
+
+\subsection{Trang bị thiếu dữ liệu training}
+
+Như bạn có thể đoán, underfitting trái ngược với overfitting: nó xảy ra khi model của bạn quá đơn giản để tìm hiểu cấu trúc cơ bản của dữ liệu. Ví dụ, một model tuyến tính về mức độ hài lòng với cuộc sống thường không phù hợp; thực tế chỉ phức tạp hơn model, do đó các dự đoán của nó chắc chắn sẽ không chính xác, ngay cả trên training examples.
+
+Dưới đây là các tùy chọn chính để khắc phục sự cố này:
+
+• Chọn model mạnh hơn, có nhiều parameters hơn.
+
+• Cung cấp features tốt hơn cho thuật toán learning (kỹ thuật feature).
+
+• Giảm các ràng buộc trên model (ví dụ: giảm siêu tham số regularization).
+
+\[Main Challenges of Machine Learning | 29\]
+
+% --- page 10 ---
+\subsection{Bước lùi}
+
+Đến bây giờ bạn đã biết nhiều về Machine Learning. Tuy nhiên, chúng ta đã xem xét quá nhiều khái niệm nên có thể bạn sẽ cảm thấy hơi lạc lõng, vì vậy hãy lùi lại và nhìn vào bức tranh toàn cảnh:
+
+• Machine Learning hướng tới việc giúp máy móc thực hiện một số nhiệm vụ tốt hơn bằng cách học hỏi từ dữ liệu, thay vì phải viết code các quy tắc một cách rõ ràng.
+
+• Có nhiều loại hệ thống ML khác nhau: supervised hoặc không, batch hoặc trực tuyến, dựa trên phiên bản hoặc dựa trên model.
+
+• Trong dự án ML, bạn thu thập dữ liệu trong training set và cung cấp training set cho thuật toán learning. Nếu thuật toán dựa trên model, nó sẽ điều chỉnh một số parameters để khớp model với training set (tức là để đưa ra những dự đoán tốt về chính training set), và sau đó hy vọng nó cũng có thể đưa ra những dự đoán tốt về các trường hợp mới. Nếu thuật toán dựa trên phiên bản, nó chỉ học thuộc lòng các ví dụ và khái quát hóa các phiên bản mới bằng cách sử dụng thước đo độ tương tự để so sánh chúng với các phiên bản đã học.
+
+• Hệ thống sẽ không hoạt động tốt nếu training set của bạn quá nhỏ hoặc nếu dữ liệu không mang tính đại diện, bị nhiễu hoặc bị ô nhiễm bởi features không liên quan (rác vào, rác ra). Cuối cùng, model của bạn không cần quá đơn giản (trong trường hợp đó nó sẽ không vừa đủ) cũng không quá phức tạp (trong trường hợp đó nó sẽ quá vừa).
+
+Chỉ còn một chủ đề quan trọng cuối cùng cần đề cập: một khi bạn đã training model, bạn không muốn chỉ “hy vọng” nó sẽ khái quát hóa cho các trường hợp mới. Bạn muốn đánh giá nó và hoàn thiện nó nếu cần thiết. Hãy xem cách thực hiện điều đó.
+
+Kiểm tra và xác nhận
+
+Cách duy nhất để biết model sẽ khái quát hóa tốt như thế nào đối với các trường hợp mới là thực sự thử nó trên các trường hợp mới. Một cách để làm điều đó là đưa model của bạn vào sản xuất và theo dõi xem nó hoạt động tốt như thế nào. Điều này hoạt động tốt, nhưng nếu model của bạn quá tệ, user của bạn sẽ phàn nàn—không phải là ý tưởng hay nhất.
+
+Tùy chọn tốt hơn là chia dữ liệu của bạn thành hai bộ: training set và test set. Như những cái tên này ngụ ý, bạn training model của mình bằng training set và bạn kiểm tra nó bằng test set. Tỷ lệ lỗi trong các trường hợp mới được gọi là lỗi tổng quát hóa (hoặc lỗi ngoài mẫu) và bằng cách đánh giá model của bạn trên test set, bạn sẽ ước tính được lỗi này. Giá trị này cho bạn biết model của bạn sẽ hoạt động tốt như thế nào trong các phiên bản mà nó chưa từng thấy trước đây.
+
+Nếu training error thấp (tức là model của bạn mắc ít lỗi trên training set) nhưng lỗi tổng quát hóa cao, điều đó có nghĩa là model của bạn là overfitting dữ liệu training.
+
+30 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 11 ---
+Người ta thường sử dụng 80\% dữ liệu để training và giữ lại 20\% để thử nghiệm. Tuy nhiên, điều này phụ thuộc vào kích thước của dataset: nếu nó chứa 10 triệu phiên bản, thì việc giữ lại 1\% có nghĩa là test set của bạn sẽ chứa 100.000 phiên bản, có thể là quá đủ để có được ước tính tốt về lỗi tổng quát hóa.
+
+\subsection{Điều chỉnh siêu tham số và lựa chọn model}
+
+Việc đánh giá model khá đơn giản: chỉ cần sử dụng test set. Nhưng giả sử bạn đang phân vân giữa hai loại models (chẳng hạn như model tuyến tính và model đa thức): làm thế nào bạn có thể quyết định giữa chúng? Một lựa chọn là training cả hai và so sánh mức độ khái quát hóa của chúng bằng cách sử dụng test set.
+
+Bây giờ giả sử rằng model tuyến tính khái quát hóa tốt hơn, nhưng bạn muốn áp dụng một số regularization để tránh overfitting. Câu hỏi là, làm thế nào để bạn chọn giá trị của regularization hyperparameter? Một lựa chọn là training 100 models khác nhau bằng cách sử dụng 100 giá trị khác nhau cho hyperparameter này. Giả sử bạn tìm thấy giá trị siêu tham số tốt nhất tạo ra model với sai số tổng quát hóa thấp nhất—chẳng hạn, chỉ sai số 5\%. Bạn đưa model này vào sản xuất nhưng rất tiếc là nó không hoạt động tốt như mong đợi và gây ra lỗi 15\%. Chuyện gì vừa xảy ra vậy?
+
+Vấn đề là bạn đã đo lỗi tổng quát hóa nhiều lần trên test set và bạn đã điều chỉnh model và hyperparameters để tạo ra model tốt nhất cho tập hợp cụ thể đó. Điều này có nghĩa là model khó có thể hoạt động tốt trên dữ liệu mới.
+
+Một giải pháp phổ biến cho vấn đề này được gọi là xác thực giữ lại: bạn chỉ cần giữ một phần training set để đánh giá một số ứng cử viên models và chọn ứng cử viên tốt nhất. Tập được giữ lại mới được gọi là validation set (hoặc đôi khi là tập phát triển hoặc tập phát triển). Cụ thể hơn, bạn training nhiều models với nhiều hyperparameters khác nhau trên training set rút gọn (tức là training set đầy đủ trừ validation set) và bạn chọn model hoạt động tốt nhất trên validation set. Sau quá trình xác thực loại trừ này, bạn training model tốt nhất trên training set đầy đủ (bao gồm cả bộ xác thực) và điều này mang lại cho bạn model cuối cùng. Cuối cùng, bạn đánh giá model cuối cùng này trên test set để ước tính lỗi tổng quát hóa.
+
+Giải pháp này thường hoạt động khá tốt. Tuy nhiên, nếu validation set quá nhỏ thì các đánh giá model sẽ không chính xác: cuối cùng bạn có thể chọn nhầm model dưới mức tối ưu. Ngược lại, nếu validation set quá lớn thì training set còn lại sẽ nhỏ hơn nhiều so với training set đầy đủ. Tại sao điều này lại tệ? Chà, vì model cuối cùng sẽ được training trên training set đầy đủ nên việc so sánh ứng viên models được training trên training set nhỏ hơn nhiều là không lý tưởng. Nó giống như việc chọn người chạy nước rút nhanh nhất để tham gia một cuộc chạy marathon. Một cách để giải quyết vấn đề này là thực hiện lặp lại cross-validation, sử dụng nhiều bộ xác thực nhỏ. Mỗi model được đánh giá một lần cho mỗi validation set sau khi được training trên phần còn lại của dữ liệu. Bằng cách lấy trung bình tất cả
+
+\[Testing and Validating | 31\]
+
+% --- page 12 ---
+Sau khi đánh giá model, bạn sẽ có được thước đo chính xác hơn nhiều về hiệu suất của nó. Tuy nhiên, có một nhược điểm: thời gian training được nhân với số lượng bộ xác nhận.
+
+\subsection{Dữ liệu không khớp}
+
+Trong một số trường hợp, thật dễ dàng để có được một lượng lớn dữ liệu cho việc training, nhưng dữ liệu này có thể sẽ không đại diện hoàn hảo cho dữ liệu sẽ được sử dụng trong sản xuất. Ví dụ: giả sử bạn muốn tạo một ứng dụng di động để chụp ảnh hoa và tự động xác định loài của chúng. Bạn có thể dễ dàng tải xuống hàng triệu bức ảnh về hoa trên web nhưng chúng sẽ không đại diện hoàn hảo cho những bức ảnh thực sự được chụp bằng ứng dụng trên thiết bị di động. Có lẽ bạn chỉ có 10.000 bức ảnh đại diện (tức là được chụp thực sự bằng ứng dụng). Trong trường hợp này, quy tắc quan trọng nhất cần nhớ là validation set và test set phải mang tính đại diện nhất có thể cho dữ liệu bạn muốn sử dụng trong sản xuất, do đó, chúng chỉ nên bao gồm các ảnh đại diện: bạn có thể xáo trộn chúng và đặt một nửa vào bộ xác thực và một nửa trong test set (đảm bảo rằng không có bản sao hoặc gần trùng lặp nào xuất hiện trong cả hai bộ). Nhưng sau khi training model của bạn trên các hình ảnh trên web, nếu bạn nhận thấy rằng hiệu suất của model trên validation set thật đáng thất vọng, bạn sẽ không biết liệu điều này có phải là do model của bạn đã quá phù hợp với training set hay đây chỉ là do sự không khớp giữa hình ảnh trên web và hình ảnh trong ứng dụng di động. Một giải pháp là đưa ra một số hình ảnh training (từ web) trong một bộ khác mà Andrew Ng gọi là bộ train-dev. Sau khi model được training (trên training set, không phải trên tập train-dev), bạn có thể đánh giá nó trên tập train-dev. Nếu nó hoạt động tốt thì model không phải là overfitting mà là training set. Nếu nó hoạt động kém trên validation set thì vấn đề chắc chắn là do dữ liệu không khớp. Bạn có thể thử giải quyết vấn đề này bằng cách xử lý trước hình ảnh trên web để làm cho chúng trông giống ảnh sẽ được ứng dụng di động chụp hơn, sau đó training lại model. Ngược lại, nếu model hoạt động kém trên tập train-dev thì chắc chắn nó phải quá khớp với training set, vì vậy bạn nên cố gắng đơn giản hóa hoặc chuẩn hóa model, lấy thêm dữ liệu training và làm sạch dữ liệu training.
+
+32 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 13 ---
+11 David Wolpert, “Thiếu sự phân biệt ưu tiên giữa các thuật toán learning,” Tính toán thần kinh 8, không. 7 (1996): 1341–1390.
+
+\subsection{Định lý không có bữa trưa miễn phí}
+
+Model là phiên bản đơn giản hóa của các quan sát. Việc đơn giản hóa nhằm loại bỏ các chi tiết thừa không có khả năng khái quát hóa cho các trường hợp mới. Để quyết định dữ liệu nào cần loại bỏ và dữ liệu nào cần giữ lại, bạn phải đưa ra các giả định. Ví dụ: model tuyến tính đưa ra giả định rằng dữ liệu về cơ bản là tuyến tính và khoảng cách giữa các phiên bản và đường thẳng chỉ là nhiễu, có thể bỏ qua một cách an toàn.
+
+Trong một bài báo nổi tiếng năm 1996,11 David Wolpert đã chứng minh rằng nếu bạn hoàn toàn không đưa ra giả định nào về dữ liệu thì không có lý do gì để thích một model hơn bất kỳ model nào khác. Đây được gọi là định lý Không ăn trưa miễn phí (NFL). Đối với một số datasets, model tốt nhất là model tuyến tính, trong khi đối với datasets khác thì đó là neural network. Không có model nào được đảm bảo hoạt động tốt hơn (do đó có tên của định lý). Cách duy nhất để biết chắc chắn model nào là tốt nhất là đánh giá tất cả. Vì điều này là không thể nên trong thực tế, bạn đưa ra một số giả định hợp lý về dữ liệu và chỉ đánh giá một số models hợp lý. Ví dụ: đối với các nhiệm vụ đơn giản, bạn có thể đánh giá models tuyến tính với nhiều cấp độ regularization khác nhau và đối với một vấn đề phức tạp, bạn có thể đánh giá nhiều neural networks khác nhau.
+
+\section{Bài tập}
+
+Trong chương này chúng ta đã đề cập đến một số khái niệm quan trọng nhất trong Machine Learning. Trong các chương tiếp theo, chúng ta sẽ tìm hiểu sâu hơn và viết nhiều code hơn, nhưng trước khi thực hiện, hãy đảm bảo rằng bạn biết cách trả lời các câu hỏi sau:
+
+1. Bạn định nghĩa Machine Learning như thế nào?
+
+2. Bạn có thể kể tên bốn loại vấn đề mà nó bộc lộ không?
+
+3. Training set được gắn nhãn là gì?
+
+4. Hai nhiệm vụ supervised phổ biến nhất là gì?
+
+5. Bạn có thể kể tên bốn nhiệm vụ không supervised phổ biến không?
+
+6. Bạn sẽ sử dụng loại thuật toán Machine Learning nào để cho phép robot đi bộ ở nhiều địa hình không xác định khác nhau?
+
+7. Bạn sẽ sử dụng loại thuật toán nào để phân chia khách hàng của mình thành nhiều nhóm?
+
+8. Bạn sẽ coi vấn đề phát hiện thư rác là vấn đề supervised learning hay vấn đề unsupervised learning?
+
+\[Exercises | 33\]
+
+% --- page 14 ---
+9. Hệ thống học trực tuyến là gì?
+
+10. Học tập ngoài cốt lõi là gì?
+
+11. Loại thuật toán học nào dựa vào thước đo độ tương tự để đưa ra dự đoán?
+
+12. Sự khác biệt giữa model parameter và hyperparameter của thuật toán learning là gì?
+
+13. Thuật toán learning dựa trên model tìm kiếm điều gì? Chiến lược phổ biến nhất họ sử dụng để thành công là gì? Họ đưa ra dự đoán như thế nào?
+
+14. Bạn có thể kể tên bốn thử thách chính trong Machine Learning không?
+
+15. Nếu model của bạn hoạt động tốt trên dữ liệu training nhưng có khả năng khái quát kém đối với các phiên bản mới, điều gì đang xảy ra? Bạn có thể kể tên ba giải pháp khả thi không?
+
+16. Test set là gì và tại sao bạn muốn sử dụng nó?
+
+17. Mục đích của validation set là gì?
+
+18. Train-dev set là gì, khi nào bạn cần nó và bạn sử dụng nó như thế nào?
+
+19. Điều gì có thể xảy ra nếu bạn điều chỉnh hyperparameters bằng test set?
+
+Lời giải cho các bài tập này có sẵn trong Phụ lục A.
+
+34 | Chương 1: Phong cảnh Machine Learning
+
+% --- page 15 ---
+1 Dự án mẫu là hư cấu; mục đích là minh họa các bước chính của dự án Machine Learning chứ không phải để tìm hiểu gì về kinh doanh bất động sản.
+
+\subsection{Dự án Machine Learning đầu cuối CHAPTER 2}
+
+Trong chương này, bạn sẽ làm việc thông qua một dự án mẫu từ đầu đến cuối, giả vờ là một nhà khoa học dữ liệu mới được thuê tại một công ty bất động sản.1 Dưới đây là các bước chính bạn sẽ trải qua:
+
+1. Nhìn vào bức tranh lớn.
+
+2. Lấy dữ liệu.
+
+3. Khám phá và trực quan hóa dữ liệu để hiểu rõ hơn.
+
+4. Chuẩn bị dữ liệu cho thuật toán Machine Learning.
+
+5. Chọn một model và training nó.
+
+6. Tuning model của bạn.
+
+7. Trình bày giải pháp của bạn.
+
+8. Khởi chạy, giám sát và bảo trì hệ thống của bạn.
+
+\subsection{Làm việc với dữ liệu thực}
+
+Khi bạn đang tìm hiểu về Machine Learning, tốt nhất bạn nên thử nghiệm với dữ liệu trong thế giới thực chứ không phải datasets nhân tạo. May mắn thay, có hàng nghìn datasets mở để bạn lựa chọn, trải rộng trên tất cả các loại miền. Dưới đây là một số nơi bạn có thể tìm để lấy dữ liệu:
+
+% 35
+% --- page 16 ---
+2 dataset ban đầu xuất hiện trong R. Kelley Pace và Ronald Barry, “Tự regression không gian thưa thớt,” Thư thống kê \& xác suất 33, không. 3 (1997): 291–297.
+
+• Các kho dữ liệu mở phổ biến
+
+- Kho lưu trữ UC Irvine Machine Learning
+
+— Kaggle datasets
+
+- AWS datasets của Amazon
+
+• Cổng meta (liệt kê các kho dữ liệu mở)
+
+- Cổng dữ liệu
+
+— OpenDataMonitor
+
+— Quandl
+
+• Các trang khác liệt kê nhiều kho dữ liệu mở phổ biến
+
+— Danh sách Machine Learning datasets trên Wikipedia
+
+- Quora.com
+
+- Subreddit datasets
+
+Trong chương này, chúng ta sẽ sử dụng Giá California Housing dataset từ kho StatLib2 (xem Hình 2-1). Dataset này dựa trên dữ liệu từ cuộc điều tra dân số California năm 1990. Nó không hẳn là gần đây (một ngôi nhà đẹp ở Bay Area vẫn có giá phải chăng vào thời điểm đó), nhưng nó có nhiều tính chất hữu ích cho việc học tập, vì vậy chúng ta sẽ coi đó là dữ liệu gần đây. Vì mục đích giảng dạy, tôi đã thêm thuộc tính classification và loại bỏ một số thuộc tính features.
+
+\noindent\textit{Hình 2-1. Giá California housing}
+
+36 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 17 ---
+3 Một phần thông tin được cung cấp cho hệ thống Machine Learning thường được gọi là tín hiệu, liên quan đến lý thuyết thông tin của Claude Shannon, lý thuyết mà ông đã phát triển tại Bell Labs để cải thiện viễn thông. Lý thuyết của ông: bạn muốn có tỷ lệ tín hiệu trên tạp âm cao.
+
+\subsection{Nhìn vào bức tranh lớn}
+
+Chào mừng đến với Tập đoàn Nhà ở Machine Learning! Nhiệm vụ đầu tiên của bạn là sử dụng dữ liệu điều tra dân số California để xây dựng model về giá nhà đất trong tiểu bang. Dữ liệu này bao gồm các số liệu như dân số, thu nhập trung bình và giá nhà trung bình cho từng nhóm khối ở California. Các nhóm khối là đơn vị địa lý nhỏ nhất mà Cục điều tra dân số US công bố dữ liệu mẫu (một nhóm khối thường có dân số từ 600 đến 3.000 người). Chúng ta sẽ gọi ngắn gọn là “quận”.
+
+Model của bạn sẽ học hỏi từ dữ liệu này và có thể dự đoán giá nhà ở trung bình ở bất kỳ quận nào, dựa trên tất cả các số liệu khác.
+
+Vì bạn là một nhà khoa học dữ liệu có tổ chức tốt nên điều đầu tiên bạn nên làm là lấy danh sách kiểm tra dự án Machine Learning của mình. Bạn có thể bắt đầu với phụ lục B; nó sẽ hoạt động khá tốt cho hầu hết các dự án Machine Learning, nhưng hãy đảm bảo điều chỉnh nó cho phù hợp với nhu cầu của bạn. Trong chương này, chúng ta sẽ điểm qua nhiều mục trong danh sách kiểm tra, nhưng chúng ta cũng sẽ bỏ qua một số mục, vì chúng dễ hiểu hoặc vì chúng sẽ được thảo luận trong các chương sau.
+
+\subsection{Đóng khung vấn đề}
+
+Câu hỏi đầu tiên bạn nên hỏi sếp là mục tiêu kinh doanh chính xác là gì. Xây dựng model có lẽ không phải là mục tiêu cuối cùng. Công ty mong đợi sử dụng và hưởng lợi như thế nào từ model này? Biết mục tiêu là quan trọng vì nó sẽ quyết định cách bạn đặt vấn đề, thuật toán nào bạn sẽ chọn, thước đo hiệu suất nào bạn sẽ sử dụng để đánh giá model của mình và bạn sẽ bỏ ra bao nhiêu công sức để điều chỉnh nó.
+
+Sếp của bạn trả lời rằng đầu ra model của bạn (dự đoán về giá nhà trung bình của một quận) sẽ được cung cấp cho một hệ thống Machine Learning khác (xem Hình 2-2), cùng với nhiều tín hiệu khác.3 Hệ thống xuôi dòng này sẽ xác định liệu nó có đáng đầu tư vào một khu vực nhất định hay không. Việc thực hiện đúng điều này là rất quan trọng vì nó ảnh hưởng trực tiếp đến doanh thu.
+
+\[Look at the Big Picture | 37\]
+
+% --- page 18 ---
+\noindent\textit{Hình 2-2. Machine Learning pipeline cho đầu tư bất động sản}
+
+\subsection{Đường ống}
+
+Một chuỗi các thành phần xử lý dữ liệu được gọi là dữ liệu pipeline. Pipelines rất phổ biến trong các hệ thống Machine Learning, vì có rất nhiều dữ liệu cần thao tác và nhiều phép chuyển đổi dữ liệu cần áp dụng.
+
+Các thành phần thường chạy không đồng bộ. Mỗi thành phần lấy một lượng lớn dữ liệu, xử lý nó và đưa ra kết quả trong một kho dữ liệu khác. Sau đó, một thời gian sau, thành phần tiếp theo trong pipeline lấy dữ liệu này và đưa ra đầu ra của chính nó. Mỗi thành phần khá khép kín: giao diện giữa các thành phần chỉ đơn giản là nơi lưu trữ dữ liệu. Điều này làm cho hệ thống trở nên dễ nắm bắt (với sự trợ giúp của biểu đồ luồng dữ liệu) và các nhóm khác nhau có thể tập trung vào các thành phần khác nhau. Hơn nữa, nếu một thành phần bị hỏng, các thành phần phía sau thường có thể tiếp tục chạy bình thường (ít nhất là trong một thời gian) chỉ bằng cách sử dụng đầu ra cuối cùng từ thành phần bị hỏng. Điều này làm cho kiến ​​trúc khá mạnh mẽ.
+
+Mặt khác, một bộ phận bị hỏng có thể không được chú ý trong một thời gian nếu không thực hiện giám sát thích hợp. Dữ liệu trở nên cũ và hiệu suất của toàn bộ hệ thống giảm xuống.
+
+Câu hỏi tiếp theo bạn nên hỏi sếp là giải pháp hiện tại trông như thế nào (nếu có). Tình huống hiện tại thường sẽ cung cấp cho bạn thông tin tham khảo về hiệu suất cũng như thông tin chuyên sâu về cách giải quyết vấn đề. Sếp của bạn trả lời rằng giá nhà ở trong quận hiện được các chuyên gia ước tính thủ công: một nhóm thu thập thông tin cập nhật về quận và khi họ không thể có được giá nhà ở trung bình, họ sẽ ước tính giá đó bằng cách sử dụng các quy tắc phức tạp.
+
+Việc này tốn kém và mất thời gian, và ước tính của họ không lớn; trong trường hợp họ cố gắng tìm ra giá nhà ở trung bình thực tế, họ thường nhận ra rằng ước tính của họ đã sai lệch hơn 20\%. Đây là lý do tại sao công ty cho rằng sẽ hữu ích nếu training model để dự đoán giá nhà ở trung bình của một quận, trong điều kiện khác
+
+38 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 19 ---
+Dữ liệu về quận đó. Dữ liệu điều tra dân số trông giống như một dataset tuyệt vời để khai thác cho mục đích này vì nó bao gồm giá nhà ở trung bình của hàng nghìn quận cũng như các dữ liệu khác.
+
+Với tất cả thông tin này, bạn đã sẵn sàng bắt đầu thiết kế hệ thống của mình. Trước tiên, bạn cần xác định vấn đề: nó supervised, không supervised hay Reinforcement Learning? Đó có phải là nhiệm vụ classification, nhiệm vụ regression hay nhiệm vụ nào khác không? Bạn nên sử dụng kỹ thuật học batch hay học trực tuyến? Trước khi đọc tiếp, hãy tạm dừng và cố gắng tự trả lời những câu hỏi này.
+
+Bạn đã tìm thấy câu trả lời chưa? Hãy xem: đây rõ ràng là một nhiệm vụ supervised learning điển hình, vì bạn được gắn nhãn training examples (mỗi trường hợp đều đi kèm với sản lượng dự kiến, tức là giá nhà ở trung bình của quận). Đây cũng là một nhiệm vụ regression điển hình vì bạn được yêu cầu dự đoán một giá trị. Cụ thể hơn, đây là bài toán bội regression, vì hệ thống sẽ sử dụng nhiều features để đưa ra dự đoán (nó sẽ sử dụng dân số của quận, thu nhập trung bình, v.v.). Đây cũng là bài toán regression một biến, vì chúng ta chỉ cố gắng dự đoán một giá trị duy nhất cho mỗi quận. Nếu chúng ta cố gắng dự đoán nhiều giá trị cho mỗi quận thì đó sẽ là vấn đề regression đa biến. Cuối cùng, không có luồng dữ liệu liên tục đi vào hệ thống, không có nhu cầu cụ thể nào để điều chỉnh để thay đổi dữ liệu nhanh chóng và dữ liệu đủ nhỏ để vừa trong bộ nhớ, vì vậy việc học batch đơn giản sẽ hoạt động tốt.
+
+Nếu dữ liệu lớn, bạn có thể chia công việc học batch của mình trên nhiều máy chủ (sử dụng kỹ thuật MapReduce) hoặc sử dụng kỹ thuật học trực tuyến.
+
+\subsection{Chọn thước đo hiệu suất}
+
+Bước tiếp theo của bạn là chọn thước đo hiệu suất. Một thước đo hiệu suất điển hình cho các vấn đề regression là Lỗi bình phương trung bình gốc (RMSE). Nó đưa ra ý tưởng về mức độ lỗi mà hệ thống thường mắc phải trong các dự đoán của nó, với weight cao hơn đối với các lỗi lớn. Phương trình 2-1 thể hiện công thức toán học để tính RMSE.
+
+Phương trình 2-1. Lỗi bình phương trung bình gốc (RMSE)
+
+RMSE X, ​​h = 1 m ∑ i = 1 m h x i −y i 2
+
+\[Look at the Big Picture | 39\]
+
+% --- page 20 ---
+4 Recall rằng toán tử chuyển vị chuyển một vector cột thành một vector hàng (và ngược lại).
+
+\subsection{Ký hiệu}
+
+Phương trình này giới thiệu một số ký hiệu Machine Learning rất phổ biến mà chúng ta sẽ sử dụng trong suốt cuốn sách này:
+
+• m là số phiên bản trong dataset mà bạn đang đo RMSE trên đó.
+
+— Ví dụ: nếu bạn đang đánh giá RMSE trên validation set gồm 2.000 quận thì m = 2.000.
+
+• x(i) là một vector của tất cả các giá trị feature (không bao gồm nhãn) của phiên bản thứ i trong dataset, và y(i) là nhãn của nó (giá trị đầu ra mong muốn cho phiên bản đó).
+
+— Ví dụ: nếu quận đầu tiên trong dataset nằm ở kinh độ –118,29°, vĩ độ 33,91° và có 1.416 cư dân với thu nhập trung bình là $38,372, and the median house value is $156.400 (bỏ qua features khác ở thời điểm hiện tại), thì:
+
+\[x 1 =\]
+
+% −118.29 33.91 1,416 38,372
+Và:
+
+\[y 1 = 156,400\]
+
+• X là matrix chứa tất cả các giá trị feature (không bao gồm nhãn) của tất cả các phiên bản trong dataset. Có một hàng cho mỗi phiên bản và hàng thứ i bằng chuyển vị của x(i), được ký hiệu là (x(i))⊺.4
+
+— Ví dụ: nếu quận đầu tiên như mô tả thì matrix X trông như thế này:
+
+\[X = x 1 ⊺ x 2 ⊺\]
+
+⋮ x 1999 ⊺ x 2000 ⊺
+
+= −118,29 33,91 1,416 38,372 ⋮ ⋮ ⋮ ⋮
+
+40 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 21 ---
+• h là hàm dự đoán của hệ thống, còn được gọi là giả thuyết. Khi hệ thống của bạn được cung cấp vector feature x(i) của một phiên bản, nó sẽ xuất ra một giá trị dự đoán ŷ(i) = h(x(i)) cho phiên bản đó (ŷ được phát âm là “y-hat”).
+
+— Ví dụ: nếu hệ thống của bạn dự đoán rằng giá nhà ở trung bình ở quận đầu tiên là \$158.400, thì ŷ(1) = h(x(1)) = 158.400. Sai số dự đoán cho quận này là ŷ(1) – y(1) = 2.000.
+
+• RMSE(X,h) là hàm chi phí được đo trên tập hợp các ví dụ sử dụng giả thuyết h của bạn.
+
+Chúng ta sử dụng phông chữ in nghiêng chữ thường cho các giá trị vô hướng (chẳng hạn như m hoặc y(i)) và tên hàm (chẳng hạn như h), phông chữ đậm chữ thường cho vector (chẳng hạn như x(i)) và phông chữ in đậm chữ hoa cho matrix (chẳng hạn như X).
+
+Mặc dù RMSE thường là thước đo hiệu suất ưa thích cho các tác vụ regression, nhưng trong một số trường hợp, bạn có thể thích sử dụng chức năng khác hơn. Ví dụ: giả sử có nhiều quận ngoại lệ. Trong trường hợp đó, bạn có thể cân nhắc sử dụng sai số tuyệt đối trung bình (MAE, còn được gọi là độ lệch tuyệt đối trung bình; xem Công thức 2-2):
+
+Phương trình 2-2. Sai số tuyệt đối trung bình (MAE)
+
+MAE X, ​​h = 1 m ∑ i = 1 m h x i −y i
+
+Cả RMSE và MAE đều là những cách để đo khoảng cách giữa hai vector: vector dự đoán và vector giá trị đích. Có thể có nhiều thước đo khoảng cách hoặc định mức khác nhau:
+
+• Tính căn bậc hai của tổng bình phương (RMSE) tương ứng với chuẩn Euclide: đây là khái niệm về khoảng cách mà bạn quen thuộc. Nó còn được gọi là chuẩn ℓ2, được ký hiệu là ∥ · ∥2 (hoặc chỉ ∥ · ∥).
+
+• Tính tổng các giá trị tuyệt đối (MAE) tương ứng với chỉ tiêu ℓ1, ký hiệu ∥ · ∥1. Điều này đôi khi được gọi là tiêu chuẩn Manhattan vì nó đo khoảng cách giữa hai điểm trong thành phố nếu bạn chỉ có thể di chuyển dọc theo các khối thành phố trực giao.
+
+• Tổng quát hơn, chuẩn ℓk của vector v chứa n phần tử được định nghĩa là ∥v∥k = (|ZZS0ZZ|k + |ZZS1ZZ|k + ... + |vn|k)1/k. ℓ0 cho biết số phần tử khác 0 trong vector và ℓ∞ cho giá trị tuyệt đối lớn nhất trong vector.
+
+• Chỉ số định mức càng cao thì càng tập trung vào những giá trị lớn và bỏ qua những giá trị nhỏ. Đây là lý do tại sao RMSE nhạy cảm hơn với các giá trị ngoại lệ so với MAE. Nhưng khi các ngoại lệ hiếm gặp theo cấp số nhân (như trong đường cong hình chuông), RMSE hoạt động rất tốt và thường được ưa thích hơn.
+
+\[Look at the Big Picture | 41\]
+
+% --- page 22 ---
+5 Nên sử dụng phiên bản mới nhất của Python 3. Python 2.7+ cũng có thể hoạt động nhưng hiện tại nó không được dùng nữa nên tất cả các thư viện khoa học lớn đều ngừng hỗ trợ cho nó, vì vậy bạn nên chuyển sang Python 3 càng sớm càng tốt.
+
+\subsection{Kiểm tra các giả định}
+
+Cuối cùng, cách tốt nhất là liệt kê và xác minh các giả định đã được đưa ra cho đến nay (bởi bạn hoặc người khác); điều này có thể giúp bạn sớm phát hiện được các vấn đề nghiêm trọng. Ví dụ: giá quận mà hệ thống của bạn đưa ra sẽ được đưa vào hệ thống Machine Learning xuôi dòng và bạn giả định rằng những giá này sẽ được sử dụng như vậy. Nhưng điều gì sẽ xảy ra nếu hệ thống tiếp theo chuyển đổi giá thành các loại (ví dụ: “rẻ”, “trung bình” hoặc “đắt”) và sau đó sử dụng các loại đó thay vì chính giá? Trong trường hợp này, việc có được mức giá hoàn toàn phù hợp không hề quan trọng chút nào; hệ thống của bạn chỉ cần classification đúng. Nếu đúng như vậy thì vấn đề đáng lẽ phải được đóng khung dưới dạng nhiệm vụ classification chứ không phải nhiệm vụ regression. Bạn không muốn phát hiện ra điều này sau khi làm việc trên hệ thống regression trong nhiều tháng.
+
+May mắn thay, sau khi nói chuyện với nhóm phụ trách hệ thống hạ nguồn, bạn tin tưởng rằng họ thực sự cần giá thực tế chứ không chỉ danh mục. Tuyệt vời! Bạn đã hoàn tất, đèn xanh và bạn có thể bắt đầu viết code ngay bây giờ!
+
+\subsection{Lấy dữ liệu}
+
+Đã đến lúc bạn phải làm bẩn tay mình. Đừng ngần ngại cầm máy tính xách tay của bạn lên và xem qua các ví dụ về code sau trong Jupyter notebook. Sổ ghi chú Jupyter đầy đủ có sẵn tại https://github.com/ageron/handson-ml2.
+
+\subsection{Tạo không gian làm việc}
+
+Trước tiên, bạn cần cài đặt Python. Nó có thể đã được cài đặt trên hệ thống của bạn. Nếu không, bạn có thể lấy nó tại https://www.python.org/.5
+
+Tiếp theo, bạn cần tạo một thư mục không gian làm việc cho code Machine Learning và datasets của mình. Mở terminal và gõ các lệnh sau (sau dấu nhắc \$):
+
+$ export ML_PATH="$HOME/ml" \# Bạn có thể thay đổi đường dẫn nếu bạn thích $ mkdir -p $ML\_PATH
+
+Bạn sẽ cần một số mô-đun Python: Jupyter, NumPy, pandas, Matplotlib và Scikit-Learn. Nếu bạn đã cài đặt Jupyter với tất cả các mô-đun này, bạn có thể chuyển sang phần “Tải xuống dữ liệu” trên trang 46 một cách an toàn. Nếu bạn chưa có chúng, có nhiều cách để cài đặt chúng (và các phần phụ thuộc của chúng). Bạn có thể sử dụng hệ thống đóng gói của hệ thống (ví dụ: apt-get trên Ubuntu hoặc MacPorts hoặc Homebrew trên macOS), cài đặt bản phân phối Scientific Python như Anaconda và sử dụng hệ thống đóng gói của nó hoặc chỉ sử dụng hệ thống đóng gói của riêng Python, pip, được bao gồm bởi
+
+42 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 23 ---
+6 Tôi sẽ hiển thị các bước cài đặt bằng pip trong bash shell trên hệ thống Linux hoặc macOS. Bạn có thể cần phải điều chỉnh các lệnh này cho phù hợp với hệ thống của mình. Trên Windows, tôi khuyên bạn nên cài đặt Anaconda.
+
+7 Nếu bạn muốn nâng cấp pip cho tất cả user trên máy của mình thay vì chỉ user của riêng bạn, bạn nên xóa tùy chọn --user và đảm bảo rằng bạn có quyền quản trị viên (ví dụ: bằng cách thêm sudo trước toàn bộ lệnh trên Linux hoặc macOS).
+
+8 Các công cụ thay thế bao gồm venv (rất giống với virtualenv và có trong thư viện chuẩn), virtualenv-wrapper (cung cấp các chức năng bổ sung trên virtualenv), pyenv (cho phép dễ dàng chuyển đổi giữa các phiên bản Python) và pipenv (một công cụ đóng gói tuyệt vời của cùng tác giả với thư viện yêu cầu phổ biến, được xây dựng dựa trên pip và virtualenv).
+
+Mặc định với trình cài đặt nhị phân Python (kể từ Python 2.7.9).6 Bạn có thể kiểm tra xem pip đã được cài đặt chưa bằng cách gõ lệnh sau:
+
+\$ python3 -m pip --version pip 19.3.1 từ […]/lib/python3.7/site-packages/pip (python 3.7)
+
+Bạn nên đảm bảo rằng bạn đã cài đặt phiên bản pip gần đây. Để nâng cấp mô-đun pip, hãy nhập thông tin sau (phiên bản chính xác có thể khác):7
+
+\$ python3 -m pip install --user -U pip Đang thu thập pip [...] Đã cài đặt thành công pip-19.3.1
+
+\subsection{Tạo một môi trường biệt lập}
+
+Nếu bạn muốn làm việc trong một môi trường biệt lập (được khuyến nghị mạnh mẽ để bạn có thể làm việc trên các dự án khác nhau mà không có các phiên bản thư viện xung đột), hãy cài đặt virtualenv8 bằng cách chạy lệnh pip sau (một lần nữa, nếu bạn muốn cài đặt virtualenv cho tất cả user trên máy của mình, hãy xóa --user và chạy lệnh này với quyền quản trị viên):
+
+\$ python3 -m pip install --user -U virtualenv Đang thu thập virtualenv [...] Đã cài đặt thành công virtualenv-16.7.6
+
+Bây giờ bạn có thể tạo môi trường Python bị cô lập bằng cách nhập lệnh này:
+
+$ cd $ML\_PATH \$ python3 -m virtualenv my\_env Sử dụng tiền tố cơ sở '[...]' python mới có thể thực thi trong […]/ml/my\_env/bin/python3 Đồng thời tạo tệp thực thi trong […]/ml/my\_env/bin/python Cài đặt setuptools, pip, bánh xe...xong.
+
+Bây giờ mỗi khi bạn muốn kích hoạt môi trường này, chỉ cần mở một thiết bị đầu cuối và gõ như sau:
+
+\[Get the Data | 43\]
+
+% --- page 24 ---
+9 Lưu ý rằng Jupyter có thể xử lý nhiều phiên bản Python và thậm chí nhiều ngôn ngữ khác như R hoặc Octave.
+
+$ cd $ML\_PATH $ source my_env/bin/activate # on Linux or macOS $ .\textbackslash{}my\_env\textbackslash{}Scripts\textbackslash{}activate \# trên Windows
+
+Để hủy kích hoạt môi trường này, hãy nhập hủy kích hoạt. Khi môi trường đang hoạt động, mọi gói bạn cài đặt bằng pip sẽ được cài đặt trong môi trường biệt lập này và Python sẽ chỉ có quyền truy cập vào các gói này (nếu bạn cũng muốn truy cập vào các gói của hệ thống, bạn nên tạo môi trường bằng tùy chọn --system-sitepackages của virtualenv). Kiểm tra tài liệu của virtualenv để biết thêm thông tin.
+
+Bây giờ bạn có thể cài đặt tất cả các mô-đun cần thiết và các phần phụ thuộc của chúng bằng cách sử dụng lệnh pip đơn giản này (nếu bạn không sử dụng virtualenv, bạn sẽ cần tùy chọn --user hoặc quyền quản trị viên):
+
+\$ python3 -m pip cài đặt -U jupyter matplotlib numpy pandas scipy scikit-learn Thu thập jupyter Đang tải xuống https://[...]/jupyter-1.0.0-py2.py3-none-any.whl Thu thập matplotlib [...]
+
+Nếu bạn đã tạo một virtualenv, bạn cần đăng ký nó với Jupyter và đặt tên cho nó:
+
+\$ python3 -m cài đặt ipykernel --user --name=python3
+
+Bây giờ bạn có thể kích hoạt Jupyter bằng cách gõ lệnh sau:
+
+% [muc luc] p24_b8
+Máy chủ Jupyter hiện đang chạy trong thiết bị đầu cuối của bạn, nghe cổng 8888. Bạn có thể truy cập máy chủ này bằng cách mở trình duyệt web của mình tới http://localhost:8888/ (điều này thường tự động xảy ra khi máy chủ khởi động). Bạn sẽ thấy thư mục không gian làm việc trống (chỉ chứa thư mục env nếu bạn làm theo hướng dẫn virtualenv trước đó).
+
+Bây giờ, hãy tạo Python notebook mới bằng cách nhấp vào nút Mới và chọn phiên bản Python9 thích hợp (xem Hình 2-3). Làm như vậy sẽ tạo một tệp notebook mới có tên Untitled.ipynb trong không gian làm việc của bạn, khởi động kernel Jupyter Python để chạy notebook và mở notebook này trong một tab mới. Bạn nên bắt đầu bằng cách đổi tên notebook này thành “Housing” (điều này sẽ tự động đổi tên tệp thành Housing.ipynb) bằng cách nhấp vào Chưa có tiêu đề và nhập tên mới.
+
+44 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 25 ---
+\noindent\textit{Hình 2-3. Không gian làm việc của bạn trong Jupyter}
+
+Notebook chứa danh sách các ô. Mỗi ô có thể chứa code thực thi hoặc văn bản được định dạng. Hiện tại notebook chỉ chứa một ô code trống, được gắn nhãn “Trong [1]:”. Hãy thử gõ print("Hello world!") vào ô và nhấp vào nút phát (xem Hình 2-4) hoặc nhấn Shift-Enter. Thao tác này sẽ gửi ô hiện tại tới hạt nhân Python của notebook này, hạt nhân này sẽ chạy ô đó và trả về kết quả đầu ra. Kết quả được hiển thị bên dưới ô và vì bạn đã đến cuối notebook nên một ô mới sẽ tự động được tạo. Xem qua Tham quan giao diện user từ menu Trợ giúp của Jupyter để tìm hiểu những điều cơ bản.
+
+\noindent\textit{Hình 2-4. Xin chào thế giới Python notebook}
+
+\[Get the Data | 45\]
+
+% --- page 26 ---
+10 Bạn cũng có thể cần kiểm tra các ràng buộc pháp lý, chẳng hạn như các trường riêng tư không bao giờ được sao chép vào kho lưu trữ dữ liệu không an toàn.
+
+11 Trong một dự án thực tế, bạn sẽ lưu code này vào tệp Python, nhưng hiện tại bạn chỉ có thể viết nó vào Jupyter notebook của mình.
+
+\subsection{Tải xuống dữ liệu}
+
+Trong các môi trường thông thường, dữ liệu của bạn sẽ có sẵn trong cơ sở dữ liệu quan hệ (hoặc một số kho lưu trữ dữ liệu phổ biến khác) và trải rộng trên nhiều bảng/tài liệu/tệp. Để truy cập nó, trước tiên bạn cần có thông tin xác thực và ủy quyền truy cập10 cũng như làm quen với lược đồ dữ liệu. Tuy nhiên, trong dự án này, mọi thứ đơn giản hơn nhiều: bạn sẽ chỉ tải xuống một tệp nén duy nhất, housing.tgz, chứa tệp có giá trị được phân tách bằng dấu phẩy (CSV) có tên là housing.csv cùng với tất cả dữ liệu.
+
+Bạn có thể sử dụng trình duyệt web để tải tệp xuống và chạy tar xzf housing.tgz để giải nén và giải nén tệp CSV, nhưng tốt nhất bạn nên tạo một chức năng nhỏ để thực hiện việc đó. Việc có một chức năng tải xuống dữ liệu sẽ rất hữu ích nếu dữ liệu thay đổi thường xuyên: bạn có thể viết một tập lệnh nhỏ sử dụng chức năng này để tìm nạp dữ liệu mới nhất (hoặc bạn có thể thiết lập một công việc đã lên lịch để thực hiện việc đó một cách tự động theo các khoảng thời gian đều đặn). Tự động hóa quá trình tìm nạp dữ liệu cũng hữu ích nếu bạn cần cài đặt dataset trên nhiều máy.
+
+Đây là chức năng tìm nạp dữ liệu:11 import os import tarfile import urllib
+
+DOWNLOAD\_ROOT = "https://raw.githubusercontent.com/ageron/handson-ml2/master/" HOUSING\_PATH = os.path.join("datasets", "housing") HOUSING\_URL = DOWNLOAD\_ROOT + "datasets/housing/housing.tgz" def fetch\_housing\_data(housing\_url=HOUSING\_URL, housing\_path=HOUSING\_PATH): os.makedirs(housing\_path, exist\_ok=True) tgz\_path = os.path.join(housing\_path, "housing.tgz") urllib.request.urlretrieve(housing\_url, tgz\_path) housing\_tgz = tarfile.open(tgz\_path) housing\_tgz.extractall(path=housing\_path) housing\_tgz.close()
+
+Bây giờ, khi bạn gọi fetch\_housing\_data(), nó sẽ tạo một thư mục datasets/housing trong không gian làm việc của bạn, tải xuống tệp housing.tgz và trích xuất tệp housing.csv từ tệp đó trong thư mục này.
+
+46 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 27 ---
+Bây giờ hãy tải dữ liệu bằng pandas. Một lần nữa, bạn nên viết một hàm nhỏ để tải dữ liệu:
+
+Nhập pandas dưới dạng pd def load\_housing\_data(housing\_path=HOUSING\_PATH): csv\_path = os.path.join(housing\_path, "housing.csv") trả về pd.read\_csv(csv\_path)
+
+Hàm này trả về một đối tượng pandas DataFrame chứa tất cả dữ liệu.
+
+\subsection{Xem nhanh cấu trúc dữ liệu}
+
+Chúng ta hãy xem năm hàng trên cùng bằng phương thức head() của DataFrame (xem Hình 2-5).
+
+\noindent\textit{Hình 2-5. Năm hàng hàng đầu trong dataset}
+
+Mỗi hàng đại diện cho một quận. Có 10 thuộc tính (bạn có thể thấy 6 thuộc tính đầu tiên trong ảnh chụp màn hình): kinh độ, vĩ độ, housing\_median\_age, total\_rooms, total\_bed phòng, dân số, hộ gia đình, median\_income, median\_house\_value và ocean\_proximity.
+
+Phương thức info() rất hữu ích để có được mô tả nhanh về dữ liệu, đặc biệt là tổng số hàng, loại của từng thuộc tính và số lượng giá trị không rỗng (xem Hình 2-6).
+
+\[Get the Data | 47\]
+
+% --- page 28 ---
+\noindent\textit{Hình 2-6. Thông tin nhà ở}
+
+Có 20.640 phiên bản trong dataset, điều đó có nghĩa là nó khá nhỏ so với tiêu chuẩn Machine Learning, nhưng thật hoàn hảo để bắt đầu. Lưu ý rằng thuộc tính phòng total\_bed chỉ có 20.433 giá trị không rỗng, nghĩa là 207 quận thiếu feature này. Chúng ta sẽ cần phải giải quyết vấn đề này sau.
+
+Tất cả các thuộc tính đều là số, ngoại trừ trường ocean\_proximity. Loại của nó là đối tượng, vì vậy nó có thể chứa bất kỳ loại đối tượng Python nào. Nhưng vì bạn đã tải dữ liệu này từ tệp CSV nên bạn biết rằng đó phải là thuộc tính văn bản. Khi nhìn vào năm hàng trên cùng, bạn có thể nhận thấy rằng các giá trị trong cột ocean\_proximity lặp lại, có nghĩa là nó có thể là một thuộc tính classification. Bạn có thể tìm hiểu xem có những danh mục nào và có bao nhiêu quận thuộc mỗi danh mục bằng cách sử dụng phương pháp value\_counts():
+
+>>> housing["ocean\_proximity".value\_counts() <1H OCEAN 9136 INLAND 6551 NEAR OCEAN 2658 NEAR BAY 2290 ISLAND 5 Tên: ocean\_proximity, dtype: int64
+
+Hãy nhìn vào các lĩnh vực khác. Phương thức mô tả() hiển thị bản tóm tắt các thuộc tính số (Hình 2-7).
+
+48 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 29 ---
+% [muc luc] p29_b0
+\noindent\textit{Hình 2-7. Tóm tắt từng thuộc tính số}
+
+Các hàng đếm, trung bình, tối thiểu và tối đa đều tự giải thích. Lưu ý rằng các giá trị null bị bỏ qua (vì vậy, ví dụ: số total\_bedrooms là 20.433 chứ không phải 20.640). Hàng std hiển thị độ lệch chuẩn, đo lường mức độ phân tán của các giá trị.12
+
+% [muc luc] p29_b4
+Một cách nhanh chóng khác để hiểu được loại dữ liệu bạn đang xử lý là vẽ biểu đồ cho từng thuộc tính số. Biểu đồ hiển thị số lượng phiên bản (trên trục tung) có phạm vi giá trị nhất định (trên trục hoành). Bạn có thể vẽ biểu đồ từng thuộc tính này hoặc bạn có thể gọi phương thức hist() trên toàn bộ dataset (như trong ví dụ code sau) và nó sẽ vẽ biểu đồ cho từng thuộc tính số (xem Hình 2-8):
+
+\%matplotlib nội tuyến \# chỉ trong Jupyter notebook nhập matplotlib.pyplot dưới dạng plt housing.hist(bins=50, figsize=(20,15)) plt.show()
+
+\[Get the Data | 49\]
+
+% --- page 30 ---
+Phương thức hist() dựa trên Matplotlib, do đó dựa vào phần phụ trợ đồ họa do user chỉ định để vẽ trên màn hình của bạn. Vì vậy, trước khi bạn có thể vẽ bất cứ thứ gì, bạn cần chỉ định Matplot-lib phụ trợ nào nên sử dụng. Tùy chọn đơn giản nhất là sử dụng lệnh ma thuật \%matplotlib nội tuyến của Jupyter. Điều này yêu cầu Jupyter thiết lập Matplotlib để nó sử dụng chương trình phụ trợ riêng của Jupyter. Các ô sau đó được hiển thị trong chính notebook. Lưu ý rằng việc gọi show() là tùy chọn trong Jupyter notebook, vì Jupyter sẽ tự động hiển thị các ô khi một ô được thực thi.
+
+\noindent\textit{Hình 2-8. Biểu đồ cho từng thuộc tính số}
+
+Có một số điều bạn có thể nhận thấy trong các biểu đồ này:
+
+% [muc luc] p30_b5
+50 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 31 ---
+Và nó không hẳn là một vấn đề, nhưng bạn nên cố gắng hiểu cách tính toán dữ liệu.
+
+2. Tuổi trung bình của nhà ở và giá trị nhà trung bình cũng bị giới hạn. Cái sau có thể là một vấn đề nghiêm trọng vì nó là thuộc tính mục tiêu của bạn (nhãn của bạn). Thuật toán Machine Learning của bạn có thể biết rằng giá không bao giờ vượt quá giới hạn đó. Bạn cần kiểm tra với nhóm khách hàng của mình (nhóm sẽ sử dụng đầu ra của hệ thống của bạn) để xem đây có phải là sự cố hay không. Nếu họ nói với bạn rằng họ cần những dự đoán chính xác thậm chí vượt quá 500.000 USD thì bạn có hai lựa chọn:
+
+Một. Thu thập nhãn thích hợp cho các huyện có nhãn bị giới hạn.
+
+B. Xóa các quận đó khỏi training set (và cả test set, vì hệ thống của bạn sẽ không bị đánh giá kém nếu nó dự đoán các giá trị vượt quá 500.000 USD).
+
+3. Những thuộc tính này có quy mô rất khác nhau. Chúng ta sẽ thảo luận vấn đề này sau trong chương này, khi chúng ta khám phá khả năng chia tỷ lệ feature.
+
+4. Cuối cùng, nhiều biểu đồ có phần đuôi nặng: chúng kéo dài về bên phải của đường trung tuyến hơn là về bên trái. Điều này có thể khiến một số thuật toán Machine Learning khó phát hiện các mẫu hơn một chút. Sau này chúng ta sẽ thử chuyển đổi các thuộc tính này để có nhiều phân bố hình chuông hơn.
+
+Hy vọng bây giờ bạn đã hiểu rõ hơn về loại dữ liệu bạn đang xử lý.
+
+Chờ đợi! Trước khi xem xét thêm dữ liệu, bạn cần tạo test set, đặt nó sang một bên và không bao giờ nhìn vào nó.
+
+\subsection{Tạo một bộ thử nghiệm}
+
+Nghe có vẻ lạ khi tự nguyện dành một phần dữ liệu ở giai đoạn này. Rốt cuộc, bạn chỉ xem qua dữ liệu và chắc chắn bạn nên tìm hiểu thêm nhiều điều về nó trước khi quyết định sử dụng thuật toán nào, phải không? Điều này đúng, nhưng bộ não của bạn là một hệ thống phát hiện khuôn mẫu đáng kinh ngạc, điều đó có nghĩa là nó rất dễ mắc phải overfitting: nếu bạn nhìn vào test set, bạn có thể tình cờ phát hiện ra một số khuôn mẫu có vẻ thú vị trong dữ liệu thử nghiệm khiến bạn chọn một loại Machine Learning model cụ thể. Khi bạn ước tính lỗi khái quát hóa bằng test set, ước tính của bạn sẽ quá lạc quan và bạn sẽ khởi chạy một hệ thống không hoạt động tốt như mong đợi. Điều này được gọi là rình mò dữ liệu bias.
+
+Về mặt lý thuyết, việc tạo test set rất đơn giản: chọn ngẫu nhiên một số phiên bản, thường là 20\% dataset (hoặc ít hơn nếu dataset của bạn rất lớn) và đặt chúng sang một bên:
+
+\[Get the Data | 51\]
+
+% --- page 32 ---
+13 Trong cuốn sách này, khi một ví dụ code chứa hỗn hợp code và kết quả đầu ra, như trường hợp ở đây, nó được định dạng giống như trong trình thông dịch Python, để dễ đọc hơn: các dòng code có tiền tố >>> (hoặc ... Đối với các khối thụt lề) và đầu ra không có tiền tố.
+
+14 Bạn sẽ thường thấy người ta đặt hạt giống ngẫu nhiên là 42. Con số này không có thuộc tính đặc biệt nào ngoài việc là Câu trả lời cho Câu hỏi Tối hậu về Sự sống, Vũ trụ và Vạn vật.
+
+Nhập numpy dưới dạng np def split\_train\_test(data, test\_ratio): shuffled\_indices = np.random.permutation(len(data)) test\_set\_size = int(len(data) * test\_ratio) test\_indices = shuffled\_indices[:test\_set\_size] train\_indices = shuffled\_indices[test\_set\_size:] return data.iloc[train\_indices], data.iloc[test\_indices]
+
+Sau đó bạn có thể sử dụng chức năng này như thế này:13
+
+>>> train\_set, test\_set = split\_train\_test(vỏ, 0,2) >>> len(train\_set) 16512 >>> len(test\_set) 4128
+
+Chà, điều này hoạt động nhưng nó không hoàn hảo: nếu bạn chạy lại chương trình, nó sẽ tạo ra một test set khác! Theo thời gian, bạn (hoặc thuật toán Machine Learning của bạn) sẽ thấy toàn bộ dataset, đây là điều bạn muốn tránh.
+
+Một giải pháp là lưu test set trong lần chạy đầu tiên và sau đó tải nó vào những lần chạy tiếp theo. Một tùy chọn khác là đặt hạt giống của trình tạo số ngẫu nhiên (ví dụ: với np.ran dom.seed(42))14 trước khi gọi np.random.permutation() để nó luôn tạo ra các chỉ số được xáo trộn giống nhau.
+
+Nhưng cả hai giải pháp này sẽ bị hỏng vào lần tiếp theo bạn tải dataset cập nhật. Để có sự phân chia training/kiểm tra ổn định ngay cả sau khi cập nhật dataset, một giải pháp phổ biến là sử dụng code định danh của từng phiên bản để quyết định xem nó có nên đưa vào test set hay không (giả sử các phiên bản có code định danh duy nhất và không thể thay đổi). Ví dụ: bạn có thể tính toán giá trị băm của code định danh của từng phiên bản và đặt phiên bản đó vào test set nếu giá trị băm thấp hơn hoặc bằng 20\% ​​giá trị băm tối đa. Điều này đảm bảo rằng test set sẽ duy trì tính nhất quán trong nhiều lần chạy, ngay cả khi bạn làm mới dataset. Test set mới sẽ chứa 20\% phiên bản mới, nhưng nó sẽ không chứa bất kỳ phiên bản nào trước đây có trong training set.
+
+Đây là một triển khai có thể:
+
+Từ zlib nhập crc32 def test\_set\_check(code định danh, test\_ratio): trả về crc32(np.int64(code định danh)) \& 0xffffffff < test\_ratio * 2**32
+
+52 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 33 ---
+15 Thông tin vị trí thực sự khá thô và kết quả là nhiều quận sẽ có ID giống hệt nhau, vì vậy chúng sẽ có cùng một bộ (bài kiểm tra hoặc chuyến tàu). Điều này giới thiệu một số mẫu bias đáng tiếc.
+
+Def split\_train\_test\_by\_id(data, test\_ratio, id\_column): ids = data[id\_column] in\_test\_set = ids.apply(lambda id\_: test\_set\_check(id\_, test\_ratio)) trả về data.loc[\textasciitilde{}in\_test\_set], data.loc[in\_test\_set]
+
+Rất tiếc là housing dataset không có cột nhận dạng. Giải pháp đơn giản nhất là sử dụng chỉ mục hàng làm ID:
+
+Housing\_with\_id = housing.reset\_index() \# thêm cột `index` train\_set, test\_set = split\_train\_test\_by\_id(housing\_with\_id, 0.2, "index")
+
+Nếu bạn sử dụng chỉ mục hàng làm code định danh duy nhất, bạn cần đảm bảo rằng dữ liệu mới sẽ được thêm vào cuối dataset và không có hàng nào bị xóa. Nếu điều này là không thể thì bạn có thể thử sử dụng features ổn định nhất để tạo code nhận dạng duy nhất. Ví dụ: vĩ độ và kinh độ của một quận được đảm bảo ổn định trong vài triệu năm, vì vậy bạn có thể kết hợp chúng thành ID như sau:15 housing\_with\_id["id"] = housing["longitude"] * 1000 + housing["latitude"] train\_set, test\_set = split\_train\_test\_by\_id(housing\_with\_id, 0,2, "id")
+
+Scikit-Learn cung cấp một số chức năng để chia datasets thành nhiều tập hợp con theo nhiều cách khác nhau. Hàm đơn giản nhất là train\_test\_split(), thực hiện khá giống với hàm split\_train\_test(), với một vài features bổ sung. Đầu tiên, có random\_state parameter cho phép bạn đặt hạt giống trình tạo ngẫu nhiên. Thứ hai, bạn có thể chuyển cho nó nhiều datasets với số hàng giống hệt nhau và nó sẽ phân chia chúng trên cùng một chỉ mục (ví dụ: điều này rất hữu ích nếu bạn có DataFrame riêng cho nhãn):
+
+Từ sklearn.model\_selection nhập train\_test\_split train\_set, test\_set = train\_test\_split(vỏ, test\_size=0,2, random\_state=42)
+
+% [muc luc] p33_b9
+\[Get the Data | 53\]
+
+% --- page 34 ---
+Đó là ít hơn 49\% nữ hoặc hơn 54\% nữ. Dù bằng cách nào, kết quả khảo sát sẽ bị sai lệch đáng kể.
+
+% [muc luc] p34_b1
+Housing["income\_cat"] = pd.cut(housing["median\_income"], bins=[0., 1.5, 3.0, 4.5, 6., np.inf], labels=[1, 2, 3, 4, 5])
+
+Các loại thu nhập này được thể hiện trong Hình 2-9:
+
+Nhà ở["income\_cat"].hist()
+
+\noindent\textit{Hình 2-9. Biểu đồ các loại thu nhập}
+
+Bây giờ bạn đã sẵn sàng thực hiện lấy mẫu phân tầng dựa trên loại thu nhập. Để làm điều này, bạn có thể sử dụng lớp StratifiedShuffleSplit của Scikit-Learn:
+
+54 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 35 ---
+Từ sklearn.model\_selection nhập StratifiedShuffleSplit chia = StratifiedShuffleSplit(n\_splits=1, test\_size=0,2, random\_state=42) cho train\_index, test\_index trong Split.split(housing, housing["income\_cat"]): strat\_train\_set = housing.loc[train\_index] strat\_test\_set = housing.loc[test\_index]
+
+Hãy xem liệu điều này có hoạt động như mong đợi không. Bạn có thể bắt đầu bằng cách xem tỷ lệ danh mục thu nhập trong test set:
+
+>>> strat\_test\_set["income\_cat".value\_counts() / len(strat\_test\_set) 3 0.350533 2 0.318798 4 0.176357 5 0.114583 1 0.039729 Tên: income\_cat, dtype: float64
+
+Với code tương tự, bạn có thể đo lường tỷ lệ danh mục thu nhập trong dataset đầy đủ. Hình 2-10 so sánh tỷ lệ loại thu nhập trong dataset tổng thể, trong test set được tạo bằng lấy mẫu phân tầng và trong test set được tạo bằng cách lấy mẫu hoàn toàn ngẫu nhiên. Như bạn có thể thấy, test set được tạo bằng cách lấy mẫu phân tầng có tỷ lệ danh mục thu nhập gần như giống hệt với dataset đầy đủ, trong khi test set được tạo bằng cách lấy mẫu hoàn toàn ngẫu nhiên bị sai lệch.
+
+\noindent\textit{Hình 2-10. Lấy mẫu bias so sánh giữa lấy mẫu phân tầng và lấy mẫu ngẫu nhiên hoàn toàn}
+
+Bây giờ bạn nên xóa thuộc tính income\_cat để dữ liệu trở về trạng thái ban đầu:
+
+Cho set\_ in (strat\_train\_set, strat\_test\_set): set\_.drop("income\_cat", axis=1, inplace=True)
+
+Chúng ta đã dành khá nhiều thời gian cho thế hệ test set vì một lý do chính đáng: đây là phần thường bị bỏ qua nhưng quan trọng của dự án Machine Learning. Hơn nữa, nhiều ý tưởng trong số này sẽ hữu ích sau này khi chúng ta thảo luận về cross-validation. Bây giờ là lúc chuyển sang giai đoạn tiếp theo: khám phá dữ liệu.
+
+\[Get the Data | 55\]
+
+% --- page 36 ---
+Khám phá và trực quan hóa dữ liệu để hiểu rõ hơn
+
+Cho đến nay, bạn chỉ lướt qua dữ liệu để hiểu chung về loại dữ liệu bạn đang thao tác. Bây giờ mục tiêu là đi sâu hơn một chút.
+
+Trước tiên, hãy đảm bảo rằng bạn đã đặt test set sang một bên và bạn chỉ đang khám phá tập training. Ngoài ra, nếu training set rất lớn, bạn có thể muốn lấy mẫu một bộ khám phá để thực hiện các thao tác dễ dàng và nhanh chóng. Trong trường hợp của chúng ta, bộ này khá nhỏ nên bạn chỉ có thể làm việc trực tiếp trên bộ đầy đủ. Hãy tạo một bản sao để bạn có thể chơi với nó mà không làm hại training set:
+
+Nhà ở = strat\_train\_set.copy()
+
+\subsection{Trực quan hóa dữ liệu địa lý}
+
+Vì có thông tin địa lý (vĩ độ và kinh độ), nên tạo biểu đồ phân tán của tất cả các quận để trực quan hóa dữ liệu (Hình 2-11):
+
+Housing.plot(kind="scatter", x="kinh độ", y="vĩ độ")
+
+\noindent\textit{Hình 2-11. Biểu đồ phân tán địa lý của dữ liệu}
+
+Điều này trông giống như California, nhưng ngoài điều đó ra thì khó có thể thấy bất kỳ hình mẫu cụ thể nào. Đặt tùy chọn alpha thành 0,1 giúp dễ dàng hình dung hơn những nơi có mật độ điểm dữ liệu cao (Hình 2-12):
+
+Housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.1)
+
+56 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 37 ---
+16 Nếu bạn đang đọc phần này dưới dạng thang độ xám, hãy lấy bút đỏ và viết nguệch ngoạc trên hầu hết đường bờ biển từ Vùng Vịnh xuống San Diego (như bạn có thể mong đợi). Bạn cũng có thể thêm một mảng màu vàng xung quanh Sacramento.
+
+\noindent\textit{Hình 2-12. Hình ảnh trực quan tốt hơn làm nổi bật các khu vực có mật độ cao}
+
+Bây giờ thì tốt hơn nhiều: bạn có thể thấy rõ các khu vực có mật độ dân số cao, cụ thể là Vùng Vịnh và xung quanh Los Angeles và San Diego, cùng với một hàng dài có mật độ khá cao ở Thung lũng Trung tâm, đặc biệt là xung quanh Sacramento và Fresno.
+
+Bộ não của chúng ta rất giỏi trong việc phát hiện các mẫu trong hình ảnh, nhưng bạn có thể cần thử nghiệm với parameters trực quan để làm nổi bật các mẫu.
+
+Bây giờ chúng ta hãy nhìn vào giá nhà đất (Hình 2-13). Bán kính của mỗi vòng tròn biểu thị dân số của quận (tùy chọn s) và màu sắc biểu thị giá cả (tùy chọn c). Chúng ta sẽ sử dụng bản đồ màu được xác định trước (tùy chọn cmap) được gọi là máy bay phản lực, có phạm vi từ màu xanh lam (giá trị thấp) đến màu đỏ (giá cao):16 housing.plot(kind="scatter", x="longitude", y="latitude", alpha=0.4, s=housing["population"]/100, label="population", figsize=(10,7), c="median\_house\_value", cmap=plt.get\_cmap("jet"), colorbar=True, ) plt.legend()
+
+\[Discover and Visualize the Data to Gain Insights | 57\]
+
+% --- page 38 ---
+\noindent\textit{Hình 2-13. Giá California housing: màu đỏ là đắt, màu xanh là rẻ, vòng tròn lớn hơn biểu thị khu vực có dân số đông hơn}
+
+Hình ảnh này cho bạn biết rằng giá nhà đất liên quan rất nhiều đến vị trí (ví dụ: gần biển) và mật độ dân số, như bạn có thể đã biết. Thuật toán clustering sẽ hữu ích trong việc phát hiện cụm chính và để thêm features mới để đo khoảng cách với các trung tâm cụm. Thuộc tính gần biển cũng có thể hữu ích, mặc dù ở Bắc California, giá nhà ở các quận ven biển không quá cao nên đây không phải là một quy tắc đơn giản.
+
+\subsection{Tìm kiếm mối tương quan}
+
+Vì dataset không quá lớn nên bạn có thể dễ dàng tính hệ số tương quan tiêu chuẩn (còn gọi là Pearson’s r) giữa mỗi cặp thuộc tính bằng phương thức corr():
+
+Corr\_matrix = housing.corr()
+
+Bây giờ hãy xem mỗi thuộc tính tương quan với giá trị ngôi nhà trung bình như thế nào:
+
+>>> corr\_matrix["median\_house\_value".sort\_values(tăng dần=Sai) median\_house\_value 1,000000 median\_income 0,687170 total\_rooms 0,135231 housing\_median\_age 0,114220
+
+58 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 39 ---
+Hộ gia đình 0,064702 total\_bedrooms 0,047865 dân số -0,026699 kinh độ -0,047279 vĩ độ -0,142826 Tên: median\_house\_value, dtype: float64
+
+Hệ số tương quan nằm trong khoảng từ –1 đến 1. Khi nó gần bằng 1, điều đó có nghĩa là có mối tương quan dương mạnh mẽ; ví dụ, giá trị ngôi nhà trung bình có xu hướng tăng lên khi thu nhập trung bình tăng lên. Khi hệ số gần bằng -1 nghĩa là có mối tương quan nghịch mạnh; bạn có thể thấy mối tương quan nghịch nhỏ giữa vĩ độ và giá trị ngôi nhà trung bình (tức là giá có xu hướng giảm nhẹ khi bạn đi về phía bắc). Cuối cùng, hệ số gần bằng 0 có nghĩa là không có mối tương quan tuyến tính. Hình 2-14 cho thấy các đồ thị khác nhau cùng với hệ số tương quan giữa trục ngang và trục dọc của chúng.
+
+\noindent\textit{Hình 2-14. Hệ số tương quan tiêu chuẩn của các datasets khác nhau (nguồn: Wikipedia; hình ảnh phạm vi công cộng)}
+
+Hệ số tương quan chỉ đo lường mối tương quan tuyến tính (“nếu x tăng thì y thường tăng/giảm”). Nó có thể hoàn toàn bỏ sót các mối quan hệ phi tuyến tính (ví dụ: “nếu x gần bằng 0 thì y thường tăng lên”). Lưu ý rằng tất cả các đồ thị ở hàng dưới cùng đều có hệ số tương quan bằng 0, mặc dù thực tế là các trục của chúng rõ ràng không độc lập: đây là những ví dụ về mối quan hệ phi tuyến tính. Ngoài ra, hàng thứ hai hiển thị các ví dụ trong đó hệ số tương quan bằng 1 hoặc –1; lưu ý rằng điều này không liên quan gì đến gradient. Ví dụ: chiều cao của bạn tính bằng inch có hệ số tương quan là 1 với chiều cao tính bằng feet hoặc tính bằng nanomet.
+
+Một cách khác để kiểm tra mối tương quan giữa các thuộc tính là sử dụng hàm pandas scatter\_matrix(), hàm này vẽ đồ thị mọi thuộc tính số đối với mọi thuộc tính.
+
+\[Discover and Visualize the Data to Gain Insights | 59\]
+
+% --- page 40 ---
+Thuộc tính số khác. Vì hiện tại có 11 thuộc tính bằng số, bạn sẽ nhận được 112 = 121 ô, không vừa trên một trang—vì vậy, hãy tập trung vào một số thuộc tính đầy hứa hẹn có vẻ tương quan nhất với giá trị nhà ở trung bình (Hình 2-15):
+
+Từ pandas.plotting nhập thuộc tính scatter\_matrix = ["median\_house\_value", "median\_income", "total\_rooms", "housing\_median\_age"] scatter\_matrix(nhà ở[thuộc tính], figsize=(12, 8))
+
+\noindent\textit{Hình 2-15. Matrix phân tán này vẽ đồ thị mọi thuộc tính số theo mọi thuộc tính số khác, cộng với biểu đồ của từng thuộc tính số}
+
+Đường chéo chính (trên cùng bên trái đến dưới cùng bên phải) sẽ có đầy các đường thẳng nếu pandas vẽ từng biến theo chính nó, điều này sẽ không hữu ích lắm. Vì vậy, thay vào đó pandas hiển thị biểu đồ của từng thuộc tính (có sẵn các tùy chọn khác; xem tài liệu pandas để biết thêm chi tiết).
+
+Thuộc tính hứa hẹn nhất để dự đoán giá trị ngôi nhà trung bình là thu nhập trung bình, vì vậy hãy phóng to biểu đồ tương quan của chúng (Hình 2-16):
+
+Housing.plot(kind="scatter", x="median\_income", y="median\_house\_value", alpha=0.1)
+
+60 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 41 ---
+\noindent\textit{Hình 2-16. Thu nhập trung bình so với giá trị nhà trung bình}
+
+% [muc luc] p41_b2
+\subsection{Thử nghiệm với sự kết hợp thuộc tính}
+
+Hy vọng rằng các phần trước đã cho bạn ý tưởng về một số cách để bạn có thể khám phá dữ liệu và hiểu rõ hơn. Bạn đã xác định được một số vấn đề dữ liệu mà bạn có thể muốn làm sạch trước khi cung cấp dữ liệu cho thuật toán Machine Learning và bạn đã tìm thấy mối tương quan thú vị giữa các thuộc tính, đặc biệt là với thuộc tính đích. Bạn cũng nhận thấy rằng một số thuộc tính có phân bố nặng về đuôi, vì vậy bạn có thể muốn biến đổi chúng (ví dụ: bằng cách tính logarit của chúng). Tất nhiên, quãng đường của bạn sẽ thay đổi đáng kể theo từng dự án, nhưng ý tưởng chung là tương tự nhau.
+
+Điều cuối cùng bạn có thể muốn làm trước khi chuẩn bị dữ liệu cho thuật toán Machine Learning là thử các kết hợp thuộc tính khác nhau. Ví dụ, tổng số phòng trong một quận sẽ không hữu ích lắm nếu bạn không biết có bao nhiêu hộ gia đình. Điều bạn thực sự muốn là số phòng cho mỗi hộ gia đình. Tương tự, bản thân tổng số phòng ngủ không hữu ích lắm: bạn có thể muốn so sánh nó với số phòng. Và dân số mỗi hộ gia đình cũng có vẻ như là một sự kết hợp thuộc tính thú vị để xem xét. Hãy tạo các thuộc tính mới này:
+
+\[Discover and Visualize the Data to Gain Insights | 61\]
+
+% --- page 42 ---
+Nhà ở["rooms\_per\_household"] = nhà ở["total\_rooms"]/housing["hộ gia đình"] nhà ở["bedrooms\_per\_room"] = nhà ở["total\_bedrooms"]/housing["total\_rooms"] nhà ở["population\_per\_household"]=housing["population"]/housing["hộ gia đình"]
+
+Và bây giờ chúng ta hãy nhìn lại matrix tương quan:
+
+% [muc luc] p42_b2
+Này, không tệ! Thuộc tính bedrooms\_per\_room mới có mối tương quan nhiều hơn với giá trị ngôi nhà trung bình so với tổng số phòng hoặc phòng ngủ. Rõ ràng những ngôi nhà có tỷ lệ phòng ngủ/phòng thấp hơn có xu hướng đắt hơn. Số phòng trong mỗi hộ gia đình cũng mang lại nhiều thông tin hơn tổng số phòng trong một quận – rõ ràng là nhà càng lớn thì giá càng đắt.
+
+Vòng khám phá này không cần phải hoàn toàn thấu đáo; vấn đề là hãy bắt đầu một cách thuận lợi và nhanh chóng đạt được những hiểu biết sâu sắc giúp bạn có được nguyên mẫu đầu tiên khá tốt. Nhưng đây là một quá trình lặp đi lặp lại: sau khi thiết lập và chạy nguyên mẫu, bạn có thể phân tích kết quả đầu ra của nó để hiểu rõ hơn và quay lại bước khám phá này.
+
+\subsection{Chuẩn bị dữ liệu cho thuật toán Machine Learning}
+
+Đã đến lúc chuẩn bị dữ liệu cho thuật toán Machine Learning của bạn. Thay vì thực hiện việc này một cách thủ công, bạn nên viết các hàm cho mục đích này vì một số lý do chính đáng:
+
+• Điều này sẽ cho phép bạn tái tạo các chuyển đổi này một cách dễ dàng trên bất kỳ dataset nào (ví dụ: lần tiếp theo bạn nhận được dataset mới).
+
+• Bạn sẽ dần dần xây dựng một thư viện các hàm chuyển đổi mà bạn có thể sử dụng lại trong các dự án sau này.
+
+• Bạn có thể sử dụng các chức năng này trong hệ thống trực tiếp của mình để chuyển đổi dữ liệu mới trước khi đưa dữ liệu đó vào thuật toán của bạn.
+
+62 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 43 ---
+• Điều này sẽ giúp bạn có thể dễ dàng thử các phép biến đổi khác nhau và xem sự kết hợp các phép biến đổi nào hoạt động tốt nhất.
+
+Nhưng trước tiên hãy quay lại training set sạch (bằng cách sao chép strat\_train\_set một lần nữa). Chúng ta cũng hãy tách predictors và các nhãn vì chúng ta không nhất thiết muốn áp dụng các phép biến đổi tương tự cho predictors và các giá trị đích (lưu ý rằng drop() tạo một bản sao của dữ liệu và không ảnh hưởng đến strat\_train\_set):
+
+Nhà ở = strat\_train\_set.drop("median\_house\_value", axis=1) housing\_labels = strat\_train\_set["median\_house\_value"].copy()
+
+\subsection{Làm sạch dữ liệu}
+
+Hầu hết các thuật toán Machine Learning không thể hoạt động khi thiếu features, vì vậy hãy tạo một vài hàm để xử lý chúng. Trước đó chúng ta đã thấy rằng thuộc tính total\_bedrooms có một số giá trị bị thiếu, vì vậy hãy khắc phục điều này. Bạn có ba lựa chọn:
+
+1. Loại bỏ các quận tương ứng.
+
+2. Loại bỏ toàn bộ thuộc tính.
+
+3. Đặt các giá trị thành một giá trị nào đó (không, giá trị trung bình, trung vị, v.v.).
+
+Bạn có thể thực hiện những điều này một cách dễ dàng bằng cách sử dụng các phương thức dropna(), drop() và fillna() của DataFrame:
+
+Housing.dropna(subset=["total\_bedrooms"]) \# tùy chọn 1 housing.drop("total\_bedrooms", axis=1) \# tùy chọn 2 trung vị = housing["total\_bedrooms"].median() \# tùy chọn 3 housing["total\_bedrooms"].fillna(median, inplace=True)
+
+Nếu bạn chọn tùy chọn 3, bạn nên tính giá trị trung bình trên training set và sử dụng nó để điền các giá trị còn thiếu trong training set. Đừng quên lưu giá trị trung bình mà bạn đã tính toán. Sau này, bạn sẽ cần nó để thay thế các giá trị bị thiếu trong test set khi bạn muốn đánh giá hệ thống của mình và cả khi hệ thống hoạt động để thay thế các giá trị bị thiếu trong dữ liệu mới.
+
+Scikit-Learn cung cấp một lớp tiện dụng để xử lý các giá trị còn thiếu: SimpleImputer. Đây là cách sử dụng nó. Trước tiên, bạn cần tạo một phiên bản SimpleImputer, chỉ định rằng bạn muốn thay thế các giá trị còn thiếu của từng thuộc tính bằng giá trị trung bình của thuộc tính đó:
+
+Từ sklearn.impute nhập SimpleImputer imputer = SimpleImputer(strategy="median")
+
+Vì trung vị chỉ có thể được tính trên các thuộc tính số nên bạn cần tạo một bản sao của dữ liệu không có thuộc tính văn bản ocean\_proximity:
+
+Housing\_num = housing.drop("ocean\_proximity", axis=1)
+
+\[Prepare the Data for Machine Learning Algorithms | 63\]
+
+% --- page 44 ---
+17 Để biết thêm chi tiết về các nguyên tắc thiết kế, hãy xem Lars Buitinck và cộng sự, “Thiết kế API cho phần mềm Machine Learning: Kinh nghiệm từ Dự án Scikit-Learn” ,” arXiv preprint arXiv:1309.0238 (2013).
+
+Bây giờ bạn có thể khớp phiên bản máy tính với dữ liệu training bằng phương thức fit():
+
+Imputer.fit(housing\_num)
+
+Máy tính chỉ đơn giản tính giá trị trung bình của mỗi thuộc tính và lưu kết quả vào biến đối tượng stats\_ của nó. Chỉ thuộc tính total\_bedrooms bị thiếu giá trị, nhưng chúng ta không thể chắc chắn rằng sẽ không có bất kỳ giá trị nào bị thiếu trong dữ liệu mới sau khi hệ thống đi vào hoạt động, vì vậy sẽ an toàn hơn khi áp dụng máy tính cho tất cả các thuộc tính số:
+
+% [muc luc] p44_b4
+Bây giờ bạn có thể sử dụng máy tính “đã được training” này để biến đổi training set bằng cách thay thế các giá trị bị thiếu bằng các giá trị trung bình đã học:
+
+X = imputer.transform(housing\_num)
+
+Kết quả là một mảng NumPy đơn giản chứa features đã được chuyển đổi. Nếu bạn muốn đưa nó trở lại pandas DataFrame thì đơn giản:
+
+Housing\_tr = pd.DataFrame(X, columns=housing\_num.columns, index=housing\_num.index)
+
+\subsection{Thiết kế Scikit-Learn}
+
+API của Scikit-Learn được thiết kế rất tốt. Đây là những nguyên tắc thiết kế chính:17
+
+Tính nhất quán Tất cả các đối tượng đều có chung một giao diện nhất quán và đơn giản:
+
+Estimators Bất kỳ đối tượng nào có thể ước tính một số parameters dựa trên dataset đều được gọi là estimator (ví dụ: máy tính là estimator). Bản thân việc ước tính được thực hiện bằng phương pháp fit() và chỉ cần một dataset làm parameter (hoặc hai cho thuật toán supervised learning; dataset thứ hai chứa các nhãn). Bất kỳ parameter nào khác cần thiết để hướng dẫn quá trình ước tính đều được coi là hyperparameter (chẳng hạn như chiến lược của máy tính) và nó phải được đặt làm biến thể hiện (thường thông qua hàm tạo parameter).
+
+Transformer Một số estimators (chẳng hạn như máy tính) cũng có thể biến đổi dataset; chúng được gọi là máy biến áp. Một lần nữa, API rất đơn giản: việc chuyển đổi được thực hiện bằng phương thức Transform() với dataset để chuyển đổi thành một
+
+64 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 45 ---
+18 Một số predictors cũng cung cấp các phương pháp để đo lường độ tin cậy trong dự đoán của họ.
+
+Parameter. Nó trả về dataset đã được chuyển đổi. Phép biến đổi này thường dựa vào parameters đã học, giống như trường hợp của máy tính. Tất cả các máy biến áp cũng có một phương thức tiện lợi gọi là fit\_transform() tương đương với việc gọi fit() và sau đó Transform() (nhưng đôi khi fit\_transform() được tối ưu hóa và chạy nhanh hơn nhiều).
+
+Predictors Cuối cùng, một số estimators, được cấp dataset, có khả năng đưa ra dự đoán; chúng được gọi là predictors. Ví dụ, LinearRegression model trong chương trước là predictor: với GDP bình quân đầu người của một quốc gia, nó dự đoán mức độ hài lòng với cuộc sống. Predictor có phương thức dự đoán() lấy dataset của các phiên bản mới và trả về dataset của các dự đoán tương ứng. Nó cũng có phương thức Score() để đo chất lượng của các dự đoán, cho trước test set (và các nhãn tương ứng, trong trường hợp thuật toán học có giám sát).18
+
+Kiểm tra Tất cả hyperparameters của estimator đều có thể truy cập trực tiếp thông qua các biến phiên bản công khai (ví dụ: imputer.strategy) và tất cả parameters đã học của estimator đều có thể truy cập được thông qua các biến phiên bản công khai có hậu tố gạch dưới (ví dụ: imputer.statistics\_).
+
+Việc không phổ biến các lớp Datasets được biểu diễn dưới dạng mảng NumPy hoặc matrix thưa thớt SciPy, thay vì các lớp tự chế. Hyperparameters chỉ là các chuỗi hoặc số Python thông thường.
+
+Thành phần Các khối xây dựng hiện có được tái sử dụng nhiều nhất có thể. Ví dụ: thật dễ dàng để tạo Pipeline estimator từ một chuỗi máy biến áp tùy ý, theo sau là estimator cuối cùng, như chúng ta sẽ thấy.
+
+Mặc định hợp lý Scikit-Learn cung cấp các giá trị mặc định hợp lý cho hầu hết parameters, giúp dễ dàng nhanh chóng tạo hệ thống làm việc cơ bản.
+
+\subsection{Xử lý thuộc tính văn bản và classification}
+
+Cho đến nay chúng ta mới chỉ xử lý các thuộc tính số, nhưng bây giờ hãy xem xét các thuộc tính văn bản. Trong dataset này, chỉ có một: thuộc tính ocean\_proximity. Hãy xem giá trị của nó trong 10 trường hợp đầu tiên:
+
+\[Prepare the Data for Machine Learning Algorithms | 65\]
+
+% --- page 46 ---
+19 Lớp này có sẵn trong Scikit-Learn 0.20 trở lên. Nếu bạn sử dụng phiên bản cũ hơn, vui lòng xem xét nâng cấp hoặc sử dụng phương thức pandas Series.factorize().
+
+>>> housing\_cat = vỏ[["ocean\_proximity"]] >>> housing\_cat.head(10) ocean\_proximity 17606 <1H OCEAN 18632 <1H OCEAN 14650 NEAR OCEAN 3230 INLAND 3555 <1H OCEAN 19480 INLAND 8879 <1H OCEAN 13685 INLAND 4937 <1H OCEAN 4861 <1H OCEAN
+
+Đây không phải là văn bản tùy ý: có một số lượng giới hạn các giá trị có thể có, mỗi giá trị đại diện cho một danh mục. Vì vậy thuộc tính này là thuộc tính classification. Hầu hết các thuật toán Machine Learning đều thích làm việc với các con số, vì vậy hãy chuyển đổi các danh mục này từ văn bản sang số. Để làm điều này, chúng ta có thể sử dụng lớp OrdinalEncoder của Scikit-Learn:19
+
+% [muc luc] p46_b3
+Bạn có thể lấy danh sách các danh mục bằng cách sử dụng biến thể hiện Category\_. Đó là danh sách chứa mảng danh mục 1D cho mỗi thuộc tính classification (trong trường hợp này là danh sách chứa một mảng vì chỉ có một thuộc tính classification):
+
+>>> ordinal\_encoder.categories\_ [mảng(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+
+Một vấn đề với cách biểu diễn này là thuật toán ML sẽ cho rằng hai giá trị gần nhau giống nhau hơn hai giá trị ở xa. Điều này có thể ổn trong một số trường hợp (ví dụ: đối với các danh mục được sắp xếp như “xấu”, “trung bình”, “tốt” và “xuất sắc”), nhưng rõ ràng là không đúng với cột ocean\_proximity (ví dụ: danh mục 0 và 4 rõ ràng giống với danh mục 0 và 1 hơn). Để khắc phục vấn đề này, một giải pháp phổ biến
+
+66 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 47 ---
+20 Trước Scikit-Learn 0,20, phương thức này chỉ có thể code hóa các giá trị classification số nguyên, nhưng kể từ 0,20, nó cũng có thể xử lý các loại đầu vào khác, bao gồm cả đầu vào classification văn bản.
+
+21 Xem tài liệu của SciPy để biết thêm chi tiết.
+
+Là tạo một thuộc tính nhị phân cho mỗi danh mục: một thuộc tính bằng 1 khi danh mục là “<1H OCEAN” (và 0 nếu ngược lại), một thuộc tính khác bằng 1 khi danh mục là “INLAND” (và 0 nếu ngược lại), v.v. Đây được gọi là code hóa một nóng, vì chỉ một thuộc tính sẽ bằng 1 (nóng), trong khi các thuộc tính khác sẽ bằng 0 (lạnh). Các thuộc tính mới đôi khi được gọi là thuộc tính giả. Scikit-Learn cung cấp lớp OneHotEncoder để chuyển đổi các giá trị classification thành các vector một điểm nóng:20
+
+>>> from sklearn.preprocessing import OneHotEncoder >>> cat\_encoder = OneHotEncoder() >>> housing\_cat\_1hot = cat\_encoder.fit\_transform(housing\_cat) >>> housing\_cat\_1hot <16512x5 matrix thưa thớt kiểu '<class 'numpy.float64'>' với 16512 phần tử được lưu trữ ở định dạng Hàng thưa thớt được nén>
+
+Lưu ý rằng đầu ra là matrix thưa thớt SciPy, thay vì mảng NumPy. Điều này rất hữu ích khi bạn có thuộc tính classification với hàng nghìn danh mục. Sau khi code hóa onehot, chúng ta nhận được một matrix có hàng nghìn cột và matrix chứa đầy các số 0 ngoại trừ một số 1 trên mỗi hàng. Việc sử dụng nhiều bộ nhớ để lưu trữ các số 0 sẽ rất lãng phí, do đó, thay vào đó, một matrix thưa thớt chỉ lưu trữ vị trí của các phần tử khác 0. Bạn có thể sử dụng nó hầu như giống như một mảng 2D bình thường,21 nhưng nếu bạn thực sự muốn chuyển đổi nó thành một mảng NumPy (dày đặc), chỉ cần gọi phương thức toarray():
+
+>>> housing\_cat\_1hot.toarray() mảng([[1., 0., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 0., 1.], ..., [0., 1., 0., 0., 0.], [1., 0., 0., 0., 0.], [0., 0., 0., 1., 0.]])
+
+Một lần nữa, bạn có thể lấy danh sách các danh mục bằng cách sử dụng biến thể hiện Category\_ của bộ code hóa:
+
+>>> cat\_encoder.categories\_ [mảng(['<1H OCEAN', 'INLAND', 'ISLAND', 'NEAR BAY', 'NEAR OCEAN'], dtype=object)]
+
+\[Prepare the Data for Machine Learning Algorithms | 67\]
+
+% --- page 48 ---
+Nếu một thuộc tính classification có số lượng lớn các danh mục có thể có (ví dụ: code quốc gia, nghề nghiệp, loài), thì code hóa một lần sẽ dẫn đến số lượng lớn features đầu vào. Điều này có thể làm chậm quá trình training và làm giảm hiệu suất. Nếu điều này xảy ra, bạn có thể muốn thay thế đầu vào classification bằng features số hữu ích liên quan đến các danh mục: ví dụ: bạn có thể thay thế ocean\_proximity feature bằng khoảng cách tới đại dương (tương tự, code quốc gia có thể được thay thế bằng dân số của quốc gia đó và GDP bình quân đầu người). Ngoài ra, bạn có thể thay thế mỗi danh mục bằng một vector có chiều thấp, có thể học được gọi là nhúng. Cách trình bày của mỗi danh mục sẽ được học trong quá trình training. Đây là một ví dụ về học biểu diễn (xem Chương 13 và 17 để biết thêm chi tiết).
+
+\subsection{Custom Transformer}
+
+Mặc dù Scikit-Learn cung cấp nhiều máy biến áp hữu ích, nhưng bạn sẽ cần phải viết máy biến áp của riêng mình cho các tác vụ như thao tác dọn dẹp tùy chỉnh hoặc kết hợp các thuộc tính cụ thể. Bạn sẽ muốn transformer của mình hoạt động trơn tru với các chức năng Scikit-Learn (chẳng hạn như pipelines), và vì Scikit-Learn dựa vào kiểu gõ vịt (không phải tính kế thừa), tất cả những gì bạn cần làm là tạo một lớp và triển khai ba phương thức: fit() (tự trả về), Transform() và fit\_transform().
+
+Bạn có thể nhận cái cuối cùng miễn phí bằng cách thêm TransformerMixin làm lớp cơ sở. Nếu bạn thêm BaseEstimator làm lớp cơ sở (và tránh *args và **kargs trong hàm tạo của bạn), bạn cũng sẽ nhận được hai phương thức bổ sung (get\_params() và set\_params()) sẽ hữu ích cho hyperparameter tuning tự động.
+
+Ví dụ: đây là một lớp transformer nhỏ có thêm các thuộc tính kết hợp mà chúng ta đã thảo luận trước đó:
+
+Từ sklearn.base nhập BaseEstimator, TransformerMixin rooms\_ix, bedrooms\_ix, population\_ix, households\_ix = 3, 4, 5, 6 lớp CombinedAttributesAdder(BaseEstimator, TransformerMixin): def \_\_init\_\_(self, add\_bedrooms\_per\_room = True): \# không *args hoặc **kargs self.add\_bedrooms\_per\_room = add\_bedrooms\_per\_room def fit(self, X, y=None): trả về self \# không có gì khác để làm def Transform(self, X): rooms\_per\_household = X[:, rooms\_ix] / X[:, households\_ix] population\_per\_household = X[:, population\_ix] / X[:, households\_ix] if self.add\_bedrooms\_per\_room: bedrooms\_per\_room = X[:, bedrooms\_ix] / X[:, rooms\_ix] trả về np.c\_[X, rooms\_per\_household, population\_per\_household, bedrooms\_per\_room]
+
+68 | Chương 2: Dự án Machine Learning toàn diện
+
+% --- page 49 ---
+Khác: trả về np.c\_[X, rooms\_per\_household, population\_per\_household] attr\_adder = CombinedAttributesAdder(add\_bedrooms\_per\_room=False) housing\_extra\_attribs = attr\_adder.transform(housing.values)
+
+Trong ví dụ này, transformer có một hyperparameter, add\_bedrooms\_per\_room, được đặt thành True theo mặc định (việc cung cấp các giá trị mặc định hợp lý thường rất hữu ích). Siêu tham số này sẽ cho phép bạn dễ dàng tìm hiểu xem việc thêm thuộc tính này có giúp ích cho thuật toán Machine Learning hay không. Tổng quát hơn, bạn có thể thêm hyperparameter để chuyển bất kỳ bước chuẩn bị dữ liệu nào mà bạn không chắc chắn 100\%. Bạn càng tự động hóa các bước chuẩn bị dữ liệu này thì bạn càng có thể tự động thử nhiều kết hợp hơn, khiến bạn có nhiều khả năng tìm thấy một kết hợp tuyệt vời hơn (và giúp bạn tiết kiệm rất nhiều thời gian).
+
+\subsection{Chia tỷ lệ tính năng}
+
+Một trong những phép biến đổi quan trọng nhất mà bạn cần áp dụng cho dữ liệu của mình là chia tỷ lệ feature. Với một số ngoại lệ, thuật toán Machine Learning không hoạt động tốt khi các thuộc tính số đầu vào có tỷ lệ rất khác nhau. Đây là trường hợp của dữ liệu nhà ở: tổng số phòng dao động từ khoảng 6 đến 39.320, trong khi thu nhập trung bình chỉ dao động từ 0 đến 15. Lưu ý rằng nói chung không cần phải chia tỷ lệ các giá trị mục tiêu.
+
+Có hai cách phổ biến để có được tất cả các thuộc tính có cùng tỷ lệ: chia tỷ lệ tối thiểu-tối đa và tiêu chuẩn hóa.
+
+Chia tỷ lệ tối thiểu-tối đa (nhiều người gọi đây là chuẩn hóa) là đơn giản nhất: các giá trị được dịch chuyển và thay đổi tỷ lệ sao cho chúng có giá trị nằm trong khoảng từ 0 đến 1. Chúng ta thực hiện việc này bằng cách trừ giá trị tối thiểu và chia cho giá trị tối đa trừ đi giá trị tối thiểu. Scikit-Learn cung cấp một bộ chuyển đổi có tên MinMaxScaler cho việc này. Nó có feature\_range hyperparameter cho phép bạn thay đổi phạm vi nếu vì lý do nào đó, bạn không muốn 0–1.
+
+% [muc luc] p49_b7
+\[Prepare the Data for Machine Learning Algorithms | 69\]
+
+% --- page 50 ---
+Như với tất cả các phép biến đổi, điều quan trọng là chỉ khớp bộ chia tỷ lệ với dữ liệu training chứ không phải với dataset đầy đủ (bao gồm cả test set). Chỉ khi đó bạn mới có thể sử dụng chúng để chuyển đổi training set và test set (và dữ liệu mới).
+
+\subsection{Đường ống chuyển đổi}
+
+Như bạn có thể thấy, có nhiều bước chuyển đổi dữ liệu cần được thực hiện theo đúng thứ tự. May mắn thay, Scikit-Learn cung cấp lớp Pipeline để trợ giúp các chuỗi chuyển đổi như vậy. Đây là một pipeline nhỏ cho các thuộc tính số:
+
+Từ sklearn.pipeline nhập Pipeline từ sklearn.preprocessing nhập StandardScaler num\_pipeline = Pipeline([ ('imputer', SimpleImputer(strategy="median")), ('attribs\_adder', CombinedAttributesAdder()), ('std\_scaler', StandardScaler()), ]) housing\_num\_tr = num\_pipeline.fit\_transform(housing\_num)
+
+Hàm tạo Pipeline lấy danh sách các cặp tên/estimator xác định trình tự các bước. Tất cả trừ estimator cuối cùng phải là máy biến áp (tức là chúng phải có phương thức fit\_transform()). Tên có thể là bất kỳ tên nào bạn thích (miễn là chúng là duy nhất và không chứa dấu gạch dưới kép, \_\_); chúng sẽ có ích sau này cho hyperparameter tuning.
+
+Khi bạn gọi phương thức fit() của pipeline, nó gọi fit\_transform() tuần tự trên tất cả các máy biến áp, chuyển đầu ra của mỗi cuộc gọi dưới dạng parameter sang cuộc gọi tiếp theo cho đến khi đạt đến estimator cuối cùng mà nó gọi phương thức fit().
+
+Pipeline hiển thị các phương pháp tương tự như estimator cuối cùng. Trong ví dụ này, estimator cuối cùng là StandardScaler, là transformer, do đó pipeline có phương thức trans form() áp dụng tất cả các phép biến đổi cho dữ liệu theo trình tự (và tất nhiên cũng là phương thức fit\_transform(), phương thức chúng ta đã sử dụng).
+
+Cho đến nay, chúng ta đã xử lý các cột classification và cột số một cách riêng biệt. Sẽ thuận tiện hơn nếu có một transformer duy nhất có thể xử lý tất cả các cột, áp dụng các phép biến đổi thích hợp cho mỗi cột. Trong phiên bản 0.20, Scikit-Learn đã giới thiệu ColumnTransformer cho mục đích này và tin tốt là nó hoạt động rất tốt với pandas DataFrames. Hãy sử dụng nó để áp dụng tất cả các phép biến đổi cho dữ liệu nhà ở:
+
+70 | Chương 2: Dự án Machine Learning toàn diện
+
