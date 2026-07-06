@@ -1,0 +1,498 @@
+\documentclass[12pt,a4paper]{article}
+
+\def\courseshortheader{HANDS-ON ML}
+\def\coverbookline{Hands-On Machine Learning}
+\def\covermaintitle{Phong cảnh Machine Learning}
+\def\coversubtitle{Giáo án lý thuyết --- Chương 1 (Aurélien Géron, 2nd ed.)}
+
+\input{../../../../../toan_dai_hoc/nhom_5_xac_suat_thong_ke/_template/preamble.tex}
+
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{booktabs}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!8},
+  columns=fullflexible,
+  keepspaces=true,
+}
+
+\graphicspath{{figures/}}
+\newcommand{\homlimg}[2][0.82]{\includegraphics[width=#1\linewidth]{#2}}
+\newcommand{\homfig}[3][0.75]{%
+  \begin{center}%
+  \homlimg[#1]{#2}%
+  \captionof{figure}{#3}%
+  \end{center}%
+}
+
+\begin{document}
+
+\input{../../../../../toan_dai_hoc/nhom_5_xac_suat_thong_ke/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+%==============================================================================
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+%==============================================================================
+
+\begin{ynghia}[title={Cách đọc tài liệu}]
+Giáo án này tóm tắt \textbf{Chương 1} sách \emph{Hands-On Machine Learning} (Géron, 2nd ed.), theo template \texttt{toan\_dai\_hoc/nhom\_5\_xac\_suat\_thong\_ke}. Mỗi khối màu tương ứng một vai trò: \textbf{động cơ} (tại sao học), \textbf{định nghĩa}, \textbf{ý nghĩa}, \textbf{phương pháp}, \textbf{ví dụ}, \textbf{công thức}, \textbf{lưu ý}, \textbf{định lý}, \textbf{tổng kết}.
+
+Nguồn: bản dịch PDF + hình từ sách gốc + \href{https://github.com/ageron/handson-ml2/blob/master/01_the_machine_learning_landscape.ipynb}{notebook Chương 1}.
+\end{ynghia}
+
+\newpage
+
+%==============================================================================
+\section{Chương 1: Phong cảnh Machine Learning}
+%==============================================================================
+
+\begin{dongco}[title={Động cơ --- Chương này dạy gì?}]
+Chương 1 là \textbf{bản đồ} trước khi code: bạn cần nắm thuật ngữ, phân loại hệ thống ML và quy trình dự án. Đây là chương \emph{ít code nhất} trong sách --- hãy đảm bảo hiểu rõ trước khi sang Chương 2.
+
+\textbf{Roadmap chương:}
+\begin{enumerate}
+  \item ML là gì, tại sao dùng, ứng dụng điển hình.
+  \item Phân loại hệ thống: supervised/unsupervised/RL; batch/online; instance-based/model-based.
+  \item Ví dụ end-to-end: GDP $\to$ hạnh phúc (Linear Regression + k-NN).
+  \item Thách thức: dữ liệu xấu, overfitting/underfitting.
+  \item Đánh giá: train/validation/test, hyperparameter, định lý ``không bữa trưa miễn phí''.
+\end{enumerate}
+\end{dongco}
+
+\begin{ynghia}[title={ML đã có mặt trong đời sống}]
+Nhiều người nghĩ ML = robot; thực tế ML đã \textbf{len lỏi} vào sản phẩm hàng ngày từ thập niên 1990: \textbf{bộ lọc thư rác}, gợi ý phim/nhạc, tìm kiếm giọng nói, nhận dạng ký tự (OCR)\ldots\ Không phải tương lai xa --- đã chạy âm thầm hàng trăm triệu lần mỗi ngày.
+\end{ynghia}
+
+%------------------------------------------------------------------------------
+\subsection{Machine Learning là gì?}
+%------------------------------------------------------------------------------
+
+\begin{dinhnghia}[title={Học máy (Machine Learning)}]
+\textbf{Định nghĩa ngắn:} ML là khoa học (và nghệ thuật) \textbf{lập trình máy tính để học từ dữ liệu}, thay vì viết từng quy tắc bằng tay.
+
+\medskip
+\textbf{Arthur Samuel (1959):} ``Lĩnh vực nghiên cứu cho phép máy tính học mà \emph{không cần lập trình rõ ràng}.''
+
+\medskip
+\textbf{Tom Mitchell (1997):} Chương trình \textbf{học} kinh nghiệm $E$ trên nhiệm vụ $T$, đo bằng $P$, nếu hiệu suất trên $T$ \textbf{cải thiện} theo $E$.
+\end{dinhnghia}
+
+\begin{ynghia}[title={Thuật ngữ cốt lõi (ví dụ spam filter)}]
+\begin{itemize}
+  \item \textbf{Training set:} email spam + email ham đã gắn nhãn.
+  \item \textbf{Training instance / sample:} một email.
+  \item \textbf{Nhiệm vụ $T$:} phân loại email mới (spam/ham).
+  \item \textbf{Kinh nghiệm $E$:} dữ liệu training.
+  \item \textbf{Độ đo $P$:} \textbf{accuracy} --- tỷ lệ phân loại đúng.
+\end{itemize}
+\end{ynghia}
+
+\begin{luuy}[title={Không phải cứ có dữ liệu là ML}]
+Tải bản sao Wikipedia về máy \textbf{không} làm máy ``thông minh hơn'' ở bất kỳ tác vụ cụ thể nào --- chỉ là lưu trữ, không có quá trình \textbf{học} cải thiện $P$ trên $T$.
+\end{luuy}
+
+%------------------------------------------------------------------------------
+\subsection{Tại sao nên dùng Machine Learning?}
+%------------------------------------------------------------------------------
+
+\begin{phuongphap}[title={Cách truyền thống: spam filter thủ công}]
+\textbf{Quy trình:}
+\begin{enumerate}
+  \item Quan sát mẫu spam, liệt kê từ/cụm hay gặp (``4U'', ``miễn phí''\ldots).
+  \item Viết quy tắc: nếu gặp mẫu $\Rightarrow$ gắn cờ spam.
+  \item Kiểm thử, bổ sung quy tắc mới mãi.
+\end{enumerate}
+$\Rightarrow$ Danh sách quy tắc dài, \textbf{khó bảo trì}, khó theo kịp spam đổi chiêu.
+
+\homfig{p33_b2.png}{Hình 1-1. Cách tiếp cận truyền thống}
+\end{phuongphap}
+
+\begin{ynghia}[title={Cách ML: học từ dữ liệu}]
+Bộ lọc ML \textbf{tự tìm} từ/cụm là predictor tốt (tần suất bất thường trong spam so với ham). Code ngắn hơn, dễ bảo trì, thường chính xác hơn.
+
+\homfig{p34_b0.png}{Hình 1-2. Cách tiếp cận Machine Learning}
+
+Khi spammer đổi ``4U'' $\to$ ``Dành cho U'': lập trình truyền thống phải \textbf{sửa tay}; ML \textbf{tự nhận} mẫu mới và gắn cờ.
+
+\homfig{p34_b2.png}{Hình 1-3. Tự động thích ứng với thay đổi}
+\end{ynghia}
+
+\begin{vidu}[title={Bài toán quá phức tạp: nhận dạng giọng nói}]
+Không thể viết quy tắt ``âm cao = chữ hai'' cho hàng nghìn từ $\times$ hàng triệu người nói $\times$ nhiễu môi trường. Giải pháp: thuật toán \textbf{tự học} từ hàng loạt bản ghi mẫu.
+\end{vidu}
+
+\begin{ynghia}[title={ML giúp con người học}]
+Có thể \textbf{kiểm tra} model đã học gì (ví dụ: danh sách từ spam quan trọng nhất) $\Rightarrow$ hiểu bài toán sâu hơn, phát hiện mẫu bất ngờ --- \textbf{khai thác dữ liệu}.
+
+\homfig{p35_b1.png}{Hình 1-4. Machine Learning giúp con người học}
+\end{ynghia}
+
+\begin{dongco}[title={Khi nào nên chọn ML?}]
+\begin{itemize}
+  \item Quy tắc tay quá dài / cần tuning liên tục.
+  \item Không có thuật toán cổ điển tốt (giọng nói, thị giác\ldots).
+  \item Môi trường \textbf{biến động}, cần thích ứng dữ liệu mới.
+  \item Cần \textbf{insight} từ khối dữ liệu lớn.
+\end{itemize}
+\end{dongco}
+
+%------------------------------------------------------------------------------
+\subsection{Ví dụ về ứng dụng}
+%------------------------------------------------------------------------------
+
+\begin{ungdung}[title={Một số nhiệm vụ ML điển hình}]
+\begin{itemize}
+  \item \textbf{Phân loại ảnh} sản phẩm lỗi (CNN, Ch.14).
+  \item \textbf{Phân đoạn} khối u trên MRI (semantic segmentation).
+  \item \textbf{Phân loại văn bản}, phát hiện comment xúc phạm (NLP, Ch.16).
+  \item \textbf{Regression} dự báo doanh thu, giá nhà (Linear/Polynomial Regression, SVM, RF, NN).
+  \item \textbf{Nhận dạng giọng nói} (RNN/CNN/Transformer, Ch.15--16).
+  \item \textbf{Phát hiện gian lận} thẻ tín dụng (anomaly detection, Ch.9).
+  \item \textbf{Clustering} phân khúc khách hàng (Ch.9).
+  \item \textbf{Trực quan hóa / giảm chiều} dataset phức tạp (Ch.8).
+  \item \textbf{Gợi ý} sản phẩm (collaborative filtering, NN).
+  \item \textbf{Reinforcement Learning:} bot game, AlphaGo (Ch.18).
+\end{itemize}
+\end{ungdung}
+
+%------------------------------------------------------------------------------
+\subsection{Các loại hệ thống Machine Learning}
+%------------------------------------------------------------------------------
+
+\begin{ynghia}[title={Ba trục phân loại}]
+Có thể kết hợp tự do:
+\begin{enumerate}
+  \item \textbf{Giám sát:} supervised / unsupervised / semi-supervised / reinforcement.
+  \item \textbf{Cách học:} batch (offline) vs online (incremental).
+  \item \textbf{Cách khái quát:} instance-based vs model-based.
+\end{enumerate}
+
+Ví dụ: spam filter hiện đại = online + model-based + supervised (deep net).
+\end{ynghia}
+
+\subsubsection{Supervised và Unsupervised Learning}
+
+\begin{dinhnghia}[title={Supervised learning (học có giám sát)}]
+Training set kèm \textbf{nhãn} (đáp án mong muốn).
+\begin{itemize}
+  \item \textbf{Classification:} nhãn rời rạc (spam/ham, loài hoa\ldots).
+  \item \textbf{Regression:} nhãn số (giá nhà, GDP $\to$ hạnh phúc\ldots).
+\end{itemize}
+
+\homfig{p38_b4.png}{Hình 1-5. Training set có nhãn (spam)}
+\homfig{p39_b1.png}{Hình 1-6. Bài toán regression}
+
+\textbf{Thuật toán tiêu biểu:} k-NN, Linear/Logistic Regression, SVM, Decision Tree, Random Forest, Neural Network.
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Unsupervised learning (học không giám sát)}]
+Dữ liệu \textbf{không nhãn}; hệ thống tự tìm cấu trúc.
+
+\homfig{p40_b0.png}{Hình 1-7. Training set không nhãn}
+
+\textbf{Nhiệm vụ chính:}
+\begin{itemize}
+  \item \textbf{Clustering} (K-Means, DBSCAN, HCA) --- nhóm khách blog\ldots
+  \item \textbf{Anomaly / novelty detection} --- gian lận, lỗi sản xuất.
+  \item \textbf{Visualization \& dimensionality reduction} (PCA, t-SNE\ldots).
+  \item \textbf{Association rule learning} (Apriori, Eclat).
+\end{itemize}
+
+\homfig{p41_b1.png}{Hình 1-8. Clustering}
+\homfig{p41_b4.png}{Hình 1-9. Trực quan hóa t-SNE}
+\homfig{p42_b4.png}{Hình 1-10. Phát hiện bất thường}
+\end{dinhnghia}
+
+\begin{dinhnghia}[title={Semi-supervised và Reinforcement Learning}]
+\textbf{Semi-supervised:} nhiều dữ liệu \textbf{không nhãn}, ít dữ liệu có nhãn --- nhãn thưa giúp phân loại điểm mới chính xác hơn.
+
+\homfig{p43_b4.png}{Hình 1-11. Học bán giám sát}
+
+\medskip
+\textbf{Reinforcement Learning (RL):} \textbf{agent} quan sát môi trường, chọn hành động, nhận \textbf{reward/penalty}, học \textbf{policy} tối đa hóa phần thưởng lâu dài (robot đi bộ, AlphaGo).
+
+\homfig{p44_b2.png}{Hình 1-12. Reinforcement Learning}
+\end{dinhnghia}
+
+\subsubsection{Batch Learning và Online Learning}
+
+\begin{ynghia}[title={Batch learning (học theo lô)}]
+Training \textbf{toàn bộ} dữ liệu một lần (thường offline), rồi triển khai model \textbf{cố định}. Dữ liệu mới $\Rightarrow$ train lại từ đầu trên dataset đầy đủ.
+
+\textbf{Ưu:} đơn giản, dễ tự động hóa retrain hàng ngày/tuần.
+
+\textbf{Nhược:} chậm, tốn tài nguyên; không phù hợp dữ liệu thay đổi rất nhanh (giá cổ phiếu) hoặc thiết bị yếu (điện thoại, rover sao Hỏa).
+\end{ynghia}
+
+\begin{ynghia}[title={Online learning (học trực tuyến / tăng dần)}]
+Cập nhật model \textbf{tuần tự} từng instance hoặc mini-batch; mỗi bước nhanh, rẻ.
+
+\homfig{p46_b1.png}{Hình 1-13. Online learning trong production}
+\homfig{p47_b0.png}{Hình 1-14. Out-of-core learning (dataset khổng lồ)}
+
+Phù hợp: \textbf{luồng dữ liệu} liên tục, tài nguyên hạn chế. Có thể xử lý dataset \textbf{không vừa RAM} (load từng phần).
+
+\textbf{Learning rate:} cao $\Rightarrow$ thích ứng nhanh nhưng quên cũ; thấp $\Rightarrow$ ổn định nhưng chậm.
+\end{ynghia}
+
+\begin{luuy}[title={Rủi ro online learning}]
+Dữ liệu xấu (cảm biến hỏng, spam SEO) có thể \textbf{làm hỏng} model đang chạy production. Cần \textbf{giám sát} hiệu suất, tắt học khi suy giảm, có thể rollback.
+\end{luuy}
+
+\subsubsection{Instance-Based và Model-Based Learning}
+
+\begin{phuongphap}[title={Instance-based learning}]
+Học thuộc (một phần) training set; dự đoán điểm mới bằng \textbf{độ tương tự} với ví dụ đã thấy (ví dụ: đếm từ chung, k-NN --- lớp của $k$ láng giềng gần nhất).
+
+\homfig{p48_b2.png}{Hình 1-15. Instance-based learning (k-NN phân loại tam giác)}
+\end{phuongphap}
+
+\begin{phuongphap}[title={Model-based learning}]
+Xây \textbf{model} (công thức có tham số) từ dữ liệu, rồi dùng model dự đoán điểm mới.
+
+\homfig{p48_b6.png}{Hình 1-16. Model-based learning}
+\end{phuongphap}
+
+\begin{vidu}[title={Ví dụ 1-1: GDP vs mức hài lòng cuộc sống}]
+\textbf{Câu hỏi:} Tiền có làm người ta hạnh phúc hơn?
+
+\textbf{Bước 1 --- Thu thập:} OECD (Better Life Index) + IMF (GDP bình quân đầu người).
+
+\begin{center}
+\captionof{table}{Bảng 1-1. GDP và hài lòng (trích)}
+\begin{tabular}{lrr}
+\toprule
+Quốc gia & GDP (USD) & Hài lòng \\
+\midrule
+Hungary & 12\,240 & 4{,}9 \\
+Hàn Quốc & 27\,195 & 5{,}8 \\
+Pháp & 37\,675 & 6{,}5 \\
+Úc & 50\,962 & 7{,}3 \\
+Hoa Kỳ & 55\,805 & 7{,}2 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\homfig{p49_b9.png}{Hình 1-17. GDP vs life satisfaction --- có xu hướng tuyến tính}
+
+\textbf{Bước 2 --- Chọn model:} hàm tuyến tính 1 biến (GDP).
+\end{vidu}
+
+\begin{congthuc}[title={Phương trình 1-1 --- Model tuyến tính}]
+\begin{equation}\label{eq:life-gdp}
+  \mathrm{life\_satisfaction} = \theta_0 + \theta_1 \times \mathrm{GDP\_per\_capita}
+\end{equation}
+$\theta_0, \theta_1$: \textbf{tham số model} (parameters). Chọn model $\neq$ train model $\neq$ model đã train sẵn sàng dự đoán.
+\end{congthuc}
+
+\begin{ynghia}[title={Training = tìm $\theta$ tối ưu}]
+Đo \textbf{hàm chi phí} (khoảng cách dự đoán vs thực tế). \textbf{Linear Regression} tìm $\theta$ cực tiểu cost.
+
+\homfig{p50_b3.png}{Hình 1-18. Các đường thẳng tuyến tính khác nhau}
+
+Kết quả: $\theta_0 = 4{,}85$, $\theta_1 = 4{,}91 \times 10^{-5}$.
+
+\homfig{fig1_18_fitted_model.png}{Hình 1-18. Model sau training}
+
+\textbf{Dự đoán Cyprus} (GDP $\approx$ 22\,587 USD):
+\[
+  \hat{y} = 4{,}85 + 22\,587 \times 4{,}91 \times 10^{-5} \approx 5{,}96
+\]
+\end{ynghia}
+
+\begin{vidu}[title={Code Ví dụ 1-1 (handson-ml2)}]
+Notebook: \url{https://github.com/ageron/handson-ml2/blob/master/01_the_machine_learning_landscape.ipynb}
+
+\begin{lstlisting}[language=Python]
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import sklearn.linear_model
+
+# ... prepare_country_stats(), tai CSV tu GitHub ...
+
+country_stats = prepare_country_stats(oecd_bli, gdp_per_capita)
+X = np.c_[country_stats["GDP per capita"]]
+y = np.c_[country_stats["Life satisfaction"]]
+
+country_stats.plot(kind='scatter', x="GDP per capita", y='Life satisfaction')
+plt.show()
+
+model = sklearn.linear_model.LinearRegression()
+model.fit(X, y)
+
+X_new = [[22587]]  # Cyprus
+print(model.predict(X_new))  # ~5.96
+\end{lstlisting}
+
+\textbf{k-NN} (chỉ đổi model): lấy trung bình hạnh phúc của 3 nước có GDP gần Cyprus nhất $\Rightarrow$ $\approx 5{,}77$.
+\begin{lstlisting}[language=Python]
+import sklearn.neighbors
+model = sklearn.neighbors.KNeighborsRegressor(n_neighbors=3)
+model.fit(X, y)
+print(model.predict(X_new))  # ~5.77
+\end{lstlisting}
+\end{vidu}
+
+\begin{phuongphap}[title={Quy trình ML điển hình (tóm tắt)}]
+\begin{enumerate}
+  \item \textbf{Nghiên cứu} dữ liệu.
+  \item \textbf{Chọn model} phù hợp.
+  \item \textbf{Train} trên training set (tối ưu tham số).
+  \item \textbf{Suy luận} (inference) trên dữ liệu mới --- hy vọng khái quát tốt.
+\end{enumerate}
+Chi tiết end-to-end ở \textbf{Chương 2}.
+\end{phuongphap}
+
+\newpage
+%==============================================================================
+\section{Những thách thức chính của Machine Learning}
+%==============================================================================
+
+\begin{luuy}[title={Hai nguồn lỗi}]
+Nhiệm vụ = chọn thuật toán + train trên dữ liệu. Lỗi đến từ \textbf{thuật toán xấu} hoặc \textbf{dữ liệu xấu} --- thực tế thường là dữ liệu.
+\end{luuy}
+
+\subsection{Không đủ dữ liệu training}
+
+\begin{luuy}[title={Trẻ học 1 quả táo vs máy học}]
+Trẻ chỉ cần vài lần chỉ ``táo''; ML cần \textbf{hàng nghìn} mẫu (bài đơn giản) đến \textbf{hàng triệu} (ảnh, giọng nói), trừ khi transfer learning từ model có sẵn.
+\end{luuy}
+
+\subsection{Hiệu quả phi lý của dữ liệu}
+
+\begin{ynghia}[title={Banko \& Brill (2001) --- ``More data beats clever algorithms''}]
+Với đủ dữ liệu, nhiều thuật toán (kể cả đơn giản) cho kết quả \textbf{gần như nhau} trên phân loại ngôn ngữ. Nên cân nhắc đầu tư \textbf{thu thập dữ liệu} vs tinh chỉnh thuật toán.
+
+\homfig{fig1_20_data_effectiveness.png}{Hình 1-20. Hiệu quả phi lý của dữ liệu}
+\end{ynghia}
+
+\subsection{Dữ liệu training không đại diện}
+
+\begin{luuy}[title={Training set phải giống production}]
+Muốn khái quát tốt, training phải \textbf{đại diện} cho tình huống thực tế. Thiếu quốc gia trong bộ GDP $\Rightarrow$ model tuyến tính \textbf{sai lệch} (nước rất giàu/rất nghèo).
+
+\homfig{fig1_21_nonrepresentative.png}{Hình 1-21. Training set không đại diện}
+
+\textbf{Sampling bias:} mẫu lệch do cách thu thập (không chỉ do mẫu nhỏ).
+\end{luuy}
+
+\subsection{Ví dụ về sampling bias}
+
+\begin{vidu}[title={Literary Digest 1936 \& YouTube funk}]
+\textbf{1936:} Thăm dò 10 triệu người qua danh bạ điện thoại/tạp chí (giàu, Cộng hòa) $\Rightarrow$ dự đoán Landon thắng; thực tế Roosevelt thắng (chỉ $\sim$25\% phản hồi).
+
+\textbf{YouTube funk:} Kết quả tìm kiếm thiên nghệ sĩ nổi tiếng / ``funk carioca'' (Brazil) $\neq$ toàn bộ funk James Brown.
+\end{vidu}
+
+\subsection{Dữ liệu kém chất lượng}
+
+\begin{luuy}[title={Garbage in, garbage out}]
+Lỗi đo, nhiễu, outlier $\Rightarrow$ model học sai mẫu. Data scientist dành \textbf{nhiều thời gian} làm sạch: xóa/sửa outlier, xử lý missing values, loại bỏ duplicate gần trùng.
+\end{luuy}
+
+\subsection{Tính năng không liên quan}
+
+\begin{luuy}[title={Feature engineering}]
+Model chỉ học được nếu có \textbf{feature đúng}, không quá nhiễu feature vô nghĩa (ví dụ: tên quốc gia có chữ ``w'' vs hạnh phúc).
+
+\homfig{fig1_22_correlation.png}{Hình 1-22. Feature không liên quan (minh họa)}
+
+\textbf{Ba hướng:} (1) \textbf{feature selection}; (2) \textbf{feature extraction} (PCA\ldots); (3) thu thập feature mới.
+\end{luuy}
+
+\subsection{Overfitting (học vẹt)}
+
+\begin{luuy}[title={Overfitting = tốt trên train, tệ trên mới}]
+Model \textbf{quá phức tạp} so với lượng/chất lượng dữ liệu $\Rightarrow$ học cả \textbf{nhiễu} (ví dụ: quy tắc ngẫu nhiên ``quốc gia có w'').
+
+\homfig{fig1_23_overfitting.png}{Hình 1-23. Overfitting trên GDP--hạnh phúc}
+
+\textbf{Khắc phục:} thu gọn model; thêm dữ liệu; giảm nhiễu; \textbf{regularization}.
+\end{luuy}
+
+\begin{ynghia}[title={Regularization --- ép model đơn giản hơn}]
+Hạn chế độ lớn của $\theta_1$ $\Rightarrow$ đường gần ngang hơn, \textbf{không khớp hoàn hảo} train nhưng \textbf{khái quát} tốt hơn trên điểm mới.
+
+\homfig{fig1_24_regularization.png}{Hình 1-24. Regularization}
+
+\textbf{Hyperparameter:} tham số của \emph{thuật toán học} (không học từ data), ví dụ mức regularization --- đặt \textbf{trước} training.
+\end{ynghia}
+
+\subsection{Underfitting (học không đủ)}
+
+\begin{luuy}[title={Underfitting}]
+Model \textbf{quá đơn giản} (ví dụ: đường thẳng cho quan hệ phi tuyến) $\Rightarrow$ sai cả trên train lẫn mới.
+
+\textbf{Khắc phục:} model phức tạp hơn; feature tốt hơn; giảm regularization.
+\end{luuy}
+
+\begin{tongket}[title={Bước lùi --- Tóm tắt nhanh}]
+\begin{itemize}
+  \item ML: học từ dữ liệu, không viết quy tắc tay.
+  \item Hệ thống tốt cần \textbf{dữ liệu đủ, sạch, đại diện} + \textbf{feature phù hợp} + \textbf{model vừa đủ} (không over/underfit).
+  \item Phân loại: supervised/unsupervised/RL; batch/online; instance/model-based.
+\end{itemize}
+\end{tongket}
+
+\newpage
+%==============================================================================
+\section{Kiểm tra và xác nhận}
+%==============================================================================
+
+\begin{phuongphap}[title={Đánh giá và chọn model}]
+\textbf{Training error thấp} nhưng \textbf{generalization error cao} $\Rightarrow$ overfitting.
+
+\textbf{Tuning hyperparameter} (ví dụ regularization): thử nhiều giá trị --- \textbf{không} được chọn model tốt nhất rồi báo cáo lỗi trên cùng tập đó (sẽ lạc quan).
+
+\textbf{Hold-out validation:} tách \textbf{validation set} khỏi training $\Rightarrow$ chọn model/hyperparameter $\Rightarrow$ train lại trên full train+val $\Rightarrow$ đánh giá cuối trên \textbf{test set} (chỉ dùng \textbf{một lần}).
+
+\homfig{fig1_25_validation.png}{Hình 1-25. Train / validation / test}
+
+\textbf{Cross-validation:} nhiều fold nhỏ khi validation set quá nhỏ hoặc train bị cắt nhiều.
+\end{phuongphap}
+
+\begin{luuy}[title={Dữ liệu production khác training}]
+Ví dụ: train trên ảnh hoa web, deploy trên ảnh chụp điện thoại --- \textbf{val/test phải đại diện production}. Có thể fine-tune một phần cuối trên ảnh thật.
+\end{luuy}
+
+\begin{dinhly}[title={Định lý ``Không bữa trưa miễn phí'' (NFL, Wolpert 1996)}]
+Không có giả định nào về dữ liệu thì \textbf{không có lý do} ưu tiên model A hơn B. Mỗi dataset có model phù hợp riêng (tuyến tính vs neural net\ldots). Thực tế: đưa ra \textbf{giả định hợp lý} và so sánh một \textbf{tập model ứng viên} hạn chế.
+\end{dinhly}
+
+%==============================================================================
+\section{Bài tập (tóm tắt)}
+%==============================================================================
+
+\begin{vidu}[title={Câu hỏi ôn tập cuối chương}]
+\begin{enumerate}
+  \item Định nghĩa ML theo Mitchell ($T$, $E$, $P$)?
+  \item Hai loại supervised task? Ví dụ?
+  \item Clustering thuộc loại học nào?
+  \item Batch vs online learning?
+  \item Instance-based vs model-based?
+  \item Overfitting là gì? Ba cách xử lý?
+  \item Validation set dùng để làm gì?
+  \item Định lý NFL nói gì?
+\end{enumerate}
+\end{vidu}
+
+\begin{tongket}[title={Tổng kết Chương 1}]
+\begin{itemize}
+  \item \textbf{ML} = học từ dữ liệu; spam filter là ví dụ kinh điển.
+  \item \textbf{Phân loại hệ thống:} supervised / unsupervised / semi / RL; batch / online; instance / model-based.
+  \item \textbf{Pipeline:} thu thập $\to$ chọn model $\to$ train $\to$ đánh giá $\to$ triển khai.
+  \item \textbf{Ví dụ 1-1:} Linear Regression GDP--hạnh phúc; so sánh k-NN.
+  \item \textbf{Rủi ro:} thiếu/không đại diện/nhiễu dữ liệu; overfitting/underfitting; cần train/val/test đúng cách.
+\end{itemize}
+Sẵn sàng cho \textbf{Chương 2} --- dự án ML end-to-end bằng code.
+\end{tongket}
+
+\end{document}

@@ -2,13 +2,19 @@
 """Translate Hands-On ML (Géron, 2nd ed.) PDF to editable Vietnamese LaTeX.
 
 Pipeline:
-  1. extract   EN + Google-VI PDF -> blocks.json (+ figures/)
+  1. extract   EN + Google-VI PDF -> blocks.json
   2. translate blocks (VI reference seed + term-protected Google Translate)
-  3. export    blocks.json -> main.tex + content.tex
-  4. compile   xelatex -> PDF
+  3. fix       merge, reclassify, drop code/footnotes/images from blocks.json
+  4. export    blocks.json -> main.tex + content.tex
+  5. compile   xelatex -> PDF
+
+One command per part (read EN PDF side-by-side; no figures in output):
+
+  python translate_pdf_vi.py --part N --all
 
 Edit vi_latex/<part>/blocks.json (field "vi"), then:
-  python translate_pdf_vi.py --part 1 --export-latex --compile
+
+  python translate_pdf_vi.py --part N --fix-existing --export-latex --compile
 """
 from __future__ import annotations
 
@@ -29,6 +35,19 @@ BOOK_BASENAME = (
   "Hands-On_Machine_Learning_with_Scikit-Learn-Keras-and-TensorFlow-2nd-Edition-Aurelien-Geron"
 )
 BOOK_TITLE = "Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow"
+# LaTeX \\setcounter{tocdepth}: 1=section … 4=paragraph (see heading_command).
+DEFAULT_TOC_DEPTH = 4
+# Kinds kept out of blocks.json (không in PDF — xem bản gốc).
+OMIT_BLOCK_KINDS = frozenset({"image", "meta", "toc", "code", "caption", "footnote"})
+
+# LaTeX article: \paragraph is run-in by default; titlesec makes level 4--5 block headings.
+LATEX_HEADING_STYLE = r"""
+\usepackage{titlesec}
+\titleformat{\paragraph}[block]{\normalfont\normalsize\bfseries}{\theparagraph}{0.5em}{}
+\titlespacing*{\paragraph}{0pt}{2.5ex plus .5ex minus .2ex}{1ex}
+\titleformat{\subparagraph}[block]{\normalfont\normalsize\bfseries}{\thesubparagraph}{0.5em}{}
+\titlespacing*{\subparagraph}{0pt}{2ex plus .5ex minus .2ex}{1ex}
+"""
 FULL_EN_PDF = ROOT / f"{BOOK_BASENAME}.pdf"
 EN_DIR = ROOT / "ilovepdf_split"
 VI_REF_DIR = ROOT / "vi"
@@ -45,6 +64,9 @@ SKIP_BLOCK_RE = re.compile(
   re.I,
 )
 COPYRIGHT_RE = re.compile(r"©\s*(Springer|McGraw-Hill|O'Reilly)", re.I)
+# Chú thích cuối trang O'Reilly: "15 The location..."
+FOOTNOTE_START_RE = re.compile(r"^\d{1,3}\s+[A-Za-z(\"]")
+FOOTNOTE_BOTTOM_Y = 500  # PyMuPDF y: vùng footer trang letter (~792pt)
 
 PROTECT_TERMS: list[str] = [
   "Hands-On Machine Learning",
@@ -57,6 +79,9 @@ PROTECT_TERMS: list[str] = [
   "Keras", "keras", "TensorFlow", "tensorflow", "TF",
   "supervised learning", "Supervised Learning", "Supervised learning",
   "unsupervised learning", "Unsupervised Learning", "Unsupervised learning",
+  "semisupervised learning", "Semisupervised Learning", "Semisupervised learning",
+  "instance-based learning", "Instance-based Learning", "Instance-based learning",
+  "model-based learning", "Model-based Learning", "Model-based learning",
   "deep learning", "Deep Learning",
   "reinforcement learning", "Reinforcement Learning",
   "linear regression", "Linear Regression", "Linear regression",
@@ -441,6 +466,7 @@ TOC_DOTS_RE = re.compile(r"\.{4,}")
 GARBLED_RE = re.compile(r"[\x00-\x08\x0b-\x1f]")
 NUMERIC_AXIS_RE = re.compile(r"^[\d\s.\-+−×=*(),/\\]+$")
 ROMAN_PAGE_RE = re.compile(r"^(vii|viii|ix|x|xi|xii|xiii|xiv|xv|xvi|xvii|xviii|xix|xx)$", re.I)
+STANDALONE_PAGE_NUM_RE = re.compile(r"^\d{1,3}$")
 PAGE_HEADER_RE = re.compile(r"^\d{1,3}\s+\d+\.\s+")
 PAGE_FOOTER_RE = re.compile(r"^\d+\.\s+.+\s+\d{1,3}$")
 SECTION_PAGE_FOOTER_RE = re.compile(r"^\d+\.\d+\s+.+\s+\d{1,3}$")
@@ -853,6 +879,55 @@ def split_merged_heading_block(block: dict) -> list[dict]:
   return [head, para]
 
 
+def _footnote_num(block: dict) -> int:
+  text = (block.get("en") or block.get("vi") or "").strip()
+  m = re.match(r"^(\d{1,3})\s", text)
+  return int(m.group(1)) if m else 0
+
+
+def _is_standalone_footnote(block: dict) -> bool:
+  """Numbered footnote in page footer (small font, bottom bbox)."""
+  if block.get("kind") in {"image", "meta", "toc", "code", "caption", "heading"}:
+    return False
+  text = (block.get("en") or block.get("vi") or "").strip()
+  if not text or not FOOTNOTE_START_RE.match(text):
+    return False
+  if block.get("max_size", 12) > 9.5:
+    return False
+  bbox = block.get("bbox")
+  if not bbox or len(bbox) < 4:
+    return False
+  return bbox[1] >= FOOTNOTE_BOTTOM_Y
+
+
+def _is_page_footer_number(block: dict) -> bool:
+  """Standalone book page number in PDF footer (e.g. '35', 'xii')."""
+  text = (block.get("en") or block.get("vi") or "").strip()
+  if not text:
+    return False
+  if not STANDALONE_PAGE_NUM_RE.match(text) and not ROMAN_PAGE_RE.match(text):
+    return False
+  bbox = block.get("bbox")
+  if bbox and len(bbox) >= 4 and bbox[1] >= FOOTNOTE_BOTTOM_Y:
+    return True
+  # Small isolated digit block without reliable bbox.
+  return STANDALONE_PAGE_NUM_RE.match(text) is not None and block.get("max_size", 12) <= 9.5
+
+
+def reorder_footnotes_to_page_end(page_blocks: list[dict]) -> list[dict]:
+  body: list[dict] = []
+  footnotes: list[dict] = []
+  for block in page_blocks:
+    if _is_standalone_footnote(block):
+      block["kind"] = "footnote"
+      block["heading_depth"] = None
+      footnotes.append(block)
+    else:
+      body.append(block)
+  footnotes.sort(key=lambda b: (_footnote_num(b), b.get("bbox", [0, 0, 0, 0])[1]))
+  return body + footnotes
+
+
 def postprocess_page_blocks(page_blocks: list[dict]) -> list[dict]:
   page_blocks = merge_fragment_blocks(page_blocks)
   out: list[dict] = []
@@ -876,7 +951,7 @@ def postprocess_page_blocks(page_blocks: list[dict]) -> list[dict]:
       out.extend(split)
       continue
     out.append(block)
-  return out
+  return reorder_footnotes_to_page_end(out)
 
 
 def translate_text(text: str) -> str:
@@ -941,6 +1016,8 @@ def _looks_like_dedication_line(text: str) -> bool:
 def _is_math_fragment(text: str) -> bool:
   t = text.strip()
   if not t or len(t) > 150:
+    return False
+  if STANDALONE_PAGE_NUM_RE.match(t) or ROMAN_PAGE_RE.match(t):
     return False
   if re.fullmatch(r"[xX][\dTt\.]+", t):
     return True
@@ -1013,6 +1090,9 @@ def _is_toc_dump(text: str) -> bool:
   if len(re.findall(r"\b\d+\.\d+\s+", t)) >= 4:
     return True
   if len(t) > 250 and len(re.findall(r"\b\d{1,3}\b", t)) >= 8:
+    # Đoạn văn có nhiều số (%, thống kê) — không phải dump mục lục.
+    if t.count(". ") >= 2 and not TOC_DOTS_RE.search(t):
+      return False
     return True
   if t.count("  ") >= 8 and len(re.findall(r"\b\d{1,3}\b", t)) >= 6:
     return True
@@ -1108,11 +1188,116 @@ def polish_toc_blocks(
   return n
 
 
+CODE_PROSE_TAIL_RE = re.compile(
+  r"^(.+?)\s+(with these two:|as follows:|like this:|below:)\s*$",
+  re.I,
+)
+CODE_LIB_MARKERS = (
+  r"sklearn\.", r"pandas\.", r"\bnp\.", r"\bpd\.", r"tensorflow", r"\btf\.",
+  r"keras\.", r"plt\.", r"housing\.", r"\.plot\(", r"\.legend\(", r"\.show\(",
+  r"\.fit\(", r"\.transform\(", r"\.predict\(", r"\.read_csv\(", r"\.value_counts\(\)",
+  r"dtype:", r"sparse matrix", r"array\(\[", r"OrdinalEncoder", r"OneHotEncoder",
+  r"LinearRegression", r"KNeighborsRegressor", r"Imputer", r"Pipeline\(",
+)
+PROSE_INLINE_CODE_RE = re.compile(
+  r"^(?P<prose>.+?):\d+\s+(?P<code>(?:housing\.|plt\.|pd\.|np\.|import |from |>>>).+)$",
+  re.DOTALL,
+)
+
+
+def _is_code_fragment(text: str) -> bool:
+  """Python/REPL/shell snippets — keep English, do not translate."""
+  t = text.strip()
+  if not t or len(t) > 2500:
+    return False
+  if t.startswith(">>>") or t.startswith("In ["):
+    return True
+  if re.match(r"^(import|from)\s+[\w.]+", t):
+    return True
+  if re.match(r"^(def|class)\s+\w+", t):
+    return True
+  # housing.plot(...), plt.show(), df.head(), ...
+  if re.match(r"^[\w.]+\(", t):
+    return True
+  if re.search(r"\bimport\s+[\w.]+\s+\w+\s*=", t):
+    return True
+  # Đoạn văn dài (câu hoàn chỉnh) nhắc code inline — không phải block code.
+  if len(t) > 220 and t.count(". ") >= 2:
+    return False
+  hits = sum(1 for pat in CODE_LIB_MARKERS if re.search(pat, t, re.I))
+  if hits >= 2:
+    return True
+  if hits >= 1 and re.search(r"[\w\]\)]\s*=", t):
+    return True
+  if not re.search(r"[à-ỹÀ-Ỹ]", t) and len(t) < 600:
+    code_sym = len(re.findall(r"[=().\[\]_{}]", t))
+    kw = len(re.findall(
+      r"\b(?:import|from|def|class|return|self|None|True|False|lambda)\b",
+      t,
+    ))
+    if kw >= 1 and code_sym >= 4:
+      return True
+    if code_sym >= 10:
+      return True
+  return False
+
+
+def _block_is_code(block: dict) -> bool:
+  if block.get("kind") == "code":
+    return True
+  if block.get("vi_source") == "code_en":
+    return True
+  return _is_code_fragment((block.get("en") or "").strip())
+
+
+def block_omit_from_json(block: dict) -> bool:
+  """Blocks not exported to PDF are dropped from blocks.json."""
+  if block.get("kind") in OMIT_BLOCK_KINDS:
+    return True
+  if _block_is_code(block):
+    return True
+  if _is_standalone_footnote(block):
+    return True
+  if _is_page_footer_number(block):
+    return True
+  return False
+
+
+def strip_non_content_blocks(pages: list[dict]) -> int:
+  removed = 0
+  for page in pages:
+    kept: list[dict] = []
+    for block in page["blocks"]:
+      if block_omit_from_json(block):
+        removed += 1
+      else:
+        kept.append(block)
+    page["blocks"] = kept
+  return removed
+
+
+def save_blocks_json(blocks_path: Path, data: dict, *, report: bool = True) -> int:
+  removed = strip_non_content_blocks(data["pages"])
+  blocks_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+  if report and removed:
+    print(f"Omitted {removed} non-content block(s) from {blocks_path.name}.")
+  return removed
+
+
+def normalize_code_text(text: str) -> str:
+  """Light cleanup when PDF extract merges code lines into one string."""
+  t = text.strip()
+  m = CODE_PROSE_TAIL_RE.match(t)
+  if m:
+    t = m.group(1).strip()
+  t = re.sub(r"\s*>>>\s*", "\n>>> ", t)
+  t = re.sub(r"\s{2,}(?=(?:import|from|def|class|return)\s+)", "\n", t)
+  return t.strip()
+
+
 def classify_block(text: str, max_size: float) -> str:
   text = text.strip()
   if not text:
-    return "meta"
-  if COPYRIGHT_RE.search(text):
     return "meta"
   if SKIP_BLOCK_RE.match(text):
     return "meta"
@@ -1142,6 +1327,8 @@ def classify_block(text: str, max_size: float) -> str:
     return "toc"
   if len(text) > 200 and text.count(". .") + text.count("..") > 8:
     return "toc"
+  if _is_code_fragment(text):
+    return "code"
   if _is_math_fragment(text):
     return "math"
   if _is_false_heading(text):
@@ -1215,6 +1402,19 @@ def reclassify_block_kinds(pages: list[dict]) -> int:
       en = block.get("en", "").strip()
       if not en:
         continue
+      if _is_standalone_footnote(block):
+        if block.get("kind") != "footnote":
+          block["kind"] = "footnote"
+          block["heading_depth"] = None
+          changed += 1
+        continue
+      if _is_code_fragment(en):
+        block["kind"] = "code"
+        block["vi"] = normalize_code_text(en)
+        block["vi_source"] = "code_en"
+        block["heading_depth"] = None
+        changed += 1
+        continue
       new_kind = classify_block(en, block.get("max_size", 10))
       new_depth = real_heading_depth(en, block.get("max_size", 10))
       if new_kind == "heading" and new_depth is None:
@@ -1224,6 +1424,9 @@ def reclassify_block_kinds(pages: list[dict]) -> int:
         new_kind = "meta"
       if _is_figure_noise(en):
         new_kind = "meta"
+      if _is_code_fragment(en):
+        new_kind = "code"
+        new_depth = None
       if _is_math_fragment(en) and new_kind == "heading":
         new_kind = "math"
       if vi and _is_math_fragment(vi) and new_kind == "heading":
@@ -1333,7 +1536,7 @@ def align_vi_reference(en_pages: list[dict], vi_pages: list[dict]) -> None:
 
 
 def should_translate_block(block: dict) -> bool:
-  if block.get("kind") in {"image", "meta", "toc", "math"}:
+  if block.get("kind") in {"image", "meta", "toc", "math", "code", "caption", "footnote"}:
     return False
   en = block.get("en", "").strip()
   if _is_figure_noise(en):
@@ -1446,6 +1649,53 @@ def cleanup_noise_blocks(
   return cleaned
 
 
+def fix_code_blocks(
+  pages: list[dict],
+  page_range: tuple[int, int] | None = None,
+) -> int:
+  """Mark code snippets and keep English original in vi."""
+  n = 0
+  for page in pages:
+    if not _page_in_range(page["page"], page_range):
+      continue
+    for block in page["blocks"]:
+      en = (block.get("en") or "").strip()
+      if not en:
+        continue
+      if block.get("kind") != "code" and _is_code_fragment(en):
+        block["kind"] = "code"
+      if block.get("kind") != "code":
+        continue
+      block["heading_depth"] = None
+      block["vi"] = normalize_code_text(en)
+      block["vi_source"] = "code_en"
+      n += 1
+  return n
+
+
+def strip_inline_code_suffixes(
+  pages: list[dict],
+  page_range: tuple[int, int] | None = None,
+) -> int:
+  """Remove code glued after footnote marker in prose blocks (e.g. ':16 housing.plot(...)')."""
+  n = 0
+  for page in pages:
+    if not _page_in_range(page["page"], page_range):
+      continue
+    for block in page["blocks"]:
+      en = (block.get("en") or "").strip()
+      m = PROSE_INLINE_CODE_RE.match(en)
+      if not m:
+        continue
+      block["en"] = m.group("prose").strip()
+      vi = (block.get("vi") or "").strip()
+      vm = PROSE_INLINE_CODE_RE.match(vi)
+      if vm:
+        block["vi"] = vm.group("prose").strip()
+      n += 1
+  return n
+
+
 def fix_existing_blocks(
   pages: list[dict],
   page_range: tuple[int, int] | None = None,
@@ -1464,6 +1714,16 @@ def fix_existing_blocks(
         merged_pages += 1
     if merged_pages:
       print(f"Merged/split blocks on {merged_pages} pages.")
+  fn_pages = 0
+  for page in pages:
+    if not _page_in_range(page["page"], page_range):
+      continue
+    old_ids = [b["id"] for b in page["blocks"]]
+    page["blocks"] = reorder_footnotes_to_page_end(page["blocks"])
+    if [b["id"] for b in page["blocks"]] != old_ids:
+      fn_pages += 1
+  if fn_pages:
+    print(f"Moved footnotes to page end on {fn_pages} page(s).")
   toc_re = reclassify_toc_blocks(pages, page_range=page_range)
   if toc_re:
     print(f"Reclassified {toc_re} TOC blocks.")
@@ -1485,6 +1745,8 @@ def fix_existing_blocks(
       en = (block.get("en") or "").strip()
       if block.get("kind") != "meta" or not en or not _is_math_fragment(en):
         continue
+      if _is_page_footer_number(block):
+        continue
       vi = (block.get("vi") or "").strip()
       if vi and not _is_math_fragment(vi):
         continue
@@ -1503,6 +1765,11 @@ def fix_existing_blocks(
       continue
     for block in page["blocks"]:
       if block.get("kind") != "math":
+        continue
+      if _is_page_footer_number(block):
+        block["kind"] = "meta"
+        block["vi"] = ""
+        realigned += 1
         continue
       en = (block.get("en") or "").strip()
       vi = (block.get("vi") or "").strip()
@@ -1544,6 +1811,8 @@ def fix_existing_blocks(
     if not _page_in_range(page["page"], page_range):
       continue
     for block in page["blocks"]:
+      if block.get("kind") in {"code", "caption", "footnote"}:
+        continue
       vi = block.get("vi", "")
       if not vi:
         continue
@@ -1552,6 +1821,12 @@ def fix_existing_blocks(
         block["vi"] = fixed
         changed += 1
   print(f"Polished {changed} blocks.")
+  inline_stripped = strip_inline_code_suffixes(pages, page_range=page_range)
+  if inline_stripped:
+    print(f"Stripped inline code from {inline_stripped} prose block(s).")
+  code_fixed = fix_code_blocks(pages, page_range=page_range)
+  if code_fixed:
+    print(f"Marked {code_fixed} code blocks (English, no translation).")
 
 
 def latex_escape_mixed(text: str) -> str:
@@ -1641,7 +1916,7 @@ def translation_stats(pages: list[dict]) -> tuple[int, int]:
   translated = 0
   for page in pages:
     for block in page["blocks"]:
-      if block.get("kind") in {"image", "meta"}:
+      if block.get("kind") in {"image", "meta", "code", "caption", "footnote"}:
         continue
       total += 1
       if (block.get("vi") or "").strip():
@@ -1650,7 +1925,10 @@ def translation_stats(pages: list[dict]) -> tuple[int, int]:
 
 
 def heading_command(block: dict) -> tuple[str, str, bool]:
-  """Return (latex_cmd, title, starred). Starred = not in TOC."""
+  """Return (latex_cmd, title, starred). Starred = not in TOC.
+
+  heading_depth 1–5 maps to section … subparagraph (LaTeX article class).
+  """
   text = (block.get("vi") or "").strip()
   if not text:
     text = (block.get("en") or "").strip()
@@ -1662,11 +1940,15 @@ def heading_command(block: dict) -> tuple[str, str, bool]:
     title = text.strip()
   if depth is None:
     return "textbf", title, True
-  if depth <= 1:
-    return "section", title, False
-  if depth == 2:
-    return "subsection", title, False
-  return "subsubsection", title, False
+  cmd_by_depth = {
+    1: "section",
+    2: "subsection",
+    3: "subsubsection",
+    4: "paragraph",
+    5: "subparagraph",
+  }
+  cmd = cmd_by_depth.get(int(depth), "subparagraph")
+  return cmd, title, False
 
 
 def block_to_latex(
@@ -1678,7 +1960,7 @@ def block_to_latex(
   kind = block.get("kind")
   if kind == "image":
     if not include_images:
-      return ""
+      return f"% [image] {block.get('id', '')}\n"
     img = part_dir / block.get("image_file", "")
     if not img.exists():
       return f"% missing image {block['id']}\n"
@@ -1696,6 +1978,12 @@ def block_to_latex(
     return f"% {latex_escape(note)}\n"
   if kind == "toc":
     return f"% [muc luc] {block.get('id', '')}\n"
+
+  if _block_is_code(block):
+    return f"% [code] {block.get('id', '')}\n"
+
+  if kind == "footnote":
+    return f"% [footnote] {block.get('id', '')}\n"
 
   if kind == "math":
     en = (block.get("en") or "").strip()
@@ -1733,7 +2021,8 @@ def block_to_latex(
       return f"\\textbf{{{latex_escape(title)}}}\n\n"
     return f"\\{cmd}{star}{{{latex_escape(title)}}}\n\n"
   if kind == "caption":
-    return f"\\noindent\\textit{{{latex_escape_mixed(text)}}}\n\n"
+    # Không in chú thích hình — xem bản gốc (giống block image/code).
+    return f"% [caption] {block.get('id', '')}\n"
   if kind == "paragraph" and "•" in text:
     items = [it.strip() for it in re.split(r"\s*•\s*", text) if it.strip()]
     if len(items) > 1:
@@ -1742,16 +2031,71 @@ def block_to_latex(
   return f"{latex_escape_mixed(text)}\n\n"
 
 
+def clamp_toc_depth(depth: int) -> int:
+  return min(max(int(depth), 1), 5)
+
+
+def effective_toc_depth(meta: dict, cli_depth: int | None = None) -> int:
+  """TOC depth: CLI flag > blocks.json toc_depth > DEFAULT_TOC_DEPTH."""
+  if cli_depth is not None:
+    return clamp_toc_depth(cli_depth)
+  return clamp_toc_depth(meta.get("toc_depth", DEFAULT_TOC_DEPTH))
+
+
+def patch_main_tex_toc_depth(main_tex: Path, toc_depth: int) -> bool:
+  """Update secnumdepth/tocdepth in main.tex without full re-export."""
+  if not main_tex.exists():
+    return False
+  depth = clamp_toc_depth(toc_depth)
+  text = main_tex.read_text(encoding="utf-8")
+  new_text = re.sub(
+    r"\\setcounter\{secnumdepth\}\{\d+\}",
+    rf"\\setcounter{{secnumdepth}}{{{depth}}}",
+    text,
+    count=1,
+  )
+  new_text = re.sub(
+    r"\\setcounter\{tocdepth\}\{\d+\}",
+    rf"\\setcounter{{tocdepth}}{{{depth}}}",
+    new_text,
+    count=1,
+  )
+  if new_text == text:
+    return False
+  main_tex.write_text(new_text, encoding="utf-8")
+  return True
+
+
+def ensure_main_tex_heading_styles(main_tex: Path) -> bool:
+  """Insert titlesec block layout for \\paragraph/\\subparagraph if missing."""
+  if not main_tex.exists():
+    return False
+  text = main_tex.read_text(encoding="utf-8")
+  if r"\usepackage{titlesec}" in text:
+    return False
+  marker = r"\usepackage{graphicx}"
+  if marker not in text:
+    return False
+  insert = marker + "\n" + LATEX_HEADING_STYLE.strip() + "\n"
+  main_tex.write_text(text.replace(marker, insert, 1), encoding="utf-8")
+  return True
+
+
 def export_latex(
   part_dir: Path,
   meta: dict,
   allow_en_fallback: bool = False,
   include_toc: bool = True,
   include_images: bool = True,
+  toc_depth: int | None = None,
 ) -> None:
   blocks_path = part_dir / "blocks.json"
   data = json.loads(blocks_path.read_text(encoding="utf-8"))
   pages = data["pages"]
+  depth = effective_toc_depth(data, toc_depth)
+  if data.get("toc_depth") != depth:
+    data["toc_depth"] = depth
+    save_blocks_json(blocks_path, data, report=False)
   translated, total = translation_stats(pages)
   missing = total - translated
 
@@ -1780,6 +2124,8 @@ def export_latex(
 
   title = meta.get("title", BOOK_TITLE)
   toc_block = "\\tableofcontents\n\\newpage\n" if include_toc else ""
+  secnum_depth = depth
+  toc_depth_val = depth
   main_tex = f"""\\documentclass[12pt,a4paper]{{article}}
 \\usepackage[a4paper,margin=2.5cm]{{geometry}}
 \\usepackage{{fontspec}}
@@ -1788,10 +2134,11 @@ def export_latex(
 \\setotherlanguage{{english}}
 \\usepackage{{amsmath,amssymb,amsfonts}}
 \\usepackage{{graphicx}}
+{LATEX_HEADING_STYLE.strip()}
 \\usepackage{{hyperref}}
 \\usepackage{{indentfirst}}
-\\setcounter{{secnumdepth}}{{3}}
-\\setcounter{{tocdepth}}{{2}}
+\\setcounter{{secnumdepth}}{{{secnum_depth}}}
+\\setcounter{{tocdepth}}{{{toc_depth_val}}}
 
 \\title{{{latex_escape(title)} (Tiếng Việt)}}
 \\author{{Aurélien Géron — bản dịch chỉnh sửa (2nd ed.)}}
@@ -1806,20 +2153,34 @@ def export_latex(
   print(f"Wrote {part_dir / 'main.tex'} and content.tex ({translated}/{total} blocks tieng Viet)")
 
 
-def compile_latex(part_dir: Path, min_translated_ratio: float = 0.05) -> None:
+def compile_latex(
+  part_dir: Path,
+  min_translated_ratio: float = 0.05,
+  toc_depth: int | None = None,
+) -> None:
   main = part_dir / "main.tex"
   if not main.exists():
     raise FileNotFoundError(f"Missing {main}; run --export-latex first.")
 
   blocks_path = part_dir / "blocks.json"
+  meta: dict = {}
   if blocks_path.exists():
     data = json.loads(blocks_path.read_text(encoding="utf-8"))
+    meta = data
     translated, total = translation_stats(data["pages"])
     if total and translated / total < min_translated_ratio:
       raise RuntimeError(
         f"Chi co {translated}/{total} blocks da dich. "
         "Chay --translate truoc khi compile."
       )
+  depth = effective_toc_depth(meta, toc_depth)
+  if blocks_path.exists() and meta.get("toc_depth") != depth:
+    meta["toc_depth"] = depth
+    save_blocks_json(blocks_path, meta, report=False)
+  if patch_main_tex_toc_depth(main, depth):
+    print(f"Patched main.tex tocdepth={depth}")
+  if ensure_main_tex_heading_styles(main):
+    print("Patched main.tex: paragraph headings on own line (titlesec)")
   pdf = part_dir / "main.pdf"
   for _ in range(2):
     subprocess.run(
@@ -1904,7 +2265,7 @@ def run_extract(part: int, include_images: bool = True) -> Path:
     "pages": en_pages,
   }
   blocks_path = part_dir / "blocks.json"
-  blocks_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+  save_blocks_json(blocks_path, payload)
   print(f"Wrote {blocks_path} ({sum(len(p['blocks']) for p in en_pages)} blocks)")
   return part_dir
 
@@ -1918,7 +2279,8 @@ def main() -> None:
   parser.add_argument("--translate", action="store_true", help="Translate blocks.json")
   parser.add_argument("--export-latex", action="store_true", help="Export blocks.json to LaTeX")
   parser.add_argument("--compile", action="store_true", help="Compile main.tex to PDF (xelatex)")
-  parser.add_argument("--all", action="store_true", help="extract + translate + export + compile")
+  parser.add_argument("--all", action="store_true",
+                      help="extract + translate + fix-existing + export + compile (no images)")
   parser.add_argument(
     "--fix-existing",
     action="store_true",
@@ -1951,6 +2313,18 @@ def main() -> None:
     help="Do not include \\tableofcontents in exported main.tex",
   )
   parser.add_argument(
+    "--toc-depth",
+    type=int,
+    default=None,
+    metavar="N",
+    help=f"TOC depth 1=section … 4=paragraph (default: blocks.json or {DEFAULT_TOC_DEPTH})",
+  )
+  parser.add_argument(
+    "--with-images",
+    action="store_true",
+    help="With --all: extract figures and embed in PDF (default: skip images)",
+  )
+  parser.add_argument(
     "--no-images",
     action="store_true",
     help="Skip figure extraction and omit images from exported LaTeX/PDF",
@@ -1973,6 +2347,18 @@ def main() -> None:
 
   if args.all:
     args.extract = args.translate = args.export_latex = args.compile = True
+    args.fix_existing = True
+    if not args.with_images:
+      args.no_images = True
+    args.no_retranslate_headings = True
+
+  fix_only = (
+    args.fix_existing
+    and not args.extract
+    and not args.translate
+    and not args.export_latex
+    and not args.compile
+  )
 
   if not any([args.extract, args.translate, args.export_latex, args.compile, args.fix_existing]):
     parser.print_help()
@@ -1983,17 +2369,6 @@ def main() -> None:
     part_dir = run_extract(args.part, include_images=not args.no_images)
 
   blocks_path = part_dir / "blocks.json"
-  if args.fix_existing:
-    if not blocks_path.exists():
-      raise FileNotFoundError(blocks_path)
-    data = json.loads(blocks_path.read_text(encoding="utf-8"))
-    fix_existing_blocks(
-      data["pages"],
-      page_range=page_range,
-      retranslate_headings=not args.no_retranslate_headings,
-    )
-    blocks_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
-    return
 
   if args.translate:
     if not blocks_path.exists():
@@ -2007,7 +2382,20 @@ def main() -> None:
       page_range=page_range,
       force=args.force,
     )
-    blocks_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+    save_blocks_json(blocks_path, data, report=False)
+
+  if args.fix_existing:
+    if not blocks_path.exists():
+      raise FileNotFoundError(blocks_path)
+    data = json.loads(blocks_path.read_text(encoding="utf-8"))
+    fix_existing_blocks(
+      data["pages"],
+      page_range=page_range,
+      retranslate_headings=not args.no_retranslate_headings,
+    )
+    save_blocks_json(blocks_path, data)
+    if fix_only:
+      return
 
   if args.export_latex:
     if not blocks_path.exists():
@@ -2019,12 +2407,14 @@ def main() -> None:
       allow_en_fallback=args.allow_en_fallback,
       include_toc=not args.no_toc,
       include_images=not args.no_images,
+      toc_depth=args.toc_depth,
     )
 
   if args.compile:
     compile_latex(
       part_dir,
       min_translated_ratio=0.0 if args.allow_en_fallback else 0.05,
+      toc_depth=args.toc_depth,
     )
 
 

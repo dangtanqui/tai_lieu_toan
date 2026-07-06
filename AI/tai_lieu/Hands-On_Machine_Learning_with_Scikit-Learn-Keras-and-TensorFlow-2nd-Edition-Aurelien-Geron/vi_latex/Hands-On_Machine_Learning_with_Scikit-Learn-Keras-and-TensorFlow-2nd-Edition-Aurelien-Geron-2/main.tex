@@ -6,10 +6,15 @@
 \setotherlanguage{english}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
+\usepackage{titlesec}
+\titleformat{\paragraph}[block]{\normalfont\normalsize\bfseries}{\theparagraph}{0.5em}{}
+\titlespacing*{\paragraph}{0pt}{2.5ex plus .5ex minus .2ex}{1ex}
+\titleformat{\subparagraph}[block]{\normalfont\normalsize\bfseries}{\thesubparagraph}{0.5em}{}
+\titlespacing*{\subparagraph}{0pt}{2ex plus .5ex minus .2ex}{1ex}
 \usepackage{hyperref}
 \usepackage{indentfirst}
-\setcounter{secnumdepth}{3}
-\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 \title{Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow (Tiếng Việt)}
 \author{Aurélien Géron — bản dịch chỉnh sửa (2nd ed.)}

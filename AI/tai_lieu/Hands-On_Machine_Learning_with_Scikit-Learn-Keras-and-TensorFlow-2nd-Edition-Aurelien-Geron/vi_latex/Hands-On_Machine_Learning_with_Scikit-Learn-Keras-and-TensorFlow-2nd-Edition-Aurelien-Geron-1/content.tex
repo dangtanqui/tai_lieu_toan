@@ -89,13 +89,13 @@ Phần II, Neural Networks và Deep Learning, bao gồm các chủ đề sau:
 
 • Xây dựng và training mạng lưới thần kinh sử dụng TensorFlow và Keras
 
-• Kiến trúc neural network quan trọng nhất: neural network chuyển tiếp cho dữ liệu dạng bảng, mạng tích chập cho thị giác máy tính, mạng regression và mạng bộ nhớ ngắn hạn dài (LSTM) để xử lý chuỗi, bộ code hóa/giải code và Bộ chuyển đổi cho natural language processing, autoencoder và mạng đối nghịch tổng quát (GANs) để học tổng quát
+• Kiến trúc neural network quan trọng nhất: neural network chuyển tiếp cho dữ liệu dạng bảng, mạng tích chập cho thị giác máy tính, mạng regression và mạng bộ nhớ ngắn hạn dài (LSTM) để xử lý chuỗi, bộ mã hóa/giải mã và Bộ chuyển đổi cho natural language processing, autoencoder và mạng đối nghịch tổng quát (GANs) để học tổng quát
 
 • Kỹ thuật training mạng lưới thần kinh sâu
 
-• Cách xây dựng một tác nhân (ví dụ: bot trong trò chơi) có thể học các chiến lược tốt thông qua thử và sai, sử dụng Reinforcement Learning
+• Cách xây dựng một agent (ví dụ: bot trong trò chơi) có thể học các chiến lược tốt thông qua thử và sai, sử dụng Reinforcement Learning
 
-• Tải và xử lý trước lượng lớn dữ liệu một cách hiệu quả
+• Load và xử lý trước lượng lớn dữ liệu một cách hiệu quả
 
 • Training và deploying TensorFlow models trên quy mô lớn
 
@@ -160,12 +160,6 @@ In đậm có chiều rộng không đổi: Hiển thị các lệnh hoặc văn
 % --- page 23 ---
 Nghiêng có độ rộng không đổi: Hiển thị văn bản cần được thay thế bằng các giá trị do user cung cấp hoặc bằng các giá trị được xác định theo ngữ cảnh.
 
-Phần tử này biểu thị một mẹo hoặc gợi ý.
-
-Yếu tố này biểu thị một ghi chú chung.
-
-Yếu tố này biểu thị một cảnh báo hoặc thận trọng.
-
 \subsection{Ví dụ về code}
 
 Có một loạt Jupyter notebooks chứa đầy tài liệu bổ sung, chẳng hạn như ví dụ về code và bài tập, có sẵn để tải xuống tại https://github.com/ageron/handsonml2.
@@ -191,7 +185,7 @@ Chúng tôi đánh giá cao nhưng không yêu cầu ghi công. Ghi công thư�
 
 Trong gần 40 năm, O'Reilly Media đã cung cấp training, kiến ​​thức và hiểu biết sâu sắc về công nghệ và kinh doanh để giúp các công ty thành công.
 
-Mạng lưới chuyên gia và nhà đổi mới độc đáo của chúng tôi chia sẻ kiến ​​thức và chuyên môn của họ thông qua sách, bài báo, hội nghị và nền tảng học tập trực tuyến của chúng tôi. Nền tảng học tập trực tuyến của O'Reilly cung cấp cho bạn quyền truy cập theo yêu cầu vào các khóa training trực tiếp, lộ trình học tập chuyên sâu, môi trường code hóa tương tác cũng như bộ sưu tập văn bản và video khổng lồ từ O'Reilly và hơn 200 nhà xuất bản khác. Để biết thêm thông tin, vui lòng truy cập http://oreilly.com.
+Mạng lưới chuyên gia và nhà đổi mới độc đáo của chúng tôi chia sẻ kiến ​​thức và chuyên môn của họ thông qua sách, bài báo, hội nghị và nền tảng học tập trực tuyến của chúng tôi. Nền tảng học tập trực tuyến của O'Reilly cung cấp cho bạn quyền truy cập theo yêu cầu vào các khóa training trực tiếp, lộ trình học tập chuyên sâu, môi trường mã hóa tương tác cũng như bộ sưu tập văn bản và video khổng lồ từ O'Reilly và hơn 200 nhà xuất bản khác. Để biết thêm thông tin, vui lòng truy cập http://oreilly.com.
 
 % --- page 25 ---
 \subsection{Cách liên hệ với chúng tôi}
@@ -234,26 +228,24 @@ Cuối cùng nhưng không kém phần quan trọng, tôi vô cùng biết ơn n
 
 % --- page 28 ---
 % --- page 29 ---
-\subsection{PART I Các nguyên tắc cơ bản của Machine Learning}
+\section{Phần I Các nguyên tắc cơ bản của Machine Learning}
 
 % --- page 30 ---
 % --- page 31 ---
-\subsection{CHAPTER 1 Phong cảnh Machine Learning}
+\subsection{Chương 1 Phong cảnh Machine Learning}
 
 Khi hầu hết mọi người nghe “Machine Learning”, họ hình dung ra một con robot: một quản gia đáng tin cậy hoặc một Kẻ hủy diệt chết người, tùy thuộc vào người bạn hỏi. Nhưng Machine Learning không chỉ là một ảo mộng tương lai; nó đã ở đây rồi. Trên thực tế, nó đã tồn tại hàng thập kỷ trong một số ứng dụng chuyên biệt, chẳng hạn như Nhận dạng ký tự quang học (OCR). Nhưng ứng dụng ML đầu tiên thực sự trở thành xu hướng chủ đạo, cải thiện cuộc sống của hàng trăm triệu người, đã chiếm lĩnh thế giới vào những năm 1990: bộ lọc thư rác. Nó không hẳn là một Skynet tự nhận biết, nhưng về mặt kỹ thuật nó đủ tiêu chuẩn là Machine Learning (nó thực sự đã học rất tốt nên bạn hiếm khi cần gắn cờ email là thư rác nữa). Tiếp theo là hàng trăm ứng dụng ML hiện đang âm thầm cung cấp năng lượng cho hàng trăm sản phẩm và features mà bạn sử dụng thường xuyên, từ những đề xuất tốt hơn cho đến tìm kiếm bằng giọng nói.
 
 Machine Learning bắt đầu từ đâu và kết thúc ở đâu? Chính xác thì việc một cỗ máy học được điều gì đó có ý nghĩa gì? Nếu tôi tải xuống một bản sao Wikipedia, máy tính của tôi có thực sự học được điều gì không? Nó đột nhiên thông minh hơn? Trong chương này, chúng ta sẽ bắt đầu bằng cách làm rõ Machine Learning là gì và tại sao bạn có thể muốn sử dụng nó.
 
-Sau đó, trước khi bắt đầu khám phá lục địa Machine Learning, chúng ta sẽ xem bản đồ và tìm hiểu về các khu vực chính và các địa danh đáng chú ý nhất: học tập supervised so với unsupervised learning, học tập trực tuyến so với học tập batch, học tập dựa trên phiên bản so với học tập dựa trên model. Sau đó, chúng ta sẽ xem xét quy trình làm việc của một dự án ML điển hình, thảo luận về những thách thức chính mà bạn có thể gặp phải và đề cập đến cách đánh giá và tuning hệ thống Machine Learning.
+Sau đó, trước khi bắt đầu khám phá lục địa Machine Learning, chúng ta sẽ xem bản đồ và tìm hiểu về các khu vực chính và các địa danh đáng chú ý nhất: supervised learning so với unsupervised learning, online learning so với batch learning, instancebased learning so với model-based learning. Sau đó, chúng ta sẽ xem xét quy trình làm việc của một dự án ML điển hình, thảo luận về những thách thức chính mà bạn có thể gặp phải và đề cập đến cách đánh giá và tuning hệ thống Machine Learning.
 
 Chương này giới thiệu rất nhiều khái niệm cơ bản (và biệt ngữ) mà mọi nhà khoa học dữ liệu nên thuộc lòng. Đây sẽ là một phần tổng quan cấp cao (đây là chương duy nhất không có nhiều code), tất cả đều khá đơn giản, nhưng bạn nên đảm bảo mọi thứ đều rõ ràng trước khi tiếp tục phần còn lại của cuốn sách. Vì vậy, hãy lấy một ly cà phê và bắt đầu!
-
-\[1\]
 
 % --- page 32 ---
 Nếu bạn đã biết tất cả những điều cơ bản về Machine Learning, bạn có thể chuyển thẳng đến Chương 2. Nếu bạn không chắc chắn, hãy thử trả lời tất cả các câu hỏi được liệt kê ở cuối chương trước khi chuyển sang phần khác.
 
-Machine Learning là gì?
+\subsubsection{Machine Learning là gì?}
 
 Machine Learning là khoa học (và nghệ thuật) lập trình máy tính để chúng có thể học hỏi từ dữ liệu.
 
@@ -273,46 +265,32 @@ Bộ lọc thư rác của bạn là một chương trình Machine Learning, d�
 
 Nếu bạn chỉ tải xuống một bản sao của Wikipedia, máy tính của bạn có nhiều dữ liệu hơn nhưng lại không đột nhiên tốt hơn ở bất kỳ tác vụ nào. Vì vậy, việc tải xuống một bản sao của Wikipedia không phải là Machine Learning.
 
-Tại sao nên sử dụng Machine Learning?
+\subsubsection{Tại sao nên sử dụng Machine Learning?}
 
-Hãy xem xét cách bạn viết bộ lọc thư rác bằng các kỹ thuật lập trình truyền thống (Hình 1-1):
+Hãy xem xét cách bạn viết bộ lọc thư rác bằng các kỹ thuật lập trình truyền thống:
 
 1. Trước tiên, bạn hãy xem thư rác thường trông như thế nào. Bạn có thể nhận thấy rằng một số từ hoặc cụm từ (chẳng hạn như “4U”, “thẻ tín dụng”, “miễn phí” và “tuyệt vời”) có xu hướng xuất hiện nhiều trong dòng chủ đề. Có lẽ bạn cũng sẽ nhận thấy một số mẫu khác trong tên người gửi, nội dung email và các phần khác của email.
-
-2 | Chương 1: Phong cảnh Machine Learning
 
 % --- page 33 ---
 2. Bạn sẽ viết thuật toán phát hiện cho từng mẫu mà bạn nhận thấy và chương trình của bạn sẽ gắn cờ email là thư rác nếu phát hiện thấy một số mẫu này.
 
 3. Bạn sẽ kiểm tra chương trình của mình và lặp lại bước 1 và 2 cho đến khi chương trình đủ tốt để khởi chạy.
 
-\noindent\textit{Hình 1-1. Cách tiếp cận truyền thống}
-
 Vì vấn đề rất khó nên chương trình của bạn có thể sẽ trở thành một danh sách dài các quy tắc phức tạp—khá khó để duy trì.
 
-Ngược lại, bộ lọc thư rác dựa trên kỹ thuật Machine Learning sẽ tự động tìm hiểu những từ và cụm từ nào là predictors tốt của thư rác bằng cách phát hiện các mẫu từ thường gặp bất thường trong các ví dụ thư rác so với các ví dụ ham (Hình 1-2). Chương trình ngắn hơn nhiều, dễ bảo trì hơn và rất có thể chính xác hơn.
+Ngược lại, bộ lọc thư rác dựa trên kỹ thuật Machine Learning sẽ tự động tìm hiểu những từ và cụm từ nào là predictors tốt của thư rác bằng cách phát hiện các mẫu từ thường gặp bất thường trong các ví dụ thư rác so với các ví dụ ham. Chương trình ngắn hơn nhiều, dễ bảo trì hơn và rất có thể chính xác hơn.
 
 Điều gì sẽ xảy ra nếu những kẻ gửi thư rác nhận thấy rằng tất cả email có chứa “4U” của họ đều bị chặn? Thay vào đó, họ có thể bắt đầu viết “Dành cho bạn”. Bộ lọc thư rác sử dụng các kỹ thuật lập trình truyền thống sẽ cần được cập nhật để gắn cờ các email “Dành cho bạn”. Nếu những kẻ gửi thư rác tiếp tục làm việc xung quanh bộ lọc thư rác của bạn, bạn sẽ cần phải viết các quy tắc mới mãi mãi.
 
-Ngược lại, bộ lọc thư rác dựa trên kỹ thuật Machine Learning sẽ tự động nhận thấy rằng “Dành cho U” đã trở nên thường xuyên bất thường trong các thư rác bị user gắn cờ và nó bắt đầu gắn cờ chúng mà không cần sự can thiệp của bạn (Hình 1-3).
-
-Tại sao nên sử dụng Machine Learning? | 3
+Ngược lại, bộ lọc thư rác dựa trên kỹ thuật Machine Learning sẽ tự động nhận thấy rằng “Dành cho U” đã trở nên thường xuyên bất thường trong các thư rác bị user gắn cờ và nó bắt đầu gắn cờ chúng mà không cần sự can thiệp của bạn.
 
 % --- page 34 ---
-\noindent\textit{Hình 1-2. Cách tiếp cận Machine Learning}
+Một lĩnh vực khác mà Machine Learning tỏa sáng là giải quyết các vấn đề quá phức tạp đối với các phương pháp tiếp cận truyền thống hoặc không có thuật toán nào được biết đến. Ví dụ, hãy xem xét nhận dạng giọng nói. Giả sử bạn muốn bắt đầu đơn giản và viết một chương trình có khả năng phân biệt các từ “một” và “hai”. Bạn có thể nhận thấy rằng từ “hai” bắt đầu bằng âm thanh có âm vực cao (“T”), vì vậy bạn có thể mã hóa cứng một thuật toán đo cường độ âm thanh có âm vực cao và sử dụng thuật toán đó để phân biệt một và hai—nhưng rõ ràng kỹ thuật này sẽ không mở rộng tới hàng nghìn từ được nói bởi hàng triệu người rất khác nhau trong môi trường ồn ào và trong hàng chục ngôn ngữ. Giải pháp tốt nhất (ít nhất là ở thời điểm hiện tại) là viết một thuật toán có khả năng tự học, đưa ra nhiều bản ghi ví dụ cho mỗi từ.
 
-\noindent\textit{Hình 1-3. Tự động thích ứng với sự thay đổi}
-
-Một lĩnh vực khác mà Machine Learning tỏa sáng là giải quyết các vấn đề quá phức tạp đối với các phương pháp tiếp cận truyền thống hoặc không có thuật toán nào được biết đến. Ví dụ, hãy xem xét nhận dạng giọng nói. Giả sử bạn muốn bắt đầu đơn giản và viết một chương trình có khả năng phân biệt các từ “một” và “hai”. Bạn có thể nhận thấy rằng từ “hai” bắt đầu bằng âm thanh có âm vực cao (“T”), vì vậy bạn có thể code hóa cứng một thuật toán đo cường độ âm thanh có âm vực cao và sử dụng thuật toán đó để phân biệt một và hai—nhưng rõ ràng kỹ thuật này sẽ không mở rộng tới hàng nghìn từ được nói bởi hàng triệu người rất khác nhau trong môi trường ồn ào và trong hàng chục ngôn ngữ. Giải pháp tốt nhất (ít nhất là ở thời điểm hiện tại) là viết một thuật toán có khả năng tự học, đưa ra nhiều bản ghi ví dụ cho mỗi từ.
-
-Cuối cùng, Machine Learning có thể giúp con người học hỏi (Hình 1-4). Các thuật toán ML có thể được kiểm tra để xem chúng đã học được những gì (mặc dù đối với một số thuật toán, điều này có thể phức tạp). Ví dụ: khi bộ lọc thư rác đã được training về đủ thư rác, nó có thể dễ dàng được kiểm tra để tiết lộ danh sách các từ và tổ hợp từ mà nó tin là predictors tốt nhất trong thư rác. Đôi khi điều này sẽ tiết lộ những điều không ngờ tới
-
-4 | Chương 1: Phong cảnh Machine Learning
+Cuối cùng, Machine Learning có thể giúp con người học hỏi. Các thuật toán ML có thể được kiểm tra để xem chúng đã học được những gì (mặc dù đối với một số thuật toán, điều này có thể phức tạp). Ví dụ: khi bộ lọc thư rác đã được training về đủ thư rác, nó có thể dễ dàng được kiểm tra để tiết lộ danh sách các từ và tổ hợp từ mà nó tin là predictors tốt nhất trong thư rác. Đôi khi điều này sẽ tiết lộ những điều không ngờ tới
 
 % --- page 35 ---
 Mối tương quan hoặc xu hướng mới, và do đó dẫn đến sự hiểu biết tốt hơn về vấn đề. Việc áp dụng các kỹ thuật ML để khai thác lượng lớn dữ liệu có thể giúp khám phá các mẫu chưa rõ ràng ngay lập tức. Điều này được gọi là khai thác dữ liệu.
-
-\noindent\textit{Hình 1-4. Machine Learning có thể giúp con người học hỏi}
 
 Tóm lại, Machine Learning rất phù hợp cho:
 
@@ -324,7 +302,7 @@ Tóm lại, Machine Learning rất phù hợp cho:
 
 • Nhận thông tin chi tiết về các vấn đề phức tạp và lượng dữ liệu lớn.
 
-\subsection{Ví dụ về ứng dụng}
+\subsubsection{Ví dụ về ứng dụng}
 
 Hãy xem xét một số ví dụ cụ thể về nhiệm vụ Machine Learning, cùng với các kỹ thuật có thể giải quyết chúng:
 
@@ -354,8 +332,6 @@ Biểu diễn dataset phức tạp, có nhiều chiều trong một sơ đồ r�
 
 Đề xuất một sản phẩm mà khách hàng có thể quan tâm dựa trên những lần mua hàng trước đây. Đây là một hệ thống gợi ý. Một cách tiếp cận là cung cấp các giao dịch mua trước đây (và thông tin khác về khách hàng) vào neural network nhân tạo (xem Chương-
 
-6 | Chương 1: Phong cảnh Machine Learning
-
 % --- page 37 ---
 Ter 10) và làm cho nó xuất ra lần mua hàng tiếp theo có nhiều khả năng xảy ra nhất. Mạng lưới thần kinh này thường sẽ được training về các chuỗi mua hàng trước đây của tất cả khách hàng.
 
@@ -363,49 +339,41 @@ Xây dựng bot thông minh cho trò chơi Vấn đề này thường được g
 
 Danh sách này có thể còn dài, nhưng hy vọng nó sẽ mang lại cho bạn cảm giác về mức độ rộng và phức tạp đáng kinh ngạc của các nhiệm vụ mà Machine Learning có thể giải quyết cũng như các loại kỹ thuật mà bạn sẽ sử dụng cho từng nhiệm vụ.
 
-\subsection{Các loại hệ thống Machine Learning}
+\subsubsection{Các loại hệ thống Machine Learning}
 
 Có rất nhiều loại hệ thống Machine Learning khác nhau nên rất hữu ích khi classification chúng theo các danh mục rộng, dựa trên các tiêu chí sau:
 
-• Họ có được training với sự giám sát của con người hay không (supervised, không giám sát, bán giám sát và Reinforcement Learning)
+• Họ có được training với sự giám sát của con người hay không (supervised, unsupervised, semisupervised và Reinforcement Learning)
 
-• Liệu họ có thể học dần dần một cách nhanh chóng hay không (học trực tuyến so với học batch)
+• Liệu họ có thể học dần dần một cách nhanh chóng hay không (online learning so với batch learning)
 
-• Cho dù chúng hoạt động bằng cách đơn giản so sánh các điểm dữ liệu mới với các điểm dữ liệu đã biết hay thay vào đó bằng cách phát hiện các mẫu trong dữ liệu training và xây dựng model mang tính dự đoán, giống như các nhà khoa học vẫn làm (học tập dựa trên phiên bản so với học tập dựa trên model)
+• Cho dù chúng hoạt động bằng cách đơn giản so sánh các điểm dữ liệu mới với các điểm dữ liệu đã biết hay thay vào đó bằng cách phát hiện các mẫu trong dữ liệu training và xây dựng model mang tính dự đoán, giống như các nhà khoa học vẫn làm (instance-based learning so với model-based learning)
 
-Những tiêu chí này không độc quyền; bạn có thể kết hợp chúng theo bất kỳ cách nào bạn muốn. Ví dụ: bộ lọc thư rác hiện đại có thể học nhanh chóng bằng cách sử dụng mạng thần kinh sâu model được training bằng cách sử dụng các ví dụ về thư rác và ham; điều này làm cho nó trở thành một hệ thống supervised learning trực tuyến, dựa trên model.
+Những tiêu chí này không độc quyền; bạn có thể kết hợp chúng theo bất kỳ cách nào bạn muốn. Ví dụ: bộ lọc thư rác hiện đại có thể học nhanh chóng bằng cách sử dụng mạng thần kinh sâu model được training bằng cách sử dụng các ví dụ về thư rác và ham; điều này làm cho nó trở thành một online, modelbased, supervised learning system.
 
 Chúng ta hãy xem xét từng tiêu chí này kỹ hơn một chút.
 
-\subsection{Học tập có giám sát/không giám sát}
+\paragraph{Supervised/Unsupervised Learning}
 
-Hệ thống Machine Learning có thể được phân loại theo số lượng và loại hình giám sát mà chúng nhận được trong quá trình training. Có bốn loại chính: supervised learning, unsupervised learning, học bán giám sát và Reinforcement Learning.
+Hệ thống Machine Learning có thể được phân loại theo số lượng và loại hình giám sát mà chúng nhận được trong quá trình training. Có bốn loại chính: supervised learning, unsupervised learning, semisupervised learning và Reinforcement Learning.
 
 % Types of Machine Learning Systems | 7
 % --- page 38 ---
-1 Sự thật thú vị: cái tên nghe có vẻ kỳ quặc này là một thuật ngữ thống kê được Francis Galton đưa ra khi ông đang nghiên cứu thực tế rằng con cái của những người cao thường có xu hướng thấp hơn cha mẹ chúng. Vì những đứa trẻ thấp hơn nên anh ấy gọi nó là regression. Tên này sau đó được áp dụng cho các phương pháp mà ông sử dụng để phân tích mối tương quan giữa các biến số.
+\subparagraph{Supervised learning}
 
-Supervised learning
-
-Trong supervised learning, training set mà bạn cung cấp cho thuật toán bao gồm các giải pháp mong muốn, được gọi là nhãn (Hình 1-5).
-
-\noindent\textit{Hình 1-5. Một nhãn training set dành cho thư rác classification (một ví dụ về supervised learning)}
+Trong supervised learning, training set mà bạn cung cấp cho thuật toán bao gồm các giải pháp mong muốn, được gọi là label.
 
 Nhiệm vụ supervised learning điển hình là classification. Bộ lọc thư rác là một ví dụ điển hình về điều này: nó được training với nhiều email mẫu cùng với loại của chúng (thư rác hoặc ham) và nó phải học cách classification email mới.
 
-Một nhiệm vụ điển hình khác là dự đoán giá trị số mục tiêu, chẳng hạn như giá một chiếc ô tô, dựa trên một bộ features (số km đã đi, tuổi, nhãn hiệu, v.v.) có tên là predictors. Loại nhiệm vụ này được gọi là regression (Hình 1-6).1 Để training hệ thống, bạn cần cho nó nhiều ví dụ về ô tô, bao gồm cả predictors và nhãn của chúng (tức là giá của chúng).
+Một nhiệm vụ điển hình khác là dự đoán giá trị số mục tiêu, chẳng hạn như giá một chiếc ô tô, dựa trên một bộ features (số km đã đi, tuổi, nhãn hiệu, v.v.) có tên là predictors. Loại nhiệm vụ này được gọi là regression. Để training hệ thống, bạn cần cho nó nhiều example về ô tô, bao gồm cả predictors và label của chúng (tức là giá của chúng).
 
-Trong Machine Learning, thuộc tính là một loại dữ liệu (ví dụ: “số dặm”), trong khi feature có một số ý nghĩa, tùy thuộc vào ngữ cảnh, nhưng nhìn chung có nghĩa là một thuộc tính cộng với giá trị của nó (ví dụ: “số dặm = 15.000”). Nhiều người sử dụng thuộc tính từ và feature thay thế cho nhau.
+Trong Machine Learning, thuộc tính là một loại dữ liệu (ví dụ: “số dặm”), trong khi feature có một số ý nghĩa, tùy thuộc vào ngữ cảnh, nhưng nhìn chung có nghĩa là một thuộc tính cộng với giá trị của nó (ví dụ: “số dặm = 15.000”). Nhiều người sử dụng attribute và feature thay thế cho nhau.
 
 Lưu ý rằng một số thuật toán regression cũng có thể được sử dụng cho classification và ngược lại. Ví dụ: Logistic Regression thường được sử dụng cho classification, vì nó có thể xuất ra một giá trị tương ứng với xác suất thuộc về một lớp nhất định (ví dụ: 20\% khả năng là thư rác).
 
-8 | Chương 1: Phong cảnh Machine Learning
+Sự thật thú vị: cái tên nghe có vẻ kỳ quặc này là một thuật ngữ thống kê được Francis Galton đưa ra khi ông đang nghiên cứu thực tế rằng con cái của những người cao thường có xu hướng thấp hơn cha mẹ chúng. Vì những đứa trẻ thấp hơn nên anh ấy gọi nó là regression. Tên này sau đó được áp dụng cho các phương pháp mà ông sử dụng để phân tích mối tương quan giữa các biến số.
 
 % --- page 39 ---
-2 Một số kiến ​​trúc neural network có thể không supervised, chẳng hạn như autoencoder và máy Boltzmann bị hạn chế. Chúng cũng có thể được bán giám sát, chẳng hạn như trong mạng lưới niềm tin sâu sắc và training trước không supervised.
-
-\noindent\textit{Hình 1-6. Bài toán regression: dự đoán một giá trị, cho trước một feature đầu vào (thường có nhiều features đầu vào và đôi khi có nhiều giá trị đầu ra)}
-
 Dưới đây là một số thuật toán supervised learning quan trọng nhất (được đề cập trong cuốn sách này):
 
 • k-Nearest Neighbors
@@ -414,20 +382,20 @@ Dưới đây là một số thuật toán supervised learning quan trọng nh�
 
 • Logistic Regression
 
-• Máy vector hỗ trợ (SVMs)
+• Support Vector Machines (SVMs)
 
 • Decision Trees và Random Forests
 
-• Mạng lưới thần kinh2
+• Neural networks
 
-Unsupervised learning
+Một số kiến ​​trúc neural network có thể không supervised, chẳng hạn như autoencoder và máy Boltzmann bị hạn chế. Chúng cũng có thể được bán giám sát, chẳng hạn như trong mạng lưới niềm tin sâu sắc và training trước không supervised.
 
-Trong unsupervised learning, như bạn có thể đoán, dữ liệu training không được gắn nhãn (Hình 1-7). Hệ thống cố gắng học mà không có giáo viên.
+\subparagraph{Unsupervised learning}
+
+Trong unsupervised learning, như bạn có thể đoán, dữ liệu training không được gắn label. Hệ thống cố gắng học mà không có giáo viên.
 
 % Types of Machine Learning Systems | 9
 % --- page 40 ---
-\noindent\textit{Hình 1-7. Training set không được gắn nhãn cho unsupervised learning}
-
 Dưới đây là một số thuật toán unsupervised learning quan trọng nhất (hầu hết chúng được đề cập trong Chương 8 và 9):
 
 • Clustering
@@ -436,11 +404,11 @@ Dưới đây là một số thuật toán unsupervised learning quan trọng nh
 
 — DBSCAN
 
-- Phân tích cụm phân cấp (HCA)
+— Phân tích cụm phân cấp (HCA)
 
 • Phát hiện sự bất thường và phát hiện tính mới
 
-- SVM một lớp
+— SVM một lớp
 
 — Rừng Cách Ly
 
@@ -450,7 +418,7 @@ Dưới đây là một số thuật toán unsupervised learning quan trọng nh
 
 — Hạt nhân PCA
 
-- Nhúng tuyến tính cục bộ (LLE)
+— Nhúng tuyến tính cục bộ (LLE)
 
 — Nhúng hàng xóm ngẫu nhiên phân tán t-t-Distributed (t-SNE)
 
@@ -460,111 +428,87 @@ Dưới đây là một số thuật toán unsupervised learning quan trọng nh
 
 — Eclat
 
-Ví dụ: giả sử bạn có nhiều dữ liệu về khách truy cập blog của mình. Bạn có thể muốn chạy thuật toán clustering để cố gắng phát hiện các nhóm khách truy cập tương tự (Hình 1-8). Bạn không bao giờ có thể cho thuật toán biết khách truy cập thuộc nhóm nào: nó tìm thấy những kết nối đó mà không cần sự trợ giúp của bạn. Ví dụ: có thể nhận thấy rằng 40\% khách truy cập là nam giới yêu thích truyện tranh và thường đọc blog của bạn vào buổi tối, trong khi 20\% là những người trẻ tuổi yêu thích khoa học viễn tưởng ghé thăm vào cuối tuần. Nếu bạn sử dụng thuật toán clustering phân cấp, thuật toán này cũng có thể chia mỗi nhóm thành các nhóm nhỏ hơn. Điều này có thể giúp bạn nhắm mục tiêu bài viết của mình cho từng nhóm.
-
-10 | Chương 1: Phong cảnh Machine Learning
+Ví dụ: giả sử bạn có nhiều dữ liệu về khách truy cập blog của mình. Bạn có thể muốn chạy thuật toán clustering để cố gắng phát hiện các nhóm khách truy cập tương tự. Bạn không bao giờ có thể cho thuật toán biết khách truy cập thuộc nhóm nào: nó tìm thấy những kết nối đó mà không cần sự trợ giúp của bạn. Ví dụ: có thể nhận thấy rằng 40\% khách truy cập là nam giới yêu thích truyện tranh và thường đọc blog của bạn vào buổi tối, trong khi 20\% là những người trẻ tuổi yêu thích khoa học viễn tưởng ghé thăm vào cuối tuần. Nếu bạn sử dụng thuật toán clustering phân cấp, thuật toán này cũng có thể chia mỗi nhóm thành các nhóm nhỏ hơn. Điều này có thể giúp bạn nhắm mục tiêu bài viết của mình cho từng nhóm.
 
 % --- page 41 ---
-3 Hãy chú ý xem động vật ở khá xa khỏi xe cộ và ngựa ở gần hươu nhưng lại ở xa chim. Hình được sao chép lại với sự cho phép của Richard Socher và cộng sự, “Học tập không cần chụp qua chuyển giao CrossModal,” Kỷ yếu của Hội nghị quốc tế lần thứ 26 về Hệ thống xử lý thông tin thần kinh 1 (2013): 935–943.
-
-\noindent\textit{Hình 1-8. Clustering}
-
-Các thuật toán trực quan hóa cũng là ví dụ điển hình về thuật toán unsupervised learning: bạn cung cấp cho chúng rất nhiều dữ liệu phức tạp và không được gắn nhãn, đồng thời chúng tạo ra biểu diễn 2D hoặc 3D cho dữ liệu của bạn để có thể dễ dàng vẽ đồ thị (Hình 1-9). Các thuật toán này cố gắng duy trì nhiều cấu trúc nhất có thể (ví dụ: cố gắng giữ các cụm riêng biệt trong không gian đầu vào không bị chồng chéo trong hình ảnh trực quan) để bạn có thể hiểu cách sắp xếp dữ liệu và có thể xác định các mẫu không bị nghi ngờ.
-
-\noindent\textit{Hình 1-9. Ví dụ về cụm ngữ nghĩa làm nổi bật trực quan hóa t-SNE3}
+Các thuật toán trực quan hóa cũng là ví dụ điển hình về thuật toán unsupervised learning: bạn cung cấp cho chúng rất nhiều dữ liệu phức tạp và không được gắn nhãn, đồng thời chúng tạo ra biểu diễn 2D hoặc 3D cho dữ liệu của bạn để có thể dễ dàng vẽ đồ thị. Các thuật toán này cố gắng duy trì nhiều cấu trúc nhất có thể (ví dụ: cố gắng giữ các cụm riêng biệt trong không gian đầu vào không bị chồng chéo trong hình ảnh trực quan) để bạn có thể hiểu cách sắp xếp dữ liệu và có thể xác định các mẫu không bị nghi ngờ.
 
 % Types of Machine Learning Systems | 11
+Hãy chú ý xem động vật ở khá xa khỏi xe cộ và ngựa ở gần hươu nhưng lại ở xa chim. Hình được sao chép lại với sự cho phép của Richard Socher và cộng sự, “Học tập không cần chụp qua chuyển giao CrossModal,” Kỷ yếu của Hội nghị quốc tế lần thứ 26 về Hệ thống xử lý thông tin thần kinh 1 (2013): 935–943.
+
 % --- page 42 ---
 Một nhiệm vụ liên quan là giảm kích thước, trong đó mục tiêu là đơn giản hóa dữ liệu mà không làm mất quá nhiều thông tin. Một cách để làm điều này là hợp nhất một số features tương ứng thành một. Ví dụ: quãng đường đã đi của một chiếc ô tô có thể tương quan chặt chẽ với tuổi của nó, vì vậy thuật toán giảm kích thước sẽ hợp nhất chúng thành một feature đại diện cho độ hao mòn của ô tô. Điều này được gọi là trích xuất feature.
 
 Thông thường, bạn nên cố gắng giảm kích thước của dữ liệu training bằng thuật toán giảm kích thước trước khi đưa nó vào một thuật toán Machine Learning khác (chẳng hạn như thuật toán học có giám sát). Nó sẽ chạy nhanh hơn nhiều, dữ liệu sẽ chiếm ít dung lượng ổ đĩa và bộ nhớ hơn và trong một số trường hợp, nó cũng có thể hoạt động tốt hơn.
 
-Tuy nhiên, một nhiệm vụ không supervised quan trọng khác là phát hiện sự bất thường—ví dụ: phát hiện các giao dịch thẻ tín dụng bất thường để ngăn chặn gian lận, phát hiện lỗi sản xuất hoặc tự động loại bỏ các ngoại lệ khỏi dataset trước khi đưa nó vào một thuật toán học khác. Hệ thống được hiển thị hầu hết các trường hợp bình thường trong quá trình training, vì vậy nó học cách nhận biết chúng; sau đó, khi nhìn thấy một trường hợp mới, nó có thể cho biết liệu nó trông giống một trường hợp bình thường hay có khả năng là một trường hợp bất thường (xem Hình 1-10). Một nhiệm vụ tương tự là phát hiện tính mới: nó nhằm mục đích phát hiện các phiên bản mới trông khác với tất cả các phiên bản trong training set. Điều này đòi hỏi phải có một training set rất “sạch”, không có bất kỳ phiên bản nào mà bạn muốn thuật toán phát hiện. Ví dụ: nếu bạn có hàng nghìn bức ảnh về chó và 1\% trong số những bức ảnh này đại diện cho Chihuahua thì thuật toán phát hiện tính mới sẽ không coi các bức ảnh mới về Chihuahua là mới lạ. Mặt khác, các thuật toán phát hiện sự bất thường có thể coi những con chó này rất hiếm và khác biệt so với những con chó khác đến mức chúng có thể classification chúng là những con chó dị thường (không có ý xúc phạm đến Chihuahua).
+Tuy nhiên, một nhiệm vụ không supervised quan trọng khác là phát hiện sự bất thường—ví dụ: phát hiện các giao dịch thẻ tín dụng bất thường để ngăn chặn gian lận, phát hiện lỗi sản xuất hoặc tự động loại bỏ các ngoại lệ khỏi dataset trước khi đưa nó vào một thuật toán học khác. Hệ thống được hiển thị hầu hết các trường hợp bình thường trong quá trình training, vì vậy nó học cách nhận biết chúng; sau đó, khi nhìn thấy một trường hợp mới, nó có thể cho biết liệu nó trông giống một trường hợp bình thường hay có khả năng là một trường hợp bất thường. Một nhiệm vụ tương tự là phát hiện tính mới: nó nhằm mục đích phát hiện các phiên bản mới trông khác với tất cả các phiên bản trong training set. Điều này đòi hỏi phải có một training set rất “sạch”, không có bất kỳ phiên bản nào mà bạn muốn thuật toán phát hiện. Ví dụ: nếu bạn có hàng nghìn bức ảnh về chó và 1\% trong số những bức ảnh này đại diện cho Chihuahua thì thuật toán phát hiện tính mới sẽ không coi các bức ảnh mới về Chihuahua là mới lạ. Mặt khác, các thuật toán phát hiện sự bất thường có thể coi những con chó này rất hiếm và khác biệt so với những con chó khác đến mức chúng có thể classification chúng là những con chó dị thường (không có ý xúc phạm đến Chihuahua).
 
-\noindent\textit{Hình 1-10. Phát hiện bất thường}
-
-Cuối cùng, một nhiệm vụ không giám sát phổ biến khác là học luật kết hợp, trong đó mục tiêu là đào sâu vào lượng lớn dữ liệu và khám phá các mối quan hệ thú vị giữa
-
-12 | Chương 1: Phong cảnh Machine Learning
+Cuối cùng, một nhiệm vụ không giám sát phổ biến khác là học luật kết hợp, trong đó mục tiêu là đào sâu vào lượng lớn dữ liệu và khám phá các mối quan hệ thú vị giữa các thuộc tính. Ví dụ: giả sử bạn sở hữu một siêu thị. Việc áp dụng quy tắc kết hợp trên nhật ký bán hàng của bạn có thể tiết lộ rằng những người mua nước sốt thịt nướng và khoai tây chiên cũng có xu hướng mua bít tết. Vì vậy, bạn có thể muốn đặt các mục này gần nhau.
 
 % --- page 43 ---
-4 Đó là khi hệ thống hoạt động hoàn hảo. Trong thực tế, nó thường tạo ra một vài cụm cho mỗi người và đôi khi trộn lẫn hai người trông giống nhau, vì vậy bạn có thể cần cung cấp một vài nhãn cho mỗi người và dọn sạch một số cụm theo cách thủ công.
+\subparagraph{Semisupervised learning}
 
-Thuộc tính. Ví dụ: giả sử bạn sở hữu một siêu thị. Việc áp dụng quy tắc kết hợp trên nhật ký bán hàng của bạn có thể tiết lộ rằng những người mua nước sốt thịt nướng và khoai tây chiên cũng có xu hướng mua bít tết. Vì vậy, bạn có thể muốn đặt các mục này gần nhau.
+Vì việc ghi nhãn dữ liệu thường tốn thời gian và chi phí nên bạn sẽ thường có nhiều trường hợp không được gắn nhãn và ít trường hợp được gắn nhãn. Một số thuật toán có thể xử lý dữ liệu được dán nhãn một phần. Điều này được gọi là semisupervised learning.
 
-Học bán giám sát
+Một số dịch vụ lưu trữ ảnh, chẳng hạn như Google Photos, là ví dụ điển hình cho điều này. Sau khi bạn upload tất cả ảnh gia đình của mình lên dịch vụ, dịch vụ sẽ tự động nhận ra rằng cùng một người A xuất hiện trong ảnh 1, 5 và 11, trong khi một người B khác xuất hiện trong ảnh 2, 5 và 7. Đây là phần không supervised của thuật toán (clustering). Bây giờ tất cả những gì hệ thống cần là bạn cho nó biết những người này là ai. Chỉ cần thêm một nhãn cho mỗi người và nó có thể đặt tên cho mọi người trong mỗi bức ảnh, điều này rất hữu ích cho việc tìm kiếm ảnh.
 
-Vì việc ghi nhãn dữ liệu thường tốn thời gian và chi phí nên bạn sẽ thường có nhiều trường hợp không được gắn nhãn và ít trường hợp được gắn nhãn. Một số thuật toán có thể xử lý dữ liệu được dán nhãn một phần. Điều này được gọi là học bán giám sát (Hình 1-11).
-
-\noindent\textit{Hình 1-11. Học bán giám sát với hai lớp (tam giác và hình vuông): các ví dụ không được gắn nhãn (hình tròn) giúp classification một thể hiện mới (dấu chéo) vào lớp tam giác thay vì lớp vuông, mặc dù nó gần với các ô vuông được gắn nhãn hơn}
-
-Một số dịch vụ lưu trữ ảnh, chẳng hạn như Google Photos, là ví dụ điển hình cho điều này. Sau khi bạn tải tất cả ảnh gia đình của mình lên dịch vụ, dịch vụ sẽ tự động nhận ra rằng cùng một người A xuất hiện trong ảnh 1, 5 và 11, trong khi một người B khác xuất hiện trong ảnh 2, 5 và 7. Đây là phần không supervised của thuật toán (clustering). Bây giờ tất cả những gì hệ thống cần là bạn cho nó biết những người này là ai. Chỉ cần thêm một nhãn cho mỗi người4 và nó có thể đặt tên cho mọi người trong mỗi bức ảnh, điều này rất hữu ích cho việc tìm kiếm ảnh.
-
-Hầu hết các thuật toán học bán giám sát là sự kết hợp của các thuật toán không giám sát và có giám sát. Ví dụ: mạng niềm tin sâu sắc (DBNs) dựa trên các thành phần không supervised được gọi là máy Boltzmann bị hạn chế (RBMs) xếp chồng lên nhau. RBMs được training tuần tự theo cách không giám sát, sau đó toàn bộ hệ thống được tuning bằng kỹ thuật supervised learning.
+Hầu hết các thuật toán semisupervised learning là sự kết hợp của các thuật toán unsupervised và supervised. Ví dụ: deep belief networks (DBNs) dựa trên các thành phần unsupervised được gọi là máy Boltzmann bị hạn chế (RBMs) xếp chồng lên nhau. RBMs được training tuần tự theo cách unsupervised, sau đó toàn bộ hệ thống được tuning bằng kỹ thuật supervised learning.
 
 % Types of Machine Learning Systems | 13
+Đó là khi hệ thống hoạt động hoàn hảo. Trong thực tế, nó thường tạo ra một vài cụm cho mỗi người và đôi khi trộn lẫn hai người trông giống nhau, vì vậy bạn có thể cần cung cấp một vài nhãn cho mỗi người và dọn sạch một số cụm theo cách thủ công.
+
 % --- page 44 ---
-Reinforcement Learning
+\subparagraph{Reinforcement Learning}
 
-Reinforcement Learning là một con thú rất khác. Hệ thống học tập, được gọi là tác nhân trong bối cảnh này, có thể quan sát môi trường, lựa chọn và thực hiện các hành động và nhận lại phần thưởng (hoặc hình phạt dưới dạng phần thưởng tiêu cực, như trong Hình 1-12). Sau đó, nó phải tự tìm hiểu đâu là chiến lược tốt nhất, được gọi là chính sách, để nhận được nhiều phần thưởng nhất theo thời gian. Chính sách xác định hành động nào mà tác nhân nên chọn khi ở trong một tình huống nhất định.
-
-\noindent\textit{Hình 1-12. Reinforcement Learning}
+Reinforcement Learning là một con thú rất khác. Learning system, được gọi là agent trong bối cảnh này, có thể quan sát môi trường, lựa chọn và thực hiện các hành động và nhận lại phần thưởng (hoặc hình phạt dưới dạng phần thưởng tiêu cực. Sau đó, nó phải tự tìm hiểu đâu là chiến lược tốt nhất, được gọi là chính sách, để nhận được nhiều phần thưởng nhất theo thời gian. Chính sách xác định hành động nào mà agent nên chọn khi ở trong một tình huống nhất định.
 
 Ví dụ: nhiều robot triển khai thuật toán Reinforcement Learning để học cách đi bộ. Chương trình AlphaGo của DeepMind cũng là một ví dụ điển hình về Reinforcement Learning: nó đã gây chú ý vào tháng 5 năm 2017 khi đánh bại nhà vô địch thế giới Ke Jie trong trò chơi cờ vây. Nó học được chính sách chiến thắng của mình bằng cách phân tích hàng triệu ván đấu và sau đó chơi nhiều ván đấu với chính nó. Lưu ý rằng việc học đã bị tắt trong trận đấu với nhà vô địch; AlphaGo chỉ đang áp dụng chính sách mà nó đã học được.
 
-Batch và học trực tuyến
+\paragraph{Batch Learning và Online Learning}
 
 Một tiêu chí khác được sử dụng để classification hệ thống Machine Learning là liệu hệ thống có thể học tăng dần từ luồng dữ liệu đến hay không.
 
-14 | Chương 1: Phong cảnh Machine Learning
-
 % --- page 45 ---
-Học Batch
+\subparagraph{Batch learning}
 
-Trong quá trình học batch, hệ thống không có khả năng học tăng dần: nó phải được training bằng cách sử dụng tất cả dữ liệu có sẵn. Việc này thường tốn nhiều thời gian và tài nguyên máy tính nên thường được thực hiện ngoại tuyến. Đầu tiên, hệ thống được training, sau đó được đưa vào sản xuất và chạy mà không cần học hỏi nữa; nó chỉ áp dụng những gì nó đã học được. Đây được gọi là học ngoại tuyến.
+Trong quá trình batch learning, hệ thống không có khả năng học tăng dần: nó phải được training bằng cách sử dụng tất cả dữ liệu có sẵn. Việc này thường tốn nhiều thời gian và tài nguyên máy tính nên thường được thực hiện ngoại tuyến. Đầu tiên, hệ thống được training, sau đó được đưa vào sản xuất và chạy mà không cần học hỏi nữa; nó chỉ áp dụng những gì nó đã học được. Đây được gọi là offline learning.
 
-Nếu bạn muốn hệ thống học batch biết về dữ liệu mới (chẳng hạn như một loại thư rác mới), bạn cần training phiên bản mới của hệ thống từ đầu trên dataset đầy đủ (không chỉ dữ liệu mới mà còn cả dữ liệu cũ), sau đó dừng hệ thống cũ và thay thế bằng hệ thống mới.
+Nếu bạn muốn hệ thống batch learning biết về dữ liệu mới (chẳng hạn như một loại thư rác mới), bạn cần training phiên bản mới của hệ thống từ đầu trên dataset đầy đủ (không chỉ dữ liệu mới mà còn cả dữ liệu cũ), sau đó dừng hệ thống cũ và thay thế bằng hệ thống mới.
 
-May mắn thay, toàn bộ quá trình training, đánh giá và khởi chạy hệ thống Machine Learning có thể được tự động hóa khá dễ dàng (như trong Hình 1-3), do đó, ngay cả hệ thống học tập batch cũng có thể thích ứng với sự thay đổi. Chỉ cần cập nhật dữ liệu và training phiên bản mới của hệ thống từ đầu thường xuyên nếu cần.
+May mắn thay, toàn bộ quá trình training, đánh giá và khởi chạy hệ thống Machine Learning có thể được tự động hóa khá dễ dàng, do đó, ngay cả hệ thống batch learning cũng có thể thích ứng với sự thay đổi. Chỉ cần cập nhật dữ liệu và training phiên bản mới của hệ thống từ đầu thường xuyên nếu cần.
 
 Giải pháp này đơn giản và thường hoạt động tốt, nhưng việc training bằng cách sử dụng bộ dữ liệu đầy đủ có thể mất nhiều giờ, vì vậy bạn thường chỉ training một hệ thống mới sau mỗi 24 giờ hoặc thậm chí chỉ hàng tuần. Nếu hệ thống của bạn cần thích ứng với dữ liệu thay đổi nhanh chóng (ví dụ: để dự đoán giá cổ phiếu), thì bạn cần một giải pháp phản ứng nhanh hơn.
 
-Ngoài ra, việc training trên toàn bộ dữ liệu đòi hỏi nhiều tài nguyên máy tính (CPU, dung lượng bộ nhớ, dung lượng ổ đĩa, I/O ổ đĩa, I/O mạng, v.v.). Nếu bạn có nhiều dữ liệu và bạn tự động hóa hệ thống của mình để training lại từ đầu mỗi ngày, điều đó sẽ khiến bạn tốn rất nhiều tiền. Nếu lượng dữ liệu khổng lồ, thậm chí có thể không sử dụng được thuật toán học batch.
+Ngoài ra, việc training trên toàn bộ dữ liệu đòi hỏi nhiều tài nguyên máy tính (CPU, dung lượng bộ nhớ, dung lượng ổ đĩa, I/O ổ đĩa, I/O mạng, v.v.). Nếu bạn có nhiều dữ liệu và bạn tự động hóa hệ thống của mình để training lại từ đầu mỗi ngày, điều đó sẽ khiến bạn tốn rất nhiều tiền. Nếu lượng dữ liệu khổng lồ, thậm chí có thể không sử dụng được thuật toán batch learning.
 
 Cuối cùng, nếu hệ thống của bạn cần có khả năng học tự chủ và có nguồn lực hạn chế (ví dụ: ứng dụng điện thoại thông minh hoặc xe tự hành trên sao Hỏa), thì việc mang theo một lượng lớn dữ liệu training và chiếm nhiều tài nguyên để training hàng giờ mỗi ngày là một sự lựa chọn tuyệt vời.
 
 May mắn thay, một lựa chọn tốt hơn trong tất cả các trường hợp này là sử dụng các thuật toán có khả năng học tăng dần.
 
-Học trực tuyến
+\subparagraph{Online learning}
 
-Trong học trực tuyến, bạn training hệ thống tăng dần bằng cách cung cấp cho hệ thống các phiên bản dữ liệu một cách tuần tự, riêng lẻ hoặc theo nhóm nhỏ được gọi là mini-batches. Mỗi bước học đều nhanh và rẻ, do đó hệ thống có thể tìm hiểu về dữ liệu mới một cách nhanh chóng khi nó đến (xem Hình 1-13).
+Trong online learning, bạn training hệ thống tăng dần bằng cách cung cấp cho hệ thống các phiên bản dữ liệu một cách tuần tự, riêng lẻ hoặc theo nhóm nhỏ được gọi là mini-batches. Mỗi bước học đều nhanh và rẻ, do đó hệ thống có thể tìm hiểu về dữ liệu mới một cách nhanh chóng khi nó đến.
 
 % Types of Machine Learning Systems | 15
 % --- page 46 ---
-\noindent\textit{Hình 1-13. Trong học tập trực tuyến, model được training và đưa vào sản xuất, sau đó nó tiếp tục học khi có dữ liệu mới}
+Online learning rất phù hợp với các hệ thống nhận dữ liệu dưới dạng luồng liên tục (ví dụ: giá cổ phiếu) và cần thích ứng với sự thay đổi nhanh chóng hoặc tự chủ. Đây cũng là một lựa chọn tốt nếu bạn có tài nguyên máy tính hạn chế: khi online learning system đã tìm hiểu về các phiên bản dữ liệu mới, nó không cần chúng nữa nên bạn có thể loại bỏ chúng (trừ khi bạn muốn có thể quay lại trạng thái trước đó và “phát lại” dữ liệu). Điều này có thể tiết kiệm một lượng lớn không gian.
 
-Học trực tuyến rất phù hợp với các hệ thống nhận dữ liệu dưới dạng luồng liên tục (ví dụ: giá cổ phiếu) và cần thích ứng với sự thay đổi nhanh chóng hoặc tự chủ. Đây cũng là một lựa chọn tốt nếu bạn có tài nguyên máy tính hạn chế: khi hệ thống học tập trực tuyến đã tìm hiểu về các phiên bản dữ liệu mới, nó không cần chúng nữa nên bạn có thể loại bỏ chúng (trừ khi bạn muốn có thể quay lại trạng thái trước đó và “phát lại” dữ liệu). Điều này có thể tiết kiệm một lượng lớn không gian.
+Các thuật toán online learning cũng có thể được sử dụng để training các hệ thống trên datasets khổng lồ không thể chứa vừa bộ nhớ chính của một máy (điều này được gọi là học ngoài lõi). Thuật toán load một phần dữ liệu, chạy bước training trên dữ liệu đó và lặp lại quy trình cho đến khi chạy trên tất cả dữ liệu.
 
-Các thuật toán học trực tuyến cũng có thể được sử dụng để training các hệ thống trên datasets khổng lồ không thể chứa vừa bộ nhớ chính của một máy (điều này được gọi là học ngoài lõi). Thuật toán tải một phần dữ liệu, chạy bước training trên dữ liệu đó và lặp lại quy trình cho đến khi chạy trên tất cả dữ liệu (xem Hình 1-14).
+Học tập bên ngoài thường được thực hiện ngoại tuyến (tức là không phải trên hệ thống trực tiếp), vì vậy online learning có thể là một cái tên khó hiểu. Hãy nghĩ về nó như việc học tập tăng dần.
 
-Học tập bên ngoài thường được thực hiện ngoại tuyến (tức là không phải trên hệ thống trực tiếp), vì vậy học trực tuyến có thể là một cái tên khó hiểu. Hãy nghĩ về nó như việc học tập tăng dần.
-
-Một parameter quan trọng của hệ thống học tập trực tuyến là tốc độ thích ứng với việc thay đổi dữ liệu: hệ thống này được gọi là learning rate. Nếu bạn đặt learning rate cao thì hệ thống của bạn sẽ nhanh chóng thích ứng với dữ liệu mới, nhưng nó cũng sẽ có xu hướng nhanh chóng quên dữ liệu cũ (bạn không muốn bộ lọc thư rác chỉ gắn cờ các loại thư rác mới nhất mà nó được hiển thị). Ngược lại, nếu bạn đặt learning rate thấp, hệ thống sẽ có quán tính lớn hơn; nghĩa là, nó sẽ học chậm hơn nhưng cũng sẽ ít nhạy cảm hơn với nhiễu trong dữ liệu mới hoặc với chuỗi các điểm dữ liệu không mang tính đại diện (các điểm ngoại lệ).
-
-16 | Chương 1: Phong cảnh Machine Learning
+Một parameter quan trọng của online learning systems là tốc độ thích ứng với việc thay đổi dữ liệu: hệ thống này được gọi là learning rate. Nếu bạn đặt learning rate cao thì hệ thống của bạn sẽ nhanh chóng thích ứng với dữ liệu mới, nhưng nó cũng sẽ có xu hướng nhanh chóng quên dữ liệu cũ (bạn không muốn bộ lọc thư rác chỉ gắn cờ các loại thư rác mới nhất mà nó được hiển thị). Ngược lại, nếu bạn đặt learning rate thấp, hệ thống sẽ có quán tính lớn hơn; nghĩa là, nó sẽ học chậm hơn nhưng cũng sẽ ít nhạy cảm hơn với nhiễu trong dữ liệu mới hoặc với chuỗi các điểm dữ liệu không mang tính đại diện (các điểm ngoại lệ).
 
 % --- page 47 ---
-\noindent\textit{Hình 1-14. Sử dụng học trực tuyến để xử lý datasets khổng lồ}
+Một thách thức lớn với việc online learning là nếu dữ liệu xấu được đưa vào hệ thống, hiệu suất của hệ thống sẽ giảm dần. Nếu đó là một hệ thống trực tiếp, khách hàng của bạn sẽ chú ý. Ví dụ: dữ liệu xấu có thể đến từ cảm biến bị trục trặc trên rô-bốt hoặc từ ai đó gửi thư rác vào công cụ tìm kiếm để cố gắng xếp hạng cao trong kết quả tìm kiếm. Để giảm thiểu rủi ro này, bạn cần giám sát chặt chẽ hệ thống của mình và tắt chế độ học tập ngay lập tức (và có thể trở lại trạng thái hoạt động trước đó) nếu bạn phát hiện thấy hiệu suất giảm sút. Bạn cũng có thể muốn theo dõi dữ liệu đầu vào và phản ứng với dữ liệu bất thường (ví dụ: sử dụng thuật toán phát hiện bất thường).
 
-Một thách thức lớn với việc học trực tuyến là nếu dữ liệu xấu được đưa vào hệ thống, hiệu suất của hệ thống sẽ giảm dần. Nếu đó là một hệ thống trực tiếp, khách hàng của bạn sẽ chú ý. Ví dụ: dữ liệu xấu có thể đến từ cảm biến bị trục trặc trên rô-bốt hoặc từ ai đó gửi thư rác vào công cụ tìm kiếm để cố gắng xếp hạng cao trong kết quả tìm kiếm. Để giảm thiểu rủi ro này, bạn cần giám sát chặt chẽ hệ thống của mình và tắt chế độ học tập ngay lập tức (và có thể trở lại trạng thái hoạt động trước đó) nếu bạn phát hiện thấy hiệu suất giảm sút. Bạn cũng có thể muốn theo dõi dữ liệu đầu vào và phản ứng với dữ liệu bất thường (ví dụ: sử dụng thuật toán phát hiện bất thường).
-
-\subsection{Học tập dựa trên ví dụ so với học tập dựa trên model}
+\paragraph{Instance-Based Learning so với Model-Based Learning}
 
 Một cách nữa để classification các hệ thống Machine Learning là cách chúng khái quát hóa. Hầu hết các nhiệm vụ của Machine Learning đều là đưa ra dự đoán. Điều này có nghĩa là với một số training examples, hệ thống cần có khả năng đưa ra dự đoán tốt cho các ví dụ (khái quát hóa) mà nó chưa từng thấy trước đây. Có thước đo hiệu suất tốt trên dữ liệu training là tốt nhưng chưa đủ; mục tiêu thực sự là hoạt động tốt trên các phiên bản mới.
 
-Có hai cách tiếp cận chính để khái quát hóa: học dựa trên individual và học dựa trên model.
+Có hai cách tiếp cận chính để khái quát hóa: instance-based learning và model-based learning.
 
-Học tập dựa trên phiên bản
+\subparagraph{Instance-based learning}
 
 Có lẽ hình thức học tập tầm thường nhất chỉ đơn giản là học thuộc lòng. Nếu bạn tạo bộ lọc thư rác theo cách này, nó sẽ chỉ gắn cờ tất cả các email giống hệt với những email đã được user gắn cờ—không phải là giải pháp tồi nhất nhưng chắc chắn không phải là giải pháp tốt nhất.
 
@@ -572,22 +516,14 @@ Có lẽ hình thức học tập tầm thường nhất chỉ đơn giản là 
 % --- page 48 ---
 Thay vì chỉ gắn cờ các email giống hệt với các email spam đã biết, bộ lọc thư rác của bạn có thể được lập trình để gắn cờ các email rất giống với các email spam đã biết. Điều này đòi hỏi thước đo về sự giống nhau giữa hai email. Một thước đo về sự giống nhau (rất cơ bản) giữa hai email có thể là đếm số từ chung giữa chúng. Hệ thống sẽ gắn cờ một email là thư rác nếu nó có nhiều từ chung với một email spam đã biết.
 
-Đây được gọi là học dựa trên individual: hệ thống học thuộc lòng các ví dụ, sau đó khái quát hóa các trường hợp mới bằng cách sử dụng thước đo độ tương tự để so sánh chúng với các ví dụ đã học (hoặc một tập hợp con của chúng). Ví dụ, trong Hình 1-15, phiên bản mới sẽ được được được được được được được phân loại là một hình tam giác vì phần lớn các phiên bản tương tự nhất đều thuộc về lớp đó.
+Đây được gọi là instance-based learning: hệ thống học thuộc lòng các ví dụ, sau đó khái quát hóa các trường hợp mới bằng cách sử dụng thước đo độ tương tự để so sánh chúng với các ví dụ đã học (hoặc một tập hợp con của chúng). Ví dụ, phiên bản mới sẽ được được được được được được được phân loại là một hình tam giác vì phần lớn các phiên bản tương tự nhất đều thuộc về lớp đó.
 
-\noindent\textit{Hình 1-15. Học tập dựa trên phiên bản}
+\subparagraph{Model-based learning}
 
-Học tập dựa trên Model
-
-Một cách khác để khái quát hóa từ một tập hợp các ví dụ là xây dựng model của các ví dụ này và sau đó sử dụng model đó để đưa ra dự đoán. Đây được gọi là học tập dựa trên model (Hình 1-16).
-
-\noindent\textit{Hình 1-16. Học tập dựa trên Model}
-
-18 | Chương 1: Phong cảnh Machine Learning
+Một cách khác để khái quát hóa từ một tập hợp các ví dụ là xây dựng model của các ví dụ này và sau đó sử dụng model đó để đưa ra dự đoán. Đây được gọi là model-based learning.
 
 % --- page 49 ---
 Ví dụ: giả sử bạn muốn biết liệu tiền có làm mọi người hạnh phúc hay không, vì vậy bạn tải xuống dữ liệu Chỉ số cuộc sống tốt hơn từ trang web của OECD và số liệu thống kê về tổng sản phẩm quốc nội (GDP) bình quân đầu người từ trang web của IMF. Sau đó, bạn nối các bảng và sắp xếp theo GDP bình quân đầu người. Bảng 1-1 cho thấy một đoạn trích về những gì bạn nhận được.
-
-\noindent\textit{Bảng 1-1. Tiền có làm con người hạnh phúc hơn không?}
 
 Quốc gia GDP bình quân đầu người (USD) Sự hài lòng về cuộc sống
 
@@ -601,27 +537,21 @@ Pháp 37.675 6,5
 
 Hoa Kỳ 55.805 7,2
 
-Hãy vẽ biểu đồ dữ liệu cho các quốc gia này (Hình 1-17).
+Hãy vẽ biểu đồ dữ liệu cho các quốc gia này.
 
-\noindent\textit{Hình 1-17. Bạn có thấy một xu hướng ở đây?}
+Có vẻ như có một xu hướng ở đây! Mặc dù dữ liệu không ổn định (tức là một phần ngẫu nhiên), nhưng có vẻ như mức độ hài lòng về cuộc sống tăng lên ít nhiều tuyến tính khi GDP bình quân đầu người của quốc gia tăng lên. Vì vậy, bạn quyết định model sự hài lòng trong cuộc sống như một hàm tuyến tính của GDP bình quân đầu người. Bước này được gọi là lựa chọn model: bạn đã chọn một model tuyến tính có mức độ hài lòng với cuộc sống chỉ với một thuộc tính, GDP bình quân đầu người.
 
-Có vẻ như có một xu hướng ở đây! Mặc dù dữ liệu không ổn định (tức là một phần ngẫu nhiên), nhưng có vẻ như mức độ hài lòng về cuộc sống tăng lên ít nhiều tuyến tính khi GDP bình quân đầu người của quốc gia tăng lên. Vì vậy, bạn quyết định model sự hài lòng trong cuộc sống như một hàm tuyến tính của GDP bình quân đầu người. Bước này được gọi là lựa chọn model: bạn đã chọn một model tuyến tính có mức độ hài lòng với cuộc sống chỉ với một thuộc tính, GDP bình quân đầu người (Phương trình 1-1).
-
-Phương trình 1-1. Model life\_satisfaction tuyến tính đơn giản = θ0 + θ1 × GDP\_per\_capita
+Phương trình 1-1. Model tuyến tính đơn giản life\_satisfaction = theta\_0 + theta\_1 × GDP\_per\_capita
 
 % Types of Machine Learning Systems | 19
 % --- page 50 ---
-5 Theo quy ước, chữ cái Hy Lạp θ (theta) thường được sử dụng để biểu thị model parameters.
+Theo quy ước, chữ cái Hy Lạp theta (theta) thường được sử dụng để biểu thị model parameters.
 
-Model này có hai model parameters, θ0 và θ1.5 Bằng cách điều chỉnh các parameters này, bạn có thể làm cho model của bạn biểu thị bất kỳ hàm tuyến tính nào, như minh họa trong Hình 1-18.
+Model này có hai model parameters, theta\_0 và theta\_1. Bằng cách điều chỉnh các parameters này, bạn có thể làm cho model của bạn biểu thị bất kỳ hàm tuyến tính nào
 
-\noindent\textit{Hình 1-18. Một vài models tuyến tính có thể có}
+Trước khi có thể sử dụng model, bạn cần xác định các giá trị parameter theta\_0 và theta\_1. Làm cách nào bạn có thể biết giá trị nào sẽ giúp model của bạn hoạt động tốt nhất? Để trả lời câu hỏi này, bạn cần chỉ định thước đo hiệu suất. Bạn có thể xác định hàm tiện ích (hoặc hàm phù hợp) để đo lường mức độ tốt của model của bạn hoặc bạn có thể xác định hàm chi phí để đo lường mức độ tệ hại của nó. Đối với các bài toán Linear Regression, mọi người thường sử dụng hàm chi phí để đo khoảng cách giữa các dự đoán của model tuyến tính và training examples; mục tiêu là giảm thiểu khoảng cách này.
 
-Trước khi có thể sử dụng model, bạn cần xác định các giá trị parameter θ0 và θ1. Làm cách nào bạn có thể biết giá trị nào sẽ giúp model của bạn hoạt động tốt nhất? Để trả lời câu hỏi này, bạn cần chỉ định thước đo hiệu suất. Bạn có thể xác định hàm tiện ích (hoặc hàm phù hợp) để đo lường mức độ tốt của model của bạn hoặc bạn có thể xác định hàm chi phí để đo lường mức độ tệ hại của nó. Đối với các bài toán Linear Regression, mọi người thường sử dụng hàm chi phí để đo khoảng cách giữa các dự đoán của model tuyến tính và training examples; mục tiêu là giảm thiểu khoảng cách này.
+Đây là lúc thuật toán Linear Regression xuất hiện: bạn cung cấp cho nó training examples của mình và nó tìm thấy parameters làm cho model tuyến tính phù hợp nhất với dữ liệu của bạn. Điều này được gọi là training model. Trong trường hợp của chúng ta, thuật toán nhận thấy rằng các giá trị parameter tối ưu là theta\_0 = 4,85 và theta\_1 = 4,91 × 10–5.
 
-Đây là lúc thuật toán Linear Regression xuất hiện: bạn cung cấp cho nó training examples của mình và nó tìm thấy parameters làm cho model tuyến tính phù hợp nhất với dữ liệu của bạn. Điều này được gọi là training model. Trong trường hợp của chúng ta, thuật toán nhận thấy rằng các giá trị parameter tối ưu là θ0 = 4,85 và θ1 = 4,91 × 10–5.
-
-Điều gây nhầm lẫn là cùng một từ “model” có thể đề cập đến một loại model (ví dụ: Linear Regression), đến kiến trúc model được chỉ định đầy đủ (ví dụ: Linear Regression với một đầu vào và một đầu ra) hoặc đến model đã được training cuối cùng sẵn sàng để sử dụng cho các dự đoán (ví dụ: Regression tuyến tính với một đầu vào và một đầu ra, sử dụng θ0 = 4,85 và θ1 = 4,91 × 10–5). Lựa chọn Model bao gồm việc chọn loại model và chỉ định đầy đủ kiến ​​trúc của nó. Training model có nghĩa là chạy thuật toán để tìm model parameters phù hợp nhất với dữ liệu training (và hy vọng đưa ra dự đoán tốt về dữ liệu mới).
-
-20 | Chương 1: Phong cảnh Machine Learning
+Điều gây nhầm lẫn là cùng một từ “model” có thể đề cập đến một loại model (ví dụ: Linear Regression), đến kiến trúc model được chỉ định đầy đủ (ví dụ: Linear Regression với một đầu vào và một đầu ra) hoặc đến model đã được training cuối cùng sẵn sàng để sử dụng cho các dự đoán (ví dụ: Regression tuyến tính với một đầu vào và một đầu ra, sử dụng theta\_0 = 4,85 và theta\_1 = 4,91 × 10–5). Lựa chọn Model bao gồm việc chọn loại model và chỉ định đầy đủ kiến ​​trúc của nó. Training model có nghĩa là chạy thuật toán để tìm model parameters phù hợp nhất với dữ liệu training (và hy vọng đưa ra dự đoán tốt về dữ liệu mới).
 
