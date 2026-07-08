@@ -1,0 +1,357 @@
+\documentclass[12pt,a4paper]{article}
+
+% --- Metadata ---
+\def\courseshortheader{HỌC SÂU --- D2L}
+\def\coverbookline{Dive into Deep Learning}
+\def\covermaintitle{Hồi quy tuyến tính}
+\def\coversubtitle{Giáo án lý thuyết --- Chương 3.1 (Linear Regression)}
+
+\input{../../../../toan_dai_hoc/nhom_5_xac_suat_thong_ke/_template/preamble.tex}
+
+\begin{document}
+
+\input{../../../../toan_dai_hoc/nhom_5_xac_suat_thong_ke/_template/trang_bia.tex}
+\newpage
+\tableofcontents
+\newpage
+
+\section*{Lời nói đầu}
+\addcontentsline{toc}{section}{Lời nói đầu}
+
+Tài liệu này tổng hợp và viết lại nội dung \textbf{Chương 3.1 --- Linear Regression} trong sách \emph{Dive into Deep Learning} (Aston Zhang, Zachary C. Lipton, Mu Li, Alexander J. Smola), dựa trên:
+\begin{itemize}
+  \item Bản tiếng Anh: \url{https://d2l.ai/chapter\_linear-regression/linear-regression.html}
+  \item Bản tiếng Việt: \url{https://vi.d2l.ai/chapter\_linear-networks/linear-regression.html}
+\end{itemize}
+
+Mục tiêu: trình bày đầy đủ lý thuyết hồi quy tuyến tính --- từ mô hình, hàm mất mát, nghiệm phân tích, gradient descent, vector hóa, liên hệ phân phối chuẩn, đến cách nhìn mạng nơ-ron một lớp --- theo cùng phong cách giáo án (động cơ $\to$ định nghĩa $\to$ công thức $\to$ ví dụ $\to$ tổng kết).
+
+\newpage
+
+%======================================================================
+\section{Hồi quy và bài toán dự đoán số}
+%======================================================================
+
+\begin{dongco}[title={Động cơ --- Khi nào cần hồi quy?}]
+\textbf{Hồi quy} (regression) là tập các phương pháp mô hình hóa mối quan hệ giữa một hoặc nhiều biến độc lập và một biến phụ thuộc. Trong khoa học tự nhiên và xã hội, mục đích thường là \emph{mô tả} (characterize) mối liên hệ; trong \textbf{học máy}, mục đích thường là \emph{dự đoán}.
+
+Bài toán hồi quy xuất hiện khi ta muốn dự đoán một \textbf{giá trị số}: giá nhà, giá cổ phiếu, thời gian nằm viện, nhu cầu bán lẻ, \ldots\ Không phải mọi bài toán dự đoán đều là hồi quy cổ điển --- sau này ta sẽ gặp \textbf{phân loại} (classification), nơi mục tiêu là dự đoán nhãn thuộc một tập hạng mục.
+\end{dongco}
+
+\subsection{Ví dụ: dự đoán giá nhà}
+
+Giả sử ta muốn ước lượng \textbf{giá nhà} (USD) từ \textbf{diện tích} (ft$^2$) và \textbf{tuổi nhà} (năm). Để xây mô hình, cần tập dữ liệu gồm giá bán, diện tích, tuổi của từng căn đã bán.
+
+\begin{dinhnghia}[title={Thuật ngữ học máy trong hồi quy}]
+\begin{itemize}
+  \item \textbf{Tập huấn luyện} (training set / training dataset): toàn bộ dữ liệu dùng để học mô hình.
+  \item \textbf{Mẫu / ví dụ} (example, data point, instance, sample): một hàng dữ liệu (một lần bán nhà).
+  \item \textbf{Nhãn / mục tiêu} (label, target): đại lượng cần dự đoán (giá nhà) --- ký hiệu $y$.
+  \item \textbf{Đặc trưng / biến giải thích} (feature, covariate): biến đầu vào (diện tích, tuổi) --- vector $\mathbf{x}$.
+\end{itemize}
+Ký hiệu: $n$ = số mẫu; mẫu thứ $i$: $\mathbf{x}^{(i)} = [x_1^{(i)}, x_2^{(i)}, \ldots]^\top$, nhãn $y^{(i)}$.
+\end{dinhnghia}
+
+\newpage
+
+%======================================================================
+\section{Các yếu tố cơ bản của hồi quy tuyến tính}
+%======================================================================
+
+\begin{ynghia}[title={Hồi quy tuyến tính là gì?}]
+Hồi quy tuyến tính (linear regression) là công cụ \textbf{đơn giản nhất và phổ biến nhất} cho bài toán hồi quy, có từ đầu thế kỷ 19 (Gauss, 1809; Legendre, 1805). Hai giả định cốt lõi:
+\begin{enumerate}
+  \item Mối quan hệ giữa $\mathbf{x}$ và $y$ \textbf{xấp xỉ tuyến tính}: kỳ vọng có điều kiện $E[Y \mid X=\mathbf{x}]$ biểu diễn được dưới dạng tổng có trọng số của các đặc trưng.
+  \item \textbf{Nhiễu quan sát} được cư xử ``đẹp'' --- thường giả định phân phối Gaussian.
+\end{enumerate}
+\end{ynghia}
+
+\subsection{Mô hình tuyến tính}
+
+\begin{dinhnghia}[title={Mô hình affine / tuyến tính}]
+Giả định tuyến tính nghĩa là giá (mục tiêu) là tổng có trọng số của các đặc trưng:
+\begin{equation}\label{eq:price-scalar}
+  \mathrm{price} = w_{\mathrm{area}} \cdot \mathrm{area} + w_{\mathrm{age}} \cdot \mathrm{age} + b.
+\end{equation}
+$w_{\mathrm{area}}$, $w_{\mathrm{age}}$ là \textbf{trọng số} (weights); $b$ là \textbf{hệ số chặn} (bias, offset, intercept). Trọng số đo mức ảnh hưởng của từng đặc trưng; bias cho giá trị dự đoán khi mọi đặc trưng bằng 0 (dù thực tế không có nhà diện tích 0, bias vẫn cần để biểu diễn mọi hàm affine, không chỉ đường thẳng qua gốc).
+
+Công thức \eqref{eq:price-scalar} là \textbf{phép biến đổi affine}: tổng có trọng số tuyến tính cộng hằng số dịch chuyển.
+\end{dinhnghia}
+
+Với $d$ đặc trưng, dự đoán $\hat{y}$ (``mũ'' = ước lượng):
+\begin{align}
+  \hat{y} &= w_1 x_1 + \cdots + w_d x_d + b, \label{eq:scalar}\\
+  \hat{y} &= \mathbf{w}^\top \mathbf{x} + b, \quad \mathbf{w}, \mathbf{x} \in \mathbb{R}^d. \label{eq:dot}
+\end{align}
+
+\begin{dinhnghia}[title={Ma trận thiết kế}]
+Gom $n$ mẫu vào \textbf{ma trận thiết kế} $\mathbf{X} \in \mathbb{R}^{n \times d}$: mỗi \emph{hàng} là một mẫu, mỗi \emph{cột} là một đặc trưng. Vector nhãn $\mathbf{y} \in \mathbb{R}^n$, vector dự đoán $\hat{\mathbf{y}} \in \mathbb{R}^n$:
+\begin{equation}\label{eq:matrix}
+  \hat{\mathbf{y}} = \mathbf{X}\mathbf{w} + b
+\end{equation}
+(broadcasting khi cộng $b$ vào từng hàng). Mục tiêu: chọn $\mathbf{w}, b$ sao cho trên dữ liệu mới cùng phân phối với $\mathbf{X}$, dự đoán nhãn có sai số kỳ vọng nhỏ nhất.
+\end{dinhnghia}
+
+\begin{luuy}[title={Nhiễu đo lường}]
+Dù quan hệ thật là tuyến tính, hiếm khi có $y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)} + b$ chính xác với mọi $i$ --- sai số đo, nhiễu môi trường. Ta mô hình hóa:
+\[
+  y^{(i)} = \mathbf{w}^\top \mathbf{x}^{(i)} + b + \epsilon^{(i)}.
+\]
+Trước khi tối ưu cần: (i) đo chất lượng mô hình; (ii) quy trình cập nhật tham số.
+\end{luuy}
+
+\subsection{Hàm mất mát (loss function)}
+
+\begin{dinhnghia}[title={Sai số bình phương}]
+Hàm mất đo khoảng cách giữa dự đoán và nhãn thật; giá trị không âm, dự đoán hoàn hảo $\Rightarrow$ loss $= 0$. Với hồi quy, phổ biến nhất là \textbf{sai số bình phương} (squared error). Mẫu $i$:
+\begin{equation}\label{eq:loss-i}
+  l^{(i)}(\mathbf{w}, b) = \frac{1}{2}\left(\hat{y}^{(i)} - y^{(i)}\right)^2
+  = \frac{1}{2}\left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)^2.
+\end{equation}
+Hệ số $\frac{1}{2}$ tiện khi lấy đạo hàm (triệt tiêu hệ số 2). Trên toàn tập $n$ mẫu:
+\begin{equation}\label{eq:loss-total}
+  L(\mathbf{w}, b) = \frac{1}{n}\sum_{i=1}^n l^{(i)}(\mathbf{w}, b)
+  = \frac{1}{2n}\sum_{i=1}^n \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right)^2.
+\end{equation}
+\end{dinhnghia}
+
+\begin{ynghia}[title={Tính bậc hai của loss}]
+Sai lệch lớn bị \textbf{phạt nặng hơn} (bình phương) --- khuyến khích tránh lỗi lớn, nhưng cũng nhạy với điểm ngoại lai (outlier). Hình minh họa trên dữ liệu một chiều: đường thẳng ``cắt giữa'' các điểm, các đoạn thẳng đứng thể hiện sai số từng điểm.
+\end{ynghia}
+
+\begin{congthuc}[title={Bài toán tối ưu}]
+Tìm tham số tối ưu:
+\begin{equation}\label{eq:argmin}
+  \mathbf{w}^*, b^* = \operatorname*{argmin}_{\mathbf{w},\, b}\ L(\mathbf{w}, b).
+\end{equation}
+\end{congthuc}
+
+\subsection{Nghiệm phân tích (analytic solution)}
+
+\begin{dinhly}[title={Công thức bình phương tối thiểu (normal equation)}]
+Gộp bias vào $\mathbf{w}$ bằng cách thêm cột toàn 1 vào $\mathbf{X}$. Bài toán: $\min_{\mathbf{w}} \|\mathbf{y} - \mathbf{X}\mathbf{w}\|^2$. Nếu $\mathbf{X}$ full rank (các cột độc lập tuyến tính), đạo hàm bằng 0 cho:
+\begin{equation}\label{eq:normal}
+  \mathbf{X}^\top \mathbf{X}\,\mathbf{w} = \mathbf{X}^\top \mathbf{y}
+  \quad\Rightarrow\quad
+  \mathbf{w}^* = (\mathbf{X}^\top \mathbf{X})^{-1}\mathbf{X}^\top \mathbf{y}.
+\end{equation}
+Nghiệm duy nhất khi $\mathbf{X}^\top\mathbf{X}$ khả nghịch.
+\end{dinhly}
+
+\begin{luuy}[title={Hạn chế nghiệm phân tích}]
+Nghiệm phân tích hiếm gặp trong học sâu --- điều kiện quá hạn chế. Tuy nhiên với hồi quy tuyến tính, công thức \eqref{eq:normal} là nền tảng lý thuyết quan trọng.
+\end{luuy}
+
+\subsection{Minibatch stochastic gradient descent}
+
+\begin{phuongphap}[title={Gradient descent và biến thể}]
+Khi không có nghiệm đóng, ta \textbf{lặp} cập nhật tham số theo hướng \textbf{giảm} loss --- thuật toán \textbf{gradient descent} (GD), nền tảng tối ưu hóa học sâu.
+
+\begin{itemize}
+  \item \textbf{Full batch GD}: đạo hàm trên \emph{toàn bộ} tập --- chậm, một epoch mới cập nhật một lần.
+  \item \textbf{SGD}: mỗi bước chỉ một mẫu --- nhanh về mặt lý thuyết thống kê nhưng kém hiệu quả tính toán (không tận dụng song song ma trận--vector).
+  \item \textbf{Minibatch SGD}: mỗi bước lấy ngẫu nhiên tập con $\mathcal{B}_t$, $|\mathcal{B}|$ thường 32--256 (bội số lũy thừa 2). Cân bằng tốc độ phần cứng và ổn định thống kê; một số lớp (batch normalization) cần $|\mathcal{B}|>1$.
+\end{itemize}
+
+Mỗi vòng lặp $t$, lấy minibatch $\mathcal{B}_t$, cập nhật:
+\begin{equation}\label{eq:sgd}
+  (\mathbf{w}, b) \leftarrow (\mathbf{w}, b)
+  - \frac{\eta}{|\mathcal{B}_t|} \sum_{i \in \mathcal{B}_t} \partial_{(\mathbf{w},b)}\, l^{(i)}(\mathbf{w}, b),
+\end{equation}
+$\eta$ = \textbf{learning rate} (tốc độ học). Với loss bậc hai và mô hình affine, gradient có dạng đóng:
+\begin{align}
+  \mathbf{w} &\leftarrow \mathbf{w} - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}
+    \mathbf{x}^{(i)}\left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right), \label{eq:sgd-w}\\
+  b &\leftarrow b - \frac{\eta}{|\mathcal{B}|} \sum_{i \in \mathcal{B}}
+    \left(\mathbf{w}^\top \mathbf{x}^{(i)} + b - y^{(i)}\right). \label{eq:sgd-b}
+\end{align}
+\end{phuongphap}
+
+\begin{dinhnghia}[title={Hyperparameter}]
+$|\mathcal{B}|$ và $\eta$ do người dùng chọn, \textbf{không} học từ vòng lặp training --- gọi là \textbf{siêu tham số} (hyperparameter). Có thể tinh chỉnh tự động (Bayesian optimization) hoặc thủ công trên \textbf{tập xác thực} (validation set).
+
+Sau $T$ vòng (hoặc đến khi dừng), ghi nhận $\hat{\mathbf{w}}, \hat{b}$. Ngay cả khi dữ liệu tuyến tính không nhiễu, tham số thu được thường \textbf{không} đúng bằng nghiệm tối ưu lý thuyết (hội tụ hữu hạn bước, minibatch ngẫu nhiên).
+\end{dinhnghia}
+
+\begin{ynghia}[title={Tối thiểu toàn cục và khái quát hóa}]
+Hồi quy tuyến tính (khi $\mathbf{X}^\top\mathbf{X}$ khả nghịch) có \textbf{một cực tiểu toàn cục}. Mạng sâu có nhiều điểm yên và cực tiểu cục bộ. Thực tế, ta thường chỉ cần tham số cho dự đoán \textbf{chính xác trên dữ liệu mới} --- thách thức \textbf{khái quát hóa} (generalization), không phải fit hoàn hảo tập huấn luyện.
+\end{ynghia}
+
+\subsection{Dự đoán (prediction)}
+
+Với mô hình đã học $\hat{\mathbf{w}}^\top \mathbf{x} + \hat{b}$, ta dự đoán giá nhà mới từ diện tích $x_1$, tuổi $x_2$. Trong học sâu, giai đoạn này đôi khi gọi \textbf{inference}; trong thống kê, ``inference'' thường chỉ \textbf{ước lượng tham số}. Tài liệu dùng thuật ngữ \textbf{prediction} để tránh nhầm lẫn.
+
+\newpage
+
+%======================================================================
+\section{Vector hóa cho tốc độ}
+%======================================================================
+
+\begin{dongco}[title={Tại sao vector hóa?}]
+Khi huấn luyện, ta xử lý \textbf{cả minibatch} cùng lúc. Viết vòng \texttt{for} Python trên từng phần tử chậm hơn \textbf{rất nhiều} so với phép cộng vector hóa (+) gọi thư viện đại số tuyến tính (NumPy, PyTorch, \ldots).
+
+Ví dụ: hai vector 10\,000 chiều toàn 1.
+\begin{itemize}
+  \item Cộng từng phần tử bằng \texttt{for}: thứ tự giây (tùy framework).
+  \item \texttt{d = a + b}: thứ tự \textbf{milli giây} --- tăng tốc hàng trăm đến hàng nghìn lần.
+\end{itemize}
+Vector hóa đẩy phép toán xuống thư viện tối ưu (BLAS), giảm lỗi lập trình và tăng khả năng tái sử dụng mã.
+\end{dongco}
+
+\begin{phuongphap}[title={Lớp Timer (D2L)}]
+Sách D2L dùng lớp \texttt{Timer} để đo nhiều lần chạy: \texttt{start()}, \texttt{stop()}, \texttt{avg()}, \texttt{sum()}, \texttt{cumsum()} --- tiện so sánh for-loop và phép toán vector.
+\end{phuongphap}
+
+\newpage
+
+%======================================================================
+\section{Phân phối chuẩn và loss bình phương}
+%======================================================================
+
+\begin{ynghia}[title={Động lực xác suất cho squared loss}]
+Ngoài lý do thực tiễn (ước lượng $E[Y\mid X]$ khi quan hệ tuyến tính, phạt outlier), ta có thể \textbf{giả định xác suất} cho nhiễu. Gauss (và Legendre) đặt nền hồi quy tuyến tính; phân phối chuẩn (Gaussian) gắn chặt với squared loss.
+\end{ynghia}
+
+\subsection{Phân phối chuẩn}
+
+\begin{congthuc}[title={Mật độ Gaussian}]
+Phân phối chuẩn với trung bình $\mu$, phương sai $\sigma^2$ (độ lệch chuẩn $\sigma$):
+\begin{equation}\label{eq:gauss}
+  p(x) = \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left(-\frac{1}{2\sigma^2}(x - \mu)^2\right).
+\end{equation}
+Đổi $\mu$ $\Rightarrow$ dịch theo trục $x$; tăng $\sigma$ $\Rightarrow$ phân phối dẹt, đỉnh thấp hơn.
+\end{congthuc}
+
+\subsection{Mô hình nhiễu Gaussian và MLE}
+
+Giả sử quan sát có nhiễu cộng Gaussian:
+\begin{equation}\label{eq:noise-model}
+  y = \mathbf{w}^\top \mathbf{x} + b + \epsilon,
+  \qquad \epsilon \sim \mathcal{N}(0, \sigma^2).
+\end{equation}
+Likelihood của $y$ cho $\mathbf{x}$ cố định:
+\begin{equation}\label{eq:likelihood}
+  P(y \mid \mathbf{x})
+  = \frac{1}{\sqrt{2\pi\sigma^2}}
+  \exp\left(-\frac{1}{2\sigma^2}\left(y - \mathbf{w}^\top \mathbf{x} - b\right)^2\right).
+\end{equation}
+Trên toàn dữ liệu (các cặp độc lập):
+\begin{equation}\label{eq:likelihood-all}
+  P(\mathbf{y} \mid \mathbf{X}) = \prod_{i=1}^n p\!\left(y^{(i)} \mid \mathbf{x}^{(i)}\right).
+\end{equation}
+Theo \textbf{nguyên lý hợp lý cực đại} (maximum likelihood), chọn $\mathbf{w}, b$ tối đa hóa $P(\mathbf{y}\mid\mathbf{X})$. Tương đương \textbf{tối thiểu hóa negative log-likelihood}:
+\begin{equation}\label{eq:nll}
+  -\log P(\mathbf{y} \mid \mathbf{X})
+  = \sum_{i=1}^n \frac{1}{2}\log(2\pi\sigma^2)
+  + \frac{1}{2\sigma^2}\left(y^{(i)} - \mathbf{w}^\top \mathbf{x}^{(i)} - b\right)^2.
+\end{equation}
+Nếu $\sigma$ cố định, số hạng đầu không phụ thuộc $\mathbf{w}, b$; số hạng thứ hai trùng (nhân hằng số) với \textbf{MSE} trong \eqref{eq:loss-total}. Vậy:
+\begin{tinhchat}[title={MSE $\Leftrightarrow$ MLE dưới nhiễu Gaussian}]
+Tối thiểu hóa \textbf{trung bình sai số bình phương} tương đương ước lượng hợp lý cực đại mô hình tuyến tính với giả thiết nhiễu cộng Gaussian. Nghiệm không phụ thuộc $\sigma$.
+\end{tinhchat}
+
+\newpage
+
+%======================================================================
+\section{Hồi quy tuyến tính như mạng nơ-ron}
+%======================================================================
+
+\begin{ynghia}[title={Mô hình tuyến tính trong ngôn ngữ mạng nơ-ron}]
+Mạng nơ-ron đủ biểu đạt để \textbf{bào hàm} (subsume) mô hình tuyến tính: mỗi đặc trưng là một nơ-ron đầu vào, nối thẳng tới đầu ra. Sơ đồ nhấn mạnh \textbf{topology} (ai nối ai), không vẽ giá trị cụ thể của trọng số.
+\end{ynghia}
+
+\begin{dinhnghia}[title={Mạng một lớp kết nối đầy đủ}]
+Đầu vào $x_1, \ldots, x_d$ $\Rightarrow$ số chiều đặc trưng $d$. Đầu ra $o_1$ (một giá trị số) $\Rightarrow$ một nơ-ron đầu ra. Giá trị đầu vào \textbf{cho trước}; chỉ có một nơ-ron \textbf{tính toán}. Thường \textbf{không đếm lớp đầu vào} khi nói số lớp $\Rightarrow$ hồi quy tuyến tính là mạng \textbf{một lớp} (single-layer), \textbf{kết nối đầy đủ} (fully connected / dense) từ đặc trưng tới đầu ra.
+\end{dinhnghia}
+
+\subsection{Sinh học: nơ-ron thật và McCulloch--Pitts}
+
+\begin{ynghia}[title={Liên hệ sinh học (không phải động lực chính ngày nay)}]
+Hồi quy tuyến tính (1795) trước khoa học thần kinh tính toán, nhưng McCulloch và Pitts (1940s) mô hình hóa nơ-ron nhân tạo tương tự nơ-ron sinh học:
+\begin{itemize}
+  \item \textbf{Dendrite}: nhận tín hiệu $x_i$ từ nơ-ron khác hoặc cảm biến.
+  \item \textbf{Synaptic weights} $w_i$: trọng số hóa ảnh hưởng ($x_i w_i$).
+  \item \textbf{Nucleus}: tổng hợp $y = \sum_i x_i w_i + b$.
+  \item \textbf{Axon}: truyền $y$ (có thể qua hàm phi tuyến $\sigma(y)$) tới cơ bắp hoặc nơ-ron khác.
+\end{itemize}
+Ý tưởng: nhiều đơn vị kết hợi đúng cách có thể tạo hành vi phức tạp hơn một nơ-ron. Tuy nhiên, học sâu hiện đại lấy cảm hứng mạnh từ toán, thống kê, khoa học máy tính --- Russell \& Norvig (2016): máy bay lấy cảm hứng từ chim nhưng điểu học không còn là động lực chính của hàng không.
+\end{ynghia}
+
+\newpage
+
+%======================================================================
+\section{Tổng kết}
+%======================================================================
+
+\begin{tongket}[title={Chương 3.1 --- Những điểm cần nhớ}]
+\begin{enumerate}
+  \item \textbf{Hồi quy tuyến tính}: chọn $\mathbf{w}, b$ để tối thiểu squared loss trên tập huấn luyện; mô hình $\hat{y} = \mathbf{w}^\top\mathbf{x} + b$.
+  \item \textbf{Thành phần học máy}: dữ liệu, mô hình, hàm mất mát, thuật toán tối ưu (thường minibatch SGD).
+  \item \textbf{Nghiệm phân tích}: $\mathbf{w}^* = (\mathbf{X}^\top\mathbf{X})^{-1}\mathbf{X}^\top\mathbf{y}$ khi khả nghịch.
+  \item \textbf{Vector hóa}: nhanh hơn và ít lỗi hơn vòng lặp Python.
+  \item \textbf{MSE} $\Leftrightarrow$ MLE với nhiễu Gaussian cộng.
+  \item \textbf{Mạng nơ-ron}: hồi quy tuyến tính = một lớp kết nối đầy đủ; là bước đệm tới mạng sâu (parametric form, loss khả vi, SGD, đánh giá trên dữ liệu mới).
+\end{enumerate}
+\end{tongket}
+
+\newpage
+
+%======================================================================
+\section{Bài tập (theo D2L 3.1.6)}
+%======================================================================
+
+\begin{enumerate}
+  \item Cho dữ liệu $x_1, \ldots, x_n \in \mathbb{R}$. Tìm $b$ tối thiểu hóa $\sum_i (x_i - b)^2$.
+  \begin{enumerate}
+    \item Tìm nghiệm phân tích của $b$.
+    \item Liên hệ bài toán này với phân phối chuẩn.
+    \item Nếu đổi loss thành $\sum_i |x_i - b|$ (L1), có nghiệm đóng không?
+  \end{enumerate}
+
+  \item Chứng minh các hàm affine $\mathbf{x}^\top \mathbf{w} + b$ tương đương hàm tuyến tính trên vector mở rộng $(\mathbf{x}, 1)$.
+
+  \item Muốn mô hình hóa hàm bậc hai
+  \[
+    f(\mathbf{x}) = b + \sum_i w_i x_i + \sum_{j \le i} w_{ij} x_i x_j.
+  \]
+  Biểu diễn trong mạng sâu / mở rộng đặc trưng như thế nào?
+
+  \item Điều kiện khả nghịch $\mathbf{X}^\top\mathbf{X}$ (full rank):
+  \begin{enumerate}
+    \item Nếu không full rank thì sao?
+    \item Cách khắc phục? Thêm nhiễu Gaussian nhỏ độc lập vào mọi phần tử $\mathbf{X}$ thì kỳ vọng của $\mathbf{X}^\top\mathbf{X}$ thay đổi thế nào?
+    \item SGD khi $\mathbf{X}^\top\mathbf{X}$ không full rank?
+  \end{enumerate}
+
+  \item Giả sử nhiễu $\epsilon$ có phân phối Laplace (exponential bậc hai): $p(\epsilon) = \frac{1}{2}\exp(-|\epsilon|)$.
+  \begin{enumerate}
+    \item Viết $-\log P(\mathbf{y} \mid \mathbf{X})$.
+    \item Có nghiệm đóng không?
+    \item Đề xuất minibatch SGD; điều gì có thể sai gần điểm dừng? Cách sửa?
+  \end{enumerate}
+
+  \item Ghép hai lớp tuyến tính liên tiếp (đầu ra lớp 1 là đầu vào lớp 2). Tại sao tổ hợp ``ngây thơ'' này không tăng biểu đạt lực?
+
+  \item Hồi quy giá nhà / cổ phiếu thực tế:
+  \begin{enumerate}
+    \item Giả thiết nhiễu Gaussian cộng có phù hợp không? (giá âm? biến động?)
+    \item Vì sao hồi quy $\log(\mathrm{price})$ thường tốt hơn?
+    \item Cổ phiếu giá rất thấp (penny stock): vấn đề gì? (Black--Scholes, 1973)
+  \end{enumerate}
+
+  \item Dự đoán số táo bán trong siêu thị:
+  \begin{enumerate}
+    \item Vấn đề của mô hình Gaussian cộng (bán táo, không phải dầu).
+    \item Phân phối Poisson: $p(k \mid \lambda) = \lambda^k e^{-\lambda}/k!$. Chứng minh $E[k] = \lambda$.
+    \item Thiết kế loss gắn với Poisson.
+    \item Thiết kế loss cho ước lượng $\log\lambda$.
+  \end{enumerate}
+
+  \item \textbf{(Bổ sung bản Vi)} Viết bài toán tối ưu hồi quy tuyến tính dạng ma trận--vector; tính gradient theo $\mathbf{w}$; giải $\nabla_{\mathbf{w}} L = 0$. Khi nào tốt hơn SGD? Khi nào phương pháp ma trận ``vỡ''?
+\end{enumerate}
+
+\vfill
+\noindent\textit{Nguồn: Aston Zhang et al., \emph{Dive into Deep Learning}, §3.1. Bản LaTeX biên soạn theo template Nhóm 5 --- Xác suất và Thống kê.}
+
+\end{document}
