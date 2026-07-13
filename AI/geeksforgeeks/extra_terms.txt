@@ -1,0 +1,27 @@
+# Thuật ngữ giữ tiếng Anh khi dịch Markdown GeeksforGeeks.
+# Mỗi dòng một term. Dòng bắt đầu bằng # bị bỏ qua.
+# Dùng: python translate_md_vi.py --extra-terms extra_terms.txt
+
+GeeksforGeeks
+gradient descent
+feature engineering
+data preprocessing
+missing values
+one-hot encoding
+label encoding
+train-test split
+hold-out
+stratified sampling
+min-max scaling
+z-score
+imbalanced data
+SMOTE
+pipeline
+pipelines
+Pipeline
+Pipelines
+validation
+Validation
+validations
+Validations
+validation set
