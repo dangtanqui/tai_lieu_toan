@@ -5,8 +5,6 @@ Feature selection là quá trình chỉ chọn features đầu vào hữu ích n
 * Tăng tốc model training
 * Làm cho models đơn giản và dễ hiểu hơn
 
-![binary_number_system.webp](https://media.geeksforgeeks.org/wp-content/uploads/20251212172709886667/binary_number_system.webp)
-
 ![1.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165146012474/1.webp)
 
 ![2.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165145779522/2.webp)

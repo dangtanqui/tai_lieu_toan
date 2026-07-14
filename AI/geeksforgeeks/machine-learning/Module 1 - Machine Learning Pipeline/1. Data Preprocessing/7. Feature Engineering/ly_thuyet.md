@@ -2,8 +2,6 @@ Feature Engineering is the process of selecting, creating or modifying features 
 
 ![feature-engineering](https://media.geeksforgeeks.org/wp-content/uploads/20250701114435618562/feature-engineering.webp "Click to enlarge")
 
-Feature Engineering Architecture
-
 This step may include handling missing values, encoding categories, scaling numbers, creating new features or combining existing ones. It helps turn messy real-world data into a form that models can understand and use for better predictions.
 
 ### Importance of Feature Engineering
@@ -19,8 +17,6 @@ Processes Involved in Feature Engineering
 Lets see various features involved in feature engineering:
 
 ![processes](https://media.geeksforgeeks.org/wp-content/uploads/20250701123223591115/processes.webp "Click to enlarge")
-
-Processes involved in Feature Engineering
 
 ****1\. Feature Creation****: Feature creation involves generating new features from domain knowledge or by observing patterns in the data. It can be:
 
@@ -66,36 +62,65 @@ Common Techniques in Feature Engineering
 
 ****1\. One-Hot Encoding****: [One-Hot Encoding](https://www.geeksforgeeks.org/machine-learning/ml-one-hot-encoding/) converts categorical variables into binary indicators, allowing them to be used by machine learning models.
 
-Python`import pandas as pd  data = {'Color': ['Red', 'Blue', 'Green', 'Blue']} df = pd.DataFrame(data)  df_encoded = pd.get_dummies(df, columns=['Color'], prefix='Color')  print(df_encoded)`
+```python
+import pandas as pd
+data = {'Color': ['Red', 'Blue', 'Green', 'Blue']} df = pd.DataFrame(data)
+df_encoded = pd.get_dummies(df, columns=['Color'], prefix='Color')
+print(df_encoded)
+```
 
   
 **Output**
 
-   Color\_Blue  Color\_Green  Color\_Red
-0       False        False       True
-1        True        False      False
-2       False         True      False
-3        True        False      False
+|   | Color_Blue | Color_Green | Color_Red |
+| - | ---------- | ----------- | --------- |
+| 0 | False      | False       | True      |
+| 1 | True       | False       | False     |
+| 2 | False      | True        | False     |
+| 3 | True       | False       | False     |
 
 ****2\. Binning****: [Binning](https://www.geeksforgeeks.org/machine-learning/binning-in-data-mining/) transforms continuous variables into discrete bins, making them categorical for easier analysis.
 
-Python`import pandas as pd  data = {'Age': [23, 45, 18, 34, 67, 50, 21]} df = pd.DataFrame(data)  bins = [0, 20, 40, 60, 100] labels = ['0-20', '21-40', '41-60', '61+']  df['Age_Group'] = pd.cut(df['Age'], bins=bins, labels=labels, right=False)  print(df)`
+```python
+import pandas as pd
+data = {'Age': [23, 45, 18, 34, 67, 50, 21]} df = pd.DataFrame(data)
+bins = [0, 20, 40, 60, 100]
+labels = ['0-20', '21-40', '41-60', '61+']
+df['Age_Group'] = pd.cut(df['Age'], bins=bins, labels=labels, right=False)
+print(df)
+```
 
   
 **Output**
 
-   Age Age\_Group
-0   23     21-40
-1   45     41-60
-2   18      0-20
-3   34     21-40
-4   67       61+
-5   50     41-60
-6   21     21-40
+|   | Age | Age_Group |
+| - | --- | --------- |
+| 0 | 23  | 21-40     |
+| 1 | 45  | 41-60     |
+| 2 | 18  | 0-20      |
+| 3 | 34  | 21-40     |
+| 4 | 67  | 61+       |
+| 5 | 50  | 41-60     |
+| 6 | 21  | 21-40     |
 
 ****3\. Text Data Preprocessing****: Involves removing [stop-words](https://www.geeksforgeeks.org/nlp/removing-stop-words-nltk-python/), [stemming](https://www.geeksforgeeks.org/machine-learning/introduction-to-stemming/) and [vectorizing](https://www.geeksforgeeks.org/nlp/vectorization-techniques-in-nlp/) text data to prepare it for machine learning models.
 
-Python`import nltk from nltk.corpus import stopwords from nltk.stem import PorterStemmer from sklearn.feature_extraction.text import CountVectorizer  texts = ["This is a sample sentence.", "Text data preprocessing is important."]  stop_words = set(stopwords.words('english')) stemmer = PorterStemmer() vectorizer = CountVectorizer()  def preprocess_text(text):     words = text.split()     words = [stemmer.stem(word)              for word in words if word.lower() not in stop_words]     return " ".join(words)  cleaned_texts = [preprocess_text(text) for text in texts]  X = vectorizer.fit_transform(cleaned_texts)  print("Cleaned Texts:", cleaned_texts) print("Vectorized Text:", X.toarray())`
+```python
+import nltk from nltk.corpus import stopwords from nltk.stem import PorterStemmer from sklearn.feature_extraction.text import CountVectorizer
+texts = ["This is a sample sentence.", "Text data preprocessing is important."]
+stop_words = set(stopwords.words('english'))
+stemmer = PorterStemmer()
+vectorizer = CountVectorizer()
+def preprocess_text(text):
+words = text.split()
+words = [stemmer.stem(word)
+for word in words if word.lower() not in stop_words]
+return " ".join(words)
+cleaned_texts = [preprocess_text(text) for text in texts]
+X = vectorizer.fit_transform(cleaned_texts)
+print("Cleaned Texts:", cleaned_texts)
+print("Vectorized Text:", X.toarray())
+```
 
 ****Output:****
 
@@ -103,14 +128,22 @@ Python`import nltk from nltk.corpus import stopwords from nltk.stem import Porte
 
 ****4\. Feature Splitting****: Divides a single feature into multiple sub-features, uncovering valuable insights and improving model performance.
 
-Python`import pandas as pd  data = {'Full_Address': [     '123 Elm St, Springfield, 12345', '456 Oak Rd, Shelbyville, 67890']} df = pd.DataFrame(data)  df[['Street', 'City', 'Zipcode']] = df['Full_Address'].str.extract(     r'([0-9]+\s[\w\s]+),\s([\w\s]+),\s(\d+)')  print(df)`
+```python
+import pandas as pd
+data = {'Full_Address': [
+'123 Elm St, Springfield, 12345', '456 Oak Rd, Shelbyville, 67890']} df = pd.DataFrame(data)
+df[['Street', 'City', 'Zipcode']] = df['Full_Address'].str.extract(
+r'([0-9]+\s[\w\s]+),\s([\w\s]+),\s(\d+)')
+print(df)
+```
 
   
 **Output**
 
-                     Full\_Address      Street         City Zipcode
-0  123 Elm St, Springfield, 12345  123 Elm St  Springfield   12345
-1  456 Oak Rd, Shelbyville, 67890  456 Oak Rd  Shelbyville   67890...
+|   | Full_Address                   | Street     | City        | Zipcode |
+| - | ------------------------------ | ---------- | ----------- | ------- |
+| 0 | 123 Elm St, Springfield, 12345 | 123 Elm St | Springfield | 12345   |
+| 1 | 456 Oak Rd, Shelbyville, 67890 | 456 Oak Rd | Shelbyville | 67890   |
 
 Tools for Feature Engineering
 -----------------------------
@@ -126,94 +159,54 @@ Suggested Quiz
 
 How does Feature Engineering help reduce overfitting?
 
-*   A
+- [ ] A. By increasing dataset size
     
-    By increasing dataset size
+- [ ] B. By using fewer but more important features
     
-*   B
+- [ ] C. By replacing the training dataset
     
-    By using fewer but more important features
-    
-*   C
-    
-    By replacing the training dataset
-    
-*   D
-    
-    By removing all data transformations
+- [ ] D. By removing all data transformations
     
 
 What is the purpose of Feature Creation in Feature Engineering?
 
-*   A
+- [ ] A. Scaling numerical variables to a common range
     
-    Scaling numerical variables to a common range
+- [ ] B. Dividing datasets into training and testing sets
     
-*   B
+- [ ] C. Creating new features using patterns or domain knowledge
     
-    Dividing datasets into training and testing sets
-    
-*   C
-    
-    Creating new features using patterns or domain knowledge
-    
-*   D
-    
-    Eliminating underperforming machine learning models
+- [ ] D. Eliminating underperforming machine learning models
     
 
 Which method rescales feature values to a fixed range such as 0 to 1?
 
-*   A
+- [ ] A. Min-Max scaling
     
-    Min-Max scaling
+- [ ] B. Standard scaling
     
-*   B
+- [ ] C. Feature extraction
     
-    Standard scaling
-    
-*   C
-    
-    Feature extraction
-    
-*   D
-    
-    Binning
+- [ ] D. Binning
     
 
 Which step in feature engineering focuses on choosing the most relevant features?
 
-*   A
+- [ ] A. Feature Selection
     
-    Feature Selection
+- [ ] B. Feature Scaling
     
-*   B
+- [ ] C. Feature Splitting
     
-    Feature Scaling
-    
-*   C
-    
-    Feature Splitting
-    
-*   D
-    
-    Feature Transformation
+- [ ] D. Feature Transformation
     
 
 What is the purpose of Feature Iteration?
 
-*   A
+- [ ] A. Deploying trained machine learning models into production
     
-    Deploying trained machine learning models into production
+- [ ] B. Creating and labeling datasets for model training
     
-*   B
+- [ ] C. Organizing and storing data in database systems
     
-    Creating and labeling datasets for model training
-    
-*   C
-    
-    Organizing and storing data in database systems
-    
-*   D
-    
-    Continuously refining features based on model performance
+- [ ] D. Continuously refining features based on model performance

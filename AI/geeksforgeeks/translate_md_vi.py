@@ -456,12 +456,155 @@ def normalize_inline_python_blocks(text: str) -> str:
   return INLINE_PYTHON_RE.sub(repl, text)
 
 
+def _unescape_md_underscores(s: str) -> str:
+  return s.replace(r"\_", "_")
+
+
+def _split_aligned_cells(line: str) -> list[str]:
+  """Tách cột bảng căn khoảng trắng (pandas print / fixed-width)."""
+  line = _unescape_md_underscores(line.strip())
+  if not line:
+    return []
+  return [p.strip() for p in re.split(r"\s{2,}", line) if p.strip()]
+
+
+def _split_header_cells(line: str, n_cols: int) -> list[str]:
+  """Parse header sao cho khớp số cột của hàng dữ liệu."""
+  line = _unescape_md_underscores(line.strip())
+  parts = _split_aligned_cells(line)
+  if len(parts) == n_cols:
+    return parts
+  # Cột ngắn có thể chỉ cách nhau 1 space: "Age Age_Group", "City Zipcode"
+  parts = line.split()
+  if len(parts) == n_cols:
+    return parts
+  parts = _split_aligned_cells(line)
+  while len(parts) < n_cols:
+    split_at = None
+    for i in range(len(parts) - 1, -1, -1):
+      if " " in parts[i]:
+        split_at = i
+        break
+    if split_at is None:
+      break
+    left, _, right = parts[split_at].rpartition(" ")
+    parts = parts[:split_at] + [left, right] + parts[split_at + 1 :]
+  while len(parts) > n_cols:
+    parts = parts[:-2] + [f"{parts[-2]} {parts[-1]}"]
+  if len(parts) < n_cols:
+    parts.extend([""] * (n_cols - len(parts)))
+  return parts[:n_cols]
+
+
+def _is_dataframe_index_row(line: str) -> bool:
+  """Hàng dữ liệu pandas: bắt đầu bằng index số."""
+  return bool(re.match(r"^\d+\s+\S", line.strip()))
+
+
+def _rows_to_markdown_table(header: list[str], rows: list[list[str]]) -> str:
+  """Chuyển header + rows (mỗi row = [index, *cells]) thành GFM table."""
+  cols = [" "] + header
+  widths = [max(len(c), 1) for c in cols]
+  for row in rows:
+    for i, cell in enumerate(row):
+      if i < len(widths):
+        widths[i] = max(widths[i], len(cell))
+      else:
+        widths.append(len(cell))
+
+  def fmt_row(cells: list[str]) -> str:
+    padded = []
+    for i, w in enumerate(widths):
+      cell = cells[i] if i < len(cells) else ""
+      padded.append(cell.ljust(w))
+    return "| " + " | ".join(padded) + " |"
+
+  sep = "| " + " | ".join("-" * w for w in widths) + " |"
+  lines = [fmt_row(cols), sep]
+  for row in rows:
+    lines.append(fmt_row(row))
+  return "\n".join(lines)
+
+
+def convert_plaintext_tables(text: str) -> str:
+  """Đổi khối bảng căn space (pandas DataFrame print) → Markdown table.
+
+  Ví dụ::
+
+       Color_Blue  Color_Green  Color_Red
+  0       False        False       True
+
+  thành::
+
+  |   | Color_Blue | Color_Green | Color_Red |
+  |---|---------|-----------|----------|
+  | 0 | False    | False     | True     |
+  """
+  lines = text.splitlines()
+  out: list[str] = []
+  i = 0
+  while i < len(lines):
+    # Header + ≥1 hàng index — không nằm trong fence
+    if (
+      i + 1 < len(lines)
+      and lines[i].strip()
+      and not lines[i].lstrip().startswith(("|", "#", "*", "-", ">", "`", "!"))
+      and _is_dataframe_index_row(lines[i + 1])
+    ):
+      # Thu thập hàng dữ liệu
+      j = i + 1
+      data_lines: list[str] = []
+      while j < len(lines) and _is_dataframe_index_row(lines[j]):
+        data_lines.append(lines[j])
+        j += 1
+      if not data_lines:
+        out.append(lines[i])
+        i += 1
+        continue
+
+      parsed_rows: list[list[str]] = []
+      n_cols: int | None = None
+      ok = True
+      for dl in data_lines:
+        cells = _split_aligned_cells(dl)
+        if len(cells) < 2:
+          ok = False
+          break
+        if n_cols is None:
+          n_cols = len(cells) - 1
+        elif len(cells) - 1 != n_cols:
+          # Cho phép lệch nhẹ ở hàng cuối (cắt "..."); pad/truncate
+          if len(cells) - 1 < n_cols:
+            cells = cells + [""] * (n_cols + 1 - len(cells))
+          else:
+            cells = cells[: n_cols + 1]
+        # Bỏ dấu "..." cuối ô (GFG cắt output)
+        cells = [re.sub(r"\.{3,}$", "", c).rstrip() for c in cells]
+        parsed_rows.append(cells)
+
+      if ok and n_cols and n_cols >= 1:
+        # Header phải có vẻ là tên cột (không phải câu văn dài)
+        header_line = lines[i]
+        if len(header_line.strip()) <= 200 and not re.search(
+          r"[.!?]$", header_line.strip()
+        ):
+          header = _split_header_cells(header_line, n_cols)
+          out.append(_rows_to_markdown_table(header, parsed_rows))
+          i = j
+          continue
+
+    out.append(lines[i])
+    i += 1
+  return "\n".join(out) + ("\n" if text.endswith("\n") else "")
+
+
 def normalize_gfg_markdown(text: str) -> str:
   """Chuẩn hóa Markdown scraped từ GeeksforGeeks."""
   text = re.sub(CAROUSEL_RE, "", text)
   text = dedupe_images(text)
   text = remove_image_captions(text)
   text = normalize_inline_python_blocks(text)
+  text = convert_plaintext_tables(text)
   text = normalize_quiz_options(text)
   text = re.sub(r"\n{3,}", "\n\n", text)
   return text.strip() + "\n"
@@ -501,21 +644,27 @@ def protect_segments(text: str) -> tuple[str, list[str]]:
     store.append(match.group(0))
     return _placeholder("S", len(store) - 1)
 
-  patterns = [
-    r"```[\s\S]*?```",
-    r"!\[[^\]]*\]\([^)]+\)",
-    r"(?<!!)\[[^\]]*\]\([^)]+\)",
-    r"`[^`\n]+`",
-    r"\$\$[\s\S]*?\$\$",
-    r"\$[^$\n]+\$",
+  patterns: list[tuple[str, int]] = [
+    (r"```[\s\S]*?```", 0),
+    # Markdown table (GFM) — giữ nguyên, không dịch False/True, tên cột...
+    (
+      r"(?:^[ \t]*\|.+\|[ \t]*\n)+(?:^[ \t]*\|[-:| \t]+\|[ \t]*\n)"
+      r"(?:^[ \t]*\|.+\|[ \t]*\n)*",
+      re.M,
+    ),
+    (r"!\[[^\]]*\]\([^)]+\)", 0),
+    (r"(?<!!)\[[^\]]*\]\([^)]+\)", 0),
+    (r"`[^`\n]+`", 0),
+    (r"\$\$[\s\S]*?\$\$", 0),
+    (r"\$[^$\n]+\$", 0),
     # Chỉ tag HTML thật — KHÔNG khớp toán tử <= >=
-    r"</?[a-zA-Z][^>\n]*>",
-    r"https?://[^\s)]+",
-    r"\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b",
+    (r"</?[a-zA-Z][^>\n]*>", 0),
+    (r"https?://[^\s)]+", 0),
+    (r"\b[a-z][a-z0-9]*(?:_[a-z0-9]+)+\b", 0),
   ]
   protected = text
-  for pat in patterns:
-    protected = re.sub(pat, repl, protected)
+  for pat, flags in patterns:
+    protected = re.sub(pat, repl, protected, flags=flags)
   return protected, store
 
 

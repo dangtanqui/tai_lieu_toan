@@ -71,13 +71,14 @@ print(df_encoded)
 
 **Đầu ra**
 
-Màu\_Màu xanh\_Màu xanh\_Đỏ
-0 Sai Sai Đúng
-1 Đúng Sai Sai
-2 Sai Đúng Sai
-3 Đúng Sai Sai
+|   | Color_Blue | Color_Green | Color_Red |
+| - | ---------- | ----------- | --------- |
+| 0 | False      | False       | True      |
+| 1 | True       | False       | False     |
+| 2 | False      | True        | False     |
+| 3 | True       | False       | False     |
 
-****2\. Binning****: [Thùng](https://www.geeksforgeeks.org/machine-learning/binning-in-data-mining/) chuyển đổi các biến liên tục thành các thùng riêng biệt, khiến chúng được classification để phân tích dễ dàng hơn.
+****2\. Binning****: [Thùng](https://www.geeksforgeeks.org/machine-learning/binning-in-data-mining/) chuyển đổi các biến liên tục thành các thùng rời rạc, biến chúng thành các classification để phân tích dễ dàng hơn.
 
 ```python
 import pandas as pd
@@ -90,14 +91,15 @@ print(df)
 
 **Đầu ra**
 
-Tuổi Tuổi\_Nhóm
-0 23 21-40
-1 45 41-60
-2 18 0-20
-3 34 21-40
-4 67 61+
-5 50 41-60
-6 21 21-40
+|   | Age | Age_Group |
+| - | --- | --------- |
+| 0 | 23  | 21-40     |
+| 1 | 45  | 41-60     |
+| 2 | 18  | 0-20      |
+| 3 | 34  | 21-40     |
+| 4 | 67  | 61+       |
+| 5 | 50  | 41-60     |
+| 6 | 21  | 21-40     |
 
 ****3\. Văn bản Data Preprocessing****: Liên quan đến việc xóa dữ liệu văn bản [Từ dừng](https://www.geeksforgeeks.org/nlp/removing-stop-words-nltk-python/), [Nhét đầy](https://www.geeksforgeeks.org/machine-learning/introduction-to-stemming/) và [Vector hóa](https://www.geeksforgeeks.org/nlp/vectorization-techniques-in-nlp/) để chuẩn bị cho machine learning models.
 
@@ -135,9 +137,10 @@ print(df)
 
 **Đầu ra**
 
-Đầy đủ\_Địa chỉ Đường Thành phố Mã Zip
-0 123 Elm St, Springfield, 12345 123 Elm St Springfield 12345
-1 456 Đường Oak, Shelbyville, 67890 456 Đường Oak Shelbyville 67890...
+|   | Full_Address                   | Street     | City        | Zipcode |
+| - | ------------------------------ | ---------- | ----------- | ------- |
+| 0 | 123 Elm St, Springfield, 12345 | 123 Elm St | Springfield | 12345   |
+| 1 | 456 Oak Rd, Shelbyville, 67890 | 456 Oak Rd | Shelbyville | 67890   |
 
 Công cụ dành cho Feature Engineering
 -----------------------------

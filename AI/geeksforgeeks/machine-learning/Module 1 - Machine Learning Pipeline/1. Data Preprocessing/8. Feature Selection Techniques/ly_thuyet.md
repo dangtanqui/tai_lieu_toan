@@ -5,8 +5,6 @@ Feature selection is the process of choosing only the most useful input features
 *   Speeds up model training
 *   Makes models simpler and easier to interpret
 
-![binary_number_system.webp](https://media.geeksforgeeks.org/wp-content/uploads/20251212172709886667/binary_number_system.webp)![binary_number_system.webp](https://media.geeksforgeeks.org/wp-content/uploads/20251212172709886667/binary_number_system.webp)
-
 ![1.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165146012474/1.webp)![1.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165146012474/1.webp)
 
 ![2.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165145779522/2.webp)![2.webp](https://media.geeksforgeeks.org/wp-content/uploads/20250512165145779522/2.webp)
